@@ -1,4 +1,4 @@
-/obj/item/stack/medical
+obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
 	icon = 'icons/obj/stacks.dmi'
@@ -15,12 +15,12 @@
 
 	var/upgrade_to	// The type path this stack can be upgraded to.
 
-/obj/item/stack/medical/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/stack/medical/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	checked_application(target, user)
 
-/obj/item/stack/medical/proc/checked_application(mob/M, mob/user)
+obj/item/stack/medical/proc/checked_application(mob/M, mob/user)
 	var/mob/living/carbon/C = M
 	if(!istype(C))
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
@@ -68,7 +68,7 @@
 	C.update_health()
 	return TRUE
 
-/obj/item/stack/medical/proc/upgrade_stack(var/upgrade_amount)
+obj/item/stack/medical/proc/upgrade_stack(var/upgrade_amount)
 	. = FALSE
 
 	var/turf/T = get_turf(src)
@@ -79,7 +79,7 @@
 
 	return .
 
-/obj/item/stack/medical/crude_pack
+obj/item/stack/medical/crude_pack
 	name = "crude bandage"
 	singular_name = "crude bandage length"
 	desc = "Some bandages to wrap around bloody stumps."
@@ -92,7 +92,7 @@
 
 	upgrade_to = /obj/item/stack/medical/bruise_pack
 
-/obj/item/stack/medical/crude_pack/checked_application(mob/M, mob/user)
+obj/item/stack/medical/crude_pack/checked_application(mob/M, mob/user)
 	if(!(. = ..()))
 		return
 
@@ -143,7 +143,7 @@
 					to_chat(user, "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>")
 			use(used)
 
-/obj/item/stack/medical/bruise_pack
+obj/item/stack/medical/bruise_pack
 	name = "roll of gauze"
 	singular_name = "gauze length"
 	desc = "Some sterile gauze to wrap around bloody stumps."
@@ -154,7 +154,7 @@
 
 	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
-/obj/item/stack/medical/bruise_pack/checked_application(mob/M, mob/user)
+obj/item/stack/medical/bruise_pack/checked_application(mob/M, mob/user)
 	if(!(. = ..()))
 		return
 
@@ -210,7 +210,7 @@
 					to_chat(user, "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>")
 			use(used)
 
-/obj/item/stack/medical/ointment
+obj/item/stack/medical/ointment
 	name = "ointment"
 	desc = "Used to treat those nasty burns."
 	gender = PLURAL
@@ -223,7 +223,7 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/medical/ointment/checked_application(mob/M, mob/user)
+obj/item/stack/medical/ointment/checked_application(mob/M, mob/user)
 	if(!(. = ..()))
 		return
 
@@ -253,7 +253,7 @@
 			affecting.salve()
 			playsound(src, pick(apply_sounds), 25)
 
-/obj/item/stack/medical/advanced/bruise_pack
+obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
@@ -262,7 +262,7 @@
 	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 
-/obj/item/stack/medical/advanced/bruise_pack/checked_application(mob/M, mob/user)
+obj/item/stack/medical/advanced/bruise_pack/checked_application(mob/M, mob/user)
 	if(!(. = ..()))
 		return
 
@@ -315,7 +315,7 @@
 					to_chat(user, "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>")
 			use(used)
 
-/obj/item/stack/medical/advanced/ointment
+obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
@@ -324,7 +324,7 @@
 	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/ointment.ogg')
 
-/obj/item/stack/medical/advanced/ointment/checked_application(mob/M, mob/user)
+obj/item/stack/medical/advanced/ointment/checked_application(mob/M, mob/user)
 	if(!(. = ..()))
 		return
 
@@ -355,7 +355,7 @@
 			playsound(src, pick(apply_sounds), 25)
 			update_icon() // Support for stack icons
 
-/obj/item/stack/medical/splint
+obj/item/stack/medical/splint
 	name = "medical splints"
 	singular_name = "medical splint"
 	desc = "Modular splints capable of supporting and immobilizing bones in all areas of the body."
@@ -367,7 +367,7 @@
 
 	var/list/splintable_organs = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)	//List of organs you can splint, natch.
 
-/obj/item/stack/medical/splint/checked_application(mob/M, mob/user)
+obj/item/stack/medical/splint/checked_application(mob/M, mob/user)
 	if(!(. = ..()))
 		return
 
@@ -417,7 +417,7 @@
 						return
 			user.visible_message("<span class='danger'>\The [user] fails to apply [src].</span>", "<span class='danger'>You fail to apply [src].</span>", "<span class='danger'>You hear something being wrapped.</span>")
 
-/obj/item/stack/medical/splint/ghetto
+obj/item/stack/medical/splint/ghetto
 	name = "makeshift splints"
 	singular_name = "makeshift splint"
 	desc = "For holding your limbs in place with duct tape and scrap metal."
@@ -425,7 +425,7 @@
 	amount = 1
 	splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 
-/obj/item/stack/medical/splint/primitive
+obj/item/stack/medical/splint/primitive
 	name = "primitive splints"
 	singular_name = "makeshift splint"
 	desc = "For holding your limbs in place with hide and sinew."
@@ -433,11 +433,11 @@
 	amount = 5
 
 // Begin Citadel Changes - New advanced kit sprites
-/obj/item/stack/medical/advanced/Initialize(mapload)
+obj/item/stack/medical/advanced/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/stack/medical/advanced/update_icon()
+obj/item/stack/medical/advanced/update_icon()
 	switch(amount)
 		if(1 to 2)
 			icon_state = initial(icon_state)
@@ -454,7 +454,7 @@
 // End Citadel Changes
 
 //Ashlander Poultices - They basically use the same stack system as ointment and bruise packs. Gotta dupe some of the code since bruise pack/ointment chat messages are too specific.
-/obj/item/stack/medical/poultice_brute
+obj/item/stack/medical/poultice_brute
 	name = "poultice (juhtak)"
 	singular_name = "poultice (juhtak)"
 	desc = "A damp mush made from the pulp of a juhtak. It is used to treat flesh injuries."
@@ -464,7 +464,7 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/medical/poultice_brute/checked_application(mob/M, mob/user)
+obj/item/stack/medical/poultice_brute/checked_application(mob/M, mob/user)
 	if(!(. = ..()))
 		return
 
@@ -520,7 +520,7 @@
 					to_chat(user, "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>")
 			use(used)
 
-/obj/item/stack/medical/poultice_burn
+obj/item/stack/medical/poultice_burn
 	name = "poultice (pyrrhlea)"
 	desc = "A damp mush infused with pyrrhlea petals. It is used to treat burns."
 	gender = PLURAL
@@ -532,7 +532,7 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/medical/poultice_burn/checked_application(mob/M, mob/user)
+obj/item/stack/medical/poultice_burn/checked_application(mob/M, mob/user)
 	if(!(. = ..()))
 		return
 

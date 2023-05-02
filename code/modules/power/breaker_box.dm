@@ -4,7 +4,7 @@
 // Humans need 30 seconds (AI is faster when it comes to complex electronics)
 // Used for advanced grid control (read: Substations)
 
-/obj/machinery/power/breakerbox
+obj/machinery/power/breakerbox
 	name = "Breaker Box"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "bbox_off"
@@ -22,37 +22,37 @@
 	var/update_locked = 0
 	var/datum/wires/breakerbox/wires
 
-/obj/machinery/power/breakerbox/Destroy()
+obj/machinery/power/breakerbox/Destroy()
 	for(var/obj/structure/cable/C in loc)
 		qdel(C)
 	. = ..()
 	for(var/datum/nano_module/rcon/R in world)
 		R.FindDevices()
 
-/obj/machinery/power/breakerbox/Initialize(mapload)
+obj/machinery/power/breakerbox/Initialize(mapload)
 	. = ..()
 	wires = new(src)
 
-/obj/machinery/power/breakerbox/activated
+obj/machinery/power/breakerbox/activated
 	icon_state = "bbox_on"
 
 // Enabled on server startup. Used in substations to keep them in bypass mode.
-/obj/machinery/power/breakerbox/activated/Initialize(mapload)
+obj/machinery/power/breakerbox/activated/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/power/breakerbox/activated/LateInitialize()
+obj/machinery/power/breakerbox/activated/LateInitialize()
 	set_state(1)
 	return ..()
 
-/obj/machinery/power/breakerbox/examine(mob/user)
+obj/machinery/power/breakerbox/examine(mob/user)
 	. = ..()
 	if(on)
 		. += "<font color='green'>It seems to be online.</font>"
 	else
 		. += "<font color='red'>It seems to be offline.</font>"
 
-/obj/machinery/power/breakerbox/attack_ai(mob/user)
+obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)
 		to_chat(user, "<font color='red'>System locked. Please try again later.</font>")
 		return
@@ -72,7 +72,7 @@
 	busy = 0
 
 
-/obj/machinery/power/breakerbox/attack_hand(mob/user, list/params)
+obj/machinery/power/breakerbox/attack_hand(mob/user, list/params)
 	if(update_locked)
 		to_chat(user, "<font color='red'>System locked. Please try again later.</font>")
 		return
@@ -95,7 +95,7 @@
 			update_locked = 0
 	busy = 0
 
-/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/multitool))
 		var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 		if(newtag)
@@ -113,7 +113,7 @@
 	if(W.is_multitool() || W.is_wirecutter() && panel_open)
 		wires.Interact(user)
 
-/obj/machinery/power/breakerbox/proc/set_state(var/state)
+obj/machinery/power/breakerbox/proc/set_state(var/state)
 	on = state
 	if(on)
 		icon_state = icon_state_on
@@ -146,12 +146,12 @@
 			qdel(C)
 
 // Used by RCON to toggle the breaker box.
-/obj/machinery/power/breakerbox/proc/auto_toggle()
+obj/machinery/power/breakerbox/proc/auto_toggle()
 	if(!update_locked)
 		set_state(!on)
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
 
-/obj/machinery/power/breakerbox/process(delta_time)
+obj/machinery/power/breakerbox/process(delta_time)
 	return 1

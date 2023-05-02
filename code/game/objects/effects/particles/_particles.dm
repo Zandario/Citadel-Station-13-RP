@@ -17,7 +17,7 @@
  *
  * After the datum is created, it can be assigned to an obj or mob using their particles var. The particles will appear on the map wherever that obj or mob appears.
  */
-/particles
+particles
 //! ## Particle vars that affect the entire set (generators are not allowed for these)
 
 	/**

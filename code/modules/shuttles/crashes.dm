@@ -2,11 +2,11 @@
 // Crashable shuttle. Boom etc.
 //
 
-/datum/shuttle
+datum/shuttle
 	var/list/crash_locations = null
 	var/crash_message = "Oops. The shuttle blew up."	// Announcement made when shuttle crashes
 
-/datum/shuttle/New()
+datum/shuttle/New()
 	if(crash_locations)
 		var/crash_location_ids = crash_locations
 		crash_locations = list()
@@ -18,17 +18,17 @@
 
 // Return 0 to let the jump continue, 1 to abort the jump.
 // Default implementation checks if the shuttle should crash and if so crashes it.
-/datum/shuttle/proc/process_longjump(var/obj/effect/shuttle_landmark/intended_destination)
+datum/shuttle/proc/process_longjump(var/obj/effect/shuttle_landmark/intended_destination)
 	if(should_crash(intended_destination))
 		do_crash(intended_destination)
 		return 1
 
 // Decide if this is the time we crash.  Return true for yes
-/datum/shuttle/proc/should_crash(var/obj/effect/shuttle_landmark/intended_destination)
+datum/shuttle/proc/should_crash(var/obj/effect/shuttle_landmark/intended_destination)
 	return FALSE
 
 // Actually crash the shuttle
-/datum/shuttle/proc/do_crash(var/obj/effect/shuttle_landmark/intended_destination)
+datum/shuttle/proc/do_crash(var/obj/effect/shuttle_landmark/intended_destination)
 	// Choose the target
 	var/obj/effect/shuttle_landmark/target = pick(crash_locations)
 	ASSERT(istype(target))

@@ -1,12 +1,12 @@
 ///////////////////// Simple Animal /////////////////////
-/mob/living/simple_mob
+mob/living/simple_mob
 	var/swallowTime = (3 SECONDS)		//How long it takes to eat its prey in 1/10 of a second. The default is 3 seconds.
 	var/list/prey_excludes = list()		//For excluding people from being eaten.
 
 //
 // Simple nom proc for if you get ckey'd into a simple_mob mob! Avoids grabs.
 //
-/mob/living/simple_mob/proc/animal_nom(var/mob/living/T in living_mobs(1))
+mob/living/simple_mob/proc/animal_nom(var/mob/living/T in living_mobs(1))
 	set name = "Animal Nom"
 	set category = "IC"
 	set desc = "Since you can't grab, you get a verb!"
@@ -29,7 +29,7 @@
  * Simple proc for animals to have their digestion toggled on/off externally
  * Added as a verb in /mob/living/simple_mob/init_vore() if vore is enabled for this mob.
  */
-/mob/living/simple_mob/proc/toggle_digestion()
+mob/living/simple_mob/proc/toggle_digestion()
 	set name = "Toggle Animal's Digestion"
 	set desc = "Enables digestion on this mob for 20 minutes."
 	set category = "OOC"
@@ -55,7 +55,7 @@
 			vore_selected.digest_mode = DM_HOLD
 
 // Added as a verb in /mob/living/simple_mob/init_vore() if vore is enabled for this mob.
-/mob/living/simple_mob/proc/toggle_fancygurgle()
+mob/living/simple_mob/proc/toggle_fancygurgle()
 	set name = "Toggle Animal's Gurgle sounds"
 	set desc = "Switches between Fancy and Classic sounds on this mob."
 	set category = "OOC"
@@ -71,7 +71,7 @@
 	vore_selected.fancy_vore = !vore_selected.fancy_vore
 	to_chat(user, "[src] is now using [vore_selected.fancy_vore ? "Fancy" : "Classic"] vore sounds.")
 
-/mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
+mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/newspaper) && !(ckey || (ai_holder.hostile && faction != user.faction)) && isturf(user.loc))
 		if (ai_holder.retaliate && prob(vore_pounce_chance/2)) // This is a gamble!
 			user.afflict_paralyze(20 * 5) //They get tackled anyway whether they're edible or not.

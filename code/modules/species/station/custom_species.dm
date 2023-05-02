@@ -1,5 +1,5 @@
 
-/datum/species/custom
+datum/species/custom
 	uid = SPECIES_ID_CUSTOM
 	id = SPECIES_ID_CUSTOM
 	name = SPECIES_CUSTOM
@@ -48,18 +48,18 @@
 		/mob/living/carbon/human/proc/tie_hair,
 	)
 
-/datum/species/custom/get_effective_bodytype(mob/living/carbon/human/H, obj/item/I, slot_id)
+datum/species/custom/get_effective_bodytype(mob/living/carbon/human/H, obj/item/I, slot_id)
 	return SScharacters.resolve_species_name(base_species).get_effective_bodytype(H, I, slot_id)
 
-/datum/species/custom/get_bodytype_legacy()
+datum/species/custom/get_bodytype_legacy()
 	return base_species
 
-/datum/species/custom/get_worn_legacy_bodytype()
+datum/species/custom/get_worn_legacy_bodytype()
 	var/datum/species/real = SScharacters.resolve_species_name(base_species)
 	// infinite loop guard
 	return istype(real, src)? base_species : real.get_worn_legacy_bodytype()
 
-/datum/species/custom/get_race_key(mob/living/carbon/human/H)
+datum/species/custom/get_race_key(mob/living/carbon/human/H)
 	var/datum/species/real = SScharacters.resolve_species_name(base_species)
 	return real.real_race_key(H)
 
@@ -67,16 +67,16 @@
 
 //Called when face-down in the water or otherwise over their head.
 // Return: TRUE for able to breathe fine in water.
-/datum/species/custom/can_breathe_water()
+datum/species/custom/can_breathe_water()
 	return ..()
 
 //Called during handle_environment in Life() ticks.
 // Return: Not used.
-/datum/species/custom/handle_environment_special(mob/living/carbon/human/H)
+datum/species/custom/handle_environment_special(mob/living/carbon/human/H)
 	return ..()
 
 //Called when spawning to equip them with special things.
-/datum/species/custom/equip_survival_gear(mob/living/carbon/human/H)
+datum/species/custom/equip_survival_gear(mob/living/carbon/human/H)
 	/* Example, from Vox:
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_ID_MASK)
 	if(H.backbag == 1)

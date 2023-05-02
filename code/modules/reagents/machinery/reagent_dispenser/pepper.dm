@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers/peppertank
+obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"
 	desc = "Refills pepper spray canisters."
 	icon = 'icons/obj/objects.dmi'

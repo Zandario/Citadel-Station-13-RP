@@ -3,7 +3,7 @@
  *! SPDX-License-Identifier: MIT
  */
 
-/datum/tgui_window
+datum/tgui_window
 	var/id
 	var/client/client
 	var/pooled
@@ -34,7 +34,7 @@
  * required client /client
  * required id string A unique window identifier.
  */
-/datum/tgui_window/New(client/client, id, pooled = FALSE)
+datum/tgui_window/New(client/client, id, pooled = FALSE)
 	src.id = id
 	src.client = client
 	src.client.tgui_windows[id] = src
@@ -56,7 +56,7 @@
  * optional inline_js string - Custom JS to inject.
  * optional inline_css string - Custom CSS to inject.
  */
-/datum/tgui_window/proc/initialize(
+datum/tgui_window/proc/initialize(
 		strict_mode = FALSE,
 		fancy = FALSE,
 		assets = list(),
@@ -125,7 +125,7 @@
  *
  * Reinitializes the panel with previous data used for initialization.
  */
-/datum/tgui_window/proc/reinitialize()
+datum/tgui_window/proc/reinitialize()
 	initialize(
 		strict_mode = initial_strict_mode,
 		fancy = initial_fancy,
@@ -141,7 +141,7 @@
  *
  * return bool
  */
-/datum/tgui_window/proc/is_ready()
+datum/tgui_window/proc/is_ready()
 	return status == TGUI_WINDOW_READY
 
 /**
@@ -151,7 +151,7 @@
  *
  * return bool
  */
-/datum/tgui_window/proc/can_be_suspended()
+datum/tgui_window/proc/can_be_suspended()
 	return !fatally_errored \
 		&& pooled \
 		&& pool_index > 0 \
@@ -169,7 +169,7 @@
  *
  * optional ui /datum/tgui
  */
-/datum/tgui_window/proc/acquire_lock(datum/tgui/ui)
+datum/tgui_window/proc/acquire_lock(datum/tgui/ui)
 	locked = TRUE
 	locked_by = ui
 
@@ -178,7 +178,7 @@
  *
  * Release the window lock.
  */
-/datum/tgui_window/proc/release_lock()
+datum/tgui_window/proc/release_lock()
 	// Clean up assets sent by tgui datum which requested the lock
 	if(locked)
 		sent_assets = list()
@@ -194,7 +194,7 @@
  * is simpler and therefore faster. If necessary, this can be rewritten
  * to support multiple subscribers.
  */
-/datum/tgui_window/proc/subscribe(datum/object, delegate)
+datum/tgui_window/proc/subscribe(datum/object, delegate)
 	subscriber_object = object
 	subscriber_delegate = delegate
 
@@ -203,7 +203,7 @@
  *
  * Unsubscribes the datum. Do not forget to call this when cleaning up.
  */
-/datum/tgui_window/proc/unsubscribe(datum/object)
+datum/tgui_window/proc/unsubscribe(datum/object)
 	subscriber_object = null
 	subscriber_delegate = null
 
@@ -214,7 +214,7 @@
  *
  * optional can_be_suspended bool
  */
-/datum/tgui_window/proc/close(can_be_suspended = TRUE)
+datum/tgui_window/proc/close(can_be_suspended = TRUE)
 	if(!client)
 		return
 	if(mouse_event_macro_set)
@@ -246,7 +246,7 @@
  * required payload list Message payload
  * optional force bool Send regardless of the ready status.
  */
-/datum/tgui_window/proc/send_message(type, payload, force)
+datum/tgui_window/proc/send_message(type, payload, force)
 	if(!client)
 		return
 	var/message = TGUI_CREATE_MESSAGE(type, payload)
@@ -268,7 +268,7 @@
  * required message string JSON+urlencoded blob to send.
  * optional force bool Send regardless of the ready status.
  */
-/datum/tgui_window/proc/send_raw_message(message, force)
+datum/tgui_window/proc/send_raw_message(message, force)
 	if(!client)
 		return
 	// Place into queue if window is still loading
@@ -290,7 +290,7 @@
  *
  * return bool - TRUE if any assets had to be sent to the client
  */
-/datum/tgui_window/proc/send_asset(datum/asset/asset)
+datum/tgui_window/proc/send_asset(datum/asset/asset)
 	if(!client || !asset)
 		return
 	sent_assets |= list(asset)
@@ -305,7 +305,7 @@
  *
  * Sends queued messages if the queue wasn't empty.
  */
-/datum/tgui_window/proc/flush_message_queue()
+datum/tgui_window/proc/flush_message_queue()
 	if(!client || !message_queue)
 		return
 	for(var/message in message_queue)
@@ -321,7 +321,7 @@
  *
  * required inline_html string HTML to inject
  */
-/datum/tgui_window/proc/replace_html(inline_html = "")
+datum/tgui_window/proc/replace_html(inline_html = "")
 	client << output(url_encode(inline_html), is_browser \
 		? "[id]:replaceHtml" \
 		: "[id].browser:replaceHtml")
@@ -331,7 +331,7 @@
  *
  * Callback for handling incoming tgui messages.
  */
-/datum/tgui_window/proc/on_message(type, payload, href_list)
+datum/tgui_window/proc/on_message(type, payload, href_list)
 	// Status can be READY if user has refreshed the window.
 	if(type == "ready" && status == TGUI_WINDOW_READY)
 		// Resend the assets
@@ -374,10 +374,10 @@
 			for(var/asset in sent_assets)
 				send_asset(asset)
 
-/datum/tgui_window/vv_edit_var(var_name, var_value)
+datum/tgui_window/vv_edit_var(var_name, var_value)
 	return var_name != NAMEOF(src, id) && ..()
 
-/datum/tgui_window/proc/set_mouse_macro()
+datum/tgui_window/proc/set_mouse_macro()
 	if(mouse_event_macro_set)
 		return
 
@@ -403,7 +403,7 @@
 		winset(client, "[mouseMacro]Window[id]Macro", params)
 	mouse_event_macro_set = TRUE
 
-/datum/tgui_window/proc/remove_mouse_macro()
+datum/tgui_window/proc/remove_mouse_macro()
 	if(!mouse_event_macro_set)
 		stack_trace("Unsetting mouse macro on tgui window that has none")
 	var/list/byondToTguiEventMap = list(

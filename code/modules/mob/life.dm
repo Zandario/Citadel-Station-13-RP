@@ -9,7 +9,7 @@
  * - seconds - seconds between each fire
  * - times_fired - cycle
  */
-/mob/proc/Life(seconds, times_fired)
+mob/proc/Life(seconds, times_fired)
 	SHOULD_CALL_PARENT(TRUE)
 	if(transforming)
 		return TRUE
@@ -37,7 +37,7 @@
  *
  * always call parent and check for ..() at start - if nonzero is returned, we should halt as we got deleted or killed
  */
-/mob/proc/PhysicalLife(seconds, times_fired)
+mob/proc/PhysicalLife(seconds, times_fired)
 	SHOULD_CALL_PARENT(TRUE)
 
 /**
@@ -46,10 +46,10 @@
  *
  * always call parent and check for ..() at start - if nonzero is returned, we should halt as we got deleted or killed
  */
-/mob/proc/BiologicalLife(seconds, times_fired)
+mob/proc/BiologicalLife(seconds, times_fired)
 	SHOULD_CALL_PARENT(TRUE)
 
 /**
  * handle modifiers - physical/biological life haltedd is passed in
  */
-/mob/proc/handle_modifiers(component_signal)
+mob/proc/handle_modifiers(component_signal)

@@ -9,7 +9,7 @@
 var/list/recentmessages = list() // global list of recent messages broadcasted : used to circumvent massive radio spam
 var/message_delay = 0 // To make sure restarting the recentmessages list is kept in sync
 
-/obj/machinery/telecomms/broadcaster
+obj/machinery/telecomms/broadcaster
 	name = "Subspace Broadcaster"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "broadcaster"
@@ -29,12 +29,12 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//Linked bluespace radios
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/radio/R)
+obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
 
-/obj/machinery/telecomms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+obj/machinery/telecomms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// Don't broadcast rejected signals
 	if(signal.data["reject"])
 		return
@@ -112,7 +112,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		/* --- Do a snazzy animation! --- */
 		flick("broadcaster_send", src)
 
-/obj/machinery/telecomms/broadcaster/Destroy()
+obj/machinery/telecomms/broadcaster/Destroy()
 	// In case message_delay is left on 1, otherwise it won't reset the list and people can't say the same thing twice anymore.
 	if(message_delay)
 		message_delay = 0
@@ -175,7 +175,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 **/
 
-/proc/Broadcast_Message(var/datum/radio_frequency/connection, var/mob/M,
+proc/Broadcast_Message(var/datum/radio_frequency/connection, var/mob/M,
 						var/vmask, var/vmessage, var/obj/item/radio/radio,
 						var/message, var/name, var/job, var/realname, var/vname,
 						var/data, var/compression, var/list/level, var/freq, var/verbage = "says",
@@ -375,7 +375,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	return 1
 
-/proc/Broadcast_SimpleMessage(var/source, var/frequency, list/message, var/data, var/mob/M, var/compression, var/level, var/list/forced_radios)
+proc/Broadcast_SimpleMessage(var/source, var/frequency, list/message, var/data, var/mob/M, var/compression, var/level, var/list/forced_radios)
 	var/text = message
   /* ###### Prepare the radio connection ###### */
 
@@ -554,12 +554,12 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 //Use this to test if an obj can communicate with a Telecommunications Network
 
-/atom/proc/test_telecomms()
+atom/proc/test_telecomms()
 	var/datum/signal/signal = src.telecomms_process()
 	var/pos_z = get_z(src)
 	return (pos_z in signal.data["level"] && signal.data["done"])
 
-/atom/proc/telecomms_process(var/do_sleep = 1)
+atom/proc/telecomms_process(var/do_sleep = 1)
 
 	// First, we want to generate a new radio signal
 	var/datum/signal/signal = new

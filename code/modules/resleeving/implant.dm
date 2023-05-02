@@ -4,7 +4,7 @@
 ////////////////////////////////
 
 //The backup implant itself
-/obj/item/implant/backup
+obj/item/implant/backup
 	name = "backup implant"
 	desc = "A mindstate backup implant that occasionally stores a copy of one's mind on a central server for backup purposes."
 	catalogue_data = list(///datum/category_item/catalogue/information/organization/vey_med,
@@ -12,7 +12,7 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "backup_implant"
 
-/obj/item/implant/backup/get_data()
+obj/item/implant/backup/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> [GLOB.using_map.company_name] Employee Backup Implant<BR>
@@ -25,17 +25,17 @@
 <b>Integrity:</b> Sturdy, weak against acidic compounds."}
 	return dat
 
-/obj/item/implant/backup/Destroy()
+obj/item/implant/backup/Destroy()
 	SStranscore.implants -= src
 	return ..()
 
-/obj/item/implant/backup/post_implant(var/mob/living/carbon/human/H)
+obj/item/implant/backup/post_implant(var/mob/living/carbon/human/H)
 	if(istype(H))
 		SStranscore.implants |= src
 		return 1
 
 //New, modern implanter instead of old style implanter.
-/obj/item/backup_implanter
+obj/item/backup_implanter
 	name = "backup implanter"
 	desc = "After discovering that Nanotrasen was just re-using the same implanters over and over again on organics, leading to cross-contamination, Vey-Med designed this self-cleaning model. Holds four backup implants at a time."
 	catalogue_data = list(///datum/category_item/catalogue/information/organization/vey_med,
@@ -50,7 +50,7 @@
 	var/list/obj/item/implant/backup/imps = list()
 	var/max_implants = 4 //Iconstates need to exist due to the update proc!
 
-/obj/item/backup_implanter/Initialize(mapload)
+obj/item/backup_implanter/Initialize(mapload)
 	. = ..()
 	for(var/i = 1 to max_implants)
 		var/obj/item/implant/backup/imp = new(src)
@@ -58,11 +58,11 @@
 		imp.germ_level = 0
 	update()
 
-/obj/item/backup_implanter/proc/update()
+obj/item/backup_implanter/proc/update()
 	icon_state = "[initial(icon_state)][imps.len]"
 	germ_level = 0
 
-/obj/item/backup_implanter/attack_self(mob/user)
+obj/item/backup_implanter/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -81,7 +81,7 @@
 
 	return
 
-/obj/item/backup_implanter/attackby(obj/W, mob/user)
+obj/item/backup_implanter/attackby(obj/W, mob/user)
 	if(istype(W,/obj/item/implant/backup))
 		if(imps.len < max_implants)
 			if(!user.attempt_insert_item_for_installation(W, src))
@@ -93,7 +93,7 @@
 		else
 			to_chat(user, "<span class='warning'>\The [src] is already full!</span>")
 
-/obj/item/backup_implanter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/backup_implanter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if (!istype(target, /mob/living/carbon))
@@ -118,30 +118,30 @@
 				update()
 
 //The glass case for the implant
-/obj/item/implantcase/backup
+obj/item/implantcase/backup
 	name = "glass case - 'backup'"
 	desc = "A case containing a backup implant."
 	icon_state = "implantcase-b"
 
-/obj/item/implantcase/backup/Initialize(mapload)
+obj/item/implantcase/backup/Initialize(mapload)
 	src.imp = new /obj/item/implant/backup(src)
 	return ..()
 
 //The box of backup implants
-/obj/item/storage/box/backup_kit
+obj/item/storage/box/backup_kit
 	name = "backup implant kit"
 	desc = "Box of stuff used to implant backup implants."
 	icon_state = "implant"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "syringe_kit", SLOT_ID_LEFT_HAND = "syringe_kit")
 
-/obj/item/storage/box/backup_kit/PopulateContents()
+obj/item/storage/box/backup_kit/PopulateContents()
 	for(var/i = 1 to 7)
 		new /obj/item/implantcase/backup(src)
 	new /obj/item/implanter(src)
 
 /* CITADEL CHANGE - Removes this useless shit
 //Purely for fluff
-/obj/item/implant/backup/full
+obj/item/implant/backup/full
 	name = "vey-med backup implant"
 	desc = "A normal Vey-Med wireless cortical stack with neutrino and QE transmission for constant-stream consciousness upload."
 END OF CITADEL CHANGE */

@@ -1,5 +1,5 @@
-/var/global/list/construction_frame_wall
-/var/global/list/construction_frame_floor
+var/global/list/construction_frame_wall
+var/global/list/construction_frame_floor
 
 // TODO: MAKE FRAMES NOT AWFUL
 // WHY IN THE NAME OF THE SEVEN HELLS ARE THEY NOT STATIC DATUMS AT THIS POINT?!
@@ -7,7 +7,7 @@
 // WHY IS CONSTRUCTION LIST ON METAL SHEETS MANUALLY POPULATED?
 // GOD I HATE OLD CODERS
 
-/proc/populate_frame_types()
+proc/populate_frame_types()
 	//Create global frame type list if it hasn't been made already.
 	construction_frame_wall = list()
 	construction_frame_floor = list()
@@ -21,7 +21,7 @@
 //////////////////////////////
 // Frame Type Datum - Describes the frame structures that can be created from a frame item.
 //////////////////////////////
-/datum/frame/frame_types
+datum/frame/frame_types
 	/// Icon to set on frame object when building. If null icon is unchanged.
 	var/icon/icon_override
 	/// Name assigned to the frame object.
@@ -40,106 +40,106 @@
 	var/y_offset
 
 /// Get the icon state to use at a given state.  Default implementation is based on the frame's name
-/datum/frame/frame_types/proc/get_icon_state(var/state)
+datum/frame/frame_types/proc/get_icon_state(var/state)
 	var/type = lowertext(name)
 	type = replacetext(type, " ", "_")
 	return "[type]_[state]"
 
-/datum/frame/frame_types/computer
+datum/frame/frame_types/computer
 	name = "Computer"
 	frame_class = FRAME_CLASS_COMPUTER
 
-/datum/frame/frame_types/machine
+datum/frame/frame_types/machine
 	name = "Machine"
 	frame_class = FRAME_CLASS_MACHINE
 
-/datum/frame/frame_types/conveyor
+datum/frame/frame_types/conveyor
 	name = "Conveyor"
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/circuitboard/conveyor
 
-/datum/frame/frame_types/photocopier
+datum/frame/frame_types/photocopier
 	name = "Photocopier"
 	frame_class = FRAME_CLASS_MACHINE
 
-/datum/frame/frame_types/washing_machine
+datum/frame/frame_types/washing_machine
 	name = "Washing Machine"
 	frame_class = FRAME_CLASS_MACHINE
 
-/datum/frame/frame_types/medical_console
+datum/frame/frame_types/medical_console
 	name = "Medical Console"
 	frame_class = FRAME_CLASS_COMPUTER
 
-/datum/frame/frame_types/medical_pod
+datum/frame/frame_types/medical_pod
 	name = "Medical Pod"
 	frame_class = FRAME_CLASS_MACHINE
 
-/datum/frame/frame_types/operating_table
+datum/frame/frame_types/operating_table
 	name = "Operating Table"
 	frame_class = FRAME_CLASS_MACHINE
 
-/datum/frame/frame_types/dna_analyzer
+datum/frame/frame_types/dna_analyzer
 	name = "DNA Analyzer"
 	frame_class = FRAME_CLASS_MACHINE
 
-/datum/frame/frame_types/mass_driver
+datum/frame/frame_types/mass_driver
 	name = "Mass Driver"
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/circuitboard/mass_driver
 
-/datum/frame/frame_types/holopad
+datum/frame/frame_types/holopad
 	name = "Holopad"
 	frame_class = FRAME_CLASS_COMPUTER
 	frame_size = 4
 
-/datum/frame/frame_types/microwave
+datum/frame/frame_types/microwave
 	name = "Microwave"
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 4
 
-/datum/frame/frame_types/fax
+datum/frame/frame_types/fax
 	name = "Fax"
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 3
 
-/datum/frame/frame_types/recharger
+datum/frame/frame_types/recharger
 	name = "Recharger"
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/circuitboard/recharger
 	frame_size = 3
 
-/datum/frame/frame_types/cell_charger
+datum/frame/frame_types/cell_charger
 	name = "Heavy-Duty Cell Charger"
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/circuitboard/cell_charger
 	frame_size = 3
 
-/datum/frame/frame_types/grinder
+datum/frame/frame_types/grinder
 	name = "Grinder"
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/circuitboard/grinder
 	frame_size = 3
 
-/datum/frame/frame_types/reagent_distillery
+datum/frame/frame_types/reagent_distillery
 	name = "Distillery"
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 4
 
-/datum/frame/frame_types/display
+datum/frame/frame_types/display
 	name = "Display"
 	frame_class = FRAME_CLASS_DISPLAY
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 32
 	y_offset = 32
 
-/datum/frame/frame_types/supply_request_console
+datum/frame/frame_types/supply_request_console
 	name = "Supply Request Console"
 	frame_class = FRAME_CLASS_DISPLAY
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 32
 	y_offset = 32
 
-/datum/frame/frame_types/atm
+datum/frame/frame_types/atm
 	name = "ATM"
 	frame_class = FRAME_CLASS_DISPLAY
 	frame_size = 3
@@ -147,7 +147,7 @@
 	x_offset = 32
 	y_offset = 32
 
-/datum/frame/frame_types/newscaster
+datum/frame/frame_types/newscaster
 	name = "Newscaster"
 	frame_class = FRAME_CLASS_DISPLAY
 	frame_size = 3
@@ -155,7 +155,7 @@
 	x_offset = 28
 	y_offset = 30
 
-/datum/frame/frame_types/wall_charger
+datum/frame/frame_types/wall_charger
 	name = "Wall Charger"
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/item/circuitboard/recharger/wrecharger
@@ -164,7 +164,7 @@
 	x_offset = 32
 	y_offset = 32
 
-/datum/frame/frame_types/fire_alarm
+datum/frame/frame_types/fire_alarm
 	name = "Fire Alarm"
 	frame_class = FRAME_CLASS_ALARM
 	frame_size = 2
@@ -172,7 +172,7 @@
 	x_offset = 24
 	y_offset = 24
 
-/datum/frame/frame_types/air_alarm
+datum/frame/frame_types/air_alarm
 	name = "Air Alarm"
 	frame_class = FRAME_CLASS_ALARM
 	frame_size = 2
@@ -180,7 +180,7 @@
 	x_offset = 24
 	y_offset = 24
 
-/datum/frame/frame_types/guest_pass_console
+datum/frame/frame_types/guest_pass_console
 	name = "Guest Pass Console"
 	frame_class = FRAME_CLASS_DISPLAY
 	frame_size = 2
@@ -188,7 +188,7 @@
 	x_offset = 30
 	y_offset = 30
 
-/datum/frame/frame_types/intercom
+datum/frame/frame_types/intercom
 	name = "Intercom"
 	frame_class = FRAME_CLASS_ALARM
 	frame_size = 2
@@ -196,7 +196,7 @@
 	x_offset = 28
 	y_offset = 28
 
-/datum/frame/frame_types/keycard_authenticator
+datum/frame/frame_types/keycard_authenticator
 	name = "Keycard Authenticator"
 	frame_class = FRAME_CLASS_ALARM
 	frame_size = 1
@@ -204,7 +204,7 @@
 	x_offset = 24
 	y_offset = 24
 
-/datum/frame/frame_types/arfgs
+datum/frame/frame_types/arfgs
 	name = "ARF Generator"
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 3
@@ -213,7 +213,7 @@
 // Frame Object (Structure)
 //////////////////////////////
 
-/obj/structure/frame
+obj/structure/frame
 	anchored = FALSE
 	name = "frame"
 	icon = 'icons/obj/stock_parts.dmi'
@@ -227,17 +227,17 @@
 	var/list/req_components = null
 	var/list/req_component_names = null
 
-/obj/structure/frame/computer //used for maps
+obj/structure/frame/computer //used for maps
 	frame_type = new /datum/frame/frame_types/computer
 	anchored = TRUE
 	density = TRUE
 
-/obj/structure/frame/examine(mob/user)
+obj/structure/frame/examine(mob/user)
 	. = ..()
 	if(circuit)
 		. += "It has \a [circuit] installed."
 
-/obj/structure/frame/update_desc()
+obj/structure/frame/update_desc()
 	. = ..()
 	var/D
 	if(req_components)
@@ -248,13 +248,13 @@
 		D = "Requires [english_list(component_list)]."
 	desc = D
 
-/obj/structure/frame/update_icon()
+obj/structure/frame/update_icon()
 	..()
 	if(frame_type.icon_override)
 		icon = frame_type.icon_override
 	icon_state = frame_type.get_icon_state(state)
 
-/obj/structure/frame/proc/check_components(mob/user as mob)
+obj/structure/frame/proc/check_components(mob/user as mob)
 	components = list()
 	req_components = circuit.req_components.Copy()
 	for(var/A in circuit.req_components)
@@ -264,7 +264,7 @@
 		var/obj/ct = A
 		req_component_names[A] = initial(ct.name)
 
-/obj/structure/frame/Initialize(mapload, dir, building = FALSE, datum/frame/frame_types/type, mob/user)
+obj/structure/frame/Initialize(mapload, dir, building = FALSE, datum/frame/frame_types/type, mob/user)
 	. = ..()
 	if(building)
 		frame_type = type
@@ -291,7 +291,7 @@
 
 	update_icon()
 
-/obj/structure/frame/attackby(obj/item/P, mob/user)
+obj/structure/frame/attackby(obj/item/P, mob/user)
 	if(P.is_wrench())
 		if(state == FRAME_PLACED && !anchored)
 			to_chat(user, SPAN_NOTICE("You start to wrench the frame into place."))
@@ -601,7 +601,7 @@
 
 	update_appearance()
 
-/obj/structure/frame/verb/rotate_counterclockwise()
+obj/structure/frame/verb/rotate_counterclockwise()
 	set name = "Rotate Frame Counter-Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -620,7 +620,7 @@
 	return
 
 
-/obj/structure/frame/verb/rotate_clockwise()
+obj/structure/frame/verb/rotate_clockwise()
 	set name = "Rotate Frame Clockwise"
 	set category = "Object"
 	set src in oview(1)

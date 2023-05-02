@@ -1,4 +1,4 @@
-/datum/unit_test/loadout_test_shall_have_name_cost_path/Run()
+datum/unit_test/loadout_test_shall_have_name_cost_path/Run()
 	for(var/geartype in typesof(/datum/gear) - /datum/gear)
 		var/datum/gear/G = geartype
 

@@ -1,4 +1,4 @@
-/obj/item/mmi/digital/posibrain
+obj/item/mmi/digital/posibrain
 	name = "positronic brain"
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
 	icon = 'icons/obj/assemblies.dmi'
@@ -27,13 +27,13 @@
 	/// Delay after polling ghosts
 	var/ask_delay = 60 SECONDS
 
-/obj/item/mmi/digital/posibrain/Topic(href, href_list)
+obj/item/mmi/digital/posibrain/Topic(href, href_list)
 	if(href_list["activate"])
 		var/mob/observer/dead/ghost = usr
 		if(istype(ghost))
 			question(ghost)
 
-/obj/item/mmi/digital/posibrain/attack_self(mob/user)
+obj/item/mmi/digital/posibrain/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -46,7 +46,7 @@
 		spawn(600)
 			reset_search()
 
-/obj/item/mmi/digital/posibrain/AltClick(mob/living/user)
+obj/item/mmi/digital/posibrain/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	var/input_seed = tgui_input_text(user, "Enter a personality seed", "Enter seed", ask_role, MAX_NAME_LEN)
@@ -58,7 +58,7 @@
 	ask_role = input_seed
 	update_appearance()
 
-/obj/item/mmi/digital/posibrain/proc/request_player()
+obj/item/mmi/digital/posibrain/proc/request_player()
 	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
@@ -68,7 +68,7 @@
 			if(O.client.prefs.be_special & BE_AI)
 				question(O)
 
-/obj/item/mmi/digital/posibrain/proc/question(mob/user)
+obj/item/mmi/digital/posibrain/proc/question(mob/user)
 	if(QDELETED(brainmob))
 		return
 	var/response = tgui_alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", list("Yes", "No", "Never for this round"))
@@ -81,7 +81,7 @@
 	else if (response == "Never for this round")
 		C.prefs.be_special ^= BE_AI
 
-/obj/item/mmi/digital/posibrain/transfer_identity(mob/living/carbon/H)
+obj/item/mmi/digital/posibrain/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = "Positronic Brain"
@@ -89,7 +89,7 @@
 	icon_state = "posibrain-occupied"
 	return
 
-/obj/item/mmi/digital/posibrain/proc/transfer_personality(mob/candidate)
+obj/item/mmi/digital/posibrain/proc/transfer_personality(mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a positronic brain now.")
 	src.searching = 0
 	src.brainmob.mind = candidate.mind
@@ -108,7 +108,7 @@
 	playsound(src, 'sound/misc/boobeebeep.ogg', 50, 1)
 	icon_state = "posibrain-occupied"
 
-/obj/item/mmi/digital/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
+obj/item/mmi/digital/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 
 	if(src.brainmob && src.brainmob.key) return
 	log_world("Resetting Posibrain: [brainmob][brainmob ? ", [brainmob.key]" : ""]")
@@ -121,7 +121,7 @@
 		M.show_message("<font color=#4F49AF>The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?</font>")
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
-/obj/item/mmi/digital/posibrain/examine(mob/user)
+obj/item/mmi/digital/posibrain/examine(mob/user)
 	. = ..()
 	if(brainmob?.key)
 		switch(brainmob.stat)
@@ -136,7 +136,7 @@
 			. += SPAN_NOTICE("Current consciousness seed: \"[ask_role]\"")
 		. += SPAN_BOLDNOTICE("Alt-click to set a consciousness seed, specifying what [src] will be used for. This can help generate a personality interested in that role.")
 
-/obj/item/mmi/digital/posibrain/emp_act(severity)
+obj/item/mmi/digital/posibrain/emp_act(severity)
 	if(!src.brainmob)
 		return
 	else
@@ -151,11 +151,11 @@
 				src.brainmob.emp_damage += rand(0,5)
 	..()
 
-/obj/item/mmi/digital/posibrain/Initialize(mapload)
+obj/item/mmi/digital/posibrain/Initialize(mapload)
 	. = ..()
 	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	src.brainmob.real_name = src.brainmob.name
 
 ///ATTACK GHOST IGNORING PARENT RETURN VALUE
-/obj/item/mmi/digital/posibrain/attack_ghost(mob/user)
+obj/item/mmi/digital/posibrain/attack_ghost(mob/user)
 	question(user)

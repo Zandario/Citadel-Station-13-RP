@@ -1,7 +1,7 @@
 #define DAM_SCALE_FACTOR 0.01
 #define METAL_PER_TICK 100
 
-/datum/species/protean
+datum/species/protean
 	uid = SPECIES_ID_PROTEAN
 	name = SPECIES_PROTEAN
 	name_plural = "Proteans"
@@ -119,14 +119,14 @@
 
 	var/monochromatic = FALSE //IGNORE ME
 
-/datum/species/protean/New()
+datum/species/protean/New()
 	..()
 	if(!LAZYLEN(protean_abilities))
 		var/list/powertypes = subtypesof(/obj/effect/protean_ability)
 		for(var/path in powertypes)
 			protean_abilities += new path()
 
-/datum/species/protean/create_organs(var/mob/living/carbon/human/H)
+datum/species/protean/create_organs(var/mob/living/carbon/human/H)
 	var/obj/item/nif/saved_nif = H.nif
 	if(saved_nif)
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
@@ -135,20 +135,20 @@
 	if(saved_nif)
 		saved_nif.quick_implant(H)
 
-/datum/species/protean/get_effective_bodytype(mob/living/carbon/human/H, obj/item/I, slot_id)
+datum/species/protean/get_effective_bodytype(mob/living/carbon/human/H, obj/item/I, slot_id)
 	if(H)
 		return H.impersonate_bodytype || ..()
 	return ..()
 
-/datum/species/protean/get_bodytype_legacy(var/mob/living/carbon/human/H)
+datum/species/protean/get_bodytype_legacy(var/mob/living/carbon/human/H)
 	if(H)
 		return H.impersonate_bodytype_legacy || ..()
 	return ..()
 
-/datum/species/protean/get_worn_legacy_bodytype(mob/living/carbon/human/H)
+datum/species/protean/get_worn_legacy_bodytype(mob/living/carbon/human/H)
 	return H?.impersonate_bodytype_legacy || ..()
 
-/datum/species/protean/create_organs(mob/living/carbon/human/H)
+datum/species/protean/create_organs(mob/living/carbon/human/H)
 	H.synth_color = TRUE
 	. = ..()
 
@@ -163,7 +163,7 @@
 	var/obj/item/rig/protean/prig = new /obj/item/rig/protean(H)
 	prig.myprotean = H
 
-/datum/species/protean/equip_survival_gear(var/mob/living/carbon/human/H)
+datum/species/protean/equip_survival_gear(var/mob/living/carbon/human/H)
 	var/obj/item/storage/box/box = new /obj/item/storage/box/survival/synth(H)
 	var/obj/item/stack/material/steel/metal_stack = new(box)
 	metal_stack.amount = 3 // Less starting steel due to regen changes
@@ -176,13 +176,13 @@
 	else
 		H.equip_to_slot_or_del(box, /datum/inventory_slot_meta/abstract/put_in_backpack)
 
-/datum/species/protean/get_blood_colour(var/mob/living/carbon/human/H)
+datum/species/protean/get_blood_colour(var/mob/living/carbon/human/H)
 	return rgb(80,80,80,230)
 
-/datum/species/protean/get_flesh_colour(var/mob/living/carbon/human/H)
+datum/species/protean/get_flesh_colour(var/mob/living/carbon/human/H)
 	return rgb(80,80,80,230)
 
-/datum/species/protean/handle_death(var/mob/living/carbon/human/H, gibbed)		// citadel edit - FUCK YOU ACTUALLY GIB THE MOB AFTER REMOVING IT FROM THE BLOB HOW HARD CAN THIS BE!!
+datum/species/protean/handle_death(var/mob/living/carbon/human/H, gibbed)		// citadel edit - FUCK YOU ACTUALLY GIB THE MOB AFTER REMOVING IT FROM THE BLOB HOW HARD CAN THIS BE!!
 	var/deathmsg = "<span class='userdanger'>You have died as a Protean. You may be revived by nanite chambers (once available), but otherwise, you may roleplay as your disembodied posibrain or respawn on another character.</span>"
 	// force eject inv
 	H.drop_inventory(TRUE, TRUE, TRUE)
@@ -197,11 +197,11 @@
 		if(!QDELETED(H))
 			H.gib()
 
-/datum/species/protean/proc/getActualDamage(mob/living/carbon/human/H)
+datum/species/protean/proc/getActualDamage(mob/living/carbon/human/H)
 	var/obj/item/organ/external/E = H.get_organ(BP_TORSO)
 	return E.brute_dam + E.burn_dam
 
-/datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
+datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
 	if((getActualDamage(H) > damage_to_blob) && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever).
 		H.nano_intoblob()
 		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
@@ -215,10 +215,10 @@
 
 	return ..()
 
-/datum/species/protean/get_additional_examine_text(var/mob/living/carbon/human/H)
+datum/species/protean/get_additional_examine_text(var/mob/living/carbon/human/H)
 	return ..() //Hmm, what could be done here?
 
-/datum/species/protean/statpanel_status(client/C, mob/living/carbon/human/H)
+datum/species/protean/statpanel_status(client/C, mob/living/carbon/human/H)
 	. = ..()
 	var/obj/item/organ/internal/nano/refactory/refactory = H.nano_get_refactory()
 	if(refactory && !(refactory.status & ORGAN_DEAD))
@@ -237,22 +237,22 @@
 		STATPANEL_DATA_CLICK("[icon2html(A, C)] [A.ability_name]", "[A.name]", "\ref[A]")
 
 // Various modifiers
-/datum/modifier/protean
+datum/modifier/protean
 	stacks = MODIFIER_STACK_FORBID
 	var/material_use = METAL_PER_TICK
 	var/material_name = MAT_STEEL
 
-/datum/modifier/protean/on_applied()
+datum/modifier/protean/on_applied()
 	. = ..()
 	if(holder.temporary_form)
 		to_chat(holder.temporary_form, on_created_text)
 
-/datum/modifier/protean/on_expire()
+datum/modifier/protean/on_expire()
 	. = ..()
 	if(holder.temporary_form)
 		to_chat(holder.temporary_form, on_expired_text)
 
-/datum/modifier/protean/check_if_valid()
+datum/modifier/protean/check_if_valid()
 	//No origin set
 	if(!istype(origin))
 		expire()
@@ -266,7 +266,7 @@
 	if(!refactory.use_stored_material(material_name,material_use) && refactory.processingbuffs == TRUE)
 		expire()
 
-/datum/modifier/protean/steel
+datum/modifier/protean/steel
 	name = "Protean Effect - Steel"
 	desc = "You're affected by the presence of steel."
 
@@ -276,13 +276,13 @@
 	material_name = MAT_STEEL
 	material_use = METAL_PER_TICK / 5		// 5 times weaker
 
-/datum/modifier/protean/steel/check_if_valid()
+datum/modifier/protean/steel/check_if_valid()
 	if(!protean_requires_healing(holder) || istype(holder.temporary_form, /mob/living/simple_mob/protean_blob))
 		expire()
 		return
 	return ..()
 
-/datum/modifier/protean/steel/tick()
+datum/modifier/protean/steel/tick()
 	..()
 	var/dt = 2	// put it on param sometime but for now assume 2
 	var/mob/living/carbon/human/H = holder
@@ -298,24 +298,24 @@
 	holder.adjustToxLoss(-3.6) // With them now having tox immunity, this is redundant, along with the rad regen, but I'm keeping it in, in case they do somehow get some system instability
 	holder.radiation = max(RAD_MOB_CURE_PROTEAN_REGEN)
 
-/proc/protean_requires_healing(mob/living/carbon/human/H)
+proc/protean_requires_healing(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
 	return H.getActualBruteLoss() || H.getActualFireLoss() || H.getToxLoss()
 
 // PAN Card
-/obj/item/clothing/accessory/permit/nanotech
+obj/item/clothing/accessory/permit/nanotech
 	name = "\improper P.A.N. card"
 	desc = "This is a 'Permit for Advanced Nanotechnology' card. It allows the owner to possess and operate advanced nanotechnology on NanoTrasen property. It must be renewed on a monthly basis."
 	icon = 'icons/obj/card_cit.dmi'
 	icon_state = "permit-pan"
-/obj/item/clothing/accessory/permit/nanotech/set_name(var/new_name)
+obj/item/clothing/accessory/permit/nanotech/set_name(var/new_name)
 	owner = 1
 	if(new_name)
 		src.name += " ([new_name])"
 		desc += "\nVALID THROUGH END OF: [time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+544)]\nREGISTRANT: [new_name]"
 
-/mob/living/carbon/human/proc/rig_transform()
+mob/living/carbon/human/proc/rig_transform()
 	set name = "Modify Form - Hardsuit"
 	set desc = "Allows a protean to solidify its form into one extremely similar to a hardsuit."
 	set category = "Abilities"

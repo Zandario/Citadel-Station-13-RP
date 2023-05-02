@@ -1,7 +1,7 @@
 /**
  * *sigh*
  */
-/proc/standard_mineral_roll(rare)
+proc/standard_mineral_roll(rare)
 	var/static/list/probabilities = list(
 		"marble" = 2,
 		"uranium" = 4,

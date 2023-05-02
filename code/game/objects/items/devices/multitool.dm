@@ -4,7 +4,7 @@
  *
  */
 
-/obj/item/multitool
+obj/item/multitool
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
 	description_info = "You can use this on airlocks or APCs to try to hack them without cutting wires."
@@ -34,7 +34,7 @@
 	tool_speed = 1
 	tool_behaviour = TOOL_MULTITOOL
 
-/obj/item/multitool/Initialize(mapload)
+obj/item/multitool/Initialize(mapload)
 	. = ..()
 	if(colorable)
 		switch(pick("red","green","yellow"))
@@ -46,7 +46,7 @@
 				return
 		update_icon()
 
-/obj/item/multitool/attack_self(mob/user)
+obj/item/multitool/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -69,10 +69,10 @@
 
 	update_icon()
 
-/obj/item/multitool/is_multitool()
+obj/item/multitool/is_multitool()
 	return TRUE
 
-/obj/item/multitool/proc/mode_switch(mob/living/user)
+obj/item/multitool/proc/mode_switch(mob/living/user)
 	if(++mode_index > modes.len) mode_index = 1
 
 	else
@@ -85,13 +85,13 @@
 
 	return
 
-/obj/item/multitool/cyborg
+obj/item/multitool/cyborg
 	name = "multitool"
 	desc = "Optimised and stripped-down version of a regular multitool."
 	tool_speed = 0.5
 	colorable = 0
 
-/datum/category_item/catalogue/anomalous/precursor_a/alien_multitool
+datum/category_item/catalogue/anomalous/precursor_a/alien_multitool
 	name = "Precursor Alpha Object - Pulse Tool"
 	desc = "This ancient object appears to be an electrical tool. \
 	It has a simple mechanism at the handle, which will cause a pulse of \
@@ -103,7 +103,7 @@
 	an airlock, if one knows how."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/multitool/alien
+obj/item/multitool/alien
 	name = "alien multitool"
 	desc = "An omni-technological interface."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_multitool)
@@ -114,13 +114,13 @@
 	colorable = 0
 
 //Colored Variants
-/obj/item/multitool/red
+obj/item/multitool/red
 	color_overlay = "multi_r"
 
-/obj/item/multitool/green
+obj/item/multitool/green
 	color_overlay = "multi_g"
 
-/obj/item/multitool/crystal
+obj/item/multitool/crystal
 	name = "crystalline multitool"
 	desc = "A crystalline energy patterning tool of an alien make."
 	icon_state = "crystal_multitool"
@@ -128,7 +128,7 @@
 	icon = 'icons/obj/crystal_tools.dmi'
 	matter = list(MATERIAL_CRYSTAL = 1250)
 
-/obj/item/multitool/crystal/Initialize()
+obj/item/multitool/crystal/Initialize()
 	. = ..()
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)

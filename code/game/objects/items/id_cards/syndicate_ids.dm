@@ -1,4 +1,4 @@
-/obj/item/card/id/syndicate
+obj/item/card/id/syndicate
 	name = "agent card"
 	icon_state = "generic-s"
 	assignment = "Agent"
@@ -6,22 +6,22 @@
 	var/electronic_warfare = 1
 	var/mob/registered_user = null
 
-/obj/item/card/id/syndicate/Initialize(mapload)
+obj/item/card/id/syndicate/Initialize(mapload)
 	. = ..()
 	access = syndicate_access.Copy()
 
-/obj/item/card/id/syndicate/station_access/Initialize(mapload)
+obj/item/card/id/syndicate/station_access/Initialize(mapload)
 	. = ..() // Same as the normal Syndicate id, only already has all station access
 	access |= get_all_station_access()
 
-/obj/item/card/id/syndicate/Destroy()
+obj/item/card/id/syndicate/Destroy()
 	unset_registered_user(registered_user)
 	return ..()
 
-/obj/item/card/id/syndicate/prevent_tracking()
+obj/item/card/id/syndicate/prevent_tracking()
 	return electronic_warfare
 
-/obj/item/card/id/syndicate/afterattack(var/obj/item/O as obj, mob/user as mob, proximity)
+obj/item/card/id/syndicate/afterattack(var/obj/item/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/I = O
@@ -29,7 +29,7 @@
 		if(player_is_antag(user.mind))
 			to_chat(user, "<span class='notice'>The microscanner activates as you pass it over the ID, copying its access.</span>")
 
-/obj/item/card/id/syndicate/attack_self(mob/user)
+obj/item/card/id/syndicate/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -45,7 +45,7 @@
 	else
 		..()
 
-/obj/item/card/id/syndicate/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/item/card/id/syndicate/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 	var/entries[0]
 	entries[++entries.len] = list("name" = "Age", 				"value" = age)
@@ -67,7 +67,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/item/card/id/syndicate/proc/register_user(var/mob/user)
+obj/item/card/id/syndicate/proc/register_user(var/mob/user)
 	if(!istype(user) || user == registered_user)
 		return FALSE
 	unset_registered_user()
@@ -76,18 +76,18 @@
 	user.register(OBSERVER_EVENT_DESTROY, src, /obj/item/card/id/syndicate/proc/unset_registered_user)
 	return TRUE
 
-/obj/item/card/id/syndicate/proc/unset_registered_user(var/mob/user)
+obj/item/card/id/syndicate/proc/unset_registered_user(var/mob/user)
 	if(!registered_user || (user && user != registered_user))
 		return
 	registered_user.unregister(OBSERVER_EVENT_DESTROY, src)
 	registered_user = null
 
-/obj/item/card/id/syndicate/CanUseTopic(mob/user)
+obj/item/card/id/syndicate/CanUseTopic(mob/user)
 	if(user != registered_user)
 		return UI_CLOSE
 	return ..()
 
-/obj/item/card/id/syndicate/Topic(href, href_list, var/datum/topic_state/state)
+obj/item/card/id/syndicate/Topic(href, href_list, var/datum/topic_state/state)
 	if(..())
 		return 1
 
@@ -194,8 +194,8 @@
 	// Always update the UI, or buttons will spin indefinitely
 	SSnanoui.update_uis(src)
 
-/var/global/list/id_card_states
-/proc/id_card_states()
+var/global/list/id_card_states
+proc/id_card_states()
 	if(!id_card_states)
 		id_card_states = list()
 		for(var/path in typesof(/obj/item/card/id))
@@ -210,16 +210,16 @@
 
 	return id_card_states
 
-/datum/card_state
+datum/card_state
 	var/name
 	var/icon_state
 	var/item_state
 	var/sprite_stack
 
-/datum/card_state/dd_SortValue()
+datum/card_state/dd_SortValue()
 	return name
 
-/obj/item/card/id/syndicate_command
+obj/item/card/id/syndicate_command
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"

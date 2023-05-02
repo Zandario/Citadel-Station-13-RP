@@ -2,7 +2,7 @@
 // It is held inside, and managed by, the SSjob subsystem automatically,
 // just define a department, and put that department's name in one or more job datums' departments list.
 // todo: refactor
-/datum/department
+datum/department
 	var/name = "NOPE"		// Name used in UIs, and the index for the department assoc list in SSjob.
 	var/short_name = "NO"	// Shorter name, used for things like external Topic() responses.
 	var/color = "#000000"	// Color to use in UIs to represent this department.
@@ -14,4 +14,3 @@
 	var/centcom_only = FALSE
 	/// starting pay modifier
 	var/economy_payscale = ECONOMY_PAYSCALE_DEPT_DEFAULT
-

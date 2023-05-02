@@ -1,4 +1,4 @@
-/obj/item/dice
+obj/item/dice
 	name = "d6"
 	desc = "A dice with six sides."
 	icon = 'icons/obj/dice.dmi'
@@ -9,66 +9,66 @@
 	var/currently_throwing = FALSE
 	attack_verb = list("diced")
 
-/obj/item/dice/Initialize(mapload)
+obj/item/dice/Initialize(mapload)
 	. = ..()
 	icon_state = "[name][rand(1,sides)]"
 
-/obj/item/dice/d4
+obj/item/dice/d4
 	name = "d4"
 	desc = "A dice with four sides."
 	icon_state = "d44"
 	sides = 4
 	result = 4
 
-/obj/item/dice/d8
+obj/item/dice/d8
 	name = "d8"
 	desc = "A dice with eight sides."
 	icon_state = "d88"
 	sides = 8
 	result = 8
 
-/obj/item/dice/d10
+obj/item/dice/d10
 	name = "d10"
 	desc = "A dice with ten sides."
 	icon_state = "d1010"
 	sides = 10
 	result = 10
 
-/obj/item/dice/d12
+obj/item/dice/d12
 	name = "d12"
 	desc = "A dice with twelve sides."
 	icon_state = "d1212"
 	sides = 12
 	result = 12
 
-/obj/item/dice/d20
+obj/item/dice/d20
 	name = "d20"
 	desc = "A dice with twenty sides."
 	icon_state = "d2020"
 	sides = 20
 	result = 20
 
-/obj/item/dice/d100
+obj/item/dice/d100
 	name = "d100"
 	desc = "A dice with ten sides. This one is for the tens digit."
 	icon_state = "d10010"
 	sides = 10
 	result = 10
 
-/obj/item/dice/attack_self(mob/user)
+obj/item/dice/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	rollDice(user, 0)
 
-/obj/item/dice/AltClick(mob/user)
+obj/item/dice/AltClick(mob/user)
 	if (Adjacent(user))
 		rollDice(user,0)
 
-/obj/item/dice/throw_at_old()
+obj/item/dice/throw_at_old()
 	currently_throwing = TRUE
 
-/obj/item/dice/throw_impact(atom/hit_atom)
+obj/item/dice/throw_impact(atom/hit_atom)
 	if(!currently_throwing)
 		return
 	currently_throwing = FALSE
@@ -83,7 +83,7 @@
 
 	visible_message("<span class='notice'>[src] lands on [result]. [comment]</span>", "", "")
 
-/obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0)
+obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0)
 	result = rand(1, sides)
 	icon_state = "[name][result]"
 
@@ -102,7 +102,7 @@
  * Dice packs
  */
 
-/obj/item/storage/pill_bottle/dice	//7d6
+obj/item/storage/pill_bottle/dice	//7d6
 	name = "bag of dice"
 	desc = "It's a small bag with dice inside."
 	icon = 'icons/obj/dice.dmi'
@@ -111,11 +111,11 @@
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-/obj/item/storage/pill_bottle/dice/PopulateContents()
+obj/item/storage/pill_bottle/dice/PopulateContents()
 	for(var/i = 1 to 7)
 		new /obj/item/dice( src )
 
-/obj/item/storage/pill_bottle/dice_nerd	//DnD dice
+obj/item/storage/pill_bottle/dice_nerd	//DnD dice
 	name = "bag of gaming dice"
 	desc = "It's a small bag with gaming dice inside."
 	icon = 'icons/obj/dice.dmi'
@@ -124,7 +124,7 @@
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-/obj/item/storage/pill_bottle/dice_nerd/PopulateContents()
+obj/item/storage/pill_bottle/dice_nerd/PopulateContents()
 	new /obj/item/dice/d4( src )
 	new /obj/item/dice( src )
 	new /obj/item/dice/d8( src )
@@ -137,7 +137,7 @@
  *Liar's Dice cup
  */
 
-/obj/item/storage/dicecup
+obj/item/storage/dicecup
 	name = "dice cup"
 	desc = "A cup used to conceal and hold dice."
 	icon = 'icons/obj/dice.dmi'
@@ -148,7 +148,7 @@
 		/obj/item/dice,
 		)
 
-/obj/item/storage/dicecup/attack_self(mob/user)
+obj/item/storage/dicecup/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -157,24 +157,24 @@
 							 "<span class='notice'>You hear dice rolling.</span>")
 	rollCup(user)
 
-/obj/item/storage/dicecup/proc/rollCup(mob/user as mob)
+obj/item/storage/dicecup/proc/rollCup(mob/user as mob)
 	for(var/obj/item/dice/I in src.contents)
 		var/obj/item/dice/D = I
 		D.rollDice(user, 1)
 
-/obj/item/storage/dicecup/proc/revealDice(var/mob/viewer)
+obj/item/storage/dicecup/proc/revealDice(var/mob/viewer)
 	for(var/obj/item/dice/I in src.contents)
 		var/obj/item/dice/D = I
 		to_chat(viewer, "The [D.name] shows a [D.result].")
 
-/obj/item/storage/dicecup/verb/peekAtDice()
+obj/item/storage/dicecup/verb/peekAtDice()
 	set category = "Object"
 	set name = "Peek at Dice"
 	set desc = "Peek at the dice under your cup."
 
 	revealDice(usr)
 
-/obj/item/storage/dicecup/verb/revealDiceHand()
+obj/item/storage/dicecup/verb/revealDiceHand()
 
 	set category = "Object"
 	set name = "Reveal Dice"
@@ -185,6 +185,6 @@
 		revealDice(player)
 
 
-/obj/item/storage/dicecup/loaded/PopulateContents()
+obj/item/storage/dicecup/loaded/PopulateContents()
 	for(var/i = 1 to 6)
 		new /obj/item/dice( src )

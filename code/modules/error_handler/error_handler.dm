@@ -9,7 +9,7 @@ GLOBAL_REAL_VAR(runtime_trap_triggered) = FALSE
 #ifdef USE_CUSTOM_ERROR_HANDLER
 
 #define ERROR_USEFUL_LEN 2
-/world/Error(exception/E, datum/e_src)
+world/Error(exception/E, datum/e_src)
 
 #ifdef UNIT_TESTS
 	if(runtime_skip_once)

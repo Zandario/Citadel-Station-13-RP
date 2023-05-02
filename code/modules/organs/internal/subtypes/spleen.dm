@@ -1,4 +1,4 @@
-/obj/item/organ/internal/spleen
+obj/item/organ/internal/spleen
 	name = "spleen"
 	icon_state = "spleen"
 	organ_tag = O_SPLEEN
@@ -8,7 +8,7 @@
 	var/spleen_tick = 20 // The number of ticks between Spleen cycles.
 	var/spleen_efficiency = 1 // A multiplier for how efficient this spleen is.
 
-/obj/item/organ/internal/spleen/tick_life(dt)
+obj/item/organ/internal/spleen/tick_life(dt)
 	. = ..()
 
 	if(owner.life_tick % spleen_tick == 0)
@@ -39,7 +39,7 @@
 		if(src.damage < 0)
 			src.damage = 0
 
-/obj/item/organ/internal/spleen/handle_germ_effects()
+obj/item/organ/internal/spleen/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer
 	if(!.) return
 
@@ -56,29 +56,29 @@
 				var/obj/item/organ/internal/brain/Brain = owner.internal_organs_by_name[O_BRAIN]
 				Brain.adjust_germ_level(round(rand(5 * spleen_efficiency,20 * spleen_efficiency)))
 
-/obj/item/organ/internal/spleen/on_die()
+obj/item/organ/internal/spleen/on_die()
 	. = ..()
 	owner.add_modifier(/datum/modifier/trait/haemophilia, round(15 MINUTES * spleen_efficiency))
 	var/obj/item/organ/external/affecting = owner.get_organ(parent_organ)
 	affecting.create_specific_wound(/datum/wound/internal_bleeding, round(20 * spleen_efficiency))
 	owner.adjustToxLoss(15 * spleen_efficiency)
 
-/obj/item/organ/internal/spleen/skrell
+obj/item/organ/internal/spleen/skrell
 	name = "lymphatic hub"
 	icon_state = "spleen"
 	parent_organ = BP_HEAD
 	spleen_efficiency = 0.5
 
-/obj/item/organ/internal/spleen/skrell/Initialize(mapload)
+obj/item/organ/internal/spleen/skrell/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.8,0.7)
 
-/obj/item/organ/internal/spleen/minor
+obj/item/organ/internal/spleen/minor
 	name = "vestigial spleen"
 	parent_organ = BP_GROIN
 	spleen_efficiency = 0.3
 	spleen_tick = 15
 
-/obj/item/organ/internal/spleen/minor/Initialize(mapload)
+obj/item/organ/internal/spleen/minor/Initialize(mapload)
 	. = ..()
 	adjust_scale(0.7)

@@ -4,15 +4,15 @@
  */
 
 /// Called when the ID card is removed from computer. ID is removed AFTER this proc.
-/datum/computer_file/program/proc/event_idremoved(background)
+datum/computer_file/program/proc/event_idremoved(background)
 	return
 
 /// Called when the computer fails due to power loss. Override when program wants to specifically react to power loss.
-/datum/computer_file/program/proc/event_powerfailure(background)
+datum/computer_file/program/proc/event_powerfailure(background)
 	kill_program(1)
 
 /// Called when the network connectivity fails. Computer does necessary checks and only calls this when requires_ntnet_feature and similar variables are not met.
-/datum/computer_file/program/proc/event_networkfailure(background)
+datum/computer_file/program/proc/event_networkfailure(background)
 	kill_program(1)
 	if(background)
 		computer.visible_message(SPAN_WARNING("\The [computer]'s screen displays an error: \"Network connectivity lost - process [filename].[filetype] (PID [rand(100,999)]) terminated.\""))

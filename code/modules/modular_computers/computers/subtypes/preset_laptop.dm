@@ -1,4 +1,4 @@
-/obj/item/modular_computer/laptop/preset/custom_loadout/cheap/install_default_hardware()
+obj/item/modular_computer/laptop/preset/custom_loadout/cheap/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
@@ -9,7 +9,7 @@
 	battery_module = new/obj/item/computer_hardware/battery_module/advanced(src)
 	battery_module.charge_to_full()
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/advanced/install_default_hardware()
+obj/item/modular_computer/laptop/preset/custom_loadout/advanced/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
@@ -20,7 +20,7 @@
 	battery_module = new/obj/item/computer_hardware/battery_module/advanced(src)
 	battery_module.charge_to_full()
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/install_default_hardware()
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
@@ -31,12 +31,12 @@
 	battery_module = new/obj/item/computer_hardware/battery_module/advanced(src)
 	battery_module.charge_to_full()
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/elite
+obj/item/modular_computer/laptop/preset/custom_loadout/elite
 	icon_state_unpowered = "adv-laptop-open"
 	icon_state = "adv-laptop-open"
 	icon_state_closed = "adv-laptop-closed"
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/elite/install_default_hardware()
+obj/item/modular_computer/laptop/preset/custom_loadout/elite/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
@@ -47,14 +47,14 @@
 	battery_module = new/obj/item/computer_hardware/battery_module/super(src)
 	battery_module.charge_to_full()
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/rugged
+obj/item/modular_computer/laptop/preset/custom_loadout/rugged
 	name = "rugged laptop computer"
 	desc = "A rugged portable computer."
 	icon = 'icons/obj/modular_laptop_vr.dmi'
 	max_damage = 300
 	broken_damage = 200
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/rugged/install_default_hardware()
+obj/item/modular_computer/laptop/preset/custom_loadout/rugged/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)

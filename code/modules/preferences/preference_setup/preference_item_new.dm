@@ -5,7 +5,7 @@
 //? furthermore, in each item, "helper" functions for getting/setting related data from external
 //? should be in the file too; this makes it easier to update/harder to forget about during
 //? refactors.
-/datum/category_item/player_setup_item
+datum/category_item/player_setup_item
 	/// primary data key
 	// todo: unit test for this to exist
 	var/save_key		// genuinely you have zero reason to change this at runtime
@@ -23,7 +23,7 @@
  * - data - our save data
  * - flags - PREF_COPY_TO_FOR_ flags
  */
-/datum/category_item/player_setup_item/proc/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/proc/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	return TRUE
 
 // todo: apply to global/client
@@ -42,7 +42,7 @@
  *
  * @return TRUE/FALSE if we should be allowd to spawn
  */
-/datum/category_item/player_setup_item/proc/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
+datum/category_item/player_setup_item/proc/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
 	return TRUE
 
 /**
@@ -52,7 +52,7 @@
  *
  * put errors into errors for user feedback
  */
-/datum/category_item/player_setup_item/proc/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/proc/filter_data(datum/preferences/prefs, data, list/errors)
 	return data
 
 /**
@@ -60,7 +60,7 @@
  *
  * put errors into errors for user feedback
  */
-/datum/category_item/player_setup_item/proc/sanitize_data(datum/preferences/prefs, list/errors)
+datum/category_item/player_setup_item/proc/sanitize_data(datum/preferences/prefs, list/errors)
 	write(prefs, read(prefs), errors)
 
 /**
@@ -68,7 +68,7 @@
  *
  * @return raw data to save
  */
-/datum/category_item/player_setup_item/proc/serialize_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/proc/serialize_data(datum/preferences/prefs, data, list/errors)
 	return data
 
 /**
@@ -78,13 +78,13 @@
  *
  * @return deserialized data to set on preferences data lists
  */
-/datum/category_item/player_setup_item/proc/deserialize_data(datum/preferences/prefs, raw, list/errors)
+datum/category_item/player_setup_item/proc/deserialize_data(datum/preferences/prefs, raw, list/errors)
 	return raw
 
 /**
  * write data, sanitizing in the process
  */
-/datum/category_item/player_setup_item/proc/write(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/proc/write(datum/preferences/prefs, data, list/errors)
 	if(is_global)
 		prefs.set_global_data(save_key, filter_data(prefs, data, errors))
 	else
@@ -93,7 +93,7 @@
 /**
  * read data; does not auto-sanitize
  */
-/datum/category_item/player_setup_item/proc/read(datum/preferences/prefs)
+datum/category_item/player_setup_item/proc/read(datum/preferences/prefs)
 	if(is_global)
 		return prefs.get_global_data(save_key)
 	else
@@ -104,7 +104,7 @@
  *
  * todo: randomizing is awful, we need multi stage randomizing + templates for this
  */
-/datum/category_item/player_setup_item/proc/default_value(randomizing)
+datum/category_item/player_setup_item/proc/default_value(randomizing)
 	return null
 
 /**
@@ -112,7 +112,7 @@
  *
  * todo: randomizing is awful, we need multi stage randomizing + templates for this
  */
-/datum/category_item/player_setup_item/proc/informed_default_value(datum/preferences/prefs, randomizing)
+datum/category_item/player_setup_item/proc/informed_default_value(datum/preferences/prefs, randomizing)
 	return default_value(randomizing)
 
 /**
@@ -123,7 +123,7 @@
  * - user - viewer
  * - data - our save data
  */
-/datum/category_item/player_setup_item/proc/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/proc/content(datum/preferences/prefs, mob/user, data)
 	RETURN_TYPE(/list)
 	return list()
 
@@ -137,13 +137,13 @@
  * - action - the action
  * - params - additional parameters
  */
-/datum/category_item/player_setup_item/proc/act(datum/preferences/prefs, mob/user, action, list/params)
+datum/category_item/player_setup_item/proc/act(datum/preferences/prefs, mob/user, action, list/params)
 	return PREFERENCES_NOACTION
 
 /**
  * encodes href
  */
-/datum/category_item/player_setup_item/proc/href(datum/preferences/prefs, action, innerhtml, list/params)
+datum/category_item/player_setup_item/proc/href(datum/preferences/prefs, action, innerhtml, list/params)
 	if(length(params))
 		return "<a href='?src=\ref[src];prefs=\ref[prefs];act=[action];[list2params(params)]'>[innerhtml]</a>"
 	return "<a href='?src=\ref[src];prefs=\ref[prefs];act=[action]'>[innerhtml]</a>"
@@ -153,7 +153,7 @@
  *
  * act() will be called with action and the action associated to the option in params.
  */
-/datum/category_item/player_setup_item/proc/href_simple(datum/preferences/prefs, action, innerhtml, option)
+datum/category_item/player_setup_item/proc/href_simple(datum/preferences/prefs, action, innerhtml, option)
 	if(option)
 		return "<a href='?src=\ref[src];prefs=\ref[prefs];act=[action];[action]=[option]'>[innerhtml]</a>"
 	return "<a href='?src=\ref[src];prefs=\ref[prefs];act=[action]'>[innerhtml]</a>"
@@ -162,7 +162,7 @@
 
 // todo: multi stage random character generation
 
-/datum/category_item/player_setup_item/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
+datum/category_item/player_setup_item/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
 	switch(var_name)
 		if(NAMEOF(src, is_global))
 			return FALSE		// let's not!

@@ -4,7 +4,7 @@
 
 #define FIELD(N, V, E) list(field = N, value = V, edit = E)
 
-/obj/machinery/computer/skills//TODO:SANITY //TODO2: Change name to PCU and update mapdata to include replacement computers
+obj/machinery/computer/skills//TODO:SANITY //TODO2: Change name to PCU and update mapdata to include replacement computers
 	name = "\improper Employment Records PCU"
 	desc = "A personal computer unit that's used to view, edit and maintain employment records."
 	icon_screen = "pcu_generic"
@@ -27,7 +27,7 @@
 	var/static/list/field_edit_questions
 	var/static/list/field_edit_choices
 
-/obj/machinery/computer/skills/Initialize(mapload)
+obj/machinery/computer/skills/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		// General
@@ -44,11 +44,11 @@
 		"m_stat" = list("*Insane*", "*Unstable*", "*Watch*", "Stable"),
 	)
 
-/obj/machinery/computer/skills/Destroy()
+obj/machinery/computer/skills/Destroy()
 	active1 = null
 	return ..()
 
-/obj/machinery/computer/skills/attackby(obj/item/O as obj, var/mob/user)
+obj/machinery/computer/skills/attackby(obj/item/O as obj, var/mob/user)
 	if(istype(O, /obj/item/card/id) && !scan)
 		if(!user.attempt_insert_item_for_installation(O, src))
 			return
@@ -58,11 +58,11 @@
 	else
 		..()
 
-/obj/machinery/computer/skills/attack_ai(mob/user as mob)
+obj/machinery/computer/skills/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
-/obj/machinery/computer/skills/attack_hand(mob/user, list/params)
+obj/machinery/computer/skills/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if (GLOB.using_map && !(src.z in GLOB.using_map.contact_levels))
@@ -70,14 +70,14 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/skills/ui_interact(mob/user, datum/tgui/ui = null)
+obj/machinery/computer/skills/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "GeneralRecords", "Employee Records") // 800, 380
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
-/obj/machinery/computer/skills/ui_data(mob/user)
+obj/machinery/computer/skills/ui_data(mob/user)
 	var/data[0]
 
 	data["temp"] = temp
@@ -131,7 +131,7 @@
 	data["modal"] = ui_modal_data(src)
 	return data
 
-/obj/machinery/computer/skills/ui_act(action, params)
+obj/machinery/computer/skills/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -250,7 +250,7 @@
   * * action - The action passed by tgui
   * * params - The params passed by tgui
   */
-/obj/machinery/computer/skills/proc/ui_act_modal(action, params)
+obj/machinery/computer/skills/proc/ui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
 	var/list/arguments = istext(params["arguments"]) ? json_decode(params["arguments"]) : params["arguments"]
@@ -303,7 +303,7 @@
 /**
   * Called when the print timer finishes
   */
-/obj/machinery/computer/skills/proc/print_finish()
+obj/machinery/computer/skills/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center><b>Medical Record</b></center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
@@ -332,12 +332,12 @@
   * * text - Text to display, null/empty to clear the message from the UI
   * * style - The style of the message: (color name), info, success, warning, danger, virus
   */
-/obj/machinery/computer/skills/proc/set_temp(text = "", style = "info", update_now = FALSE)
+obj/machinery/computer/skills/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
 		SStgui.update_uis(src)
 
-/obj/machinery/computer/skills/emp_act(severity)
+obj/machinery/computer/skills/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return

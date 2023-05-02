@@ -1,4 +1,4 @@
-/obj/turbolift_map_holder/rift
+obj/turbolift_map_holder/rift
 	name = "Atlas Lift"
 	depth = 5
 	lift_size_x = 2
@@ -14,7 +14,7 @@
 		/area/turbolift/rsurface/level3
 		)
 
-/obj/turbolift_map_holder/rift_mining
+obj/turbolift_map_holder/rift_mining
 	name = "Atlas Minging Lift"
 	depth = 4
 	lift_size_x = 2
@@ -29,7 +29,7 @@
 		/area/turbolift/rmine/surface
 		)
 
-/obj/turbolift_map_holder/rift_west_base
+obj/turbolift_map_holder/rift_west_base
 	name = "Atlas Minging Lift"
 	dir = NORTH
 	depth = 4
@@ -46,7 +46,7 @@
 		/area/turbolift/rwest_mining/surface
 		)
 
-/obj/turbolift_map_holder/triumph
+obj/turbolift_map_holder/triumph
 	name = "Triumph Climber"
 	depth = 4
 	lift_size_x = 3
@@ -62,7 +62,7 @@
 		)
 
 
-/obj/turbolift_map_holder/tether
+obj/turbolift_map_holder/tether
 	name = "Tether Climber"
 	depth = 6
 	lift_size_x = 3
@@ -83,6 +83,6 @@
 
 
 /* SHUT UP
-/datum/turbolift
+datum/turbolift
 	music = list('sound/music/elevator1.ogg', 'sound/music/elevator2.ogg')  // Woo elevator music!
 */

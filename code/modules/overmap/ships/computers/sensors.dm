@@ -1,4 +1,4 @@
-/obj/machinery/computer/ship/sensors
+obj/machinery/computer/ship/sensors
 	name = "sensors console"
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
@@ -8,18 +8,18 @@
 	var/obj/machinery/shipsensors/sensors
 
 // fancy sprite
-/obj/machinery/computer/ship/sensors/adv
+obj/machinery/computer/ship/sensors/adv
 	icon_keyboard = null
 	icon_state = "adv_sensors"
 	icon_screen = "adv_sensors_screen"
 	light_color = "#05A6A8"
 
-/obj/machinery/computer/ship/sensors/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
+obj/machinery/computer/ship/sensors/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
 	if(!(. = ..()))
 		return
 	find_sensors()
 
-/obj/machinery/computer/ship/sensors/proc/find_sensors()
+obj/machinery/computer/ship/sensors/proc/find_sensors()
 	if(!linked)
 		return
 	for(var/obj/machinery/shipsensors/S in GLOB.machines)
@@ -27,7 +27,7 @@
 			sensors = S
 			break
 
-/obj/machinery/computer/ship/sensors/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/ship/sensors/ui_interact(mob/user, datum/tgui/ui)
 	if(!linked)
 		display_reconnect_dialog(user, "sensors")
 		return
@@ -37,7 +37,7 @@
 		ui = new(user, src, "OvermapShipSensors", "[linked.name] Sensors Control") // 420, 530
 		ui.open()
 
-/obj/machinery/computer/ship/sensors/ui_data(mob/user)
+obj/machinery/computer/ship/sensors/ui_data(mob/user)
 	var/list/data = list()
 
 	data["viewing"] = viewing_overmap(user)
@@ -79,7 +79,7 @@
 
 	return data
 
-/obj/machinery/computer/ship/sensors/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/ship/sensors/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -123,7 +123,7 @@
 	if(. && !issilicon(usr))
 		playsound(src, SFX_ALIAS_TERMINAL, 50, 1)
 
-/obj/machinery/computer/ship/sensors/process()
+obj/machinery/computer/ship/sensors/process()
 	..()
 	if(!linked)
 		return
@@ -133,7 +133,7 @@
 	else
 		linked.set_light(0)
 
-/obj/machinery/shipsensors
+obj/machinery/shipsensors
 	name = "sensors suite"
 	desc = "Long range gravity scanner with various other sensors, used to detect irregularities in surrounding space. Can only run in vacuum to protect delicate quantum BS elements."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -147,7 +147,7 @@
 	var/range = 1
 	idle_power_usage = 5000
 
-/obj/machinery/shipsensors/attackby(obj/item/W, mob/user)
+obj/machinery/shipsensors/attackby(obj/item/W, mob/user)
 	var/damage = max_health - health
 	if(damage && istype(W, /obj/item/weldingtool))
 
@@ -168,7 +168,7 @@
 		return
 	..()
 
-/obj/machinery/shipsensors/proc/in_vacuum()
+obj/machinery/shipsensors/proc/in_vacuum()
 	var/turf/T=get_turf(src)
 	if(istype(T))
 		var/datum/gas_mixture/environment = T.return_air()
@@ -177,14 +177,14 @@
 			return 0
 	return 1
 
-/obj/machinery/shipsensors/update_icon()
+obj/machinery/shipsensors/update_icon()
 	if(use_power)
 		icon_state = "sensors"
 	else
 		icon_state = "sensors_off"
 	..()
 
-/obj/machinery/shipsensors/examine(mob/user)
+obj/machinery/shipsensors/examine(mob/user)
 	. = ..()
 	if(health <= 0)
 		. += "<span class='danger'>It is wrecked.</span>"
@@ -195,11 +195,11 @@
 	else if(health < max_health * 0.75)
 		. += "It shows signs of damage!"
 
-/obj/machinery/shipsensors/bullet_act(var/obj/projectile/Proj)
+obj/machinery/shipsensors/bullet_act(var/obj/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
 	..()
 
-/obj/machinery/shipsensors/proc/toggle()
+obj/machinery/shipsensors/proc/toggle()
 	if(!use_power && (health == 0 || !in_vacuum()))
 		return // No turning on if broken or misplaced.
 	if(!use_power) //need some juice to kickstart
@@ -207,7 +207,7 @@
 	update_use_power(!use_power)
 	update_icon()
 
-/obj/machinery/shipsensors/process(delta_time)
+obj/machinery/shipsensors/process(delta_time)
 	if(use_power) //can't run in non-vacuum
 		if(!in_vacuum())
 			toggle()
@@ -224,29 +224,29 @@
 	if (heat > 0)
 		heat = max(0, heat - heat_reduction)
 
-/obj/machinery/shipsensors/legacy_ex_act()
+obj/machinery/shipsensors/legacy_ex_act()
 	return
 
-/obj/machinery/shipsensors/power_change()
+obj/machinery/shipsensors/power_change()
 	. = ..()
 	if(use_power && !powered())
 		toggle()
 
-/obj/machinery/shipsensors/proc/set_range(nrange)
+obj/machinery/shipsensors/proc/set_range(nrange)
 	range = nrange
 	change_power_consumption(1500 * (range**2), USE_POWER_IDLE) //Exponential increase, also affects speed of overheating
 
-/obj/machinery/shipsensors/emp_act(severity)
+obj/machinery/shipsensors/emp_act(severity)
 	if(!use_power)
 		return
 	take_damage(20/severity)
 	toggle()
 
-/obj/machinery/shipsensors/take_damage(value)
+obj/machinery/shipsensors/take_damage(value)
 	health = min(max(health - value, 0),max_health)
 	if(use_power && health == 0)
 		toggle()
 
-/obj/machinery/shipsensors/weak
+obj/machinery/shipsensors/weak
 	heat_reduction = 0.2
 	desc = "Miniturized gravity scanner with various other sensors, used to detect irregularities in surrounding space. Can only run in vacuum to protect delicate quantum BS elements."

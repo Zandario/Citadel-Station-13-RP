@@ -1,16 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "c" = (
-/turf/simulated/floor/outdoors/classd,
-/area/class_d/explored)
+turf/simulated/floor/outdoors/classd,
+area/class_d/explored)
 "d" = (
-/obj/effect/decal/mecha_wreckage/ripley,
-/obj/random/ammo_all,
-/obj/random/tool/alien,
-/turf/simulated/floor/outdoors/classd,
-/area/class_d/explored)
+obj/effect/decal/mecha_wreckage/ripley,
+obj/random/ammo_all,
+obj/random/tool/alien,
+turf/simulated/floor/outdoors/classd,
+area/class_d/explored)
 
 (1,1,1) = {"
 a

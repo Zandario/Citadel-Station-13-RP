@@ -97,7 +97,7 @@
  *! ## Compiled by Aygar
  *! ## Formatted by Zandario
  */
-/obj/machinery
+obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
 	w_class = ITEMSIZE_NO_CONTAINER
@@ -147,7 +147,7 @@
 
 	var/interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_SET_MACHINE
 
-/obj/machinery/Initialize(mapload, newdir)
+obj/machinery/Initialize(mapload, newdir)
 	if(newdir)
 		setDir(newdir)
 	. = ..()
@@ -166,7 +166,7 @@
 	if(!mapload)	// area handles this
 		power_change()
 
-/obj/machinery/Destroy()
+obj/machinery/Destroy()
 	GLOB.machines.Remove(src)
 	if(!speed_process)
 		STOP_MACHINE_PROCESSING(src)
@@ -189,15 +189,15 @@
 				qdel(A)
 	return ..()
 
-/obj/machinery/update_overlays()
+obj/machinery/update_overlays()
 	. = ..()
 	if(panel_open && panel_icon_state)
 		. += panel_icon_state
 
-/obj/machinery/process()//If you dont use process or power why are you here
+obj/machinery/process()//If you dont use process or power why are you here
 	return PROCESS_KILL
 
-/obj/machinery/emp_act(severity)
+obj/machinery/emp_act(severity)
 	if(use_power && machine_stat == NONE)
 		use_power(7500/severity)
 
@@ -212,7 +212,7 @@
 			qdel(pulse2)
 	..()
 
-/obj/machinery/legacy_ex_act(severity)
+obj/machinery/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -228,7 +228,7 @@
 		else
 	return
 
-/obj/machinery/vv_edit_var(var_name, new_value)
+obj/machinery/vv_edit_var(var_name, new_value)
 	if(var_name == NAMEOF(src, use_power))
 		update_use_power(new_value)
 		return TRUE
@@ -247,27 +247,27 @@
 // todo: rendered_inoperable()
 // todo: rendered_operable()
 
-/obj/machinery/proc/operable(additional_flags = NONE)
+obj/machinery/proc/operable(additional_flags = NONE)
 	return !inoperable(additional_flags)
 
-/obj/machinery/proc/inoperable(additional_flags = NONE)
+obj/machinery/proc/inoperable(additional_flags = NONE)
 	return (machine_stat & (NOPOWER | BROKEN | additional_flags))
 
-/obj/machinery/CanUseTopic(mob/user)
+obj/machinery/CanUseTopic(mob/user)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_OFFLINE) && (machine_stat & (NOPOWER | BROKEN)))
 		return UI_CLOSE
 	return ..()
 
-/obj/machinery/CouldUseTopic(mob/user)
+obj/machinery/CouldUseTopic(mob/user)
 	..()
 	user.set_machine(src)
 
-/obj/machinery/CouldNotUseTopic(mob/user)
+obj/machinery/CouldNotUseTopic(mob/user)
 	user.unset_machine()
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/attack_ai(mob/user)
+obj/machinery/attack_ai(mob/user)
 	if(IsAdminGhost(user))
 		interact(user)
 		return
@@ -279,7 +279,7 @@
 	else
 		return attack_hand(user)
 
-/obj/machinery/attack_hand(mob/user, list/params)
+obj/machinery/attack_hand(mob/user, list/params)
 	if(IsAdminGhost(user))
 		return FALSE
 	if(inoperable(MAINT))
@@ -303,7 +303,7 @@
 
 	return ..()
 
-/obj/machinery/can_interact(mob/user)
+obj/machinery/can_interact(mob/user)
 	if((machine_stat & (NOPOWER|BROKEN)) && !(interaction_flags_machine & INTERACT_MACHINE_OFFLINE)) // Check if the machine is broken, and if we can still interact with it if so
 		return FALSE
 	var/silicon = issilicon(user)
@@ -334,25 +334,25 @@
 		return FALSE
 	return TRUE // If we pass all these checks, woohoo! We can interact
 
-/obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
+obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return
 
-/obj/machinery/proc/assign_uid()
+obj/machinery/proc/assign_uid()
 	uid = gl_uid
 	gl_uid++
 
-/obj/machinery/proc/state(var/msg)
+obj/machinery/proc/state(var/msg)
 	for(var/mob/O in hearers(src, null))
 		O.show_message("[icon2html(thing = src, target = O)] [SPAN_NOTICE(msg)]", 2)
 
-/obj/machinery/proc/ping(text=null)
+obj/machinery/proc/ping(text=null)
 	if(!text)
 		text = "\The [src] pings."
 
 	state(text, "blue")
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
 
-/obj/machinery/proc/shock(mob/user, prb)
+obj/machinery/proc/shock(mob/user, prb)
 	if(inoperable())
 		return 0
 	if(!prob(prb))
@@ -371,14 +371,14 @@
 			return 1
 	return 0
 
-/obj/machinery/proc/default_apply_parts()
+obj/machinery/proc/default_apply_parts()
 	var/obj/item/circuitboard/CB = circuit
 	if(!istype(CB))
 		return
 	CB.apply_default_parts(src)
 	RefreshParts()
 
-/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/storage/part_replacer/R)
+obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/storage/part_replacer/R)
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -409,7 +409,7 @@
 	return 1
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
-/obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
+obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
 	if(!W.is_wrench())
 		return FALSE
 	if(panel_open)
@@ -429,7 +429,7 @@
 		update_appearance()
 	return TRUE
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/C)
+obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/C)
 
 
 	if(!C.is_crowbar())
@@ -438,7 +438,7 @@
 		return 0
 	. = dismantle()
 
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
 	if(!S.is_screwdriver())
 		return 0
 	playsound(src, S.tool_sound, 50, 1)
@@ -447,7 +447,7 @@
 	update_appearance()
 	return 1
 
-/obj/machinery/proc/computer_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+obj/machinery/proc/computer_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
 	if(!S.is_screwdriver())
 		return 0
 	if(!circuit)
@@ -462,7 +462,7 @@
 			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 		. = dismantle()
 
-/obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
 	if(!S.is_screwdriver())
 		return 0
 	playsound(src, S.tool_sound, 50, 1)
@@ -471,7 +471,7 @@
 	update_appearance()
 	return 1
 
-/obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/W)
+obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/W)
 	if(!W.is_wirecutter())
 		return 0
 	if(!panel_open)
@@ -481,7 +481,7 @@
 	new/obj/item/stack/cable_coil(get_turf(src), 5)
 	. = dismantle()
 
-/obj/machinery/proc/dismantle()
+obj/machinery/proc/dismantle()
 	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 	drop_products(ATOM_DECONSTRUCT_DISASSEMBLED)
 	on_deconstruction()
@@ -536,7 +536,7 @@
 // 	return
 
 //called on deconstruction before the final deletion
-/obj/machinery/proc/on_deconstruction()
+obj/machinery/proc/on_deconstruction()
 	return
 
 /**
@@ -549,7 +549,7 @@
  * * object (obj) The object to be moved in to the users hand.
  * * user (mob/living) The user to recive the object
  */
-/obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
+obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
 	if(!issilicon(user) && in_range(src, user))
 		user.grab_item_from_interacted_with(object, src)
 		// todo: probably split this proc into something that isn't try
@@ -559,7 +559,7 @@
 		object.forceMove(drop_location())
 
 /// Adjust item drop location to a 3x3 grid inside the tile, returns slot id from 0 to 8.
-/obj/machinery/proc/adjust_item_drop_location(atom/movable/dropped_atom)
+obj/machinery/proc/adjust_item_drop_location(atom/movable/dropped_atom)
 	var/md5 = md5(dropped_atom.name) // Oh, and it's deterministic too. A specific item will always drop from the same slot.
 	for (var/i in 1 to 32)
 		. += hex2num(md5[i])

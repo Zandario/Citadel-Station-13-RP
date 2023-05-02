@@ -1,9 +1,9 @@
-/datum/game_mode/var/next_spawn = 0
-/datum/game_mode/var/min_autotraitor_delay = 4200  // Approx 7 minutes.
-/datum/game_mode/var/max_autotraitor_delay = 12000 // Approx 20 minutes.
-/datum/game_mode/var/process_count = 0
+datum/game_mode/var/next_spawn = 0
+datum/game_mode/var/min_autotraitor_delay = 4200  // Approx 7 minutes.
+datum/game_mode/var/max_autotraitor_delay = 12000 // Approx 20 minutes.
+datum/game_mode/var/process_count = 0
 
-/datum/game_mode/proc/get_usable_templates(var/list/supplied_templates)
+datum/game_mode/proc/get_usable_templates(var/list/supplied_templates)
 	var/list/usable_templates = list()
 	for(var/datum/antagonist/A in supplied_templates)
 		if(A.can_late_spawn())
@@ -13,20 +13,20 @@
 
 ///process(delta_time)
 ///Called by the gameSSticker
-/datum/game_mode/process(delta_time)
+datum/game_mode/process(delta_time)
 	// Slow this down a bit so latejoiners have a chance of being antags.
 	process_count++
 	if(process_count >= 10)
 		process_count = 0
 		try_latespawn()
 
-/datum/game_mode/proc/latespawn(var/mob/living/carbon/human/character)
+datum/game_mode/proc/latespawn(var/mob/living/carbon/human/character)
 	if(!character.mind)
 		return
 	try_latespawn(character.mind)
 	return 0
 
-/datum/game_mode/proc/try_latespawn(var/datum/mind/player, var/latejoin_only)
+datum/game_mode/proc/try_latespawn(var/datum/mind/player, var/latejoin_only)
 
 	if(SSemergencyshuttle.departed || !round_autoantag)
 		return

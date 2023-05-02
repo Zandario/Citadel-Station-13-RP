@@ -1,4 +1,4 @@
-/obj/item/reagent_synth
+obj/item/reagent_synth
 	name = "reagent synthesis module"
 	desc = "Some kind of complex device used for synthesizing reagents."
 	worn_render_flags = WORN_RENDER_INHAND_NO_RENDER | WORN_RENDER_SLOT_NO_RENDER
@@ -10,14 +10,14 @@
 	/// reagents by typepath or id that we allow syntehsis of
 	var/list/reagents_provided
 
-/obj/item/reagent_synth/Initialize(mapload)
+obj/item/reagent_synth/Initialize(mapload)
 	if(has_typelist(NAMEOF(src, reagents_provided)))
 		reagents_provided = get_typelist(NAMEOF(src, reagents_provided))
 	else
 		reagents_provided = typelist(NAMEOF(src, reagents_provided), resolve_reagents_provided())
 	return ..()
 
-/obj/item/reagent_synth/proc/resolve_reagents_provided()
+obj/item/reagent_synth/proc/resolve_reagents_provided()
 
 	RETURN_TYPE(/list)
 	. = list()
@@ -28,7 +28,7 @@
 			var/datum/reagent/accessing = thing
 			. += initial(accessing.id)
 
-/obj/item/reagent_synth/chemistry
+obj/item/reagent_synth/chemistry
 	name = "reagent synthesis module (Chemistry)"
 	reagents_provided = list(
 		/datum/reagent/hydrogen,
@@ -56,7 +56,7 @@
 		/datum/reagent/chlorine,
 	)
 
-/obj/item/reagent_synth/bar
+obj/item/reagent_synth/bar
 	name = "reagent synthesis module (Bar)"
 	reagents_provided = list(
 		/datum/reagent/drink/soda/lemon_lime,
@@ -82,7 +82,7 @@
 		/datum/reagent/ethanol/alcsassafras
 	)
 
-/obj/item/reagent_synth/cafe
+obj/item/reagent_synth/cafe
 	name = "reagent synthesis module (Cafe)"
 	reagents_provided = list(
 		/datum/reagent/drink/coffee,
@@ -100,7 +100,7 @@
 		/datum/reagent/drink/juice/berry,
 	)
 
-/obj/item/reagent_synth/drink
+obj/item/reagent_synth/drink
 	name = "reagent synthesis module (Soda)"
 	reagents_provided = list(
 		/datum/reagent/water,
@@ -123,7 +123,7 @@
 		/datum/reagent/drink/soda/sarsaparilla,
 	)
 
-/obj/item/reagent_synth/medicine
+obj/item/reagent_synth/medicine
 	name = "reagent synthesis module (Medicine)"
 	reagents_provided = list(
 		/datum/reagent/inaprovaline,
@@ -156,7 +156,7 @@
 		/datum/reagent/clonexadone,
 	)
 
-/obj/item/reagent_synth/medicine_addon
+obj/item/reagent_synth/medicine_addon
 	reagents_provided = list(
 		/datum/reagent/carthatoline,
 		/datum/reagent/corophizine,
@@ -168,14 +168,14 @@
 		/datum/reagent/nutriment/protein
 	)
 
-/obj/item/reagent_synth/bioproduct
+obj/item/reagent_synth/bioproduct
 	reagents_provided = list(
 		/datum/reagent/nutriment,
 		/datum/reagent/nutriment/protein,
 		/datum/reagent/drink/milk,
 	)
 
-/obj/item/reagent_synth/botanical
+obj/item/reagent_synth/botanical
 	reagents_provided = list(
 		/datum/reagent/water,
 		/datum/reagent/sugar,

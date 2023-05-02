@@ -1,4 +1,4 @@
-/obj/item/holowarrant
+obj/item/holowarrant
 	name = "warrant projector"
 	icon = 'icons/obj/device.dmi'
 	desc = "The practical paperwork replacement for the officer on the go."
@@ -12,7 +12,7 @@
 	var/datum/data/record/warrant/active
 
 //look at it
-/obj/item/holowarrant/examine(mob/user)
+obj/item/holowarrant/examine(mob/user)
 	. = ..()
 	if(active)
 		. += "It's a holographic warrant for '[active.fields["namewarrant"]]'."
@@ -22,7 +22,7 @@
 		to_chat(user, "<span class='notice'>You have to go closer if you want to read it.</span>")
 
 //hit yourself with it
-/obj/item/holowarrant/attack_self(mob/user)
+obj/item/holowarrant/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -41,7 +41,7 @@
 			active = W
 	update_icon()
 
-/obj/item/holowarrant/attackby(obj/item/W, mob/user)
+obj/item/holowarrant/attackby(obj/item/W, mob/user)
 	if(active)
 		var/obj/item/card/id/I = W.GetIdCard()
 		if(I)
@@ -54,19 +54,19 @@
 	..()
 
 //hit other people with it
-/obj/item/holowarrant/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/holowarrant/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	user.visible_message("<span class='notice'>You show the warrant to [target].</span>", \
 			"<span class='notice'>[user] holds up a warrant projector and shows the contents to [target].</span>")
 	target.examinate(src)
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/item/holowarrant/update_icon()
+obj/item/holowarrant/update_icon()
 	if(active)
 		icon_state = "holowarrant_filled"
 	else
 		icon_state = "holowarrant"
 
-/obj/item/holowarrant/proc/show_content(mob/user, forceshow)
+obj/item/holowarrant/proc/show_content(mob/user, forceshow)
 	if(!active)
 		return
 	if(active.fields["arrestsearch"] == "arrest")

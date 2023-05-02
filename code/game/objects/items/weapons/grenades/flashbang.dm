@@ -1,4 +1,4 @@
-/obj/item/grenade/flashbang
+obj/item/grenade/flashbang
 	name = "flashbang"
 	icon_state = "flashbang"
 	item_state = "flashbang"
@@ -6,7 +6,7 @@
 	var/max_range = 10 //The maximum range possible, including species effect mods. Cuts off at 7 for normal humans. Should be 3 higher than your intended target range for affecting normal humans.
 	var/banglet = 0
 
-/obj/item/grenade/flashbang/detonate()
+obj/item/grenade/flashbang/detonate()
 	..()
 	for(var/obj/structure/closet/L in hear(max_range, get_turf(src)))
 		if(locate(/mob/living/carbon/, L))
@@ -27,7 +27,7 @@
 
 	qdel(src)
 
-/obj/item/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
+obj/item/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
 	to_chat(M, "<span class='danger'>BANG</span>")						// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 30)		// people in normal view.  Could theroetically be called during other explosions.
 																	// -- Polymorph
@@ -93,11 +93,11 @@
 	else if(M.ear_damage >= 5)
 		to_chat(M, "<span class='danger'>Your ears start to ring!</span>")
 
-/obj/item/grenade/flashbang/Destroy()
+obj/item/grenade/flashbang/Destroy()
 	walk(src, 0) // Because we might have called walk_away, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
-/obj/item/grenade/flashbang/stingbang
+obj/item/grenade/flashbang/stingbang
 	name = "stingbang"
 	desc = "A hand held grenade, with an adjustable timer, perfect for stopping riots and playing morally unthinkable pranks."
 	icon_state = "timeg"
@@ -105,19 +105,19 @@
 	var/num_fragments = 45  //total number of fragments produced by the grenade
 	var/spread_range = 6 // for above and below, see code\game\objects\items\weapons\grenades\explosive.dm
 
-/obj/item/grenade/flashbang/stingbang/detonate()
+obj/item/grenade/flashbang/stingbang/detonate()
 	var/turf/O = get_turf(src)
 	if(!O)
 		return
 	src.fragmentate(O, num_fragments, spread_range, fragment_types)
 	..()
 
-/obj/item/grenade/flashbang/stingbang/shredbang
+obj/item/grenade/flashbang/stingbang/shredbang
 	name = "shredbang"
 	desc = "A hand held grenade, with an adjustable timer, perfect for handling unruly citizens and getting detained by government officials."
 	fragment_types = list(/obj/projectile/bullet/pellet/fragment, /obj/projectile/bullet/pellet/fragment/strong, /obj/projectile/bullet/pellet/fragment)
 
-/obj/item/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
+obj/item/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
 	desc = "Use of this weapon may constiute a war crime in your area, consult your local Facility Director."
 	name = "clusterbang"
 	icon = 'icons/obj/grenade.dmi'
@@ -126,7 +126,7 @@
 	var/min_banglets = 4
 	var/max_banglets = 8
 
-/obj/item/grenade/flashbang/clusterbang/detonate()
+obj/item/grenade/flashbang/clusterbang/detonate()
 	var/numspawned = rand(min_banglets, max_banglets)
 	var/again = 0
 
@@ -146,7 +146,7 @@
 	qdel(src)
 	return
 
-/obj/item/grenade/flashbang/clusterbang/segment
+obj/item/grenade/flashbang/clusterbang/segment
 	desc = "A smaller segment of a clusterbang. Better run."
 	name = "clusterbang segment"
 	icon = 'icons/obj/grenade.dmi'
@@ -154,7 +154,7 @@
 	can_repeat = FALSE
 	banglet = TRUE
 
-/obj/item/grenade/flashbang/clusterbang/segment/Initialize(mapload)
+obj/item/grenade/flashbang/clusterbang/segment/Initialize(mapload)
 	. = ..()
 
 	icon_state = "clusterbang_segment_active"
@@ -167,10 +167,10 @@
 	spawn(dettime)
 		detonate()
 
-/obj/item/grenade/flashbang/cluster
+obj/item/grenade/flashbang/cluster
 	banglet = TRUE
 
-/obj/item/grenade/flashbang/cluster/Initialize(mapload)
+obj/item/grenade/flashbang/cluster/Initialize(mapload)
 	. = ..()
 
 	icon_state = "flashbang_active"

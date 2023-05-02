@@ -1,5 +1,5 @@
 
-/obj/item/organ/internal/appendix
+obj/item/organ/internal/appendix
 	name = "appendix"
 	icon_state = "appendix"
 	parent_organ = BP_GROIN
@@ -7,7 +7,7 @@
 	var/inflamed = 0
 	var/inflame_progress = 0
 
-/mob/living/carbon/human/proc/appendicitis()
+mob/living/carbon/human/proc/appendicitis()
 	if(stat == DEAD)
 		return 0
 	var/obj/item/organ/internal/appendix/A = internal_organs_by_name[O_APPENDIX]
@@ -16,7 +16,7 @@
 		return 1
 	return 0
 
-/obj/item/organ/internal/appendix/tick_life(dt)
+obj/item/organ/internal/appendix/tick_life(dt)
 	. = ..()
 
 	if(!inflamed)
@@ -48,7 +48,7 @@
 			owner.adjustToxLoss(25)
 			inflamed = 1
 
-/obj/item/organ/internal/appendix/removed()
+obj/item/organ/internal/appendix/removed()
 	if(inflamed)
 		icon_state = "appendixinflamed"
 		name = "inflamed appendix"

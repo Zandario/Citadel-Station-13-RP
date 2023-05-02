@@ -1,4 +1,4 @@
-/datum/role/job/station/explorer
+datum/role/job/station/explorer
 	id = JOB_ID_EXPLORER
 	title = "Explorer"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_DANGER
@@ -23,22 +23,22 @@
 		"Jr. Explorer" = /datum/prototype/alt_title/explorer/junior
 		)
 
-/datum/prototype/alt_title/surveyor
+datum/prototype/alt_title/surveyor
 	title = "Surveyor"
 
-/datum/prototype/alt_title/offsite_scout
+datum/prototype/alt_title/offsite_scout
 	title = "Offsite Scout"
 
-/datum/prototype/alt_title/explorer/field_scout
+datum/prototype/alt_title/explorer/field_scout
 	title = "Field Scout"
 
-/datum/prototype/alt_title/explorer/pioneer
+datum/prototype/alt_title/explorer/pioneer
 	title = "Pioneer"
 
-/datum/prototype/alt_title/explorer/junior
+datum/prototype/alt_title/explorer/junior
 	title = "Jr. Explorer"
 
-/datum/outfit/job/station/explorer
+datum/outfit/job/station/explorer
 	name = OUTFIT_JOB_NAME("Explorer")
 	id_pda_assignment = "Explorer"
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
@@ -58,18 +58,18 @@
 
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
-/datum/outfit/job/station/explorer2/post_equip(mob/living/carbon/human/H)
+datum/outfit/job/station/explorer2/post_equip(mob/living/carbon/human/H)
 	..()
 	for(var/obj/item/clothing/accessory/permit/gun/planetside/permit in H.back.contents)
 		permit.set_name(H.real_name)
 
-/datum/outfit/job/station/explorer/technician
+datum/outfit/job/station/explorer/technician
 	name = OUTFIT_JOB_NAME("Explorer Technician")
 	belt = /obj/item/storage/belt/utility/full
 	pda_slot = SLOT_ID_LEFT_POCKET
 	id_pda_assignment = "Explorer Technician"
 
-/datum/outfit/job/station/explorer/medic
+datum/outfit/job/station/explorer/medic
 	name = OUTFIT_JOB_NAME("Explorer Medic")
 	l_hand = /obj/item/storage/firstaid/regular
 	pda_slot = SLOT_ID_LEFT_POCKET

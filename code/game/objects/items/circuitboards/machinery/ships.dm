@@ -2,7 +2,7 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/pointdefense
+obj/item/circuitboard/pointdefense
 	name = T_BOARD("point defense battery")
 	board_type = new /datum/frame/frame_types/machine
 	desc = "Control systems for a Kuiper pattern point defense battery. Aim away from vessel."
@@ -14,7 +14,7 @@
 		/obj/item/stock_parts/manipulator = 2,
 	)
 
-/obj/item/circuitboard/pointdefense_control
+obj/item/circuitboard/pointdefense_control
 	name = T_BOARD("fire assist mainframe")
 	board_type = new /datum/frame/frame_types/machine
 	desc = "A control computer to synchronize point defense batteries."

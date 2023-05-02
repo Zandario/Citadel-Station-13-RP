@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/horror
+datum/category_item/catalogue/fauna/horror
 	name = "%#ERROR#%"
 	desc = "%ERROR% SCAN DATA REDACTED. RETURN SCANNER TO A \
 	CENTRAL ADMINISTRATOR FOR IMMEDIATE MAINTENANCE. %ERROR%"
@@ -6,7 +6,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/horror)
 
 // Obtained by scanning all X.
-/datum/category_item/catalogue/fauna/all_horrors
+datum/category_item/catalogue/fauna/all_horrors
 	name = "Coll-LL-ec-T-io$#@ - %REDACTED!!!%"
 	desc = "You have REJECTED a large $%*^ of different MAINTENANCE MODE, \
 	and therefore you have been SLATED FOR &&!!%) sum of points, through this \
@@ -25,7 +25,7 @@
 		/datum/category_item/catalogue/fauna/horror/Willy
 		)
 
-/mob/living/simple_mob/horror
+mob/living/simple_mob/horror
 	tt_desc = "Homo Horrificus"
 	faction = "horror"
 	icon = 'icons/mob/horror_show/GHPS.dmi'
@@ -38,7 +38,7 @@
 
 	mob_class = MOB_CLASS_ABERRATION
 
-/datum/ai_holder/simple_mob/horror
+datum/ai_holder/simple_mob/horror
 	hostile = TRUE // The majority of simplemobs are hostile, gaslamps are nice.
 	cooperative = FALSE
 	retaliate = TRUE //so the monster can attack back
@@ -48,7 +48,7 @@
 	wander = TRUE
 	base_wander_delay = 9
 
-/mob/living/simple_mob/horror
+mob/living/simple_mob/horror
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0

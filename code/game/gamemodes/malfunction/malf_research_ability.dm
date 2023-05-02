@@ -1,4 +1,4 @@
-/datum/malf_research_ability
+datum/malf_research_ability
 	var/ability = null 									// Path to verb which will be given to the AI when researched.
 	var/name = "Unknown Ability"						// Name of this ability
 	var/price = 0										// Amount of CPU time needed to unlock this ability.
@@ -7,7 +7,7 @@
 	var/datum/malf_research_ability/next = null			// Next research (if applicable).
 
 
-/datum/malf_research_ability/process(var/time = 0)
+datum/malf_research_ability/process(var/time = 0)
 	invested += time
 	if(invested >= price)
 		unlocked = 1

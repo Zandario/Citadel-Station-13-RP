@@ -6,13 +6,13 @@ In short:
  * Random tiles changing to culty tiles.
 
 */
-/datum/universal_state/hell
+datum/universal_state/hell
 	name = "Hell Rising"
 	desc = "OH FUCK OH FUCK OH FUCK"
 
 	decay_rate = 5 // 5% chance of a turf decaying on lighting update/airflow (there's no actual tick for turfs)
 
-/datum/universal_state/hell/OnShuttleCall(var/mob/user)
+datum/universal_state/hell/OnShuttleCall(var/mob/user)
 	return 1
 	/*
 	if(user)
@@ -20,7 +20,7 @@ In short:
 	return 0
 	*/
 
-/datum/universal_state/hell/DecayTurf(var/turf/T)
+datum/universal_state/hell/DecayTurf(var/turf/T)
 	if(!T.holy)
 		T.cultify()
 		for(var/obj/machinery/light/L in T.contents)
@@ -28,7 +28,7 @@ In short:
 			qdel(L)
 
 // Apply changes when entering state
-/datum/universal_state/hell/OnEnter()
+datum/universal_state/hell/OnEnter()
 	set background = 1
 //	garbage_collector.garbage_collect = 0
 
@@ -44,21 +44,21 @@ In short:
 	runedec += 9000	//basically removing the rune cap
 
 
-/datum/universal_state/hell/proc/AreaSet()
+datum/universal_state/hell/proc/AreaSet()
 	for(var/area/A in GLOB.sortedAreas)
 		if(!istype(A,/area) || istype(A, /area/space))
 			continue
 
 		A.updateicon()
 
-/datum/universal_state/hell/OverlayAndAmbientSet()
+datum/universal_state/hell/OverlayAndAmbientSet()
 	spawn(0)
 		for(var/datum/lighting_corner/L in world)
 			L.update_lumcount(1, 0, 0)
 		for(var/turf/space/T in world)
 			T.color = "#FF0000"
 
-/datum/universal_state/hell/proc/MiscSet()
+datum/universal_state/hell/proc/MiscSet()
 	for(var/turf/simulated/floor/T in world)
 		if(!T.holy && prob(1))
 			new /obj/effect/gateway/active/cult(T)
@@ -67,7 +67,7 @@ In short:
 		if (!(alm.machine_stat & BROKEN))
 			LEGACY_EX_ACT(alm, 2, null)
 
-/datum/universal_state/hell/proc/APCSet()
+datum/universal_state/hell/proc/APCSet()
 	for (var/obj/machinery/power/apc/APC in GLOB.apcs)
 		if (!(APC.machine_stat & BROKEN) && !APC.is_critical)
 			APC.emagged = 1

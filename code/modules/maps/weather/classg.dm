@@ -1,4 +1,4 @@
-/datum/atmosphere/planet/classg
+datum/atmosphere/planet/classg
 	base_gases = list(
 	/datum/gas/oxygen = 10,
 	/datum/gas/nitrogen = 10,
@@ -11,15 +11,15 @@
 	maximum_temp = 307.3
 
 
-/datum/time/classg
+datum/time/classg
 	seconds_in_day = 3 HOURS
 
-/datum/planet/classg
+datum/planet/classg
 	name = "Class-G Mineral Rich Planet"
 	desc = "A mineral rich planet with a volatile atmosphere."
 	current_time = new /datum/time/classg()
 
-/datum/planet/classg/update_sun()
+datum/planet/classg/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
@@ -97,7 +97,7 @@
 
 	update_sun_deferred(new_brightness, new_color)
 
-/datum/weather_holder/classg
+datum/weather_holder/classg
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_CLEAR		= new /datum/weather/classg/clear(),
@@ -108,12 +108,12 @@
 		//WEATHER_FALLOUT		= 25
 		)
 
-/datum/weather/classg
+datum/weather/classg
 	name = "classg base"
 	temp_high	= 203
 	temp_low 	= 203
 
-/datum/weather/classg/clear
+datum/weather/classg/clear
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR	 = 100
@@ -127,7 +127,7 @@
 	observed_message = "The stars are visible overhead."
 
 /*
-/datum/weather/classg/fallout
+datum/weather/classg/fallout
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
@@ -152,7 +152,7 @@
 	var/fallout_rad_low = RAD_LEVEL_HIGH
 	var/fallout_rad_high = RAD_LEVEL_VERY_HIGH
 
-/datum/weather/classg/fallout/process_effects()
+datum/weather/classg/fallout/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -166,7 +166,7 @@
 
 // This makes random tiles near people radioactive for awhile.
 // Tiles far away from people are left alone, for performance.
-/datum/weather/classg/fallout/proc/irradiate_nearby_turf(mob/living/L)
+datum/weather/classg/fallout/proc/irradiate_nearby_turf(mob/living/L)
 	if(!istype(L))
 		return
 	var/list/turfs = RANGE_TURFS(world.view, L)
@@ -190,13 +190,13 @@
 
 // This is a special subtype of the thing that generates ores on a map
 // It will generate more rich ores because of the lower numbers than the normal one
-/datum/random_map/noise/ore/classg
+datum/random_map/noise/ore/classg
 	descriptor = "Mining planet mine ore distribution map"
 	deep_val = 0.6 //More riches, normal is 0.7 and 0.8
 	rare_val = 0.4
 
 // The check_map_sanity proc is sometimes unsatisfied with how AMAZING our ores are
-/datum/random_map/noise/ore/classg/check_map_sanity()
+datum/random_map/noise/ore/classg/check_map_sanity()
 	var/rare_count = 0
 	var/surface_count = 0
 	var/deep_count = 0

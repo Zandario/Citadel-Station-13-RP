@@ -1,4 +1,4 @@
-/datum/role/job/station/pilot
+datum/role/job/station/pilot
 	id = JOB_ID_PILOT
 	title = "Pilot"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_HELM
@@ -21,14 +21,14 @@
 		"Navigator" = /datum/prototype/alt_title/navigator
 		)
 
-/datum/prototype/alt_title/co_pilot
+datum/prototype/alt_title/co_pilot
 	title = "Co-Pilot"
 	title_blurb = "A Co-Pilot is there primarily to assist main pilot as well as learn from them"
 
-/datum/prototype/alt_title/navigator
+datum/prototype/alt_title/navigator
 	title = "Navigator"
 
-/datum/outfit/job/station/pilot
+datum/outfit/job/station/pilot
 	name = OUTFIT_JOB_NAME("Pilot")
 	shoes = /obj/item/clothing/shoes/black
 	uniform = /obj/item/clothing/under/rank/pilot1

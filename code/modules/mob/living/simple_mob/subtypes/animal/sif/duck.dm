@@ -1,6 +1,6 @@
 // Crystal-feather "ducks" are rather weak, but will become aggressive if you have food.
 
-/datum/category_item/catalogue/fauna/crystalduck
+datum/category_item/catalogue/fauna/crystalduck
 	name = "Sivian Fauna - Crystal-Feather Duck"
 	desc = "Classification: S Anatidae vitriae \
 	<br><br>\
@@ -13,7 +13,7 @@
 	increasingly aggressive."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/sif/duck
+mob/living/simple_mob/animal/sif/duck
 	name = "crystal-feather duck"
 	desc = "A glittering flightless bird."
 	tt_desc = "S Anatidae vitriae"
@@ -42,12 +42,12 @@
 	say_list_type = /datum/say_list/duck
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 
-/datum/say_list/duck
+datum/say_list/duck
 	speak = list("Wack!", "Wock?", "Wack.")
 	emote_see = list("ruffles its wings","looks around", "preens itself")
 	emote_hear = list("quacks", "giggles")
 
-/mob/living/simple_mob/animal/sif/duck/IIsAlly(mob/living/L)
+mob/living/simple_mob/animal/sif/duck/IIsAlly(mob/living/L)
 	. = ..()
 
 	var/has_food = FALSE

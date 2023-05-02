@@ -3,7 +3,7 @@
 //
 
 //if powernetless_only = 1, will only get connections without powernet
-/obj/structure/cable/ender
+obj/structure/cable/ender
 	// Pretend to be heavy duty power cable
 	icon = 'icons/obj/power_cond_heavy.dmi'
 	name = "large power cable"
@@ -14,7 +14,7 @@
 	unacidable = 1
 	var/id = null
 
-/obj/structure/cable/ender/get_connections(var/powernetless_only = 0)
+obj/structure/cable/ender/get_connections(var/powernetless_only = 0)
 	. = ..() // Do the normal stuff
 	if(id)
 		for(var/obj/structure/cable/ender/target in cable_list)
@@ -22,7 +22,7 @@
 				if (!powernetless_only || !target.powernet)
 					. |= target
 
-/obj/structure/cable/ender/attackby(obj/item/W, mob/user)
+obj/structure/cable/ender/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 	if(W.is_wirecutter())
 		to_chat(user,  "<span class='notice'> These cables are too tough to be cut with those [W.name].</span>")
@@ -34,5 +34,5 @@
 		..()
 
 // Because they cannot be rebuilt, they are hard to destroy
-/obj/structure/cable/ender/legacy_ex_act(severity)
+obj/structure/cable/ender/legacy_ex_act(severity)
 	return

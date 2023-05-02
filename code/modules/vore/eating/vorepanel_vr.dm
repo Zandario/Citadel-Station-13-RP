@@ -8,7 +8,7 @@
 #define BELLIES_DESC_MAX 2048
 #define FLAVOR_MAX 40
 
-/mob/living/proc/insidePanel()
+mob/living/proc/insidePanel()
 	set name = "Vore Panel"
 	set category = "Vore"
 
@@ -23,7 +23,7 @@
 	picker_holder.popup.open()
 	src.openpanel = 1
 
-/mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
+mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
 	if(src.openpanel == 1)
 		var/datum/vore_look/picker_holder = new()
 		picker_holder.loop = picker_holder
@@ -38,23 +38,23 @@
 //
 // Callback Handler for the Inside form
 //
-/datum/vore_look
+datum/vore_look
 	var/obj/belly/selected
 	var/show_interacts = 0
 	var/datum/browser/popup
 	var/loop = null;  // Magic self-reference to stop the handler from being GC'd before user takes action.
 
-/datum/vore_look/Destroy()
+datum/vore_look/Destroy()
 	selected = null
 	QDEL_NULL(popup)
 	. = ..()
 
-/datum/vore_look/Topic(href,href_list[])
+datum/vore_look/Topic(href,href_list[])
 	if (vp_interact(href, href_list))
 		popup.set_content(gen_ui(usr))
 		usr << output(popup.get_content(), "insidePanel.browser")
 
-/datum/vore_look/proc/gen_ui(var/mob/living/user)
+datum/vore_look/proc/gen_ui(var/mob/living/user)
 	var/dat
 
 	var/atom/userloc = user.loc
@@ -377,7 +377,7 @@
 	//Returns the dat html to the vore_look
 	return dat
 
-/datum/vore_look/proc/vp_interact(href, href_list)
+datum/vore_look/proc/vp_interact(href, href_list)
 	var/mob/living/user = usr
 	for(var/H in href_list)
 

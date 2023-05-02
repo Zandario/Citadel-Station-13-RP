@@ -2,7 +2,7 @@
  * This system defines news that will be displayed in the course of a round.
  * Uses BYOND's type system to put everything into a nice format.
  */
-/datum/news_announcement
+datum/news_announcement
 
 	/// Time of the round at which this should be announced, in seconds.
 	var/round_time
@@ -13,11 +13,11 @@
 	var/message_type = "Story"
 	var/channel_name = null
 
-/datum/news_announcement/New() // I'm sorry...
+datum/news_announcement/New() // I'm sorry...
 	..()
 	channel_name = "The [GLOB.using_map.starsys_name] Times"
 
-/datum/news_announcement/revolution_inciting_event/paycuts_suspicion
+datum/news_announcement/revolution_inciting_event/paycuts_suspicion
 	round_time = 60*10
 	author = "Unauthorized"
 	message = {"
@@ -27,7 +27,7 @@
 		have to be made.
 	"}
 
-/datum/news_announcement/revolution_inciting_event/paycuts_confirmation
+datum/news_announcement/revolution_inciting_event/paycuts_confirmation
 	round_time = 60*40
 	author = "Unauthorized"
 	message = {"
@@ -36,7 +36,7 @@
 		personnel. Heads of Staff will, according to our sources, not be affected.
 	"}
 
-/datum/news_announcement/revolution_inciting_event/human_experiments
+datum/news_announcement/revolution_inciting_event/human_experiments
 	round_time = 60*90
 	author = "Unauthorized"
 	message = {"
@@ -50,7 +50,7 @@
 	"}
 
 
-/datum/news_announcement/bluespace_research/announcement
+datum/news_announcement/bluespace_research/announcement
 	round_time = 60*20
 	message = {"
 		The new field of research trying to explain several interesting spacetime oddities,
@@ -62,7 +62,7 @@
 	"}
 
 
-/datum/news_announcement/random_junk/cheesy_honkers
+datum/news_announcement/random_junk/cheesy_honkers
 	round_time = 60 * 15
 
 	author = "Assistant Editor Carl Ritz"
@@ -71,7 +71,7 @@
 		Do cheesy honkers increase risk of having a miscarriage? Several health administrations say so!
 	"}
 
-/datum/news_announcement/random_junk/net_block
+datum/news_announcement/random_junk/net_block
 	round_time = 60 * 50
 
 	channel_name = "The Gibson Gazette"
@@ -81,7 +81,7 @@
 		claiming violation of net laws.
 	"}
 
-/datum/news_announcement/random_junk/found_ssd
+datum/news_announcement/random_junk/found_ssd
 	round_time = 60 * 90
 
 	author = "Doctor Eric Hanfield"
@@ -93,7 +93,7 @@
 	"}
 
 
-/datum/news_announcement/lotus_tree/explosions
+datum/news_announcement/lotus_tree/explosions
 	round_time = 60 * 30
 
 	author = "Reporter Leland H. Howards"
@@ -108,7 +108,7 @@
 
 
 
-/datum/news_announcement/food_riots/breaking_news
+datum/news_announcement/food_riots/breaking_news
 	round_time = 60 * 10
 
 	author = "Reporter Ro'kii Ar-Raqis"
@@ -120,7 +120,7 @@
 		the hour.
 	"}
 
-/datum/news_announcement/food_riots/more
+datum/news_announcement/food_riots/more
 	round_time = 60 * 60
 
 	author = "Reporter Ro'kii Ar-Raqis"
@@ -136,18 +136,18 @@
 
 var/global/list/newscaster_standard_feeds = list(/datum/news_announcement/bluespace_research, /datum/news_announcement/lotus_tree, /datum/news_announcement/random_junk,  /datum/news_announcement/food_riots)
 
-/proc/process_newscaster()
+proc/process_newscaster()
 	check_for_newscaster_updates(SSticker.mode.newscaster_announcements)
 
-/var/global/tmp/announced_news_types = list()
-/proc/check_for_newscaster_updates(type)
+var/global/tmp/announced_news_types = list()
+proc/check_for_newscaster_updates(type)
 	for(var/subtype in typesof(type)-type)
 		var/datum/news_announcement/news = new subtype()
 		if(news.round_time * 10 <= world.time && !(subtype in announced_news_types))
 			announced_news_types += subtype
 			announce_newscaster_news(news)
 
-/proc/announce_newscaster_news(datum/news_announcement/news)
+proc/announce_newscaster_news(datum/news_announcement/news)
 	var/datum/feed_channel/sendto
 	for(var/datum/feed_channel/FC in news_network.network_channels)
 		if(FC.channel_name == news.channel_name)

@@ -9,28 +9,28 @@
 
 // BEGIN RESEARCH DATUMS
 
-/datum/malf_research_ability/networking/basic_hack
+datum/malf_research_ability/networking/basic_hack
 	ability = new/datum/game_mode/malfunction/verb/basic_encryption_hack()
 	price = 25
 	next = new/datum/malf_research_ability/networking/advanced_hack()
 	name = "Basic Encryption Hack"
 
 
-/datum/malf_research_ability/networking/advanced_hack
+datum/malf_research_ability/networking/advanced_hack
 	ability = new/datum/game_mode/malfunction/verb/advanced_encryption_hack()
 	price = 400
 	next = new/datum/malf_research_ability/networking/elite_hack()
 	name = "Advanced Encryption Hack"
 
 
-/datum/malf_research_ability/networking/elite_hack
+datum/malf_research_ability/networking/elite_hack
 	ability = new/datum/game_mode/malfunction/verb/elite_encryption_hack()
 	price = 1000
 	next = new/datum/malf_research_ability/networking/system_override()
 	name = "Elite Encryption Hack"
 
 
-/datum/malf_research_ability/networking/system_override
+datum/malf_research_ability/networking/system_override
 	ability = new/datum/game_mode/malfunction/verb/system_override()
 	price = 2750
 	name = "System Override"
@@ -38,7 +38,7 @@
 // END RESEARCH DATUMS
 // BEGIN ABILITY VERBS
 
-/datum/game_mode/malfunction/verb/basic_encryption_hack(obj/machinery/power/apc/A as obj in get_unhacked_apcs(src))
+datum/game_mode/malfunction/verb/basic_encryption_hack(obj/machinery/power/apc/A as obj in get_unhacked_apcs(src))
 	set category = "Software"
 	set name = "Basic Encryption Hack"
 	set desc = "10 CPU - Basic encryption hack that allows you to overtake APCs on the station."
@@ -83,7 +83,7 @@
 	user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/advanced_encryption_hack()
+datum/game_mode/malfunction/verb/advanced_encryption_hack()
 	set category = "Software"
 	set name = "Advanced Encrypthion Hack"
 	set desc = "75 CPU - Attempts to bypass encryption on the Command Quantum Relay, giving you ability to fake legitimate messages. Has chance of failing."
@@ -111,7 +111,7 @@
 	AN.Announce(text)
 
 
-/datum/game_mode/malfunction/verb/elite_encryption_hack()
+datum/game_mode/malfunction/verb/elite_encryption_hack()
 	set category = "Software"
 	set name = "Elite Encryption Hack"
 	set desc = "200 CPU - Allows you to hack station's ALERTCON system, changing alert level. Has high chance of failijng."
@@ -134,7 +134,7 @@
 	set_security_level(alert_target)
 
 
-/datum/game_mode/malfunction/verb/system_override()
+datum/game_mode/malfunction/verb/system_override()
 	set category = "Software"
 	set name = "System Override"
 	set desc = "500 CPU - Begins hacking station's primary firewall, quickly overtaking remaining APC systems. When completed grants access to station's self-destruct mechanism. Network administrators will probably notice this."

@@ -1,5 +1,5 @@
 //Recipes for the topical gels, mostly they are simple mixtures, distiller recipes may follow
-/datum/chemical_reaction/topical
+datum/chemical_reaction/topical
     name = "Topical Gel"
     id = "topical"
     result = "topical"
@@ -7,7 +7,7 @@
     catalysts = list("tungsten" = 5)
     result_amount = 2//Shitty amounts because you should use the distiller
 
-/datum/chemical_reaction/distilling/topical //distiller recipe.
+datum/chemical_reaction/distilling/topical //distiller recipe.
 	name = "Distilling topical"
 	id = "distill_topical"
 	result = "topical"
@@ -19,7 +19,7 @@
 	temp_range = list(T0C + 100, T0C + 120)
 
 
-/datum/chemical_reaction/topical/bicarilaze
+datum/chemical_reaction/topical/bicarilaze
     name = "Bicarilaze"
     id = "bicarilaze"
     result = "bicarilaze"
@@ -27,7 +27,7 @@
     catalysts = list()
     result_amount = 2
 
-/datum/chemical_reaction/topical/kelotalaze
+datum/chemical_reaction/topical/kelotalaze
     name = "Kelotalaze"
     id = "kelotalaze"
     result = "kelotalaze"
@@ -35,7 +35,7 @@
     catalysts = list()
     result_amount = 2
 
-/datum/chemical_reaction/topical/tricoralaze
+datum/chemical_reaction/topical/tricoralaze
     name = "Tricoralaze"
     id = "tricoralaze"
     result = "tricoralaze"
@@ -43,7 +43,7 @@
     catalysts = list()
     result_amount = 2
 
-/datum/chemical_reaction/inaprovalaze
+datum/chemical_reaction/inaprovalaze
     name = "Inaprovalaze"
     id = "inaprovalaze"
     result = "inaprovalaze"
@@ -51,7 +51,7 @@
     catalysts = list()
     result_amount = 2
 
-/datum/chemical_reaction/topical/neurolaze
+datum/chemical_reaction/topical/neurolaze
     name = "Neurolaze"
     id = "neurolaze"
     result = "neurolaze"
@@ -59,7 +59,7 @@
     catalysts = list(MAT_PHORON = 5)
     result_amount = 2
 
-/datum/chemical_reaction/topical/sterilaze
+datum/chemical_reaction/topical/sterilaze
     name = "Sterilaze"
     id = "sterilaze"
     result = "sterilaze"
@@ -67,7 +67,7 @@
     catalysts = list("ethanol" = 5)//To prevent it from forming during the initial creation of topical
     result_amount = 2
 
-/datum/chemical_reaction/topical/cleansalaze
+datum/chemical_reaction/topical/cleansalaze
     name = "Cleansalaze"
     id = "cleansalaze"
     result = "cleansalaze"
@@ -75,7 +75,7 @@
     catalysts = list()
     result_amount = 2
 
-/datum/chemical_reaction/topical/lotion
+datum/chemical_reaction/topical/lotion
     name = "Lotion"
     id = "lotion"
     result = "lotion"

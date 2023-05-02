@@ -1,4 +1,4 @@
-/datum/species/skeleton
+datum/species/skeleton
 	uid = SPECIES_ID_SKELETON
 	name = SPECIES_SKELETON
 	name_plural = "Skeletons"

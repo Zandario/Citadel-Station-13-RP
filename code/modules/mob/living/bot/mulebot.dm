@@ -7,7 +7,7 @@
 #define MULE_PATH_DONE 11
 // IF YOU CHANGE THOSE, UPDATE THEM IN pda.tmpl TOO
 
-/datum/category_item/catalogue/technology/bot/mulebot
+datum/category_item/catalogue/technology/bot/mulebot
 	name = "Bot - Mulebot"
 	desc = "Mulebots are a favorite option for logistical services in \
 	Frontier space. Equipped with semi-sophisticated pathfinding systems, \
@@ -16,7 +16,7 @@
 	motion, although this does often risk overriding vital safety protocols."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/bot/mulebot
+mob/living/bot/mulebot
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon = 'icons/obj/bots/mulebots.dmi'
@@ -47,7 +47,7 @@
 
 	var/global/amount = 0
 
-/mob/living/bot/mulebot/Initialize(mapload)
+mob/living/bot/mulebot/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(loc)
 	var/obj/machinery/navbeacon/N = locate() in T
@@ -61,7 +61,7 @@
 
 	name = "Mulebot #[suffix]"
 
-/mob/living/bot/mulebot/MouseDroppedOnLegacy(var/atom/movable/C, var/mob/user)
+mob/living/bot/mulebot/MouseDroppedOnLegacy(var/atom/movable/C, var/mob/user)
 	if(user.stat)
 		return
 
@@ -70,16 +70,16 @@
 
 	load(C)
 
-/mob/living/bot/mulebot/interact(mob/user)
+mob/living/bot/mulebot/interact(mob/user)
 	ui_interact(user)
 
-/mob/living/bot/mulebot/ui_interact(mob/user, datum/tgui/ui)
+mob/living/bot/mulebot/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MuleBot", "Mulebot [suffix ? "([suffix])" : ""]")
 		ui.open()
 
-/mob/living/bot/mulebot/ui_data(mob/user)
+mob/living/bot/mulebot/ui_data(mob/user)
 	var/list/data = list(
 		"suffix" = suffix,
 		"power" = on,
@@ -93,7 +93,7 @@
 	)
 	return data
 
-/mob/living/bot/mulebot/ui_act(action, params)
+mob/living/bot/mulebot/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -151,11 +151,11 @@
 			safety = !safety
 			. = TRUE
 
-/mob/living/bot/mulebot/attackby(var/obj/item/O, var/mob/user)
+mob/living/bot/mulebot/attackby(var/obj/item/O, var/mob/user)
 	..()
 	update_icons()
 
-/mob/living/bot/mulebot/proc/obeyCommand(var/command)
+mob/living/bot/mulebot/proc/obeyCommand(var/command)
 	switch(command)
 		if("Home")
 			resetTarget()
@@ -177,14 +177,14 @@
 		if("Stop")
 			paused = 1
 
-/mob/living/bot/mulebot/emag_act(var/remaining_charges, var/user)
+mob/living/bot/mulebot/emag_act(var/remaining_charges, var/user)
 	locked = !locked
 	to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
 	flick("mulebot-emagged", src)
 	playsound(loc, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
 
-/mob/living/bot/mulebot/update_icons()
+mob/living/bot/mulebot/update_icons()
 	if(open)
 		icon_state = "mulebot-hatch"
 		return
@@ -193,17 +193,17 @@
 		return
 	icon_state = "mulebot0"
 
-/mob/living/bot/mulebot/handleRegular()
+mob/living/bot/mulebot/handleRegular()
 	if(!safety && prob(1))
 		flick("mulebot-emagged", src)
 	update_icons()
 
-/mob/living/bot/mulebot/handleFrustrated()
+mob/living/bot/mulebot/handleFrustrated()
 	custom_emote(2, "makes a sighing buzz.")
 	playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 	..()
 
-/mob/living/bot/mulebot/handleAdjacentTarget()
+mob/living/bot/mulebot/handleAdjacentTarget()
 	if(target == src.loc)
 		custom_emote(2, "makes a chiming sound.")
 		playsound(loc, 'sound/machines/chime.ogg', 50, 0)
@@ -213,33 +213,33 @@
 			target = home
 			targetName = "Home"
 
-/mob/living/bot/mulebot/confirmTarget()
+mob/living/bot/mulebot/confirmTarget()
 	return 1
 
-/mob/living/bot/mulebot/calcTargetPath()
+mob/living/bot/mulebot/calcTargetPath()
 	..()
 	if(!target_path.len && target != home) // I presume that target is not null
 		resetTarget()
 		target = home
 		targetName = "Home"
 
-/mob/living/bot/mulebot/stepToTarget()
+mob/living/bot/mulebot/stepToTarget()
 	if(paused)
 		return
 	..()
 
-/mob/living/bot/mulebot/UnarmedAttack(var/turf/T)
+mob/living/bot/mulebot/UnarmedAttack(var/turf/T)
 	if(T == src.loc)
 		unload(dir)
 
-/mob/living/bot/mulebot/Bump(var/mob/living/M)
+mob/living/bot/mulebot/Bump(var/mob/living/M)
 	if(!safety && istype(M))
 		visible_message("<span class='warning'>[src] knocks over [M]!</span>")
 		M.afflict_stun(20 * 8)
 		M.afflict_paralyze(20 * 5)
 	..()
 
-/mob/living/bot/mulebot/proc/runOver(var/mob/living/M)
+mob/living/bot/mulebot/proc/runOver(var/mob/living/M)
 	if(istype(M)) // At this point, MULEBot has somehow crossed over onto your tile with you still on it. CRRRNCH.
 		visible_message("<span class='warning'>[src] drives over [M]!</span>")
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
@@ -254,11 +254,11 @@
 
 		blood_splatter(src, M, 1)
 
-/mob/living/bot/mulebot/relaymove(var/mob/user, var/direction)
+mob/living/bot/mulebot/relaymove(var/mob/user, var/direction)
 	if(load == user)
 		unload(direction)
 
-/mob/living/bot/mulebot/explode()
+mob/living/bot/mulebot/explode()
 	unload(pick(0, 1, 2, 4, 8))
 
 	visible_message("<span class='danger'>[src] blows apart!</span>")
@@ -276,7 +276,7 @@
 	new /obj/effect/debris/cleanable/blood/oil(Tsec)
 	..()
 
-/mob/living/bot/mulebot/proc/GetBeaconList()
+mob/living/bot/mulebot/proc/GetBeaconList()
 	var/list/beaconlist = list()
 	for(var/obj/machinery/navbeacon/N in navbeacons)
 		if(!N.codes["delivery"])
@@ -285,7 +285,7 @@
 		beaconlist[N.location] = N
 	return beaconlist
 
-/mob/living/bot/mulebot/proc/load(var/atom/movable/C)
+mob/living/bot/mulebot/proc/load(var/atom/movable/C)
 	if(busy || load || get_dist(C, src) > 1 || !isturf(C.loc))
 		return
 
@@ -318,7 +318,7 @@
 
 	busy = 0
 
-/mob/living/bot/mulebot/proc/unload(var/dirn = 0)
+mob/living/bot/mulebot/proc/unload(var/dirn = 0)
 	if(!load || busy)
 		return
 

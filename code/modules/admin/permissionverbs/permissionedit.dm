@@ -1,4 +1,4 @@
-/client/proc/edit_admin_permissions()
+client/proc/edit_admin_permissions()
 	set category = "Admin"
 	set name = "Permissions Panel"
 	set desc = "Edit admin permissions"
@@ -6,7 +6,7 @@
 		return
 	usr.client.holder.edit_admin_permissions()
 
-/datum/admins/proc/edit_admin_permissions()
+datum/admins/proc/edit_admin_permissions()
 	if(!check_rights(R_PERMISSIONS))
 		return
 	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/group/permissions)
@@ -48,7 +48,7 @@
 
 	usr << browse(output,"window=editrights;size=600x500")
 
-/datum/admins/proc/log_admin_rank_modification(var/adm_ckey, var/new_rank)
+datum/admins/proc/log_admin_rank_modification(var/adm_ckey, var/new_rank)
 	if(config_legacy.admin_legacy_system)	return
 
 	if(!usr.client)
@@ -123,7 +123,7 @@
 			)
 			to_chat(usr, "<font color=#4F49AF>Admin rank changed.</font>")
 
-/datum/admins/proc/log_admin_permission_modification(var/adm_ckey, var/new_permission)
+datum/admins/proc/log_admin_permission_modification(var/adm_ckey, var/new_permission)
 	if(config_legacy.admin_legacy_system)	return
 
 	if(!usr.client)

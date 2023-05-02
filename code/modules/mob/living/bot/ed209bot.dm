@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/technology/bot/ed209
+datum/category_item/catalogue/technology/bot/ed209
 	name = "Bot - ED 209"
 	desc = "The ED series security robot remains controversial to this day. \
 	Originally fielded by corporations during the Flicker, ED series secbots \
@@ -8,7 +8,7 @@
 	to be desired in the face of more reliable Beepsky models."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/bot/secbot/ed209
+mob/living/bot/secbot/ed209
 	name = "ED-209 Security Robot"
 	desc = "A security robot.  He looks less than thrilled."
 	icon = 'icons/obj/aibots.dmi'
@@ -31,13 +31,13 @@
 	var/shot_delay = 4
 	var/last_shot = 0
 
-/mob/living/bot/secbot/ed209/update_icons()
+mob/living/bot/secbot/ed209/update_icons()
 	if(on && busy)
 		icon_state = "ed209-c"
 	else
 		icon_state = "ed209[on]"
 
-/mob/living/bot/secbot/ed209/explode()
+mob/living/bot/secbot/ed209/explode()
 	visible_message("<span class='warning'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
@@ -62,10 +62,10 @@
 	new /obj/effect/debris/cleanable/blood/oil(Tsec)
 	qdel(src)
 
-/mob/living/bot/secbot/ed209/handleRangedTarget()
+mob/living/bot/secbot/ed209/handleRangedTarget()
 	RangedAttack(target)
 
-/mob/living/bot/secbot/ed209/RangedAttack(var/atom/A)
+mob/living/bot/secbot/ed209/RangedAttack(var/atom/A)
 	if(last_shot + shot_delay > world.time)
 		to_chat(src, "You are not ready to fire yet!")
 		return
@@ -85,7 +85,7 @@
 
 // Assembly
 
-/obj/item/secbot_assembly/ed209_assembly
+obj/item/secbot_assembly/ed209_assembly
 	name = "ED-209 assembly"
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
@@ -94,7 +94,7 @@
 	created_name = "ED-209 Security Robot"
 	var/lasercolor = ""
 
-/obj/item/secbot_assembly/ed209_assembly/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/item/secbot_assembly/ed209_assembly/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()
 
 	if(istype(W, /obj/item/pen))

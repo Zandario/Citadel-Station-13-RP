@@ -9,7 +9,7 @@
 #define SETUP_ERROR 3
 /// Wait for other things first.
 #define SETUP_DELAYED 4
-/datum/admins/proc/setup_fusion()
+datum/admins/proc/setup_fusion()
 	set category = "Debug"
 	set name = "Setup Fusion Core"
 	set desc = "Allows you to start the R-UST engine."

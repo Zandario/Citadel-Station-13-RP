@@ -1,11 +1,11 @@
-/datum/armor/civilian/jumpsuit/janitor
+datum/armor/civilian/jumpsuit/janitor
 	bio = 0.3
 	rad = 0.1
 
-/datum/armor/civilian/coat
+datum/armor/civilian/coat
 	bio = 0.15
 
-/datum/armor/civilian/coat/durathread
+datum/armor/civilian/coat/durathread
 	melee = 0.2
 	bullet = 0.1
 	laser = 0.2

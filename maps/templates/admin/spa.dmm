@@ -1,634 +1,634 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
-/area/space)
+turf/space,
+area/space)
 "ab" = (
-/turf/simulated/wall,
-/area/submap/spa)
+turf/simulated/wall,
+area/submap/spa)
 "ac" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced/full,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/submap/spa)
+turf/simulated/floor/plating,
+area/submap/spa)
 "ad" = (
-/obj/structure/table/woodentable,
-/obj/item/flame/candle/everburn,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/table/woodentable,
+obj/item/flame/candle/everburn,
+turf/simulated/floor/wood,
+area/submap/spa)
 "ae" = (
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "af" = (
-/turf/simulated/floor/grass,
-/area/submap/spa)
+turf/simulated/floor/grass,
+area/submap/spa)
 "ag" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced/full,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/submap/spa)
+turf/simulated/floor/plating,
+area/submap/spa)
 "ah" = (
-/obj/structure/table/woodentable,
-/obj/item/towel,
-/obj/item/towel,
-/obj/item/towel,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/table/woodentable,
+obj/item/towel,
+obj/item/towel,
+obj/item/towel,
+turf/simulated/floor/wood,
+area/submap/spa)
 "ai" = (
-/obj/structure/bed/padded,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/bed/padded,
+turf/simulated/floor/wood,
+area/submap/spa)
 "aj" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 1
 	},
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 8
 	},
-/turf/simulated/floor/water,
-/area/submap/spa)
+turf/simulated/floor/water,
+area/submap/spa)
 "ak" = (
-/mob/living/simple_mob/animal/passive/fox,
-/turf/simulated/floor/grass,
-/area/submap/spa)
+mob/living/simple_mob/animal/passive/fox,
+turf/simulated/floor/grass,
+area/submap/spa)
 "al" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 1
 	},
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/simulated/floor/water,
-/area/submap/spa)
+obj/structure/flora/ausbushes/sunnybush,
+turf/simulated/floor/water,
+area/submap/spa)
 "am" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/simulated/floor/grass,
-/area/submap/spa)
+obj/structure/flora/ausbushes/sunnybush,
+turf/simulated/floor/grass,
+area/submap/spa)
 "an" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced/full,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/submap/spa)
+turf/simulated/floor/plating,
+area/submap/spa)
 "ao" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 4
 	},
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 1
 	},
-/turf/simulated/floor/water,
-/area/submap/spa)
+turf/simulated/floor/water,
+area/submap/spa)
 "ap" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 8
 	},
-/turf/simulated/floor/water,
-/area/submap/spa)
+turf/simulated/floor/water,
+area/submap/spa)
 "aq" = (
-/turf/simulated/floor/water,
-/area/submap/spa)
+turf/simulated/floor/water,
+area/submap/spa)
 "ar" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 4
 	},
-/turf/simulated/floor/water,
-/area/submap/spa)
+turf/simulated/floor/water,
+area/submap/spa)
 "as" = (
-/obj/structure/flora/ausbushes/palebush,
-/obj/structure/railing{
+obj/structure/flora/ausbushes/palebush,
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 4
 	},
-/turf/simulated/floor/water,
-/area/submap/spa)
+turf/simulated/floor/water,
+area/submap/spa)
 "at" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 8
 	},
-/obj/structure/flora/ausbushes/palebush,
-/turf/simulated/floor/water,
-/area/submap/spa)
+obj/structure/flora/ausbushes/palebush,
+turf/simulated/floor/water,
+area/submap/spa)
 "au" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/simulated/floor/grass,
-/area/submap/spa)
+obj/structure/flora/ausbushes/ppflowers,
+turf/simulated/floor/grass,
+area/submap/spa)
 "av" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 8
 	},
-/obj/structure/railing,
-/turf/simulated/floor/water,
-/area/submap/spa)
+obj/structure/railing,
+turf/simulated/floor/water,
+area/submap/spa)
 "aw" = (
-/obj/structure/railing,
-/turf/simulated/floor/grass,
-/area/submap/spa)
+obj/structure/railing,
+turf/simulated/floor/grass,
+area/submap/spa)
 "ax" = (
-/obj/structure/railing,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/simulated/floor/grass,
-/area/submap/spa)
+obj/structure/railing,
+obj/structure/flora/ausbushes/ppflowers,
+turf/simulated/floor/grass,
+area/submap/spa)
 "ay" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "az" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "aA" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/window/reinforced,
+turf/simulated/floor/wood,
+area/submap/spa)
 "aB" = (
-/obj/structure/railing,
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/simulated/floor/water,
-/area/submap/spa)
+obj/structure/railing,
+obj/structure/flora/ausbushes/sunnybush,
+turf/simulated/floor/water,
+area/submap/spa)
 "aC" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "aD" = (
-/obj/structure/railing,
-/obj/structure/railing{
+obj/structure/railing,
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 4
 	},
-/turf/simulated/floor/water,
-/area/submap/spa)
+turf/simulated/floor/water,
+area/submap/spa)
 "aE" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "aF" = (
-/obj/structure/bed/chair/wood{
+obj/structure/bed/chair/wood{
 	icon_state = "wooden_chair";
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "aG" = (
-/obj/structure/bed/chair/wood{
+obj/structure/bed/chair/wood{
 	icon_state = "wooden_chair";
 	dir = 8
 	},
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "aH" = (
-/turf/simulated/floor/carpet,
-/area/submap/spa)
+turf/simulated/floor/carpet,
+area/submap/spa)
 "aI" = (
-/obj/machinery/door/airlock/glass,
-/turf/simulated/floor/tiled/steel,
-/area/submap/spa)
+obj/machinery/door/airlock/glass,
+turf/simulated/floor/tiled/steel,
+area/submap/spa)
 "aJ" = (
-/obj/machinery/door/airlock/multi_tile/glass,
-/turf/simulated/floor/carpet,
-/area/submap/spa)
+obj/machinery/door/airlock/multi_tile/glass,
+turf/simulated/floor/carpet,
+area/submap/spa)
 "aK" = (
-/obj/machinery/vending/food,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/machinery/vending/food,
+turf/simulated/floor/wood,
+area/submap/spa)
 "aL" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/machinery/recharge_station,
+turf/simulated/floor/wood,
+area/submap/spa)
 "aM" = (
-/obj/machinery/vending/boozeomat{
+obj/machinery/vending/boozeomat{
 	req_access = list()
 	},
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "aN" = (
-/obj/structure/bed/chair/wood,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/bed/chair/wood,
+turf/simulated/floor/wood,
+area/submap/spa)
 "aO" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/table/woodentable,
+turf/simulated/floor/wood,
+area/submap/spa)
 "aP" = (
-/obj/structure/table/woodentable,
-/obj/item/flame/candle/candelabra/everburn,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/table/woodentable,
+obj/item/flame/candle/candelabra/everburn,
+turf/simulated/floor/wood,
+area/submap/spa)
 "aQ" = (
-/obj/structure/bed/chair/wood{
+obj/structure/bed/chair/wood{
 	icon_state = "wooden_chair";
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/submap/spa)
+turf/simulated/floor/wood,
+area/submap/spa)
 "aR" = (
-/obj/machinery/door/airlock/glass,
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+obj/machinery/door/airlock/glass,
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "aS" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/white,
-/area/submap/spa)
+obj/machinery/door/airlock,
+turf/simulated/floor/tiled/white,
+area/submap/spa)
 "aT" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
-/area/submap/spa)
+obj/structure/grille,
+obj/structure/window/reinforced/full,
+turf/simulated/floor/plating,
+area/submap/spa)
 "aU" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/bluedouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/bluedouble,
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "aV" = (
-/obj/structure/table/woodentable,
-/obj/machinery/light{
+obj/structure/table/woodentable,
+obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	dir = 8;
 	id = "spadorm1";
 	name = "door bolt control";
 	pixel_x = 26;
 	specialfunctions = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "aW" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/greendouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/greendouble,
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "aX" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/purpledouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/purpledouble,
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "aY" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/reddouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/reddouble,
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "aZ" = (
-/turf/simulated/floor/tiled/white,
-/area/submap/spa)
+turf/simulated/floor/tiled/white,
+area/submap/spa)
 "ba" = (
-/obj/structure/toilet,
-/turf/simulated/floor/tiled/white,
-/area/submap/spa)
+obj/structure/toilet,
+turf/simulated/floor/tiled/white,
+area/submap/spa)
 "bb" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 9
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bc" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bd" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 5
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "be" = (
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bf" = (
-/obj/structure/table/woodentable,
-/obj/machinery/light{
+obj/structure/table/woodentable,
+obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	dir = 4;
 	id = "spadorm3";
 	name = "door bolt control";
 	pixel_x = -26;
 	specialfunctions = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bg" = (
-/obj/structure/sink{
+obj/structure/sink{
 	dir = 8;
 	icon_state = "sink";
 	pixel_x = -16
 	},
-/turf/simulated/floor/tiled/white,
-/area/submap/spa)
+turf/simulated/floor/tiled/white,
+area/submap/spa)
 "bh" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 8
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bi" = (
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bj" = (
-/obj/item/radio/beacon{
+obj/item/radio/beacon{
 	anchored = 1
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bk" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 4
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bl" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bm" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 10
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bn" = (
-/obj/machinery/tele_pad,
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+obj/machinery/tele_pad,
+obj/effect/floor_decal/industrial/warning,
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bo" = (
-/obj/machinery/tele_projector{
+obj/machinery/tele_projector{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/light,
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+obj/effect/floor_decal/industrial/warning,
+obj/machinery/light,
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bp" = (
-/obj/machinery/computer/teleporter{
+obj/machinery/computer/teleporter{
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+obj/effect/floor_decal/industrial/warning,
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bq" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 6
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "br" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/browndouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/browndouble,
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bs" = (
-/obj/structure/table/woodentable,
-/obj/machinery/light{
+obj/structure/table/woodentable,
+obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	dir = 8;
 	id = "spadorm5";
 	name = "door bolt control";
 	pixel_x = 26;
 	specialfunctions = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bt" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/orangedouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/orangedouble,
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bu" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/rainbowdouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/rainbowdouble,
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bv" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/yellowdouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/yellowdouble,
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bw" = (
-/obj/structure/toilet{
+obj/structure/toilet{
 	icon_state = "toilet00";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/submap/spa)
+turf/simulated/floor/tiled/white,
+area/submap/spa)
 "bx" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/turf/simulated/floor/plating,
-/area/submap/spa)
+obj/structure/grille,
+obj/structure/window/reinforced/full,
+obj/structure/window/reinforced,
+turf/simulated/floor/plating,
+area/submap/spa)
 "by" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
 	pixel_y = 0
 	},
-/turf/simulated/floor/grass,
-/area/submap/spa)
+turf/simulated/floor/grass,
+area/submap/spa)
 "bz" = (
-/obj/structure/table/woodentable,
-/obj/random/drinkbottle,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/table/woodentable,
+obj/random/drinkbottle,
+turf/simulated/floor/wood,
+area/submap/spa)
 "bA" = (
-/obj/structure/table/woodentable,
-/obj/random/toy,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/table/woodentable,
+obj/random/toy,
+turf/simulated/floor/wood,
+area/submap/spa)
 "bB" = (
-/obj/structure/table/woodentable,
-/obj/random/action_figure,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/structure/table/woodentable,
+obj/random/action_figure,
+turf/simulated/floor/wood,
+area/submap/spa)
 "bC" = (
-/obj/structure/table/woodentable,
-/obj/machinery/light{
+obj/structure/table/woodentable,
+obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	dir = 4;
 	id = "spadorm7";
 	name = "door bolt control";
 	pixel_x = -26;
 	specialfunctions = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bD" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
 	pixel_y = 0
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bE" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bF" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
+obj/machinery/door/airlock/multi_tile/metal/mait{
 	req_one_access = list(160)
 	},
-/turf/simulated/floor/reinforced,
-/area/submap/spa)
+turf/simulated/floor/reinforced,
+area/submap/spa)
 "bG" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "spadorm1"
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "bH" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "spadorm3"
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "bI" = (
-/turf/simulated/shuttle/plating/airless,
-/area/space)
+turf/simulated/shuttle/plating/airless,
+area/space)
 "bJ" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "spadorm5"
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "bK" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "spadorm7"
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "bL" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "spadorm2"
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "bM" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "spadorm4"
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "bN" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "spadorm6"
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "bO" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "spadorm8"
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/submap/spa)
+turf/simulated/floor/holofloor/wood,
+area/submap/spa)
 "bP" = (
-/obj/structure/table/woodentable,
-/obj/machinery/button/remote/airlock{
+obj/structure/table/woodentable,
+obj/machinery/button/remote/airlock{
 	dir = 8;
 	id = "spadorm2";
 	name = "door bolt control";
 	pixel_x = 26;
 	specialfunctions = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bQ" = (
-/obj/structure/table/woodentable,
-/obj/machinery/button/remote/airlock{
+obj/structure/table/woodentable,
+obj/machinery/button/remote/airlock{
 	dir = 4;
 	id = "spadorm4";
 	name = "door bolt control";
 	pixel_x = -26;
 	specialfunctions = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bR" = (
-/obj/structure/table/woodentable,
-/obj/machinery/button/remote/airlock{
+obj/structure/table/woodentable,
+obj/machinery/button/remote/airlock{
 	dir = 8;
 	id = "spadorm6";
 	name = "door bolt control";
 	pixel_x = 26;
 	specialfunctions = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bS" = (
-/obj/structure/table/woodentable,
-/obj/machinery/button/remote/airlock{
+obj/structure/table/woodentable,
+obj/machinery/button/remote/airlock{
 	dir = 4;
 	id = "spadorm8";
 	name = "door bolt control";
 	pixel_x = -26;
 	specialfunctions = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/submap/spa)
+turf/simulated/floor/carpet/bcarpet,
+area/submap/spa)
 "bT" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	name = "Restroom"
 	},
-/turf/simulated/floor/tiled/white,
-/area/submap/spa)
+turf/simulated/floor/tiled/white,
+area/submap/spa)
 "bU" = (
-/obj/machinery/door/airlock/glass,
-/turf/simulated/floor/wood,
-/area/submap/spa)
+obj/machinery/door/airlock/glass,
+turf/simulated/floor/wood,
+area/submap/spa)
 "bV" = (
-/turf/simulated/floor/reinforced{
+turf/simulated/floor/reinforced{
 	name = "ship hull"
 	},
-/area/space)
+area/space)
 "bW" = (
-/mob/living/simple_mob/vore/redpanda,
-/turf/simulated/floor/grass,
-/area/submap/spa)
+mob/living/simple_mob/vore/redpanda,
+turf/simulated/floor/grass,
+area/submap/spa)
 "bX" = (
-/turf/simulated/floor/carpet/blue,
-/area/submap/spa)
+turf/simulated/floor/carpet/blue,
+area/submap/spa)
 
 (1,1,1) = {"
 aa

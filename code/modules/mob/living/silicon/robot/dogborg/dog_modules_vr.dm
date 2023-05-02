@@ -1,4 +1,4 @@
-/obj/item/dogborg/jaws/big
+obj/item/dogborg/jaws/big
 	name = "combat jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "jaws"
@@ -9,7 +9,7 @@
 	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/dogborg/jaws/small
+obj/item/dogborg/jaws/small
 	name = "puppy jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "smalljaws"
@@ -21,7 +21,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/emagged = 0
 
-/obj/item/dogborg/jaws/small/attack_self(mob/user)
+obj/item/dogborg/jaws/small/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -51,7 +51,7 @@
 		update_icon()
 
 //Boop //Newer and better, can sniff reagents, tanks, and boop people!
-/obj/item/dogborg/boop_module
+obj/item/dogborg/boop_module
 	name = "boop module"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "nose"
@@ -62,7 +62,7 @@
 	attack_verb = list("nuzzled", "nosed", "booped")
 	w_class = ITEMSIZE_TINY
 
-/obj/item/dogborg/boop_module/attack_self(mob/user)
+obj/item/dogborg/boop_module/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -87,7 +87,7 @@
 			to_chat(user, "<span class='notice'>[GLOB.meta_gas_names[g]]: [round((environment.gas[g] / total_moles) * 100)]%</span>")
 		to_chat(user, "<span class='notice'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</span>")
 
-/obj/item/dogborg/boop_module/afterattack(atom/target, mob/user, proximity)
+obj/item/dogborg/boop_module/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if (user.stat)
@@ -122,7 +122,7 @@
 
 //Delivery
 /*
-/obj/item/storage/bag/borgdelivery
+obj/item/storage/bag/borgdelivery
 	name = "fetching storage"
 	desc = "Fetch the thing!"
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -136,7 +136,7 @@
 	cant_hold = list(/obj/item/disk/nuclear)
 */
 
-/obj/item/shockpaddles/robot/hound
+obj/item/shockpaddles/robot/hound
 	name = "paws of life"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "defibpaddles0"
@@ -145,19 +145,19 @@
 	attack_verb = list("batted", "pawed", "bopped", "whapped")
 	chargecost = 500
 
-/obj/item/shockpaddles/robot/hound/jumper
+obj/item/shockpaddles/robot/hound/jumper
 	name = "jumper paws"
 	desc = "Zappy paws. For rebooting a full body prostetic."
 	use_on_synthetic = 1
 
-/obj/item/reagent_containers/borghypo/hound
+obj/item/reagent_containers/borghypo/hound
 	name = "MediHound hypospray"
 	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves, designed for heavy-duty medical equipment."
 	charge_cost = 10
 	var/datum/matter_synth/water = null
 	reagent_ids = list("bicaridine", "kelotane", "alkysine", "imidazoline", "tricordrazine", "inaprovaline", "dexalin", "anti_toxin", "tramadol", "spaceacillin", "paracetamol")
 
-/obj/item/reagent_containers/borghypo/hound/process(delta_time) //Recharges in smaller steps and uses the water reserves as well.
+obj/item/reagent_containers/borghypo/hound/process(delta_time) //Recharges in smaller steps and uses the water reserves as well.
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc
 		if(R && R.cell)
@@ -168,14 +168,14 @@
 					reagent_volumes[T] = min(reagent_volumes[T] + 1, volume)
 	return 1
 
-/obj/item/reagent_containers/borghypo/hound/lost
+obj/item/reagent_containers/borghypo/hound/lost
 	name = "Hound hypospray"
 	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
 	reagent_ids = list("bicaridine", "kelotane", "alkysine", "imidazoline", "tricordrazine", "inaprovaline", "dexalin", "anti_toxin", "tramadol", "spaceacillin", "paracetamol")
 
 
 //Tongue stuff
-/obj/item/dogborg/tongue
+obj/item/dogborg/tongue
 	name = "synthetic tongue"
 	desc = "Useful for slurping mess off the floor before affectionally licking the crew members in the face."
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -185,14 +185,14 @@
 	var/emagged = 0
 	var/datum/matter_synth/water = null
 
-/obj/item/dogborg/tongue/examine(user)
+obj/item/dogborg/tongue/examine(user)
 	. = ..()
 	if(water.energy)
 		. += "<span class='notice'>[src] is wet.</span>"
 	if(water.energy < 5)
 		. += "<span class='notice'>[src] is dry.</span>"
 
-/obj/item/dogborg/tongue/attack_self(mob/user)
+obj/item/dogborg/tongue/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -211,7 +211,7 @@
 			icon_state = "synthtongue"
 		update_icon()
 
-/obj/item/dogborg/tongue/afterattack(atom/target, mob/user, proximity)
+obj/item/dogborg/tongue/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -295,7 +295,7 @@
 				T.dirt = 0
 	return
 
-/obj/item/pupscrubber
+obj/item/pupscrubber
 	name = "floor scrubber"
 	desc = "Toggles floor scrubbing."
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -303,7 +303,7 @@
 	item_flags = ITEM_NOBLUDGEON
 	var/enabled = FALSE
 
-/obj/item/pupscrubber/attack_self(mob/user)
+obj/item/pupscrubber/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -317,7 +317,7 @@
 		enabled = FALSE
 		icon_state = "scrub0"
 
-/obj/item/gun/energy/taser/mounted/cyborg/ertgun //Not a taser, but it's being used as a base so it takes energy and actually works.
+obj/item/gun/energy/taser/mounted/cyborg/ertgun //Not a taser, but it's being used as a base so it takes energy and actually works.
 	name = "disabler"
 	desc = "A small and nonlethal gun produced by NT.."
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -328,7 +328,7 @@
 	recharge_time = 10 //Takes ten ticks to recharge a shot, so don't waste them all!
 	//cell_type = null //Same cell as a taser until edits are made.
 
-/obj/item/dogborg/swordtail
+obj/item/dogborg/swordtail
 	name = "sword tail"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "swordtail"
@@ -341,7 +341,7 @@
 	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/lightreplacer/dogborg
+obj/item/lightreplacer/dogborg
 	name = "light replacer"
 	desc = "A device to automatically replace lights. This version is capable to produce a few replacements using your internal matter reserves."
 	max_uses = 16
@@ -349,7 +349,7 @@
 	var/cooldown = 0
 	var/datum/matter_synth/glass = null
 
-/obj/item/lightreplacer/dogborg/attack_self(mob/user)
+obj/item/lightreplacer/dogborg/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return//Recharger refill is so last season. Now we recycle without magic!
@@ -373,7 +373,7 @@
 		return
 
 //Pounce stuff for K-9
-/obj/item/dogborg/pounce
+obj/item/dogborg/pounce
 	name = "pounce"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "pounce"
@@ -382,14 +382,14 @@
 	item_flags = ITEM_NOBLUDGEON
 	throw_force = 0
 
-/obj/item/dogborg/pounce/attack_self(mob/user)
+obj/item/dogborg/pounce/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	var/mob/living/silicon/robot/R = user
 	R.leap()
 
-/mob/living/silicon/robot/proc/leap()
+mob/living/silicon/robot/proc/leap()
 	if(last_special > world.time)
 		to_chat(src, "Your leap actuators are still recharging.")
 		return
@@ -450,7 +450,7 @@
 	if(prob(33))
 		T.apply_effect(3, WEAKEN, armor_block)
 
-/obj/item/dogborg/mirrortool
+obj/item/dogborg/mirrortool
 	name = "Mirror Installation Tool"
 	desc = "A tool for the installation and removal of Mirrors"
 	icon = 'icons/obj/device_alt.dmi'
@@ -459,7 +459,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/obj/item/implant/mirror/imp = null
 
-/obj/item/dogborg/mirrortool/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/dogborg/mirrortool/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
 		return
@@ -493,6 +493,6 @@
 	else
 		to_chat(usr, "You must target the torso.")
 
-/obj/item/dogborg/mirrortool/afterattack(var/obj/machinery/computer/transhuman/resleeving/target, mob/user)
+obj/item/dogborg/mirrortool/afterattack(var/obj/machinery/computer/transhuman/resleeving/target, mob/user)
 	target.active_mr = imp.stored_mind
 	. = ..()

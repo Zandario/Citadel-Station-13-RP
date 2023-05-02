@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(all_money_accounts)
 GLOBAL_LIST_EMPTY(transaction_devices)
 GLOBAL_VAR_INIT(economy_init, FALSE)
 
-/proc/setup_economy()
+proc/setup_economy()
 	if(GLOB.economy_init)
 		return 2
 
@@ -106,7 +106,7 @@ GLOBAL_VAR_INIT(economy_init, FALSE)
 	GLOB.economy_init = 1
 	return 1
 
-/proc/create_station_account()
+proc/create_station_account()
 	if(!GLOB.station_account)
 		GLOB.next_account_number = rand(111111, 999999)
 
@@ -129,7 +129,7 @@ GLOBAL_VAR_INIT(economy_init, FALSE)
 		GLOB.station_account.transaction_log.Add(T)
 		GLOB.all_money_accounts.Add(GLOB.station_account)
 
-/proc/create_department_account(department)
+proc/create_department_account(department)
 	GLOB.next_account_number = rand(111111, 999999)
 
 	var/datum/money_account/department_account = new()

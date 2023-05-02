@@ -3,7 +3,7 @@
  * Home of the purely submunition projectiles.
  */
 
-/obj/projectile/scatter
+obj/projectile/scatter
 	name = "scatter projectile"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bullet"
@@ -28,7 +28,7 @@
 		)
 
 //Spread Shot
-/obj/projectile/scatter/heavy_shotgun
+obj/projectile/scatter/heavy_shotgun
 	damage = 15
 
 	submunition_spread_max = 100
@@ -38,7 +38,7 @@
 		/obj/projectile/bullet/pellet/heavy_shotgun = 5
 		)
 
-/obj/projectile/scatter/heavy_shotgun/accurized
+obj/projectile/scatter/heavy_shotgun/accurized
 	damage = 15
 
 	submunition_spread_max = 30
@@ -48,7 +48,7 @@
 		/obj/projectile/bullet/pellet/heavy_shotgun = 5
 		)
 
-/obj/projectile/scatter/heavy_shotgun/silver
+obj/projectile/scatter/heavy_shotgun/silver
 	damage = 15
 
 	submunition_spread_max = 30
@@ -59,14 +59,14 @@
 		)
 
 //Custom knockback buckshot variant for Grit.
-/obj/projectile/scatter/heavy_shotgun/grit
+obj/projectile/scatter/heavy_shotgun/grit
 
 	submunitions = list(
 		/obj/projectile/bullet/pellet/heavy_shotgun/grit = 5
 		)
 
 //Energy Scatter
-/obj/projectile/scatter/laser
+obj/projectile/scatter/laser
 	submunition_spread_max = 30
 	spread_submunition_damage = FALSE
 	submunition_constant_spread = TRUE
@@ -75,21 +75,21 @@
 		/obj/projectile/beam/blaster/pellet = 6
 		)
 
-/obj/projectile/scatter/laser/weak
+obj/projectile/scatter/laser/weak
 	damage = 15
 
 	submunitions = list(
 		/obj/projectile/beam/weaklaser = 3
 		)
 
-/obj/projectile/scatter/laser/pulse //Badmin only.
+obj/projectile/scatter/laser/pulse //Badmin only.
 	damage = 100
 	armor_penetration = 100
 	submunitions = list(
 		/obj/projectile/beam/pulse = 3
 		)
 
-/obj/projectile/scatter/gamma
+obj/projectile/scatter/gamma
 	damage = 10
 	submunition_spread_max = 60
 	submunition_spread_min = 30
@@ -97,21 +97,21 @@
 		/obj/projectile/beam/gamma = 3
 		)
 
-/obj/projectile/scatter/laser/heavylaser
+obj/projectile/scatter/laser/heavylaser
 	damage = 60
 	armor_penetration = 30
 	submunitions = list(
 		/obj/projectile/beam/heavylaser = 1 //nope
 		)
 
-/obj/projectile/scatter/laser/heavylaser/cannon
+obj/projectile/scatter/laser/heavylaser/cannon
 	damage = 80
 	armor_penetration = 50
 	submunitions = list(
 		/obj/projectile/beam/heavylaser/cannon = 1 //haha no
 		)
 
-/obj/projectile/scatter/stun
+obj/projectile/scatter/stun
 	submunition_spread_max = 70
 	submunition_spread_min = 30
 	submunitions = list(
@@ -121,19 +121,19 @@
 	nodamage = 1
 	agony = 40
 
-/obj/projectile/scatter/stun/weak
+obj/projectile/scatter/stun/weak
 	submunitions = list(
 		/obj/projectile/beam/stun/weak = 2
 		)
 	agony = 20
 
-/obj/projectile/scatter/stun/electrode
+obj/projectile/scatter/stun/electrode
 	submunitions = list(
 		/obj/projectile/energy/electrode = 1
 		)
 	agony = 55
 
-/obj/projectile/scatter/ion
+obj/projectile/scatter/ion
 	damage = 0
 
 	submunition_spread_max = 60
@@ -143,7 +143,7 @@
 		/obj/projectile/bullet/shotgun/ion = 3
 		)
 
-/obj/projectile/scatter/excavation
+obj/projectile/scatter/excavation
 	damage = 2 //mining tool
 	submunition_spread_max = 80
 	submunition_spread_min = 40
@@ -152,7 +152,7 @@
 		/obj/projectile/beam/excavation = 2
 		)
 
-/obj/projectile/scatter/shock
+obj/projectile/scatter/shock
 	damage = 25
 	submunition_spread_max = 80
 	submunition_spread_min = 20
@@ -160,7 +160,7 @@
 		/obj/projectile/beam/shock = 6
 		)
 
-/obj/projectile/scatter/energy_net
+obj/projectile/scatter/energy_net
 	submunition_spread_max = 80
 	submunition_spread_min = 30
 	submunitions = list(
@@ -169,7 +169,7 @@
 	nodamage = 1
 	agony = 5
 
-/obj/projectile/scatter/phase
+obj/projectile/scatter/phase
 	damage = 5
 	submunition_spread_max = 70
 	submunition_spread_min = 30

@@ -1,5 +1,5 @@
 // TODO: port to modern vehicles. If you're in this file, STOP FUCKING WITH IT AND PORT IT OVER.
-/obj/vehicle_old/bike
+obj/vehicle_old/bike
 	name = "space-bike"
 	desc = "Space wheelies! Woo!"
 	icon = 'icons/obj/bike.dmi'
@@ -29,7 +29,7 @@
 	var/datum/effect_system/ion_trail_follow/ion
 	var/kickstand = 1
 
-/obj/vehicle_old/bike/Initialize(mapload)
+obj/vehicle_old/bike/Initialize(mapload)
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
@@ -39,14 +39,14 @@
 	icon_state = "[bike_icon]_off"
 	update_icon()
 
-/obj/vehicle_old/bike/built
+obj/vehicle_old/bike/built
 	cell = null
 
-/obj/vehicle_old/bike/random/Initialize(mapload)
+obj/vehicle_old/bike/random/Initialize(mapload)
 	. = ..()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 
-/obj/vehicle_old/bike/attackby(obj/item/W as obj, mob/user as mob)
+obj/vehicle_old/bike/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool) && open)
 		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
 		if(new_paint)
@@ -55,13 +55,13 @@
 			return
 	..()
 
-/obj/vehicle_old/bike/CtrlClick(var/mob/user)
+obj/vehicle_old/bike/CtrlClick(var/mob/user)
 	if(Adjacent(user) && anchored)
 		toggle()
 	else
 		return ..()
 
-/obj/vehicle_old/bike/verb/toggle()
+obj/vehicle_old/bike/verb/toggle()
 	set name = "Toggle Engine"
 	set category = "Vehicle"
 	set src in view(0)
@@ -78,13 +78,13 @@
 		turn_off()
 		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
 
-/obj/vehicle_old/bike/AltClick(var/mob/user)
+obj/vehicle_old/bike/AltClick(var/mob/user)
 	if(Adjacent(user))
 		kickstand(user)
 	else
 		return ..()
 
-/obj/vehicle_old/bike/verb/kickstand(var/mob/user as mob)
+obj/vehicle_old/bike/verb/kickstand(var/mob/user as mob)
 	set name = "Toggle Kickstand"
 	set category = "Vehicle"
 	set src in view(0)
@@ -107,34 +107,34 @@
 	kickstand = !kickstand
 	anchored = (kickstand || on)
 
-/obj/vehicle_old/bike/load(var/atom/movable/C, var/mob/user as mob)
+obj/vehicle_old/bike/load(var/atom/movable/C, var/mob/user as mob)
 	var/mob/living/M = C
 	if(!istype(C)) return 0
 	if(M.buckled || M.restrained() || !Adjacent(M) || !M.Adjacent(src))
 		return 0
 	return ..(M, user)
 
-/obj/vehicle_old/bike/MouseDroppedOnLegacy(var/atom/movable/C, var/mob/user as mob)
+obj/vehicle_old/bike/MouseDroppedOnLegacy(var/atom/movable/C, var/mob/user as mob)
 	if(!load(C, user))
 		to_chat(user, "<span class='warning'> You were unable to load \the [C] onto \the [src].</span>")
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/vehicle_old/bike/attack_hand(mob/user, list/params)
+obj/vehicle_old/bike/attack_hand(mob/user, list/params)
 	if(user == load)
 		unload(load, user)
 		to_chat(user, "You unbuckle yourself from \the [src].")
 	else if(!load && load(user, user))
 		to_chat(user, "You buckle yourself to \the [src].")
 
-/obj/vehicle_old/bike/relaymove(mob/user, direction)
+obj/vehicle_old/bike/relaymove(mob/user, direction)
 	if(user != load || !on)
 		return 0
 	if(Move(get_step(src, direction), direction))
 		return 1
 	return 0
 
-/obj/vehicle_old/bike/Move(var/turf/destination)
+obj/vehicle_old/bike/Move(var/turf/destination)
 	if(kickstand) return 0
 
 	if(on && (!cell || cell.charge < charge_use))
@@ -156,7 +156,7 @@
 		move_delay = land_speed
 	return ..()
 
-/obj/vehicle_old/bike/turn_on()
+obj/vehicle_old/bike/turn_on()
 	ion.start()
 	anchored = 1
 
@@ -166,7 +166,7 @@
 		pulledby.stop_pulling()
 	..()
 
-/obj/vehicle_old/bike/turn_off()
+obj/vehicle_old/bike/turn_off()
 	ion.stop()
 	anchored = kickstand
 
@@ -174,14 +174,14 @@
 
 	..()
 
-/obj/vehicle_old/bike/bullet_act(var/obj/projectile/Proj)
+obj/vehicle_old/bike/bullet_act(var/obj/projectile/Proj)
 	if(has_buckled_mobs() && prob(protection_percent))
 		var/mob/living/L = pick(buckled_mobs)
 		L.bullet_act(Proj)
 		return
 	..()
 
-/obj/vehicle_old/bike/update_icon()
+obj/vehicle_old/bike/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -259,7 +259,7 @@
 
 	..()
 
-/obj/vehicle_old/bike/Destroy()
+obj/vehicle_old/bike/Destroy()
 	qdel(ion)
 
 	..()

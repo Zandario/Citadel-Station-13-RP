@@ -1,4 +1,4 @@
-/obj/machinery/power/generator_type2
+obj/machinery/power/generator_type2
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
 	icon_state = "teg"
@@ -13,11 +13,11 @@
 	var/lastgenlev = -1
 
 
-/obj/machinery/power/generator_type2/Initialize(mapload, newdir)
+obj/machinery/power/generator_type2/Initialize(mapload, newdir)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/power/generator_type2/LateInitialize()
+obj/machinery/power/generator_type2/LateInitialize()
 	. = ..()
 	input1 = locate(/obj/machinery/atmospherics/component/unary/generator_input) in get_step(src,turn(dir, 90))
 	input2 = locate(/obj/machinery/atmospherics/component/unary/generator_input) in get_step(src,turn(dir, -90))
@@ -25,7 +25,7 @@
 		machine_stat |= BROKEN
 	updateicon()
 
-/obj/machinery/power/generator_type2/proc/updateicon()
+obj/machinery/power/generator_type2/proc/updateicon()
 	cut_overlays()
 
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -36,7 +36,7 @@
 
 /// generator output coefficient from Q
 #define GENRATE 800
-/obj/machinery/power/generator_type2/process(delta_time)
+obj/machinery/power/generator_type2/process(delta_time)
 	if(!input1 || !input2)
 		return
 
@@ -88,20 +88,20 @@
 	src.updateDialog()
 
 
-/obj/machinery/power/generator_type2/attack_ai(mob/user)
+obj/machinery/power/generator_type2/attack_ai(mob/user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 
 
-/obj/machinery/power/generator_type2/attack_hand(mob/user, list/params)
+obj/machinery/power/generator_type2/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 
 
-/obj/machinery/power/generator_type2/interact(mob/user)
+obj/machinery/power/generator_type2/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) && (!istype(user, /mob/living/silicon/ai)))
 		user.unset_machine()
 		user << browse(null, "window=teg")
@@ -129,7 +129,7 @@
 	return 1
 
 
-/obj/machinery/power/generator_type2/Topic(href, href_list)
+obj/machinery/power/generator_type2/Topic(href, href_list)
 	..()
 
 	if( href_list["close"] )
@@ -140,6 +140,6 @@
 	return 1
 
 
-/obj/machinery/power/generator_type2/power_change()
+obj/machinery/power/generator_type2/power_change()
 	..()
 	updateicon()

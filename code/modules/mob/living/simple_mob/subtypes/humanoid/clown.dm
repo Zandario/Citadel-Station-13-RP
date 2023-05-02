@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/clown
+datum/category_item/catalogue/fauna/clown
 	name = "Clown"
 	desc = "The Clown is truly a galactic phenomenon. Those who travel to \
 	Clown Planet to train in the comedic arts sometimes undergo a curious \
@@ -9,7 +9,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/clown)
 
 // Obtained by scanning all X.
-/datum/category_item/catalogue/fauna/all_clowns
+datum/category_item/catalogue/fauna/all_clowns
 	name = "Collection - Clowns"
 	desc = "You have scanned a large array of different types of clown, \
 	and therefore you have been granted a large sum of points, through this \
@@ -20,7 +20,7 @@
 		/datum/category_item/catalogue/fauna/clown/commando
 		)
 
-/mob/living/simple_mob/humanoid/clown
+mob/living/simple_mob/humanoid/clown
 	name = "clown"
 	desc = "A denizen of clown planet."
 	tt_desc = "E Homo sapiens corydon" //this is an actual Clown, as opposed to someone dressed up as one
@@ -46,11 +46,11 @@
 
 	say_list_type = /datum/say_list/clown
 
-/datum/say_list/clown
+datum/say_list/clown
 	speak = list("HONK", "Honk!", "Welcome to clown planet!")
 	emote_see = list("honks")
 
-/mob/living/simple_mob/humanoid/clown/prankster
+mob/living/simple_mob/humanoid/clown/prankster
 	name = "clown"
 	desc = "A denizen of clown planet. I wonder if that's a real gun."
 
@@ -64,7 +64,7 @@
 //		Honk Ops
 ////////////////////////////////
 
-/datum/category_item/catalogue/fauna/clown/commando
+datum/category_item/catalogue/fauna/clown/commando
 	name = "Clown - Commando"
 	desc = "The ongoing aggression between the states of Columbina and La Rien \
 	may have begun to simmer down in recent years, but both sides still seek to \
@@ -76,7 +76,7 @@
 	for foolishness."
 
 // Debug variant.
-/mob/living/simple_mob/humanoid/clown/commando
+mob/living/simple_mob/humanoid/clown/commando
 	name = "clown commando"
 	desc = "A brightly adorned clown armed with a strange blade."
 	icon_state = "clownop"
@@ -116,7 +116,7 @@
 	special_attack_charges = 3
 
 //Clown Op Saylists
-/datum/say_list/clownop
+datum/say_list/clownop
 	speak = list("Why did the Teshari cross the road?",
 				"Knock knock.",
 				"Honk!",
@@ -141,7 +141,7 @@
 // Any merc can use this, just set special_attack_charges to a positive value
 
 // Check if we should bother with the grenade
-/mob/living/simple_mob/humanoid/clown/commando/should_special_attack(atom/A)
+mob/living/simple_mob/humanoid/clown/commando/should_special_attack(atom/A)
 	var/mob_count = 0				// Are there enough mobs to consider grenading?
 	var/turf/T = get_turf(A)
 	for(var/mob/M in range(T, 2))
@@ -156,7 +156,7 @@
 		return TRUE
 
 // Yes? Throw the grenade
-/mob/living/simple_mob/humanoid/clown/commando/do_special_attack(atom/A)
+mob/living/simple_mob/humanoid/clown/commando/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
@@ -173,14 +173,14 @@
 
 //Melee
 
-/mob/living/simple_mob/humanoid/clown/commando/melee
+mob/living/simple_mob/humanoid/clown/commando/melee
 	icon_state = "clownop_melee"
 	icon_living = "clownop_melee"
 	loot_list = list(/obj/item/melee/clownop = 100)
 
 //Ranged
 
-/mob/living/simple_mob/humanoid/clown/commando/ranged // Basic pistol mob.
+mob/living/simple_mob/humanoid/clown/commando/ranged // Basic pistol mob.
 	desc = "A brightly adorned clown armed with a weird pistol."
 	icon_state = "clownop_ranged"
 	icon_living = "clownop_ranged"
@@ -196,7 +196,7 @@
 
 //Voidsuit Variants
 
-/datum/category_item/catalogue/fauna/clown/commando/space
+datum/category_item/catalogue/fauna/clown/commando/space
 	name = "Clown - Operative"
 	desc = "The most elite Commandos serving Columbina have come to be known as \
 	'Clown Operatives', though they are also referred to as 'Honk Ops'. Deadly, \
@@ -206,7 +206,7 @@
 	decades. Outside of the Church, there are none more faithful to the Honkmother \
 	and her cause."
 
-/mob/living/simple_mob/humanoid/clown/commando/melee/space
+mob/living/simple_mob/humanoid/clown/commando/melee/space
 	desc = "A heavily armored clown, wielding a deadly looking sword."
 	icon_state = "clownop_space_melee"
 	icon_living = "clownop_space_melee"
@@ -235,16 +235,16 @@
 	corpse = /obj/spawner/corpse/clown/clownop/space
 	loot_list = list(/obj/item/melee/clownstaff = 100)
 
-/mob/living/simple_mob/humanoid/clown/commando/melee/space/Process_Spacemove(var/check_drift = 0)
+mob/living/simple_mob/humanoid/clown/commando/melee/space/Process_Spacemove(var/check_drift = 0)
 	return
 
-/mob/living/simple_mob/humanoid/clown/commando/melee/space/alt
+mob/living/simple_mob/humanoid/clown/commando/melee/space/alt
 	icon_state = "clownop_space_alt_melee"
 	icon_living = "clownop_space_alt_melee"
 	corpse = /obj/spawner/corpse/clown/clownop/space/alt
 
 // Ranged Space Clown
-/mob/living/simple_mob/humanoid/clown/commando/ranged/space
+mob/living/simple_mob/humanoid/clown/commando/ranged/space
 	desc = "A heavily armored clown, armed with a dangerous looking gun."
 	icon_state = "clownop_space_ranged"
 	icon_living = "clownop_space_ranged"
@@ -274,10 +274,10 @@
 	base_attack_cooldown = 5 // Two attacks a second or so.
 	reload_max = 20
 
-/mob/living/simple_mob/humanoid/clown/commando/ranged/space/Process_Spacemove(var/check_drift = 0)
+mob/living/simple_mob/humanoid/clown/commando/ranged/space/Process_Spacemove(var/check_drift = 0)
 	return
 
-/mob/living/simple_mob/humanoid/clown/commando/ranged/space/alt
+mob/living/simple_mob/humanoid/clown/commando/ranged/space/alt
 	icon_state = "clownop_space_alt_ranged"
 	icon_living = "clownop_space_alt_ranged"
 	corpse = /obj/spawner/corpse/clown/clownop/space/alt

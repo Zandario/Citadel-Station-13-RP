@@ -1,4 +1,4 @@
-/datum/role/job/station/research_director
+datum/role/job/station/research_director
 	id = JOB_ID_RESEARCH_DIRECTOR
 	title = "Research Director"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_COMMAND
@@ -61,16 +61,16 @@
 		"Head Scientist" = /datum/prototype/alt_title/head_scientist
 		)
 
-/datum/prototype/alt_title/research_supervisor
+datum/prototype/alt_title/research_supervisor
 	title = "Research Supervisor"
 
-/datum/prototype/alt_title/head_of_development
+datum/prototype/alt_title/head_of_development
 	title = "Head of Development"
 
-/datum/prototype/alt_title/head_scientist
+datum/prototype/alt_title/head_scientist
 	title = "Head Scientist"
 
-/datum/outfit/job/station/research_director
+datum/outfit/job/station/research_director
 	name = OUTFIT_JOB_NAME("Research Director")
 	l_ear = /obj/item/radio/headset/heads/rd
 	uniform = /obj/item/clothing/under/rank/research_director

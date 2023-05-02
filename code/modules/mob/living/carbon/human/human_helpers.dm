@@ -2,7 +2,7 @@
 #define HUMAN_EATING_NO_MOUTH      1
 #define HUMAN_EATING_BLOCKED_MOUTH 2
 
-/mob/living/carbon/human/can_eat(food, feedback = TRUE)
+mob/living/carbon/human/can_eat(food, feedback = TRUE)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
 		return TRUE
@@ -13,7 +13,7 @@
 			to_chat(src, SPAN_WARNING("\The [status[2]] is in the way!"))
 	return FALSE
 
-/mob/living/carbon/human/can_force_feed(feeder, food, feedback = TRUE)
+mob/living/carbon/human/can_force_feed(feeder, food, feedback = TRUE)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
 		return TRUE
@@ -24,7 +24,7 @@
 			to_chat(feeder, SPAN_WARNING("\The [status[2]] is in the way!"))
 	return FALSE
 
-/mob/living/carbon/human/proc/can_eat_status()
+mob/living/carbon/human/proc/can_eat_status()
 	if(!check_has_mouth())
 		return list(HUMAN_EATING_NO_MOUTH)
 	var/obj/item/blocked = check_mouth_coverage()
@@ -32,7 +32,7 @@
 		return list(HUMAN_EATING_BLOCKED_MOUTH, blocked)
 	return list(HUMAN_EATING_NO_ISSUE)
 
-/mob/living/carbon/human/proc/get_coverage()
+mob/living/carbon/human/proc/get_coverage()
 	var/list/coverage = list()
 	for(var/obj/item/clothing/C in get_equipped_items())
 		if(C.body_cover_flags & HEAD)
@@ -53,7 +53,7 @@
 
 
 /// This is called when we want different types of 'cloaks' to stop working, e.g. when attacking.
-/mob/living/carbon/human/break_cloak()
+mob/living/carbon/human/break_cloak()
 	// Changeling visible camo.
 	if(mind && mind.changeling)
 		mind.changeling.cloaked = 0
@@ -64,7 +64,7 @@
 			if(cloaker.active)
 				cloaker.deactivate()
 
-/mob/living/carbon/human/is_cloaked()
+mob/living/carbon/human/is_cloaked()
 	// Changeling visible camo.
 	if(mind && mind.changeling && mind.changeling.cloaked)
 		return TRUE
@@ -76,7 +76,7 @@
 				return TRUE
 	return ..()
 
-/mob/living/carbon/human/get_ear_protection()
+mob/living/carbon/human/get_ear_protection()
 	var/sum = 0
 	if(istype(l_ear, /obj/item/clothing/ears))
 		var/obj/item/clothing/ears/L = l_ear
@@ -95,14 +95,14 @@
 		sum += H.ear_protection
 	return sum
 
-/mob/living/carbon/human/get_gender()
+mob/living/carbon/human/get_gender()
 	return identifying_gender ? identifying_gender : gender
 
 /**
  * This is the 'mechanical' check for synthetic-ness, not appearance.
  * Returns the company that made the synthetic
  */
-/mob/living/carbon/human/isSynthetic()
+mob/living/carbon/human/isSynthetic()
 	// If you're synthetic, your synthetic-ness isn't going away.
 	if(synthetic)
 		return synthetic
@@ -121,7 +121,7 @@
  * Would an onlooker know this person is synthetic?
  * Based on sort of logical reasoning, 'Look at head, look at torso'
  */
-/mob/living/carbon/human/proc/looksSynthetic()
+mob/living/carbon/human/proc/looksSynthetic()
 	var/obj/item/organ/external/T = organs_by_name[BP_TORSO]
 	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
 
@@ -140,7 +140,7 @@
 	return FALSE
 
 /// Returns a string based on what kind of brain the FBP has.
-/mob/living/carbon/human/proc/get_FBP_type()
+mob/living/carbon/human/proc/get_FBP_type()
 	if(!isSynthetic())
 		return FBP_NONE
 	var/obj/item/organ/internal/brain/B
@@ -159,7 +159,7 @@
 
 	return FBP_NONE
 
-/mob/living/carbon/human/recalculate_vis()
+mob/living/carbon/human/recalculate_vis()
 	if(!vis_enabled || !plane_holder)
 		return
 
@@ -210,7 +210,7 @@
 		plane_holder.set_vis(vis,FALSE)
 		vis_enabled -= vis
 
-/mob/living/carbon/human/get_restraining_bolt()
+mob/living/carbon/human/get_restraining_bolt()
 	var/obj/item/implant/restrainingbolt/RB
 
 	for(var/obj/item/organ/external/EX in organs)
@@ -224,7 +224,7 @@
 
 	return FALSE
 
-/mob/living/carbon/human/can_see_reagents()
+mob/living/carbon/human/can_see_reagents()
 	. = ..()
 
 	if(.)

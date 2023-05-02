@@ -1,10 +1,10 @@
 // Autogenerates a table which will resemble the traditional wiki table.
-/datum/lore/codex/page/overview
+datum/lore/codex/page/overview
 	name = "Overview"
 	data = "This has a table of all the corporate violations and legal crimes contained inside this book.  The 'mandated' area \
 	determines the flexibility/strictness allowed in sentencing for violations/crimes."
 
-/datum/lore/codex/page/overview/add_content()
+datum/lore/codex/page/overview/add_content()
 	var/list/law_sources = list(
 		/datum/lore/codex/category/corporate_minor_violations,
 		/datum/lore/codex/category/corporate_major_violations,

@@ -1,4 +1,4 @@
-/datum/event/radiation_storm
+datum/event/radiation_storm
 	var/const/enterBelt		= 30
 	var/const/radIntervall 	= 5	// Enough time between enter/leave belt for 10 hits, as per original implementation
 	var/const/leaveBelt		= 80
@@ -8,13 +8,13 @@
 	endWhen					= revokeAccess
 	var/postStartTicks 		= 0
 
-/datum/event/radiation_storm/announce()
+datum/event/radiation_storm/announce()
 	command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please evacuate into one of the shielded maintenance tunnels or dorms.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
 
-/datum/event/radiation_storm/start()
+datum/event/radiation_storm/start()
 	make_maint_all_access()
 
-/datum/event/radiation_storm/tick()
+datum/event/radiation_storm/tick()
 	if(activeFor == enterBelt)
 		command_announcement.Announce("The station has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
 		radiate()
@@ -29,7 +29,7 @@
 	else if(activeFor == leaveBelt)
 		command_announcement.Announce("The station has passed the radiation belt. Please allow for up to one minute while radiation levels dissipate, and report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
-/datum/event/radiation_storm/proc/radiate()
+datum/event/radiation_storm/proc/radiate()
 	var/radiation_level = rand(50, 200)
 	for(var/z in GLOB.using_map.station_levels)
 		z_radiation(null, z, radiation_level, z_radiate_flags = Z_RADIATE_CHECK_AREA_SHIELD)
@@ -50,8 +50,8 @@
 					randmutg(H) // Applies good mutation
 					domutcheck(H,null,MUTCHK_FORCED)
 
-/datum/event/radiation_storm/end()
+datum/event/radiation_storm/end()
 	revoke_maint_all_access()
 
-/datum/event/radiation_storm/syndicate/radiate()
+datum/event/radiation_storm/syndicate/radiate()
 	return

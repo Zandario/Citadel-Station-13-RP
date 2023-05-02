@@ -1,1593 +1,1593 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "rock";
 	name = "solid rock"
 	},
-/area/space)
+area/space)
 "ab" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/north_west)
+area/awaymission/labyrinth/temple/north_west)
 "ac" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/north)
+area/awaymission/labyrinth/temple/north)
 "ad" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "ae" = (
-/obj/effect/step_trigger/teleporter{
+obj/effect/step_trigger/teleporter{
 	name = "boss entry stairs left";
 	teleport_x = 138;
 	teleport_y = 9;
 	teleport_z = 7
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "af" = (
-/obj/effect/step_trigger/teleporter{
+obj/effect/step_trigger/teleporter{
 	name = "boss entry stairs right";
 	teleport_x = 139;
 	teleport_y = 9;
 	teleport_z = 7
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "ag" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north)
+area/awaymission/labyrinth/temple/north)
 "ah" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north)
+area/awaymission/labyrinth/temple/north)
 "aj" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "ak" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "al" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_west)
+area/awaymission/labyrinth/temple/north_west)
 "an" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_west)
+area/awaymission/labyrinth/temple/north_west)
 "ao" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north)
+area/awaymission/labyrinth/temple/north)
 "ap" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/space)
+area/space)
 "at" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_west)
+area/awaymission/labyrinth/temple/north_west)
 "au" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "av" = (
-/obj/spawner/corpse/scientist,
-/turf/unsimulated/floor{
+obj/spawner/corpse/scientist,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_west)
+area/awaymission/labyrinth/temple/north_west)
 "ax" = (
-/obj/spawner/corpse/scientist,
-/obj/effect/debris/cleanable/blood,
-/turf/unsimulated/floor{
+obj/spawner/corpse/scientist,
+obj/effect/debris/cleanable/blood,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "ay" = (
-/obj/spawner/corpse/scientist,
-/obj/effect/debris/cleanable/blood{
+obj/spawner/corpse/scientist,
+obj/effect/debris/cleanable/blood{
 	icon_state = "gibmid3"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "az" = (
-/obj/spawner/corpse/scientist,
-/obj/effect/debris/cleanable/blood{
+obj/spawner/corpse/scientist,
+obj/effect/debris/cleanable/blood{
 	icon_state = "mfloor5"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "aA" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/center)
+area/awaymission/labyrinth/temple/center)
 "aB" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/center)
+area/awaymission/labyrinth/temple/center)
 "aC" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/center)
+area/awaymission/labyrinth/temple/center)
 "aD" = (
-/obj/spawner/corpse/scientist,
-/obj/effect/debris/cleanable/blood{
+obj/spawner/corpse/scientist,
+obj/effect/debris/cleanable/blood{
 	icon_state = "mgibbl4"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "aE" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/east)
+area/awaymission/labyrinth/temple/east)
 "aF" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/east)
+area/awaymission/labyrinth/temple/east)
 "aH" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/east)
+area/awaymission/labyrinth/temple/east)
 "aI" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/west)
+area/awaymission/labyrinth/temple/west)
 "aJ" = (
-/obj/spawner/corpse/scientist,
-/obj/effect/debris/cleanable/blood{
+obj/spawner/corpse/scientist,
+obj/effect/debris/cleanable/blood{
 	icon_state = "mgibbl3"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/north_east)
+area/awaymission/labyrinth/temple/north_east)
 "aK" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/west)
+area/awaymission/labyrinth/temple/west)
 "aL" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/west)
+area/awaymission/labyrinth/temple/west)
 "aO" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/west)
+area/awaymission/labyrinth/temple/west)
 "aQ" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/east)
+area/awaymission/labyrinth/temple/east)
 "aT" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/center)
+area/awaymission/labyrinth/temple/center)
 "aU" = (
-/obj/spawner/corpse/scientist,
-/turf/unsimulated/floor{
+obj/spawner/corpse/scientist,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/east)
+area/awaymission/labyrinth/temple/east)
 "aV" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/south_east)
+area/awaymission/labyrinth/temple/south_east)
 "aW" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south_east)
+area/awaymission/labyrinth/temple/south_east)
 "aX" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south_east)
+area/awaymission/labyrinth/temple/south_east)
 "aZ" = (
-/obj/spawner/corpse/scientist,
-/turf/unsimulated/floor{
+obj/spawner/corpse/scientist,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south_east)
+area/awaymission/labyrinth/temple/south_east)
 "ba" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/south)
+area/awaymission/labyrinth/temple/south)
 "bb" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south)
+area/awaymission/labyrinth/temple/south)
 "bc" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south)
+area/awaymission/labyrinth/temple/south)
 "bd" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south_east)
+area/awaymission/labyrinth/temple/south_east)
 "be" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south)
+area/awaymission/labyrinth/temple/south)
 "bf" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/temple/south_west)
+area/awaymission/labyrinth/temple/south_west)
 "bg" = (
-/obj/machinery/door/airlock/vault,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/vault,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south_west)
+area/awaymission/labyrinth/temple/south_west)
 "bh" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south_west)
+area/awaymission/labyrinth/temple/south_west)
 "bk" = (
-/obj/landmark/loot_spawn,
-/turf/unsimulated/floor{
+obj/landmark/loot_spawn,
+turf/unsimulated/floor{
 	icon_state = "asteroidfloor"
 	},
-/area/awaymission/labyrinth/temple/south_west)
+area/awaymission/labyrinth/temple/south_west)
 "bo" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "rock";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bp" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bq" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "br" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bs" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bt" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bu" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bv" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bw" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bx" = (
-/obj/item/clothing/shoes/clown_shoes,
-/turf/unsimulated/floor{
+obj/item/clothing/shoes/clown_shoes,
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "by" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron6"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bz" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron12"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bA" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron14"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bB" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron10"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bC" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bD" = (
-/obj/machinery/power/port_gen{
+obj/machinery/power/port_gen{
 	anchored = 1;
 	desc = "A portable generator for power. It's still warm.";
 	name = "Generator"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bE" = (
-/obj/machinery/door/airlock/maintenance,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/maintenance,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bF" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bG" = (
-/obj/structure/simple_door/wood,
-/turf/unsimulated/floor{
+obj/structure/simple_door/wood,
+turf/unsimulated/floor{
 	icon_state = "wood"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bH" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "wood"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bI" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/turf/unsimulated/floor{
+obj/structure/bed,
+obj/item/bedsheet/brown,
+turf/unsimulated/floor{
 	icon_state = "wood"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bJ" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 9
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bK" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bL" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 5
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bM" = (
-/obj/item/clothing/mask/gas/sexyclown,
-/turf/unsimulated/floor{
+obj/item/clothing/mask/gas/sexyclown,
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bN" = (
-/obj/machinery/power/smes/magical,
-/turf/unsimulated/floor{
+obj/machinery/power/smes/magical,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bO" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron2"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bP" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 8
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bQ" = (
-/obj/machinery/gateway/centeraway,
-/turf/unsimulated/floor{
+obj/machinery/gateway/centeraway,
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bR" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 4
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bS" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron7"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bT" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron9"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bU" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron5"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bV" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron8"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bW" = (
-/obj/machinery/door/airlock/silver{
+obj/machinery/door/airlock/silver{
 	name = "Bathroom"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "freezerfloor"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bX" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	density = 0;
 	dir = 10
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bY" = (
-/obj/machinery/gateway,
-/turf/unsimulated/floor{
+obj/machinery/gateway,
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "bZ" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	density = 0;
 	dir = 6
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "ca" = (
-/obj/item/stool,
-/turf/unsimulated/floor{
+obj/item/stool,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cb" = (
-/obj/machinery/radiocarbon_spectrometer,
-/turf/unsimulated/floor{
+obj/machinery/radiocarbon_spectrometer,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cc" = (
-/obj/structure/sink{
+obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/obj/structure/mirror{
+obj/structure/mirror{
 	dir = 4;
 	pixel_x = -32
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "freezerfloor"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cd" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "freezerfloor"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "ce" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cf" = (
-/obj/machinery/artifact_analyser,
-/turf/unsimulated/floor{
+obj/machinery/artifact_analyser,
+turf/unsimulated/floor{
 	icon_state = "gcircuit"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cg" = (
-/obj/machinery/artifact_scanpad,
-/turf/unsimulated/floor{
+obj/machinery/artifact_scanpad,
+turf/unsimulated/floor{
 	icon_state = "gcircuit"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "ch" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/item/paper{
+obj/structure/table,
+obj/item/pen,
+obj/item/paper{
 	info = "... the key lies beneath the tears of our mother...";
 	name = "translated cryptic riddle"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "ci" = (
-/obj/structure/toilet{
+obj/structure/toilet{
 	dir = 4
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "freezerfloor"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cj" = (
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 8
 	},
-/obj/structure/curtain/open/shower,
-/obj/machinery/door/window/northright,
-/obj/structure/window/basic{
+obj/structure/curtain/open/shower,
+obj/machinery/door/window/northright,
+obj/structure/window/basic{
 	dir = 8
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "freezerfloor"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cl" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cm" = (
-/obj/item/clothing/mask/gas/clown_hat,
-/turf/unsimulated/floor{
+obj/item/clothing/mask/gas/clown_hat,
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cn" = (
-/obj/machinery/door/airlock/glass_science,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/glass_science,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "co" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron4"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cp" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron13"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cq" = (
-/obj/machinery/door/airlock/centcom,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/centcom,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cr" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "iron11"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cs" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "ct" = (
-/obj/structure/table,
-/obj/item/storage/box,
-/obj/item/pickaxe,
-/obj/item/tool/wrench,
-/obj/item/measuring_tape,
-/obj/item/stack/flag/yellow,
-/obj/item/shovel/spade,
-/turf/unsimulated/floor{
+obj/structure/table,
+obj/item/storage/box,
+obj/item/pickaxe,
+obj/item/tool/wrench,
+obj/item/measuring_tape,
+obj/item/stack/flag/yellow,
+obj/item/shovel/spade,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cu" = (
-/obj/machinery/vending/snack,
-/turf/unsimulated/floor{
+obj/machinery/vending/snack,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cv" = (
-/obj/structure/table,
-/obj/machinery/microwave{
+obj/structure/table,
+obj/machinery/microwave{
 	pixel_y = 6
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cw" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets,
-/obj/item/storage/box/donkpockets,
-/turf/unsimulated/floor{
+obj/structure/table,
+obj/item/storage/box/donkpockets,
+obj/item/storage/box/donkpockets,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cx" = (
-/obj/item/toy/figure/clown{
+obj/item/toy/figure/clown{
 	desc = "An ancient clown artifact. It looks a lot like the \"Space Life\" brand Clown action figure.";
 	name = "ancient clown statuette"
 	},
-/obj/structure/table,
-/turf/unsimulated/floor{
+obj/structure/table,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cy" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/temple/south)
+area/awaymission/labyrinth/temple/south)
 "cz" = (
-/obj/structure/closet/excavation,
-/turf/unsimulated/floor{
+obj/structure/closet/excavation,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cA" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cB" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown2"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cC" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown6"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cD" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown12"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cE" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown10"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cF" = (
-/obj/item/fossil/plant,
-/turf/unsimulated/floor{
+obj/item/fossil/plant,
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cG" = (
-/obj/effect/decal/remains/human,
-/turf/unsimulated/floor{
+obj/effect/decal/remains/human,
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cH" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown3"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cI" = (
-/obj/machinery/door/airlock/vault/bolted{
+obj/machinery/door/airlock/vault/bolted{
 	id_tag = "clowncatacombs";
 	name = "Catacombs"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cJ" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown1"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cK" = (
-/obj/structure/table/reinforced,
-/obj/item/bananapeel,
-/turf/unsimulated/floor{
+obj/structure/table/reinforced,
+obj/item/bananapeel,
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cL" = (
-/obj/structure/table/reinforced,
-/obj/machinery/button/remote/airlock{
+obj/structure/table/reinforced,
+obj/machinery/button/remote/airlock{
 	id = "clowncatacombs";
 	layer = 2;
 	specialfunctions = 4
 	},
-/obj/item/reagent_containers/food/snacks/clownstears{
+obj/item/reagent_containers/food/snacks/clownstears{
 	pixel_y = 6
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cM" = (
-/obj/structure/table/reinforced,
-/obj/item/bikehorn,
-/turf/unsimulated/floor{
+obj/structure/table/reinforced,
+obj/item/bikehorn,
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cN" = (
-/obj/machinery/door/airlock/science,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/science,
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cO" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	dir = 8;
 	icon_state = "fakewindows"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cP" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	dir = 4;
 	icon_state = "fakewindows"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cQ" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cR" = (
-/obj/structure/closet/crate/trashcart,
-/turf/unsimulated/floor{
+obj/structure/closet/crate/trashcart,
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cS" = (
-/obj/item/bananapeel,
-/turf/unsimulated/floor{
+obj/item/bananapeel,
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cT" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown0"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "cU" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cV" = (
-/obj/effect/forcefield{
+obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	layer = 1;
 	name = "Blocker"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cW" = (
-/obj/item/fossil/skull/horned,
-/turf/unsimulated/floor{
+obj/item/fossil/skull/horned,
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cX" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon = 'icons/jungle.dmi';
 	icon_state = "grass2";
 	name = "jungle grass"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cY" = (
-/obj/item/storage/box,
-/turf/unsimulated/floor{
+obj/item/storage/box,
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "cZ" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "da" = (
-/obj/structure/HonkMother/Apex{
+obj/structure/HonkMother/Apex{
 	desc = "Part of an effigy for the legendary Honk Mother.";
 	icon_state = "HonkMotherApexAged"
 	},
-/obj/effect/forcefield{
+obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
 	layer = 1;
 	name = "Blocker"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "db" = (
-/obj/item/fossil,
-/turf/unsimulated/floor{
+obj/item/fossil,
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "dc" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "dd" = (
-/obj/item/measuring_tape,
-/turf/unsimulated/floor{
+obj/item/measuring_tape,
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "de" = (
-/obj/item/shovel/spade,
-/turf/unsimulated/floor{
+obj/item/shovel/spade,
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "df" = (
-/obj/item/shovel,
-/turf/unsimulated/floor{
+obj/item/shovel,
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "dg" = (
-/obj/structure/ladder{
+obj/structure/ladder{
 	icon_state = "ladder10"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "dh" = (
-/obj/item/fossil/shell,
-/turf/unsimulated/floor{
+obj/item/fossil/shell,
+turf/unsimulated/floor{
 	icon_state = "asteroid_dug"
 	},
-/area/awaymission/labyrinth/arrival)
+area/awaymission/labyrinth/arrival)
 "di" = (
-/obj/machinery/media/jukebox,
-/turf/unsimulated/floor{
+obj/machinery/media/jukebox,
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dj" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dk" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "0"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dl" = (
-/obj/effect/step_trigger/teleporter{
+obj/effect/step_trigger/teleporter{
 	name = "escape";
 	teleport_x = 86;
 	teleport_y = 53;
 	teleport_z = 7
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dm" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown4"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "dn" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown9"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "do" = (
-/obj/machinery/door/airlock/gold,
-/turf/unsimulated/floor{
+obj/machinery/door/airlock/gold,
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "dp" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown8"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "dq" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "clown5"
 	},
-/area/awaymission/labyrinth/temple/entry)
+area/awaymission/labyrinth/temple/entry)
 "dr" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "rock";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "ds" = (
-/turf/simulated/wall{
+turf/simulated/wall{
 	icon_state = "sandstonevault"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dt" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "du" = (
-/turf/simulated/wall{
+turf/simulated/wall{
 	icon_state = "sandstonevault"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dv" = (
-/turf/simulated/wall{
+turf/simulated/wall{
 	icon_state = "rockvault";
 	luminosity = 2
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dw" = (
-/turf/simulated/wall{
+turf/simulated/wall{
 	icon_state = "sandstonevault"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dx" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dy" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dz" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dA" = (
-/turf/simulated/wall{
+turf/simulated/wall{
 	icon_state = "sandstonevault"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dB" = (
-/obj/structure/HonkMother/Apex,
-/turf/simulated/wall{
+obj/structure/HonkMother/Apex,
+turf/simulated/wall{
 	icon_state = "rockvault";
 	luminosity = 2
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dC" = (
-/turf/simulated/wall{
+turf/simulated/wall{
 	icon_state = "sandstonevault"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dD" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dF" = (
-/turf/simulated/wall/cult,
-/area/awaymission/labyrinth/arrival)
+turf/simulated/wall/cult,
+area/awaymission/labyrinth/arrival)
 "dG" = (
-/turf/simulated/wall/cult,
-/area/awaymission/labyrinth/boss)
+turf/simulated/wall/cult,
+area/awaymission/labyrinth/boss)
 "dH" = (
-/turf/simulated/floor/outdoors/lava,
-/area/awaymission/labyrinth/arrival)
+turf/simulated/floor/outdoors/lava,
+area/awaymission/labyrinth/arrival)
 "dI" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dJ" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dK" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dL" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dM" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dN" = (
-/obj/effect/mist,
-/turf/simulated/wall{
+obj/effect/mist,
+turf/simulated/wall{
 	icon_state = "rockvault";
 	luminosity = 2
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dO" = (
-/obj/structure/HonkMother/Base,
-/obj/effect/mist,
-/turf/simulated/wall{
+obj/structure/HonkMother/Base,
+obj/effect/mist,
+turf/simulated/wall{
 	icon_state = "rockvault";
 	luminosity = 2
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dP" = (
-/obj/effect/debris/cleanable/blood{
+obj/effect/debris/cleanable/blood{
 	icon_state = "mgibbl3"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dQ" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dR" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dS" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dT" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "dU" = (
-/obj/spawner/corpse/scientist,
-/obj/effect/debris/cleanable/blood{
+obj/spawner/corpse/scientist,
+obj/effect/debris/cleanable/blood{
 	icon_state = "mfloor5"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dV" = (
-/obj/effect/debris/cleanable/blood{
+obj/effect/debris/cleanable/blood{
 	icon_state = "mgibbl4"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dW" = (
-/obj/effect/debris/cleanable/blood{
+obj/effect/debris/cleanable/blood{
 	icon_state = "mfloor5"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dX" = (
-/obj/effect/debris/cleanable/blood{
+obj/effect/debris/cleanable/blood{
 	icon_state = "gib6"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dY" = (
-/obj/item/paper{
+obj/item/paper{
 	info = "Pray to the honk mother if ye are ready to face her champion. Shouldst thou be deem'd worthy, the champion will appear. There shall be no retreat once the conflict begins. Though her holy highness is a lady of laughter, there will be no mercy.";
 	name = "parchment"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	luminosity = 3;
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "dZ" = (
-/obj/effect/debris/cleanable/blood,
-/turf/unsimulated/floor{
+obj/effect/debris/cleanable/blood,
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "ea" = (
-/obj/spawner/corpse/scientist,
-/obj/effect/debris/cleanable/blood{
+obj/spawner/corpse/scientist,
+obj/effect/debris/cleanable/blood{
 	icon_state = "mgibbl1"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "eb" = (
-/obj/structure/ladder{
+obj/structure/ladder{
 	icon_state = "ladderup";
 	pixel_y = -4
 	},
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	density = 0;
 	icon_state = "0";
 	name = "ladder";
 	opacity = 0
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_n";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "ec" = (
-/obj/effect/debris/cleanable/blood{
+obj/effect/debris/cleanable/blood{
 	icon_state = "gibmid3"
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "cult";
 	name = "plating"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "ed" = (
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "asteroid";
 	name = "dirt"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_w";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_s";
 	name = "solid rock"
 	},
-/turf/simulated/wall{
+turf/simulated/wall{
 	density = 0;
 	icon_state = "rock_side_e";
 	name = "solid rock"
 	},
-/area/awaymission/labyrinth/cave)
+area/awaymission/labyrinth/cave)
 "ee" = (
-/obj/effect/step_trigger/teleporter{
+obj/effect/step_trigger/teleporter{
 	name = "boss return stairs left";
 	teleport_x = 126;
 	teleport_y = 217;
 	teleport_z = 7
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 "ef" = (
-/obj/effect/step_trigger/teleporter{
+obj/effect/step_trigger/teleporter{
 	name = "boss return stairs right";
 	teleport_x = 127;
 	teleport_y = 217;
 	teleport_z = 7
 	},
-/turf/unsimulated/floor{
+turf/unsimulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/labyrinth/boss)
+area/awaymission/labyrinth/boss)
 
 (1,1,1) = {"
 aa

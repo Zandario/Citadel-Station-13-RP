@@ -1,4 +1,4 @@
-/obj/machinery/computer/HolodeckControl
+obj/machinery/computer/HolodeckControl
 	name = "holodeck control console"
 	desc = "A computer used to control a nearby holodeck."
 	icon_keyboard = "tech_key"
@@ -72,10 +72,10 @@
 	"Wildlife Simulation" 		= new/datum/holodeck_program(/area/holodeck/source_wildlife, list())
 	)
 
-/obj/machinery/computer/HolodeckControl/attack_ai(var/mob/user as mob)
+obj/machinery/computer/HolodeckControl/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/HolodeckControl/attack_hand(mob/user, list/params)
+obj/machinery/computer/HolodeckControl/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	user.set_machine(src)
@@ -87,7 +87,7 @@
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/computer/HolodeckControl/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/computer/HolodeckControl/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/list/data = list()
@@ -121,7 +121,7 @@
 		ui.open()
 		ui.set_auto_update(20)
 
-/obj/machinery/computer/HolodeckControl/Topic(href, href_list)
+obj/machinery/computer/HolodeckControl/Topic(href, href_list)
 	if(..())
 		return 1
 	if(IsAdminGhost(usr) || (usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
@@ -156,7 +156,7 @@
 
 	SSnanoui.update_uis(src)
 
-/obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
+obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
 	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 	last_to_emag = user //emag again to change the owner
 	if (!emagged)
@@ -169,7 +169,7 @@
 		return 1
 	return
 
-/obj/machinery/computer/HolodeckControl/proc/update_projections()
+obj/machinery/computer/HolodeckControl/proc/update_projections()
 	if (safety_disabled)
 		item_power_usage = 2500
 		for(var/obj/item/holo/esword/H in linkedholodeck)
@@ -184,7 +184,7 @@
 		if (last_to_emag)
 			C.friends = list(last_to_emag)
 
-/obj/machinery/computer/HolodeckControl/Initialize(mapload)
+obj/machinery/computer/HolodeckControl/Initialize(mapload)
 	. = ..()
 	current_program = powerdown_program
 	linkedholodeck = locate(projection_area)
@@ -192,21 +192,21 @@
 		to_chat(world, "<span class='danger'>Holodeck computer at [x],[y],[z] failed to locate projection area.</span>")
 
 //This could all be done better, but it works for now.
-/obj/machinery/computer/HolodeckControl/Destroy()
+obj/machinery/computer/HolodeckControl/Destroy()
 	emergencyShutdown()
 	..()
 
-/obj/machinery/computer/HolodeckControl/legacy_ex_act(severity)
+obj/machinery/computer/HolodeckControl/legacy_ex_act(severity)
 	emergencyShutdown()
 	..()
 
-/obj/machinery/computer/HolodeckControl/power_change()
+obj/machinery/computer/HolodeckControl/power_change()
 	var/oldstat
 	..()
 	if (machine_stat != oldstat && active && (machine_stat & NOPOWER))
 		emergencyShutdown()
 
-/obj/machinery/computer/HolodeckControl/process(delta_time)
+obj/machinery/computer/HolodeckControl/process(delta_time)
 	for(var/item in holographic_objs) // do this first, to make sure people don't take items out when power is down.
 		if(!(get_turf(item) in linkedholodeck))
 			derez(item, 0)
@@ -239,7 +239,7 @@
 				LEGACY_EX_ACT(T, 3, null)
 				T.hotspot_expose(1000,500,1)
 
-/obj/machinery/computer/HolodeckControl/proc/derez(var/obj/obj , var/silent = 1)
+obj/machinery/computer/HolodeckControl/proc/derez(var/obj/obj , var/silent = 1)
 	if(!obj)
 		return
 
@@ -251,14 +251,14 @@
 
 	qdel(obj)
 
-/obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
+obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
 	for(var/turf/T in A)
 		if(istype(T, /turf/space))
 			return 0
 	return 1
 
 //Why is it called toggle if it doesn't toggle?
-/obj/machinery/computer/HolodeckControl/proc/togglePower(var/toggleOn = 0)
+obj/machinery/computer/HolodeckControl/proc/togglePower(var/toggleOn = 0)
 	if(toggleOn)
 		loadProgram(default_program, 0)
 	else
@@ -271,7 +271,7 @@
 		update_use_power(USE_POWER_IDLE)
 
 
-/obj/machinery/computer/HolodeckControl/proc/loadProgram(var/prog, var/check_delay = 1)
+obj/machinery/computer/HolodeckControl/proc/loadProgram(var/prog, var/check_delay = 1)
 	if(!prog)
 		return
 
@@ -348,7 +348,7 @@
 	return 1
 
 
-/obj/machinery/computer/HolodeckControl/proc/toggleGravity(var/area/A)
+obj/machinery/computer/HolodeckControl/proc/toggleGravity(var/area/A)
 	if(world.time < (last_gravity_change + 25))
 		if(world.time < (last_gravity_change + 15))//To prevent super-spam clicking
 			return
@@ -366,7 +366,7 @@
 	else
 		A.gravitychange(1,A)
 
-/obj/machinery/computer/HolodeckControl/proc/emergencyShutdown()
+obj/machinery/computer/HolodeckControl/proc/emergencyShutdown()
 	//Turn it back to the regular non-holographic room
 	loadProgram(powerdown_program, 0)
 
@@ -379,7 +379,7 @@
 
 // Holodorms
 //
-/obj/machinery/computer/HolodeckControl/holodorm
+obj/machinery/computer/HolodeckControl/holodorm
 	name = "Don't use this one!!!"
 	powerdown_program = "Off"
 	default_program = "Off"
@@ -400,29 +400,29 @@
 	"Boxing Ring"	= new/datum/holodeck_program(/area/holodeck/holodorm/source_boxing)
 	)
 
-/obj/machinery/computer/HolodeckControl/holodorm/one
+obj/machinery/computer/HolodeckControl/holodorm/one
 	name = "dorm one holodeck control"
 	projection_area = /area/crew_quarters/sleep/Dorm_1/holo
 
-/obj/machinery/computer/HolodeckControl/holodorm/three
+obj/machinery/computer/HolodeckControl/holodorm/three
 	name = "dorm three holodeck control"
 	projection_area = /area/crew_quarters/sleep/Dorm_3/holo
 
-/obj/machinery/computer/HolodeckControl/holodorm/five
+obj/machinery/computer/HolodeckControl/holodorm/five
 	name = "dorm five holodeck control"
 	projection_area = /area/crew_quarters/sleep/Dorm_5/holo
 
-/obj/machinery/computer/HolodeckControl/holodorm/seven
+obj/machinery/computer/HolodeckControl/holodorm/seven
 	name = "dorm seven holodeck control"
 	projection_area = /area/crew_quarters/sleep/Dorm_7/holo
 
-/obj/machinery/computer/HolodeckControl/holodorm/warship
+obj/machinery/computer/HolodeckControl/holodorm/warship
 	name = "warship holodeck control"
 	projection_area = /area/mothership/holodeck/holo
 
 
 // Small Ship Holodeck
-/obj/machinery/computer/HolodeckControl/houseboat
+obj/machinery/computer/HolodeckControl/houseboat
 	projection_area = /area/houseboat/holodeck_area
 	powerdown_program = "Turn Off"
 	default_program = "Empty Court"

@@ -1,4 +1,4 @@
-/datum/nifsoft/apc_recharge
+datum/nifsoft/apc_recharge
 	name = "APC Connector"
 	desc = "A small attachment that allows synthmorphs to recharge themselves from APCs."
 	list_pos = NIF_APCCHARGE
@@ -9,7 +9,7 @@
 	var/obj/machinery/power/apc/apc
 	other_flags = (NIF_O_APCCHARGE)
 
-/datum/nifsoft/apc_recharge/activate()
+datum/nifsoft/apc_recharge/activate()
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		apc = locate(/obj/machinery/power/apc) in get_step(H,H.dir)
@@ -24,11 +24,11 @@
 		H.visible_message(SPAN_WARNING("Thin snakelike tendrils grow from [H] and connect to \the [apc]."), \
 			SPAN_NOTICE("Thin snakelike tendrils grow from you and connect to \the [apc]."))
 
-/datum/nifsoft/apc_recharge/deactivate(var/force = FALSE)
+datum/nifsoft/apc_recharge/deactivate(var/force = FALSE)
 	if((. = ..()))
 		apc = null
 
-/datum/nifsoft/apc_recharge/on_life(seconds, times_fired)
+datum/nifsoft/apc_recharge/on_life(seconds, times_fired)
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		if((apc?.cell?.percent() > 1) && (get_dist(H,apc) <= 1) && H.nutrition < (H.species.max_nutrition - 1)) // 440 vs 450, life() happens before we get here so it'll never be EXACTLY 450
@@ -44,7 +44,7 @@
 			deactivate()
 			return FALSE
 
-/datum/nifsoft/pressure
+datum/nifsoft/pressure
 	name = "Pressure Seals"
 	desc = "Creates pressure seals around important synthetic components to protect them from vacuum. Almost impossible on organics."
 	list_pos = NIF_PRESSURE
@@ -54,7 +54,7 @@
 	applies_to = NIF_SYNTHETIC
 	other_flags = (NIF_O_PRESSURESEAL)
 
-/datum/nifsoft/heatsinks
+datum/nifsoft/heatsinks
 	name = "Heat Sinks"
 	desc = "Advanced heat sinks for internal heat storage of heat on a synth until able to vent it in atmosphere."
 	list_pos = NIF_HEATSINK
@@ -66,7 +66,7 @@
 	applies_to = NIF_SYNTHETIC
 	other_flags = (NIF_O_HEATSINKS)
 
-/datum/nifsoft/heatsinks/activate()
+datum/nifsoft/heatsinks/activate()
 	if((. = ..()))
 		if(used >= 1500)
 			nif.notify("Heat sinks not safe to operate again yet! Max 75% on activation.",TRUE)
@@ -74,10 +74,10 @@
 				deactivate()
 			return FALSE
 
-/datum/nifsoft/heatsinks/stat_text()
+datum/nifsoft/heatsinks/stat_text()
 	return "[active ? "Active" : "Disabled"] (Stored Heat: [FLOOR((used/20), 1)]%)"
 
-/datum/nifsoft/heatsinks/on_life()
+datum/nifsoft/heatsinks/on_life()
 	if((. = ..()))
 		//Not being used, all clean.
 		if(!active && !used)
@@ -92,7 +92,7 @@
 		else if(!active && --used == 0)
 			nif.notify("Heat sinks re-chilled.")
 
-/datum/nifsoft/compliance
+datum/nifsoft/compliance
 	name = "Compliance Module"
 	desc = "A system that allows one to apply 'laws' to sapient life. Extremely illegal, of course."
 	list_pos = NIF_COMPLIANCE
@@ -103,39 +103,39 @@
 	access = 999 //Prevents anyone from buying it without an emag.
 	var/laws = "Be nice to people!"
 
-/datum/nifsoft/compliance/New(var/newloc,var/newlaws)
+datum/nifsoft/compliance/New(var/newloc,var/newlaws)
 	laws = newlaws //Sanitize before this (the disk does)
 	..(newloc)
 
-/datum/nifsoft/compliance/activate()
+datum/nifsoft/compliance/activate()
 	if((. = ..()))
 		to_chat(nif.human,"<span class='danger'>You feel a strong compulsion towards these directives: </span><br><span class='notify'>[laws]</span>\
 		<br><span class='danger'>While the disk has a considerable hold on your mind, you feel like you would be able to resist the control if you were pushed to do something you would consider utterly unacceptable.\
 		<br>\[OOC NOTE: Compliance laws are only a scene tool, and not something that is effective in actual gameplay, hence the above. For example, if you are compelled to do something that would affect the round or other players (kill a crewmember, steal an item, give the disker elevated access), you should not do so.\]</span>")
 
 
-/datum/nifsoft/compliance/install()
+datum/nifsoft/compliance/install()
 	if((. = ..()))
 		log_game("[nif.human? nif.human : "ERROR: NO HUMAN ON NIF"] was compliance disked with [laws]")
 		to_chat(nif.human,"<span class='danger'>You feel a strong compulsion towards these directives: </span><br><span class='notify'>[laws]</span>\
 		<br><span class='danger'>While the disk has a considerable hold on your mind, you feel like you would be able to resist the control if you were pushed to do something you would consider utterly unacceptable.\
 		<br>\[OOC NOTE: Compliance laws are only a scene tool, and not something that is effective in actual gameplay, hence the above. For example, if you are compelled to do something that would affect the round or other players (kill a crewmember, steal an item, give the disker elevated access), you should not do so.\]</span>")
 
-/datum/nifsoft/compliance/uninstall()
+datum/nifsoft/compliance/uninstall()
 	nif.notify("ERROR! Unable to comply!",TRUE)
 	return FALSE //NOPE.
 
-/datum/nifsoft/compliance/stat_text()
+datum/nifsoft/compliance/stat_text()
 	return "Show Laws"
 
-/datum/nifsoft/sizechange
+datum/nifsoft/sizechange
 	name = "Mass Alteration"
 	desc = "A system that allows one to change their size, through drastic mass rearrangement. Causes significant wear when installed."
 	list_pos = NIF_SIZECHANGE
 	cost = 175 // this doesn't get nerfed that much because size shifters are annoying sorry
 	wear = 6
 
-/datum/nifsoft/sizechange/activate()
+datum/nifsoft/sizechange/activate()
 	if((. = ..()))
 		var/new_size = input("Put the desired size (25-200%)", "Set Size", 200) as num
 
@@ -159,17 +159,17 @@
 		spawn(0)
 			deactivate()
 
-/datum/nifsoft/sizechange/stat_text()
+datum/nifsoft/sizechange/stat_text()
 	return "Change Size"
 
-/datum/nifsoft/worldbend
+datum/nifsoft/worldbend
 	name = "World Bender"
 	desc = "Alters your perception of various objects in the world. Only has one setting for now: displaying all your crewmates as farm animals."
 	list_pos = NIF_WORLDBEND
 	cost = 50
 	a_drain = 0.01
 
-/datum/nifsoft/worldbend/activate()
+datum/nifsoft/worldbend/activate()
 	if((. = ..()))
 		if((. = ..()))
 			var/mob/living/carbon/human/H = nif.human
@@ -177,7 +177,7 @@
 			if(A && H)
 				A.add_hud_to(H)
 
-/datum/nifsoft/worldbend/deactivate(var/force = FALSE)
+datum/nifsoft/worldbend/deactivate(var/force = FALSE)
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		var/datum/atom_hud/world_bender/animals/A = GLOB.huds[WORLD_BENDER_HUD_ANIMALS]

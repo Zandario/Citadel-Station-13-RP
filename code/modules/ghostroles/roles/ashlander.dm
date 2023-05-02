@@ -1,4 +1,4 @@
-/datum/role/ghostrole/ashlander
+datum/role/ghostrole/ashlander
 	name = "Ashlander"
 	assigned_role = "Ashlander"
 	desc = "You are an Ashlander! An old and storied race of subterranean xenos."
@@ -6,7 +6,7 @@
 	important_info = "The nomadic Ashlanders are a neutral party. The Ashlander race (Scorian), is selected by default. If you accidentally swap, make sure to change it back. Ashlanders are all permadeath characters. They have gray skin of varying hues, red eyes, and - typically - white, black, or brown hair. These options are selectable through the appearance menu, directly below the race block, and above hairstyles. "
 	instantiator = /datum/ghostrole_instantiator/human/player_static/ashlander
 
-/datum/role/ghostrole/ashlander/Instantiate(client/C, atom/loc, list/params)
+datum/role/ghostrole/ashlander/Instantiate(client/C, atom/loc, list/params)
 	var/rp = rand(1, 7)
 	switch(rp)
 		if(1)
@@ -25,7 +25,7 @@
 			params["fluff"] = "priest"
 	return ..()
 
-/datum/role/ghostrole/ashlander/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
+datum/role/ghostrole/ashlander/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
 	var/flavour_text = "<i>Fine particles of ash slip past the fluttering Goliath hide covering your doorway to settle on the floor of the yurt. \
 	The hide is patched, and worn from years of use - it was gifted to you many Storms ago. Outside, the baking heat of the planet's surface \
@@ -71,7 +71,7 @@
 			you all up into the wastes. You feel the weight of the holy tools granted to you by the Buried Ones. They are worth more than your life. Guide your people well.</i>"
 	to_chat(created, flavour_text)
 
-/datum/ghostrole_instantiator/human/player_static/ashlander
+datum/ghostrole_instantiator/human/player_static/ashlander
 	equip_loadout = FALSE
 	equip_traits = FALSE
 	species_required = /datum/species/scori
@@ -91,7 +91,7 @@
 		/datum/crafting_recipe/musket_ashlander, /datum/crafting_recipe/flintlock_ashlander
 		)
 
-/datum/ghostrole_instantiator/human/player_static/ashlander/GetOutfit(client/C, mob/M, list/params)
+datum/ghostrole_instantiator/human/player_static/ashlander/GetOutfit(client/C, mob/M, list/params)
 	var/datum/outfit/outfit = ..()
 	switch(params["fluff"])
 		if("nomad")
@@ -110,13 +110,13 @@
 			return /datum/outfit/ashlander/priest
 	return outfit
 
-/datum/ghostrole_instantiator/human/player_static/ashlander/AfterSpawn(mob/created, list/params)
+datum/ghostrole_instantiator/human/player_static/ashlander/AfterSpawn(mob/created, list/params)
 	. = ..()
 	created.faction = "lavaland"
 	created.mind.teach_crafting_recipe(ashlander_crafting)
 	created.remove_language(/datum/language/common)
 
-/obj/structure/ghost_role_spawner/ashlander
+obj/structure/ghost_role_spawner/ashlander
 	name = "ashlander yurt"
 	desc = "A coarse leather tent. Squat and vaguely onion shaped, the thick red hide acting as a door covering flaps in the warm breeze. It seems like it could easily be dismantled and moved. A strange red icon shaped out of sinew and leather hangs over the doorway."
 	icon = 'icons/obj/lavaland.dmi'

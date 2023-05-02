@@ -1,11 +1,11 @@
-/datum/antagonist/proc/get_starting_locations()
+datum/antagonist/proc/get_starting_locations()
 	if(landmark_id)
 		starting_locations = list()
 		for(var/obj/landmark/L in GLOB.landmarks_list)
 			if(L.name == landmark_id)
 				starting_locations |= get_turf(L)
 
-/datum/antagonist/proc/announce_antagonist_spawn()
+datum/antagonist/proc/announce_antagonist_spawn()
 
 	if(spawn_announcement)
 		if(announced)
@@ -20,7 +20,7 @@
 				command_announcement.Announce("[spawn_announcement]", "[spawn_announcement_title ? spawn_announcement_title : "Priority Alert"]")
 	return
 
-/datum/antagonist/proc/place_mob(var/mob/living/mob)
+datum/antagonist/proc/place_mob(var/mob/living/mob)
 	if(!starting_locations || !starting_locations.len)
 		return
 	var/turf/T = pick_mobless_turf_if_exists(starting_locations)

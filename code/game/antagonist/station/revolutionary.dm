@@ -1,6 +1,6 @@
 var/datum/antagonist/revolutionary/revs
 
-/datum/antagonist/revolutionary
+datum/antagonist/revolutionary
 	id = MODE_REVOLUTIONARY
 	role_type = BE_REV
 	role_text = "Head Revolutionary"
@@ -33,11 +33,11 @@ var/datum/antagonist/revolutionary/revs
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Facility Director", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
 	roundstart_restricted = list("Internal Affairs Agent", "Facility Director", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
 
-/datum/antagonist/revolutionary/New()
+datum/antagonist/revolutionary/New()
 	..()
 	revs = src
 
-/datum/antagonist/revolutionary/create_global_objectives()
+datum/antagonist/revolutionary/create_global_objectives()
 	if(!..())
 		return
 	global_objectives = list()

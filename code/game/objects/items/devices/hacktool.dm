@@ -1,4 +1,4 @@
-/obj/item/multitool/hacktool
+obj/item/multitool/hacktool
 	var/is_hacking = 0
 	var/max_known_targets
 
@@ -7,14 +7,14 @@
 	var/list/supported_types
 	var/datum/topic_state/default/must_hack/hack_state
 
-/obj/item/multitool/hacktool/Initialize(mapload)
+obj/item/multitool/hacktool/Initialize(mapload)
 	. = ..()
 	known_targets = list()
 	max_known_targets = 5 + rand(1,3)
 	supported_types = list(/obj/machinery/door/airlock)
 	hack_state = new(src)
 
-/obj/item/multitool/hacktool/Destroy()
+obj/item/multitool/hacktool/Destroy()
 	for(var/T in known_targets)
 		var/atom/target = T
 		target.unregister(OBSERVER_EVENT_DESTROY, src)
@@ -23,14 +23,14 @@
 	hack_state = null
 	return ..()
 
-/obj/item/multitool/hacktool/attackby(var/obj/item/W, var/mob/user)
+obj/item/multitool/hacktool/attackby(var/obj/item/W, var/mob/user)
 	if(W.is_screwdriver())
 		in_hack_mode = !in_hack_mode
 		playsound(src.loc, W.tool_sound, 50, 1)
 	else
 		..()
 
-/obj/item/multitool/hacktool/resolve_attackby(atom/A, mob/user, params, attack_modifier = 1)
+obj/item/multitool/hacktool/resolve_attackby(atom/A, mob/user, params, attack_modifier = 1)
 	sanity_check()
 
 	if(!in_hack_mode)
@@ -42,7 +42,7 @@
 	A.nano_ui_interact(user, state = hack_state)
 	return 1
 
-/obj/item/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
+obj/item/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
 	if(is_hacking)
 		to_chat(user, "<span class='warning'>You are already hacking!</span>")
 		return 0
@@ -71,7 +71,7 @@
 	target.register(OBSERVER_EVENT_DESTROY, src, /obj/item/multitool/hacktool/proc/on_target_destroy)
 	return 1
 
-/obj/item/multitool/hacktool/proc/sanity_check()
+obj/item/multitool/hacktool/proc/sanity_check()
 	if(max_known_targets < 1) max_known_targets = 1
 	// Cut away the oldest items if the capacity has been reached
 	if(known_targets.len > max_known_targets)
@@ -80,21 +80,21 @@
 			A.unregister(OBSERVER_EVENT_DESTROY, src)
 		known_targets.Cut(max_known_targets + 1)
 
-/obj/item/multitool/hacktool/proc/on_target_destroy(var/target)
+obj/item/multitool/hacktool/proc/on_target_destroy(var/target)
 	known_targets -= target
 
-/datum/topic_state/default/must_hack
+datum/topic_state/default/must_hack
 	var/obj/item/multitool/hacktool/hacktool
 
-/datum/topic_state/default/must_hack/New(var/hacktool)
+datum/topic_state/default/must_hack/New(var/hacktool)
 	src.hacktool = hacktool
 	..()
 
-/datum/topic_state/default/must_hack/Destroy()
+datum/topic_state/default/must_hack/Destroy()
 	hacktool = null
 	return ..()
 
-/datum/topic_state/default/must_hack/can_use_topic(var/src_object, var/mob/user)
+datum/topic_state/default/must_hack/can_use_topic(var/src_object, var/mob/user)
 	if(!hacktool || !hacktool.in_hack_mode || !(src_object in hacktool.known_targets))
 		return UI_CLOSE
 	return ..()

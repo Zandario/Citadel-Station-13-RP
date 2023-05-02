@@ -32,7 +32,7 @@
  * the action button will not automatically listen to qdel's.
  *
  */
-/datum/action
+datum/action
 	/// action name
 	var/name = "Generic Action"
 	/// description
@@ -70,7 +70,7 @@
 	/// are button updates managed? if so, we don't auto update.
 	var/button_managed = FALSE
 
-/datum/action/New(datum/target)
+datum/action/New(datum/target)
 	if(!target_compatible(target))
 		qdel(src)
 		CRASH("invalid target for [src] - [target]")
@@ -79,17 +79,17 @@
 /**
  * checks if a datum is a valid target for us
  */
-/datum/action/proc/target_compatible(datum/target)
+datum/action/proc/target_compatible(datum/target)
 	return isnull(target_type) || istype(target, target_type)
 
-/datum/action/Destroy()
+datum/action/Destroy()
 	if(owner)
 		remove(owner)
 	target = null
 	QDEL_NULL(button)
 	return ..()
 
-/datum/action/proc/grant(mob/living/T)
+datum/action/proc/grant(mob/living/T)
 	if(owner)
 		if(owner == T)
 			return
@@ -99,7 +99,7 @@
 	owner.actions.Add(src)
 	owner.update_action_buttons()
 
-/datum/action/proc/remove(mob/living/T)
+datum/action/proc/remove(mob/living/T)
 	if(button)
 		if(T.client)
 			T.client.screen -= button
@@ -108,13 +108,13 @@
 	T.update_action_buttons()
 	owner = null
 
-/datum/action/proc/assert_button()
+datum/action/proc/assert_button()
 	if(!isnull(button))
 		return
 	button = new
 	button.owner = src
 
-/datum/action/proc/trigger(mob/user)
+datum/action/proc/trigger(mob/user)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	// todo: log
 	if(!Checks())
@@ -145,22 +145,22 @@
  * - user - user triggering
  * - receiver - object receiving - this is just the "target" variable.
  */
-/datum/action/proc/on_trigger(mob/user, datum/receiver)
+datum/action/proc/on_trigger(mob/user, datum/receiver)
 	target?.ui_action_click(src, user)
 
-/datum/action/proc/Activate()
+datum/action/proc/Activate()
 	return
 
-/datum/action/proc/Deactivate()
+datum/action/proc/Deactivate()
 	return
 
-/datum/action/proc/CheckRemoval(mob/living/user) // 1 if action is no longer valid for this mob and should be removed
+datum/action/proc/CheckRemoval(mob/living/user) // 1 if action is no longer valid for this mob and should be removed
 	return 0
 
-/datum/action/proc/IsAvailable()
+datum/action/proc/IsAvailable()
 	return Checks()
 
-/datum/action/proc/Checks()// returns 1 if all checks pass
+datum/action/proc/Checks()// returns 1 if all checks pass
 	if(!owner)
 		return 0
 	if(mobility_flags && !CHECK_MOBILITY(owner, mobility_flags))
@@ -185,13 +185,13 @@
 			return FALSE
 	return 1
 
-/datum/action/proc/UpdateName()
+datum/action/proc/UpdateName()
 	return name
 
 /**
  * updates button state to match our stored state.
  */
-/datum/action/proc/update_button()
+datum/action/proc/update_button()
 	if(isnull(button))
 		return
 
@@ -224,7 +224,7 @@
  * * active - turned on?
  * * update - update button appearance?
  */
-/datum/action/proc/push_button_update(availability, active, update = TRUE)
+datum/action/proc/push_button_update(availability, active, update = TRUE)
 	button_availability = availability
 	button_toggled = active
 	if(update)
@@ -236,18 +236,18 @@
  * @params
  * * update - update button appearance?
  */
-/datum/action/proc/auto_button_update(update)
+datum/action/proc/auto_button_update(update)
 	if(button_managed)
 		return
 	push_button_update(IsAvailable()? 1 : 0, active, update)
 
 //? Action Button
 
-/atom/movable/screen/movable/action_button
+atom/movable/screen/movable/action_button
 	var/datum/action/owner
 	screen_loc = "LEFT,TOP"
 
-/atom/movable/screen/movable/action_button/Click(location,control,params)
+atom/movable/screen/movable/action_button/Click(location,control,params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
 		moved = 0
@@ -257,19 +257,19 @@
 	owner.trigger(usr)
 	return 1
 
-/atom/movable/screen/movable/action_button/proc/UpdateIcon()
+atom/movable/screen/movable/action_button/proc/UpdateIcon()
 	if(!owner)
 		return
 	owner.update_button()
 
 //Hide/Show Action Buttons ... Button
-/atom/movable/screen/movable/action_button/hide_toggle
+atom/movable/screen/movable/action_button/hide_toggle
 	name = "Hide Buttons"
 	icon = 'icons/screen/actions/actions.dmi'
 	icon_state = "bg_default"
 	var/hidden = 0
 
-/atom/movable/screen/movable/action_button/hide_toggle/Click()
+atom/movable/screen/movable/action_button/hide_toggle/Click()
 	usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
 
 	hidden = usr.hud_used.action_buttons_hidden
@@ -281,7 +281,7 @@
 	usr.update_action_buttons()
 
 
-/atom/movable/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(var/mob/living/user)
+atom/movable/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(var/mob/living/user)
 	if(isalien(user))
 		icon_state = "bg_alien"
 	else
@@ -289,21 +289,21 @@
 	UpdateIcon()
 	return
 
-/atom/movable/screen/movable/action_button/hide_toggle/UpdateIcon()
+atom/movable/screen/movable/action_button/hide_toggle/UpdateIcon()
 	cut_overlays()
 	var/image/img = image(icon, src, (hidden ? "show" : "hide"))
 	add_overlay(img)
 	return
 
 //This is the proc used to update all the action buttons. Properly defined in /mob/living/
-/mob/proc/update_action_buttons()
+mob/proc/update_action_buttons()
 	return
 
 #define AB_WEST_OFFSET 4
 #define AB_NORTH_OFFSET 26
 #define AB_MAX_COLUMNS 10
 
-/datum/hud/proc/ButtonNumberToScreenCoords(var/number) // TODO : Make this zero-indexed for readabilty
+datum/hud/proc/ButtonNumberToScreenCoords(var/number) // TODO : Make this zero-indexed for readabilty
 	var/row = round((number-1)/AB_MAX_COLUMNS)
 	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/coord_col = "+[col-1]"
@@ -312,7 +312,7 @@
 	var/coord_row_offset = AB_NORTH_OFFSET
 	return "LEFT[coord_col]:[coord_col_offset],TOP[coord_row]:[coord_row_offset]"
 
-/datum/hud/proc/SetButtonCoords(var/atom/movable/screen/button,var/number)
+datum/hud/proc/SetButtonCoords(var/atom/movable/screen/button,var/number)
 	var/row = round((number-1)/AB_MAX_COLUMNS)
 	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
 	var/x_offset = 32*(col-1) + AB_WEST_OFFSET + 2*col
@@ -323,14 +323,14 @@
 	button.transform = M
 
 //Presets for item actions
-/datum/action/item_action
+datum/action/item_action
 	action_type = ACTION_TYPE_ITEM
 	check_flags = ACTION_CHECK_RESTRAINED|ACTION_CHECK_STUNNED|ACTION_CHECK_LYING|ACTION_CHECK_ALIVE|ACTION_CHECK_INSIDE
 
-/datum/action/item_action/CheckRemoval(mob/living/user)
+datum/action/item_action/CheckRemoval(mob/living/user)
 	return !(target in user)
 
-/datum/action/item_action/hands_free
+datum/action/item_action/hands_free
 	check_flags = ACTION_CHECK_ALIVE|ACTION_CHECK_INSIDE
 
 #undef AB_WEST_OFFSET
@@ -338,7 +338,7 @@
 #undef AB_MAX_COLUMNS
 
 
-/datum/action/innate/
+datum/action/innate/
 	action_type = ACTION_TYPE_INNATE
 
 
@@ -351,5 +351,5 @@
  * * action - action datuam
  * * user - person clicking
  */
-/datum/proc/ui_action_click(datum/action/action, mob/user)
+datum/proc/ui_action_click(datum/action/action, mob/user)
 	return

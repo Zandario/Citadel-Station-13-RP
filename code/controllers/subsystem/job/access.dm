@@ -1,4 +1,4 @@
-/datum/controller/subsystem/job
+datum/controller/subsystem/job
 	/// all access datums
 	var/tmp/list/datum/access/access_datums
 	/// access datums by path
@@ -17,7 +17,7 @@
 	/// cached accesses that can edit
 	var/tmp/list/cached_access_edit_relevant
 
-/datum/controller/subsystem/job/proc/init_access()
+datum/controller/subsystem/job/proc/init_access()
 	access_datums = list()
 	access_path_lookup = list()
 	access_id_lookup = list()
@@ -46,7 +46,7 @@
  * @params
  * * access_type - type flags
  */
-/datum/controller/subsystem/job/proc/access_datums_of_type(access_type)
+datum/controller/subsystem/job/proc/access_datums_of_type(access_type)
 	return access_type_list(access_type).Copy()
 
 /**
@@ -55,7 +55,7 @@
  * @params
  * * access_region - region flags
  */
-/datum/controller/subsystem/job/proc/access_datums_of_region(access_region)
+datum/controller/subsystem/job/proc/access_datums_of_region(access_region)
 	return access_region_list(access_region).Copy()
 
 /**
@@ -64,13 +64,13 @@
  * @params
  * * access_category - category enum
  */
-/datum/controller/subsystem/job/proc/access_datums_of_category(access_category)
+datum/controller/subsystem/job/proc/access_datums_of_category(access_category)
 	return access_category_list(access_category).Copy()
 
 /**
  * get all access ids in the game
  */
-/datum/controller/subsystem/job/proc/access_ids()
+datum/controller/subsystem/job/proc/access_ids()
 	. = list()
 	for(var/datum/access/A as anything in access_datums)
 		. += A.access_value
@@ -81,7 +81,7 @@
  * @params
  * * access_type - type flags
  */
-/datum/controller/subsystem/job/proc/access_ids_of_type(access_type)
+datum/controller/subsystem/job/proc/access_ids_of_type(access_type)
 	. = list()
 	for(var/datum/access/A as anything in access_type_list(access_type))
 		. += A.access_value
@@ -92,7 +92,7 @@
  * @params
  * * access_region - region flags
  */
-/datum/controller/subsystem/job/proc/access_ids_of_region(access_region)
+datum/controller/subsystem/job/proc/access_ids_of_region(access_region)
 	. = list()
 	for(var/datum/access/A as anything in access_region_list(access_region))
 		. += A.access_value
@@ -103,12 +103,12 @@
  * @params
  * * access_category - category enum
  */
-/datum/controller/subsystem/job/proc/access_ids_of_category(access_category)
+datum/controller/subsystem/job/proc/access_ids_of_category(access_category)
 	. = list()
 	for(var/datum/access/A as anything in access_category_list(access_category))
 		. += A.access_value
 
-/datum/controller/subsystem/job/proc/access_type_list(access_type)
+datum/controller/subsystem/job/proc/access_type_list(access_type)
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(/list)
 	. = access_type_lists?["[access_type]"]
@@ -121,7 +121,7 @@
 				. += A
 		tim_sort(generating, /proc/cmp_auto_compare)
 
-/datum/controller/subsystem/job/proc/access_region_list(access_region)
+datum/controller/subsystem/job/proc/access_region_list(access_region)
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(/list)
 	. = access_region_lists?["[access_region]"]
@@ -134,7 +134,7 @@
 				. += A
 		tim_sort(generating, /proc/cmp_auto_compare)
 
-/datum/controller/subsystem/job/proc/access_category_list(access_category)
+datum/controller/subsystem/job/proc/access_category_list(access_category)
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(/list)
 	. = access_category_lists?["[access_category]"]
@@ -150,14 +150,14 @@
 /**
  * looks up an access datum by id or typepath
  */
-/datum/controller/subsystem/job/proc/access_lookup(id_or_path)
+datum/controller/subsystem/job/proc/access_lookup(id_or_path)
 	RETURN_TYPE(/datum/access)
 	return ispath(id_or_path)? access_path_lookup[id_or_path] : access_id_lookup["[id_or_path]"]
 
 /**
  * lookup multiple access datums from ids
  */
-/datum/controller/subsystem/job/proc/access_lookup_multiple(list/ids_or_paths)
+datum/controller/subsystem/job/proc/access_lookup_multiple(list/ids_or_paths)
 	. = list()
 	for(var/i in ids_or_paths)
 		if(ispath(i))
@@ -168,7 +168,7 @@
 /**
  * generates tgui access data usable by AccessList and anything else compliant with its interface
  */
-/datum/controller/subsystem/job/proc/tgui_access_data()
+datum/controller/subsystem/job/proc/tgui_access_data()
 	var/list/data = list()
 	for(var/datum/access/A as anything in access_datums)
 		data[++data.len] = list(
@@ -185,7 +185,7 @@
  *
  * This list is *not* mutable! Do not edit it!
  */
-/datum/controller/subsystem/job/proc/editable_access_ids_by_id(id)
+datum/controller/subsystem/job/proc/editable_access_ids_by_id(id)
 	if((. = cached_access_edit_lookup["[id]"]))
 		return
 	var/datum/access/A = access_lookup(id)

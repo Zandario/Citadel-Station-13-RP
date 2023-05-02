@@ -1,6 +1,6 @@
 // Hivemind
 
-/datum/power/changeling/hive_upload
+datum/power/changeling/hive_upload
 	name = "Hive Channel"
 	desc = "We can channel a DNA into the airwaves, allowing our fellow changelings to absorb it and transform into it as if they acquired the DNA themselves."
 	helptext = "Allows other changelings to absorb the DNA you channel from the airwaves. Will not help them towards their absorb objectives."
@@ -8,7 +8,7 @@
 	make_hud_button = 0
 	verbpath = /mob/proc/changeling_hiveupload
 
-/datum/power/changeling/hive_download
+datum/power/changeling/hive_download
 	name = "Hive Absorb"
 	desc = "We can absorb a single DNA from the airwaves, allowing us to use more disguises with help from our fellow changelings."
 	helptext = "Allows you to absorb a single DNA and use it. Does not count towards your absorb objective."
@@ -20,7 +20,7 @@
 
 var/list/datum/dna/hivemind_bank = list()
 
-/mob/proc/changeling_hiveupload()
+mob/proc/changeling_hiveupload()
 	set category = "Changeling"
 	set name = "Hive Channel (10)"
 	set desc = "Allows you to channel DNA in the airwaves to allow other changelings to absorb it."
@@ -50,7 +50,7 @@ var/list/datum/dna/hivemind_bank = list()
 	feedback_add_details("changeling_powers","HU")
 	return 1
 
-/mob/proc/changeling_hivedownload()
+mob/proc/changeling_hivedownload()
 	set category = "Changeling"
 	set name = "Hive Absorb (20)"
 	set desc = "Allows you to absorb DNA that is being channeled in the airwaves."

@@ -1,7 +1,7 @@
 #define TESLA_DEFAULT_POWER 1738260
 #define TESLA_MINI_POWER 869130
 
-/obj/singularity/energy_ball
+obj/singularity/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
 	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
@@ -23,16 +23,16 @@
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 
-/obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
+obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	miniball = is_miniball
 	. = ..()
 	if(!is_miniball)
 		set_light(10, 7, "#EEEEFF")
 
-/obj/singularity/energy_ball/legacy_ex_act(severity, target)
+obj/singularity/energy_ball/legacy_ex_act(severity, target)
 	return
 
-/obj/singularity/energy_ball/Destroy()
+obj/singularity/energy_ball/Destroy()
 	if(orbiting && istype(orbiting.parent, /obj/singularity/energy_ball))
 		var/obj/singularity/energy_ball/EB = orbiting.parent
 		EB.orbiting_balls -= src
@@ -43,12 +43,12 @@
 
 	. = ..()
 
-/obj/singularity/energy_ball/admin_investigate_setup()
+obj/singularity/energy_ball/admin_investigate_setup()
 	if(miniball)
 		return //don't annnounce miniballs
 	..()
 
-/obj/singularity/energy_ball/process(wait)
+obj/singularity/energy_ball/process(wait)
 	set waitfor = FALSE
 	if(!orbiting)
 		if(handle_energy())
@@ -71,12 +71,12 @@
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
 
-/obj/singularity/energy_ball/examine(mob/user)
+obj/singularity/energy_ball/examine(mob/user)
 	. = ..()
 	if(orbiting_balls.len)
 		. += "The amount of orbiting mini-balls is [orbiting_balls.len]."
 
-/obj/singularity/energy_ball/proc/move_the_basket_ball(move_amount, time)
+obj/singularity/energy_ball/proc/move_the_basket_ball(move_amount, time)
 	//we face the last thing we zapped, so this lets us favor that direction a bit
 	var/move_bias = dir
 	var/sleep_time = FLOOR(time/move_amount, world.tick_lag)
@@ -92,7 +92,7 @@
 				dust_mobs(C)
 			sleep(sleep_time) // So movement is smooth
 
-/obj/singularity/energy_ball/proc/handle_energy()
+obj/singularity/energy_ball/proc/handle_energy()
 	if (energy <= 0)
 		investigate_log("collapsed.", INVESTIGATE_SINGULO)
 		qdel(src)
@@ -114,7 +114,7 @@
 	else if(orbiting_balls.len)
 		dissipate() //sing code has a much better system.
 
-/obj/singularity/energy_ball/proc/new_mini_ball()
+obj/singularity/energy_ball/proc/new_mini_ball()
 	if(!loc)
 		return
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
@@ -127,20 +127,20 @@
 
 	EB.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
 
-/obj/singularity/energy_ball/Bump(atom/A)
+obj/singularity/energy_ball/Bump(atom/A)
 	dust_mobs(A)
 
-/obj/singularity/energy_ball/Bumped(atom/movable/AM)
+obj/singularity/energy_ball/Bumped(atom/movable/AM)
 	dust_mobs(AM)
 
-/obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
+obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))
 		target.orbiting_balls += src
 //		GLOB.poi_list -= src
 		target.dissipate_strength = target.orbiting_balls.len
 	. = ..()
 
-/obj/singularity/energy_ball/stop_orbit()
+obj/singularity/energy_ball/stop_orbit()
 	if (orbiting && istype(orbiting.parent, /obj/singularity/energy_ball))
 		var/obj/singularity/energy_ball/orbitingball = orbiting.parent
 		orbitingball.orbiting_balls -= src
@@ -149,7 +149,7 @@
 	if (!QDELETED(src))
 		qdel(src)
 
-/obj/singularity/energy_ball/proc/dust_mobs(atom/A)
+obj/singularity/energy_ball/proc/dust_mobs(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.incorporeal_move)
@@ -166,7 +166,7 @@
 /**
  * scale: watts
  */
-/proc/tesla_zap(atom/source, zap_range = 3, power, explosive = FALSE, stun_mobs = TRUE)
+proc/tesla_zap(atom/source, zap_range = 3, power, explosive = FALSE, stun_mobs = TRUE)
 	. = source.dir
 	if(power < 1000)
 		return

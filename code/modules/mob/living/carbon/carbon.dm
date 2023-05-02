@@ -1,4 +1,4 @@
-/mob/living/carbon/Initialize(mapload)
+mob/living/carbon/Initialize(mapload)
 	. = ..()
 	//setup reagent holders
 	bloodstr = new/datum/reagents/metabolism/bloodstream(500, src)
@@ -8,7 +8,7 @@
 	if (!default_language && species_language)
 		default_language = SScharacters.resolve_language_name(species_language)
 
-/mob/living/carbon/BiologicalLife(seconds, times_fired)
+mob/living/carbon/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -18,7 +18,7 @@
 	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
 
-/mob/living/carbon/Destroy()
+mob/living/carbon/Destroy()
 	qdel(ingested)
 	qdel(touching)
 	// We don't qdel(bloodstr) because it's the same as qdel(reagents)
@@ -28,13 +28,13 @@
 		qdel(food)
 	return ..()
 
-/mob/living/carbon/rejuvenate()
+mob/living/carbon/rejuvenate()
 	bloodstr.clear_reagents()
 	ingested.clear_reagents()
 	touching.clear_reagents()
 	..()
 
-/mob/living/carbon/gib()
+mob/living/carbon/gib()
 	for(var/mob/M in src)
 		if(M in src.stomach_contents)
 			src.stomach_contents.Remove(M)
@@ -44,7 +44,7 @@
 				N.show_message(text("<font color='red'><B>[M] bursts out of [src]!</B></font>"), 2)
 	..()
 
-/mob/living/carbon/attack_hand(mob/user, list/params)
+mob/living/carbon/attack_hand(mob/user, list/params)
 	var/mob/living/carbon/M = user
 	if(!istype(M))
 		return ..()
@@ -58,7 +58,7 @@
 			return
 	return ..()
 
-/mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
+mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(src.health >= config_legacy.health_threshold_crit)
 		if(src == M && istype(src, /mob/living/carbon/human))
 
@@ -182,43 +182,43 @@
 
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
-/mob/living/carbon/proc/eyecheck()
+mob/living/carbon/proc/eyecheck()
 	return 0
 
-/mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/tiled/flash)
+mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/tiled/flash)
 	if(eyecheck() < intensity || override_blindness_check)
 		return ..()
 
 // ++++ROCKDTBEN++++ MOB PROCS -- Ask me before touching.
 // Stop! ... Hammertime! ~Carn
 
-/mob/living/carbon/proc/getDNA()
+mob/living/carbon/proc/getDNA()
 	return dna
 
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
+mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
 	dna = newDNA
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
-/mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
 	var/temp_inc = max(min(BODYTEMP_HEATING_MAX*(1-get_heat_protection()), exposed_temperature - bodytemperature), 0)
 	bodytemperature += temp_inc
 
-/mob/living/carbon/can_use_hands()
+mob/living/carbon/can_use_hands()
 	if(handcuffed)
 		return 0
 	if(buckled && ! istype(buckled, /obj/structure/bed/chair)) // buckling does not restrict hands
 		return 0
 	return 1
 
-/mob/living/carbon/restrained()
+mob/living/carbon/restrained()
 	if (handcuffed)
 		return 1
 	return
 
 //generates realistic-ish pulse output based on preset levels
-/mob/living/carbon/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
+mob/living/carbon/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
@@ -239,7 +239,7 @@
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
-/mob/living/carbon/verb/mob_sleep()
+mob/living/carbon/verb/mob_sleep()
 	set name = "Sleep"
 	set category = "IC"
 
@@ -250,15 +250,15 @@
 	if(alert(src, "You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		afflict_sleeping(20 SECONDS)
 
-/mob/living/carbon/Bump(atom/A)
+mob/living/carbon/Bump(atom/A)
 	. = ..()
 	if(istype(A, /mob/living/carbon) && prob(10))
 		spread_disease_to(A, "Contact")
 
-/mob/living/carbon/cannot_use_vents()
+mob/living/carbon/cannot_use_vents()
 	return
 
-/mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+mob/living/carbon/slip(var/slipped_on,stun_duration=8)
 	if(buckled)
 		return 0
 	stop_pulling()
@@ -267,19 +267,19 @@
 	afflict_paralyze(20 * FLOOR(stun_duration/2, 1))
 	return 1
 
-/mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
+mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
 	if(effect in chem_effects)
 		chem_effects[effect] += magnitude
 	else
 		chem_effects[effect] = magnitude
 
-/mob/living/carbon/proc/ceiling_chemical_effect(var/effect, var/magnitude = 1)
+mob/living/carbon/proc/ceiling_chemical_effect(var/effect, var/magnitude = 1)
 	if(effect in chem_effects)
 		chem_effects[effect] = max(magnitude, chem_effects[effect])
 	else
 		chem_effects[effect] = magnitude
 
-/mob/living/carbon/get_default_language()
+mob/living/carbon/get_default_language()
 	if(default_language)
 		if(can_speak(default_language))
 			return default_language
@@ -291,39 +291,39 @@
 
 	return species.default_language ? SScharacters.resolve_language(species.default_language) : null
 
-/mob/living/carbon/proc/should_have_organ(var/organ_check)
+mob/living/carbon/proc/should_have_organ(var/organ_check)
 	return 0
 
-/mob/living/carbon/can_feel_pain(var/check_organ)
+mob/living/carbon/can_feel_pain(var/check_organ)
 	if(isSynthetic())
 		return 0
 	return !(species.species_flags & NO_PAIN)
 
-/mob/living/carbon/needs_to_breathe()
+mob/living/carbon/needs_to_breathe()
 	if(does_not_breathe)
 		return FALSE
 	return ..()
 
-/mob/living/carbon/proc/set_nutrition(amount)
+mob/living/carbon/proc/set_nutrition(amount)
 	nutrition = clamp(amount, 0, initial(nutrition) * 1.5)
 
-/mob/living/carbon/proc/adjust_nutrition(amount)
+mob/living/carbon/proc/adjust_nutrition(amount)
 	set_nutrition(nutrition + amount)
 
-/mob/living/carbon/proc/set_hydration(amount)
+mob/living/carbon/proc/set_hydration(amount)
 	hydration = clamp(amount, 0, initial(hydration)  * 1.5) //We can overeat but not to ludicrous amounts, otherwise we'd never be normal again
 
-/mob/living/carbon/proc/adjust_hydration(amount)
+mob/living/carbon/proc/adjust_hydration(amount)
 	set_hydration(hydration + amount)
 
-/mob/living/carbon/proc/update_handcuffed()
+mob/living/carbon/proc/update_handcuffed()
 	if(handcuffed)
 		drop_all_held_items()
 		stop_pulling()
 	update_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
 	update_inv_handcuffed()
 
-/mob/living/carbon/check_obscured_slots()
+mob/living/carbon/check_obscured_slots()
 	// if(slot)
 	// 	if(head.inv_hide_flags & HIDEMASK)
 	// 		LAZYDISTINCTADD(., SLOT_MASK)

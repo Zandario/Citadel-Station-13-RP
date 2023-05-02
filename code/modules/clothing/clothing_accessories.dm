@@ -1,21 +1,21 @@
-/obj/item/clothing/_inv_return_attached()
+obj/item/clothing/_inv_return_attached()
 	if(!accessories)
 		return ..()
 	. = ..()
 	return islist(.)? (. + accessories) : (list(.) + accessories)
 
-/obj/item/clothing/proc/is_accessory()
+obj/item/clothing/proc/is_accessory()
 	return is_accessory
 
-/obj/item/clothing/worn_mob()
+obj/item/clothing/worn_mob()
 	return isnull(accessory_host)? ..() : accessory_host.worn_mob()
 
-/obj/item/clothing/update_worn_icon()
+obj/item/clothing/update_worn_icon()
 	if(accessory_host)
 		return accessory_host.update_worn_icon()
 	return ..()
 
-/obj/item/clothing/equipped(mob/user, slot, flags)
+obj/item/clothing/equipped(mob/user, slot, flags)
 	. = ..()
 	// propagate through accessories
 	// DO NOT ALLOW NESTED ACCESSORIES
@@ -23,7 +23,7 @@
 		for(var/obj/item/I as anything in accessories)
 			I.equipped(user, slot, flags | INV_OP_IS_ACCESSORY)
 
-/obj/item/clothing/unequipped(mob/user, slot, flags)
+obj/item/clothing/unequipped(mob/user, slot, flags)
 	. = ..()
 	// propagate through accessories
 	// DO NOT ALLOW NESTED ACCESSORIES
@@ -31,7 +31,7 @@
 		for(var/obj/item/I as anything in accessories)
 			I.unequipped(user, slot, flags | INV_OP_IS_ACCESSORY)
 
-/obj/item/clothing/pickup(mob/user, flags, atom/oldLoc)
+obj/item/clothing/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	// propagate through accessories
 	// DO NOT ALLOW NESTED ACCESSORIES
@@ -39,7 +39,7 @@
 		for(var/obj/item/I as anything in accessories)
 			I.pickup(user, flags | INV_OP_IS_ACCESSORY, oldLoc)
 
-/obj/item/clothing/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	// propagate through accessories
 	// DO NOT ALLOW NESTED ACCESSORIES
@@ -47,7 +47,7 @@
 		for(var/obj/item/I as anything in accessories)
 			I.dropped(user, flags | INV_OP_IS_ACCESSORY, newLoc)
 
-/obj/item/clothing/render_additional(mob/M, icon/icon_used, state_used, layer_used, dim_x, dim_y, align_y, bodytype, inhands, datum/inventory_slot_meta/slot_meta)
+obj/item/clothing/render_additional(mob/M, icon/icon_used, state_used, layer_used, dim_x, dim_y, align_y, bodytype, inhands, datum/inventory_slot_meta/slot_meta)
 	. = ..()
 	var/list/accessory_overlays = render_worn_accessories(M, inhands, slot_meta, layer_used, bodytype)
 	if(!isnull(accessory_overlays))
@@ -62,7 +62,7 @@
  * * slot_meta - slot
  * * bodytype - bodytype
  */
-/obj/item/clothing/proc/render_worn_accessories(mob/M, inhands, datum/inventory_slot_meta/slot_meta, layer_used, bodytype)
+obj/item/clothing/proc/render_worn_accessories(mob/M, inhands, datum/inventory_slot_meta/slot_meta, layer_used, bodytype)
 	RETURN_TYPE(/list)
 	if(!length(accessories))
 		return
@@ -80,7 +80,7 @@
 /**
  * renders the overlay we apply to an item we're an accessory of.
  */
-/obj/item/clothing/proc/render_accessory_inv()
+obj/item/clothing/proc/render_accessory_inv()
 	if(accessory_render_legacy)
 		var/old
 		if(istype(src, /obj/item/clothing/accessory))
@@ -94,7 +94,7 @@
 /**
  * Renders mob appearance for us as an accessory. Returns an image, or list of images.
  */
-/obj/item/clothing/proc/render_accessory_worn(mob/M, inhands, datum/inventory_slot_meta/slot_meta, layer_used, bodytype)
+obj/item/clothing/proc/render_accessory_worn(mob/M, inhands, datum/inventory_slot_meta/slot_meta, layer_used, bodytype)
 	if(accessory_render_legacy)
 		var/mutable_appearance/old
 		if(istype(src, /obj/item/clothing/accessory))
@@ -123,7 +123,7 @@
 
 	return rendered
 
-/obj/item/clothing/proc/can_attach_accessory(obj/item/clothing/accessory/A)
+obj/item/clothing/proc/can_attach_accessory(obj/item/clothing/accessory/A)
 	//Just no, okay
 	if(!A.slot)
 		return FALSE
@@ -147,7 +147,7 @@
 
 	return TRUE
 
-/obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
+obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
 		var/obj/item/clothing/accessory/A = I
 		if(attempt_attach_accessory(A, user))
@@ -160,7 +160,7 @@
 
 	..()
 
-/obj/item/clothing/attack_hand(mob/user, list/params)
+obj/item/clothing/attack_hand(mob/user, list/params)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(LAZYLEN(accessories) && src.loc == user)
 		for(var/obj/item/clothing/accessory/A in accessories)
@@ -172,7 +172,7 @@
 			return
 	return ..()
 
-/obj/item/clothing/examine(var/mob/user)
+obj/item/clothing/examine(var/mob/user)
 	. = ..()
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/accessory/A in accessories)
@@ -184,7 +184,7 @@
  *  user is the user doing the attaching. Can be null, such as when attaching
  *  items on spawn
  */
-/obj/item/clothing/proc/attempt_attach_accessory(obj/item/clothing/accessory/A, mob/user)
+obj/item/clothing/proc/attempt_attach_accessory(obj/item/clothing/accessory/A, mob/user)
 	if(!valid_accessory_slots)
 		if(user)
 			to_chat(user, "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>")
@@ -206,14 +206,14 @@
 			to_chat(user, "<span class='warning'>You cannot attach more accessories of this type to [src].</span>")
 		return FALSE
 
-/obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
+obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
 	LAZYADD(accessories,A)
 	A.on_attached(src, user)
 	add_obj_verb(src, /obj/item/clothing/proc/removetie_verb)
 	update_accessory_slowdown()
 	update_worn_icon()
 
-/obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
+obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
 	if(!LAZYLEN(accessories) || !(A in accessories))
 		return
 
@@ -222,12 +222,12 @@
 	update_accessory_slowdown()
 	update_worn_icon()
 
-/obj/item/clothing/proc/update_accessory_slowdown()
+obj/item/clothing/proc/update_accessory_slowdown()
 	slowdown = initial(slowdown)
 	for(var/obj/item/clothing/accessory/A in accessories)
 		slowdown += A.slowdown
 
-/obj/item/clothing/proc/removetie_verb()
+obj/item/clothing/proc/removetie_verb()
 	set name = "Remove Accessory"
 	set category = "Object"
 	set src in usr
@@ -250,13 +250,13 @@
 		remove_verb(src, /obj/item/clothing/proc/removetie_verb)
 		accessories = null
 
-/obj/item/clothing/emp_act(severity)
+obj/item/clothing/emp_act(severity)
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/accessory/A in accessories)
 			A.emp_act(severity)
 	..()
 
-/obj/item/clothing/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/clothing/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	. = ..()
 	if((. == 0) && LAZYLEN(accessories))
 		for(var/obj/item/I in accessories)
@@ -266,13 +266,13 @@
 				. = check
 				break
 
-/obj/item/clothing/strip_menu_options(mob/user)
+obj/item/clothing/strip_menu_options(mob/user)
 	. = ..()
 	if(!length(accessories))
 		return
 	.["accessory"] = "Remove Accessory"
 
-/obj/item/clothing/strip_menu_act(mob/user, action)
+obj/item/clothing/strip_menu_act(mob/user, action)
 	. = ..()
 	if(.)
 		return

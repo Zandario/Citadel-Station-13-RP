@@ -1,4 +1,4 @@
-/datum/unit_test/access_datums/Run()
+datum/unit_test/access_datums/Run()
 	var/list/lookup_ids = list()
 	for(var/path in subtypesof(/datum/access))
 		var/datum/access/A = path

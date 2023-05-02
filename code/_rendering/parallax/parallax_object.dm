@@ -1,5 +1,5 @@
 
-/atom/movable/screen/parallax_layer
+atom/movable/screen/parallax_layer
 	icon = 'icons/screen/parallax/parallax.dmi'
 	blend_mode = BLEND_ADD
 	plane = PARALLAX_PLANE
@@ -31,7 +31,7 @@
 	/// queued animation timerid
 	var/queued_animation
 
-/atom/movable/screen/parallax_layer/proc/ResetPosition(x, y)
+atom/movable/screen/parallax_layer/proc/ResetPosition(x, y)
 	// remember that our offsets/directiosn are relative to the player's viewport
 	// this means we need to scroll reverse to them.
 	offset_x = -(center_x + speed * x)
@@ -47,7 +47,7 @@
 			offset_y += 480
 	screen_loc = "[map_id && "[map_id]:"]CENTER-7:[round(offset_x,1)],CENTER-7:[round(offset_y,1)]"
 
-/atom/movable/screen/parallax_layer/proc/RelativePosition(x, y, rel_x, rel_y)
+atom/movable/screen/parallax_layer/proc/RelativePosition(x, y, rel_x, rel_y)
 	if(absolute)
 		return ResetPosition(x, y)
 	offset_x -= rel_x * speed
@@ -62,7 +62,7 @@
 		offset_y += 480
 	screen_loc = "[map_id && "[map_id]:"]CENTER-7:[round(offset_x,1)],CENTER-7:[round(offset_y,1)]"
 
-/atom/movable/screen/parallax_layer/proc/SetView(client_view = world.view, force_update = FALSE)
+atom/movable/screen/parallax_layer/proc/SetView(client_view = world.view, force_update = FALSE)
 	if(view_current == client_view && !force_update)
 		return
 	view_current = client_view
@@ -95,16 +95,16 @@
 			new_overlays += clone
 	overlays = new_overlays
 
-/atom/movable/screen/parallax_layer/proc/ShouldSee(client/C, atom/location)
+atom/movable/screen/parallax_layer/proc/ShouldSee(client/C, atom/location)
 	return TRUE
 
 /**
  * Return "natural" overlays, as we're goin to do some fuckery to overlays above.
  */
-/atom/movable/screen/parallax_layer/proc/GetOverlays()
+atom/movable/screen/parallax_layer/proc/GetOverlays()
 	return list()
 
-/atom/movable/screen/parallax_layer/proc/Clone()
+atom/movable/screen/parallax_layer/proc/Clone()
 	var/atom/movable/screen/parallax_layer/layer = new type
 	layer.speed = speed
 	layer.offset_x = offset_x
@@ -114,24 +114,24 @@
 	layer.view_current = view_current
 	layer.appearance = appearance
 
-/atom/movable/screen/parallax_layer/proc/default_x()
+atom/movable/screen/parallax_layer/proc/default_x()
 	return center_x
 
-/atom/movable/screen/parallax_layer/proc/default_y()
+atom/movable/screen/parallax_layer/proc/default_y()
 	return center_y
 
-/atom/movable/screen/parallax_layer/proc/QueueLoop(delay, speed, matrix/translate_matrix, matrix/target_matrix)
+atom/movable/screen/parallax_layer/proc/QueueLoop(delay, speed, matrix/translate_matrix, matrix/target_matrix)
 	if(queued_animation)
 		CancelAnimation()
 	queued_animation = addtimer(CALLBACK(src, .proc/_loop, speed, translate_matrix, target_matrix), delay, TIMER_STOPPABLE)
 
-/atom/movable/screen/parallax_layer/proc/_loop(speed, matrix/translate_matrix = matrix(1, 0, 0, 0, 1, 480), matrix/target_matrix = matrix())
+atom/movable/screen/parallax_layer/proc/_loop(speed, matrix/translate_matrix = matrix(1, 0, 0, 0, 1, 480), matrix/target_matrix = matrix())
 	transform = translate_matrix
 	animate(src, transform = target_matrix, time = speed, loop = -1)
 	animate(transform = translate_matrix, time = 0)
 	queued_animation = null
 
-/atom/movable/screen/parallax_layer/proc/CancelAnimation()
+atom/movable/screen/parallax_layer/proc/CancelAnimation()
 	if(queued_animation)
 		deltimer(queued_animation)
 		queued_animation = null

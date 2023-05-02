@@ -1,4 +1,4 @@
-/obj/structure/portal_subtle
+obj/structure/portal_subtle
 	name = "portal"
 	desc = "Looks unstable. Best to test it with the clown."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -9,25 +9,25 @@
 	anchored = 1
 	var/obj/structure/portal_subtle/target
 
-/obj/structure/portal_subtle/Destroy()
+obj/structure/portal_subtle/Destroy()
 	if(target)
 		target.target = null
 		target = null
 	return ..()
 
-/obj/structure/portal_subtle/Bumped(atom/movable/AM)
+obj/structure/portal_subtle/Bumped(atom/movable/AM)
 	. = ..()
 	if(istype(AM, /mob) && !istype(AM, /mob/living))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(AM)
 
-/obj/structure/portal_subtle/Crossed(atom/movable/AM)
+obj/structure/portal_subtle/Crossed(atom/movable/AM)
 	. = ..()
 	if(istype(AM,/mob) && !(istype(AM,/mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(AM)
 
-/obj/structure/portal_subtle/attack_hand(mob/user, list/params)
+obj/structure/portal_subtle/attack_hand(mob/user, list/params)
 	if(istype(user) && !(istype(user,/mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
@@ -35,7 +35,7 @@
 		return
 	return
 
-/obj/structure/portal_subtle/proc/teleport(atom/movable/M as mob|obj)
+obj/structure/portal_subtle/proc/teleport(atom/movable/M as mob|obj)
 	if(istype(M, /obj/effect)) //sparks don't teleport
 		return
 	if (M.anchored&&istype(M, /obj/mecha))
@@ -55,7 +55,7 @@
 		else
 			do_noeffect_teleport(M, target, 0) ///You will appear on the beacon
 
-/obj/structure/portal_gateway
+obj/structure/portal_gateway
 	name = "portal"
 	desc = "Looks unstable. Best to test it with the clown."
 	icon = 'icons/obj/stationobjs_vr.dmi'
@@ -64,7 +64,7 @@
 	unacidable = 1//Can't destroy energy portals.
 	anchored = 1
 
-/obj/structure/portal_gateway/Bumped(mob/M as mob|obj)
+obj/structure/portal_gateway/Bumped(mob/M as mob|obj)
 	if(istype(M,/mob) && !(istype(M,/mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	var/obj/landmark/dest = pick(eventdestinations)

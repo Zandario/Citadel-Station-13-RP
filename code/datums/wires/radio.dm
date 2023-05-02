@@ -1,19 +1,19 @@
-/datum/wires/radio
+datum/wires/radio
 	wire_count = 3
 	holder_type = /obj/item/radio
 	proper_name = "Radio"
 
-/datum/wires/radio/New(atom/_holder)
+datum/wires/radio/New(atom/_holder)
 	wires = list(WIRE_RADIO_SIGNAL, WIRE_RADIO_RECEIVER, WIRE_RADIO_TRANSMIT)
 	return ..()
 
-/datum/wires/radio/interactable(mob/user)
+datum/wires/radio/interactable(mob/user)
 	var/obj/item/radio/R = holder
 	if(R.b_stat)
 		return TRUE
 	return FALSE
 
-/datum/wires/radio/on_pulse(wire)
+datum/wires/radio/on_pulse(wire)
 	var/obj/item/radio/R = holder
 	switch(wire)
 		if(WIRE_RADIO_SIGNAL)
@@ -27,7 +27,7 @@
 			R.broadcasting = !R.broadcasting && !is_cut(WIRE_RADIO_SIGNAL)
 	..()
 
-/datum/wires/radio/on_cut(wire, mend)
+datum/wires/radio/on_cut(wire, mend)
 	var/obj/item/radio/R = holder
 	switch(wire)
 		if(WIRE_RADIO_SIGNAL)

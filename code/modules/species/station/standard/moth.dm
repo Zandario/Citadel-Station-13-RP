@@ -1,10 +1,10 @@
 // TODO: unified, json-driven lore system :drooling:
 GLOBAL_LIST_INIT(moth_lore_data, init_moth_lore())
 
-/proc/init_moth_lore()
+proc/init_moth_lore()
 	return json_decode(file2text('strings/misc/moth_species.json'))
 
-/datum/species/moth
+datum/species/moth
 	name = SPECIES_MOTH
 	uid = SPECIES_ID_MOTH
 	id = SPECIES_ID_MOTH
@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(moth_lore_data, init_moth_lore())
 	wikilink="https://citadel-station.net/wikiRP/index.php?title=Race:_Dnin-Nepids"
 
 // todo: cataloguer rework when
-/datum/category_item/catalogue/fauna/mothpeople
+datum/category_item/catalogue/fauna/mothpeople
 	name = "Sapients - Dnin-Nepids"
 	desc = {"
 		The Dnin-Nepids are a nomadic species hailing from the southern side of the Milky Way. A relatively new contender
@@ -153,7 +153,7 @@ GLOBAL_LIST_INIT(moth_lore_data, init_moth_lore())
 	"}
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/species/moth/dark
+datum/species/moth/dark
 	name = SPECIES_MOTH_DARK
 	uid = SPECIES_ID_MOTH_DARK
 	species_spawn_flags = SPECIES_SPAWN_CHARACTER
@@ -163,7 +163,7 @@ GLOBAL_LIST_INIT(moth_lore_data, init_moth_lore())
 	flash_burn = 5
 	flash_mod = 1.2
 
-/datum/species/moth/light
+datum/species/moth/light
 	name = SPECIES_MOTH_LIGHT
 	uid = SPECIES_ID_MOTH_LIGHT
 	species_spawn_flags = SPECIES_SPAWN_CHARACTER

@@ -2,7 +2,7 @@
 // Champagne bottle for creating new landable ship shuttles in game from scratch.
 // Note: It depends on the area being sane.  In theory players could use this to make pretty much any room a shuttle.
 //
-/obj/item/champagne
+obj/item/champagne
 	name = "bottle of champagne"
 	desc = "Made from grapes grown in the champagne asteroid belt, the bubbly liquid inside is softly glowing.  Suitable for christening boats, not so much for drinking."
 	description_info = "This lets you create a new overmap shuttle from scratch. \
@@ -15,7 +15,7 @@
 	var/max_name_len = 32		// Refuse if shuttle tag is longer than this.
 	var/max_area_turfs = 140	// Refuse if area has more than this many turfs.
 
-/obj/item/champagne/afterattack(var/atom/A, mob/user as mob, proximity)
+obj/item/champagne/afterattack(var/atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	var/obj/machinery/computer/shuttle_control/comp = A
@@ -65,7 +65,7 @@
 
 	return TRUE
 
-/obj/item/champagne/proc/create_landable_shuttle(var/shuttle_name, var/turf/start_loc, var/area/shuttle_area)
+obj/item/champagne/proc/create_landable_shuttle(var/shuttle_name, var/turf/start_loc, var/area/shuttle_area)
 	// First things first, create the starting location landmark.
 	// WARNING - We can't figure out a good base_area or base_turf from inspecttion, as the shuttle is already built!
 	// For now its going to just do world.area and z level base turf. Beware!
@@ -95,10 +95,10 @@
 //
 // Shuttle landmark dynamically generated at runtime by champagne bottle.
 //
-/obj/effect/shuttle_landmark/automatic/champagne
+obj/effect/shuttle_landmark/automatic/champagne
 	shuttle_landmark_flags = SLANDMARK_FLAG_ZERO_G // Don't auto-set
 
-/obj/effect/shuttle_landmark/automatic/champagne/Initialize(mapload, base_area, base_turf)
+obj/effect/shuttle_landmark/automatic/champagne/Initialize(mapload, base_area, base_turf)
 	src.base_turf = base_turf
 	src.base_area = base_area
 	. = ..()
@@ -106,10 +106,10 @@
 //
 // Landable ship dynamically created at runtime by champagne bottle.
 //
-/obj/effect/overmap/visitable/ship/landable/champagne
+obj/effect/overmap/visitable/ship/landable/champagne
 	desc = "Newly minted space faring vessel."
 
-/obj/effect/overmap/visitable/ship/landable/champagne/Initialize(mapload, _name, _shuttle)
+obj/effect/overmap/visitable/ship/landable/champagne/Initialize(mapload, _name, _shuttle)
 	src.name = _name
 	src.shuttle = _shuttle
 	. = ..()

@@ -1,4 +1,4 @@
-/obj/item/circuitboard/machine/chemical_dispenser
+obj/item/circuitboard/machine/chemical_dispenser
 	name = T_BOARD("chemical dispenser")
 	build_path = /obj/machinery/chemical_dispenser
 	req_components = list(
@@ -11,7 +11,7 @@
 #define MAX_MACROS 20
 #define MAX_MACRO_STEPS 50
 
-/obj/machinery/chemical_dispenser
+obj/machinery/chemical_dispenser
 	name = "chemical dispenser"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "dispenser"
@@ -56,7 +56,7 @@
 	//  todo: macros utilizing cartridges
 	var/list/macros
 
-/obj/machinery/chemical_dispenser/Initialize(mapload)
+obj/machinery/chemical_dispenser/Initialize(mapload)
 	. = ..()
 	// default_apply_parts runs in ..()
 	component_parts -= cell
@@ -75,7 +75,7 @@
 			created += new path(src)
 		synthesizers = created
 
-/obj/machinery/chemical_dispenser/Destroy()
+obj/machinery/chemical_dispenser/Destroy()
 	QDEL_LIST_NULL(cartridges)
 	QDEL_LIST_NULL(synthesizers)
 	if(inserted)
@@ -86,7 +86,7 @@
 		component_parts -= cell
 	return ..()
 
-/obj/machinery/chemical_dispenser/RefreshParts()
+obj/machinery/chemical_dispenser/RefreshParts()
 	var/total_capacitor_rating = 0
 	var/total_capacitors = 0
 	for(var/obj/item/stock_parts/capacitor/cap in component_parts)
@@ -102,11 +102,11 @@
 	var/obj/item/cell/comp_cell = locate() in component_parts
 	cell = comp_cell
 
-/obj/machinery/chemical_dispenser/examine(mob/user)
+obj/machinery/chemical_dispenser/examine(mob/user)
 	. = ..()
 	. += "It has [length(cartridges)] cartridges installed, and has space for [cartridges_max - length(cartridges)] more."
 
-/obj/machinery/chemical_dispenser/process(delta_time)
+obj/machinery/chemical_dispenser/process(delta_time)
 	// todo: rework power handling
 	if(machine_stat & NOPOWER)
 		return
@@ -123,22 +123,22 @@
 	SStgui.update_uis(src)
 
 // todo: refactor ai
-/obj/machinery/chemical_dispenser/attack_ai(mob/user)
+obj/machinery/chemical_dispenser/attack_ai(mob/user)
 	ui_interact(user)
 	return TRUE
 
 // todo: refactor robot
-/obj/machinery/chemical_dispenser/attack_robot(mob/user)
+obj/machinery/chemical_dispenser/attack_robot(mob/user)
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/chemical_dispenser/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/machinery/chemical_dispenser/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemDispenser", name)
 		ui.open()
 
-/obj/machinery/chemical_dispenser/proc/ui_cartridge_data()
+obj/machinery/chemical_dispenser/proc/ui_cartridge_data()
 	var/list/carts_built = list()
 	for(var/obj/item/reagent_containers/cartridge/dispenser/cart as anything in cartridges)
 		carts_built[++carts_built.len] = list(
@@ -147,14 +147,14 @@
 		)
 	return carts_built
 
-/obj/machinery/chemical_dispenser/proc/ui_macro_data()
+obj/machinery/chemical_dispenser/proc/ui_macro_data()
 	var/list/macros_built = list()
 	var/index = 0
 	for(var/list/L as anything in macros)
 		macros_built[++macros_built.len] = L | list("index" = ++index)
 	return macros_built
 
-/obj/machinery/chemical_dispenser/ui_static_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/chemical_dispenser/ui_static_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	.["cartridges"] = ui_cartridge_data()
 	var/list/chems_built = list()
@@ -179,7 +179,7 @@
 	.["macros_full"] = length(macros) >= MAX_MACROS
 	.["macros_max_steps"] = MAX_MACRO_STEPS
 
-/obj/machinery/chemical_dispenser/ui_data(mob/user)
+obj/machinery/chemical_dispenser/ui_data(mob/user)
 	. = ..()
 	.["amount"] = dispense_amount
 	.["amount_max"] = dispense_amount_max
@@ -197,7 +197,7 @@
 	.["recharging"] = charging
 	.["recharge_rate"] = recharge_rate
 
-/obj/machinery/chemical_dispenser/ui_act(action, params)
+obj/machinery/chemical_dispenser/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -363,7 +363,7 @@
 			update_static_data()
 			return TRUE
 
-/obj/machinery/chemical_dispenser/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
+obj/machinery/chemical_dispenser/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
 	if(panel_open)
 		if(istype(I, /obj/item/reagent_containers/cartridge/dispenser))
 			var/obj/item/reagent_containers/cartridge/dispenser/cart = I
@@ -437,19 +437,19 @@
 
 	return ..()
 
-/obj/machinery/chemical_dispenser/proc/check_reagent_id(id)
+obj/machinery/chemical_dispenser/proc/check_reagent_id(id)
 	for(var/obj/item/reagent_synth/synth as anything in synthesizers)
 		if(id in synth.reagents_provided)
 			return TRUE
 	return FALSE
 
-/obj/machinery/chemical_dispenser/proc/remove_cartridge(obj/item/reagent_containers/cartridge/dispenser/cart, atom/where = drop_location())
+obj/machinery/chemical_dispenser/proc/remove_cartridge(obj/item/reagent_containers/cartridge/dispenser/cart, atom/where = drop_location())
 	ASSERT(cart in cartridges)
 	LAZYREMOVE(cartridges, cart)
 	cart.forceMove(where)
 	update_static_data()
 
-/obj/machinery/chemical_dispenser/proc/insert_cartridge(obj/item/reagent_containers/cartridge/dispenser/cart)
+obj/machinery/chemical_dispenser/proc/insert_cartridge(obj/item/reagent_containers/cartridge/dispenser/cart)
 	. = FALSE
 	ASSERT(cart.label)
 	for(var/obj/item/reagent_containers/cartridge/dispenser/other as anything in cartridges)
@@ -460,7 +460,7 @@
 	update_static_data()
 	return TRUE
 
-/obj/machinery/chemical_dispenser/crowbar_act(obj/item/I, mob/user, flags, hint)
+obj/machinery/chemical_dispenser/crowbar_act(obj/item/I, mob/user, flags, hint)
 	if(!allow_deconstruct || !panel_open)
 		return ..()
 	if(default_deconstruction_crowbar(user, I))
@@ -468,7 +468,7 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/chemical_dispenser/screwdriver_act(obj/item/I, mob/user, flags, hint)
+obj/machinery/chemical_dispenser/screwdriver_act(obj/item/I, mob/user, flags, hint)
 	if(!allow_deconstruct)
 		return ..()
 	if(default_deconstruction_screwdriver(user, I))
@@ -476,7 +476,7 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/chemical_dispenser/wrench_act(obj/item/I, mob/user, flags, hint)
+obj/machinery/chemical_dispenser/wrench_act(obj/item/I, mob/user, flags, hint)
 	if(!allow_unanchor)
 		return ..()
 	if(default_unfasten_wrench(user, I, 4 SECONDS))
@@ -484,7 +484,7 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/chemical_dispenser/dynamic_tool_functions(obj/item/I, mob/user)
+obj/machinery/chemical_dispenser/dynamic_tool_functions(obj/item/I, mob/user)
 	. = list()
 	if(allow_unanchor)
 		.[TOOL_WRENCH] = anchored? "anchor" : "unanchor"
@@ -493,7 +493,7 @@
 		if(panel_open)
 			.[TOOL_CROWBAR] = "deconstruct"
 
-/obj/machinery/chemical_dispenser/dynamic_tool_image(function, hint)
+obj/machinery/chemical_dispenser/dynamic_tool_image(function, hint)
 	switch(function)
 		if(TOOL_WRENCH)
 			return anchored? dyntool_image_backward(TOOL_WRENCH) : dyntool_image_forward(TOOL_WRENCH)
@@ -501,7 +501,7 @@
 			return panel_open? dyntool_image_forward(TOOL_SCREWDRIVER) : dyntool_image_backward(TOOL_SCREWDRIVER)
 	return ..()
 
-/obj/machinery/chemical_dispenser/drop_products(method)
+obj/machinery/chemical_dispenser/drop_products(method)
 	. = ..()
 	if(synthesizers && !synthesizers_swappable)
 		QDEL_LIST(synthesizers) // nope
@@ -517,7 +517,7 @@
 			drop_product(method, cell)
 		cell = null
 
-/obj/machinery/chemical_dispenser/unanchored
+obj/machinery/chemical_dispenser/unanchored
 	anchored = FALSE
 
 #undef MAX_MACROS

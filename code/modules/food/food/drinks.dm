@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //custom_open_sound is for a sound path to use instead of the default opening
 //example: custom_open_sound = 'sound/soundbytes/effects/explosion/explosion1.ogg'
-/obj/item/reagent_containers/food/drinks
+obj/item/reagent_containers/food/drinks
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
@@ -16,7 +16,7 @@
 	volume = 50
 	var/custom_open_sound
 
-/obj/item/reagent_containers/food/drinks/on_reagent_change()
+obj/item/reagent_containers/food/drinks/on_reagent_change()
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
 		if(R.price_tag)
@@ -25,14 +25,14 @@
 			price_tag = null
 	return
 
-/obj/item/reagent_containers/food/drinks/attack_self(mob/user)
+obj/item/reagent_containers/food/drinks/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	if(!is_open_container())
 		open(user)
 
-/obj/item/reagent_containers/food/drinks/proc/open(mob/user)
+obj/item/reagent_containers/food/drinks/proc/open(mob/user)
 	if(custom_open_sound)
 		playsound(loc,custom_open_sound, rand(10,50), 1)
 	else
@@ -40,13 +40,13 @@
 	to_chat(user, "<span class='notice'>You open [src] with an audible pop!</span>")
 	atom_flags |= OPENCONTAINER
 
-/obj/item/reagent_containers/food/drinks/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/reagent_containers/food/drinks/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
 	standard_feed_mob(user, target)
 
-/obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
+obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(standard_dispenser_refill(user, target))
@@ -55,19 +55,19 @@
 		return
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
+obj/item/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
 	if(!is_open_container())
 		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
+obj/item/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
 	if(!is_open_container())
 		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
+obj/item/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
 	if(!is_open_container())
 		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
@@ -75,13 +75,13 @@
 		return 1
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
+obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
 	to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
-/obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
+obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/reagent_containers/food/drinks/examine(mob/user)
+obj/item/reagent_containers/food/drinks/examine(mob/user)
 	. = ..()
 	if(!reagents || reagents.total_volume == 0)
 		. += "<span class='notice'>\The [src] is empty!</span>"
@@ -99,7 +99,7 @@
 /// Drinks. END
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/reagent_containers/food/drinks/golden_cup
+obj/item/reagent_containers/food/drinks/golden_cup
 	desc = "A golden cup"
 	name = "golden cup"
 	icon_state = "golden_cup"
@@ -112,7 +112,7 @@
 	volume = 150
 	atom_flags = OPENCONTAINER
 
-/obj/item/reagent_containers/food/drinks/golden_cup/on_reagent_change()
+obj/item/reagent_containers/food/drinks/golden_cup/on_reagent_change()
 	..()
 
 ///////////////////////////////////////////////Drinks
@@ -120,7 +120,7 @@
 //	rather then having to add it to something else first. They should only contain liquids. They have a default container size of 50.
 //	Formatting is the same as food.
 
-/obj/item/reagent_containers/food/drinks/milk
+obj/item/reagent_containers/food/drinks/milk
 	name = "milk carton"
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
@@ -130,11 +130,11 @@
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 
-/obj/item/reagent_containers/food/drinks/milk/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/milk/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("milk", 50)
 
-/obj/item/reagent_containers/food/drinks/soymilk
+obj/item/reagent_containers/food/drinks/soymilk
 	name = "soymilk carton"
 	desc = "It's soy milk. White and nutritious goodness!"
 	icon_state = "soymilk"
@@ -143,11 +143,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/reagent_containers/food/drinks/soymilk/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/soymilk/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("soymilk", 50)
 
-/obj/item/reagent_containers/food/drinks/smallmilk
+obj/item/reagent_containers/food/drinks/smallmilk
 	name = "small milk carton"
 	desc = "It's milk. White and nutritious goodness!"
 	volume = 30
@@ -156,11 +156,11 @@
 	center_of_mass = list("x"=16, "y"=9)
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
-/obj/item/reagent_containers/food/drinks/smallmilk/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/smallmilk/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("milk", 30)
 
-/obj/item/reagent_containers/food/drinks/smallchocmilk
+obj/item/reagent_containers/food/drinks/smallchocmilk
 	name = "small chocolate milk carton"
 	desc = "It's milk! This one is in delicious chocolate flavour."
 	volume = 30
@@ -169,22 +169,22 @@
 	center_of_mass = list("x"=16, "y"=9)
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
-/obj/item/reagent_containers/food/drinks/smallchocmilk/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/smallchocmilk/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("chocolate_milk", 30)
 
-/obj/item/reagent_containers/food/drinks/coffee
+obj/item/reagent_containers/food/drinks/coffee
 	name = "\improper Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
-/obj/item/reagent_containers/food/drinks/coffee/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/coffee/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("coffee", 30)
 
-/obj/item/reagent_containers/food/drinks/tea
+obj/item/reagent_containers/food/drinks/tea
 	name = "cup of Duke Purple Tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	icon_state = "teacup"
@@ -193,41 +193,41 @@
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
-/obj/item/reagent_containers/food/drinks/tea/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/tea/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("tea", 30)
 
-/obj/item/reagent_containers/food/drinks/ice
+obj/item/reagent_containers/food/drinks/ice
 	name = "cup of ice"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-/obj/item/reagent_containers/food/drinks/ice/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/ice/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("ice", 30)
 
-/obj/item/reagent_containers/food/drinks/h_chocolate
+obj/item/reagent_containers/food/drinks/h_chocolate
 	name = "cup of Dutch hot coco"
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
 
-/obj/item/reagent_containers/food/drinks/h_chocolate/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/h_chocolate/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("hot_coco", 30)
 
-/obj/item/reagent_containers/food/drinks/dry_ramen
+obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 	center_of_mass = list("x"=16, "y"=11)
 
-/obj/item/reagent_containers/food/drinks/dry_ramen/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/dry_ramen/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("dry_ramen", 30)
 
-/obj/item/reagent_containers/food/drinks/bludboxmax
+obj/item/reagent_containers/food/drinks/bludboxmax
 	name = "Bludbox MAX carton"
 	desc = "A vampire's best friend! This Bludbox contains only the most delicious of organic, free-range O-Negatives. For all your dietry needs!"
 	volume = 30
@@ -236,11 +236,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/reagent_containers/food/drinks/bludboxmax/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/bludboxmax/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("blood", 30)
 
-/obj/item/reagent_containers/food/drinks/bludboxmaxlight
+obj/item/reagent_containers/food/drinks/bludboxmaxlight
 	name = "Bludbox MAX Light carton"
 	desc = "A bloodsucking vegan's hipster alternative to drinking the red stuff. Bludbox light is just the same as drinking straight from the source! Comes in O- flavour."
 	volume = 30
@@ -249,11 +249,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/reagent_containers/food/drinks/bludboxmaxlight/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/bludboxmaxlight/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("synthblood", 30)
 
-/obj/item/reagent_containers/food/drinks/bludbox
+obj/item/reagent_containers/food/drinks/bludbox
 	name = "Bludbox carton"
 	desc = "The pop alternative to drinking real, human blood! Comes in blood flavour and contains all the dietry requirements for your undead friends."
 	volume = 30
@@ -262,11 +262,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/reagent_containers/food/drinks/bludbox/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/bludbox/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("blud", 30)
 
-/obj/item/reagent_containers/food/drinks/bludboxlight
+obj/item/reagent_containers/food/drinks/bludboxlight
 	name = "Bludbox Light carton"
 	desc = "The pop alternative to drinking real, human blood! Comes in blood flavour and contains all the dietry requirements for your undead friends. This one has less sweeteners, gross!"
 	volume = 30
@@ -275,11 +275,11 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/reagent_containers/food/drinks/bludboxlight/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/bludboxlight/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("bludlight", 30)
 
-/obj/item/reagent_containers/food/drinks/sillycup
+obj/item/reagent_containers/food/drinks/sillycup
 	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
@@ -287,14 +287,14 @@
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
 
-/obj/item/reagent_containers/food/drinks/sillycup/on_reagent_change()
+obj/item/reagent_containers/food/drinks/sillycup/on_reagent_change()
 	..()
 	if(reagents.total_volume)
 		icon_state = "water_cup"
 	else
 		icon_state = "water_cup_e"
 
-/obj/item/reagent_containers/food/drinks/sillycup/OnMouseDropLegacy(obj/over_object as obj)
+obj/item/reagent_containers/food/drinks/sillycup/OnMouseDropLegacy(obj/over_object as obj)
 	if(!reagents.total_volume && istype(over_object, /obj/structure/reagent_dispensers/water_cooler))
 		if(over_object.Adjacent(usr))
 			var/obj/structure/reagent_dispensers/water_cooler/W = over_object
@@ -311,7 +311,7 @@
 //	itself), in Chemistry-Recipes.dm (for the reaction that changes the components into the drink), and here (for the drinking glass
 //	icon states.
 
-/obj/item/reagent_containers/food/drinks/shaker
+obj/item/reagent_containers/food/drinks/shaker
 	name = "shaker"
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
@@ -319,10 +319,10 @@
 	volume = 120
 	center_of_mass = list("x"=17, "y"=10)
 
-/obj/item/reagent_containers/food/drinks/shaker/on_reagent_change()
+obj/item/reagent_containers/food/drinks/shaker/on_reagent_change()
 	..()
 
-/obj/item/reagent_containers/food/drinks/teapot
+obj/item/reagent_containers/food/drinks/teapot
 	name = "teapot"
 	desc = "An elegant teapot. It simply oozes class."
 	icon_state = "teapot"
@@ -331,61 +331,61 @@
 	volume = 120
 	center_of_mass = list("x"=17, "y"=7)
 
-/obj/item/reagent_containers/food/drinks/teapot/on_reagent_change()
+obj/item/reagent_containers/food/drinks/teapot/on_reagent_change()
 	..()
 
-/obj/item/reagent_containers/food/drinks/flask
+obj/item/reagent_containers/food/drinks/flask
 	name = "\improper Facility Director's flask"
 	desc = "A metal flask belonging to the Facility Director"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
 
-/obj/item/reagent_containers/food/drinks/flask/on_reagent_change()
+obj/item/reagent_containers/food/drinks/flask/on_reagent_change()
 	..()
 
-/obj/item/reagent_containers/food/drinks/flask/shiny
+obj/item/reagent_containers/food/drinks/flask/shiny
 	name = "shiny flask"
 	desc = "A shiny metal flask. It appears to have a Greek symbol inscribed on it."
 	icon_state = "shinyflask"
 
-/obj/item/reagent_containers/food/drinks/flask/lithium
+obj/item/reagent_containers/food/drinks/flask/lithium
 	name = "lithium flask"
 	desc = "A flask with a Lithium Atom symbol on it."
 	icon_state = "lithiumflask"
 
-/obj/item/reagent_containers/food/drinks/flask/detflask
+obj/item/reagent_containers/food/drinks/flask/detflask
 	name = "\improper Detective's flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."
 	icon_state = "detflask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=8)
 
-/obj/item/reagent_containers/food/drinks/flask/barflask
+obj/item/reagent_containers/food/drinks/flask/barflask
 	name = "flask"
 	desc = "For those who can't be bothered to hang out at the bar to drink."
 	icon_state = "barflask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
 
-/obj/item/reagent_containers/food/drinks/flask/vacuumflask
+obj/item/reagent_containers/food/drinks/flask/vacuumflask
 	name = "vacuum flask"
 	desc = "Keeping your drinks at the perfect temperature since 1892."
 	icon_state = "vacuumflask"
 	volume = 60
 	center_of_mass = list("x"=15, "y"=4)
 
-/obj/item/reagent_containers/food/drinks/britcup
+obj/item/reagent_containers/food/drinks/britcup
 	name = "cup"
 	desc = "A cup with the British flag emblazoned on it."
 	icon_state = "britcup"
 	volume = 30
 	center_of_mass = list("x"=15, "y"=13)
 
-/obj/item/reagent_containers/food/drinks/britcup/on_reagent_change()
+obj/item/reagent_containers/food/drinks/britcup/on_reagent_change()
 	..()
 
-/obj/item/reagent_containers/food/drinks/glue
+obj/item/reagent_containers/food/drinks/glue
 	name = "Glue"
 	desc = "A small bottle full of glue. The orange tip calls to you, and the fluid inside is non-toxic... Should you?"
 	icon_state = "glue"
@@ -393,11 +393,11 @@
 	volume = 30
 	center_of_mass = list("x"=15, "y"=13)
 
-/obj/item/reagent_containers/food/drinks/glue/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/glue/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("safeglue", 30)
 
-/obj/item/reagent_containers/food/drinks/glue/on_reagent_change()
+obj/item/reagent_containers/food/drinks/glue/on_reagent_change()
 	..()
 	if(reagents.total_volume)
 		icon_state = "glue"

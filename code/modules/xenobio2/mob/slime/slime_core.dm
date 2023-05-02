@@ -1,7 +1,7 @@
 /**
  * Slime core lives here.
  */
-/obj/item/xenoproduct/slime/core
+obj/item/xenoproduct/slime/core
 	name = "slime core"
 	desc = "Gooey."
 	icon = 'icons/mob/slime2.dmi'

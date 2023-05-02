@@ -1,7 +1,7 @@
-/obj/item/integrated_circuit/power/
+obj/item/integrated_circuit/power/
 	category_text = "Power - Active"
 
-/obj/item/integrated_circuit/power/transmitter
+obj/item/integrated_circuit/power/transmitter
 	name = "power transmission circuit"
 	desc = "This can wirelessly transmit electricity from an assembly's battery towards a nearby machine."
 	icon_state = "power_transmitter"
@@ -23,7 +23,7 @@
 	power_draw_per_use = 500 // Inefficency has to come from somewhere.
 	var/amount_to_move = 5000
 
-/obj/item/integrated_circuit/power/transmitter/large
+obj/item/integrated_circuit/power/transmitter/large
 	name = "large power transmission circuit"
 	desc = "This can wirelessly transmit a lot of electricity from an assembly's battery towards a nearby machine.  Warning: Do not operate in flammable enviroments."
 	extended_desc = "This circuit transmits 20 kJ of electricity every time the activator pin is pulsed.  The input pin must be \
@@ -37,7 +37,7 @@
 	power_draw_per_use = 2000
 	amount_to_move = 20000
 
-/obj/item/integrated_circuit/power/transmitter/do_work()
+obj/item/integrated_circuit/power/transmitter/do_work()
 
 	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 	if(!AM)
@@ -84,7 +84,7 @@
 		push_data()
 		return FALSE
 
-/obj/item/integrated_circuit/power/transmitter/large/do_work()
+obj/item/integrated_circuit/power/transmitter/large/do_work()
 	if(..()) // If the above code succeeds, do this below.
 		var/atom/movable/acting_object = get_object()
 		if(prob(20))

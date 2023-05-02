@@ -1,6 +1,6 @@
 /**********************Mineral stacking unit console**************************/
 
-/obj/machinery/mineral/stacking_unit_console
+obj/machinery/mineral/stacking_unit_console
 	name = "stacking machine console"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi'
 	icon_state = "console"
@@ -9,12 +9,12 @@
 	var/obj/machinery/mineral/stacking_machine/machine = null
 	//var/machinedir = SOUTHEAST //This is really dumb, so lets burn it with fire.
 
-/obj/machinery/mineral/stacking_unit_console/Initialize(mapload)
+obj/machinery/mineral/stacking_unit_console/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
 // this is garbage code hecc off
-/obj/machinery/mineral/stacking_unit_console/LateInitialize()
+obj/machinery/mineral/stacking_unit_console/LateInitialize()
 	machine = locate(/obj/machinery/mineral/stacking_machine) in range(5,src)
 	if(machine)
 		machine.console = src
@@ -24,11 +24,11 @@
 		stack_trace("Stacking machine console at [COORD(src)] could not find its machine!")
 		qdel(src)
 
-/obj/machinery/mineral/stacking_unit_console/attack_hand(mob/user, list/params)
+obj/machinery/mineral/stacking_unit_console/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	interact(user)
 
-/obj/machinery/mineral/stacking_unit_console/interact(mob/user)
+obj/machinery/mineral/stacking_unit_console/interact(mob/user)
 	user.set_machine(src)
 
 	var/dat
@@ -45,7 +45,7 @@
 	onclose(user, "console_stacking_machine")
 
 
-/obj/machinery/mineral/stacking_unit_console/Topic(href, href_list)
+obj/machinery/mineral/stacking_unit_console/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -70,7 +70,7 @@
 /**********************Mineral stacking unit**************************/
 
 
-/obj/machinery/mineral/stacking_machine
+obj/machinery/mineral/stacking_machine
 	name = "stacking machine"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi'
 	icon_state = "stacker"
@@ -83,7 +83,7 @@
 	var/list/stack_paths
 	var/stack_amt = 50; // Amount to stack before releassing
 
-/obj/machinery/mineral/stacking_machine/Initialize(mapload)
+obj/machinery/mineral/stacking_machine/Initialize(mapload)
 	. = ..()
 	stack_storage = list()
 	stack_paths = list()
@@ -102,7 +102,7 @@
 	stack_paths["plasteel"] = /obj/item/stack/material/plasteel
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/mineral/stacking_machine/LateInitialize()
+obj/machinery/mineral/stacking_machine/LateInitialize()
 	for (var/dir in GLOB.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
 		if(input)
@@ -112,7 +112,7 @@
 		if(output)
 			break
 
-/obj/machinery/mineral/stacking_machine/process(delta_time)
+obj/machinery/mineral/stacking_machine/process(delta_time)
 	if(!input || !output)
 		return
 	var/turf/inturf = get_turf(input)

@@ -1,4 +1,4 @@
-/obj/machinery/appliance/cooker/fryer
+obj/machinery/appliance/cooker/fryer
 	name = "deep fryer"
 	desc = "Deep fried <i>everything</i>."
 	icon_state = "fryer_off"
@@ -28,11 +28,11 @@
 	var/optimal_oil = 9000//90 litres of cooking oil
 
 
-/obj/machinery/appliance/cooker/fryer/examine(var/mob/user)
+obj/machinery/appliance/cooker/fryer/examine(var/mob/user)
 	. = ..()
 	. += "Oil Level: [oil.total_volume]/[optimal_oil]"
 
-/obj/machinery/appliance/cooker/fryer/Initialize(mapload)
+obj/machinery/appliance/cooker/fryer/Initialize(mapload)
 	. = ..()
 	oil = new(optimal_oil * 1.25, src)
 	var/variance = rand()*0.15
@@ -44,14 +44,14 @@
 		variance = rand()*0.5
 	oil.add_reagent("tallow", optimal_oil*(1 - variance))
 
-/obj/machinery/appliance/cooker/fryer/heat_up()
+obj/machinery/appliance/cooker/fryer/heat_up()
 	if (..())
 		//Set temperature of oil reagent
 		var/datum/reagent/nutriment/triglyceride/oil/OL = oil.get_master_reagent()
 		if (OL && istype(OL))
 			OL.data["temperature"] = temperature
 
-/obj/machinery/appliance/cooker/fryer/equalize_temperature()
+obj/machinery/appliance/cooker/fryer/equalize_temperature()
 	if (..())
 		//Set temperature of oil reagent
 		var/datum/reagent/nutriment/triglyceride/oil/OL = oil.get_master_reagent()
@@ -59,7 +59,7 @@
 			OL.data["temperature"] = temperature
 
 
-/obj/machinery/appliance/cooker/fryer/update_cooking_power()
+obj/machinery/appliance/cooker/fryer/update_cooking_power()
 	..()//In addition to parent temperature calculation
 	//Fryer efficiency also drops when oil levels arent optimal
 	var/oil_level = 0
@@ -79,7 +79,7 @@
 	cooking_power *= oil_efficiency
 
 
-/obj/machinery/appliance/cooker/fryer/update_icon()
+obj/machinery/appliance/cooker/fryer/update_icon()
 	if (cooking)
 		icon_state = on_icon
 	else
@@ -89,7 +89,7 @@
 
 //Fryer gradually infuses any cooked food with oil. Moar calories
 //This causes a slow drop in oil levels, encouraging refill after extended use
-/obj/machinery/appliance/cooker/fryer/do_cooking_tick(var/datum/cooking_item/CI)
+obj/machinery/appliance/cooker/fryer/do_cooking_tick(var/datum/cooking_item/CI)
 	if(..() && (CI.oil < CI.max_oil) && prob(20))
 		var/datum/reagents/buffer = new /datum/reagents(2)
 		oil.trans_to_holder(buffer, min(0.5, CI.max_oil - CI.oil))
@@ -100,7 +100,7 @@
 //To solve any odd logic problems with results having oil as part of their compiletime ingredients.
 //Upon finishing a recipe the fryer will analyse any oils in the result, and replace them with our oil
 //As well as capping the total to the max oil
-/obj/machinery/appliance/cooker/fryer/finish_cooking(var/datum/cooking_item/CI)
+obj/machinery/appliance/cooker/fryer/finish_cooking(var/datum/cooking_item/CI)
 	..()
 	var/total_oil = 0
 	var/total_our_oil = 0
@@ -140,7 +140,7 @@
 
 
 
-/obj/machinery/appliance/cooker/fryer/cook_mob(var/mob/living/victim, var/mob/user)
+obj/machinery/appliance/cooker/fryer/cook_mob(var/mob/living/victim, var/mob/user)
 
 	if(!istype(victim))
 		return
@@ -204,7 +204,7 @@
 	//Coat the victim in some oil
 	oil.trans_to(victim, 40)
 
-/obj/machinery/appliance/cooker/fryer/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/appliance/cooker/fryer/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass) && I.reagents)
 		if (I.reagents.total_volume <= 0 && oil)
 			//Its empty, handle scooping some hot oil out of the fryer

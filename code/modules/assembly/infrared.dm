@@ -1,4 +1,4 @@
-/obj/item/assembly/infra
+obj/item/assembly/infra
 	name = "infrared emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
@@ -23,7 +23,7 @@
 	var/atom/movable/listening
 	var/hearing_range = 3
 
-/obj/item/assembly/infra/activate()
+obj/item/assembly/infra/activate()
 	. = ..()
 	if(!.)
 		return
@@ -32,13 +32,13 @@
 	else
 		turn_on()
 
-/obj/item/assembly/infra/toggle_secure()
+obj/item/assembly/infra/toggle_secure()
 	secured = !secured
 	if(!secured)
 		turn_off()
 	return secured
 
-/obj/item/assembly/infra/proc/turn_on()
+obj/item/assembly/infra/proc/turn_on()
 	if(!secured)
 		turn_off()
 		return
@@ -49,7 +49,7 @@
 	update_icon()
 	START_PROCESSING(SSfastprocess, src)
 
-/obj/item/assembly/infra/proc/turn_off()
+obj/item/assembly/infra/proc/turn_off()
 	if(!on)
 		return
 	if(listening)
@@ -60,7 +60,7 @@
 	update_icon()
 	STOP_PROCESSING(SSfastprocess, src)
 
-/obj/item/assembly/infra/update_icon()
+obj/item/assembly/infra/update_icon()
 	cut_overlays()
 	attached_overlays = list()
 	if(on)
@@ -69,21 +69,21 @@
 	if(holder)
 		holder.update_icon()
 
-/obj/item/assembly/infra/proc/toggle_visible()
+obj/item/assembly/infra/proc/toggle_visible()
 	visible = !visible
 	head?.SetVisible(visible)
 
-/obj/item/assembly/infra/setDir()
+obj/item/assembly/infra/setDir()
 	var/old = dir
 	. = ..()
 	if(old == dir)
 		return
 	Queue()
 
-/obj/item/assembly/infra/proc/Queue()
+obj/item/assembly/infra/proc/Queue()
 	dirty = TRUE
 
-/obj/item/assembly/infra/proc/Rebuild()
+obj/item/assembly/infra/proc/Rebuild()
 	if(head)
 		if(!QDELETED(head))
 			QDEL_NULL(head)
@@ -114,7 +114,7 @@
 		head.Propagate()
 	dirty = FALSE
 
-/obj/item/assembly/infra/process(delta_time)
+obj/item/assembly/infra/process(delta_time)
 	if(!on || QDELETED(src))
 		Rebuild()
 		return PROCESS_KILL
@@ -123,24 +123,24 @@
 		return
 	head.Refresh()
 
-/obj/item/assembly/infra/Move()
+obj/item/assembly/infra/Move()
 	var/old_dir = dir
 	. = ..()
 	setDir(old_dir)
 	Queue()
 
-/obj/item/assembly/infra/doMove()
+obj/item/assembly/infra/doMove()
 	. = ..()
 	Queue()
 
-/obj/item/assembly/infra/holder_movement()
+obj/item/assembly/infra/holder_movement()
 	if(!holder)
 		return FALSE
 	setDir(holder.dir)
 	Queue()
 	return TRUE
 
-/obj/item/assembly/infra/Moved(atom/oldloc)
+obj/item/assembly/infra/Moved(atom/oldloc)
 	. = ..()
 	if(listening)
 		UnregisterSignal(listening, COMSIG_MOVABLE_MOVED)
@@ -148,7 +148,7 @@
 		RegisterSignal(loc, COMSIG_MOVABLE_MOVED, .proc/Queue)
 		listening = loc
 
-/obj/item/assembly/infra/proc/trigger_beam()
+obj/item/assembly/infra/proc/trigger_beam()
 	if((!secured)||(!on)||(cooldown > 0))
 		return FALSE
 	pulse(0)
@@ -159,7 +159,7 @@
 	cooldown = 2
 	addtimer(CALLBACK(src, /obj/item/assembly/proc/process_cooldown), 10)
 
-/obj/item/assembly/infra/ui_interact(mob/user, datum/tgui/ui)
+obj/item/assembly/infra/ui_interact(mob/user, datum/tgui/ui)
 	if(!secured)
 		to_chat(user, SPAN_WARNING("[src] is unsecured!"))
 		return FALSE
@@ -168,7 +168,7 @@
 		ui = new(user, src, "AssemblyInfrared", name)
 		ui.open()
 
-/obj/item/assembly/infra/ui_data(mob/user)
+obj/item/assembly/infra/ui_data(mob/user)
 	var/list/data = ..()
 
 	data["on"] = on
@@ -176,7 +176,7 @@
 
 	return data
 
-/obj/item/assembly/infra/ui_act(action, list/params, datum/tgui/ui)
+obj/item/assembly/infra/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -192,7 +192,7 @@
 				CHECK_TICK
 			return TRUE
 
-/obj/item/assembly/infra/verb/rotate_clockwise()
+obj/item/assembly/infra/verb/rotate_clockwise()
 	set name = "Rotate Infrared Laser Clockwise"
 	set category = "Object"
 	set src in usr
@@ -201,7 +201,7 @@
 
 /***************************IBeam*********************************/
 
-/obj/effect/beam/i_beam
+obj/effect/beam/i_beam
 	name = "i beam"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
@@ -218,7 +218,7 @@
 	/// beam segments left, excluding this one
 	var/propagate = 0
 
-/obj/effect/beam/i_beam/Initialize(mapload, _master, _propagate, _visible, _prev)
+obj/effect/beam/i_beam/Initialize(mapload, _master, _propagate, _visible, _prev)
 	. = ..()
 	if(_propagate)
 		src.propagate = min(100, _propagate)
@@ -230,7 +230,7 @@
 		prev = _prev
 	invisibility = visible? 0 : 101
 
-/obj/effect/beam/i_beam/Destroy()
+obj/effect/beam/i_beam/Destroy()
 	master = null
 	if(next)
 		if(!QDELETED(next))
@@ -244,7 +244,7 @@
 /**
  * Both handles beam propagation, and triggering if the beam suddenly finds itself on an dense atom.
  */
-/obj/effect/beam/i_beam/proc/Propagate()
+obj/effect/beam/i_beam/proc/Propagate()
 	propagate = min(100, propagate)
 	if(next)
 		if(!QDELETED(next))
@@ -271,7 +271,7 @@
 			next.density = FALSE
 			next.Propagate()
 
-/obj/effect/beam/i_beam/proc/Refresh()
+obj/effect/beam/i_beam/proc/Refresh()
 	if(!next)
 		if(propagate > 0)
 			Propagate()
@@ -282,26 +282,26 @@
 		next.visible = visible
 		next.Refresh()
 
-/obj/effect/beam/i_beam/proc/SetVisible(new_vis)
+obj/effect/beam/i_beam/proc/SetVisible(new_vis)
 	visible = new_vis
 	Refresh()
 
-/obj/effect/beam/i_beam/proc/Trigger(atom/A)
+obj/effect/beam/i_beam/proc/Trigger(atom/A)
 	if(master)
 		master.trigger_beam()
 	qdel(src)
 
-/obj/effect/beam/i_beam/Bump(atom/movable/AM)
+obj/effect/beam/i_beam/Bump(atom/movable/AM)
 	. = ..()
 	qdel(src)
 
 // only useful during Propagate() since density is TRUE there.
-/obj/effect/beam/i_beam/Bumped(atom/movable/AM)
+obj/effect/beam/i_beam/Bumped(atom/movable/AM)
 	. = ..()
 	Trigger(AM)
 
 // we need to refactor this at some point holy shit, infrared grids are so awful right now.
-/obj/effect/beam/i_beam/Crossed(atom/movable/AM)
+obj/effect/beam/i_beam/Crossed(atom/movable/AM)
 	. = ..()
 	if(AM.is_incorporeal())
 		return

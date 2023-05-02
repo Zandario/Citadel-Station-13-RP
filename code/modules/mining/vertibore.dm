@@ -1,5 +1,5 @@
 
-/obj/item/vertibore
+obj/item/vertibore
 	name = "portable shaft excavation device"
 	desc = "A heavily modified shaft bore utilizing phorogenic blasts to tunnel vertically through rock. Much faster than a large industrial drill unit, but is very resource- and power-intensive."
 	description_fluff = "A phoron bore used for rapidly digging through rock that has been modified to allow it to fire straight down at a much higher power. However, this has resulted in a loss of power and resource efficiency, compactness, and modularity as the proprietary capacitor and manipulator cannot be swapped."
@@ -20,13 +20,13 @@
 	var/ammo_material = MAT_PHORON
 	var/loading = FALSE
 
-/obj/item/vertibore/examine(mob/user)
+obj/item/vertibore/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>The shaft excavator has [mat_storage]cm^3 of phoron inside, and can hold a maximum of [max_mat_storage].</span>"
 	if(cell)
 		. += "<span class='notice'>The installed [cell.name] has a charge level of [round((cell.charge/cell.maxcharge)*100)]%.</span>"
 
-/obj/item/vertibore/attackby(var/obj/item/thing, var/mob/user)
+obj/item/vertibore/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/cell))
 		if(cell)
 			to_chat(user, "<span class='warning'>\The [src] already has \a [cell] installed.</span>")
@@ -73,7 +73,7 @@
 		return
 	. = ..()
 
-/obj/item/vertibore/attack_self(mob/user)
+obj/item/vertibore/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -87,7 +87,7 @@
 		var/turf/T = get_turf(user)
 		LEGACY_EX_ACT(T, 1, null)
 
-/obj/item/vertibore/update_icon()
+obj/item/vertibore/update_icon()
 	var/list/overlays_to_add = list()
 	if(cell)
 		overlays_to_add += image(icon, "[icon_state]_cell")

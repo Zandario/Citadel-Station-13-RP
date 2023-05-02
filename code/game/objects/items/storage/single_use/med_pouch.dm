@@ -1,7 +1,7 @@
 /**
  * Single Use Emergency Pouches
  */
-/obj/item/storage/single_use/med_pouch
+obj/item/storage/single_use/med_pouch
 	name = "emergency medical pouch"
 	desc = "For use in emergency situations only."
 	icon = 'icons/obj/single_use/med_pouch.dmi'
@@ -25,7 +25,7 @@
 	\t8) Stay in place once they respond.\
 		"}
 
-/obj/item/storage/single_use/med_pouch/Initialize(mapload)
+obj/item/storage/single_use/med_pouch/Initialize(mapload)
 	. = ..()
 	name = "emergency [injury_type] pouch"
 	update_desc()
@@ -34,7 +34,7 @@
 	update_icon()
 
 
-/obj/item/storage/single_use/med_pouch/update_icon()
+obj/item/storage/single_use/med_pouch/update_icon()
 	. = ..()
 	if(!cross_overlay)
 		cross_overlay = overlay_image(icon, "cross", flags = RESET_COLOR)
@@ -46,23 +46,23 @@
 	. += instructions
 */
 
-/obj/item/storage/single_use/med_pouch/update_desc(updates)
+obj/item/storage/single_use/med_pouch/update_desc(updates)
 	. = ..()
 	desc += instructions
 
-/obj/item/storage/single_use/med_pouch/attack_self(mob/user)
+obj/item/storage/single_use/med_pouch/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	open(user)
 
 /*handled by single_use
-/obj/item/storage/single_use/med_pouch/open(mob/user)
+obj/item/storage/single_use/med_pouch/open(mob/user)
 	if(!opened)
 		user.visible_message("<span class='notice'></span>", "<span class='notice'></span>")
 	. = ..()*/
 
-/obj/item/storage/single_use/med_pouch/trauma
+obj/item/storage/single_use/med_pouch/trauma
 	name = "Trauma Pouch"
 	injury_type = "trauma"
 	color = COLOR_RED
@@ -83,7 +83,7 @@
 		/obj/item/stack/medical/bruise_pack,
 	)
 
-/obj/item/storage/single_use/med_pouch/burn
+obj/item/storage/single_use/med_pouch/burn
 	name = "Burn Pouch"
 	injury_type = "burn"
 	color = "#cc6600"//COLOR_SEDONA
@@ -106,7 +106,7 @@
 		/obj/item/stack/medical/ointment,
 	)
 
-/obj/item/storage/single_use/med_pouch/oxyloss
+obj/item/storage/single_use/med_pouch/oxyloss
 	name = "Low Oxygen Pouch"
 	injury_type = "low oxygen"
 	color = COLOR_BLUE
@@ -128,7 +128,7 @@
 		/obj/item/reagent_containers/pill/inaprovaline/pouch,
 	)
 
-/obj/item/storage/single_use/med_pouch/toxin
+obj/item/storage/single_use/med_pouch/toxin
 	name = "Toxin Pouch"
 	injury_type = "toxin"
 	color = COLOR_GREEN
@@ -146,7 +146,7 @@
 		/obj/item/reagent_containers/pill/antitox = 2,
 	)
 
-/obj/item/storage/single_use/med_pouch/radiation
+obj/item/storage/single_use/med_pouch/radiation
 	name = "Radiation Pouch"
 	injury_type = "radiation"
 	color = "#ffbf00"//COLOR_AMBER
@@ -164,7 +164,7 @@
 		/obj/item/reagent_containers/pill/antitox = 2,
 	)
 
-/obj/item/storage/single_use/med_pouch/overdose
+obj/item/storage/single_use/med_pouch/overdose
 	name = "Overdose Treatment Pouch"
 	injury_type = "overdose"
 	color = COLOR_PALE_BLUE_GRAY
@@ -188,148 +188,148 @@
 
 // Pills
 
-/obj/item/reagent_containers/pill/inaprovaline/pouch
+obj/item/reagent_containers/pill/inaprovaline/pouch
 	name = "Emergency Inaprovaline Pill"
 	icon_state = "pill2"
 
-/obj/item/reagent_containers/pill/inaprovaline/pouch/Initialize(mapload)
+obj/item/reagent_containers/pill/inaprovaline/pouch/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("inaprovaline", 15)
 	color = reagents.get_color()
 
-/obj/item/reagent_containers/pill/bicaridine/pouch
+obj/item/reagent_containers/pill/bicaridine/pouch
 	name = "Emergency Bicaridine Pill"
 	desc = "Used to treat physical injuries."
 	icon_state = "pill2"
 
-/obj/item/reagent_containers/pill/bicaridine/pouch/Initialize(mapload)
+obj/item/reagent_containers/pill/bicaridine/pouch/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("bicaridine", 15)
 	color = reagents.get_color()
 
 
 // Injectors
-/obj/item/reagent_containers/hypospray/autoinjector/burn_pouch
+obj/item/reagent_containers/hypospray/autoinjector/burn_pouch
 	name = "Autoinjector (Burn)"
 	icon_state = "green"
 	filled_reagents = list("kelotane" = 2.5, "dermaline" = 2.5)
 
-/obj/item/reagent_containers/hypospray/autoinjector/pouch_oxy
+obj/item/reagent_containers/hypospray/autoinjector/pouch_oxy
 	name = "Autoinjector (Dexaline Plus)"
 	icon_state = "blue"
 	filled_reagents = list("dexalinp" = 5)
 
-/obj/item/reagent_containers/hypospray/autoinjector/pouch_pain
+obj/item/reagent_containers/hypospray/autoinjector/pouch_pain
 	name = "Autoinjector (Tramadol)"
 	icon_state = "blue"
 	filled_reagents = list("tramadol" = 5)
 
-/obj/item/reagent_containers/hypospray/autoinjector/pouch_rad
+obj/item/reagent_containers/hypospray/autoinjector/pouch_rad
 	name = "Autoinjector (Hyronalin)"
 	icon_state = "blue"
 	filled_reagents = list("hyronalin" = 5)
 
-/obj/item/reagent_containers/hypospray/autoinjector/pouch_tox
+obj/item/reagent_containers/hypospray/autoinjector/pouch_tox
 	name = "Critical Use Toxins Autoinjector"
 	icon_state = "blue"
 	filled_reagents = list("anti_toxin"=3, "carthatoline" = 2)
 
-/obj/item/reagent_containers/hypospray/autoinjector/pouch_antialcohol
+obj/item/reagent_containers/hypospray/autoinjector/pouch_antialcohol
 	name = "Autoinjector (Ethylredoxrazine)"
 	icon_state = "blue"
 	filled_reagents = list("ethylredoxrazine"=5)
 /*
-/obj/item/chems/pill/pouch_pill
+obj/item/chems/pill/pouch_pill
 	name       = "emergency pill"
 	desc       = "An emergency pill from an emergency medical pouch."
 	icon_state = "pill2"
 	volume     = 15
 	abstract_type = /obj/item/chems/pill/pouch_pill
 
-/obj/item/chems/pill/pouch_pill/Initialize(ml, material_key)
+obj/item/chems/pill/pouch_pill/Initialize(ml, material_key)
 	. = ..()
 	if(!reagents?.total_volume)
 		log_warning("[log_info_line(src)] was deleted for containing no reagents during init!")
 		return INITIALIZE_HINT_QDEL
 
-/obj/item/chems/pill/pouch_pill/initialize_reagents(populate = TRUE)
+obj/item/chems/pill/pouch_pill/initialize_reagents(populate = TRUE)
 	. = ..()
 	if(populate && reagents?.get_primary_reagent_name())
 		SetName("emergency [reagents.get_primary_reagent_name()] pill ([reagents.total_volume]u)")
 
-/obj/item/chems/pill/pouch_pill/stabilizer/populate_reagents()
+obj/item/chems/pill/pouch_pill/stabilizer/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/stabilizer, reagents.maximum_volume)
 
-/obj/item/chems/pill/pouch_pill/antitoxins/populate_reagents()
+obj/item/chems/pill/pouch_pill/antitoxins/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/antitoxins, reagents.maximum_volume)
 
-/obj/item/chems/pill/pouch_pill/oxy_meds/populate_reagents()
+obj/item/chems/pill/pouch_pill/oxy_meds/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/oxy_meds, reagents.maximum_volume)
 
-/obj/item/chems/pill/pouch_pill/painkillers/populate_reagents()
+obj/item/chems/pill/pouch_pill/painkillers/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/painkillers, reagents.maximum_volume)
 
-/obj/item/chems/pill/pouch_pill/brute_meds/populate_reagents()
+obj/item/chems/pill/pouch_pill/brute_meds/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/brute_meds, reagents.maximum_volume)
 
-/obj/item/chems/pill/pouch_pill/burn_meds/populate_reagents()
+obj/item/chems/pill/pouch_pill/burn_meds/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/burn_meds, reagents.maximum_volume)
 */
 // Injectors
 
 /*
-/obj/item/chems/hypospray/autoinjector/pouch_auto
+obj/item/chems/hypospray/autoinjector/pouch_auto
 	name = "emergency autoinjector"
 	desc = "An emergency autoinjector from an emergency medical pouch."
 
-/obj/item/chems/hypospray/autoinjector/pouch_auto/stabilizer
+obj/item/chems/hypospray/autoinjector/pouch_auto/stabilizer
 	name = "emergency stabilizer autoinjector"
-/obj/item/chems/hypospray/autoinjector/pouch_auto/stabilizer/populate_reagents()
+obj/item/chems/hypospray/autoinjector/pouch_auto/stabilizer/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/stabilizer, 5)
 
-/obj/item/chems/hypospray/autoinjector/pouch_auto/painkillers
+obj/item/chems/hypospray/autoinjector/pouch_auto/painkillers
 	name = "emergency painkiller autoinjector"
-/obj/item/chems/hypospray/autoinjector/pouch_auto/painkillers/populate_reagents()
+obj/item/chems/hypospray/autoinjector/pouch_auto/painkillers/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/painkillers, 5)
 
-/obj/item/chems/hypospray/autoinjector/pouch_auto/antitoxins
+obj/item/chems/hypospray/autoinjector/pouch_auto/antitoxins
 	name = "emergency antitoxins autoinjector"
-/obj/item/chems/hypospray/autoinjector/pouch_auto/antitoxins/populate_reagents()
+obj/item/chems/hypospray/autoinjector/pouch_auto/antitoxins/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/antitoxins, 5)
 
-/obj/item/chems/hypospray/autoinjector/pouch_auto/oxy_meds
+obj/item/chems/hypospray/autoinjector/pouch_auto/oxy_meds
 	name = "emergency oxygel autoinjector"
-/obj/item/chems/hypospray/autoinjector/pouch_auto/oxy_meds/populate_reagents()
+obj/item/chems/hypospray/autoinjector/pouch_auto/oxy_meds/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/oxy_meds, 5)
 
-/obj/item/chems/hypospray/autoinjector/pouch_auto/adrenaline
+obj/item/chems/hypospray/autoinjector/pouch_auto/adrenaline
 	name = "emergency adrenaline autoinjector"
 	amount_per_transfer_from_this = 8
-/obj/item/chems/hypospray/autoinjector/pouch_auto/adrenaline/populate_reagents()
+obj/item/chems/hypospray/autoinjector/pouch_auto/adrenaline/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/adrenaline, 8)
 
-/obj/item/chems/hypospray/autoinjector/pouch_auto/nanoblood
+obj/item/chems/hypospray/autoinjector/pouch_auto/nanoblood
 	name = "emergency nanoblood autoinjector"
-/obj/item/chems/hypospray/autoinjector/pouch_auto/nanoblood/populate_reagents()
+obj/item/chems/hypospray/autoinjector/pouch_auto/nanoblood/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/nanoblood, 5)
 
 // Inhalers
 
-/obj/item/chems/inhaler/pouch_auto
+obj/item/chems/inhaler/pouch_auto
 	name = "emergency autoinhaler"
 	desc = "An emergency autoinhaler from an emergency medical pouch."
 
-/obj/item/chems/inhaler/pouch_auto/oxy_meds
+obj/item/chems/inhaler/pouch_auto/oxy_meds
 	name = "emergency oxygel autoinhaler"
 	detail_color = COLOR_CYAN
 
-/obj/item/chems/inhaler/pouch_auto/oxy_meds/populate_reagents()
+obj/item/chems/inhaler/pouch_auto/oxy_meds/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/oxy_meds, 5)
 
-/obj/item/chems/inhaler/pouch_auto/detoxifier
+obj/item/chems/inhaler/pouch_auto/detoxifier
 	name = "emergency detoxifier autoinhaler"
 	detail_color = COLOR_GREEN
 
-/obj/item/chems/inhaler/pouch_auto/detoxifier/populate_reagents()
+obj/item/chems/inhaler/pouch_auto/detoxifier/populate_reagents()
 	reagents.add_reagent(/decl/material/liquid/detoxifier, 5)
 */

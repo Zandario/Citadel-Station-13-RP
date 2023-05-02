@@ -1,4 +1,4 @@
-/obj/effect/expl_particles
+obj/effect/expl_particles
 	name = "explosive particles"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "explosion_particle"
@@ -6,21 +6,21 @@
 	anchored = 1
 	mouse_opacity = 0
 
-/obj/effect/expl_particles/Initialize(mapload)
+obj/effect/expl_particles/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 15)
 
-/datum/effect/system/expl_particles
+datum/effect/system/expl_particles
 	var/number = 10
 	var/turf/location
 	var/total_particles = 0
 
-/datum/effect/system/expl_particles/proc/set_up(n = 10, loca)
+datum/effect/system/expl_particles/proc/set_up(n = 10, loca)
 	number = n
 	if(istype(loca, /turf/)) location = loca
 	else location = get_turf(loca)
 
-/datum/effect/system/expl_particles/proc/start()
+datum/effect/system/expl_particles/proc/start()
 	var/i = 0
 	for(i=0, i<src.number, i++)
 		spawn(0)
@@ -30,7 +30,7 @@
 				sleep(1)
 				step(expl,direct)
 
-/obj/effect/explosion
+obj/effect/explosion
 	name = "explosive particles"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
@@ -40,18 +40,18 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/explosion/Initialize(mapload)
+obj/effect/explosion/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 1 SECONDS)
 
-/datum/effect/system/explosion
+datum/effect/system/explosion
 	var/turf/location
 
-/datum/effect/system/explosion/proc/set_up(loca)
+datum/effect/system/explosion/proc/set_up(loca)
 	if(istype(loca, /turf/)) location = loca
 	else location = get_turf(loca)
 
-/datum/effect/system/explosion/proc/start()
+datum/effect/system/explosion/proc/start()
 	new/obj/effect/explosion( location )
 	var/datum/effect/system/expl_particles/P = new/datum/effect/system/expl_particles()
 	P.set_up(10,location)
@@ -61,7 +61,7 @@
 		S.set_up(5,0,location,null)
 		S.start()
 
-/datum/effect/system/explosion/smokeless/start()
+datum/effect/system/explosion/smokeless/start()
 	new/obj/effect/explosion(location)
 	var/datum/effect/system/expl_particles/P = new/datum/effect/system/expl_particles()
 	P.set_up(10,location)

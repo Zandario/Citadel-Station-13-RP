@@ -1,4 +1,4 @@
-/datum/controller/subsystem/characters
+datum/controller/subsystem/characters
 	//! Backgrounds - to be shoved into some lore system later (maybe)
 	var/list/character_origins
 	var/list/character_citizenships
@@ -6,7 +6,7 @@
 	var/list/character_factions
 	var/list/character_cultures
 
-/datum/controller/subsystem/characters/proc/rebuild_backgrounds()
+datum/controller/subsystem/characters/proc/rebuild_backgrounds()
 	character_origins = list()
 	character_citizenships = list()
 	character_religions = list()
@@ -54,7 +54,7 @@
 	tim_sort(character_factions, /proc/cmp_auto_compare, TRUE)
 	tim_sort(character_cultures, /proc/cmp_auto_compare, TRUE)
 
-/datum/controller/subsystem/characters/proc/available_citizenships(species_id, category)
+datum/controller/subsystem/characters/proc/available_citizenships(species_id, category)
 	. = list()
 	for(var/id in character_citizenships)
 		var/datum/lore/character_background/citizenship/L = character_citizenships[id]
@@ -63,7 +63,7 @@
 		if(L.check_species_id(species_id))
 			. += L
 
-/datum/controller/subsystem/characters/proc/available_religions(species_id, category)
+datum/controller/subsystem/characters/proc/available_religions(species_id, category)
 	. = list()
 	for(var/id in character_religions)
 		var/datum/lore/character_background/religion/L = character_religions[id]
@@ -72,7 +72,7 @@
 		if(L.check_species_id(species_id))
 			. += L
 
-/datum/controller/subsystem/characters/proc/available_factions(species_id, origin_id, citizenship_id, category)
+datum/controller/subsystem/characters/proc/available_factions(species_id, origin_id, citizenship_id, category)
 	. = list()
 	for(var/id in character_factions)
 		var/datum/lore/character_background/faction/L = character_factions[id]
@@ -85,7 +85,7 @@
 		if(L.check_species_id(species_id))
 			. += L
 
-/datum/controller/subsystem/characters/proc/available_origins(species_id, category)
+datum/controller/subsystem/characters/proc/available_origins(species_id, category)
 	. = list()
 	for(var/id in character_origins)
 		var/datum/lore/character_background/origin/L = character_origins[id]
@@ -94,7 +94,7 @@
 		if(L.check_species_id(species_id))
 			. += L
 
-/datum/controller/subsystem/characters/proc/available_cultures(species_id, category)
+datum/controller/subsystem/characters/proc/available_cultures(species_id, category)
 	. = list()
 	for(var/id in character_cultures)
 		var/datum/lore/character_background/culture/L = character_cultures[id]
@@ -103,35 +103,35 @@
 		if(L.check_species_id(species_id))
 			. += L
 
-/datum/controller/subsystem/characters/proc/resolve_citizenship(id_or_typepath)
+datum/controller/subsystem/characters/proc/resolve_citizenship(id_or_typepath)
 	RETURN_TYPE(/datum/lore/character_background/citizenship)
 	if(ispath(id_or_typepath))
 		var/datum/lore/character_background/bg = id_or_typepath
 		id_or_typepath = initial(bg.id)
 	return character_citizenships[id_or_typepath]
 
-/datum/controller/subsystem/characters/proc/resolve_faction(id_or_typepath)
+datum/controller/subsystem/characters/proc/resolve_faction(id_or_typepath)
 	RETURN_TYPE(/datum/lore/character_background/faction)
 	if(ispath(id_or_typepath))
 		var/datum/lore/character_background/bg = id_or_typepath
 		id_or_typepath = initial(bg.id)
 	return character_factions[id_or_typepath]
 
-/datum/controller/subsystem/characters/proc/resolve_religion(id_or_typepath)
+datum/controller/subsystem/characters/proc/resolve_religion(id_or_typepath)
 	RETURN_TYPE(/datum/lore/character_background/religion)
 	if(ispath(id_or_typepath))
 		var/datum/lore/character_background/bg = id_or_typepath
 		id_or_typepath = initial(bg.id)
 	return character_religions[id_or_typepath]
 
-/datum/controller/subsystem/characters/proc/resolve_origin(id_or_typepath)
+datum/controller/subsystem/characters/proc/resolve_origin(id_or_typepath)
 	RETURN_TYPE(/datum/lore/character_background/origin)
 	if(ispath(id_or_typepath))
 		var/datum/lore/character_background/bg = id_or_typepath
 		id_or_typepath = initial(bg.id)
 	return character_origins[id_or_typepath]
 
-/datum/controller/subsystem/characters/proc/resolve_culture(id_or_typepath)
+datum/controller/subsystem/characters/proc/resolve_culture(id_or_typepath)
 	RETURN_TYPE(/datum/lore/character_background/culture)
 	if(ispath(id_or_typepath))
 		var/datum/lore/character_background/bg = id_or_typepath

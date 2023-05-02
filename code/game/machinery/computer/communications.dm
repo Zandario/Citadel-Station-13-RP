@@ -1,6 +1,6 @@
 
 // The communications computer
-/obj/machinery/computer/communications
+obj/machinery/computer/communications
 	name = "command and communications console"
 	desc = "Used to command and control the station. Can relay long-range communications."
 	icon_keyboard = "tech_key"
@@ -38,18 +38,18 @@
 	var/datum/lore/atc_controller/ATC
 	var/datum/legacy_announcement/priority/crew_announcement = new
 
-/obj/machinery/computer/communications/Initialize(mapload)
+obj/machinery/computer/communications/Initialize(mapload)
 	. = ..()
 	ATC = GLOB.lore_atc
 	crew_announcement.newscast = 1
 
-/obj/machinery/computer/communications/process(delta_time)
+obj/machinery/computer/communications/process(delta_time)
 	if(..())
 		if(state != STATE_STATUSDISPLAY)
 			src.updateDialog()
 
 
-/obj/machinery/computer/communications/Topic(href, href_list)
+obj/machinery/computer/communications/Topic(href, href_list)
 	if(..())
 		return 1
 	if (GLOB.using_map && !(src.z in GLOB.using_map.contact_levels))
@@ -287,16 +287,16 @@
 			src.state = STATE_DEFAULT
 	src.updateUsrDialog()
 
-/obj/machinery/computer/communications/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/communications/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		src.emagged = 1
 		to_chat(user, "You scramble the communication routing circuits!")
 		return 1
 
-/obj/machinery/computer/communications/attack_ai(var/mob/user as mob)
+obj/machinery/computer/communications/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/communications/attack_hand(mob/user, list/params)
+obj/machinery/computer/communications/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if (GLOB.using_map && !(src.z in GLOB.using_map.contact_levels))
@@ -417,7 +417,7 @@
 
 
 
-/obj/machinery/computer/communications/proc/interact_ai(var/mob/living/silicon/ai/user as mob)
+obj/machinery/computer/communications/proc/interact_ai(var/mob/living/silicon/ai/user as mob)
 	var/dat = ""
 	switch(src.aistate)
 		if(STATE_DEFAULT)
@@ -466,11 +466,11 @@
 	dat += "<BR>\[ [(src.aistate != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=ai-main'>Main Menu</A> | " : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
 	return dat
 
-/proc/enable_prison_shuttle(var/mob/user)
+proc/enable_prison_shuttle(var/mob/user)
 	for(var/obj/machinery/computer/prison_shuttle/PS in GLOB.machines)
 		PS.allowedtocall = !(PS.allowedtocall)
 
-/proc/call_shuttle_proc(var/mob/user)
+proc/call_shuttle_proc(var/mob/user)
 	if ((!( SSticker ) || !SSemergencyshuttle.location()))
 		return
 
@@ -510,7 +510,7 @@
 
 	return
 
-/proc/init_shift_change(var/mob/user, var/force = 0)
+proc/init_shift_change(var/mob/user, var/force = 0)
 	if ((!( SSticker ) || !SSemergencyshuttle.location()))
 		return
 
@@ -557,7 +557,7 @@
 
 	return
 
-/proc/cancel_call_proc(var/mob/user)
+proc/cancel_call_proc(var/mob/user)
 	if (!( SSticker ) || !SSemergencyshuttle.can_recall())
 		return
 	if((SSticker.mode.name == "blob")||(SSticker.mode.name == "Meteor"))
@@ -570,13 +570,13 @@
 	return
 
 
-/proc/is_relay_online()
+proc/is_relay_online()
 	for(var/obj/machinery/telecomms/relay/M in world)
 		if(M.machine_stat == 0)
 			return TRUE
 	return FALSE
 
-/obj/machinery/computer/communications/proc/post_status(command, data1, data2)
+obj/machinery/computer/communications/proc/post_status(command, data1, data2)
 
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 
@@ -601,7 +601,7 @@
 //TODO: Convert to proper cooldowns. A bool for cooldowns is insanely dumb.
 /// Override the cooldown for special actions
 /// Used in places such as CentCom messaging back so that the crew can answer right away
-/obj/machinery/computer/communications/proc/override_cooldown()
+obj/machinery/computer/communications/proc/override_cooldown()
 	// COOLDOWN_RESET(src, important_action_cooldown)
 	centcomm_message_cooldown = 0
 	message_cooldown = 0

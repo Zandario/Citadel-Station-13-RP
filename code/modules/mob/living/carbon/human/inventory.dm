@@ -1,4 +1,4 @@
-/mob/living/carbon/human/_slot_by_item(obj/item/I)
+mob/living/carbon/human/_slot_by_item(obj/item/I)
 	if(wear_suit == I)
 		return SLOT_ID_SUIT
 	else if(w_uniform == I)
@@ -28,7 +28,7 @@
 	else
 		return ..()
 
-/mob/living/carbon/human/_item_by_slot(slot)
+mob/living/carbon/human/_item_by_slot(slot)
 	switch(slot)
 		if(SLOT_ID_SUIT)
 			return wear_suit
@@ -59,7 +59,7 @@
 		else
 			return ..()
 
-/mob/living/carbon/human/_set_inv_slot(slot, obj/item/I, flags)
+mob/living/carbon/human/_set_inv_slot(slot, obj/item/I, flags)
 	switch(slot)
 		if(SLOT_ID_SUIT)
 			wear_suit = I
@@ -126,7 +126,7 @@
 		else
 			return ..()
 
-/mob/living/carbon/human/_get_all_slots(include_restraints)
+mob/living/carbon/human/_get_all_slots(include_restraints)
 	. = ..()
 	if(wear_suit)
 		. += wear_suit._inv_return_attached()
@@ -155,7 +155,7 @@
 	if(s_store)
 		. += s_store._inv_return_attached()
 
-/mob/living/carbon/human/_get_inventory_slot_ids()
+mob/living/carbon/human/_get_inventory_slot_ids()
 	return ..() + list(
 		SLOT_ID_SUIT,
 		SLOT_ID_UNIFORM,
@@ -172,18 +172,18 @@
 		SLOT_ID_SUIT_STORAGE
 	)
 
-/mob/living/carbon/human/put_in_left_hand(obj/item/I, force)
+mob/living/carbon/human/put_in_left_hand(obj/item/I, force)
 	if(!has_organ(BP_L_HAND))
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/put_in_right_hand(obj/item/I, force)
+mob/living/carbon/human/put_in_right_hand(obj/item/I, force)
 	if(!has_organ(BP_R_HAND))
 		return FALSE
 	return ..()
 
 // todo: this should eventually be on the datum itself probably
-/mob/living/carbon/human/inventory_slot_reachability_conflict(obj/item/I, slot, mob/user)
+mob/living/carbon/human/inventory_slot_reachability_conflict(obj/item/I, slot, mob/user)
 	. = ..()
 	if(.)
 		return
@@ -209,7 +209,7 @@
 
 	return covering
 
-/mob/living/carbon/human/inventory_slot_bodypart_check(obj/item/I, slot, mob/user, flags)
+mob/living/carbon/human/inventory_slot_bodypart_check(obj/item/I, slot, mob/user, flags)
 	. = ..()
 	if(!.)
 		return
@@ -259,7 +259,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/human/_semantic_slot_id_check(id)
+mob/living/carbon/human/_semantic_slot_id_check(id)
 	. = ..()
 	if(!.)
 		return
@@ -270,7 +270,7 @@
 
 //! old stuff below
 
-/mob/living/carbon/human/verb/quick_equip()
+mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
 	set hidden = 1
 
@@ -278,7 +278,7 @@
 
 //! old behaviors that i can't be assed to rewrite for now
 
-/mob/living/carbon/human/proc/smart_equipbag() // take most recent item out of bag or place held item in bag
+mob/living/carbon/human/proc/smart_equipbag() // take most recent item out of bag or place held item in bag
 	if(incapacitated())
 		return
 	var/obj/item/thing = get_active_held_item()
@@ -311,7 +311,7 @@
 		return
 	stored.attack_hand(src) // take out thing from backpack
 
-/mob/living/carbon/human/proc/smart_equipbelt() // put held thing in belt or take most recent item out of belt
+mob/living/carbon/human/proc/smart_equipbelt() // put held thing in belt or take most recent item out of belt
 	if(incapacitated())
 		return
 	var/obj/item/thing = get_active_held_item()

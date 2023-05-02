@@ -1,18 +1,18 @@
-/mob/verb/up()
+mob/verb/up()
 	set name = "Move Upwards"
 	set category = "IC"
 
 	if(zMove(UP))
 		to_chat(src, SPAN_NOTICE("You move upwards."))
 
-/mob/verb/down()
+mob/verb/down()
 	set name = "Move Downwards"
 	set category = "IC"
 
 	if(zMove(DOWN))
 		to_chat(src, SPAN_NOTICE("You move down."))
 
-/mob/proc/zMove(direction)
+mob/proc/zMove(direction)
 	if(eyeobj)
 		return eyeobj.zMove(direction)
 
@@ -88,35 +88,35 @@
 		on_changed_z_level(old_z, new_z)
 	return TRUE
 
-/mob/proc/can_overcome_gravity()
+mob/proc/can_overcome_gravity()
 	return FALSE
 
-/mob/living/can_overcome_gravity()
+mob/living/can_overcome_gravity()
 	return hovering
 
-/mob/living/carbon/human/can_overcome_gravity()
+mob/living/carbon/human/can_overcome_gravity()
 	. = ..()
 	if(!.)
 		return species && species.can_overcome_gravity(src)
 
-/mob/observer/zMove(direction)
+mob/observer/zMove(direction)
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(destination)
 		forceMove(destination)
 	else
 		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 
-/mob/observer/eye/zMove(direction)
+mob/observer/eye/zMove(direction)
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(destination)
 		setLoc(destination)
 	else
 		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 
-/mob/proc/can_ztravel()
+mob/proc/can_ztravel()
 	return 0
 
-/mob/living/zMove(direction)
+mob/living/zMove(direction)
 	//Sort of a lame hack to allow ztravel through zpipes. Should be improved.
 	if(is_ventcrawling && istype(loc,/obj/machinery/atmospherics/pipe/zpipe))
 		var/obj/machinery/atmospherics/pipe/zpipe/currentpipe = loc
@@ -126,15 +126,15 @@
 			currentpipe.ventcrawl_to(src, currentpipe.node2, direction)
 	return ..()
 
-/mob/observer/can_ztravel()
+mob/observer/can_ztravel()
 	return TRUE
 
-/mob/living/can_ztravel()
+mob/living/can_ztravel()
 	if(incapacitated())
 		return FALSE
 	return (hovering || is_incorporeal())
 
-/mob/living/carbon/human/can_ztravel()
+mob/living/carbon/human/can_ztravel()
 	if(incapacitated())
 		return FALSE
 
@@ -151,7 +151,7 @@
 			if(T.density)
 				return TRUE
 
-/mob/living/silicon/robot/can_ztravel()
+mob/living/silicon/robot/can_ztravel()
 	if(incapacitated() || is_dead())
 		return FALSE
 
@@ -168,11 +168,11 @@
 // TODO - Leshana Experimental
 
 //Execution by grand piano!
-/atom/movable/proc/get_fall_damage()
+atom/movable/proc/get_fall_damage()
 	return 42
 
 //If atom stands under open space, it can prevent fall, or not
-/atom/proc/can_prevent_fall(var/atom/movable/mover, var/turf/coming_from)
+atom/proc/can_prevent_fall(var/atom/movable/mover, var/turf/coming_from)
 	return (!CanPass(mover, coming_from))
 
 ////////////////////////////
@@ -183,7 +183,7 @@
 // Yes, sometimes you need to make things worse temporarily, to make it better
 // yell at me if shit breaks ~silicons
 //Holds fall checks that should not be overriden by children
-/atom/movable/proc/fall()
+atom/movable/proc/fall()
 	if(!isturf(loc))
 		return
 
@@ -258,28 +258,28 @@
 		// TODO - handle fall on damage!
 
 //For children to override
-/atom/movable/proc/can_fall()
+atom/movable/proc/can_fall()
 	if(anchored)
 		return FALSE
 	// if(throwing)
 		// return FALSE
 	return TRUE
 
-/obj/effect/can_fall()
+obj/effect/can_fall()
 	return FALSE
 
-/obj/effect/debris/cleanable/can_fall()
+obj/effect/debris/cleanable/can_fall()
 	return TRUE
 
 // These didn't fall anyways but better to nip this now just incase.
-/atom/movable/lighting_overlay/can_fall()
+atom/movable/lighting_overlay/can_fall()
 	return FALSE
 
 // Mechas are anchored, so we need to override.
-/obj/mecha/can_fall()
+obj/mecha/can_fall()
 	return TRUE
 
-/obj/item/pipe/can_fall()
+obj/item/pipe/can_fall()
 	. = ..()
 
 	if(anchored)
@@ -289,24 +289,24 @@
 	if((locate(/obj/structure/disposalpipe/up) in below) || (locate(/obj/machinery/atmospherics/pipe/zpipe/up) in below))
 		return FALSE
 
-/mob/can_fall()
+mob/can_fall()
 	if(buckled)
 		return FALSE	// buckled falls instead
 	return ..()
 
-/mob/living/can_fall()
+mob/living/can_fall()
 	if(is_incorporeal())
 		return FALSE
 	if(hovering)
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/can_fall()
+mob/living/carbon/human/can_fall()
 	if(..())
 		return species.can_fall(src)
 
 // Actually process the falling movement and impacts.
-/atom/movable/proc/handle_fall(turf/landing)
+atom/movable/proc/handle_fall(turf/landing)
 	var/turf/oldloc = loc
 
 	// something is blocking us
@@ -335,15 +335,15 @@
 	else
 		locationTransitForceMove(landing)
 
-/atom/movable/proc/special_fall_handle(atom/A)
+atom/movable/proc/special_fall_handle(atom/A)
 	return FALSE
 
-/mob/living/carbon/human/special_fall_handle(atom/A)
+mob/living/carbon/human/special_fall_handle(atom/A)
 	if(species)
 		return species.fall_impact_special(src, A)
 	return FALSE
 
-/atom/movable/proc/find_fall_target(turf/oldloc, turf/landing)
+atom/movable/proc/find_fall_target(turf/oldloc, turf/landing)
 	if(isopenturf(oldloc))
 		oldloc.visible_message("\The [src] falls down through \the [oldloc]!", "You hear something falling through the air.")
 
@@ -360,7 +360,7 @@
 	if(landing.CheckFall(src))
 		return landing
 
-/mob/living/carbon/human/find_fall_target(turf/landing)
+mob/living/carbon/human/find_fall_target(turf/landing)
 	if(species)
 		var/atom/A = species.find_fall_target_special(src, landing)
 		if(A)
@@ -376,7 +376,7 @@
  * Called on everything that falling_atom might hit.
  * Return TRUE if you're handling it so find_fall_target() will stop checking.
  */
-/atom/proc/CheckFall(atom/movable/falling_atom)
+atom/proc/CheckFall(atom/movable/falling_atom)
 	if(density && !(atom_flags & ATOM_BORDER))
 		return TRUE
 	return prevent_z_fall(falling_atom, 0, NONE) & (FALL_TERMINATED | FALL_BLOCKED)
@@ -387,7 +387,7 @@
  * Return TRUE if the generic fall_impact should be called.
  * Return FALSE if you handled it yourself or if there's no effect from hitting you.
  */
-/atom/proc/check_impact(atom/movable/falling_atom)
+atom/proc/check_impact(atom/movable/falling_atom)
 	return TRUE
 
 
@@ -399,7 +399,7 @@
  * If silent is True, the proc won't play sound or give a message.
  * If planetary is True, it's harder to stop the fall damage.
  */
-/atom/movable/proc/fall_impact(atom/hit_atom, damage_min = 0, damage_max = 10, silent = FALSE, planetary = FALSE)
+atom/movable/proc/fall_impact(atom/hit_atom, damage_min = 0, damage_max = 10, silent = FALSE, planetary = FALSE)
 	if(!silent)
 		visible_message("\The [src] falls from above and slams into \the [hit_atom]!", "You hear something slam into \the [hit_atom].")
 	for(var/atom/movable/A in src.contents)
@@ -409,7 +409,7 @@
 
 
 /// Take damage from falling and hitting the ground.
-/mob/living/fall_impact(atom/hit_atom, damage_min = 0, damage_max = 5, silent = FALSE, planetary = FALSE)
+mob/living/fall_impact(atom/hit_atom, damage_min = 0, damage_max = 5, silent = FALSE, planetary = FALSE)
 	var/turf/landing = get_turf(hit_atom)
 	if(planetary && CanParachute())
 		if(!silent)
@@ -452,12 +452,12 @@
 		afflict_paralyze(20 * 4)
 		update_health()
 
-/mob/living/carbon/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
+mob/living/carbon/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
 	if(!species?.handle_falling(src, hit_atom, damage_min, damage_max, silent, planetary))
 		..()
 
 //Using /atom/movable instead of /obj/item because I'm not sure what all humans can pick up or wear
-/atom/movable
+atom/movable
 	/// Is this thing a parachute itself?
 	var/parachute = FALSE
 	/**
@@ -470,7 +470,7 @@
 	/// Is the thing able to jump out of planes and survive? Don't check this directly outside of CanParachute().
 	var/parachuting = FALSE
 
-/atom/movable/proc/isParachute()
+atom/movable/proc/isParachute()
 	return parachute
 
 
@@ -478,15 +478,15 @@
  * This is what makes the parachute items know they've been used.
  * I made it /atom/movable so it can be retooled for other things (mobs, mechs, etc), though it's only currently called in human/CanParachute().
  */
-/atom/movable/proc/handleParachute()
+atom/movable/proc/handleParachute()
 	return
 
 /// Checks if the thing is allowed to survive a fall from space.
-/atom/movable/proc/CanParachute()
+atom/movable/proc/CanParachute()
 	return parachuting
 
 /// For humans, this needs to be a wee bit more complicated.
-/mob/living/carbon/human/CanParachute()
+mob/living/carbon/human/CanParachute()
 	// Certain slots don't really need to be checked for parachute ability, i.e. pockets, ears, etc. If this changes, just add them to the loop, I guess?
 	// This is done in Priority Order, so items lower down the list don't call handleParachute() unless they're actually used.
 	if(back && back.isParachute())
@@ -508,7 +508,7 @@
 		return parachuting
 
 // Mech Code
-/obj/mecha/handle_fall(turf/landing)
+obj/mecha/handle_fall(turf/landing)
 	// First things first, break any lattice
 	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, loc)
 	if(lattice)
@@ -519,7 +519,7 @@
 	// Then call parent to have us actually fall
 	return ..()
 
-/obj/mecha/fall_impact(var/atom/hit_atom, var/damage_min = 15, var/damage_max = 30, var/silent = FALSE, var/planetary = FALSE)
+obj/mecha/fall_impact(var/atom/hit_atom, var/damage_min = 15, var/damage_max = 30, var/silent = FALSE, var/planetary = FALSE)
 	// Anything on the same tile as the landing tile is gonna have a bad day.
 	for(var/mob/living/L in hit_atom.contents)
 		L.visible_message(SPAN_DANGER("\The [src] crushes \the [L] as it lands on them!"))
@@ -576,11 +576,11 @@
 		ground.break_tile()
 
 
-/mob/CheckFall(atom/movable/falling_atom)
+mob/CheckFall(atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
 
 //! I didn't feel like removing @silicons' check in handle_fall(). @Zandario
-/mob/living/proc/dropped_onto(atom/hit_atom)
+mob/living/proc/dropped_onto(atom/hit_atom)
 	if(!isliving(hit_atom))
 		return FALSE
 	return TRUE

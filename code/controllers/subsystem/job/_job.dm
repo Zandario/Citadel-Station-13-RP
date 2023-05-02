@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(job)
 	var/debug_messages = FALSE
 
 
-/datum/controller/subsystem/job/Initialize(timeofday)
+datum/controller/subsystem/job/Initialize(timeofday)
 	init_access()
 	if(!length(department_datums))
 		setup_departments()
@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(job)
 	reconstruct_job_ui_caches()
 	return ..()
 
-/datum/controller/subsystem/job/Recover()
+datum/controller/subsystem/job/Recover()
 	init_access()
 	occupations = SSjob.occupations
 	name_occupations = SSjob.name_occupations
@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(job)
 
 	return ..()
 
-/datum/controller/subsystem/job/proc/reconstruct_job_ui_caches()
+datum/controller/subsystem/job/proc/reconstruct_job_ui_caches()
 	// todo: this is shit but it works
 	job_pref_ui_cache = list()
 	for(var/id in job_lookup)
@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(job)
 		for(var/depname in asinine_sort)
 			faction[depname] = asinine_sort[depname]
 
-/datum/controller/subsystem/job/proc/setup_occupations()
+datum/controller/subsystem/job/proc/setup_occupations()
 	occupations = list()
 	job_lookup = list()
 	name_occupations = list()
@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(job)
 
 	return TRUE
 
-/datum/controller/subsystem/job/proc/add_to_departments(datum/role/job/J)
+datum/controller/subsystem/job/proc/add_to_departments(datum/role/job/J)
 	// Adds to the regular job lists in the departments, which allow multiple departments for a job.
 	for(var/D in J.departments)
 		var/datum/department/dept = LAZYACCESS(department_datums, D)
@@ -125,34 +125,34 @@ SUBSYSTEM_DEF(job)
 		else
 			dept.primary_jobs[J.title] = J
 
-/datum/controller/subsystem/job/proc/setup_departments()
+datum/controller/subsystem/job/proc/setup_departments()
 	for(var/t in subtypesof(/datum/department))
 		var/datum/department/D = new t()
 		department_datums[D.name] = D
 
 	tim_sort(department_datums, /proc/cmp_department_datums, TRUE)
 
-/datum/controller/subsystem/job/proc/get_all_department_datums()
+datum/controller/subsystem/job/proc/get_all_department_datums()
 	var/list/dept_datums = list()
 	for(var/D in department_datums)
 		dept_datums += department_datums[D]
 	return dept_datums
 
-/datum/controller/subsystem/job/proc/get_job(rank)
+datum/controller/subsystem/job/proc/get_job(rank)
 	if(!occupations.len)
 		setup_occupations()
 	return name_occupations[rank]
 
 // Determines if a job title is inside of a specific department.
 // Useful to replace the old `if(job_title in command_positions)` code.
-/datum/controller/subsystem/job/proc/is_job_in_department(rank, target_department_name)
+datum/controller/subsystem/job/proc/is_job_in_department(rank, target_department_name)
 	var/datum/department/D = LAZYACCESS(department_datums, target_department_name)
 	if(istype(D))
 		return LAZYFIND(D.jobs, rank) ? TRUE : FALSE
 	return FALSE
 
 // Returns a list of all job names in a specific department.
-/datum/controller/subsystem/job/proc/get_job_titles_in_department(target_department_name)
+datum/controller/subsystem/job/proc/get_job_titles_in_department(target_department_name)
 	var/datum/department/D = LAZYACCESS(department_datums, target_department_name)
 	if(istype(D))
 		var/list/job_titles = list()
@@ -165,7 +165,7 @@ SUBSYSTEM_DEF(job)
 
 // Returns a reference to the primary department datum that a job is in.
 // Can receive job datum refs, typepaths, or job title strings.
-/datum/controller/subsystem/job/proc/get_primary_department_of_job(datum/role/job/J)
+datum/controller/subsystem/job/proc/get_primary_department_of_job(datum/role/job/J)
 	if(!istype(J, /datum/role/job))
 		if(ispath(J))
 			J = job_by_type(J)
@@ -193,6 +193,6 @@ SUBSYSTEM_DEF(job)
 
 
 
-/datum/controller/subsystem/job/proc/job_debug_message(message)
+datum/controller/subsystem/job/proc/job_debug_message(message)
 	if(debug_messages)
 		log_debug(SPAN_DEBUG("JOB DEBUG: [message]"))

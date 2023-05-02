@@ -1,4 +1,4 @@
-/obj/vehicle/ridden/bike 	// TODO, make this fly @ktoma36
+obj/vehicle/ridden/bike 	// TODO, make this fly @ktoma36
 	name = "space-bike"
 	desc = "Space wheelies! Woo! This one doesnt seem to fly!"
 	icon = 'icons/obj/bike.dmi'
@@ -9,7 +9,7 @@
 	riding_handler_type = /datum/component/riding_handler/vehicle/bike/small
 
 
-/datum/component/riding_handler/vehicle/bike
+datum/component/riding_handler/vehicle/bike
 	vehicle_move_delay = 2
 	allowed_turf_types = list(
 		/turf/simulated/floor,
@@ -24,7 +24,7 @@
 
 
 
-/datum/component/riding_handler/vehicle/bike/small
+datum/component/riding_handler/vehicle/bike/small
 	rider_offsets = list(
 		list(
 			list(1, 7, 0.1, null),

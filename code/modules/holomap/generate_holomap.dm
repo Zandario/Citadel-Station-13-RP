@@ -5,14 +5,14 @@
 
 // Define what criteria makes a turf a path or not
 
-/datum/controller/subsystem/holomaps
+datum/controller/subsystem/holomaps
 	var/list/rock_tcache
 	var/list/obstacle_tcache
 	var/list/path_tcache
 	var/list/space_tcache
 	var/list/unexplored_tcache
 
-/datum/controller/subsystem/holomaps/proc/setup_tcaches()
+datum/controller/subsystem/holomaps/proc/setup_tcaches()
 	rock_tcache = typecacheof(/turf/simulated/mineral)
 	obstacle_tcache = typecacheof(list(
 		/turf/simulated/wall,
@@ -27,7 +27,7 @@
 	unexplored_tcache = typecacheof(/area/mine/unexplored)
 
 /// Generates all the holo minimaps, initializing it all nicely, probably.
-/datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
+datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
 	if (!rock_tcache)
 		setup_tcaches()
 
@@ -51,7 +51,7 @@
 		S.setup_holomap()
 
 // Generates the "base" holomap for one z-level, showing only the physical structure of walls and paths.
-/datum/controller/subsystem/holomaps/proc/generateHoloMinimap(var/zLevel = 1)
+datum/controller/subsystem/holomaps/proc/generateHoloMinimap(var/zLevel = 1)
 	// Save these values now to avoid a bazillion array lookups
 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
@@ -89,7 +89,7 @@
 // This seems to do the drawing thing, but draws only the areas, having nothing to do with the tiles.
 // Leshana: I'm guessing this map will get overlayed on top of the base map at runtime? We'll see.
 // Wait, seems we actually blend the area map on top of it right now! Huh.
-/datum/controller/subsystem/holomaps/proc/generateStationMinimap(var/zLevel)
+datum/controller/subsystem/holomaps/proc/generateStationMinimap(var/zLevel)
 	// Save these values now to avoid a bazillion array lookups
 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
@@ -136,7 +136,7 @@
 	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[zLevel]"] = actual_small_map
 
 // For tiny multi-z maps like the tether, we want to smoosh em together into a nice big one!
-/datum/controller/subsystem/holomaps/proc/smooshTetherHolomaps(var/list/zlevels)
+datum/controller/subsystem/holomaps/proc/smooshTetherHolomaps(var/list/zlevels)
 	var/icon/big_map = icon(HOLOMAP_ICON, "stationmap")
 	var/icon/small_map = icon(HOLOMAP_ICON, "blank")
 	// For each zlevel in turn, overlay them on top of each other

@@ -3,7 +3,7 @@
 // and therefore more deserving of parent-class status -- Ater
 
 // Supply requests console
-/obj/machinery/computer/supplycomp
+obj/machinery/computer/supplycomp
 	name = "supply ordering console"
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/supplycomp
@@ -15,7 +15,7 @@
 	var/menu_tab = 0
 	var/list/expanded_packs = list()
 
-/obj/machinery/computer/supplycomp/attackby(I, user)
+obj/machinery/computer/supplycomp/attackby(I, user)
 	if(istype(I, /obj/item/engineering_voucher))
 		var/obj/item/engineering_voucher/voucher = I
 		voucher.redeem(user)
@@ -23,7 +23,7 @@
 
 
 // Supply control console
-/obj/machinery/computer/supplycomp/control
+obj/machinery/computer/supplycomp/control
 	name = "supply control console"
 	icon_keyboard = "tech_key"
 	icon_screen = "supply"
@@ -32,10 +32,10 @@
 	circuit = /obj/item/circuitboard/supplycomp/control
 	authorization = SUP_SEND_SHUTTLE | SUP_ACCEPT_ORDERS
 
-/obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
+obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_hand(mob/user, list/params)
+obj/machinery/computer/supplycomp/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(!allowed(user))
@@ -44,14 +44,14 @@
 	nano_ui_interact(user)
 	return
 
-/obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
 	if(!can_order_contraband)
 		to_chat(user, "<span class='notice'>Special supplies unlocked.</span>")
 		authorization |= SUP_CONTRABAND
 		req_access = list()
 		return 1
 
-/obj/machinery/computer/supplycomp/nano_ui_interact(mob/user, ui_key = "supply_records", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
+obj/machinery/computer/supplycomp/nano_ui_interact(mob/user, ui_key = "supply_records", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
 	var/data[0]
 	var/shuttle_status[0]	// Supply shuttle status
 	var/pack_list[0]		// List of supply packs within the active_category
@@ -190,7 +190,7 @@
 
 
 
-/obj/machinery/computer/supplycomp/Topic(href, href_list)
+obj/machinery/computer/supplycomp/Topic(href, href_list)
 	if(!SSsupply)
 		log_world("## ERROR: The supply_controller datum is missing.")
 		return
@@ -414,7 +414,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/supplycomp/proc/post_signal(var/command)
+obj/machinery/computer/supplycomp/proc/post_signal(var/command)
 
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 

@@ -1,11 +1,11 @@
-/obj/item/card/emag_broken
+obj/item/card/emag_broken
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
 	name = "broken cryptographic sequencer"
 	icon_state = "emag-spent"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 
-/obj/item/card/emag
+obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
@@ -13,7 +13,7 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	var/uses = 10
 
-/obj/item/card/emag/resolve_attackby(atom/W, mob/user, params, attack_modifier = 1)
+obj/item/card/emag/resolve_attackby(atom/W, mob/user, params, attack_modifier = 1)
 	var/used_uses = W.emag_act(uses, user, src)
 	if(used_uses < 0)
 		return ..(W, user)
@@ -35,7 +35,7 @@
 
 	return 1
 
-/obj/item/card/emag/attackby(obj/item/O as obj, mob/user as mob)
+obj/item/card/emag/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/stack/telecrystal))
 		var/obj/item/stack/telecrystal/T = O
 		if(T.amount < 1)

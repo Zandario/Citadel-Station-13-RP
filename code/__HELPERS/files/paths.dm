@@ -1,4 +1,4 @@
-/proc/pathflatten(path)
+proc/pathflatten(path)
 	return replacetext(path, "/", "_")
 
 /**
@@ -12,7 +12,7 @@
  *
  * If you use SANITIZE_FILENAME to sanitize a file path things will break.
  */
-/proc/sanitize_filepath(path)
+proc/sanitize_filepath(path)
 	. = ""
 	// Very much intentionally hardcoded.
 	var/delimiter = "/"
@@ -27,6 +27,6 @@
  * gets file name of a path
  * expensive, duh.
  */
-/proc/filepath_extract_name(path)
+proc/filepath_extract_name(path)
 	var/pos = findlasttext_char(path, "/")
 	return copytext(path, pos + 1)

@@ -1,4 +1,4 @@
-/datum/power/changeling/boost_range
+datum/power/changeling/boost_range
 	name = "Boost Range"
 	desc = "We evolve the ability to shoot our stingers at humans, with some preperation."
 	helptext = "Allows us to prepare the next sting to have a range of two tiles."
@@ -9,7 +9,7 @@
 	verbpath = /mob/proc/changeling_boost_range
 
 //Boosts the range of your next sting attack by 1
-/mob/proc/changeling_boost_range()
+mob/proc/changeling_boost_range()
 	set category = "Changeling"
 	set name = "Ranged Sting (10)"
 	set desc="Your next sting ability can be used against targets 2 squares away."

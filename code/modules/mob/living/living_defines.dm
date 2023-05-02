@@ -5,7 +5,7 @@
  * there's probably a better explanation we can type someday but for that, uh
  * yeah.
  */
-/mob/living
+mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 	movable_flags = MOVABLE_NO_THROW_SPIN | MOVABLE_NO_THROW_DAMAGE_SCALING | MOVABLE_NO_THROW_SPEED_SCALING
 

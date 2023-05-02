@@ -9,28 +9,28 @@
 
 // BEGIN RESEARCH DATUMS
 
-/datum/malf_research_ability/manipulation/electrical_pulse
+datum/malf_research_ability/manipulation/electrical_pulse
 	ability = new/datum/game_mode/malfunction/verb/electrical_pulse()
 	price = 50
 	next = new/datum/malf_research_ability/manipulation/hack_camera()
 	name = "Electrical Pulse"
 
 
-/datum/malf_research_ability/manipulation/hack_camera
+datum/malf_research_ability/manipulation/hack_camera
 	ability = new/datum/game_mode/malfunction/verb/hack_camera()
 	price = 1200
 	next = new/datum/malf_research_ability/manipulation/emergency_forcefield()
 	name = "Hack Camera"
 
 
-/datum/malf_research_ability/manipulation/emergency_forcefield
+datum/malf_research_ability/manipulation/emergency_forcefield
 	ability = new/datum/game_mode/malfunction/verb/emergency_forcefield()
 	price = 3000
 	next = new/datum/malf_research_ability/manipulation/machine_overload()
 	name = "Emergency Forcefield"
 
 
-/datum/malf_research_ability/manipulation/machine_overload
+datum/malf_research_ability/manipulation/machine_overload
 	ability = new/datum/game_mode/malfunction/verb/machine_overload()
 	price = 7500
 	name = "Machine Overload"
@@ -38,7 +38,7 @@
 // END RESEARCH DATUMS
 // BEGIN ABILITY VERBS
 
-/datum/game_mode/malfunction/verb/electrical_pulse()
+datum/game_mode/malfunction/verb/electrical_pulse()
 	set name = "Electrical Pulse"
 	set desc = "15 CPU - Sends feedback pulse through station's power grid, overloading some sensitive systems, such as lights."
 	set category = "Software"
@@ -54,7 +54,7 @@
 			AP.set_broken()
 
 
-/datum/game_mode/malfunction/verb/hack_camera(var/obj/machinery/camera/target in GLOB.cameranet.cameras)
+datum/game_mode/malfunction/verb/hack_camera(var/obj/machinery/camera/target in GLOB.cameranet.cameras)
 	set name = "Hack Camera"
 	set desc = "100 CPU - Hacks existing camera, allowing you to add upgrade of your choice to it. Alternatively it lets you reactivate broken camera."
 	set category = "Software"
@@ -111,7 +111,7 @@
 				return
 
 
-/datum/game_mode/malfunction/verb/emergency_forcefield(var/turf/T as turf in world)
+datum/game_mode/malfunction/verb/emergency_forcefield(var/turf/T as turf in world)
 	set name = "Emergency Forcefield"
 	set desc = "275 CPU - Uses station's emergency shielding system to create temporary barrier which lasts for few minutes, but won't resist gunfire."
 	set category = "Software"
@@ -129,7 +129,7 @@
 		user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in GLOB.machines)
+datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in GLOB.machines)
 	set name = "Machine Overload"
 	set desc = "400 CPU - Causes cyclic short-circuit in machine, resulting in weak explosion after some time."
 	set category = "Software"

@@ -1,8 +1,8 @@
-/datum/lore
+datum/lore
 	/// abstract type
 	abstract_type = /datum/lore
 
-/datum/lore/character_background
+datum/lore/character_background
 	abstract_type = /datum/lore/character_background
 
 	/// name
@@ -26,7 +26,7 @@
 	/// economic background modfiier for starting pay
 	var/economy_payscale = 1
 
-/datum/lore/character_background/New()
+datum/lore/character_background/New()
 	// resolve typepaths
 	if(allow_species && !islist(allow_species))
 		CRASH("innate languages not a list; fix your shit.")
@@ -76,15 +76,15 @@
 /**
  * id passed in is for a /datum/character_species, NOT a /datum/speices!
  */
-/datum/lore/character_background/proc/check_species_id(id)
+datum/lore/character_background/proc/check_species_id(id)
 	return check_character_species(SScharacters.resolve_character_species(id))
 
-/datum/lore/character_background/proc/check_character_species(datum/character_species/S)
+datum/lore/character_background/proc/check_character_species(datum/character_species/S)
 	if(allow_species)
 		return (S.uid in allow_species) || (subspecies_included && S.is_subspecies && (S.superspecies_id in allow_species))
 	else if(forbid_species)
 		return !((S.uid in forbid_species) || (subspecies_included && S.is_subspecies && (S.superspecies_id in forbid_species)))
 	return TRUE
 
-/datum/lore/character_background/proc/get_default_language_ids()
+datum/lore/character_background/proc/get_default_language_ids()
 	return innate_languages.Copy()

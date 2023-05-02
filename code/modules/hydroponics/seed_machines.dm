@@ -1,4 +1,4 @@
-/obj/item/disk/botany
+obj/item/disk/botany
 	name = "flora data disk"
 	desc = "A small disk used for carrying data on plant genetics."
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -8,12 +8,12 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-/obj/item/disk/botany/Initialize(mapload)
+obj/item/disk/botany/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
-/obj/item/disk/botany/attack_self(mob/user)
+obj/item/disk/botany/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -26,15 +26,15 @@
 			genes = list()
 			genesource = "unknown"
 
-/obj/item/storage/box/botanydisk
+obj/item/storage/box/botanydisk
 	name = "flora disk box"
 	desc = "A box of flora data disks, apparently."
 
-/obj/item/storage/box/botanydisk/PopulateContents()
+obj/item/storage/box/botanydisk/PopulateContents()
 	for(var/i = 0;i<7;i++)
 		new /obj/item/disk/botany(src)
 
-/obj/machinery/botany
+obj/machinery/botany
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "hydrotray3"
 	density = 1
@@ -52,7 +52,7 @@
 	var/failed_task = 0
 	var/disk_needs_genes = 0
 
-/obj/machinery/botany/process(delta_time)
+obj/machinery/botany/process(delta_time)
 
 	..()
 	if(!active) return
@@ -60,13 +60,13 @@
 	if(world.time > last_action + action_time)
 		finished_task()
 
-/obj/machinery/botany/attack_ai(mob/user as mob)
+obj/machinery/botany/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/botany/attack_hand(mob/user, list/params)
+obj/machinery/botany/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/obj/machinery/botany/proc/finished_task()
+obj/machinery/botany/proc/finished_task()
 	active = 0
 	if(failed_task)
 		failed_task = 0
@@ -81,7 +81,7 @@
 			visible_message("[icon2html(thing = src, target = world)] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
 
-/obj/machinery/botany/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/botany/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/seeds))
 		if(seed)
 			to_chat(user, "There is already a seed loaded.")
@@ -130,20 +130,20 @@
 	..()
 
 // Allows for a trait to be extracted from a seed packet, destroying that seed.
-/obj/machinery/botany/extractor
+obj/machinery/botany/extractor
 	name = "lysis-isolation centrifuge"
 	icon_state = "traitcopier"
 
 	var/datum/seed/genetics // Currently scanned seed genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 
-/obj/machinery/botany/extractor/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/botany/extractor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BotanyIsolator", name)
 		ui.open()
 
-/obj/machinery/botany/extractor/ui_data(mob/user)
+obj/machinery/botany/extractor/ui_data(mob/user)
 	var/list/data = ..()
 
 	var/list/geneMasks = SSplants.gene_masked_list
@@ -173,7 +173,7 @@
 
 	return data
 
-/obj/machinery/botany/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/botany/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -204,7 +204,7 @@
 			loaded_disk = null
 			return TRUE
 
-/obj/machinery/botany/extractor/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/botany/extractor/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -260,18 +260,18 @@
 
 // Fires an extracted trait into another packet of seeds with a chance
 // of destroying it based on the size/complexity of the plasmid.
-/obj/machinery/botany/editor
+obj/machinery/botany/editor
 	name = "bioballistic delivery system"
 	icon_state = "traitgun"
 	disk_needs_genes = 1
 
-/obj/machinery/botany/editor/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/botany/editor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BotanyEditor", name)
 		ui.open()
 
-/obj/machinery/botany/editor/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/botany/editor/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["activity"] = active
@@ -302,7 +302,7 @@
 
 	return data
 
-/obj/machinery/botany/editor/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/botany/editor/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 

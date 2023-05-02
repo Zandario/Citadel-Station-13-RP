@@ -1,25 +1,25 @@
-/datum/wires/coinbank
+datum/wires/coinbank
 	holder_type = /obj/machinery/coinbank
 	wire_count = 3
 	proper_name = "Coin Bank"
 
-/datum/wires/coinbank/New(atom/_holder)
+datum/wires/coinbank/New(atom/_holder)
 	wires = list(WIRE_ELECTRIFY, WIRE_THROW_ITEM)
 	return ..()
 
-/datum/wires/coinbank/interactable(mob/user)
+datum/wires/coinbank/interactable(mob/user)
 	var/obj/machinery/coinbank/C = holder
 	if(C.panel_open)
 		return TRUE
 	return FALSE
 
-/datum/wires/coinbank/get_status()
+datum/wires/coinbank/get_status()
 	var/obj/machinery/coinbank/C = holder
 	. = ..()
 	. += "The orange light is [C.seconds_electrified ? "off" : "on"]."
 	. += "The red light is [C.shoot_inventory ? "off" : "blinking"]."
 
-/datum/wires/coinbank/on_pulse(wire)
+datum/wires/coinbank/on_pulse(wire)
 	var/obj/machinery/coinbank/C = holder
 	switch(wire)
 		if(WIRE_THROW_ITEM)
@@ -27,7 +27,7 @@
 		if(WIRE_ELECTRIFY)
 			C.seconds_electrified = 30
 
-/datum/wires/coinbank/on_cut(wire, mend)
+datum/wires/coinbank/on_cut(wire, mend)
 	var/obj/machinery/coinbank/C = holder
 	switch(wire)
 		if(WIRE_THROW_ITEM)

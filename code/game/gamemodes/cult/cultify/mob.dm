@@ -1,12 +1,12 @@
-/mob
+mob
 	//thou shall always be able to see the Geometer of Blood
 	var/image/narsimage = null
 	var/image/narglow = null
 
-/mob/proc/cultify()
+mob/proc/cultify()
 	return
 
-/mob/observer/dead/cultify()
+mob/observer/dead/cultify()
 	if(icon_state != "ghost-narsie")
 		icon = 'icons/mob/mob.dmi'
 		icon_state = "ghost-narsie"
@@ -14,7 +14,7 @@
 		invisibility = 0
 		to_chat(src, "<span class='sinister'>Even as a non-corporal being, you can feel Nar-Sie's presence altering you. You are now visible to everyone.</span>")
 
-/mob/living/cultify()
+mob/living/cultify()
 	if(iscultist(src) && client)
 		var/mob/living/simple_mob/construct/harvester/C = new(get_turf(src))
 		mind.transfer(C)
@@ -32,7 +32,7 @@
 	else
 		dust()
 
-/mob/proc/see_narsie(var/obj/singularity/narsie/large/N, var/dir)
+mob/proc/see_narsie(var/obj/singularity/narsie/large/N, var/dir)
 	if(N.chained)
 		if(narsimage)
 			qdel(narsimage)

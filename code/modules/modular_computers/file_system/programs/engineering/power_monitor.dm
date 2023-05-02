@@ -1,4 +1,4 @@
-/datum/computer_file/program/power_monitor
+datum/computer_file/program/power_monitor
 	filename = "powermonitor"
 	filedesc = "Power Monitoring"
 	nanomodule_path = /datum/nano_module/power_monitor/
@@ -13,7 +13,7 @@
 	size = 9
 	var/has_alert = 0
 
-/datum/computer_file/program/power_monitor/process_tick()
+datum/computer_file/program/power_monitor/process_tick()
 	..()
 	var/datum/nano_module/power_monitor/NMA = NM
 	if(istype(NMA) && NMA.has_alarm())
@@ -29,17 +29,17 @@
 			update_computer_icon()
 			has_alert = 0
 
-/datum/nano_module/power_monitor
+datum/nano_module/power_monitor
 	name = "Power monitor"
 	var/list/grid_sensors
 	var/active_sensor = null	//name_tag of the currently selected sensor
 
-/datum/nano_module/power_monitor/New()
+datum/nano_module/power_monitor/New()
 	..()
 	refresh_sensors()
 
 // Checks whether there is an active alarm, if yes, returns 1, otherwise returns 0.
-/datum/nano_module/power_monitor/proc/has_alarm()
+datum/nano_module/power_monitor/proc/has_alarm()
 	for(var/obj/machinery/power/sensor/S in grid_sensors)
 		if(S.check_grid_warning())
 			return 1
@@ -47,7 +47,7 @@
 
 // If PC is not null header template is loaded. Use PC.get_header_data() to get relevant nanoui data from it. All data entries begin with "PC_...."
 // In future it may be expanded to other modular computer devices.
-/datum/nano_module/power_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/power_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	var/list/sensors = list()
@@ -83,7 +83,7 @@
 		ui.set_auto_update(1)
 
 // Refreshes list of active sensors kept on this computer.
-/datum/nano_module/power_monitor/proc/refresh_sensors()
+datum/nano_module/power_monitor/proc/refresh_sensors()
 	grid_sensors = list()
 	var/turf/T = get_turf(nano_host())
 	var/list/levels = list()
@@ -99,7 +99,7 @@
 				grid_sensors += S
 
 // Allows us to process UI clicks, which are relayed in form of hrefs.
-/datum/nano_module/power_monitor/Topic(href, href_list)
+datum/nano_module/power_monitor/Topic(href, href_list)
 	if(..())
 		return TRUE
 	if(href_list["clear"] )

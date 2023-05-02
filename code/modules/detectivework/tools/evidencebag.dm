@@ -1,6 +1,6 @@
 //CONTAINS: Evidence bags and fingerprint cards
 
-/obj/item/evidencebag
+obj/item/evidencebag
 	name = "evidence bag"
 	desc = "An empty evidence bag."
 	icon = 'icons/obj/storage.dmi'
@@ -9,7 +9,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/obj/item/stored_item = null
 
-/obj/item/evidencebag/OnMouseDropLegacy(var/obj/item/I as obj)
+obj/item/evidencebag/OnMouseDropLegacy(var/obj/item/I as obj)
 	if (!ishuman(usr))
 		return
 	if(!istype(I) || I.anchored)
@@ -71,7 +71,7 @@
 	return
 
 
-/obj/item/evidencebag/attack_self(mob/user)
+obj/item/evidencebag/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -92,7 +92,7 @@
 		icon_state = "evidenceobj"
 	return
 
-/obj/item/evidencebag/examine(mob/user)
+obj/item/evidencebag/examine(mob/user)
 	. = ..()
 	if(stored_item)
 		. += stored_item.examine(user)

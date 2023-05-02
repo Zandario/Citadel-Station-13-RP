@@ -30,7 +30,7 @@
 
 #define TGS_FILE2LIST(filename) (splittext(trim_left(trim_right(file2text(filename))), "\n"))
 
-/datum/tgs_api/v3210
+datum/tgs_api/v3210
 	var/reboot_mode = REBOOT_MODE_NORMAL
 	var/comms_key
 	var/instance_name
@@ -40,22 +40,22 @@
 	var/warned_revison = FALSE
 	var/warned_custom_commands = FALSE
 
-/datum/tgs_api/v3210/ApiVersion()
+datum/tgs_api/v3210/ApiVersion()
 	return new /datum/tgs_version("3.2.1.3")
 
-/datum/tgs_api/v3210/proc/trim_left(text)
+datum/tgs_api/v3210/proc/trim_left(text)
 	for (var/i = 1 to length(text))
 		if (text2ascii(text, i) > 32)
 			return copytext(text, i)
 	return ""
 
-/datum/tgs_api/v3210/proc/trim_right(text)
+datum/tgs_api/v3210/proc/trim_right(text)
 	for (var/i = length(text), i > 0, i--)
 		if (text2ascii(text, i) > 32)
 			return copytext(text, 1, i + 1)
 	return ""
 
-/datum/tgs_api/v3210/OnWorldNew(minimum_required_security_level)
+datum/tgs_api/v3210/OnWorldNew(minimum_required_security_level)
 	. = FALSE
 
 	comms_key = world.params[SERVICE_WORLD_PARAM]
@@ -88,13 +88,13 @@
 	return TRUE
 
 //nothing to do for v3
-/datum/tgs_api/v3210/OnInitializationComplete()
+datum/tgs_api/v3210/OnInitializationComplete()
 	return
 
-/datum/tgs_api/v3210/InstanceName()
+datum/tgs_api/v3210/InstanceName()
 	return world.params[SERVICE_INSTANCE_PARAM]
 
-/datum/tgs_api/v3210/proc/ExportService(command, skip_compat_check = FALSE)
+datum/tgs_api/v3210/proc/ExportService(command, skip_compat_check = FALSE)
 	. = FALSE
 	if(skip_compat_check && !fexists(SERVICE_INTERFACE_DLL))
 		TGS_ERROR_LOG("Service parameter present but no interface DLL detected. This is symptomatic of running a service less than version 3.1! Please upgrade.")
@@ -106,7 +106,7 @@
 	#endif
 	return TRUE
 
-/datum/tgs_api/v3210/OnTopic(T)
+datum/tgs_api/v3210/OnTopic(T)
 	var/list/params = params2list(T)
 	var/their_sCK = params[SERVICE_CMD_PARAM_KEY]
 	if(!their_sCK)
@@ -148,7 +148,7 @@
 				return istext(custom_command_result) ? custom_command_result : SERVICE_RETURN_SUCCESS
 	return "Unknown command: [command]"
 
-/datum/tgs_api/v3210/OnReboot()
+datum/tgs_api/v3210/OnReboot()
 	switch(reboot_mode)
 		if(REBOOT_MODE_HARD)
 			TGS_WORLD_ANNOUNCE("Hard reboot triggered, you will automatically reconnect...")
@@ -159,7 +159,7 @@
 		else
 			ExportService(SERVICE_REQUEST_WORLD_REBOOT) //just let em know
 
-/datum/tgs_api/v3210/TestMerges()
+datum/tgs_api/v3210/TestMerges()
 	//do the best we can here as the datum can't be completed using the v3 api
 	. = list()
 	if(!fexists(SERVICE_PR_TEST_JSON))
@@ -176,7 +176,7 @@
 		tm.title = entry["title"]
 		. += tm
 
-/datum/tgs_api/v3210/Revision()
+datum/tgs_api/v3210/Revision()
 	if(!warned_revison)
 		var/datum/tgs_version/api_version = ApiVersion()
 		TGS_ERROR_LOG("Use of TgsRevision on [api_version.deprefixed_parameter] origin_commit only points to master!")
@@ -186,29 +186,29 @@
 	ri.origin_commit = originmastercommit
 	return ri
 
-/datum/tgs_api/v3210/EndProcess()
+datum/tgs_api/v3210/EndProcess()
 	sleep(world.tick_lag) //flush the buffers
 	ExportService(SERVICE_REQUEST_KILL_PROCESS)
 
-/datum/tgs_api/v3210/ChatChannelInfo()
+datum/tgs_api/v3210/ChatChannelInfo()
 	return list() // :omegalul:
 
-/datum/tgs_api/v3210/ChatBroadcast(datum/tgs_message_content/message, list/channels)
+datum/tgs_api/v3210/ChatBroadcast(datum/tgs_message_content/message, list/channels)
 	if(channels)
 		return TGS_UNIMPLEMENTED
 	message = UpgradeDeprecatedChatMessage(message)
 	ChatTargetedBroadcast(message, TRUE)
 	ChatTargetedBroadcast(message, FALSE)
 
-/datum/tgs_api/v3210/ChatTargetedBroadcast(datum/tgs_message_content/message, admin_only)
+datum/tgs_api/v3210/ChatTargetedBroadcast(datum/tgs_message_content/message, admin_only)
 	message = UpgradeDeprecatedChatMessage(message)
 	ExportService("[admin_only ? SERVICE_REQUEST_IRC_ADMIN_CHANNEL_MESSAGE : SERVICE_REQUEST_IRC_BROADCAST] [message.text]")
 
-/datum/tgs_api/v3210/ChatPrivateMessage(message, datum/tgs_chat_user/user)
+datum/tgs_api/v3210/ChatPrivateMessage(message, datum/tgs_chat_user/user)
 	UpgradeDeprecatedChatMessage(message)
 	return TGS_UNIMPLEMENTED
 
-/datum/tgs_api/v3210/SecurityLevel()
+datum/tgs_api/v3210/SecurityLevel()
 	return TGS_SECURITY_TRUSTED
 
 #undef REBOOT_MODE_NORMAL

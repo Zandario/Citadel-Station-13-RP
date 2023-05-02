@@ -1,4 +1,4 @@
-/datum/technomancer/spell/repel_missiles
+datum/technomancer/spell/repel_missiles
 	name = "Repel Missiles"
 	desc = "Places a repulsion field around you, which attempts to deflect incoming bullets and lasers, making them 45% less likely \
 	to hit you.  The field lasts for 10 minutes and can be granted to yourself or an ally."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_repelmissiles"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/modifier/repel_missiles
+obj/item/spell/modifier/repel_missiles
 	name = "repel missiles"
 	desc = "Use it before they start shooting at you!"
 	icon_state = "generic"
@@ -17,7 +17,7 @@
 	modifier_type = /datum/modifier/technomancer/repel_missiles
 	modifier_duration = 10 MINUTES
 
-/datum/modifier/technomancer/repel_missiles
+datum/modifier/technomancer/repel_missiles
 	name = "repel_missiles"
 	desc = "A repulsion field can always be useful to have."
 	mob_overlay_state = "repel_missiles"

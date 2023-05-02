@@ -1,4 +1,4 @@
-/datum/species/tajaran
+datum/species/tajaran
 	uid = SPECIES_ID_TAJARAN
 	id = SPECIES_ID_TAJARAN
 	name = SPECIES_TAJ
@@ -113,6 +113,6 @@
 		/mob/living/carbon/human/proc/tie_hair,
 	)
 
-/datum/species/tajaran/equip_survival_gear(mob/living/carbon/human/H)
+datum/species/tajaran/equip_survival_gear(mob/living/carbon/human/H)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), SLOT_ID_SHOES)

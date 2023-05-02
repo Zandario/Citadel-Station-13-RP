@@ -5,7 +5,7 @@ var/runedec = 0
 var/global/list/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", "self", "see", "other", "hide")
 var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri")
 
-/client/proc/check_words() // -- Urist
+client/proc/check_words() // -- Urist
 	set category = "Special Verbs"
 	set name = "Check Rune Words"
 	set desc = "Check the rune-word meaning"
@@ -14,13 +14,13 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 	for (var/word in engwords)
 		to_chat(usr, "[cultwords[word]] is [word]")
 
-/proc/runerandom() //randomizes word meaning
+proc/runerandom() //randomizes word meaning
 	var/list/runewords=rnwords
 	for (var/word in engwords)
 		cultwords[word] = pick(runewords)
 		runewords-=cultwords[word]
 
-/obj/effect/rune
+obj/effect/rune
 	desc = "A strange collection of symbols drawn in blood."
 	anchored = 1
 	icon = 'icons/obj/rune.dmi'
@@ -65,7 +65,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 
 // self other technology - Communication rune  //was other hear blood
 // join hide technology - stun rune. Rune color: bright pink.
-/obj/effect/rune/Initialize(mapload)
+obj/effect/rune/Initialize(mapload)
 	. = ..()
 	blood_image = image(loc = src)
 	blood_image.override = 1
@@ -74,7 +74,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			AI.client.images += blood_image
 	rune_list.Add(src)
 
-/obj/effect/rune/Destroy()
+obj/effect/rune/Destroy()
 	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		if(AI.client)
 			AI.client.images -= blood_image
@@ -83,13 +83,13 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 	rune_list.Remove(src)
 	..()
 
-/obj/effect/rune/examine(mob/user)
+obj/effect/rune/examine(mob/user)
 	. = ..()
 	if(iscultist(user))
 		. += "This spell circle reads: <i>[word1] [word2] [word3]</i>."
 
 
-/obj/effect/rune/attackby(var/obj/I, mob/user)
+obj/effect/rune/attackby(var/obj/I, mob/user)
 	if(istype(I, /obj/item/book/tome) && iscultist(user))
 		to_chat(user, "You retrace your steps, carefully undoing the lines of the rune.")
 		qdel(src)
@@ -101,7 +101,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 	return
 
 
-/obj/effect/rune/attack_hand(mob/user, list/params)
+obj/effect/rune/attack_hand(mob/user, list/params)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -165,7 +165,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		return runestun()
 	else
 		return fizzle()
-/obj/effect/rune/proc/fizzle()
+obj/effect/rune/proc/fizzle()
 	if(istype(src,/obj/effect/rune))
 		usr.say(pick("Hakkrutju gopoenjim.", "Nherasai pivroiashan.", "Firjji prhiv mazenhor.", "Tanah eh wakantahe.", "Obliyae na oraie.", "Miyf hon vnor'c.", "Wakabai hij fen juswix."))
 	else
@@ -174,10 +174,10 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		V.show_message("<span class='warning'>The markings pulse with a small burst of light, then fall dark.</span>", 3, "<span class='warning'>You hear a faint fizzle.</span>", 2)
 	return
 
-/obj/effect/rune/proc/check_icon()
+obj/effect/rune/proc/check_icon()
 	icon = get_uristrune_cult(word1, word2, word3)
 
-/obj/item/book/tome
+obj/item/book/tome
 	name = "arcane tome"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state ="tome"
@@ -283,14 +283,14 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				</body>
 				</html>
 				"}
-/obj/item/book/tome/Initialize(mapload)
+obj/item/book/tome/Initialize(mapload)
 	. = ..()
 	if(!cultwords["travel"])
 		runerandom()
 	for(var/V in cultwords)
 		words[cultwords[V]] = V
 
-/obj/item/book/tome/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/book/tome/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(istype(target,/mob/observer/dead))
 		var/mob/observer/dead/D = target
 		D.manifest(user)
@@ -308,7 +308,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		O.show_message("<span class='warning'>\The [user] beats \the [L] with \the [src]!</span>", 1)
 	to_chat(target, "<span class='danger'>You feel searing heat inside!</span>")
 
-/obj/item/book/tome/attack_self(mob/user)
+obj/item/book/tome/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -412,21 +412,21 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		to_chat(user, "The book seems full of illegible scribbles. Is this a joke?")
 		return
 
-/obj/item/book/tome/examine(mob/user)
+obj/item/book/tome/examine(mob/user)
 	. = ..()
 	if(!iscultist(user))
 		. += "An old, dusty tome with frayed edges and a sinister looking cover."
 	else
 		. += "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though."
 
-/obj/item/book/tome/cultify()
+obj/item/book/tome/cultify()
 	return
 
-/obj/item/book/tome/imbued //admin tome, spawns working runes without waiting
+obj/item/book/tome/imbued //admin tome, spawns working runes without waiting
 	w_class = ITEMSIZE_SMALL
 	var/cultistsonly = 1
 
-/obj/item/book/tome/imbued/attack_self(mob/user)
+obj/item/book/tome/imbued/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

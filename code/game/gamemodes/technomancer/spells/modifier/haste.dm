@@ -1,4 +1,4 @@
-/datum/technomancer/spell/haste
+datum/technomancer/spell/haste
 	name = "Haste"
 	desc = "Allows the target to run at speeds that should not be possible for an ordinary being.  For five seconds, the target \
 	runs extremly fast, and cannot be slowed by any means."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_haste"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/modifier/haste
+obj/item/spell/modifier/haste
 	name = "haste"
 	desc = "Now you can outrun a Teshari!"
 	icon_state = "haste"
@@ -17,7 +17,7 @@
 	modifier_type = /datum/modifier/technomancer/haste
 	modifier_duration = 5 SECONDS
 
-/datum/modifier/technomancer/haste
+datum/modifier/technomancer/haste
 	name = "haste"
 	desc = "Moving is almost effortless!"
 	mob_overlay_state = "haste"

@@ -5,7 +5,7 @@
  * - 3. For each element in the list, subtracts its weighting from that number.
  * - 4. If that makes the number 0 or less, return that element.
  */
-/proc/pickweight(list/L)
+proc/pickweight(list/L)
 	var/total = 0
 	var/item
 	for (item in L)
@@ -25,7 +25,7 @@
  * The original pickweight proc will sometimes pick entries with zero weight.
  * I'm not sure if changing the original will break anything, so I left it be.
  */
-/proc/pickweightAllowZero(list/L)
+proc/pickweightAllowZero(list/L)
 	var/total = 0
 	var/item
 	for (item in L)
@@ -44,7 +44,7 @@
 /**
  * Pick a random element from the list and remove it from the list.
  */
-/proc/pick_n_take(list/L)
+proc/pick_n_take(list/L)
 	RETURN_TYPE(L[_].type)
 	if(L.len)
 		var/picked = rand(1,L.len)

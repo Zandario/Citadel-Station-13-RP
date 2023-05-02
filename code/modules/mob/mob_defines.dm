@@ -1,4 +1,4 @@
-/mob
+mob
 	datum_flags = DF_USE_TAG
 	density = 1
 	layer = MOB_LAYER

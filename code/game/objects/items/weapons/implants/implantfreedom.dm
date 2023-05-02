@@ -1,18 +1,18 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/obj/item/implant/freedom
+obj/item/implant/freedom
 	name = "freedom implant"
 	desc = "Use this to escape from those evil Red Shirts."
 	implant_color = "r"
 	var/activation_emote = "chuckle"
 	var/uses = 1.0
 
-/obj/item/implant/freedom/Initialize(mapload)
+obj/item/implant/freedom/Initialize(mapload)
 	. = ..()
 	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	uses = rand(1, 5)
 
-/obj/item/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
+obj/item/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
 	if (src.uses < 1)
 		return 0
 
@@ -22,11 +22,11 @@
 		source.handcuffed?.forceMove(source.drop_location())
 		source.legcuffed?.forceMove(source.drop_location())
 
-/obj/item/implant/freedom/post_implant(mob/source)
+obj/item/implant/freedom/post_implant(mob/source)
 	source.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 	to_chat(source, "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
 
-/obj/item/implant/freedom/get_data()
+obj/item/implant/freedom/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Freedom Beacon<BR>

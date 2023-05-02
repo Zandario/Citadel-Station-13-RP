@@ -10,18 +10,18 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 */ //////////////////////////////
 
 //Holder on humans to prevent having to 'find' it every time
-/mob/living/carbon/human/var/obj/item/nif/nif
+mob/living/carbon/human/var/obj/item/nif/nif
 
 GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 
-/proc/init_nif_id_lookup()
+proc/init_nif_id_lookup()
 	. = list()
 	for(var/path in typesof(/obj/item/nif))
 		var/obj/item/nif/N = path
 		.[initial(N.id)] = path
 
 //Nanotech Implant Foundation
-/obj/item/nif
+obj/item/nif
 	name = "nanite implant framework"
 	desc = "A standard Nanotrasen nanotechnology fabricator, now the size of an antique stamp. Prints new \
 	implants inside hosts based on software uploads. Must be surgically \
@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	var/list/planes_visible = list()
 
 //Constructor comes with a free AR HUD
-/obj/item/nif/Initialize(mapload, wear, list/load_data)
+obj/item/nif/Initialize(mapload, wear, list/load_data)
 	. = ..(mapload)
 	//First one to spawn in the game, make a big icon
 	if(!big_icon)
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	update_icon()
 
 //Destructor cleans up references
-/obj/item/nif/Destroy()
+obj/item/nif/Destroy()
 	human = null
 	QDEL_LIST_NULL(nifsofts)
 	QDEL_NULL(comm)
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return ..()
 
 //Being implanted in some mob
-/obj/item/nif/proc/implant(var/mob/living/carbon/human/H)
+obj/item/nif/proc/implant(var/mob/living/carbon/human/H)
 	var/obj/item/organ/brain = H.internal_organs_by_name[O_BRAIN]
 	if(istype(brain))
 		should_be_in = brain.parent_organ
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return FALSE
 
 //For debug or antag purposes
-/obj/item/nif/proc/quick_implant(var/mob/living/carbon/human/H)
+obj/item/nif/proc/quick_implant(var/mob/living/carbon/human/H)
 	if(istype(H))
 		var/obj/item/organ/external/parent
 		//Try to find their brain and put it near that
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return FALSE
 
 //Being removed from some mob
-/obj/item/nif/proc/unimplant(var/mob/living/carbon/human/H)
+obj/item/nif/proc/unimplant(var/mob/living/carbon/human/H)
 	var/datum/nifsoft/soulcatcher/SC = imp_check(NIF_SOULCATCHER)
 	if(SC) //Clean up stored people, this is dirty but the easiest way.
 		QDEL_LIST_NULL(SC.brainmobs)
@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	update_icon()
 
 //EMP adds wear and disables all nifsoft
-/obj/item/nif/emp_act(var/severity)
+obj/item/nif/emp_act(var/severity)
 	notify("Danger! Significant electromagnetic interference!",TRUE)
 	for(var/nifsoft in nifsofts)
 		if(nifsoft)
@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 			wear(rand(1,8))
 
 //Wear update/check proc
-/obj/item/nif/proc/wear(var/wear = 0)
+obj/item/nif/proc/wear(var/wear = 0)
 	wear *= (rand(85,115) / 100) //Apparently rand() only takes integers.
 	durability -= wear
 
@@ -229,14 +229,14 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 			to_chat(human, SPAN_BOLDDANGER("Your NIF vision overlays disappear and your head suddenly seems very quiet..."))
 
 //Repair update/check proc
-/obj/item/nif/proc/repair(var/repair = 0)
+obj/item/nif/proc/repair(var/repair = 0)
 	durability = min(durability + repair, initial(durability))
 
 	if(human)
 		persist_nif_data(human)
 
 //Attackby proc, for maintenance
-/obj/item/nif/attackby(obj/item/W, mob/user as mob)
+obj/item/nif/attackby(obj/item/W, mob/user as mob)
 	if(open == 0 && W.is_screwdriver())
 		if(do_after(user, 4 SECONDS, src) && open == 0)
 			user.visible_message("[user] unscrews and pries open \the [src].", SPAN_NOTICE("You unscrew and pry open \the [src]."))
@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 			update_icon()
 
 //Icon updating
-/obj/item/nif/update_icon()
+obj/item/nif/update_icon()
 	if(open)
 		icon_state = "nif_open[open]"
 	else
@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 				icon_state = "nif_2"
 
 //The (dramatic) install process
-/obj/item/nif/proc/handle_install()
+obj/item/nif/proc/handle_install()
 	if(human.stat || !human.mind) //No stuff while KO or not sleeved
 		return FALSE
 
@@ -352,7 +352,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 			notify("Calibration complete! User data stored! Welcome to your Nanite Implant Framework!")
 
 //Called each life() tick on the mob
-/obj/item/nif/proc/on_life()
+obj/item/nif/proc/on_life()
 	if(!human || loc != human.get_organ(should_be_in))
 		unimplant(human)
 		return FALSE
@@ -390,7 +390,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 			return FALSE
 
 //Prints 'AR' messages to the user
-/obj/item/nif/proc/notify(var/message,var/alert = 0)
+obj/item/nif/proc/notify(var/message,var/alert = 0)
 	if(!human || stat == NIF_TEMPFAIL) return
 
 	last_notification = message //TGUI Hook
@@ -403,7 +403,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 		SEND_SOUND(human, good_sound)
 
 //Called to spend nutrition, returns 1 if it was able to
-/obj/item/nif/proc/use_charge(var/use_charge)
+obj/item/nif/proc/use_charge(var/use_charge)
 	if(stat != NIF_WORKING) return FALSE
 
 	//You don't want us to take any? Well okay.
@@ -421,7 +421,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 // This operates on a nifsoft *path*, not an instantiation.
 // It tells the nifsoft shop if it's installation will succeed, to prevent it
 // from charging the user for incompatible software.
-/obj/item/nif/proc/can_install(var/datum/nifsoft/path)
+obj/item/nif/proc/can_install(var/datum/nifsoft/path)
 	if(stat == NIF_TEMPFAIL)
 		return FALSE
 
@@ -442,7 +442,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return TRUE
 
 //Install a piece of software
-/obj/item/nif/proc/install(var/datum/nifsoft/new_soft)
+obj/item/nif/proc/install(var/datum/nifsoft/new_soft)
 	if(stat == NIF_TEMPFAIL) return FALSE
 
 	if(nifsofts[new_soft.list_pos])
@@ -468,7 +468,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return TRUE
 
 //Uninstall a piece of software
-/obj/item/nif/proc/uninstall(var/datum/nifsoft/old_soft)
+obj/item/nif/proc/uninstall(var/datum/nifsoft/old_soft)
 	var/datum/nifsoft/NS = nifsofts[old_soft.list_pos]
 	if(!NS || NS != old_soft)
 		return FALSE //what??
@@ -485,7 +485,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return TRUE
 
 //Activate a nifsoft
-/obj/item/nif/proc/activate(var/datum/nifsoft/soft)
+obj/item/nif/proc/activate(var/datum/nifsoft/soft)
 	if(stat != NIF_WORKING) return FALSE
 
 	if(human)
@@ -514,7 +514,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return TRUE
 
 //Deactivate a nifsoft
-/obj/item/nif/proc/deactivate(var/datum/nifsoft/soft)
+obj/item/nif/proc/deactivate(var/datum/nifsoft/soft)
 	if(human)
 		if(prob(5))
 			human.visible_message("<span class='notice'>\The [human.real_name] [pick(look_messages)].</span>")
@@ -528,14 +528,14 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return TRUE
 
 //Deactivate several nifsofts
-/obj/item/nif/proc/deactivate_these(var/list/turn_off)
+obj/item/nif/proc/deactivate_these(var/list/turn_off)
 	for(var/N in turn_off)
 		var/datum/nifsoft/NS = nifsofts[N]
 		if(NS)
 			NS.deactivate()
 
 //Add a flag to one of the holders
-/obj/item/nif/proc/set_flag(var/flag,var/hint)
+obj/item/nif/proc/set_flag(var/flag,var/hint)
 	ASSERT(flag != null && hint)
 
 	switch(hint)
@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 			CRASH("Not a valid NIF set_flag hint: [hint]")
 
 //Clear a flag from one of the holders
-/obj/item/nif/proc/clear_flag(var/flag,var/hint)
+obj/item/nif/proc/clear_flag(var/flag,var/hint)
 	ASSERT(flag != null && hint)
 
 	switch(hint)
@@ -567,7 +567,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 			CRASH("Not a valid NIF clear_flag hint: [hint]")
 
 //Check for an installed implant
-/obj/item/nif/proc/imp_check(var/soft)
+obj/item/nif/proc/imp_check(var/soft)
 	if(stat != NIF_WORKING) return FALSE
 	ASSERT(soft)
 
@@ -579,7 +579,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 		return entry
 
 //Check for a set flag
-/obj/item/nif/proc/flag_check(var/flag,var/hint)
+obj/item/nif/proc/flag_check(var/flag,var/hint)
 	if(stat != NIF_WORKING) return FALSE
 
 	ASSERT(flag && hint)
@@ -599,42 +599,42 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 
 	return result
 
-/obj/item/nif/proc/planes_visible()
+obj/item/nif/proc/planes_visible()
 	if(stat != NIF_WORKING)
 		return list() //None!
 
 	return planes_visible
 
-/obj/item/nif/proc/add_plane(var/planeid = null)
+obj/item/nif/proc/add_plane(var/planeid = null)
 	if(!planeid)
 		return
 	planes_visible |= planeid
 
-/obj/item/nif/proc/del_plane(var/planeid = null)
+obj/item/nif/proc/del_plane(var/planeid = null)
 	if(!planeid)
 		return
 	planes_visible -= planeid
 
-/obj/item/nif/proc/vis_update()
+obj/item/nif/proc/vis_update()
 	if(human)
 		human.recalculate_vis()
 
 // Alternate NIFs
-/obj/item/nif/bad
+obj/item/nif/bad
 	name = "bootleg NIF"
 	desc = "A copy of a copy of a copy of a copy of... this can't be any good, right? Surely?"
 	durability = 10
 	starting_software = null
 	id = NIF_ID_BOOTLEG
 
-/obj/item/nif/authentic
+obj/item/nif/authentic
 	name = "\improper Vey-Med NIF"
 	desc = "A genuine Vey-Med nanotechnology fabricator, now the size of a shiny antique stamp. \
 	Far more durable than any knockoffs on the market."
 	durability = 1000
 	id = NIF_ID_VEYMED
 
-/obj/item/nif/bioadap
+obj/item/nif/bioadap
 	name = "bioadaptive NIF"
 	desc = "A NIF that goes out of it's way to accomidate strange body types. \
 	Will function in species where it normally wouldn't."
@@ -644,7 +644,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 
 ////////////////////////////////
 // Special Promethean """surgery"""
-/obj/item/nif/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/nif/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!ishuman(target) || !ishuman(user) || (target == user))
 		return ..()
 
@@ -672,7 +672,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	else
 		return ..()
 
-/mob/living/carbon/human/proc/set_nif_examine()
+mob/living/carbon/human/proc/set_nif_examine()
 	set name = "NIF Appearance"
 	set desc = "If your NIF alters your appearance in some way, describe it here."
 	set category = "OOC"

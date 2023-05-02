@@ -1,5 +1,5 @@
 
-/datum/category_item/catalogue/technology/drone/infectionbot
+datum/category_item/catalogue/technology/drone/infectionbot
 	name = "Drone - Injection Drone"
 	desc = "A strange and aged drone, this model appears to be made for gathering of genetic samples,\
 	sacrificing both power and durability for storage space and advanced scanners.\
@@ -18,7 +18,7 @@
 	no traces of paint visible and any 'writing' visible is uncomprehendable, short term scan unable to translate."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/mechanical/infectionbot
+mob/living/simple_mob/mechanical/infectionbot
 	name = "Strange robot"
 	desc = "You get the feeling you should run."
 	icon = 'icons/mob/vagrant_vr.dmi'
@@ -50,13 +50,13 @@
 	var/poison_per_bite = 10
 	var/poison_type = "expired_medicine"
 
-/datum/say_list/disbot
+datum/say_list/disbot
 	speak = list("ATTEMPTING TO CONTACT A.R.K, ATTEMPT 1e26+3","DIRT SAMPLE COLLECTED, DIRT QUOTA 124871/155 CONFIRMED.")
 	emote_see = list("scans the dirt around it","beeps as it scans a rock nearby")
 	say_maybe_target = list("BIOLOGICAL TRACES FOUND, ATTEMTPTING TO LOCATE SOURCE.","TRACE SOURCES FOUND, POWERING SCANNERS.",)
 	say_got_target = list("LIFEFORM LOCATED, ATTEMPTING TO COLLECT SAMPLE","CREATURE SPOTTED, PHEROMONE GENERATORS DAMAGED, ATTEMPTING TO COLLECT GENETIC SAMPLE.")
 
-/mob/living/simple_mob/mechanical/infectionbot/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/mechanical/infectionbot/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -65,7 +65,7 @@
 				inject_poison(L, target_zone)
 
 // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/mechanical/infectionbot/proc/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/mechanical/infectionbot/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		L.custom_pain(SPAN_WARNING("You feel a tiny prick."), 1, TRUE)
 		L.reagents.add_reagent(poison_type, poison_per_bite)

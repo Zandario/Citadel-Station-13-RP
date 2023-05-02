@@ -1,9 +1,9 @@
-/obj/item/stack/cable_coil/heavyduty
+obj/item/stack/cable_coil/heavyduty
 	name = "heavy cable coil"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "wire"
 
-/obj/structure/cable/heavyduty
+obj/structure/cable/heavyduty
 	icon = 'icons/obj/power_cond_heavy.dmi'
 	name = "large power cable"
 	desc = "This cable is tough. It cannot be cut with simple hand tools."
@@ -17,7 +17,7 @@
 
 	color = null
 
-/obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)
+obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)
 
 	var/turf/T = src.loc
 	if(!T.is_plating())
@@ -32,5 +32,5 @@
 	else
 		..()
 
-/obj/structure/cable/heavyduty/cableColor(var/colorC)
+obj/structure/cable/heavyduty/cableColor(var/colorC)
 	return

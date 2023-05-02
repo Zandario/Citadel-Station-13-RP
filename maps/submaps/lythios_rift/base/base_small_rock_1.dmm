@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/mineral/ignore_cavegen/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/mineral/ignore_cavegen/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "P" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 
 (1,1,1) = {"
 P

@@ -1,4 +1,4 @@
-/datum/sprite_accessory/ears
+datum/sprite_accessory/ears
 	abstract_type = /datum/sprite_accessory/ears
 	name = "You should not see this..."
 	icon = 'icons/mob/sprite_accessories/ears.dmi'
@@ -11,4 +11,3 @@
 // todo: tgui choice menu should be modular
 // todo: and include way to do categories
 //! right now the categories are way too sparse, we'll combine them later.
-

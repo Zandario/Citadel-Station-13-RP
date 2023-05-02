@@ -1,12 +1,12 @@
 /**********************
 * Category Collection *
 **********************/
-/datum/category_collection
+datum/category_collection
 	var/category_group_type                          // Type of categories to initialize
 	var/list/datum/category_group/categories         // List of initialized categories
 	var/list/datum/category_group/categories_by_name // Associative list of initialized categories, keyed by name
 
-/datum/category_collection/New()
+datum/category_collection/New()
 	..()
 	categories = new()
 	categories_by_name = new()
@@ -18,7 +18,7 @@
 			categories_by_name[category.name] = category
 	categories = tim_sort(categories, /proc/cmp_auto_compare)
 
-/datum/category_collection/Destroy()
+datum/category_collection/Destroy()
 	for(var/category in categories)
 		qdel(category)
 	categories.Cut()
@@ -27,14 +27,14 @@
 /******************
 * Category Groups *
 ******************/
-/datum/category_group
+datum/category_group
 	var/name = ""
 	var/category_item_type                      // Type of items to initialize
 	var/list/datum/category_item/items          // List of initialized items
 	var/list/datum/category_item/items_by_name  // Associative list of initialized items, by name
 	var/datum/category_collection/collection    // The collection this group belongs to
 
-/datum/category_group/New(var/datum/category_collection/cc)
+datum/category_group/New(var/datum/category_collection/cc)
 	..()
 	collection = cc
 	items = new()
@@ -51,14 +51,14 @@
 	// If you change this, confirm that character setup doesn't become completely unordered.
 	tim_sort(items, /proc/cmp_auto_compare)
 
-/datum/category_group/Destroy()
+datum/category_group/Destroy()
 	for(var/item in items)
 		qdel(item)
 	items.Cut()
 	collection = null
 	return ..()
 
-/datum/category_group/compare_to(datum/D)
+datum/category_group/compare_to(datum/D)
 	if(istype(D, /datum/category_group))
 		var/datum/category_group/I = D
 		return cmp_text_asc(name, I.name)
@@ -67,19 +67,19 @@
 /*****************
 * Category Items *
 *****************/
-/datum/category_item
+datum/category_item
 	var/name = ""
 	var/datum/category_group/category		// The group this item belongs to
 
-/datum/category_item/New(var/datum/category_group/cg)
+datum/category_item/New(var/datum/category_group/cg)
 	..()
 	category = cg
 
-/datum/category_item/Destroy()
+datum/category_item/Destroy()
 	category = null
 	return ..()
 
-/datum/category_item/compare_to(datum/D)
+datum/category_item/compare_to(datum/D)
 	if(istype(D, /datum/category_item))
 		var/datum/category_item/I = D
 		return cmp_text_asc(name, I.name)

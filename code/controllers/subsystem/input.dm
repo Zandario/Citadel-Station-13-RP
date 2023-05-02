@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(input)
 	/// Macro set for classic.
 	var/list/input_mode_macros
 
-/datum/controller/subsystem/input/Initialize()
+datum/controller/subsystem/input/Initialize()
 	setup_macrosets()
 	// set init early so refresh macrosets works
 	initialized = TRUE
@@ -26,13 +26,13 @@ SUBSYSTEM_DEF(input)
 
 	return ..()
 
-/datum/controller/subsystem/input/Recover()
+datum/controller/subsystem/input/Recover()
 	initialized = SSinput.initialized
 	setup_macrosets()
 	refresh_client_macro_sets()
 
 /// Sets up the key list for classic mode for when badmins screw up vv's.
-/datum/controller/subsystem/input/proc/setup_macrosets()
+datum/controller/subsystem/input/proc/setup_macrosets()
 	// First, let's do the snowflake keyset!
 	macroset_classic_input = list()
 	var/list/classic_mode_keys = list(
@@ -103,20 +103,20 @@ SUBSYSTEM_DEF(input)
 	macroset_hotkey |= hard_bind_anti_collision
 
 // Badmins just wanna have fun ♪
-/datum/controller/subsystem/input/proc/refresh_client_macro_sets()
+datum/controller/subsystem/input/proc/refresh_client_macro_sets()
 	var/list/clients = GLOB.clients
 	for(var/i in 1 to clients.len)
 		var/client/user = clients[i]
 		user.set_macros()
 		user.update_movement_keys()
 
-/datum/controller/subsystem/input/fire()
+datum/controller/subsystem/input/fire()
 	var/list/clients = GLOB.clients // Let's sing the list cache song
 	for(var/i in 1 to clients.len)
 		var/client/C = clients[i]
 		C.keyLoop()
 
 /// *sigh
-/client/verb/NONSENSICAL_VERB_THAT_DOES_NOTHING()
+client/verb/NONSENSICAL_VERB_THAT_DOES_NOTHING()
 	set name = ".NONSENSICAL_VERB_THAT_DOES_NOTHING"
 	set hidden = TRUE

@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/monkeyize()
+mob/living/carbon/human/proc/monkeyize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -34,11 +34,11 @@
 
 	return src
 
-/mob/new_player/AIize()
+mob/new_player/AIize()
 	spawning = 1
 	return ..()
 
-/mob/living/carbon/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
+mob/living/carbon/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
 	if (transforming)
 		return
 	for(var/t in organs)
@@ -46,7 +46,7 @@
 
 	return ..(move)
 
-/mob/living/carbon/AIize()
+mob/living/carbon/AIize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -56,7 +56,7 @@
 	invisibility = 101
 	return ..()
 
-/mob/proc/AIize(move=1)
+mob/proc/AIize(move=1)
 	if(client)
 		SEND_SOUND(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)) // stop the jams for AIs
 	var/mob/living/silicon/ai/O = new (loc, GLOB.using_map.default_law_type,,1)//No MMI but safety is in effect.
@@ -96,7 +96,7 @@
 	return O
 
 /// Human -> Robot
-/mob/living/carbon/human/proc/Robotize()
+mob/living/carbon/human/proc/Robotize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -153,7 +153,7 @@
 	return O
 
 //human -> alien
-/mob/living/carbon/human/proc/Alienize()
+mob/living/carbon/human/proc/Alienize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -176,7 +176,7 @@
 	return
 
 
-/mob/living/carbon/human/proc/corgize()
+mob/living/carbon/human/proc/corgize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -196,7 +196,7 @@
 	qdel(src)
 	return
 
-/mob/living/carbon/human/Animalize()
+mob/living/carbon/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
@@ -230,7 +230,7 @@
 		qdel(src)
 	return
 
-/mob/proc/Animalize()
+mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
@@ -252,7 +252,7 @@
  * This proc is here to force coders to manually place their mob in this list, hopefully tested.
  * This also gives a place to explain -why- players shouldnt be turn into certain mobs and hopefully someone can fix them.
  */
-/mob/proc/safe_animal(var/MP)
+mob/proc/safe_animal(var/MP)
 
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
 	if(!MP)

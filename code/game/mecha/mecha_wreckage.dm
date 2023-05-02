@@ -3,7 +3,7 @@
 ///////////////////////////////////
 
 
-/obj/effect/decal/mecha_wreckage
+obj/effect/decal/mecha_wreckage
 	name = "Exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. Completely unrepairable."
 	icon = 'icons/mecha/mecha.dmi'
@@ -15,22 +15,22 @@
 	var/list/crowbar_salvage
 	var/salvage_num = 5
 
-/obj/effect/decal/mecha_wreckage/New()
+obj/effect/decal/mecha_wreckage/New()
 	..()
 	crowbar_salvage = new
 	return
 
-/obj/effect/decal/mecha_wreckage/legacy_ex_act(severity)
+obj/effect/decal/mecha_wreckage/legacy_ex_act(severity)
 	if(severity < 2)
 		spawn
 			qdel(src)
 	return
 
-/obj/effect/decal/mecha_wreckage/bullet_act(var/obj/projectile/Proj)
+obj/effect/decal/mecha_wreckage/bullet_act(var/obj/projectile/Proj)
 	return
 
 
-/obj/effect/decal/mecha_wreckage/attackby(obj/item/W as obj, mob/user as mob)
+obj/effect/decal/mecha_wreckage/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(salvage_num <= 0)
@@ -76,11 +76,11 @@
 	return
 
 
-/obj/effect/decal/mecha_wreckage/gygax
+obj/effect/decal/mecha_wreckage/gygax
 	name = "Gygax wreckage"
 	icon_state = "gygax-broken"
 
-/obj/effect/decal/mecha_wreckage/gygax/New()
+obj/effect/decal/mecha_wreckage/gygax/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_parts/part/gygax_torso,
@@ -97,44 +97,44 @@
 			parts -= part
 	return
 
-/obj/effect/decal/mecha_wreckage/gygax/dark
+obj/effect/decal/mecha_wreckage/gygax/dark
 	name = "Dark Gygax wreckage"
 	icon_state = "darkgygax-broken"
 
-/obj/effect/decal/mecha_wreckage/gygax/adv
+obj/effect/decal/mecha_wreckage/gygax/adv
 	name = "Gygax wreckage"
 	icon_state = "gygax_adv-broken"
 
-/obj/effect/decal/mecha_wreckage/gygax/dark_adv
+obj/effect/decal/mecha_wreckage/gygax/dark_adv
 	name = "Advanced Dark Gygax wreckage"
 	icon_state = "darkgygax_adv-broken"
 
-/obj/effect/decal/mecha_wreckage/gygax/medgax
+obj/effect/decal/mecha_wreckage/gygax/medgax
 	name = "Medgax wreckage"
 	icon_state = "medgax-broken"
 
-/obj/effect/decal/mecha_wreckage/gygax/serenity
+obj/effect/decal/mecha_wreckage/gygax/serenity
 	name = "Serenity wreckage"
 	icon_state = "medgax-broken"
 
-/obj/effect/decal/mecha_wreckage/marauder
+obj/effect/decal/mecha_wreckage/marauder
 	name = "Marauder wreckage"
 	icon_state = "marauder-broken"
 
-/obj/effect/decal/mecha_wreckage/mauler
+obj/effect/decal/mecha_wreckage/mauler
 	name = "Mauler Wreckage"
 	icon_state = "mauler-broken"
 	desc = "The syndicate won't be very happy about this..."
 
-/obj/effect/decal/mecha_wreckage/seraph
+obj/effect/decal/mecha_wreckage/seraph
 	name = "Seraph wreckage"
 	icon_state = "seraph-broken"
 
-/obj/effect/decal/mecha_wreckage/ripley
+obj/effect/decal/mecha_wreckage/ripley
 	name = "Ripley wreckage"
 	icon_state = "ripley-broken"
 
-/obj/effect/decal/mecha_wreckage/ripley/New()
+obj/effect/decal/mecha_wreckage/ripley/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_parts/part/ripley_torso,
@@ -150,11 +150,11 @@
 			parts -= part
 	return
 
-/obj/effect/decal/mecha_wreckage/ripley/firefighter
+obj/effect/decal/mecha_wreckage/ripley/firefighter
 	name = "Firefighter wreckage"
 	icon_state = "firefighter-broken"
 
-/obj/effect/decal/mecha_wreckage/ripley/firefighter/New()
+obj/effect/decal/mecha_wreckage/ripley/firefighter/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_parts/part/ripley_torso,
@@ -171,11 +171,11 @@
 			parts -= part
 	return
 
-/obj/effect/decal/mecha_wreckage/ripley/geiger
+obj/effect/decal/mecha_wreckage/ripley/geiger
 	name = "Lightweight APLU wreckage"
 	icon_state = "ripley-broken-old"
 
-/obj/effect/decal/mecha_wreckage/ripley/geiger/New()
+obj/effect/decal/mecha_wreckage/ripley/geiger/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_parts/part/geiger_torso,
@@ -192,15 +192,15 @@
 	return
 
 
-/obj/effect/decal/mecha_wreckage/ripley/deathripley
+obj/effect/decal/mecha_wreckage/ripley/deathripley
 	name = "Death-Ripley wreckage"
 	icon_state = "deathripley-broken"
 
-/obj/effect/decal/mecha_wreckage/durand
+obj/effect/decal/mecha_wreckage/durand
 	name = "Durand wreckage"
 	icon_state = "durand-broken"
 
-/obj/effect/decal/mecha_wreckage/durand/New()
+obj/effect/decal/mecha_wreckage/durand/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_parts/part/durand_torso,
@@ -217,16 +217,16 @@
 			parts -= part
 	return
 
-/obj/effect/decal/mecha_wreckage/phazon
+obj/effect/decal/mecha_wreckage/phazon
 	name = "Phazon wreckage"
 	icon_state = "phazon-broken"
 
 
-/obj/effect/decal/mecha_wreckage/odysseus
+obj/effect/decal/mecha_wreckage/odysseus
 	name = "Odysseus wreckage"
 	icon_state = "odysseus-broken"
 
-/obj/effect/decal/mecha_wreckage/odysseus/New()
+obj/effect/decal/mecha_wreckage/odysseus/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_parts/part/odysseus_torso,
@@ -243,19 +243,19 @@
 			parts -= part
 	return
 
-/obj/effect/decal/mecha_wreckage/odysseus/murdysseus
+obj/effect/decal/mecha_wreckage/odysseus/murdysseus
 	icon_state = "murdysseus-broken"
 
-/obj/effect/decal/mecha_wreckage/hoverpod
+obj/effect/decal/mecha_wreckage/hoverpod
 	name = "Hover pod wreckage"
 	icon_state = "engineering_pod-broken"
 
-/obj/effect/decal/mecha_wreckage/janus
+obj/effect/decal/mecha_wreckage/janus
 	name = "Janus wreckage"
 	icon_state = "janus-broken"
 	description_info = "Due to the incredibly intricate design of this exosuit, it is impossible to salvage components from it."
 
-/obj/effect/decal/mecha_wreckage/shuttlecraft
+obj/effect/decal/mecha_wreckage/shuttlecraft
 	name = "Shuttlecraft wreckage"
 	desc = "Remains of some unfortunate shuttlecraft. Completely unrepairable."
 	icon = 'icons/mecha/mecha64x64.dmi'
@@ -264,11 +264,11 @@
 	bound_height = 64
 
 // Honker
-/obj/effect/decal/mecha_wreckage/honker
+obj/effect/decal/mecha_wreckage/honker
 	name = "H.O.N.K. wreckage"
 	icon_state = "honker-broken"
 
-/obj/effect/decal/mecha_wreckage/honker/New()
+obj/effect/decal/mecha_wreckage/honker/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_parts/part/honker_torso,
@@ -285,17 +285,17 @@
 			parts -= part
 	return
 
-/obj/effect/decal/mecha_wreckage/honker/cluwne
+obj/effect/decal/mecha_wreckage/honker/cluwne
 	name = "C.L.W.U.N.E. wreckage"
 	icon = 'icons/mecha/mecha_vr.dmi'
 	icon_state = "cluwne-broken"
 
 // Reticent
-/obj/effect/decal/mecha_wreckage/reticent
+obj/effect/decal/mecha_wreckage/reticent
 	name = "Reticent wreckage"
 	icon_state = "reticent-broken"
 
-/obj/effect/decal/mecha_wreckage/reticent/New()
+obj/effect/decal/mecha_wreckage/reticent/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_parts/part/reticent_torso,
@@ -312,6 +312,6 @@
 			parts -= part
 	return
 
-/obj/effect/decal/mecha_wreckage/reticent/reticence
+obj/effect/decal/mecha_wreckage/reticent/reticence
 	name = "Reticence wreckage"
 	icon_state = "reticence-broken"

@@ -1,6 +1,6 @@
 //shuttle moving state defines are in setup.dm
 
-/datum/shuttle
+datum/shuttle
 	var/name = ""
 	var/warmup_time = 0
 	var/moving_status = SHUTTLE_IDLE
@@ -32,7 +32,7 @@
 
 	// Future Thoughts: Baystation put "docking" stuff in a subtype, leaving base type pure and free of docking stuff. Is this best?
 
-/datum/shuttle/New(_name, var/obj/effect/shuttle_landmark/initial_location)
+datum/shuttle/New(_name, var/obj/effect/shuttle_landmark/initial_location)
 	..()
 	if(_name)
 		src.name = _name
@@ -79,7 +79,7 @@
 			CRASH(SPAN_DEBUGERROR("A supply shuttle is already defined."))
 		SSsupply.shuttle = src
 
-/datum/shuttle/Destroy()
+datum/shuttle/Destroy()
 	current_location = null
 	SSshuttle.shuttles -= src.name
 	SSshuttle.process_shuttles -= src
@@ -90,7 +90,7 @@
 
 // This is called after all shuttles have been initialized by SSshuttle, but before sectors have been initialized.
 // Importantly for subtypes, all shuttles will have been initialized and mothershuttles hooked up by the time this is called.
-/datum/shuttle/proc/populate_shuttle_objects()
+datum/shuttle/proc/populate_shuttle_objects()
 	// Scan for shuttle consoles on them needing auto-config.
 	for(var/area/A in find_childfree_areas())	// Let sub-shuttles handle their areas, only do our own.
 		for(var/obj/machinery/computer/shuttle_control/SC in A)
@@ -99,28 +99,28 @@
 	return
 
 // This creates a graphical warning to where the shuttle is about to land, in approximately five seconds.
-/datum/shuttle/proc/create_warning_effect(var/obj/effect/shuttle_landmark/destination)
+datum/shuttle/proc/create_warning_effect(var/obj/effect/shuttle_landmark/destination)
 	destination.create_warning_effect(src)
 
 // Return false to abort a jump, before the 'warmup' phase.
-/datum/shuttle/proc/pre_warmup_checks()
+datum/shuttle/proc/pre_warmup_checks()
 	return TRUE
 
 // Ditto, but for afterwards.
-/datum/shuttle/proc/post_warmup_checks()
+datum/shuttle/proc/post_warmup_checks()
 	return TRUE
 
 // If you need an event to occur when the shuttle jumps in short or long jump, override this.
 // Keep in mind that destination is the intended destination, the shuttle may or may not actually reach it.s
-/datum/shuttle/proc/on_shuttle_departure(var/obj/effect/shuttle_landmark/origin, var/obj/effect/shuttle_landmark/destination)
+datum/shuttle/proc/on_shuttle_departure(var/obj/effect/shuttle_landmark/origin, var/obj/effect/shuttle_landmark/destination)
 	return
 
 // Similar to above, but when it finishes moving to the target.  Short jump generally makes this occur immediately after the above proc.
 // Keep in mind we might not actually have gotten to destination.  Check current_location to be sure where we ended up.
-/datum/shuttle/proc/on_shuttle_arrival(var/obj/effect/shuttle_landmark/origin, var/obj/effect/shuttle_landmark/destination)
+datum/shuttle/proc/on_shuttle_arrival(var/obj/effect/shuttle_landmark/origin, var/obj/effect/shuttle_landmark/destination)
 	return
 
-/datum/shuttle/proc/short_jump(var/obj/effect/shuttle_landmark/destination)
+datum/shuttle/proc/short_jump(var/obj/effect/shuttle_landmark/destination)
 	if(moving_status != SHUTTLE_IDLE)
 		return
 
@@ -157,7 +157,7 @@
 		make_sounds(HYPERSPACE_END)
 
 // TODO - Far Future - Would be great if this was driven by process too.
-/datum/shuttle/proc/long_jump(var/obj/effect/shuttle_landmark/destination, var/obj/effect/shuttle_landmark/interim, var/travel_time)
+datum/shuttle/proc/long_jump(var/obj/effect/shuttle_landmark/destination, var/obj/effect/shuttle_landmark/interim, var/travel_time)
 	//TO_WORLD("shuttle/long_jump: current_location=[current_location], destination=[destination], interim=[interim], travel_time=[travel_time]")
 	if(moving_status != SHUTTLE_IDLE)
 		return
@@ -216,10 +216,10 @@
 //////////////////////////////
 // Forward declarations of public procs.  They do nothing because this is not auto-dock.
 
-/datum/shuttle/proc/fuel_check()
+datum/shuttle/proc/fuel_check()
 	return 1	// Fuel check should always pass in non-overmap shuttles (they have magic engines)
 
-/datum/shuttle/proc/cancel_launch(var/user)
+datum/shuttle/proc/cancel_launch(var/user)
 	// If we are past warming up its too late to cancel.
 	if (moving_status == SHUTTLE_WARMUP)
 		moving_status = SHUTTLE_IDLE
@@ -227,21 +227,21 @@
 /*
 	Docking stuff
 */
-/datum/shuttle/proc/dock()
+datum/shuttle/proc/dock()
 	return
 
-/datum/shuttle/proc/undock()
+datum/shuttle/proc/undock()
 	return
 
-/datum/shuttle/proc/force_undock()
+datum/shuttle/proc/force_undock()
 	return
 
 // Check if we are docked (or never dock) and thus have properly arrived.
-/datum/shuttle/proc/check_docked()
+datum/shuttle/proc/check_docked()
 	return TRUE
 
 // Check if we are undocked and thus probably ready to depart.
-/datum/shuttle/proc/check_undocked()
+datum/shuttle/proc/check_undocked()
 	return TRUE
 
 /*****************
@@ -251,7 +251,7 @@
 
 // Move the shuttle to destination if possible.
 // Returns TRUE if we actually moved, otherwise FALSE.
-/datum/shuttle/proc/attempt_move(var/obj/effect/shuttle_landmark/destination, var/interim = FALSE)
+datum/shuttle/proc/attempt_move(var/obj/effect/shuttle_landmark/destination, var/interim = FALSE)
 	if(current_location == destination)
 		log_shuttle("Shuttle [src] attempted to move to [destination] but is already there!")
 		return FALSE
@@ -286,7 +286,7 @@
 // Just moves the shuttle from A to B
 // A note to anyone overriding move in a subtype. perform_shuttle_move() must absolutely not, under any circumstances, fail to move the shuttle.
 // If you want to conditionally cancel shuttle launches, that logic must go in short_jump() or long_jump()
-/datum/shuttle/proc/perform_shuttle_move(var/obj/effect/shuttle_landmark/destination, var/list/turf_translation)
+datum/shuttle/proc/perform_shuttle_move(var/obj/effect/shuttle_landmark/destination, var/list/turf_translation)
 	log_shuttle("perform_shuttle_move() current=[current_location] destination=[destination]")
 	//to_chat(world, "move_shuttle() called for [name] leaving [origin] en route to [destination].")
 
@@ -381,10 +381,10 @@
 	return
 
 // Returns 1 if the shuttle has a valid arrive time
-/datum/shuttle/proc/has_arrive_time()
+datum/shuttle/proc/has_arrive_time()
 	return (moving_status == SHUTTLE_INTRANSIT)
 
-/datum/shuttle/proc/make_sounds(var/sound_type)
+datum/shuttle/proc/make_sounds(var/sound_type)
 	var/sound_to_play = null
 	switch(sound_type)
 		if(HYPERSPACE_WARMUP)
@@ -397,12 +397,12 @@
 		for(var/obj/machinery/door/E in A)	// Dumb, I know, but playing it on the engines doesn't do it justice
 			playsound(E, sound_to_play, 50, FALSE)
 
-/datum/shuttle/proc/message_passengers(var/message)
+datum/shuttle/proc/message_passengers(var/message)
 	for(var/area/A in shuttle_area)
 		for(var/mob/M in A)
 			M.show_message(message, 2)
 
-/datum/shuttle/proc/find_children()
+datum/shuttle/proc/find_children()
 	. = list()
 	for(var/shuttle_name in SSshuttle.shuttles)
 		var/datum/shuttle/shuttle = SSshuttle.shuttles[shuttle_name]
@@ -410,12 +410,12 @@
 			. += shuttle
 
 // Returns the areas in shuttle_area that are not actually child shuttles.
-/datum/shuttle/proc/find_childfree_areas()
+datum/shuttle/proc/find_childfree_areas()
 	. = shuttle_area.Copy()
 	for(var/datum/shuttle/child in find_children())
 		. -= child.shuttle_area
 
-/datum/shuttle/proc/get_location_name()
+datum/shuttle/proc/get_location_name()
 	if(moving_status == SHUTTLE_INTRANSIT)
 		return "In transit"
 	return current_location.name

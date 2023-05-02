@@ -1,4 +1,4 @@
-/datum/map_template/lateload/triumph/triumph_misc
+datum/map_template/lateload/triumph/triumph_misc
 	name = "Triumph - Misc"
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
 	mappath = "maps/map_files/triumph/triumph_misc.dmm"
@@ -7,11 +7,11 @@
 
 	ztraits = list()
 
-/datum/map_z_level/triumph_lateload/misc
+datum/map_z_level/triumph_lateload/misc
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED
 
-/datum/map_template/lateload/triumph/triumph_ships
+datum/map_template/lateload/triumph/triumph_ships
 	name = "Triumph - Ships"
 	desc = "Ship transit map and whatnot."
 	mappath = "maps/map_files/triumph/triumph_ships.dmm"
@@ -20,6 +20,6 @@
 
 	ztraits = list()
 
-/datum/map_z_level/triumph_lateload/ships
+datum/map_z_level/triumph_lateload/ships
 	name = "Ships"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED

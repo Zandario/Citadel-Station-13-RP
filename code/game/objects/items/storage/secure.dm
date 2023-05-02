@@ -10,7 +10,7 @@
 // -----------------------------
 //         Generic Item
 // -----------------------------
-/obj/item/storage/secure
+obj/item/storage/secure
 	name = "secstorage"
 	var/icon_locking = "secureb"
 	var/icon_sparking = "securespark"
@@ -27,11 +27,11 @@
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = ITEMSIZE_SMALL * 7
 
-/obj/item/storage/secure/examine(mob/user)
+obj/item/storage/secure/examine(mob/user)
 	. = ..()
 	. += "The service panel is [src.open ? "open" : "closed"]."
 
-/obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
 		if (istype(W, /obj/item/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the [src]"))
 			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
@@ -70,14 +70,14 @@
 	..()
 
 
-/obj/item/storage/secure/OnMouseDropLegacy(over_object, src_location, over_location)
+obj/item/storage/secure/OnMouseDropLegacy(over_object, src_location, over_location)
 	if (locked)
 		src.add_fingerprint(usr)
 		return
 	..()
 
 
-/obj/item/storage/secure/attack_self(mob/user)
+obj/item/storage/secure/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -96,7 +96,7 @@
 	dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
 	user << browse(dat, "window=caselock;size=300x280")
 
-/obj/item/storage/secure/Topic(href, href_list)
+obj/item/storage/secure/Topic(href, href_list)
 	if ((usr.stat || usr.restrained()) || (get_dist(src, usr) > 1))
 		return ..()
 
@@ -128,7 +128,7 @@
 			return
 	return
 
-/obj/item/storage/secure/emag_act(remaining_charges, mob/user, feedback)
+obj/item/storage/secure/emag_act(remaining_charges, mob/user, feedback)
 	if(!emagged)
 		emagged = 1
 		add_overlay(icon_sparking)
@@ -142,7 +142,7 @@
 // -----------------------------
 //        Secure Briefcase
 // -----------------------------
-/obj/item/storage/secure/briefcase
+obj/item/storage/secure/briefcase
 	name = "secure briefcase"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "secure"
@@ -155,7 +155,7 @@
 	w_class = ITEMSIZE_LARGE
 	max_storage_space = ITEMSIZE_COST_NORMAL * 4
 
-/obj/item/storage/secure/briefcase/attack_hand(mob/user, list/params)
+obj/item/storage/secure/briefcase/attack_hand(mob/user, list/params)
 	if ((src.loc == user) && (src.locked == 1))
 		to_chat(user, "<span class='warning'>[src] is locked and cannot be opened!</span>")
 	else if ((src.loc == user) && (!src.locked))
@@ -169,7 +169,7 @@
 	return
 
 //LOADOUT ITEM
-/obj/item/storage/secure/briefcase/portable
+obj/item/storage/secure/briefcase/portable
 	name = "Portable Secure Briefcase"
 	desc = "A not-so large briefcase with a digital locking system. Holds less, but fits into more."
 	w_class = ITEMSIZE_NORMAL
@@ -180,7 +180,7 @@
 	)
 //DONATOR ITEM
 
-/obj/item/storage/secure/briefcase/vicase
+obj/item/storage/secure/briefcase/vicase
 	name = "VI's Secure Briefpack"
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_LARGE
@@ -198,7 +198,7 @@
 //        Secure Safe
 // -----------------------------
 
-/obj/item/storage/secure/safe
+obj/item/storage/secure/safe
 	name = "secure safe"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "safe"
@@ -216,5 +216,5 @@
 		/obj/item/pen
 	)
 
-/obj/item/storage/secure/safe/attack_hand(mob/user, list/params)
+obj/item/storage/secure/safe/attack_hand(mob/user, list/params)
 	return attack_self(user)

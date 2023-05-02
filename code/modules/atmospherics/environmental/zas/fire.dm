@@ -8,18 +8,18 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 //#define FIREDBG
 
-/turf
+turf
 	var/atom/movable/fire/fire
 
 //Some legacy definitions so fires can be started.
-/atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return null
 
 
-/turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
+turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 
-/turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
+turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	if(fire_protection > world.time-300)
 		return 0
 	if(locate(/atom/movable/fire) in src)
@@ -37,7 +37,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		create_fire(exposed_temperature)
 	return igniting
 
-/datum/zas_zone/proc/process_fire()
+datum/zas_zone/proc/process_fire()
 	CACHE_VSC_PROP(atmos_vsc, /atmos/fire/consumption_rate, consumption_rate)
 	var/datum/gas_mixture/burn_gas = air.remove_ratio(consumption_rate, fire_tiles.len)
 
@@ -63,7 +63,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	if(!fire_tiles.len)
 		air_master.active_fire_zones.Remove(src)
 
-/datum/zas_zone/proc/remove_liquidfuel(var/used_liquid_fuel, var/remove_fire=0)
+datum/zas_zone/proc/remove_liquidfuel(var/used_liquid_fuel, var/remove_fire=0)
 	if(!fuel_objs.len)
 		return
 
@@ -87,10 +87,10 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 					qdel(T.fire)
 			qdel(fuel)
 
-/turf/proc/create_fire(fl)
+turf/proc/create_fire(fl)
 	return 0
 
-/turf/simulated/create_fire(fl)
+turf/simulated/create_fire(fl)
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
 		return 1
@@ -108,7 +108,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	return 0
 
-/atom/movable/fire
+atom/movable/fire
 	//Icon for fire on turfs.
 
 	anchored = 1
@@ -123,7 +123,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/firelevel = 1 //Calculated by gas_mixture.calculate_firelevel()
 
-/atom/movable/fire/Initialize(mapload, fl)
+atom/movable/fire/Initialize(mapload, fl)
 	. = ..()
 
 	if(!istype(loc, /turf))
@@ -138,11 +138,11 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	firelevel = fl
 	air_master.active_hotspots.Add(src)
 
-/atom/movable/fire/Destroy()
+atom/movable/fire/Destroy()
 	RemoveFire()
 	return ..()
 
-/atom/movable/fire/proc/RemoveFire()
+atom/movable/fire/proc/RemoveFire()
 	var/turf/T = loc
 	if (istype(T))
 		set_light(0)
@@ -152,7 +152,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 			stack_trace("Mismatching fire on [T] [COORD(T)]")
 	air_master.active_hotspots.Remove(src)
 
-/atom/movable/fire/process(delta_time)
+atom/movable/fire/process(delta_time)
 	. = 1
 
 	var/turf/simulated/my_tile = loc
@@ -212,26 +212,26 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	animate(src, color = fire_color(air_contents.temperature), 5)
 	set_light(l_color = color)
 
-/atom/movable/fire/proc/fire_color(var/env_temperature)
+atom/movable/fire/proc/fire_color(var/env_temperature)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/fire/firelevel_multiplier, firelevel_multiplier)
 	var/temperature = max(4000*sqrt(firelevel/firelevel_multiplier), env_temperature)
 	return heat2colour(temperature)
 
-/turf/simulated
+turf/simulated
 	var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.
 
-/turf/proc/apply_fire_protection()
+turf/proc/apply_fire_protection()
 
-/turf/simulated/apply_fire_protection()
+turf/simulated/apply_fire_protection()
 	fire_protection = world.time
 
-/mob/living/proc/FireBurn(var/firelevel, var/last_temperature, var/pressure)
+mob/living/proc/FireBurn(var/firelevel, var/last_temperature, var/pressure)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/fire/firelevel_multiplier, firelevel_multiplier)
 	var/mx = 5 * firelevel/firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
 	apply_damage(2.5*mx, BURN)
 
 
-/mob/living/carbon/human/FireBurn(var/firelevel, var/last_temperature, var/pressure)
+mob/living/carbon/human/FireBurn(var/firelevel, var/last_temperature, var/pressure)
 	//Burns mobs due to fire. Respects heat transfer coefficients on various body parts.
 	//Due to TG reworking how fireprotection works, this is kinda less meaningful.
 

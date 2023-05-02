@@ -1,4 +1,4 @@
-/obj/machinery/atmospheric_field_generator
+obj/machinery/atmospheric_field_generator
 	name = "atmospheric retention field generator"
 	desc = "A floor-mounted piece of equipment that generates an atmosphere-retaining energy field when powered and activated. Linked to environmental alarm systems and will automatically activate when hazardous conditions are detected.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
 	icon = 'icons/obj/atm_fieldgen.dmi'
@@ -25,22 +25,22 @@
 	var/field_type = /obj/structure/atmospheric_retention_field
 	circuit = /obj/item/circuitboard/arf_generator
 
-/obj/machinery/atmospheric_field_generator/impassable
+obj/machinery/atmospheric_field_generator/impassable
 	desc = "An older model of ARF-G that generates an impassable retention field. Works just as well as the modern variety, but is slightly more energy-efficient.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
 	active_power_usage = 2000
 	field_type = /obj/structure/atmospheric_retention_field/impassable
 
-/obj/machinery/atmospheric_field_generator/perma
+obj/machinery/atmospheric_field_generator/perma
 	name = "static atmospheric retention field generator"
 	desc = "A floor-mounted piece of equipment that generates an atmosphere-retaining energy field when powered and activated. This model is designed to always be active, though the field will still drop from loss of power or electromagnetic interference.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
 	alwaysactive = TRUE
 	active_power_usage = 2000
 
-/obj/machinery/atmospheric_field_generator/perma/impassable
+obj/machinery/atmospheric_field_generator/perma/impassable
 	active_power_usage = 1500
 	field_type = /obj/structure/atmospheric_retention_field/impassable
 
-/obj/machinery/atmospheric_field_generator/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/atmospheric_field_generator/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/tool/crowbar) && isactive)
 		if(!src) return
 		to_chat(user, "<span class='warning'>You can't open the ARF-G whilst it's running!</span>")
@@ -80,11 +80,11 @@
 			qdel(src)
 		return
 
-/obj/machinery/atmospheric_field_generator/perma/Initialize(mapload)
+obj/machinery/atmospheric_field_generator/perma/Initialize(mapload)
 	. = ..()
 	generate_field()
 
-/obj/machinery/atmospheric_field_generator/update_icon()
+obj/machinery/atmospheric_field_generator/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "arfg_broken"
 	else if(hatch_open && wires_intact)
@@ -96,7 +96,7 @@
 	else
 		icon_state = "arfg_off"
 
-/obj/machinery/atmospheric_field_generator/power_change()
+obj/machinery/atmospheric_field_generator/power_change()
 	var/oldstat
 	..()
 	if(!(machine_stat & NOPOWER))
@@ -109,14 +109,14 @@
 		disable_field()
 		update_icon()
 
-/obj/machinery/atmospheric_field_generator/emp_act()
+obj/machinery/atmospheric_field_generator/emp_act()
 	. = ..()
 	disable_field() //shutting dowwwwwwn
 	if(alwaysactive || wasactive) //reboot after a short delay if we were online before
 		spawn(rand(reboot_delay_min,reboot_delay_max))
 			generate_field()
 
-/obj/machinery/atmospheric_field_generator/legacy_ex_act(severity)
+obj/machinery/atmospheric_field_generator/legacy_ex_act(severity)
 	switch(severity)
 		if(1)
 			disable_field()
@@ -131,7 +131,7 @@
 			emp_act()
 	return
 
-/obj/machinery/atmospheric_field_generator/proc/generate_field()
+obj/machinery/atmospheric_field_generator/proc/generate_field()
 	if(!ispowered || hatch_open || !wires_intact || isactive) //if it's not powered, the hatch is open, the wires are busted, or it's already on, don't do anything
 		return
 	else
@@ -142,7 +142,7 @@
 		update_use_power(USE_POWER_ACTIVE)
 	return
 
-/obj/machinery/atmospheric_field_generator/proc/disable_field()
+obj/machinery/atmospheric_field_generator/proc/disable_field()
 	if(isactive)
 		icon_state = "arfg_off"
 		for(var/obj/structure/atmospheric_retention_field/F in loc)
@@ -152,7 +152,7 @@
 		isactive = 0
 	return
 
-/obj/machinery/atmospheric_field_generator/Initialize(mapload)
+obj/machinery/atmospheric_field_generator/Initialize(mapload)
 	. = ..()
 	//Delete ourselves if we find extra mapped in arfgs
 	for(var/obj/machinery/atmospheric_field_generator/F in loc)
@@ -172,7 +172,7 @@
 			LAZYADD(A.all_arfgs, src)
 			areas_added += A
 
-/obj/structure/atmospheric_retention_field
+obj/structure/atmospheric_retention_field
 	name = "atmospheric retention field"
 	desc = "A shimmering forcefield that keeps the good air inside and the bad air outside. This field has been modulated so that it doesn't impede movement or projectiles.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
 	icon = 'icons/obj/atm_fieldgen.dmi'
@@ -191,7 +191,7 @@
 	//light_color = "#FFFFFF"
 	//light_on = TRUE
 
-/obj/structure/atmospheric_retention_field/update_icon()
+obj/structure/atmospheric_retention_field/update_icon()
 	cut_overlays()
 	var/list/dirs = list()
 	for(var/obj/structure/atmospheric_retention_field/F in orange(src,1))
@@ -206,28 +206,28 @@
 
 	return
 
-/obj/structure/atmospheric_retention_field/Initialize(mapload)
+obj/structure/atmospheric_retention_field/Initialize(mapload)
 	. = ..()
 	update_nearby_tiles() //Force ZAS update
 	update_connections(1)
 	update_icon()
 
-/obj/structure/atmospheric_retention_field/Destroy()
+obj/structure/atmospheric_retention_field/Destroy()
 	for(var/obj/structure/atmospheric_retention_field/W in orange(1, src.loc))
 		W.update_connections(1)
 	update_nearby_tiles() //Force ZAS update
 	. = ..()
 
-/obj/structure/atmospheric_retention_field/attack_hand(mob/user, list/params)
+obj/structure/atmospheric_retention_field/attack_hand(mob/user, list/params)
 	if(density)
 		visible_message("You touch the retention field, and it crackles faintly. Tingly!")
 	else
 		visible_message("You try to touch the retention field, but pass through it like it isn't even there.")
 
-/obj/structure/atmospheric_retention_field/legacy_ex_act()
+obj/structure/atmospheric_retention_field/legacy_ex_act()
 	return
 
-/obj/structure/atmospheric_retention_field/impassable
+obj/structure/atmospheric_retention_field/impassable
 	desc = "A shimmering forcefield that keeps the good air inside and the bad air outside. It seems fairly solid, almost like it's made out of some kind of hardened light.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
 	icon = 'icons/obj/atm_fieldgen.dmi'
 	icon_state = "arfg_field"

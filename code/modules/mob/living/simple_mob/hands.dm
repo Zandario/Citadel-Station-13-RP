@@ -1,5 +1,5 @@
 // Hand procs for player-controlled SA's
-/mob/living/simple_mob/swap_hand()
+mob/living/simple_mob/swap_hand()
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
@@ -10,7 +10,7 @@
 			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
 	return
 
-/mob/living/simple_mob/update_inv_r_hand()
+mob/living/simple_mob/update_inv_r_hand()
 	if(QDESTROYING(src))
 		return
 
@@ -22,7 +22,7 @@
 
 	update_icon()
 
-/mob/living/simple_mob/update_inv_l_hand()
+mob/living/simple_mob/update_inv_l_hand()
 	if(QDESTROYING(src))
 		return
 
@@ -35,14 +35,14 @@
 	update_icon()
 
 //Can insert extra huds into the hud holder here.
-/mob/living/simple_mob/proc/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
+mob/living/simple_mob/proc/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
 	return
 
 //If they can or cannot use tools/machines/etc
-/mob/living/simple_mob/IsAdvancedToolUser()
+mob/living/simple_mob/IsAdvancedToolUser()
 	return has_hands
 
-/mob/living/simple_mob/proc/IsHumanoidToolUser(var/atom/tool)
+mob/living/simple_mob/proc/IsHumanoidToolUser(var/atom/tool)
 	if(!humanoid_hands)
 		var/display_name = null
 		if(tool)

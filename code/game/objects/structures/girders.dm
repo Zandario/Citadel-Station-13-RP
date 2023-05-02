@@ -1,4 +1,4 @@
-/obj/structure/girder
+obj/structure/girder
 	icon = 'icons/obj/structures/girder.dmi'
 	icon_state = "girder"
 
@@ -19,24 +19,24 @@
 	var/reinforcing = 0
 	var/applies_material_colour = 1
 
-/obj/structure/girder/Initialize(mapload, material_key)
+obj/structure/girder/Initialize(mapload, material_key)
 	. = ..()
 	if(!material_key)
 		material_key = default_material
 	set_material(material_key)
 	update_appearance()
 
-/obj/structure/girder/Destroy()
+obj/structure/girder/Destroy()
 	if(girder_material.products_need_process())
 		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/structure/girder/process(delta_time)
+obj/structure/girder/process(delta_time)
 	if(!radiate())
 		STOP_PROCESSING(SSobj, src)
 		return
 
-/obj/structure/girder/proc/radiate()
+obj/structure/girder/proc/radiate()
 	var/total_radiation = girder_material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
 	if(!total_radiation)
 		return
@@ -45,7 +45,7 @@
 	return total_radiation
 
 
-/obj/structure/girder/proc/set_material(var/new_material)
+obj/structure/girder/proc/set_material(var/new_material)
 	girder_material = get_material_by_name(new_material)
 	if(!girder_material)
 		qdel(src)
@@ -60,34 +60,34 @@
 	else if(datum_flags & DF_ISPROCESSING) //If I happened to be radioactive or s.o. previously, and am not now, stop processing.
 		STOP_PROCESSING(SSobj, src)
 
-/obj/structure/girder/get_material()
+obj/structure/girder/get_material()
 	return girder_material
 
-/obj/structure/girder/update_icon_state()
+obj/structure/girder/update_icon_state()
 	. = ..()
 	if(anchored)
 		icon_state = initial(icon_state)
 	else
 		icon_state = "displaced"
 
-/obj/structure/girder/displaced
+obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0
 	health = 50
 	cover = 25
 
-/obj/structure/girder/displaced/Initialize(mapload, material_key)
+obj/structure/girder/displaced/Initialize(mapload, material_key)
 	. = ..()
 	displace()
 
-/obj/structure/girder/proc/displace()
+obj/structure/girder/proc/displace()
 	name = "displaced [girder_material.display_name] [initial(name)]"
 	icon_state = "displaced"
 	anchored = 0
 	health = (displaced_health - round(current_damage / 4))
 	cover = 25
 
-/obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart")
+obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart")
 	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		return 0
 	user.do_attack_animation(src)
@@ -95,7 +95,7 @@
 	spawn(1) dismantle()
 	return 1
 
-/obj/structure/girder/bullet_act(var/obj/projectile/Proj)
+obj/structure/girder/bullet_act(var/obj/projectile/Proj)
 	//Girders only provide partial cover. There's a chance that the projectiles will just pass through. (unless you are trying to shoot the girder)
 	if(Proj.original != src && !prob(cover))
 		return PROJECTILE_CONTINUE //pass through
@@ -133,10 +133,10 @@
 
 	return
 
-/obj/structure/girder/blob_act()
+obj/structure/girder/blob_act()
 	dismantle()
 
-/obj/structure/girder/proc/reset_girder()
+obj/structure/girder/proc/reset_girder()
 	name = "[girder_material.display_name] [initial(name)]"
 	anchored = 1
 	cover = initial(cover)
@@ -147,7 +147,7 @@
 	if(reinf_material)
 		reinforce_girder()
 
-/obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench() && state == 0)
 		if(anchored && !reinf_material)
 			playsound(src, W.tool_sound, 100, 1)
@@ -216,7 +216,7 @@
 	else
 		return ..()
 
-/obj/structure/girder/take_damage(var/damage)
+obj/structure/girder/take_damage(var/damage)
 	health -= damage
 	if(health <= 0)
 		dismantle()
@@ -224,7 +224,7 @@
 		current_damage = current_damage + damage //Rather than calculate this every time we need to use it, just calculate it here and save it.
 
 
-/obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
+obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
 	var/amount_to_use = reinf_material ? 1 : 2
 	if(S.get_amount() < amount_to_use)
 		to_chat(user, "<span class='notice'>There isn't enough material here to construct a wall.</span>")
@@ -263,7 +263,7 @@
 	qdel(src)
 	return 1
 
-/obj/structure/girder/proc/reinforce_with_material(obj/item/stack/material/S, mob/user) //if the verb is removed this can be renamed.
+obj/structure/girder/proc/reinforce_with_material(obj/item/stack/material/S, mob/user) //if the verb is removed this can be renamed.
 	if(reinf_material)
 		to_chat(user, "<span class='notice'>\The [src] is already reinforced.</span>")
 		return 0
@@ -286,18 +286,18 @@
 	reinforce_girder()
 	return 1
 
-/obj/structure/girder/proc/reinforce_girder()
+obj/structure/girder/proc/reinforce_girder()
 	cover = reinf_material.hardness
 	health = health + round(reinf_material.integrity/2)
 	state = 2
 	icon_state = "reinforced"
 	reinforcing = 0
 
-/obj/structure/girder/proc/dismantle()
+obj/structure/girder/proc/dismantle()
 	girder_material.place_dismantled_product(get_turf(src), 2)
 	qdel(src)
 
-/obj/structure/girder/attack_hand(mob/user, list/params)
+obj/structure/girder/attack_hand(mob/user, list/params)
 	if (MUTATION_HULK in user.mutations)
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		dismantle()
@@ -305,7 +305,7 @@
 	return ..()
 
 
-/obj/structure/girder/legacy_ex_act(severity)
+obj/structure/girder/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -321,7 +321,7 @@
 		else
 	return
 
-/obj/structure/girder/cult
+obj/structure/girder/cult
 	name = "column"
 	icon= 'icons/obj/cult.dmi'
 	icon_state= "cultgirder"
@@ -331,18 +331,18 @@
 	girder_material = "cult"
 	applies_material_colour = 0
 
-/obj/structure/girder/cult/update_icon_state()
+obj/structure/girder/cult/update_icon_state()
 	. = ..()
 	if(anchored)
 		icon_state = "cultgirder"
 	else
 		icon_state = "displaced"
 
-/obj/structure/girder/cult/dismantle()
+obj/structure/girder/cult/dismantle()
 	new /obj/effect/decal/remains/human(get_turf(src))
 	qdel(src)
 
-/obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		playsound(src, W.tool_sound, 100, 1)
 		to_chat(user, "<span class='notice'>Now disassembling the girder...</span>")
@@ -361,7 +361,7 @@
 		new /obj/effect/decal/remains/human(get_turf(src))
 		dismantle()
 
-/obj/structure/girder/resin
+obj/structure/girder/resin
 	name = "soft girder"
 	icon_state = "girder_resin"
 	max_health = 225
@@ -369,7 +369,7 @@
 	cover = 60
 	girder_material = "resin"
 
-/obj/structure/girder/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+obj/structure/girder/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	var/turf/simulated/T = get_turf(src)
 	if(!istype(T) || T.density)
 		return FALSE
@@ -394,7 +394,7 @@
 			)
 	return FALSE
 
-/obj/structure/girder/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+obj/structure/girder/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	var/turf/simulated/T = get_turf(src)
 	if(!istype(T) || T.density) // Should stop future bugs of people bringing girders to centcom and RCDing them, or somehow putting a girder on a durasteel wall and deconning it.
 		return FALSE

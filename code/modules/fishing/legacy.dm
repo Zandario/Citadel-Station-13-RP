@@ -36,13 +36,13 @@ GLOBAL_LIST_INIT(generic_fishing_pool_list, list(
 		/obj/item/spacecash/c10 = 5,
 		/obj/item/spacecash/c100 = 1))
 
-/obj/random/fishing_junk
+obj/random/fishing_junk
 	name = "junk"
 	desc = "This is a random fishing junk item."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "red"
 
-/obj/random/fishing_junk/item_to_spawn()
+obj/random/fishing_junk/item_to_spawn()
 	return pickweight(list(
 	/obj/random/toy = 60,
 	/obj/random/maintenance/engineering = 50,

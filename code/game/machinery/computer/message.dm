@@ -1,6 +1,6 @@
 // Allows you to monitor messages that passes the server.
 
-/obj/machinery/computer/message_monitor
+obj/machinery/computer/message_monitor
 	name = "messaging monitor console"
 	desc = "Used to access and maintain data on messaging servers. Allows you to view PDA and request console messages."
 	icon_screen = "comm_logs"
@@ -30,7 +30,7 @@
 	var/custommessage 	= "This is a test, please ignore."
 
 
-/obj/machinery/computer/message_monitor/attackby(obj/item/O as obj, mob/living/user as mob)
+obj/machinery/computer/message_monitor/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(machine_stat & (NOPOWER|BROKEN))
 		..()
 		return
@@ -44,7 +44,7 @@
 	..()
 	return
 
-/obj/machinery/computer/message_monitor/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/message_monitor/emag_act(var/remaining_charges, var/mob/user)
 	// Will create sparks and print out the console's password. You will then have to wait a while for the console to be back online.
 	// It'll take more time if there's more characters in the password..
 	if(!emag && operable())
@@ -64,21 +64,21 @@
 		else
 			to_chat(user, "<span class='notice'>A no server error appears on the screen.</span>")
 
-/obj/machinery/computer/message_monitor/update_icon()
+obj/machinery/computer/message_monitor/update_icon()
 	if(emag || hacking)
 		icon_screen = hack_icon
 	else
 		icon_screen = initial(icon_screen)
 	..()
 
-/obj/machinery/computer/message_monitor/Initialize(mapload)
+obj/machinery/computer/message_monitor/Initialize(mapload)
 	//Is the server isn't linked to a server, and there's a server available, default it to the first one in the list.
 	if(!linkedServer)
 		if(message_servers && message_servers.len > 0)
 			linkedServer = message_servers[1]
 	return ..()
 
-/obj/machinery/computer/message_monitor/attack_hand(mob/user, list/params)
+obj/machinery/computer/message_monitor/attack_hand(mob/user, list/params)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(!istype(user))
@@ -258,10 +258,10 @@
 	onclose(user, "message")
 	return
 
-/obj/machinery/computer/message_monitor/attack_ai(mob/user as mob)
+obj/machinery/computer/message_monitor/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/message_monitor/proc/BruteForce(mob/user as mob)
+obj/machinery/computer/message_monitor/proc/BruteForce(mob/user as mob)
 	if(isnull(linkedServer))
 		to_chat(user, "<span class='warning'>Could not complete brute-force: Linked Server Disconnected!</span>")
 	else
@@ -271,17 +271,17 @@
 	update_icon()
 	src.screen = 0 // Return the screen back to normal
 
-/obj/machinery/computer/message_monitor/proc/UnmagConsole()
+obj/machinery/computer/message_monitor/proc/UnmagConsole()
 	src.emag = 0
 	update_icon()
 
-/obj/machinery/computer/message_monitor/proc/ResetMessage()
+obj/machinery/computer/message_monitor/proc/ResetMessage()
 	customsender 	= "System Administrator"
 	customrecepient = null
 	custommessage 	= "This is a test, please ignore."
 	customjob 		= "Admin"
 
-/obj/machinery/computer/message_monitor/Topic(href, href_list)
+obj/machinery/computer/message_monitor/Topic(href, href_list)
 	if(..())
 		return 1
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -504,15 +504,15 @@
 	return src.attack_hand(usr)
 
 
-/obj/item/paper/monitorkey
+obj/item/paper/monitorkey
 	name = "Monitor Decryption Key"
 	var/obj/machinery/message_server/server = null
 
-/obj/item/paper/monitorkey/Initialize(mapload)
+obj/item/paper/monitorkey/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/paper/monitorkey/LateInitialize()
+obj/item/paper/monitorkey/LateInitialize()
 	. = ..()
 	if(message_servers)
 		for(var/obj/machinery/message_server/server in message_servers)

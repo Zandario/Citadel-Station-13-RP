@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(characteristics_skills, _create_characteristics_skills())
 
-/proc/_create_characteristics_skills()
+proc/_create_characteristics_skills()
 	. = list()
 	for(var/datum/characteristic_skill/skill in subtypesof(/datum/characteristic_skill))
 		if(is_abstract(skill))
@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(characteristics_skills, _create_characteristics_skills())
  *
  * use typepaths whenever possible for compile time!
  */
-/proc/resolve_characteristics_skill(datum/characteristic_skill/typepath_or_id)
+proc/resolve_characteristics_skill(datum/characteristic_skill/typepath_or_id)
 	RETURN_TYPE(/datum/characteristic_skill)
 	return GLOB.characteristics_skills[ispath(typepath_or_id)? initial(typepath_or_id.id) : typepath_or_id]
 
@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(characteristics_skills, _create_characteristics_skills())
  *
  * skills are untrained when unset, and baseline when characteristics are disabled
  */
-/datum/characteristic_skill
+datum/characteristic_skill
 	abstract_type = /datum/characteristic_skill
 	//? basics
 	/// unique id
@@ -65,10 +65,10 @@ GLOBAL_LIST_INIT(characteristics_skills, _create_characteristics_skills())
 	var/desc_experienced = "ERR: NO EXPERIENCED DESC"
 	var/desc_professional = "ERR: NO PROFESSIONAL DESC"
 
-/datum/characteristic_skill/New()
+datum/characteristic_skill/New()
 	compute_caches()
 
-/datum/characteristic_skill/proc/total_cost(level)
+datum/characteristic_skill/proc/total_cost(level)
 	switch(level)
 		if(CHARACTER_SKILL_UNTRAINED)
 			return 0
@@ -81,14 +81,14 @@ GLOBAL_LIST_INIT(characteristics_skills, _create_characteristics_skills())
 		if(CHARACTER_SKILL_PROFESSIONAL)
 			. = total_cost_professional
 
-/datum/characteristic_skill/proc/compute_caches()
+datum/characteristic_skill/proc/compute_caches()
 	var/total = 0
 	total_cost_novice = round(total, 1)
 	total_cost_trained = round(total, 1)
 	total_cost_experienced = round(total, 1)
 	total_cost_professional = round(total, 1)
 
-/datum/characteristic_skill/proc/level_description(level)
+datum/characteristic_skill/proc/level_description(level)
 	switch(level)
 		if(CHARACTER_SKILL_UNTRAINED)
 			return desc_untrained

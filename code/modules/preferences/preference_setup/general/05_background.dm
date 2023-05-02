@@ -1,24 +1,24 @@
-/datum/category_item/player_setup_item/general/background
+datum/category_item/player_setup_item/general/background
 	name = "Background"
 	sort_order = 5
 
-/datum/category_item/player_setup_item/general/background/load_character(savefile/S)
+datum/category_item/player_setup_item/general/background/load_character(savefile/S)
 	READ_FILE(S["med_record"],      pref.med_record)
 	READ_FILE(S["sec_record"],      pref.sec_record)
 	READ_FILE(S["gen_record"],      pref.gen_record)
 	READ_FILE(S["economic_status"], pref.economic_status)
 
-/datum/category_item/player_setup_item/general/background/save_character(savefile/S)
+datum/category_item/player_setup_item/general/background/save_character(savefile/S)
 	WRITE_FILE(S["med_record"],      pref.med_record)
 	WRITE_FILE(S["sec_record"],      pref.sec_record)
 	WRITE_FILE(S["gen_record"],      pref.gen_record)
 	WRITE_FILE(S["economic_status"], pref.economic_status)
 
-/datum/category_item/player_setup_item/general/background/sanitize_character()
+datum/category_item/player_setup_item/general/background/sanitize_character()
 	pref.economic_status = sanitize_inlist(pref.economic_status, ECONOMIC_CLASS, initial(pref.economic_status))
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/background/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/general/background/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -28,7 +28,7 @@
 	character.gen_record		= pref.gen_record
 	return TRUE
 
-/datum/category_item/player_setup_item/general/background/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/general/background/content(datum/preferences/prefs, mob/user, data)
 	. += "<b>Background Information</b><br>"
 	. += "Economic Status: <a href='?src=\ref[src];econ_status=1'>[pref.economic_status]</a><br/>"
 
@@ -43,7 +43,7 @@
 		. += "Security Records:<br>"
 		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
 
-/datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["econ_status"])
 		var/new_class = tgui_input_list(user, "Choose your economic status. This will affect the amount of money you will start with.", "Character Preference", ECONOMIC_CLASS, pref.economic_status)
 		if(new_class && CanUseTopic(user))

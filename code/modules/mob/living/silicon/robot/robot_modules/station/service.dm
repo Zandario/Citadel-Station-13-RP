@@ -1,4 +1,4 @@
-/obj/item/robot_module/robot/janitor
+obj/item/robot_module/robot/janitor
 	name = "janitorial robot module"
 	channels = list("Service" = 1)
 	sprites = list(
@@ -25,7 +25,7 @@
 		"W02M" = "worm-janitor"
 	)
 
-/obj/item/robot_module/robot/janitor/get_modules()
+obj/item/robot_module/robot/janitor/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/soap/nanotrasen,
@@ -34,20 +34,20 @@
 		/obj/item/lightreplacer
 	)
 
-/obj/item/robot_module/robot/janitor/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/janitor/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	src.emag = new /obj/item/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("lube", 250)
 	src.emag.name = "Lube spray"
 
-/obj/item/robot_module/robot/janitor/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+obj/item/robot_module/robot/janitor/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	if(src.emag)
 		var/obj/item/reagent_containers/spray/S = src.emag
 		S.reagents.add_reagent("lube", 2 * amount)
 
-/obj/item/robot_module/robot/clerical
+obj/item/robot_module/robot/clerical
 	name = "service robot module"
 	channels = list("Service" = 1)
 	languages = list(
@@ -74,7 +74,7 @@
 		LANGUAGE_ZADDAT		= 1
 	)
 
-/obj/item/robot_module/robot/clerical/butler
+obj/item/robot_module/robot/clerical/butler
 	sprites = list(
 		"M-USE NanoTrasen" = "robotServ",
 		"Cabeiri" = "eyebot-standard",
@@ -103,7 +103,7 @@
 		"W02M" = "worm-service"
 	)
 
-/obj/item/robot_module/robot/clerical/butler/Initialize(mapload)
+obj/item/robot_module/robot/clerical/butler/Initialize(mapload)
 	. = ..()
 	src.modules += new /obj/item/gripper/service(src)
 	src.modules += new /obj/item/reagent_containers/glass/bucket(src)
@@ -136,14 +136,14 @@
 	R.add_reagent("beer2", 50)
 	src.emag.name = "Mickey Finn's Special Brew"
 
-/obj/item/robot_module/robot/clerical/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+obj/item/robot_module/robot/clerical/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
 	E.reagents.add_reagent("enzyme", 2 * amount)
 	if(src.emag)
 		var/obj/item/reagent_containers/food/drinks/bottle/small/beer/B = src.emag
 		B.reagents.add_reagent("beer2", 2 * amount)
 
-/obj/item/robot_module/robot/clerical/general
+obj/item/robot_module/robot/clerical/general
 	name = "clerical robot module"
 	sprites = list(
 		"M-USE NanoTrasen" = "robotCler",
@@ -170,7 +170,7 @@
 		"W02M" = "worm-service"
 	)
 
-/obj/item/robot_module/robot/clerical/general/get_modules()
+obj/item/robot_module/robot/clerical/general/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/pen/robopen,
@@ -181,7 +181,7 @@
 		/obj/item/stamp/denied
 	)
 
-/obj/item/robot_module/robot/clerical/general/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/clerical/general/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	// cba to make emags support more than one item
 	if (prob(50))
@@ -189,7 +189,7 @@
 	else
 		src.emag = new /obj/item/pen/chameleon(src)
 
-/obj/item/robot_module/robot/quad/jani
+obj/item/robot_module/robot/quad/jani
 	name = "JaniQuad module"
 	sprites = list(
 		"Custodial Hound" = "scrubpup",
@@ -203,14 +203,14 @@
 	can_be_pushed = 0
 	can_shred = TRUE
 
-/obj/item/robot_module/robot/quad/jani/get_modules()
+obj/item/robot_module/robot/quad/jani/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/dogborg/jaws/small,
 		/obj/item/pupscrubber
 	)
 
-/obj/item/robot_module/robot/quad/jani/get_synths()
+obj/item/robot_module/robot/quad/jani/get_synths()
 	. = ..()
 	//Starts empty. Can only recharge with recycled material.
 	.[MATSYN_METAL] = new /datum/matter_synth/metal {
@@ -227,7 +227,7 @@
 		energy = 0;
 	}
 
-/obj/item/robot_module/robot/quad/jani/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/jani/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	src.emag = new /obj/item/dogborg/pounce(src) //Pounce
@@ -263,7 +263,7 @@
 	. += G
 
 // Uses modified K9 sprites.
-/obj/item/robot_module/robot/quad/serv
+obj/item/robot_module/robot/quad/serv
 	name = "Service Quadruped module"
 	sprites = list(
 		"Blackhound" = "k50",
@@ -298,7 +298,7 @@
 	channels = list("Service" = 1)
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/quad/serv/get_modules()
+obj/item/robot_module/robot/quad/serv/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/gripper/service,
@@ -319,7 +319,7 @@
 	)
 
 // In a nutshell, basicly service/butler robot but in dog form.
-/obj/item/robot_module/robot/quad/serv/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/serv/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	src.emag = new /obj/item/dogborg/pounce(src)
 

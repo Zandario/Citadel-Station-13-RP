@@ -1,6 +1,6 @@
  //Fodder
 
-/datum/category_item/catalogue/fauna/cyberhorror
+datum/category_item/catalogue/fauna/cyberhorror
 	name = "Cyber Horror"
 	desc = "First witnessed on Surt, the entities hence dubbed 'Cyber Horrors' have \
 	begun to appear at various sites across the Frontier. Based on recordings and logs \
@@ -13,7 +13,7 @@
 	value = CATALOGUER_REWARD_TRIVIAL
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/cyberhorror)
 
-/mob/living/simple_mob/mechanical/cyber_horror
+mob/living/simple_mob/mechanical/cyber_horror
 	name = "Cyber horror"
 	desc = "What was once a man, twisted and warped by machine."
 	icon = 'icons/mob/cyber_horror.dmi'
@@ -49,7 +49,7 @@
 	var/emp_damage = 0
 	var/nanobot_chance = 40
 
-/datum/say_list/cyber_horror
+datum/say_list/cyber_horror
 	speak = list("H@!#$$P M@!$#",
 				 "GHAA!@@#",
 				 "KR@!!N",
@@ -62,7 +62,7 @@
 	say_got_target = list("I *#@ Y@%","!E@#$P","F#RR @I","D0@#$ ##OK %","IT $##TS")
 
  // Fragile but dangerous
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror
+mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror
 	name = "Nanite husk"
 	desc = "What was once a phoronoid, now a empty shell of malfunctioning nanites."
 	icon_state = "plasma_cyber_horror"
@@ -85,7 +85,7 @@
 	bone_amount = 8
 	bone_type = /obj/item/stack/material/bone
 
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -94,12 +94,12 @@
 				inject_poison(L, target_zone)
 
  // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/proc/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>You feel nanites digging into your skin!</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
  // Mech Shredder
-/mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror
+mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror
 	name = "Nanite abomination"
 	desc = "What was once something, now an exposed shell with lashing cables."
 	icon_state = "ling_cyber_horror"
@@ -140,7 +140,7 @@
 	exotic_type = /obj/item/stack/sinew
 
  // Multiplies damage if the victim is stunned in some form, including a successful leap.
-/mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror/apply_bonus_melee_damage(atom/A, damage_amount)
+mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror/apply_bonus_melee_damage(atom/A, damage_amount)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.incapacitated(INCAPACITATION_DISABLED))
@@ -149,7 +149,7 @@
 
 
  // The actual leaping attack.
-/mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror/do_special_attack(atom/A)
+mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
@@ -199,7 +199,7 @@
 
 	set_AI_busy(FALSE)
  //Slightly more durable fodder
-/mob/living/simple_mob/mechanical/cyber_horror/vox
+mob/living/simple_mob/mechanical/cyber_horror/vox
 	name = "Vox shambles"
 	desc = "Once a Vox now torn and changed, peices of a Durand have been grafted onto it."
 	icon_state = "vox_cyber_horror"
@@ -214,7 +214,7 @@
 	bone_type = /obj/item/stack/material/bone
 
  // Hit and run mob
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran
+mob/living/simple_mob/mechanical/cyber_horror/tajaran
 	name = "Tajaran cyber stalker"
 	desc = "A mangled mess of machine and fur, light seems to bounce off it."
 	icon_state = "tajaran_cyber_horror"
@@ -241,13 +241,13 @@
 	hide_type = /obj/item/stack/animalhide/grey
 
 
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/proc/stealth()
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/proc/stealth()
 	if(stealthed)
 		return
 	animate(src, alpha = stealthed_alpha, time = 1 SECOND)
 	stealthed = TRUE
 
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/proc/unstealth()
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/proc/unstealth()
  // This is assigned even if it isn't stealthed already, to 'reset' the timer if the spider is continously getting attacked.
 	last_unstealth = world.time
 	if(!stealthed)
@@ -257,7 +257,7 @@
 
 
 // Check if stealthing if possible.
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/proc/can_stealth()
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/proc/can_stealth()
 	if(stat)
 		return FALSE
 	if(last_unstealth + stealth_cooldown > world.time)
@@ -267,28 +267,28 @@
 
 
 // Called by things that break stealths, like Technomancer wards.
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/break_cloak()
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/break_cloak()
 	unstealth()
 
 
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/is_cloaked()
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/is_cloaked()
 	return stealthed
 
 
 // Cloaks the tajaran automatically, if possible.
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/handle_special()
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/handle_special()
 	if(!stealthed && can_stealth())
 		stealth()
 
 
 // Applies bonus base damage if stealthed.
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/apply_bonus_melee_damage(atom/A, damage_amount)
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/apply_bonus_melee_damage(atom/A, damage_amount)
 	if(stealthed)
 		return damage_amount + stealthed_bonus_damage
 	return ..()
 
 // Applies stun, then unstealths.
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/apply_melee_effects(atom/A)
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/apply_melee_effects(atom/A)
 	if(stealthed)
 		if(isliving(A))
 			var/mob/living/L = A
@@ -299,16 +299,16 @@
 	..() // For the poison.
 
 // Force unstealthing if attacked.
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/bullet_act(obj/projectile/P)
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/bullet_act(obj/projectile/P)
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 	. = ..()
 	break_cloak()
 
 //Arcing Ranged Mob
-/mob/living/simple_mob/mechanical/cyber_horror/grey
+mob/living/simple_mob/mechanical/cyber_horror/grey
 	name = "Twisted cyber horror"
 	desc = "A mess of machine and organic, it's hard to even know what it was before."
 	icon_state = "grey_cyber_horror"
@@ -322,14 +322,14 @@
 
 	armor_legacy_mob = list(melee = -30, bullet = 10, laser = 10, bio = 100, rad = 100)
 
-/obj/projectile/arc/blue_energy
+obj/projectile/arc/blue_energy
 	name = "energy missle"
 	icon_state = "force_missile"
 	damage = 12
 	damage_type = BURN
 
 //Direct Ranged Mob
-/mob/living/simple_mob/mechanical/cyber_horror/corgi
+mob/living/simple_mob/mechanical/cyber_horror/corgi
 	name = "Malformed Corgi"
 	desc = "Pieces of metal and technology are embedded in this corgi."
 	icon_state = "corgi_cyber_horror"
@@ -345,7 +345,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening
 
 //Cats and mayhem
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror
+mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror
 	name = "Twisted cat"
 	desc = "While most things are acceptable, putting cat legs on this - only made it worse."
 
@@ -375,7 +375,7 @@
 	var/poison_per_bite = 3
 	var/poison_type = "mindbreaker"
 
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -384,22 +384,22 @@
 				inject_poison(L, target_zone)
 
  // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/proc/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>You feel an uncomfortable prick!</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 //These are the projectiles mobs use
-/obj/projectile/beam/drone
+obj/projectile/beam/drone
 	damage = 3
-/obj/projectile/arc/blue_energy
+obj/projectile/arc/blue_energy
 	name = "energy missle"
 	icon_state = "force_missile"
 	damage = 12
 	damage_type = BURN
 
 //Boss Mob - The High Priest
-/mob/living/simple_mob/mechanical/cyber_horror/priest
+mob/living/simple_mob/mechanical/cyber_horror/priest
 	name = "hulking cyber horror"
 	desc = "A gnarled, still living convert forcibly integrated into a heavy walker platform composed of living metal."
 	icon = 'icons/mob/64x64.dmi'
@@ -429,22 +429,22 @@
 	projectilesound = 'sound/weapons/Laser.ogg'
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive/priest
 
-/obj/projectile/arc/blue_energy/priest
+obj/projectile/arc/blue_energy/priest
 	name = "nanite cloud"
 	icon_state = "particle-heavy"
 	damage = 15
 	damage_type = BRUTE
 
-/obj/projectile/arc/blue_energy/priest/on_hit(var/atom/target, var/blocked = 0)
+obj/projectile/arc/blue_energy/priest/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		M.Confuse(rand(3,5))
 
-/datum/ai_holder/simple_mob/ranged/aggressive/priest //Adopted from the Blood Hunter.
+datum/ai_holder/simple_mob/ranged/aggressive/priest //Adopted from the Blood Hunter.
 	pointblank = FALSE
 	closest_distance = 0
 
-/mob/living/simple_mob/mechanical/cyber_horror/priest/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/mechanical/cyber_horror/priest/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -452,12 +452,12 @@
 			if(L.can_inject(src, null, target_zone))
 				inject_poison(L, target_zone)
 
-/mob/living/simple_mob/mechanical/cyber_horror/priest/proc/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/mechanical/cyber_horror/priest/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>You feel nanites digging into your skin!</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/simple_mob/mechanical/cyber_horror/priest/should_special_attack(atom/A)
+mob/living/simple_mob/mechanical/cyber_horror/priest/should_special_attack(atom/A)
 	var/mob_count = 0				// Are there enough mobs?
 	var/turf/T = get_turf(A)
 	for(var/mob/M in range(T, 2))
@@ -471,7 +471,7 @@
 	else
 		return TRUE
 
-/mob/living/simple_mob/mechanical/cyber_horror/priest/do_special_attack(atom/target)
+mob/living/simple_mob/mechanical/cyber_horror/priest/do_special_attack(atom/target)
 	set waitfor = FALSE
 
 	// Warm-up
@@ -495,12 +495,12 @@
 	visible_message(SPAN_WARNING( "[src] closes its reactor port."))
 	playsound(src, 'sound/effects/turret/move2.wav', 50, 1)
 
-/obj/projectile/arc/radioactive/priest
+obj/projectile/arc/radioactive/priest
 	name  = "superheated plama discharge"
 	icon_state = "plasma3"
 	rad_power = RAD_INTENSITY_PROJ_ARC_HORROR_PRIEST
 
-/obj/projectile/arc/radioactive/priest/on_impact(turf/T)
+obj/projectile/arc/radioactive/priest/on_impact(turf/T)
 	. = ..()
 	new /obj/effect/explosion(T)
 	explosion(T, 0, 1, 4)
@@ -509,13 +509,13 @@
 //Lavaland Cyber_Horrors
 ////////////////////////
 
-/mob/living/simple_mob/mechanical/cyber_horror/surt
+mob/living/simple_mob/mechanical/cyber_horror/surt
 	name = "ash coated remnant"
 	desc = "What was once a man, now twisted and warped by machine. A heavy layer of volcanic ash clings to what little organic portions remain."
 
 	heat_resist = 1
 
-/datum/say_list/cyber_horror/surt
+datum/say_list/cyber_horror/surt
 	speak = list("H@!#$$P M@!$#",
 				 "GHAA!@@#",
 				 "KR@!!N",
@@ -528,28 +528,28 @@
 	say_got_target = list("I *#@ Y@%","!E@#$P","F#RR @I","D0@#$ ##OK %","IT $##TS")
 
 // Fragile but dangerous
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/surt
+mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/surt
 	name = "obsidian-studded husk"
 	desc = "What was once a phoronoid, now a empty shell of malfunctioning nanites. Chunks of volcanic glass have been painfully grafted into the tissue."
 
 	heat_resist = 1
 
 // Mech Shredder
-/mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror/surt
+mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror/surt
 	name = "grainy nanite abomination"
 	desc = "What was once something, now an exposed shell with lashing cables. Its form is mealy and inconsistent - it appears to have involuntarily incorporated the ash into its biology."
 
 	heat_resist = 1
 
 //Slightly more durable fodder
-/mob/living/simple_mob/mechanical/cyber_horror/vox/surt
+mob/living/simple_mob/mechanical/cyber_horror/vox/surt
 	name = "ragged shambler"
 	desc = "Once a Vox now torn and changed, peices of a Durand have been grafted onto it. This body seems fresher than the others - perhaps a recent convert."
 
 	heat_resist = 1
 
  // Hit and run mob
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/surt
+mob/living/simple_mob/mechanical/cyber_horror/tajaran/surt
 	name = "singed ash-stalker"
 	desc = "A mangled mess of machine and fur, light seems to bounce off it. Although it cannot be seen easily, at close ranges it smells strongly of burnt hair."
 
@@ -557,33 +557,33 @@
 
 
 //Arcing Ranged Mob
-/mob/living/simple_mob/mechanical/cyber_horror/grey/surt
+mob/living/simple_mob/mechanical/cyber_horror/grey/surt
 	name = "exhumed deacon"
 	desc = "A mess of machine and organic, it's hard to even know what it was before. Strips of charred paper and hand-crafted religious icons have been draped over its body."
 
 	heat_resist = 1
 
 //Direct Ranged Mob
-/mob/living/simple_mob/mechanical/cyber_horror/corgi/surt
+mob/living/simple_mob/mechanical/cyber_horror/corgi/surt
 	name = "matted tracker drone"
 	desc = "Pieces of metal and technology embedded in this corgi have turned it into a blank drone. Its fur is burned and matted down with soot and ash."
 
 	heat_resist = 1
 
 //Cats and mayhem
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/surt
+mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/surt
 	name = "smoldering hunter drone"
 	desc = "This creature, formerly a cat, has had arachnid legs crudely grafted to its body. It moves with frightening acuity."
 
 	heat_resist = 1
 
-/mob/living/simple_mob/mechanical/cyber_horror/priest/surt
+mob/living/simple_mob/mechanical/cyber_horror/priest/surt
 	name = "warped cyber horror"
 	desc = "A gnarled, still living convert forcibly integrated into a heavy walker platform composed of living metal. The metal has bubbled and warped unnaturally from the heat."
 
 	heat_resist = 1
 
-/mob/living/simple_mob/mechanical/cyber_horror/priest/thechanged
+mob/living/simple_mob/mechanical/cyber_horror/priest/thechanged
 	name = "The Changed One"
 	desc = "The casing and writhing flesh of this body have been adorned in ritual wax and religious icons. Burned prayer sheets daubed in its own dripping blood flap in the stifling air. The cruciform body integrated into the machine wriggles feebly, its jaw tightly wagging up and down - it has no mouth."
 	maxHealth = 1500

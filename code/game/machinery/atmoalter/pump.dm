@@ -1,4 +1,4 @@
-/obj/machinery/portable_atmospherics/powered/pump
+obj/machinery/portable_atmospherics/powered/pump
 	name = "portable air pump"
 
 	icon = 'icons/obj/atmos.dmi'
@@ -18,17 +18,17 @@
 	power_rating = 7500 //7500 W ~ 10 HP
 	power_losses = 150
 
-/obj/machinery/portable_atmospherics/powered/pump/filled
+obj/machinery/portable_atmospherics/powered/pump/filled
 	start_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/powered/pump/Initialize(mapload)
+obj/machinery/portable_atmospherics/powered/pump/Initialize(mapload)
 	. = ..()
 	cell = new/obj/item/cell/apc(src)
 
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi(/datum/gas/oxygen, air_mix[/datum/gas/oxygen], /datum/gas/nitrogen, air_mix[/datum/gas/nitrogen])
 
-/obj/machinery/portable_atmospherics/powered/pump/update_icon()
+obj/machinery/portable_atmospherics/powered/pump/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -45,7 +45,7 @@
 	add_overlay(overlays_to_add)
 	return
 
-/obj/machinery/portable_atmospherics/powered/pump/emp_act(severity)
+obj/machinery/portable_atmospherics/powered/pump/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -61,7 +61,7 @@
 
 	..(severity)
 
-/obj/machinery/portable_atmospherics/powered/pump/process(delta_time)
+obj/machinery/portable_atmospherics/powered/pump/process(delta_time)
 	..()
 	var/power_draw = -1
 
@@ -99,31 +99,31 @@
 			power_change()
 			update_icon()
 
-/obj/machinery/portable_atmospherics/powered/pump/return_air()
+obj/machinery/portable_atmospherics/powered/pump/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_ai(var/mob/user)
+obj/machinery/portable_atmospherics/powered/pump/attack_ai(var/mob/user)
 	src.add_hiddenprint(user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_ghost(var/mob/user)
+obj/machinery/portable_atmospherics/powered/pump/attack_ghost(var/mob/user)
 	. = ..()
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_hand(mob/user, list/params)
+obj/machinery/portable_atmospherics/powered/pump/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/portable_atmospherics/powered/pump/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PortablePump", name)
 		ui.open()
 
 
-/obj/machinery/portable_atmospherics/powered/pump/ui_state(mob/user, datum/tgui_module/module)
+obj/machinery/portable_atmospherics/powered/pump/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/obj/machinery/portable_atmospherics/powered/pump/ui_data(mob/user)
+obj/machinery/portable_atmospherics/powered/pump/ui_data(mob/user)
 	var/list/data = list()
 
 	data["on"] = on ? TRUE : FALSE
@@ -149,7 +149,7 @@
 
 	return data
 
-/obj/machinery/portable_atmospherics/powered/pump/ui_act(action, params)
+obj/machinery/portable_atmospherics/powered/pump/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -184,7 +184,7 @@
 
 	update_icon()
 
-/obj/machinery/portable_atmospherics/powered/pump/huge
+obj/machinery/portable_atmospherics/powered/pump/huge
 	name = "Huge Air Pump"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "siphon:0"
@@ -199,7 +199,7 @@
 	var/global/gid = 1
 	var/id = 0
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/Initialize(mapload)
+obj/machinery/portable_atmospherics/powered/pump/huge/Initialize(mapload)
 	. = ..()
 	cell = null
 
@@ -208,10 +208,10 @@
 
 	name = "[name] (ID [id])"
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/attack_hand(mob/user, list/params)
+obj/machinery/portable_atmospherics/powered/pump/huge/attack_hand(mob/user, list/params)
 	to_chat(user, "<span class='notice'>You can't directly interact with this machine. Use the pump control console.</span>")
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/update_icon()
+obj/machinery/portable_atmospherics/powered/pump/huge/update_icon()
 	cut_overlays()
 
 	if(on && !(machine_stat & (NOPOWER|BROKEN)))
@@ -219,13 +219,13 @@
 	else
 		icon_state = "siphon:0"
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/power_change()
+obj/machinery/portable_atmospherics/powered/pump/huge/power_change()
 	var/old_stat = machine_stat
 	..()
 	if (old_stat != machine_stat)
 		update_icon()
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/process(delta_time)
+obj/machinery/portable_atmospherics/powered/pump/huge/process(delta_time)
 	if(!anchored || (machine_stat & (NOPOWER|BROKEN)))
 		on = 0
 		last_flow_rate = 0
@@ -268,7 +268,7 @@
 		use_power(power_draw)
 		update_connected_network()
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/portable_atmospherics/powered/pump/huge/attackby(var/obj/item/I, var/mob/user)
 	if(I.is_wrench())
 		if(on)
 			to_chat(user, "<span class='warning'>Turn \the [src] off first!</span>")
@@ -293,22 +293,22 @@
 	..()
 
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/stationary
+obj/machinery/portable_atmospherics/powered/pump/huge/stationary
 	name = "Stationary Air Pump"
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/stationary/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/portable_atmospherics/powered/pump/huge/stationary/attackby(var/obj/item/I, var/mob/user)
 	if(I.is_wrench())
 		to_chat(user, "<span class='warning'>The bolts are too tight for you to unscrew!</span>")
 		return
 
 	..()
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/stationary/purge
+obj/machinery/portable_atmospherics/powered/pump/huge/stationary/purge
 	on = 1
 	start_pressure = 0
 	target_pressure = 0
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/stationary/purge/power_change()
+obj/machinery/portable_atmospherics/powered/pump/huge/stationary/purge/power_change()
 	..()
 	if(!(machine_stat & (NOPOWER|BROKEN)))
 		on = 1

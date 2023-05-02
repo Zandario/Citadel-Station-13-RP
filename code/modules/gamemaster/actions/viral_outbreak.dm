@@ -1,11 +1,11 @@
-/datum/gm_action/viral_outbreak
+datum/gm_action/viral_outbreak
 	name = "viral outbreak"
 	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_EVERYONE)
 	chaotic = 30
 	severity = 1
 	var/list/candidates = list()
 
-/datum/gm_action/viral_outbreak/set_up()
+datum/gm_action/viral_outbreak/set_up()
 	candidates.Cut()	// Incase we somehow get run twice.
 	severity = rand(2, 4)
 	for(var/mob/living/carbon/human/G in GLOB.player_list)
@@ -14,10 +14,10 @@
 	if(!candidates.len)	return
 	candidates = shuffle(candidates)//Incorporating Donkie's list shuffle
 
-/datum/gm_action/viral_outbreak/announce()
+datum/gm_action/viral_outbreak/announce()
 	command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
-/datum/gm_action/viral_outbreak/start()
+datum/gm_action/viral_outbreak/start()
 	..()
 	while(severity > 0 && candidates.len)
 		if(prob(33))
@@ -28,7 +28,7 @@
 		candidates.Remove(candidates[1])
 		severity--
 
-/datum/gm_action/viral_outbreak/get_weight()
+datum/gm_action/viral_outbreak/get_weight()
 	var/medical = metric.count_people_in_department(DEPARTMENT_MEDICAL)
 	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
 	var/everyone = metric.count_people_in_department(DEPARTMENT_EVERYONE)

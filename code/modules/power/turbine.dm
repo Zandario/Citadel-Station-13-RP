@@ -21,7 +21,7 @@
 //   |      |        V - Suction vent (Like the ones in atmos
 //
 
-/obj/machinery/compressor
+obj/machinery/compressor
 	name = "compressor"
 	desc = "The compressor stage of a gas turbine generator."
 	icon = 'icons/obj/pipes.dmi'
@@ -40,7 +40,7 @@
 	var/comp_id = 0
 	var/efficiency
 
-/obj/machinery/power/turbine
+obj/machinery/power/turbine
 	name = "gas turbine generator"
 	desc = "A gas turbine used for backup power generation."
 	icon = 'icons/obj/pipes.dmi'
@@ -53,7 +53,7 @@
 	var/lastgen
 	var/productivity = 1
 
-/obj/machinery/computer/turbine_computer
+obj/machinery/computer/turbine_computer
 	name = "gas turbine control computer"
 	desc = "A computer to remotely control a gas turbine."
 	icon_keyboard = "tech_key"
@@ -64,14 +64,14 @@
 	var/id = 0
 	var/door_status = 0
 
-/obj/item/circuitboard/machine/power_compressor
+obj/item/circuitboard/machine/power_compressor
 	name = T_BOARD("power compressor")
 	build_path = /obj/machinery/compressor
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 2)
 	req_components = list(/obj/item/stack/cable_coil = 5, /obj/item/stock_parts/manipulator = 6)
 
-/obj/item/circuitboard/machine/power_turbine
+obj/item/circuitboard/machine/power_turbine
 	name = T_BOARD("power turbine")
 	build_path = /obj/machinery/power/turbine
 	board_type = new /datum/frame/frame_types/machine
@@ -86,7 +86,7 @@
 #define COMPFRICTION 5e5
 #define COMPSTARTERLOAD 2800
 
-/obj/machinery/compressor/Initialize(mapload)
+obj/machinery/compressor/Initialize(mapload)
 	. = ..()
 	gas_contained = new()
 	inturf = get_step(src, dir)
@@ -95,23 +95,23 @@
 		machine_stat |= BROKEN
 
 // When anchored, don't let air past us.
-/obj/machinery/compressor/CanAtmosPass(turf/T, d)
+obj/machinery/compressor/CanAtmosPass(turf/T, d)
 	return anchored? ATMOS_PASS_AIR_BLOCKED : ATMOS_PASS_NOT_BLOCKED
 
-/obj/machinery/compressor/proc/locate_machinery()
+obj/machinery/compressor/proc/locate_machinery()
 	if(turbine)
 		return
 	turbine = locate() in get_step(src, get_dir(inturf, src))
 	if(turbine)
 		turbine.locate_machinery()
 
-/obj/machinery/compressor/RefreshParts()
+obj/machinery/compressor/RefreshParts()
 	var/E = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating
 	efficiency = E / 6
 
-/obj/machinery/compressor/attackby(obj/item/W, mob/user)
+obj/machinery/compressor/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 
 	if(default_deconstruction_screwdriver(user, W))
@@ -129,7 +129,7 @@
 		return
 	return ..()
 
-/obj/machinery/compressor/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
+obj/machinery/compressor/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
 	if((. = ..()))
 		turbine = null
 		if(anchored)
@@ -142,7 +142,7 @@
 				to_chat(user, "<span class='alert'>Turbine not connected.</span>")
 				machine_stat |= BROKEN
 
-/obj/machinery/compressor/process(delta_time)
+obj/machinery/compressor/process(delta_time)
 	if(!turbine)
 		machine_stat = BROKEN
 	if(machine_stat & BROKEN || panel_open)
@@ -192,7 +192,7 @@
 #define TURBGENQ 100000
 #define TURBGENG 0.8
 
-/obj/machinery/power/turbine/Initialize(mapload)
+obj/machinery/power/turbine/Initialize(mapload)
 	. = ..()
 	// The outlet is pointed at the direction of the turbine component
 	outturf = get_step(src, dir)
@@ -200,20 +200,20 @@
 	if(!compressor)
 		machine_stat |= BROKEN
 
-/obj/machinery/power/turbine/RefreshParts()
+obj/machinery/power/turbine/RefreshParts()
 	var/P = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		P += C.rating
 	productivity = P / 6
 
-/obj/machinery/power/turbine/proc/locate_machinery()
+obj/machinery/power/turbine/proc/locate_machinery()
 	if(compressor)
 		return
 	compressor = locate() in get_step(src, get_dir(outturf, src))
 	if(compressor)
 		compressor.locate_machinery()
 
-/obj/machinery/power/turbine/attackby(obj/item/W, mob/user)
+obj/machinery/power/turbine/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 
 	if(default_deconstruction_screwdriver(user, W))
@@ -226,7 +226,7 @@
 		return
 	return ..()
 
-/obj/machinery/power/turbine/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
+obj/machinery/power/turbine/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
 	if((. = ..()))
 		compressor = null
 		if(anchored)
@@ -239,7 +239,7 @@
 				to_chat(user, "<span class='alert'>Compressor not connected.</span>")
 				machine_stat |= BROKEN
 
-/obj/machinery/power/turbine/process(delta_time)
+obj/machinery/power/turbine/process(delta_time)
 	if(!compressor)
 		machine_stat = BROKEN
 	if((machine_stat & BROKEN) || panel_open)
@@ -273,12 +273,12 @@
 
 	updateDialog()
 
-/obj/machinery/power/turbine/attack_hand(mob/user, list/params)
+obj/machinery/power/turbine/attack_hand(mob/user, list/params)
 	if((. = ..()))
 		return
 	src.interact(user)
 
-/obj/machinery/power/turbine/interact(mob/user)
+obj/machinery/power/turbine/interact(mob/user)
 	if(!Adjacent(user)  || (machine_stat & (NOPOWER|BROKEN)) && !issilicon(user))
 		user.unset_machine(src)
 		user << browse(null, "window=turbine")
@@ -297,7 +297,7 @@
 
 	return
 
-/obj/machinery/power/turbine/Topic(href, href_list)
+obj/machinery/power/turbine/Topic(href, href_list)
 	if(..())
 		return
 
@@ -315,14 +315,14 @@
 // Turbine Computer
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/computer/turbine_computer/Initialize(mapload)
+obj/machinery/computer/turbine_computer/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/computer/turbine_computer/LateInitialize()
+obj/machinery/computer/turbine_computer/LateInitialize()
 	locate_machinery()
 
-/obj/machinery/computer/turbine_computer/proc/locate_machinery()
+obj/machinery/computer/turbine_computer/proc/locate_machinery()
 	if(!id)
 		return
 	for(var/obj/machinery/compressor/C in GLOB.machines)
@@ -333,22 +333,22 @@
 		if(P.id == id)
 			doors += P
 
-/obj/machinery/computer/turbine_computer/attackby(obj/item/W, mob/user)
+obj/machinery/computer/turbine_computer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = input("Enter a new ident tag.", name, id) as null|text
 		if(new_ident && user.Adjacent(src))
 			id = new_ident
 		return
 
-/obj/machinery/computer/turbine_computer/attack_hand(mob/user, list/params)
+obj/machinery/computer/turbine_computer/attack_hand(mob/user, list/params)
 	if((. = ..()))
 		return
 	src.interact(user)
 
-/obj/machinery/computer/turbine_computer/interact(mob/user)
+obj/machinery/computer/turbine_computer/interact(mob/user)
 	return nano_ui_interact(user)
 
-/obj/machinery/computer/turbine_computer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/computer/turbine_computer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/list/data = list()
 	data["connected"] = (compressor && compressor.turbine) ? TRUE : FALSE
 	data["compressor_broke"] = (!compressor || (compressor.machine_stat & BROKEN)) ? TRUE : FALSE
@@ -374,7 +374,7 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update(TRUE)
 
-/obj/machinery/computer/turbine_computer/Topic(href, href_list)
+obj/machinery/computer/turbine_computer/Topic(href, href_list)
 	if(..())
 		return
 	if(href_list["power-on"])

@@ -1,4 +1,4 @@
-/obj/item/clothing/suit/tajaran/furs
+obj/item/clothing/suit/tajaran/furs
 	name = "heavy furs"
 	desc = "A traditional Zhan-Khazan garment."
 	icon_state = "zhan_furs"
@@ -7,7 +7,7 @@
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
 
-/obj/item/clothing/head/tajaran/scarf	//This stays in /suits because it goes with the furs above
+obj/item/clothing/head/tajaran/scarf	//This stays in /suits because it goes with the furs above
 	name = "headscarf"
 	desc = "A scarf of coarse fabric. Seems to have ear-holes."
 	icon_state = "zhan_scarf"

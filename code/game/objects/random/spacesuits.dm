@@ -1,13 +1,13 @@
 
 // Spaceproof clothing sets go in here
 
-/obj/random/multiple/voidsuit
+obj/random/multiple/voidsuit
 	name = "Random Voidsuit"
 	desc = "This is a random voidsuit."
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "void"
 
-/obj/random/multiple/voidsuit/item_to_spawn()
+obj/random/multiple/voidsuit/item_to_spawn()
 	return pick(
 			prob(5);list(
 				/obj/item/clothing/suit/space/void,
@@ -79,13 +79,13 @@
 			)
 		)
 
-/obj/random/multiple/voidsuit/mining
+obj/random/multiple/voidsuit/mining
 	name = "Random Mining Voidsuit"
 	desc = "This is a random mining voidsuit."
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "rig-mining"
 
-/obj/random/multiple/voidsuit/mining/item_to_spawn()
+obj/random/multiple/voidsuit/mining/item_to_spawn()
 	return pick(
 			prob(5);list(
 				/obj/item/clothing/suit/space/void/mining,
@@ -97,13 +97,13 @@
 			)
 		)
 
-/obj/random/multiple/voidsuit/medical
+obj/random/multiple/voidsuit/medical
 	name = "Random Mining Voidsuit"
 	desc = "This is a random mining voidsuit."
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "rig-mining"
 
-/obj/random/multiple/voidsuit/medical/item_to_spawn()
+obj/random/multiple/voidsuit/medical/item_to_spawn()
 	return pick(
 			prob(5);list(
 				/obj/item/clothing/suit/space/void/medical,
@@ -123,13 +123,13 @@
 			)
 		)
 
-/obj/random/rigsuit
+obj/random/rigsuit
 	name = "Random rigsuit"
 	desc = "This is a random rigsuit."
 	icon = 'icons/obj/rig_modules.dmi'
 	icon_state = "generic"
 
-/obj/random/rigsuit/item_to_spawn()
+obj/random/rigsuit/item_to_spawn()
 	return pick(prob(4);/obj/item/rig/light/hacker,
 				prob(5);/obj/item/rig/industrial,
 				prob(5);/obj/item/rig/eva,
@@ -137,13 +137,13 @@
 				prob(3);/obj/item/rig/hazard,
 				prob(1);/obj/item/rig/merc/empty)
 
-/obj/random/multiple/voidsuit/vintage
+obj/random/multiple/voidsuit/vintage
 	name = "Random Vintage Voidsuit"
 	desc = "This is a random vintage voidsuit."
 	icon = 'icons/obj/clothing/spacesuits.dmi'
 	icon_state = "rig-vintagecrew"
 
-/obj/random/multiple/voidsuit/vintage/item_to_spawn()
+obj/random/multiple/voidsuit/vintage/item_to_spawn()
 	return pick(
 			prob(20);list(
 				/obj/item/clothing/suit/space/void/refurb,

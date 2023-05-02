@@ -1,9 +1,9 @@
 var/list/floating_chat_colors = list()
 
-/atom/movable
+atom/movable
 	var/list/stored_chat_text
 
-/atom/movable/proc/animate_chat(message, var/datum/language/speaking = null, small, list/show_to, duration = 30)
+atom/movable/proc/animate_chat(message, var/datum/language/speaking = null, small, list/show_to, duration = 30)
 	set waitfor = FALSE
 	if(!speaking)
 		var/datum/language/noise/noise
@@ -43,7 +43,7 @@ var/list/floating_chat_colors = list()
 			else
 				C.images += gibberish
 
-/proc/generate_floating_text(atom/movable/holder, message, style, size, duration, show_to)
+proc/generate_floating_text(atom/movable/holder, message, style, size, duration, show_to)
 	var/image/I = image(null, holder)
 	var/mob/living/X
 	if(isliving(holder))
@@ -67,6 +67,6 @@ var/list/floating_chat_colors = list()
 
 	return I
 
-/proc/remove_floating_text(atom/movable/holder, image/I)
+proc/remove_floating_text(atom/movable/holder, image/I)
 	animate(I, 2, pixel_y = I.pixel_y + 10, alpha = 0)
 	LAZYREMOVE(holder.stored_chat_text, I)

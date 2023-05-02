@@ -1,16 +1,16 @@
-/datum/preferences
+datum/preferences
 	var/biological_gender = MALE
 	var/identifying_gender = MALE
 
-/datum/preferences/proc/set_biological_gender(gender)
+datum/preferences/proc/set_biological_gender(gender)
 	biological_gender = gender
 	identifying_gender = gender
 
-/datum/category_item/player_setup_item/general/basic
+datum/category_item/player_setup_item/general/basic
 	name = "Basic"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/general/basic/load_character(var/savefile/S)
+datum/category_item/player_setup_item/general/basic/load_character(var/savefile/S)
 	S["real_name"]				>> pref.real_name
 	S["nickname"]				>> pref.nickname
 	S["name_is_always_random"]	>> pref.be_random_name
@@ -20,7 +20,7 @@
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
 
-/datum/category_item/player_setup_item/general/basic/save_character(var/savefile/S)
+datum/category_item/player_setup_item/general/basic/save_character(var/savefile/S)
 	S["real_name"]				<< pref.real_name
 	S["nickname"]				<< pref.nickname
 	S["name_is_always_random"]	<< pref.be_random_name
@@ -30,7 +30,7 @@
 	S["spawnpoint"]				<< pref.spawnpoint
 	S["OOC_Notes"]				<< pref.metadata
 
-/datum/category_item/player_setup_item/general/basic/sanitize_character()
+datum/category_item/player_setup_item/general/basic/sanitize_character()
 	var/species_name = pref.real_species_name()
 	pref.age                = sanitize_integer(pref.age, get_min_age(), get_max_age(), initial(pref.age))
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
@@ -43,7 +43,7 @@
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/basic/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/general/basic/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -68,7 +68,7 @@
 	character.age = pref.age
 	return TRUE
 
-/datum/category_item/player_setup_item/general/basic/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/general/basic/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	. += "<b>Name:</b> "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
@@ -84,7 +84,7 @@
 	. += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
 	. = jointext(., null)
 
-/datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
@@ -152,7 +152,7 @@
 
 	return ..()
 
-/datum/category_item/player_setup_item/general/basic/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
+datum/category_item/player_setup_item/general/basic/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
 	. = TRUE
 	if(length(prefs.metadata) < 10)
 		var/enforcing = CONFIG_GET(flag/enforce_ooc_notes)
@@ -163,7 +163,7 @@
 		else
 			warnings += error
 
-/datum/category_item/player_setup_item/general/basic/proc/get_genders()
+datum/category_item/player_setup_item/general/basic/proc/get_genders()
 	var/datum/species/S = pref.real_species_datum()
 	var/list/possible_genders = S.genders
 	if(!pref.organ_data || pref.organ_data[BP_TORSO] != "cyborg")

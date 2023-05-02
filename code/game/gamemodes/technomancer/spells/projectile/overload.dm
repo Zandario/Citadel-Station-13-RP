@@ -1,4 +1,4 @@
-/datum/technomancer/spell/overload
+datum/technomancer/spell/overload
 	name = "Overload"
 	desc = "Fires a bolt of highly unstable energy, that does damaged equal to 0.3% of the technomancer's current reserve of energy.  \
 	This energy pierces all known armor.  Energy cost is equal to 10% of maximum core charge."
@@ -9,7 +9,7 @@
 	ability_icon_state = "tech_overload"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/projectile/overload
+obj/item/spell/projectile/overload
 	name = "overload"
 	icon_state = "overload"
 	desc = "Hope your Core's full."
@@ -22,13 +22,13 @@
 	pre_shot_delay = 4
 	fire_sound = 'sound/effects/supermatter.ogg'
 
-/obj/projectile/overload
+obj/projectile/overload
 	name = "overloaded bolt"
 	icon_state = "bluespace"
 	damage_type = BURN
 	armor_penetration = 100
 
-/obj/item/spell/projectile/overload/make_projectile(obj/projectile/projectile_type, mob/living/user)
+obj/item/spell/projectile/overload/make_projectile(obj/projectile/projectile_type, mob/living/user)
 	var/obj/projectile/overload/P = new projectile_type(get_turf(user))
 	var/energy_before_firing = core.energy
 	if(check_for_scepter())
@@ -38,7 +38,7 @@
 	P.damage = min(calculate_spell_power(P.damage), 80)
 	return P
 
-/obj/item/spell/projectile/overload/on_ranged_cast(atom/hit_atom, mob/living/user)
+obj/item/spell/projectile/overload/on_ranged_cast(atom/hit_atom, mob/living/user)
 	energy_cost_per_shot = round(core.max_energy * 0.10)
 	..()
 /*	var/energy_before_firing = core.energy

@@ -1,4 +1,4 @@
-/mob/living/Initialize(mapload)
+mob/living/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/radiation_listener)
 	AddElement(/datum/element/z_radiation_listener)
@@ -15,14 +15,14 @@
 
 	selected_image = image(icon = 'icons/mob/screen1.dmi', loc = src, icon_state = "centermarker")
 
-/mob/living/prepare_huds()
+mob/living/prepare_huds()
 	..()
 	prepare_data_huds()
 
-/mob/living/proc/prepare_data_huds()
+mob/living/proc/prepare_data_huds()
 	update_hud_med_all()
 
-/mob/living/Destroy()
+mob/living/Destroy()
 	if(dsoverlay)
 		dsoverlay.loc = null
 		dsoverlay = null
@@ -56,7 +56,7 @@
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
-/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
 	set category = "Object"
 
@@ -64,7 +64,7 @@
 		start_pulling(AM)
 
 //mob verbs are faster than object verbs. See above.
-/mob/living/pointed(atom/A as mob|obj|turf in view())
+mob/living/pointed(atom/A as mob|obj|turf in view())
 	if(src.stat || src.restrained())
 		return 0
 	if(src.status_flags & STATUS_FAKEDEATH)
@@ -82,7 +82,7 @@ default behaviour is:
  - passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
  - if si, the proc returns
 */
-/mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = 0, passive = 0)
+mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = 0, passive = 0)
 	if(!swapped)
 		return 1
 	if(!passive)
@@ -99,7 +99,7 @@ default behaviour is:
 			return 1
 		return 0
 
-/mob/living/verb/succumb()
+mob/living/verb/succumb()
 	set hidden = 1
 	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable
 		src.death()
@@ -109,11 +109,11 @@ default behaviour is:
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
-/mob/living/proc/calculate_affecting_pressure(var/pressure)
+mob/living/proc/calculate_affecting_pressure(var/pressure)
 	return
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
-/mob/living/proc/burn_skin(burn_amount)
+mob/living/proc/burn_skin(burn_amount)
 	if(istype(src, /mob/living/carbon/human))
 		//to_chat(world, "DEBUG: burn_skin(), mutations=[mutations]")
 		if(MUTATION_NOSHOCK in src.mutations) //shockproof
@@ -132,7 +132,7 @@ default behaviour is:
 	else if(istype(src, /mob/living/silicon/ai))
 		return 0
 
-/mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
+mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
 	var/temperature = actual
 	var/difference = abs(actual-desired)	//get difference
 	var/increments = difference/10 //find how many increments apart they are
@@ -157,17 +157,17 @@ default behaviour is:
 // Stop! ... Hammertime! ~Carn
 // I touched them without asking... I'm soooo edgy ~Erro (added nodamage checks)
 
-/mob/living/proc/getBruteLoss()
+mob/living/proc/getBruteLoss()
 	return bruteloss
 
-/mob/living/proc/getShockBruteLoss()	//Only checks for things that'll actually hurt (not robolimbs)
+mob/living/proc/getShockBruteLoss()	//Only checks for things that'll actually hurt (not robolimbs)
 	return bruteloss
 
-/mob/living/proc/getActualBruteLoss()	// Mostly for humans with robolimbs.
+mob/living/proc/getActualBruteLoss()	// Mostly for humans with robolimbs.
 	return getBruteLoss()
 
 //'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
-/mob/living/proc/adjustBruteLoss(var/amount,var/include_robo)
+mob/living/proc/adjustBruteLoss(var/amount,var/include_robo)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 
 	if(amount > 0)
@@ -184,10 +184,10 @@ default behaviour is:
 	bruteloss = min(max(bruteloss + amount, 0),(getMaxHealth()*2))
 	update_health()
 
-/mob/living/proc/getOxyLoss()
+mob/living/proc/getOxyLoss()
 	return oxyloss
 
-/mob/living/proc/adjustOxyLoss(var/amount)
+mob/living/proc/adjustOxyLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 
 	if(amount > 0)
@@ -204,14 +204,14 @@ default behaviour is:
 	oxyloss = min(max(oxyloss + amount, 0),(getMaxHealth()*2))
 	update_health()
 
-/mob/living/proc/setOxyLoss(var/amount)
+mob/living/proc/setOxyLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	oxyloss = amount
 
-/mob/living/proc/getToxLoss()
+mob/living/proc/getToxLoss()
 	return toxloss
 
-/mob/living/proc/adjustToxLoss(var/amount)
+mob/living/proc/adjustToxLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 
 	if(amount > 0)
@@ -228,21 +228,21 @@ default behaviour is:
 	toxloss = min(max(toxloss + amount, 0),(getMaxHealth()*2))
 	update_health()
 
-/mob/living/proc/setToxLoss(var/amount)
+mob/living/proc/setToxLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	toxloss = amount
 
-/mob/living/proc/getFireLoss()
+mob/living/proc/getFireLoss()
 	return fireloss
 
-/mob/living/proc/getShockFireLoss()	//Only checks for things that'll actually hurt (not robolimbs)
+mob/living/proc/getShockFireLoss()	//Only checks for things that'll actually hurt (not robolimbs)
 	return fireloss
 
-/mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
+mob/living/proc/getActualFireLoss()	// Mostly for humans with robolimbs.
 	return getFireLoss()
 
 //'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
-/mob/living/proc/adjustFireLoss(var/amount,var/include_robo)
+mob/living/proc/adjustFireLoss(var/amount,var/include_robo)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
@@ -258,10 +258,10 @@ default behaviour is:
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
 	update_health()
 
-/mob/living/proc/getCloneLoss()
+mob/living/proc/getCloneLoss()
 	return cloneloss
 
-/mob/living/proc/adjustCloneLoss(var/amount)
+mob/living/proc/adjustCloneLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 
 	if(amount > 0)
@@ -278,25 +278,25 @@ default behaviour is:
 	cloneloss = min(max(cloneloss + amount, 0),(getMaxHealth()*2))
 	update_health()
 
-/mob/living/proc/setCloneLoss(var/amount)
+mob/living/proc/setCloneLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	cloneloss = amount
 
-/mob/living/proc/getBrainLoss()
+mob/living/proc/getBrainLoss()
 	return brainloss
 
-/mob/living/proc/adjustBrainLoss(var/amount)
+mob/living/proc/adjustBrainLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	brainloss = min(max(brainloss + amount, 0),(getMaxHealth()*2))
 
-/mob/living/proc/setBrainLoss(var/amount)
+mob/living/proc/setBrainLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	brainloss = amount
 
-/mob/living/proc/getHalLoss()
+mob/living/proc/getHalLoss()
 	return halloss
 
-/mob/living/proc/adjustHalLoss(var/amount)
+mob/living/proc/adjustHalLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
@@ -313,12 +313,12 @@ default behaviour is:
 	halloss = min(max(halloss + amount, 0),(getMaxHealth()*2))
 	update_health()
 
-/mob/living/proc/setHalLoss(var/amount)
+mob/living/proc/setHalLoss(var/amount)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	halloss = amount
 
 // Use this to get a mob's max health whenever possible.  Reading maxHealth directly will give inaccurate results if any modifiers exist.
-/mob/living/proc/getMaxHealth()
+mob/living/proc/getMaxHealth()
 	var/result = maxHealth
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.max_health_flat))
@@ -329,31 +329,31 @@ default behaviour is:
 			result *= M.max_health_percent
 	return result
 
-/mob/living/proc/setMaxHealth(var/newMaxHealth)
+mob/living/proc/setMaxHealth(var/newMaxHealth)
 	health = (health/maxHealth) * (newMaxHealth) // Adjust existing health
 	maxHealth = newMaxHealth
 
 
-/mob/living/Confuse(amount)
+mob/living/Confuse(amount)
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.disable_duration_percent))
 			amount = round(amount * M.disable_duration_percent)
 	..(amount)
 
-/mob/living/AdjustConfused(amount)
+mob/living/AdjustConfused(amount)
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.disable_duration_percent))
 				amount = round(amount * M.disable_duration_percent)
 	..(amount)
 
-/mob/living/Blind(amount)
+mob/living/Blind(amount)
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.disable_duration_percent))
 			amount = round(amount * M.disable_duration_percent)
 	..(amount)
 
-/mob/living/AdjustBlinded(amount)
+mob/living/AdjustBlinded(amount)
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.disable_duration_percent))
@@ -363,40 +363,40 @@ default behaviour is:
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
 // Applies direct "cold" damage while checking protection against the cold.
-/mob/living/proc/inflict_cold_damage(amount)
+mob/living/proc/inflict_cold_damage(amount)
 	amount *= 1 - get_cold_protection(50) // Within spacesuit protection.
 	if(amount > 0)
 		adjustFireLoss(amount)
 
 // Ditto, but for "heat".
-/mob/living/proc/inflict_heat_damage(amount)
+mob/living/proc/inflict_heat_damage(amount)
 	amount *= 1 - get_heat_protection(10000) // Within firesuit protection.
 	if(amount > 0)
 		adjustFireLoss(amount)
 
 // and one for electricity because why not
-/mob/living/proc/inflict_shock_damage(amount)
+mob/living/proc/inflict_shock_damage(amount)
 	electrocute_act(amount, null, 1 - get_shock_protection(), pick(BP_HEAD, BP_TORSO, BP_GROIN))
 
 // also one for water (most things resist it entirely, except for slimes)
-/mob/living/proc/inflict_water_damage(amount)
+mob/living/proc/inflict_water_damage(amount)
 	amount *= 1 - get_water_protection()
 	if(amount > 0)
 		adjustToxLoss(amount)
 
 // one for abstracted away ""poison"" (mostly because simplemobs shouldn't handle reagents)
-/mob/living/proc/inflict_poison_damage(amount)
+mob/living/proc/inflict_poison_damage(amount)
 	if(isSynthetic())
 		return
 	amount *= 1 - get_poison_protection()
 	if(amount > 0)
 		adjustToxLoss(amount)
 
-/mob/proc/get_contents()
+mob/proc/get_contents()
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/storage/Storage = null)
+mob/living/get_contents(var/obj/item/storage/Storage = null)
 	var/list/L = list()
 
 	if(Storage) //If it called itself
@@ -434,7 +434,7 @@ default behaviour is:
 				L += get_contents(D.wrapped)
 		return L
 
-/mob/living/proc/check_contents_for(A)
+mob/living/proc/check_contents_for(A)
 	var/list/L = src.get_contents()
 
 	for(var/obj/B in L)
@@ -443,10 +443,10 @@ default behaviour is:
 	return 0
 
 
-/mob/living/proc/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
+mob/living/proc/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
 	return 1
 
-/mob/living/proc/get_organ_target()
+mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter.zone_sel.selecting
 	if ((t in list( O_EYES, O_MOUTH )))
@@ -456,37 +456,37 @@ default behaviour is:
 
 
 // heal ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_organ_damage(var/brute, var/burn)
+mob/living/proc/heal_organ_damage(var/brute, var/burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.update_health()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_organ_damage(var/brute = 0, var/burn = 0, var/sharp = 0, var/edge = 0, var/emp = 0)
+mob/living/proc/take_organ_damage(var/brute = 0, var/burn = 0, var/sharp = 0, var/edge = 0, var/emp = 0)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.update_health()
 
 // heal MANY external organs, in random order
-/mob/living/proc/heal_overall_damage(var/brute, var/burn)
+mob/living/proc/heal_overall_damage(var/brute, var/burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.update_health()
 
 // damage MANY external organs, in random order
-/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.update_health()
 
-/mob/living/proc/restore_all_organs()
+mob/living/proc/restore_all_organs()
 	return
 
 
 
-/mob/living/proc/revive()
+mob/living/proc/revive()
 	rejuvenate()
 
 //	if(buckled)			// Throws an error when you try to rejuvinate someone riding a vehicle @ktoma36
@@ -501,7 +501,7 @@ default behaviour is:
 	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
 		ai_holder.go_wake()
 
-/mob/living/proc/rejuvenate()
+mob/living/proc/rejuvenate()
 	if(reagents)
 		reagents.clear_reagents()
 
@@ -550,10 +550,10 @@ default behaviour is:
 	failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 	reload_fullscreen()
 
-/mob/living/proc/UpdateDamageIcon()
+mob/living/proc/UpdateDamageIcon()
 	return
 
-/mob/living/proc/Examine_OOC()
+mob/living/proc/Examine_OOC()
 	set name = "Examine Meta-Info (OOC)"
 	set category = "OOC"
 	set src in view()
@@ -566,11 +566,11 @@ default behaviour is:
 	else
 		to_chat(usr, "[src] does not have any stored infomation!")
 
-/mob/living/proc/handle_footstep(turf/T)
+mob/living/proc/handle_footstep(turf/T)
 	return FALSE
 
 //called when the mob receives a bright flash
-/mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/tiled/flash)
+mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/tiled/flash)
 	if(override_blindness_check || !(disabilities & SDISABILITY_NERVOUS))
 		overlay_fullscreen("flash", type)
 		spawn(25)
@@ -578,18 +578,18 @@ default behaviour is:
 				clear_fullscreen("flash", 25)
 		return 1
 
-/mob/living/proc/cannot_use_vents()
+mob/living/proc/cannot_use_vents()
 	if(mob_size > MOB_SMALL)
 		return "You can't fit into that vent."
 	return null
 
-/mob/living/proc/has_brain()
+mob/living/proc/has_brain()
 	return 1
 
-/mob/living/proc/has_eyes()
+mob/living/proc/has_eyes()
 	return 1
 
-/mob/living/proc/get_restraining_bolt()
+mob/living/proc/get_restraining_bolt()
 	var/obj/item/implant/restrainingbolt/RB = locate() in src
 	if(RB)
 		if(!RB.malfunction)
@@ -597,22 +597,22 @@ default behaviour is:
 
 	return FALSE
 
-/mob/living/proc/slip(var/slipped_on,stun_duration=8)
+mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return 0
 
 //damage/heal the mob ears and adjust the deaf amount
-/mob/living/adjustEarDamage(var/damage, var/deaf)
+mob/living/adjustEarDamage(var/damage, var/deaf)
 	ear_damage = max(0, ear_damage + damage)
 	ear_deaf = max(0, ear_deaf + deaf)
 
 //pass a negative argument to skip one of the variable
-/mob/living/setEarDamage(var/damage, var/deaf)
+mob/living/setEarDamage(var/damage, var/deaf)
 	if(damage >= 0)
 		ear_damage = damage
 	if(deaf >= 0)
 		ear_deaf = deaf
 
-/mob/living/proc/vomit(var/skip_wait, var/blood_vomit)
+mob/living/proc/vomit(var/skip_wait, var/blood_vomit)
 	if(IS_DEAD(src))
 		return
 	if(!check_has_mouth())
@@ -675,53 +675,53 @@ default behaviour is:
 			lastpuke = 0
 
 // Mob holders in these slots will be spilled if the mob goes prone.
-/mob/living/proc/get_mob_riding_slots()
+mob/living/proc/get_mob_riding_slots()
 	return list(back)
 
 // Adds overlays for specific modifiers.
 // You'll have to add your own implementation for non-humans currently, just override this proc.
-/mob/living/proc/update_modifier_visuals()
+mob/living/proc/update_modifier_visuals()
 	return
 
-/mob/living/proc/update_water() // Involves overlays for humans.  Maybe we'll get submerged sprites for borgs in the future?
+mob/living/proc/update_water() // Involves overlays for humans.  Maybe we'll get submerged sprites for borgs in the future?
 	return
 
-/mob/living/proc/update_acidsub()
+mob/living/proc/update_acidsub()
 	return
 
-/mob/living/proc/update_bloodsub()
+mob/living/proc/update_bloodsub()
 	return
 
-/mob/living/proc/can_feel_pain(var/check_organ)
+mob/living/proc/can_feel_pain(var/check_organ)
 	if(isSynthetic())
 		return FALSE
 	return TRUE
 
 // Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
-/mob/living/proc/get_fire_icon_state()
+mob/living/proc/get_fire_icon_state()
 	return "generic"
 
 // Called by job_controller.
-/mob/living/proc/equip_post_job()
+mob/living/proc/equip_post_job()
 	return
 
 // Used to check if something is capable of thought, in the traditional sense.
-/mob/living/proc/is_sentient()
+mob/living/proc/is_sentient()
 	return TRUE
 
-/mob/living/get_icon_scale_x()
+mob/living/get_icon_scale_x()
 	. = ..()
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.icon_scale_x_percent))
 			. *= M.icon_scale_x_percent
 
-/mob/living/get_icon_scale_y()
+mob/living/get_icon_scale_y()
 	. = ..()
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.icon_scale_y_percent))
 			. *= M.icon_scale_y_percent
 
-/mob/living/update_transform()
+mob/living/update_transform()
 	var/matrix/old_matrix = transform
 	// First, get the correct size.
 	var/desired_scale_x = size_multiplier * icon_scale_x
@@ -737,7 +737,7 @@ default behaviour is:
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
-/mob/living/update_client_color()
+mob/living/update_client_color()
 	if(!client)
 		return
 
@@ -774,7 +774,7 @@ default behaviour is:
 	else // No colors, so remove the client's color.
 		animate(client, color = null, time = 10)
 
-/mob/living/swap_hand()
+mob/living/swap_hand()
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
@@ -791,9 +791,9 @@ default behaviour is:
 			I.zoom()
 	return
 
-/mob/proc/activate_hand(selhand)
+mob/proc/activate_hand(selhand)
 
-/mob/living/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+mob/living/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
 
 	if(istext(selhand))
 		selhand = lowertext(selhand)
@@ -808,16 +808,16 @@ default behaviour is:
 
 // todo: multihands
 
-/mob/proc/activate_hand_of_index(index)
+mob/proc/activate_hand_of_index(index)
 
-/mob/living/activate_hand_of_index(index)
+mob/living/activate_hand_of_index(index)
 	switch(index)
 		if(1)
 			activate_hand("l")
 		if(2)
 			activate_hand("r")
 
-/mob/living/get_sound_env(var/pressure_factor)
+mob/living/get_sound_env(var/pressure_factor)
 	if (hallucination)
 		return PSYCHOTIC
 	else if (druggy)
@@ -831,16 +831,16 @@ default behaviour is:
 	else
 		return ..()
 
-/mob/living/proc/has_vision()
+mob/living/proc/has_vision()
 	return !(eye_blind || (disabilities & SDISABILITY_NERVOUS) || stat || blinded)
 
-/mob/living/proc/dirties_floor()	// If we ever decide to add fancy conditionals for making dirty floors (floating, etc), here's the proc.
+mob/living/proc/dirties_floor()	// If we ever decide to add fancy conditionals for making dirty floors (floating, etc), here's the proc.
 	return makes_dirt
 
-/mob/living/proc/needs_to_breathe()
+mob/living/proc/needs_to_breathe()
 	return !isSynthetic()
 
-/mob/living/vv_get_header()
+mob/living/vv_get_header()
 	. = ..()
 	. += {"
 		<a href='?_src_=vars;rename=\ref[src]'><b>[src]</b></a><font size='1'>
@@ -857,12 +857,12 @@ default behaviour is:
 
 /**
  *! Enable this one if you're enabling the butchering component. Otherwise it's useless.
-/mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
+mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
  */
 
 /*
-/mob/living/update_gravity(has_gravity)
+mob/living/update_gravity(has_gravity)
 	if(!ticker)
 		return
 	if(has_gravity)
@@ -871,12 +871,12 @@ default behaviour is:
 		throw_alert("weightless", /obj/screen/alert/weightless)
 */
 
-/mob/living/get_centering_pixel_y_offset(dir, atom/aligning)
+mob/living/get_centering_pixel_y_offset(dir, atom/aligning)
 	. = ..()
 	// since we're shifted up by transforms..
 	. += ((size_multiplier * icon_scale_y) - 1) * 16
 
-/mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
+mob/living/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	if(incapacitated())
 		to_chat(src, SPAN_WARNING("You can't do that right now!"))
 		return FALSE

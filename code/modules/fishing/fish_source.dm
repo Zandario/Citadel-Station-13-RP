@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(cached_fish_sources)
  * if it's cache-allowed, this is the global instance
  * otherwise, makes a new one.
  */
-/proc/fetch_fish_source(datum/fish_source/path)
+proc/fetch_fish_source(datum/fish_source/path)
 	RETURN_TYPE(/datum/fish_source)
 	ASSERT(ispath(path, /datum/fish_source))
 	if(!initial(path.is_globally_instanced))
@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(cached_fish_sources)
 
 
 /// Where the fish actually come from - every fishing spot has one assigned but multiple fishing holes can share single source, ie single shared one for ocean/lavaland river
-/datum/fish_source
+datum/fish_source
 	/// instanced? set to TRUE if you use fish_counts or other stateful vars and don't want it to be global.
 	var/is_globally_instanced = TRUE
 	/// Fish catch weight table - these are relative weights
@@ -35,12 +35,12 @@ GLOBAL_LIST_EMPTY(cached_fish_sources)
 	var/background = "fishing_background_default"
 
 /// Can we fish in this spot at all. Returns DENIAL_REASON or null if we're good to go
-/datum/fish_source/proc/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman)
+datum/fish_source/proc/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman)
 	return rod.reason_we_cant_fish(src)
 
 
 /// DIFFICULTY = (SPOT_BASE_VALUE + FISH_MODIFIER + ROD_MODIFIER + FAV/DISLIKED_BAIT_MODIFIER + TRAITS_ADDITIVE) * TRAITS_MULTIPLICATIVE , For non-fish it's just SPOT_BASE_VALUE
-/datum/fish_source/proc/calculate_difficulty(result, obj/item/fishing_rod/rod, mob/fisherman)
+datum/fish_source/proc/calculate_difficulty(result, obj/item/fishing_rod/rod, mob/fisherman)
 	. = fishing_difficulty
 
 	if(!ispath(result,/obj/item/fish))
@@ -83,11 +83,11 @@ GLOBAL_LIST_EMPTY(cached_fish_sources)
 	. *= multiplicative_mod
 
 /// In case you want more complex rules for specific spots
-/datum/fish_source/proc/roll_reward(obj/item/fishing_rod/rod, mob/fisherman)
+datum/fish_source/proc/roll_reward(obj/item/fishing_rod/rod, mob/fisherman)
 	return pickweight(get_modified_fish_table(rod,fisherman))
 
 /// Gives out the reward if possible
-/datum/fish_source/proc/dispense_reward(reward_path, mob/fisherman)
+datum/fish_source/proc/dispense_reward(reward_path, mob/fisherman)
 	if((reward_path in fish_counts)) // This is limited count result
 		if(fish_counts[reward_path] > 0)
 			fish_counts[reward_path] -= 1
@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(cached_fish_sources)
 GLOBAL_LIST(fishing_property_cache)
 
 /// Awful workaround around initial(x.list_variable) not being a thing while trying to keep some semblance of being structured
-/proc/collect_fish_properties()
+proc/collect_fish_properties()
 	if(GLOB.fishing_property_cache == null)
 		var/list/fish_property_table = list()
 		for(var/fish_type in subtypesof(/obj/item/fish))
@@ -128,7 +128,7 @@ GLOBAL_LIST(fishing_property_cache)
 	return GLOB.fishing_property_cache
 
 /// Checks if bait matches identifier from fav/disliked bait list
-/datum/fish_source/proc/is_matching_bait(obj/item/bait, identifier)
+datum/fish_source/proc/is_matching_bait(obj/item/bait, identifier)
 	if(ispath(identifier)) //Just a path
 		return istype(bait, identifier)
 	if(islist(identifier))
@@ -144,7 +144,7 @@ GLOBAL_LIST(fishing_property_cache)
 		return HAS_TRAIT(bait, identifier)
 
 /// Builds a fish weights table modified by bait/rod/user properties
-/datum/fish_source/proc/get_modified_fish_table(obj/item/fishing_rod/rod, mob/fisherman)
+datum/fish_source/proc/get_modified_fish_table(obj/item/fishing_rod/rod, mob/fisherman)
 	var/obj/item/bait = rod.bait
 
 	var/list/fish_list_properties = collect_fish_properties()

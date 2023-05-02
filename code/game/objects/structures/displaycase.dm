@@ -1,4 +1,4 @@
-/obj/structure/displaycase
+obj/structure/displaycase
 	name = "display case"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox1"
@@ -10,7 +10,7 @@
 	var/occupied = 1
 	var/destroyed = 0
 
-/obj/structure/displaycase/legacy_ex_act(severity)
+obj/structure/displaycase/legacy_ex_act(severity)
 	switch(severity)
 		if (1)
 			new /obj/item/material/shard( src.loc )
@@ -28,13 +28,13 @@
 				src.healthcheck()
 
 
-/obj/structure/displaycase/bullet_act(var/obj/projectile/Proj)
+obj/structure/displaycase/bullet_act(var/obj/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
 	src.healthcheck()
 	return
 
-/obj/structure/displaycase/proc/healthcheck()
+obj/structure/displaycase/proc/healthcheck()
 	if (src.health <= 0)
 		if (!( src.destroyed ))
 			src.density = 0
@@ -46,7 +46,7 @@
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 	return
 
-/obj/structure/displaycase/update_icon()
+obj/structure/displaycase/update_icon()
 	if(src.destroyed)
 		src.icon_state = "glassboxb[src.occupied]"
 	else
@@ -54,7 +54,7 @@
 	return
 
 
-/obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))
 	user.do_attack_animation(src)
 	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
@@ -63,7 +63,7 @@
 	..()
 	return
 
-/obj/structure/displaycase/attack_hand(mob/user, list/params)
+obj/structure/displaycase/attack_hand(mob/user, list/params)
 	if (src.destroyed && src.occupied)
 		new /obj/item/gun/energy/captain( src.loc )
 		to_chat(user, "<span class='notice'>You deactivate the hover field built into the case.</span>")

@@ -2,7 +2,7 @@
 ///// Construction datums //////
 ////////////////////////////////
 
-/datum/construction/mecha/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/custom_action(step, obj/item/I, mob/user)
 	if(istype(I, /obj/item/weldingtool))
 		var/obj/item/weldingtool/W = I
 		if (W.remove_fuel(0, user))
@@ -34,7 +34,7 @@
 			S.use(5)
 	return 1
 
-/datum/construction/reversible/mecha/custom_action(index as num, diff as num, obj/item/I, mob/user as mob)
+datum/construction/reversible/mecha/custom_action(index as num, diff as num, obj/item/I, mob/user as mob)
 	if(istype(I, /obj/item/weldingtool))
 		var/obj/item/weldingtool/W = I
 		if (W.remove_fuel(0, user))
@@ -69,7 +69,7 @@
 //////////////////////
 //		Ripley
 //////////////////////
-/datum/construction/mecha/ripley_chassis
+datum/construction/mecha/ripley_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/ripley_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/ripley_left_arm),//2
 					 list("key"=/obj/item/mecha_parts/part/ripley_right_arm),//3
@@ -77,16 +77,16 @@
 					 list("key"=/obj/item/mecha_parts/part/ripley_right_leg)//5
 					)
 
-/datum/construction/mecha/ripley_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/ripley_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/ripley_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/ripley_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/ripley_chassis/spawn_result()
+datum/construction/mecha/ripley_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/ripley(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -98,7 +98,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/ripley
+datum/construction/reversible/mecha/ripley
 	result = "/obj/mecha/working/ripley"
 	steps = list(
 					//1
@@ -158,10 +158,10 @@
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/ripley/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/ripley/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/ripley/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/ripley/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -272,7 +272,7 @@
 				holder.icon_state = "ripley12"
 	return 1
 
-/datum/construction/reversible/mecha/ripley/spawn_result()
+datum/construction/reversible/mecha/ripley/spawn_result()
 	..()
 	feedback_inc("mecha_ripley_created",1)
 	return
@@ -280,7 +280,7 @@
 //////////////////////
 //		Gygax
 //////////////////////
-/datum/construction/mecha/gygax_chassis
+datum/construction/mecha/gygax_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/gygax_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/gygax_left_arm),//2
 					 list("key"=/obj/item/mecha_parts/part/gygax_right_arm),//3
@@ -289,16 +289,16 @@
 					 list("key"=/obj/item/mecha_parts/part/gygax_head)
 					)
 
-/datum/construction/mecha/gygax_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/gygax_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/gygax_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/gygax_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/gygax_chassis/spawn_result()
+datum/construction/mecha/gygax_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/gygax(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -309,7 +309,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/gygax
+datum/construction/reversible/mecha/gygax
 	result = "/obj/mecha/combat/gygax"
 	steps = list(
 					//1
@@ -393,10 +393,10 @@
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/gygax/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/gygax/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/gygax/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/gygax/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -555,7 +555,7 @@
 				holder.icon_state = "gygax18"
 	return 1
 
-/datum/construction/reversible/mecha/gygax/spawn_result()
+datum/construction/reversible/mecha/gygax/spawn_result()
 	..()
 	feedback_inc("mecha_gygax_created",1)
 	return
@@ -564,7 +564,7 @@
  //////////////////////
 //		Serenity
 //////////////////////
-/datum/construction/mecha/serenity_chassis
+datum/construction/mecha/serenity_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/gygax_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/gygax_left_arm),//2
 					 list("key"=/obj/item/mecha_parts/part/gygax_right_arm),//3
@@ -573,16 +573,16 @@
 					 list("key"=/obj/item/mecha_parts/part/gygax_head)
 					)
 
-/datum/construction/mecha/serenity_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/serenity_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/serenity_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/serenity_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/serenity_chassis/spawn_result()
+datum/construction/mecha/serenity_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/serenity(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -593,7 +593,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/serenity
+datum/construction/reversible/mecha/serenity
 	result = "/obj/mecha/combat/gygax/serenity"
 	steps = list(
 					//1
@@ -677,10 +677,10 @@
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/serenity/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/serenity/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/serenity/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/serenity/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -839,7 +839,7 @@
 				holder.icon_state = "gygax18"
 	return 1
 
-/datum/construction/reversible/mecha/serenity/spawn_result()
+datum/construction/reversible/mecha/serenity/spawn_result()
 	..()
 	feedback_inc("mecha_serenity_created",1)
 	return
@@ -849,7 +849,7 @@
 ////////////////////////
 //		Firefighter
 ////////////////////////
-/datum/construction/mecha/firefighter_chassis
+datum/construction/mecha/firefighter_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/ripley_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/ripley_left_arm),//2
 					 list("key"=/obj/item/mecha_parts/part/ripley_right_arm),//3
@@ -858,17 +858,17 @@
 					 list("key"=/obj/item/clothing/suit/fire)//6
 					)
 
-/datum/construction/mecha/firefighter_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/firefighter_chassis/custom_action(step, obj/item/I, mob/user)
 	if(!user.attempt_consume_item_for_construction(I, src))
 		return
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	return 1
 
-/datum/construction/mecha/firefighter_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/firefighter_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/firefighter_chassis/spawn_result()
+datum/construction/mecha/firefighter_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/firefighter(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -879,7 +879,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/firefighter
+datum/construction/reversible/mecha/firefighter
 	result = "/obj/mecha/working/ripley/firefighter"
 	steps = list(
 					//1
@@ -943,10 +943,10 @@
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/firefighter/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/firefighter/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/firefighter/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/firefighter/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -1066,7 +1066,7 @@
 				holder.icon_state = "fireripley13"
 	return 1
 
-/datum/construction/reversible/mecha/firefighter/spawn_result()
+datum/construction/reversible/mecha/firefighter/spawn_result()
 	..()
 	feedback_inc("mecha_firefighter_created",1)
 	return
@@ -1074,7 +1074,7 @@
 //////////////////////
 //		Geiger
 //////////////////////
-/datum/construction/mecha/geiger_chassis
+datum/construction/mecha/geiger_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/geiger_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/ripley_left_arm),//2
 					 list("key"=/obj/item/mecha_parts/part/ripley_right_arm),//3
@@ -1082,16 +1082,16 @@
 					 list("key"=/obj/item/mecha_parts/part/ripley_right_leg)//5
 					)
 
-/datum/construction/mecha/geiger_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/geiger_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/geiger_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/geiger_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/geiger_chassis/spawn_result()
+datum/construction/mecha/geiger_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/geiger(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -1103,7 +1103,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/geiger
+datum/construction/reversible/mecha/geiger
 	result = "/obj/mecha/working/ripley/geiger"
 	steps = list(
 					//1
@@ -1163,10 +1163,10 @@
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/geiger/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/geiger/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/geiger/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/geiger/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -1277,7 +1277,7 @@
 				holder.icon_state = "ripley12"
 	return 1
 
-/datum/construction/reversible/mecha/geiger/spawn_result()
+datum/construction/reversible/mecha/geiger/spawn_result()
 	..()
 	feedback_inc("mecha_geiger_created",1)
 	return
@@ -1286,7 +1286,7 @@
 //////////////////////
 //		Durand
 //////////////////////
-/datum/construction/mecha/durand_chassis
+datum/construction/mecha/durand_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/durand_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/durand_left_arm),//2
 					 list("key"=/obj/item/mecha_parts/part/durand_right_arm),//3
@@ -1295,16 +1295,16 @@
 					 list("key"=/obj/item/mecha_parts/part/durand_head)
 					)
 
-/datum/construction/mecha/durand_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/durand_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/durand_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/durand_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/durand_chassis/spawn_result()
+datum/construction/mecha/durand_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/durand(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -1315,7 +1315,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/durand
+datum/construction/reversible/mecha/durand
 	result = "/obj/mecha/combat/durand"
 	steps = list(
 					//1
@@ -1400,10 +1400,10 @@
 					)
 
 
-/datum/construction/reversible/mecha/durand/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/durand/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/durand/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/durand/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -1562,7 +1562,7 @@
 				holder.icon_state = "durand18"
 	return 1
 
-/datum/construction/reversible/mecha/durand/spawn_result()
+datum/construction/reversible/mecha/durand/spawn_result()
 	..()
 	feedback_inc("mecha_durand_created",1)
 	return
@@ -1570,7 +1570,7 @@
 ////////////////////////
 //		Odysseus
 ////////////////////////
-/datum/construction/mecha/odysseus_chassis
+datum/construction/mecha/odysseus_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/odysseus_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/odysseus_head),//2
 					 list("key"=/obj/item/mecha_parts/part/odysseus_left_arm),//3
@@ -1579,16 +1579,16 @@
 					 list("key"=/obj/item/mecha_parts/part/odysseus_right_leg)//6
 					)
 
-/datum/construction/mecha/odysseus_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/odysseus_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/odysseus_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/odysseus_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/odysseus_chassis/spawn_result()
+datum/construction/mecha/odysseus_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/odysseus(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -1599,7 +1599,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/odysseus
+datum/construction/reversible/mecha/odysseus
 	result = "/obj/mecha/medical/odysseus"
 	steps = list(
 					//1
@@ -1659,10 +1659,10 @@
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/odysseus/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/odysseus/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/odysseus/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/odysseus/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -1774,7 +1774,7 @@
 				holder.icon_state = "odysseus12"
 	return 1
 
-/datum/construction/reversible/mecha/odysseus/spawn_result()
+datum/construction/reversible/mecha/odysseus/spawn_result()
 	..()
 	feedback_inc("mecha_odysseus_created",1)
 	return
@@ -1782,7 +1782,7 @@
 //////////////////////
 //		Phazon
 //////////////////////
-/datum/construction/mecha/phazon_chassis
+datum/construction/mecha/phazon_chassis
 	result = "/obj/mecha/combat/phazon"
 	steps = list(list("key"=/obj/item/mecha_parts/part/phazon_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/phazon_left_arm),//2
@@ -1792,16 +1792,16 @@
 					 list("key"=/obj/item/mecha_parts/part/phazon_head)
 					)
 
-/datum/construction/mecha/phazon_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/phazon_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/phazon_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/phazon_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/phazon_chassis/spawn_result()
+datum/construction/mecha/phazon_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/phazon(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -1811,7 +1811,7 @@
 		qdel(src)
 	return
 
-/datum/construction/reversible/mecha/phazon
+datum/construction/reversible/mecha/phazon
 	result = "/obj/mecha/combat/phazon"
 	steps = list(
 					//1
@@ -1895,10 +1895,10 @@
 							"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/phazon/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/phazon/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/phazon/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/phazon/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -2056,7 +2056,7 @@
 				holder.icon_state = "phazon22"
 	return 1
 
-/datum/construction/reversible/mecha/phazon/spawn_result()
+datum/construction/reversible/mecha/phazon/spawn_result()
 	..()
 	feedback_inc("mecha_phazon_created",1)
 	return
@@ -2064,7 +2064,7 @@
 //////////////////////
 //		Janus
 //////////////////////
-/datum/construction/mecha/janus_chassis
+datum/construction/mecha/janus_chassis
 	result = "/obj/mecha/combat/phazon/janus"
 	steps = list(list("key"=/obj/item/mecha_parts/part/janus_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/janus_left_arm),//2
@@ -2074,16 +2074,16 @@
 					 list("key"=/obj/item/mecha_parts/part/janus_head)
 					)
 
-/datum/construction/mecha/janus_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/janus_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/janus_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/janus_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/janus_chassis/spawn_result()
+datum/construction/mecha/janus_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/janus(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -2093,7 +2093,7 @@
 		qdel(src)
 	return
 
-/datum/construction/reversible/mecha/janus
+datum/construction/reversible/mecha/janus
 	result = "/obj/mecha/combat/phazon/janus"
 	steps = list(
 					//1
@@ -2185,10 +2185,10 @@
 							"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/janus/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/janus/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/janus/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/janus/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -2362,7 +2362,7 @@
 				holder.icon_state = "janus20"
 	return 1
 
-/datum/construction/reversible/mecha/janus/spawn_result()
+datum/construction/reversible/mecha/janus/spawn_result()
 	..()
 	feedback_inc("mecha_janus_created",1)
 	return
@@ -2370,7 +2370,7 @@
 //////////////////////
 //		Honker
 //////////////////////
-/datum/construction/mecha/honker_chassis
+datum/construction/mecha/honker_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/honker_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/honker_left_arm),//2
 					 list("key"=/obj/item/mecha_parts/part/honker_right_arm),//3
@@ -2379,16 +2379,16 @@
 					 list("key"=/obj/item/mecha_parts/part/honker_head)
 					)
 
-/datum/construction/mecha/honker_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/honker_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/honker_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/honker_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/honker_chassis/spawn_result()
+datum/construction/mecha/honker_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/honker(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -2399,7 +2399,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/honker
+datum/construction/reversible/mecha/honker
 	result = "/obj/mecha/combat/honker"
 	steps = list(
 					//1
@@ -2483,10 +2483,10 @@
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/honker/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/honker/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/honker/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/honker/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -2645,7 +2645,7 @@
 				holder.icon_state = "honker18"
 	return 1
 
-/datum/construction/reversible/mecha/honker/spawn_result()
+datum/construction/reversible/mecha/honker/spawn_result()
 	..()
 	feedback_inc("mecha_honker_created",1)
 	return
@@ -2653,7 +2653,7 @@
 //////////////////////
 //		Reticent
 //////////////////////
-/datum/construction/mecha/reticent_chassis
+datum/construction/mecha/reticent_chassis
 	steps = list(list("key"=/obj/item/mecha_parts/part/reticent_torso),//1
 					 list("key"=/obj/item/mecha_parts/part/reticent_left_arm),//2
 					 list("key"=/obj/item/mecha_parts/part/reticent_right_arm),//3
@@ -2662,16 +2662,16 @@
 					 list("key"=/obj/item/mecha_parts/part/reticent_head)
 					)
 
-/datum/construction/mecha/reticent_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/reticent_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/reticent_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/reticent_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/reticent_chassis/spawn_result()
+datum/construction/mecha/reticent_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/reticent(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
@@ -2682,7 +2682,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/reticent
+datum/construction/reversible/mecha/reticent
 	result = "/obj/mecha/combat/reticent"
 	steps = list(
 					//1
@@ -2766,10 +2766,10 @@
 					 		"desc"="The hydraulic systems are disconnected.")
 					)
 
-/datum/construction/reversible/mecha/reticent/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/reticent/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/reticent/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/reticent/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -2928,7 +2928,7 @@
 				holder.icon_state = "reticent18"
 	return 1
 
-/datum/construction/reversible/mecha/reticent/spawn_result()
+datum/construction/reversible/mecha/reticent/spawn_result()
 	..()
 	feedback_inc("mecha_reticent_created",1)
 	return
@@ -2938,7 +2938,7 @@
 //////////////////////
 //		Pinnace
 //////////////////////
-/datum/construction/mecha/fighter/pinnace_chassis
+datum/construction/mecha/fighter/pinnace_chassis
 	result = "/obj/mecha/combat/fighter/pinnace"
 	steps = list(list("key"=/obj/item/mecha_parts/fighter/part/pinnace_core),//1
 					 list("key"=/obj/item/mecha_parts/fighter/part/pinnace_cockpit),//2
@@ -2949,16 +2949,16 @@
 					 list("key"=/obj/item/mecha_parts/fighter/part/pinnace_right_wing)//final
 					)
 
-/datum/construction/mecha/fighter/pinnace_chassis/custom_action(step, obj/item/I, mob/user)
+datum/construction/mecha/fighter/pinnace_chassis/custom_action(step, obj/item/I, mob/user)
 	user.visible_message("[user] has connected [I] to [holder].", "You connect [I] to [holder]")
 	holder.add_overlay("[I.icon_state]+o")
 	qdel(I)
 	return 1
 
-/datum/construction/mecha/fighter/pinnace_chassis/action(obj/item/I,mob/user as mob)
+datum/construction/mecha/fighter/pinnace_chassis/action(obj/item/I,mob/user as mob)
 	return check_all_steps(I,user)
 
-/datum/construction/mecha/fighter/pinnace_chassis/spawn_result()
+datum/construction/mecha/fighter/pinnace_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/fighter/pinnace(const_holder)
 	const_holder.icon = 'icons/mecha/fighters_construction64x64.dmi'
@@ -2968,7 +2968,7 @@
 		qdel(src)
 	return
 
-/datum/construction/reversible/mecha/fighter/pinnace
+datum/construction/reversible/mecha/fighter/pinnace
 	result = "/obj/mecha/combat/fighter/pinnace"
 	steps = list(
 					//1
@@ -3052,10 +3052,10 @@
 							"desc"="The hydraulic landing gear are detached.")
 					)
 
-/datum/construction/reversible/mecha/fighter/pinnace/action(obj/item/I,mob/user as mob)
+datum/construction/reversible/mecha/fighter/pinnace/action(obj/item/I,mob/user as mob)
 	return check_step(I,user)
 
-/datum/construction/reversible/mecha/fighter/pinnace/custom_action(index, diff, obj/item/I, mob/user)
+datum/construction/reversible/mecha/fighter/pinnace/custom_action(index, diff, obj/item/I, mob/user)
 	if(!..())
 		return 0
 
@@ -3213,7 +3213,7 @@
 				holder.icon_state = "pinnace22"
 	return 1
 
-/datum/construction/reversible/mecha/fighter/pinnace/spawn_result()
+datum/construction/reversible/mecha/fighter/pinnace/spawn_result()
 	..()
 	feedback_inc("mecha_fighter_pinnace_created",1)
 	return

@@ -10,7 +10,7 @@
 	Returns
 	A number between 0 and 100, with higher numbers resulting in less damage taken.
 */
-/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
+mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
 	if(GLOB.Debug2)
 		log_world("## DEBUG: legacy_mob_armor() was called.")
 
@@ -77,7 +77,7 @@
 */
 
 //Certain pieces of armor actually absorb flat amounts of damage from income attacks
-/mob/living/proc/get_armor_soak(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0)
+mob/living/proc/get_armor_soak(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0)
 	var/soaked = legacy_mob_soak(def_zone, attack_flag)
 	//5 points of armor pen negate one point of soak
 	if(armour_pen)
@@ -85,14 +85,14 @@
 	return soaked
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
-/mob/living/proc/legacy_mob_armor(var/def_zone, var/type)
+mob/living/proc/legacy_mob_armor(var/def_zone, var/type)
 	return 0
 
-/mob/living/proc/legacy_mob_soak(var/def_zone, var/type)
+mob/living/proc/legacy_mob_soak(var/def_zone, var/type)
 	return 0
 
 // Clicking with an empty hand
-/mob/living/attack_hand(mob/user, list/params)
+mob/living/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
@@ -103,14 +103,14 @@
 		if(ai_holder) // Using disarm, grab, or harm intent is considered a hostile action to the mob's AI.
 			ai_holder.react_to_attack(L)
 
-/mob/living/rad_act(strength, datum/radiation_wave/wave)
+mob/living/rad_act(strength, datum/radiation_wave/wave)
 	. = ..()
 	if(wave)
 		afflict_radiation(strength * RAD_MOB_ACT_COEFFICIENT - RAD_MOB_ACT_PROTECTION_PER_WAVE_SOURCE, TRUE)
 	else
 		afflict_radiation(strength * RAD_MOB_ACT_COEFFICIENT - RAD_MOB_ACT_PROTECTION_PER_WAVE_SOURCE, TRUE)
 
-/mob/living/bullet_act(var/obj/projectile/P, var/def_zone)
+mob/living/bullet_act(var/obj/projectile/P, var/def_zone)
 
 	//Being hit while using a deadman switch
 	if(istype(get_active_held_item(),/obj/item/assembly/signaler))
@@ -164,11 +164,11 @@
 
 //	return absorb
 
-/mob/living/get_bullet_impact_effect_type(var/def_zone)
+mob/living/get_bullet_impact_effect_type(var/def_zone)
 	return BULLET_IMPACT_MEAT
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
 	flash_pain()
 
 	if (stun_amount)
@@ -182,16 +182,16 @@
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 
-/mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
+mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	  return 0 //only carbon liveforms have this proc
 
-/mob/living/emp_act(severity)
+mob/living/emp_act(severity)
 	var/list/L = src.get_contents()
 	for(var/obj/O in L)
 		O.emp_act(severity)
 	..()
 
-/mob/living/blob_act(var/obj/structure/blob/B)
+mob/living/blob_act(var/obj/structure/blob/B)
 	if(stat == DEAD || faction == "blob")
 		return
 
@@ -228,11 +228,11 @@
 
 	apply_damage(damage, damage_type, def_zone, absorb, soaked)
 
-/mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
+mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	return target_zone
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
-/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	if(ai_holder)
 		ai_holder.react_to_attack(user)
 
@@ -248,7 +248,7 @@
 	return blocked
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
-/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
+mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
 	if(!effective_force || blocked >= 100)
 		return 0
 	//Apply weapon damage
@@ -268,7 +268,7 @@
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+mob/living/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	if(istype(AM, /obj))
 		var/obj/O = AM
 		var/dtype = O.damtype
@@ -328,16 +328,16 @@
 					src.anchored = 1
 					src.pinned += O
 
-/mob/living/proc/embed(var/obj/O, var/def_zone=null)
+mob/living/proc/embed(var/obj/O, var/def_zone=null)
 	O.loc = src
 	src.embedded += O
 	add_verb(src, /mob/proc/yank_out_object)
 
 //This is called when the mob is thrown into a dense turf
-/mob/living/proc/turf_collision(var/turf/T, var/speed)
+mob/living/proc/turf_collision(var/turf/T, var/speed)
 	src.take_organ_damage(speed*5)
 
-/mob/living/proc/near_wall(var/direction,var/distance=1)
+mob/living/proc/near_wall(var/direction,var/distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
 	var/turf/last_turf = src.loc
 	var/i = 1
@@ -353,7 +353,7 @@
 
 // End BS12 momentum-transfer code.
 
-/mob/living/attack_generic(var/mob/user, var/damage, var/attack_message)
+mob/living/attack_generic(var/mob/user, var/damage, var/attack_message)
 	if(!damage)
 		return
 
@@ -366,31 +366,31 @@
 	spawn(1) update_health()
 	return 1
 
-/mob/living/proc/IgniteMob()
+mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		handle_light()
 		update_fire()
 
-/mob/living/carbon/human/IgniteMob()
+mob/living/carbon/human/IgniteMob()
 	if(!(species.species_flags & NO_IGNITE))
 		return ..()
 
 
-/mob/living/proc/ExtinguishMob()
+mob/living/proc/ExtinguishMob()
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
 		handle_light()
 		update_fire()
 
-/mob/living/proc/update_fire()
+mob/living/proc/update_fire()
 	return
 
-/mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
     fire_stacks = clamp(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
 
-/mob/living/proc/handle_fire()
+mob/living/proc/handle_fire()
 	if(fire_stacks < 0)
 		fire_stacks = min(0, ++fire_stacks) //If we've doused ourselves in water to avoid fire, dry off slowly
 
@@ -412,7 +412,7 @@
 	location.hotspot_expose(fire_burn_temperature(), 50, 1)
 
 //altered this to cap at the temperature of the fire causing it, using the same 1:1500 value as /mob/living/carbon/human/handle_fire() in human/life.dm
-/mob/living/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+mob/living/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature)
 		if(fire_stacks < exposed_temperature/1500) // Subject to balance
 			adjust_fire_stacks(2)
@@ -422,26 +422,26 @@
 
 //Share fire evenly between the two mobs
 //Called in MobCollide() and Crossed()
-/mob/living/proc/spread_fire(mob/living/L)
+mob/living/proc/spread_fire(mob/living/L)
 	return
 
-/mob/living/proc/get_cold_protection()
+mob/living/proc/get_cold_protection()
 	return 0
 
-/mob/living/proc/get_heat_protection()
+mob/living/proc/get_heat_protection()
 	return 0
 
-/mob/living/proc/get_shock_protection()
+mob/living/proc/get_shock_protection()
 	return 0
 
-/mob/living/proc/get_water_protection()
+mob/living/proc/get_water_protection()
 	return 1 // Water won't hurt most things.
 
-/mob/living/proc/get_poison_protection()
+mob/living/proc/get_poison_protection()
 	return 0
 
 //Finds the effective temperature that the mob is burning at.
-/mob/living/proc/fire_burn_temperature()
+mob/living/proc/fire_burn_temperature()
 	if (fire_stacks <= 0)
 		return 0
 
@@ -450,7 +450,7 @@
 	return max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700)
 
 // Called when struck by lightning.
-/mob/living/proc/lightning_act()
+mob/living/proc/lightning_act()
 	// The actual damage/electrocution is handled by the tesla_zap() that accompanies this.
 	afflict_unconscious(20 * 5)
 	stuttering += 20
@@ -460,13 +460,13 @@
 
 // Called when touching a lava tile.
 // Does roughly 100 damage to unprotected mobs, and 20 to fully protected mobs.
-/mob/living/lava_act()
+mob/living/lava_act()
 	add_modifier(/datum/modifier/fire/intense, 3 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
 	inflict_heat_damage(10) // Another 40, however this is instantly applied to unprotected mobs.
 	adjustFireLoss(10) // Lava cannot be 100% resisted with fire protection.
 
 //Acid
-/mob/living/acid_act(var/mob/living/H)
+mob/living/acid_act(var/mob/living/H)
 	make_dizzy(1)
 	adjustHalLoss(1)
 	inflict_heat_damage(5) // This is instantly applied to unprotected mobs.
@@ -477,17 +477,17 @@
 
 //Blood
 //Acid
-/mob/living/blood_act(var/mob/living/H)
+mob/living/blood_act(var/mob/living/H)
 	inflict_poison_damage(5)
 	adjustToxLoss(5)
 
 
-/mob/living/proc/reagent_permeability()
+mob/living/proc/reagent_permeability()
 	return 1
 
-/mob/proc/handle_actions()
+mob/proc/handle_actions()
 
-/mob/living/handle_actions()
+mob/living/handle_actions()
 	// todo: kill this, move to event driven.
 	//Pretty bad, i'd use picked/dropped instead but the parent calls in these are nonexistent
 	for(var/datum/action/A in actions)
@@ -503,7 +503,7 @@
 				I.action.name = I.action_button_name
 			I.action.grant(src)
 
-/mob/living/update_action_buttons()
+mob/living/update_action_buttons()
 	// todo: remove this, move to event driven
 	handle_actions()
 	if(!hud_used)
@@ -556,14 +556,14 @@
 		client.screen += hud_used.hide_actions_toggle
 
 // Returns a number to determine if something is harder or easier to hit than normal.
-/mob/living/proc/get_evasion()
+mob/living/proc/get_evasion()
 	var/result = evasion // First we get the 'base' evasion.  Generally this is zero.
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.evasion))
 			result += M.evasion
 	return result
 
-/mob/living/proc/get_accuracy_penalty()
+mob/living/proc/get_accuracy_penalty()
 	// Certain statuses make it harder to score a hit.
 	var/accuracy_penalty = 0
 	if(blinded)

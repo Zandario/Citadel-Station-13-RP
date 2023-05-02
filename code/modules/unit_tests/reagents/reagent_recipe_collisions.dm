@@ -1,8 +1,8 @@
 
 
-/datum/unit_test/reagent_recipe_collisions
+datum/unit_test/reagent_recipe_collisions
 
-/datum/unit_test/reagent_recipe_collisions/Run()
+datum/unit_test/reagent_recipe_collisions/Run()
 	build_chemical_reactions_list()
 	var/list/reactions = list()
 	for(var/V in GLOB.chemical_reactions_list)

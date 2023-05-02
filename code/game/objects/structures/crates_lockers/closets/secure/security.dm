@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/captains
+obj/structure/closet/secure_closet/captains
 	name = "Facility Director's locker"
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
@@ -26,7 +26,7 @@
 		/obj/item/melee/baton/loaded/mini,
 		/obj/item/storage/box/ids)
 
-/obj/structure/closet/secure_closet/hop
+obj/structure/closet/secure_closet/hop
 	name = "head of personnel's locker"
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
@@ -50,7 +50,7 @@
 		/obj/item/melee/baton/loaded/mini,
 		/obj/item/flash)
 
-/obj/structure/closet/secure_closet/hop2
+obj/structure/closet/secure_closet/hop2
 	name = "head of personnel's attire"
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
@@ -84,7 +84,7 @@
 		/obj/item/clothing/glasses/sunglasses)
 
 /*
-/obj/structure/closet/secure_closet/hos
+obj/structure/closet/secure_closet/hos
 	name = "head of security's locker"
 	req_access = list(ACCESS_SECURITY_HOS)
 	icon_state = "hossecure1"
@@ -133,7 +133,7 @@
 		/obj/item/flashlight/maglight,
 		/obj/item/clothing/mask/gas/half)
 
-/obj/structure/closet/secure_closet/hos/Initialize(mapload)
+obj/structure/closet/secure_closet/hos/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/security
 	else
@@ -144,7 +144,7 @@
 */
 
 //_vr file contents:
-/obj/structure/closet/secure_closet/hos
+obj/structure/closet/secure_closet/hos
 	name = "head of security's attire"
 	icon_state = "hossecure1"
 	icon_closed = "hossecure"
@@ -181,7 +181,7 @@
 		/obj/item/clothing/mask/gas/half,
 		/obj/item/clothing/under/bodysuit/bodysuitseccom)
 
-/obj/structure/closet/secure_closet/hos2
+obj/structure/closet/secure_closet/hos2
 	name = "head of security's gear"
 	icon_state = "hossecure1"
 	icon_closed = "hossecure"
@@ -209,7 +209,7 @@
 		/obj/item/gps/security/hos,
 		/obj/item/flashlight/maglight)
 
-/obj/structure/closet/secure_closet/blueshield
+obj/structure/closet/secure_closet/blueshield
 	name = "blueshield's locker"
 	icon_state = "secC1"
 	icon_closed = "secC"
@@ -255,7 +255,7 @@
 		/obj/item/flashlight/maglight,
 		/obj/item/cartridge/security)
 
-/obj/structure/closet/secure_closet/warden
+obj/structure/closet/secure_closet/warden
 	name = "warden's locker"
 	icon_state = "wardensecure1"
 	icon_closed = "wardensecure"
@@ -298,7 +298,7 @@
 		/obj/item/clothing/mask/gas/half,
 		/obj/item/gun/ballistic/shotgun/pump/combat/warden)
 
-/obj/structure/closet/secure_closet/warden/Initialize(mapload)
+obj/structure/closet/secure_closet/warden/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/security
 	else
@@ -307,7 +307,7 @@
 		starts_with += /obj/item/storage/backpack/dufflebag/sec
 	return ..()
 
-/obj/structure/closet/secure_closet/security
+obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
 	icon_state = "sec1"
 	icon_closed = "sec"
@@ -343,7 +343,7 @@
 		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/flashlight/maglight)
 
-/obj/structure/closet/secure_closet/security/Initialize(mapload)
+obj/structure/closet/secure_closet/security/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/security
 	else
@@ -354,28 +354,28 @@
 		starts_with += /obj/item/contraband/poster/nanotrasen
 	return ..()
 
-/obj/structure/closet/secure_closet/security/cargo/Initialize(mapload)
+obj/structure/closet/secure_closet/security/cargo/Initialize(mapload)
 	starts_with += /obj/item/clothing/accessory/armband/cargo
 	starts_with += /obj/item/encryptionkey/headset_cargo
 	return ..()
 
-/obj/structure/closet/secure_closet/security/engine/Initialize(mapload)
+obj/structure/closet/secure_closet/security/engine/Initialize(mapload)
 	starts_with += /obj/item/clothing/accessory/armband/engine
 	starts_with += /obj/item/encryptionkey/headset_eng
 	return ..()
 
-/obj/structure/closet/secure_closet/security/science/Initialize(mapload)
+obj/structure/closet/secure_closet/security/science/Initialize(mapload)
 	starts_with += /obj/item/clothing/accessory/armband/science
 	starts_with += /obj/item/encryptionkey/headset_sci
 	return ..()
 
-/obj/structure/closet/secure_closet/security/med/Initialize(mapload)
+obj/structure/closet/secure_closet/security/med/Initialize(mapload)
 	starts_with += /obj/item/clothing/accessory/armband/medblue
 	starts_with += /obj/item/encryptionkey/headset_med
 	return ..()
 
 
-/obj/structure/closet/secure_closet/detective
+obj/structure/closet/secure_closet/detective
 	name = "detective's cabinet"
 	icon_state = "cabinetdetective_locked"
 	icon_closed = "cabinetdetective"
@@ -408,7 +408,7 @@
 		/obj/item/storage/bag/detective,
 		/obj/item/cassette_tape/random = 3)
 
-/obj/structure/closet/secure_closet/detective/update_icon()
+obj/structure/closet/secure_closet/detective/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -421,7 +421,7 @@
 			icon_state = icon_opened
 
 
-/obj/structure/closet/secure_closet/injection
+obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
 	req_access = list(ACCESS_COMMAND_CAPTAIN)
 
@@ -430,7 +430,7 @@
 
 GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/brig)
 
-/obj/structure/closet/secure_closet/brig
+obj/structure/closet/secure_closet/brig
 	name = "brig locker"
 	req_access = list(ACCESS_SECURITY_BRIG)
 	anchored = 1
@@ -440,7 +440,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		/obj/item/clothing/under/color/prison,
 		/obj/item/clothing/shoes/orange)
 
-/obj/structure/closet/secure_closet/posters
+obj/structure/closet/secure_closet/posters
 	name = "morale storage"
 	req_access = list(ACCESS_SECURITY_EQUIPMENT)
 	anchored = 1
@@ -452,7 +452,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		/obj/item/contraband/poster/nanotrasen,
 		/obj/item/contraband/poster/nanotrasen)
 
-/obj/structure/closet/secure_closet/courtroom
+obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(ACCESS_COMMAND_IAA)
 
@@ -465,7 +465,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		/obj/item/storage/briefcase)
 
 
-/obj/structure/closet/secure_closet/wall
+obj/structure/closet/secure_closet/wall
 	name = "wall locker"
 	icon_state = "wall-locker1"
 	icon_closed = "wall-locker"
@@ -479,7 +479,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 	//too small to put a man in
 	large = 0
 
-/obj/structure/closet/secure_closet/wall/update_icon()
+obj/structure/closet/secure_closet/wall/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -492,7 +492,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 			icon_state = icon_opened
 
 //Custom NT Security Lockers, Only found at central command
-/obj/structure/closet/secure_closet/nanotrasen_security
+obj/structure/closet/secure_closet/nanotrasen_security
 	name = "NanoTrasen security officer's locker"
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "secC1"
@@ -531,7 +531,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/shoes/boots/jackboots/toeless)
 
-/obj/structure/closet/secure_closet/nanotrasen_security/Initialize(mapload)
+obj/structure/closet/secure_closet/nanotrasen_security/Initialize(mapload)
 	if(prob(25))
 		starts_with += /obj/item/storage/backpack/security
 	else
@@ -540,7 +540,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		starts_with += /obj/item/storage/backpack/dufflebag/sec
 	return ..()
 
-/obj/structure/closet/secure_closet/nanotrasen_commander
+obj/structure/closet/secure_closet/nanotrasen_commander
 	name = "NanoTrasen commander's locker"
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "secC1"
@@ -585,7 +585,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		/obj/item/clothing/shoes/boots/jackboots/toeless,
 		/obj/item/clothing/under/nanotrasen/security/commander)
 
-/obj/structure/closet/secure_closet/nanotrasen_commander/Initialize(mapload)
+obj/structure/closet/secure_closet/nanotrasen_commander/Initialize(mapload)
 	if(prob(25))
 		starts_with += /obj/item/storage/backpack/security
 	else
@@ -594,7 +594,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		starts_with += /obj/item/storage/backpack/dufflebag/sec
 	return ..()
 
-/obj/structure/closet/secure_closet/nanotrasen_warden
+obj/structure/closet/secure_closet/nanotrasen_warden
 	name = "NanoTrasen warden's locker"
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "secC1"
@@ -631,7 +631,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/shoes/boots/jackboots/toeless)
 
-/obj/structure/closet/secure_closet/nanotrasen_warden/Initialize(mapload)
+obj/structure/closet/secure_closet/nanotrasen_warden/Initialize(mapload)
 	if(prob(25))
 		new /obj/item/storage/backpack/security(src)
 	else

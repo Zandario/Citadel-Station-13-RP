@@ -2,7 +2,7 @@
 
 GLOBAL_LIST_EMPTY(preferences_datums)
 
-/datum/preferences
+datum/preferences
 	//! Intrinsics
 	/// did we load yet?
 	var/initialized = FALSE
@@ -226,14 +226,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Should we be in the widescreen mode set by the config?
 	var/widescreenpref = TRUE	// Exists now...
 
-/datum/preferences/New(client/C)
+datum/preferences/New(client/C)
 	if(istype(C))
 		client = C
 		client_ckey = C.ckey
 	if(SScharacters.initialized)
 		Initialize()
 
-/datum/preferences/proc/Initialize()
+datum/preferences/proc/Initialize()
 	// todo: refactor
 	player_setup = new(src)
 	tim_sort(preference_by_key, /proc/cmp_preference_load_order, TRUE)
@@ -268,19 +268,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	LAZYINITLIST(skin)
 	initialized = TRUE
 
-/datum/preferences/proc/block_until_initialized()
+datum/preferences/proc/block_until_initialized()
 	UNTIL(initialized)
 
-/datum/preferences/Destroy()
+datum/preferences/Destroy()
 	. = ..()
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 
-/datum/preferences/proc/ZeroSkills(var/forced = 0)
+datum/preferences/proc/ZeroSkills(var/forced = 0)
 	for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
 		if(!skills.Find(S.ID) || forced)
 			skills[S.ID] = SKILL_NONE
 
-/datum/preferences/proc/CalculateSkillPoints()
+datum/preferences/proc/CalculateSkillPoints()
 	used_skillpoints = 0
 	for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
 		var/multiplier = 1
@@ -302,10 +302,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					used_skillpoints += 6 * multiplier
 
-/datum/preferences/proc/GetSkillClass(points)
+datum/preferences/proc/GetSkillClass(points)
 	return CalculateSkillClass(points, age)
 
-/proc/CalculateSkillClass(points, age)
+proc/CalculateSkillClass(points, age)
 	if(points <= 0) return "Unconfigured"
 	// skill classes describe how your character compares in total points
 	points -= min(round((age - 20) / 2.5), 4) // every 2.5 years after 20, one extra skillpoint
@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(24 to 1000)
 			return "God"
 
-/datum/preferences/proc/update_character_previews(mutable_appearance/MA)
+datum/preferences/proc/update_character_previews(mutable_appearance/MA)
 	if(!client)
 		return
 
@@ -353,20 +353,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		O.dir = D
 		O.screen_loc = preview_screen_locs["[D]"]
 
-/datum/preferences/proc/show_character_previews()
+datum/preferences/proc/show_character_previews()
 	if(!client || !char_render_holders)
 		return
 	for(var/render_holder in char_render_holders)
 		client.screen |= char_render_holders[render_holder]
 
-/datum/preferences/proc/clear_character_previews()
+datum/preferences/proc/clear_character_previews()
 	for(var/index in char_render_holders)
 		var/atom/movable/screen/S = char_render_holders[index]
 		client?.screen -= S
 		qdel(S)
 	char_render_holders = null
 
-/datum/preferences/proc/process_link(mob/user, list/href_list)
+datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
 
 	if(!istype(user, /mob/new_player))	return
@@ -380,7 +380,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	ShowChoices(usr)
 	return 1
 
-/datum/preferences/Topic(href, list/href_list)
+datum/preferences/Topic(href, list/href_list)
 	if(..())
 		return 1
 
@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	ShowChoices(usr)
 	return 1
 
-/datum/preferences/proc/open_load_dialog(mob/user)
+datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<body>"
 	dat += "<tt><center>"
 
@@ -447,11 +447,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	panel.set_content(dat)
 	panel.open()
 
-/datum/preferences/proc/close_load_dialog(mob/user)
+datum/preferences/proc/close_load_dialog(mob/user)
 	//user << browse(null, "window=saves")
 	panel.close()
 
-/datum/preferences/proc/open_copy_dialog(mob/user)
+datum/preferences/proc/open_copy_dialog(mob/user)
 	var/dat = "<body>"
 	dat += "<tt><center>"
 
@@ -475,7 +475,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	panel.open()
 
 //Vore noises.
-/client/verb/toggle_eating_noises()
+client/verb/toggle_eating_noises()
 	set name = "Eating Noises"
 	set category = "Vore"
 	set desc = "Toggles Vore Eating noises."
@@ -491,7 +491,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	feedback_add_details("admin_verb","TEatNoise") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/verb/toggle_digestion_noises()
+client/verb/toggle_digestion_noises()
 	set name = "Digestion Noises"
 	set category = "Vore"
 	set desc = "Toggles Vore Digestion noises."

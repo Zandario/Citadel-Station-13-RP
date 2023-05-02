@@ -1,5 +1,5 @@
 //This shuttle traverses a "web" of route_datums to have a wider range of places to go and make flying feel like movement is actually occuring.
-/datum/shuttle/autodock/web_shuttle
+datum/shuttle/autodock/web_shuttle
 	flags = SHUTTLE_FLAGS_ZERO_G
 	var/visible_name = null // The pretty name shown to people in announcements, since the regular name var is used internally for other things.
 	var/cloaked = FALSE
@@ -16,7 +16,7 @@
 	var/can_rename = TRUE // Lets the pilot rename the shuttle. Only available once.
 	category = /datum/shuttle/autodock/web_shuttle
 
-/datum/shuttle/autodock/web_shuttle/New()
+datum/shuttle/autodock/web_shuttle/New()
 	web_master = new web_master_type(src)
 	build_destinations()
 	if(autopilot)
@@ -29,45 +29,45 @@
 	helmets = list()
 	..()
 
-/datum/shuttle/autodock/web_shuttle/Destroy()
+datum/shuttle/autodock/web_shuttle/Destroy()
 	QDEL_NULL(web_master)
 	helmets.Cut()
 	return ..()
 
-/datum/shuttle/autodock/web_shuttle/current_dock_target()
+datum/shuttle/autodock/web_shuttle/current_dock_target()
 	// TODO - Probably don't even need to override this right?  Debug testing code below will check!
 	. = web_master?.get_current_destination()?.my_landmark?.docking_controller?.id_tag
 	if (. != ..())
 		warning("Web shuttle [src] had current_dock_target()=[.] but autodock.current_dock_target() = [..()]")
 
-/datum/shuttle/autodock/web_shuttle/perform_shuttle_move()
+datum/shuttle/autodock/web_shuttle/perform_shuttle_move()
 	..()
 	last_move = world.time
 
-/datum/shuttle/autodock/web_shuttle/short_jump()
+datum/shuttle/autodock/web_shuttle/short_jump()
 	. = ..()
 	update_helmets()
 
-/datum/shuttle/autodock/web_shuttle/long_jump()
+datum/shuttle/autodock/web_shuttle/long_jump()
 	. = ..()
 	update_helmets()
 
-/datum/shuttle/autodock/web_shuttle/on_shuttle_departure()
+datum/shuttle/autodock/web_shuttle/on_shuttle_departure()
 	. = ..()
 	web_master.on_shuttle_departure()
 	update_helmets()
 
-/datum/shuttle/autodock/web_shuttle/on_shuttle_arrival()
+datum/shuttle/autodock/web_shuttle/on_shuttle_arrival()
 	. = ..()
 	active_docking_controller = current_location.docking_controller
 	update_docking_target(current_location)
 	web_master.on_shuttle_arrival()
 	update_helmets()
 
-/datum/shuttle/autodock/web_shuttle/proc/build_destinations()
+datum/shuttle/autodock/web_shuttle/proc/build_destinations()
 	return
 
-/datum/shuttle/autodock/web_shuttle/process()
+datum/shuttle/autodock/web_shuttle/process()
 	update_helmets()
 
 	if(moving_status == SHUTTLE_IDLE)
@@ -110,7 +110,7 @@
 				autopilot_say("Taking off.")
 				web_master.process_autopath()
 
-/datum/shuttle/autodock/web_shuttle/proc/update_helmets()
+datum/shuttle/autodock/web_shuttle/proc/update_helmets()
 	for(var/helm in helmets)
 		var/obj/item/clothing/head/pilot/H = helm
 		if(QDELETED(H))
@@ -124,7 +124,7 @@
 		else
 			H.update_hud(moving_status)
 
-/datum/shuttle/autodock/web_shuttle/proc/adjust_autopilot(on)
+datum/shuttle/autodock/web_shuttle/proc/adjust_autopilot(on)
 	if(on)
 		if(autopilot)
 			return
@@ -141,11 +141,11 @@
 		if (process_state == DO_AUTOPILOT)
 			process_state = initial(process_state)
 
-/datum/shuttle/autodock/web_shuttle/proc/autopilot_say(message) // Makes the autopilot 'talk' to the passengers.
+datum/shuttle/autodock/web_shuttle/proc/autopilot_say(message) // Makes the autopilot 'talk' to the passengers.
 	var/padded_message = "<span class='game say'><span class='name'>shuttle autopilot</span> states, \"[message]\"</span>"
 	message_passengers(padded_message)
 
-/datum/shuttle/autodock/web_shuttle/proc/rename_shuttle(mob/user)
+datum/shuttle/autodock/web_shuttle/proc/rename_shuttle(mob/user)
 	if(!can_rename)
 		to_chat(user, "<span class='warning'>You can't rename this vessel.</span>")
 		return
@@ -158,7 +158,7 @@
 	else
 		to_chat(user, "<span class='warning'>The name you supplied was invalid. Try another name.</span>")
 
-/obj/machinery/computer/shuttle_control/web
+obj/machinery/computer/shuttle_control/web
 	name = "flight computer"
 	icon_state = "flightcomp_center"
 	icon_keyboard = "flight_center_key"
@@ -170,7 +170,7 @@
 
 // Note - Searching own area for doors/sensors is fine for legacy web shuttles as they are single-area.
 //        However if this code is copied to future multi-area shuttles, should search in all shuttle areas
-/obj/machinery/computer/shuttle_control/web/Initialize(mapload)
+obj/machinery/computer/shuttle_control/web/Initialize(mapload)
 	. = ..()
 	var/area/my_area = get_area(src)
 	if(my_doors)
@@ -193,7 +193,7 @@
 		for(var/lost in find_sensors)
 			log_shuttle("[my_area] shuttle computer couldn't find [lost] sensor!")
 
-/obj/machinery/computer/shuttle_control/web/attackby(obj/I, mob/user)
+obj/machinery/computer/shuttle_control/web/attackby(obj/I, mob/user)
 	var/datum/shuttle/autodock/web_shuttle/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if(shuttle && istype(I,/obj/item/clothing/head/pilot))
 		var/obj/item/clothing/head/pilot/H = I
@@ -205,7 +205,7 @@
 
 	return ..()
 
-/obj/machinery/computer/shuttle_control/web/ui_data(mob/user)
+obj/machinery/computer/shuttle_control/web/ui_data(mob/user)
 	var/list/data = list()
 
 	var/list/routes[0]
@@ -289,7 +289,7 @@
 
 	return data
 
-/obj/machinery/computer/shuttle_control/web/ui_act(action, list/params)
+obj/machinery/computer/shuttle_control/web/ui_act(action, list/params)
 	if(..())
 		return TRUE
 
@@ -369,7 +369,7 @@
 				WS.short_jump(target_destination.my_landmark)
 
 //check if we're undocked, give option to force launch
-/obj/machinery/computer/shuttle_control/web/proc/check_docking(datum/shuttle/autodock/MS)
+obj/machinery/computer/shuttle_control/web/proc/check_docking(datum/shuttle/autodock/MS)
 	if(MS.skip_docking_checks() || MS.check_undocked())
 		return 1
 
@@ -384,7 +384,7 @@
 	return 1
 
 // Props, for now.
-/obj/structure/flight_left
+obj/structure/flight_left
 	name = "flight computer meters"
 	desc = "You hope the pilot knows what this does."
 	icon = 'icons/obj/flight_computer.dmi'
@@ -392,7 +392,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/flight_right
+obj/structure/flight_right
 	name = "flight computer panel"
 	desc = "Probably shouldn't open it."
 	icon = 'icons/obj/flight_computer.dmi'
@@ -401,21 +401,21 @@
 	anchored = TRUE
 
 //An object for creating a shuttle destination to dynamically loaded maps
-/obj/shuttle_connector
+obj/shuttle_connector
 	name = "shuttle connector"
 	var/shuttle_name					//Text name of the shuttle to connect to
 	var/list/destinations				//Make sure this STARTS with a destination that builds a route to one that always exists as an anchor.
 
-/obj/shuttle_connector/Initialize(mapload)
+obj/shuttle_connector/Initialize(mapload)
 	. = ..()
 	GLOB.shuttle_added.register_global(src, .proc/setup_routes)
 
-/obj/shuttle_connector/Destroy()
+obj/shuttle_connector/Destroy()
 	GLOB.shuttle_added.unregister_global(src, .proc/setup_routes)
 	. = ..()
 
 // This is called whenever a shuttle is initialized.  If its our shuttle, do our thing!
-/obj/shuttle_connector/proc/setup_routes(var/new_shuttle)
+obj/shuttle_connector/proc/setup_routes(var/new_shuttle)
 	var/datum/shuttle/autodock/web_shuttle/ES = SSshuttle.shuttles[shuttle_name]
 	if(ES != new_shuttle)
 		return // Its not our shuttle! Ignore!
@@ -435,16 +435,16 @@
 	qdel(src)
 
 //A sensor for detecting air outside shuttles! Handy, that.
-/obj/machinery/shuttle_sensor
+obj/machinery/shuttle_sensor
 	name = "environment sensor"
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_standby"
 	var/id_tag
 
-/obj/machinery/shuttle_sensor/process()
+obj/machinery/shuttle_sensor/process()
 	return PROCESS_KILL //nty
 
-/obj/machinery/shuttle_sensor/proc/air_list()
+obj/machinery/shuttle_sensor/proc/air_list()
 	. = list("reading" = FALSE)
 	var/turf/T = get_step(src,dir)
 

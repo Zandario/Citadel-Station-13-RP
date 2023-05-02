@@ -1,6 +1,6 @@
 // Builds networks like power cables/atmos lines/etc
 // Just a holder parent type for now..
-/obj/map_helper/network_builder
+obj/map_helper/network_builder
 	icon = 'icons/mapping/helpers/mapping_helpers.dmi'
 	late = TRUE
 	invisibility = INVISIBILITY_MAXIMUM
@@ -11,7 +11,7 @@
 	/// our base type
 	var/base_type
 
-/obj/map_helper/network_builder/Initialize(mapload)
+obj/map_helper/network_builder/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		/// if it isn't adminspawned i am going to come find you
@@ -28,25 +28,25 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /// How this works: On LateInitialize, detect all directions that this should be applicable to, and do what it needs to do, and then inform all network builders in said directions that it's been around since it won't be around afterwards.
-/obj/map_helper/network_builder/LateInitialize()
+obj/map_helper/network_builder/LateInitialize()
 	build()
 	qdel(src)
 
-/obj/map_helper/network_builder/proc/duplicates()
+obj/map_helper/network_builder/proc/duplicates()
 	CRASH("Base abstract network builder tried to check duplicates.")
 
-/obj/map_helper/network_builder/proc/scan()
+obj/map_helper/network_builder/proc/scan()
 	CRASH("Base abstract network builder tried to scan directions.")
 
-/obj/map_helper/network_builder/proc/build()
+obj/map_helper/network_builder/proc/build()
 	CRASH("Base abstract network builder tried to build network.")
 
-/obj/map_helper/network_builder/proc/teardown()
+obj/map_helper/network_builder/proc/teardown()
 	for(var/atom/movable/AM as anything in duplicates())
 		ASSERT(istype(AM))
 		qdel(AM)
 
-/obj/map_helper/network_builder/proc/rebuild(propagate = TRUE)
+obj/map_helper/network_builder/proc/rebuild(propagate = TRUE)
 	teardown()
 	if(propagate)
 		for(var/d in GLOB.cardinal)

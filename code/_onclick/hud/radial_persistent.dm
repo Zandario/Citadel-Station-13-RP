@@ -2,44 +2,44 @@
 	A derivative of radial menu which persists onscreen until closed and invokes a callback each time an element is clicked
 */
 
-/atom/movable/screen/radial/persistent/center
+atom/movable/screen/radial/persistent/center
 	name = "Close Menu"
 	icon_state = "radial_center"
 
-/atom/movable/screen/radial/persistent/center/Click(location, control, params)
+atom/movable/screen/radial/persistent/center/Click(location, control, params)
 	if(usr.client == parent.current_user)
 		parent.element_chosen(null,usr)
 
-/atom/movable/screen/radial/persistent/center/MouseEntered(location, control, params)
+atom/movable/screen/radial/persistent/center/MouseEntered(location, control, params)
 	. = ..()
 	icon_state = "radial_center_focus"
 
-/atom/movable/screen/radial/persistent/center/MouseExited(location, control, params)
+atom/movable/screen/radial/persistent/center/MouseExited(location, control, params)
 	. = ..()
 	icon_state = "radial_center"
 
 
 
-/datum/radial_menu/persistent
+datum/radial_menu/persistent
 	var/uniqueid
 	var/datum/callback/select_proc_callback
 
-/datum/radial_menu/persistent/New()
+datum/radial_menu/persistent/New()
 	close_button = new /atom/movable/screen/radial/persistent/center
 	close_button.parent = src
 
 
-/datum/radial_menu/persistent/element_chosen(choice_id,mob/user)
+datum/radial_menu/persistent/element_chosen(choice_id,mob/user)
 	select_proc_callback.Invoke(choices_values[choice_id])
 
 
-/datum/radial_menu/persistent/proc/change_choices(list/newchoices, tooltips)
+datum/radial_menu/persistent/proc/change_choices(list/newchoices, tooltips)
 	if(!newchoices.len)
 		return
 	Reset()
 	set_choices(newchoices,tooltips)
 
-/datum/radial_menu/persistent/Destroy()
+datum/radial_menu/persistent/Destroy()
 	QDEL_NULL(select_proc_callback)
 	GLOB.radial_menus -= uniqueid
 	Reset()
@@ -53,7 +53,7 @@
 	Select_proc is the proc to be called each time an element on the menu is clicked, and should accept the chosen element as its final argument
 	Clicking the center button will return a choice of null
 */
-/proc/show_radial_menu_persistent(mob/user, atom/anchor, list/choices, datum/callback/select_proc, uniqueid, radius, tooltips = FALSE)
+proc/show_radial_menu_persistent(mob/user, atom/anchor, list/choices, datum/callback/select_proc, uniqueid, radius, tooltips = FALSE)
 	if(!user || !anchor || !length(choices) || !select_proc)
 		return
 	if(!uniqueid)

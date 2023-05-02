@@ -1,7 +1,7 @@
-/obj/item/integrated_circuit/output
+obj/item/integrated_circuit/output
 	category_text = "Output"
 
-/obj/item/integrated_circuit/output/screen
+obj/item/integrated_circuit/output/screen
 	name = "small screen"
 	desc = "This small screen can display a single piece of data, when the machine is examined closely."
 	extended_desc = "This will show the data loaded into it when the machine is examined."
@@ -15,14 +15,14 @@
 	var/stuff_to_display = null
 
 
-/obj/item/integrated_circuit/output/screen/disconnect_all()
+obj/item/integrated_circuit/output/screen/disconnect_all()
 	..()
 	stuff_to_display = null
 
-/obj/item/integrated_circuit/output/screen/any_examine(mob/user)
+obj/item/integrated_circuit/output/screen/any_examine(mob/user)
 	to_chat(user, "There is a little screen labeled '[name]', which displays [!isnull(stuff_to_display) ? "'[stuff_to_display]'" : "nothing"].")
 
-/obj/item/integrated_circuit/output/screen/do_work()
+obj/item/integrated_circuit/output/screen/do_work()
 	var/datum/integrated_io/I = inputs[1]
 	if(isweakref(I.data))
 		var/datum/d = I.data_as_type(/datum)
@@ -31,21 +31,21 @@
 	else
 		stuff_to_display = I.data
 
-/obj/item/integrated_circuit/output/screen/medium
+obj/item/integrated_circuit/output/screen/medium
 	name = "medium screen"
 	desc = "This screen allows for people holding the device to see a piece of data."
 	extended_desc = "This will display a message to the user holding the assembly when activated."
 	icon_state = "screen_medium"
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/output/screen/medium/do_work()
+obj/item/integrated_circuit/output/screen/medium/do_work()
 	..()
 	var/list/nearby_things = range(0, get_turf(src))
 	for(var/mob/M in nearby_things)
 		var/obj/O = assembly ? assembly : src
 		to_chat(M, "<span class='notice'>[icon2html(thing = O, target = M)] [stuff_to_display]</span>")
 
-/obj/item/integrated_circuit/output/screen/large
+obj/item/integrated_circuit/output/screen/large
 	name = "large screen"
 	desc = "This screen allows for people able to see the device to see a piece of data."
 	extended_desc = "This will display a message to everyone who can see the assembly when activated."
@@ -53,12 +53,12 @@
 	power_draw_per_use = 40
 	cooldown_per_use = 1 SECOND // Because everyone will get the output instead of just the user/examiner.
 
-/obj/item/integrated_circuit/output/screen/large/do_work()
+obj/item/integrated_circuit/output/screen/large/do_work()
 	..()
 	var/obj/O = assembly ? loc : assembly
 	O.visible_message("<span class='notice'>[icon2html(thing = O, target = world)] [stuff_to_display]</span>")
 
-/obj/item/integrated_circuit/output/light
+obj/item/integrated_circuit/output/light
 	name = "light"
 	desc = "This light can turn on and off on command."
 	icon_state = "light"
@@ -73,11 +73,11 @@
 	var/light_rgb = "#FFFFFF"
 	power_draw_idle = 0 // Adjusted based on brightness.
 
-/obj/item/integrated_circuit/output/light/do_work()
+obj/item/integrated_circuit/output/light/do_work()
 	light_toggled = !light_toggled
 	update_lighting()
 
-/obj/item/integrated_circuit/output/light/proc/update_lighting()
+obj/item/integrated_circuit/output/light/proc/update_lighting()
 	if(light_toggled)
 		if(assembly)
 			assembly.set_light(l_range = light_brightness, l_power = light_strength, l_color = light_rgb)
@@ -86,11 +86,11 @@
 			assembly.set_light(0)
 	power_draw_idle = light_toggled ? light_brightness * light_brightness : 0 // Should be the same draw as regular lights.
 
-/obj/item/integrated_circuit/output/light/power_fail() // Turns off the flashlight if there's no power left.
+obj/item/integrated_circuit/output/light/power_fail() // Turns off the flashlight if there's no power left.
 	light_toggled = FALSE
 	update_lighting()
 
-/obj/item/integrated_circuit/output/light/advanced
+obj/item/integrated_circuit/output/light/advanced
 	name = "advanced light"
 	desc = "This light can turn on and off on command, in any color, and in various brightness levels."
 	extended_desc = "The brightness is limited to values between 1 and 8."
@@ -104,7 +104,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 
-/obj/item/integrated_circuit/output/light/advanced/update_lighting()
+obj/item/integrated_circuit/output/light/advanced/update_lighting()
 	var/new_color = get_pin_data(IC_INPUT, 1)
 	var/brightness = get_pin_data(IC_INPUT, 2)
 
@@ -115,10 +115,10 @@
 
 	..()
 
-/obj/item/integrated_circuit/output/light/advanced/on_data_written()
+obj/item/integrated_circuit/output/light/advanced/on_data_written()
 	update_lighting()
 
-/obj/item/integrated_circuit/output/text_to_speech
+obj/item/integrated_circuit/output/text_to_speech
 	name = "text-to-speech circuit"
 	desc = "A miniature speaker is attached to this component.  It is able to transpose any valid text to speech."
 	extended_desc = "This will emit an audible message to anyone who can hear the assembly."
@@ -131,13 +131,13 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 60
 
-/obj/item/integrated_circuit/output/text_to_speech/do_work()
+obj/item/integrated_circuit/output/text_to_speech/do_work()
 	text = get_pin_data(IC_INPUT, 1)
 	if(!isnull(text))
 		var/obj/O = assembly ? loc : assembly
 		audible_message("[icon2html(thing = O, target = world)] \The [O.name] states, \"[text]\"")
 
-/obj/item/integrated_circuit/output/text_to_speech/advanced
+obj/item/integrated_circuit/output/text_to_speech/advanced
 	name = "advanced text-to-speech circuit"
 	desc = "A miniature speaker is attached to this component.  It is able to transpose any valid text to speech, matching a scanned target's voice."
 	complexity = 15
@@ -150,12 +150,12 @@
 
 	var/mob/living/voice/my_voice
 
-/obj/item/integrated_circuit/output/text_to_speech/advanced/Initialize(mapload)
+obj/item/integrated_circuit/output/text_to_speech/advanced/Initialize(mapload)
 	. = ..()
 	my_voice = new (src)
 	my_voice.name = "TTS Circuit"
 
-/obj/item/integrated_circuit/output/text_to_speech/advanced/do_work()
+obj/item/integrated_circuit/output/text_to_speech/advanced/do_work()
 	text = get_pin_data(IC_INPUT, 1)
 	var/mob/living/target_mob = get_pin_data(IC_INPUT, 2)
 	my_voice.transfer_identity(target_mob)
@@ -164,7 +164,7 @@
 		my_voice.say("[text]")
 		my_voice.forceMove(src)
 
-/obj/item/integrated_circuit/output/sound
+obj/item/integrated_circuit/output/sound
 	name = "speaker circuit"
 	desc = "A miniature speaker is attached to this component."
 	icon_state = "speaker"
@@ -180,7 +180,7 @@
 	power_draw_per_use = 20
 	var/list/sounds = list()
 
-/obj/item/integrated_circuit/output/sound/Initialize(mapload)
+obj/item/integrated_circuit/output/sound/Initialize(mapload)
 	. = ..()
 	extended_desc = list()
 	extended_desc += "The first input pin determines which sound is used.  The choices are; "
@@ -189,7 +189,7 @@
 	extended_desc += ", and the third determines if the frequency of the sound will vary with each activation."
 	extended_desc = jointext(extended_desc, null)
 
-/obj/item/integrated_circuit/output/sound/do_work()
+obj/item/integrated_circuit/output/sound/do_work()
 	var/ID = get_pin_data(IC_INPUT, 1)
 	var/vol = get_pin_data(IC_INPUT, 2)
 	var/freq = get_pin_data(IC_INPUT, 3)
@@ -200,7 +200,7 @@
 		vol = clamp( vol, 0,  100)
 		playsound(get_turf(src), selected_sound, vol, freq, -1)
 
-/obj/item/integrated_circuit/output/sound/beeper
+obj/item/integrated_circuit/output/sound/beeper
 	name = "beeper circuit"
 	desc = "A miniature speaker is attached to this component.  This is often used in the construction of motherboards, which use \
 	the speaker to tell the user if something goes very wrong when booting up.  It can also do other similar synthetic sounds such \
@@ -217,7 +217,7 @@
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/output/sound/beepsky
+obj/item/integrated_circuit/output/sound/beepsky
 	name = "securitron sound circuit"
 	desc = "A miniature speaker is attached to this component.  Considered by some to be the essential component for a securitron."
 	sounds = list(
@@ -233,7 +233,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_ILLEGAL = 1)
 
-/obj/item/integrated_circuit/output/sound/medibot
+obj/item/integrated_circuit/output/sound/medibot
 	name = "medibot sound circuit"
 	desc = "A miniature speaker is attached to this component, used to annoy patients while they get pricked by a medibot."
 	sounds = list(
@@ -256,7 +256,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 1)
 
-/obj/item/integrated_circuit/output/video_camera
+obj/item/integrated_circuit/output/video_camera
 	name = "video camera circuit"
 	desc = "This small camera allows a remote viewer to see what it sees."
 	extended_desc = "The camera is linked to the Research camera network."
@@ -274,16 +274,16 @@
 	power_draw_idle = 5 // Raises to 80 when on.
 	var/obj/machinery/camera/network/circuits/camera
 
-/obj/item/integrated_circuit/output/video_camera/Initialize(mapload)
+obj/item/integrated_circuit/output/video_camera/Initialize(mapload)
 	. = ..()
 	camera = new(src)
 	on_data_written()
 
-/obj/item/integrated_circuit/output/video_camera/Destroy()
+obj/item/integrated_circuit/output/video_camera/Destroy()
 	QDEL_NULL(camera)
 	return ..()
 
-/obj/item/integrated_circuit/output/video_camera/proc/set_camera_status(var/status)
+obj/item/integrated_circuit/output/video_camera/proc/set_camera_status(var/status)
 	if(camera)
 		camera.set_status(status)
 		power_draw_idle = camera.status ? 80 : 5
@@ -291,7 +291,7 @@
 			if(!draw_idle_power())
 				power_fail()
 
-/obj/item/integrated_circuit/output/video_camera/on_data_written()
+obj/item/integrated_circuit/output/video_camera/on_data_written()
 	if(camera)
 		var/cam_name = get_pin_data(IC_INPUT, 1)
 		var/cam_active = get_pin_data(IC_INPUT, 2)
@@ -299,12 +299,12 @@
 			camera.c_tag = cam_name
 		set_camera_status(cam_active)
 
-/obj/item/integrated_circuit/output/video_camera/power_fail()
+obj/item/integrated_circuit/output/video_camera/power_fail()
 	if(camera)
 		set_camera_status(0)
 		set_pin_data(IC_INPUT, 2, FALSE)
 
-/obj/item/integrated_circuit/output/led
+obj/item/integrated_circuit/output/led
 	name = "light-emitting diode"
 	desc = "This a LED that is lit whenever there is TRUE-equivalent data on its input."
 	extended_desc = "TRUE-equivalent values are: Non-empty strings, non-zero numbers, and valid refs."
@@ -317,13 +317,13 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	var/led_color
 
-/obj/item/integrated_circuit/output/led/on_data_written()
+obj/item/integrated_circuit/output/led/on_data_written()
 	power_draw_idle = get_pin_data(IC_INPUT, 1) ? 1 : 0
 
-/obj/item/integrated_circuit/output/led/power_fail()
+obj/item/integrated_circuit/output/led/power_fail()
 	set_pin_data(IC_INPUT, 1, FALSE)
 
-/obj/item/integrated_circuit/output/led/any_examine(mob/user)
+obj/item/integrated_circuit/output/led/any_examine(mob/user)
 	var/text_output = list()
 	var/initial_name = initial(name)
 
@@ -336,45 +336,45 @@
 	text_output += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>¤</font>" : "unlit."]"
 	to_chat(user,jointext(text_output,null))
 
-/obj/item/integrated_circuit/output/led/red
+obj/item/integrated_circuit/output/led/red
 	name = "red LED"
 	led_color = COLOR_RED
 
-/obj/item/integrated_circuit/output/led/orange
+obj/item/integrated_circuit/output/led/orange
 	name = "orange LED"
 	led_color = COLOR_ORANGE
 
-/obj/item/integrated_circuit/output/led/yellow
+obj/item/integrated_circuit/output/led/yellow
 	name = "yellow LED"
 	led_color = COLOR_YELLOW
 
-/obj/item/integrated_circuit/output/led/green
+obj/item/integrated_circuit/output/led/green
 	name = "green LED"
 	led_color = COLOR_GREEN
 
-/obj/item/integrated_circuit/output/led/blue
+obj/item/integrated_circuit/output/led/blue
 	name = "blue LED"
 	led_color = COLOR_BLUE
 
-/obj/item/integrated_circuit/output/led/purple
+obj/item/integrated_circuit/output/led/purple
 	name = "purple LED"
 	led_color = COLOR_PURPLE
 
-/obj/item/integrated_circuit/output/led/cyan
+obj/item/integrated_circuit/output/led/cyan
 	name = "cyan LED"
 	led_color = COLOR_CYAN
 
-/obj/item/integrated_circuit/output/led/white
+obj/item/integrated_circuit/output/led/white
 	name = "white LED"
 	led_color = COLOR_WHITE
 
-/obj/item/integrated_circuit/output/led/pink
+obj/item/integrated_circuit/output/led/pink
 	name = "pink LED"
 	led_color = COLOR_PINK
 
 
 
-/obj/item/integrated_circuit/output/holographic_projector
+obj/item/integrated_circuit/output/holographic_projector
 	name = "holographic projector"
 	desc = "This projects a holographic copy of an object."
 	extended_desc = "If the assembly moves, the hologram will also move.<br>\
@@ -414,11 +414,11 @@
 //	var/datum/beam/holo_beam = null // A visual effect, to make it easy to know where a hologram is coming from.
 	// It is commented out due to picking up the assembly killing the beam.
 
-/obj/item/integrated_circuit/output/holographic_projector/Destroy()
+obj/item/integrated_circuit/output/holographic_projector/Destroy()
 	destroy_hologram()
 	return ..()
 
-/obj/item/integrated_circuit/output/holographic_projector/do_work()
+obj/item/integrated_circuit/output/holographic_projector/do_work()
 	var/toggled = get_pin_data(IC_INPUT, 1)
 
 	if(hologram) // Currently active.
@@ -435,7 +435,7 @@
 	activate_pin(2)
 
 // Updates some changable aspects of the hologram like the size or position.
-/obj/item/integrated_circuit/output/holographic_projector/proc/update_hologram()
+obj/item/integrated_circuit/output/holographic_projector/proc/update_hologram()
 	if(!hologram)
 		return FALSE
 
@@ -452,7 +452,7 @@
 	return TRUE
 
 // This is a seperate function because other things besides do_work() might warrant updating position, like movement, without bothering with other parts.
-/obj/item/integrated_circuit/output/holographic_projector/proc/update_hologram_position()
+obj/item/integrated_circuit/output/holographic_projector/proc/update_hologram_position()
 	var/holo_x = get_pin_data(IC_INPUT, 4)
 	var/holo_y = get_pin_data(IC_INPUT, 5)
 	if(!isnum(holo_x) || !isnum(holo_y) )
@@ -472,7 +472,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/integrated_circuit/output/holographic_projector/proc/create_hologram()
+obj/item/integrated_circuit/output/holographic_projector/proc/create_hologram()
 	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 2, /atom/movable)
 	var/holo_color = get_pin_data(IC_INPUT, 3)
 
@@ -494,7 +494,7 @@
 
 
 
-/obj/item/integrated_circuit/output/holographic_projector/proc/destroy_hologram()
+obj/item/integrated_circuit/output/holographic_projector/proc/destroy_hologram()
 	QDEL_NULL(hologram)
 
 //	holo_beam.End()
@@ -502,15 +502,15 @@
 
 	power_draw_idle = 0
 
-/obj/item/integrated_circuit/output/holographic_projector/on_data_written()
+obj/item/integrated_circuit/output/holographic_projector/on_data_written()
 	if(hologram)
 		update_hologram()
 
-/obj/item/integrated_circuit/output/holographic_projector/on_loc_moved(atom/oldloc)
+obj/item/integrated_circuit/output/holographic_projector/on_loc_moved(atom/oldloc)
 	if(hologram)
 		update_hologram_position()
 
-/obj/item/integrated_circuit/output/holographic_projector/power_fail()
+obj/item/integrated_circuit/output/holographic_projector/power_fail()
 	if(hologram)
 		destroy_hologram()
 		set_pin_data(IC_INPUT, 1, FALSE)

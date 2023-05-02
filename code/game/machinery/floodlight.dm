@@ -1,4 +1,4 @@
-/obj/machinery/floodlight
+obj/machinery/floodlight
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
@@ -10,15 +10,15 @@
 	var/open = FALSE
 	var/brightness_on = 8		//can't remember what the maxed out value is
 
-/obj/machinery/floodlight/Initialize(mapload)
+obj/machinery/floodlight/Initialize(mapload)
 	. = ..()
 	cell = new(src)
 
-/obj/machinery/floodlight/update_icon()
+obj/machinery/floodlight/update_icon()
 	cut_overlays()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
 
-/obj/machinery/floodlight/process(delta_time)
+obj/machinery/floodlight/process(delta_time)
 	if(!on)
 		return
 
@@ -36,7 +36,7 @@
 	cell.use(DYNAMIC_W_TO_CELL_UNITS(use, 1))
 
 /// Returns FALSE on failure and TRUE on success.
-/obj/machinery/floodlight/proc/turn_on(loud = FALSE)
+obj/machinery/floodlight/proc/turn_on(loud = FALSE)
 	if(!cell)
 		return FALSE
 	if(cell.charge < (DYNAMIC_W_TO_CELL_UNITS(use, 1)))
@@ -49,14 +49,14 @@
 		visible_message("\The [src] turns on.")
 	return TRUE
 
-/obj/machinery/floodlight/proc/turn_off(loud = FALSE)
+obj/machinery/floodlight/proc/turn_off(loud = FALSE)
 	on = FALSE
 	set_light(0, 0)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] shuts down.")
 
-/obj/machinery/floodlight/attack_ai(mob/user)
+obj/machinery/floodlight/attack_ai(mob/user)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user))
 		return attack_hand(user)
 
@@ -66,7 +66,7 @@
 		if(!turn_on(TRUE))
 			to_chat(user, "You try to turn on \the [src] but it does not work.")
 
-/obj/machinery/floodlight/attack_hand(mob/user, list/params)
+obj/machinery/floodlight/attack_hand(mob/user, list/params)
 	if(open && cell)
 		user.grab_item_from_interacted_with(cell, src)
 
@@ -88,7 +88,7 @@
 
 	update_icon()
 
-/obj/machinery/floodlight/attackby(obj/item/W, mob/user)
+obj/machinery/floodlight/attackby(obj/item/W, mob/user)
 	if(W.is_screwdriver())
 		if(!open)
 			if(unlocked)

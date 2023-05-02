@@ -3,7 +3,7 @@
  * The advantage of using this datum verses just setting a variable on the mob directly, is that there is no risk of two different procs overwriting
  * each other, or other weirdness.  An excellent example is adjusting max health.
  */
-/datum/modifier
+datum/modifier
 	/// Mostly used to organize, might show up on the UI in the Future(tm)
 	var/name = null
 	/// Ditto.
@@ -97,7 +97,7 @@
 	/// Vision flags to add to the mob. SEE_MOB, SEE_OBJ, etc.
 	var/vision_flags
 
-/datum/modifier/New(var/new_holder, var/new_origin)
+datum/modifier/New(var/new_holder, var/new_origin)
 	holder = new_holder
 	if(new_origin)
 		origin = WEAKREF(new_origin)
@@ -107,15 +107,15 @@
 
 // Checks if the modifier should be allowed to be applied to the mob before attaching it.
 // Override for special criteria, e.g. forbidding robots from receiving it.
-/datum/modifier/proc/can_apply(var/mob/living/L)
+datum/modifier/proc/can_apply(var/mob/living/L)
 	return TRUE
 
 // Checks to see if this datum should continue existing.
-/datum/modifier/proc/check_if_valid()
+datum/modifier/proc/check_if_valid()
 	if(expire_at && expire_at < world.time) // Is our time up?
 		src.expire()
 
-/datum/modifier/proc/expire(var/silent = FALSE)
+datum/modifier/proc/expire(var/silent = FALSE)
 	if(on_expired_text && !silent)
 		to_chat(holder, on_expired_text)
 	on_expire()
@@ -129,26 +129,26 @@
 	qdel(src)
 
 // Override this for special effects when it gets added to the mob.
-/datum/modifier/proc/on_applied()
+datum/modifier/proc/on_applied()
 	return
 
 // Override this for special effects when it gets removed.
-/datum/modifier/proc/on_expire()
+datum/modifier/proc/on_expire()
 	return
 
 // Called every Life() tick.  Override for special behaviour.
-/datum/modifier/proc/tick()
+datum/modifier/proc/tick()
 	return
 
-/mob/living
+mob/living
 	var/list/modifiers = list() // A list of modifier datums, which can adjust certain mob numbers.
 
-/mob/living/Destroy()
+mob/living/Destroy()
 	remove_all_modifiers(TRUE)
 	return ..()
 
 // Called by Life().
-/mob/living/handle_modifiers(component_signal)
+mob/living/handle_modifiers(component_signal)
 	if(!modifiers.len) // No work to do.
 		return
 	// Get rid of anything we shouldn't have.
@@ -161,7 +161,7 @@
 // Call this to add a modifier to a mob. First argument is the modifier type you want, second is how long it should last, in ticks.
 // Third argument is the 'source' of the modifier, if it's from someone else.  If null, it will default to the mob being applied to.
 // The SECONDS/MINUTES macro is very helpful for this.  E.g. M.add_modifier(/datum/modifier/example, 5 MINUTES)
-/mob/living/proc/add_modifier(var/modifier_type, var/expire_at = null, var/mob/living/origin = null)
+mob/living/proc/add_modifier(var/modifier_type, var/expire_at = null, var/mob/living/origin = null)
 	// First, check if the mob already has this modifier.
 	for(var/datum/modifier/M in modifiers)
 		if(ispath(modifier_type, M))
@@ -197,29 +197,29 @@
 	return mod
 
 // Removes a specific instance of modifier
-/mob/living/proc/remove_specific_modifier(var/datum/modifier/M, var/silent = FALSE)
+mob/living/proc/remove_specific_modifier(var/datum/modifier/M, var/silent = FALSE)
 	M.expire(silent)
 
 // Removes one modifier of a type
-/mob/living/proc/remove_a_modifier_of_type(var/modifier_type, var/silent = FALSE)
+mob/living/proc/remove_a_modifier_of_type(var/modifier_type, var/silent = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		if(ispath(M.type, modifier_type))
 			M.expire(silent)
 			break
 
 // Removes all modifiers of a type
-/mob/living/proc/remove_modifiers_of_type(var/modifier_type, var/silent = FALSE)
+mob/living/proc/remove_modifiers_of_type(var/modifier_type, var/silent = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		if(ispath(M.type, modifier_type))
 			M.expire(silent)
 
 // Removes all modifiers, useful if the mob's being deleted
-/mob/living/proc/remove_all_modifiers(var/silent = FALSE)
+mob/living/proc/remove_all_modifiers(var/silent = FALSE)
 	for(var/datum/modifier/M in modifiers)
 		M.expire(silent)
 
 // Checks if the mob has a modifier type.
-/mob/living/proc/has_modifier_of_type(var/modifier_type)
+mob/living/proc/has_modifier_of_type(var/modifier_type)
 	for(var/datum/modifier/M in modifiers)
 		if(istype(M, modifier_type))
 			return TRUE
@@ -227,7 +227,7 @@
 
 // This displays the actual 'numbers' that a modifier is doing.  Should only be shown in OOC contexts.
 // When adding new effects, be sure to update this as well.
-/datum/modifier/proc/describe_modifier_effects()
+datum/modifier/proc/describe_modifier_effects()
 	var/list/effects = list()
 	if(!isnull(max_health_flat))
 		effects += "You [max_health_flat > 0 ? "gain" : "lose"] [abs(max_health_flat)] maximum health."
@@ -295,7 +295,7 @@
 
 
 // Helper to format multiplers (e.g. 1.4) to percentages (like '40%')
-/proc/multipler_to_percentage(var/multi, var/abs = FALSE)
+proc/multipler_to_percentage(var/multi, var/abs = FALSE)
 	if(abs)
 		return "[abs( ((multi - 1) * 100) )]%"
 	return "[((multi - 1) * 100)]%"

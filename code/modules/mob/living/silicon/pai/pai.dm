@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/silicon/pai
+datum/category_item/catalogue/fauna/silicon/pai
 	name = "Silicons - pAI"
 	desc = "There remains some dispute over whether the 'p' stands \
 	for 'pocket', 'personal', or 'portable'. Regardless, the pAI is a \
@@ -7,7 +7,7 @@
 	Some, in fact, are splintered and limited copies of organic brain states."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/silicon/pai
+mob/living/silicon/pai
 	name = "pAI"
 	icon = 'icons/mob/pai.dmi'
 	icon_state = "pai-repairbot"
@@ -101,7 +101,7 @@
 
 	var/current_pda_messaging = null
 
-/mob/living/silicon/pai/Initialize(mapload)
+mob/living/silicon/pai/Initialize(mapload)
 	. = ..()
 	card = loc
 	sradio = new(src)
@@ -122,35 +122,35 @@
 		pda.name = pda.owner + " (" + pda.ownjob + ")"
 		pda.toff = 1
 
-/mob/living/silicon/pai/Login()
+mob/living/silicon/pai/Login()
 	..()
 	// Meta Info for pAI
 	if(client.prefs)
 		ooc_notes = client.prefs.metadata
 
 // this function shows the information about being silenced as a pAI in the Status panel
-/mob/living/silicon/pai/proc/show_silenced()
+mob/living/silicon/pai/proc/show_silenced()
 	. = list()
 	if(src.silence_time)
 		var/timeleft = round((silence_time - world.timeofday)/10 ,1)
 		STATPANEL_DATA_LINE("Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
-/mob/living/silicon/pai/statpanel_data(client/C)
+mob/living/silicon/pai/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		. += show_silenced()
 
-/mob/living/silicon/pai/check_eye(var/mob/user as mob)
+mob/living/silicon/pai/check_eye(var/mob/user as mob)
 	if (!src.current)
 		return -1
 	return 0
 
-/mob/living/silicon/pai/restrained()
+mob/living/silicon/pai/restrained()
 	if(istype(src.loc,/obj/item/paicard))
 		return 0
 	..()
 
-/mob/living/silicon/pai/emp_act(severity)
+mob/living/silicon/pai/emp_act(severity)
 	// Silence for 2 minutes
 	// 20% chance to kill
 		// 33% chance to unbind
@@ -181,7 +181,7 @@
 		if(3)
 			to_chat(src, "<font color=green>You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.</font>")
 
-/mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
+mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		unset_machine()
 		reset_perspective()
@@ -196,7 +196,7 @@
 	reset_perspective(C)
 	return 1
 
-/mob/living/silicon/pai/verb/reset_record_view()
+mob/living/silicon/pai/verb/reset_record_view()
 	set category = "pAI Commands"
 	set name = "Reset Records Software"
 
@@ -209,13 +209,13 @@
 	SSnanoui.update_uis(src)
 	to_chat(usr, "<span class='notice'>You reset your record-viewing software.</span>")
 
-/mob/living/silicon/pai/reset_perspective(datum/perspective/P, apply = TRUE, forceful = TRUE, no_optimizations)
+mob/living/silicon/pai/reset_perspective(datum/perspective/P, apply = TRUE, forceful = TRUE, no_optimizations)
 	. = ..()
 	cameraFollow = null
 
 //Addition by Mord_Sith to define AI's network change ability
 /*
-/mob/living/silicon/pai/proc/pai_network_change()
+mob/living/silicon/pai/proc/pai_network_change()
 	set category = "pAI Commands"
 	set name = "Change Camera Network"
 	src.reset_view(null)
@@ -242,7 +242,7 @@
 
 /*
 // Debug command - Maybe should be added to admin verbs later
-/mob/verb/makePAI(var/turf/t in view())
+mob/verb/makePAI(var/turf/t in view())
 	var/obj/item/paicard/card = new(t)
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.key = src.key
@@ -254,7 +254,7 @@
 // mobile pai mob. This also includes handling some of the general shit that can occur
 // to it. Really this deserves its own file, but for the moment it can sit here. ~ Z
 
-/mob/living/silicon/pai/verb/fold_out()
+mob/living/silicon/pai/verb/fold_out()
 	set category = "pAI Commands"
 	set name = "Unfold Chassis"
 
@@ -306,7 +306,7 @@
 	add_verb(src, /mob/living/proc/set_size)
 	add_verb(src, /mob/living/proc/shred_limb)
 
-/mob/living/silicon/pai/verb/fold_up()
+mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
 	set name = "Collapse Chassis"
 
@@ -321,7 +321,7 @@
 
 	close_up()
 
-/mob/living/silicon/pai/proc/choose_chassis()
+mob/living/silicon/pai/proc/choose_chassis()
 	set category = "pAI Commands"
 	set name = "Choose Chassis"
 
@@ -343,7 +343,7 @@
 	chassis = possible_chassis[choice]
 	add_verb(src, /mob/living/proc/hide)
 
-/mob/living/silicon/pai/proc/choose_verbs()
+mob/living/silicon/pai/proc/choose_verbs()
 	set category = "pAI Commands"
 	set name = "Choose Speech Verbs"
 
@@ -355,7 +355,7 @@
 	speak_exclamation = sayverbs[(sayverbs.len>1 ? 2 : sayverbs.len)]
 	speak_query = sayverbs[(sayverbs.len>2 ? 3 : sayverbs.len)]
 
-/mob/living/silicon/pai/lay_down()
+mob/living/silicon/pai/lay_down()
 	set name = "Rest"
 	set category = "IC"
 
@@ -374,7 +374,7 @@
 	update_mobility()
 
 //Overriding this will stop a number of headaches down the track.
-/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
+mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.damage_force)
 		visible_message("<span class='danger'>[user.name] attacks [src] with [W]!</span>")
 		src.adjustBruteLoss(W.damage_force)
@@ -385,7 +385,7 @@
 		if(stat != 2) close_up()
 	return
 
-/mob/living/silicon/pai/attack_hand(mob/user, list/params)
+mob/living/silicon/pai/attack_hand(mob/user, list/params)
 	if(user.a_intent == INTENT_HELP)
 		visible_message("<span class='notice'>[user.name] pats [src].</span>")
 	else
@@ -393,7 +393,7 @@
 		close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.
-/mob/living/silicon/pai/proc/close_up()
+mob/living/silicon/pai/proc/close_up()
 
 	last_special = world.time + 100
 
@@ -427,11 +427,11 @@
 	remove_verb(src, /mob/living/silicon/pai/proc/pai_nom)
 
 // No binary for pAIs.
-/mob/living/silicon/pai/binarycheck()
+mob/living/silicon/pai/binarycheck()
 	return 0
 
 // Handle being picked up.
-/mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
+mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
 	var/obj/item/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
@@ -441,7 +441,7 @@
 	grabber.update_inv_r_hand()
 	return H
 
-/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
+mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/card/id/ID = W.GetID()
 	if(ID)
 		if (idaccessible == 1)
@@ -460,7 +460,7 @@
 			to_chat(user, "<span class='notice'>[src] is not accepting access modifcations at this time.</span>")
 			return
 
-/mob/living/silicon/pai/verb/allowmodification()
+mob/living/silicon/pai/verb/allowmodification()
 	set name = "Change Access Modifcation Permission"
 	set category = "pAI Commands"
 	set desc = "Allows people to modify your access or block people from modifying your access."
@@ -473,7 +473,7 @@
 		idaccessible = 0
 		to_chat(src, "<span class='notice'>You block access modfications.</span>")
 
-/mob/living/silicon/pai/verb/wipe_software()
+mob/living/silicon/pai/verb/wipe_software()
 	set name = "Wipe Software"
 	set category = "OOC"
 	set desc = "Wipe your software. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
@@ -489,6 +489,6 @@
 	clear_client()
 
 // See software.dm for Topic()
-/mob/living/silicon/pai/canUseTopic(atom/movable/movable, be_close = FALSE, no_dexterity = FALSE, no_tk = FALSE)
+mob/living/silicon/pai/canUseTopic(atom/movable/movable, be_close = FALSE, no_dexterity = FALSE, no_tk = FALSE)
 	// Resting is just an aesthetic feature for them.
 	return ..(movable, be_close, no_dexterity, no_tk)

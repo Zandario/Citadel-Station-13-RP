@@ -1,6 +1,6 @@
 // Pretty much everything here is stolen from the dna scanner FYI
 
-/obj/machinery/bodyscanner
+obj/machinery/bodyscanner
 	var/mob/living/carbon/occupant
 	var/locked
 	name = "Body Scanner"
@@ -15,19 +15,19 @@
 	light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
 
-/obj/machinery/bodyscanner/Destroy()
+obj/machinery/bodyscanner/Destroy()
 	if(console)
 		console.scanner = null
 	return ..()
 
-/obj/machinery/bodyscanner/power_change()
+obj/machinery/bodyscanner/power_change()
 	..()
 	if(!(machine_stat & (BROKEN|NOPOWER)))
 		set_light(2)
 	else
 		set_light(0)
 
-/obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
+obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
 	if(!istype(G))
 		return ..()
 	if(istype(G, /obj/item/grab))
@@ -62,7 +62,7 @@
 		if(default_deconstruction_crowbar(user, G))
 			return
 
-/obj/machinery/bodyscanner/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user as mob)
+obj/machinery/bodyscanner/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user as mob)
 	if(!istype(O))
 		return FALSE //not a mob
 	if(user.incapacitated())
@@ -100,12 +100,12 @@
 	playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 	add_fingerprint(user)
 
-/obj/machinery/bodyscanner/relaymove(mob/user as mob)
+obj/machinery/bodyscanner/relaymove(mob/user as mob)
 	if(user.incapacitated())
 		return FALSE //maybe they should be able to get out with cuffs, but whatever
 	go_out()
 
-/obj/machinery/bodyscanner/verb/eject()
+obj/machinery/bodyscanner/verb/eject()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Eject Body Scanner"
@@ -115,7 +115,7 @@
 	go_out()
 	add_fingerprint(usr)
 
-/obj/machinery/bodyscanner/proc/go_out()
+obj/machinery/bodyscanner/proc/go_out()
 	if(!occupant || src.locked)
 		return
 	occupant.forceMove(loc)
@@ -124,7 +124,7 @@
 	update_icon() //Health display for consoles with light and such.
 	return
 
-/obj/machinery/bodyscanner/legacy_ex_act(severity)
+obj/machinery/bodyscanner/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
@@ -156,7 +156,7 @@
 	return
 
 //Body Scan Console
-/obj/machinery/body_scanconsole
+obj/machinery/body_scanconsole
 	var/obj/machinery/bodyscanner/scanner
 	var/known_implants = list(/obj/item/implant/health, /obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/language, /obj/item/implant/language/eal, /obj/item/implant/backup, /obj/item/nif, /obj/item/implant/mirror)
 	var/delete
@@ -172,20 +172,20 @@
 	var/printing_text = null
 	var/mirror = null
 
-/obj/machinery/body_scanconsole/Initialize(mapload, newdir)
+obj/machinery/body_scanconsole/Initialize(mapload, newdir)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/body_scanconsole/LateInitialize()
+obj/machinery/body_scanconsole/LateInitialize()
 	. = ..()
 	findscanner()
 
-/obj/machinery/body_scanconsole/Destroy()
+obj/machinery/body_scanconsole/Destroy()
 	if(scanner)
 		scanner.console = null
 	return ..()
 
-/obj/machinery/body_scanconsole/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/body_scanconsole/attackby(var/obj/item/I, var/mob/user)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	else if(istype(I, /obj/item/multitool)) //Did you want to link it?
@@ -203,10 +203,10 @@
 	else
 		return attack_hand(user)
 
-/obj/machinery/body_scanconsole/power_change()
+obj/machinery/body_scanconsole/power_change()
 	update_icon() //Health display for consoles with light and such.
 
-/obj/machinery/body_scanconsole/legacy_ex_act(severity)
+obj/machinery/body_scanconsole/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			//SN src = null
@@ -220,7 +220,7 @@
 		else
 	return
 
-/obj/machinery/body_scanconsole/proc/findscanner()
+obj/machinery/body_scanconsole/proc/findscanner()
 	spawn(5)
 		var/obj/machinery/bodyscanner/bodyscannernew = null
 		// Loop through every direction
@@ -233,14 +233,14 @@
 				return
 		return
 
-/obj/machinery/body_scanconsole/attack_ai(user as mob)
+obj/machinery/body_scanconsole/attack_ai(user as mob)
 	return attack_hand(user)
 
-/obj/machinery/body_scanconsole/attack_ghost(user as mob)
+obj/machinery/body_scanconsole/attack_ghost(user as mob)
 	. = ..()
 	return attack_hand(user)
 
-/obj/machinery/body_scanconsole/attack_hand(mob/user, list/params)
+obj/machinery/body_scanconsole/attack_hand(mob/user, list/params)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -257,7 +257,7 @@
 	if(scanner)
 		return nano_ui_interact(user)
 
-/obj/machinery/body_scanconsole/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/body_scanconsole/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 
 	data["connected"] = scanner ? 1 : 0
@@ -399,7 +399,7 @@
 		ui.set_auto_update(1)
 
 
-/obj/machinery/body_scanconsole/Topic(href, href_list)
+obj/machinery/body_scanconsole/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -430,7 +430,7 @@
 
 
 
-/obj/machinery/body_scanconsole/proc/generate_printing_text()
+obj/machinery/body_scanconsole/proc/generate_printing_text()
 	var/dat = ""
 
 	if(scanner)
@@ -608,7 +608,7 @@
 
 	printing_text = dat
 
-/obj/machinery/bodyscanner/proc/get_occupant_data_vr(list/incoming,mob/living/carbon/human/H)
+obj/machinery/bodyscanner/proc/get_occupant_data_vr(list/incoming,mob/living/carbon/human/H)
 	var/humanprey = 0
 	var/livingprey = 0
 	var/objectprey = 0
@@ -630,7 +630,7 @@
 
 	return incoming
 
-/obj/machinery/bodyscanner/update_icon()
+obj/machinery/bodyscanner/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_off"
 		set_light(0)
@@ -657,7 +657,7 @@
 		if(console)
 			console.update_icon(h_ratio)
 
-/obj/machinery/body_scanconsole/update_icon(var/h_ratio)
+obj/machinery/body_scanconsole/update_icon(var/h_ratio)
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_terminal_off"
 		set_light(0)

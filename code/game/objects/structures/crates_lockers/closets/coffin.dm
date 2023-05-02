@@ -1,4 +1,4 @@
-/obj/structure/closet/coffin
+obj/structure/closet/coffin
 	name = "coffin"
 	desc = "It's a burial receptacle for the dearly departed."
 	icon_state = "coffin"
@@ -7,19 +7,19 @@
 	seal_tool = /obj/item/tool/screwdriver
 	breakout_sound = 'sound/weapons/tablehit1.ogg'
 
-/obj/structure/closet/coffin/comfy
+obj/structure/closet/coffin/comfy
 	name = "extra comfortable coffin"
 	desc = "It's a burial receptacle for the dearly departed. This one has been modified with new upholstery to make it more comfortable to lay in."
 	icon = 'icons/obj/closets/coffin.dmi'
 
-/obj/structure/closet/coffin/update_icon()
+obj/structure/closet/coffin/update_icon()
 	if(!opened)
 		icon_state = icon_closed
 	else
 		icon_state = icon_opened
 
 /* Graves */
-/obj/structure/closet/grave
+obj/structure/closet/grave
 	name = "grave"
 	desc = "Dirt."
 	icon_state = "grave"
@@ -32,7 +32,7 @@
 	opened = 1
 	color = "#c2b29f"
 
-/obj/structure/closet/grave/attack_hand(mob/user, list/params)
+obj/structure/closet/grave/attack_hand(mob/user, list/params)
 	if(opened)
 		visible_message("<span class='notice'>[user] starts to climb into \the [src.name].</span>", \
 						"<span class='notice'>You start to lower yourself into \the [src.name].</span>")
@@ -45,7 +45,7 @@
 							"<span class='notice'>You stop climbing into \the [src.name].</span>")
 	return
 
-/obj/structure/closet/grave/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/closet/grave/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(opened && ismob(mover))
 		var/mob/M = mover
@@ -69,14 +69,14 @@
 				return TRUE
 	return TRUE	//Everything else can move over the graves
 
-/obj/structure/closet/grave/proc/fall_in(mob/living/L)	//Only called on humans for now, but still
+obj/structure/closet/grave/proc/fall_in(mob/living/L)	//Only called on humans for now, but still
 	L.afflict_paralyze(20 * 5)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/limb_damage = rand(5,25)
 		H.adjustBruteLoss(limb_damage)
 
-/obj/structure/closet/grave/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/closet/grave/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/shovel))
 			user.visible_message("<span class='notice'>[user] piles dirt into \the [src.name].</span>", \
@@ -145,19 +145,19 @@
 					return
 	return
 
-/obj/structure/closet/grave/close()
+obj/structure/closet/grave/close()
 	..()
 	if(!opened)
 		sealed = TRUE
 
-/obj/structure/closet/grave/open()
+obj/structure/closet/grave/open()
 	.=..()
 	alpha = 255	// Needed because of grave hiding
 
-/obj/structure/closet/grave/bullet_act(var/obj/projectile/P)
+obj/structure/closet/grave/bullet_act(var/obj/projectile/P)
 	return PROJECTILE_CONTINUE	// It's a hole in the ground, doesn't usually stop or even care about bullets
 
-/obj/structure/closet/grave/return_air_for_internal_lifeform(var/mob/living/L)
+obj/structure/closet/grave/return_air_for_internal_lifeform(var/mob/living/L)
 	var/gasid = /datum/gas/carbon_dioxide
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -169,12 +169,12 @@
 	grave_breath.temperature = (above_air.temperature) - 30	//Underground
 	return grave_breath
 
-/obj/structure/closet/grave/sand
+obj/structure/closet/grave/sand
 	name = "grave"
 	desc = "Sand."
 	color = "#fde39b"
 
-/obj/structure/closet/grave/snow
+obj/structure/closet/grave/snow
 	name = "grave"
 	desc = "Snow."
 	color = "#e6f3fc"

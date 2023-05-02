@@ -11,7 +11,7 @@
  * Bookcase
  */
 
-/obj/structure/bookcase
+obj/structure/bookcase
 	name = "bookcase"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book-0"
@@ -19,14 +19,14 @@
 	density = 1
 	opacity = 1
 
-/obj/structure/bookcase/Initialize(mapload)
+obj/structure/bookcase/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
 			I.loc = src
 	update_icon()
 
-/obj/structure/bookcase/attackby(obj/item/O as obj, mob/user as mob)
+obj/structure/bookcase/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/book))
 		if(!user.attempt_insert_item_for_installation(O, src))
 			return
@@ -54,7 +54,7 @@
 	else
 		..()
 
-/obj/structure/bookcase/attack_hand(mob/user, list/params)
+obj/structure/bookcase/attack_hand(mob/user, list/params)
 	if(contents.len)
 		var/obj/item/book/choice = input("Which book would you like to remove from the shelf?") as null|obj in contents
 		if(choice)
@@ -67,7 +67,7 @@
 				choice.loc = get_turf(src)
 			update_icon()
 
-/obj/structure/bookcase/legacy_ex_act(severity)
+obj/structure/bookcase/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			for(var/obj/item/book/b in contents)
@@ -89,7 +89,7 @@
 		else
 	return
 
-/obj/structure/bookcase/update_icon()
+obj/structure/bookcase/update_icon()
 	if(contents.len < 5)
 		icon_state = "book-[contents.len]"
 	else
@@ -97,10 +97,10 @@
 
 
 
-/obj/structure/bookcase/manuals/medical
+obj/structure/bookcase/manuals/medical
 	name = "Medical Manuals bookcase"
 
-/obj/structure/bookcase/manuals/medical/New()
+obj/structure/bookcase/manuals/medical/New()
 	..()
 	new /obj/item/book/manual/medical_cloning(src)
 	new /obj/item/book/manual/medical_diagnostics_manual(src)
@@ -109,10 +109,10 @@
 	update_icon()
 
 
-/obj/structure/bookcase/manuals/engineering
+obj/structure/bookcase/manuals/engineering
 	name = "Engineering Manuals bookcase"
 
-/obj/structure/bookcase/manuals/engineering/New()
+obj/structure/bookcase/manuals/engineering/New()
 	..()
 	new /obj/item/book/manual/engineering_construction(src)
 	new /obj/item/book/manual/engineering_particle_accelerator(src)
@@ -123,19 +123,19 @@
 	new /obj/item/book/manual/evaguide(src)
 	update_icon()
 
-/obj/structure/bookcase/manuals/research_and_development
+obj/structure/bookcase/manuals/research_and_development
 	name = "R&D Manuals bookcase"
 
-/obj/structure/bookcase/manuals/research_and_development/New()
+obj/structure/bookcase/manuals/research_and_development/New()
 	..()
 	new /obj/item/book/manual/research_and_development(src)
 	update_icon()
 
-/obj/structure/bookcase/legal/sop
+obj/structure/bookcase/legal/sop
 	name = "Legal Manuals bookcase"
 	icon_state = "legalbook-0"
 
-/obj/structure/bookcase/legal/sop/New()
+obj/structure/bookcase/legal/sop/New()
 	..()
 	new /obj/item/book/manual/legal/sop_vol1
 	new /obj/item/book/manual/legal/sop_vol2
@@ -150,11 +150,11 @@
 	new /obj/item/book/manual/legal/sop_vol5_7
 	update_icon()
 
-/obj/structure/bookcase/legal/corpreg
+obj/structure/bookcase/legal/corpreg
 	name = "Corporate Regulations bookcase"
 	icon_state = "legalbook-0"
 
-/obj/structure/bookcase/legal/corpreg/New()
+obj/structure/bookcase/legal/corpreg/New()
 	..()
 	new /obj/item/book/manual/legal/cr_vol1
 	new /obj/item/book/manual/legal/cr_vol2
@@ -163,11 +163,11 @@
 	new /obj/item/book/manual/legal/cr_vol5
 	update_icon()
 
-/obj/structure/bookcase/legal/combo
+obj/structure/bookcase/legal/combo
 	name = "Policy Reference bookcase"
 	icon_state = "legalbook-0"
 
-/obj/structure/bookcase/legal/combo/New()
+obj/structure/bookcase/legal/combo/New()
 	..()
 	new /obj/item/book/manual/legal/sop_vol1
 	new /obj/item/book/manual/legal/sop_vol2
@@ -187,7 +187,7 @@
 	new /obj/item/book/manual/legal/cr_vol5
 	update_icon()
 
-/obj/structure/bookcase/legal/update_icon()
+obj/structure/bookcase/legal/update_icon()
 	if(contents.len < 5)
 		icon_state = "legalbook-[contents.len]"
 	else
@@ -196,7 +196,7 @@
 /*
  * Barcode Scanner
  */
-/obj/item/barcodescanner
+obj/item/barcodescanner
 	name = "barcode scanner"
 	icon = 'icons/modules/library/items/barcode_scanner.dmi'
 	icon_state ="scanner"
@@ -208,7 +208,7 @@
 	var/obj/item/book/book	 //  Currently scanned book
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
-/obj/item/barcodescanner/attack_self(mob/user)
+obj/item/barcodescanner/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

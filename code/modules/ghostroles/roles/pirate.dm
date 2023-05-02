@@ -1,4 +1,4 @@
-/datum/role/ghostrole/pirate
+datum/role/ghostrole/pirate
 	name = "Pirate"
 	assigned_role = "Pirate"
 	desc = "You are a pirate! A legendary, if oft maligned, profession."
@@ -6,7 +6,7 @@
 	important_info = "You are a member of a pirate crew. You pillage, kidnap, and steal for profit and pleasure. Although you recently moved into this system, it is owned by NanoTrasen. A Corporate presence provides plenty of opportunities for plunder, but beware! Certain areas are considered off limits, even to pirates. Only a fool would anger Nebula Gas by raiding their station, although NebGas vessels in transit are fair game. Attempting to visit NanoTrasen's primary facility is equally dangerous and ill-advised. Focusing on isolated vessels in flight or expeditions on planets may be the most reliable way to score precious booty. Proteans and Xenochimerae are currently excluded from being Pirates, if you own either Whitelist."
 	instantiator = /datum/ghostrole_instantiator/human/player_static/pirate
 
-/datum/role/ghostrole/pirate/Instantiate(client/C, atom/loc, list/params)
+datum/role/ghostrole/pirate/Instantiate(client/C, atom/loc, list/params)
 	var/rp = rand(1, 3)
 	switch(rp)
 		if(1)
@@ -17,7 +17,7 @@
 			params["fluff"] = "professional"
 	return ..()
 
-/datum/role/ghostrole/pirate/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
+datum/role/ghostrole/pirate/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
 	var/flavour_text = "<i>The sound of something dripping on the top of your bunk unit wakes you up. Spears of light shine in through old \
 	bullet holes. The unit's door slides back with the push of a button, letting stale recycled air rush out. A yellowed poster on the wall \
@@ -42,12 +42,12 @@
 			because you were born to be here, whether this is the band you started out with or not doesn't matter. All that matters to you is the job.</i>"
 	to_chat(created, flavour_text)
 
-/datum/ghostrole_instantiator/human/player_static/pirate
+datum/ghostrole_instantiator/human/player_static/pirate
 	//species_restricted = /datum/species/protean
 	equip_loadout = FALSE
 	equip_traits = FALSE
 
-/datum/ghostrole_instantiator/human/player_static/pirate/GetOutfit(client/C, mob/M, list/params)
+datum/ghostrole_instantiator/human/player_static/pirate/GetOutfit(client/C, mob/M, list/params)
 	var/datum/outfit/outfit = ..()
 	//var/mob/M = /mob/living/carbon/human/H
 	M.faction = "pirate"
@@ -60,7 +60,7 @@
 			return /datum/outfit/pirate/professional
 	return outfit
 
-/obj/structure/ghost_role_spawner/pirate
+obj/structure/ghost_role_spawner/pirate
 	name = "pirate bunk"
 	desc = "An aged personal bunk unit. Prized in communal living areas for their enclosed nature, units like this can be locked from the inside and outside, allowing the relatively safe storage of personal effects."
 	icon = 'icons/obj/structures.dmi'
@@ -72,7 +72,7 @@
 
 //This is from the original untranslated DM. It still isn't translated, but this is neat and maybe we should use it sometime? It seems worth retaining for now.
 /*
-/obj/structure/ghost_role_spawner/pirate
+obj/structure/ghost_role_spawner/pirate
 	name = "space pirate sleeper"
 	desc = "A cryo sleeper smelling faintly of rum. The sleeper looks unstable. <i>Perhaps the pirate within can be killed with the right tools...</i>"
 	icon = 'icons/obj/machines/sleeper.dmi'
@@ -82,7 +82,7 @@
 		"rank" = "Mate"
 	)
 
-/obj/structure/ghost_role_spawner/pirate/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
+obj/structure/ghost_role_spawner/pirate/on_attack_hand(mob/living/user, act_intent = user.a_intent, unarmed_attack_flags)
 	. = ..()
 	if(.)
 		return
@@ -91,7 +91,7 @@
 	else
 		to_chat(user, "<span class='notice'>If you want to kill the pirate off, something to pry open the sleeper might be the best way to do it.</span>")
 
-/obj/structure/ghost_role_spawner/pirate/attackby(obj/item/W, mob/user, params)
+obj/structure/ghost_role_spawner/pirate/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
 		if(user.mind.has_antag_datum(/datum/antagonist/pirate))
 			to_chat(user,"<span class='warning'>Why would you want to do that to your shipmate? That'd kill them.</span>")
@@ -115,30 +115,30 @@
 	else
 		..()
 
-/obj/effect/mob_spawn/human/pirate
+obj/effect/mob_spawn/human/pirate
 	mob_species = /datum/species/skeleton/space
 	outfit = /datum/outfit/pirate/space
 
-/obj/effect/mob_spawn/human/pirate/corpse //occurs when someone pries a pirate out of their sleeper.
+obj/effect/mob_spawn/human/pirate/corpse //occurs when someone pries a pirate out of their sleeper.
 	mob_name = "Dead Space Pirate"
 	death = TRUE
 	instant = TRUE
 	random = FALSE
 
-/obj/effect/mob_spawn/human/pirate/corpse/captain
+obj/effect/mob_spawn/human/pirate/corpse/captain
 	mob_name = "Dead Space Pirate Captain"
 	outfit = /datum/outfit/pirate/space/captain
 
-/obj/structure/ghost_role_spawner/pirate/Destroy()
+obj/structure/ghost_role_spawner/pirate/Destroy()
 	new /obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
 
-/obj/structure/ghost_role_spawner/pirate/captain
+obj/structure/ghost_role_spawner/pirate/captain
 	role_params = list(
 		"rank" = "Captain"
 	)
 
-/obj/structure/ghost_role_spawner/pirate/gunner
+obj/structure/ghost_role_spawner/pirate/gunner
 	role_params = list(
 		"rank" = "Gunner"
 	)

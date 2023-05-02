@@ -1,4 +1,4 @@
-/datum/computer_file/program/ntnetmonitor
+datum/computer_file/program/ntnetmonitor
 	filename = "ntmonitor"
 	filedesc = "NTNet Diagnostics and Monitoring"
 	program_icon_state = "comm_monitor"
@@ -11,11 +11,11 @@
 	available_on_ntnet = 1
 	nanomodule_path = /datum/nano_module/computer_ntnetmonitor/
 
-/datum/nano_module/computer_ntnetmonitor
+datum/nano_module/computer_ntnetmonitor
 	name = "NTNet Diagnostics and Monitoring"
 	//available_to_ai = TRUE
 
-/datum/nano_module/computer_ntnetmonitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/computer_ntnetmonitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	if(!ntnet_global)
 		return
 	var/list/data = host.initial_data()
@@ -44,7 +44,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/nano_module/computer_ntnetmonitor/Topic(href, href_list, state)
+datum/nano_module/computer_ntnetmonitor/Topic(href, href_list, state)
 	var/mob/user = usr
 	if(..())
 		return 1

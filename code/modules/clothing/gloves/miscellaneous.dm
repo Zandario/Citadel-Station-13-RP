@@ -1,17 +1,17 @@
-/obj/item/clothing/gloves/captain
+obj/item/clothing/gloves/captain
 	desc = "Regal blue gloves, with a nice gold trim. Swanky."
 	name = "Facility Director's gloves"
 	icon_state = "captain"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "blue", SLOT_ID_LEFT_HAND = "blue")
 
-/obj/item/clothing/gloves/cyborg
+obj/item/clothing/gloves/cyborg
 	desc = "beep boop borp"
 	name = "cyborg gloves"
 	icon_state = "black"
 	item_state = "r_hands"
 	siemens_coefficient = 1.0
 
-/obj/item/clothing/gloves/forensic
+obj/item/clothing/gloves/forensic
 	desc = "Specially made gloves for forensic technicians. The luminescent threads woven into the material stand out under scrutiny."
 	name = "forensic gloves"
 	icon_state = "forensic"
@@ -23,7 +23,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/swat
+obj/item/clothing/gloves/swat
 	desc = "These tactical gloves are somewhat fire and impact-resistant."
 	name = "\improper SWAT Gloves"
 	icon_state = "swat"
@@ -35,7 +35,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/combat //Combined effect of SWAT gloves and insulated gloves
+obj/item/clothing/gloves/combat //Combined effect of SWAT gloves and insulated gloves
 	desc = "These tactical gloves are somewhat fire and impact resistant."
 	name = "combat gloves"
 	icon_state = "swat"
@@ -48,13 +48,13 @@
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor_type = /datum/armor/gloves/combat
 
-/obj/item/clothing/gloves/combat/advanced //punchy combat glubbs
+obj/item/clothing/gloves/combat/advanced //punchy combat glubbs
 	name = "advanced combat gloves"
 	desc = "These advanced tactical gloves are fire and impact resistant, with the addition of weighted knuckles and durable synthetics."
 	damage_force = 5
 	punch_force = 5
 
-/obj/item/clothing/gloves/sterile
+obj/item/clothing/gloves/sterile
 	name = "sterile gloves"
 	desc = "Sterile gloves."
 	icon_state = "latex"
@@ -72,17 +72,17 @@
 	user.visible_message("<span class='notice'>\The [src] expands!</span>")
 	qdel(src)*/
 
-/obj/item/clothing/gloves/sterile/latex
+obj/item/clothing/gloves/sterile/latex
 	name = "latex gloves"
 	desc = "Sterile latex gloves."
 
-/obj/item/clothing/gloves/sterile/nitrile
+obj/item/clothing/gloves/sterile/nitrile
 	name = "nitrile gloves"
 	desc = "Sterile nitrile gloves"
 	icon_state = "nitrile"
 	item_state = "nitrile"
 
-/obj/item/clothing/gloves/botanic_leather
+obj/item/clothing/gloves/botanic_leather
 	desc = "These leather work gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin."
 	name = "botanist's leather gloves"
 	icon_state = "leather"
@@ -92,14 +92,14 @@
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
 
-/obj/item/clothing/gloves/duty
+obj/item/clothing/gloves/duty
 	desc = "These brown duty gloves are made from a durable synthetic."
 	name = "work gloves"
 	icon_state = "work"
 	item_state = "wgloves"
 	armor_type = /datum/armor/gloves/padded
 
-/obj/item/clothing/gloves/tactical
+obj/item/clothing/gloves/tactical
 	desc = "These brown tactical gloves are made from a durable synthetic, and have hardened knuckles."
 	name = "tactical gloves"
 	icon_state = "work"
@@ -110,7 +110,7 @@
 	permeability_coefficient = 0.05
 	armor_type = /datum/armor/gloves/combat
 
-/obj/item/clothing/gloves/vox
+obj/item/clothing/gloves/vox
 	desc = "These bizarre gauntlets seem to be fitted for... bird claws?"
 	name = "insulated gauntlets"
 	icon_state = "gloves-vox"
@@ -127,7 +127,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/knuckledusters
+obj/item/clothing/gloves/knuckledusters
 	name = "knuckle dusters"
 	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
 	icon_state = "knuckledusters"
@@ -142,7 +142,7 @@
 	drop_sound = 'sound/items/drop/metalboots.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
-/obj/item/clothing/gloves/ranger
+obj/item/clothing/gloves/ranger
 	var/glovecolor = "white"
 	name = "ranger gloves"
 	desc = "The gloves of the Rangers are the least memorable part. They're not even insulated in the show, so children \
@@ -150,31 +150,31 @@
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_gloves"
 
-/obj/item/clothing/gloves/ranger/Initialize(mapload)
+obj/item/clothing/gloves/ranger/Initialize(mapload)
 	. = ..()
 	if(icon_state == "ranger_gloves")
 		name = "[glovecolor] ranger gloves"
 		icon_state = "[glovecolor]_ranger_gloves"
 
-/obj/item/clothing/gloves/ranger/black
+obj/item/clothing/gloves/ranger/black
 	glovecolor = "black"
 
-/obj/item/clothing/gloves/ranger/pink
+obj/item/clothing/gloves/ranger/pink
 	glovecolor = "pink"
 
-/obj/item/clothing/gloves/ranger/green
+obj/item/clothing/gloves/ranger/green
 	glovecolor = "green"
 
-/obj/item/clothing/gloves/ranger/cyan
+obj/item/clothing/gloves/ranger/cyan
 	glovecolor = "cyan"
 
-/obj/item/clothing/gloves/ranger/orange
+obj/item/clothing/gloves/ranger/orange
 	glovecolor = "orange"
 
-/obj/item/clothing/gloves/ranger/yellow
+obj/item/clothing/gloves/ranger/yellow
 	glovecolor = "yellow"
 
-/obj/item/clothing/gloves/swat/para //Combined effect of SWAT gloves and insulated gloves
+obj/item/clothing/gloves/swat/para //Combined effect of SWAT gloves and insulated gloves
 	desc = "PARA gloves"
 	name = "PMD issued gloves, stamped with protective seals and spells."
 	icon_state = "para_ert_gloves"
@@ -183,7 +183,7 @@
 
 	var/blessed = FALSE
 
-/obj/item/clothing/gloves/swat/para/attack_self(mob/user)
+obj/item/clothing/gloves/swat/para/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -199,14 +199,14 @@
 	if(!user.mind.isholy)
 		to_chat(user, "<font color='red'>You're not sure what language this is.</font>")
 
-/obj/item/clothing/gloves/bountyskin
+obj/item/clothing/gloves/bountyskin
 	name = "bounty hunter skinsuit (gloves)"
 	desc = "These gloves were originally integrated into the bounty hunter skinsuit. Later iterations were made removable for practicality."
 	icon_state = "bountyskin"
 
 /* Full port pending. Some of these are nuts.
 
-/obj/item/clothing/gloves/fingerless/pugilist
+obj/item/clothing/gloves/fingerless/pugilist
 	name = "armwraps"
 	desc = "A series of armwraps. Makes you pretty keen to start punching people."
 	icon_state = "armwraps"
@@ -227,7 +227,7 @@
 	///Secondary trait added by the gloves to the user on wear.
 	var/secondary_trait = TRAIT_FEARLESS //what are you, a coward?
 
-/obj/item/clothing/gloves/fingerless/pugilist/equipped(mob/user, slot, flags)
+obj/item/clothing/gloves/fingerless/pugilist/equipped(mob/user, slot, flags)
 	. = ..()
 	if(slot == SLOT_GLOVES)
 		wornonce = TRUE
@@ -236,7 +236,7 @@
 			return
 		use_buffs(user, TRUE)
 
-/obj/item/clothing/gloves/fingerless/pugilist/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/gloves/fingerless/pugilist/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(wornonce)
 		wornonce = FALSE
@@ -244,7 +244,7 @@
 			return
 		use_buffs(user, FALSE)
 
-/obj/item/clothing/gloves/fingerless/pugilist/proc/use_buffs(mob/user, buff)
+obj/item/clothing/gloves/fingerless/pugilist/proc/use_buffs(mob/user, buff)
 	if(buff) // tarukaja
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -269,19 +269,19 @@
 		if(!silent)
 			to_chat(user, "<span class='warning'>With [src] off of your arms, you feel less ready to punch things.</span>")
 
-/obj/item/clothing/gloves/fingerless/pugilist/crafted
+obj/item/clothing/gloves/fingerless/pugilist/crafted
 	unique_reskin = list("Short" = "armwraps",
 						"Extended" = "armwraps_extended"
 						)
 
-/obj/item/clothing/gloves/fingerless/pugilist/crafted/reskin_obj(mob/M)
+obj/item/clothing/gloves/fingerless/pugilist/crafted/reskin_obj(mob/M)
 	. = ..()
 	if(icon_state == "armwraps_extended")
 		item_state = "armwraps_extended"
 	else
 		return
 
-/obj/item/clothing/gloves/fingerless/pugilist/chaplain
+obj/item/clothing/gloves/fingerless/pugilist/chaplain
 	name = "armwraps of unyielding resolve"
 	desc = "A series of armwraps, soaked in holy water. Makes you pretty keen to smite evil magic users."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -289,17 +289,17 @@
 	secondary_trait = TRAIT_ANTIMAGIC
 	var/chaplain_spawnable = TRUE
 
-/obj/item/clothing/gloves/fingerless/pugilist/chaplain/Initialize(mapload)
+obj/item/clothing/gloves/fingerless/pugilist/chaplain/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
-/obj/item/clothing/gloves/fingerless/pugilist/magic
+obj/item/clothing/gloves/fingerless/pugilist/magic
 	name = "armwraps of mighty fists"
 	desc = "A series of armwraps. Makes you pretty keen to go adventuring and punch dragons."
 	resistance_flags = FIRE_PROOF | ACID_PROOF //magic items are harder to damage with energy this is a dnd joke okay?
 	enhancement = 1 //They're +1!
 
-/obj/item/clothing/gloves/fingerless/pugilist/hungryghost
+obj/item/clothing/gloves/fingerless/pugilist/hungryghost
 	name = "armwraps of the hungry ghost"
 	desc = "A series of blackened, bloodstained armwraps stitched with strange geometric symbols. Makes you pretty keen to commit horrible acts against the living through bloody carnage."
 	icon_state = "narsiearmwraps"
@@ -309,7 +309,7 @@
 	enhancement = 3
 	secondary_trait = TRAIT_KI_VAMPIRE
 
-/obj/item/clothing/gloves/fingerless/pugilist/brassmountain
+obj/item/clothing/gloves/fingerless/pugilist/brassmountain
 	name = "armbands of the brass mountain"
 	desc = "A series of scolding hot brass armbands. Makes you pretty keen to bring the light to the unenlightened through unmitigated violence."
 	icon_state = "ratvararmwraps"
@@ -319,7 +319,7 @@
 	enhancement = 4 //The artifice of Ratvar is unmatched except when it is.
 	secondary_trait = TRAIT_STRONG_GRABBER
 
-/obj/item/clothing/gloves/fingerless/pugilist/rapid
+obj/item/clothing/gloves/fingerless/pugilist/rapid
 	name = "Bands of the North Star"
 	desc = "The armbands of a deadly martial artist. Makes you pretty keen to put an end to evil in an extremely violent manner."
 	icon_state = "rapid"
@@ -329,11 +329,11 @@
 	var/warcry = "AT"
 	secondary_trait = TRAIT_NOSOFTCRIT //basically extra health
 
-/obj/item/clothing/gloves/fingerless/pugilist/rapid/Initialize(mapload)
+obj/item/clothing/gloves/fingerless/pugilist/rapid/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_ITEM_NODROP, GLOVE_TRAIT)
 
-/obj/item/clothing/gloves/fingerless/pugilist/rapid/Touch(atom/target, proximity = TRUE)
+obj/item/clothing/gloves/fingerless/pugilist/rapid/Touch(atom/target, proximity = TRUE)
 	if(!isliving(target))
 		return
 
@@ -344,12 +344,12 @@
 
 	return NO_AUTO_CLICKDELAY_HANDLING | ATTACK_IGNORE_ACTION
 
-/obj/item/clothing/gloves/fingerless/pugilist/rapid/AltClick(mob/user)
+obj/item/clothing/gloves/fingerless/pugilist/rapid/AltClick(mob/user)
 	var/input = stripped_input(user,"What do you want your battlecry to be? Max length of 6 characters.", ,"", 7)
 	if(input)
 		warcry = input
 
-/obj/item/clothing/gloves/fingerless/pugilist/hug
+obj/item/clothing/gloves/fingerless/pugilist/hug
 	name = "Hugs of the North Star"
 	desc = "The armbands of a humble friend. Makes you pretty keen to go let everyone know how much you appreciate them!"
 	icon_state = "rapid"
@@ -357,7 +357,7 @@
 	enhancement = 0
 	secondary_trait = TRAIT_PACIFISM //You are only here to hug and be friends!
 
-/obj/item/clothing/gloves/fingerless/pugilist/hug/Touch(mob/target, proximity = TRUE)
+obj/item/clothing/gloves/fingerless/pugilist/hug/Touch(mob/target, proximity = TRUE)
 	if(!isliving(target))
 		return
 
@@ -372,7 +372,7 @@
 
 	return NO_AUTO_CLICKDELAY_HANDLING | ATTACK_IGNORE_ACTION
 
-/obj/item/clothing/gloves/fingerless/ablative
+obj/item/clothing/gloves/fingerless/ablative
 	name = "ablative armwraps"
 	desc = "Armwraps made out of a highly durable, reflective metal. Has the side effect of absorbing shocks."
 	siemens_coefficient = 0
@@ -381,35 +381,35 @@
 	block_parry_data = /datum/block_parry_data/ablative_armwraps
 	var/wornonce = FALSE
 
-/obj/item/clothing/gloves/fingerless/ablative/proc/get_component_parry_data(datum/source, parrying_method, datum/parrying_item_mob_or_art, list/backup_items, list/override)
+obj/item/clothing/gloves/fingerless/ablative/proc/get_component_parry_data(datum/source, parrying_method, datum/parrying_item_mob_or_art, list/backup_items, list/override)
 	if(parrying_method && !(parrying_method == UNARMED_PARRY))
 		return
 	override[src] = ITEM_PARRY
 
-/obj/item/clothing/gloves/fingerless/ablative/equipped(mob/user, slot, flags)
+obj/item/clothing/gloves/fingerless/ablative/equipped(mob/user, slot, flags)
 	. = ..()
 	if(worn_slot == SLOT_GLOVES)
 		RegisterSignal(user, COMSIG_LIVING_ACTIVE_PARRY_START, .proc/get_component_parry_data)
 		wornonce = TRUE
 
-/obj/item/clothing/gloves/fingerless/ablative/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/gloves/fingerless/ablative/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(wornonce)
 		UnregisterSignal(user, COMSIG_LIVING_ACTIVE_PARRY_START)
 		wornonce = FALSE
 
-/obj/item/clothing/gloves/fingerless/ablative/can_active_parry(mob/user)
+obj/item/clothing/gloves/fingerless/ablative/can_active_parry(mob/user)
 	var/mob/living/carbon/human/H = user
 	if(!istype(H))
 		return FALSE
 	return src == H.gloves
 
-/obj/item/clothing/gloves/fingerless/ablative/on_active_parry(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, list/block_return, parry_efficiency, parry_time)
+obj/item/clothing/gloves/fingerless/ablative/on_active_parry(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, list/block_return, parry_efficiency, parry_time)
 	. = ..()
 	if(parry_efficiency > 0)
 		owner.visible_message("<span class='warning'>[owner] deflects \the [object] with their armwraps!</span>")
 
-/datum/block_parry_data/ablative_armwraps
+datum/block_parry_data/ablative_armwraps
 	parry_stamina_cost = 4
 	parry_attack_types = ATTACK_TYPE_UNARMED | ATTACK_TYPE_PROJECTILE | ATTACK_TYPE_TACKLE | ATTACK_TYPE_THROWN | ATTACK_TYPE_MELEE
 	parry_flags = NONE
@@ -433,7 +433,7 @@
 	parry_failed_stagger_duration = 1.5 SECONDS
 	parry_cooldown = 0
 
-/obj/item/clothing/gloves/fingerless/pugilist/mauler
+obj/item/clothing/gloves/fingerless/pugilist/mauler
 	name = "mauler gauntlets"
 	desc = "Plastitanium gauntlets coated in a thick nano-weave carbon material and implanted with nanite injectors that boost the wielder's strength six-fold."
 	icon_state = "mauler_gauntlets"
@@ -453,7 +453,7 @@
 	inherited_trait = TRAIT_CHUNKYFINGERS // your fingers are fat because the gloves are
 	secondary_trait = TRAIT_MAULER // commit table slam
 
-/obj/item/clothing/gloves/fingerless/pugilist/mauler/equipped(mob/user, slot, flags)
+obj/item/clothing/gloves/fingerless/pugilist/mauler/equipped(mob/user, slot, flags)
 	. = ..()
 	if(slot == SLOT_GLOVES)
 		wornonce = TRUE
@@ -461,7 +461,7 @@
 			return
 		use_mauls(user, TRUE)
 
-/obj/item/clothing/gloves/fingerless/pugilist/mauler/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/gloves/fingerless/pugilist/mauler/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(wornonce)
 		wornonce = FALSE
@@ -469,7 +469,7 @@
 			return
 		use_mauls(user, FALSE)
 
-/obj/item/clothing/gloves/fingerless/pugilist/mauler/proc/use_mauls(mob/user, maul)
+obj/item/clothing/gloves/fingerless/pugilist/mauler/proc/use_mauls(mob/user, maul)
 	if(maul)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -477,7 +477,7 @@
 			if(silent)
 				to_chat(H, "<span class='danger'>You feel prickles around your wrists as [src] cling to them - strength courses through your veins!</span>")
 
-/obj/item/clothing/gloves/tackler
+obj/item/clothing/gloves/tackler
 	name = "gripper gloves"
 	desc = "Special gloves that manipulate the blood vessels in the wearer's hands, granting them the ability to launch headfirst into walls."
 	icon_state = "tackle"
@@ -502,7 +502,7 @@
 	/// See: [/datum/component/tackler/var/skill_mod]
 	var/skill_mod = 1
 
-/obj/item/clothing/gloves/tackler/equipped(mob/user, slot, flags)
+obj/item/clothing/gloves/tackler/equipped(mob/user, slot, flags)
 	. = ..()
 	if(!ishuman(user))
 		return
@@ -513,12 +513,12 @@
 		else
 			qdel(tackler) // Only wearing it!
 
-/obj/item/clothing/gloves/tackler/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/gloves/tackler/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(tackler)
 		qdel(tackler)
 
-/obj/item/clothing/gloves/tackler/dolphin
+obj/item/clothing/gloves/tackler/dolphin
 	name = "dolphin gloves"
 	desc = "Sleek, aerodynamic gripper gloves that are less effective at actually performing takedowns, but more effective at letting the user sail through the hallways and cause accidents."
 	icon_state = "tackledolphin"
@@ -531,7 +531,7 @@
 	min_distance = 2
 	skill_mod = -2
 
-/obj/item/clothing/gloves/tackler/combat
+obj/item/clothing/gloves/tackler/combat
 	name = "gorilla gloves"
 	desc = "Premium quality combative gloves, heavily reinforced to give the user an edge in close combat tackles, though they are more taxing to use than normal gripper gloves. Fireproof to boot!"
 	icon_state = "combat"
@@ -549,7 +549,7 @@
 	resistance_flags = NONE
 	strip_mod = 1.2 // because apparently black gloves had this
 
-/obj/item/clothing/gloves/tackler/combat/goliath
+obj/item/clothing/gloves/tackler/combat/goliath
 	name = "goliath gloves"
 	desc = "Rudimentary tackling gloves. The goliath hide makes it great for grappling with targets, while also being fireproof."
 	icon = 'icons/obj/mining.dmi'
@@ -563,14 +563,14 @@
 	min_distance = 2
 	skill_mod = 1
 
-/obj/item/clothing/gloves/tackler/combat/insulated
+obj/item/clothing/gloves/tackler/combat/insulated
 	name = "guerrilla gloves"
 	desc = "Superior quality combative gloves, good for performing tackle takedowns as well as absorbing electrical shocks."
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	strip_mod = 1.5 // and combat gloves had this??
 
-/obj/item/clothing/gloves/tackler/combat/insulated/infiltrator
+obj/item/clothing/gloves/tackler/combat/insulated/infiltrator
 	name = "insidious guerrilla gloves"
 	desc = "Specialized combat gloves for carrying people around. Transfers tactical kidnapping and tackling knowledge to the user via the use of nanochips."
 	icon_state = "infiltrator"
@@ -580,16 +580,16 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/carrytrait = TRAIT_QUICKER_CARRY
 
-/obj/item/clothing/gloves/tackler/combat/insulated/infiltrator/equipped(mob/user, slot, flags)
+obj/item/clothing/gloves/tackler/combat/insulated/infiltrator/equipped(mob/user, slot, flags)
 	. = ..()
 	if(slot == SLOT_GLOVES)
 		ADD_TRAIT(user, carrytrait, GLOVE_TRAIT)
 
-/obj/item/clothing/gloves/tackler/combat/insulated/infiltrator/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/gloves/tackler/combat/insulated/infiltrator/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	REMOVE_TRAIT(user, carrytrait, GLOVE_TRAIT)
 
-/obj/item/clothing/gloves/tackler/rocket
+obj/item/clothing/gloves/tackler/rocket
 	name = "rocket gloves"
 	desc = "The ultimate in high risk, high reward, perfect for when you need to stop a criminal from fifty feet away or die trying. Banned in most Spinward gridiron football and rugby leagues."
 	icon_state = "tacklerocket"
@@ -602,7 +602,7 @@
 	tackle_speed = 6
 	skill_mod = 7
 
-/obj/item/clothing/gloves/tackler/offbrand
+obj/item/clothing/gloves/tackler/offbrand
 	name = "improvised gripper gloves"
 	desc = "Ratty looking fingerless gloves wrapped with sticky tape. Beware anyone wearing these, for they clearly have no shame and nothing to lose."
 	icon_state = "fingerless"
@@ -614,7 +614,7 @@
 	skill_mod = -1
 */
 
-/obj/item/clothing/gloves/goliath
+obj/item/clothing/gloves/goliath
 	name = "goliath hide gloves"
 	desc = "Goliath hide is well recognized among the Scori for its resistance to heat and durability. Items fashioned out of it, like these hide gloves, are frequently used by craftsmen."
 	icon_state = "goligloves"
@@ -622,7 +622,7 @@
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
 
-/obj/item/clothing/gloves/bracer
+obj/item/clothing/gloves/bracer
 	name = "bone bracers"
 	desc = "For when you're expecting to get slapped on the wrist. Offers modest protection to your arms."
 	icon_state = "bracers"
@@ -631,13 +631,13 @@
 	heat_protection = HANDS
 	armor_type = /datum/armor/general/bone
 
-/obj/item/clothing/gloves/hasie
+obj/item/clothing/gloves/hasie
 	name = "Hasie fingerless gloves"
 	desc = "Fashioned from flexible, creamy white leather, one of these gloves has been dyed red. This duality provides the perfect asymmetric flair when paired with the matching Hasie skirt."
 	icon_state = "hasie"
 	fingerprint_chance = 100
 
-/obj/item/clothing/gloves/utility_fur_gloves
+obj/item/clothing/gloves/utility_fur_gloves
 	name = "Utility Fur Gloves"
 	desc = "Warm fur gloves to match the Utility Fur coat."
 	icon_state = "furug"

@@ -1,4 +1,4 @@
-/obj/machinery/atmospherics/portables_connector
+obj/machinery/atmospherics/portables_connector
 	icon = 'icons/atmos/connector.dmi'
 	icon_state = "map_connector"
 
@@ -21,27 +21,27 @@
 	use_power = USE_POWER_OFF
 	level = 1
 
-/obj/machinery/atmospherics/portables_connector/fuel
+obj/machinery/atmospherics/portables_connector/fuel
 	icon_state = "map_connector-fuel"
 	pipe_state = "connector-fuel"
 	icon_connect_type = "-fuel"
 	pipe_flags = PIPING_ONE_PER_TURF
 	connect_types = CONNECT_TYPE_FUEL
 
-/obj/machinery/atmospherics/portables_connector/aux
+obj/machinery/atmospherics/portables_connector/aux
 	icon_state = "map_connector-aux"
 	pipe_state = "connector-aux"
 	icon_connect_type = "-aux"
 	pipe_flags = PIPING_ONE_PER_TURF
 	connect_types = CONNECT_TYPE_AUX
 
-/obj/machinery/atmospherics/portables_connector/init_dir()
+obj/machinery/atmospherics/portables_connector/init_dir()
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/portables_connector/update_icon()
+obj/machinery/atmospherics/portables_connector/update_icon()
 	icon_state = "connector"
 
-/obj/machinery/atmospherics/portables_connector/update_underlays()
+obj/machinery/atmospherics/portables_connector/update_underlays()
 	if(..())
 		underlays.Cut()
 		var/turf/T = get_turf(src)
@@ -49,10 +49,10 @@
 			return
 		add_underlay(T, node, dir, node?.icon_connect_type)
 
-/obj/machinery/atmospherics/portables_connector/hide(var/i)
+obj/machinery/atmospherics/portables_connector/hide(var/i)
 	update_underlays()
 
-/obj/machinery/atmospherics/portables_connector/process(delta_time)
+obj/machinery/atmospherics/portables_connector/process(delta_time)
 	..()
 	if(!on)
 		return
@@ -64,10 +64,10 @@
 	return 1
 
 // Housekeeping and pipe network stuff below
-/obj/machinery/atmospherics/portables_connector/get_neighbor_nodes_for_init()
+obj/machinery/atmospherics/portables_connector/get_neighbor_nodes_for_init()
 	return list(node)
 
-/obj/machinery/atmospherics/portables_connector/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+obj/machinery/atmospherics/portables_connector/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node)
 		network = new_network
 
@@ -78,7 +78,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/portables_connector/Destroy()
+obj/machinery/atmospherics/portables_connector/Destroy()
 	. = ..()
 
 	if(connected_device)
@@ -90,7 +90,7 @@
 
 	node = null
 
-/obj/machinery/atmospherics/portables_connector/atmos_init()
+obj/machinery/atmospherics/portables_connector/atmos_init()
 	if(node)
 		return
 
@@ -104,14 +104,14 @@
 	update_icon()
 	update_underlays()
 
-/obj/machinery/atmospherics/portables_connector/build_network()
+obj/machinery/atmospherics/portables_connector/build_network()
 	if(!network && node)
 		network = new /datum/pipe_network()
 		network.normal_members += src
 		network.build_network(node, src)
 
 
-/obj/machinery/atmospherics/portables_connector/return_network(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/portables_connector/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
 	if(reference==node)
@@ -122,13 +122,13 @@
 
 	return null
 
-/obj/machinery/atmospherics/portables_connector/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
+obj/machinery/atmospherics/portables_connector/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 	if(network == old_network)
 		network = new_network
 
 	return 1
 
-/obj/machinery/atmospherics/portables_connector/return_network_air(datum/pipe_network/reference)
+obj/machinery/atmospherics/portables_connector/return_network_air(datum/pipe_network/reference)
 	var/list/results = list()
 
 	if(connected_device)
@@ -136,7 +136,7 @@
 
 	return results
 
-/obj/machinery/atmospherics/portables_connector/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/portables_connector/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node)
 		qdel(network)
 		node = null
@@ -146,7 +146,7 @@
 	return null
 
 
-/obj/machinery/atmospherics/portables_connector/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/atmospherics/portables_connector/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
 	if (connected_device)

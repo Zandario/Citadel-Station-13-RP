@@ -2,7 +2,7 @@
  *! Open Space
  *? "empty" turf that lets stuff fall thru it to the layer below.
  */
-/turf/simulated/open
+turf/simulated/open
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
 	icon_state = ""
@@ -12,37 +12,37 @@
 	allow_gas_overlays = FALSE
 	mz_flags = MZ_MIMIC_DEFAULTS | MZ_MIMIC_OVERWRITE | MZ_MIMIC_NO_AO | MZ_ATMOS_BOTH | MZ_OPEN_BOTH
 
-/turf/simulated/open/Initialize(mapload)
+turf/simulated/open/Initialize(mapload)
 	. = ..()
 	ASSERT(HasBelow(z))
 	queue()
 
-/turf/simulated/open/Entered(atom/movable/mover)
+turf/simulated/open/Entered(atom/movable/mover)
 	..()
 	if(mover.movement_type & MOVEMENT_GROUND)
 		mover.fall()
 
 // Called when thrown object lands on this turf.
-/turf/simulated/open/throw_landed(atom/movable/AM, datum/thrownthing/TT)
+turf/simulated/open/throw_landed(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	if(AM.movement_type & MOVEMENT_GROUND)
 		AM.fall()
 
-/turf/simulated/open/proc/queue()
+turf/simulated/open/proc/queue()
 	if(smoothing_flags & SMOOTH_QUEUED)
 		return
 	smoothing_flags |= SMOOTH_QUEUED
 
 //! We hijack smoothing flags.
-/turf/simulated/open/smooth_icon()
+turf/simulated/open/smooth_icon()
 	return // Nope.amv
 
 // Override to make sure nothing is hidden
-/turf/simulated/open/levelupdate()
+turf/simulated/open/levelupdate()
 	for(var/obj/O in src)
 		O.hide(0)
 
-/turf/simulated/open/examine(mob/user, distance, infix, suffix)
+turf/simulated/open/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(distance <= 2)
 		var/depth = 1
@@ -51,20 +51,20 @@
 		to_chat(user, "It is about [depth] level\s deep.")
 
 // Most things use is_plating to test if there is a cover tile on top (like regular floors)
-/turf/simulated/open/is_plating()
+turf/simulated/open/is_plating()
 	return TRUE
 
-/turf/simulated/open/is_space()
+turf/simulated/open/is_space()
 	var/turf/below = GetBelow(src)
 	return !below || below.is_space()
 
-/turf/simulated/open/is_open()
+turf/simulated/open/is_open()
 	return TRUE
 
-/turf/simulated/open/is_solid_structure()
+turf/simulated/open/is_solid_structure()
 	return locate(/obj/structure/lattice, src)	// Counts as solid structure if it has a lattice (same as space)
 
-/turf/simulated/open/is_safe_to_enter(mob/living/L)
+turf/simulated/open/is_safe_to_enter(mob/living/L)
 	if(L.can_fall())
 		if(!locate(/obj/structure/stairs) in GetBelow(src))
 			return FALSE
@@ -72,7 +72,7 @@
 
 
 // Straight copy from space.
-/turf/simulated/open/attackby(obj/item/C as obj, mob/user as mob)
+turf/simulated/open/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
@@ -104,7 +104,7 @@
 		coil.turf_place(src, user)
 
 
-/obj/effect/abstract/over_openspace_darkness
+obj/effect/abstract/over_openspace_darkness
 	icon = 'icons/turf/open_space.dmi'
 	icon_state = "black_open"
 	plane = OVER_OPENSPACE_PLANE

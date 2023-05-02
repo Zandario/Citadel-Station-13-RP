@@ -1,6 +1,6 @@
 ///amount of health regained per stack amount used
 #define DOOR_REPAIR_AMOUNT 50
-/obj/machinery/door
+obj/machinery/door
 	name = "Door"
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
@@ -40,7 +40,7 @@
 	// turf animation
 	var/atom/movable/overlay/c_animation = null
 
-/obj/machinery/door/attack_generic(var/mob/user, var/damage)
+obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
@@ -51,7 +51,7 @@
 			visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
 	user.do_attack_animation(src)
 
-/obj/machinery/door/Initialize(mapload, newdir)
+obj/machinery/door/Initialize(mapload, newdir)
 	. = ..()
 	if(density)
 		layer = closed_layer
@@ -75,12 +75,12 @@
 
 	update_nearby_tiles()
 
-/obj/machinery/door/Destroy()
+obj/machinery/door/Destroy()
 	density = FALSE
 	update_nearby_tiles()
 	. = ..()
 
-/obj/machinery/door/process(delta_time)
+obj/machinery/door/process(delta_time)
 	if(close_door_at && world.time >= close_door_at)
 		if(autoclose)
 			close_door_at = next_close_time()
@@ -89,17 +89,17 @@
 		else
 			close_door_at = 0
 
-/obj/machinery/door/proc/can_open()
+obj/machinery/door/proc/can_open()
 	if(!density || operating || !SSticker)
 		return 0
 	return 1
 
-/obj/machinery/door/proc/can_close()
+obj/machinery/door/proc/can_close()
 	if(density || operating || !SSticker)
 		return 0
 	return 1
 
-/obj/machinery/door/Bumped(atom/AM)
+obj/machinery/door/Bumped(atom/AM)
 	. = ..()
 	if(p_open || operating)
 		return
@@ -139,19 +139,19 @@
 			else
 				do_animate("deny")
 
-/obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
+obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
 	if(!opacity && mover.check_pass_flags(ATOM_PASS_GLASS))
 		return TRUE
 	return ..()
 
-/obj/machinery/door/CanAtmosPass(turf/T, d)
+obj/machinery/door/CanAtmosPass(turf/T, d)
 	if(density)
 		return ATMOS_PASS_AIR_BLOCKED
 	if(block_air_zones)
 		return ATMOS_PASS_ZONE_BLOCKED
 	return ATMOS_PASS_NOT_BLOCKED
 
-/obj/machinery/door/proc/bumpopen(mob/user as mob)
+obj/machinery/door/proc/bumpopen(mob/user as mob)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/airflow/retrigger_delay, airflow_delay)
 	if(operating)
 		return
@@ -166,7 +166,7 @@
 		else
 			do_animate("deny")
 
-/obj/machinery/door/bullet_act(var/obj/projectile/Proj)
+obj/machinery/door/bullet_act(var/obj/projectile/Proj)
 	..()
 
 	var/damage = Proj.get_structure_damage()
@@ -190,25 +190,25 @@
 
 
 
-/obj/machinery/door/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+obj/machinery/door/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	visible_message("<span class='danger'>[src.name] was hit by [AM].</span>")
 	var/tforce = AM.throw_force * TT.get_damage_multiplier()
 	playsound(src, hitsound, 100, 1)
 	take_damage(tforce)
 
-/obj/machinery/door/attack_ai(mob/user as mob)
+obj/machinery/door/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/door/attack_hand(mob/user, list/params)
+obj/machinery/door/attack_hand(mob/user, list/params)
 	return src.attackby(user, user)
 
-/obj/machinery/door/attack_tk(mob/user as mob)
+obj/machinery/door/attack_tk(mob/user as mob)
 	if(requiresID() && !allowed(null))
 		return
 	..()
 
-/obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
+obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user, 0, I)
 
 	if(istype(I))
@@ -303,7 +303,7 @@
 		do_animate("deny")
 	return
 
-/obj/machinery/door/emag_act(var/remaining_charges)
+obj/machinery/door/emag_act(var/remaining_charges)
 	if(density && operable())
 		do_animate("spark")
 		sleep(6)
@@ -311,7 +311,7 @@
 		operating = -1
 		return 1
 
-/obj/machinery/door/take_damage(var/damage)
+obj/machinery/door/take_damage(var/damage)
 	var/initialhealth = src.health
 	src.health = max(0, src.health - damage)
 	if(src.health <= 0 && initialhealth > 0)
@@ -326,7 +326,7 @@
 	return
 
 
-/obj/machinery/door/examine(mob/user)
+obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(src.health <= 0)
 		. += "<span class = 'notice'>The [src] is broken!</span>"
@@ -338,7 +338,7 @@
 		. += "<span class = 'notice'>The [src] shows signs of damage!</span>"
 
 
-/obj/machinery/door/proc/set_broken()
+obj/machinery/door/proc/set_broken()
 	machine_stat |= BROKEN
 	for (var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
@@ -347,14 +347,14 @@
 	return
 
 
-/obj/machinery/door/emp_act(severity)
+obj/machinery/door/emp_act(severity)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
 		spawn(0)
 			open()
 	..()
 
 
-/obj/machinery/door/legacy_ex_act(severity)
+obj/machinery/door/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -372,7 +372,7 @@
 				take_damage(150)
 	return
 
-/obj/machinery/door/blob_act()
+obj/machinery/door/blob_act()
 	if(density) // If it's closed.
 		if(machine_stat & BROKEN)
 			spawn(0)
@@ -380,13 +380,13 @@
 		else
 			take_damage(100)
 
-/obj/machinery/door/update_icon()
+obj/machinery/door/update_icon()
 	if(density)
 		icon_state = "door1"
 	else
 		icon_state = "door0"
 
-/obj/machinery/door/proc/do_animate(animation)
+obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
 		if("opening")
 			if(p_open)
@@ -411,7 +411,7 @@
 	return
 
 
-/obj/machinery/door/proc/open(var/forced = 0)
+obj/machinery/door/proc/open(var/forced = 0)
 	if(!can_open(forced))
 		return
 	operating = 1
@@ -435,10 +435,10 @@
 
 	return 1
 
-/obj/machinery/door/proc/next_close_time()
+obj/machinery/door/proc/next_close_time()
 	return world.time + (normalspeed ? 150 : 5)
 
-/obj/machinery/door/proc/close(var/forced = 0)
+obj/machinery/door/proc/close(var/forced = 0)
 	if(!can_close(forced))
 		return
 	operating = 1
@@ -464,33 +464,33 @@
 
 	return 1
 
-/obj/machinery/door/proc/toggle_open(var/forced)
+obj/machinery/door/proc/toggle_open(var/forced)
 	if(density)
 		open(forced)
 	else
 		close(forced)
 
-/obj/machinery/door/proc/requiresID()
+obj/machinery/door/proc/requiresID()
 	return 1
 
-/obj/machinery/door/allowed(mob/M)
+obj/machinery/door/allowed(mob/M)
 	if(!requiresID())
 		return ..(null) //don't care who they are or what they have, act as if they're NOTHING
 	return ..(M)
 
-/obj/machinery/door/update_nearby_tiles(need_rebuild)
+obj/machinery/door/update_nearby_tiles(need_rebuild)
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
 		turf.queue_zone_update()
 
-/obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
+obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
 	if(istype(source))
 		if(src.density && (src.opacity || src.heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
-/obj/machinery/door/Move(new_loc, new_dir)
+obj/machinery/door/Move(new_loc, new_dir)
 	//update_nearby_tiles()
 	. = ..()
 	if(width > 1)
@@ -503,11 +503,11 @@
 
 	update_nearby_tiles()
 
-/obj/machinery/door/morgue
+obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
 
 //Flesh Door
-/obj/machinery/door/flesh_door
+obj/machinery/door/flesh_door
 	name = "flesh door"
 	desc = "This door pulses and twitches as if it's alive. It is."
 

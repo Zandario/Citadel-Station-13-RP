@@ -1,4 +1,4 @@
-/obj/projectile/bullet/chemdart
+obj/projectile/bullet/chemdart
 	name = "dart"
 	icon_state = "dart"
 	damage = 5
@@ -7,28 +7,28 @@
 
 	muzzle_type = null
 
-/obj/projectile/bullet/chemdart/Initialize(mapload)
+obj/projectile/bullet/chemdart/Initialize(mapload)
 	. = ..()
 	create_reagents(reagent_amount)
 
-/obj/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
+obj/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(blocked < 2 && isliving(target))
 		var/mob/living/L = target
 		if(L.can_inject(target_zone=def_zone))
 			reagents.trans_to_mob(L, reagent_amount, CHEM_BLOOD)
 
-/obj/item/ammo_casing/chemdart
+obj/item/ammo_casing/chemdart
 	name = "chemical dart"
 	desc = "A casing containing a small hardened, hollow dart."
 	icon_state = "dartcasing"
 	caliber = "dart"
 	projectile_type = /obj/projectile/bullet/chemdart
 
-/obj/item/ammo_casing/chemdart/expend()
+obj/item/ammo_casing/chemdart/expend()
 	..()
 	//qdel(src)		//Wasn't able to find the exact issue with the qdel-ing. Possibly because it was still being processed by the gun when this is called.
 
-/obj/item/ammo_magazine/chemdart
+obj/item/ammo_magazine/chemdart
 	name = "dart cartridge"
 	desc = "A rack of hollow darts."
 	icon_state = "darts"
@@ -40,7 +40,7 @@
 	max_ammo = 5
 	multiple_sprites = 1
 
-/obj/item/gun/ballistic/dartgun
+obj/item/gun/ballistic/dartgun
 	name = "dart gun"
 	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
 	description_info = "The dart gun is capable of storing three beakers. In order to use the dart gun, you must first use it in-hand to open its mixing UI. The dart-gun will only draw from beakers with mixing enabled. If multiple are enabled, the gun will draw from them in equal amounts."
@@ -69,7 +69,7 @@
 	var/container_type = /obj/item/reagent_containers/glass/beaker
 	var/list/starting_chems = null
 
-/obj/item/gun/ballistic/dartgun/Initialize(mapload)
+obj/item/gun/ballistic/dartgun/Initialize(mapload)
 	. = ..()
 	if(starting_chems)
 		for(var/chem in starting_chems)
@@ -78,7 +78,7 @@
 			beakers += B
 	update_icon()
 
-/obj/item/gun/ballistic/dartgun/update_icon_state()
+obj/item/gun/ballistic/dartgun/update_icon_state()
 	. = ..()
 	if(!ammo_magazine)
 		icon_state = "[base_state]-empty"
@@ -94,13 +94,13 @@
 	else
 		icon_state = "[base_state]"
 
-/obj/item/gun/ballistic/dartgun/consume_next_projectile()
+obj/item/gun/ballistic/dartgun/consume_next_projectile()
 	. = ..()
 	var/obj/projectile/bullet/chemdart/dart = .
 	if(istype(dart))
 		fill_dart(dart)
 
-/obj/item/gun/ballistic/dartgun/examine(mob/user)
+obj/item/gun/ballistic/dartgun/examine(mob/user)
 	//update_icon()
 	//if (!..(user, 2))
 	//	return
@@ -112,7 +112,7 @@
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					. += "<font color=#4F49AF>[R.volume] units of [R.name]</font>"
 
-/obj/item/gun/ballistic/dartgun/attackby(obj/item/I as obj, mob/user as mob)
+obj/item/gun/ballistic/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!istype(I, container_type))
 			to_chat(user, "<font color=#4F49AF>[I] doesn't seem to fit into [src].</font>")
@@ -130,13 +130,13 @@
 	return ..()
 
 //fills the given dart with reagents
-/obj/item/gun/ballistic/dartgun/proc/fill_dart(var/obj/projectile/bullet/chemdart/dart)
+obj/item/gun/ballistic/dartgun/proc/fill_dart(var/obj/projectile/bullet/chemdart/dart)
 	if(mixing.len)
 		var/mix_amount = dart.reagent_amount/mixing.len
 		for(var/obj/item/reagent_containers/glass/beaker/B in mixing)
 			B.reagents.trans_to_obj(dart, mix_amount)
 
-/obj/item/gun/ballistic/dartgun/attack_self(mob/user)
+obj/item/gun/ballistic/dartgun/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -171,7 +171,7 @@
 	user << browse(dat, "window=dartgun")
 	onclose(user, "dartgun", src)
 
-/obj/item/gun/ballistic/dartgun/proc/check_beaker_mixing(var/obj/item/B)
+obj/item/gun/ballistic/dartgun/proc/check_beaker_mixing(var/obj/item/B)
 	if(!mixing || !beakers)
 		return 0
 	for(var/obj/item/M in mixing)
@@ -179,7 +179,7 @@
 			return 1
 	return 0
 
-/obj/item/gun/ballistic/dartgun/Topic(href, href_list)
+obj/item/gun/ballistic/dartgun/Topic(href, href_list)
 	if(..()) return 1
 	src.add_fingerprint(usr)
 	if(href_list["stop_mix"])
@@ -209,7 +209,7 @@
 
 ///Variants of the Dartgun and Chemdarts.///
 
-/obj/item/gun/ballistic/dartgun/research
+obj/item/gun/ballistic/dartgun/research
 	name = "prototype dart gun"
 	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances. This one seems to be an early model with an NT stamp."
 	description_info = "The dart gun is capable of storing two beakers. In order to use the dart gun, you must first use it in-hand to open its mixing UI. The dart-gun will only draw from beakers with mixing enabled. If multiple are enabled, the gun will draw from them in equal amounts."
@@ -221,14 +221,14 @@
 	max_beakers = 2
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_BIO = 4, TECH_MAGNET = 2, TECH_ILLEGAL = 1)
 
-/obj/item/ammo_casing/chemdart/small
+obj/item/ammo_casing/chemdart/small
 	name = "short chemical dart"
 	desc = "A casing containing a small hardened, hollow dart."
 	icon_state = "dartcasing"
 	caliber = "dart"
 	projectile_type = /obj/projectile/bullet/chemdart/small
 
-/obj/item/ammo_magazine/chemdart/small
+obj/item/ammo_magazine/chemdart/small
 	name = "small dart cartridge"
 	desc = "A rack of hollow darts."
 	icon_state = "darts_small"
@@ -240,5 +240,5 @@
 	max_ammo = 3
 	multiple_sprites = 1
 
-/obj/projectile/bullet/chemdart/small
+obj/projectile/bullet/chemdart/small
 	reagent_amount = 10

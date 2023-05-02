@@ -1,4 +1,4 @@
-/obj/structure
+obj/structure
 	icon = 'icons/obj/structures.dmi'
 	w_class = ITEMSIZE_NO_CONTAINER
 	pass_flags = ATOM_PASS_BUCKLED
@@ -16,7 +16,7 @@
 	var/list/blend_objects = newlist() // Objects which to blend with
 	var/list/noblend_objects = newlist() //Objects to avoid blending with (such as children of listed blend objects.
 
-/obj/structure/Initialize(mapload)
+obj/structure/Initialize(mapload)
 	. = ..()
 
 	if(climbable)
@@ -30,7 +30,7 @@
 
 	GLOB.cameranet.updateVisibility(src)
 
-/obj/structure/Destroy()
+obj/structure/Destroy()
 	GLOB.cameranet.updateVisibility(src)
 
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
@@ -38,7 +38,7 @@
 
 	return ..()
 
-/obj/structure/attack_hand(mob/user, list/params)
+obj/structure/attack_hand(mob/user, list/params)
 	if(breakable)
 		if(MUTATION_HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
@@ -55,10 +55,10 @@
 
 	return ..()
 
-/obj/structure/attack_tk()
+obj/structure/attack_tk()
 	return
 
-/obj/structure/legacy_ex_act(severity)
+obj/structure/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -70,7 +70,7 @@
 		if(3.0)
 			return
 
-/obj/structure/proc/climb_on()
+obj/structure/proc/climb_on()
 
 	set name = "Climb structure"
 	set desc = "Climbs onto a structure."
@@ -79,7 +79,7 @@
 
 	do_climb(usr)
 
-/obj/structure/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/structure/MouseDroppedOnLegacy(mob/target, mob/user)
 
 	var/mob/living/H = user
 	if(istype(H) && can_climb(H) && target == user)
@@ -87,7 +87,7 @@
 	else
 		return ..()
 
-/obj/structure/proc/can_climb(var/mob/living/user, post_climb_check=0)
+obj/structure/proc/can_climb(var/mob/living/user, post_climb_check=0)
 	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
 		return 0
 
@@ -101,7 +101,7 @@
 		return 0
 	return 1
 
-/obj/structure/proc/turf_is_crowded()
+obj/structure/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T))
 		return 0
@@ -114,7 +114,7 @@
 	return 0
 
 // todo: climbable obj-level (to avoid element/signal spam)
-/obj/structure/proc/do_climb(var/mob/living/user)
+obj/structure/proc/do_climb(var/mob/living/user)
 	if (!can_climb(user))
 		return
 
@@ -138,7 +138,7 @@
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 	climbers -= user
 
-/obj/structure/proc/structure_shaken()
+obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in climbers)
 		M.afflict_paralyze(20 * 1)
 		to_chat(M, "<span class='danger'>You topple as you are shaken off \the [src]!</span>")
@@ -187,7 +187,7 @@
 	return
 
 // todo: remove
-/obj/structure/proc/can_touch(var/mob/user)
+obj/structure/proc/can_touch(var/mob/user)
 	if (!user)
 		return 0
 	if(!Adjacent(user))
@@ -202,7 +202,7 @@
 		return 0
 	return 1
 
-/obj/structure/attack_generic(var/mob/user, var/damage, var/attack_verb)
+obj/structure/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	if(!breakable || damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		return 0
 	visible_message("<span class='danger'>[user] [attack_verb] the [src] apart!</span>")
@@ -210,13 +210,13 @@
 	spawn(1) qdel(src)
 	return 1
 
-/obj/structure/proc/can_visually_connect()
+obj/structure/proc/can_visually_connect()
 	return anchored
 
-/obj/structure/proc/can_visually_connect_to(var/obj/structure/S)
+obj/structure/proc/can_visually_connect_to(var/obj/structure/S)
 	return istype(S, src)
 
-/obj/structure/proc/update_connections(propagate = 0)
+obj/structure/proc/update_connections(propagate = 0)
 	var/list/dirs = list()
 	var/list/other_dirs = list()
 
@@ -271,6 +271,6 @@
 	other_connections = dirs_to_corner_states(other_dirs)
 	return TRUE
 
-/obj/structure/proc/refresh_neighbors()
+obj/structure/proc/refresh_neighbors()
 	for(var/turf/T as anything in RANGE_TURFS(1, src))
 		T.update_icon()

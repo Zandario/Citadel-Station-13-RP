@@ -1,7 +1,7 @@
-/datum/event/lore_news
+datum/event/lore_news
 	endWhen = 10
 
-/datum/event/lore_news/announce()
+datum/event/lore_news/announce()
 	var/author = "Oculus v6rev7"
 	var/channel = "Oculum Content Aggregator"
 

@@ -1,4 +1,4 @@
-/obj/machinery/holoplant
+obj/machinery/holoplant
 	name = "holoplant"
 	desc = "One of those Ward-Takahashi holoplants! Give your space a bit of the comfort of being outdoors, by buying this blue buddy. A rugged case guarantees that your flower will outlive you, and variety of plant types won't let you to get bored along the way!"
 	icon = 'icons/obj/holoplants.dmi'
@@ -17,11 +17,11 @@
 		"plant-13"
 	)
 
-/obj/machinery/holoplant/Initialize(mapload)
+obj/machinery/holoplant/Initialize(mapload)
 	. = ..()
 	activate()
 
-/obj/machinery/holoplant/attack_hand(mob/user, list/params)
+obj/machinery/holoplant/attack_hand(mob/user, list/params)
 	if(!istype(user) || interference)
 		return
 
@@ -34,14 +34,14 @@
 	else
 		deactivate()
 
-/obj/machinery/holoplant/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/holoplant/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(default_unfasten_wrench(user, O, 10))
 		deactivate()
 		return
 
 	. = ..()
 
-/obj/machinery/holoplant/proc/activate()
+obj/machinery/holoplant/proc/activate()
 	if(!anchored || machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -50,20 +50,20 @@
 	set_light(2)
 	use_power = USE_POWER_ACTIVE
 
-/obj/machinery/holoplant/proc/deactivate()
+obj/machinery/holoplant/proc/deactivate()
 	cut_overlay(plant)
 	QDEL_NULL(plant)
 	set_light(0)
 	use_power = USE_POWER_OFF
 
-/obj/machinery/holoplant/power_change()
+obj/machinery/holoplant/power_change()
 	..()
 	if(machine_stat & NOPOWER)
 		deactivate()
 	else
 		activate()
 
-/obj/machinery/holoplant/proc/flicker()
+obj/machinery/holoplant/proc/flicker()
 	interference = TRUE
 	spawn(0)
 		cut_overlay(plant)
@@ -79,13 +79,13 @@
 		set_light(2)
 		interference = FALSE
 
-/obj/machinery/holoplant/proc/prepare_icon(state)
+obj/machinery/holoplant/proc/prepare_icon(state)
 	if(!state)
 		state = pick(possible_plants)
 	var/plant_icon = icon(icon, state)
 	return getHologramIcon(plant_icon, 0)
 
-/obj/machinery/holoplant/emag_act()
+obj/machinery/holoplant/emag_act()
 	if(emagged)
 		return
 
@@ -94,10 +94,10 @@
 		deactivate()
 	activate()
 
-/obj/machinery/holoplant/Crossed(var/mob/living/L)
+obj/machinery/holoplant/Crossed(var/mob/living/L)
 	. = ..()
 	if(!interference && plant && istype(L))
 		flicker()
 
-/obj/machinery/holoplant/shipped
+obj/machinery/holoplant/shipped
 	anchored = FALSE

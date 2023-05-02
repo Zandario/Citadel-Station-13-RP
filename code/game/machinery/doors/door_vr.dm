@@ -1,23 +1,23 @@
-/turf/simulated/floor/proc/adjacent_fire_act_vr(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
+turf/simulated/floor/proc/adjacent_fire_act_vr(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	for(var/obj/machinery/door/D in src) //makes doors next to fire affected by fire
 		D.fire_act(adj_air, adj_temp, adj_volume)
 
-/obj/machinery/door
+obj/machinery/door
 	var/reinforcing = 0
 	var/tintable = 0
 	var/icon_tinted
 	var/id_tint
 
-/obj/machinery/door/firedoor
+obj/machinery/door/firedoor
 	heat_proof = 1
 
-/obj/machinery/door/airlock/vault
+obj/machinery/door/airlock/vault
 	heat_proof = 1
 
-/obj/machinery/door/airlock/hatch
+obj/machinery/door/airlock/hatch
 	heat_proof = 1
 
-/obj/machinery/door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/machinery/door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	var/maxtemperature = 1800 //same as a normal steel wall
 	var/destroytime = 20 //effectively gives an airlock 200HP between breaking and completely disintegrating
 	if(heat_proof)
@@ -37,7 +37,7 @@
 	return ..()
 
 // Returns true only if one of the actions unique to reinforcing is done, otherwise false and continuing normal attackby
-/obj/machinery/door/proc/attackby_vr(obj/item/I as obj, mob/user as mob)
+obj/machinery/door/proc/attackby_vr(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
 		if(heat_proof)
 			to_chat(user, "<span class='warning'>\The [src] is already reinforced.</span>")
@@ -99,13 +99,13 @@
 
 	return FALSE
 
-/obj/machinery/door/blast/regular/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/machinery/door/blast/regular/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return // blast doors are immune to fire completely.
 
-/obj/machinery/door/blast/regular/
+obj/machinery/door/blast/regular/
 	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
 
-/obj/machinery/door/proc/toggle()
+obj/machinery/door/proc/toggle()
 	if(glass)
 		icon = icon_tinted
 		glass = 0
@@ -117,11 +117,11 @@
 		if(!operating)
 			set_opacity(0)
 
-/obj/machinery/button/windowtint/doortint
+obj/machinery/button/windowtint/doortint
 	name = "door tint control"
 	desc = "A remote control switch for polarized glass doors."
 
-/obj/machinery/button/windowtint/doortint/toggle_tint()
+obj/machinery/button/windowtint/doortint/toggle_tint()
 	use_power(5)
 	active = !active
 	update_icon()

@@ -2,7 +2,7 @@
 #define MODE_DOUBLE 2
 #define MODE_CANISTER 3
 
-/obj/machinery/bomb_tester
+obj/machinery/bomb_tester
 	name = "explosive effect simulator"
 	desc = "A device that can calculate the potential explosive yield of provided gases."
 	icon = 'icons/obj/machines/bomb_tester_vr.dmi'
@@ -35,17 +35,17 @@
 	var/datum/gas_mixture/faketank
 	var/faketank_integrity
 
-/obj/machinery/bomb_tester/Initialize(mapload)
+obj/machinery/bomb_tester/Initialize(mapload)
 	. = ..()
 	faketank = new
 
-/obj/machinery/bomb_tester/Destroy()
+obj/machinery/bomb_tester/Destroy()
 	tank1 = null //Base machine Destroy()
 	tank2 = null //handles deleting contents
 	test_canister = null
 	..()
 
-/obj/machinery/bomb_tester/dismantle()
+obj/machinery/bomb_tester/dismantle()
 	if(tank1)
 		tank1.forceMove(get_turf(src))
 		tank1 = null
@@ -55,14 +55,14 @@
 	simulation_finish(1)
 	return ..()
 
-/obj/machinery/bomb_tester/process(delta_time)
+obj/machinery/bomb_tester/process(delta_time)
 	..()
 	if(test_canister && !Adjacent(test_canister))
 		test_canister = null
 	if(simulating && world.time >= simulation_started + simulation_delay)
 		simulation_finish()
 
-/obj/machinery/bomb_tester/update_icon()
+obj/machinery/bomb_tester/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(tank1)
@@ -75,20 +75,20 @@
 		icon_state = "[icon_name][simulating]"
 	add_overlay(overlays_to_add)
 
-/obj/machinery/bomb_tester/power_change()
+obj/machinery/bomb_tester/power_change()
 	..()
 	update_icon()
 	if(simulating && machine_stat & NOPOWER)
 		simulation_finish(1)
 
-/obj/machinery/bomb_tester/RefreshParts()
+obj/machinery/bomb_tester/RefreshParts()
 	..()
 	var/scan_rating = 0
 	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
 		scan_rating += S.rating
 	simulation_delay = 25 SECONDS - scan_rating SECONDS
 
-/obj/machinery/bomb_tester/attackby(obj/item/I, mob/user)
+obj/machinery/bomb_tester/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	if(default_deconstruction_crowbar(user, I))
@@ -109,17 +109,17 @@
 			return
 	..()
 
-/obj/machinery/bomb_tester/attack_hand(mob/user, list/params)
+obj/machinery/bomb_tester/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/bomb_tester/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/bomb_tester/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BombTester", name)
 		ui.open()
 
-/obj/machinery/bomb_tester/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/bomb_tester/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["simulating"] = simulating
@@ -134,7 +134,7 @@
 
 	return data
 
-/obj/machinery/bomb_tester/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/bomb_tester/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -202,7 +202,7 @@
 			start_simulating()
 			return TRUE
 
-/obj/machinery/bomb_tester/proc/start_simulating()
+obj/machinery/bomb_tester/proc/start_simulating()
 	simulating = 1
 	update_use_power(USE_POWER_ACTIVE)
 	simulation_started = world.time
@@ -230,7 +230,7 @@
 				canister_sim()
 
 ///This is a heavily cut down version of check_status() from tanks.dm
-/obj/machinery/bomb_tester/proc/simulate_tank()
+obj/machinery/bomb_tester/proc/simulate_tank()
 	faketank.react()
 	var/pressure = faketank.return_pressure()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
@@ -263,7 +263,7 @@
 		faketank_integrity -= 1
 	return 0
 
-/obj/machinery/bomb_tester/proc/single_tank_sim()
+obj/machinery/bomb_tester/proc/single_tank_sim()
 	faketank.volume = tank1.volume
 	faketank.copy_from(tank1.air_contents)
 	faketank_integrity = tank1.integrity
@@ -287,7 +287,7 @@
 	if(intervals == 10)
 		simulation_results += "<hr>Final Result: No detonation."
 
-/obj/machinery/bomb_tester/proc/ttv_sim()
+obj/machinery/bomb_tester/proc/ttv_sim()
 	faketank.volume = tank1.air_contents.volume + tank2.air_contents.volume
 	faketank.copy_from(tank1.air_contents)
 	faketank_integrity = tank1.integrity
@@ -310,7 +310,7 @@
 	if(intervals == 10)
 		simulation_results += "<hr>Final Result: No detonation."
 
-/obj/machinery/bomb_tester/proc/canister_sim()
+obj/machinery/bomb_tester/proc/canister_sim()
 	test_canister.anchored = 1
 	faketank.volume = tank1.air_contents.volume
 	faketank.copy_from(tank1.air_contents)
@@ -343,7 +343,7 @@
 	if(intervals == 10)
 		simulation_results += "<hr>Final Result: No detonation."
 
-/obj/machinery/bomb_tester/proc/simulation_finish(cancelled = FALSE)
+obj/machinery/bomb_tester/proc/simulation_finish(cancelled = FALSE)
 	simulating = 0
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
@@ -361,7 +361,7 @@
 		P.name = "Explosive Simulator printout"
 		P.info = simulation_results
 
-/obj/machinery/bomb_tester/proc/format_gas_for_results(datum/gas_mixture/G)
+obj/machinery/bomb_tester/proc/format_gas_for_results(datum/gas_mixture/G)
 	G.update_values() //Just in case
 	var/results = ""
 	var/pressure = G.return_pressure()

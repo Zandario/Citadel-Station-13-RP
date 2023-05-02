@@ -1,10 +1,10 @@
-/datum/component/storage/concrete/pockets
+datum/component/storage/concrete/pockets
 	max_items = 2
 	max_w_class = WEIGHT_CLASS_SMALL
 	max_combined_w_class = 50
 	rustle_sound = FALSE
 
-/datum/component/storage/concrete/pockets/handle_item_insertion(obj/item/I, prevent_warning, mob/user)
+datum/component/storage/concrete/pockets/handle_item_insertion(obj/item/I, prevent_warning, mob/user)
 	. = ..()
 	if(. && silent && !prevent_warning)
 		if(quickdraw)
@@ -12,20 +12,20 @@
 		else
 			to_chat(user, "<span class='notice'>You discreetly slip [I] into [parent].</span>")
 
-/datum/component/storage/concrete/pockets
+datum/component/storage/concrete/pockets
 	max_w_class = WEIGHT_CLASS_NORMAL
 
-/datum/component/storage/concrete/pockets/small
+datum/component/storage/concrete/pockets/small
 	max_items = 1
 	max_w_class = WEIGHT_CLASS_SMALL
 	attack_hand_interact = FALSE
 
-/datum/component/storage/concrete/pockets/tiny
+datum/component/storage/concrete/pockets/tiny
 	max_items = 1
 	max_w_class = WEIGHT_CLASS_TINY
 	attack_hand_interact = FALSE
 
-/datum/component/storage/concrete/pockets/small/fedora/Initialize()
+datum/component/storage/concrete/pockets/small/fedora/Initialize()
 	. = ..()
 	var/static/list/exception_cache = typecacheof(list(
 		/obj/item/katana, /obj/item/toy/katana, /obj/item/nullrod/claymore/katana,
@@ -33,15 +33,15 @@
 		))
 	exception_hold = exception_cache
 
-/datum/component/storage/concrete/pockets/small/fedora/detective
+datum/component/storage/concrete/pockets/small/fedora/detective
 	attack_hand_interact = TRUE // so the detectives would discover pockets in their hats
 
-/datum/component/storage/concrete/pockets/shoes
+datum/component/storage/concrete/pockets/shoes
 	attack_hand_interact = FALSE
 	quickdraw = TRUE
 	silent = TRUE
 
-/datum/component/storage/concrete/pockets/shoes/Initialize()
+datum/component/storage/concrete/pockets/shoes/Initialize()
 	. = ..()
 	set_holdable(list(
 		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen,
@@ -53,7 +53,7 @@
 		list(/obj/item/tool/screwdriver/power)
 		)
 
-/datum/component/storage/concrete/pockets/shoes/clown/Initialize()
+datum/component/storage/concrete/pockets/shoes/clown/Initialize()
 	. = ..()
 	set_holdable(list(
 		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen,
@@ -64,12 +64,12 @@
 		list(/obj/item/tool/screwdriver/power)
 		)
 
-/datum/component/storage/concrete/pockets/pocketprotector
+datum/component/storage/concrete/pockets/pocketprotector
 	max_items = 3
 	max_w_class = WEIGHT_CLASS_TINY
 	var/atom/original_parent
 
-/datum/component/storage/concrete/pockets/pocketprotector/Initialize()
+datum/component/storage/concrete/pockets/pocketprotector/Initialize()
 	original_parent = parent
 	. = ..()
 	set_holdable(list( //Same items as a PDA
@@ -80,15 +80,15 @@
 		/obj/item/clothing/mask/cigarette)
 		)
 
-/datum/component/storage/concrete/pockets/pocketprotector/real_location()
+datum/component/storage/concrete/pockets/pocketprotector/real_location()
 	// if the component is reparented to a jumpsuit, the items still go in the protector
 	return original_parent
 
-/datum/component/storage/concrete/pockets/helmet
+datum/component/storage/concrete/pockets/helmet
 	quickdraw = TRUE
 	max_combined_w_class = 6
 
-/datum/component/storage/concrete/pockets/helmet/Initialize()
+datum/component/storage/concrete/pockets/helmet/Initialize()
 	. = ..()
 	set_holdable(list(/obj/item/reagent_containers/food/drinks/bottle/vodka,
 					  /obj/item/reagent_containers/food/drinks/bottle/molotov,

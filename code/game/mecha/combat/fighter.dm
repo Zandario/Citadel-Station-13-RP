@@ -1,6 +1,6 @@
 #define NOGRAV_FIGHTER_DAMAGE 20
 
-/obj/mecha/combat/fighter
+obj/mecha/combat/fighter
 	name = "Delete me, nerd!!"
 	desc = "The base type of fightercraft. Don't spawn this one!"
 
@@ -38,13 +38,13 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
-/obj/mecha/combat/fighter/Initialize(mapload)
+obj/mecha/combat/fighter/Initialize(mapload)
 	. = ..()
 	ion_trail = new /datum/effect_system/ion_trail_follow()
 	ion_trail.set_up(src)
 	ion_trail.stop()
 
-/obj/mecha/combat/fighter/add_cell(var/obj/item/cell/C=null)
+obj/mecha/combat/fighter/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
@@ -53,16 +53,16 @@
 	cell.charge = 30000
 	cell.maxcharge = 30000
 
-/obj/mecha/combat/fighter/moved_inside(var/mob/living/carbon/human/H)
+obj/mecha/combat/fighter/moved_inside(var/mob/living/carbon/human/H)
 	. = ..()
 	consider_gravity()
 
-/obj/mecha/combat/fighter/go_out()
+obj/mecha/combat/fighter/go_out()
 	. = ..()
 	consider_gravity()
 
 //We don't get lost quite as easy.
-/obj/mecha/combat/fighter/touch_map_edge()
+obj/mecha/combat/fighter/touch_map_edge()
 	//No overmap enabled or no driver to choose
 	if(!GLOB.using_map.use_overmap || !occupant || !can_ztravel())
 		return ..()
@@ -133,7 +133,7 @@
 		forceMove(destination)
 
 //Modified phazon code
-/obj/mecha/combat/fighter/Topic(href, href_list)
+obj/mecha/combat/fighter/Topic(href, href_list)
 	..()
 	if (href_list["toggle_stabilization"])
 		stabilization_enabled = !stabilization_enabled
@@ -141,7 +141,7 @@
 		src.occupant_message("<span class='notice'>Thruster stabilization [stabilization_enabled? "enabled" : "disabled"].</span>")
 		return
 
-/obj/mecha/combat/fighter/get_commands()
+obj/mecha/combat/fighter/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
@@ -152,24 +152,24 @@
 	output += ..()
 	return output
 
-/obj/mecha/combat/fighter/can_ztravel()
+obj/mecha/combat/fighter/can_ztravel()
 	return (stabilization_enabled && has_charge(step_energy_drain))
 
 // No space drifting
-/obj/mecha/combat/fighter/check_for_support()
+obj/mecha/combat/fighter/check_for_support()
 	if (stabilization_enabled)
 		return 1
 
 	return ..()
 
 // No falling if we've got our boosters on
-/obj/mecha/combat/fighter/can_fall()
+obj/mecha/combat/fighter/can_fall()
 	if(stabilization_enabled && has_charge(step_energy_drain))
 		return FALSE
 	else
 		return TRUE
 
-/obj/mecha/combat/fighter/proc/consider_gravity(var/moved = FALSE)
+obj/mecha/combat/fighter/proc/consider_gravity(var/moved = FALSE)
 	var/gravity = has_gravity()
 	if(gravity && ground_capable && occupant)
 		start_hover()
@@ -180,11 +180,11 @@
 		take_damage(NOGRAV_FIGHTER_DAMAGE, "brute")
 		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
 
-/obj/mecha/combat/fighter/handle_equipment_movement()
+obj/mecha/combat/fighter/handle_equipment_movement()
 	. = ..()
 	consider_gravity(TRUE)
 
-/obj/mecha/combat/fighter/proc/start_hover()
+obj/mecha/combat/fighter/proc/start_hover()
 	if(!ion_trail.on) //We'll just use this to store if we're floating or not
 		ion_trail.start()
 		var/amplitude = 2 //maximum displacement from original position
@@ -199,12 +199,12 @@
 		animate(pixel_y = bottom, time = half_period, easing = SINE_EASING, loop = -1)						//down
 		animate(pixel_y = get_standard_pixel_y_offset(), time = quarter_period, easing = SINE_EASING | EASE_IN, loop = -1)			//back
 
-/obj/mecha/combat/fighter/proc/stop_hover()
+obj/mecha/combat/fighter/proc/stop_hover()
 	if(ion_trail.on)
 		ion_trail.stop()
 		animate(src, pixel_y = get_standard_pixel_y_offset(), time = 5, easing = SINE_EASING | EASE_IN) //halt animation
 
-/obj/mecha/combat/fighter/check_for_support()
+obj/mecha/combat/fighter/check_for_support()
 	if (has_charge(step_energy_drain) && stabilization_enabled)
 		return 1
 
@@ -216,14 +216,14 @@
 		return 0
 
 
-/obj/mecha/combat/fighter/play_entered_noise(var/mob/who)
+obj/mecha/combat/fighter/play_entered_noise(var/mob/who)
 	if(hasInternalDamage())
 		who << sound('sound/mecha/fighter_entered_bad.ogg',volume=50)
 	else
 		who << sound('sound/mecha/fighter_entered.ogg',volume=50)
 
 //causes damage when running into objects
-/obj/mecha/combat/fighter/Bump(atom/obstacle)
+obj/mecha/combat/fighter/Bump(atom/obstacle)
 	. = ..()
 	// this isn't defined becuase this is shitcode anyways and i'm just patching it
 	// todo: why the fuck are you guys doing snowflake collision code??
@@ -237,7 +237,7 @@
 
 ////////////// Gunpod //////////////
 
-/obj/mecha/combat/fighter/gunpod
+obj/mecha/combat/fighter/gunpod
 	name = "\improper Gunpod"
 	desc = "Small mounted weapons platform capable of space and surface combat. More like a flying tank than a dedicated fightercraft."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -257,25 +257,25 @@
 	var/image/stripe1_overlay
 	var/image/stripe2_overlay
 
-/obj/mecha/combat/fighter/gunpod/loaded/Initialize(mapload) //Loaded version with gans
+obj/mecha/combat/fighter/gunpod/loaded/Initialize(mapload) //Loaded version with gans
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
 	ME.attach(src)
 
-/obj/mecha/combat/fighter/gunpod/recon
+obj/mecha/combat/fighter/gunpod/recon
 	name = "\improper Reconnaissance Gunpod"
 	desc = "Small mounted weapons platform capable of space and surface combat. More like a flying tank than a dedicated fightercraft. This stripped down model is used for long range reconnaissance ."
 
-/obj/mecha/combat/fighter/gunpod/recon/Initialize(mapload) //Blinky
+obj/mecha/combat/fighter/gunpod/recon/Initialize(mapload) //Blinky
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/teleporter(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay(src)
 	ME.attach(src)
 
-/obj/mecha/combat/fighter/gunpod/update_icon()
+obj/mecha/combat/fighter/gunpod/update_icon()
 	cut_overlays()
 	..()
 
@@ -288,7 +288,7 @@
 		stripe2_overlay.color = stripe2_color
 		add_overlay(stripe2_overlay)
 
-/obj/mecha/combat/fighter/gunpod/attackby(obj/item/W as obj, mob/user as mob)
+obj/mecha/combat/fighter/gunpod/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/multitool) && state == 1)
 		var/new_paint_location = input("Please select a target zone.", "Paint Zone", null) as null|anything in list("Fore Stripe", "Aft Stripe", "CANCEL")
 		if(new_paint_location && new_paint_location != "CANCEL")
@@ -303,7 +303,7 @@
 		update_icon()
 	else ..()
 
-/obj/effect/decal/mecha_wreckage/gunpod
+obj/effect/decal/mecha_wreckage/gunpod
 	name = "Gunpod wreckage"
 	desc = "Remains of some unfortunate gunpod. Completely unrepairable."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -311,7 +311,7 @@
 	bound_width = 64
 	bound_height = 64
 
-/datum/category_item/catalogue/technology/gunpod
+datum/category_item/catalogue/technology/gunpod
 	name = "Voidcraft - Gunpod"
 	desc = "This is a small space-capable fightercraft that has an arrowhead design. Can hold up to one pilot, \
 	and sometimes one or two passengers, with the right modifications made. \
@@ -321,7 +321,7 @@
 
 ////////////// Baron //////////////
 
-/obj/mecha/combat/fighter/baron
+obj/mecha/combat/fighter/baron
 	name = "\improper Baron"
 	desc = "A conventional space superiority fighter, one-seater. Not capable of ground operations."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -333,14 +333,14 @@
 
 	ground_capable = FALSE
 
-/obj/mecha/combat/fighter/baron/loaded/Initialize(mapload) //Loaded version with gans
+obj/mecha/combat/fighter/baron/loaded/Initialize(mapload) //Loaded version with gans
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/omni_shield
 	ME.attach(src)
 
-/obj/effect/decal/mecha_wreckage/baron
+obj/effect/decal/mecha_wreckage/baron
 	name = "Baron wreckage"
 	desc = "Remains of some unfortunate fighter. Completely unrepairable."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -348,18 +348,18 @@
 	bound_width = 64
 	bound_height = 64
 
-/obj/mecha/combat/fighter/baron/sec
+obj/mecha/combat/fighter/baron/sec
 	name = "\improper Baron-SV"
 	desc = "A conventional space superiority fighter, one-seater. Not capable of ground operations. The Baron-SV (Security Variant) is frequently used by NT Security forces during EVA patrols."
 
-/obj/mecha/combat/fighter/baron/sec/loaded/Initialize(mapload) //Loaded version with gans
+obj/mecha/combat/fighter/baron/sec/loaded/Initialize(mapload) //Loaded version with gans
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/phase
 	ME.attach(src)
 
-/datum/category_item/catalogue/technology/baron
+datum/category_item/catalogue/technology/baron
 	name = "Voidcraft - Baron"
 	desc = "This is a small space fightercraft that has an arrowhead design. Can hold up to one pilot. \
 	Unlike some fighters, this one is not designed for atmospheric operation, and is only capable of performing \
@@ -369,7 +369,7 @@
 
 ////////////// Scoralis //////////////
 
-/obj/mecha/combat/fighter/scoralis
+obj/mecha/combat/fighter/scoralis
 	name = "\improper Scoralis"
 	desc = "An imported space fighter with integral cloaking device. Beware the power consumption, though. Not capable of ground operations."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -381,14 +381,14 @@
 
 	ground_capable = FALSE
 
-/obj/mecha/combat/fighter/scoralis/loaded/Initialize(mapload) //Loaded version with gans
+obj/mecha/combat/fighter/scoralis/loaded/Initialize(mapload) //Loaded version with gans
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/cloak
 	ME.attach(src)
 
-/obj/effect/decal/mecha_wreckage/scoralis
+obj/effect/decal/mecha_wreckage/scoralis
 	name = "scoralis wreckage"
 	desc = "Remains of some unfortunate fighter. Completely unrepairable."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -396,7 +396,7 @@
 	bound_width = 64
 	bound_height = 64
 
-/datum/category_item/catalogue/technology/scoralis
+datum/category_item/catalogue/technology/scoralis
 	name = "Voidcraft - Scoralis"
 	desc = "An import model fightercraft, this one contains an integral cloaking device that renders the fighter invisible \
 	to the naked eye. Still detectable on thermal sensors, the craft can maneuver in close to ill-equipped foes and strike unseen. \
@@ -405,7 +405,7 @@
 
 ////////////// Allure //////////////
 
-/obj/mecha/combat/fighter/allure
+obj/mecha/combat/fighter/allure
 	name = "\improper Allure"
 	desc = "A fighter of Skrellian design. Its angular shape and wide overhead cross-section is made up for by it's stout armor and carefully crafted hull paint."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -420,12 +420,12 @@
 	health = 500
 	maxhealth = 500
 
-/obj/mecha/combat/fighter/allure/loaded/Initialize(mapload) //Loaded version with gans
+obj/mecha/combat/fighter/allure/loaded/Initialize(mapload) //Loaded version with gans
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/cloak
 	ME.attach(src)
 
-/obj/effect/decal/mecha_wreckage/allure
+obj/effect/decal/mecha_wreckage/allure
 	name = "allure wreckage"
 	desc = "Remains of some unfortunate fighter. Completely unrepairable."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -433,7 +433,7 @@
 	bound_width = 64
 	bound_height = 64
 
-/datum/category_item/catalogue/technology/allure
+datum/category_item/catalogue/technology/allure
 	name = "Voidcraft - Allure"
 	desc = "A space superiority fighter of zorren design, many would comment that the blocky shape hinders aesthetic appeal. However, Zorren are \
 	often found painting their hulls in intricate designs of purple and gold, and this craft is no exception to the rule. Some individual seems to have \
@@ -442,7 +442,7 @@
 
 ////////////// Pinnace //////////////
 
-/obj/mecha/combat/fighter/pinnace
+obj/mecha/combat/fighter/pinnace
 	name = "\improper Pinnace"
 	desc = "A cramped ship's boat, capable of atmospheric and space flight. Not capable of mounting traditional weapons. Capable of fitting one pilot and one passenger."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -460,12 +460,12 @@
 
 	ground_capable = TRUE
 
-/obj/mecha/combat/fighter/pinnace/loaded/Initialize(mapload) //Loaded version with gans
+obj/mecha/combat/fighter/pinnace/loaded/Initialize(mapload) //Loaded version with gans
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 	ME.attach(src)
 
-/obj/effect/decal/mecha_wreckage/pinnace
+obj/effect/decal/mecha_wreckage/pinnace
 	name = "pinnace wreckage"
 	desc = "Remains of some unfortunate ship's boat. Completely unrepairable."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -473,7 +473,7 @@
 	bound_width = 64
 	bound_height = 64
 
-/datum/category_item/catalogue/technology/pinnace
+datum/category_item/catalogue/technology/pinnace
 	name = "Voidcraft - Pinnace"
 	desc = "A very small boat, usually used as a tender at very close ranges. The lack of a bluespace \
 	drive means that it can't get too far from it's parent ship. Though the pinnace is typically unarmed, \
@@ -484,7 +484,7 @@
 
 ////////////// Cludge //////////////
 
-/obj/mecha/combat/fighter/cludge
+obj/mecha/combat/fighter/cludge
 	name = "\improper Cludge"
 	desc = "A heater, nozzle, and fuel tank strapped together. There are exposed wires strewn about it."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -505,7 +505,7 @@
 
 	ground_capable = TRUE
 
-/obj/effect/decal/mecha_wreckage/cludge
+obj/effect/decal/mecha_wreckage/cludge
 	name = "Cludge wreckage"
 	desc = "It doesn't look much different than it normally does. Completely unrepairable."
 	icon = 'icons/mecha/fighters64x64.dmi'
@@ -513,7 +513,7 @@
 	bound_width = 64
 	bound_height = 64
 
-/datum/category_item/catalogue/technology/cludge
+datum/category_item/catalogue/technology/cludge
 	name = "Voidcraft - Cludge"
 	desc = "A collection of parts strapped together in an attempt to make a flying vessel. Such vessels are fragile, unstable \
 	and very easily break apart, due to their roughshod engineering. These vessels commonly are built without critical components \

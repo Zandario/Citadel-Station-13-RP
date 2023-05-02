@@ -1,4 +1,4 @@
-/client/proc/roll_dices()
+client/proc/roll_dices()
 	set category = "Fun"
 	set name = "Roll Dice"
 	if(!check_rights(R_FUN))

@@ -1,6 +1,6 @@
 //Concussion, or 'dizzyness' grenades.
 
-/obj/item/grenade/concussion
+obj/item/grenade/concussion
 	name = "concussion grenade"
 	desc = "A polymer concussion grenade, optimized for disorienting personnel without causing large amounts of injury."
 	icon_state = "concussion"
@@ -8,13 +8,13 @@
 
 	var/blast_radius = 5
 
-/obj/item/grenade/concussion/detonate()
+obj/item/grenade/concussion/detonate()
 	..()
 	concussion_blast(get_turf(src), blast_radius)
 	qdel(src)
 	return
 
-/obj/proc/concussion_blast(atom/target, var/radius = 5)
+obj/proc/concussion_blast(atom/target, var/radius = 5)
 	var/turf/T = get_turf(target)
 	if(is_below_sound_pressure(T))
 		visible_message("<span class='notice'>Whump.</span>")
@@ -72,7 +72,7 @@
 			*/
 	return
 
-/obj/item/grenade/concussion/frag
+obj/item/grenade/concussion/frag
 	name = "concussion-frag grenade"
 	desc = "A polymer and steel concussion grenade, optimized for disorienting personnel and being accused of war crimes."
 	icon_state = "conc-frag"
@@ -80,7 +80,7 @@
 	var/num_fragments = 40  //total number of fragments produced by the grenade
 	var/spread_range = 5 // for above and below, see code\game\objects\items\weapons\grenades\explosive.dm
 
-/obj/item/grenade/concussion/frag/detonate()
+obj/item/grenade/concussion/frag/detonate()
 	var/turf/O = get_turf(src)
 	if(!O)
 		return

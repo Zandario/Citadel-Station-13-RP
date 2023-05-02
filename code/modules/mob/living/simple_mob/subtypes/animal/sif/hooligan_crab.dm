@@ -9,7 +9,7 @@
 	hopefully prevent chainstuns forever.
 */
 
-/datum/category_item/catalogue/fauna/hooligan_crab
+datum/category_item/catalogue/fauna/hooligan_crab
 	name = "Sivian Fauna - Hooligan Crab"
 	desc = "A very large, grey crustacean-like creature. They display remarkable curiosity, \
 	often following people around, and occasionally stealing man-made objects, hence their name. \
@@ -23,7 +23,7 @@
 	Hooligan shorelines."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/sif/hooligan_crab
+mob/living/simple_mob/animal/sif/hooligan_crab
 	name = "hooligan crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey. \
 	You probably shouldn't mess with it."
@@ -82,7 +82,7 @@
 	var/weaken_amount = 2 // Be careful with this number. High values will equal a permastun.
 
 // Stuns the thing that got hit briefly.
-/mob/living/simple_mob/animal/sif/hooligan_crab/apply_melee_effects(atom/A)
+mob/living/simple_mob/animal/sif/hooligan_crab/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		var/was_stunned = L.incapacitated(INCAPACITATION_DISABLED)
@@ -97,7 +97,7 @@
 			visible_message(SPAN_DANGER("\The [src] crushes \the [L]!"))
 
 // The AI for hooligan crabs. Follows people for awhile.
-/datum/ai_holder/simple_mob/melee/hooligan
+datum/ai_holder/simple_mob/melee/hooligan
 	hostile = FALSE
 	retaliate = TRUE
 	returns_home = TRUE
@@ -105,7 +105,7 @@
 	mauling = TRUE
 	var/random_follow = TRUE // Turn off if you want to bus with crabs.
 
-/datum/ai_holder/simple_mob/melee/hooligan/handle_stance_strategical()
+datum/ai_holder/simple_mob/melee/hooligan/handle_stance_strategical()
 	..()
 	if(random_follow && stance == STANCE_IDLE && !leader)
 		if(prob(10))

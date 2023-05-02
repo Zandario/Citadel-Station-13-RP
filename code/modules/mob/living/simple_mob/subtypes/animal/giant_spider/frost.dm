@@ -1,6 +1,6 @@
 // Frost spiders inject cryotoxin, slowing people down (which is very bad if trying to run from spiders).
 
-/datum/category_item/catalogue/fauna/giant_spider/frost_spider
+datum/category_item/catalogue/fauna/giant_spider/frost_spider
 	name = "Giant Spider - Frost"
 	desc = "This specific spider has been catalogued as 'Frost', \
 	and it belongs to the 'Guard' caste. \
@@ -15,7 +15,7 @@
 	thermal insulating clothing, making it more difficult to warm up."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/frost
+mob/living/simple_mob/animal/giant_spider/frost
 	desc = "Icy and blue, it makes you shudder to look at it. This one has brilliant blue eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/frost_spider)
 
@@ -32,6 +32,6 @@
 	cold_resist = 0.75
 
 // Sif variant with a somewhat different desc.
-/mob/living/simple_mob/animal/giant_spider/frost/sif
+mob/living/simple_mob/animal/giant_spider/frost/sif
 	desc = "Icy and blue, it makes you shudder to look at it. This one has brilliant blue eyes. \
 	It isn't native to Sif."

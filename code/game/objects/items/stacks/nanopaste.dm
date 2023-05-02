@@ -1,4 +1,4 @@
-/obj/item/stack/nanopaste
+obj/item/stack/nanopaste
 	name = "nanopaste"
 	singular_name = "nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
@@ -13,7 +13,7 @@
 	var/restoration_internal = 20
 
 
-/obj/item/stack/nanopaste/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/stack/nanopaste/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!isliving(target))
 		return ..()
 	var/mob/living/L = target
@@ -51,7 +51,7 @@
 				user.visible_message("<span class='notice'>\The [user] applies some nanite paste on [user != L ? "[L]'s [S.name]" : "[S]"] with [src].</span>",\
 				"<span class='notice'>You apply some nanite paste on [user == L ? "your" : "[L]'s"] [S.name].</span>")
 
-/obj/item/stack/nanopaste/advanced
+obj/item/stack/nanopaste/advanced
 	name = "advanced nanopaste"
 	singular_name = "advanced nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery. This swarm is capable of repairing more effectively."

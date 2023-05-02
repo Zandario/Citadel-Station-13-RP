@@ -1,18 +1,18 @@
 var/global/universe_has_ended = 0
 
 
-/datum/universal_state/supermatter_cascade
+datum/universal_state/supermatter_cascade
  	name = "Supermatter Cascade"
  	desc = "Unknown harmonance affecting universal substructure, converting nearby matter to supermatter."
 
  	decay_rate = 5 // 5% chance of a turf decaying on lighting update/airflow (there's no actual tick for turfs)
 
-/datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
+datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
 	if(user)
 		to_chat(user, "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There will be no shuttle call today.</span>")
 	return 0
 
-/datum/universal_state/supermatter_cascade/DecayTurf(var/turf/T)
+datum/universal_state/supermatter_cascade/DecayTurf(var/turf/T)
 	if(istype(T,/turf/simulated/wall))
 		var/turf/simulated/wall/W=T
 		W.melt()
@@ -28,7 +28,7 @@ var/global/universe_has_ended = 0
 		return
 
 // Apply changes when entering state
-/datum/universal_state/supermatter_cascade/OnEnter()
+datum/universal_state/supermatter_cascade/OnEnter()
 	set background = 1
 	to_chat(world, "<span class='sinister' style='font-size:22pt'>You are blinded by a brilliant flash of energy.</span>")
 
@@ -76,14 +76,14 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			universe_has_ended = 1
 		return
 
-/datum/universal_state/supermatter_cascade/proc/AreaSet()
+datum/universal_state/supermatter_cascade/proc/AreaSet()
 	for(var/area/A in GLOB.sortedAreas)
 		if(!istype(A,/area) || istype(A, /area/space) || istype(A,/area/beach))
 			continue
 
 		A.updateicon()
 
-/datum/universal_state/supermatter_cascade/OverlayAndAmbientSet()
+datum/universal_state/supermatter_cascade/OverlayAndAmbientSet()
 	spawn(0)
 		for(var/datum/lighting_corner/L in world)
 			if(L.z in GLOB.using_map.admin_levels)
@@ -93,12 +93,12 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 		for(var/turf/space/T in world)
 			T.color = "#0066FF"
 
-/datum/universal_state/supermatter_cascade/proc/MiscSet()
+datum/universal_state/supermatter_cascade/proc/MiscSet()
 	for (var/obj/machinery/firealarm/alm in GLOB.machines)
 		if (!(alm.machine_stat & BROKEN))
 			LEGACY_EX_ACT(alm, 2, null)
 
-/datum/universal_state/supermatter_cascade/proc/APCSet()
+datum/universal_state/supermatter_cascade/proc/APCSet()
 	for (var/obj/machinery/power/apc/APC in GLOB.apcs)
 		if (!(APC.machine_stat & BROKEN) && !APC.is_critical)
 			APC.chargemode = 0
@@ -107,7 +107,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			APC.emagged = 1
 			APC.update_icon()
 
-/datum/universal_state/supermatter_cascade/proc/PlayerSet()
+datum/universal_state/supermatter_cascade/proc/PlayerSet()
 	for(var/datum/mind/M in GLOB.player_list)
 		if(!istype(M.current,/mob/living))
 			continue

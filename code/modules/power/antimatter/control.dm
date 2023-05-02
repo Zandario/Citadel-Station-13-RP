@@ -1,4 +1,4 @@
-/obj/machinery/power/am_control_unit
+obj/machinery/power/am_control_unit
 	name = "antimatter control unit"
 	desc = "This device injects antimatter into connected shielding units, the more antimatter injected the more power produced.  Wrench the device to set it up."
 	icon = 'icons/obj/machines/antimatter.dmi'
@@ -29,17 +29,17 @@
 	var/stored_power = 0//Power to deploy per tick
 
 
-/obj/machinery/power/am_control_unit/Initialize(mapload, newdir)
+obj/machinery/power/am_control_unit/Initialize(mapload, newdir)
 	. = ..()
 	linked_shielding = list()
 	linked_cores = list()
 
-/obj/machinery/power/am_control_unit/Destroy()//Perhaps damage and run stability checks rather than just qdel on the others
+obj/machinery/power/am_control_unit/Destroy()//Perhaps damage and run stability checks rather than just qdel on the others
 	for(var/obj/machinery/am_shielding/AMS in linked_shielding)
 		qdel(AMS)
 	return ..()
 
-/obj/machinery/power/am_control_unit/process(delta_time)
+obj/machinery/power/am_control_unit/process(delta_time)
 	if(exploding)
 		explosion(get_turf(src),8,12,18,12)
 		if(src) qdel(src)
@@ -66,7 +66,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/proc/produce_power()
+obj/machinery/power/am_control_unit/proc/produce_power()
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 	var/core_power = reported_core_efficiency//Effectively how much fuel we can safely deal with
 	if(core_power <= 0) return 0//Something is wrong
@@ -87,7 +87,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/emp_act(severity)
+obj/machinery/power/am_control_unit/emp_act(severity)
 	switch(severity)
 		if(1)
 			if(active)	toggle_power()
@@ -105,7 +105,7 @@
 	return 0
 
 
-/obj/machinery/power/am_control_unit/legacy_ex_act(severity)
+obj/machinery/power/am_control_unit/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			stability -= 60
@@ -117,26 +117,26 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/bullet_act(var/obj/projectile/Proj)
+obj/machinery/power/am_control_unit/bullet_act(var/obj/projectile/Proj)
 	if(Proj.damage_flag != "bullet")
 		stability -= Proj.damage
 	return 0
 
 
-/obj/machinery/power/am_control_unit/power_change()
+obj/machinery/power/am_control_unit/power_change()
 	..()
 	if(machine_stat & NOPOWER && active)
 		toggle_power()
 	return
 
 
-/obj/machinery/power/am_control_unit/update_icon()
+obj/machinery/power/am_control_unit/update_icon()
 	if(active) icon_state = "control_on"
 	else icon_state = "control"
 	//No other icons for it atm
 
 
-/obj/machinery/power/am_control_unit/attackby(obj/item/W, mob/user)
+obj/machinery/power/am_control_unit/attackby(obj/item/W, mob/user)
 	if(!istype(W) || !user) return
 	if(W.is_wrench())
 		if(!anchored)
@@ -177,13 +177,13 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/attack_hand(mob/user, list/params)
+obj/machinery/power/am_control_unit/attack_hand(mob/user, list/params)
 	if(anchored)
 		interact(user)
 	return
 
 
-/obj/machinery/power/am_control_unit/proc/add_shielding(var/obj/machinery/am_shielding/AMS, var/AMS_linking = 0)
+obj/machinery/power/am_control_unit/proc/add_shielding(var/obj/machinery/am_shielding/AMS, var/AMS_linking = 0)
 	if(!istype(AMS)) return 0
 	if(!anchored) return 0
 	if(!AMS_linking && !AMS.link_control(src)) return 0
@@ -192,7 +192,7 @@
 	return 1
 
 
-/obj/machinery/power/am_control_unit/proc/remove_shielding(var/obj/machinery/am_shielding/AMS)
+obj/machinery/power/am_control_unit/proc/remove_shielding(var/obj/machinery/am_shielding/AMS)
 	if(!istype(AMS)) return 0
 	linked_shielding.Remove(AMS)
 	update_shield_icons = 2
@@ -200,13 +200,13 @@
 	return 1
 
 
-/obj/machinery/power/am_control_unit/proc/check_stability()//TODO: make it break when low also might want to add a way to fix it like a part or such that can be replaced
+obj/machinery/power/am_control_unit/proc/check_stability()//TODO: make it break when low also might want to add a way to fix it like a part or such that can be replaced
 	if(stability <= 0)
 		qdel(src)
 	return
 
 
-/obj/machinery/power/am_control_unit/proc/toggle_power()
+obj/machinery/power/am_control_unit/proc/toggle_power()
 	active = !active
 	if(active)
 		update_use_power(USE_POWER_ACTIVE)
@@ -218,7 +218,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/proc/check_shield_icons()//Forces icon_update for all shields
+obj/machinery/power/am_control_unit/proc/check_shield_icons()//Forces icon_update for all shields
 	if(shield_icon_delay) return
 	shield_icon_delay = 1
 	if(update_shield_icons == 2)//2 means to clear everything and rebuild
@@ -237,7 +237,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/proc/check_core_stability()
+obj/machinery/power/am_control_unit/proc/check_core_stability()
 	if(stored_core_stability_delay || linked_cores.len <= 0)	return
 	stored_core_stability_delay = 1
 	stored_core_stability = 0
@@ -249,7 +249,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/interact(mob/user)
+obj/machinery/power/am_control_unit/interact(mob/user)
 	if((get_dist(src, user) > 1) || (machine_stat & (BROKEN|NOPOWER)))
 		if(!istype(user, /mob/living/silicon/ai))
 			user.unset_machine()
@@ -288,7 +288,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/Topic(href, href_list)
+obj/machinery/power/am_control_unit/Topic(href, href_list)
 	..()
 	//Ignore input if we are broken or guy is not touching us, AI can control from a ways away
 	if(machine_stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !istype(usr, /mob/living/silicon/ai)))

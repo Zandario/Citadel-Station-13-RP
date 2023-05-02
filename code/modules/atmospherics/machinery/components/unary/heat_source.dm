@@ -1,5 +1,5 @@
 
-/obj/machinery/atmospherics/component/unary/heater
+obj/machinery/atmospherics/component/unary/heater
 	name = "gas heating system"
 	desc = "Heats gas when connected to a pipe network"
 	icon = 'icons/obj/medical/cryogenic2.dmi'
@@ -19,7 +19,7 @@
 	var/set_temperature = T20C	//thermostat
 	var/heating = 0		//mainly for icon updates
 
-/obj/machinery/atmospherics/component/unary/heater/atmos_init()
+obj/machinery/atmospherics/component/unary/heater/atmos_init()
 	if(node)
 		return
 
@@ -38,7 +38,7 @@
 		update_icon()
 
 
-/obj/machinery/atmospherics/component/unary/heater/update_icon()
+obj/machinery/atmospherics/component/unary/heater/update_icon()
 	if(node)
 		if(use_power && heating)
 			icon_state = "heater_1"
@@ -49,7 +49,7 @@
 	return
 
 
-/obj/machinery/atmospherics/component/unary/heater/process(delta_time)
+obj/machinery/atmospherics/component/unary/heater/process(delta_time)
 	..()
 
 	if(machine_stat & (NOPOWER|BROKEN) || !use_power)
@@ -70,19 +70,19 @@
 
 	update_icon()
 
-/obj/machinery/atmospherics/component/unary/heater/attack_ai(mob/user as mob)
+obj/machinery/atmospherics/component/unary/heater/attack_ai(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/atmospherics/component/unary/heater/attack_hand(mob/user, list/params)
+obj/machinery/atmospherics/component/unary/heater/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/obj/machinery/atmospherics/component/unary/heater/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/atmospherics/component/unary/heater/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "GasTemperatureSystem", name)
 		ui.open()
 
-/obj/machinery/atmospherics/component/unary/heater/ui_data(mob/user)
+obj/machinery/atmospherics/component/unary/heater/ui_data(mob/user)
 	var/list/data = list()
 
 	data["on"] = use_power ? 1 : 0
@@ -100,7 +100,7 @@
 
 	return data
 
-/obj/machinery/atmospherics/component/unary/heater/ui_act(action, params)
+obj/machinery/atmospherics/component/unary/heater/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -120,7 +120,7 @@
 			set_power_level(new_setting)
 
 //upgrading parts
-/obj/machinery/atmospherics/component/unary/heater/RefreshParts()
+obj/machinery/atmospherics/component/unary/heater/RefreshParts()
 	..()
 	var/cap_rating = 0
 	var/bin_rating = 0
@@ -136,11 +136,11 @@
 	air_contents.volume = max(initial(internal_volume) - 200, 0) + 200 * bin_rating
 	set_power_level(power_setting)
 
-/obj/machinery/atmospherics/component/unary/heater/proc/set_power_level(var/new_power_setting)
+obj/machinery/atmospherics/component/unary/heater/proc/set_power_level(var/new_power_setting)
 	power_setting = new_power_setting
 	power_rating = max_power_rating * (power_setting/100)
 
-/obj/machinery/atmospherics/component/unary/heater/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/atmospherics/component/unary/heater/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))
@@ -150,7 +150,7 @@
 
 	..()
 
-/obj/machinery/atmospherics/component/unary/heater/examine(mob/user)
+obj/machinery/atmospherics/component/unary/heater/examine(mob/user)
 	. = ..()
 	if(panel_open)
 		. += "The maintenance hatch is open."

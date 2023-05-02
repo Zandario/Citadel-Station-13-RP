@@ -1,133 +1,133 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/simulated/floor/outdoors/beach/sand/dirtlight,
-/area/class_h/POIs/tomb)
+turf/simulated/floor/outdoors/beach/sand/dirtlight,
+area/class_h/POIs/tomb)
 "c" = (
-/turf/simulated/floor/outdoors/beach/sand/dirtlight,
-/area/class_h/explored)
+turf/simulated/floor/outdoors/beach/sand/dirtlight,
+area/class_h/explored)
 "d" = (
-/obj/random/mob/spider/nurse,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/random/mob/spider/nurse,
+obj/effect/spider/stickyweb,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "e" = (
-/turf/simulated/wall/sandstone/classh,
-/area/class_h/POIs/tomb)
+turf/simulated/wall/sandstone/classh,
+area/class_h/POIs/tomb)
 "k" = (
-/obj/structure/table/marble,
-/obj/item/flame/candle/candelabra/everburn{
+obj/structure/table/marble,
+obj/item/flame/candle/candelabra/everburn{
 	icon_state = "candelabra_lit";
 	lit = 1
 	},
-/obj/item/clothing/ears/earring/dangle/glass,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/item/clothing/ears/earring/dangle/glass,
+obj/effect/spider/stickyweb,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "l" = (
-/turf/simulated/wall/sandstone,
-/area/class_h/POIs/tomb)
+turf/simulated/wall/sandstone,
+area/class_h/POIs/tomb)
 "m" = (
-/obj/structure/table/marble,
-/obj/item/flame/candle/candelabra/everburn{
+obj/structure/table/marble,
+obj/item/flame/candle/candelabra/everburn{
 	icon_state = "candelabra_lit";
 	lit = 1
 	},
-/obj/item/clothing/accessory/necklace,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/item/clothing/accessory/necklace,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "n" = (
-/turf/simulated/mineral/classh,
-/area/class_h/explored)
+turf/simulated/mineral/classh,
+area/class_h/explored)
 "o" = (
-/turf/simulated/floor/outdoors/beach/sand/lowdesert,
-/area/class_h/explored)
+turf/simulated/floor/outdoors/beach/sand/lowdesert,
+area/class_h/explored)
 "p" = (
-/obj/random/mob/spider,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/random/mob/spider,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "q" = (
-/turf/simulated/wall/sandstone/classh,
-/area/class_h/explored)
+turf/simulated/wall/sandstone/classh,
+area/class_h/explored)
 "w" = (
-/obj/structure/table/marble,
-/obj/item/flame/candle/candelabra/everburn{
+obj/structure/table/marble,
+obj/item/flame/candle/candelabra/everburn{
 	icon_state = "candelabra_lit";
 	lit = 1
 	},
-/obj/item/clothing/gloves/ring/material/iron,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/item/clothing/gloves/ring/material/iron,
+obj/effect/spider/stickyweb,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "H" = (
-/obj/structure/table/marble,
-/obj/item/flame/candle/candelabra/everburn{
+obj/structure/table/marble,
+obj/item/flame/candle/candelabra/everburn{
 	icon_state = "candelabra_lit";
 	lit = 1
 	},
-/obj/item/clothing/ears/earring/stud/steel,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/item/clothing/ears/earring/stud/steel,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "K" = (
-/mob/living/simple_mob/animal/giant_spider,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+mob/living/simple_mob/animal/giant_spider,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "L" = (
-/turf/simulated/wall/sandstonediamond/classh,
-/area/class_h/POIs/tomb)
+turf/simulated/wall/sandstonediamond/classh,
+area/class_h/POIs/tomb)
 "N" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/effect/spider/stickyweb,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "O" = (
-/obj/structure/table/marble,
-/obj/effect/decal/remains/mummy2,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/structure/table/marble,
+obj/effect/decal/remains/mummy2,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "S" = (
-/obj/structure/table/marble,
-/obj/item/flame/candle/candelabra/everburn{
+obj/structure/table/marble,
+obj/item/flame/candle/candelabra/everburn{
 	icon_state = "candelabra_lit";
 	lit = 1
 	},
-/obj/item/clothing/ears/skrell/chain,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/item/clothing/ears/skrell/chain,
+obj/effect/spider/stickyweb,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "T" = (
-/obj/structure/table/marble,
-/obj/effect/decal/remains/mummy1,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/structure/table/marble,
+obj/effect/decal/remains/mummy1,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "U" = (
-/obj/structure/table/marble,
-/obj/item/flame/candle/candelabra/everburn{
+obj/structure/table/marble,
+obj/item/flame/candle/candelabra/everburn{
 	icon_state = "candelabra_lit";
 	lit = 1
 	},
-/obj/item/clothing/gloves/ring/material/silver,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/item/clothing/gloves/ring/material/silver,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "W" = (
-/turf/simulated/wall/sandstone/classh{
+turf/simulated/wall/sandstone/classh{
 	can_open = 1
 	},
-/area/class_h/POIs/tomb)
+area/class_h/POIs/tomb)
 "X" = (
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "Y" = (
-/obj/random/mob/spider/mutant,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/random/mob/spider/mutant,
+obj/effect/spider/stickyweb,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 "Z" = (
-/obj/effect/decal/remains/mummy1,
-/obj/random/multiple/treasure,
-/turf/simulated/floor/wmarble,
-/area/class_h/POIs/tomb)
+obj/effect/decal/remains/mummy1,
+obj/random/multiple/treasure,
+turf/simulated/floor/wmarble,
+area/class_h/POIs/tomb)
 
 (1,1,1) = {"
 a

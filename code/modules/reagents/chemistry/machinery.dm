@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-/obj/machinery/reagentgrinder
+obj/machinery/reagentgrinder
 
 	name = "All-In-One Grinder"
 	desc = "Grinds stuff into itty bitty bits."
@@ -38,12 +38,12 @@
 	var/static/radial_grind = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_grind")
 	var/no_panel = FALSE
 
-/obj/machinery/reagentgrinder/Initialize(mapload)
+obj/machinery/reagentgrinder/Initialize(mapload)
 	. = ..()
 	if(ispath(beaker))
 		beaker = new beaker(src)
 
-/obj/machinery/reagentgrinder/examine(mob/user)
+obj/machinery/reagentgrinder/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
 		. += "<span class='warning'>You're too far away to examine [src]'s contents and display!</span>"
@@ -67,11 +67,11 @@
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				. += "<span class='notice'>- [R.volume] units of [R.name].</span>"
 
-/obj/machinery/reagentgrinder/update_icon()
+obj/machinery/reagentgrinder/update_icon()
 	icon_state = "juicer"+num2text(!isnull(beaker))
 	return
 
-/obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(beaker)
 		if(default_deconstruction_screwdriver(user, O))
 			return
@@ -149,21 +149,21 @@
 	src.updateUsrDialog()
 	return 0
 
-/obj/machinery/reagentgrinder/AltClick(mob/user)
+obj/machinery/reagentgrinder/AltClick(mob/user)
 	. = ..()
 	if(user.incapacitated() || !Adjacent(user))
 		return
 	replace_beaker(user)
 
-/obj/machinery/reagentgrinder/Exited(atom/movable/AM, atom/newLoc)
+obj/machinery/reagentgrinder/Exited(atom/movable/AM, atom/newLoc)
 	. = ..()
 	if(AM in holdingitems)
 		holdingitems -= AM
 
-/obj/machinery/reagentgrinder/attack_hand(mob/user, list/params)
+obj/machinery/reagentgrinder/attack_hand(mob/user, list/params)
 	interact(user)
 
-/obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu //I am reasonably certain that this is not a microwave
+obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu //I am reasonably certain that this is not a microwave
 	if(inuse || user.incapacitated())
 		return
 
@@ -202,7 +202,7 @@
 		if("examine")
 			examine(user)
 
-/obj/machinery/reagentgrinder/proc/eject(mob/user)
+obj/machinery/reagentgrinder/proc/eject(mob/user)
 	if(user.incapacitated())
 		return
 	for(var/obj/item/O in holdingitems)
@@ -212,7 +212,7 @@
 	if(beaker)
 		replace_beaker(user)
 
-/obj/machinery/reagentgrinder/proc/grind()
+obj/machinery/reagentgrinder/proc/grind()
 
 	power_change()
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -261,7 +261,7 @@
 			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
 
-/obj/machinery/reagentgrinder/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
+obj/machinery/reagentgrinder/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
 	if(!user)
 		return FALSE
 	if(beaker)
@@ -280,7 +280,7 @@
 ///////////////
 // Detects reagents inside most containers, and acts as an infinite identification system for reagent-based unidentified objects.
 
-/obj/machinery/chemical_analyzer
+obj/machinery/chemical_analyzer
 	name = "chem analyzer"
 	desc = "Used to precisely scan chemicals and other liquids inside various containers. \
 	It may also identify the liquid contents of unknown objects."
@@ -295,10 +295,10 @@
 	clicksound = "button"
 	var/analyzing = FALSE
 
-/obj/machinery/chemical_analyzer/update_icon()
+obj/machinery/chemical_analyzer/update_icon()
 	icon_state = "chem_analyzer[analyzing ? "-working":""]"
 
-/obj/machinery/chemical_analyzer/attackby(obj/item/I, mob/living/user)
+obj/machinery/chemical_analyzer/attackby(obj/item/I, mob/living/user)
 	if(!istype(I))
 		return ..()
 

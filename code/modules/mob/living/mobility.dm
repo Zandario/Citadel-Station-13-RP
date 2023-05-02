@@ -1,4 +1,4 @@
-/mob/living/update_mobility(blocked, forced)
+mob/living/update_mobility(blocked, forced)
 	// this proc looks mildly heretical and pyramid of doomy
 	// for micro-optimization purposes.
 	if(!IS_CONSCIOUS(src))
@@ -28,7 +28,7 @@
  * does not check mobility flags.
  * does not set other mobility flags or update mobility.
  */
-/mob/living/proc/set_resting(value)
+mob/living/proc/set_resting(value)
 	if(resting == value)
 		return
 	resting = value
@@ -49,7 +49,7 @@
  * immediately toggles resting
  * does not check, or update mobility flags.
  */
-/mob/living/proc/toggle_resting()
+mob/living/proc/toggle_resting()
 	set_resting(!resting)
 
 /**
@@ -57,7 +57,7 @@
  *
  * @return TRUE / FALSE based on if we started a new resist operation.
  */
-/mob/living/proc/resist_a_rest(instant = FALSE)
+mob/living/proc/resist_a_rest(instant = FALSE)
 	if(!resting) // already up
 		return FALSE
 	if(!CHECK_MOBILITY(src, MOBILITY_CAN_STAND))
@@ -67,7 +67,7 @@
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob/living, _resist_a_rest), instant)
 	return TRUE
 
-/mob/living/proc/_resist_a_rest(instant)
+mob/living/proc/_resist_a_rest(instant)
 	PRIVATE_PROC(TRUE)
 	getting_up = TRUE
 	getting_up_loc = loc
@@ -99,13 +99,13 @@
 			innate_feedback(SPAN_NOTICE("You get up."))
 	getting_up = FALSE
 
-/mob/living/proc/get_up_delay()
+mob/living/proc/get_up_delay()
 	// todo: redo
 	return 5 + (1 - clamp(health / getMaxHealth(), 0, 1)) * 33 + min(halloss, 100) * 0.33
 
 #define PENALIZE_FACTOR 0.5
 
-/mob/living/proc/_resisting_a_rest(list/do_after_args)
+mob/living/proc/_resisting_a_rest(list/do_after_args)
 	var/current_delay = get_up_delay()
 	if(current_delay != getting_up_original)
 		do_after_args[DO_AFTER_ARG_DELAY] += current_delay - getting_up_original
@@ -120,21 +120,21 @@
 
 #undef PENALIZE_FACTOR
 
-/mob/living/proc/auto_resist_rest()
+mob/living/proc/auto_resist_rest()
 	if(resting_intentionally || !resting)
 		return
 	if(!CHECK_MOBILITY(src, MOBILITY_CAN_STAND))
 		return
 	resist_a_rest()
 
-/mob/living/proc/set_intentionally_resting(value, instant)
+mob/living/proc/set_intentionally_resting(value, instant)
 	resting_intentionally = value
 	if(resting_intentionally && !resting)
 		set_resting(TRUE)
 	else if(!resting_intentionally && resting)
 		resist_a_rest(instant)
 
-/mob/living/proc/toggle_intentionally_resting(instant)
+mob/living/proc/toggle_intentionally_resting(instant)
 	set_intentionally_resting(!resting_intentionally, instant)
 
 /**
@@ -142,7 +142,7 @@
  * updates icons if necessary,
  * and updates mobility if necessary.
  */
-/mob/living/proc/update_lying()
+mob/living/proc/update_lying()
 	var/wanted = 0
 	// check if we're standing
 	if(IS_PRONE(src))
@@ -169,10 +169,10 @@
 	SEND_SIGNAL(src, COMSIG_MOB_ON_UPDATE_LYING, old, lying)
 	update_transform()
 
-/mob/proc/cannot_stand()
+mob/proc/cannot_stand()
 	return incapacitated(INCAPACITATION_KNOCKDOWN)
 
-/mob/living/verb/lay_down()
+mob/living/verb/lay_down()
 	set name = "Rest"
 	set category = "IC"
 

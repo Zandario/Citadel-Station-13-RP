@@ -1,4 +1,4 @@
-/obj/item/chameleon
+obj/item/chameleon
 	name = "chameleon projector"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
@@ -16,21 +16,21 @@
 	var/saved_icon_state = "cigbutt"
 	var/saved_overlays
 
-/obj/item/chameleon/dropped(mob/user, flags, atom/newLoc)
+obj/item/chameleon/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	disrupt()
 
-/obj/item/chameleon/equipped(mob/user, slot, flags)
+obj/item/chameleon/equipped(mob/user, slot, flags)
 	. = ..()
 	disrupt()
 
-/obj/item/chameleon/attack_self(mob/user)
+obj/item/chameleon/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	toggle()
 
-/obj/item/chameleon/afterattack(atom/target, mob/user , proximity)
+obj/item/chameleon/afterattack(atom/target, mob/user , proximity)
 	if(!proximity) return
 	if(!active_dummy)
 		if(istype(target,/obj/item) && !istype(target, /obj/item/disk/nuclear))
@@ -41,7 +41,7 @@
 			saved_icon_state = target.icon_state
 			saved_overlays = copy_overlays(target)
 
-/obj/item/chameleon/proc/toggle()
+obj/item/chameleon/proc/toggle()
 	if(!can_use || !saved_item) return
 	if(active_dummy)
 		eject_all()
@@ -66,7 +66,7 @@
 		flick("emppulse",T)
 		spawn(8) qdel(T)
 
-/obj/item/chameleon/proc/disrupt(var/delete_dummy = 1)
+obj/item/chameleon/proc/disrupt(var/delete_dummy = 1)
 	if(active_dummy)
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread
 		spark_system.set_up(5, 0, src)
@@ -79,14 +79,14 @@
 		can_use = 0
 		spawn(50) can_use = 1
 
-/obj/item/chameleon/proc/eject_all()
+obj/item/chameleon/proc/eject_all()
 	for(var/atom/movable/A in active_dummy)
 		A.forceMove(active_dummy.loc)
 		if(ismob(A))
 			var/mob/M = A
 			M.update_perspective()
 
-/obj/effect/dummy/chameleon
+obj/effect/dummy/chameleon
 	name = ""
 	desc = ""
 	density = 0
@@ -94,7 +94,7 @@
 	var/can_move = 1
 	var/obj/item/chameleon/master = null
 
-/obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/chameleon/C)
+obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/chameleon/C)
 	name = O.name
 	desc = O.desc
 	icon = new_icon
@@ -105,28 +105,28 @@
 	master = C
 	master.active_dummy = src
 
-/obj/effect/dummy/chameleon/attackby()
+obj/effect/dummy/chameleon/attackby()
 	for(var/mob/M in src)
 		to_chat(M, "<span class='warning'>Your chameleon-projector deactivates.</span>")
 	master.disrupt()
 
-/obj/effect/dummy/chameleon/attack_hand(mob/user, list/params)
+obj/effect/dummy/chameleon/attack_hand(mob/user, list/params)
 	for(var/mob/M in src)
 		to_chat(M, "<span class='warning'>Your chameleon-projector deactivates.</span>")
 	master.disrupt()
 
-/obj/effect/dummy/chameleon/legacy_ex_act()
+obj/effect/dummy/chameleon/legacy_ex_act()
 	for(var/mob/M in src)
 		to_chat(M, "<span class='warning'>Your chameleon-projector deactivates.</span>")
 	master.disrupt()
 
-/obj/effect/dummy/chameleon/bullet_act()
+obj/effect/dummy/chameleon/bullet_act()
 	for(var/mob/M in src)
 		to_chat(M, "<span class='warning'>Your chameleon-projector deactivates.</span>")
 	..()
 	master.disrupt()
 
-/obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
+obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!
 
 	if(can_move)
@@ -145,6 +145,6 @@
 		step(src, direction)
 	return
 
-/obj/effect/dummy/chameleon/Destroy()
+obj/effect/dummy/chameleon/Destroy()
 	master.disrupt(0)
 	..()

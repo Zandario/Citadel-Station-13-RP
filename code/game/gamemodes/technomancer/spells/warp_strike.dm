@@ -1,4 +1,4 @@
-/datum/technomancer/spell/warp_strike
+datum/technomancer/spell/warp_strike
 	name = "Warp Strike"
 	desc = "Teleports you next to your target, and attacks them with whatever is in your off-hand, spell or object."
 	cost = 100
@@ -6,7 +6,7 @@
 	ability_icon_state = "tech_warpstrike"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/warp_strike
+obj/item/spell/warp_strike
 	name = "warp strike"
 	desc = "The answer to the problem of bringing a knife to a gun fight."
 	icon_state = "warp_strike"
@@ -14,13 +14,13 @@
 	aspect = ASPECT_TELE
 	var/datum/effect_system/spark_spread/sparks
 
-/obj/item/spell/warp_strike/Initialize(mapload)
+obj/item/spell/warp_strike/Initialize(mapload)
 	. = ..()
 	sparks = new /datum/effect_system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 
-/obj/item/spell/warp_strike/on_ranged_cast(atom/hit_atom, mob/user)
+obj/item/spell/warp_strike/on_ranged_cast(atom/hit_atom, mob/user)
 	var/turf/T = get_turf(hit_atom)
 	if(T)
 		if(!within_range(T))
@@ -77,4 +77,3 @@
 		else
 			chosen_target.attack_hand(user)
 		log_and_message_admins("has warp striked [chosen_target].")
-

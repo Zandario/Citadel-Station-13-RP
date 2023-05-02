@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/brain/robotic
+datum/category_item/catalogue/fauna/brain/robotic
 	name = "Heuristics - Robotic"
 	desc = "Referred to as Intelligence Circuits, the complexity of these \
 	chips is obfuscted by such simple language. RICs are self contained environments \
@@ -7,7 +7,7 @@
 	is significantly different."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/obj/item/mmi/digital/robot
+obj/item/mmi/digital/robot
 	name = "robotic intelligence circuit"
 	desc = "The pinnacle of artifical intelligence which can be achieved using classical computer science."
 	icon = 'icons/obj/module.dmi'
@@ -16,20 +16,20 @@
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	catalogue_data = list(/datum/category_item/catalogue/fauna/brain/robotic)
 
-/obj/item/mmi/digital/robot/Initialize(mapload)
+obj/item/mmi/digital/robot/Initialize(mapload)
 	. = ..()
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN"))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 	src.name = "robotic intelligence circuit ([src.brainmob.name])"
 
-/obj/item/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
+obj/item/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = "Robotic Intelligence"
 	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're little more than a complex circuit.</span>")
 	return
 
-/obj/item/mmi/digital/robot/attack_self(mob/user)
+obj/item/mmi/digital/robot/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

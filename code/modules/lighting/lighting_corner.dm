@@ -9,7 +9,7 @@ var/global/list/LIGHTING_CORNER_DIAGONAL = list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 // This is the reverse of the above - the position in the array is a dir. Update this if the above changes.
 var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 2, 1)
 
-/datum/lighting_corner
+datum/lighting_corner
 	// t1 through t4 are our masters, in no particular order.
 	// They are split into vars like this in the interest of reducing memory usage.
 	// tX is the turf itself, tXi is the index of this corner in that turf's corners list.
@@ -64,7 +64,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	/// Used for planet lighting. Probably needs a better system to prevent over-updating when not needed at some point.
 	var/update_gen = 0
 
-/datum/lighting_corner/New(turf/new_turf, diagonal, oi)
+datum/lighting_corner/New(turf/new_turf, diagonal, oi)
 	SSlighting.total_lighting_corners += 1
 
 	var/has_ambience = FALSE
@@ -130,7 +130,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 #define OVERLAY_PRESENT(T) (T && T.lighting_overlay)
 
-/datum/lighting_corner/proc/update_active()
+datum/lighting_corner/proc/update_active()
 	active = FALSE
 
 	if (OVERLAY_PRESENT(t1) || OVERLAY_PRESENT(t2) || OVERLAY_PRESENT(t3) || OVERLAY_PRESENT(t4))
@@ -143,7 +143,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 #define UPDATE_APPARENT(T, CH) T.apparent_##CH = T.self_##CH + T.below_##CH + T.ambient_##CH + T.above_ambient_##CH
 
-/datum/lighting_corner/proc/init_ambient()
+datum/lighting_corner/proc/init_ambient()
 	var/sum_r = 0
 	var/sum_g = 0
 	var/sum_b = 0
@@ -173,7 +173,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	update_ambient_lumcount(sum_r, sum_g, sum_b)
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
-/datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b, now = FALSE)
+datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b, now = FALSE)
 	if (!(delta_r + delta_g + delta_b))
 		return
 
@@ -215,7 +215,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 		needs_update = TRUE
 		SSlighting.corner_queue += src
 
-/datum/lighting_corner/proc/update_below_lumcount(delta_r, delta_g, delta_b, now = FALSE)
+datum/lighting_corner/proc/update_below_lumcount(delta_r, delta_g, delta_b, now = FALSE)
 	if (!(delta_r + delta_g + delta_b))
 		return
 
@@ -237,7 +237,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	else
 		update_overlays(TRUE)
 
-/datum/lighting_corner/proc/update_ambient_lumcount(delta_r, delta_g, delta_b, skip_update = FALSE)
+datum/lighting_corner/proc/update_ambient_lumcount(delta_r, delta_g, delta_b, skip_update = FALSE)
 	ambient_r += delta_r
 	ambient_g += delta_g
 	ambient_b += delta_b
@@ -305,7 +305,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 //? Don't even attempt to use with current darksight...
 // #define ACES_TONEMAP(X) clamp((X * (2.51 * X + 0.03)) / (X * (2.43 * X + 0.59) + 0.14), 0, 1)
 
-/datum/lighting_corner/proc/update_overlays(now = FALSE)
+datum/lighting_corner/proc/update_overlays(now = FALSE)
 	var/lr = apparent_r
 	var/lg = apparent_g
 	var/lb = apparent_b
@@ -339,7 +339,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 				Ov.needs_update = TRUE
 				SSlighting.overlay_queue += Ov
 
-/datum/lighting_corner/Destroy(force = FALSE)
+datum/lighting_corner/Destroy(force = FALSE)
 	stack_trace("Someone [force ? "force-" : ""]deleted a lighting corner.")
 	if (!force)
 		return QDEL_HINT_LETMELIVE
@@ -347,5 +347,5 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	SSlighting.total_lighting_corners -= 1
 	return ..()
 
-/datum/lighting_corner/dummy/New()
+datum/lighting_corner/dummy/New()
 	return

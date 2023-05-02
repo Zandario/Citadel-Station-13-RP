@@ -1,4 +1,4 @@
-/obj/machinery/transformer
+obj/machinery/transformer
 	name = "Automatic Robotic Factory 5000"
 	desc = "A large metalic machine with an entrance and an exit. A sign on the side reads, 'human go in, robot come out', human must be lying down and alive."
 	icon = 'icons/obj/recycling.dmi'
@@ -9,11 +9,11 @@
 	var/transform_dead = 0
 	var/transform_standing = 0
 
-/obj/machinery/transformer/Initialize(mapload)
+obj/machinery/transformer/Initialize(mapload)
 	. = ..()
 	new /obj/machinery/conveyor(loc, WEST, 1)
 
-/obj/machinery/transformer/Bumped(atom/movable/AM)
+obj/machinery/transformer/Bumped(atom/movable/AM)
 	// HasEntered didn't like people lying down.
 	if(ishuman(AM))
 		// Only humans can enter from the west side, while lying down.
@@ -23,7 +23,7 @@
 			AM.loc = src.loc
 			transform(AM)
 
-/obj/machinery/transformer/proc/transform(mob/living/carbon/human/H)
+obj/machinery/transformer/proc/transform(mob/living/carbon/human/H)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!transform_dead && H.stat == DEAD)
@@ -38,7 +38,7 @@
 		if(robot)
 			robot.SetLockDown(0)
 
-/obj/machinery/transformer/conveyor/Initialize(mapload)
+obj/machinery/transformer/conveyor/Initialize(mapload)
 	. = ..()
 	var/turf/T = loc
 	if(T)

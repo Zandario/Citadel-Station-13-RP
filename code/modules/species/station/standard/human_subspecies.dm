@@ -1,4 +1,4 @@
-/datum/species/human/gravworlder
+datum/species/human/gravworlder
 	uid = SPECIES_ID_HUMAN_GRAV
 	id = SPECIES_ID_HUMAN
 	name = SPECIES_HUMAN_GRAV
@@ -50,7 +50,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/gravworlder),
 	)
 
-/datum/species/human/spacer
+datum/species/human/spacer
 	uid = SPECIES_ID_HUMAN_SPACE
 	id = SPECIES_ID_HUMAN
 	name = SPECIES_HUMAN_SPACER
@@ -98,7 +98,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/spacer),
 	)
 
-/datum/species/human/vatgrown
+datum/species/human/vatgrown
 	uid = SPECIES_ID_HUMAN_VAT
 	id = SPECIES_ID_HUMAN
 	name = SPECIES_HUMAN_VATBORN

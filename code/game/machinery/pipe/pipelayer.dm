@@ -1,4 +1,4 @@
-/obj/machinery/pipelayer
+obj/machinery/pipelayer
 	name = "automatic pipe layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
@@ -21,27 +21,27 @@
 		"heat exchange pipes" = /obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	)
 
-/obj/machinery/pipelayer/Initialize(mapload)
+obj/machinery/pipelayer/Initialize(mapload)
 	. = ..()
 	W = new(src)
 	update_icon()
 
-/obj/machinery/pipelayer/Destroy()
+obj/machinery/pipelayer/Destroy()
 	QDEL_NULL(W)
 	. = ..()
 
-/obj/machinery/pipelayer/RefreshParts()
+obj/machinery/pipelayer/RefreshParts()
 	var/mb_rating = 0
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		mb_rating += M.rating
 	max_metal = mb_rating * initial(max_metal)
 
-/obj/machinery/pipelayer/dismantle()
+obj/machinery/pipelayer/dismantle()
 	eject_metal()
 	..()
 
 // Whenever we move, if enabled try and lay pipe
-/obj/machinery/pipelayer/Move(new_turf,M_Dir)
+obj/machinery/pipelayer/Move(new_turf,M_Dir)
 	..()
 
 	if(on && a_dis)
@@ -51,7 +51,7 @@
 	old_turf = new_turf
 	old_dir = turn(M_Dir, 180)
 
-/obj/machinery/pipelayer/attack_hand(mob/user, list/params)
+obj/machinery/pipelayer/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(panel_open)
@@ -73,7 +73,7 @@
 	user.visible_message("<span class='notice'>[user] has [!on?"de":""]activated \the [src].</span>", "<span class='notice'>You [!on?"de":""]activate \the [src].</span>")
 	return
 
-/obj/machinery/pipelayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/pipelayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
@@ -111,15 +111,15 @@
 
 	..()
 
-/obj/machinery/pipelayer/examine(mob/user)
+obj/machinery/pipelayer/examine(mob/user)
 	. = ..()
 	. += "<span class = 'notice'>The [src] has [metal] sheets, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated.</span>"
 
-/obj/machinery/pipelayer/proc/reset()
+obj/machinery/pipelayer/proc/reset()
 	on = 0
 	return
 
-/obj/machinery/pipelayer/proc/load_metal(var/obj/item/stack/MM)
+obj/machinery/pipelayer/proc/load_metal(var/obj/item/stack/MM)
 	if(istype(MM) && MM.get_amount())
 		var/cur_amount = metal
 		var/to_load = max(max_metal - round(cur_amount),0)
@@ -132,14 +132,14 @@
 			return 0
 	return
 
-/obj/machinery/pipelayer/proc/use_metal(amount)
+obj/machinery/pipelayer/proc/use_metal(amount)
 	if(!metal || metal < amount)
 		visible_message("\The [src] deactivates as its metal source depletes.")
 		return
 	metal -= amount
 	return 1
 
-/obj/machinery/pipelayer/proc/eject_metal()
+obj/machinery/pipelayer/proc/eject_metal()
 	var/amount_ejected = 0
 	while (metal >= 1)
 		var/datum/material/M = get_material_by_name(MAT_STEEL)
@@ -149,14 +149,14 @@
 		amount_ejected += S.amount
 	return amount_ejected
 
-/obj/machinery/pipelayer/proc/dismantleFloor(var/turf/new_turf)
+obj/machinery/pipelayer/proc/dismantleFloor(var/turf/new_turf)
 	if(istype(new_turf, /turf/simulated/floor))
 		var/turf/simulated/floor/T = new_turf
 		if(!T.is_plating())
 			T.make_plating(!(T.broken || T.burnt))
 	return new_turf.is_plating()
 
-/obj/machinery/pipelayer/proc/layPipe(var/turf/w_turf,var/M_Dir,var/old_dir)
+obj/machinery/pipelayer/proc/layPipe(var/turf/w_turf,var/M_Dir,var/old_dir)
 	if(!on || !(M_Dir in list(NORTH, SOUTH, EAST, WEST)) || M_Dir==old_dir)
 		return reset()
 	if(!use_metal(pipe_cost))

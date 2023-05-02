@@ -1,9 +1,9 @@
-/mob/living/silicon/robot/verb/cmd_show_laws()
+mob/living/silicon/robot/verb/cmd_show_laws()
 	set category = "Robot Commands"
 	set name = "Show Laws"
 	show_laws()
 
-/mob/living/silicon/robot/show_laws(var/everyone = 0)
+mob/living/silicon/robot/show_laws(var/everyone = 0)
 	laws_sanity_check()
 	var/who
 
@@ -42,7 +42,7 @@
 		to_chat(who, "<b>Remember, you are not bound to any AI, you are not required to listen to them.</b>")
 
 
-/mob/living/silicon/robot/lawsync()
+mob/living/silicon/robot/lawsync()
 	laws_sanity_check()
 	var/datum/ai_laws/master = connected_ai && lawupdate ? connected_ai.laws : null
 	if (master)
@@ -50,7 +50,7 @@
 	..()
 	return
 
-/mob/living/silicon/robot/proc/robot_checklaws()
+mob/living/silicon/robot/proc/robot_checklaws()
 	set category = "Robot Commands"
 	set name = "State Laws"
 	subsystem_law_manager()

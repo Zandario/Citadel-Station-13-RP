@@ -3,7 +3,7 @@
 #define STATE_VIEWMESSAGE	3
 #define STATE_STATUSDISPLAY	4
 #define STATE_ALERT_LEVEL	5
-/datum/computer_file/program/comm
+datum/computer_file/program/comm
 	filename = "comm"
 	filedesc = "Command and Communications Program"
 	program_icon_state = "comm"
@@ -18,13 +18,13 @@
 	network_destination = "long-range communication array"
 	var/datum/comm_message_listener/message_core = new
 
-/datum/computer_file/program/comm/clone()
+datum/computer_file/program/comm/clone()
 	var/datum/computer_file/program/comm/temp = ..()
 	temp.message_core.messages = null
 	temp.message_core.messages = message_core.messages.Copy()
 	return temp
 
-/datum/nano_module/program/comm
+datum/nano_module/program/comm
 	name = "Command and Communications Program"
 	//available_to_ai = TRUE
 	var/current_status = STATE_DEFAULT
@@ -36,11 +36,11 @@
 	var/current_viewing_message_id = 0
 	var/current_viewing_message = null
 
-/datum/nano_module/program/comm/New()
+datum/nano_module/program/comm/New()
 	..()
 	crew_announcement.newscast = 1
 
-/datum/nano_module/program/comm/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/comm/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	if(program)
@@ -95,7 +95,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/program/comm/proc/get_authentication_level(var/mob/user)
+datum/nano_module/program/comm/proc/get_authentication_level(var/mob/user)
 	if(program)
 		if(program.can_run(user, 0, ACCESS_COMMAND_CAPTAIN))
 			return 2
@@ -103,13 +103,13 @@
 			return program.can_run(user)
 	return 1
 
-/datum/nano_module/program/comm/proc/obtain_message_listener()
+datum/nano_module/program/comm/proc/obtain_message_listener()
 	if(program)
 		var/datum/computer_file/program/comm/P = program
 		return P.message_core
 	return global_message_listener
 
-/datum/nano_module/program/comm/Topic(href, href_list)
+datum/nano_module/program/comm/Topic(href, href_list)
 	if(..())
 		return 1
 	var/mob/user = usr
@@ -256,7 +256,7 @@
 						program.computer.visible_message("<span class='notice'>\The [program.computer] prints out paper.</span>")
 
 
-/datum/nano_module/program/comm/proc/post_status(var/command, var/data1, var/data2)
+datum/nano_module/program/comm/proc/post_status(var/command, var/data1, var/data2)
 
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 
@@ -291,11 +291,11 @@ var/list/comm_message_listeners = list() //We first have to initialize list then
 var/datum/comm_message_listener/global_message_listener = new //May be used by admins
 var/last_message_id = 0
 
-/proc/get_comm_message_id()
+proc/get_comm_message_id()
 	last_message_id = last_message_id + 1
 	return last_message_id
 
-/proc/post_comm_message(var/message_title, var/message_text)
+proc/post_comm_message(var/message_title, var/message_text)
 	var/list/message = list()
 	message["id"] = get_comm_message_id()
 	message["title"] = message_title
@@ -314,16 +314,16 @@ var/last_message_id = 0
 			comm.messagetitle.Add(message_title)
 			comm.messagetext.Add(message_text)
 
-/datum/comm_message_listener
+datum/comm_message_listener
 	var/list/messages
 
-/datum/comm_message_listener/New()
+datum/comm_message_listener/New()
 	..()
 	messages = list()
 	comm_message_listeners.Add(src)
 
-/datum/comm_message_listener/proc/Add(var/list/message)
+datum/comm_message_listener/proc/Add(var/list/message)
 	messages[++messages.len] = message
 
-/datum/comm_message_listener/proc/Remove(var/list/message)
+datum/comm_message_listener/proc/Remove(var/list/message)
 	messages -= list(message)

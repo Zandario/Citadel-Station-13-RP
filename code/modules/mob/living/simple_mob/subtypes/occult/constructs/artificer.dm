@@ -2,7 +2,7 @@
 //		Artificer
 ////////////////////////////
 
-/datum/category_item/catalogue/fauna/construct/artificer
+datum/category_item/catalogue/fauna/construct/artificer
 	name = "Constructs - Artificer"
 	desc = "Artificers appear to function as a kind of builder class \
 	amongst Constructs. Able to repair their peers and form fortifications, \
@@ -11,7 +11,7 @@
 	should be kept at range."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/construct/artificer
+mob/living/simple_mob/construct/artificer
 	name = "Artificer"
 	real_name = "Artificer"
 	construct_type = "artificer"
@@ -41,7 +41,7 @@
 
 	ai_holder_type = /datum/ai_holder/mimic
 
-/mob/living/simple_mob/construct/artificer/Initialize(mapload)
+mob/living/simple_mob/construct/artificer/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)
 
@@ -49,7 +49,7 @@
 //		Ranged Artificer
 ////////////////////////////
 
-/mob/living/simple_mob/construct/artificer/caster
+mob/living/simple_mob/construct/artificer/caster
 	name = "Artificer"
 	real_name = "Artificer"
 	construct_type = "artificer"

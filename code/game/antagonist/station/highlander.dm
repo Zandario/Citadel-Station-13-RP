@@ -1,6 +1,6 @@
 var/datum/antagonist/highlander/highlanders
 
-/datum/antagonist/highlander
+datum/antagonist/highlander
 	role_text = "Highlander"
 	role_text_plural = "Highlanders"
 	welcome_text = "There can be only one."
@@ -12,11 +12,11 @@ var/datum/antagonist/highlander/highlanders
 	initial_spawn_req = 3
 	initial_spawn_target = 5
 
-/datum/antagonist/highlander/New()
+datum/antagonist/highlander/New()
 	..()
 	highlanders = src
 
-/datum/antagonist/highlander/create_objectives(var/datum/mind/player)
+datum/antagonist/highlander/create_objectives(var/datum/mind/player)
 
 	var/datum/objective/steal/steal_objective = new
 	steal_objective.owner = player
@@ -27,7 +27,7 @@ var/datum/antagonist/highlander/highlanders
 	hijack_objective.owner = player
 	player.objectives |= hijack_objective
 
-/datum/antagonist/highlander/equip(var/mob/living/carbon/human/player)
+datum/antagonist/highlander/equip(var/mob/living/carbon/human/player)
 
 	if(!..())
 		return
@@ -53,7 +53,7 @@ var/datum/antagonist/highlander/highlanders
 	W.registered_name = player.real_name
 	player.equip_to_slot_or_del(W, SLOT_ID_WORN_ID)
 
-/proc/only_one()
+proc/only_one()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == 2 || !(H.client)) continue
 		if(is_special_character(H)) continue

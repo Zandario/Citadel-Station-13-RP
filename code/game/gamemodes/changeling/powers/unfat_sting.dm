@@ -1,10 +1,10 @@
-/datum/power/changeling/unfat_sting
+datum/power/changeling/unfat_sting
 	name = "Unfat Sting"
 	desc = "We silently sting a human, forcing them to rapidly metabolize their fat."
 	genomecost = 1
 	verbpath = /mob/proc/changeling_unfat_sting
 
-/mob/proc/changeling_unfat_sting()
+mob/proc/changeling_unfat_sting()
 	set category = "Changeling"
 	set name = "Unfat sting (5)"
 	set desc = "Sting target"

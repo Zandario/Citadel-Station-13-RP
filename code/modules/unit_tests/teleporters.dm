@@ -1,4 +1,4 @@
-/datum/unit_test/auto_teleporter_linking/Run()
+datum/unit_test/auto_teleporter_linking/Run()
 	// Put down the teleporter machinery
 	var/obj/machinery/teleport/hub/hub = allocate(/obj/machinery/teleport/hub)
 	var/obj/machinery/teleport/station/station = allocate(/obj/machinery/teleport/station, locate(run_loc_floor_bottom_left.x + 1, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))

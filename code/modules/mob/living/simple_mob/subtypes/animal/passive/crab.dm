@@ -1,12 +1,12 @@
 //Look Sir, free crabs!
-/datum/category_item/catalogue/fauna/crab
+datum/category_item/catalogue/fauna/crab
 	name = "Crab"
 	desc = "A popular curstacean originating from Old Earth's oceans, the \
 	crab is enjoyed for its rich meat. The price of importing live crabs has ensured \
 	their scarcity, resulting in them being considered a Galactic delicacy."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/passive/crab
+mob/living/simple_mob/animal/passive/crab
 	name = "crab"
 	desc = "A hard-shelled crustacean. Seems quite content to lounge around all the time."
 	tt_desc = "E Cancer bellianus"
@@ -31,7 +31,7 @@
 	say_list_type = /datum/say_list/crab
 
 //COFFEE! SQUEEEEEEEEE!
-/mob/living/simple_mob/animal/passive/crab/Coffee
+mob/living/simple_mob/animal/passive/crab/Coffee
 	name = "Coffee"
 	real_name = "Coffee"
 	desc = "It's Coffee, the other pet!"
@@ -39,7 +39,7 @@
 
 // Sif!
 
-/datum/category_item/catalogue/fauna/sif_crab
+datum/category_item/catalogue/fauna/sif_crab
 	name = "Sivian Fauna - Shelf Crab"
 	desc = "Classification: S Ocypode glacian\
 	<br><br>\
@@ -50,7 +50,7 @@
 	Otherwise, these animals are enjoyed as a reliable source of high-grade meat."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/passive/crab/sif
+mob/living/simple_mob/animal/passive/crab/sif
 	icon = 'icons/mob/fish.dmi'
 	tt_desc = "S Ocypode glacian"
 
@@ -62,7 +62,7 @@
 
 // Meat!
 
-/obj/item/reagent_containers/food/snacks/meat/crab
+obj/item/reagent_containers/food/snacks/meat/crab
 	name = "meat"
 	desc = "A chunk of meat."
 	icon_state = "crustacean-meat"

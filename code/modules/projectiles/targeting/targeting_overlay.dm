@@ -1,4 +1,4 @@
-/obj/aiming_overlay
+obj/aiming_overlay
 	name = ""
 	desc = "Stick 'em up!"
 	icon = 'icons/effects/Targeted.dmi'
@@ -18,13 +18,13 @@
 	var/active =    0          // Is our owner intending to take hostages?
 	var/target_permissions = 0 // Permission bitflags.
 
-/obj/aiming_overlay/Initialize(mapload)
+obj/aiming_overlay/Initialize(mapload)
 	. = ..()
 	owner = loc
 	moveToNullspace()
 	verbs.Cut()
 
-/obj/aiming_overlay/proc/toggle_permission(var/perm)
+obj/aiming_overlay/proc/toggle_permission(var/perm)
 
 	if(target_permissions & perm)
 		target_permissions &= ~perm
@@ -76,14 +76,14 @@
 	if(aiming_at)
 		to_chat(aiming_at, "<span class='[use_span]'>You are [message].</span>")
 
-/obj/aiming_overlay/process(delta_time)
+obj/aiming_overlay/process(delta_time)
 	if(!owner)
 		qdel(src)
 		return
 	..()
 	update_aiming()
 
-/obj/aiming_overlay/Destroy()
+obj/aiming_overlay/Destroy()
 	if(aiming_at)
 		aiming_at.aimed -= src
 		aiming_at = null
@@ -92,12 +92,12 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/aiming_overlay/proc/update_aiming_deferred()
+obj/aiming_overlay/proc/update_aiming_deferred()
 	set waitfor = 0
 	sleep(0)
 	update_aiming()
 
-/obj/aiming_overlay/proc/update_aiming()
+obj/aiming_overlay/proc/update_aiming()
 
 	if(!owner)
 		qdel(src)
@@ -141,7 +141,7 @@
 		spawn(0)
 			owner.setDir(get_dir(get_turf(owner), get_turf(src)))
 
-/obj/aiming_overlay/proc/aim_at(var/mob/target, var/obj/thing)
+obj/aiming_overlay/proc/aim_at(var/mob/target, var/obj/thing)
 
 	if(!owner)
 		return
@@ -185,13 +185,13 @@
 	update_icon()
 	lock_time = world.time + 25
 
-/obj/aiming_overlay/update_icon()
+obj/aiming_overlay/update_icon()
 	if(locked)
 		icon_state = "locked"
 	else
 		icon_state = "locking"
 
-/obj/aiming_overlay/proc/toggle_active(var/force_state = null)
+obj/aiming_overlay/proc/toggle_active(var/force_state = null)
 	if(!isnull(force_state))
 		if(active == force_state)
 			return
@@ -211,7 +211,7 @@
 			owner.client.remove_gun_icons()
 		owner.gun_setting_icon.icon_state = "gun[active]"
 
-/obj/aiming_overlay/proc/cancel_aiming(var/no_message = 0)
+obj/aiming_overlay/proc/cancel_aiming(var/no_message = 0)
 	if(!aiming_with || !aiming_at)
 		return
 	if(istype(aiming_with, /obj/item/gun))

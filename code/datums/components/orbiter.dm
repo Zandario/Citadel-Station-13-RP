@@ -1,4 +1,4 @@
-/datum/component/orbiter
+datum/component/orbiter
 	can_transfer = TRUE
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	var/list/orbiters
@@ -8,7 +8,7 @@
 //rotation_speed: how fast to rotate (how many ds should it take for a rotation to complete)
 //rotation_segments: the resolution of the orbit circle, less = a more block circle, this can be used to produce hexagons (6 segments) triangles (3 segments), and so on, 36 is the best default.
 //pre_rotation: Chooses to rotate src 90 degress towards the orbit dir (clockwise/anticlockwise), useful for things to go "head first" like ghosts
-/datum/component/orbiter/Initialize(atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
+datum/component/orbiter/Initialize(atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(!istype(orbiter) || !isatom(parent) || isarea(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -19,21 +19,21 @@
 
 	begin_orbit(orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
-/datum/component/orbiter/RegisterWithParent()
+datum/component/orbiter/RegisterWithParent()
 	. = ..()
 	var/atom/target = parent
 	while(ismovable(target))
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/move_react)
 		target = target.loc
 
-/datum/component/orbiter/UnregisterFromParent()
+datum/component/orbiter/UnregisterFromParent()
 	. = ..()
 	var/atom/target = parent
 	while(ismovable(target))
 		UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 		target = target.loc
 
-/datum/component/orbiter/Destroy()
+datum/component/orbiter/Destroy()
 	var/atom/master = parent
 	master.orbiters = null
 	for(var/i in orbiters)
@@ -41,19 +41,19 @@
 	orbiters = null
 	return ..()
 
-/datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
+datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(!newcomp)
 		begin_orbit(arglist(args.Copy(3)))
 		return
 	// The following only happens on component transfers
 	orbiters += newcomp.orbiters
 
-/datum/component/orbiter/PostTransfer()
+datum/component/orbiter/PostTransfer()
 	if(!isatom(parent) || isarea(parent) || !get_turf(parent))
 		return COMPONENT_INCOMPATIBLE
 	move_react()
 
-/datum/component/orbiter/proc/begin_orbit(atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
+datum/component/orbiter/proc/begin_orbit(atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	SEND_SIGNAL(parent, COMSIG_ATOM_ORBIT_BEGIN, orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(orbiter.orbiting)
 		if(orbiter.orbiting == src)
@@ -85,7 +85,7 @@
 	orbiter.forceMove(get_turf(parent))
 	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
 
-/datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
+datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
 	if(!orbiters[orbiter])
 		return
 	SEND_SIGNAL(parent, COMSIG_ATOM_ORBIT_END, orbiter, refreshing)
@@ -100,7 +100,7 @@
 		qdel(src)
 
 // This proc can receive signals by either the thing being directly orbited or anything holding it
-/datum/component/orbiter/proc/move_react(atom/orbited, atom/oldloc, direction)
+datum/component/orbiter/proc/move_react(atom/orbited, atom/oldloc, direction)
 	set waitfor = FALSE // Transfer calls this directly and it doesnt care if the ghosts arent done moving
 
 	var/atom/movable/master = parent
@@ -135,25 +135,25 @@
 			break
 
 
-/datum/component/orbiter/proc/orbiter_move_react(atom/movable/orbiter, atom/oldloc, direction)
+datum/component/orbiter/proc/orbiter_move_react(atom/movable/orbiter, atom/oldloc, direction)
 	if(orbiter.loc == get_turf(parent))
 		return
 	end_orbit(orbiter)
 
 /////////////////////
 
-/atom/movable/proc/orbit(atom/A, radius = 10, clockwise = FALSE, rotation_speed = 20, rotation_segments = 36, pre_rotation = TRUE)
+atom/movable/proc/orbit(atom/A, radius = 10, clockwise = FALSE, rotation_speed = 20, rotation_segments = 36, pre_rotation = TRUE)
 	if(!istype(A) || !get_turf(A) || A == src)
 		return
 
 	orbit_target = A
 	return A.AddComponent(/datum/component/orbiter, src, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
-/atom/movable/proc/stop_orbit(datum/component/orbiter/orbits)
+atom/movable/proc/stop_orbit(datum/component/orbiter/orbits)
 	orbit_target = null
 	return // We're just a simple hook
 
-/atom/proc/transfer_observers_to(atom/target)
+atom/proc/transfer_observers_to(atom/target)
 	if(!orbiters || !istype(target) || !get_turf(target) || target == src)
 		return
 	target.TakeComponent(orbiters)

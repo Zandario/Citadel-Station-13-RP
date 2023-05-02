@@ -1,4 +1,4 @@
-/proc/mix_color_from_reagents(list/reagent_list)
+proc/mix_color_from_reagents(list/reagent_list)
 	if(!istype(reagent_list))
 		return
 
@@ -20,7 +20,7 @@
 
 	return mixcolor
 
-/datum/reagents/proc/get_color()
+datum/reagents/proc/get_color()
 	if(!reagent_list || !reagent_list.len)
 		return "#ffffffff"
 	if(reagent_list.len == 1) // It's pretty common and saves a lot of work

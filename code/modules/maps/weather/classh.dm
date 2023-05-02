@@ -1,4 +1,4 @@
-/datum/atmosphere/planet/classh
+datum/atmosphere/planet/classh
 	base_gases = list(
 	/datum/gas/oxygen = 0.24,
 	/datum/gas/nitrogen = 0.72,
@@ -11,15 +11,15 @@
 	maximum_temp = 317.3
 
 
-/datum/time/classh
+datum/time/classh
 	seconds_in_day = 24 HOURS
 
-/datum/planet/classh
+datum/planet/classh
 	name = "Class-H Desert Planet"
 	desc = "A nearly hostile, and almost barren, planet that orbits pretty close to its star. There is a high level of CO2 in the air."
 	current_time = new /datum/time/classh()
 
-/datum/planet/classh/update_sun()
+datum/planet/classh/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
@@ -98,7 +98,7 @@
 	update_sun_deferred(new_brightness, new_color)
 
 
-/datum/weather_holder/classh
+datum/weather_holder/classh
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_CLEAR		= new /datum/weather/classh/clear(),
@@ -117,12 +117,12 @@
 		WEATHER_RAIN		= 1
 		)
 
-/datum/weather/classh
+datum/weather/classh
 	name = "classh base"
 	temp_high = 317.3 // 44C
 	temp_low = 317.3 // 44C
 
-/datum/weather/classh/clear
+datum/weather/classh/clear
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR = 95,
@@ -136,7 +136,7 @@
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
 
-/datum/weather/classh/overcast
+datum/weather/classh/overcast
 	name = "overcast"
 	light_modifier = 0.8
 	transition_chances = list(
@@ -151,7 +151,7 @@
 		"It's very cloudy."
 		)
 
-/datum/weather/classh/rain
+datum/weather/classh/rain
 	name = "rain"
 	icon_state = "rain"
 	wind_high = 2
@@ -168,7 +168,7 @@
 		"The sky is dark, and rain falls down upon you."
 	)
 
-/datum/weather/classh/rain/process_effects()
+datum/weather/classh/rain/process_effects()
 	..()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -194,7 +194,7 @@
 			if(show_message)
 				to_chat(L, effect_message)
 
-/datum/weather/classh/sandstorm
+datum/weather/classh/sandstorm
 	name = "sandstorm"
 	icon_state = "sandstorm"
 	wind_high = 4
@@ -214,7 +214,7 @@
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
-/datum/weather/classh/blood_moon
+datum/weather/classh/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"
@@ -230,7 +230,7 @@
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
 // Ash and embers fall forever, such as from a volcano or something.
-/datum/weather/classh/emberfall
+datum/weather/classh/emberfall
 	name = "emberfall"
 	icon_state = "ashfall_light"
 	light_modifier = 0.7
@@ -249,7 +249,7 @@
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
 // Like the above but a lot more harmful.
-/datum/weather/classh/ash_storm
+datum/weather/classh/ash_storm
 	name = "ash storm"
 	icon_state = "ashfall_heavy"
 	light_modifier = 0.1
@@ -270,7 +270,7 @@
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
-/datum/weather/classh/ash_storm/process_effects()
+datum/weather/classh/ash_storm/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -283,7 +283,7 @@
 
 
 // Totally radical.
-/datum/weather/classh/fallout
+datum/weather/classh/fallout
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
@@ -307,7 +307,7 @@
 	var/fallout_rad_low = RAD_INTENSITY_FALLOUT_INDIRECT_LOW
 	var/fallout_rad_high = RAD_INTENSITY_FALLOUT_INDIRECT_HIGH
 
-/datum/weather/classh/fallout/process_effects()
+datum/weather/classh/fallout/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -321,7 +321,7 @@
 
 // This makes random tiles near people radioactive for awhile.
 // Tiles far away from people are left alone, for performance.
-/datum/weather/classh/fallout/proc/irradiate_nearby_turf(mob/living/L)
+datum/weather/classh/fallout/proc/irradiate_nearby_turf(mob/living/L)
 	if(!istype(L))
 		return
 	var/list/turfs = RANGE_TURFS(world.view, L)

@@ -1,6 +1,6 @@
-/datum/power/shadekin
+datum/power/shadekin
 
-/mob/living/carbon/human/is_incorporeal()
+mob/living/carbon/human/is_incorporeal()
 	if(ability_flags & AB_PHASE_SHIFTED) //Shadekin
 		return TRUE
 	return ..()
@@ -9,24 +9,24 @@
 ///  PHASE SHIFT  ///
 /////////////////////
 //Visual effect for phase in/out
-/obj/effect/temp_visual/shadekin
+obj/effect/temp_visual/shadekin
 	randomdir = FALSE
 	duration = 5
 	icon = 'icons/mob/vore_shadekin.dmi'
 
-/obj/effect/temp_visual/shadekin/phase_in
+obj/effect/temp_visual/shadekin/phase_in
 	icon_state = "tp_in"
 
-/obj/effect/temp_visual/shadekin/phase_out
+obj/effect/temp_visual/shadekin/phase_out
 	icon_state = "tp_out"
 
-/datum/power/shadekin/phase_shift
+datum/power/shadekin/phase_shift
 	name = "Phase Shift (100)"
 	desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
 	verbpath = /mob/living/carbon/human/proc/phase_shift
 	ability_icon_state = "wiz_jaunt"
 
-/mob/living/carbon/human/proc/phase_shift()
+mob/living/carbon/human/proc/phase_shift()
 	set name = "Phase Shift (100)"
 	set desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
 	set category = "Shadekin"
@@ -163,14 +163,14 @@
 		force_max_speed = TRUE
 
 /*
-/mob/living/carbon/human/MouseDroppedOnLegacy(atom/dropping, mob/user)
+mob/living/carbon/human/MouseDroppedOnLegacy(atom/dropping, mob/user)
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return FALSE	//Nope!
 
 	return ..()
 */
 
-/datum/modifier/shadekin_phase_vision
+datum/modifier/shadekin_phase_vision
 	name = "Shadekin Phase Vision"
 	vision_flags = SEE_THRU
 
@@ -178,13 +178,13 @@
 //////////////////////////
 ///  REGENERATE OTHER  ///
 //////////////////////////
-/datum/power/shadekin/regenerate_other
+datum/power/shadekin/regenerate_other
 	name = "Regenerate Other (50)"
 	desc = "Spend energy to heal physical wounds in another creature."
 	verbpath = /mob/living/carbon/human/proc/regenerate_other
 	ability_icon_state = "tech_biomedaura"
 
-/mob/living/carbon/human/proc/regenerate_other()
+mob/living/carbon/human/proc/regenerate_other()
 	set name = "Regenerate Other (50)"
 	set desc = "Spend energy to heal physical wounds in another creature."
 	set category = "Shadekin"
@@ -223,7 +223,7 @@
 	face_atom(target)
 	return TRUE
 
-/datum/modifier/shadekin/heal_boop
+datum/modifier/shadekin/heal_boop
 	name = "Shadekin Regen"
 	desc = "You feel serene and well rested."
 	mob_overlay_state = "green_sparkles"
@@ -232,7 +232,7 @@
 	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel much healthier than before.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/shadekin/heal_boop/tick()
+datum/modifier/shadekin/heal_boop/tick()
 	if(!holder.getBruteLoss() && !holder.getFireLoss() && !holder.getToxLoss() && !holder.getOxyLoss() && !holder.getCloneLoss()) // No point existing if the spell can't heal.
 		expire()
 		return
@@ -246,13 +246,13 @@
 //////////////////////
 ///  CREATE SHADE  ///
 //////////////////////
-/datum/power/shadekin/create_shade
+datum/power/shadekin/create_shade
 	name = "Create Shade (25)"
 	desc = "Create a field of darkness that follows you."
 	verbpath = /mob/living/carbon/human/proc/create_shade
 	ability_icon_state = "tech_dispelold"
 
-/mob/living/carbon/human/proc/create_shade()
+mob/living/carbon/human/proc/create_shade()
 	set name = "Create Shade (25)"
 	set desc = "Create a field of darkness that follows you."
 	set category = "Shadekin"
@@ -279,7 +279,7 @@
 	shadekin_adjust_energy(-ability_cost)
 	return TRUE
 
-/datum/modifier/shadekin/create_shade
+datum/modifier/shadekin/create_shade
 	name = "Shadekin Shadegen"
 	desc = "Darkness envelops you."
 	mob_overlay_state = ""
@@ -289,11 +289,11 @@
 	stacks = MODIFIER_STACK_EXTEND
 	var/mob/living/simple_mob/shadekin/my_kin
 
-/datum/modifier/shadekin/create_shade/tick()
+datum/modifier/shadekin/create_shade/tick()
 	if(my_kin.ability_flags & AB_PHASE_SHIFTED)
 		expire()
 
-/datum/modifier/shadekin/create_shade/on_applied()
+datum/modifier/shadekin/create_shade/on_applied()
 	my_kin = holder
 	holder.glow_toggle = TRUE
 	holder.glow_range = 8
@@ -301,7 +301,7 @@
 	holder.glow_color = "#FFFFFF"
 	holder.set_light(8, -10, "#FFFFFF")
 
-/datum/modifier/shadekin/create_shade/on_expire()
+datum/modifier/shadekin/create_shade/on_expire()
 	holder.glow_toggle = initial(holder.glow_toggle)
 	holder.glow_range = initial(holder.glow_range)
 	holder.glow_intensity = initial(holder.glow_intensity)

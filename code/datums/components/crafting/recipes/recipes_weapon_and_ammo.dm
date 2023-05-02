@@ -1,5 +1,5 @@
 /* Re-Removing this one. It's very bugged currently, and we have a dedicated system elsewhere, so it won't impact things too much.
-/datum/crafting_recipe/pin_removal
+datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
 	result = /obj/item/gun
 	reqs = list(/obj/item/gun = 1)
@@ -9,14 +9,14 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_OTHER
 
-/datum/crafting_recipe/pin_removal/check_requirements(mob/user, list/collected_requirements)
+datum/crafting_recipe/pin_removal/check_requirements(mob/user, list/collected_requirements)
 	var/obj/item/gun/G = collected_requirements[/obj/item/gun][1]
 	if (G.no_pin_required || !G.pin)
 		return FALSE
 	return TRUE
 */
 
-/datum/crafting_recipe/strobeshield
+datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
 	result = /obj/item/shield/riot/flash
 	reqs = list(/obj/item/frame = 1,
@@ -26,11 +26,11 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/strobeshield/New()
+datum/crafting_recipe/strobeshield/New()
 	..()
 	blacklist |= subtypesof(/obj/item/shield/riot/)
 
-/datum/crafting_recipe/makeshiftshield
+datum/crafting_recipe/makeshiftshield
 	name = "Makeshift Metal Shield"
 	result = /obj/item/shield/makeshift
 	reqs = list(/obj/item/stack/cable_coil = 30,
@@ -42,7 +42,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/spear
+datum/crafting_recipe/spear
 	name = "Spear"
 	result = /obj/item/material/twohanded/spear
 	reqs = list(/obj/item/handcuffs/cable = 1,
@@ -53,7 +53,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/stunprod
+datum/crafting_recipe/stunprod
 	name = "Stunprod"
 	result = /obj/item/melee/baton/cattleprod
 	reqs = list(/obj/item/handcuffs/cable = 1,
@@ -63,7 +63,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/teleprod
+datum/crafting_recipe/teleprod
 	name = "Teleprod"
 	result = /obj/item/melee/baton/cattleprod/teleprod
 	reqs = list(/obj/item/handcuffs/cable = 1,
@@ -74,7 +74,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/newsbaton
+datum/crafting_recipe/newsbaton
 	name = "Newspaper Baton"
 	result = /obj/item/melee/telebaton/newspaper
 	reqs = list(/obj/item/melee/telebaton = 1,
@@ -84,7 +84,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/bokken
+datum/crafting_recipe/bokken
 	name = "Training Bokken"
 	result = /obj/item/melee/bokken
 	tools = list(TOOL_SCREWDRIVER)
@@ -96,7 +96,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/bokken_hardwood
+datum/crafting_recipe/bokken_hardwood
 	name = "Training Hardwood Bokken"
 	result = /obj/item/melee/bokken/hardwood
 	tools = list(TOOL_SCREWDRIVER)
@@ -108,7 +108,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/wakibokken
+datum/crafting_recipe/wakibokken
 	name = "Training Wakizashi Bokken"
 	result = /obj/item/melee/bokken/waki
 	tools = list(TOOL_SCREWDRIVER)
@@ -119,7 +119,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/wakibokken_hardwood
+datum/crafting_recipe/wakibokken_hardwood
 	name = "Training Wakizashi Hardwood Bokken"
 	result = /obj/item/melee/bokken/waki/hardwood
 	tools = list(TOOL_SCREWDRIVER)
@@ -130,7 +130,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/kanabo
+datum/crafting_recipe/kanabo
 	name = "Kanabo"
 	result = /obj/item/melee/kanabo
 	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH)
@@ -142,7 +142,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/knuckle_dusters
+datum/crafting_recipe/knuckle_dusters
 	name = "Brass Knuckles"
 	result = /obj/item/clothing/gloves/knuckledusters
 	tools = list(TOOL_WELDER)
@@ -152,7 +152,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/tonfa
+datum/crafting_recipe/tonfa
 	name = "Tonfa"
 	result = /obj/item/melee/classic_baton/tonfa
 	tools = list(/obj/item/material/knife/machete/hatchet)
@@ -162,7 +162,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/bola
+datum/crafting_recipe/bola
 	name = "Bola"
 	result = /obj/item/handcuffs/legcuffs/bola
 	reqs = list(/obj/item/handcuffs/cable = 1,
@@ -171,7 +171,7 @@
 	category= CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/dataknife
+datum/crafting_recipe/dataknife
 	name = "Data Knife"
 	result = /obj/item/material/knife/tacknife/dataknife
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
@@ -184,7 +184,7 @@
 	subcategory = CAT_MELEE
 
 /* We don't have amputation features for this yet?
-/datum/crafting_recipe/tailclub
+datum/crafting_recipe/tailclub
 	name = "Tail Club"
 	result = /obj/item/tailclub
 	reqs = list(/obj/item/organ/tail/lizard = 1,
@@ -193,7 +193,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/tailwhip
+datum/crafting_recipe/tailwhip
 	name = "Liz O' Nine Tails"
 	result = /obj/item/melee/chainofcommand/tailwhip
 	reqs = list(/obj/item/organ/tail/lizard = 1,
@@ -202,7 +202,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/catwhip
+datum/crafting_recipe/catwhip
 	name = "Cat O' Nine Tails"
 	result = /obj/item/melee/chainofcommand/tailwhip/kitty
 	reqs = list(/obj/item/organ/tail/cat = 1,
@@ -212,7 +212,7 @@
 	subcategory = CAT_MELEE
 */
 
-/datum/crafting_recipe/chainsaw
+datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
 	result = /obj/item/chainsaw
 	reqs = list(/obj/item/surgical/circular_saw = 1,
@@ -224,7 +224,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_MELEE
 
-/datum/crafting_recipe/chainsword
+datum/crafting_recipe/chainsword
 	name = "Chainsaw Sword"
 	result = /obj/item/chainsaw/chainsword
 	reqs = list(/obj/item/chainsaw = 1,
@@ -240,7 +240,7 @@
 //////////////////
 
 /* I think these are for syndie bombs? Requires investigation.
-/datum/crafting_recipe/chemical_payload
+datum/crafting_recipe/chemical_payload
 	name = "Chemical Payload (C4)"
 	result = /obj/item/bombcore/chemical
 	reqs = list(
@@ -253,7 +253,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_OTHER
 
-/datum/crafting_recipe/chemical_payload2
+datum/crafting_recipe/chemical_payload2
 	name = "Chemical Payload (Gibtonite)"
 	result = /obj/item/bombcore/chemical
 	reqs = list(
@@ -268,7 +268,7 @@
 */
 
 /* The molotov isn't a formal item in our codebase, and I think it would cheapen things to make it one.
-/datum/crafting_recipe/molotov
+datum/crafting_recipe/molotov
 	name = "Molotov"
 	result = /obj/item/reagent_containers/food/drinks/bottle/molotov
 	reqs = list(/obj/item/reagent_containers/glass/rag = 1,
@@ -279,7 +279,7 @@
 	subcategory = CAT_WEAPON
 */
 
-/datum/crafting_recipe/punctured_can
+datum/crafting_recipe/punctured_can
 	name = "Punctured Can"
 	result = /obj/item/trash/punctured_can
 	reqs = list(/obj/item/reagent_containers/food/drinks/cans = 1)
@@ -288,7 +288,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_OTHER
 
-/datum/crafting_recipe/IED
+datum/crafting_recipe/IED
 	name = "IED"
 	result = /obj/item/grenade/explosive/ied
 	reqs = list(/datum/reagent/fuel = 50,
@@ -299,7 +299,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_OTHER
 
-/datum/crafting_recipe/lance
+datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
 	result = /obj/item/material/twohanded/spear
 	reqs = list(/obj/item/material/twohanded/spear = 1,
@@ -314,7 +314,7 @@
 ///GUNS CRAFTING//
 //////////////////
 
-/datum/crafting_recipe/pipebow
+datum/crafting_recipe/pipebow
 	name = "Pipe Bow"
 	result =  /obj/item/gun/ballistic/bow/pipe
 	reqs = list(/obj/item/pipe = 5,
@@ -324,7 +324,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/dartgun
+datum/crafting_recipe/dartgun
 	name = "Prototype Dart Gun"
 	result =  /obj/item/gun/ballistic/dartgun/research
 	reqs = list(/obj/item/stack/material/steel = 10,
@@ -337,7 +337,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/smartdart
+datum/crafting_recipe/smartdart
 	name = "Prototype Dart Gun Magazine"
 	result =  /obj/item/ammo_magazine/chemdart
 	reqs = list(/obj/item/stack/material/steel = 5,
@@ -347,7 +347,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/rapiddartgun
+datum/crafting_recipe/rapiddartgun
 	name = "Protoype Dart Gun (Rapid)"
 	result = /obj/item/gun/ballistic/dartgun
 	reqs = list(
@@ -361,7 +361,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/improvised_pneumatic_cannon
+datum/crafting_recipe/improvised_pneumatic_cannon
 	name = "Pneumatic Cannon"
 	result = /obj/item/gun/launcher/pneumatic
 	tools = list(TOOL_WELDER, TOOL_WRENCH)
@@ -373,7 +373,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/flamethrower //Gun*
+datum/crafting_recipe/flamethrower //Gun*
 	name = "Flamethrower"
 	result = /obj/item/flamethrower
 	reqs = list(/obj/item/weldingtool = 1,
@@ -388,7 +388,7 @@
 
 //Note: Changing this from an improvised shotgun to a pipe rifle. Code will be virtually identical. Perhaps we'll make both eventually.
 /*
-/datum/crafting_recipe/ishotgun
+datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
 	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised
 	reqs = list(/obj/item/pipe = 1,
@@ -401,7 +401,7 @@
 	subcategory = CAT_WEAPON
 */
 
-/datum/crafting_recipe/piperifle
+datum/crafting_recipe/piperifle
 	name = "Pipe Rifle"
 	result = /obj/item/gun/ballistic/contender/pipegun
 	reqs = list(/obj/item/pipe = 1,
@@ -413,7 +413,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/musket_ashlander
+datum/crafting_recipe/musket_ashlander
 	name = "Musket (Tribal)"
 	result = /obj/item/gun/ballistic/musket/tribal
 	reqs = list(/obj/item/stack/animalhide/goliath_hide = 2,
@@ -427,7 +427,7 @@
 	subcategory = CAT_WEAPON
 	always_available = FALSE
 
-/datum/crafting_recipe/flintlock_ashlander
+datum/crafting_recipe/flintlock_ashlander
 	name = "Flintlock (Tribal)"
 	result = /obj/item/gun/ballistic/musket/pistol/tribal
 	reqs = list(/obj/item/stack/animalhide/goliath_hide = 2,
@@ -446,7 +446,7 @@
 //////////////////
 
 //Arrows
-/datum/crafting_recipe/arrow
+datum/crafting_recipe/arrow
 	name = "Arrow"
 	result = /obj/item/ammo_casing/arrow/wood
 	time = 5 // these only do 15 damage
@@ -456,7 +456,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/ashen_arrow
+datum/crafting_recipe/ashen_arrow
 	name = "Ashen Arrow"
 	result = /obj/item/ammo_casing/arrow/ash
 	tools = list(TOOL_WELDER)
@@ -466,7 +466,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/bone_arrow
+datum/crafting_recipe/bone_arrow
 	name = "Bone Arrow"
 	result = /obj/item/ammo_casing/arrow/bone
 	time = 5
@@ -477,7 +477,7 @@
 	subcategory = CAT_AMMO
 	always_available = FALSE
 
-/datum/crafting_recipe/hard_bone_arrow
+datum/crafting_recipe/hard_bone_arrow
 	name = "Hardened Bone Arrow"
 	result = /obj/item/ammo_casing/arrow/bone_ap
 	tools = list(TOOL_WELDER)
@@ -490,7 +490,7 @@
 	always_available = FALSE
 
 //Munitions
-/datum/crafting_recipe/smartdart
+datum/crafting_recipe/smartdart
 	name = "Chemical Dart"
 	result =  /obj/item/ammo_casing/chemdart
 	reqs = list(/obj/item/stack/material/steel = 1,
@@ -500,7 +500,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/improvisedslug
+datum/crafting_recipe/improvisedslug
 	name = "Improvised Shotgun Shell"
 	result = /obj/item/ammo_casing/a12g/improvised
 	reqs = list(/obj/item/grenade/chem_grenade = 1,
@@ -512,7 +512,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/meteorslug
+datum/crafting_recipe/meteorslug
 	name = "Meteorslug Shell"
 	result = /obj/item/ammo_casing/a12g/techshell/meteorslug
 	reqs = list(/obj/item/ammo_casing/a12g/techshell = 1,
@@ -523,7 +523,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/pulseslug
+datum/crafting_recipe/pulseslug
 	name = "Pulse Slug Shell"
 	result = /obj/item/ammo_casing/a12g/techshell/pulseslug
 	reqs = list(/obj/item/ammo_casing/a12g/techshell = 1,
@@ -534,7 +534,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/dragonsbreath
+datum/crafting_recipe/dragonsbreath
 	name = "Dragonsbreath Shell"
 	result = /obj/item/ammo_casing/a12g/techshell/dragonsbreath
 	reqs = list(/obj/item/ammo_casing/a12g/techshell = 1,
@@ -544,7 +544,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/frag12
+datum/crafting_recipe/frag12
 	name = "FRAG-12 Shell"
 	result = /obj/item/ammo_casing/a12g/techshell/frag12
 	reqs = list(/obj/item/ammo_casing/a12g/techshell = 1,
@@ -556,7 +556,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/ionslug
+datum/crafting_recipe/ionslug
 	name = "Ion Scatter Shell"
 	result = /obj/item/ammo_casing/a12g/techshell/emp
 	reqs = list(/obj/item/ammo_casing/a12g/techshell = 1,
@@ -567,7 +567,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/laserslug
+datum/crafting_recipe/laserslug
 	name = "Scatter Laser Shell"
 	result = /obj/item/ammo_casing/a12g/techshell/laserslug
 	reqs = list(/obj/item/ammo_casing/a12g/techshell = 1,
@@ -578,7 +578,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/leadball
+datum/crafting_recipe/leadball
 	name = "Lead Ball"
 	result = /obj/item/ammo_casing/musket
 	reqs = list(/obj/item/stack/material/lead = 1)
@@ -593,7 +593,7 @@
 
 // BOKKEN CRAFTING
 
-/datum/crafting_recipe/bokken_blade
+datum/crafting_recipe/bokken_blade
 	name = "Training Bokken Blade"
 	result = /obj/item/bokken_blade
 	tools = list(/obj/item/material/knife/machete/hatchet)
@@ -602,7 +602,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_PARTS
 
-/datum/crafting_recipe/wakibokken_blade
+datum/crafting_recipe/wakibokken_blade
 	name = "Training Wakizashi Bokken Blade"
 	result = /obj/item/wakibokken_blade
 	tools = list(/obj/item/material/knife/machete/hatchet)
@@ -611,7 +611,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_PARTS
 
-/datum/crafting_recipe/bokken_blade/hardwood
+datum/crafting_recipe/bokken_blade/hardwood
 	name = "Training Hardwood Bokken Blade"
 	result = /obj/item/bokken_blade/hardwood
 	tools = list(/obj/item/material/knife/machete/hatchet, TOOL_WELDER)
@@ -620,7 +620,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_PARTS
 
-/datum/crafting_recipe/wakibokken_blade/hardwood
+datum/crafting_recipe/wakibokken_blade/hardwood
 	name = "Training Wakizashi Hardwood Bokken Blade"
 	result = /obj/item/wakibokken_blade/hardwood
 	tools = list(/obj/item/material/knife/machete/hatchet, TOOL_WELDER)
@@ -629,7 +629,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_PARTS
 
-/datum/crafting_recipe/bokken_hilt
+datum/crafting_recipe/bokken_hilt
 	name = "Training Bokken hilt"
 	result = /obj/item/bokken_hilt
 	tools = list(/obj/item/material/knife/machete/hatchet)
@@ -640,7 +640,7 @@
 	subcategory = CAT_PARTS
 
 // KANABO CRAFTING
-/datum/crafting_recipe/kanabo_shaft
+datum/crafting_recipe/kanabo_shaft
 	name = "Kanabo Shaft"
 	result = /obj/item/kanabo_shaft
 	tools = list(/obj/item/material/knife/machete/hatchet)
@@ -650,7 +650,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_PARTS
 
-/datum/crafting_recipe/kanabo_studs
+datum/crafting_recipe/kanabo_studs
 	name = "Kanabo Studs"
 	result = /obj/item/kanabo_studs
 	reqs = list(/obj/item/stack/material/steel = 5)

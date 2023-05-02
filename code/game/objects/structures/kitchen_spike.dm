@@ -1,6 +1,6 @@
 //////Kitchen Spike
 
-/obj/structure/kitchenspike
+obj/structure/kitchenspike
 	name = "meat spike"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "spike"
@@ -12,7 +12,7 @@
 	var/meat_type
 	var/victim_name = "corpse"
 
-/obj/structure/kitchenspike/attackby(obj/item/grab/G as obj, mob/user as mob)
+obj/structure/kitchenspike/attackby(obj/item/grab/G as obj, mob/user as mob)
 	if(!istype(G, /obj/item/grab) || !ismob(G.affecting))
 		return
 	if(occupied)
@@ -28,7 +28,7 @@
 		else
 			to_chat(user, "<span class='danger'>They are too big for the spike, try something smaller!</span>")
 
-/obj/structure/kitchenspike/proc/spike(var/mob/living/victim)
+obj/structure/kitchenspike/proc/spike(var/mob/living/victim)
 	if(!istype(victim))
 		return
 
@@ -50,7 +50,7 @@
 	meat = 5
 	return 1
 
-/obj/structure/kitchenspike/attack_hand(mob/user, list/params)
+obj/structure/kitchenspike/attack_hand(mob/user, list/params)
 	if(..() || !occupied)
 		return
 	meat--

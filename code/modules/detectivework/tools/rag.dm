@@ -1,4 +1,4 @@
-/mob
+mob
 	var/bloody_hands = 0
 	var/mob/living/carbon/human/bloody_hands_mob
 	var/track_blood = 0
@@ -6,14 +6,14 @@
 	var/track_blood_type
 	var/feet_blood_color
 
-/obj/item/clothing/gloves
+obj/item/clothing/gloves
 	var/transfer_blood = 0
 	var/mob/living/carbon/human/bloody_hands_mob
 
-/obj/item/clothing/shoes/
+obj/item/clothing/shoes/
 	var/track_blood = 0
 
-/obj/item/reagent_containers/glass/rag
+obj/item/reagent_containers/glass/rag
 	name = "rag"
 	desc = "For cleaning up messes, you suppose."
 	w_class = ITEMSIZE_TINY
@@ -33,15 +33,15 @@
 	var/on_fire = 0
 	var/burn_time = 20 //if the rag burns for too long it turns to ashes
 
-/obj/item/reagent_containers/glass/rag/Initialize(mapload)
+obj/item/reagent_containers/glass/rag/Initialize(mapload)
 	. = ..()
 	update_name()
 
-/obj/item/reagent_containers/glass/rag/Destroy()
+obj/item/reagent_containers/glass/rag/Destroy()
 	STOP_PROCESSING(SSobj, src) //so we don't continue turning to ash while gc'd
 	return ..()
 
-/obj/item/reagent_containers/glass/rag/attack_self(mob/user)
+obj/item/reagent_containers/glass/rag/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -52,7 +52,7 @@
 	else
 		remove_contents(user)
 
-/obj/item/reagent_containers/glass/rag/attackby(obj/item/W, mob/user)
+obj/item/reagent_containers/glass/rag/attackby(obj/item/W, mob/user)
 	if(!on_fire && istype(W, /obj/item/flame))
 		var/obj/item/flame/F = W
 		if(F.lit)
@@ -65,7 +65,7 @@
 	. = ..()
 	update_name()
 
-/obj/item/reagent_containers/glass/rag/update_name()
+obj/item/reagent_containers/glass/rag/update_name()
 	. = ..()
 	if(on_fire)
 		name = "burning [initial(name)]"
@@ -74,7 +74,7 @@
 	else
 		name = "dry [initial(name)]"
 
-/obj/item/reagent_containers/glass/rag/update_icon()
+obj/item/reagent_containers/glass/rag/update_icon()
 	if(on_fire)
 		icon_state = "raglit"
 	else
@@ -84,7 +84,7 @@
 	if(istype(B))
 		B.update_icon()
 
-/obj/item/reagent_containers/glass/rag/proc/remove_contents(mob/user, atom/trans_dest = null)
+obj/item/reagent_containers/glass/rag/proc/remove_contents(mob/user, atom/trans_dest = null)
 	if(!trans_dest && !user.loc)
 		return
 
@@ -100,7 +100,7 @@
 			user.visible_message("<span class='danger'>\The [user] wrings out [src] over [target_text].</span>", "<span class='notice'>You finish to wringing out [src].</span>")
 			update_name()
 
-/obj/item/reagent_containers/glass/rag/proc/wipe_down(atom/A, mob/user)
+obj/item/reagent_containers/glass/rag/proc/wipe_down(atom/A, mob/user)
 	if(!reagents.total_volume)
 		to_chat(user, "<span class='warning'>The [initial(name)] is dry!</span>")
 	else
@@ -115,7 +115,7 @@
 				if(T)
 					T.clean(src, user)
 
-/obj/item/reagent_containers/glass/rag/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/reagent_containers/glass/rag/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(isliving(target)) //Leaving this as isliving.
 		var/mob/living/L = target
 		if(on_fire) //Check if rag is on fire, if so igniting them and stopping.
@@ -147,7 +147,7 @@
 	else
 		wipe_down(target, user)
 
-/obj/item/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
+obj/item/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
 	if(!proximity)
 		return
 
@@ -168,7 +168,7 @@
 			wipe_down(A, user)
 		return
 
-/obj/item/reagent_containers/glass/rag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/item/reagent_containers/glass/rag/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature >= 50 + T0C)
 		src.ignite()
 	if(exposed_temperature >= 900 + T0C)
@@ -176,7 +176,7 @@
 		qdel(src)
 
 //rag must have a minimum of 2 units welder fuel or ehtanol based reagents and at least 80% of the reagents must so.
-/obj/item/reagent_containers/glass/rag/proc/can_ignite()
+obj/item/reagent_containers/glass/rag/proc/can_ignite()
 	var/fuel
 	if(reagents.get_reagent_amount("fuel"))
 		fuel += reagents.get_reagent_amount("fuel")
@@ -187,7 +187,7 @@
 
 	return (fuel >= 2 && fuel >= reagents.total_volume*0.8)
 
-/obj/item/reagent_containers/glass/rag/proc/ignite()
+obj/item/reagent_containers/glass/rag/proc/ignite()
 	if(on_fire)
 		return
 	if(!can_ignite())
@@ -208,7 +208,7 @@
 	update_name()
 	update_icon()
 
-/obj/item/reagent_containers/glass/rag/proc/extinguish()
+obj/item/reagent_containers/glass/rag/proc/extinguish()
 	STOP_PROCESSING(SSobj, src)
 	set_light(0)
 	on_fire = 0
@@ -222,7 +222,7 @@
 	update_name()
 	update_icon()
 
-/obj/item/reagent_containers/glass/rag/process(delta_time)
+obj/item/reagent_containers/glass/rag/process(delta_time)
 	if(!can_ignite())
 		visible_message("<span class='warning'>\The [src] burns out.</span>")
 		extinguish()

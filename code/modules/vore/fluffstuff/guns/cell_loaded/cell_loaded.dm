@@ -1,5 +1,5 @@
 // The Gun //
-/obj/item/gun/ballistic/cell_loaded //this one can load both medical and security cells! for ERT/admin use.
+obj/item/gun/ballistic/cell_loaded //this one can load both medical and security cells! for ERT/admin use.
 	name = "multipurpose cell-loaded revolver"
 	desc = "Variety is the spice of life! This weapon is a hybrid of the NT-102b 'Nanotech Selectable-Fire Weapon' and the Vey-Med ML-3 'Medigun', dubbed the 'NSFW-ML3M'. \
 	It can fire both harmful and healing cells with an internal nanite fabricator and energy weapon cell loader. Up to three combinations of \
@@ -27,7 +27,7 @@
 	var/max_charge = 0
 	charge_sections = 5
 
-/obj/item/gun/ballistic/cell_loaded/consume_next_projectile()
+obj/item/gun/ballistic/cell_loaded/consume_next_projectile()
 	if(chambered && ammo_magazine)
 		var/obj/item/ammo_casing/microbattery/batt = chambered
 		if(batt.shots_left)
@@ -39,7 +39,7 @@
 					switch_to(other_batt)
 					return new chambered.projectile_type()
 
-/obj/item/gun/ballistic/cell_loaded/proc/update_charge()
+obj/item/gun/ballistic/cell_loaded/proc/update_charge()
 	charge_left = 0
 	max_charge = 0
 
@@ -57,7 +57,7 @@
 				charge_left += bullet.shots_left
 				max_charge += initial(bullet.shots_left)
 
-/obj/item/gun/ballistic/cell_loaded/proc/switch_to(obj/item/ammo_casing/microbattery/new_batt)
+obj/item/gun/ballistic/cell_loaded/proc/switch_to(obj/item/ammo_casing/microbattery/new_batt)
 	if(ishuman(loc))
 		if(chambered && new_batt.type == chambered.type)
 			to_chat(loc,"<span class='warning'>\The [src] is now using the next [new_batt.type_name] power cell.</span>")
@@ -68,7 +68,7 @@
 	update_charge()
 	update_icon()
 
-/obj/item/gun/ballistic/cell_loaded/attack_self(mob/user)
+obj/item/gun/ballistic/cell_loaded/attack_self(mob/user)
 	if(!chambered)
 		return
 
@@ -87,7 +87,7 @@
 			switch_to(next_batt)
 			break
 /*
-/obj/item/gun/ballistic/cell_loaded/special_check(mob/user)
+obj/item/gun/ballistic/cell_loaded/special_check(mob/user)
 	if(!chambered)
 		return
 
@@ -97,16 +97,16 @@
 
 	return TRUE
 */
-/obj/item/gun/ballistic/cell_loaded/load_ammo(var/obj/item/A, mob/user)
+obj/item/gun/ballistic/cell_loaded/load_ammo(var/obj/item/A, mob/user)
 	. = ..()
 	if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		switch_to(ammo_magazine.stored_ammo[1])
 
-/obj/item/gun/ballistic/cell_loaded/unload_ammo(mob/user, var/allow_dump=1)
+obj/item/gun/ballistic/cell_loaded/unload_ammo(mob/user, var/allow_dump=1)
 	chambered = null
 	return ..()
 
-/obj/item/gun/ballistic/cell_loaded/update_overlays()
+obj/item/gun/ballistic/cell_loaded/update_overlays()
 	. = ..()
 
 	update_charge()
@@ -137,7 +137,7 @@
 		. += charge_bar
 
 // The Magazine //
-/obj/item/ammo_magazine/cell_mag
+obj/item/ammo_magazine/cell_mag
 	name = "microbattery magazine"
 	desc = "A microbattery holder for a cell-based variable weapon."
 	icon = 'icons/obj/ammo_vr.dmi'
@@ -154,7 +154,7 @@
 
 	var/list/modes = list()
 
-/obj/item/ammo_magazine/cell_mag/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/ammo_magazine/cell_mag/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing/microbattery))
 		var/obj/item/ammo_casing/microbattery/B = W
 		if(!istype(B, ammo_type))
@@ -170,7 +170,7 @@
 	playsound(user.loc, 'sound/weapons/flipblade.ogg', 50, 1)
 	update_icon()
 
-/obj/item/ammo_magazine/cell_mag/update_icon()
+obj/item/ammo_magazine/cell_mag/update_icon()
 	cut_overlays()
 	if(!stored_ammo.len)
 		return //Why bother
@@ -192,7 +192,7 @@
 
 		current++ //Increment for offsets
 
-/obj/item/ammo_magazine/cell_mag/advanced
+obj/item/ammo_magazine/cell_mag/advanced
 	name = "advanced microbattery magazine"
 	desc = "A microbattery holder for a cell-based variable weapon. This one has much more cell capacity!"
 	max_ammo = 6
@@ -201,7 +201,7 @@
 
 
 // The Casing //
-/obj/item/ammo_casing/microbattery
+obj/item/ammo_casing/microbattery
 	name = "\'NSFW\' microbattery - UNKNOWN"
 	desc = "A miniature battery for an energy weapon."
 	//catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)
@@ -218,31 +218,31 @@
 	var/type_name = null
 	projectile_type = /obj/projectile/beam
 
-/obj/item/ammo_casing/microbattery/Initialize(mapload)
+obj/item/ammo_casing/microbattery/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	update_icon()
 
-/obj/item/ammo_casing/microbattery/update_icon()
+obj/item/ammo_casing/microbattery/update_icon()
 	cut_overlays()
 
 	var/image/ends = image(icon, icon_state = "[initial(icon_state)]_ends")
 	ends.color = type_color
 	add_overlay(ends)
 
-/obj/item/ammo_casing/microbattery/expend()
+obj/item/ammo_casing/microbattery/expend()
 	shots_left--
 
 
 // The Pack //
-/obj/item/storage/secure/briefcase/nsfw_pack_hybrid
+obj/item/storage/secure/briefcase/nsfw_pack_hybrid
 	name = "hybrid cell-loaded gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hybrid/PopulateContents()
+obj/item/storage/secure/briefcase/nsfw_pack_hybrid/PopulateContents()
 	new /obj/item/gun/ballistic/cell_loaded(src)
 	new /obj/item/ammo_magazine/cell_mag/advanced(src)
 	new /obj/item/ammo_casing/microbattery/combat/stun(src)
@@ -256,13 +256,13 @@
 	new /obj/item/ammo_casing/microbattery/medical/toxin3(src)
 	new /obj/item/ammo_casing/microbattery/medical/omni3(src)
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat
+obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat
 	name = "military cell-loaded gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat/PopulateContents()
+obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat/PopulateContents()
 	new /obj/item/gun/ballistic/cell_loaded(src)
 	new /obj/item/ammo_magazine/cell_mag/advanced(src)
 	new /obj/item/ammo_casing/microbattery/combat/shotstun(src)

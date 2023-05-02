@@ -1,7 +1,7 @@
 
 //Yes, they can only be rectangular.
 //Yes, I'm sorry.
-/datum/turf_reservation
+datum/turf_reservation
 	var/list/reserved_turfs = list()
 	var/width = 0
 	var/height = 0
@@ -12,12 +12,12 @@
 	var/borderturf
 
 /*
-/datum/turf_reservation/transit
+datum/turf_reservation/transit
 	turf_type = /turf/space/transit
 	borderturf = /turf/space/transit/border
 */
 
-/datum/turf_reservation/proc/Release()
+datum/turf_reservation/proc/Release()
 	var/v = reserved_turfs.Copy()
 	for(var/i in reserved_turfs)
 		reserved_turfs -= i
@@ -25,14 +25,14 @@
 	SSmapping.reserve_turfs(v)
 
 /*
-/datum/turf_reservation/transit/Release()
+datum/turf_reservation/transit/Release()
 	for(var/turf/space/transit/T in reserved_turfs)
 		for(var/atom/movable/AM in T)
 			T.throw_atom(AM)
 	. = ..()
 */
 
-/datum/turf_reservation/proc/Reserve(width, height, zlevel)
+datum/turf_reservation/proc/Reserve(width, height, zlevel)
 	if(width > world.maxx || height > world.maxy || width < 1 || height < 1)
 		return FALSE
 	var/list/avail = SSmapping.unused_turfs["[zlevel]"]
@@ -80,10 +80,10 @@
 	src.height = height
 	return TRUE
 
-/datum/turf_reservation/New()
+datum/turf_reservation/New()
 	LAZYADD(SSmapping.turf_reservations, src)
 
-/datum/turf_reservation/Destroy()
+datum/turf_reservation/Destroy()
 	Release()
 	LAZYREMOVE(SSmapping.turf_reservations, src)
 	return ..()

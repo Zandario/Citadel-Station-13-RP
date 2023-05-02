@@ -1,11 +1,11 @@
-/datum/preferences/proc/spawn_checks(flags, list/errors, list/warnings)
+datum/preferences/proc/spawn_checks(flags, list/errors, list/warnings)
 	. = TRUE
 	for(var/datum/category_group/player_setup_category/category in player_setup.categories)
 		if(!category.spawn_checks(src, flags, errors, warnings))
 			. = FALSE
 
 // todo: at some point we should support nonhuman copy to's better.
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, flags)
+datum/preferences/proc/copy_to(mob/living/carbon/human/character, flags)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 	sanitize_everything()
@@ -51,14 +51,14 @@
  *
  * pref items are able to copy_to_mob without a prefs datum to support this
  */
-/datum/preferences/proc/imprint_mind(datum/mind/M)
+datum/preferences/proc/imprint_mind(datum/mind/M)
 	M.original_save_data = deep_copy_list(character)
 	M.original_pref_economic_modifier = tally_background_economic_factor()
 
 /**
  * generates an appearance from our current looks
  */
-/datum/preferences/proc/render_to_appearance(flags)
+datum/preferences/proc/render_to_appearance(flags)
 	var/mob/living/carbon/human/dummy/mannequin/renderer = generate_or_wait_for_human_dummy("prefs/render_to_appearance")
 	copy_to(renderer, flags)
 	if(flags & PREF_COPY_TO_UNRESTRICTED_LOADOUT)
@@ -74,7 +74,7 @@
  * * character - the mob
  * * flags - PREF_COPY_TO_ flags like in [copy_to]
  */
-/datum/preferences/proc/equip_loadout(mob/character, flags)
+datum/preferences/proc/equip_loadout(mob/character, flags)
 
 	// todo: copypaste, refactor
 	var/mob/living/carbon/human/H = character

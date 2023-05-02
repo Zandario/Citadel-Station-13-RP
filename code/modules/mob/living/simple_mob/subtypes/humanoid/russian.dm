@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/russian
+datum/category_item/catalogue/fauna/russian
 	name = "Russians"
 	desc = "After the Human Diaspora, but before the Final War, many \
 	nations hosted their own colonial efforts out into the stars. Although \
@@ -11,7 +11,7 @@
 	Galactic stage."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/humanoid/russian
+mob/living/simple_mob/humanoid/russian
 	name = "russian"
 	desc = "For the Motherland!"
 	tt_desc = "E Homo sapiens"
@@ -36,7 +36,7 @@
 
 	corpse = /obj/spawner/corpse/russian
 
-/mob/living/simple_mob/humanoid/russian/ranged
+mob/living/simple_mob/humanoid/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"
 

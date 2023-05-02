@@ -3,7 +3,7 @@
 
 GLOBAL_DATUM_INIT(lore_atc, /datum/lore/atc_controller, new)
 
-/datum/lore/atc_controller
+datum/lore/atc_controller
 	//Shorter delays means more traffic, which gives the impression of a busier system, but also means a lot more radio noise
 	/// How long between ATC traffic
 	var/delay_min = 18 MINUTES
@@ -28,7 +28,7 @@ GLOBAL_DATUM_INIT(lore_atc, /datum/lore/atc_controller, new)
 	var/sdfchannel
 
 
-/datum/lore/atc_controller/New() //assuming global start this same or close to init.
+datum/lore/atc_controller/New() //assuming global start this same or close to init.
 	//generate our static event frequencies for the shift. alternately they can be completely fixed, up in the core block
 	ertchannel = "[rand(700,749)].[rand(1,9)]"
 	medchannel = "[rand(750,799)].[rand(1,9)]"
@@ -43,16 +43,16 @@ GLOBAL_DATUM_INIT(lore_atc, /datum/lore/atc_controller, new)
 		next_message = world.time + initial_delay
 		START_PROCESSING(SSobj, src)
 
-/datum/lore/atc_controller/process(delta_time)
+datum/lore/atc_controller/process(delta_time)
 	if(world.time >= next_message)
 		next_message = world.time + rand(delay_min, delay_max)
 		random_convo()
 
-/datum/lore/atc_controller/proc/msg(message, sender)
+datum/lore/atc_controller/proc/msg(message, sender)
 	ASSERT(message)
 	GLOB.global_announcer.autosay("[message]", sender ? sender : "[GLOB.using_map.dock_name] Control")
 
-/datum/lore/atc_controller/proc/toggle_broadcast()
+datum/lore/atc_controller/proc/toggle_broadcast()
 	if(!squelched)
 		msg("Ceasing broadcast of ATC communications.")
 		squelched = TRUE
@@ -63,7 +63,7 @@ GLOBAL_DATUM_INIT(lore_atc, /datum/lore/atc_controller, new)
 			squelched = FALSE
 			START_PROCESSING(SSobj, src)
 
-/datum/lore/atc_controller/proc/shift_ending(evac = FALSE)
+datum/lore/atc_controller/proc/shift_ending(evac = FALSE)
 	msg("[GLOB.using_map.shuttle_name], this is [GLOB.using_map.dock_name] Control, you are cleared to complete routine transfer from [GLOB.using_map.station_name] to [GLOB.using_map.dock_name].")
 	sleep(5 SECONDS)
 	if(QDELETED(src))
@@ -71,7 +71,7 @@ GLOBAL_DATUM_INIT(lore_atc, /datum/lore/atc_controller, new)
 	msg("[GLOB.using_map.shuttle_name] departing [GLOB.using_map.dock_name] for [GLOB.using_map.station_name] on routine transfer route. Estimated time to arrival: ten minutes.","[GLOB.using_map.shuttle_name]")
 
 /// Next level optimzation for this: datumize the convo (see main holopads/holodisk!)
-/datum/lore/atc_controller/proc/random_convo()
+datum/lore/atc_controller/proc/random_convo()
 	/// Resolve to the instances
 	// OKAY what's happening here is a lot less agony inducing than it might seem. All that's happening here is a weighted RNG choice between the listed options in a variable.
 	// The first, [1], is for NanoTrasen Incorporated, while the second option is for ALL organizations including NT. You can add/adjust these options and weights to your hearts content.

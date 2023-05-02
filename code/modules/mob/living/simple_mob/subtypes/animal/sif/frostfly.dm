@@ -1,5 +1,5 @@
 // Frostflies are large, flightless insects with glittering wings, used as a means of deploying their gaseous self-defense mechanism.
-/datum/category_item/catalogue/fauna/frostfly
+datum/category_item/catalogue/fauna/frostfly
 	name = "Sivian Fauna - Frostfly"
 	desc = "Classification: S Carabidae glacios \
 	<br><br>\
@@ -15,7 +15,7 @@
 	to anything other than Diyaabs, which they seem to have formed a tangential symbiosis with."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/datum/armor/physiology/frostfly
+datum/armor/physiology/frostfly
 	melee = 0.20
 	bullet = 0.1
 	laser = 0.05
@@ -24,7 +24,7 @@
 	bio = 1.0
 	rad = 1.0
 
-/mob/living/simple_mob/animal/sif/frostfly
+mob/living/simple_mob/animal/sif/frostfly
 	name = "frostfly"
 	desc = "A large insect with glittering wings."
 	tt_desc = "S Carabidae glacios"
@@ -68,16 +68,16 @@
 	say_list_type = /datum/say_list/frostfly
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly
 
-/mob/living/simple_mob/animal/sif/frostfly/get_cold_protection()
+mob/living/simple_mob/animal/sif/frostfly/get_cold_protection()
 	return 1	// It literally produces a cryogenic mist inside itself. Cold doesn't bother it.
 
-/mob/living/simple_mob/animal/sif/frostfly/Initialize(mapload)
+mob/living/simple_mob/animal/sif/frostfly/Initialize(mapload)
 	. = ..()
 	smoke_special = new
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
-/datum/say_list/frostfly
+datum/say_list/frostfly
 	speak = list("Zzzz.", "Kss.", "Zzt?")
 	emote_see = list("flutters its wings","looks around", "rubs its mandibles")
 	emote_hear = list("chitters", "clicks", "chirps")
@@ -93,24 +93,24 @@
 	threaten_sound = 'sound/effects/refill.ogg'
 	stand_down_sound = 'sound/effects/sparks5.ogg'
 
-/mob/living/simple_mob/animal/sif/frostfly/handle_special()
+mob/living/simple_mob/animal/sif/frostfly/handle_special()
 	..()
 
 	if(energy < max_energy)
 		energy++
 
-/mob/living/simple_mob/animal/sif/frostfly/statpanel_data(client/C)
+mob/living/simple_mob/animal/sif/frostfly/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		STATPANEL_DATA_LINE("")
 		STATPANEL_DATA_ENTRY("Energy", energy)
 
-/mob/living/simple_mob/animal/sif/frostfly/should_special_attack(atom/A)
+mob/living/simple_mob/animal/sif/frostfly/should_special_attack(atom/A)
 	if(energy >= 20)
 		return TRUE
 	return FALSE
 
-/mob/living/simple_mob/animal/sif/frostfly/do_special_attack(atom/A)
+mob/living/simple_mob/animal/sif/frostfly/do_special_attack(atom/A)
 	. = TRUE
 	switch(a_intent)
 		if(INTENT_DISARM)
@@ -126,25 +126,25 @@
 
 			return FALSE
 
-/datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly
+datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly
 	can_flee = TRUE
 	dying_threshold = 0.5
 	flee_when_outmatched = TRUE
 	run_if_this_close = 3
 
-/datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly/special_flee_check()
+datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly/special_flee_check()
 	var/mob/living/simple_mob/animal/sif/frostfly/F = holder
 	if(F.energy < F.max_energy * 0.2)
 		return TRUE
 	return FALSE
 
-/datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly/pre_special_attack(atom/A)
+datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly/pre_special_attack(atom/A)
 	if(isliving(A))
 		holder.a_intent = INTENT_DISARM
 	else
 		holder.a_intent = INTENT_HARM
 
-/datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly/post_ranged_attack(atom/A)
+datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly/post_ranged_attack(atom/A)
 	var/mob/living/simple_mob/animal/sif/frostfly/F = holder
 	if(istype(A,/mob/living))
 		var/new_dir = turn(F.dir, -90)

@@ -1,5 +1,5 @@
 // Lift master datum. One per turbolift.
-/datum/turbolift
+datum/turbolift
 	var/datum/turbolift_floor/target_floor              // Where are we going?
 	var/datum/turbolift_floor/current_floor             // Where is the lift currently?
 	var/list/doors = list()                             // Doors inside the lift structure.
@@ -16,14 +16,14 @@
 	var/tmp/moving_upwards
 	var/tmp/busy
 
-/datum/turbolift/proc/emergency_stop()
+datum/turbolift/proc/emergency_stop()
 	cancel_pending_floors()
 	target_floor = null
 	if(!fire_mode)
 		open_doors()
 
 // Enter priority mode, blocking all calls for awhile
-/datum/turbolift/proc/priority_mode(var/time = 30 SECONDS)
+datum/turbolift/proc/priority_mode(var/time = 30 SECONDS)
 	priority_mode = TRUE
 	cancel_pending_floors()
 	update_ext_panel_icons()
@@ -32,7 +32,7 @@
 		priority_mode = FALSE
 		update_ext_panel_icons()
 
-/datum/turbolift/proc/update_fire_mode(var/new_fire_mode)
+datum/turbolift/proc/update_fire_mode(var/new_fire_mode)
 	if(fire_mode == new_fire_mode)
 		return
 	fire_mode = new_fire_mode
@@ -64,7 +64,7 @@
 	control_panel_interior.update_icon()
 
 // Cancel all pending calls
-/datum/turbolift/proc/cancel_pending_floors()
+datum/turbolift/proc/cancel_pending_floors()
 	for(var/datum/turbolift_floor/floor in queued_floors)
 		if(floor.ext_panel)
 			floor.ext_panel.reset()
@@ -72,32 +72,32 @@
 	control_panel_interior.updateDialog()
 
 // Update the icons of all exterior panels (after we change modes etc)
-/datum/turbolift/proc/update_ext_panel_icons()
+datum/turbolift/proc/update_ext_panel_icons()
 	for(var/datum/turbolift_floor/floor in floors)
 		if(floor.ext_panel)
 			floor.ext_panel.update_icon()
 
-/datum/turbolift/proc/doors_are_open(var/datum/turbolift_floor/use_floor = current_floor)
+datum/turbolift/proc/doors_are_open(var/datum/turbolift_floor/use_floor = current_floor)
 	for(var/obj/machinery/door/airlock/door in (use_floor ? (doors + use_floor.doors) : doors))
 		if(!door.density)
 			return 1
 	return 0
 
-/datum/turbolift/proc/open_doors(var/datum/turbolift_floor/use_floor = current_floor)
+datum/turbolift/proc/open_doors(var/datum/turbolift_floor/use_floor = current_floor)
 	for(var/obj/machinery/door/airlock/door in (use_floor ? (doors + use_floor.doors) : doors))
 		//door.command("open")
 		spawn(0)
 			door.open()
 	return
 
-/datum/turbolift/proc/close_doors(var/datum/turbolift_floor/use_floor = current_floor)
+datum/turbolift/proc/close_doors(var/datum/turbolift_floor/use_floor = current_floor)
 	for(var/obj/machinery/door/airlock/door in (use_floor ? (doors + use_floor.doors) : doors))
 		//door.command("close")
 		spawn(0)
 			door.close()
 	return
 
-/datum/turbolift/proc/do_move()
+datum/turbolift/proc/do_move()
 
 	var/current_floor_index = floors.Find(current_floor)
 
@@ -173,7 +173,7 @@
 
 	return (next_floor.delay_time || move_delay || 30)
 
-/datum/turbolift/proc/queue_move_to(var/datum/turbolift_floor/floor)
+datum/turbolift/proc/queue_move_to(var/datum/turbolift_floor/floor)
 	if(!floor || !(floor in floors) || (floor in queued_floors))
 		return // STOP PRESSING THE BUTTON.
 	floor.pending_move(src)
@@ -181,5 +181,5 @@
 	SSturbolifts.lift_is_moving(src)
 
 // TODO: dummy machine ('lift mechanism') in powered area for functionality/blackout checks.
-/datum/turbolift/proc/is_functional()
+datum/turbolift/proc/is_functional()
 	return 1

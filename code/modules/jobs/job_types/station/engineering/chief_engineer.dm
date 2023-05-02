@@ -1,4 +1,4 @@
-/datum/role/job/station/chief_engineer
+datum/role/job/station/chief_engineer
 	id = JOB_ID_CHIEF_ENGINEER
 	title = "Chief Engineer"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_COMMAND
@@ -57,16 +57,16 @@
 						of manpower as much as they handle hands-on operations and repairs. They are also expected to keep the rest of the station informed of \
 						any structural threats to the station that may be hazardous to health or disruptive to work."
 
-/datum/prototype/alt_title/engineering_director
+datum/prototype/alt_title/engineering_director
 	title = "Engineering Director"
 
-/datum/prototype/alt_title/head_engineer
+datum/prototype/alt_title/head_engineer
 	title = "Head Engineer"
 
-/datum/prototype/alt_title/maintenance_manager
+datum/prototype/alt_title/maintenance_manager
 	title = "Maintenance Manager"
 
-/datum/outfit/job/station/chief_engineer
+datum/outfit/job/station/chief_engineer
 	name = OUTFIT_JOB_NAME("Chief engineer")
 	head = /obj/item/clothing/head/hardhat/white
 	uniform = /obj/item/clothing/under/rank/chief_engineer

@@ -1,7 +1,7 @@
 /**
  *  A vending machine
  */
-/obj/machinery/vending
+obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
 	icon = 'icons/obj/vending.dmi'
@@ -91,7 +91,7 @@
 	var/has_logs = NONE
 
 
-/obj/machinery/vending/Initialize(mapload)
+obj/machinery/vending/Initialize(mapload)
 	. = ..()
 	wires = new(src)
 	spawn(4)
@@ -116,7 +116,7 @@
  *  products that the vending machine is to carry without manually populating
  *  product_records.
  */
-/obj/machinery/vending/proc/build_inventory()
+obj/machinery/vending/proc/build_inventory()
 	var/list/all_products = list(
 		list(products, CAT_NORMAL),
 		list(contraband, CAT_HIDDEN),
@@ -134,7 +134,7 @@
 
 			product_records.Add(product)
 
-/obj/machinery/vending/Destroy()
+obj/machinery/vending/Destroy()
 	qdel(wires)
 	wires = null
 	qdel(coin)
@@ -144,7 +144,7 @@
 	product_records = null
 	return ..()
 
-/obj/machinery/vending/legacy_ex_act(severity)
+obj/machinery/vending/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -162,13 +162,13 @@
 		else
 	return
 
-/obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
 		to_chat(user, "You short out \the [src]'s product lock.")
 		return 1
 
-/obj/machinery/vending/attackby(obj/item/W, mob/user)
+obj/machinery/vending/attackby(obj/item/W, mob/user)
 	var/obj/item/card/id/I = W.GetID()
 
 	if(currently_vending && GLOB.vendor_account && !GLOB.vendor_account.suspended)
@@ -254,7 +254,7 @@
 				return
 		..()
 
-/obj/machinery/vending/query_transaction_details(list/data)
+obj/machinery/vending/query_transaction_details(list/data)
 	. = ..()
 	.[CHARGE_DETAIL_DEVICE] = name
 	.[CHARGE_DETAIL_LOCATION] = get_area(src).name
@@ -266,7 +266,7 @@
  *
  *  Called after the money has already been taken from the customer.
  */
-/obj/machinery/vending/proc/credit_purchase(var/target as text)
+obj/machinery/vending/proc/credit_purchase(var/target as text)
 	GLOB.vendor_account.money += currently_vending.price
 
 	var/datum/transaction/T = new()
@@ -278,10 +278,10 @@
 	T.time = stationtime2text()
 	GLOB.vendor_account.transaction_log.Add(T)
 
-/obj/machinery/vending/attack_ai(mob/user as mob)
+obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/vending/attack_hand(mob/user, list/params)
+obj/machinery/vending/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -297,7 +297,7 @@
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/vending/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/vending/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/list/data = list()
@@ -342,7 +342,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/machinery/vending/Topic(href, href_list)
+obj/machinery/vending/Topic(href, href_list)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!IsAdminGhost(usr) && (usr.stat || usr.restrained()))
@@ -397,7 +397,7 @@
 
 		SSnanoui.update_uis(src)
 
-/obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)
+obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 		to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 		flick(icon_deny,src)
@@ -452,7 +452,7 @@
 
 	return 1
 
-/obj/machinery/vending/proc/do_logging(datum/stored_item/vending_product/R, mob/user, var/vending = 0)
+obj/machinery/vending/proc/do_logging(datum/stored_item/vending_product/R, mob/user, var/vending = 0)
 	if(user.GetIdCard())
 		var/obj/item/card/id/tempid = user.GetIdCard()
 		var/list/list_item = list()
@@ -465,7 +465,7 @@
 		list_item += R.item_name
 		log[++log.len] = list_item
 
-/obj/machinery/vending/proc/show_log(mob/user as mob)
+obj/machinery/vending/proc/show_log(mob/user as mob)
 	if(user.GetIdCard())
 		var/obj/item/card/id/tempid = user.GetIdCard()
 		if(req_log_access in tempid.GetAccess())
@@ -482,7 +482,7 @@
 	else
 		to_chat(user,"<span class='warning'>You do not have the required access to view the vending logs for this machine.</span>")
 
-/obj/machinery/vending/verb/check_logs()
+obj/machinery/vending/verb/check_logs()
 	set name = "Check Vending Logs"
 	set category = "Object"
 	set src in oview(1)
@@ -495,7 +495,7 @@
  * Checks if item is vendable in this machine should be performed before
  * calling. W is the item being inserted, R is the associated vending_product entry.
  */
-/obj/machinery/vending/proc/stock(obj/item/W, var/datum/stored_item/vending_product/R, var/mob/user)
+obj/machinery/vending/proc/stock(obj/item/W, var/datum/stored_item/vending_product/R, var/mob/user)
 	if(!user.attempt_insert_item_for_installation(W, src))
 		return
 
@@ -506,7 +506,7 @@
 
 	SSnanoui.update_uis(src)
 
-/obj/machinery/vending/process(delta_time)
+obj/machinery/vending/process(delta_time)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -527,7 +527,7 @@
 
 	return
 
-/obj/machinery/vending/proc/speak(message)
+obj/machinery/vending/proc/speak(message)
 	if(machine_stat & NOPOWER)
 		return
 
@@ -538,7 +538,7 @@
 		O.show_message("<span class='game say'><span class='name'>\The [src]</span> beeps, \"[message]\"</span>",2)
 	return
 
-/obj/machinery/vending/power_change()
+obj/machinery/vending/power_change()
 	..()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
@@ -550,7 +550,7 @@
 				icon_state = "[initial(icon_state)]-off"
 
 //Oh no we're malfunctioning!  Dump out some product and break.
-/obj/machinery/vending/proc/malfunction()
+obj/machinery/vending/proc/malfunction()
 	for(var/datum/stored_item/vending_product/R in product_records)
 		while(R.get_amount()>0)
 			R.get_product(loc)
@@ -561,7 +561,7 @@
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
-/obj/machinery/vending/proc/throw_item()
+obj/machinery/vending/proc/throw_item()
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
@@ -585,7 +585,7 @@
 
 /*
 
-/obj/machinery/vending/[vendors name here]   // --vending machine template   :)
+obj/machinery/vending/[vendors name here]   // --vending machine template   :)
 	name = ""
 	desc = ""
 	icon = ''
@@ -598,7 +598,7 @@
 */
 
 /*
-/obj/machinery/vending/atmospherics //Commenting this out until someone ponies up some actual working, broken, and unpowered sprites - Quarxink
+obj/machinery/vending/atmospherics //Commenting this out until someone ponies up some actual working, broken, and unpowered sprites - Quarxink
 	name = "Tank Vendor"
 	desc = "A vendor with a wide variety of masks and gas tanks."
 	icon = 'icons/obj/objects.dmi'
@@ -607,7 +607,7 @@
 	productamounts = "10;10;10;5;25"
 	vend_delay = 0
 */
-/obj/machinery/vending/boozeomat
+obj/machinery/vending/boozeomat
 	name = "Booze-O-Mat"
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	icon_state = "boozeomat"
@@ -686,7 +686,7 @@
 	req_log_access = ACCESS_GENERAL_BAR
 	has_logs = 1
 
-/obj/machinery/vending/assist
+obj/machinery/vending/assist
 	products = list(
 		/obj/item/assembly/prox_sensor = 5,
 		/obj/item/assembly/igniter = 3,
@@ -700,7 +700,7 @@
 	)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 
-/obj/machinery/vending/coffee
+obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
 	product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
@@ -727,7 +727,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/robustexpresslatte = 2,
 	)
 
-/obj/machinery/vending/snack
+obj/machinery/vending/snack
 	name = "Getmore Chocolate Corp"
 	desc = "A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars."
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
@@ -774,7 +774,7 @@
 		/obj/item/reagent_containers/food/snacks/hotcheesiehonkers = 6
 	)
 
-/obj/machinery/vending/cola
+obj/machinery/vending/cola
 	name = "Robust Softdrinks"
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
@@ -842,7 +842,7 @@
 	)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
-/obj/machinery/vending/fitness // Added Liquid Protein and slightly adjusted price of liquid food items due to buff.
+obj/machinery/vending/fitness // Added Liquid Protein and slightly adjusted price of liquid food items due to buff.
 	name = "SweatMAX"
 	desc = "Fueled by your inner inadequacy!"
 	icon_state = "fitness"
@@ -875,7 +875,7 @@
 		/obj/item/reagent_containers/syringe/steroid = 4
 	)
 
-/obj/machinery/vending/cart
+obj/machinery/vending/cart
 	name = "PTech"
 	desc = "Cartridges for PDAs."
 	product_slogans = "Carts to go!"
@@ -895,7 +895,7 @@
 	req_log_access = ACCESS_COMMAND_HOP
 	has_logs = 1
 
-/obj/machinery/vending/cigarette
+obj/machinery/vending/cigarette
 	name = "cigarette machine"
 	desc = "If you want to get cancer, might as well do it in style!"
 	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
@@ -936,7 +936,7 @@
 		/obj/item/flame/lighter/random = 5,
 	)
 
-/obj/machinery/vending/medical
+obj/machinery/vending/medical
 	name = "NanoMed Plus"
 	desc = "Medical drug dispenser."
 	icon_state = "med"
@@ -978,7 +978,7 @@
 	req_log_access = ACCESS_MEDICAL_CMO
 	has_logs = 1
 
-/obj/machinery/vending/phoronresearch
+obj/machinery/vending/phoronresearch
 	name = "Toximate 3000"
 	desc = "All the fine parts you need in one vending machine!"
 	products = list(
@@ -994,7 +994,7 @@
 	req_log_access = ACCESS_SCIENCE_RD
 	has_logs = 1
 
-/obj/machinery/vending/wallmed1
+obj/machinery/vending/wallmed1
 	name = "NanoMed"
 	desc = "A wall-mounted version of the NanoMed."
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
@@ -1018,7 +1018,7 @@
 	has_logs = 1
 
 // Modified version from tether_things.dm
-/obj/machinery/vending/wallmed1/public
+obj/machinery/vending/wallmed1/public
 	products = list(
 		/obj/item/stack/medical/bruise_pack = 8,
 		/obj/item/storage/single_use/med_pouch/trauma = 2,
@@ -1029,7 +1029,7 @@
 	)
 
 //Airlock antitox vendor. Used on the tether map and a few other POIS and such
-/obj/machinery/vending/wallmed_airlock
+obj/machinery/vending/wallmed_airlock
 	name = "Airlock NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser. This limited-use version dispenses antitoxins with mild painkillers for surface EVAs."
 	icon_state = "wallmed"
@@ -1044,7 +1044,7 @@
 	req_log_access = ACCESS_MEDICAL_CMO
 	has_logs = 1
 
-/obj/machinery/vending/wallmed2
+obj/machinery/vending/wallmed2
 	name = "NanoMed"
 	desc = "A wall-mounted version of the NanoMed, containing only vital first aid equipment."
 	icon_state = "wallmed"
@@ -1069,7 +1069,7 @@
 	req_log_access = ACCESS_MEDICAL_CMO
 	has_logs = 1
 
-/obj/machinery/vending/security
+obj/machinery/vending/security
 	name = "SecTech"
 	desc = "A security equipment vendor."
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
@@ -1098,7 +1098,7 @@
 	req_log_access = ACCESS_SECURITY_ARMORY
 	has_logs = 1
 
-/obj/machinery/vending/hydronutrients
+obj/machinery/vending/hydronutrients
 	name = "NutriMax"
 	desc = "A plant nutrients vendor."
 	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
@@ -1120,7 +1120,7 @@
 	)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
-/obj/machinery/vending/hydroseeds
+obj/machinery/vending/hydroseeds
 	name = "MegaSeed Servitor"
 	desc = "When you need seeds fast!"
 	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
@@ -1190,7 +1190,7 @@
  *  This needs to be customized to fetch the actual names of the seeds, otherwise
  *  the machine would simply list "packet of seeds" times 20
  */
-/obj/machinery/vending/hydroseeds/build_inventory()
+obj/machinery/vending/hydroseeds/build_inventory()
 	var/list/all_products = list(
 		list(products, CAT_NORMAL),
 		list(contraband, CAT_HIDDEN),
@@ -1210,7 +1210,7 @@
 
 			product_records.Add(product)
 
-/obj/machinery/vending/magivend
+obj/machinery/vending/magivend
 	name = "MagiVend"
 	desc = "A magic vending machine."
 	icon_state = "MagiVend"
@@ -1227,7 +1227,7 @@
 		/obj/item/staff = 2,
 	)
 
-/obj/machinery/vending/dinnerware
+obj/machinery/vending/dinnerware
 	name = "Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
@@ -1261,7 +1261,7 @@
 		/obj/item/material/knife/butch = 2,
 	)
 
-/obj/machinery/vending/sovietsoda
+obj/machinery/vending/sovietsoda
 	name = "BODA"
 	desc = "An old sweet water vending machine,how did this end up here?"
 	icon_state = "sovietsoda"
@@ -1274,7 +1274,7 @@
 	)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
-/obj/machinery/vending/tool
+obj/machinery/vending/tool
 	name = "YouTool"
 	desc = "Tools for tools."
 	icon_state = "tool"
@@ -1306,7 +1306,7 @@
 	req_log_access = ACCESS_ENGINEERING_CE
 	has_logs = 1
 
-/obj/machinery/vending/engivend
+obj/machinery/vending/engivend
 	name = "Engi-Vend"
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
@@ -1355,7 +1355,7 @@
 	req_log_access = ACCESS_ENGINEERING_CE
 	has_logs = 1
 
-/obj/machinery/vending/engineering
+obj/machinery/vending/engineering
 	name = "Robco Tool Maker"
 	desc = "Everything you need for do-it-yourself station repair."
 	icon_state = "engi"
@@ -1393,7 +1393,7 @@
 	req_log_access = ACCESS_ENGINEERING_CE
 	has_logs = 1
 
-/obj/machinery/vending/robotics
+obj/machinery/vending/robotics
 	name = "Robotech Deluxe"
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
@@ -1419,7 +1419,7 @@
 	req_log_access = ACCESS_SCIENCE_RD
 	has_logs = 1
 
-/obj/machinery/vending/giftvendor
+obj/machinery/vending/giftvendor
 	name = "AlliCo Baubles and Confectionaries"
 	desc = "For that special someone!"
 	icon_state = "giftvendor"
@@ -1507,7 +1507,7 @@
 		/obj/item/toy/gnome = 20,
 	)
 
-/obj/machinery/vending/fishing
+obj/machinery/vending/fishing
 	name = "Loot Trawler"
 	desc = "A special vendor for fishing equipment."
 	product_ads = "Tired of trawling across the ocean floor? Get our loot!;Chum and rods.;Don't get baited into fishing without us!;Baby is your star-sign pisces? We'd make a perfect match.;Do not fear, plenty to catch around here.;Don't get reeled in helplessly, get your own rod today!"
@@ -1539,7 +1539,7 @@
 
 //Custom vendors
 
-/obj/machinery/vending/food
+obj/machinery/vending/food
 	name = "Food-O-Mat"
 	desc = "A technological marvel, supposedly able to cook or mix a large variety of food or drink."
 	icon_state = "boozeomat"
@@ -1577,7 +1577,7 @@
 	)
 	vend_delay = 15
 
-/obj/machinery/vending/food/arojoan //Fluff vendor for the lewd houseboat.
+obj/machinery/vending/food/arojoan //Fluff vendor for the lewd houseboat.
 	name = "Custom Food-O-Mat"
 	desc = "Do you think Joan cooks? Of course not. Lazy squirrel!"
 	icon_state = "boozeomat"
@@ -1610,20 +1610,20 @@
 	)
 	vend_delay = 15
 /* For later, then
-/obj/machinery/vending/weapon_machine
+obj/machinery/vending/weapon_machine
 	name = "Frozen Star Guns&Ammo"
 	desc = "A self-defense equipment vending machine. When you need to take care of that clown."
 	product_slogans = "The best defense is good offense!;Buy for your whole family today!;Nobody can outsmart bullet!;God created man - Frozen Star made them EQUAL!;Nobody can outsmart bullet!;Stupidity can be cured! By LEAD.;Dead kids can't bully your children!"
 	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
 	icon_state = "weapon"
 	products = list(/obj/item/flash = 6,
-/obj/item/reagent_containers/spray/pepper = 6, /obj/item/gun/ballistic/olivaw = 5, /obj/item/gun/ballistic/giskard = 5, /obj/item/ammo_magazine/mg/cl32/rubber = 20)
+obj/item/reagent_containers/spray/pepper = 6, /obj/item/gun/ballistic/olivaw = 5, /obj/item/gun/ballistic/giskard = 5, /obj/item/ammo_magazine/mg/cl32/rubber = 20)
 	contraband = list(/obj/item/reagent_containers/food/snacks/syndicake = 6)
 	prices = list(/obj/item/flash = 600,
-/obj/item/reagent_containers/spray/pepper = 800,  /obj/item/gun/ballistic/olivaw = 1600, /obj/item/gun/ballistic/giskard = 1200, /obj/item/ammo_magazine/mg/cl32/rubber = 200)
+obj/item/reagent_containers/spray/pepper = 800,  /obj/item/gun/ballistic/olivaw = 1600, /obj/item/gun/ballistic/giskard = 1200, /obj/item/ammo_magazine/mg/cl32/rubber = 200)
 */
 
-/obj/machinery/vending/blood
+obj/machinery/vending/blood
 	name = "Blood-Onator"
 	desc = "Freezer-vendor for storage and quick dispensing of blood packs"
 	product_ads = "The true life juice!;Vampire's choice!;Home-grown blood only!;Donate today, be saved tomorrow!;Approved by Zeng-Hu Pharmaceuticals Incorporated!; Curse you, Vey-Med artificial blood!"
@@ -1649,7 +1649,7 @@
 	req_log_access = ACCESS_MEDICAL_CMO
 	has_logs = 1
 
-/obj/machinery/vending/loadout
+obj/machinery/vending/loadout
 	name = "Fingers and Toes"
 	desc = "A special vendor for gloves and shoes!"
 	product_ads = "Do you have fingers and toes? COVER THEM UP!;Show me your toes! Wait. NO DON'T! BUY NEW SHOES!;Don't leave prints, BUY SOME GLOVES!;Remember to check your shoes for micros! You don't have to let them out, but just check for them!;Fingers and Toes is not liable for micro entrapment or abuse under the feet of our patrons.!;This little piggy went WE WE WE all the way down to FINGERS AND TOES to pick up some sweet new gloves and shoes."
@@ -1725,7 +1725,7 @@
 	)
 	price_default = 10
 
-/obj/machinery/vending/loadout/uniform
+obj/machinery/vending/loadout/uniform
 	name = "The Basics"
 	desc = "A vendor using compressed matter cartridges to store large amounts of basic station uniforms."
 	product_ads = "Don't get caught naked!;Pick up your uniform!;Using compressed matter cartridges and VERY ETHICAL labor practices, we bring you the uniforms you need!;No uniform? No problem!;We've got your covered!;The Basics is not responsible for being crushed under the amount of things inside our machines. DO NOT VEND IN EXCESS!!"
@@ -1755,7 +1755,7 @@
 		/obj/item/clothing/shoes/white = 20,
 	)
 
-/obj/machinery/vending/loadout/accessory
+obj/machinery/vending/loadout/accessory
 	name = "Looty Inc."
 	desc = "A special vendor for accessories."
 	product_ads = "Want shinies? We have the shinies.;Need that special something to complete your outfit? We have what you need!;Ditch that old dull dangly something you've got and pick up one of our shinies!;Bracelets, collars, scarfs rings and more! We have the fancy things you need!;Does your pet need a collar? We don't judge! Keep them in line with one of one of ours!;Top of the line materials! 'Hand crafted' goods!"
@@ -1879,7 +1879,7 @@
 	contraband = list(/obj/item/clothing/mask/gas/clown_hat = 1)
 	price_default = 10
 
-/obj/machinery/vending/loadout/clothing
+obj/machinery/vending/loadout/clothing
 	name = "General Jump"
 	desc = "A special vendor using compressed matter cartridges to store large amounts of clothing."
 	product_ads = "Tired of your grey jumpsuit? Spruce yourself up!;We have the outfit for you!;Don't let that grey jumpsuit get you down, get a ROBUST outfit right now!;Using compressed matter catridges and VERY ETHICAL labor practices to bring YOU the clothing you crave!;Are you sure you want to go to work in THAT?;All of our wares have a whole TWO pockets!"
@@ -2106,7 +2106,7 @@
 	)
 	price_default = 10
 
-/obj/machinery/vending/loadout/gadget
+obj/machinery/vending/loadout/gadget
 	name = "Chips Co."
 	desc = "A special vendor for devices and gadgets."
 	product_ads = "You can't RESIST our great deals!;Feeling disconnected? We have a gadget for you!;You know you have the capacity to buy our capacitors!;FILL THAT HOLE IN YOUR HEART WITH OUR PLASTIC DISTRACTIONS!!!;Devices for everyone! Chips Co.!;ROBUST INVENTORY, GREAT PRICES! ;DON'T FORGET THE oyPAD 13s PRO! ON SALE NOW, ONLY ONE THOUSAND THALERS!"
@@ -2147,7 +2147,7 @@
 	)
 	price_default = 25
 
-/obj/machinery/vending/loadout/loadout_misc
+obj/machinery/vending/loadout/loadout_misc
 	name = "Bits and Bobs"
 	desc = "A special vendor for things and also stuff!"
 	product_ads = "You never know when you might need an umbrella.;Hey kid... want some cardemon cards?;Miscellaneous for your miscellaneous heart.;Who's bob? Wouldn't you like to know.;I'm sorry there's no grappling hooks in our umbrellas.;We sell things AND stuff."
@@ -2174,7 +2174,7 @@
 	)
 	price_default = 25
 
-/obj/machinery/vending/loadout/overwear
+obj/machinery/vending/loadout/overwear
 	name = "Big D's Best"
 	desc = "A special vendor using compressed matter cartridges to store large amounts of overwear!"
 	product_ads = "Dress your best! It's what big D would want.;Overwear for all occasions!;Big D has what you need if what you need is some form of jacket!;Need a new hoodie? Bid D has you covered.;Big D says you need a new suit!;Big D smiles when he sees you in one of his coats!"
@@ -2278,7 +2278,7 @@
 	)
 	price_default = 10
 
-/obj/machinery/vending/loadout/costume
+obj/machinery/vending/loadout/costume
 	name = "Thespian's Delight"
 	desc = "Sometimes nerds need costumes!"
 	product_ads = "Don't let your art be stifled!;Remember, practice makes perfect!;Break a leg!;Don't make me get the cane!;Thespian's Delight entering stage right!;Costumes for your acting needs!"
@@ -2436,7 +2436,7 @@
 	)
 	price_default = 25
 
-/obj/machinery/vending/glukoz
+obj/machinery/vending/glukoz
 	name = "Glukoz Pharmavenda"
 	desc = "An illicit injector vendor stocked and maintained by the allegedly defunct pharmaceuticals company Glukoz Ltd."
 	icon = 'icons/obj/vending.dmi'
@@ -2473,7 +2473,7 @@
 		/obj/item/reagent_containers/hypospray/glukoz/viraplus = 25,
 	)
 
-/obj/machinery/vending/tool/adherent
+obj/machinery/vending/tool/adherent
 	name = "\improper Adherent Tool Dispenser"
 	desc = "This looks like a heavily modified vending machine. It contains technology that doesn't appear to be human in origin."
 	product_ads = "\[C#\]\[Cb\]\[Db\]. \[Ab\]\[A#\]\[Bb\]. \[E\]\[C\]\[Gb\]\[B#\]. \[C#\].;\[Cb\]\[A\]\[F\]\[Cb\]\[C\]\[E\]\[Cb\]\[E\]\[Fb\]. \[G#\]\[C\]\[Ab\]\[A\]\[C#\]\[B\]. \[Eb\]\[choral\]. \[E#\]\[C#\]\[Ab\]\[E\]\[C#\]\[Fb\]\[Cb\]\[F#\]\[C#\]\[Gb\]."
@@ -2490,8 +2490,7 @@
 					/obj/item/storage/belt/utility/crystal = 5,
 					/obj/item/storage/toolbox/crystal = 5)
 
-/obj/machinery/vending/tool/adherent/vend(datum/stored_item/vending_product/, mob/living/carbon/user)
+obj/machinery/vending/tool/adherent/vend(datum/stored_item/vending_product/, mob/living/carbon/user)
 	if (emagged || istype(user) && user.species.name == SPECIES_ADHERENT)
 		return ..()
 	to_chat(user, SPAN_WARNING("\The [src] emits a discordant chime."))
-

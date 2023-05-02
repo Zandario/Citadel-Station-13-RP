@@ -3,12 +3,12 @@ var/list/cached_space = list()
 
 // Space stragglers go here
 
-/obj/effect/overmap/visitable/sector/temporary
+obj/effect/overmap/visitable/sector/temporary
 	name = "Deep Space"
 	invisibility = 101
 	known = 0
 
-/obj/effect/overmap/visitable/sector/temporary/New(var/nx, var/ny, var/nz)
+obj/effect/overmap/visitable/sector/temporary/New(var/nx, var/ny, var/nz)
 	loc = locate(nx, ny, GLOB.using_map.overmap_z)
 	x = nx
 	y = ny
@@ -16,12 +16,12 @@ var/list/cached_space = list()
 	map_sectors["[nz]"] = src
 	testing("Temporary sector at [x],[y] was created, corresponding zlevel is [nz].")
 
-/obj/effect/overmap/visitable/sector/temporary/Destroy()
+obj/effect/overmap/visitable/sector/temporary/Destroy()
 	map_sectors["[map_z]"] = null
 	testing("Temporary sector at [x],[y] was deleted.")
 	return ..()
 
-/obj/effect/overmap/visitable/sector/temporary/proc/can_die(var/mob/observer)
+obj/effect/overmap/visitable/sector/temporary/proc/can_die(var/mob/observer)
 	testing("Checking if sector at [map_z[1]] can die.")
 	for(var/mob/M in global.GLOB.player_list)
 		if(M != observer && (M.z in map_z))
@@ -29,7 +29,7 @@ var/list/cached_space = list()
 			return 0
 	return 1
 
-/proc/get_deepspace(x, y)
+proc/get_deepspace(x, y)
 	var/turf/unsimulated/map/overmap_turf = locate(x,y,GLOB.using_map.overmap_z)
 	if(!istype(overmap_turf))
 		CRASH("Attempt to get deepspace at ([x],[y]) which is not on overmap: [overmap_turf]")
@@ -44,7 +44,7 @@ var/list/cached_space = list()
 	else
 		return new /obj/effect/overmap/visitable/sector/temporary(x, y, GLOB.using_map.get_empty_zlevel())
 
-/atom/movable/proc/lost_in_space()
+atom/movable/proc/lost_in_space()
 	for(var/atom/movable/AM in contents)
 		if(!AM.lost_in_space())
 			return FALSE
@@ -56,34 +56,34 @@ var/list/cached_space = list()
 	return TRUE
 
 /*
-/obj/item/uav/lost_in_space()
+obj/item/uav/lost_in_space()
 	if(state == 1)
 		return FALSE
 	return ..()
 */
 
-/obj/machinery/power/supermatter/lost_in_space()
+obj/machinery/power/supermatter/lost_in_space()
 	return FALSE
 
-/obj/singularity/lost_in_space()
+obj/singularity/lost_in_space()
 	return FALSE
 
-/obj/vehicle_old/lost_in_space()
+obj/vehicle_old/lost_in_space()
 	if(load && !load.lost_in_space())
 		return FALSE
 	return ..()
 
-/mob/lost_in_space()
+mob/lost_in_space()
 	return isnull(client)
 
-/mob/observer/lost_in_space()		// heeyyyyyy buddy can we not :)
+mob/observer/lost_in_space()		// heeyyyyyy buddy can we not :)
 	return FALSE
 
-/mob/living/carbon/human/lost_in_space()
+mob/living/carbon/human/lost_in_space()
 	return FALSE
 	// return isnull(client) && !key && stat == DEAD // Allows bodies that players have ghosted from to be deleted - Ater
 
-/proc/overmap_spacetravel(turf/space/T, atom/movable/A)
+proc/overmap_spacetravel(turf/space/T, atom/movable/A)
 	if (!T || !A)
 		return
 

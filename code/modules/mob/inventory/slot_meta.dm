@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(inventory_slot_meta, init_inventory_slot_meta())
 /// global slot meta cache by type - only works for hardcoded
 GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 
-/proc/init_inventory_slot_meta()
+proc/init_inventory_slot_meta()
 	. = list()
 	GLOB.inventory_slot_meta = .
 	GLOB.inventory_slot_type_cache = list()
@@ -21,12 +21,12 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	tim_sort(., /proc/cmp_inventory_slot_meta_dsc, TRUE)
 	tim_sort(GLOB.inventory_slot_type_cache, /proc/cmp_inventory_slot_meta_dsc, TRUE)
 
-/proc/all_inventory_slot_ids()
+proc/all_inventory_slot_ids()
 	. = list()
 	for(var/id in GLOB.inventory_slot_meta)
 		. += id
 
-/proc/cmp_inventory_slot_meta_dsc(datum/inventory_slot_meta/a, datum/inventory_slot_meta/b)
+proc/cmp_inventory_slot_meta_dsc(datum/inventory_slot_meta/a, datum/inventory_slot_meta/b)
 	return b.sort_order - a.sort_order
 
 /**
@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
  *
  * String IDs are not automatically converted to paths for speed.
  */
-/proc/resolve_inventory_slot_meta(datum/inventory_slot_meta/id)
+proc/resolve_inventory_slot_meta(datum/inventory_slot_meta/id)
 	RETURN_TYPE(/datum/inventory_slot_meta)
 	if(istype(id))
 		return id
@@ -45,13 +45,13 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 /**
  * returns inventory slot render key for an id
  */
-/proc/resolve_inventory_slot_render_key(datum/inventory_slot_meta/id)
+proc/resolve_inventory_slot_render_key(datum/inventory_slot_meta/id)
 	return resolve_inventory_slot_meta(id)?.render_key
 
 /**
  * get inventory slot meta of a typepath
  */
-/proc/inventory_slot_type_lookup(type)
+proc/inventory_slot_type_lookup(type)
 	. = GLOB.inventory_slot_type_cache[type]
 	if(.)
 		return
@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
  * They only work on equips - can_equip, and anything unrelating to unequips, cannot check for it well.
  * Can equip supports some abstract slots but not others.
  */
-/datum/inventory_slot_meta
+datum/inventory_slot_meta
 	/// abstract type
 	abstract_type = /datum/inventory_slot_meta
 
@@ -136,13 +136,13 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	/// fallback states; if set for a bodytype, that bodytype converts to this if not in worn_bodytypes, rather than defaulted.
 	VAR_PROTECTED/list/render_fallback
 
-/datum/inventory_slot_meta/New()
+datum/inventory_slot_meta/New()
 	if(!id && (inventory_slot_flags & INV_SLOT_ALLOW_RANDOM_ID))
 		id = "[++id_next]"
 
 	rebuild_rendering_caches()
 
-/datum/inventory_slot_meta/proc/_equip_check(obj/item/I, mob/wearer, mob/user, flags)
+datum/inventory_slot_meta/proc/_equip_check(obj/item/I, mob/wearer, mob/user, flags)
 	if(slot_equip_checks & SLOT_EQUIP_CHECK_USE_FLAGS)
 		if(!(flags & INV_OP_FORCE))
 			if(!CHECK_MULTIPLE_BITFIELDS(I.slot_flags, slot_flags_required))
@@ -157,16 +157,16 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 /**
  * checked if slot_equip_checks specifies to use proc
  */
-/datum/inventory_slot_meta/proc/allow_equip(obj/item/I, mob/wearer, mob/user, force)
+datum/inventory_slot_meta/proc/allow_equip(obj/item/I, mob/wearer, mob/user, force)
 	return TRUE
 
 /**
  * checks for obfuscation when making the strip menu
  */
-/datum/inventory_slot_meta/proc/strip_obfuscation_check(obj/item/equipped, mob/wearer, mob/user)
+datum/inventory_slot_meta/proc/strip_obfuscation_check(obj/item/equipped, mob/wearer, mob/user)
 	return default_strip_inv_view_flags
 
-/datum/inventory_slot_meta/proc/rebuild_rendering_caches()
+datum/inventory_slot_meta/proc/rebuild_rendering_caches()
 	PROTECTED_PROC(TRUE) // if you think you need this outside you should rethink
 	render_state_cache = list()
 	render_dim_x_cache = list()
@@ -192,7 +192,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 /**
  * returns (icon, dim_x, dim_y) if found in defaults, null if not
  */
-/datum/inventory_slot_meta/proc/resolve_default_assets(bodytype, state, mob/wearer, obj/item/equipped, inhand_domain)
+datum/inventory_slot_meta/proc/resolve_default_assets(bodytype, state, mob/wearer, obj/item/equipped, inhand_domain)
 	var/bodytype_str = bodytype_to_string(bodytype)
 	if(!render_state_cache[bodytype_str]?[state])
 		return
@@ -201,7 +201,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 /**
  * returns layer
  */
-/datum/inventory_slot_meta/proc/resolve_default_layer(bodytype, mob/wearer, obj/item/equipped, inhand_domain)
+datum/inventory_slot_meta/proc/resolve_default_layer(bodytype, mob/wearer, obj/item/equipped, inhand_domain)
 	if(!islist(render_layer))
 		return render_layer
 	var/index = 1
@@ -213,7 +213,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 		index = (B.show_above_suit == 1)? 2 : 1
 	return render_layer[clamp(index, 1, length(render_layer))]
 
-/datum/inventory_slot_meta/proc/handle_worn_fallback(bodytype, list/worn_data)
+datum/inventory_slot_meta/proc/handle_worn_fallback(bodytype, list/worn_data)
 	var/bodytype_str = bodytype_to_string(bodytype)
 	if(!render_fallback[bodytype_str])
 		return FALSE
@@ -223,11 +223,11 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	worn_data[WORN_DATA_STATE] = render_fallback[bodytype_str]
 	return TRUE
 
-/datum/inventory_slot_meta/inventory
+datum/inventory_slot_meta/inventory
 	abstract_type = /datum/inventory_slot_meta/inventory
 	inventory_slot_flags = INV_SLOT_IS_RENDERED | INV_SLOT_IS_INVENTORY | INV_SLOT_IS_STRIPPABLE | INV_SLOT_HUD_REQUIRES_EXPAND | INV_SLOT_CONSIDERED_WORN
 
-/datum/inventory_slot_meta/inventory/back
+datum/inventory_slot_meta/inventory/back
 	name = "back"
 	render_key = "back"
 	id = SLOT_ID_BACK
@@ -249,7 +249,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = BACK_LAYER
 
-/datum/inventory_slot_meta/inventory/uniform
+datum/inventory_slot_meta/inventory/uniform
 	name = "uniform"
 	render_key = "under"
 	id = SLOT_ID_UNIFORM
@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	/// list of rollsleeve states
 	var/list/render_rollsleeve_states
 
-/datum/inventory_slot_meta/inventory/uniform/rebuild_rendering_caches()
+datum/inventory_slot_meta/inventory/uniform/rebuild_rendering_caches()
 	. = ..()
 	render_rolldown_states = list()
 	for(var/bodytype_str in render_rolldown_icons)
@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 		for(var/state in render_rollsleeve_states[bodytype_str])
 			render_rollsleeve_states[bodytype_str][state] = TRUE
 
-/datum/inventory_slot_meta/inventory/uniform/resolve_default_assets(bodytype, state, mob/wearer, obj/item/equipped, inhand_domain)
+datum/inventory_slot_meta/inventory/uniform/resolve_default_assets(bodytype, state, mob/wearer, obj/item/equipped, inhand_domain)
 	if(!istype(equipped, /obj/item/clothing/under))
 		return ..()
 	var/obj/item/clothing/under/U = equipped
@@ -330,13 +330,13 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	else
 		return ..()
 
-/datum/inventory_slot_meta/inventory/uniform/proc/check_rolldown_cache(bodytype, state)
+datum/inventory_slot_meta/inventory/uniform/proc/check_rolldown_cache(bodytype, state)
 	return render_rolldown_states[bodytype_to_string(bodytype)]?[state]
 
-/datum/inventory_slot_meta/inventory/uniform/proc/check_rollsleeve_cache(bodytype, state)
+datum/inventory_slot_meta/inventory/uniform/proc/check_rollsleeve_cache(bodytype, state)
 	return render_rollsleeve_states[bodytype_to_string(bodytype)]?[state]
 
-/datum/inventory_slot_meta/inventory/head
+datum/inventory_slot_meta/inventory/head
 	name = "head"
 	render_key = "head"
 	id = SLOT_ID_HEAD
@@ -370,7 +370,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = HEAD_LAYER
 
-/datum/inventory_slot_meta/inventory/suit
+datum/inventory_slot_meta/inventory/suit
 	name = "outerwear"
 	render_key = "suit"
 	id = SLOT_ID_SUIT
@@ -404,7 +404,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = SUIT_LAYER
 
-/datum/inventory_slot_meta/inventory/belt
+datum/inventory_slot_meta/inventory/belt
 	name = "belt"
 	render_key = "belt"
 	id = SLOT_ID_BELT
@@ -423,14 +423,14 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = list(BELT_LAYER, BELT_LAYER_ALT)
 
-/datum/inventory_slot_meta/inventory/pocket
+datum/inventory_slot_meta/inventory/pocket
 	abstract_type = /datum/inventory_slot_meta/inventory/pocket
 	sort_order = 2000
 	inventory_slot_flags = INV_SLOT_IS_INVENTORY | INV_SLOT_IS_STRIPPABLE
 	slot_equip_checks = SLOT_EQUIP_CHECK_USE_PROC
 	default_strip_inv_view_flags = INV_VIEW_OBFUSCATE_HIDE_ITEM_NAME | INV_VIEW_STRIP_FUMBLE_ON_FAILURE | INV_VIEW_STRIP_IS_SILENT
 
-/datum/inventory_slot_meta/inventory/pocket/allow_equip(obj/item/I, mob/wearer, mob/user, force)
+datum/inventory_slot_meta/inventory/pocket/allow_equip(obj/item/I, mob/wearer, mob/user, force)
 	. = ..()
 	if(I.slot_flags & SLOT_DENYPOCKET)
 		return FALSE
@@ -438,21 +438,21 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 		return TRUE
 	return I.w_class <= WEIGHT_CLASS_SMALL
 
-/datum/inventory_slot_meta/inventory/pocket/left
+datum/inventory_slot_meta/inventory/pocket/left
 	name = "left pocket"
 	id = SLOT_ID_LEFT_POCKET
 	display_name = "left pocket"
 	display_preposition = "in"
 	hud_position = ui_storage1
 
-/datum/inventory_slot_meta/inventory/pocket/right
+datum/inventory_slot_meta/inventory/pocket/right
 	name = "right pocket"
 	id = SLOT_ID_RIGHT_POCKET
 	display_name = "right pocket"
 	display_preposition = "in"
 	hud_position = ui_storage2
 
-/datum/inventory_slot_meta/inventory/id
+datum/inventory_slot_meta/inventory/id
 	name = "id"
 	render_key = "id"
 	id = SLOT_ID_WORN_ID
@@ -473,7 +473,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = ID_LAYER
 
-/datum/inventory_slot_meta/inventory/shoes
+datum/inventory_slot_meta/inventory/shoes
 	name = "shoes"
 	render_key = "shoes"
 	id = SLOT_ID_SHOES
@@ -497,7 +497,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = list(SHOES_LAYER, SHOES_LAYER_ALT)
 
-/datum/inventory_slot_meta/inventory/gloves
+datum/inventory_slot_meta/inventory/gloves
 	name = "gloves"
 	render_key = "gloves"
 	id = SLOT_ID_GLOVES
@@ -520,7 +520,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = GLOVES_LAYER
 
-/datum/inventory_slot_meta/inventory/glasses
+datum/inventory_slot_meta/inventory/glasses
 	name = "glasses"
 	render_key = "glasses"
 	id = SLOT_ID_GLASSES
@@ -543,7 +543,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = GLASSES_LAYER
 
-/datum/inventory_slot_meta/inventory/suit_storage
+datum/inventory_slot_meta/inventory/suit_storage
 	name = "suit storage"
 	render_key = "suit-store"
 	id = SLOT_ID_SUIT_STORAGE
@@ -555,7 +555,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	inventory_slot_flags = INV_SLOT_IS_RENDERED | INV_SLOT_IS_INVENTORY | INV_SLOT_IS_STRIPPABLE
 	render_layer = SUIT_STORE_LAYER
 
-/datum/inventory_slot_meta/inventory/suit_storage/allow_equip(obj/item/I, mob/wearer, mob/user, force)
+datum/inventory_slot_meta/inventory/suit_storage/allow_equip(obj/item/I, mob/wearer, mob/user, force)
 	. = ..()
 	var/obj/item/suit_item = wearer.item_by_slot(SLOT_ID_SUIT)
 	if(!suit_item)
@@ -565,7 +565,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 		return TRUE
 	return FALSE
 
-/datum/inventory_slot_meta/inventory/ears
+datum/inventory_slot_meta/inventory/ears
 	sort_order = 9500
 	abstract_type = /datum/inventory_slot_meta/inventory/ears
 	inventory_slot_flags = INV_SLOT_IS_RENDERED | INV_SLOT_IS_INVENTORY | INV_SLOT_IS_STRIPPABLE | INV_SLOT_CONSIDERED_WORN | INV_SLOT_HUD_REQUIRES_EXPAND
@@ -582,7 +582,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	render_layer = EARS_LAYER
 	render_key_plural = "ears"
 
-/datum/inventory_slot_meta/inventory/ears/left
+datum/inventory_slot_meta/inventory/ears/left
 	name = "left ear"
 	render_key = "ear-l"
 	id = SLOT_ID_LEFT_EAR
@@ -592,7 +592,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	slot_equip_checks = SLOT_EQUIP_CHECK_USE_FLAGS
 	slot_flags_required = SLOT_EARS
 
-/datum/inventory_slot_meta/inventory/ears/right
+datum/inventory_slot_meta/inventory/ears/right
 	name = "right ear"
 	render_key = "ear-r"
 	id = SLOT_ID_RIGHT_EAR
@@ -603,7 +603,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	slot_flags_required = SLOT_EARS
 	render_layer = EARS_LAYER
 
-/datum/inventory_slot_meta/inventory/mask
+datum/inventory_slot_meta/inventory/mask
 	name = "mask"
 	render_key = "mask"
 	id = SLOT_ID_MASK
@@ -634,13 +634,13 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = FACEMASK_LAYER
 
-/datum/inventory_slot_meta/restraints
+datum/inventory_slot_meta/restraints
 	sort_order = -250
 	always_show_on_strip_menu = FALSE
 	abstract_type = /datum/inventory_slot_meta/restraints
 	inventory_slot_flags = INV_SLOT_IS_RENDERED | INV_SLOT_IS_STRIPPABLE | INV_SLOT_STRIP_ONLY_REMOVES | INV_SLOT_STRIP_SIMPLE_LINK
 
-/datum/inventory_slot_meta/restraints/handcuffs
+datum/inventory_slot_meta/restraints/handcuffs
 	name = "handcuffed"
 	render_key = "handcuffs"
 	id = SLOT_ID_HANDCUFFED
@@ -654,10 +654,10 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = HANDCUFF_LAYER
 
-/datum/inventory_slot_meta/restraints/handcuffs/allow_equip(obj/item/I, mob/wearer, mob/user, force)
+datum/inventory_slot_meta/restraints/handcuffs/allow_equip(obj/item/I, mob/wearer, mob/user, force)
 	return istype(I, /obj/item/handcuffs) && !istype(I, /obj/item/handcuffs/legcuffs)
 
-/datum/inventory_slot_meta/restraints/legcuffs
+datum/inventory_slot_meta/restraints/legcuffs
 	name = "legcuffed"
 	render_key = "legcuffs"
 	id = SLOT_ID_LEGCUFFED
@@ -671,40 +671,40 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 	)
 	render_layer = LEGCUFF_LAYER
 
-/datum/inventory_slot_meta/restraints/legcuffs/allow_equip(obj/item/I, mob/wearer, mob/user, force)
+datum/inventory_slot_meta/restraints/legcuffs/allow_equip(obj/item/I, mob/wearer, mob/user, force)
 	return istype(I, /obj/item/handcuffs/legcuffs)
 
 /**
  * these have no excuse to be accessed by id
  * they will have randomized ids
  */
-/datum/inventory_slot_meta/abstract
+datum/inventory_slot_meta/abstract
 	inventory_slot_flags = INV_SLOT_IS_ABSTRACT | INV_SLOT_ALLOW_RANDOM_ID
 	abstract_type = /datum/inventory_slot_meta/abstract
 
-/datum/inventory_slot_meta/abstract/put_in_hands
+datum/inventory_slot_meta/abstract/put_in_hands
 	name = "put in hands"
 	id = SLOT_ID_HANDS
 	display_name = "hands"
 	display_preposition = "in"
 	display_plural = TRUE
 
-/datum/inventory_slot_meta/abstract/attach_as_accessory
+datum/inventory_slot_meta/abstract/attach_as_accessory
 	name = "attach as accessory"
 	display_name = "clothes"
 	display_preposition = "clipped to"
 
-/datum/inventory_slot_meta/abstract/put_in_backpack
+datum/inventory_slot_meta/abstract/put_in_backpack
 	name = "put in backpack"
 	display_name = "backpack"
 	display_preposition = "in"
 
-/datum/inventory_slot_meta/abstract/put_in_belt
+datum/inventory_slot_meta/abstract/put_in_belt
 	name = "put in belt"
 	display_name = "belt"
 	display_preposition = "in"
 
-/datum/inventory_slot_meta/abstract/put_in_storage
+datum/inventory_slot_meta/abstract/put_in_storage
 	name = "put in storage"
 	display_name = "storage"
 	display_preposition = "in"
@@ -712,12 +712,12 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 /**
  * like put in storage, but prioritizes active, even if it's not on you.
  */
-/datum/inventory_slot_meta/abstract/put_in_storage_try_active
+datum/inventory_slot_meta/abstract/put_in_storage_try_active
 	name = "put in storage (active storage)"
 	display_name = "storage"
 	display_name = "in"
 
-/datum/inventory_slot_meta/abstract/hand
+datum/inventory_slot_meta/abstract/hand
 	abstract_type = /datum/inventory_slot_meta/abstract/hand
 	// our render default icons are based on inhand type
 	// this hijacks render_default_icons SO much but i don't care!
@@ -725,12 +725,12 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 /**
  * returns (icon, dim_x, dim_y) if found in defaults, null if not
  */
-/datum/inventory_slot_meta/abstract/hand/resolve_default_assets(bodytype, state, mob/wearer, obj/item/equipped, inhand_domain)
+datum/inventory_slot_meta/abstract/hand/resolve_default_assets(bodytype, state, mob/wearer, obj/item/equipped, inhand_domain)
 	if(!render_state_cache[inhand_domain]?[state])
 		return
 	return list(render_default_icons[inhand_domain], render_dim_x_cache[inhand_domain], render_dim_y_cache[inhand_domain])
 
-/datum/inventory_slot_meta/abstract/hand/left
+datum/inventory_slot_meta/abstract/hand/left
 	name = "put in left hand"
 	display_name = "left hand"
 	display_preposition = "in"
@@ -758,7 +758,7 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 		INHAND_DEFAULT_ICON_64X64 = 'icons/mob/items/64x64_lefthand.dmi',
 	)
 
-/datum/inventory_slot_meta/abstract/hand/right
+datum/inventory_slot_meta/abstract/hand/right
 	name = "put in right hand"
 	display_name = "right hand"
 	display_preposition = "in"
@@ -786,8 +786,8 @@ GLOBAL_LIST_EMPTY(inventory_slot_type_cache)
 		INHAND_DEFAULT_ICON_64X64 = 'icons/mob/items/64x64_righthand.dmi',
 	)
 
-/datum/inventory_slot_meta/abstract/use_one_for_accessory
+datum/inventory_slot_meta/abstract/use_one_for_accessory
 	render_key = "acc"
 
-/datum/inventory_slot_meta/abstract/use_one_for_all
+datum/inventory_slot_meta/abstract/use_one_for_all
 	render_key = "all"

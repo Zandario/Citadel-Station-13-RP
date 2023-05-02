@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/drone
+mob/living/silicon/robot/drone
 	name = "maintenance drone"
 	real_name = "drone"
 	icon = 'icons/mob/robots.dmi'
@@ -49,20 +49,20 @@
 
 	can_be_antagged = FALSE
 
-/mob/living/silicon/robot/drone/Destroy()
+mob/living/silicon/robot/drone/Destroy()
 	if(hat)
 		hat.loc = get_turf(src)
 	..()
 
-/mob/living/silicon/robot/drone/ghost()
+mob/living/silicon/robot/drone/ghost()
 	. = ..()
 	if (!ckey)
 		death()
 
-/mob/living/silicon/robot/drone/is_sentient()
+mob/living/silicon/robot/drone/is_sentient()
 	return FALSE
 
-/mob/living/silicon/robot/drone/construction
+mob/living/silicon/robot/drone/construction
 	name = "construction drone"
 	icon_state = "constructiondrone"
 	law_type = /datum/ai_laws/construction_drone
@@ -71,7 +71,7 @@
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
 	//holder_type = /obj/item/holder/drone/heavy
-/mob/living/silicon/robot/drone/construction/matriarch
+mob/living/silicon/robot/drone/construction/matriarch
 	name = "matriarch drone"
 	module_type = /obj/item/robot_module/drone/construction/matriarch
 	law_type = /datum/ai_laws/matriarch_drone
@@ -80,7 +80,7 @@
 	integrated_light_power = 4
 	name_override = 1
 	var/matrix_tag
-/mob/living/silicon/robot/drone/mining
+mob/living/silicon/robot/drone/mining
 	icon_state = "miningdrone"
 	item_state = "constructiondrone"
 	law_type = /datum/ai_laws/mining_drone
@@ -89,7 +89,7 @@
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
 
-/mob/living/silicon/robot/drone/Initialize(mapload)
+mob/living/silicon/robot/drone/Initialize(mapload)
 	. = ..()
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
@@ -114,7 +114,7 @@
 	updateicon()
 	updatename()
 
-/mob/living/silicon/robot/drone/init()
+mob/living/silicon/robot/drone/init()
 	if(!scrambledcodes && !foreign_droid)
 		aiCamera = new/obj/item/camera/siliconcam/drone_camera(src)
 	additional_law_channels["Drone"] = ":d"
@@ -126,7 +126,7 @@
 
 //Redefining some robot procs...
 
-/mob/living/silicon/robot/drone/construction/matriarch/Namepick()
+mob/living/silicon/robot/drone/construction/matriarch/Namepick()
 	set category = "Robot Commands"
 	if(custom_name)
 		return 0
@@ -138,19 +138,19 @@
 		real_name = "[initial(name)] ([drone_name])"
 		name = real_name
 
-/mob/living/silicon/robot/drone/SetName(pickedName as text)
+mob/living/silicon/robot/drone/SetName(pickedName as text)
 	// Would prefer to call the grandparent proc but this isn't possible, so..
 	real_name = pickedName
 	name = real_name
 
-/mob/living/silicon/robot/drone/updatename()
+mob/living/silicon/robot/drone/updatename()
 	if(name_override)
 		return
 
 	real_name = "[initial(name)] ([serial_number])"
 	name = real_name
 
-/mob/living/silicon/robot/drone/updateicon()
+mob/living/silicon/robot/drone/updateicon()
 
 	cut_overlays()
 	var/list/overlays_to_add = list()
@@ -166,13 +166,13 @@
 
 	add_overlay(overlays_to_add)
 
-/mob/living/silicon/robot/drone/choose_icon()
+mob/living/silicon/robot/drone/choose_icon()
 	return
 
-/mob/living/silicon/robot/drone/pick_module()
+mob/living/silicon/robot/drone/pick_module()
 	return
 
-/mob/living/silicon/robot/drone/proc/wear_hat(var/obj/item/new_hat)
+mob/living/silicon/robot/drone/proc/wear_hat(var/obj/item/new_hat)
 	if(hat)
 		return
 	hat = new_hat
@@ -180,7 +180,7 @@
 	updateicon()
 
 //Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
-/mob/living/silicon/robot/drone/attackby(var/obj/item/W, var/mob/user)
+mob/living/silicon/robot/drone/attackby(var/obj/item/W, var/mob/user)
 
 	if(user.a_intent == "help" && istype(W, /obj/item/clothing/head))
 		if(hat)
@@ -234,7 +234,7 @@
 
 	..()
 
-/mob/living/silicon/robot/drone/emag_act(var/remaining_charges, var/mob/user)
+mob/living/silicon/robot/drone/emag_act(var/remaining_charges, var/mob/user)
 	if(!client || stat == 2)
 		to_chat(user, "<span class='danger'>There's not much point subverting this heap of junk.</span>")
 		return
@@ -269,7 +269,7 @@
 //DRONE LIFE/DEATH
 
 //For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.
-/mob/living/silicon/robot/drone/update_health()
+mob/living/silicon/robot/drone/update_health()
 	if(status_flags & STATUS_GODMODE)
 		health = maxHealth
 		set_stat(CONSCIOUS)
@@ -280,7 +280,7 @@
 //Easiest to check this here, then check again in the robot proc.
 //Standard robots use config for crit, which is somewhat excessive for these guys.
 //Drones killed by damage will gib.
-/mob/living/silicon/robot/drone/handle_regular_UI_updates()
+mob/living/silicon/robot/drone/handle_regular_UI_updates()
 	var/turf/T = get_turf(src)
 	if(!T || health <= -35 )
 		timeofdeath = world.time
@@ -290,11 +290,11 @@
 	..()
 
 //DRONE MOVEMENT.
-/mob/living/silicon/robot/drone/Process_Spaceslipping(var/prob_slip)
+mob/living/silicon/robot/drone/Process_Spaceslipping(var/prob_slip)
 	return 0
 
 //CONSOLE PROCS
-/mob/living/silicon/robot/drone/proc/law_resync()
+mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != DEAD)
 		if(emagged)
 			to_chat(src, "<span class='danger'>You feel something attempting to modify your programming, but your hacked subroutines are unaffected.</span>")
@@ -303,7 +303,7 @@
 			full_law_reset()
 			show_laws()
 
-/mob/living/silicon/robot/drone/proc/shut_down()
+mob/living/silicon/robot/drone/proc/shut_down()
 	if(stat != DEAD)
 		if(emagged)
 			to_chat(src, "<span class='danger'>You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you.</span>")
@@ -311,7 +311,7 @@
 			to_chat(src, "<span class='danger'>You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.</span>")
 			death()
 
-/mob/living/silicon/robot/drone/proc/full_law_reset()
+mob/living/silicon/robot/drone/proc/full_law_reset()
 	clear_supplied_laws(1)
 	clear_inherent_laws(1)
 	clear_ion_laws(1)
@@ -319,7 +319,7 @@
 
 //Reboot procs.
 
-/mob/living/silicon/robot/drone/proc/request_player()
+mob/living/silicon/robot/drone/proc/request_player()
 	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(jobban_isbanned(O, "Cyborg"))
 			continue
@@ -327,7 +327,7 @@
 			if(O.client.prefs.be_special & BE_PAI)
 				question(O.client)
 
-/mob/living/silicon/robot/drone/proc/question(var/client/C)
+mob/living/silicon/robot/drone/proc/question(var/client/C)
 	spawn(0)
 		if(!C || jobban_isbanned(C,"Cyborg"))	return
 		var/response = alert(C, "Someone is attempting to reboot a maintenance drone. Would you like to play as one?", "Maintenance drone reboot", "Yes", "No", "Never for this round")
@@ -338,7 +338,7 @@
 		else if (response == "Never for this round")
 			C.prefs.be_special ^= BE_PAI
 
-/mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
+mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
 
 	if(!player) return
 
@@ -352,56 +352,56 @@
 	full_law_reset()
 	welcome_drone()
 
-/mob/living/silicon/robot/drone/proc/welcome_drone()
+mob/living/silicon/robot/drone/proc/welcome_drone()
 	to_chat(src, "<b>You are a maintenance drone, a tiny-brained robotic repair machine</b>.")
 	to_chat(src, "You have no individual will, no personality, and no drives or urges other than your laws.")
 	to_chat(src, "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
 	to_chat(src, "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows.")
 
-/mob/living/silicon/robot/drone/add_robot_verbs()
+mob/living/silicon/robot/drone/add_robot_verbs()
 	add_verb(src, silicon_subsystems)
 
-/mob/living/silicon/robot/drone/remove_robot_verbs()
+mob/living/silicon/robot/drone/remove_robot_verbs()
 	remove_verb(src, silicon_subsystems)
 
-/mob/living/silicon/robot/drone/construction/welcome_drone()
+mob/living/silicon/robot/drone/construction/welcome_drone()
 	to_chat(src, "<b>You are a construction drone, an autonomous engineering and fabrication system.</b>.")
 	to_chat(src, "You are assigned to a Sol Central construction project. The name is irrelevant. Your task is to complete construction and subsystem integration as soon as possible.")
 	to_chat(src, "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows.")
 	to_chat(src, "<b>You do not follow orders from anyone; not the AI, not humans, and not other synthetics.</b>.")
 
-/mob/living/silicon/robot/drone/construction/init()
+mob/living/silicon/robot/drone/construction/init()
 	..()
 	flavor_text = "It's a bulky construction drone stamped with a Sol Central glyph."
 
-/mob/living/silicon/robot/drone/mining/init()
+mob/living/silicon/robot/drone/mining/init()
 	..()
 	flavor_text = "It's a bulky mining drone stamped with a Grayson logo."
 
-/mob/living/silicon/robot/drone/construction/matriarch/init()
+mob/living/silicon/robot/drone/construction/matriarch/init()
 	..()
 	add_verb(src, /mob/living/silicon/robot/verb/Namepick)
 	flavor_text = "It's a small matriarch drone. The casing is stamped with an corporate logo and the subscript: '[GLOB.using_map.company_name] Recursive Repair Systems: Heart Of The Swarm!'"
 
-/mob/living/silicon/robot/drone/construction/matriarch/welcome_drone()
+mob/living/silicon/robot/drone/construction/matriarch/welcome_drone()
 	to_chat(src, "<b>You are a matriarch maintenance drone, a tiny-brained robotic repair machine</b>.")
 	to_chat(src, "You have no individual will, no personality, and no drives or urges other than your laws.")
 	to_chat(src, "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
 	to_chat(src, "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows.")
 
-/mob/living/silicon/robot/drone/construction/matriarch/Initialize()
+mob/living/silicon/robot/drone/construction/matriarch/Initialize()
 	. = ..()
 	matrix_tag = "[GLOB.using_map.company_name]"
 
-/mob/living/silicon/robot/drone/construction/matriarch/shut_down()
+mob/living/silicon/robot/drone/construction/matriarch/shut_down()
 	return
 
-/mob/living/silicon/robot/drone/construction/matriarch/transfer_personality(client/player)
+mob/living/silicon/robot/drone/construction/matriarch/transfer_personality(client/player)
 	. = ..()
 	assign_drone_to_matrix(src, matrix_tag)
 	master_matrix.message_drones(SPAN_NOTICE("Energy surges through your circuits. The matriarch has come online."))
 
-/mob/living/silicon/robot/drone/construction/matriarch/ghostize(can_reenter_corpse, should_set_timer)
+mob/living/silicon/robot/drone/construction/matriarch/ghostize(can_reenter_corpse, should_set_timer)
 	. = ..()
 	if(can_reenter_corpse || stat == DEAD)
 		return

@@ -1,4 +1,4 @@
-/datum/component/squeak
+datum/component/squeak
 	var/static/list/default_squeak_sounds = list('sound/items/toysqueak1.ogg'=1, 'sound/items/toysqueak2.ogg'=1, 'sound/items/toysqueak3.ogg'=1)
 	var/list/override_squeak_sounds
 
@@ -13,7 +13,7 @@
 	var/last_use = 0
 	var/use_delay = 20
 
-/datum/component/squeak/Initialize(custom_sounds, volume_override, chance_override, step_delay_override, use_delay_override)
+datum/component/squeak/Initialize(custom_sounds, volume_override, chance_override, step_delay_override, use_delay_override)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_BLOB_ACT, COMSIG_ATOM_HULK_ATTACK, COMSIG_PARENT_ATTACKBY), .proc/play_squeak)
@@ -39,21 +39,21 @@
 	if(isnum(use_delay_override))
 		use_delay = use_delay_override
 
-/datum/component/squeak/proc/play_squeak()
+datum/component/squeak/proc/play_squeak()
 	if(prob(squeak_chance))
 		if(!override_squeak_sounds)
 			playsound(parent, pickweight(default_squeak_sounds), volume, TRUE, -1)
 		else
 			playsound(parent, pickweight(override_squeak_sounds), volume, TRUE, -1)
 
-/datum/component/squeak/proc/step_squeak()
+datum/component/squeak/proc/step_squeak()
 	if(steps > step_delay)
 		play_squeak()
 		steps = 0
 	else
 		steps++
 
-/datum/component/squeak/proc/play_squeak_crossed(datum/source, atom/movable/AM)
+datum/component/squeak/proc/play_squeak_crossed(datum/source, atom/movable/AM)
 	if(isitem(AM))
 		var/obj/item/I = AM
 		if(I.item_flags & ITEM_ABSTRACT)
@@ -68,23 +68,23 @@
 	if(isturf(current_parent.loc))
 		play_squeak()
 
-/datum/component/squeak/proc/use_squeak()
+datum/component/squeak/proc/use_squeak()
 	if(last_use + use_delay < world.time)
 		last_use = world.time
 		play_squeak()
 
-/datum/component/squeak/proc/on_equip(datum/source, mob/equipper, slot)
+datum/component/squeak/proc/on_equip(datum/source, mob/equipper, slot)
 	RegisterSignal(equipper, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react, TRUE)
 
-/datum/component/squeak/proc/on_drop(datum/source, mob/user)
+datum/component/squeak/proc/on_drop(datum/source, mob/user)
 	UnregisterSignal(user, COMSIG_MOVABLE_DISPOSING)
 
 // Disposal pipes related shit
-/datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/source)
+datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 	//We don't need to worry about unregistering this signal as it will happen for us automaticaly when the holder is qdeleted
 	RegisterSignal(holder, COMSIG_ATOM_DIR_CHANGE, .proc/holder_dir_change)
 
-/datum/component/squeak/proc/holder_dir_change(datum/source, old_dir, new_dir)
+datum/component/squeak/proc/holder_dir_change(datum/source, old_dir, new_dir)
 	//If the dir changes it means we're going through a bend in the pipes, let's pretend we bumped the wall
 	if(old_dir != new_dir)
 		play_squeak()

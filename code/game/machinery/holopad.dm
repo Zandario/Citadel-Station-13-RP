@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(holopad_lookup)
 #define HOLO_NORMAL_ALPHA 140
 #define HOLO_VORE_ALPHA 210
 
-/proc/__rebuild_holopad_connectivity()
+proc/__rebuild_holopad_connectivity()
 	for(var/id in GLOB.holopad_lookup)
 		var/obj/machinery/holopad/pad = GLOB.holopad_lookup[id]
 		pad.push_ui_connectivity_data()
@@ -13,13 +13,13 @@ GLOBAL_LIST_EMPTY(holopad_lookup)
 
 GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 
-/obj/item/circuitboard/holopad
+obj/item/circuitboard/holopad
 	name = T_BOARD("holopad")
 	build_path = /obj/machinery/holopad
 	board_type = new /datum/frame/frame_types/holopad
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
-/obj/machinery/holopad
+obj/machinery/holopad
 	name = "holopad"
 	desc = "It's a floor-mounted device for projecting holographic images."
 	icon = 'icons/machinery/holopad.dmi'
@@ -129,7 +129,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	/// all holograms bound to us
 	var/list/holograms
 
-/obj/machinery/holopad/Initialize(mapload)
+obj/machinery/holopad/Initialize(mapload)
 	. = ..()
 	holopad_uid = "[num2text(++holopad_uid_next, 16)]"
 	holograms = list()
@@ -138,23 +138,23 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	if(our_area)
 		LAZYADD(our_area.holopads, src)
 
-/obj/machinery/holopad/Destroy()
+obj/machinery/holopad/Destroy()
 	disconnect_all_calls()
 	kill_all_ai_holograms()
 	destroy_holograms()
 	GLOB.holopad_lookup -= holopad_uid
 	return ..()
 
-/obj/machinery/holopad/get_perspective()
+obj/machinery/holopad/get_perspective()
 	ensure_self_perspective() // no lazy/temp-perspectives.
 	return ..()
 
-/obj/machinery/holopad/on_changed_z_level(old_z, new_z)
+obj/machinery/holopad/on_changed_z_level(old_z, new_z)
 	. = ..()
 	if(call_visibility)
 		queue_global_connectivity_update()
 
-/obj/machinery/holopad/proc/queue_global_connectivity_update()
+obj/machinery/holopad/proc/queue_global_connectivity_update()
 	if(GLOB.holopad_connectivity_rebuild_queued)
 		return
 	GLOB.holopad_connectivity_rebuild_queued = TRUE
@@ -162,7 +162,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 
 //? movement hooks
 
-/obj/machinery/holopad/Moved(atom/old_loc, direction, forced)
+obj/machinery/holopad/Moved(atom/old_loc, direction, forced)
 	. = ..()
 	var/area/old_area = isturf(old_loc)? old_loc.loc : null
 	var/area/new_area = isturf(loc)? loc.loc : null
@@ -177,7 +177,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * checks if a turf is in range to project to
  */
-/obj/machinery/holopad/proc/turf_in_range(turf/T)
+obj/machinery/holopad/proc/turf_in_range(turf/T)
 	if(area_based)
 		return T.loc == get_area(src)
 	return get_dist(T, src) <= tile_range
@@ -185,7 +185,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * checks for holopad handoff
  */
-/obj/machinery/holopad/proc/check_handoff(turf/T)
+obj/machinery/holopad/proc/check_handoff(turf/T)
 	// area check
 	var/area/A = T.loc
 	for(var/obj/machinery/holopad/pad as anything in A.holopads)
@@ -202,7 +202,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * returns if we can reach another holopad
  */
-/obj/machinery/holopad/proc/holocall_connectivity(obj/machinery/holopad/other)
+obj/machinery/holopad/proc/holocall_connectivity(obj/machinery/holopad/other)
 	var/obj/effect/overmap/visitable/our_sector = get_overmap_sector(get_z(src))
 	var/obj/effect/overmap/visitable/their_sector = get_overmap_sector(get_z(other))
 	if(!our_sector || !their_sector)
@@ -214,7 +214,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * returns reachable holopads
  */
-/obj/machinery/holopad/proc/holocall_query()
+obj/machinery/holopad/proc/holocall_query()
 	. = list()
 	var/obj/effect/overmap/visitable/our_sector = get_overmap_sector(get_z(src))
 	for(var/id in GLOB.holopad_lookup)
@@ -240,7 +240,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
  *
  * todo: this proc is shit and shouldn't exist because we keep requerying this mid-call, holocalls need eventual redesigning
  */
-/obj/machinery/holopad/proc/holocall_name(obj/machinery/holopad/in_respects_to)
+obj/machinery/holopad/proc/holocall_name(obj/machinery/holopad/in_respects_to)
 	if(holopad_name)
 		return holopad_name
 	var/obj/effect/overmap/visitable/sector = get_overmap_sector(get_z(src))
@@ -253,7 +253,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * our holocall category
  */
-/obj/machinery/holopad/proc/holocall_category()
+obj/machinery/holopad/proc/holocall_category()
 	return "[get_area(src)?:name]"
 
 //? Holocall Helpers
@@ -261,7 +261,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * generate holocall target ui
  */
-/obj/machinery/holopad/proc/ui_connectivity_data()
+obj/machinery/holopad/proc/ui_connectivity_data()
 	var/list/built = list()
 	for(var/obj/machinery/holopad/pad as anything in holocall_query())
 		var/obj/effect/overmap/visitable/sector = get_overmap_sector(get_z(pad))
@@ -277,7 +277,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * update holocall target ui
  */
-/obj/machinery/holopad/proc/push_ui_connectivity_data()
+obj/machinery/holopad/proc/push_ui_connectivity_data()
 	if(!has_open_ui())
 		return
 	push_ui_data(data = list("connectivity" = ui_connectivity_data()))
@@ -288,55 +288,55 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
  * checks if we're in a call; if so, return datum
  * call is not necessarily connected
  */
-/obj/machinery/holopad/proc/is_calling()
+obj/machinery/holopad/proc/is_calling()
 	return is_call_source() || is_call_destination()
 
 /**
  * checks if we're in a connected outgoing call
  */
-/obj/machinery/holopad/proc/outgoing_call_connected()
+obj/machinery/holopad/proc/outgoing_call_connected()
 	return outgoing_call?.connected
 
 /**
  * checks for an outgoing call, whether or not it's connected
  */
-/obj/machinery/holopad/proc/outgoing_call_exists()
+obj/machinery/holopad/proc/outgoing_call_exists()
 	return !!outgoing_call
 
 /**
  * checks if we're in a connected incoming call
  */
-/obj/machinery/holopad/proc/incoming_calls_connected()
+obj/machinery/holopad/proc/incoming_calls_connected()
 	return length(incoming_calls)
 
 /**
  * checks if we have incoming calls, whether or not connected
  */
-/obj/machinery/holopad/proc/incoming_calls_exist()
+obj/machinery/holopad/proc/incoming_calls_exist()
 	return length(incoming_calls) || length(ringing_calls)
 
 /**
  * is call source
  */
-/obj/machinery/holopad/proc/is_call_source()
+obj/machinery/holopad/proc/is_call_source()
 	return !!outgoing_call
 
 /**
  * is call destination
  */
-/obj/machinery/holopad/proc/is_call_destination()
+obj/machinery/holopad/proc/is_call_destination()
 	return length(incoming_calls)
 
 /**
  * checks if we should automatically answer a holocall
  */
-/obj/machinery/holopad/proc/should_auto_pickup(datum/holocall/inbound)
+obj/machinery/holopad/proc/should_auto_pickup(datum/holocall/inbound)
 	return call_auto_pickup
 
 /**
  * hang up all calls
  */
-/obj/machinery/holopad/proc/disconnect_all_calls()
+obj/machinery/holopad/proc/disconnect_all_calls()
 	for(var/datum/holocall/disconnecting as anything in incoming_calls)
 		disconnect_call(disconnecting)
 	for(var/datum/holocall/disconnecting as anything in ringing_calls)
@@ -349,7 +349,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
  *
  * this assumes you checked that the call is actually valid.
  */
-/obj/machinery/holopad/proc/disconnect_call(datum/holocall/disconnecting)
+obj/machinery/holopad/proc/disconnect_call(datum/holocall/disconnecting)
 	disconnecting.disconnect(src)
 
 /**
@@ -357,13 +357,13 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
  *
  * this assumes you checked that the call is actually valid.
  */
-/obj/machinery/holopad/proc/connect_call(datum/holocall/connecting)
+obj/machinery/holopad/proc/connect_call(datum/holocall/connecting)
 	connecting.connect()
 
 /**
  * makes a new call / rings a holopad
  */
-/obj/machinery/holopad/proc/make_call(obj/machinery/holopad/other)
+obj/machinery/holopad/proc/make_call(obj/machinery/holopad/other)
 	if(other == src)
 		return FALSE
 	if(length(incoming_calls))
@@ -379,7 +379,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * get ring'd by a call
  */
-/obj/machinery/holopad/proc/ring(datum/holocall/incoming)
+obj/machinery/holopad/proc/ring(datum/holocall/incoming)
 	update_icon()
 	if(LAZYACCESS(holocall_anti_spam, incoming.source.holopad_uid) > world.time)
 		return
@@ -396,7 +396,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * get hung up by a call
  */
-/obj/machinery/holopad/proc/hung_up(datum/holocall/disconnecting, we_hung_up)
+obj/machinery/holopad/proc/hung_up(datum/holocall/disconnecting, we_hung_up)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), 0)
 
 //? UI
@@ -405,7 +405,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
  * CRITICAL CODE:
  * Assembles call data.
  */
-/obj/machinery/holopad/proc/ui_call_data()
+obj/machinery/holopad/proc/ui_call_data()
 	. = list()
 	// it's very important wet set the values properly!
 	if(outgoing_call_exists())
@@ -440,13 +440,13 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		.["calling"] = "none"
 		.["calldata"] = null
 
-/obj/machinery/holopad/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/machinery/holopad/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Holopad")
 		ui.open()
 
-/obj/machinery/holopad/ui_static_data(mob/user)
+obj/machinery/holopad/ui_static_data(mob/user)
 	. = ..()
 	.["connectivity"] = ui_connectivity_data()
 	.["isAI"] = isAI(user)
@@ -461,7 +461,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	.["ringerToggle"] = ringer_toggleable
 	.["autoToggle"] = call_auto_toggle
 
-/obj/machinery/holopad/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/holopad/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	.["isAIProjecting"] = isAI(user) && is_ai_projecting(user)
 	.["aiRequested"] = !request_ai_cooldown()
@@ -476,7 +476,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		ringing[++ringing.len] = holocall.ui_caller_id_source()
 	.["ringing"] = ringing
 
-/obj/machinery/holopad/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/holopad/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	switch(action)
 		// user requesting ai
@@ -582,7 +582,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 			outgoing_call.cleanup_remote_presence()
 			return TRUE
 
-/obj/machinery/holopad/ui_close(mob/user)
+obj/machinery/holopad/ui_close(mob/user)
 	. = ..()
 	// if they were remoting, kick 'em - they do get buttons on top left but
 	// we want to enforce interface being open.
@@ -594,10 +594,10 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * returns if we're projecting
  */
-/obj/machinery/holopad/proc/is_active()
+obj/machinery/holopad/proc/is_active()
 	return length(ais_projecting) || length(ringing_calls) || length(incoming_calls) || outgoing_call
 
-/obj/machinery/holopad/update_icon()
+obj/machinery/holopad/update_icon()
 	. = ..()
 	var/active = is_active()
 	icon_state = "[base_icon_state][active? "_active" : ""]"
@@ -616,7 +616,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
  * @params
  * * state - are we on?
  */
-/obj/machinery/holopad/proc/update_activity_hologram(state)
+obj/machinery/holopad/proc/update_activity_hologram(state)
 	var/needed = state && !length(ais_projecting) && !length(incoming_calls) && !outgoing_call
 	if(needed && !activity_hologram)
 		activity_hologram = new(loc, activity_hologram_style, src)
@@ -629,7 +629,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 
 //? Ticking
 
-/obj/machinery/holopad/process(delta_time)
+obj/machinery/holopad/process(delta_time)
 	if(!operable())
 		kill_all_ai_holograms()
 		disconnect_all_calls()
@@ -640,7 +640,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		use_power_oneoff(power_per_hologram)
 		hologram.check_location()
 
-/obj/machinery/holopad/proc/check_hologram(obj/effect/overlay/hologram/holopad/holo)
+obj/machinery/holopad/proc/check_hologram(obj/effect/overlay/hologram/holopad/holo)
 	if(!isturf(holo.loc) || !turf_in_range(holo.loc))
 		return FALSE
 	return TRUE
@@ -650,7 +650,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * requests AI presence
  */
-/obj/machinery/holopad/proc/request_ai(mob/user)
+obj/machinery/holopad/proc/request_ai(mob/user)
 	last_ai_request = world.time
 	var/area/area = get_area(src)
 	for(var/mob/living/silicon/ai/AI in living_mob_list)
@@ -661,13 +661,13 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * is request ai available
  */
-/obj/machinery/holopad/proc/request_ai_cooldown()
+obj/machinery/holopad/proc/request_ai_cooldown()
 	return !isnull(last_ai_request) && (last_ai_request + ai_request_cooldown < world.time)
 
 /**
  * starts AI presence
  */
-/obj/machinery/holopad/proc/initiate_ai_hologram(mob/living/silicon/ai/the_ai)
+obj/machinery/holopad/proc/initiate_ai_hologram(mob/living/silicon/ai/the_ai)
 	. = FALSE
 	if(the_ai.holopad)
 		CRASH("already had holopad")
@@ -686,14 +686,14 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * stops all AI presence
  */
-/obj/machinery/holopad/proc/kill_all_ai_holograms()
+obj/machinery/holopad/proc/kill_all_ai_holograms()
 	for(var/mob/living/silicon/ai/the_ai as anything in ais_projecting)
 		kill_ai_hologram(the_ai)
 
 /**
  * stops AI presence
  */
-/obj/machinery/holopad/proc/kill_ai_hologram(mob/living/silicon/ai/the_ai)
+obj/machinery/holopad/proc/kill_ai_hologram(mob/living/silicon/ai/the_ai)
 	. = FALSE
 	if(the_ai.holopad != src)
 		STACK_TRACE("wrong holopad")
@@ -711,11 +711,11 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
  * @params
  * * the_ai - (optional) specific ai; if not specified, then if any.
  */
-/obj/machinery/holopad/proc/is_ai_projecting(mob/living/silicon/ai/the_ai)
+obj/machinery/holopad/proc/is_ai_projecting(mob/living/silicon/ai/the_ai)
 	return the_ai? (the_ai in ais_projecting) : length(ais_projecting)
 
 //? Legacy - Attack Handling
-/obj/machinery/holopad/attackby(obj/item/I, mob/user, list/params, clickchain_flags, damage_multiplier)
+obj/machinery/holopad/attackby(obj/item/I, mob/user, list/params, clickchain_flags, damage_multiplier)
 	. = ..()
 	if(.)
 		return
@@ -726,26 +726,26 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 
 //? Say / Emote
 
-/obj/machinery/holopad/see_emote(mob/living/M, text)
+obj/machinery/holopad/see_emote(mob/living/M, text)
 	. = ..()
 	relay_intercepted_emote(M, M.name, say_emphasis(text))
 
-/obj/machinery/holopad/show_message(msg, type, alt, alt_type)
+obj/machinery/holopad/show_message(msg, type, alt, alt_type)
 	. = ..()
 	relay_intercepted_emote(null, "-- INTERCEPTED -- ", say_emphasis(msg))
 
-/obj/machinery/holopad/hear_talk(mob/living/M, text, verb, datum/language/speaking)
+obj/machinery/holopad/hear_talk(mob/living/M, text, verb, datum/language/speaking)
 	. = ..()
 	relay_intercepted_say(M, M.name, say_emphasis(text), speaking, FALSE)
 
-/obj/machinery/holopad/hear_signlang(mob/M, text, verb, datum/language/speaking)
+obj/machinery/holopad/hear_signlang(mob/M, text, verb, datum/language/speaking)
 	. = ..()
 	relay_intercepted_say(M, M.name, say_emphasis(text), speaking, TRUE)
 
 /**
  * relays a heard say
  */
-/obj/machinery/holopad/proc/relay_intercepted_say(atom/movable/speaking, voice_name, msg, datum/language/using_language, sign_lang, list/heard = list())
+obj/machinery/holopad/proc/relay_intercepted_say(atom/movable/speaking, voice_name, msg, datum/language/using_language, sign_lang, list/heard = list())
 	// no loops please - shame we can't have a room of 8 holopads acting as a council chamber though!
 	if(istype(speaking, /obj/machinery/holopad))
 		return
@@ -764,7 +764,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * relays a seen emote
  */
-/obj/machinery/holopad/proc/relay_intercepted_emote(atom/movable/emoting, visible_name, msg, list/heard = list())
+obj/machinery/holopad/proc/relay_intercepted_emote(atom/movable/emoting, visible_name, msg, list/heard = list())
 	// no loops please - shame we can't have a room of 8 holopads acting as a council chamber though!
 	if(istype(emoting, /obj/machinery/holopad) || isnull(emoting))
 		return
@@ -785,7 +785,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * relays a say sent to us
  */
-/obj/machinery/holopad/proc/relay_inbound_say(atom/movable/speaker, speaker_name, msg, datum/language/using_language, sign_lang = FALSE, using_verb = "says", obj/machinery/holopad/source, list/heard = list())
+obj/machinery/holopad/proc/relay_inbound_say(atom/movable/speaker, speaker_name, msg, datum/language/using_language, sign_lang = FALSE, using_verb = "says", obj/machinery/holopad/source, list/heard = list())
 	. = TRUE
 	var/scrambled = stars(msg)
 	var/for_knowers = "[source && "[SPAN_NOTICE(source.holocall_name(src))]: "][SPAN_NAME(speaker_name)] [using_language? using_language.format_message(msg, using_verb) : "[using_verb], [msg]"]"
@@ -822,7 +822,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * relays an emote sent to us
  */
-/obj/machinery/holopad/proc/relay_inbound_emote(atom/movable/speaker, speaker_name, msg, obj/effect/overlay/hologram/holo, obj/machinery/holopad/source, list/heard = list())
+obj/machinery/holopad/proc/relay_inbound_emote(atom/movable/speaker, speaker_name, msg, obj/effect/overlay/hologram/holo, obj/machinery/holopad/source, list/heard = list())
 	. = TRUE
 	// attempt autodetect
 	if(!speaker_name)
@@ -849,25 +849,25 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 
 //? holograms
 
-/obj/machinery/holopad/proc/create_hologram(initial_appearance, path = /obj/effect/overlay/hologram/holopad)
+obj/machinery/holopad/proc/create_hologram(initial_appearance, path = /obj/effect/overlay/hologram/holopad)
 	ASSERT(ispath(path, /obj/effect/overlay/hologram/holopad))
 	. = new path(get_turf(src), initial_appearance, src)
 
-/obj/machinery/holopad/proc/destroy_holograms()
+obj/machinery/holopad/proc/destroy_holograms()
 	QDEL_NULL(activity_hologram)
 	QDEL_LIST(holograms)
 
-/obj/machinery/holopad/proc/register_hologram(obj/effect/overlay/hologram/holopad/holo)
+obj/machinery/holopad/proc/register_hologram(obj/effect/overlay/hologram/holopad/holo)
 	LAZYADD(holograms, holo)
 
-/obj/machinery/holopad/proc/unregister_hologram(obj/effect/overlay/hologram/holopad/holo)
+obj/machinery/holopad/proc/unregister_hologram(obj/effect/overlay/hologram/holopad/holo)
 	LAZYREMOVE(holograms, holo)
 
-/obj/item/circuitboard/holopad/ship
+obj/item/circuitboard/holopad/ship
 	name = T_BOARD("sector holopad")
 	build_path = /obj/machinery/holopad/ship
 
-/obj/machinery/holopad/ship
+obj/machinery/holopad/ship
 	name = "sector holopad"
 	desc = "An expensive and immobile holopad used for long range ship-to-ship communications."
 	icon_state = "shippad"
@@ -877,14 +877,14 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	allow_deconstruct = FALSE
 	long_range = TRUE
 
-/obj/machinery/holopad/ship/starts_inactive
+obj/machinery/holopad/ship/starts_inactive
 	call_visibility = FALSE
 
 /**
  * state holder for holocall info
  * and handles a bunch of things
  */
-/datum/holocall
+datum/holocall
 	/// source pad
 	var/obj/machinery/holopad/source
 	/// destination pad
@@ -906,23 +906,23 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	/// tracking when to hang up if ringing (30 second timeout)
 	var/ring_timerid
 
-/datum/holocall/New(obj/machinery/holopad/sender, obj/machinery/holopad/receiver)
+datum/holocall/New(obj/machinery/holopad/sender, obj/machinery/holopad/receiver)
 	action_hang_up = new(src)
 	action_swap_view = new(src)
 	src.source = sender
 	src.destination = receiver
 	register()
 
-/datum/holocall/Destroy()
+datum/holocall/Destroy()
 	cleanup()
 	QDEL_NULL(action_hang_up)
 	QDEL_NULL(action_swap_view)
 	return ..()
 
-/datum/holocall/proc/caller_id_source()
+datum/holocall/proc/caller_id_source()
 	return (source.call_anonymous_sector && cross_sector)? "Anonymous" : source.holocall_name()
 
-/datum/holocall/proc/ui_caller_id_source()
+datum/holocall/proc/ui_caller_id_source()
 	// todo: overmap sector names for anonymous.
 	var/obj/effect/overmap/visitable/sector = get_overmap_sector(get_z(source))
 	var/scanner_name = sector?.scanner_name || sector?.name || "Unknown"
@@ -932,10 +932,10 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		"id" = source.holopad_uid,
 	)
 
-/datum/holocall/proc/caller_id_destination()
+datum/holocall/proc/caller_id_destination()
 	return (destination.call_anonymous_sector && cross_sector)? "Anonymous" : destination.holocall_name()
 
-/datum/holocall/proc/ui_caller_id_destination()
+datum/holocall/proc/ui_caller_id_destination()
 	// todo: overmap sector names for anonymous.
 	var/obj/effect/overmap/visitable/sector = get_overmap_sector(get_z(destination))
 	var/scanner_name = sector?.scanner_name || sector?.name || "Unknown"
@@ -945,7 +945,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		"id" = destination.holopad_uid,
 	)
 
-/datum/holocall/proc/initiate_remote_presence(mob/user)
+datum/holocall/proc/initiate_remote_presence(mob/user)
 	if(remoting)
 		cleanup_remote_presence()
 	if(!isAI(user) && user.loc != source.loc)
@@ -970,23 +970,23 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		hologram = destination.create_hologram(user)
 	return TRUE
 
-/datum/holocall/proc/remote_perspective()
+datum/holocall/proc/remote_perspective()
 	return destination.get_perspective()
 
-/datum/holocall/intercept_mob_move(mob/moving, dir)
+datum/holocall/intercept_mob_move(mob/moving, dir)
 	. = TRUE
 	if(hologram_last_move + 1 > world.time)
 		return
 	hologram_last_move = world.time
 	hologram.hologram_step(dir)
 
-/datum/holocall/proc/on_item_equipped(mob/source)
+datum/holocall/proc/on_item_equipped(mob/source)
 	if(source != remoting)
 		UnregisterSignal(source, COMSIG_MOB_ITEM_EQUIPPED)
 		CRASH("how")
 	hologram.from_appearance(remoting)
 
-/datum/holocall/proc/cleanup_remote_presence()
+datum/holocall/proc/cleanup_remote_presence()
 	if(!remoting)
 		return
 	UnregisterSignal(remoting, COMSIG_MOB_RESET_PERSPECTIVE)
@@ -999,7 +999,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	if(hologram)
 		qdel(hologram)
 
-/datum/holocall/proc/connect()
+datum/holocall/proc/connect()
 	connected = TRUE
 	LAZYADD(destination.incoming_calls, src)
 	LAZYREMOVE(destination.ringing_calls, src)
@@ -1008,14 +1008,14 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	if(ring_timerid)
 		deltimer(ring_timerid)
 
-/datum/holocall/proc/register()
+datum/holocall/proc/register()
 	ASSERT(isnull(source.outgoing_call))
 	source.outgoing_call = src
 	source.update_icon()
 	LAZYADD(destination.ringing_calls, src)
 	cross_sector = get_overmap_sector(get_z(source)) != get_overmap_sector(get_z(destination))
 
-/datum/holocall/proc/cleanup()
+datum/holocall/proc/cleanup()
 	if(remoting)
 		cleanup_remote_presence()
 	if(source.outgoing_call == src)
@@ -1027,19 +1027,19 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	if(ring_timerid)
 		deltimer(ring_timerid)
 
-/datum/holocall/proc/ring()
+datum/holocall/proc/ring()
 	if(ring_timerid)
 		deltimer(ring_timerid)
 	destination.ring(src)
 	ring_timerid = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/holocall, disconnect), src), 30 SECONDS, TIMER_STOPPABLE)
 
-/datum/holocall/proc/disconnect(obj/machinery/holopad/initiating)
+datum/holocall/proc/disconnect(obj/machinery/holopad/initiating)
 	destination.hung_up(src, initiating == destination)
 	source.hung_up(src, initiating == source)
 	if(!QDELING(src))
 		qdel(src)
 
-/datum/holocall/proc/validate()
+datum/holocall/proc/validate()
 	if(!check())
 		disconnect(src)
 		return FALSE
@@ -1050,12 +1050,12 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		if(!check_remoting())
 			cleanup_remote_presence()
 
-/datum/holocall/proc/check_remoting()
+datum/holocall/proc/check_remoting()
 	if(remoting?.loc != source.loc)
 		return FALSE
 	return TRUE
 
-/datum/holocall/proc/check()
+datum/holocall/proc/check()
 	// check bidirectional connectivity
 	if(!source.holocall_connectivity(destination))
 		return FALSE
@@ -1063,37 +1063,37 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		return FALSE
 	return TRUE
 
-/datum/action/holocall
+datum/action/holocall
 	abstract_type = /datum/action/holocall
 	target_type = /datum/holocall
 	action_type = ACTION_TYPE_DEFAULT
 
-/datum/action/holocall/hang_up
+datum/action/holocall/hang_up
 	name = "Hang Up"
 	button_icon = 'icons/screen/actions/generic.dmi'
 	button_icon_state = "hang_up"
 	background_icon = 'icons/screen/actions/backgrounds.dmi'
 	background_icon_state = "default"
 
-/datum/action/holocall/hang_up/on_trigger(mob/user, datum/holocall/receiver)
+datum/action/holocall/hang_up/on_trigger(mob/user, datum/holocall/receiver)
 	. = ..()
 	receiver.disconnect(receiver.source)
 
-/datum/action/holocall/swap_view
+datum/action/holocall/swap_view
 	name = "Stop View"
 	button_icon = 'icons/screen/actions/generic.dmi'
 	button_icon_state = "swap_cam"
 	background_icon = 'icons/screen/actions/backgrounds.dmi'
 	background_icon_state = "default"
 
-/datum/action/holocall/swap_view/on_trigger(mob/user, datum/holocall/receiver)
+datum/action/holocall/swap_view/on_trigger(mob/user, datum/holocall/receiver)
 	. = ..()
 	receiver.cleanup_remote_presence()
 
 /**
  * obj used for holograms
  */
-/obj/effect/overlay/hologram
+obj/effect/overlay/hologram
 	name = "hologram"
 	desc = "Some kind of hologram."
 	alpha = HOLO_NORMAL_ALPHA
@@ -1103,37 +1103,37 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	pass_flags = ATOM_PASS_ALL
 	pass_flags_self = ATOM_PASS_BLOB | ATOM_PASS_GLASS | ATOM_PASS_GRILLE | ATOM_PASS_MOB | ATOM_PASS_OVERHEAD_THROW | ATOM_PASS_THROWN | ATOM_PASS_TABLE
 
-/obj/effect/overlay/hologram/Initialize(mapload, appearance/clone_from = /datum/hologram/general/holo_female)
+obj/effect/overlay/hologram/Initialize(mapload, appearance/clone_from = /datum/hologram/general/holo_female)
 	. = ..()
 	if(clone_from)
 		from_appearance(clone_from)
 	color = HOLO_NORMAL_COLOR
 
-/obj/effect/overlay/hologram/Destroy()
+obj/effect/overlay/hologram/Destroy()
 	walk(src, NONE)
 	return ..()
 
-/obj/effect/overlay/hologram/proc/hologram_step(dir)
+obj/effect/overlay/hologram/proc/hologram_step(dir)
 	move_to_target(get_step(src, dir))
 
-/obj/effect/overlay/hologram/proc/move_to_target(turf/T, kill_on_failure)
+obj/effect/overlay/hologram/proc/move_to_target(turf/T, kill_on_failure)
 	if(density)
 		walk_to(src, T)
 	else
 		setDir(get_dir(src, T))
 		forceMove(T)
 
-/obj/effect/overlay/hologram/proc/stop_moving()
+obj/effect/overlay/hologram/proc/stop_moving()
 	walk(src, NONE)
 
-/obj/effect/overlay/hologram/Moved()
+obj/effect/overlay/hologram/Moved()
 	. = ..()
 	check_location()
 
-/obj/effect/overlay/hologram/proc/check_location()
+obj/effect/overlay/hologram/proc/check_location()
 	return
 
-/obj/effect/overlay/hologram/proc/on_out_of_bounds()
+obj/effect/overlay/hologram/proc/on_out_of_bounds()
 	return
 
 /**
@@ -1149,7 +1149,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
  *   value is ignored if string as the datum contains this information
  * * cheap - use appearance rendering instead of icon rendering
  */
-/obj/effect/overlay/hologram/proc/from_appearance(appearance/appearancelike, process_appearance = TRUE, cheap = TRUE)
+obj/effect/overlay/hologram/proc/from_appearance(appearance/appearancelike, process_appearance = TRUE, cheap = TRUE)
 	if(istext(appearancelike))
 		var/datum/hologram/holo = GLOB.holograms[appearancelike]
 		if(!holo)
@@ -1195,41 +1195,41 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	// emissive-fy
 	cheap_become_emissive()
 
-/obj/effect/overlay/hologram/proc/relay_speech(speaker_name, message, datum/language/lang)
+obj/effect/overlay/hologram/proc/relay_speech(speaker_name, message, datum/language/lang)
 	// TODO: ATOM SAY(), not janky ass atom_say().
 	atom_say("[SPAN_NAME(speaker_name)] says, [message]", lang)
 
-/obj/effect/overlay/hologram/proc/relay_emote(speaker_name, message)
+obj/effect/overlay/hologram/proc/relay_emote(speaker_name, message)
 	visible_message("[message]")
 
 /**
  * holopad holograms - has some state tracking
  */
-/obj/effect/overlay/hologram/holopad
+obj/effect/overlay/hologram/holopad
 	/// master pad
 	var/obj/machinery/holopad/pad
 
-/obj/effect/overlay/hologram/holopad/Initialize(mapload, appearance/clone_from, obj/machinery/holopad/pad)
+obj/effect/overlay/hologram/holopad/Initialize(mapload, appearance/clone_from, obj/machinery/holopad/pad)
 	. = ..()
 	if(pad)
 		src.pad = pad
 	pad.register_hologram(src)
 
-/obj/effect/overlay/hologram/holopad/Destroy()
+obj/effect/overlay/hologram/holopad/Destroy()
 	pad.unregister_hologram(src)
 	pad = null
 	return ..()
 
-/obj/effect/overlay/hologram/holopad/check_location()
+obj/effect/overlay/hologram/holopad/check_location()
 	if(!pad)
 		return
 	if(!pad.check_hologram(src))
 		on_out_of_bounds()
 
-/obj/effect/overlay/hologram/holopad/on_out_of_bounds()
+obj/effect/overlay/hologram/holopad/on_out_of_bounds()
 	forceMove(get_turf(pad))
 
-/obj/effect/overlay/hologram/holopad/move_to_target(turf/T, kill_on_failure)
+obj/effect/overlay/hologram/holopad/move_to_target(turf/T, kill_on_failure)
 	if(!pad.turf_in_range(T))
 		if(kill_on_failure)
 			qdel(src)
@@ -1239,13 +1239,13 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /**
  * AI holograms
  */
-/obj/effect/overlay/hologram/holopad/ai
+obj/effect/overlay/hologram/holopad/ai
 	/// master AI
 	var/mob/living/silicon/ai/owner
 	/// who we vored
 	var/mob/living/vored
 
-/obj/effect/overlay/hologram/holopad/ai/Destroy()
+obj/effect/overlay/hologram/holopad/ai/Destroy()
 	if(owner?.hologram == src)
 		owner.hologram = null
 		owner.terminate_holopad_connection()
@@ -1256,7 +1256,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 		AM.forceMove(loc)
 	return ..()
 
-/obj/effect/overlay/hologram/holopad/ai/examine(mob/user)
+obj/effect/overlay/hologram/holopad/ai/examine(mob/user)
 	. = ..()
 	//If you need an ooc_notes copy paste, this is NOT the one to use.
 	var/ooc_notes = owner.ooc_notes
@@ -1265,10 +1265,10 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	if(vored)
 		. += SPAN_WARNING("It seems to have [vored] inside of it!")
 
-/obj/effect/overlay/hologram/holopad/ai/on_out_of_bounds()
+obj/effect/overlay/hologram/holopad/ai/on_out_of_bounds()
 	owner?.terminate_holopad_connection()
 
-/obj/effect/overlay/hologram/holopad/ai/proc/vore_someone(mob/living/victim, mob/living/silicon/ai/user)
+obj/effect/overlay/hologram/holopad/ai/proc/vore_someone(mob/living/victim, mob/living/silicon/ai/user)
 	if(vored)
 		return FALSE
 	playsound('sound/effects/stealthoff.ogg', 50, 0)
@@ -1282,7 +1282,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	alpha = HOLO_VORE_ALPHA
 	return TRUE
 
-/obj/effect/overlay/hologram/holopad/ai/proc/drop_vored()
+obj/effect/overlay/hologram/holopad/ai/proc/drop_vored()
 	if(!vored)
 		return FALSE
 	playsound('sound/effects/stealthoff.ogg', 50, 0)

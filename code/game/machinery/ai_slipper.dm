@@ -1,4 +1,4 @@
-/obj/machinery/ai_slipper
+obj/machinery/ai_slipper
 	name = "\improper AI Liquid Dispenser"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion0"
@@ -14,26 +14,26 @@
 	var/cooldown_on = FALSE
 	req_access = list(ACCESS_COMMAND_UPLOAD)
 
-/obj/machinery/ai_slipper/Initialize(mapload, newdir)
+obj/machinery/ai_slipper/Initialize(mapload, newdir)
 	. = ..()
 	update_icon()
 
-/obj/machinery/ai_slipper/power_change()
+obj/machinery/ai_slipper/power_change()
 	..()
 	update_icon()
 
-/obj/machinery/ai_slipper/update_icon()
+obj/machinery/ai_slipper/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "motion0"
 	else
 		icon_state = disabled ? "motion0" : "motion3"
 
-/obj/machinery/ai_slipper/proc/setState(var/enabled, var/uses)
+obj/machinery/ai_slipper/proc/setState(var/enabled, var/uses)
 	disabled = disabled
 	uses = uses
 	power_change()
 
-/obj/machinery/ai_slipper/attackby(obj/item/W, mob/user)
+obj/machinery/ai_slipper/attackby(obj/item/W, mob/user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(istype(user, /mob/living/silicon))
@@ -54,10 +54,10 @@
 			return
 	return
 
-/obj/machinery/ai_slipper/attack_ai(mob/user as mob)
+obj/machinery/ai_slipper/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/ai_slipper/attack_hand(mob/user, list/params)
+obj/machinery/ai_slipper/attack_hand(mob/user, list/params)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if((get_dist(src, user) > 1))
@@ -87,7 +87,7 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/ai_slipper/Topic(href, href_list)
+obj/machinery/ai_slipper/Topic(href, href_list)
 	..()
 	if(locked)
 		if(!istype(usr, /mob/living/silicon))
@@ -110,7 +110,7 @@
 	attack_hand(usr)
 	return
 
-/obj/machinery/ai_slipper/proc/slip_process()
+obj/machinery/ai_slipper/proc/slip_process()
 	while(cooldown_time - world.timeofday > 0)
 		var/ticksleft = cooldown_time - world.timeofday
 

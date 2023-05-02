@@ -1,4 +1,4 @@
-/obj/item/clothing/under/oricon
+obj/item/clothing/under/oricon
 	name = "master oricon uniform"
 	desc = "You shouldn't be seeing this."
 	armor_type = /datum/armor/security/jumpsuit

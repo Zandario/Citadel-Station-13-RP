@@ -1,4 +1,4 @@
-/obj/item/organ/internal/brain/adherent
+obj/item/organ/internal/brain/adherent
 	name = "mentality matrix"
 	desc = "The self-contained, self-supporting internal 'brain' of an Adherent unit."
 	icon = 'icons/mob/species/adherent/organs.dmi'
@@ -6,7 +6,7 @@
 	organ_tag = O_BRAIN
 	robotic = ORGAN_CRYSTAL
 
-/obj/item/organ/internal/powered
+obj/item/organ/internal/powered
 	icon = 'icons/mob/species/adherent/organs.dmi'
 	robotic = ORGAN_CRYSTAL
 
@@ -15,7 +15,7 @@
 	var/active = FALSE
 	var/use_descriptor
 
-/obj/item/organ/internal/powered/process(delta_time)
+obj/item/organ/internal/powered/process(delta_time)
 	. = ..()
 
 	if(!owner)
@@ -29,13 +29,13 @@
 		to_chat(owner, SPAN_DANGER("Your [name] [gender == PLURAL ? "are" : "is"] out of power!"))
 		refresh_action_button()
 
-/obj/item/organ/internal/powered/refresh_action_button()
+obj/item/organ/internal/powered/refresh_action_button()
 	. = ..()
 	if(.)
 		action.button_icon_state = "[base_action_state]-[active ? "on" : "off"]"
 		if(action.button) action.button.UpdateIcon()
 
-/obj/item/organ/internal/powered/attack_self(mob/user)
+obj/item/organ/internal/powered/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -51,7 +51,7 @@
 		refresh_action_button()
 
 
-/obj/item/organ/internal/powered/jets
+obj/item/organ/internal/powered/jets
 	name = "maneuvering jets"
 	desc = "Gas jets from a Adherent chassis."
 	action_button_name = "Toggle Maneuvering Pack"
@@ -64,14 +64,14 @@
 	base_action_state = "adherent-pack"
 	maintenance_cost = 0.2
 
-/obj/item/organ/internal/powered/jets/Initialize(mapload)
+obj/item/organ/internal/powered/jets/Initialize(mapload)
 	. = ..()
 	//add_obj_verb(src, /obj/item/organ/internal/powered/jets/proc/activatej)
 
-/obj/item/organ/internal/powered/jets/ui_action_click()
+obj/item/organ/internal/powered/jets/ui_action_click()
 	activatej()
 
-/obj/item/organ/internal/powered/jets/proc/activatej()
+obj/item/organ/internal/powered/jets/proc/activatej()
 	/*set name = "Toggle Maneuvering Pack"
 	set desc = "Toggles your manuevering jets"
 	set category = "Abilities"*/
@@ -88,13 +88,13 @@
 	C.update_floating()
 	to_chat(C, SPAN_NOTICE("You have [C.flying?"started":"stopped"] flying."))
 
-/obj/item/organ/internal/powered/jets/process(delta_time)
+obj/item/organ/internal/powered/jets/process(delta_time)
 	var/mob/living/carbon/human/C = src.owner
 	if(!active)
 		return
 	C.nutrition = C.nutrition - maintenance_cost
 
-/obj/item/organ/internal/powered/float
+obj/item/organ/internal/powered/float
 	name = "levitation plate"
 	desc = "A broad, flat disc of exotic matter. Slick to the touch."
 	action_button_name = "Toggle Antigravity"
@@ -105,14 +105,14 @@
 	use_descriptor = "hover"
 	base_action_state = "adherent-float"
 
-/obj/item/organ/internal/powered/float/Initialize(mapload)
+obj/item/organ/internal/powered/float/Initialize(mapload)
 	. = ..()
 	//add_obj_verb(src, /obj/item/organ/internal/powered/float/proc/flying_toggle)
 	add_obj_verb(src, /obj/item/organ/internal/powered/float/proc/hover)
 
-/obj/item/organ/internal/powered/float/ui_action_click()
+obj/item/organ/internal/powered/float/ui_action_click()
 	hover()
-/obj/item/organ/internal/eyes/adherent
+obj/item/organ/internal/eyes/adherent
 	name = "receptor prism"
 	icon = 'icons/mob/species/adherent/organs.dmi'
 //	eye_icon = 'icons/mob/species/adherent/eyes.dmi'
@@ -122,12 +122,12 @@
 	innate_flash_protection = FLASH_PROTECTION_MAJOR
 
 
-/obj/item/organ/internal/eyes/adherent/Initialize(mapload)
+obj/item/organ/internal/eyes/adherent/Initialize(mapload)
 	. = ..()
 	add_obj_verb(src, /obj/item/organ/internal/eyes/proc/change_eye_color)
 
 
-/obj/item/organ/internal/cell/adherent
+obj/item/organ/internal/cell/adherent
 	name = "piezoelectric core"
 	icon = 'icons/mob/species/adherent/organs.dmi'
 	icon_state = "cell"
@@ -135,7 +135,7 @@
 	status = ORGAN_CRYSTAL
 
 
-/obj/item/organ/internal/powered/cooling_fins
+obj/item/organ/internal/powered/cooling_fins
 	name = "cooling fins"
 	gender = PLURAL
 	desc = "A lacy filligree of heat-radiating fins."
@@ -152,14 +152,14 @@
 	var/max_cooling = 10
 	var/target_temp = T20C
 
-/obj/item/organ/internal/powered/cooling_fins/Initialize(mapload)
+obj/item/organ/internal/powered/cooling_fins/Initialize(mapload)
 	. = ..()
 	add_obj_verb(src, /obj/item/organ/internal/powered/cooling_fins/proc/activatecf)
 
-/obj/item/organ/internal/powered/cooling_fins/ui_action_click()
+obj/item/organ/internal/powered/cooling_fins/ui_action_click()
 	activatecf()
 
-/obj/item/organ/internal/powered/cooling_fins/proc/activatecf()
+obj/item/organ/internal/powered/cooling_fins/proc/activatecf()
 	var/mob/living/carbon/human/C = src.owner
 	set name = "Toggle Cooling Fins"
 	set desc = "Turns on your onboard cooling fin array."
@@ -168,7 +168,7 @@
 	cooling = !cooling
 	to_chat(C, "You toggle your cooling fans [cooling ? "on" : "off"] ")
 
-/obj/item/organ/internal/powered/cooling_fins/process(delta_time)
+obj/item/organ/internal/powered/cooling_fins/process(delta_time)
 	var/mob/living/carbon/human/C = src.owner
 	if(cooling)
 		var/temp_diff = min(C.bodytemperature - target_temp, max_cooling)
@@ -179,7 +179,7 @@
 			maintenance_cost = 0
 
 
-/obj/item/organ/internal/powered/float/proc/flying_toggle()
+obj/item/organ/internal/powered/float/proc/flying_toggle()
 	/*set name = "Toggle Flight"
 	set desc = "While flying over open spaces, you will use up some energy. If you run out energy, you will fall. Additionally, you can't fly if you are too heavy."
 	set category = "Abilities"
@@ -196,7 +196,7 @@
 	C.update_floating()
 	to_chat(C, "<span class='notice'>You have [C.flying?"started":"stopped"] flying.</span>")*/
 
-/obj/item/organ/internal/powered/float/proc/hover()
+obj/item/organ/internal/powered/float/proc/hover()
 	set name = "Hover"
 	set desc = "Allows you to stop gliding and hover. This will take a fair amount of energy to perform."
 	set category = "Abilities"

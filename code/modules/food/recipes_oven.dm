@@ -1,4 +1,4 @@
-/datum/recipe/ovenchips
+datum/recipe/ovenchips
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/rawsticks
@@ -7,7 +7,7 @@
 
 
 
-/datum/recipe/dionaroast
+datum/recipe/dionaroast
 	appliance = OVEN
 	fruit = list("apple" = 1)
 	reagents = list("pacid" = 5) //It dissolves the carapace. Still poisonous, though.
@@ -16,21 +16,21 @@
 	reagent_mix = RECIPE_REAGENT_REPLACE //No eating polyacid
 
 
-/datum/recipe/ribplate //Putting this here for not seeing a roast section.
+datum/recipe/ribplate //Putting this here for not seeing a roast section.
 	appliance = OVEN
 	reagents = list("honey" = 5, "spacespice" = 2, "blackpepper" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/meat)
 	reagent_mix = RECIPE_REAGENT_REPLACE
 	result = /obj/item/reagent_containers/food/snacks/ribplate
 
-/datum/recipe/ribplate_bear //Putting this here for not seeing a roast section.
+datum/recipe/ribplate_bear //Putting this here for not seeing a roast section.
 	appliance = OVEN
 	reagents = list("honey" = 5, "spacespice" = 2, "blackpepper" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/bearmeat)
 	reagent_mix = RECIPE_REAGENT_REPLACE
 	result = /obj/item/reagent_containers/food/snacks/ribplate_bear
 
-/datum/recipe/teshariroast
+datum/recipe/teshariroast
 	appliance = OVEN
 	fruit = list("lemon" = 1)
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
@@ -41,7 +41,7 @@
 
 //Predesigned breads
 //================================
-/datum/recipe/bread
+datum/recipe/bread
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -52,7 +52,7 @@
 	reagents = list("sodiumchloride" = 1)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/bread
 
-/datum/recipe/baguette
+datum/recipe/baguette
 	appliance = OVEN
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(
@@ -62,7 +62,7 @@
 	result = /obj/item/reagent_containers/food/snacks/baguette
 
 
-/datum/recipe/tofubread
+datum/recipe/tofubread
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -78,7 +78,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/tofubread
 
 
-/datum/recipe/creamcheesebread
+datum/recipe/creamcheesebread
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -88,14 +88,14 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread
 
-/datum/recipe/flatbread
+datum/recipe/flatbread
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough
 	)
 	result = /obj/item/reagent_containers/food/snacks/flatbread
 
-/datum/recipe/meatbread
+datum/recipe/meatbread
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -110,7 +110,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/meatbread
 
-/datum/recipe/syntibread
+datum/recipe/syntibread
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -125,7 +125,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/meatbread
 
-/datum/recipe/xenomeatbread
+datum/recipe/xenomeatbread
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -140,7 +140,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread
 
-/datum/recipe/bananabread
+datum/recipe/bananabread
 	appliance = OVEN
 	fruit = list("banana" = 1)
 	reagents = list("milk" = 5, "sugar" = 15)
@@ -151,7 +151,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/bananabread
 
-/datum/recipe/spidermeatbread
+datum/recipe/spidermeatbread
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -167,7 +167,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/spidermeatbread
 
 
-/datum/recipe/bun
+datum/recipe/bun
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough
@@ -177,7 +177,7 @@
 //Predesigned pies
 //=======================
 
-/datum/recipe/meatpie
+datum/recipe/meatpie
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
@@ -185,7 +185,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/meatpie
 
-/datum/recipe/tofupie
+datum/recipe/tofupie
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
@@ -193,7 +193,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/tofupie
 
-/datum/recipe/xemeatpie
+datum/recipe/xemeatpie
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
@@ -201,14 +201,14 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/xemeatpie
 
-/datum/recipe/pie
+datum/recipe/pie
 	appliance = OVEN
 	fruit = list("banana" = 1)
 	reagents = list("sugar" = 5)
 	items = list(/obj/item/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/reagent_containers/food/snacks/pie
 
-/datum/recipe/cherrypie
+datum/recipe/cherrypie
 	appliance = OVEN
 	fruit = list("cherries" = 1)
 	reagents = list("sugar" = 10)
@@ -218,41 +218,41 @@
 	result = /obj/item/reagent_containers/food/snacks/cherrypie
 
 
-/datum/recipe/amanita_pie
+datum/recipe/amanita_pie
 	appliance = OVEN
 	reagents = list("amatoxin" = 5)
 	items = list(/obj/item/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/reagent_containers/food/snacks/amanita_pie
 
-/datum/recipe/plump_pie
+datum/recipe/plump_pie
 	appliance = OVEN
 	fruit = list("plumphelmet" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/reagent_containers/food/snacks/plump_pie
 
 
-/datum/recipe/pumpkinpie
+datum/recipe/pumpkinpie
 	appliance = OVEN
 	fruit = list("pumpkin" = 1)
 	reagents = list("milk" = 5, "sugar" = 5, "egg" = 3, "flour" = 10)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie
 	reagent_mix = RECIPE_REAGENT_REPLACE //We dont want raw egg in the result
 
-/datum/recipe/appletart
+datum/recipe/appletart
 	appliance = OVEN
 	fruit = list("goldapple" = 1)
 	reagents = list("sugar" = 5, "milk" = 5, "flour" = 10, "egg" = 3)
 	result = /obj/item/reagent_containers/food/snacks/appletart
 	reagent_mix = RECIPE_REAGENT_REPLACE
 
-/datum/recipe/keylimepie
+datum/recipe/keylimepie
 	appliance = OVEN
 	fruit = list("lime" = 2)
 	reagents = list("milk" = 5, "sugar" = 5, "egg" = 3, "flour" = 10)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/keylimepie
 	reagent_mix = RECIPE_REAGENT_REPLACE //No raw egg in finished product, protein after cooking causes magic meatballs otherwise
 
-/datum/recipe/quiche
+datum/recipe/quiche
 	appliance = OVEN
 	reagents = list("milk" = 5, "egg" = 9, "flour" = 10)
 	items = list(/obj/item/reagent_containers/food/snacks/cheesewedge)
@@ -262,7 +262,7 @@
 //Baked sweets:
 //---------------
 
-/datum/recipe/cookie
+datum/recipe/cookie
 	appliance = OVEN
 	reagents = list("milk" = 10, "sugar" = 10)
 	items = list(
@@ -273,7 +273,7 @@
 	result_quantity = 4
 	reagent_mix = RECIPE_REAGENT_REPLACE
 
-/datum/recipe/fortunecookie
+datum/recipe/fortunecookie
 	appliance = OVEN
 	reagents = list("sugar" = 5)
 	items = list(
@@ -321,21 +321,21 @@
 				return 0
 		return . */
 
-/datum/recipe/pretzel
+datum/recipe/pretzel
 	appliance = OVEN
 	items = list(/obj/item/reagent_containers/food/snacks/dough)
 	reagents = list("water" = 5, "sodiumchloride" = 2)
 	result = /obj/item/reagent_containers/food/snacks/pretzel
 	result_quantity = 2
 
-/datum/recipe/poppypretzel
+datum/recipe/poppypretzel
 	appliance = OVEN
 	fruit = list("poppy" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/dough)
 	result = /obj/item/reagent_containers/food/snacks/poppypretzel
 	result_quantity = 2
 
-/datum/recipe/cracker
+datum/recipe/cracker
 	appliance = OVEN
 	reagents = list("sodiumchloride" = 1)
 	items = list(
@@ -343,14 +343,14 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/cracker
 
-/datum/recipe/brownies
+datum/recipe/brownies
 	appliance = OVEN
 	reagents = list("browniemix" = 10, "egg" = 3)
 	reagent_mix = RECIPE_REAGENT_REPLACE //No egg or mix in final recipe
 	result = /obj/item/reagent_containers/food/snacks/sliceable/brownies
 
 
-/datum/recipe/cosmicbrownies
+datum/recipe/cosmicbrownies
 	appliance = OVEN
 	reagents = list("browniemix" = 10, "egg" = 3)
 	fruit = list("ambrosia" = 1)
@@ -362,7 +362,7 @@
 
 //Pizzas
 //=========================
-/datum/recipe/pizzamargherita
+datum/recipe/pizzamargherita
 	appliance = OVEN
 	fruit = list("tomato" = 1)
 	items = list(
@@ -374,7 +374,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
 
-/datum/recipe/meatpizza
+datum/recipe/meatpizza
 	appliance = OVEN
 	fruit = list("tomato" = 1)
 	items = list(
@@ -386,7 +386,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
 
-/datum/recipe/syntipizza
+datum/recipe/syntipizza
 	appliance = OVEN
 	fruit = list("tomato" = 1)
 	items = list(
@@ -398,7 +398,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
 
-/datum/recipe/mushroompizza
+datum/recipe/mushroompizza
 	appliance = OVEN
 	fruit = list("mushroom" = 5, "tomato" = 1)
 	items = list(
@@ -409,7 +409,7 @@
 	reagent_mix = RECIPE_REAGENT_REPLACE //No vomit taste in finished product from chanterelles
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
 
-/datum/recipe/vegetablepizza
+datum/recipe/vegetablepizza
 	appliance = OVEN
 	fruit = list("eggplant" = 1, "carrot" = 1, "corn" = 1, "tomato" = 1)
 	items = list(
@@ -418,7 +418,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 
-/datum/recipe/pineapplepizza
+datum/recipe/pineapplepizza
 	appliance = OVEN
 	fruit = list("tomato" = 1)
 	items = list(
@@ -431,13 +431,13 @@
 
 //Spicy
 //================
-/datum/recipe/enchiladas
+datum/recipe/enchiladas
 	appliance = OVEN
 	fruit = list("chili" = 2, "corn" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/cutlet)
 	result = /obj/item/reagent_containers/food/snacks/enchiladas
 
-/datum/recipe/monkeysdelight
+datum/recipe/monkeysdelight
 	appliance = OVEN
 	fruit = list("banana" = 1)
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1, "flour" = 10)
@@ -453,18 +453,18 @@
 
 // Cakes.
 //============
-/datum/recipe/cake
+datum/recipe/cake
 	appliance = OVEN
 	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/plaincake
 	reagent_mix = RECIPE_REAGENT_REPLACE
 
-/datum/recipe/cake/carrot
+datum/recipe/cake/carrot
 	appliance = OVEN
 	fruit = list("carrot" = 3)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/carrotcake
 
-/datum/recipe/cake/cheese
+datum/recipe/cake/cheese
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
@@ -472,51 +472,51 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/cheesecake
 
-/datum/recipe/cake/orange
+datum/recipe/cake/orange
 	appliance = OVEN
 	fruit = list("orange" = 1)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9, "orangejuice" = 3, "sugar" = 5)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/orangecake
 
-/datum/recipe/cake/lime
+datum/recipe/cake/lime
 	appliance = OVEN
 	fruit = list("lime" = 1)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9, "limejuice" = 3, "sugar" = 5)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/limecake
 
-/datum/recipe/cake/lemon
+datum/recipe/cake/lemon
 	appliance = OVEN
 	fruit = list("lemon" = 1)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9, "lemonjuice" = 3, "sugar" = 5)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/lemoncake
 
-/datum/recipe/cake/chocolate
+datum/recipe/cake/chocolate
 	appliance = OVEN
 	items = list(/obj/item/reagent_containers/food/snacks/chocolatebar)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9, "coco" = 4, "sugar" = 5)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/chocolatecake
 
-/datum/recipe/cake/birthday
+datum/recipe/cake/birthday
 	appliance = OVEN
 	items = list(/obj/item/clothing/head/cakehat)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/birthdaycake
 
-/datum/recipe/cake/apple
+datum/recipe/cake/apple
 	appliance = OVEN
 	fruit = list("apple" = 2)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/applecake
 
-/datum/recipe/cake/brain
+datum/recipe/cake/brain
 	appliance = OVEN
 	items = list(/obj/item/organ/internal/brain)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/braincake
 
-/datum/recipe/honeycake
+datum/recipe/honeycake
 	appliance = OVEN
 	reagents = list("milk" = 5, "flour" = 10, "egg" = 6, "honey" = 5)
 	result = /obj/item/reagent_containers/food/snacks/honeycake
 
-/datum/recipe/pancakes
+datum/recipe/pancakes
 	appliance = OVEN
 	fruit = list("berries" = 2)
 	items = list(
@@ -525,7 +525,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/pancakes
 
-/datum/recipe/lasagna
+datum/recipe/lasagna
 	appliance = OVEN
 	fruit = list("tomato" = 2, "eggplant" = 1)
 	items = list(
@@ -537,7 +537,7 @@
 	result = /obj/item/reagent_containers/food/snacks/lasagna
 	reagent_mix = RECIPE_REAGENT_REPLACE
 
-/datum/recipe/honeybun
+datum/recipe/honeybun
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough
@@ -545,7 +545,7 @@
 	reagents = list("honey" = 5)
 	result = /obj/item/reagent_containers/food/snacks/honeybun
 
-/datum/recipe/enchiladas_new
+datum/recipe/enchiladas_new
 	appliance = OVEN
 	fruit = list("chili" = 2)
 	items = list(
@@ -555,7 +555,7 @@
 	result = /obj/item/reagent_containers/food/snacks/enchiladas
 
 //Bacon
-/datum/recipe/bacon_oven
+datum/recipe/bacon_oven
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/rawbacon,
@@ -569,7 +569,7 @@
 	result = /obj/item/reagent_containers/food/snacks/bacon/oven
 	result_quantity = 6
 
-/datum/recipe/meat_pocket
+datum/recipe/meat_pocket
 	appliance = OVEN
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
@@ -579,7 +579,7 @@
 	result = /obj/item/reagent_containers/food/snacks/meat_pocket
 	result_quantity = 2
 
-/datum/recipe/bacon_flatbread
+datum/recipe/bacon_flatbread
 	appliance = OVEN
 	fruit = list("tomato" = 2)
 	items = list(
@@ -592,7 +592,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/bacon_flatbread
 
-/datum/recipe/truffle
+datum/recipe/truffle
 	appliance = OVEN
 	reagents = list("sugar" = 5, "cream" = 5)
 	items = list(
@@ -602,14 +602,14 @@
 	result = /obj/item/reagent_containers/food/snacks/truffle
 	result_quantity = 4
 
-/datum/recipe/croissant
+datum/recipe/croissant
 	appliance = OVEN
 	reagents = list("sodiumchloride" = 1, "water" = 5, "milk" = 5)
 	reagent_mix = RECIPE_REAGENT_REPLACE
 	items = list(/obj/item/reagent_containers/food/snacks/dough)
 	result = /obj/item/reagent_containers/food/snacks/croissant
 
-/datum/recipe/macncheese
+datum/recipe/macncheese
 	appliance = OVEN
 	reagents = list("milk" = 5)
 	reagent_mix = RECIPE_REAGENT_REPLACE
@@ -619,7 +619,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/macncheese
 
-/datum/recipe/ham
+datum/recipe/ham
 	appliance = OVEN
 	reagents = list("brine" = 15)
 	reagent_mix = RECIPE_REAGENT_REPLACE
@@ -630,7 +630,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/ham
 
-/datum/recipe/rumham
+datum/recipe/rumham
 	appliance = OVEN
 	reagents = list("rum" = 10)
 	fruit = list("cherries" = 1, "spineapple" = 1)

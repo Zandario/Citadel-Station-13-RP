@@ -1,4 +1,4 @@
-/datum/technomancer/spell/mend_organs
+datum/technomancer/spell/mend_organs
 	name = "Mend Internals"
 	desc = "Greatly heals the target's wounds, both external and internal.  Restores internal organs to functioning states, even if \
 	robotic, reforms bones, patches internal bleeding, and restores missing blood."
@@ -8,7 +8,7 @@
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/mend_organs
+obj/item/spell/mend_organs
 	name = "great mend wounds"
 	desc = "A walking medbay is now you!"
 	icon_state = "mend_wounds"
@@ -16,7 +16,7 @@
 	aspect = ASPECT_BIOMED
 	light_color = "#FF5C5C"
 
-/obj/item/spell/mend_organs/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
+obj/item/spell/mend_organs/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		var/heal_power = calculate_spell_power(40)

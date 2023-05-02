@@ -1,4 +1,4 @@
-/datum/unit_test/map_template_paths/Run()
+datum/unit_test/map_template_paths/Run()
 	for(var/path in subtypesof(/datum/map_template))
 		var/datum/map_template/M = path
 		if(initial(M.abstract_type) == path)

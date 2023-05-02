@@ -1,6 +1,6 @@
-/datum/element/clothing
+datum/element/clothing
 
-/datum/element/clothing/Attach(datum/target)
+datum/element/clothing/Attach(datum/target)
 	. = ..()
 	if(. & ELEMENT_INCOMPATIBLE)
 		return

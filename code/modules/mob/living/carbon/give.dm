@@ -1,4 +1,4 @@
-/mob/living/carbon/human/verb/give(var/mob/living/carbon/target in valid_give_mobs())
+mob/living/carbon/human/verb/give(var/mob/living/carbon/target in valid_give_mobs())
 	set category = "IC"
 	set name = "Give"
 
@@ -41,7 +41,7 @@
 		target.put_in_hands_or_drop(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
 		target.visible_message("<span class='notice'>\The [src] handed \the [I] to \the [target].</span>")
 
-/mob/living/carbon/human/proc/valid_give_mobs()
+mob/living/carbon/human/proc/valid_give_mobs()
 	var/static/list/living_typecache = typecacheof(/mob/living)
 	var/list/scan = view(1)		// lmao shitcode
 	. = list()

@@ -1,2 +1,2 @@
-/obj/mecha/medical/odysseus/
+obj/mecha/medical/odysseus/
 	minimum_penetration = 0

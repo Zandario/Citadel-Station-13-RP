@@ -14,12 +14,12 @@ The rest of the weather defines have been moved to code/modules/maps/weather
 ///////////////////////
 var/datum/planet/classd/planet_classd = null
 
-/datum/planet/classd/New()
+datum/planet/classd/New()
 	..()
 	planet_classd = src
 	weather_holder = new /datum/weather_holder/classd(src)
 
-/datum/planet/classd
+datum/planet/classd
 	expected_z_levels = list(Z_LEVEL_CLASS_D)
 
 
@@ -28,12 +28,12 @@ var/datum/planet/classd/planet_classd = null
 ///////////////////////
 var/datum/planet/classg/planet_classg = null
 
-/datum/planet/classg/New()
+datum/planet/classg/New()
 	..()
 	planet_classg = src
 	weather_holder = new /datum/weather_holder/classg(src)
 
-/datum/planet/classg
+datum/planet/classg
 	expected_z_levels = list(Z_LEVEL_MININGPLANET)
 
 ///////////////////////
@@ -41,13 +41,13 @@ var/datum/planet/classg/planet_classg = null
 ///////////////////////
 var/datum/planet/classh/planet_classh = null
 
-/datum/planet/classh/New()
+datum/planet/classh/New()
 	..()
 	planet_classh = src
 	weather_holder = new /datum/weather_holder/classh(src)
 
 
-/datum/planet/classh
+datum/planet/classh
 	expected_z_levels = list(Z_LEVEL_DESERT_PLANET)
 
 ///////////////////////
@@ -55,12 +55,12 @@ var/datum/planet/classh/planet_classh = null
 ///////////////////////
 var/datum/planet/classm/planet_classm = null
 
-/datum/planet/classm/New()
+datum/planet/classm/New()
 	..()
 	planet_classm = src
 	weather_holder = new /datum/weather_holder/classm(src)
 
-/datum/planet/classm
+datum/planet/classm
 	expected_z_levels = list(Z_LEVEL_GAIA_PLANET)
 
 ///////////////////////
@@ -68,12 +68,12 @@ var/datum/planet/classm/planet_classm = null
 ///////////////////////
 var/datum/planet/classp/planet_classp = null
 
-/datum/planet/classp/New()
+datum/planet/classp/New()
 	..()
 	planet_classp = src
 	weather_holder = new /datum/weather_holder/classp(src)
 
-/datum/planet/classp
+datum/planet/classp
 	expected_z_levels = list(Z_LEVEL_FROZEN_PLANET)
 
 /////////////////////////
@@ -81,12 +81,12 @@ var/datum/planet/classp/planet_classp = null
 /////////////////////////
 var/datum/planet/lavaland/planet_lavaland = null
 
-/datum/planet/lavaland/New()
+datum/planet/lavaland/New()
 	..()
 	planet_lavaland = src
 	weather_holder = new /datum/weather_holder/lavaland(src)
 
-/datum/planet/lavaland
+datum/planet/lavaland
 	expected_z_levels = list(
 		Z_LEVEL_LAVALAND,
 		Z_LEVEL_LAVALAND_EAST)
@@ -97,7 +97,7 @@ var/datum/planet/lavaland/planet_lavaland = null
 /* // Prolly completely uneeded. This was from when tether was being built
 var/datum/planet/virgo3b/planet_virgo3b = null
 
-/datum/planet/virgo3b
+datum/planet/virgo3b
 	expected_z_levels = list(
 						Z_LEVEL_SURFACE_LOW,
 						Z_LEVEL_SURFACE_MID,

@@ -1,5 +1,5 @@
 
-/obj/mecha/combat/gorilla
+obj/mecha/combat/gorilla
 	name = "Gorilla"
 	desc = "<b>Blitzkrieg!</b>" //stop using all caps in item descs i will fight you. its redundant with the bold.
 	icon = 'icons/mecha/mecha64x64.dmi'
@@ -30,7 +30,7 @@
 	zoom_possible = 1
 	thrusters_possible = 1
 
-/obj/mecha/combat/gorilla/Initialize(mapload)
+obj/mecha/combat/gorilla/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay(src) // This thing basically cannot function without an external power supply.
 	ME.attach(src)
@@ -44,17 +44,17 @@
 	ME.attach(src)
 	return
 
-/obj/mecha/combat/gorilla/mechstep(direction)
+obj/mecha/combat/gorilla/mechstep(direction)
 	var/result = step(src,direction)
 	playsound(src,"mechstep",40,1)
 	return result
 
-/obj/mecha/combat/gorilla/mechturn(direction)
+obj/mecha/combat/gorilla/mechturn(direction)
 	dir = direction
 	playsound(src,"mechstep",40,1)
 
 
-/obj/mecha/combat/gorilla/relaymove(mob/user,direction)
+obj/mecha/combat/gorilla/relaymove(mob/user,direction)
 	if(user != src.occupant)
 		user.loc = get_turf(src)
 		to_chat(user, "You climb out from [src]")
@@ -93,13 +93,13 @@
 	return 0
 
 
-/obj/mecha/combat/gorilla/get_stats_part()
+obj/mecha/combat/gorilla/get_stats_part()
 	var/output = ..()
 	output += {"<b>Smoke:</b> [smoke_reserve]"}
 	return output
 
 
-/obj/mecha/combat/gorilla/get_commands()
+obj/mecha/combat/gorilla/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
@@ -111,7 +111,7 @@
 	output += ..()
 	return output
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon
+obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon
 	name = "8.8cm KwK 47"
 	desc = "<i>Precision German engineering!</i>" // Why would you ever take this off the mech, anyway?
 	icon_state = "mecha_uac2"
@@ -122,30 +122,30 @@
 	projectile_energy_cost = 1000
 	salvageable = 0 // We don't want players ripping this off a dead mech. Could potentially be a prize for beating it if Devs bless me and someone offers a nerf idea.
 
-/obj/projectile/bullet/cannon
+obj/projectile/bullet/cannon
 	name ="armor-piercing shell"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "shell"
 	damage = 1000 // In order to 1-hit any other mech and royally fuck anyone unfortunate enough to get in the way.
 
-/obj/projectile/bullet/cannon/on_hit(var/atom/target, var/blocked = 0)
+obj/projectile/bullet/cannon/on_hit(var/atom/target, var/blocked = 0)
 	explosion(target, 0, 0, 2, 4)
 	return 1
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon/weak
+obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon/weak
 	name = "8.8 cm KwK 36"
 	equip_cooldown = 120 // 12 seconds.
 	projectile = /obj/projectile/bullet/cannon/weak
 	projectile_energy_cost = 400
 	salvageable = 1
 
-/obj/projectile/bullet/cannon/weak
+obj/projectile/bullet/cannon/weak
 	name ="canister shell"
 	icon_state = "canister"
 	damage = 120 //Do not get fucking shot.
 
 /* // GLITCHY UND LAGGY. Will later look into fixing.
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/mg42
+obj/item/mecha_parts/mecha_equipment/weapon/ballistic/mg42
 	name = "Maschinengewehr 60"
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
@@ -159,7 +159,7 @@
 	salvageable = 0 // We don't want players ripping this off a dead mech.
 */
 
-/obj/effect/decal/mecha_wreckage/gorilla
+obj/effect/decal/mecha_wreckage/gorilla
 	name = "Gorilla wreckage"
 	desc = "... Blitzkrieg?"
 	icon = 'icons/mecha/mecha64x64.dmi'

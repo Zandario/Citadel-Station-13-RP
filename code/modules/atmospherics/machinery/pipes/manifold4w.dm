@@ -1,7 +1,7 @@
 //
 // 4-Way Manifold Pipes - 4 way "cross" junction
 //
-/obj/machinery/atmospherics/pipe/manifold4w
+obj/machinery/atmospherics/pipe/manifold4w
 	icon = 'icons/atmos/manifold.dmi'
 	icon_state = ""
 	name = "4-way pipe manifold"
@@ -20,15 +20,15 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/pipe/manifold4w/Initialize(mapload)
+obj/machinery/atmospherics/pipe/manifold4w/Initialize(mapload)
 	. = ..()
 	alpha = 255
 	icon = null
 
-/obj/machinery/atmospherics/pipe/manifold4w/pipeline_expansion()
+obj/machinery/atmospherics/pipe/manifold4w/pipeline_expansion()
 	return list(node1, node2, node3, node4)
 
-/obj/machinery/atmospherics/pipe/manifold4w/Destroy()
+obj/machinery/atmospherics/pipe/manifold4w/Destroy()
 	if(node1)
 		node1.disconnect(src)
 		node1 = null
@@ -44,7 +44,7 @@
 
 	. = ..()
 
-/obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
 			qdel(parent)
@@ -69,7 +69,7 @@
 
 	..()
 
-/obj/machinery/atmospherics/pipe/manifold4w/change_color(var/new_color)
+obj/machinery/atmospherics/pipe/manifold4w/change_color(var/new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
 	if(node1)
@@ -81,7 +81,7 @@
 	if(node4)
 		node4.update_underlays()
 
-/obj/machinery/atmospherics/pipe/manifold4w/update_icon(safety = 0)
+obj/machinery/atmospherics/pipe/manifold4w/update_icon(safety = 0)
 	if(!check_icon_cache())
 		return
 
@@ -125,11 +125,11 @@
 		add_underlay(T,,D,icon_connect_type)
 
 
-/obj/machinery/atmospherics/pipe/manifold4w/update_underlays()
+obj/machinery/atmospherics/pipe/manifold4w/update_underlays()
 	..()
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/manifold4w/atmos_init()
+obj/machinery/atmospherics/pipe/manifold4w/atmos_init()
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, NORTH))
 		if (can_be_node(target, 1))
@@ -159,11 +159,11 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible
+obj/machinery/atmospherics/pipe/manifold4w/visible
 	icon_state = "map_4way"
 	level = 2
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/scrubbers
+obj/machinery/atmospherics/pipe/manifold4w/visible/scrubbers
 	name="4-way scrubbers pipe manifold"
 	desc = "A manifold composed of scrubbers pipes"
 	icon_state = "map_4way-scrubbers"
@@ -173,7 +173,7 @@
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/supply
+obj/machinery/atmospherics/pipe/manifold4w/visible/supply
 	name="4-way air supply pipe manifold"
 	desc = "A manifold composed of supply pipes"
 	icon_state = "map_4way-supply"
@@ -183,7 +183,7 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/fuel
+obj/machinery/atmospherics/pipe/manifold4w/visible/fuel
 	name="4-way fuel pipe manifold"
 	desc = "A manifold composed of fuel pipes"
 	icon_state = "map_4way-fuel"
@@ -193,7 +193,7 @@
 	icon_connect_type = "-fuel"
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/aux
+obj/machinery/atmospherics/pipe/manifold4w/visible/aux
 	name="4-way aux pipe manifold"
 	desc = "A manifold composed of aux pipes"
 	icon_state = "map_4way-aux"
@@ -204,32 +204,32 @@
 	color = PIPE_COLOR_CYAN
 
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/yellow
+obj/machinery/atmospherics/pipe/manifold4w/visible/yellow
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/cyan
+obj/machinery/atmospherics/pipe/manifold4w/visible/cyan
 	color = PIPE_COLOR_CYAN
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/green
+obj/machinery/atmospherics/pipe/manifold4w/visible/green
 	color = PIPE_COLOR_GREEN
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/black
+obj/machinery/atmospherics/pipe/manifold4w/visible/black
 	color = PIPE_COLOR_BLACK
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/red
+obj/machinery/atmospherics/pipe/manifold4w/visible/red
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/blue
+obj/machinery/atmospherics/pipe/manifold4w/visible/blue
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/purple
+obj/machinery/atmospherics/pipe/manifold4w/visible/purple
 	color = PIPE_COLOR_PURPLE
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden
+obj/machinery/atmospherics/pipe/manifold4w/hidden
 	icon_state = "map_4way"
 	level = 1
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers
+obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers
 	name="4-way scrubbers pipe manifold"
 	desc = "A manifold composed of scrubbers pipes"
 	icon_state = "map_4way-scrubbers"
@@ -239,7 +239,7 @@
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply
+obj/machinery/atmospherics/pipe/manifold4w/hidden/supply
 	name="4-way air supply pipe manifold"
 	desc = "A manifold composed of supply pipes"
 	icon_state = "map_4way-supply"
@@ -249,7 +249,7 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel
+obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel
 	name="4-way fuel pipe manifold"
 	desc = "A manifold composed of fuel pipes"
 	icon_state = "map_4way-fuel"
@@ -259,7 +259,7 @@
 	icon_connect_type = "-fuel"
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/aux
+obj/machinery/atmospherics/pipe/manifold4w/hidden/aux
 	name="4-way aux pipe manifold"
 	desc = "A manifold composed of aux pipes"
 	icon_state = "map_4way-aux"
@@ -271,23 +271,23 @@
 
 
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/yellow
+obj/machinery/atmospherics/pipe/manifold4w/hidden/yellow
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/cyan
+obj/machinery/atmospherics/pipe/manifold4w/hidden/cyan
 	color = PIPE_COLOR_CYAN
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/green
+obj/machinery/atmospherics/pipe/manifold4w/hidden/green
 	color = PIPE_COLOR_GREEN
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/black
+obj/machinery/atmospherics/pipe/manifold4w/hidden/black
 	color = PIPE_COLOR_BLACK
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/red
+obj/machinery/atmospherics/pipe/manifold4w/hidden/red
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/blue
+obj/machinery/atmospherics/pipe/manifold4w/hidden/blue
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/purple
+obj/machinery/atmospherics/pipe/manifold4w/hidden/purple
 	color = PIPE_COLOR_PURPLE

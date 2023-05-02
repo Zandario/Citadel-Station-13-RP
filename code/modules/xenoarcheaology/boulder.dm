@@ -1,4 +1,4 @@
-/obj/structure/boulder
+obj/structure/boulder
 	name = "rocky debris"
 	desc = "Leftover rock from an excavation, it's been partially dug out already but there's still a lot to go."
 	icon = 'icons/obj/mining.dmi'
@@ -11,12 +11,12 @@
 	var/datum/artifact_find/artifact_find
 	var/last_act = 0
 
-/obj/structure/boulder/Initialize(mapload)
+obj/structure/boulder/Initialize(mapload)
 	. = ..()
 	icon_state = "boulder[rand(1,4)]"
 	excavation_level = rand(5, 50)
 
-/obj/structure/boulder/attackby(var/obj/item/I, var/mob/user)
+obj/structure/boulder/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/core_sampler))
 
 		var/obj/item/core_sampler/C = I
@@ -81,7 +81,7 @@
 				user.visible_message("<span class='warning'>\The [src] suddenly crumbles away.</span>", "<span class='notice'>\The [src] has been whittled away under your careful excavation, but there was nothing of interest inside.</span>")
 			qdel(src)
 
-/obj/structure/boulder/Bumped(AM)
+obj/structure/boulder/Bumped(AM)
 	. = ..()
 	if(istype(AM,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = AM

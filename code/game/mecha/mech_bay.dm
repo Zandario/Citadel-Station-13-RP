@@ -1,4 +1,4 @@
-/obj/machinery/mech_recharger
+obj/machinery/mech_recharger
 	name = "mech recharger"
 	desc = "A mech recharger, built into the floor."
 	icon = 'icons/mecha/mech_bay.dmi'
@@ -16,7 +16,7 @@
 		// /mob/living/silicon/robot/platform
 	)
 
-/obj/machinery/mech_recharger/Crossed(var/atom/movable/M)
+obj/machinery/mech_recharger/Crossed(var/atom/movable/M)
 	. = ..()
 	if(charging == M)
 		return
@@ -25,12 +25,12 @@
 			start_charging(M)
 			return
 
-/obj/machinery/mech_recharger/Uncrossed(var/atom/movable/M)
+obj/machinery/mech_recharger/Uncrossed(var/atom/movable/M)
 	. = ..()
 	if(M == charging)
 		charging = null
 
-/obj/machinery/mech_recharger/RefreshParts()
+obj/machinery/mech_recharger/RefreshParts()
 	..()
 	charge = 0
 	repair = -5
@@ -43,7 +43,7 @@
 		if(istype(P, /obj/item/stock_parts/manipulator))
 			repair += P.rating * 2
 
-/obj/machinery/mech_recharger/process()
+obj/machinery/mech_recharger/process()
 	..()
 	if(!charging)
 		return
@@ -76,7 +76,7 @@
 	if(done)
 		charging = null
 
-/obj/machinery/mech_recharger/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/mech_recharger/attackby(var/obj/item/I, var/mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	if(default_deconstruction_crowbar(user, I))
@@ -84,7 +84,7 @@
 	if(default_part_replacement(user, I))
 		return
 
-/obj/machinery/mech_recharger/proc/start_charging(var/atom/movable/M)
+obj/machinery/mech_recharger/proc/start_charging(var/atom/movable/M)
 
 	var/obj/mecha/mech = M
 	if(machine_stat & (NOPOWER | BROKEN))

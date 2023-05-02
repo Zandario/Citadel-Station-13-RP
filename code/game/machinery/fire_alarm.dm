@@ -1,7 +1,7 @@
 /*
 FIRE ALARM
 */
-/obj/machinery/firealarm
+obj/machinery/firealarm
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
@@ -25,15 +25,15 @@ FIRE ALARM
 	/// If the alarms from this machine are visible on consoles.
 	var/alarms_hidden = FALSE
 
-/obj/machinery/firealarm/alarms_hidden
+obj/machinery/firealarm/alarms_hidden
 	alarms_hidden = TRUE
 
-/obj/machinery/firealarm/Initialize(mapload)
+obj/machinery/firealarm/Initialize(mapload)
 	. = ..()
 	if(z in GLOB.using_map.contact_levels)
 		set_security_level(GLOB.security_level ? get_security_level() : "green")
 
-/obj/machinery/firealarm/update_icon()
+obj/machinery/firealarm/update_icon()
 	cut_overlays()
 
 	if(panel_open)
@@ -62,24 +62,24 @@ FIRE ALARM
 				if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
 		add_overlay("overlay_[seclevel]")
 
-/obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
+obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(detecting)
 		if(temperature > T0C + 200)
 			alarm()			// added check of detector status here
 	return
 
-/obj/machinery/firealarm/attack_ai(mob/user)
+obj/machinery/firealarm/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/firealarm/bullet_act()
+obj/machinery/firealarm/bullet_act()
 	return alarm()
 
-/obj/machinery/firealarm/emp_act(severity)
+obj/machinery/firealarm/emp_act(severity)
 	if(prob(50 / severity))
 		alarm(rand(30 / severity, 60 / severity))
 	..()
 
-/obj/machinery/firealarm/attackby(obj/item/W, mob/user)
+obj/machinery/firealarm/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
 
 	if(alarm_deconstruction_screwdriver(user, W))
@@ -103,7 +103,7 @@ FIRE ALARM
 	alarm()
 	return
 
-/obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
+obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -123,12 +123,12 @@ FIRE ALARM
 
 	return
 
-/obj/machinery/firealarm/power_change()
+obj/machinery/firealarm/power_change()
 	..()
 	spawn(rand(0,15))
 		update_icon()
 
-/obj/machinery/firealarm/attack_hand(mob/user, list/params)
+obj/machinery/firealarm/attack_hand(mob/user, list/params)
 	if(user.stat || machine_stat & (NOPOWER | BROKEN))
 		return
 
@@ -169,7 +169,7 @@ FIRE ALARM
 		onclose(user, "firealarm")
 	return
 
-/obj/machinery/firealarm/Topic(href, href_list)
+obj/machinery/firealarm/Topic(href, href_list)
 	..()
 	if(usr.stat || machine_stat & (BROKEN | NOPOWER))
 		return
@@ -197,7 +197,7 @@ FIRE ALARM
 		return
 	return
 
-/obj/machinery/firealarm/proc/reset()
+obj/machinery/firealarm/proc/reset()
 	if(!(working))
 		return
 	var/area/area = get_area(src)
@@ -206,7 +206,7 @@ FIRE ALARM
 	update_icon()
 	return
 
-/obj/machinery/firealarm/proc/alarm(var/duration = 0)
+obj/machinery/firealarm/proc/alarm(var/duration = 0)
 	if(!(working))
 		return
 	var/area/area = get_area(src)
@@ -216,7 +216,7 @@ FIRE ALARM
 	playsound(src.loc, 'sound/machines/airalarm.ogg', 25, 0, 4)
 	return
 
-/obj/machinery/firealarm/proc/set_security_level(var/newlevel)
+obj/machinery/firealarm/proc/set_security_level(var/newlevel)
 	if(seclevel != newlevel)
 		seclevel = newlevel
 		update_icon()
@@ -224,7 +224,7 @@ FIRE ALARM
 /*
 FIRE ALARM CIRCUIT
 Just a object used in constructing fire alarms
-/obj/item/firealarm_electronics
+obj/item/firealarm_electronics
 	name = "fire alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
@@ -232,7 +232,7 @@ Just a object used in constructing fire alarms
 	w_class = ITEMSIZE_SMALL
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 */
-/obj/machinery/partyalarm
+obj/machinery/partyalarm
 	name = "\improper PARTY BUTTON"
 	desc = "Cuban Pete is in the house!"
 	icon = 'icons/obj/monitors.dmi'
@@ -247,7 +247,7 @@ Just a object used in constructing fire alarms
 	idle_power_usage = 2
 	active_power_usage = 6
 
-/obj/machinery/partyalarm/attack_hand(mob/user, list/params)
+obj/machinery/partyalarm/attack_hand(mob/user, list/params)
 	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -287,7 +287,7 @@ Just a object used in constructing fire alarms
 		onclose(user, "partyalarm")
 	return
 
-/obj/machinery/partyalarm/proc/reset()
+obj/machinery/partyalarm/proc/reset()
 	if(!(working))
 		return
 	var/area/A = get_area(src)
@@ -295,7 +295,7 @@ Just a object used in constructing fire alarms
 	A.partyreset()
 	return
 
-/obj/machinery/partyalarm/proc/alarm()
+obj/machinery/partyalarm/proc/alarm()
 	if(!(working))
 		return
 	var/area/A = get_area(src)
@@ -303,7 +303,7 @@ Just a object used in constructing fire alarms
 	A.partyalert()
 	return
 
-/obj/machinery/partyalarm/Topic(href, href_list)
+obj/machinery/partyalarm/Topic(href, href_list)
 	..()
 	if(usr.stat || machine_stat & (BROKEN|NOPOWER))
 		return

@@ -7,13 +7,13 @@
 	color = "#4e4e4e"	// Bright yellow
 	initial_generic_waypoints = list("poid_main")
 */
-/obj/landmark/lavaland_entry
+obj/landmark/lavaland_entry
 	name = "lavaland_entry"
 
-/obj/landmark/lavaland_exit
+obj/landmark/lavaland_exit
 	name = "lavaland_exit"
 
-/obj/machinery/lavaland_entryportal
+obj/machinery/lavaland_entryportal
 	name = "Magmatic Rift Teleporter"
 	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
 	icon = 'icons/obj/telescience.dmi'
@@ -22,7 +22,7 @@
 	use_power = USE_POWER_IDLE
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OFFLINE_SILICON
 
-/obj/machinery/lavaland_entryportal/attack_hand(mob/user, list/params)
+obj/machinery/lavaland_entryportal/attack_hand(mob/user, list/params)
 	if(istype(user, /mob/living/silicon/ai)) // lets not teleport AI cores
 		return
 	if(inoperable(MAINT))
@@ -33,7 +33,7 @@
 		move_object(user, pick(lavaland_entry))
 	return
 
-/obj/machinery/lavaland_entryportal/proc/move_object(atom/movable/AM, turf/T)
+obj/machinery/lavaland_entryportal/proc/move_object(atom/movable/AM, turf/T)
 	if(AM.anchored && !istype(AM, /obj/mecha))
 		return
 
@@ -50,7 +50,7 @@
 	else
 		AM.forceMove(T)
 
-/obj/effect/lavaland_exitportal // effect so it cant be removed by griefers
+obj/effect/lavaland_exitportal // effect so it cant be removed by griefers
 	name = "Magmatic Rift Teleporter"
 	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
 	icon = 'icons/obj/telescience.dmi'
@@ -58,7 +58,7 @@
 	anchored = 1
 
 
-/obj/effect/lavaland_exitportal/attack_hand(mob/user, list/params)
+obj/effect/lavaland_exitportal/attack_hand(mob/user, list/params)
 	if(istype(usr, /mob/living/silicon/ai))
 		return
 	if(do_after(user, 10))
@@ -67,7 +67,7 @@
 		move_object(user, pick(lavaland_exit))
 	return
 
-/obj/effect/lavaland_exitportal/proc/move_object(atom/movable/AM, turf/T)
+obj/effect/lavaland_exitportal/proc/move_object(atom/movable/AM, turf/T)
 	if(AM.anchored && !istype(AM, /obj/mecha))
 		return
 
@@ -86,13 +86,13 @@
 
 // This is a special subtype of the thing that generates ores on a map
 // It will generate more rich ores because of the lower numbers than the normal one
-/datum/random_map/noise/ore/lavaland
+datum/random_map/noise/ore/lavaland
 	descriptor = "lava land mine ore distribution map"
 	deep_val = 0.6 //More riches, normal is 0.7 and 0.8
 	rare_val = 0.4
 
 // The check_map_sanity proc is sometimes unsatisfied with how AMAZING our ores are
-/datum/random_map/noise/ore/lavaland/check_map_sanity()
+datum/random_map/noise/ore/lavaland/check_map_sanity()
 	var/rare_count = 0
 	var/surface_count = 0
 	var/deep_count = 0

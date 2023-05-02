@@ -4,7 +4,7 @@
 */
 
 // 1 decisecond click delay (above and beyond mob/next_move)
-/mob/var/next_click = 0
+mob/var/next_click = 0
 
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
@@ -16,7 +16,7 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 
-/atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
+atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
 	if(!(atom_flags & ATOM_INITIALIZED))
 		to_chat(usr, SPAN_WARNING("[type] initialization failure. Click dropped. Contact a coder or admin."))
 		return
@@ -24,14 +24,14 @@
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
 		usr.ClickOn(src, params)
 
-/atom/DblClick(var/location, var/control, var/params)
+atom/DblClick(var/location, var/control, var/params)
 	if(!(atom_flags & ATOM_INITIALIZED))
 		to_chat(usr, SPAN_WARNING("[type] initialization failure. Click dropped. Contact a coder or admin."))
 		return
 	if(src)
 		usr.DblClickOn(src, params)
 
-/atom/MouseWheel(delta_x,delta_y,location,control,params)
+atom/MouseWheel(delta_x,delta_y,location,control,params)
 	usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
@@ -52,7 +52,7 @@
  * * params - byond params list
  * * clickchain_flags - allows additional flags to be passed down from, say, the statpanel if this is a routed call.
  */
-/mob/proc/ClickOn(atom/A, params, clickchain_flags)
+mob/proc/ClickOn(atom/A, params, clickchain_flags)
 	if(world.time < next_click) // Hard check, before anything else, to avoid crashing
 		return
 	next_click = world.time + 1
@@ -158,16 +158,16 @@
 		trigger_aiming(TARGET_CAN_CLICK)
 		return
 
-/mob/proc/setClickCooldown(var/timeout)
+mob/proc/setClickCooldown(var/timeout)
 	next_move = max(world.time + timeout, next_move)
 
-/mob/proc/canClick()
+mob/proc/canClick()
 	if(config_legacy.no_click_cooldown || next_move <= world.time)
 		return 1
 	return 0
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
-/mob/proc/DblClickOn(var/atom/A, var/params)
+mob/proc/DblClickOn(var/atom/A, var/params)
 	return
 
 /*
@@ -180,10 +180,10 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(var/atom/A, var/proximity_flag)
+mob/proc/UnarmedAttack(var/atom/A, var/proximity_flag)
 	return
 
-/mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
+mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
 	if(is_incorporeal())
 		return 0
 
@@ -200,7 +200,7 @@
 	for things like ranged glove touches, spitting alien acid/neurotoxin,
 	animals lunging, etc.
 */
-/mob/proc/RangedAttack(var/atom/A, var/params)
+mob/proc/RangedAttack(var/atom/A, var/params)
 	if(!mutations.len) return
 	if((MUTATION_LASER in mutations) && a_intent == INTENT_HARM)
 		LaserEyes(A) // moved into a proc below
@@ -214,20 +214,20 @@
 	Used when you are handcuffed and click things.
 	Not currently used by anything but could easily be.
 */
-/mob/proc/RestrainedClickOn(var/atom/A)
+mob/proc/RestrainedClickOn(var/atom/A)
 	return
 
 /*
 	Middle click
 	Only used for swapping hands
 */
-/mob/proc/MiddleClickOn(var/atom/A)
+mob/proc/MiddleClickOn(var/atom/A)
 	swap_hand()
 	return
 
 // In case of use break glass
 /*
-/atom/proc/MiddleClick(var/mob/M as mob)
+atom/proc/MiddleClick(var/mob/M as mob)
 	return
 */
 
@@ -235,7 +235,7 @@
 	Shift middle click
 	Used for pointing.
 */
-/mob/proc/ShiftMiddleClickOn(atom/A)
+mob/proc/ShiftMiddleClickOn(atom/A)
 	pointed(A)
 	return
 
@@ -244,11 +244,11 @@
 	For most mobs, examine.
 	This is overridden in ai.dm
 */
-/mob/proc/ShiftClickOn(var/atom/A)
+mob/proc/ShiftClickOn(var/atom/A)
 	A.ShiftClick(src)
 	return
 
-/atom/proc/ShiftClick(var/mob/user)
+atom/proc/ShiftClick(var/mob/user)
 	if(user.client && user.allow_examine(src))
 		user.examinate(src)
 
@@ -256,13 +256,13 @@
 	Ctrl click
 	For most objects, pull
 */
-/mob/proc/CtrlClickOn(var/atom/A)
+mob/proc/CtrlClickOn(var/atom/A)
 	A.CtrlClick(src)
 	return
-/atom/proc/CtrlClick(var/mob/user)
+atom/proc/CtrlClick(var/mob/user)
 	return
 
-/atom/movable/CtrlClick(var/mob/user)
+atom/movable/CtrlClick(var/mob/user)
 	if(Adjacent(user))
 		user.start_pulling(src)
 
@@ -270,11 +270,11 @@
 	Alt click
 	Unused except for AI
 */
-/mob/proc/AltClickOn(atom/A)
+mob/proc/AltClickOn(atom/A)
 	if(!A.AltClick(src))
 		altclick_listed_turf(A)
 
-/mob/proc/altclick_listed_turf(atom/A)
+mob/proc/altclick_listed_turf(atom/A)
 	var/turf/T = get_turf(A)
 	if(!T)
 		return
@@ -287,23 +287,23 @@
 		return
 	client.list_turf(T)
 
-/atom/proc/AltClick(var/mob/user)
+atom/proc/AltClick(var/mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)
 	return FALSE
 
 // todo: rework
-/mob/proc/TurfAdjacent(var/turf/T)
+mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
 
 /*
 	Control+Shift click
 	Unused except for AI
 */
-/mob/proc/CtrlShiftClickOn(var/atom/A)
+mob/proc/CtrlShiftClickOn(var/atom/A)
 	A.CtrlShiftClick(src)
 	return
 
-/atom/proc/CtrlShiftClick(var/mob/user)
+atom/proc/CtrlShiftClick(var/mob/user)
 	return
 
 /*
@@ -312,10 +312,10 @@
 	Laser Eyes: as the name implies, handles this since nothing else does currently
 	face_atom: turns the mob towards what you clicked on
 */
-/mob/proc/LaserEyes(atom/A, params)
+mob/proc/LaserEyes(atom/A, params)
 	return
 
-/mob/living/LaserEyes(atom/A, params)
+mob/living/LaserEyes(atom/A, params)
 	setClickCooldown(4)
 	var/turf/T = get_turf(src)
 
@@ -327,7 +327,7 @@
 	LE.preparePixelProjectile(A, src, params)
 	LE.fire()
 
-/mob/living/carbon/human/LaserEyes(atom/A, params)
+mob/living/carbon/human/LaserEyes(atom/A, params)
 	if(nutrition>0)
 		..()
 		nutrition = max(nutrition - rand(1,5),0)
@@ -337,7 +337,7 @@
 
 
 /// Simple helper to face what you clicked on, in case it should be needed in more than one place.
-/mob/proc/face_atom(var/atom/atom_to_face)
+mob/proc/face_atom(var/atom/atom_to_face)
 	if(buckled || stat != CONSCIOUS || !atom_to_face || !x || !y || !atom_to_face.x || !atom_to_face.y)
 		return
 	if(!CHECK_MOBILITY(src, MOBILITY_CAN_MOVE))
@@ -367,14 +367,14 @@
 		else
 			setDir(WEST)
 
-/atom/movable/screen/click_catcher
+atom/movable/screen/click_catcher
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "click_catcher"
 	plane = CLICKCATCHER_PLANE
 	mouse_opacity = 2
 	screen_loc = "CENTER-7,CENTER-7"
 
-/atom/movable/screen/click_catcher/proc/MakeGreed()
+atom/movable/screen/click_catcher/proc/MakeGreed()
 	. = list()
 	for(var/i = 0, i<15, i++)
 		for(var/j = 0, j<15, j++)
@@ -382,7 +382,7 @@
 			CC.screen_loc = "NORTH-[i],EAST-[j]"
 			. += CC
 
-/atom/movable/screen/click_catcher/Click(location, control, params)
+atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
 		var/mob/living/carbon/C = usr
@@ -394,5 +394,5 @@
 	. = 1
 
 /// MouseWheelOn
-/mob/proc/MouseWheelOn(atom/A, delta_x, delta_y, params)
+mob/proc/MouseWheelOn(atom/A, delta_x, delta_y, params)
 	SEND_SIGNAL(src, COMSIG_MOUSE_SCROLL_ON, A, delta_x, delta_y, params)

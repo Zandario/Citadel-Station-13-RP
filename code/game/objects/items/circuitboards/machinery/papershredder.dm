@@ -2,7 +2,7 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/papershredder
+obj/item/circuitboard/papershredder
 	name = T_BOARD("papershredder")
 	build_path = /obj/machinery/papershredder
 	board_type = new /datum/frame/frame_types/machine

@@ -5,7 +5,7 @@
 #define LOC_BRIDGE		4
 #define LOC_TALON		5
 
-/datum/event/cult
+datum/event/cult
 	var/location
 	var/locstring
 	var/spawn_area_type
@@ -16,7 +16,7 @@
 	var/list/players = list()
 	has_skybox_image = TRUE
 
-/datum/event/cult/get_skybox_image()
+datum/event/cult/get_skybox_image()
 	if(!cloud_hueshift)
 		cloud_hueshift = color_matrix_rotate_hue(rand(-3, 3) * 15)
 	var/image/res = image('icons/skybox/cult.dmi', "narsie")
@@ -25,16 +25,16 @@
 	res.blend_mode = BLEND_ADD
 	return res
 
-/datum/event/cult/setup()
+datum/event/cult/setup()
 	announceWhen = rand(announceWhen, announceWhen + 3)
 	startWhen = announceWhen
 	endWhen = 45
 
-/datum/event/cult/announce()
+datum/event/cult/announce()
 	command_announcement.Announce("Attention [station_name()], unknown humanoid and non-humanoid entities are warping onto the ships! Advise immediate removal of these intruders before productivity aboard gets hindered!", "Screaming Signals Detected", new_sound = sound('sound/effects/c_alarm.mp3',volume=5))
 
 
-/datum/event/cult/start()
+datum/event/cult/start()
 	sleep(1)
 	if(isTalon == 0)
 		location = rand(0,4)
@@ -70,7 +70,7 @@
 			spawncount = rand(1 * severity, 3 * severity)
 			boss_spawn_count = rand(0,2)
 
-/datum/event/cult/end()
+datum/event/cult/end()
 	var/list/vents = list()
 	for(var/areapath in typesof(spawn_area_type))
 		var/area/A = locate(areapath)
@@ -110,14 +110,14 @@
 		isTalon = 0
 
 // Overmap version
-/datum/event/cult/overmap/announce()
+datum/event/cult/overmap/announce()
 	if(istype(victim, /obj/effect/overmap/visitable/ship/talon))
 		command_announcement.Announce("Attention ITV Talon. You have run into a hostile sub-sector. High potential for humanoid and non-humanoid entities to warp on your ship. Brace.", "Screaming Signals Intercepted")
 	else
 		command_announcement.Announce("Attention [station_name()], the ship has run into a hostile sub-sector and reports of humanoid and non-humanoid entities are warping onto the ships! Advise immediate removal of these intruders before productivy aboard gets hindered!", "Screaming Signals Intercepted", new_sound = 'sound/effects/c_alarm.mp3')//,volume=5)
 		return
 
-/datum/event/cult/overmap/start()		// override - cancel if not main ship since it doesn't properly target the actual triggering ship
+datum/event/cult/overmap/start()		// override - cancel if not main ship since it doesn't properly target the actual triggering ship
 	if(istype(victim, /obj/effect/overmap/visitable/ship/landable))
 		kill()
 		return

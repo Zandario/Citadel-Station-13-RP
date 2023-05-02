@@ -1,11 +1,11 @@
-/obj/item/clothing/shoes/griffin
+obj/item/clothing/shoes/griffin
 	name = "griffon boots"
 	desc = "A pair of costume boots fashioned after bird talons."
 	icon_state = "griffinboots"
 	item_state = "griffinboots"
 	icon = 'icons/obj/clothing/shoes.dmi'
 
-/obj/item/clothing/shoes/bhop
+obj/item/clothing/shoes/bhop
 	name = "jump boots"
 	desc = "A specialized pair of combat boots with a built-in propulsion system for rapid foward movement."
 	icon_state = "jetboots"
@@ -20,7 +20,7 @@
 	var/recharging_time = 0 //time until next dash
 	// var/jumping = FALSE //are we mid-jump? We have no throw_at_old callback, so we have to check user.throwing.
 
-/obj/item/clothing/shoes/bhop/ui_action_click()
+obj/item/clothing/shoes/bhop/ui_action_click()
 	var/mob/living/user = loc
 	if(!isliving(user))
 		return

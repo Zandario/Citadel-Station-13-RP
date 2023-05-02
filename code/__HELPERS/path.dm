@@ -18,7 +18,7 @@
  * * exclude: If we want to avoid a specific turf, like if we're a mulebot who already got blocked by some turf
  * * skip_first: Whether or not to delete the first item in the path. This would be done because the first item is the starting tile, which can break movement for some creatures.
  */
-/proc/get_path_to(caller, end, max_distance = 30, mintargetdist, id=null, simulated_only = TRUE, turf/exclude, skip_first=TRUE)
+proc/get_path_to(caller, end, max_distance = 30, mintargetdist, id=null, simulated_only = TRUE, turf/exclude, skip_first=TRUE)
 	if(!caller || !get_turf(end))
 		return
 
@@ -49,7 +49,7 @@
 #define STEP_NOT_HERE_BUT_THERE(cur_turf, dirA, dirB) ((!CAN_STEP(cur_turf, get_step(cur_turf, dirA)) && CAN_STEP(cur_turf, get_step(cur_turf, dirB))))
 
 /// The JPS Node datum represents a turf that we find interesting enough to add to the open list and possibly search for new tiles from
-/datum/jps_node
+datum/jps_node
 	/// The turf associated with this node
 	var/turf/tile
 	/// The node we just came from
@@ -65,7 +65,7 @@
 	/// Nodes store the endgoal so they can process their heuristic without a reference to the pathfind datum
 	var/turf/node_goal
 
-/datum/jps_node/New(turf/our_tile, datum/jps_node/incoming_previous_node, jumps_taken, turf/incoming_goal)
+datum/jps_node/New(turf/our_tile, datum/jps_node/incoming_previous_node, jumps_taken, turf/incoming_goal)
 	tile = our_tile
 	jumps = jumps_taken
 	if(incoming_goal) // if we have the goal argument, this must be the first/starting node
@@ -78,11 +78,11 @@
 		f_value = number_tiles + heuristic
 	// otherwise, no parent node means this is from a subscan lateral scan, so we just need the tile for now until we call [datum/jps/proc/update_parent] on it
 
-/datum/jps_node/Destroy(force, ...)
+datum/jps_node/Destroy(force, ...)
 	previous_node = null
 	return ..()
 
-/datum/jps_node/proc/update_parent(datum/jps_node/new_parent)
+datum/jps_node/proc/update_parent(datum/jps_node/new_parent)
 	previous_node = new_parent
 	node_goal = previous_node.node_goal
 	jumps = get_dist(tile, previous_node.tile)
@@ -91,13 +91,13 @@
 	f_value = number_tiles + heuristic
 
 /// TODO: Macro this to reduce proc overhead
-/proc/HeapPathWeightCompare(datum/jps_node/a, datum/jps_node/b)
+proc/HeapPathWeightCompare(datum/jps_node/a, datum/jps_node/b)
 	return b.f_value - a.f_value
 
 /**
  * The datum used to handle the JPS pathfinding, completely self-contained.
  */
-/datum/pathfind
+datum/pathfind
 	/// The thing that we're actually trying to path for
 	var/atom/movable/caller
 	/// The turf where we started at
@@ -123,7 +123,7 @@
 	/// A specific turf we're avoiding, like if a mulebot is being blocked by someone t-posing in a doorway we're trying to get through
 	var/turf/avoid
 
-/datum/pathfind/New(atom/movable/caller, atom/goal, id, max_distance, mintargetdist, simulated_only, avoid)
+datum/pathfind/New(atom/movable/caller, atom/goal, id, max_distance, mintargetdist, simulated_only, avoid)
 	src.caller = caller
 	end = get_turf(goal)
 	open = new /datum/heap(/proc/HeapPathWeightCompare)
@@ -140,7 +140,7 @@
  * If a valid path was found, it's returned as a list. If invalid or cross-z-level params are entered, or if there's no valid path found, we
  * return null, which [/proc/get_path_to] translates to an empty list (notable for simple bots, who need empty lists)
  */
-/datum/pathfind/proc/search()
+datum/pathfind/proc/search()
 	start = get_turf(caller)
 	if(!start || !end)
 		stack_trace("Invalid A* start or destination")
@@ -185,7 +185,7 @@
  * Called when we've hit the goal with the node that represents the last tile,
  * then sets the path var to that path so it can be returned by [datum/pathfind/proc/search]
  */
-/datum/pathfind/proc/unwind_path(datum/jps_node/unwind_node)
+datum/pathfind/proc/unwind_path(datum/jps_node/unwind_node)
 	path = new()
 	var/turf/iter_turf = unwind_node.tile
 	path.Add(iter_turf)
@@ -210,7 +210,7 @@
  * * heading: What direction are we going in? Obviously, should be cardinal
  * * parent_node: Only given for normal lateral scans, if we don't have one, we're a diagonal subscan.
 */
-/datum/pathfind/proc/lateral_scan_spec(turf/original_turf, heading, datum/jps_node/parent_node)
+datum/pathfind/proc/lateral_scan_spec(turf/original_turf, heading, datum/jps_node/parent_node)
 	var/steps_taken = 0
 
 	var/turf/current_turf = original_turf
@@ -272,7 +272,7 @@
  * * heading: What direction are we going in? Obviously, should be diagonal
  * * parent_node: We should always have a parent node for diagonals
 */
-/datum/pathfind/proc/diag_scan_spec(turf/original_turf, heading, datum/jps_node/parent_node)
+datum/pathfind/proc/diag_scan_spec(turf/original_turf, heading, datum/jps_node/parent_node)
 	var/steps_taken = 0
 	var/turf/current_turf = original_turf
 	var/turf/lag_turf = original_turf
@@ -342,7 +342,7 @@
  * * ID: An ID card that decides if we can gain access to doors that would otherwise block a turf
  * * simulated_only: Do we only worry about turfs with simulated atmos, most notably things that aren't space?
 */
-/turf/proc/LinkBlockedWithAccess(turf/destination_turf, caller, ID)
+turf/proc/LinkBlockedWithAccess(turf/destination_turf, caller, ID)
 	if(destination_turf.x != x && destination_turf.y != y) //diagonal
 		var/in_dir = get_dir(destination_turf,src) // eg. northwest (1+8) = 9 (00001001)
 		var/first_step_direction_a = in_dir & 3 // eg. north   (1+8)&3 (0000 0011) = 1 (0000 0001)

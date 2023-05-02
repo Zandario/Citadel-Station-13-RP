@@ -2,7 +2,7 @@
  * Controls the ability to do a scan for internal damage / temperature.
  */
 
-/obj/item/organ/internal/robotic/diagnostic
+obj/item/organ/internal/robotic/diagnostic
 	name = "diagnostic processor"
 
 	icon_state = "diagnostic"

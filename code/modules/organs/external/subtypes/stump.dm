@@ -1,9 +1,9 @@
-/obj/item/organ/external/stump
+obj/item/organ/external/stump
 	name = "limb stump"
 	icon_name = ""
 	dislocated = -1
 
-/obj/item/organ/external/stump/Initialize(mapload, internal, obj/item/organ/external/limb)
+obj/item/organ/external/stump/Initialize(mapload, internal, obj/item/organ/external/limb)
 	if(istype(limb))
 		organ_tag = limb.organ_tag
 		body_part_flags = limb.body_part_flags
@@ -17,12 +17,12 @@
 		if((limb.robotic >= ORGAN_ROBOT) && (!parent || (parent.robotic >= ORGAN_ROBOT)))
 			robotize() //if both limb and the parent are robotic, the stump is robotic too
 
-/obj/item/organ/external/stump/is_stump()
+obj/item/organ/external/stump/is_stump()
 	return 1
 
-/obj/item/organ/external/stump/removed()
+obj/item/organ/external/stump/removed()
 	..()
 	qdel(src)
 
-/obj/item/organ/external/stump/is_usable()
+obj/item/organ/external/stump/is_usable()
 	return 0

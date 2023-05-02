@@ -1,8 +1,8 @@
-/matrix/proc/TurnTo(old_angle, new_angle)
+matrix/proc/TurnTo(old_angle, new_angle)
 	. = new_angle - old_angle
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
-/atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3, parallel = TRUE)
+atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3, parallel = TRUE)
 	if(!segments)
 		return
 	var/segment = 360/segments
@@ -31,7 +31,7 @@
 /**
  * Dumps the matrix data in format a-f.
  */
-/matrix/proc/tolist()
+matrix/proc/tolist()
 	. = list()
 	. += a
 	. += b
@@ -47,7 +47,7 @@
  * b e 0
  * c f 1
  */
-/matrix/proc/togrid()
+matrix/proc/togrid()
 	. = list()
 	. += a
 	. += d
@@ -62,19 +62,19 @@
 /**
  * The X pixel offset of this matrix.
  */
-/matrix/proc/get_x_shift()
+matrix/proc/get_x_shift()
 	. = c
 
 /**
  * The Y pixel offset of this matrix.
  */
-/matrix/proc/get_y_shift()
+matrix/proc/get_y_shift()
 	. = f
 
-/matrix/proc/get_x_skew()
+matrix/proc/get_x_skew()
 	. = b
 
-/matrix/proc/get_y_skew()
+matrix/proc/get_y_skew()
 	. = d
 
 /**
@@ -84,12 +84,12 @@
  * As Rotation is defined as a scale+skew, these procs will break any existing rotation.
  * Unless the result is multiplied against the current matrix.
  */
-/matrix/proc/set_skew(x = 0, y = 0)
+matrix/proc/set_skew(x = 0, y = 0)
 	b = x
 	d = y
 
 /**
  * Constructs a transform matrix, defaulting to identity.
  */
-/proc/transform_matrix_construct(a = 1, b, c, d = 1, e, f)
+proc/transform_matrix_construct(a = 1, b, c, d = 1, e, f)
 	return matrix(a, b, c, d, e, f)

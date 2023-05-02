@@ -3,7 +3,7 @@
 	This machine consumes cores to create a slime.
 	To create more of these cores, stick the slime core in the extractor.
 */
-/obj/machinery/slime/replicator
+obj/machinery/slime/replicator
 	name = "slime core growth apparatus"
 	desc = "A machine for creating slimes from cores. Amazing!"
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -17,7 +17,7 @@
 	var/emptycolor = "#FF2222"
 	var/operatingcolor = "#FFFF22"
 
-/obj/machinery/slime/replicator/Initialize(mapload)
+obj/machinery/slime/replicator/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/manipulator(src)
@@ -27,7 +27,7 @@
 	RefreshParts()
 	update_light_color()
 
-/obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.
 	if(W.is_screwdriver() && !inuse)
 		default_deconstruction_screwdriver(user, W)
@@ -52,7 +52,7 @@
 	G.forceMove(src)
 	update_light_color()
 
-/obj/machinery/slime/replicator/proc/update_light_color()
+obj/machinery/slime/replicator/proc/update_light_color()
 	if(src.core && !(inuse))
 		set_light(2, 2, occupiedcolor)
 	else if(src.core)
@@ -60,7 +60,7 @@
 	else
 		set_light(2, 2, emptycolor)
 
-/obj/machinery/slime/replicator/proc/replicate_slime()
+obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
 		src.visible_message("[icon2html(thing = src, target = world)] [src] pings unhappily.")
 	else if(inuse)
@@ -85,25 +85,25 @@
 			update_light_color()
 			src.updateUsrDialog()
 
-/obj/machinery/slime/replicator/proc/eject_slime()
+obj/machinery/slime/replicator/proc/eject_slime()
 	for(var/mob/thing in contents)
 		thing.forceMove(loc)
 
-/obj/machinery/slime/replicator/proc/eject_core()
+obj/machinery/slime/replicator/proc/eject_core()
 	if(core)
 		core.forceMove(loc)
 		core = null
 
-/obj/machinery/slime/replicator/proc/eject_contents()
+obj/machinery/slime/replicator/proc/eject_contents()
 	eject_slime()
 	eject_core()
 
 //Here lies the UI
-/obj/machinery/slime/replicator/attack_hand(mob/user, list/params)
+obj/machinery/slime/replicator/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/slime/replicator/interact(mob/user as mob)
+obj/machinery/slime/replicator/interact(mob/user as mob)
 	var/dat = ""
 	if(!inuse)
 		dat = {"
@@ -122,7 +122,7 @@
 	return
 
 
-/obj/machinery/slime/replicator/Topic(href, href_list)
+obj/machinery/slime/replicator/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -135,7 +135,7 @@
 	return
 
 //Circuit board below,
-/obj/item/circuitboard/slimereplicator
+obj/item/circuitboard/slimereplicator
 	name = T_BOARD("Slime replicator")
 	build_path = "/obj/machinery/slime/replicator"
 	board_type = "machine"
@@ -145,4 +145,3 @@
 							/obj/item/stock_parts/matter_bin = 1,
 							/obj/item/stock_parts/micro_laser = 1
 							)
-

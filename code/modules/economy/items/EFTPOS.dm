@@ -1,4 +1,4 @@
-/obj/item/eftpos
+obj/item/eftpos
 	name = "\improper EFTPOS scanner"
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
@@ -12,7 +12,7 @@
 	var/access_code = 0
 	var/datum/money_account/linked_account
 
-/obj/item/eftpos/Initialize(mapload)
+obj/item/eftpos/Initialize(mapload)
 	. = ..()
 	machine_id = "[station_name()] EFTPOS #[GLOB.num_financial_terminals++]"
 	access_code = rand(1111,111111)
@@ -21,7 +21,7 @@
 	linked_account = GLOB.station_account
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/eftpos/LateInitialize()
+obj/item/eftpos/LateInitialize()
 	. = ..()
 	print_reference()
 
@@ -64,7 +64,7 @@
 	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
-/obj/item/eftpos/proc/print_reference()
+obj/item/eftpos/proc/print_reference()
 	var/obj/item/paper/R = new(src.loc)
 	R.name = "Reference: [eftpos_name]"
 	R.info = "<b>[eftpos_name] reference</b><br><br>"
@@ -84,7 +84,7 @@
 	D.wrapped = R
 	D.name = "small parcel - 'EFTPOS access code'"
 
-/obj/item/eftpos/attack_self(mob/user)
+obj/item/eftpos/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -115,7 +115,7 @@
 	else
 		user << browse(null,"window=eftpos")
 
-/obj/item/eftpos/attackby(obj/item/O as obj, user as mob)
+obj/item/eftpos/attackby(obj/item/O as obj, user as mob)
 
 	var/obj/item/card/id/I = O.GetID()
 
@@ -157,7 +157,7 @@
 	else
 		..()
 
-/obj/item/eftpos/Topic(var/href, var/href_list)
+obj/item/eftpos/Topic(var/href, var/href_list)
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("change_code")
@@ -232,7 +232,7 @@
 
 	src.attack_self(usr)
 
-/obj/item/eftpos/proc/scan_card(var/obj/item/card/I, var/obj/item/ID_container)
+obj/item/eftpos/proc/scan_card(var/obj/item/card/I, var/obj/item/ID_container)
 	if (istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		if(I==ID_container || ID_container == null)

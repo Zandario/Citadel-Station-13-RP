@@ -5,7 +5,7 @@
  * downsides: can only be associated with one mind at a time, for now.
  * if this belongs to a mind the mind has free reign to qdel it. you have been warned.
  */
-/datum/characteristics_holder
+datum/characteristics_holder
 	//! ownership
 	/// current mind that holds us; **CAN BE NULL**
 	var/datum/mind/mind
@@ -19,12 +19,12 @@
 	var/list/talents
 	// todo: modifiers
 
-/datum/characteristics_holder/Destroy()
+datum/characteristics_holder/Destroy()
 	if(mind)
 		disassociate_from_mind(mind)
 	return ..()
 
-/datum/characteristics_holder/proc/associate_with_mind(datum/mind/M)
+datum/characteristics_holder/proc/associate_with_mind(datum/mind/M)
 	if(M.current)
 		associate_with_mob(M.current)
 	if(M.characteristics)
@@ -34,7 +34,7 @@
 		var/datum/characteristic_talent/talent = resolve_characteristics_talent(id)
 		talent.gain(M, talents[id])
 
-/datum/characteristics_holder/proc/disassociate_from_mind(datum/mind/M)
+datum/characteristics_holder/proc/disassociate_from_mind(datum/mind/M)
 	if(M.current)
 		disassociate_from_mob(M.current)
 	if(M.characteristics != src)
@@ -44,31 +44,31 @@
 		talent.lose(M, talents[id])
 	M.characteristics = null
 
-/datum/characteristics_holder/proc/associate_with_mob(mob/M)
+datum/characteristics_holder/proc/associate_with_mob(mob/M)
 	for(var/id in talents)
 		var/datum/characteristic_talent/talent = resolve_characteristics_talent(id)
 		talent.attach(M, talents[id])
 
-/datum/characteristics_holder/proc/disassociate_from_mob(mob/M)
+datum/characteristics_holder/proc/disassociate_from_mob(mob/M)
 	for(var/id in talents)
 		var/datum/characteristic_talent/talent = resolve_characteristics_talent(id)
 		talent.detach(M, talents[id])
 
-/datum/characteristics_holder/proc/set_stat(datum/characteristic_stat/id_or_typepath, val)
+datum/characteristics_holder/proc/set_stat(datum/characteristic_stat/id_or_typepath, val)
 	LAZYINITLIST(stats)
 	stats[ispath(id_or_typepath)? initial(id_or_typepath.id) : id_or_typepath] = val
 
-/datum/characteristics_holder/proc/set_skill(datum/characteristic_skill/id_or_typepath, val)
+datum/characteristics_holder/proc/set_skill(datum/characteristic_skill/id_or_typepath, val)
 	LAZYINITLIST(skills)
 	skills[ispath(id_or_typepath)? initial(id_or_typepath.id) : id_or_typepath] = val
 
-/datum/characteristics_holder/proc/get_stat(datum/characteristic_stat/id_or_typepath)
+datum/characteristics_holder/proc/get_stat(datum/characteristic_stat/id_or_typepath)
 	. = stats?[ispath(id_or_typepath)? initial(id_or_typepath.id) : id_or_typepath]
 
-/datum/characteristics_holder/proc/get_skill(datum/characteristic_skill/id_or_typepath)
+datum/characteristics_holder/proc/get_skill(datum/characteristic_skill/id_or_typepath)
 	. = skills?[ispath(id_or_typepath)? initial(id_or_typepath.id) : id_or_typepath] || CHARACTER_SKILL_UNTRAINED
 
-/datum/characteristics_holder/proc/add_talent(datum/characteristic_talent/id_or_typepath, ...)
+datum/characteristics_holder/proc/add_talent(datum/characteristic_talent/id_or_typepath, ...)
 	var/id = ispath(id_or_typepath)? initial(id_or_typepath.id) : id_or_typepath
 	if(talents?[id])
 		// do NOT allow overwrite!
@@ -80,7 +80,7 @@
 			talent.attach(mind.current, talents[id])
 		talent.gain(mind, talents[id])
 
-/datum/characteristics_holder/proc/remove_talent(datum/characteristic_talent/id_or_typepath)
+datum/characteristics_holder/proc/remove_talent(datum/characteristic_talent/id_or_typepath)
 	var/id = ispath(id_or_typepath)? initial(id_or_typepath.id) : id_or_typepath
 	if(!talents?[id])
 		return FALSE
@@ -92,7 +92,7 @@
 	talents -= id
 	return TRUE
 
-/datum/characteristics_holder/proc/has_talent(datum/characteristic_talent/id_or_typepath)
+datum/characteristics_holder/proc/has_talent(datum/characteristic_talent/id_or_typepath)
 	return !!talents[ispath(id_or_typepath)? initial(id_or_typepath.id) : id_or_typepath]
 
 /**
@@ -102,7 +102,7 @@
  * - typepath_or_preset - typepath or preset datum
  * - overwrite - should we replace everything in us or instead raise / append if needed?
  */
-/datum/characteristics_holder/proc/apply_preset(datum/characteristic_preset/typepath_or_preset, overwrite = FALSE)
+datum/characteristics_holder/proc/apply_preset(datum/characteristic_preset/typepath_or_preset, overwrite = FALSE)
 	if(ispath(typepath_or_preset))
 		typepath_or_preset = resolve_characteristics_preset(typepath_or_preset)
 	if(typepath_or_preset.skills)
@@ -134,7 +134,7 @@
 /**
  * clones
  */
-/datum/characteristics_holder/proc/clone()
+datum/characteristics_holder/proc/clone()
 	RETURN_TYPE(/datum/characteristics_holder)
 	var/datum/characteristics_holder/cloning = new
 	cloning.skills = skills.Copy()

@@ -2,13 +2,13 @@
 // An asteroid object, could be spawned in, or not
 // May or may not include phat lewt
 //////////////////////////////
-/turf/simulated/mineral/vacuum
+turf/simulated/mineral/vacuum
 	initial_gas_mix = GAS_STRING_VACUUM
 
-/turf/simulated/mineral/floor/vacuum
+turf/simulated/mineral/floor/vacuum
 	initial_gas_mix = GAS_STRING_VACUUM
 
-/datum/rogue/asteroid
+datum/rogue/asteroid
 	//Composition
 	var/type_wall	= /turf/simulated/mineral/vacuum		//Type of turf used to generate the asteroid
 	var/type_under	= /turf/simulated/mineral/floor/vacuum	//Type of turf that's under the normal one
@@ -40,7 +40,7 @@
 	var/list/map
 
 //Builds an empty map
-/datum/rogue/asteroid/New(var/core, var/tw, var/tu)
+datum/rogue/asteroid/New(var/core, var/tw, var/tu)
 	rm_controller.dbg("A(n): New asteroid, with: C:[core], TW:[tw], TU:[tu].")
 
 	if(core)
@@ -57,7 +57,7 @@
 	rm_controller.dbg("A(n): Created empty map lists. Map now has [map.len] X-lists.")
 
 //Adds something to a spot in the asteroid map
-/datum/rogue/asteroid/proc/spot_add(var/x,var/y,var/thing)
+datum/rogue/asteroid/proc/spot_add(var/x,var/y,var/thing)
 	if(!x || !y || !thing)
 		return
 
@@ -67,7 +67,7 @@
 	rm_controller.dbg("A(n): [x],[y] now contains [work.len] items.")
 
 //Removes something from a spot in the asteroid map
-/datum/rogue/asteroid/proc/spot_remove(var/x,var/y,var/thing)
+datum/rogue/asteroid/proc/spot_remove(var/x,var/y,var/thing)
 	if(!x || !y || !thing)
 		return
 
@@ -75,7 +75,7 @@
 	work.Add(thing)
 
 //Just removes everything from a spot in the asteroid map
-/datum/rogue/asteroid/proc/spot_clear(var/x,var/y)
+datum/rogue/asteroid/proc/spot_clear(var/x,var/y)
 	if(!x || !y)
 		return
 
@@ -85,19 +85,19 @@
 /////////////////////////////
 // Predefined asteroid maps
 /////////////////////////////
-/datum/rogue/asteroid/predef
+datum/rogue/asteroid/predef
 	width = 3 //Small 1-tile room by default.
 
-/datum/rogue/asteroid/predef/New() //Basically just ignore what we're told.
+datum/rogue/asteroid/predef/New() //Basically just ignore what we're told.
 	rm_controller.dbg("Ap(n): A predefined asteroid is created with width [width].")
 	map = new/list(width,width,0)
 
 //Abandoned 1-tile hollow cargo box (pressurized).
-/datum/rogue/asteroid/predef/cargo
+datum/rogue/asteroid/predef/cargo
 	type_wall = /turf/simulated/wall
 	type_under = /turf/simulated/floor/plating
 
-/datum/rogue/asteroid/predef/cargo/New()
+datum/rogue/asteroid/predef/cargo/New()
 	..()
 	spot_add(1,1,type_wall) //Bottom left corner
 	spot_add(1,2,type_wall)
@@ -111,22 +111,22 @@
 	spot_add(3,3,type_wall) //Bottom right corner
 
 //Abandoned 1-tile hollow cargo box (ANGRY).
-/datum/rogue/asteroid/predef/cargo/angry
+datum/rogue/asteroid/predef/cargo/angry
 	type_wall  = /turf/simulated/wall
 	type_under = /turf/simulated/floor/plating
 
-/datum/rogue/asteroid/predef/cargo/angry/New()
+datum/rogue/asteroid/predef/cargo/angry/New()
 	..()
 	spot_add(2,2,/obj/random/roguemineloot) //EXTRA loot!
 	spot_add(2,2,/mob/living/simple_mob/animal/space/alien) //GRRR
 
 //Longer cargo container for higher difficulties
-/datum/rogue/asteroid/predef/cargo_large
+datum/rogue/asteroid/predef/cargo_large
 	width = 5
 	type_wall  = /turf/simulated/wall
 	type_under = /turf/simulated/floor/plating
 
-/datum/rogue/asteroid/predef/cargo_large/New()
+datum/rogue/asteroid/predef/cargo_large/New()
 	..()
 	spot_add(1,2,type_wall) //--
 	spot_add(1,3,type_wall) //Left end of cargo container

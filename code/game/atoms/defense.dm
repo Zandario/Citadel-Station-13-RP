@@ -9,7 +9,7 @@
  * @params
  * - method - how we were deconstructed
  */
-/atom/proc/deconstruct(method = ATOM_DECONSTRUCT_DISASSEMBLED)
+atom/proc/deconstruct(method = ATOM_DECONSTRUCT_DISASSEMBLED)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	// send signal
@@ -29,7 +29,7 @@
  * @params
  * - method - how we were deconstructed
  */
-/atom/proc/deconstructed(method)
+atom/proc/deconstructed(method)
 	return
 
 /**
@@ -38,7 +38,7 @@
  * @params
  * * method - how we were deconstructed
  */
-/atom/proc/drop_products(method)
+atom/proc/drop_products(method)
 	return
 
 /**
@@ -49,7 +49,7 @@
  * * dropping - movable in question
  * * where - where to move to
  */
-/atom/proc/drop_product(method, atom/movable/dropping, atom/where)
+atom/proc/drop_product(method, atom/movable/dropping, atom/where)
 	dropping.forceMove(where || drop_location())
 
 //? Armor
@@ -57,7 +57,7 @@
 /**
  * resets our armor to initial values
  */
-/atom/proc/reset_armor()
+atom/proc/reset_armor()
 	set_armor(initial(armor_type))
 
 /**
@@ -66,13 +66,13 @@
  * @params
  * * what - list of armor values or a /datum/armor path
  */
-/atom/proc/set_armor(what)
+atom/proc/set_armor(what)
 	armor = fetch_armor_struct(what)
 
 /**
  * gets our armor datum or otherwise make sure it exists
  */
-/atom/proc/fetch_armor()
+atom/proc/fetch_armor()
 	RETURN_TYPE(/datum/armor)
 	return armor || (armor = fetch_armor_struct(armor_type))
 
@@ -89,7 +89,7 @@
  *
  * @return args as list.
  */
-/atom/proc/check_armor(damage, tier, flag, mode, attack_type, datum/weapon)
+atom/proc/check_armor(damage, tier, flag, mode, attack_type, datum/weapon)
 	damage = fetch_armor().resultant_damage(damage, tier, flag)
 	return args.Copy()
 
@@ -107,7 +107,7 @@
  *
  * @return args as list.
  */
-/atom/proc/run_armor(damage, tier, flag, mode, attack_type, datum/weapon)
+atom/proc/run_armor(damage, tier, flag, mode, attack_type, datum/weapon)
 	damage = fetch_armor().resultant_damage(damage, tier, flag)
 	return args.Copy()
 
@@ -121,7 +121,7 @@
  *
  * params are modified and then returned as a list.
  */
-/atom/proc/atom_shieldcheck(damage, tier, flag, mode, attack_type, datum/weapon, list/additional = list(), retval = NONE)
+atom/proc/atom_shieldcheck(damage, tier, flag, mode, attack_type, datum/weapon, list/additional = list(), retval = NONE)
 	retval |= SHIELDCALL_JUST_CHECKING
 	SEND_SIGNAL(src, COMSIG_ATOM_SHIELDCALL, args)
 	return args.Copy()
@@ -134,6 +134,6 @@
  *
  * params are modified and then returned as a list
  */
-/atom/proc/atom_shieldcall(damage, tier, flag, mode, attack_type, datum/weapon, list/additional = list(), retval = NONE)
+atom/proc/atom_shieldcall(damage, tier, flag, mode, attack_type, datum/weapon, list/additional = list(), retval = NONE)
 	SEND_SIGNAL(src, COMSIG_ATOM_SHIELDCALL, args)
 	return args.Copy()

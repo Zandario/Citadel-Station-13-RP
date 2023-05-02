@@ -1,4 +1,4 @@
-/datum/asset/spritesheet/simple/pda
+datum/asset/spritesheet/simple/pda
 	name = "pda"
 	assets = list(
 		"atmos" = 'icons/pda_icons/pda_atmos.png',

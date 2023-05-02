@@ -1,4 +1,4 @@
-/datum/armor/misc
+datum/armor/misc
 
-/datum/armor/misc/bucket
+datum/armor/misc/bucket
 	melee = 0.1

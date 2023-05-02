@@ -1,5 +1,5 @@
 // There are different kinds of blobs, with different colors, properties, weaknesses, etc.  This datum tells the blob objects what kind they are, without a million typepaths.
-/datum/blob_type
+datum/blob_type
 	var/name = "base blob"
 	var/desc = "This shouldn't exist."	// Shown on examine.
 	var/effect_desc = "This does nothing special."	// For examine panel.
@@ -44,42 +44,42 @@
 	var/shield_type = /obj/structure/blob/shield
 
 // Called when a blob receives damage.  This needs to return the final damage or blobs will be immortal.
-/datum/blob_type/proc/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
+datum/blob_type/proc/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
 	return damage
 
 // Called when a blob dies due to integrity depletion.  Not called if deleted by other means.
-/datum/blob_type/proc/on_death(var/obj/structure/blob/B)
+datum/blob_type/proc/on_death(var/obj/structure/blob/B)
 	return
 
 // Called when a blob expands onto another tile.
-/datum/blob_type/proc/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
+datum/blob_type/proc/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
 	return
 
 // Called when blob_act() is called on a living mob.
-/datum/blob_type/proc/on_attack(var/obj/structure/blob/B, var/mob/living/victim, var/def_zone)
+datum/blob_type/proc/on_attack(var/obj/structure/blob/B, var/mob/living/victim, var/def_zone)
 	return
 
 // Called when the blob is pulsed by a node or the core.
-/datum/blob_type/proc/on_pulse(var/obj/structure/blob/B)
+datum/blob_type/proc/on_pulse(var/obj/structure/blob/B)
 	return
 
 // Called when hit by EMP.
-/datum/blob_type/proc/on_emp(obj/structure/blob/B, severity)
+datum/blob_type/proc/on_emp(obj/structure/blob/B, severity)
 	return
 
 // Called when hit by water.
-/datum/blob_type/proc/on_water(obj/structure/blob/B, amount)
+datum/blob_type/proc/on_water(obj/structure/blob/B, amount)
 	return
 
 // Spore things
-/datum/blob_type/proc/on_spore_death(mob/living/simple_mob/blob/spore/S)
+datum/blob_type/proc/on_spore_death(mob/living/simple_mob/blob/spore/S)
 	return
 
 
 // Subtypes
 
 // Super fast spreading, but weak to EMP.
-/datum/blob_type/grey_goo
+datum/blob_type/grey_goo
 	name = "grey tide"
 	desc = "A swarm of self replicating nanomachines.  Extremely illegal and dangerous, the EIO was meant to prevent this from showing up a second time."
 	effect_desc = "Spreads much faster than average, but is harmed greatly by electromagnetic pulses."
@@ -95,11 +95,11 @@
 	attack_message_living = ", and you feel your skin dissolve"
 	attack_message_synth = ", and your external plating dissolves"
 
-/datum/blob_type/grey_goo/on_emp(obj/structure/blob/B, severity)
+datum/blob_type/grey_goo/on_emp(obj/structure/blob/B, severity)
 	B.adjust_integrity(-(20 / severity))
 
 // Slow, tanky blobtype which uses not spores, but hivebots, as its soldiers.
-/datum/blob_type/fabrication_swarm
+datum/blob_type/fabrication_swarm
 	name = "iron tide"
 	desc = "A swarm of self replicating construction nanites. Incredibly illegal, but only mildly dangerous."
 	effect_desc = "Slow-spreading, but incredibly resiliant. It has a chance to harden itself against attacks automatically for no resource cost, and uses cheaply-constructed hivebots as soldiers."
@@ -122,7 +122,7 @@
 	ai_aggressiveness = 50 //Really doesn't like you near it.
 	spore_type = /mob/living/simple_mob/mechanical/hivebot/swarm
 
-/datum/blob_type/fabrication_swarm/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
+datum/blob_type/fabrication_swarm/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
 	if(istype(B, /obj/structure/blob/normal))
 		if(damage > 0)
 			var/reinforce_probability = min(damage, 70)
@@ -132,11 +132,11 @@
 				qdel(B)
 	return ..()
 
-/datum/blob_type/fabrication_swarm/on_emp(obj/structure/blob/B, severity)
+datum/blob_type/fabrication_swarm/on_emp(obj/structure/blob/B, severity)
 	B.adjust_integrity(-(30 / severity))
 
 // A blob meant to be fought like a fire.
-/datum/blob_type/blazing_oil
+datum/blob_type/blazing_oil
 	name = "blazing oil"
 	desc = "A strange, extremely vicious liquid that seems to burn endlessly."
 	ai_desc = "aggressive"
@@ -153,14 +153,14 @@
 	attack_message_synth = ", and your external plating melts"
 	attack_verb = "splashes"
 
-/datum/blob_type/blazing_oil/on_attack(obj/structure/blob/B, mob/living/victim)
+datum/blob_type/blazing_oil/on_attack(obj/structure/blob/B, mob/living/victim)
 	victim.fire_act() // Burn them.
 
-/datum/blob_type/blazing_oil/on_water(obj/structure/blob/B, amount)
+datum/blob_type/blazing_oil/on_water(obj/structure/blob/B, amount)
 	spawn(1)
 		B.adjust_integrity(-(amount * 5))
 
-/datum/blob_type/blazing_oil/on_pulse(var/obj/structure/blob/B)
+datum/blob_type/blazing_oil/on_pulse(var/obj/structure/blob/B)
 	var/turf/T = get_turf(B)
 	if(!T)
 		return
@@ -170,7 +170,7 @@
 
 
 // Mostly a classic blob.  No nodes, no other blob types.
-/datum/blob_type/classic
+datum/blob_type/classic
 	name = "lethargic blob"
 	desc = "A mass that seems bound to its core."
 	ai_desc = "unambitious"
@@ -184,7 +184,7 @@
 
 
 // Makes robots cry.  Really weak to brute damage.
-/datum/blob_type/electromagnetic_web
+datum/blob_type/electromagnetic_web
 	name = "electromagnetic web"
 	desc = "A gooy mesh that generates an electromagnetic field.  Electronics will likely be ruined if nearby."
 	ai_desc = "balanced"
@@ -203,15 +203,15 @@
 	attack_message_synth = ", and your electronics get badly damaged"
 	attack_verb = "lashes"
 
-/datum/blob_type/electromagnetic_web/on_death(obj/structure/blob/B)
+datum/blob_type/electromagnetic_web/on_death(obj/structure/blob/B)
 	empulse(B.loc, 0, 1, 2)
 
-/datum/blob_type/electromagnetic_web/on_attack(obj/structure/blob/B, mob/living/victim)
+datum/blob_type/electromagnetic_web/on_attack(obj/structure/blob/B, mob/living/victim)
 	victim.emp_act(2)
 
 
 // Makes spores that spread the blob and infest dead people.
-/datum/blob_type/fungal_bloom
+datum/blob_type/fungal_bloom
 	name = "fungal bloom"
 	desc = "A massive network of rapidly expanding mycelium.  Large spore-like particles can be seen spreading from it."
 	ai_desc = "swarming"
@@ -229,7 +229,7 @@
 	can_build_factories = TRUE
 	spore_type = /mob/living/simple_mob/blob/spore/infesting
 
-/datum/blob_type/fungal_bloom/on_spore_death(mob/living/simple_mob/blob/spore/S)
+datum/blob_type/fungal_bloom/on_spore_death(mob/living/simple_mob/blob/spore/S)
 	if(S.is_infesting)
 		return // Don't make blobs if they were on someone's head.
 	var/turf/T = get_turf(S)
@@ -241,7 +241,7 @@
 		B.visible_message("<span class='danger'>\A [B] forms on \the [T] as \the [S] bursts!</span>")
 
 // Makes tons of weak spores whenever it spreads.
-/datum/blob_type/fulminant_organism
+datum/blob_type/fulminant_organism
 	name = "fulminant organism"
 	desc = "A self expanding mass of living biomaterial, that appears to produce entities to defend it, much like a living organism's immune system."
 	ai_desc = "swarming"
@@ -260,7 +260,7 @@
 	can_build_factories = TRUE
 	spore_type = /mob/living/simple_mob/blob/spore/weak
 
-/datum/blob_type/fulminant_organism/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
+datum/blob_type/fulminant_organism/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
 	if(prob(10)) // 10% chance to make a weak spore when expanding.
 		var/mob/living/simple_mob/blob/spore/S = new spore_type(T)
 		if(istype(S))
@@ -270,7 +270,7 @@
 			S.faction = "blob"
 		S.update_icons()
 
-/datum/blob_type/fulminant_organism/on_death(obj/structure/blob/B)
+datum/blob_type/fulminant_organism/on_death(obj/structure/blob/B)
 	if(prob(33)) // 33% chance to make a spore when dying.
 		var/mob/living/simple_mob/blob/spore/S = new spore_type(get_turf(B))
 		B.visible_message("<span class='danger'>\The [S] floats free from the [name]!</span>")
@@ -283,7 +283,7 @@
 
 
 // Auto-retaliates against melee attacks.  Weak to projectiles.
-/datum/blob_type/reactive_spines
+datum/blob_type/reactive_spines
 	name = "reactive spines"
 	desc = "An ever-growing lifeform with a large amount of sharp, powerful looking spines.  They look like they could pierce most armor."
 	ai_desc = "defensive"
@@ -306,7 +306,7 @@
 	attack_verb = "stabs"
 
 // Even if the melee attack is enough to one-shot this blob, it gets to retaliate at least once.
-/datum/blob_type/reactive_spines/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
+datum/blob_type/reactive_spines/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
 	if(damage > 0 && attacker && get_dist(B, attacker) <= 1)
 		B.visible_message("<span class='danger'>The [name] retaliates, lashing out at \the [attacker]!</span>")
 		B.blob_attack_animation(attacker, B.overmind)
@@ -315,7 +315,7 @@
 
 
 // Spreads damage to nearby blobs, and attacks with the force of all nearby blobs.
-/datum/blob_type/synchronous_mesh
+datum/blob_type/synchronous_mesh
 	name = "synchronous mesh"
 	desc = "A mesh that seems strongly interconnected to itself.  It moves slowly, but with purpose."
 	ai_desc = "defensive"
@@ -334,7 +334,7 @@
 	attack_verb = "synchronously strikes"
 	var/synchronously_attacking = FALSE
 
-/datum/blob_type/synchronous_mesh/on_attack(obj/structure/blob/B, mob/living/victim)
+datum/blob_type/synchronous_mesh/on_attack(obj/structure/blob/B, mob/living/victim)
 	if(synchronously_attacking)
 		return
 	synchronously_attacking = TRUE // To avoid infinite loops.
@@ -344,7 +344,7 @@
 			victim.blob_act(C)
 	synchronously_attacking = FALSE
 
-/datum/blob_type/synchronous_mesh/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
+datum/blob_type/synchronous_mesh/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
 	var/list/blobs_to_hurt = list() // Maximum split is 9, reducing the damage each blob takes to 11.1% but doing that damage to 9 blobs.
 	for(var/obj/structure/blob/C in range(1, B))
 		if(!istype(C, /obj/structure/blob/core) && !istype(C, /obj/structure/blob/node) && C.overmind && (C.overmind == B.overmind) ) //if it doesn't have the same 'ownership' or is a core or node, don't split damage to it
@@ -360,7 +360,7 @@
 	return damage / max(blobs_to_hurt.len, 1) // To hurt the blob that got hit.
 
 
-/datum/blob_type/shifting_fragments
+datum/blob_type/shifting_fragments
 	name = "shifting fragments"
 	desc = "A collection of fragments that seem to shuffle around constantly."
 	ai_desc = "evasive"
@@ -378,7 +378,7 @@
 	attack_message = "A fragment strikes you"
 	attack_verb = "strikes"
 
-/datum/blob_type/shifting_fragments/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
+datum/blob_type/shifting_fragments/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
 	if(damage > 0 && prob(60))
 		var/list/available_blobs = list()
 		for(var/obj/structure/blob/OB in orange(1, B))
@@ -391,13 +391,13 @@
 			B.forceMove(T) // Swap places.
 	return ..()
 
-/datum/blob_type/shifting_fragments/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
+datum/blob_type/shifting_fragments/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
 	if(istype(B, /obj/structure/blob/normal) || (istype(B, /obj/structure/blob/shield) && prob(25)))
 		new_B.forceMove(get_turf(B))
 		B.forceMove(T)
 
 // A very cool blob, literally.
-/datum/blob_type/cryogenic_goo
+datum/blob_type/cryogenic_goo
 	name = "cryogenic goo"
 	desc = "A mass of goo that freezes anything it touches."
 	ai_desc = "balanced"
@@ -417,7 +417,7 @@
 	attack_message_synth = ", and your system reports lower internal temperatures"
 	attack_verb = "stabs"
 
-/datum/blob_type/cryogenic_goo/on_attack(obj/structure/blob/B, mob/living/victim)
+datum/blob_type/cryogenic_goo/on_attack(obj/structure/blob/B, mob/living/victim)
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		var/protection = H.get_cold_protection(50)
@@ -433,7 +433,7 @@
 	else // Just do some extra burn for mobs who don't process bodytemp
 		victim.adjustFireLoss(20)
 
-/datum/blob_type/cryogenic_goo/on_pulse(var/obj/structure/blob/B)
+datum/blob_type/cryogenic_goo/on_pulse(var/obj/structure/blob/B)
 	var/turf/simulated/T = get_turf(B)
 	if(!istype(T))
 		return
@@ -443,7 +443,7 @@
 		env.adjust_thermal_energy(-10 * 1000)
 
 // Electric blob that stuns.
-/datum/blob_type/energized_jelly
+datum/blob_type/energized_jelly
 	name = "energized jelly"
 	desc = "A substance that seems to generate electricity."
 	ai_desc = "suppressive"
@@ -463,13 +463,13 @@
 	attack_message_synth = ", and your internal circuity is overloaded as electricity arcs into you"
 	attack_verb = "prods"
 
-/datum/blob_type/energized_jelly/on_attack(obj/structure/blob/B, mob/living/victim, def_zone)
+datum/blob_type/energized_jelly/on_attack(obj/structure/blob/B, mob/living/victim, def_zone)
 	victim.electrocute_act(10, src, 1, def_zone)
 	victim.stun_effect_act(0, 40, BP_TORSO, src)
 
 
 // A blob with area of effect attacks.
-/datum/blob_type/explosive_lattice
+datum/blob_type/explosive_lattice
 	name = "explosive lattice"
 	desc = "A very unstable lattice that looks quite explosive."
 	ai_desc = "aggressive"
@@ -492,7 +492,7 @@
 	attack_verb = "blasts"
 	var/exploding = FALSE
 
-/datum/blob_type/explosive_lattice/on_attack(obj/structure/blob/B, mob/living/victim, def_zone) // This doesn't use actual bombs since they're too strong and it would hurt the blob.
+datum/blob_type/explosive_lattice/on_attack(obj/structure/blob/B, mob/living/victim, def_zone) // This doesn't use actual bombs since they're too strong and it would hurt the blob.
 	if(exploding) // We're busy, don't infinite loop us.
 		return
 
@@ -521,7 +521,7 @@
 
 
 // A blob that slips and drowns you.
-/datum/blob_type/pressurized_slime
+datum/blob_type/pressurized_slime
 	name = "pressurized slime"
 	desc = "A large mass that seems to leak slippery fluid everywhere."
 	ai_desc = "drowning"
@@ -542,27 +542,27 @@
 	attack_message_synth = ", and the fluid wears down on your components"
 	attack_verb = "splashes"
 
-/datum/blob_type/pressurized_slime/on_attack(obj/structure/blob/B, mob/living/victim, def_zone)
+datum/blob_type/pressurized_slime/on_attack(obj/structure/blob/B, mob/living/victim, def_zone)
 	victim.water_act(5)
 	var/turf/simulated/T = get_turf(victim)
 	if(T)
 		T.wet_floor()
 
-/datum/blob_type/pressurized_slime/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
+datum/blob_type/pressurized_slime/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
 	wet_surroundings(B, damage)
 	return ..()
 
-/datum/blob_type/pressurized_slime/on_pulse(var/obj/structure/blob/B)
+datum/blob_type/pressurized_slime/on_pulse(var/obj/structure/blob/B)
 	var/turf/simulated/T = get_turf(B)
 	if(!istype(T))
 		return
 	T.wet_floor()
 
-/datum/blob_type/pressurized_slime/on_death(obj/structure/blob/B)
+datum/blob_type/pressurized_slime/on_death(obj/structure/blob/B)
 	B.visible_message("<span class='danger'>The blob ruptures, spraying the area with liquid!</span>")
 	wet_surroundings(B, 50)
 
-/datum/blob_type/pressurized_slime/proc/wet_surroundings(var/obj/structure/blob/B, var/probability = 50)
+datum/blob_type/pressurized_slime/proc/wet_surroundings(var/obj/structure/blob/B, var/probability = 50)
 	for(var/turf/simulated/T in range(1, B))
 		if(prob(probability))
 			T.wet_floor()
@@ -571,7 +571,7 @@
 
 
 // A blob that irradiates everything.
-/datum/blob_type/radioactive_ooze
+datum/blob_type/radioactive_ooze
 	name = "radioactive ooze"
 	desc = "A goopy mess that glows with an unhealthy aura."
 	ai_desc = "radical"
@@ -592,10 +592,10 @@
 	attack_message_synth = ", and your internal systems are bombarded by ionizing radiation"
 	attack_verb = "splashes"
 
-/datum/blob_type/radioactive_ooze/on_pulse(var/obj/structure/blob/B)
+datum/blob_type/radioactive_ooze/on_pulse(var/obj/structure/blob/B)
 	radiation_pulse(src, RAD_INTENSITY_BLOB_RADIOACTIVE_OOZE)
 
-/datum/blob_type/volatile_alluvium
+datum/blob_type/volatile_alluvium
 	name = "volatile alluvium"
 	desc = "A churning, earthy mass that moves in waves."
 	ai_desc = "earthen"
@@ -621,7 +621,7 @@
 	factory_type = /obj/structure/blob/factory/sluggish
 	resource_type = /obj/structure/blob/resource/sluggish
 
-/datum/blob_type/volatile_alluvium/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
+datum/blob_type/volatile_alluvium/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
 	if(damage > 0 && attacker && get_dist(B, attacker) <= 2 && prob(min(damage, 70)) && istype(attacker, /mob/living/carbon/human)) // Melee weapons of any type carried by a human will have a high chance of being stolen.
 		var/mob/living/carbon/human/H = attacker
 		var/obj/item/I = H.get_active_held_item()
@@ -639,7 +639,7 @@
 			B.visible_message("<span class='danger'>The [name] heaves, pulling \the [attacker]'s weapon from their hands!</span>")
 	return ..()
 
-/datum/blob_type/volatile_alluvium/on_water(obj/structure/blob/B, amount)
+datum/blob_type/volatile_alluvium/on_water(obj/structure/blob/B, amount)
 	spawn(1)
 		var/damage = amount * 2
 		B.adjust_integrity(-(damage))

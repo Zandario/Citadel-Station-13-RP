@@ -1,4 +1,4 @@
-/datum/db_query
+datum/db_query
 	// Inputs
 	var/connection
 	var/sql
@@ -18,7 +18,7 @@
 
 	var/list/item  //list of data values populated by NextRow()
 
-/datum/db_query/New(connection, sql, arguments)
+datum/db_query/New(connection, sql, arguments)
 	SSdbcore.active_queries[src] = TRUE
 	Activity("Created")
 	item = list()
@@ -27,21 +27,21 @@
 	src.sql = sql
 	src.arguments = arguments
 
-/datum/db_query/Destroy()
+datum/db_query/Destroy()
 	Close()
 	SSdbcore.active_queries -= src
 	return ..()
 
-/datum/db_query/proc/Activity(activity)
+datum/db_query/proc/Activity(activity)
 	last_activity = activity
 	last_activity_time = world.time
 
-/datum/db_query/proc/warn_execute(async = TRUE)
+datum/db_query/proc/warn_execute(async = TRUE)
 	. = Execute(async)
 	if(!.)
 		to_chat(usr, "<span class='danger'>A SQL error occurred during this operation, check the server logs.</span>")
 
-/datum/db_query/proc/Execute(async = TRUE, log_error = TRUE)
+datum/db_query/proc/Execute(async = TRUE, log_error = TRUE)
 	Activity("Execute")
 	if(in_progress)
 		CRASH("Attempted to start a new query while waiting on the old one")
@@ -65,7 +65,7 @@
 		log_query_debug("Query used: [sql]")
 		slow_query_check()
 
-/datum/db_query/proc/run_query(async)
+datum/db_query/proc/run_query(async)
 	var/job_result_str
 
 	if (async)
@@ -94,10 +94,10 @@
 			last_error = "offline"
 			return FALSE
 
-/datum/db_query/proc/slow_query_check()
+datum/db_query/proc/slow_query_check()
 	message_admins("HEY! A database query timed out. Did the server just hang? <a href='?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
 
-/datum/db_query/proc/NextRow(async = TRUE)
+datum/db_query/proc/NextRow(async = TRUE)
 	Activity("NextRow")
 
 	if (rows && next_row_to_take <= rows.len)
@@ -107,24 +107,24 @@
 	else
 		return FALSE
 
-/datum/db_query/proc/ErrorMsg()
+datum/db_query/proc/ErrorMsg()
 	return last_error
 
-/datum/db_query/proc/Close()
+datum/db_query/proc/Close()
 	rows = null
 	item = null
 
 //! protect
-/datum/db_query/can_vv_get(var_name)
+datum/db_query/can_vv_get(var_name)
 	switch(var_name)
 		if(NAMEOF(src, connection))
 			return FALSE
 	return ..()
 
-/datum/db_query/vv_edit_var(var_name, var_value)
+datum/db_query/vv_edit_var(var_name, var_value)
 	// nah
 	return FALSE
 
-/datum/db_query/CanProcCall(proc_name)
+datum/db_query/CanProcCall(proc_name)
 	//fuck off kevinz
 	return FALSE

@@ -2,7 +2,7 @@
 /// Syringes.
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/reagent_containers/syringe
+obj/item/reagent_containers/syringe
 	name = "syringe"
 	desc = "A disposable syringe. A small sticker on the side reminds you to dispose after one use."
 	icon = 'icons/obj/medical/syringe.dmi'
@@ -26,18 +26,18 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
-/obj/item/reagent_containers/syringe/on_reagent_change()
+obj/item/reagent_containers/syringe/on_reagent_change()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/pickup(mob/user, flags, atom/oldLoc)
+obj/item/reagent_containers/syringe/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/dropped(mob/user, flags, atom/newLoc)
+obj/item/reagent_containers/syringe/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/attack_self(mob/user)
+obj/item/reagent_containers/syringe/attack_self(mob/user)
 	switch(mode)
 		if(SYRINGE_DRAW)
 			mode = SYRINGE_INJECT
@@ -47,14 +47,14 @@
 			return
 	update_icon()
 
-/obj/item/reagent_containers/syringe/attack_hand(mob/user, list/params)
+obj/item/reagent_containers/syringe/attack_hand(mob/user, list/params)
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/attackby(obj/item/I as obj, mob/user as mob)
+obj/item/reagent_containers/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	return
 
-/obj/item/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)
+obj/item/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)
 	if(!proximity || !target.reagents)
 		return
 
@@ -232,7 +232,7 @@
 
 	return
 
-/obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 	if(istype(target, /mob/living/carbon/human))
 
 		var/mob/living/carbon/human/H = target
@@ -272,7 +272,7 @@
 	add_attack_logs(user,target,"Stabbed with [src.name] containing [contained], trasferred [trans] units")
 	break_syringe(target, user)
 
-/obj/item/reagent_containers/syringe/proc/break_syringe(mob/living/carbon/target, mob/living/carbon/user)
+obj/item/reagent_containers/syringe/proc/break_syringe(mob/living/carbon/target, mob/living/carbon/user)
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	if(target)
@@ -281,7 +281,7 @@
 		add_fingerprint(user)
 	update_icon()
 
-/obj/item/reagent_containers/syringe/ld50_syringe
+obj/item/reagent_containers/syringe/ld50_syringe
 	name = "Lethal Injection Syringe"
 	desc = "A syringe used for lethal injections."
 	amount_per_transfer_from_this = 50
@@ -289,7 +289,7 @@
 	visible_name = "a giant syringe"
 	time = 300
 
-/obj/item/reagent_containers/syringe/ld50_syringe/afterattack(obj/target, mob/user, flag)
+obj/item/reagent_containers/syringe/ld50_syringe/afterattack(obj/target, mob/user, flag)
 	if(mode == SYRINGE_DRAW && ismob(target)) // No drawing 50 units of blood at once
 		to_chat(user, "<span class='notice'>This needle isn't designed for drawing blood.</span>")
 		return
@@ -301,50 +301,50 @@
 /// Syringes. END
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/reagent_containers/syringe/inaprovaline
+obj/item/reagent_containers/syringe/inaprovaline
 	name = "Syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
 
-/obj/item/reagent_containers/syringe/inaprovaline/Initialize(mapload)
+obj/item/reagent_containers/syringe/inaprovaline/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("inaprovaline", 15)
 
-/obj/item/reagent_containers/syringe/antitoxin
+obj/item/reagent_containers/syringe/antitoxin
 	name = "Syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
 
-/obj/item/reagent_containers/syringe/antitoxin/Initialize(mapload)
+obj/item/reagent_containers/syringe/antitoxin/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("anti_toxin", 15)
 
-/obj/item/reagent_containers/syringe/antiviral
+obj/item/reagent_containers/syringe/antiviral
 	name = "Syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
 
-/obj/item/reagent_containers/syringe/antiviral/Initialize(mapload)
+obj/item/reagent_containers/syringe/antiviral/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("spaceacillin", 15)
 
-/obj/item/reagent_containers/syringe/drugs
+obj/item/reagent_containers/syringe/drugs
 	name = "Syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 
-/obj/item/reagent_containers/syringe/drugs/Initialize(mapload)
+obj/item/reagent_containers/syringe/drugs/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("space_drugs",  5)
 	reagents.add_reagent("mindbreaker",  5)
 	reagents.add_reagent("cryptobiolin", 5)
 
-/obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize(mapload)
+obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("chloralhydrate", 50)
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/reagent_containers/syringe/steroid
+obj/item/reagent_containers/syringe/steroid
 	name = "Syringe (anabolic steroids)"
 	desc = "Contains drugs for muscle growth."
 
-/obj/item/reagent_containers/syringe/steroid/Initialize(mapload)
+obj/item/reagent_containers/syringe/steroid/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("hyperzine",10)

@@ -1,6 +1,6 @@
 var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
-/spell
+spell
 	var/name = "Spell"
 	var/desc = "A spell"
 	parent_type = /datum
@@ -58,13 +58,13 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 ///SETUP AND PROCESS///
 ///////////////////////
 
-/spell/New()
+spell/New()
 	..()
 
 	//still_recharging_msg = "<span class='notice'>[name] is still recharging.</span>"
 	charge_counter = charge_max
 
-/spell/process(delta_time)
+spell/process(delta_time)
 	spawn while(charge_counter < charge_max)
 		charge_counter++
 		sleep(1)
@@ -74,10 +74,10 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 /////CASTING/////
 /////////////////
 
-/spell/proc/choose_targets(mob/user = usr) //depends on subtype - see targeted.dm, aoe_turf.dm, dumbfire.dm, or code in general folder
+spell/proc/choose_targets(mob/user = usr) //depends on subtype - see targeted.dm, aoe_turf.dm, dumbfire.dm, or code in general folder
 	return
 
-/spell/proc/perform(mob/user = usr, skipcharge = 0) //if recharge is started is important for the trigger spells
+spell/proc/perform(mob/user = usr, skipcharge = 0) //if recharge is started is important for the trigger spells
 	if(!holder)
 		holder = user //just in case
 	if(!cast_check(skipcharge, user))
@@ -98,13 +98,13 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 		after_cast(targets) //generates the sparks, smoke, target messages etc.
 
 
-/spell/proc/cast(list/targets, mob/user) //the actual meat of the spell
+spell/proc/cast(list/targets, mob/user) //the actual meat of the spell
 	return
 
-/spell/proc/critfail(list/targets, mob/user) //the wizman has fucked up somehow
+spell/proc/critfail(list/targets, mob/user) //the wizman has fucked up somehow
 	return
 
-/spell/proc/adjust_var(mob/living/target = usr, type, amount) //handles the adjustment of the var when the spell is used. has some hardcoded types
+spell/proc/adjust_var(mob/living/target = usr, type, amount) //handles the adjustment of the var when the spell is used. has some hardcoded types
 	switch(type)
 		if("bruteloss")
 			target.adjustBruteLoss(amount)
@@ -128,7 +128,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 /////CASTING WRAPPERS//////
 ///////////////////////////
 
-/spell/proc/before_cast(list/targets)
+spell/proc/before_cast(list/targets)
 	var/valid_targets[0]
 	for(var/atom/target in targets)
 		// Check range again (fixes long-range EI NATH)
@@ -152,7 +152,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 				qdel(spell)
 	return valid_targets
 
-/spell/proc/after_cast(list/targets)
+spell/proc/after_cast(list/targets)
 	for(var/atom/target in targets)
 		var/location = get_turf(target)
 		if(istype(target,/mob/living) && message)
@@ -176,7 +176,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 /////////////////////
 /*Checkers, cost takers, message makers, etc*/
 
-/spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
+spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 
 	if(!(src in user.spell_list) && holder == user)
 		log_world("[user] utilized the spell '[src]' without having it.")
@@ -224,7 +224,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 	return 1
 
-/spell/proc/check_charge(var/skipcharge, mob/user)
+spell/proc/check_charge(var/skipcharge, mob/user)
 	if(!skipcharge)
 		switch(charge_type)
 			if(Sp_RECHARGE)
@@ -237,7 +237,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 					return 0
 	return 1
 
-/spell/proc/take_charge(mob/user = user, var/skipcharge)
+spell/proc/take_charge(mob/user = user, var/skipcharge)
 	if(!skipcharge)
 		switch(charge_type)
 			if(Sp_RECHARGE)
@@ -253,7 +253,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 		return 0
 	return 1
 
-/spell/proc/invocation(mob/user = usr, var/list/targets) //spelling the spell out and setting it on recharge/reducing charges amount
+spell/proc/invocation(mob/user = usr, var/list/targets) //spelling the spell out and setting it on recharge/reducing charges amount
 
 	switch(invocation_type)
 		if(SpI_SHOUT)
@@ -273,7 +273,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 ///UPGRADING PROCS///
 /////////////////////
 
-/spell/proc/can_improve(var/upgrade_type)
+spell/proc/can_improve(var/upgrade_type)
 	if(level_max[Sp_TOTAL] <= ( spell_levels[Sp_SPEED] + spell_levels[Sp_POWER] )) //too many levels, can't do it
 		return 0
 
@@ -283,10 +283,10 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 	return 1
 
-/spell/proc/empower_spell()
+spell/proc/empower_spell()
 	return
 
-/spell/proc/quicken_spell()
+spell/proc/quicken_spell()
 	if(!can_improve(Sp_SPEED))
 		return 0
 
@@ -323,7 +323,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 	return temp
 
-/spell/proc/spell_do_after(var/mob/user as mob, delay as num, var/numticks = 5)
+spell/proc/spell_do_after(var/mob/user as mob, delay as num, var/numticks = 5)
 	if(!user || isnull(user))
 		return 0
 	if(numticks == 0)
@@ -341,5 +341,5 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 			return 0
 	return 1
 
-/spell/proc/remove_self(mob/user = usr)
+spell/proc/remove_self(mob/user = usr)
 	user.remove_spell(src)

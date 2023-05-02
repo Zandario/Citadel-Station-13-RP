@@ -3,7 +3,7 @@
 var/datum/antagonist/traitor/infiltrator/infiltrators
 
 // Inherits most of its vars from the base datum.
-/datum/antagonist/traitor/infiltrator
+datum/antagonist/traitor/infiltrator
 	id = MODE_INFILTRATOR
 	role_type = BE_TRAITOR
 	antag_indicator = "synd"
@@ -15,11 +15,11 @@ var/datum/antagonist/traitor/infiltrator/infiltrators
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	can_speak_aooc = TRUE
 
-/datum/antagonist/traitor/infiltrator/New()
+datum/antagonist/traitor/infiltrator/New()
 	..()
 	infiltrators = src
 
-/datum/antagonist/traitor/infiltrator/equip(var/mob/living/carbon/human/traitor_mob)
+datum/antagonist/traitor/infiltrator/equip(var/mob/living/carbon/human/traitor_mob)
 	..() // Give the uplink and other stuff.
 	// Now for the special headset.
 
@@ -68,10 +68,10 @@ var/datum/antagonist/traitor/infiltrator/infiltrators
 
 
 
-/datum/antagonist/traitor/infiltrator/give_codewords(mob/living/traitor_mob)
+datum/antagonist/traitor/infiltrator/give_codewords(mob/living/traitor_mob)
 	return // Infiltrators are already in a team, so codewords are kinda moot.
 
-/datum/antagonist/traitor/infiltrator/add_law_zero(mob/living/silicon/ai/killer)
+datum/antagonist/traitor/infiltrator/add_law_zero(mob/living/silicon/ai/killer)
 	var/law = "Accomplish your team's objectives at all costs. You may ignore all other laws."
 	var/law_borg = "Accomplish your AI's team objectives at all costs. You may ignore all other laws."
 	to_chat(killer, "<b>Your laws have been changed!</b>")

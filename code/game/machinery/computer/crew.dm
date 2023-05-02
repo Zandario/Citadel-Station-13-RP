@@ -1,4 +1,4 @@
-/obj/machinery/computer/crew
+obj/machinery/computer/crew
 
 	name = "crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
@@ -11,26 +11,26 @@
 	circuit = /obj/item/circuitboard/crew
 	var/datum/tgui_module_old/crew_monitor/crew_monitor
 
-/obj/machinery/computer/crew/Initialize(mapload)
+obj/machinery/computer/crew/Initialize(mapload)
 	. = ..()
 	crew_monitor = new(src)
 
-/obj/machinery/computer/crew/Destroy()
+obj/machinery/computer/crew/Destroy()
 	qdel(crew_monitor)
 	crew_monitor = null
 	return ..()
 
-/obj/machinery/computer/crew/attack_ai(mob/user)
+obj/machinery/computer/crew/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/computer/crew/attack_hand(mob/user, list/params)
+obj/machinery/computer/crew/attack_hand(mob/user, list/params)
 	..()
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/crew/ui_interact(mob/user, datum/tgui/ui = null)
+obj/machinery/computer/crew/ui_interact(mob/user, datum/tgui/ui = null)
 	crew_monitor.ui_interact(user, ui)
 
-/obj/machinery/computer/crew/interact(mob/user)
+obj/machinery/computer/crew/interact(mob/user)
 	crew_monitor.ui_interact(user)

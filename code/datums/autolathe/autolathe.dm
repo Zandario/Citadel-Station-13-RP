@@ -1,4 +1,4 @@
-/datum/category_item/autolathe/New()
+datum/category_item/autolathe/New()
 	..()
 	var/obj/item/I = new path()
 	if(I.matter && !resources)
@@ -18,42 +18,42 @@
 * Category Collection Setup *
 ****************************/
 
-/datum/category_collection/autolathe
+datum/category_collection/autolathe
 	category_group_type = /datum/category_group/autolathe
 
 /*************
 * Categories *
 *************/
 
-/datum/category_group/autolathe
+datum/category_group/autolathe
 
-/datum/category_group/autolathe/all
+datum/category_group/autolathe/all
 	name = "All"
 	category_item_type = /datum/category_item/autolathe
 
 ///datum/category_group/autolathe/all/New()
 
-/datum/category_group/autolathe/arms
+datum/category_group/autolathe/arms
 	name = "Arms and Ammunition"
 	category_item_type = /datum/category_item/autolathe/arms
 
-/datum/category_group/autolathe/devices
+datum/category_group/autolathe/devices
 	name = "Devices and Components"
 	category_item_type = /datum/category_item/autolathe/devices
 
-/datum/category_group/autolathe/engineering
+datum/category_group/autolathe/engineering
 	name = "Engineering"
 	category_item_type = /datum/category_item/autolathe/engineering
 
-/datum/category_group/autolathe/general
+datum/category_group/autolathe/general
 	name = "General"
 	category_item_type = /datum/category_item/autolathe/general
 
-/datum/category_group/autolathe/medical
+datum/category_group/autolathe/medical
 	name = "Medical"
 	category_item_type = /datum/category_item/autolathe/medical
 
-/datum/category_group/autolathe/tools
+datum/category_group/autolathe/tools
 	name = "Tools"
 	category_item_type = /datum/category_item/autolathe/tools
 
@@ -61,7 +61,7 @@
 * Category entries *
 *******************/
 
-/datum/category_item/autolathe
+datum/category_item/autolathe
 	var/path
 	var/list/resources
 	var/hidden
@@ -71,5 +71,5 @@
 	var/no_scale
 	var/man_rating = 0
 
-/datum/category_item/autolathe/dd_SortValue()
+datum/category_item/autolathe/dd_SortValue()
 	return name

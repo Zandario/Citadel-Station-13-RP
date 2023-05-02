@@ -1,7 +1,7 @@
 /**
  *! Medibot Assembly
  */
-/obj/item/bot_assembly/medibot
+obj/item/bot_assembly/medibot
 	name = "incomplete medibot assembly"
 	desc = "A first aid kit with a robot arm permanently grafted to it."
 	icon = 'icons/obj/bots/medibots.dmi'
@@ -14,15 +14,15 @@
 	var/firstaid = /obj/item/storage/firstaid
 
 
-/obj/item/bot_assembly/medibot/Initialize(mapload)
+obj/item/bot_assembly/medibot/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/item/bot_assembly/medibot/LateInitialize()
+obj/item/bot_assembly/medibot/LateInitialize()
 	. = ..()
 	update_appearance()
 
-/obj/item/bot_assembly/medibot/update_overlays()
+obj/item/bot_assembly/medibot/update_overlays()
 	. = ..()
 
 	/// We add our overlays to this list, then add them all at once to avoid appearance churn.
@@ -34,7 +34,7 @@
 
 	add_overlay(temp_overlays)
 
-/obj/item/bot_assembly/medibot/attackby(obj/item/target_item, mob/user, params)
+obj/item/bot_assembly/medibot/attackby(obj/item/target_item, mob/user, params)
 	..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
@@ -66,7 +66,7 @@
  *! Medibot Construction
  */
 
-/obj/item/storage/firstaid/attackby(obj/item/robot_parts/target_part, mob/user, params)
+obj/item/storage/firstaid/attackby(obj/item/robot_parts/target_part, mob/user, params)
 
 	if ((!istype(target_part, /obj/item/robot_parts/l_arm)) && (!istype(target_part, /obj/item/robot_parts/r_arm)))
 		..()

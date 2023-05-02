@@ -1,4 +1,4 @@
-/obj/item/ammo_casing
+obj/item/ammo_casing
 	name = "bullet casing"
 	desc = "A bullet casing."
 	icon = 'icons/obj/ammo.dmi'
@@ -27,27 +27,27 @@
 	var/caliber = ""					//Which kind of guns it can be loaded into
 	var/fall_sounds = list('sound/weapons/guns/casingfall1.ogg','sound/weapons/guns/casingfall2.ogg','sound/weapons/guns/casingfall3.ogg')
 
-/obj/item/ammo_casing/Initialize(mapload)
+obj/item/ammo_casing/Initialize(mapload)
 	. = ..()
 	// let's like, not randomize icon state when we're not somewhere relevant, shall we?
 	if(isturf(loc) || istype(loc, /obj/structure/closet))
 		pixel_x = rand(-10, 10)
 		pixel_y = rand(-10, 10)
 
-/obj/item/ammo_casing/Destroy()
+obj/item/ammo_casing/Destroy()
 	if(stored)
 		QDEL_NULL(stored)
 	return ..()
 
 //removes the projectile from the ammo casing
 // todo: refactor for actual on-shot or whatever
-/obj/item/ammo_casing/proc/expend()
+obj/item/ammo_casing/proc/expend()
 	. = stored
 	stored = FALSE
 	setDir(pick(GLOB.cardinal)) //spin spent casings
 	update_icon()
 
-/obj/item/ammo_casing/screwdriver_act(obj/item/I, mob/user, flags, hint)
+obj/item/ammo_casing/screwdriver_act(obj/item/I, mob/user, flags, hint)
 	. = TRUE
 	if(!stored)
 		user.action_feedback(SPAN_WARNING("There is no bullet in [src] to inscribe."), src)
@@ -61,7 +61,7 @@
 	user.action_feedback(SPAN_NOTICE("You inscribe [label_text] into \the [initial(stored.name)]."), src)
 	stored.name = "[initial(stored.name)] (\"[label_text]\")"
 
-/obj/item/ammo_casing/dynamic_tool_functions(obj/item/I, mob/user)
+obj/item/ammo_casing/dynamic_tool_functions(obj/item/I, mob/user)
 	. = list(
 		TOOL_SCREWDRIVER = list(
 			"etch"
@@ -69,7 +69,7 @@
 	)
 	return merge_double_lazy_assoc_list(., ..())
 
-/obj/item/ammo_casing/proc/newshot() //For energy weapons, syringe gun, shotgun shells and wands (!).
+obj/item/ammo_casing/proc/newshot() //For energy weapons, syringe gun, shotgun shells and wands (!).
 	if(stored)
 		return
 	init_projectile()
@@ -77,13 +77,13 @@
 /**
  * sees if we're currently loaded
  */
-/obj/item/ammo_casing/proc/loaded()
+obj/item/ammo_casing/proc/loaded()
 	return stored != FALSE
 
 /**
  * grab projectile
  */
-/obj/item/ammo_casing/proc/get_projectile()
+obj/item/ammo_casing/proc/get_projectile()
 	switch(stored)
 		if(null)
 			return lazy_init_projectile()
@@ -94,7 +94,7 @@
 /**
  * make projectile automatically but only if we're not expended
  */
-/obj/item/ammo_casing/proc/lazy_init_projectile()
+obj/item/ammo_casing/proc/lazy_init_projectile()
 	if(stored == FALSE)
 		return null
 	return init_projectile()
@@ -102,25 +102,25 @@
 /**
  * makes a new projectile
  */
-/obj/item/ammo_casing/proc/init_projectile()
+obj/item/ammo_casing/proc/init_projectile()
 	if(istype(stored))
 		CRASH("double init?")
 	stored = new projectile_type
 	return stored
 
-/obj/item/ammo_casing/update_icon_state()
+obj/item/ammo_casing/update_icon_state()
 	. = ..()
 	if(icon_spent && !loaded())
 		icon_state = "[base_icon_state || initial(icon_state)]-spent"
 	else
 		icon_state = base_icon_state || icon_state
 
-/obj/item/ammo_casing/examine(mob/user)
+obj/item/ammo_casing/examine(mob/user)
 	. = ..()
 	if(!loaded())
 		. += "This one is spent."
 
-/obj/item/ammo_casing/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
+obj/item/ammo_casing/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/mag = I
 		mag.quick_gather(get_turf(src), user)

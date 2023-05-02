@@ -1,5 +1,5 @@
 
-/proc/dopage(src, target)
+proc/dopage(src, target)
 	var/href_list
 	var/href
 	href_list = params2list("src=\ref[src]&[target]=1")
@@ -8,14 +8,14 @@
 	src:Topic(href, href_list)
 	return null
 
-/proc/is_on_same_plane_or_station(z1, z2)
+proc/is_on_same_plane_or_station(z1, z2)
 	if (z1 == z2)
 		return TRUE
 	if ((z1 in GLOB.using_map.station_levels) &&	(z2 in GLOB.using_map.station_levels))
 		return TRUE
 	return FALSE
 
-/proc/max_default_z_level()
+proc/max_default_z_level()
 	var/max_z = 0
 	for(var/z in GLOB.using_map.station_levels)
 		max_z = max(z, max_z)
@@ -25,20 +25,20 @@
 		max_z = max(z, max_z)
 	return max_z
 
-/proc/get_area(atom/A)
+proc/get_area(atom/A)
 	RETURN_TYPE(/area)
 	if (isarea(A))
 		return A
 	var/turf/T = get_turf(A)
 	return T ? T.loc : null
 
-/proc/get_area_name(atom/X, format_text = FALSE)
+proc/get_area_name(atom/X, format_text = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
 	return format_text ? format_text(A.name) : A.name
 
-/proc/get_area_master(const/O)
+proc/get_area_master(const/O)
 	var/area/A = get_area(O)
 	if (isarea(A))
 		return A
@@ -47,7 +47,7 @@
 /**
  * Checks if any living humans are in a given area.
  */
-/proc/area_is_occupied(area/myarea)
+proc/area_is_occupied(area/myarea)
 	// Testing suggests looping over human_mob_list is quicker than looping over area contents
 	for(var/mob/living/carbon/human/H in human_mob_list)
 		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
@@ -58,7 +58,7 @@
 	return 0
 
 /// Like view but bypasses luminosity check.
-/proc/hear(range, atom/source)
+proc/hear(range, atom/source)
 
 	var/lum = source.luminosity
 	source.luminosity = 6
@@ -68,7 +68,7 @@
 
 	return heard
 
-/proc/get_hearers_in_view(R, atom/source)
+proc/get_hearers_in_view(R, atom/source)
 	var/turf/T = get_turf(source)
 	. = list()
 	if(!T)
@@ -93,22 +93,22 @@
 			SEND_SIGNAL(A, COMSIG_ATOM_HEARER_IN_VIEW, processing, .)
 		processing += A.contents
 
-/proc/isStationLevel(level)
+proc/isStationLevel(level)
 	return level in GLOB.using_map.station_levels
 
-/proc/isNotStationLevel(level)
+proc/isNotStationLevel(level)
 	return !isStationLevel(level)
 
-/proc/isPlayerLevel(level)
+proc/isPlayerLevel(level)
 	return level in GLOB.using_map.player_levels
 
-/proc/isAdminLevel(level)
+proc/isAdminLevel(level)
 	return level in GLOB.using_map.admin_levels
 
-/proc/isNotAdminLevel(level)
+proc/isNotAdminLevel(level)
 	return !isAdminLevel(level)
 
-/proc/circlerange(center = usr, radius = 3)
+proc/circlerange(center = usr, radius = 3)
 
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
@@ -123,7 +123,7 @@
 	//turfs += centerturf
 	return turfs
 
-/proc/circleview(center = usr, radius = 3)
+proc/circleview(center = usr, radius = 3)
 
 	var/turf/centerturf = get_turf(center)
 	var/list/atoms = new/list()
@@ -141,7 +141,7 @@
 /**
  * Alternative to range (ONLY processes turfs and thus less intensive).
  */
-/proc/trange(rad = 0, turf/centre = null)
+proc/trange(rad = 0, turf/centre = null)
 	if(!centre)
 		return
 
@@ -149,7 +149,7 @@
 	var/turf/x2y2 = locate(((centre.x+rad)>world.maxx ? world.maxx : centre.x+rad),((centre.y+rad)>world.maxy ? world.maxy : centre.y+rad),centre.z)
 	return block(x1y1,x2y2)
 
-/proc/get_dist_euclidian(atom/Loc1, atom/Loc2)
+proc/get_dist_euclidian(atom/Loc1, atom/Loc2)
 	var/dx = Loc1.x - Loc2.x
 	var/dy = Loc1.y - Loc2.y
 
@@ -157,7 +157,7 @@
 
 	return dist
 
-/proc/circlerangeturfs(center = usr, radius = 3)
+proc/circlerangeturfs(center = usr, radius = 3)
 
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
@@ -173,7 +173,7 @@
 /**
  * Is there even a diffrence between this proc and circlerangeturfs()?
  */
-/proc/circleviewturfs(center = usr, radius = 3)
+proc/circleviewturfs(center = usr, radius = 3)
 
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
@@ -195,7 +195,7 @@
  * It will keep doing this until it checks every content possible. This will fix any problems with mobs, that are inside objects,
  * being unable to hear people due to being in a box within a bag.
  */
-/proc/recursive_content_check(atom/O, list/L = list(), recursion_limit = 3, client_check = 1, sight_check = 1, include_mobs = 1, include_objects = 1, ignore_show_messages = 0)
+proc/recursive_content_check(atom/O, list/L = list(), recursion_limit = 3, client_check = 1, sight_check = 1, include_mobs = 1, include_objects = 1, ignore_show_messages = 0)
 
 	if(!recursion_limit)
 		return L
@@ -226,7 +226,7 @@
 /**
  * Returns a list of mobs and/or objects in range of R from source. Used in radio and say code.
  */
-/proc/get_mobs_or_objects_in_view(R, atom/source, include_mobs = 1, include_objects = 1)
+proc/get_mobs_or_objects_in_view(R, atom/source, include_mobs = 1, include_objects = 1)
 
 	var/turf/T = get_turf(source)
 	var/list/hear = list()
@@ -252,7 +252,7 @@
 	return hear
 
 
-/proc/get_mobs_in_radio_ranges(list/obj/item/radio/radios)
+proc/get_mobs_in_radio_ranges(list/obj/item/radio/radios)
 
 	set background = 1
 
@@ -294,7 +294,7 @@
  * based on their presence in lists of players or registered objects
  * Type: 1-audio, 2-visual, 0-neither
  */
-/proc/get_mobs_and_objs_in_view_fast(turf/T, range, type = 1, remote_ghosts = TRUE)
+proc/get_mobs_and_objs_in_view_fast(turf/T, range, type = 1, remote_ghosts = TRUE)
 	var/list/mobs = list()
 	var/list/objs = list()
 
@@ -339,7 +339,7 @@
 
 	return list("mobs" = mobs, "objs" = objs)
 
-/proc/inLineOfSight(X1, Y1, X2, Y2, Z=1, PX1=16.5, PY1=16.5, PX2=16.5, PY2=16.5)
+proc/inLineOfSight(X1, Y1, X2, Y2, Z=1, PX1=16.5, PY1=16.5, PX2=16.5, PY2=16.5)
 	var/turf/T
 	if(X1 == X2)
 		if(Y1 == Y2)
@@ -369,7 +369,7 @@
 				return FALSE
 	return TRUE
 
-/proc/isInSight(atom/A, atom/B)
+proc/isInSight(atom/A, atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
 
@@ -385,7 +385,7 @@
 /**
  * Returns the position of a step from start away from finish, in one of the cardinal directions.
  */
-/proc/get_cardinal_step_away(atom/start, atom/finish)
+proc/get_cardinal_step_away(atom/start, atom/finish)
 	// Returns only NORTH, SOUTH, EAST, or WEST
 	var/dx = finish.x - start.x
 	var/dy = finish.y - start.y
@@ -401,14 +401,14 @@
 		else
 			return get_step(start, EAST)
 
-/proc/get_mob_by_key(key)
+proc/get_mob_by_key(key)
 	return GLOB.directory[ckey(key)]
 
 /**
  * Will return a list of active candidates.
  * It increases the buffer 5 times until it finds a candidate which is active within the buffer.
  */
-/proc/get_active_candidates(buffer = 1)
+proc/get_active_candidates(buffer = 1)
 
 	/// List of candidate KEYS to assume control of the new larva ~Carn
 	var/list/candidates = list()
@@ -425,7 +425,7 @@
 /**
  * Same as above but for alien candidates.
  */
-/proc/get_alien_candidates()
+proc/get_alien_candidates()
 
 	/// List of candidate KEYS to assume control of the new larva ~Carn
 	var/list/candidates = list()
@@ -440,7 +440,7 @@
 		i++
 	return candidates
 
-/proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
+proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
 	if(!isobj(O))	O = new /atom/movable/screen/text()
 	O.maptext = maptext
 	O.maptext_height = maptext_height
@@ -448,7 +448,7 @@
 	O.screen_loc = screen_loc
 	return O
 
-/proc/Show2Group4Delay(obj/O, list/group, delay=0)
+proc/Show2Group4Delay(obj/O, list/group, delay=0)
 	if(!isobj(O))	return
 	if(!group)	group = GLOB.clients
 	for(var/client/C in group)
@@ -458,7 +458,7 @@
 			for(var/client/C in group)
 				C.screen -= O
 
-/datum/projectile_data
+datum/projectile_data
 	var/src_x
 	var/src_y
 	var/time
@@ -468,7 +468,7 @@
 	var/dest_x
 	var/dest_y
 
-/datum/projectile_data/New(src_x, src_y, time, distance, power_x, power_y, dest_x, dest_y)
+datum/projectile_data/New(src_x, src_y, time, distance, power_x, power_y, dest_x, dest_y)
 	src.src_x = src_x
 	src.src_y = src_y
 	src.time = time
@@ -478,7 +478,7 @@
 	src.dest_x = dest_x
 	src.dest_y = dest_y
 
-/proc/projectile_trajectory(src_x, src_y, rotation, angle, power)
+proc/projectile_trajectory(src_x, src_y, rotation, angle, power)
 
 	// returns the destination (Vx,y) that a projectile shot at [src_x], [src_y], with an angle of [angle],
 	// rotated at [rotation] and with the power of [power]
@@ -495,23 +495,23 @@
 
 	return new /datum/projectile_data(src_x, src_y, time, distance, power_x, power_y, dest_x, dest_y)
 
-/proc/GetRedPart(const/hexa)
+proc/GetRedPart(const/hexa)
 	return hex2num(copytext(hexa,2,4))
 
-/proc/GetGreenPart(const/hexa)
+proc/GetGreenPart(const/hexa)
 	return hex2num(copytext(hexa,4,6))
 
-/proc/GetBluePart(const/hexa)
+proc/GetBluePart(const/hexa)
 	return hex2num(copytext(hexa,6,8))
 
-/proc/GetHexColors(const/hexa)
+proc/GetHexColors(const/hexa)
 	return list(
 		GetRedPart(hexa),
 		GetGreenPart(hexa),
 		GetBluePart(hexa)
 	)
 
-/proc/MixColors(const/list/colors)
+proc/MixColors(const/list/colors)
 	var/list/reds = list()
 	var/list/blues = list()
 	var/list/greens = list()
@@ -528,7 +528,7 @@
 	var/b = mixOneColor(weights, blues)
 	return rgb(r,g,b)
 
-/proc/mixOneColor(list/weight, list/color)
+proc/mixOneColor(list/weight, list/color)
 	if (!weight || !color || length(weight)!=length(color))
 		return 0
 
@@ -560,7 +560,7 @@
  * Gets the highest and lowest pressures from the tiles in cardinal directions
  * around us, then checks the difference.
  */
-/proc/getOPressureDifferential(turf/loc)
+proc/getOPressureDifferential(turf/loc)
 	var/minp=16777216;
 	var/maxp=0;
 	for(var/dir in GLOB.cardinal)
@@ -578,13 +578,13 @@
 			maxp = cp
 	return abs(minp - maxp)
 
-/proc/convert_k2c(temp)
+proc/convert_k2c(temp)
 	return ((temp - T0C))
 
-/proc/convert_c2k(temp)
+proc/convert_c2k(temp)
 	return ((temp + T0C))
 
-/proc/getCardinalAirInfo(turf/loc, list/stats=list("temperature"))
+proc/getCardinalAirInfo(turf/loc, list/stats=list("temperature"))
 	var/list/temps = new/list(4)
 	for(var/dir in GLOB.cardinal)
 		var/direction
@@ -619,13 +619,13 @@
 		temps[direction] = rstats
 	return temps
 
-/proc/MinutesToTicks(minutes)
+proc/MinutesToTicks(minutes)
 	return SecondsToTicks(60 * minutes)
 
-/proc/SecondsToTicks(seconds)
+proc/SecondsToTicks(seconds)
 	return seconds * 10
 
-/proc/window_flash(client_or_usr)
+proc/window_flash(client_or_usr)
 	if (!client_or_usr)
 		return
 	winset(client_or_usr, "mainwindow", "flash=5")
@@ -633,7 +633,7 @@
 /**
  * Used for the multiz camera console stolen from virgo.
  */
-/proc/get_bbox_of_atoms(list/atoms)
+proc/get_bbox_of_atoms(list/atoms)
 	var/list/list_x = list()
 	var/list/list_y = list()
 	for(var/_a in atoms)
@@ -646,7 +646,7 @@
 		max(list_x),
 		max(list_y))
 
-/proc/recursive_mob_check(atom/O, list/L = list(), recursion_limit = 3, client_check = 1, sight_check = 1, include_radio = 1)
+proc/recursive_mob_check(atom/O, list/L = list(), recursion_limit = 3, client_check = 1, sight_check = 1, include_radio = 1)
 
 	// GLOB.debug_mob += O.contents.len
 	if(!recursion_limit)
@@ -672,7 +672,7 @@
 			L |= recursive_mob_check(A, L, recursion_limit - 1, client_check, sight_check, include_radio)
 	return L
 
-/proc/get_mobs_in_view(R, atom/source, include_clientless = FALSE)
+proc/get_mobs_in_view(R, atom/source, include_clientless = FALSE)
 	// Returns a list of mobs in range of R from source. Used in radio and say code.
 
 	var/turf/T = get_turf(source)

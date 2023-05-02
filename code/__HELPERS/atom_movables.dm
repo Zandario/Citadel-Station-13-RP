@@ -2,7 +2,7 @@
  * returns the topmost atom on a turf we're in, or null
  * if a non movable is passed, itself is returned
  */
-/proc/get_top_level_atom(atom/movable/AM)
+proc/get_top_level_atom(atom/movable/AM)
 	// if turf or area, return itself
 	if(!istype(AM))
 		return AM
@@ -14,7 +14,7 @@
 		AM = AM.loc
 	return AM
 
-/proc/get_turf_pixel(atom/movable/AM)
+proc/get_turf_pixel(atom/movable/AM)
 	if(!istype(AM))
 		return
 
@@ -47,13 +47,13 @@
 /**
  * Walks up the loc tree until it finds a holder of the given holder_type.
  */
-/proc/get_holder_of_type(atom/A, holder_type)
+proc/get_holder_of_type(atom/A, holder_type)
 	if(!istype(A))
 		return
 	for(A, A && !istype(A, holder_type), A=A.loc);
 	return A
 
-/atom/movable/proc/throw_at_random(include_own_turf, maxrange, speed)
+atom/movable/proc/throw_at_random(include_own_turf, maxrange, speed)
 	var/list/turfs = trange(maxrange, src)
 	if(!maxrange)
 		maxrange = 1
@@ -65,7 +65,7 @@
 /**
  * Same as do_mob except for movables and it allows both to drift and doesn't draw progressbar.
  */
-/proc/do_atom(atom/movable/user , atom/movable/target, time = 30, uninterruptible = 0,datum/callback/extra_checks = null)
+proc/do_atom(atom/movable/user , atom/movable/target, time = 30, uninterruptible = 0,datum/callback/extra_checks = null)
 	if(!user || !target)
 		return TRUE
 	var/user_loc = user.loc

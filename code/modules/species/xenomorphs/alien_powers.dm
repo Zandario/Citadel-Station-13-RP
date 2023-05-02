@@ -1,4 +1,4 @@
-/proc/alien_queen_exists(var/ignore_self,var/mob/living/carbon/human/self)
+proc/alien_queen_exists(var/ignore_self,var/mob/living/carbon/human/self)
 	for(var/mob/living/carbon/human/Q in living_mob_list)
 		if(self && ignore_self && self == Q)
 			continue
@@ -9,7 +9,7 @@
 		return 1
 	return 0
 
-/mob/living/carbon/human/proc/gain_plasma(var/amount)
+mob/living/carbon/human/proc/gain_plasma(var/amount)
 
 	var/obj/item/organ/internal/xenos/plasmavessel/I = internal_organs_by_name[O_PLASMA]
 	if(!istype(I)) return
@@ -18,7 +18,7 @@
 		I.stored_plasma += amount
 	I.stored_plasma = max(0,min(I.stored_plasma,I.max_plasma))
 
-/mob/living/carbon/human/proc/check_alien_ability(var/cost,var/needs_foundation,var/needs_organ)	//Returns 1 if the ability is clear for usage.
+mob/living/carbon/human/proc/check_alien_ability(var/cost,var/needs_foundation,var/needs_organ)	//Returns 1 if the ability is clear for usage.
 
 	var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
 	if(!istype(P))
@@ -53,7 +53,7 @@
 	return 1
 
 // Free abilities.
-/mob/living/carbon/human/proc/transfer_plasma(mob/living/carbon/human/M as mob in oview())
+mob/living/carbon/human/proc/transfer_plasma(mob/living/carbon/human/M as mob in oview())
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
 	set category = "Abilities"
@@ -77,7 +77,7 @@
 	return
 
 // Queen verbs.
-/mob/living/carbon/human/proc/lay_egg()
+mob/living/carbon/human/proc/lay_egg()
 
 	set name = "Lay Egg (75)"
 	set desc = "Lay an egg to produce huggers to impregnate prey with."
@@ -99,7 +99,7 @@
 	return
 
 // Drone verbs.
-/mob/living/carbon/human/proc/evolve()
+mob/living/carbon/human/proc/evolve()
 	set name = "Evolve (500)"
 	set desc = "Produce an interal egg sac capable of spawning children. Only one queen can exist at a time."
 	set category = "Abilities"
@@ -114,7 +114,7 @@
 
 	return
 
-/mob/living/carbon/human/proc/plant()
+mob/living/carbon/human/proc/plant()
 	set name = "Plant Weeds (50)"
 	set desc = "Plants some alien weeds"
 	set category = "Abilities"
@@ -126,7 +126,7 @@
 			O.color = "#321D37"
 	return
 
-/mob/living/carbon/human/proc/Spit(var/atom/A)
+mob/living/carbon/human/proc/Spit(var/atom/A)
 	if((last_spit + 1 SECONDS) > world.time) //To prevent YATATATATATAT spitting.
 		to_chat(src, "<span class='warning'>You have not yet prepared your chemical glands. You must wait before spitting again.</span>")
 		return
@@ -148,7 +148,7 @@
 		P.fire()
 		playsound(loc, 'sound/weapons/pierce.ogg', 25, 0)
 
-/mob/living/carbon/human/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
+mob/living/carbon/human/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
 	set name = "Corrosive Acid (200)"
 	set desc = "Drench an object in acid, destroying it over time."
 	set category = "Abilities"
@@ -184,7 +184,7 @@
 
 	return
 
-/mob/living/carbon/human/proc/neurotoxin()
+mob/living/carbon/human/proc/neurotoxin()
 	set name = "Toggle Neurotoxic Spit (40)"
 	set desc = "Readies a neurotoxic spit, which paralyzes the target for a short time if they are not wearing protective gear."
 	set category = "Abilities"
@@ -205,7 +205,7 @@
 		spit_name = "neurotoxin"
 		to_chat(src, "<span class='green'>You prepare to spit neurotoxin.</span>")
 
-/mob/living/carbon/human/proc/acidspit()
+mob/living/carbon/human/proc/acidspit()
 	set name = "Toggle Acid Spit (50)"
 	set desc = "Readies an acidic spit, which burns the target if they are not wearing protective gear."
 	set category = "Abilities"
@@ -226,7 +226,7 @@
 		spit_name = "acid"
 		to_chat(src, "<span class='green'>You prepare to spit acid.</span>")
 
-/mob/living/carbon/human/proc/resin()
+mob/living/carbon/human/proc/resin()
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
 	set category = "Abilities"
@@ -259,7 +259,7 @@
 
 	return
 
-/mob/living/carbon/human/proc/leap()
+mob/living/carbon/human/proc/leap()
 	set category = "Abilities"
 	set name = "Leap"
 	set desc = "Leap at a target and grab them aggressively."
@@ -327,7 +327,7 @@
 	G.icon_state = "grabbed1"
 	G.synch()
 
-/mob/living/carbon/human/proc/gut()
+mob/living/carbon/human/proc/gut()
 	set category = "Abilities"
 	set name = "Gut"
 	set desc = "While grabbing someone aggressively, rip their guts out or tear them apart."

@@ -1,12 +1,12 @@
 // This is basically filler at this point. Subsidence and all kinds of fun
 // hazards will be included when it is done.
-/datum/random_map/noise/volcanism
+datum/random_map/noise/volcanism
 	descriptor = "volcanism"
 	smoothing_iterations = 6
 	target_turf_type = /turf/simulated
 
 // Get rid of those dumb little single-tile volcanic areas.
-/datum/random_map/noise/volcanism/cleanup()
+datum/random_map/noise/volcanism/cleanup()
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)
 			var/current_cell = get_map_cell(x,y)
@@ -32,10 +32,10 @@
 			if(!count)
 				map[current_cell] = 177
 
-/datum/random_map/noise/volcanism/get_appropriate_path(var/value)
+datum/random_map/noise/volcanism/get_appropriate_path(var/value)
 	return
 
-/datum/random_map/noise/volcanism/get_additional_spawns(var/value, var/turf/T)
+datum/random_map/noise/volcanism/get_additional_spawns(var/value, var/turf/T)
 	if(value>=178)
 		if(istype(T,/turf/simulated/floor/asteroid))
 			T.ChangeTurf(/turf/simulated/floor/airless/lava)

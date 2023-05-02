@@ -5,7 +5,7 @@
 
 #define ENTRIES_PER_RDPAGE 50
 
-/obj/machinery/computer/rdconsole
+obj/machinery/computer/rdconsole
 	var/locked = FALSE
 	var/busy_msg = null
 
@@ -13,18 +13,18 @@
 	var/design_page = 0
 	var/builder_page = 0
 
-/obj/machinery/computer/rdconsole/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/rdconsole/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ResearchConsole", name)
 		ui.open()
 
-/obj/machinery/computer/rdconsole/ui_status(mob/user)
+obj/machinery/computer/rdconsole/ui_status(mob/user)
 	. = ..()
 	if(locked && !allowed(user) && !emagged)
 		. = min(., UI_UPDATE)
 
-/obj/machinery/computer/rdconsole/ui_static_data(mob/user)
+obj/machinery/computer/rdconsole/ui_static_data(mob/user)
 	var/list/data = ..()
 
 	data["tech"] = tgui_GetResearchLevelsInfo()
@@ -35,7 +35,7 @@
 
 	return data
 
-/obj/machinery/computer/rdconsole/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/rdconsole/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["locked"] = locked
@@ -175,7 +175,7 @@
 
 	return data
 
-/obj/machinery/computer/rdconsole/proc/tgui_GetResearchLevelsInfo()
+obj/machinery/computer/rdconsole/proc/tgui_GetResearchLevelsInfo()
 	var/list/data = list()
 	for(var/datum/tech/T in files.known_tech)
 		if(T.level < 1)
@@ -188,7 +188,7 @@
 		)))
 	return data
 
-/obj/machinery/computer/rdconsole/proc/tgui_GetOriginTechForItem(obj/item/I)
+obj/machinery/computer/rdconsole/proc/tgui_GetOriginTechForItem(obj/item/I)
 	if(!istype(I))
 		return list()
 
@@ -207,10 +207,10 @@
 
 	return data
 
-/proc/cmp_designs_rdconsole(list/A, list/B)
+proc/cmp_designs_rdconsole(list/A, list/B)
 	return sorttext(B["name"], A["name"])
 
-/obj/machinery/computer/rdconsole/proc/tgui_GetProtolatheDesigns(obj/machinery/r_n_d/protolathe/P, page)
+obj/machinery/computer/rdconsole/proc/tgui_GetProtolatheDesigns(obj/machinery/r_n_d/protolathe/P, page)
 	if(!istype(P))
 		return list()
 
@@ -248,7 +248,7 @@
 	return data
 
 
-/obj/machinery/computer/rdconsole/proc/tgui_GetImprinterDesigns(obj/machinery/r_n_d/circuit_imprinter/P, page)
+obj/machinery/computer/rdconsole/proc/tgui_GetImprinterDesigns(obj/machinery/r_n_d/circuit_imprinter/P, page)
 	if(!istype(P))
 		return list()
 
@@ -285,7 +285,7 @@
 
 	return data
 
-/obj/machinery/computer/rdconsole/proc/tgui_GetDesignInfo(page)
+obj/machinery/computer/rdconsole/proc/tgui_GetDesignInfo(page)
 	var/list/data = list()
 	// For some reason, this is faster than direct access.
 	var/list/known_designs = files.known_designs
@@ -308,7 +308,7 @@
 
 	return data
 
-/obj/machinery/computer/rdconsole/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/rdconsole/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 

@@ -1,4 +1,4 @@
-/obj/machinery/radiocarbon_spectrometer
+obj/machinery/radiocarbon_spectrometer
 	name = "radiocarbon spectrometer"
 	desc = "A specialised, complex scanner for gleaning information on all manner of small things."
 	anchored = TRUE
@@ -43,7 +43,7 @@
 	var/t_left_radspike = 0
 	var/rad_shield = 0
 
-/obj/machinery/radiocarbon_spectrometer/Initialize(mapload)
+obj/machinery/radiocarbon_spectrometer/Initialize(mapload)
 	. = ..()
 	create_reagents(500)
 	coolant_reagents_purity["water"] = 0.5
@@ -59,7 +59,7 @@
 	coolant_reagents_purity["coolant"] = 1
 	coolant_reagents_purity["adminordrazine"] = 2
 
-/obj/machinery/radiocarbon_spectrometer/attackby(var/obj/I as obj, var/mob/user as mob)
+obj/machinery/radiocarbon_spectrometer/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(scanning)
 		to_chat(user, SPAN_WARNING("You can't do that while [src] is scanning!"))
 	else
@@ -96,7 +96,7 @@
 		scanned_item = I
 		to_chat(user, SPAN_NOTICE("You put \the [I] into \the [src]."))
 
-/obj/machinery/radiocarbon_spectrometer/proc/update_coolant()
+obj/machinery/radiocarbon_spectrometer/proc/update_coolant()
 	var/total_purity = 0
 	fresh_coolant = 0
 	coolant_purity = 0
@@ -115,16 +115,16 @@
 	if(total_purity && fresh_coolant)
 		coolant_purity = total_purity / fresh_coolant
 
-/obj/machinery/radiocarbon_spectrometer/attack_hand(mob/user, list/params)
+obj/machinery/radiocarbon_spectrometer/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/obj/machinery/radiocarbon_spectrometer/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/radiocarbon_spectrometer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchSpectrometer", name)
 		ui.open()
 
-/obj/machinery/radiocarbon_spectrometer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/radiocarbon_spectrometer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 
@@ -156,7 +156,7 @@
 
 	return data
 
-/obj/machinery/radiocarbon_spectrometer/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/radiocarbon_spectrometer/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -195,7 +195,7 @@
 				scanned_item = null
 			return TRUE
 
-/obj/machinery/radiocarbon_spectrometer/process(delta_time)
+obj/machinery/radiocarbon_spectrometer/process(delta_time)
 	if(scanning)
 		if(!scanned_item || scanned_item.loc != src)
 			scanned_item = null
@@ -279,7 +279,7 @@
 			visible_message("<font color=#4F49AF>[icon2html(thing = src, target = world)] [pick("plinks","hisses")][pick(" quietly"," softly"," sadly"," plaintively")].</font>", 2)
 	last_process_worldtime = world.time
 
-/obj/machinery/radiocarbon_spectrometer/proc/stop_scanning()
+obj/machinery/radiocarbon_spectrometer/proc/stop_scanning()
 	scanning = 0
 	scanner_rpm_dir = 1
 	scanner_rpm = 0
@@ -293,7 +293,7 @@
 		reagents.remove_any(used_coolant)
 		used_coolant = 0
 
-/obj/machinery/radiocarbon_spectrometer/proc/complete_scan()
+obj/machinery/radiocarbon_spectrometer/proc/complete_scan()
 	visible_message("<font color=#4F49AF>[icon2html(thing = src, target = world)] makes an insistent chime.</font>", 2)
 
 	if(scanned_item)

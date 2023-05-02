@@ -1,5 +1,5 @@
 
-/turf
+turf
 	/// The z-turf above us, if present.
 	var/tmp/turf/above
 	/// If we're a z-turf, the turf below us.
@@ -21,18 +21,18 @@
 	var/tmp/z_depth
 	var/tmp/z_generation = 0
 
-/turf/update_above()
+turf/update_above()
 	if (TURF_IS_MIMICKING(above))
 		above.update_mimic()
 
-/turf/proc/update_mimic()
+turf/proc/update_mimic()
 	if(mz_flags & MZ_MIMIC_BELOW)
 		z_queued += 1
 		// This adds duplicates for a reason. Do not change this unless you understand how ZM queues work.
 		SSzmimic.queued_turfs += src
 
 /// Enables Z-mimic for a turf that didn't already have it enabled.
-/turf/proc/enable_zmimic(additional_flags = 0)
+turf/proc/enable_zmimic(additional_flags = 0)
 	if (mz_flags & MZ_MIMIC_BELOW)
 		return FALSE
 
@@ -41,7 +41,7 @@
 	return TRUE
 
 /// Disables Z-mimic for a turf.
-/turf/proc/disable_zmimic()
+turf/proc/disable_zmimic()
 	if (!(mz_flags & MZ_MIMIC_BELOW))
 		return FALSE
 
@@ -50,7 +50,7 @@
 	return TRUE
 
 /// Sets up Z-mimic for this turf. You shouldn't call this directly 99% of the time.
-/turf/proc/setup_zmimic(mapload)
+turf/proc/setup_zmimic(mapload)
 	if (shadower)
 		CRASH("Attempt to enable Z-mimic on already-enabled turf!")
 	shadower = new(src)
@@ -66,7 +66,7 @@
 	update_mimic(!mapload) // Only recursively update if the map isn't loading.
 
 /// Cleans up Z-mimic objects for this turf. You shouldn't call this directly 99% of the time.
-/turf/proc/cleanup_zmimic()
+turf/proc/cleanup_zmimic()
 	SSzmimic.openspace_turfs -= 1
 	// Don't remove ourselves from the queue, the subsystem will explode. We'll naturally fall out of the queue.
 	z_queued = 0
@@ -88,7 +88,7 @@
 		below.above = null
 		below = null
 
-/turf/Entered(atom/movable/thing, atom/oldLoc)
+turf/Entered(atom/movable/thing, atom/oldLoc)
 	..()
 	if (thing.bound_overlay || (thing.zmm_flags & ZMM_IGNORE) || thing.invisibility == INVISIBILITY_ABSTRACT || !TURF_IS_MIMICKING(above))
 		return

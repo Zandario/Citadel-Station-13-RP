@@ -1,28 +1,28 @@
-/obj/var/datum/talking_atom/talking_atom
+obj/var/datum/talking_atom/talking_atom
 
-/datum/talking_atom
+datum/talking_atom
 	var/list/heard_words = list()
 	var/last_talk_time = 0
 	var/atom/holder_atom
 	var/talk_interval = 50
 	var/talk_chance = 10
 
-/datum/talking_atom/New(atom/holder)
+datum/talking_atom/New(atom/holder)
 	holder_atom = holder
 	init()
 
-/datum/talking_atom/proc/init()
+datum/talking_atom/proc/init()
 	if(holder_atom)
 		START_PROCESSING(SSobj, src)
 
-/datum/talking_atom/process(delta_time)
+datum/talking_atom/process(delta_time)
 	if(!holder_atom)
 		STOP_PROCESSING(SSobj, src)
 
 	else if(heard_words.len >= 1 && world.time > last_talk_time + talk_interval && prob(talk_chance))
 		SaySomething()
 
-/datum/talking_atom/proc/catchMessage(var/msg, var/mob/source)
+datum/talking_atom/proc/catchMessage(var/msg, var/mob/source)
 	if(!holder_atom)
 		return
 
@@ -68,7 +68,7 @@
 		for(var/X in d)
 			to_chat(world, "[X]")*/
 
-/datum/talking_atom/proc/SaySomething(var/word = null)
+datum/talking_atom/proc/SaySomething(var/word = null)
 	if(!holder_atom)
 		return
 

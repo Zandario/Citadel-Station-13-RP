@@ -1,5 +1,5 @@
 //Baseline portable generator. Has all the default handling. Not intended to be used on it's own (since it generates unlimited power).
-/obj/machinery/power/port_gen
+obj/machinery/power/port_gen
 	name = "Placeholder Generator"	//seriously, don't use this. It can't be anchored without VV magic.
 	desc = "A portable generator for emergency backup power"
 	icon = 'icons/obj/power.dmi'
@@ -14,22 +14,22 @@
 	var/recent_fault = 0
 	var/power_output = 1
 
-/obj/machinery/power/port_gen/proc/IsBroken()
+obj/machinery/power/port_gen/proc/IsBroken()
 	return (machine_stat & (BROKEN|EMPED))
 
-/obj/machinery/power/port_gen/proc/HasFuel() //Placeholder for fuel check.
+obj/machinery/power/port_gen/proc/HasFuel() //Placeholder for fuel check.
 	return 1
 
-/obj/machinery/power/port_gen/proc/UseFuel() //Placeholder for fuel use.
+obj/machinery/power/port_gen/proc/UseFuel() //Placeholder for fuel use.
 	return
 
-/obj/machinery/power/port_gen/proc/DropFuel()
+obj/machinery/power/port_gen/proc/DropFuel()
 	return
 
-/obj/machinery/power/port_gen/proc/handleInactive()
+obj/machinery/power/port_gen/proc/handleInactive()
 	return
 
-/obj/machinery/power/port_gen/process(delta_time)
+obj/machinery/power/port_gen/process(delta_time)
 	if(active && HasFuel() && !IsBroken() && anchored && powernet)
 		add_avail(power_gen * power_output * 0.001)
 		UseFuel()
@@ -39,23 +39,23 @@
 		icon_state = initial(icon_state)
 		handleInactive()
 
-/obj/machinery/power/powered()
+obj/machinery/power/powered()
 	return 1 //doesn't require an external power source
 
-/obj/machinery/power/port_gen/attack_hand(mob/user, list/params)
+obj/machinery/power/port_gen/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(!anchored)
 		return
 
-/obj/machinery/power/port_gen/examine(mob/user)
+obj/machinery/power/port_gen/examine(mob/user)
 	. = ..()
 	if(active)
 		. += "<span class='notice'>The generator is on.</span>"
 	else
 		. += "<span class='notice'>The generator is off.</span>"
 
-/obj/machinery/power/port_gen/emp_act(severity)
+obj/machinery/power/port_gen/emp_act(severity)
 	if(!active)
 		return
 	var/duration = 6000 //ten minutes
@@ -83,11 +83,11 @@
 		spawn(duration)
 			machine_stat &= ~EMPED
 
-/obj/machinery/power/port_gen/proc/explode()
+obj/machinery/power/port_gen/proc/explode()
 	explosion(src.loc, -1, 3, 5, -1)
 	qdel(src)
 
-/obj/machinery/power/port_gen/proc/TogglePower()
+obj/machinery/power/port_gen/proc/TogglePower()
 	if(active)
 		active = FALSE
 	else if(HasFuel())
@@ -97,7 +97,7 @@
 #define TEMPERATURE_CHANGE_MAX 20
 
 //A power generator that runs on solid plasma sheets.
-/obj/machinery/power/port_gen/pacman
+obj/machinery/power/port_gen/pacman
 	name = "\improper P.A.C.M.A.N.-type Portable Generator"
 	desc = "A power generator that runs on solid phoron sheets. Rated for 80 kW max safe output."
 	circuit = /obj/item/circuitboard/pacman
@@ -123,7 +123,7 @@
 	var/temperature = 0		//The current temperature
 	var/overheating = 0		//if this gets high enough the generator explodes
 
-/obj/machinery/power/port_gen/pacman/Initialize(mapload)
+obj/machinery/power/port_gen/pacman/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
@@ -134,16 +134,16 @@
 	if(anchored)
 		connect_to_network()
 
-/obj/machinery/power/port_gen/pacman/Destroy()
+obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/dismantle()
+obj/machinery/power/port_gen/pacman/dismantle()
 	while ( sheets > 0 )
 		DropFuel()
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/RefreshParts()
+obj/machinery/power/port_gen/pacman/RefreshParts()
 	var/temp_rating = 0
 	for(var/obj/item/stock_parts/SP in component_parts)
 		if(istype(SP, /obj/item/stock_parts/matter_bin))
@@ -153,7 +153,7 @@
 
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
-/obj/machinery/power/port_gen/pacman/examine(mob/user)
+obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
 	. += "\The [src] appears to be producing [power_gen*power_output] W."
 	. += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
@@ -162,21 +162,21 @@
 	if(overheating)
 		. += "<span class='danger'>\The [src] is overheating!</span>"
 
-/obj/machinery/power/port_gen/pacman/HasFuel()
+obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet
 	if(sheets >= needed_sheets - sheet_left)
 		return 1
 	return 0
 
 //Removes one stack's worth of material from the generator.
-/obj/machinery/power/port_gen/pacman/DropFuel()
+obj/machinery/power/port_gen/pacman/DropFuel()
 	if(sheets)
 		var/obj/item/stack/material/S = new sheet_path(loc)
 		var/amount = min(sheets, S.max_amount)
 		S.amount = amount
 		sheets -= amount
 
-/obj/machinery/power/port_gen/pacman/UseFuel()
+obj/machinery/power/port_gen/pacman/UseFuel()
 
 	//how much material are we using this iteration?
 	var/needed_sheets = power_output / time_per_sheet
@@ -227,7 +227,7 @@
 	else if (overheating > 0)
 		overheating--
 
-/obj/machinery/power/port_gen/pacman/handleInactive()
+obj/machinery/power/port_gen/pacman/handleInactive()
 	var/cooling_temperature = 20
 	var/datum/gas_mixture/environment = loc.return_air()
 	if (environment)
@@ -244,12 +244,12 @@
 	if(overheating)
 		overheating--
 
-/obj/machinery/power/port_gen/pacman/proc/overheat()
+obj/machinery/power/port_gen/pacman/proc/overheat()
 	overheating++
 	if (overheating > 60)
 		explode()
 
-/obj/machinery/power/port_gen/pacman/explode()
+obj/machinery/power/port_gen/pacman/explode()
 	//Vapourize all the phoron
 	//When ground up in a grinder, 1 sheet produces 20 u of phoron -- Chemistry-Machinery.dm
 	//1 mol = 10 u? I dunno. 1 mol of carbon is definitely bigger than a pill
@@ -262,7 +262,7 @@
 	sheet_left = 0
 	..()
 
-/obj/machinery/power/port_gen/pacman/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/power/port_gen/pacman/emag_act(var/remaining_charges, var/mob/user)
 	if (active && prob(25))
 		explode() //if they're foolish enough to emag while it's running
 
@@ -270,7 +270,7 @@
 		emagged = 1
 		return 1
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.amount)
@@ -301,22 +301,22 @@
 			return
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/attack_hand(mob/user, list/params)
+obj/machinery/power/port_gen/pacman/attack_hand(mob/user, list/params)
 	..()
 	if (!anchored)
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
+obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/power/port_gen/pacman/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PortableGenerator", name)
 		ui.open()
 
-/obj/machinery/power/port_gen/pacman/ui_data(mob/user)
+obj/machinery/power/port_gen/pacman/ui_data(mob/user)
 	var/list/data = list()
 
 	data["active"] = active
@@ -347,7 +347,7 @@
 
 	return data
 
-/obj/machinery/power/port_gen/pacman/ui_act(action, params)
+obj/machinery/power/port_gen/pacman/ui_act(action, params)
 	if(..())
 		return
 
@@ -372,7 +372,7 @@
 				power_output++
 				. = TRUE
 /*
-/obj/machinery/power/port_gen/pacman/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/power/port_gen/pacman/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(IsBroken())
 		return
 
@@ -408,7 +408,7 @@
 
 */
 /*
-/obj/machinery/power/port_gen/pacman/interact(mob/user)
+obj/machinery/power/port_gen/pacman/interact(mob/user)
 	if (get_dist(src, user) > 1 )
 		if (!istype(user, /mob/living/silicon/ai))
 			user.unset_machine()
@@ -435,7 +435,7 @@
 	onclose(user, "port_gen")
 */
 
-/obj/machinery/power/port_gen/pacman/Topic(href, href_list)
+obj/machinery/power/port_gen/pacman/Topic(href, href_list)
 	if(..())
 		return
 
@@ -459,7 +459,7 @@
 			if (power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
 				power_output++
 
-/obj/machinery/power/port_gen/pacman/super
+obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
 	desc = "A power generator that utilizes uranium sheets as fuel. Can run for much longer than the standard PACMAN type generators. Rated for 80 kW max safe output."
 	icon_state = "portgen1"
@@ -468,13 +468,13 @@
 	time_per_sheet = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
 	circuit = /obj/item/circuitboard/pacman/super
 
-/obj/machinery/power/port_gen/pacman/super/UseFuel()
+obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
 	if (prob(2*power_output))
 		radiation_pulse(src, RAD_INTENSITY_SUPERPACMAN)
 	..()
 
-/obj/machinery/power/port_gen/pacman/super/explode()
+obj/machinery/power/port_gen/pacman/super/explode()
 	//a nice burst of radiation
 	var/rads = (sheets + sheet_left) * RAD_INTENSITY_SUPERPACMAN_BOOM_FACTOR
 	radiation_pulse(src, rads)
@@ -482,7 +482,7 @@
 	explosion(src.loc, 3, 3, 5, 3)
 	qdel(src)
 
-/obj/machinery/power/port_gen/pacman/mrs
+obj/machinery/power/port_gen/pacman/mrs
 	name = "M.R.S.P.A.C.M.A.N.-type Portable Generator"
 	desc = "An advanced power generator that runs on tritium. Rated for 200 kW maximum safe output!"
 	icon_state = "portgen2"
@@ -499,14 +499,14 @@
 	temperature_gain = 90
 	circuit = /obj/item/circuitboard/pacman/mrs
 
-/obj/machinery/power/port_gen/pacman/mrs/explode()
+obj/machinery/power/port_gen/pacman/mrs/explode()
 	//no special effects, but the explosion is pretty big (same as a supermatter shard).
 	explosion(src.loc, 3, 6, 12, 16, 1)
 	qdel(src)
 
 // Radioisotope Thermoelectric Generator (RTG)
 // Simple power generator that would replace "magic SMES" on various derelicts.
-/obj/machinery/power/rtg
+obj/machinery/power/rtg
 	name = "radioisotope thermoelectric generator"
 	desc = "A simple nuclear power generator, used in small outposts to reliably provide power for decades."
 	icon = 'icons/obj/power_vr.dmi'
@@ -522,42 +522,42 @@
 	var/power_gen = 1 // Enough to power a single APC. 4000 output with T4 capacitor.
 	var/irradiate = TRUE // RTGs irradiate surroundings, but only when panel is open.
 
-/obj/machinery/power/rtg/Initialize(mapload)
+obj/machinery/power/rtg/Initialize(mapload)
 	. = ..()
 	if(ispath(circuit))
 		circuit = new circuit(src)
 	connect_to_network()
 
-/obj/machinery/power/rtg/process()
+obj/machinery/power/rtg/process()
 	..()
 	add_avail(power_gen)
 	if(panel_open && irradiate)
 		radiation_pulse(src, RAD_INTENSITY_RADIOISOTOPE_GEN)
 
-/obj/machinery/power/rtg/examine(mob/user)
+obj/machinery/power/rtg/examine(mob/user)
 	. = ..()
 	if(Adjacent(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Power generation now at <b>[power_gen]</b>kW.</span>"
 
-/obj/machinery/power/rtg/attackby(obj/item/I, mob/user, params)
+obj/machinery/power/rtg/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	else if(default_deconstruction_crowbar(user, I))
 		return
 	return ..()
 
-/obj/machinery/power/rtg/update_icon()
+obj/machinery/power/rtg/update_icon()
 	if(panel_open)
 		icon_state = "[initial(icon_state)]-open"
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/rtg/advanced
+obj/machinery/power/rtg/advanced
 	desc = "An advanced RTG capable of moderating isotope decay, increasing power output but reducing lifetime. It uses plasma-fueled radiation collectors to increase output even further."
 	power_gen = 1.25 // 2500 on T1, 10000 on T4.
 	circuit = /obj/item/circuitboard/machine/rtg/advanced
 
-/obj/machinery/power/rtg/fake_gen
+obj/machinery/power/rtg/fake_gen
 	name = "area power generator"
 	desc = "Some power generation equipment that might be powering the current area."
 	icon_state = "rtg_gen"
@@ -565,17 +565,17 @@
 	circuit = /obj/item/circuitboard/machine/rtg
 	buckle_allowed = FALSE
 
-/obj/machinery/power/rtg/fake_gen/RefreshParts()
+obj/machinery/power/rtg/fake_gen/RefreshParts()
 	return
-/obj/machinery/power/rtg/fake_gen/attackby(obj/item/I, mob/user, params)
+obj/machinery/power/rtg/fake_gen/attackby(obj/item/I, mob/user, params)
 	return
-/obj/machinery/power/rtg/fake_gen/update_icon()
+obj/machinery/power/rtg/fake_gen/update_icon()
 	return
 
 
 // Void Core, power source for Abductor ships and bases.
 // Provides a lot of power, but tends to explode when mistreated.
-/obj/machinery/power/rtg/abductor
+obj/machinery/power/rtg/abductor
 	name = "Void Core"
 	icon_state = "core-nocell"
 	desc = "An alien power source that produces energy seemingly out of nowhere."
@@ -590,12 +590,12 @@
 	var/icon_base = "core"
 	var/state_change = TRUE
 
-/obj/machinery/power/rtg/abductor/RefreshParts()
+obj/machinery/power/rtg/abductor/RefreshParts()
 	..()
 	if(!alien)
 		power_gen = 0
 
-/obj/machinery/power/rtg/abductor/proc/asplod()
+obj/machinery/power/rtg/abductor/proc/asplod()
 	if(going_kaboom)
 		return
 	going_kaboom = TRUE
@@ -605,13 +605,13 @@
 	tesla_zap(src, 5, power_gen * 50)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, get_turf(src), 2, 3, 4, 8), 100) // Not a normal explosion.
 
-/obj/machinery/power/rtg/abductor/bullet_act(obj/projectile/Proj)
+obj/machinery/power/rtg/abductor/bullet_act(obj/projectile/Proj)
 	. = ..()
 	if(!going_kaboom && istype(Proj) && !Proj.nodamage && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)))
 		log_and_message_admins("[ADMIN_LOOKUPFLW(Proj.firer)] triggered an Abductor Core explosion at [x],[y],[z] via projectile.")
 		asplod()
 
-/obj/machinery/power/rtg/abductor/attack_hand(mob/user, list/params)
+obj/machinery/power/rtg/abductor/attack_hand(mob/user, list/params)
 	if(!istype(user) || (. = ..()))
 		return
 
@@ -625,7 +625,7 @@
 		playsound(src, 'sound/effects/metal_close.ogg', 50, 1)
 		return TRUE
 
-/obj/machinery/power/rtg/abductor/attackby(obj/item/I, mob/user, params)
+obj/machinery/power/rtg/abductor/attackby(obj/item/I, mob/user, params)
 	state_change = TRUE //Can't tell if parent did something
 	if(istype(I, /obj/item/cell/device/weapon/recharge/alien) && !alien)
 		if(!user.attempt_insert_item_for_installation(I, src))
@@ -637,7 +637,7 @@
 		return
 	return ..()
 
-/obj/machinery/power/rtg/abductor/update_icon()
+obj/machinery/power/rtg/abductor/update_icon()
 	if(!state_change)
 		return //Stupid cells constantly update our icon so trying to be efficient
 
@@ -651,41 +651,41 @@
 
 	state_change = FALSE
 
-/obj/machinery/power/rtg/abductor/blob_act(obj/structure/blob/B)
+obj/machinery/power/rtg/abductor/blob_act(obj/structure/blob/B)
 	asplod()
 
-/obj/machinery/power/rtg/abductor/legacy_ex_act()
+obj/machinery/power/rtg/abductor/legacy_ex_act()
 	if(going_kaboom)
 		qdel(src)
 	else
 		asplod()
 
-/obj/machinery/power/rtg/abductor/fire_act(exposed_temperature, exposed_volume)
+obj/machinery/power/rtg/abductor/fire_act(exposed_temperature, exposed_volume)
 	asplod()
 
-/obj/machinery/power/rtg/abductor/tesla_act()
+obj/machinery/power/rtg/abductor/tesla_act()
 	..() //extend the zap
 	asplod()
 
 // Comes with an installed cell
-/obj/machinery/power/rtg/abductor/built
+obj/machinery/power/rtg/abductor/built
 	icon_state = "core"
 
-/obj/machinery/power/rtg/abductor/built/Initialize(mapload)
+obj/machinery/power/rtg/abductor/built/Initialize(mapload)
 	. = ..()
 	alien = new(src)
 	RefreshParts()
 
 // Bloo version
-/obj/machinery/power/rtg/abductor/hybrid
+obj/machinery/power/rtg/abductor/hybrid
 	icon_state = "coreb-nocell"
 	icon_base = "coreb"
 	circuit = /obj/item/circuitboard/machine/abductor/core/hybrid
 
-/obj/machinery/power/rtg/abductor/hybrid/built
+obj/machinery/power/rtg/abductor/hybrid/built
 	icon_state = "coreb"
 
-/obj/machinery/power/rtg/abductor/hybrid/built/Initialize(mapload)
+obj/machinery/power/rtg/abductor/hybrid/built/Initialize(mapload)
 	. = ..()
 	alien = new /obj/item/cell/device/weapon/recharge/alien(src)
 	RefreshParts()

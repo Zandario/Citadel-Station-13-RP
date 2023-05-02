@@ -1,4 +1,4 @@
-/obj/item/assembly_holder
+obj/item/assembly_holder
 	name = "Assembly"
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "holder"
@@ -13,7 +13,7 @@
 	var/obj/item/assembly/a_right = null
 	var/obj/special_assembly = null
 
-/obj/item/assembly_holder/proc/attach(var/obj/item/assembly/D, var/obj/item/assembly/D2, var/mob/user)
+obj/item/assembly_holder/proc/attach(var/obj/item/assembly/D, var/obj/item/assembly/D2, var/mob/user)
 	if(!D || !D2)
 		return FALSE
 
@@ -40,10 +40,10 @@
 
 	return TRUE
 
-/obj/item/assembly_holder/proc/detached()
+obj/item/assembly_holder/proc/detached()
 	return
 
-/obj/item/assembly_holder/update_icon()
+obj/item/assembly_holder/update_icon()
 	cut_overlays()
 	if(a_left)
 		add_overlay("[a_left.icon_state]_left")
@@ -56,7 +56,7 @@
 	if(master)
 		master.update_icon()
 
-/obj/item/assembly_holder/examine(mob/user)
+obj/item/assembly_holder/examine(mob/user)
 	. = ..()
 	if ((in_range(src, user) || src.loc == user))
 		if (src.secured)
@@ -64,7 +64,7 @@
 		else
 			. += "\The [src] can be attached!"
 
-/obj/item/assembly_holder/Crossed(atom/movable/AM)
+obj/item/assembly_holder/Crossed(atom/movable/AM)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -73,26 +73,26 @@
 	if(a_right)
 		a_right.Crossed(AM)
 
-/obj/item/assembly_holder/on_found(mob/finder as mob)
+obj/item/assembly_holder/on_found(mob/finder as mob)
 	if(a_left)
 		a_left.on_found(finder)
 	if(a_right)
 		a_right.on_found(finder)
 
-/obj/item/assembly_holder/Move()
+obj/item/assembly_holder/Move()
 	..()
 	if(a_left && a_right)
 		a_left.holder_movement()
 		a_right.holder_movement()
 
 
-/obj/item/assembly_holder/attack_hand(mob/user, list/params)//Perhapse this should be a holder_pickup proc instead, can add if needbe I guess
+obj/item/assembly_holder/attack_hand(mob/user, list/params)//Perhapse this should be a holder_pickup proc instead, can add if needbe I guess
 	if(a_left && a_right)
 		a_left.holder_movement()
 		a_right.holder_movement()
 	..()
 
-/obj/item/assembly_holder/attackby(var/obj/item/W, var/mob/user)
+obj/item/assembly_holder/attackby(var/obj/item/W, var/mob/user)
 	if(W.is_screwdriver())
 		if(!a_left || !a_right)
 			to_chat(user, "<span class='warning'> BUG:Assembly part missing, please report this!</span>")
@@ -109,7 +109,7 @@
 	else
 		..()
 
-/obj/item/assembly_holder/attack_self(mob/user)
+obj/item/assembly_holder/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -141,7 +141,7 @@
 		qdel(src)
 
 
-/obj/item/assembly_holder/proc/process_activation(var/obj/D, var/normal = 1)
+obj/item/assembly_holder/proc/process_activation(var/obj/D, var/normal = 1)
 	if(!D)
 		return FALSE
 	if(!secured)
@@ -155,15 +155,15 @@
 		master.receive_signal()
 	return TRUE
 
-/obj/item/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking)
+obj/item/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking)
 	if(a_right)
 		a_right.hear_talk(M,msg,verb,speaking)
 	if(a_left)
 		a_left.hear_talk(M,msg,verb,speaking)
-/obj/item/assembly_holder/timer_igniter
+obj/item/assembly_holder/timer_igniter
 	name = "timer-igniter assembly"
 
-/obj/item/assembly_holder/timer_igniter/New()
+obj/item/assembly_holder/timer_igniter/New()
 	..()
 
 	var/obj/item/assembly/igniter/ign = new(src)
@@ -183,11 +183,11 @@
 
 	add_obj_verb(src, /obj/item/assembly_holder/timer_igniter/verb/configure)
 
-/obj/item/assembly_holder/timer_igniter/detached()
+obj/item/assembly_holder/timer_igniter/detached()
 	remove_obj_verb(src, /obj/item/assembly_holder/timer_igniter/verb/configure)
 	..()
 
-/obj/item/assembly_holder/timer_igniter/verb/configure()
+obj/item/assembly_holder/timer_igniter/verb/configure()
 	set name = "Set Timer"
 	set category = "Object"
 	set src in usr

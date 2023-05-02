@@ -1,112 +1,112 @@
 
 
 // Map template for spawning the shuttle
-/datum/map_template/shuttle/overmap/generic/salamander
+datum/map_template/shuttle/overmap/generic/salamander
 	name = "OM Ship - Salamander Corvette"
 	desc = "A medium multirole spacecraft."
 	suffix = "salamander.dmm"
 	annihilate = TRUE
 
 // Map template for spawning the shuttle
-/datum/map_template/shuttle/overmap/generic/salamander_wreck
+datum/map_template/shuttle/overmap/generic/salamander_wreck
 	name = "OM Ship - Salamander Corvette Wreckage"
 	desc = "A medium multirole spacecraft, or at least what's left of it."
 	mappath = "maps/submaps/level_specific/debrisfield_vr/salamander_wreck.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)
-/area/shuttle/salamander
+area/shuttle/salamander
 	name = "\improper Salamander Cabin"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "gray"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_engineering
+area/shuttle/salamander_engineering
 	name = "\improper Salamander Engineering"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "yellow"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_cockpit
+area/shuttle/salamander_cockpit
 	name = "\improper Salamander Cockpit"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "blue"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_q1
+area/shuttle/salamander_q1
 	name = "\improper Salamander Quarters 1"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "gray-p"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_q2
+area/shuttle/salamander_q2
 	name = "\improper Salamander Quarters 2"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "gray-p"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_galley
+area/shuttle/salamander_galley
 	name = "\improper Salamander Galley"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "dark-s"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_head
+area/shuttle/salamander_head
 	name = "\improper Salamander Head"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "dark-p"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_wreck
+area/shuttle/salamander_wreck
 	name = "\improper Wrecked Salamander Cabin"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "gray"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_wreck_engineering
+area/shuttle/salamander_wreck_engineering
 	name = "\improper Wrecked Salamander Engineering"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "yellow"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_wreck_cockpit
+area/shuttle/salamander_wreck_cockpit
 	name = "\improper Wrecked Salamander Cockpit"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "blue"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_wreck_q1
+area/shuttle/salamander_wreck_q1
 	name = "\improper Wrecked Salamander Quarters 1"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "gray-p"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_wreck_q2
+area/shuttle/salamander_wreck_q2
 	name = "\improper Wrecked Salamander Quarters 2"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "gray-p"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_wreck_galley
+area/shuttle/salamander_wreck_galley
 	name = "\improper Wrecked Salamander Galley"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "dark-s"
 	requires_power = 1
 	has_gravity = 0
 
-/area/shuttle/salamander_wreck_head
+area/shuttle/salamander_wreck_head
 	name = "\improper Wrecked Salamander Head"
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "dark-p"
@@ -114,19 +114,19 @@
 	has_gravity = 0
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/salamander
+obj/machinery/computer/shuttle_control/explore/salamander
 	name = "short jump console"
 	shuttle_tag = "Salamander"
 	req_one_access = list()
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/salamander_wreck
+obj/machinery/computer/shuttle_control/explore/salamander_wreck
 	name = "short jump console"
 	shuttle_tag = "Salamander Wreckage"
 	req_one_access = list()
 
 // The 'shuttle'
-/datum/shuttle/autodock/overmap/salamander
+datum/shuttle/autodock/overmap/salamander
 	name = "Salamander"
 	current_location = "omship_spawn_salamander"
 	docking_controller_tag = "salamander_docking"
@@ -136,7 +136,7 @@
 	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/salamander
+obj/effect/shuttle_landmark/shuttle_initializer/salamander
 	name = "ITV Salamander"
 	base_area = /area/space
 	base_turf = /turf/space
@@ -144,7 +144,7 @@
 	shuttle_type = /datum/shuttle/autodock/overmap/salamander
 
 // The 'ship'
-/obj/effect/overmap/visitable/ship/landable/salamander
+obj/effect/overmap/visitable/ship/landable/salamander
 	scanner_name = "Salamander-class Corvette"
 	scanner_desc = @{"[i]Registration[/i]: ITV Independence
 [i]Class[/i]: Corvette
@@ -157,7 +157,7 @@
 	shuttle = "Salamander"
 
 // The 'shuttle'
-/datum/shuttle/autodock/overmap/salamander_wreck
+datum/shuttle/autodock/overmap/salamander_wreck
 	name = "Salamander Wreckage"
 	current_location = "omship_spawn_salamander_wreck"
 	docking_controller_tag = "salamander_docking_wreck"
@@ -167,7 +167,7 @@
 	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/salamander_wreck
+obj/effect/shuttle_landmark/shuttle_initializer/salamander_wreck
 	name = "ITV Unity"
 	base_area = /area/space
 	base_turf = /turf/space
@@ -175,7 +175,7 @@
 	shuttle_type = /datum/shuttle/autodock/overmap/salamander_wreck
 
 // The 'ship'
-/obj/effect/overmap/visitable/ship/landable/salamander_wreck
+obj/effect/overmap/visitable/ship/landable/salamander_wreck
 	scanner_name = "Wrecked Salamander-class Corvette"
 	scanner_desc = @{"[i]Registration[/i]: ITV Unity
 [i]Class[/i]: Corvette
@@ -187,7 +187,7 @@
 	fore_dir = EAST
 	shuttle = "Salamander Wreckage"
 
-/obj/item/paper/unity_notice
+obj/item/paper/unity_notice
 	name = "hastily-scrawled missive"
 	info = {"<i>The writing on this scrap of paper is barely legible. Whoever wrote it was clearly in a hurry.</i><br>\
 <br>\

@@ -1,7 +1,7 @@
 /**
  * Gets all contents of contents and returns them all in a list.
  */
-/atom/proc/get_all_contents(target)
+atom/proc/get_all_contents(target)
 	var/list/processing_list = list(src)
 	var/i = 0
 	var/lim = 1
@@ -24,7 +24,7 @@
 			lim = processing_list.len
 		return processing_list
 
-/atom/proc/get_all_contents_ignoring(list/ignore_typecache)
+atom/proc/get_all_contents_ignoring(list/ignore_typecache)
 	if(!length(ignore_typecache))
 		return get_all_contents()
 	var/list/processing = list(src)

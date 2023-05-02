@@ -1,5 +1,5 @@
 //Toggles for preferences, normal clients
-/client/verb/toggle_ghost_ears()
+client/verb/toggle_ghost_ears()
 	set name = "Show/Hide Ghost Ears"
 	set category = "Preferences"
 	set desc = "Toggles between seeing all mob speech and nearby mob speech."
@@ -14,7 +14,7 @@
 
 	feedback_add_details("admin_verb","TGEars") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_ghost_vision()
+client/verb/toggle_ghost_vision()
 	set name = "Show/Hide Ghost Vision"
 	set category = "Preferences"
 	set desc = "Toggles between seeing all mob emotes and nearby mob emotes."
@@ -29,7 +29,7 @@
 
 	feedback_add_details("admin_verb","TGVision") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_ghost_radio()
+client/verb/toggle_ghost_radio()
 	set name = "Show/Hide Radio Chatter"
 	set category = "Preferences"
 	set desc = "Toggles between seeing all radio chat and nearby radio chatter."
@@ -44,7 +44,7 @@
 
 	feedback_add_details("admin_verb","TGRadio") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_deadchat()
+client/verb/toggle_deadchat()
 	set name = "Show/Hide Deadchat"
 	set category = "Preferences"
 	set desc = "Toggles the dead chat channel."
@@ -59,7 +59,7 @@
 
 	feedback_add_details("admin_verb","TDeadChat") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_ooc()
+client/verb/toggle_ooc()
 	set name = "Show/Hide OOC"
 	set category = "Preferences"
 	set desc = "Toggles global out of character chat."
@@ -74,7 +74,7 @@
 
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_looc()
+client/verb/toggle_looc()
 	set name = "Show/Hide LOOC"
 	set category = "Preferences"
 	set desc = "Toggles local out of character chat."
@@ -89,7 +89,7 @@
 
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_typing()
+client/verb/toggle_typing()
 	set name = "Show/Hide Typing Indicator"
 	set category = "Preferences"
 	set desc = "Toggles the speech bubble typing indicator."
@@ -104,7 +104,7 @@
 
 	feedback_add_details("admin_verb","TTIND") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_ahelp_sound()
+client/verb/toggle_ahelp_sound()
 	set name = "Toggle Admin Help Sound"
 	set category = "Preferences"
 	set desc = "Toggles the ability to hear a noise broadcasted when you get an admin message."
@@ -119,7 +119,7 @@
 
 	feedback_add_details("admin_verb","TAHelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_lobby_music()
+client/verb/toggle_lobby_music()
 	set name = "Toggle Lobby Music"
 	set category = "Preferences"
 	set desc = "Toggles the music in the lobby."
@@ -134,7 +134,7 @@
 
 	feedback_add_details("admin_verb","TLobMusic") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_admin_midis()
+client/verb/toggle_admin_midis()
 	set name = "Toggle Admin MIDIs"
 	set category = "Preferences"
 	set desc = "Toggles the music in the lobby."
@@ -149,7 +149,7 @@
 
 	feedback_add_details("admin_verb","TAMidis") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_ambience()
+client/verb/toggle_ambience()
 	set name = "Toggle Ambience"
 	set category = "Preferences"
 	set desc = "Toggles the playing of ambience."
@@ -164,7 +164,7 @@
 
 	feedback_add_details("admin_verb","TAmbience") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_weather_sounds()
+client/verb/toggle_weather_sounds()
 	set name = "Toggle Weather Sounds"
 	set category = "Preferences"
 	set desc = "Toggles the ability to hear weather sounds while on a planet."
@@ -179,7 +179,7 @@
 
 	feedback_add_details("admin_verb","TWeatherSounds") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_supermatter_hum()
+client/verb/toggle_supermatter_hum()
 	set name = "Toggle SM Hum" // Avoiding using the full 'Supermatter' name to not conflict with the Setup-Supermatter adminverb.
 	set category = "Preferences"
 	set desc = "Toggles the ability to hear supermatter hums."
@@ -194,7 +194,7 @@
 
 	feedback_add_details("admin_verb","TSupermatterHum") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_jukebox()
+client/verb/toggle_jukebox()
 	set name = "Toggle Jukebox"
 	set category = "Preferences"
 	set desc = "Toggles the playing of jukebox music."
@@ -209,7 +209,7 @@
 
 	feedback_add_details("admin_verb","TJukebox") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_be_special(role in be_special_flags)
+client/verb/toggle_be_special(role in be_special_flags)
 	set name = "Toggle SpecialRole Candidacy"
 	set category = "Preferences"
 	set desc = "Toggles which special roles you would like to be a candidate for, during events."
@@ -224,7 +224,7 @@
 
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_air_pump_hum()
+client/verb/toggle_air_pump_hum()
 	set name = "Toggle Air Pump Noise"
 	set category = "Preferences"
 	set desc = "Toggles Air Pumps humming"
@@ -239,7 +239,7 @@
 
 	feedback_add_details("admin_verb","TAirPumpNoise")
 
-/client/verb/toggle_pickup_sounds()
+client/verb/toggle_pickup_sounds()
 	set name = "Toggle Picked Up Item Sounds"
 	set category = "Preferences"
 	set desc = "Toggles sounds when items are picked up or thrown."
@@ -254,7 +254,7 @@
 
 	feedback_add_details("admin_verb", "TPickupSounds")
 
-/client/verb/toggle_mob_tooltips()
+client/verb/toggle_mob_tooltips()
 	set name = "Toggle Mob Tooltips"
 	set category = "Preferences"
 	set desc = "Toggles displaying name/species over mobs when moused over."
@@ -267,7 +267,7 @@
 
 	feedback_add_details("admin_verb","TMobTooltips") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_hear_instruments()
+client/verb/toggle_hear_instruments()
 	set name = "Toggle Hear/Ignore Instruments"
 	set category = "Preferences"
 	set desc = "Hear In-game Instruments"
@@ -280,7 +280,7 @@
 
 	feedback_add_details("admin_verb","THInstm") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_status_indicators()
+client/verb/toggle_status_indicators()
 	set name = "Toggle Status Indicators"
 	set category = "Preferences"
 	set desc = "Enable/Disable seeing status indicators over peoples' heads."
@@ -293,7 +293,7 @@
 
 	feedback_add_details("admin_verb","TStatusIndicators")
 
-/client/verb/toggle_overhead_chat()
+client/verb/toggle_overhead_chat()
 	set name = "Toggle Overhead Chat"
 	set category = "Preferences"
 	set desc = "Enable/Disable seeing overhead chat messages."
@@ -307,7 +307,7 @@
 	feedback_add_details("admin_verb","TOHChat")
 
 
-/client/verb/toggle_subtle_emotes()
+client/verb/toggle_subtle_emotes()
 	set name = "Toggle Subtle Emotes"
 	set category = "Preferences"
 	set desc = "Toggle seeing subtle emotes as a ghost."
@@ -322,7 +322,7 @@
 //Toggles for Staff
 //Developers
 
-/client/proc/toggle_debug_logs()
+client/proc/toggle_debug_logs()
 	set name = "Toggle Debug Logs"
 	set category = "Preferences"
 	set desc = "Toggles debug logs."
@@ -337,7 +337,7 @@
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Mods
-/client/proc/toggle_attack_logs()
+client/proc/toggle_attack_logs()
 	set name = "Toggle Attack Logs"
 	set category = "Preferences"
 	set desc = "Toggles attack logs."
@@ -352,7 +352,7 @@
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/toggle_age_verification()
+client/proc/toggle_age_verification()
 	set name = "Toggle age verification status"
 	set category = "Debug"
 	set desc = "Toggles your age verified status."
@@ -367,7 +367,7 @@
 
 	feedback_add_details("admin_verb","TAgeVerify") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/mob/living/carbon/human/verb/toggle_pain_msg()
+mob/living/carbon/human/verb/toggle_pain_msg()
 	set name = "Toggle Pain Messages"
 	set category = "Preferences"
 	set desc = "Toggles pain messages."
@@ -380,7 +380,7 @@
 	to_chat(src,"You will [ (painmsg) ? "now" : "no longer"] see your own pain messages.")
 	feedback_add_details("admin_verb","painmsg") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/mob/living/carbon/human/verb/acting()
+mob/living/carbon/human/verb/acting()
 	set name = "Feign Impairment"
 	set category = "IC"
 	set desc = "Allows user to manually enable drunkenness, stutter, jitter, etc."
@@ -420,7 +420,7 @@
 		to_chat(src,"You will now performatively act as if you were experiencing [impairment] for [aduration] seconds. (Do NOT abuse this)")
 	feedback_add_details("admin_verb","actimpaired") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/mob/living/carbon/human/proc/acting_expiry()
+mob/living/carbon/human/proc/acting_expiry()
 	to_chat(src,"You are no longer acting impaired.") // tick down from 1 to allow the effects to end 'naturally'
 	slurring = 1
 	stuttering = 1

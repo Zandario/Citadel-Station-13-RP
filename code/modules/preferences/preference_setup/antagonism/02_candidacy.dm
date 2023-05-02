@@ -18,24 +18,24 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	"pAI candidate" = 1, // -- TLE                      // 14
 )
 
-/datum/category_item/player_setup_item/antagonism/candidacy
+datum/category_item/player_setup_item/antagonism/candidacy
 	name = "Candidacy"
 	sort_order = 2
 
-/datum/category_item/player_setup_item/antagonism/candidacy/load_character(var/savefile/S)
+datum/category_item/player_setup_item/antagonism/candidacy/load_character(var/savefile/S)
 	S["be_special"]	>> pref.be_special
 	S["be_event_role"] >> pref.be_event_role
 
 
-/datum/category_item/player_setup_item/antagonism/candidacy/save_character(var/savefile/S)
+datum/category_item/player_setup_item/antagonism/candidacy/save_character(var/savefile/S)
 	S["be_special"]	<< pref.be_special
 	S["be_event_role"] << pref.be_event_role
 
-/datum/category_item/player_setup_item/antagonism/candidacy/sanitize_character()
+datum/category_item/player_setup_item/antagonism/candidacy/sanitize_character()
 	pref.be_special	= sanitize_integer(pref.be_special, 0, 65535, initial(pref.be_special))
 	pref.be_event_role = sanitize_integer(pref.be_event_role, NONE, ALL, default = NONE)
 
-/datum/category_item/player_setup_item/antagonism/candidacy/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/antagonism/candidacy/content(datum/preferences/prefs, mob/user, data)
 	. += "<b>Event Role Preferences</b> <a href='?src=[REF(src)];event_role_help=1'>\[?]</a><br>"
 	for(var/i in GLOB.event_role_list)
 		. += "<b>[i]</b> <a href='?src=[REF(src)];event_role_help_flag=[GLOB.event_role_list[i]]'>\[?]</a>: <a href='?src=[REF(src)];event_role_toggle=[GLOB.event_role_list[i]]'><b>[pref.be_event_role & GLOB.event_role_list[i]? "Yes" : "No"]</b></a><br>"
@@ -53,7 +53,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 					. += "<b>Be [i]:</b> <a href='?src=\ref[src];be_special=[n]'><b>[pref.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
 			n++
 
-/datum/category_item/player_setup_item/antagonism/candidacy/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/antagonism/candidacy/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["be_special"])
 		var/num = text2num(href_list["be_special"])
 		pref.be_special ^= (1<<num)

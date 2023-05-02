@@ -4,7 +4,7 @@
 /**
  * Etc variables on the NIF to keep this self contained
  */
-/obj/item/nif
+obj/item/nif
 	var/static/list/valid_ui_themes = list(
 		"abductor",
 		"cardtable",
@@ -21,22 +21,22 @@
 /**
  * Small helper component to manage the HUD icon
  */
-/datum/component/nif_menu
+datum/component/nif_menu
 	var/atom/movable/screen/nif/screen_icon
 
-/datum/component/nif_menu/Initialize()
+datum/component/nif_menu/Initialize()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 
-/datum/component/nif_menu/RegisterWithParent()
+datum/component/nif_menu/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
 	var/mob/owner = parent
 	if(owner.client)
 		create_mob_button(parent)
 
-/datum/component/nif_menu/UnregisterFromParent()
+datum/component/nif_menu/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN)
 	if(ismob(parent))
@@ -49,7 +49,7 @@
 			remove_verb(owner, /mob/living/carbon/human/proc/nif_menu)
 
 
-/datum/component/nif_menu/proc/create_mob_button(mob/user)
+datum/component/nif_menu/proc/create_mob_button(mob/user)
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
@@ -62,7 +62,7 @@
 
 	add_verb(user, /mob/living/carbon/human/proc/nif_menu)
 
-/datum/component/nif_menu/proc/nif_menu_click(mob/user)
+datum/component/nif_menu/proc/nif_menu_click(mob/user)
 	var/mob/living/carbon/human/H = user
 	if(istype(H) && H.nif)
 		INVOKE_ASYNC(H.nif, .proc/ui_interact, user)
@@ -70,13 +70,13 @@
 /**
  * Screen atom for NIF menu access
  */
-/atom/movable/screen/nif
+atom/movable/screen/nif
 	name = "nif menu"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "nif"
 	screen_loc = ui_smallquad
 
-/atom/movable/screen/nif/Click(location, control, params)
+atom/movable/screen/nif/Click(location, control, params)
 	..()
 	var/datum/component/nif_menu/N = usr.GetComponent(/datum/component/nif_menu)
 	N?.nif_menu_click(usr)
@@ -84,7 +84,7 @@
 /**
  * Verb to open the interface
  */
-/mob/living/carbon/human/proc/nif_menu()
+mob/living/carbon/human/proc/nif_menu()
 	set name = "NIF Menu"
 	set category = "IC"
 	set desc = "Open the NIF user interface."
@@ -96,13 +96,13 @@
 /**
  * The NIF State ensures that only our authorized implanted user can touch us.
  */
-/obj/item/nif/ui_state(mob/user, datum/tgui_module/module)
+obj/item/nif/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.ui_nif_main_state
 
 /**
  * Standard TGUI stub to open the NIF.js template.
  */
-/obj/item/nif/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/item/nif/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NIF", name)
@@ -112,7 +112,7 @@
  * tgui_data gives the UI any relevant data it needs.
  * In our case, that's basically everything from our statpanel.
  */
-/obj/item/nif/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/nif/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["theme"] = save_data["ui_theme"]
@@ -152,7 +152,7 @@
 /**
  * tgui_act handles all user input in the UI.
  */
-/obj/item/nif/ui_act(action, list/params, datum/tgui/ui)
+obj/item/nif/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 

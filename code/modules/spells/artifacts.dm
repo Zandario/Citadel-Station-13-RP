@@ -1,6 +1,6 @@
 //////////////////////Scrying orb//////////////////////
 
-/obj/item/scrying
+obj/item/scrying
 	name = "scrying orb"
 	desc = "An incandescent orb of otherworldly energy, staring into it gives you vision beyond mortal means."
 	icon = 'icons/obj/projectiles.dmi'
@@ -12,7 +12,7 @@
 	damage_force = 10
 	hitsound = 'sound/items/welder2.ogg'
 
-/obj/item/scrying/attack_self(mob/user)
+obj/item/scrying/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -29,7 +29,7 @@
 
 ///////////////////////////Veil Render//////////////////////
 /*
-/obj/item/veilrender
+obj/item/veilrender
 	name = "veil render"
 	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast city."
 	icon = 'icons/obj/wizard.dmi'
@@ -48,7 +48,7 @@
 	var/rend_desc = "You should run now."
 	var/spawn_fast = 0 //if 1, ignores checking for mobs on loc before spawning
 
-/obj/item/veilrender/attack_self(mob/user)
+obj/item/veilrender/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -59,7 +59,7 @@
 	else
 		to_chat(user, "<span class='danger'>The unearthly energies that powered the blade are now dormant.</span>")
 
-/obj/effect/rend
+obj/effect/rend
 	name = "tear in the fabric of reality"
 	desc = "You should run now."
 	icon = 'icons/effects/effects.dmi'
@@ -70,7 +70,7 @@
 	var/spawn_amt_left = 20
 	var/spawn_fast = 0
 
-/obj/effect/rend/New(loc, var/spawn_type, var/spawn_amt, var/desc, var/spawn_fast)
+obj/effect/rend/New(loc, var/spawn_type, var/spawn_amt, var/desc, var/spawn_fast)
 	src.spawn_path = spawn_type
 	src.spawn_amt_left = spawn_amt
 	src.desc = desc
@@ -78,7 +78,7 @@
 	START_PROCESSING(SSobj, src)
 	return
 
-/obj/effect/rend/process(delta_time)
+obj/effect/rend/process(delta_time)
 	if(!spawn_fast)
 		if(locate(/mob) in loc)
 			return
@@ -87,7 +87,7 @@
 	if(spawn_amt_left <= 0)
 		qdel(src)
 
-/obj/effect/rend/attackby(obj/item/I, mob/user, params)
+obj/effect/rend/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/nullrod))
 		user.visible_message("<span class='danger'>[user] seals \the [src] with \the [I].</span>")
 		qdel(src)
@@ -95,13 +95,13 @@
 	else
 		return ..()
 
-/obj/effect/rend/singularity_pull()
+obj/effect/rend/singularity_pull()
 	return
 
-/obj/effect/rend/singularity_pull()
+obj/effect/rend/singularity_pull()
 	return
 
-/obj/item/veilrender/vealrender
+obj/item/veilrender/vealrender
 	name = "veal render"
 	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast farm."
 	spawn_type = /mob/living/simple_animal/cow
@@ -109,7 +109,7 @@
 	activate_descriptor = "hunger"
 	rend_desc = "Reverberates with the sound of ten thousand moos."
 
-/obj/item/veilrender/honkrender
+obj/item/veilrender/honkrender
 	name = "honk render"
 	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast circus."
 	spawn_type = /mob/living/simple_animal/hostile/retaliate/clown
@@ -120,7 +120,7 @@
 
 ////TEAR IN REALITY
 
-/obj/singularity/wizard
+obj/singularity/wizard
 	name = "tear in the fabric of reality"
 	desc = "This isn't right."
 	icon = 'icons/effects/224x224.dmi'
@@ -134,12 +134,12 @@
 	current_size = STAGE_FOUR
 	allowed_size = STAGE_FOUR
 
-/obj/singularity/wizard/process(delta_time)
+obj/singularity/wizard/process(delta_time)
 	move()
 	eat()
 	return
 
-/obj/singularity/wizard/attack_tk(mob/user)
+obj/singularity/wizard/attack_tk(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		var/datum/component/mood/insaneinthemembrane = C.GetComponent(/datum/component/mood)
@@ -151,21 +151,21 @@
 			C.gain_trauma(lore)
 		addtimer(CALLBACK(src, /obj/singularity/wizard.proc/deranged, C), 100)
 
-/obj/singularity/wizard/proc/deranged(mob/living/carbon/C)
+obj/singularity/wizard/proc/deranged(mob/living/carbon/C)
 	if(!C || C.stat == DEAD)
 		return
 	C.vomit(0, TRUE, TRUE, 3, TRUE)
 	C.spew_organ(3, 2)
 	C.death()
 
-/obj/singularity/wizard/mapped/admin_investigate_setup()
+obj/singularity/wizard/mapped/admin_investigate_setup()
 	return
 */
 
 //Need to add skeletons before this one works.
 /////////////////////////////////////////Necromantic Stone///////////////////
 
-/obj/item/necromantic_stone
+obj/item/necromantic_stone
 	name = "necromantic stone"
 	desc = "A shard capable of resurrecting humans as skeleton thralls."
 	icon = 'icons/obj/wizard.dmi'
@@ -175,10 +175,10 @@
 	var/list/spooky_scaries = list()
 	var/unlimited = 0
 
-/obj/item/necromantic_stone/unlimited
+obj/item/necromantic_stone/unlimited
 	unlimited = 1
 
-/obj/item/necromantic_stone/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/necromantic_stone/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
 		return ..()
@@ -209,7 +209,7 @@
 
 	desc = "A shard capable of resurrecting humans as skeleton thralls[unlimited ? "." : ", [spooky_scaries.len]/3 active thralls."]"
 
-/obj/item/necromantic_stone/proc/check_spooky()
+obj/item/necromantic_stone/proc/check_spooky()
 	if(unlimited) //no point, the list isn't used.
 		return
 
@@ -225,7 +225,7 @@
 	listclearnulls(spooky_scaries)
 
 //Funny gimmick, skeletons always seem to wear roman/ancient armour
-/obj/item/necromantic_stone/proc/equip_roman_skeleton(mob/living/carbon/human/H)
+obj/item/necromantic_stone/proc/equip_roman_skeleton(mob/living/carbon/human/H)
 	for(var/obj/item/I in H)
 		//H.dropItemtoGround(I) //Just gonna disable this until I figure out what it does.
 
@@ -239,7 +239,7 @@
 
 /*
 //Gonna need some help with Voodoo.
-/obj/item/voodoo
+obj/item/voodoo
 	name = "wicker doll"
 	desc = "Something creepy about it."
 	icon = 'icons/obj/wizard.dmi'
@@ -251,7 +251,7 @@
 	var/cooldown_time = 30 //3s
 	var/cooldown = 0
 
-/obj/item/voodoo/attackby(obj/item/I, mob/user, params)
+obj/item/voodoo/attackby(obj/item/I, mob/user, params)
 	if(target && cooldown < world.time)
 		if(I.get_temperature())
 			to_chat(target, "<span class='userdanger'>You suddenly feel very hot</span>")
@@ -276,12 +276,12 @@
 				to_chat(user, "You attach [I] to the doll.")
 				update_targets()
 
-/obj/item/voodoo/check_eye(mob/user)
+obj/item/voodoo/check_eye(mob/user)
 	if(loc != user)
 		user.reset_perspective(null)
 		user.unset_machine()
 
-/obj/item/voodoo/attack_self(mob/user)
+obj/item/voodoo/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -324,14 +324,14 @@
 				GiveHint(target,user)
 		cooldown = world.time + cooldown_time
 
-/obj/item/voodoo/proc/update_targets()
+obj/item/voodoo/proc/update_targets()
 	possible = null
 	if(!voodoo_link)
 		return
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		if(md5(H.dna.uni_identity) in voodoo_link.fingerprints)
 
-/obj/item/voodoo/proc/GiveHint(mob/victim,force=0)
+obj/item/voodoo/proc/GiveHint(mob/victim,force=0)
 	if(prob(50) || force)
 		var/way = dir2text(get_dir(victim,get_turf(src)))
 		to_chat(victim, "<span class='notice'>You feel a dark presence from [way]</span>")
@@ -339,12 +339,12 @@
 		var/area/A = get_area(src)
 		to_chat(victim, "<span class='notice'>You feel a dark presence from [A.name]</span>")
 
-/obj/item/voodoo/suicide_act(mob/living/carbon/user)
+obj/item/voodoo/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] links the voodoo doll to [user.p_them()]self and sits on it, infinitely crushing [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	user.gib()
 	return(BRUTELOSS)
 
-/obj/item/voodoo/fire_act(exposed_temperature, exposed_volume)
+obj/item/voodoo/fire_act(exposed_temperature, exposed_volume)
 	if(target)
 		target.adjust_fire_stacks(20)
 		target.IgniteMob()
@@ -354,7 +354,7 @@
 //Cursed Heart requires a bit more work in other organ .dms to function. Leaving untouched for now.
 
 //Provides a decent heal, need to pump every 6 seconds
-/obj/item/organ/heart/cursed/wizard
+obj/item/organ/heart/cursed/wizard
 	click_delay = 60
 	H.adjustBruteloss = -25
 	H.adjustBurnloss = -25
@@ -362,7 +362,7 @@
 
 //Warp Whistle: Provides uncontrolled long distance teleportation. //Not even gonna start fucking with this one yet.
 
-/obj/item/warpwhistle
+obj/item/warpwhistle
 	name = "warp whistle"
 	desc = "One toot on this whistle will send you to a far away land!"
 	icon = 'icons/obj/wizard.dmi'
@@ -370,13 +370,13 @@
 	var/on_cooldown = 0 //0: usable, 1: in use, 2: on cooldown
 	var/mob/living/carbon/last_user
 
-/obj/item/warpwhistle/proc/interrupted(mob/living/carbon/user)
+obj/item/warpwhistle/proc/interrupted(mob/living/carbon/user)
 	if(!user || QDELETED(src) || user.mob_transforming)
 		on_cooldown = FALSE
 		return TRUE
 	return FALSE
 
-/obj/item/warpwhistle/proc/end_effect(mob/living/carbon/user)
+obj/item/warpwhistle/proc/end_effect(mob/living/carbon/user)
 	user.invisibility = initial(user.invisibility)
 	user.status_flags &= ~STATUS_GODMODE
 	REMOVE_TRAIT(user, TRAIT_MOBILITY_NOMOVE, src)
@@ -384,7 +384,7 @@
 	REMOVE_TRAIT(user, TRAIT_MOBILITY_NOPICKUP, src)
 	user.update_mobility_blocked()
 
-/obj/item/warpwhistle/attack_self(mob/user)
+obj/item/warpwhistle/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -435,12 +435,12 @@
 	sleep(40)
 	on_cooldown = 0
 
-/obj/item/warpwhistle/Destroy()
+obj/item/warpwhistle/Destroy()
 	if(on_cooldown == 1 && last_user) //Flute got dunked somewhere in the teleport
 		end_effect(last_user)
 	return ..()
 
-/obj/effect/temp_visual/tornado
+obj/effect/temp_visual/tornado
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "tornado"
 	name = "tornado"
@@ -450,7 +450,7 @@
 	duration = 40
 	pixel_x = 500
 
-/obj/effect/temp_visual/tornado/Initialize(mapload)
+obj/effect/temp_visual/tornado/Initialize(mapload)
 	. = ..()
 	animate(src, pixel_x = -500, time = 40)
 */

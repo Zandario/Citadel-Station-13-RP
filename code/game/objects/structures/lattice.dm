@@ -1,4 +1,4 @@
-/obj/structure/lattice
+obj/structure/lattice
 	name = "lattice"
 	desc = "A lightweight support lattice."
 	icon = 'icons/obj/structures/lattice.dmi'
@@ -16,7 +16,7 @@
 	plane = TURF_PLANE
 
 
-/obj/structure/lattice/Initialize(mapload)
+obj/structure/lattice/Initialize(mapload)
 	. = ..()
 
 	// Should remove this at some point.
@@ -30,7 +30,7 @@
 
 
 
-/obj/structure/lattice/Destroy()
+obj/structure/lattice/Destroy()
 	var/turf/old_loc = get_turf(src)
 	. = ..()
 	if(isturf(old_loc))
@@ -38,7 +38,7 @@
 			AM.fall(old_loc)
 
 
-/obj/structure/lattice/legacy_ex_act(severity)
+obj/structure/lattice/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -50,7 +50,7 @@
 			return
 	return
 
-/obj/structure/lattice/attackby(obj/item/C, mob/user)
+obj/structure/lattice/attackby(obj/item/C, mob/user)
 
 	if (istype(C, /obj/item/stack/tile/floor))
 		var/turf/T = get_turf(src)
@@ -75,7 +75,7 @@
 		return
 	return
 
-/obj/structure/lattice/prevent_z_fall(atom/movable/victim, levels = 0, fall_flags)
+obj/structure/lattice/prevent_z_fall(atom/movable/victim, levels = 0, fall_flags)
 	if(check_standard_flag_pass(victim))
 		return ..()
 	return fall_flags | FALL_BLOCKED

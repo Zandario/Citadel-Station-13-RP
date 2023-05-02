@@ -53,7 +53,7 @@
  *
  *?	result - stores the value returned by process() proc
  */
-/datum/global_iterator
+datum/global_iterator
 	var/control_switch = 0
 	var/delay = 10
 	var/list/arg_list = new
@@ -63,7 +63,7 @@
 	var/result
 	var/state = 0
 
-/datum/global_iterator/New(list/arguments = null, autostart = 1)
+datum/global_iterator/New(list/arguments = null, autostart = 1)
 	delay = delay>0?(delay):1
 	if(forbid_garbage) //prevents garbage collection with tag != null
 		tag = "\ref[src]"
@@ -72,7 +72,7 @@
 		INVOKE_ASYNC(src, .proc/start)
 	return
 
-/datum/global_iterator/proc/main()
+datum/global_iterator/proc/main()
 	state = 1
 	while(src && control_switch)
 		last_exec = world.timeofday
@@ -86,7 +86,7 @@
 			sleep(1)
 	return 0
 
-/datum/global_iterator/proc/start(list/arguments = null)
+datum/global_iterator/proc/start(list/arguments = null)
 	if(active())
 		return
 	if(arguments)
@@ -99,7 +99,7 @@
 		state = main()
 	return 1
 
-/datum/global_iterator/proc/stop()
+datum/global_iterator/proc/stop()
 	if(!active())
 		return
 	control_switch = 0
@@ -107,7 +107,7 @@
 		state_check()
 	return 1
 
-/datum/global_iterator/proc/state_check()
+datum/global_iterator/proc/state_check()
 	var/lag = 0
 	while(state)
 		sleep(1)
@@ -115,28 +115,28 @@
 			CRASH("The global_iterator loop \ref[src] failed to terminate in designated timeframe. This may be caused by server lagging.")
 	return 1
 
-/datum/global_iterator/proc/active()
+datum/global_iterator/proc/active()
 	return control_switch
 
-/datum/global_iterator/proc/has_null_args()
+datum/global_iterator/proc/has_null_args()
 	if(null in arg_list)
 		return 1
 	return 0
 
-/datum/global_iterator/proc/set_delay(new_delay)
+datum/global_iterator/proc/set_delay(new_delay)
 	if(isnum(new_delay))
 		delay = max(1, round(new_delay))
 		return 1
 	else
 		return 0
 
-/datum/global_iterator/proc/get_last_exec_time()
+datum/global_iterator/proc/get_last_exec_time()
 	return (last_exec||0)
 
-/datum/global_iterator/proc/get_last_exec_time_as_text()
+datum/global_iterator/proc/get_last_exec_time_as_text()
 	return (time2text(last_exec)||"Wasn't executed yet")
 
-/datum/global_iterator/proc/set_process_args(list/arguments)
+datum/global_iterator/proc/set_process_args(list/arguments)
 	if(arguments && istype(arguments, /list) && arguments.len)
 		arg_list = arguments
 		return 1
@@ -144,16 +144,16 @@
 		// to_chat(world, "<span class='danger'>Invalid arguments supplied for [src.type], ref = \ref[src]</span>")
 		return 0
 
-/datum/global_iterator/proc/toggle_null_checks()
+datum/global_iterator/proc/toggle_null_checks()
 	check_for_null = !check_for_null
 	return check_for_null
 
-/datum/global_iterator/proc/toggle()
+datum/global_iterator/proc/toggle()
 	if(!stop())
 		start()
 	return active()
 
-/datum/global_iterator/Destroy()
+datum/global_iterator/Destroy()
 	. = ..()
 	arg_list.Cut()
 	stop()

@@ -1,7 +1,7 @@
 /**
  * Checks for specific types in a list.
  */
-/proc/is_type_in_list(atom/A, list/L)
+proc/is_type_in_list(atom/A, list/L)
 	for(var/type in L)
 		if(istype(A, type))
 			return TRUE
@@ -10,13 +10,13 @@
 /**
  * Checks for specific types in a list.
  */
-/proc/is_path_in_list(path, list/L)
+proc/is_path_in_list(path, list/L)
 	for(var/P in L)
 		if(ispath(path, P))
 			return TRUE
 	return FALSE
 
-/proc/subtypesof(prototype)
+proc/subtypesof(prototype)
 	return (typesof(prototype) - prototype)
 
 /**
@@ -32,21 +32,21 @@
 /**
  * Returns a new list with only atoms that are in typecache L.
  */
-/proc/typecache_filter_list(list/atoms, list/typecache)
+proc/typecache_filter_list(list/atoms, list/typecache)
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/atom/A as anything in atoms)
 		if (typecache[A.type])
 			. += A
 
-/proc/typecache_filter_list_reverse(list/atoms, list/typecache)
+proc/typecache_filter_list_reverse(list/atoms, list/typecache)
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/atom/A as anything in atoms)
 		if(!typecache[A.type])
 			. += A
 
-/proc/typecache_filter_multi_list_exclusion(list/atoms, list/typecache_include, list/typecache_exclude)
+proc/typecache_filter_multi_list_exclusion(list/atoms, list/typecache_include, list/typecache_exclude)
 	. = list()
 	for(var/atom/A as anything in atoms)
 		if(typecache_include[A.type] && !typecache_exclude[A.type])
@@ -55,7 +55,7 @@
 /**
  * Like typesof() or subtypesof(), but returns a typecache instead of a list.
  */
-/proc/typecacheof(path, ignore_root_path, only_root_path = FALSE)
+proc/typecacheof(path, ignore_root_path, only_root_path = FALSE)
 	if(ispath(path))
 		var/list/types = list()
 		if(only_root_path)

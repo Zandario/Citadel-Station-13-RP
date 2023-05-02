@@ -4,23 +4,23 @@
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
 // the object they are overriding. So all /mob/living together, etc.
 //
-/datum/configuration_legacy
+datum/configuration_legacy
 	var/items_survive_digestion = TRUE		//For configuring if the important_items survive digestion
 
 //
 // The datum type bolted onto normal preferences datums for storing Virgo stuff
 //
-/client
+client
 	var/datum/vore_preferences/prefs_vr
 
-/hook/client_new/proc/add_prefs_vr(client/C)
+hook/client_new/proc/add_prefs_vr(client/C)
 	C.prefs_vr = new/datum/vore_preferences(C)
 	if(C.prefs_vr)
 		return TRUE
 
 	return FALSE
 
-/datum/vore_preferences
+datum/vore_preferences
 	//Actual preferences
 	var/digestable = FALSE
 	var/devourable = FALSE
@@ -43,7 +43,7 @@
 	var/client/client
 	var/client_ckey
 
-/datum/vore_preferences/New(client/C)
+datum/vore_preferences/New(client/C)
 	if(istype(C))
 		client = C
 		client_ckey = C.ckey
@@ -52,7 +52,7 @@
 //
 //	Check if an object is capable of eating things, based on vore_organs
 //
-/proc/is_vore_predator(var/mob/living/O)
+proc/is_vore_predator(var/mob/living/O)
 	if(istype(O,/mob/living))
 		if(O.vore_organs.len > 0)
 			return TRUE
@@ -63,18 +63,18 @@
 //	Belly searching for simplifying other procs
 //  Mostly redundant now with belly-objects and isbelly(loc)
 //
-/proc/check_belly(atom/movable/A)
+proc/check_belly(atom/movable/A)
 	return isbelly(A.loc)
 
 //
 // Save/Load Vore Preferences
 //
-/datum/vore_preferences/proc/load_path(ckey,slot,filename="character",ext="json")
+datum/vore_preferences/proc/load_path(ckey,slot,filename="character",ext="json")
 	if(!ckey || !slot)	return
 	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/vore/[filename][slot].[ext]"
 
 
-/datum/vore_preferences/proc/load_vore()
+datum/vore_preferences/proc/load_vore()
 	if(!client || !client_ckey)
 		return FALSE //No client, how can we save?
 	if(!client.prefs || !client.prefs.default_slot)
@@ -139,7 +139,7 @@
 
 	return TRUE
 
-/datum/vore_preferences/proc/save_vore()
+datum/vore_preferences/proc/save_vore()
 	if(!path)				return FALSE
 
 	var/version = VORE_VERSION	//For "good times" use in the future
@@ -179,5 +179,5 @@
 	return TRUE
 
 //Can do conversions here
-/datum/vore_preferences/proc/patch_version(var/list/json_FROM_FILE,var/version)
+datum/vore_preferences/proc/patch_version(var/list/json_FROM_FILE,var/version)
 	return json_FROM_FILE

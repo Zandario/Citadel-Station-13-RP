@@ -2,7 +2,7 @@
 #define COLORMATE_HSV 2
 #define COLORMATE_MATRIX 3
 
-/obj/machinery/gear_painter
+obj/machinery/gear_painter
 	name = "Color Mate"
 	desc = "A machine to give your apparel a fresh new color!"
 	icon = 'icons/obj/vending.dmi'
@@ -36,7 +36,7 @@
 		/obj/item/toy
 	)
 
-/obj/machinery/gear_painter/Initialize(mapload)
+obj/machinery/gear_painter/Initialize(mapload)
 	. = ..()
 	color_matrix_last = list(
 		1, 0, 0,
@@ -45,7 +45,7 @@
 		0, 0, 0,
 	)
 
-/obj/machinery/gear_painter/update_icon()
+obj/machinery/gear_painter/update_icon()
 	if(panel_open)
 		icon_state = "colormate_open"
 	else if(inoperable())
@@ -55,12 +55,12 @@
 	else
 		icon_state = "colormate"
 
-/obj/machinery/gear_painter/Destroy()
+obj/machinery/gear_painter/Destroy()
 	if(inserted) //please i beg you do not drop nulls
 		inserted.forceMove(drop_location())
 	return ..()
 
-/obj/machinery/gear_painter/attackby(obj/item/I, mob/living/user)
+obj/machinery/gear_painter/attackby(obj/item/I, mob/living/user)
 	if(inserted)
 		to_chat(user, SPAN_WARNING("The machine is already loaded."))
 		return
@@ -96,7 +96,7 @@
 	else
 		return ..()
 
-/obj/machinery/gear_painter/proc/insert_mob(mob/victim, mob/user)
+obj/machinery/gear_painter/proc/insert_mob(mob/victim, mob/user)
 	if(inserted)
 		return
 	if(user)
@@ -104,7 +104,7 @@
 	inserted = victim
 	inserted.forceMove(src)
 
-/obj/machinery/gear_painter/AllowDrop()
+obj/machinery/gear_painter/AllowDrop()
 	return FALSE
 
 // /obj/machinery/gear_painter/handle_atom_del(atom/movable/AM)
@@ -112,11 +112,11 @@
 // 		inserted = null
 // 	return ..()
 
-/obj/machinery/gear_painter/AltClick(mob/user)
+obj/machinery/gear_painter/AltClick(mob/user)
 	. = ..()
 	drop_item()
 
-/obj/machinery/gear_painter/proc/drop_item()
+obj/machinery/gear_painter/proc/drop_item()
 	if(!oview(1,src))
 		return
 	if(!inserted)
@@ -130,14 +130,14 @@
 	update_icon()
 	SStgui.update_uis(src)
 
-/obj/machinery/gear_painter/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/gear_painter/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ColorMate", src.name)
 		ui.set_autoupdate(FALSE) //This might be a bit intensive, better to not update it every few ticks
 		ui.open()
 
-/obj/machinery/gear_painter/ui_data(mob/user)
+obj/machinery/gear_painter/ui_data(mob/user)
 	. = list()
 	.["activemode"] = active_mode
 	.["matrixcolors"] = list(
@@ -167,7 +167,7 @@
 	else
 		.["item"] = null
 
-/obj/machinery/gear_painter/ui_act(action, params)
+obj/machinery/gear_painter/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -208,7 +208,7 @@
 				return TRUE
 
 
-/obj/machinery/gear_painter/proc/do_paint(mob/user)
+obj/machinery/gear_painter/proc/do_paint(mob/user)
 	var/color_to_use
 	switch(active_mode)
 		if(COLORMATE_TINT)
@@ -240,7 +240,7 @@
 
 
 /// Produces the preview image of the item, used in the UI, the way the color is not stacking is a sin.
-/obj/machinery/gear_painter/proc/build_preview()
+obj/machinery/gear_painter/proc/build_preview()
 	if(inserted) //sanity
 		var/list/cm
 		switch(active_mode)
@@ -281,7 +281,7 @@
 
 		. = preview
 
-/obj/machinery/gear_painter/proc/check_valid_color(list/cm, mob/user)
+obj/machinery/gear_painter/proc/check_valid_color(list/cm, mob/user)
 	if(!islist(cm))		// normal
 		var/list/HSV = ReadHSV(RGBtoHSV(cm))
 		if(HSV[3] < minimum_normal_lightness)

@@ -1,17 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/simulated/wall,
-/area/submap/cave/vault2)
+turf/simulated/wall,
+area/submap/cave/vault2)
 "c" = (
-/turf/simulated/floor/plating,
-/area/submap/cave/vault2)
+turf/simulated/floor/plating,
+area/submap/cave/vault2)
 "d" = (
-/obj/random/multiple/minevault,
-/turf/simulated/floor/plating,
-/area/submap/cave/vault2)
+obj/random/multiple/minevault,
+turf/simulated/floor/plating,
+area/submap/cave/vault2)
 
 (1,1,1) = {"
 a

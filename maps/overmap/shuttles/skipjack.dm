@@ -1,6 +1,6 @@
 // Skipjack
 /*
-/datum/shuttle/autodock/multi/heist
+datum/shuttle/autodock/multi/heist
 	name = "Skipjack"
 	warmup_time = 8
 	move_time = 60
@@ -24,7 +24,7 @@
 		)
 */
 
-/datum/shuttle/autodock/overmap/skipjack
+datum/shuttle/autodock/overmap/skipjack
 	name = "Skipjack Shuttle"
 	warmup_time = 0
 	current_location = "skipjack_base"
@@ -34,14 +34,13 @@
 	defer_initialisation = TRUE
 
 // The 'ship' of the excursion shuttle
-/obj/effect/overmap/visitable/ship/landable/skipjack
+obj/effect/overmap/visitable/ship/landable/skipjack
 	name = "Unknown Vessel"
 	desc = "Scans inconclusive."
 	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Skipjack Shuttle"
 
-/obj/machinery/computer/shuttle_control/explore/skipjack
+obj/machinery/computer/shuttle_control/explore/skipjack
 	name = "short jump console"
 	shuttle_tag = "Skipjack Shuttle"
-

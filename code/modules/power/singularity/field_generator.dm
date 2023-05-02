@@ -13,7 +13,7 @@ field_generator power level display
 */
 
 #define field_generator_max_power 250000
-/obj/machinery/field_generator
+obj/machinery/field_generator
 	name = "Field Generator"
 	desc = "A large thermal battery that projects a high amount of energy when powered."
 	icon = 'icons/obj/machines/field_generator.dmi'
@@ -36,7 +36,7 @@ field_generator power level display
 	var/gen_power_draw = 4500	//power needed per generator
 	var/field_power_draw = 1750	//power needed per field object
 
-/obj/machinery/field_generator/update_overlays()
+obj/machinery/field_generator/update_overlays()
 	. = ..()
 	if(warming_up)
 		. += "+a[warming_up]"
@@ -50,12 +50,12 @@ field_generator power level display
 	if(level)
 		. += "+p[level]"
 
-/obj/machinery/field_generator/Initialize(mapload)
+obj/machinery/field_generator/Initialize(mapload)
 	. = ..()
 	fields = list()
 	connected_gens = list()
 
-/obj/machinery/field_generator/process(delta_time)
+obj/machinery/field_generator/process(delta_time)
 	if(Varedit_start == 1)
 		if(active == 0)
 			active = 1
@@ -73,7 +73,7 @@ field_generator power level display
 	return
 
 
-/obj/machinery/field_generator/attack_hand(mob/user, list/params)
+obj/machinery/field_generator/attack_hand(mob/user, list/params)
 	if(state == 2)
 		if(get_dist(src, user) <= 1)//Need to actually touch the thing to turn it on
 			if(src.active >= 1)
@@ -93,7 +93,7 @@ field_generator power level display
 		return
 
 
-/obj/machinery/field_generator/attackby(obj/item/W, mob/user)
+obj/machinery/field_generator/attackby(obj/item/W, mob/user)
 	if(active)
 		to_chat(user, "The [src] needs to be off.")
 		return
@@ -151,30 +151,30 @@ field_generator power level display
 		return
 
 
-/obj/machinery/field_generator/emp_act()
+obj/machinery/field_generator/emp_act()
 	return 0
 
-/obj/machinery/field_generator/bullet_act(var/obj/projectile/Proj)
+obj/machinery/field_generator/bullet_act(var/obj/projectile/Proj)
 	if(istype(Proj, /obj/projectile/beam))
 		power += Proj.damage * EMITTER_DAMAGE_POWER_TRANSFER
 		update_icon()
 	return 0
 
 
-/obj/machinery/field_generator/Destroy()
+obj/machinery/field_generator/Destroy()
 	src.cleanup()
 	. = ..()
 
 
 
-/obj/machinery/field_generator/proc/turn_off()
+obj/machinery/field_generator/proc/turn_off()
 	active = 0
 	warming_up = 0
 	spawn(1)
 		src.cleanup()
 	update_icon()
 
-/obj/machinery/field_generator/proc/turn_on()
+obj/machinery/field_generator/proc/turn_on()
 	active = 1
 	warming_up = 1
 	spawn(1)
@@ -187,7 +187,7 @@ field_generator power level display
 	update_icon()
 
 
-/obj/machinery/field_generator/proc/calc_power()
+obj/machinery/field_generator/proc/calc_power()
 	if(Varpower)
 		return 1
 
@@ -210,7 +210,7 @@ field_generator power level display
 		return 0
 
 //Tries to draw the needed power from our own power reserve, or connected generators if we can. Returns the amount of power we were able to get.
-/obj/machinery/field_generator/proc/draw_power(var/draw = 0, var/list/flood_list = list())
+obj/machinery/field_generator/proc/draw_power(var/draw = 0, var/list/flood_list = list())
 	flood_list += src
 
 	if(src.power >= draw)//We have enough power
@@ -230,7 +230,7 @@ field_generator power level display
 
 	return actual_draw
 
-/obj/machinery/field_generator/proc/start_fields()
+obj/machinery/field_generator/proc/start_fields()
 	if(!src.state == 2 || !anchored)
 		turn_off()
 		return
@@ -245,7 +245,7 @@ field_generator power level display
 	src.active = 2
 
 
-/obj/machinery/field_generator/proc/setup_field(var/NSEW)
+obj/machinery/field_generator/proc/setup_field(var/NSEW)
 	var/turf/T = src.loc
 	var/obj/machinery/field_generator/G
 	var/steps = 0
@@ -301,7 +301,7 @@ field_generator power level display
 		G.connected_gens.Add(src)
 
 
-/obj/machinery/field_generator/proc/cleanup()
+obj/machinery/field_generator/proc/cleanup()
 	clean_up = 1
 	for (var/obj/machinery/containment_field/F in fields)
 		if (QDELETED(F))

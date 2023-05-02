@@ -4,7 +4,7 @@
  */
 
 /*
-/spell/aoe_turf/conjure/construct
+spell/aoe_turf/conjure/construct
 	name = "Artificer"
 	desc = "This spell conjures a construct which may be controlled by Shades"
 
@@ -19,13 +19,13 @@
 
 	hud_state = "artificer"
 
-/spell/aoe_turf/conjure/construct/lesser
+spell/aoe_turf/conjure/construct/lesser
 	charge_max = 1800
 	summon_type = list(/obj/structure/constructshell/cult)
 	hud_state = "const_shell"
 	override_base = "const"
 
-/spell/aoe_turf/conjure/floor
+spell/aoe_turf/conjure/floor
 	name = "Floor Construction"
 	desc = "This spell constructs a cult floor"
 
@@ -38,13 +38,13 @@
 
 	hud_state = "const_floor"
 
-/spell/aoe_turf/conjure/floor/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
+spell/aoe_turf/conjure/floor/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
 	animation.icon_state = "cultfloor"
 	flick("cultfloor",animation)
 	spawn(10)
 		qdel(animation)
 
-/spell/aoe_turf/conjure/wall
+spell/aoe_turf/conjure/wall
 	name = "Lesser Construction"
 	desc = "This spell constructs a cult wall"
 
@@ -57,13 +57,13 @@
 
 	hud_state = "const_wall"
 
-/spell/aoe_turf/conjure/wall/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
+spell/aoe_turf/conjure/wall/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
 	animation.icon_state = "cultwall"
 	flick("cultwall",animation)
 	spawn(10)
 		qdel(animation)
 
-/spell/aoe_turf/conjure/wall/reinforced
+spell/aoe_turf/conjure/wall/reinforced
 	name = "Greater Construction"
 	desc = "This spell constructs a reinforced metal wall"
 
@@ -76,7 +76,7 @@
 
 	summon_type = list(/turf/simulated/wall/r_wall)
 
-/spell/aoe_turf/conjure/soulstone
+spell/aoe_turf/conjure/soulstone
 	name = "Summon Soulstone"
 	desc = "This spell reaches into Nar-Sie's realm, summoning one of the legendary fragments across time and space"
 
@@ -91,7 +91,7 @@
 	hud_state = "const_stone"
 	override_base = "const"
 
-/spell/aoe_turf/conjure/pylon
+spell/aoe_turf/conjure/pylon
 	name = "Red Pylon"
 	desc = "This spell conjures a fragile crystal from Nar-Sie's realm. Makes for a convenient light source."
 
@@ -105,7 +105,7 @@
 
 	hud_state = "const_pylon"
 
-/spell/aoe_turf/conjure/pylon/cast(list/targets)
+spell/aoe_turf/conjure/pylon/cast(list/targets)
 	..()
 	var/turf/spawn_place = pick(targets)
 	for(var/obj/structure/cult/pylon/P in spawn_place.contents)
@@ -114,7 +114,7 @@
 		continue
 	return
 
-/spell/aoe_turf/conjure/door
+spell/aoe_turf/conjure/door
 	name = "Stone Door"
 	desc = "This spell conjures a massive stone door."
 
@@ -126,14 +126,14 @@
 
 	hud_state = "const_rune"
 
-/spell/aoe_turf/conjure/door/cast(list/targets)
+spell/aoe_turf/conjure/door/cast(list/targets)
 	..()
 	var/turf/spawn_place = pick(targets)
 	if(spawn_place)
 		new /obj/structure/simple_door/cult(spawn_place)
 	return
 
-/spell/aoe_turf/conjure/grille
+spell/aoe_turf/conjure/grille
 	name = "Arcane Grille"
 	desc = "This spell conjures an airtight grille."
 
@@ -145,14 +145,14 @@
 
 	hud_state = "const_rune"
 
-/spell/aoe_turf/conjure/grille/cast(list/targets)
+spell/aoe_turf/conjure/grille/cast(list/targets)
 	..()
 	var/turf/spawn_place = pick(targets)
 	if(spawn_place)
 		new /obj/structure/grille/cult(spawn_place)
 	return
 
-/spell/aoe_turf/conjure/forcewall/lesser
+spell/aoe_turf/conjure/forcewall/lesser
 	name = "Shield"
 	desc = "Allows you to pull up a shield to protect yourself and allies from incoming threats"
 
@@ -167,7 +167,7 @@
 	hud_state = "const_juggwall"
 
 //Code for the Juggernaut construct's forcefield, that seemed like a good place to put it.
-/obj/effect/forcefield/cult
+obj/effect/forcefield/cult
 	desc = "That eerie looking obstacle seems to have been pulled from another dimension through sheer force"
 	name = "Juggerwall"
 	icon = 'icons/effects/effects.dmi'
@@ -175,6 +175,6 @@
 	light_color = "#B40000"
 	light_range = 2
 
-/obj/effect/forcefield/cult/cultify()
+obj/effect/forcefield/cult/cultify()
 	return
 */

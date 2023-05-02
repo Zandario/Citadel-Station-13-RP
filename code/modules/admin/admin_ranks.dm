@@ -1,7 +1,7 @@
 var/list/admin_ranks = list()								//list of all ranks with associated rights
 
 //load our rank - > rights associations
-/proc/load_admin_ranks()
+proc/load_admin_ranks()
 	admin_ranks.Cut()
 
 	var/previous_rights = 0
@@ -57,11 +57,11 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	testing(msg)
 	#endif
 
-/hook/startup/proc/loadAdmins()
+hook/startup/proc/loadAdmins()
 	load_admins()
 	return 1
 
-/proc/load_admins()
+proc/load_admins()
 	//clear the datums references
 	admin_datums.Cut()
 	for(var/client/C in GLOB.admins)
@@ -147,7 +147,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 
 
 #ifdef TESTING
-/client/verb/changerank(newrank in admin_ranks)
+client/verb/changerank(newrank in admin_ranks)
 	if(holder)
 		holder.rank = newrank
 		holder.rights = admin_ranks[newrank]
@@ -156,7 +156,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	remove_admin_verbs()
 	holder.associate(src)
 
-/client/verb/changerights(newrights as num)
+client/verb/changerights(newrights as num)
 	if(holder)
 		holder.rights = newrights
 	else

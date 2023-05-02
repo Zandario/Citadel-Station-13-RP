@@ -1,4 +1,4 @@
-/datum/fish_source/ocean
+datum/fish_source/ocean
 	fish_table = list(
 		FISHING_DUD = 2.5,
 		/obj/item/fish/clownfish = 15,
@@ -10,5 +10,5 @@
 	)
 	fishing_difficulty = FISHING_DEFAULT_DIFFICULTY + 5
 
-/datum/fish_source/ocean/beach
+datum/fish_source/ocean/beach
 	catalog_description = "Beach shore water"

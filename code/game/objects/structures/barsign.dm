@@ -1,11 +1,11 @@
-/obj/structure/sign/double/barsign
+obj/structure/sign/double/barsign
 	icon = 'icons/obj/barsigns.dmi'
 	icon_state = "empty"
 	appearance_flags = 0
 	anchored = 1
 	var/cult = 0
 
-/obj/structure/sign/double/barsign/proc/get_valid_states(initial=1)
+obj/structure/sign/double/barsign/proc/get_valid_states(initial=1)
 	. = icon_states(icon)
 	. -= "on"
 	. -= "narsiebistro"
@@ -13,7 +13,7 @@
 	if(initial)
 		. -= "Off"
 
-/obj/structure/sign/double/barsign/examine(mob/user)
+obj/structure/sign/double/barsign/examine(mob/user)
 	. = ..()
 	switch(icon_state)
 		if("Off")
@@ -25,11 +25,11 @@
 		else
 			. += "It says '[icon_state]'"
 
-/obj/structure/sign/double/barsign/Initialize(mapload)
+obj/structure/sign/double/barsign/Initialize(mapload)
 	. = ..()
 	icon_state = pick(get_valid_states())
 
-/obj/structure/sign/double/barsign/attackby(obj/item/I, mob/user)
+obj/structure/sign/double/barsign/attackby(obj/item/I, mob/user)
 	if(cult)
 		return ..()
 

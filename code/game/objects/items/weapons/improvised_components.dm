@@ -1,4 +1,4 @@
-/obj/item/material/butterflyconstruction
+obj/item/material/butterflyconstruction
 	name = "unfinished concealed knife"
 	desc = "An unfinished concealed knife, it looks like the screws need to be tightened."
 	icon = 'icons/obj/buildingobject.dmi'
@@ -6,7 +6,7 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 
-/obj/item/material/butterflyconstruction/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/material/butterflyconstruction/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_screwdriver())
 		to_chat(user, "You finish the concealed blade weapon.")
 		playsound(src, W.tool_sound, 50, 1)
@@ -14,7 +14,7 @@
 		qdel(src)
 		return
 
-/obj/item/material/butterflyblade
+obj/item/material/butterflyblade
 	name = "knife blade"
 	desc = "A knife blade. Unusable as a weapon without a grip."
 	icon = 'icons/obj/buildingobject.dmi'
@@ -22,14 +22,14 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 
-/obj/item/material/butterflyblade/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/material/butterflyblade/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/duct_tape_roll))
 		to_chat(user, "You wrap the blade with the entire roll of duct tape.")
 		new /obj/item/melee/shiv(user.loc)
 		qdel(W)
 		return
 
-/obj/item/material/butterflyhandle
+obj/item/material/butterflyhandle
 	name = "concealed knife grip"
 	desc = "A plasteel grip with screw fittings for a blade."
 	icon = 'icons/obj/buildingobject.dmi'
@@ -37,7 +37,7 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 
-/obj/item/material/butterflyhandle/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/material/butterflyhandle/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/material/butterflyblade))
 		var/obj/item/material/butterflyblade/B = W
 		to_chat(user, "You attach the two concealed blade parts.")
@@ -46,7 +46,7 @@
 		qdel(src)
 		return
 
-/obj/item/material/wirerod
+obj/item/material/wirerod
 	name = "wired rod"
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
 	icon = 'icons/obj/weapons.dmi'
@@ -59,7 +59,7 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 
-/obj/item/material/wirerod/attackby(var/obj/item/I, mob/user as mob)
+obj/item/material/wirerod/attackby(var/obj/item/I, mob/user as mob)
 	..()
 	var/obj/item/finished
 	if(istype(I, /obj/item/material/shard) || istype(I, /obj/item/material/butterflyblade))
@@ -79,7 +79,7 @@
 
 //Sledgehammer construction
 
-/obj/item/material/hammer_head
+obj/item/material/hammer_head
 	name = "hammer head"
 	desc = "A rectangular hammer head. Feels very heavy in your hand.."
 	icon = 'icons/obj/buildingobject.dmi'
@@ -88,7 +88,7 @@
 
 	var/construction_stage = 1
 
-/obj/item/material/hammer_head/attackby(var/obj/item/thing, var/mob/user)
+obj/item/material/hammer_head/attackby(var/obj/item/thing, var/mob/user)
 
 	if(istype(thing, /obj/item/stack/rods) && construction_stage == 1)
 		var/obj/item/stack/rods = thing
@@ -189,12 +189,12 @@
 
 	return ..()
 
-/obj/item/material/hammer_head/proc/increment_construction_stage()
+obj/item/material/hammer_head/proc/increment_construction_stage()
 	if(construction_stage < 7)
 		construction_stage++
 	icon_state = "hammer_construction_[construction_stage]"
 
-/obj/item/material/hammer_head/examine(var/mob/user)
+obj/item/material/hammer_head/examine(var/mob/user)
 	. = ..()
 	if(.)
 		switch(construction_stage) //BLACKMAJOR YOU KNOW YOU SHOULDN'T INLINE SWITCH STATEMENTS AAAA

@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
  * Helpers to generate lists for filter helpers.
  * This is the only practical way of writing these that actually produces sane lists.
  */
-/proc/alpha_mask_filter(x, y, icon/icon, render_source, flags)
+proc/alpha_mask_filter(x, y, icon/icon, render_source, flags)
 	. = list("type" = "alpha")
 	if(!isnull(x))
 		.["x"] = x
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(flags))
 		.["flags"] = flags
 
-/proc/angular_blur_filter(x, y, size)
+proc/angular_blur_filter(x, y, size)
 	. = list("type" = "angular_blur")
 	if(!isnull(x))
 		.["x"] = x
@@ -164,13 +164,13 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(size))
 		.["size"] = size
 
-/proc/color_matrix_filter(matrix/in_matrix, space)
+proc/color_matrix_filter(matrix/in_matrix, space)
 	. = list("type" = "color")
 	.["color"] = in_matrix
 	if(!isnull(space))
 		.["space"] = space
 
-/proc/displacement_map_filter(icon, render_source, x, y, size = 32)
+proc/displacement_map_filter(icon, render_source, x, y, size = 32)
 	. = list("type" = "displace")
 	if(!isnull(icon))
 		.["icon"] = icon
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(size))
 		.["size"] = size
 
-/proc/drop_shadow_filter(x, y, size, offset, color)
+proc/drop_shadow_filter(x, y, size, offset, color)
 	. = list("type" = "drop_shadow")
 	if(!isnull(x))
 		.["x"] = x
@@ -196,12 +196,12 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(color))
 		.["color"] = color
 
-/proc/gauss_blur_filter(size)
+proc/gauss_blur_filter(size)
 	. = list("type" = "blur")
 	if(!isnull(size))
 		.["size"] = size
 
-/proc/layering_filter(icon, render_source, x, y, flags, color, transform, blend_mode)
+proc/layering_filter(icon, render_source, x, y, flags, color, transform, blend_mode)
 	. = list("type" = "layer")
 	if(!isnull(icon))
 		.["icon"] = icon
@@ -220,14 +220,14 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(blend_mode))
 		.["blend_mode"] = blend_mode
 
-/proc/motion_blur_filter(x, y)
+proc/motion_blur_filter(x, y)
 	. = list("type" = "motion_blur")
 	if(!isnull(x))
 		.["x"] = x
 	if(!isnull(y))
 		.["y"] = y
 
-/proc/outline_filter(size, color, flags)
+proc/outline_filter(size, color, flags)
 	. = list("type" = "outline")
 	if(!isnull(size))
 		.["size"] = size
@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(flags))
 		.["flags"] = flags
 
-/proc/radial_blur_filter(size, x, y)
+proc/radial_blur_filter(size, x, y)
 	. = list("type" = "radial_blur")
 	if(!isnull(size))
 		.["size"] = size
@@ -245,7 +245,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(y))
 		.["y"] = y
 
-/proc/rays_filter(size, color, offset, density, threshold, factor, x, y, flags)
+proc/rays_filter(size, color, offset, density, threshold, factor, x, y, flags)
 	. = list("type" = "rays")
 	if(!isnull(size))
 		.["size"] = size
@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(flags))
 		.["flags"] = flags
 
-/proc/ripple_filter(radius, size, falloff, repeat, x, y, flags)
+proc/ripple_filter(radius, size, falloff, repeat, x, y, flags)
 	. = list("type" = "ripple")
 	if(!isnull(radius))
 		.["radius"] = radius
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(y))
 		.["y"] = y
 
-/proc/wave_filter(x, y, size, offset, flags)
+proc/wave_filter(x, y, size, offset, flags)
 	. = list("type" = "wave")
 	if(!isnull(size))
 		.["size"] = size
@@ -296,7 +296,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	if(!isnull(flags))
 		.["flags"] = flags
 
-/proc/apply_wibbly_filters(atom/in_atom, length)
+proc/apply_wibbly_filters(atom/in_atom, length)
 	for(var/i in 1 to 7)
 		// This is a very baffling and strange way of doing this but I am just preserving old functionality.
 		var/X
@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 		animate(filter, offset = random_roll, time = 0, loop = -1, flags = ANIMATION_PARALLEL)
 		animate(offset = random_roll - 1, time = rand() * 20 + 10)
 
-/proc/remove_wibbly_filters(atom/in_atom)
+proc/remove_wibbly_filters(atom/in_atom)
 	var/filter
 	for(var/i in 1 to 7)
 		filter = in_atom.get_filter("wibbly-[i]")

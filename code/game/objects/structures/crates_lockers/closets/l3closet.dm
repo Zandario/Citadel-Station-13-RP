@@ -1,11 +1,11 @@
-/obj/structure/closet/l3closet
+obj/structure/closet/l3closet
 	name = "level-3 biohazard suit closet"
 	desc = "It's a storage unit for level-3 biohazard gear."
 	icon_state = "bio"
 	icon_closed = "bio"
 	icon_opened = "bioopen"
 
-/obj/structure/closet/l3closet/general
+obj/structure/closet/l3closet/general
 	icon_state = "bio_general"
 	icon_closed = "bio_general"
 	icon_opened = "bio_generalopen"
@@ -15,7 +15,7 @@
 		/obj/item/clothing/head/bio_hood/general)
 
 
-/obj/structure/closet/l3closet/virology
+obj/structure/closet/l3closet/virology
 	icon_state = "bio_virology"
 	icon_closed = "bio_virology"
 	icon_opened = "bio_virologyopen"
@@ -27,7 +27,7 @@
 		/obj/item/tank/oxygen)
 
 
-/obj/structure/closet/l3closet/security
+obj/structure/closet/l3closet/security
 	icon_state = "bio_security"
 	icon_closed = "bio_security"
 	icon_opened = "bio_securityopen"
@@ -36,7 +36,7 @@
 		/obj/item/clothing/suit/bio_suit/security,
 		/obj/item/clothing/head/bio_hood/security)
 
-/obj/structure/closet/l3closet/janitor
+obj/structure/closet/l3closet/janitor
 	icon_state = "bio_janitor"
 	icon_closed = "bio_janitor"
 	icon_opened = "bio_janitoropen"
@@ -48,7 +48,7 @@
 		/obj/item/tank/emergency/oxygen/engi = 2)
 
 
-/obj/structure/closet/l3closet/scientist
+obj/structure/closet/l3closet/scientist
 	icon_state = "bio_scientist"
 	icon_closed = "bio_scientist"
 	icon_opened = "bio_scientistopen"
@@ -57,13 +57,13 @@
 		/obj/item/clothing/suit/bio_suit/scientist,
 		/obj/item/clothing/head/bio_hood/scientist)
 
-/obj/structure/closet/l3closet/scientist/double
+obj/structure/closet/l3closet/scientist/double
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/scientist = 2,
 		/obj/item/clothing/head/bio_hood/scientist = 2)
 
 
-/obj/structure/closet/l3closet/medical
+obj/structure/closet/l3closet/medical
 	icon_state = "bio_scientist"
 	icon_closed = "bio_scientist"
 	icon_opened = "bio_scientistopen"

@@ -1,17 +1,17 @@
 //TFF 5/8/19 - moved /datum/preferences to preferences_vr.dm
 
-/datum/category_item/player_setup_item/vore/misc
+datum/category_item/player_setup_item/vore/misc
 	name = "Misc Settings"
 	sort_order = 10
 
-/datum/category_item/player_setup_item/vore/misc/load_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/misc/load_character(var/savefile/S)
 	S["show_in_directory"]		>> pref.show_in_directory
 	S["directory_tag"]			>> pref.directory_tag
 	S["directory_erptag"]			>> pref.directory_erptag
 	S["directory_ad"]			>> pref.directory_ad
 	S["sensorpref"]				>> pref.sensorpref	//TFF 5/8/19 - add sensor pref setting to load after saved
 
-/datum/category_item/player_setup_item/vore/misc/save_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/misc/save_character(var/savefile/S)
 	S["show_in_directory"]		<< pref.show_in_directory
 	S["directory_tag"]			<< pref.directory_tag
 	S["directory_erptag"]			<< pref.directory_erptag
@@ -19,7 +19,7 @@
 	S["sensorpref"]				<< pref.sensorpref	//TFF 5/8/19 - add sensor pref setting to be saveable
 
 //TFF 5/8/19 - add new datum category to allow for setting multiple settings when this is selected in the loadout.
-/datum/category_item/player_setup_item/vore/misc/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/vore/misc/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -29,20 +29,20 @@
 	character.sensorpref = pref.sensorpref
 	return TRUE
 
-/datum/category_item/player_setup_item/vore/misc/sanitize_character()
+datum/category_item/player_setup_item/vore/misc/sanitize_character()
 	pref.show_in_directory		= sanitize_integer(pref.show_in_directory, 0, 1, initial(pref.show_in_directory))
 	pref.directory_tag			= sanitize_inlist(pref.directory_tag, GLOB.char_directory_tags, initial(pref.directory_tag))
 	pref.directory_erptag			= sanitize_inlist(pref.directory_erptag, GLOB.char_directory_erptags, initial(pref.directory_erptag))
 	pref.sensorpref				= sanitize_integer(pref.sensorpref, 1, sensorpreflist.len, initial(pref.sensorpref))	//TFF - 5/8/19 - add santisation for sensor prefs
 
-/datum/category_item/player_setup_item/vore/misc/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/vore/misc/content(datum/preferences/prefs, mob/user, data)
 	. += "<br>"
 	. += "<b>Appear in Character Directory:</b> <a [pref.show_in_directory ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_show_in_directory=1'><b>[pref.show_in_directory ? "Yes" : "No"]</b></a><br>"
 	. += "<b>Character Directory Vore Tag:</b> <a href='?src=\ref[src];directory_tag=1'><b>[pref.directory_tag]</b></a><br>"
 	. += "<b>Character Directory ERP Tag:</b> <a href='?src=\ref[src];directory_erptag=1'><b>[pref.directory_erptag]</b></a><br>"
 	. += "<b>Suit Sensors Preference:</b> <a [pref.sensorpref ? "" : ""] href='?src=\ref[src];toggle_sensor_setting=1'><b>[sensorpreflist[pref.sensorpref]]</b></a><br>"	//TFF 5/8/19 - Allow selection of sensor settings from off, binary, vitals, tracking, or random
 
-/datum/category_item/player_setup_item/vore/misc/OnTopic(var/href, var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/vore/misc/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_show_in_directory"])
 		pref.show_in_directory = pref.show_in_directory ? 0 : 1;
 		return PREFERENCES_REFRESH

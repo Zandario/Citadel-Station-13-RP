@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/space_bear
+datum/category_item/catalogue/fauna/space_bear
 	name = "Space Bear"
 	desc = "Often treated as a joke, or a byproduct of space madness, \
 	the existences of Space Bears is unfortunately very real. Similarly to \
@@ -9,7 +9,7 @@
 	the Frontier, these bears sometimes escape confinement and wreak havoc."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/space/bear
+mob/living/simple_mob/animal/space/bear
 	name = "space bear"
 	desc = "A product of Space Russia?"
 	tt_desc = "U Ursinae aetherius" //...bearspace? Maybe.
@@ -42,19 +42,19 @@
 
 	say_list_type = /datum/say_list/bear
 
-/datum/say_list/bear
+datum/say_list/bear
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	emote_see = list("stares ferociously", "stomps")
 	emote_hear = list("rawrs","grumbles","grawls", "growls", "roars")
 
 // Is it time to be mad?
-/mob/living/simple_mob/animal/space/bear/handle_special()
+mob/living/simple_mob/animal/space/bear/handle_special()
 	if((get_AI_stance() in list(STANCE_APPROACH, STANCE_FIGHT)) && !is_AI_busy() && isturf(loc))
 		if(health <= (maxHealth * 0.5)) // At half health, and fighting someone currently.
 			berserk()
 
 // So players can use it too.
-/mob/living/simple_mob/animal/space/bear/verb/berserk()
+mob/living/simple_mob/animal/space/bear/verb/berserk()
 	set name = "Berserk"
 	set desc = "Enrage and become vastly stronger for a period of time, however you will be weaker afterwards."
 	set category = "Abilities"

@@ -1,4 +1,4 @@
-/obj/item/book/manual/resleeving
+obj/item/book/manual/resleeving
 	name = "Resleeving, the New Cloning."
 	icon_state = "stasis"
 	author = "Allan Ben-Saull"

@@ -5,7 +5,7 @@
  *
  * nanoui is used to open and update nano browser uis
  */
-/datum/nanoui
+datum/nanoui
 	/// The user who opened this ui
 	var/mob/user
 	/// The object this ui "belongs" to
@@ -74,7 +74,7 @@
  *
  * @return /nanoui new nanoui object
  */
-/datum/nanoui/New(mob/nuser, nsrc_object, nui_key, ntemplate_filename, ntitle, nwidth, nheight, atom/nref, datum/nanoui/master_ui, datum/topic_state/state = default_state)
+datum/nanoui/New(mob/nuser, nsrc_object, nui_key, ntemplate_filename, ntitle, nwidth, nheight, atom/nref, datum/nanoui/master_ui, datum/topic_state/state = default_state)
 	if(!istype(nano_asset))
 		nano_asset = get_asset_datum(/datum/asset/simple/namespaced/nanoui)
 	user = nuser
@@ -108,7 +108,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/add_common_assets()
+datum/nanoui/proc/add_common_assets()
 	add_script("libraries.min.js") // A JS file comprising of jQuery, doT.js and jQuery Timer libraries (compressed together)
 	add_script("nano_utility.js") // The NanoUtility JS, this is used to store utility functions.
 	add_script("nano_template.js") // The NanoTemplate JS, this is used to render templates.
@@ -128,7 +128,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_status(state, push_update)
+datum/nanoui/proc/set_status(state, push_update)
 	if (state != status) // Only update if it is different
 		if (status == UI_DISABLED)
 			status = state
@@ -146,7 +146,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/update_status(push_update = FALSE)
+datum/nanoui/proc/update_status(push_update = FALSE)
 	var/obj/host = src_object.nano_host()
 	var/new_status = host.CanUseTopic(user, state)
 	if(master_ui)
@@ -163,7 +163,7 @@
   *
   * @return nothing
   */
-/datum/nanoui/proc/set_auto_update(nstate = 1)
+datum/nanoui/proc/set_auto_update(nstate = 1)
 	is_auto_updating = nstate
 
 /**
@@ -173,7 +173,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_initial_data(list/data)
+datum/nanoui/proc/set_initial_data(list/data)
 	initial_data = data
 
 /**
@@ -181,7 +181,7 @@
  *
  * @return /list config data
  */
-/datum/nanoui/proc/get_config_data()
+datum/nanoui/proc/get_config_data()
 	var/name = "[src_object]"
 	name = sanitize(name)
 	var/list/config_data = list(
@@ -204,7 +204,7 @@
  *
  * @return /list data to send to the ui
  */
-/datum/nanoui/proc/get_send_data(list/data)
+datum/nanoui/proc/get_send_data(list/data)
 	var/list/config_data = get_config_data()
 
 	var/list/send_data = list("config" = config_data)
@@ -221,7 +221,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_window_options(nwindow_options)
+datum/nanoui/proc/set_window_options(nwindow_options)
 	window_options = nwindow_options
 
 /**
@@ -232,7 +232,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/add_stylesheet(file)
+datum/nanoui/proc/add_stylesheet(file)
 	stylesheets.Add(file)
 
 /**
@@ -243,7 +243,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/add_script(file)
+datum/nanoui/proc/add_script(file)
 	scripts.Add(file)
 
 /**
@@ -256,7 +256,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/add_template(key, filename)
+datum/nanoui/proc/add_template(key, filename)
 	templates[key] = filename
 
 /**
@@ -270,7 +270,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_layout_key(nlayout_key)
+datum/nanoui/proc/set_layout_key(nlayout_key)
 	layout_key = lowertext(nlayout_key)
 
 /**
@@ -280,7 +280,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_auto_update_layout(nstate)
+datum/nanoui/proc/set_auto_update_layout(nstate)
 	auto_update_layout = nstate
 
 /**
@@ -290,7 +290,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_auto_update_content(nstate)
+datum/nanoui/proc/set_auto_update_content(nstate)
 	auto_update_content = nstate
 
 /**
@@ -300,7 +300,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_state_key(nstate_key)
+datum/nanoui/proc/set_state_key(nstate_key)
 	state_key = nstate_key
 
 /**
@@ -310,7 +310,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_show_map(nstate)
+datum/nanoui/proc/set_show_map(nstate)
 	show_map = nstate
 
 /**
@@ -320,7 +320,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/set_map_z_level(nz)
+datum/nanoui/proc/set_map_z_level(nz)
 	map_z_level = nz
 
 /**
@@ -330,7 +330,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/use_on_close_logic(state)
+datum/nanoui/proc/use_on_close_logic(state)
 	on_close_logic = state
 
 /**
@@ -338,7 +338,7 @@
  *
  * @return string HTML for the UI
  */
-/datum/nanoui/proc/get_html()
+datum/nanoui/proc/get_html()
 	// before the UI opens, add the layout files based on the layout key
 	add_stylesheet("layout_[layout_key].css")
 	add_template("layout", "layout_[layout_key].tmpl")
@@ -405,7 +405,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/open()
+datum/nanoui/proc/open()
 	if(!user.client)
 		return
 
@@ -432,7 +432,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/reinitialise(template, new_initial_data)
+datum/nanoui/proc/reinitialise(template, new_initial_data)
 	if(template)
 		add_template("main", template)
 	if(new_initial_data)
@@ -444,7 +444,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/close()
+datum/nanoui/proc/close()
 	is_auto_updating = 0
 	SSnanoui.ui_closed(src)
 	user << browse(null, "window=[window_id]")
@@ -460,7 +460,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/on_close_winset()
+datum/nanoui/proc/on_close_winset()
 	if(!user.client)
 		return
 	var/params = "\ref[src]"
@@ -472,7 +472,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/push_data(data, force_push = FALSE)
+datum/nanoui/proc/push_data(data, force_push = FALSE)
 	update_status(0)
 	if (status == UI_DISABLED && !force_push)
 		return // Cannot update UI, no visibility
@@ -489,7 +489,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/Topic(href, list/href_list)
+datum/nanoui/Topic(href, list/href_list)
 	update_status(0) // update the status
 	if (status != UI_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user
 		return
@@ -515,7 +515,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/try_update(update = FALSE)
+datum/nanoui/proc/try_update(update = FALSE)
 	if (!src_object || !user)
 		close()
 		return
@@ -534,7 +534,7 @@
  *
  * @return nothing
  */
-/datum/nanoui/process()
+datum/nanoui/process()
 	try_update(FALSE)
 
 
@@ -543,5 +543,5 @@
  *
  * @return nothing
  */
-/datum/nanoui/proc/update(force_open = FALSE)
+datum/nanoui/proc/update(force_open = FALSE)
 	src_object.nano_ui_interact(user, ui_key, src, force_open, master_ui, state)

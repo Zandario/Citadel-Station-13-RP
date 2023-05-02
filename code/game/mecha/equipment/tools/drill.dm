@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/tool/drill
+obj/item/mecha_parts/mecha_equipment/tool/drill
 	name = "drill"
 	desc = "This is the drill that'll pierce the heavens!"
 	icon_state = "mecha_drill"
@@ -8,7 +8,7 @@
 	var/advanced = 0	//Determines if you can pierce the heavens or not. Used in diamond drill.
 	required_type = list(/obj/mecha/working/ripley)
 
-/obj/item/mecha_parts/mecha_equipment/tool/drill/action(atom/target)
+obj/item/mecha_parts/mecha_equipment/tool/drill/action(atom/target)
 	if(!action_checks(target)) return
 	if(isobj(target))
 		var/obj/target_obj = target
@@ -57,7 +57,7 @@
 				LEGACY_EX_ACT(target, 2, null)
 	return 1
 
-/obj/item/mecha_parts/mecha_equipment/tool/drill/proc/drill_mob(mob/living/target, mob/user)
+obj/item/mecha_parts/mecha_equipment/tool/drill/proc/drill_mob(mob/living/target, mob/user)
 	add_attack_logs(user, target, "attacked", "[name]", "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	var/drill_force = damage_force	//Couldn't manage it otherwise.
 	if(ishuman(target))
@@ -77,7 +77,7 @@
 			S.apply_damage(drill_force)
 			return
 
-/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
+obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
 	name = "diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens!"
 	icon_state = "mecha_diamond_drill"
@@ -86,7 +86,7 @@
 	damage_force = 15
 	advanced = 1
 
-/obj/item/mecha_parts/mecha_equipment/tool/drill/bore
+obj/item/mecha_parts/mecha_equipment/tool/drill/bore
 	name = "depth bore"
 	desc = "This is the drill that'll pierce the depths!"
 	icon_state = "mecha_bore"
@@ -95,7 +95,7 @@
 	damage_force = 20
 	required_type = list(/obj/mecha/working/ripley)
 
-/obj/item/mecha_parts/mecha_equipment/tool/drill/bore/action(atom/target)
+obj/item/mecha_parts/mecha_equipment/tool/drill/bore/action(atom/target)
 	if(!action_checks(target)) return
 	if(isobj(target))
 		var/obj/target_obj = target

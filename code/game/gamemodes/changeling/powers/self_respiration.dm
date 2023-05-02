@@ -1,4 +1,4 @@
-/datum/power/changeling/self_respiration
+datum/power/changeling/self_respiration
 	name = "Self Respiration"
 	desc = "We evolve our body to no longer require drawing oxygen from the atmosphere."
 	helptext = "We will no longer require internals, and we cannot inhale any gas, including harmful ones."
@@ -7,7 +7,7 @@
 	verbpath = /mob/proc/changeling_self_respiration
 
 //No breathing required
-/mob/proc/changeling_self_respiration()
+mob/proc/changeling_self_respiration()
 	set category = "Changeling"
 	set name = "Toggle Breathing"
 	set desc = "We choose whether or not to breathe."

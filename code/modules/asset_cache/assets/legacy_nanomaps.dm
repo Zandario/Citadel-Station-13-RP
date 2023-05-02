@@ -1,4 +1,4 @@
-/datum/asset/simple/nanomaps
+datum/asset/simple/nanomaps
 	// It REALLY doesnt matter too much if these arent up to date
 	// They are relatively big
 	assets = list(

@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(chat)
 
 	var/list/payload_by_client = list()
 
-/datum/controller/subsystem/chat/fire()
+datum/controller/subsystem/chat/fire()
 	for(var/key in payload_by_client)
 		var/client/client = key
 		var/payload = payload_by_client[key]
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(chat)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/chat/proc/queue(target, message)
+datum/controller/subsystem/chat/proc/queue(target, message)
 	if(islist(target))
 		for(var/_target in target)
 			var/client/client = CLIENT_FROM_VAR(_target)
@@ -38,6 +38,6 @@ SUBSYSTEM_DEF(chat)
 	if(client)
 		LAZYADD(payload_by_client[client], list(message))
 
-/datum/controller/subsystem/chat/Recover()
+datum/controller/subsystem/chat/Recover()
 	payload_by_client = list()
 	initialized = SSchat.initialized

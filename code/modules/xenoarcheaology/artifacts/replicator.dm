@@ -1,4 +1,4 @@
-/obj/machinery/replicator
+obj/machinery/replicator
 	name = "alien machine"
 	desc = "It's some kind of pod with strange wires and gadgets all over it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -20,7 +20,7 @@
 
 	var/fail_message
 
-/obj/machinery/replicator/Initialize(mapload)
+obj/machinery/replicator/Initialize(mapload)
 	. = ..()
 
 	var/list/viables = list(
@@ -107,7 +107,7 @@
 		[pick("front","side","top","bottom","rear","inside")] of [src]. A [pick("slot","funnel","chute","tube")] opens up in the \
 		[pick("front","side","top","bottom","rear","inside")].</font>"
 
-/obj/machinery/replicator/process(delta_time)
+obj/machinery/replicator/process(delta_time)
 	if(spawning_types.len && powered())
 		spawn_progress_time += world.time - last_process_time
 		if(spawn_progress_time > max_spawn_time)
@@ -138,21 +138,21 @@
 
 	last_process_time = world.time
 
-/obj/machinery/replicator/attack_hand(mob/user, list/params)
+obj/machinery/replicator/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/obj/machinery/replicator/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/replicator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchReplicator", name)
 		ui.open()
 
-/obj/machinery/replicator/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/replicator/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["tgui_construction"] = tgui_construction
 	return data
 
-/obj/machinery/replicator/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/replicator/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -172,7 +172,7 @@
 				else
 					visible_message(fail_message)
 
-/obj/machinery/replicator/attackby(obj/item/W as obj, mob/living/user as mob)
+obj/machinery/replicator/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!user.attempt_insert_item_for_installation(W, src))
 		return
 	stored_materials.Add(W)

@@ -1,5 +1,5 @@
 
-/datum/crafting_recipe/aquarium
+datum/crafting_recipe/aquarium
 	name = "Aquarium"
 	result = /obj/structure/aquarium
 	time = 10 SECONDS

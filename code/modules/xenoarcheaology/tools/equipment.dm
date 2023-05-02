@@ -1,4 +1,4 @@
-/obj/item/clothing/suit/bio_suit/anomaly
+obj/item/clothing/suit/bio_suit/anomaly
 	name = "Anomaly suit"
 	desc = "A sealed bio suit capable of insulating against exotic alien energies."
 	icon = 'icons/obj/clothing/spacesuits.dmi'
@@ -9,7 +9,7 @@
 	max_pressure_protection = 5   * ONE_ATMOSPHERE // Not very good protection, but if an anomaly starts doing gas stuff you're not screwed
 	min_pressure_protection = 0.4 * ONE_ATMOSPHERE
 
-/obj/item/clothing/head/bio_hood/anomaly
+obj/item/clothing/head/bio_hood/anomaly
 	name = "Anomaly hood"
 	desc = "A sealed bio hood capable of insulating against exotic alien energies."
 	icon_state = "engspace_helmet"
@@ -18,7 +18,7 @@
 	max_pressure_protection = 5   * ONE_ATMOSPHERE // Not very good protection, but if an anomaly starts doing gas stuff you're not screwed
 	min_pressure_protection = 0.4 * ONE_ATMOSPHERE
 
-/obj/item/clothing/suit/space/anomaly
+obj/item/clothing/suit/space/anomaly
 	name = "Excavation suit"
 	desc = "A pressure resistant excavation suit partially capable of insulating against exotic alien energies."
 	icon_state = "cespace_suit"
@@ -28,7 +28,7 @@
 	slowdown = 1
 	// Pressure protection inherited from space suits
 
-/obj/item/clothing/head/helmet/space/anomaly
+obj/item/clothing/head/helmet/space/anomaly
 	name = "Excavation hood"
 	desc = "A pressure resistant excavation hood partially capable of insulating against exotic alien energies."
 	icon_state = "cespace_helmet"

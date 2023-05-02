@@ -1,4 +1,4 @@
-/obj/machinery/computer/stockexchange
+obj/machinery/computer/stockexchange
 	name = "stock exchange computer"
 	desc = "A console that connects to the galactic stock market. Stocks trading involves substantial risk of loss and is not suitable for every cargo technician."
 	icon = 'icons/obj/computer.dmi'
@@ -9,11 +9,11 @@
 	var/vmode = 1
 	light_color = LIGHT_COLOR_GREEN
 
-/obj/machinery/computer/stockexchange/Initialize()
+obj/machinery/computer/stockexchange/Initialize()
 	. = ..()
 	logged_in = "Cargo Department"
 
-/obj/machinery/computer/stockexchange/attack_hand(mob/user, list/params)
+obj/machinery/computer/stockexchange/attack_hand(mob/user, list/params)
 	if(..(user))
 		return
 
@@ -23,14 +23,14 @@
 
 	ui_interact(user)
 
-/obj/machinery/computer/stockexchange/proc/balance()
+obj/machinery/computer/stockexchange/proc/balance()
 	if(!logged_in)
 		return FALSE
 	return SSsupply.points
 
 //! ## MAIN TGUI SCREEN ## !//
 
-/obj/machinery/computer/stockexchange/ui_act(action, params, datum/tgui/ui)
+obj/machinery/computer/stockexchange/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -104,7 +104,7 @@
 			if(vmode > 1)
 				vmode = 0
 
-/obj/machinery/computer/stockexchange/ui_data(mob/user)
+obj/machinery/computer/stockexchange/ui_data(mob/user)
 	var/list/data = list()
 
 	data["stationName"] = GLOB.using_map.station_name
@@ -193,7 +193,7 @@
 
 	return data
 
-/obj/machinery/computer/stockexchange/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/stockexchange/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "StockExchange")
@@ -201,18 +201,18 @@
 
 //! ## HISTORY SCREEN ## !//
 
-/obj/machinery/computer/stockexchange/history/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/stockexchange/history/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "StockExchangeHistory")
 		ui.open()
 
-/obj/machinery/computer/stockexchange/history/ui_data(mob/user)
+obj/machinery/computer/stockexchange/history/ui_data(mob/user)
 	var/list/data = list()
 	//data["var"] = var
 	return data
 
-/obj/machinery/computer/stockexchange/history/ui_act(action, params)
+obj/machinery/computer/stockexchange/history/ui_act(action, params)
 	if(..())
 		return
 	switch(action)
@@ -224,18 +224,18 @@
 
 //! ## ARCHIVE SCREEN ## !//
 
-/obj/machinery/computer/stockexchange/archive/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/stockexchange/archive/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "StockExchangeArchive")
 		ui.open()
 
-/obj/machinery/computer/stockexchange/archive/ui_data(mob/user)
+obj/machinery/computer/stockexchange/archive/ui_data(mob/user)
 	var/list/data = list()
 	//data["var"] = var
 	return data
 
-/obj/machinery/computer/stockexchange/archive/ui_act(action, params)
+obj/machinery/computer/stockexchange/archive/ui_act(action, params)
 	if(..())
 		return
 
@@ -248,7 +248,7 @@
 
 //! ## PROCS ## !//
 
-/obj/machinery/computer/stockexchange/proc/sell_some_shares(datum/stock/S, mob/user)
+obj/machinery/computer/stockexchange/proc/sell_some_shares(datum/stock/S, mob/user)
 	if(!user || !S)
 		return
 
@@ -283,7 +283,7 @@
 	to_chat(user, SPAN_NOTICE("Sold [amt] shares of [S.name] at [S.current_value] a share for [total] credits."))
 	GLOB.stockExchange.add_log(/datum/stock_log/sell, user.name, S.name, amt, S.current_value, total)
 
-/obj/machinery/computer/stockexchange/proc/buy_some_shares(var/datum/stock/S, var/mob/user)
+obj/machinery/computer/stockexchange/proc/buy_some_shares(var/datum/stock/S, var/mob/user)
 	if(!user || !S)
 		return
 
@@ -319,14 +319,14 @@
 	to_chat(user, SPAN_NOTICE("Bought [amt] shares of [S.name] at [S.current_value] a share for [total] credits."))
 	GLOB.stockExchange.add_log(/datum/stock_log/buy, user.name, S.name, amt, S.current_value,  total)
 
-/obj/machinery/computer/stockexchange/proc/do_borrowing_deal(var/datum/borrow/B, var/mob/user)
+obj/machinery/computer/stockexchange/proc/do_borrowing_deal(var/datum/borrow/B, var/mob/user)
 	if(B.stock.borrow(B, logged_in))
 		to_chat(user, SPAN_NOTICE("You successfully borrowed [B.share_amount] shares. Deposit: [B.deposit]."))
 		GLOB.stockExchange.add_log(/datum/stock_log/borrow, user.name, B.stock.name, B.share_amount, B.deposit)
 	else
 		to_chat(user, SPAN_DANGER("Could not complete transaction. Check your account balance."))
 
-/obj/machinery/computer/stockexchange/Topic(href, href_list)
+obj/machinery/computer/stockexchange/Topic(href, href_list)
 	if(..())
 		return TRUE
 

@@ -3,7 +3,7 @@
 
 // Tier 1.
 
-/mob/living/simple_mob/slime/xenobio/purple
+mob/living/simple_mob/slime/xenobio/purple
 	desc = "This slime is rather toxic to handle, as it is poisonous."
 	color = "#CC23FF"
 	slime_color = "purple"
@@ -20,7 +20,7 @@
 			/mob/living/simple_mob/slime/xenobio
 		)
 
-/mob/living/simple_mob/slime/xenobio/orange
+mob/living/simple_mob/slime/xenobio/orange
 	desc = "This slime is known to be flammable and can ignite enemies."
 	color = "#FFA723"
 	slime_color = "orange"
@@ -41,7 +41,7 @@
 			/mob/living/simple_mob/slime/xenobio
 		)
 
-/mob/living/simple_mob/slime/xenobio/orange/apply_melee_effects(atom/A)
+mob/living/simple_mob/slime/xenobio/orange/apply_melee_effects(atom/A)
 	..()
 	if(isliving(A))
 		var/mob/living/L = A
@@ -52,7 +52,7 @@
 		if(prob(12))
 			L.IgniteMob()
 
-/mob/living/simple_mob/slime/xenobio/blue
+mob/living/simple_mob/slime/xenobio/blue
 	desc = "This slime produces 'cryotoxin' and uses it against their foes.  Very deadly to other slimes."
 	color = "#19FFFF"
 	slime_color = "blue"
@@ -73,7 +73,7 @@
 		)
 
 
-/mob/living/simple_mob/slime/xenobio/metal
+mob/living/simple_mob/slime/xenobio/metal
 	desc = "This slime is a lot more resilient than the others, due to having a metamorphic metallic and sloped surface."
 	color = "#5F5F5F"
 	slime_color = "metal"
@@ -105,7 +105,7 @@
 			/mob/living/simple_mob/slime/xenobio
 		)
 
-/mob/living/simple_mob/slime/xenobio/metal/apply_melee_effects(atom/A)
+mob/living/simple_mob/slime/xenobio/metal/apply_melee_effects(atom/A)
 	..()
 	if(isliving(A))
 		var/mob/living/L = A
@@ -113,7 +113,7 @@
 
 // Tier 2
 
-/mob/living/simple_mob/slime/xenobio/yellow
+mob/living/simple_mob/slime/xenobio/yellow
 	desc = "This slime is very conductive, and is known to use electricity as a means of defense moreso than usual for slimes."
 	color = "#FFF423"
 	slime_color = "yellow"
@@ -139,7 +139,7 @@
 			/mob/living/simple_mob/slime/xenobio/orange
 		)
 
-/mob/living/simple_mob/slime/xenobio/yellow/apply_melee_effects(atom/A)
+mob/living/simple_mob/slime/xenobio/yellow/apply_melee_effects(atom/A)
 	..()
 	if(isliving(A))
 		var/mob/living/L = A
@@ -147,18 +147,18 @@
 		to_chat(src, SPAN_NOTICE("You shock \the [L]."))
 		to_chat(L, SPAN_DANGER("You've been shocked by \the [src]!"))
 
-/mob/living/simple_mob/slime/xenobio/yellow/handle_special()
+mob/living/simple_mob/slime/xenobio/yellow/handle_special()
 	if(stat == CONSCIOUS)
 		if(prob(25))
 			power_charge = between(0, power_charge + 1, 10)
 	..()
 
-/obj/projectile/beam/lightning/slime
+obj/projectile/beam/lightning/slime
 	power = 10
 	fire_sound = 'sound/effects/lightningbolt.ogg'
 
 
-/mob/living/simple_mob/slime/xenobio/dark_purple
+mob/living/simple_mob/slime/xenobio/dark_purple
 	desc = "This slime produces ever-coveted phoron.  Risky to handle but very much worth it."
 	color = "#660088"
 	slime_color = "dark purple"
@@ -177,7 +177,7 @@
 			/mob/living/simple_mob/slime/xenobio/ruby
 		)
 
-/mob/living/simple_mob/slime/xenobio/dark_purple/proc/ignite()
+mob/living/simple_mob/slime/xenobio/dark_purple/proc/ignite()
 	visible_message(SPAN_CRITICAL("\The [src] erupts in an inferno!"))
 	for(var/turf/simulated/target_turf in get_ignition_turfs(25, 2))
 		target_turf.assume_gas(/datum/gas/phoron, 30, 1500+T0C)
@@ -185,35 +185,35 @@
 			target_turf.hotspot_expose(1500+T0C, 400)
 	qdel(src)
 
-/mob/living/simple_mob/slime/xenobio/dark_purple/proc/get_ignition_turfs(amt = 25, maxrad = 2)
+mob/living/simple_mob/slime/xenobio/dark_purple/proc/get_ignition_turfs(amt = 25, maxrad = 2)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return list()
 	return T.AtmosAdjacencyFloodfillHeuristic(amt, maxrad)
 
-/mob/living/simple_mob/slime/xenobio/dark_purple/legacy_ex_act(severity)
+mob/living/simple_mob/slime/xenobio/dark_purple/legacy_ex_act(severity)
 	log_and_message_admins("[src] ignited due to a chain reaction with an explosion.")
 	ignite()
 
-/mob/living/simple_mob/slime/xenobio/dark_purple/fire_act(datum/gas_mixture/air, temperature, volume)
+mob/living/simple_mob/slime/xenobio/dark_purple/fire_act(datum/gas_mixture/air, temperature, volume)
 	log_and_message_admins("[src] ignited due to exposure to fire.")
 	ignite()
 
-/mob/living/simple_mob/slime/xenobio/dark_purple/bullet_act(var/obj/projectile/P, var/def_zone)
+mob/living/simple_mob/slime/xenobio/dark_purple/bullet_act(var/obj/projectile/P, var/def_zone)
 	if(P.damage_type && P.damage_type == BURN && P.damage) // Most bullets won't trigger the explosion, as a mercy towards Security.
 		log_and_message_admins("[src] ignited due to bring hit by a burning projectile[P.firer ? " by [key_name(P.firer)]" : ""].")
 		ignite()
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/dark_purple/attackby(var/obj/item/W, var/mob/user)
+mob/living/simple_mob/slime/xenobio/dark_purple/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W) && W.damage_force && W.damtype == BURN)
 		log_and_message_admins("[src] ignited due to being hit with a burning weapon ([W]) by [key_name(user)].")
 		ignite()
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/dark_blue
+mob/living/simple_mob/slime/xenobio/dark_blue
 	desc = "This slime makes other entities near it feel much colder, and is more resilient to the cold.  It tends to kill other slimes rather quickly."
 	color = "#2398FF"
 	glow_toggle = TRUE
@@ -237,12 +237,12 @@
 	minbodytemp = 0
 	cold_damage_per_tick = 0
 
-/mob/living/simple_mob/slime/xenobio/dark_blue/handle_special()
+mob/living/simple_mob/slime/xenobio/dark_blue/handle_special()
 	if(stat != DEAD)
 		cold_aura()
 	..()
 
-/mob/living/simple_mob/slime/xenobio/dark_blue/proc/cold_aura()
+mob/living/simple_mob/slime/xenobio/dark_blue/proc/cold_aura()
 	for(var/mob/living/L in view(2, src))
 		if(L == src)
 			continue
@@ -253,7 +253,7 @@
 	if(env)
 		env.adjust_thermal_energy(-10 * 1000)
 
-/mob/living/simple_mob/slime/xenobio/dark_blue/apply_melee_effects(atom/A)
+mob/living/simple_mob/slime/xenobio/dark_blue/apply_melee_effects(atom/A)
 	..()
 	if(isliving(A))
 		var/mob/living/L = A
@@ -262,13 +262,13 @@
 		to_chat(L, SPAN_DANGER("You've been chilled by \the [src]!"))
 
 
-/mob/living/simple_mob/slime/xenobio/dark_blue/proc/chill(mob/living/L)
+mob/living/simple_mob/slime/xenobio/dark_blue/proc/chill(mob/living/L)
 	L.inflict_cold_damage(is_adult ? 10 : 5)
 	if(L.get_cold_protection() < 1 && L.has_AI()) // Harmful auras will make the AI react to its bearer.
 		L.ai_holder.react_to_attack(src)
 
 
-/mob/living/simple_mob/slime/xenobio/silver
+mob/living/simple_mob/slime/xenobio/silver
 	desc = "This slime is shiny, and can deflect lasers or other energy weapons directed at it."
 	color = "#AAAAAA"
 	slime_color = "silver"
@@ -285,7 +285,7 @@
 			/mob/living/simple_mob/slime/xenobio/amber
 		)
 
-/mob/living/simple_mob/slime/xenobio/silver/bullet_act(var/obj/projectile/P, var/def_zone)
+mob/living/simple_mob/slime/xenobio/silver/bullet_act(var/obj/projectile/P, var/def_zone)
 	if(istype(P,/obj/projectile/beam) || istype(P, /obj/projectile/energy))
 		visible_message(SPAN_DANGER("\The [src] reflects \the [P]!"))
 
@@ -303,7 +303,7 @@
 
 // Tier 3
 
-/mob/living/simple_mob/slime/xenobio/bluespace
+mob/living/simple_mob/slime/xenobio/bluespace
 	desc = "Trapping this slime in a cell is generally futile, as it can teleport at will."
 	color = null
 	slime_color = "bluespace"
@@ -324,7 +324,7 @@
 	special_attack_max_range = 7
 	special_attack_cooldown = 5 SECONDS
 
-/mob/living/simple_mob/slime/xenobio/bluespace/do_special_attack(atom/A)
+mob/living/simple_mob/slime/xenobio/bluespace/do_special_attack(atom/A)
 	// Teleport attack.
 	if(!A)
 		to_chat(src, SPAN_WARNING( "There's nothing to teleport to."))
@@ -371,7 +371,7 @@
 		attack_target(A)
 
 
-/mob/living/simple_mob/slime/xenobio/ruby
+mob/living/simple_mob/slime/xenobio/ruby
 	desc = "This slime has great physical strength."
 	color = "#FF3333"
 	slime_color = "ruby"
@@ -393,11 +393,11 @@
 		/mob/living/simple_mob/slime/xenobio/ruby
 	)
 
-/mob/living/simple_mob/slime/xenobio/ruby/Initialize(mapload)
+mob/living/simple_mob/slime/xenobio/ruby/Initialize(mapload)
 	add_modifier(/datum/modifier/slime_strength, null, src) // Slime is always swole.
 	return ..()
 
-/mob/living/simple_mob/slime/xenobio/ruby/apply_melee_effects(atom/A)
+mob/living/simple_mob/slime/xenobio/ruby/apply_melee_effects(atom/A)
 	..()
 
 	if(isliving(A) && a_intent == INTENT_HARM)
@@ -412,7 +412,7 @@
 			to_chat(L, SPAN_WARNING( "\The [src] hits you with incredible force, but you remain in place."))
 
 
-/mob/living/simple_mob/slime/xenobio/amber
+mob/living/simple_mob/slime/xenobio/amber
 	desc = "This slime seems to be an expert in the culinary arts, as they create their own food to share with others.  \
 	They would probably be very important to other slimes, if the other colors didn't try to kill them."
 	color = "#FFBB00"
@@ -432,12 +432,12 @@
 		/mob/living/simple_mob/slime/xenobio/amber
 	)
 
-/mob/living/simple_mob/slime/xenobio/amber/handle_special()
+mob/living/simple_mob/slime/xenobio/amber/handle_special()
 	if(stat != DEAD)
 		feed_aura()
 	..()
 
-/mob/living/simple_mob/slime/xenobio/amber/proc/feed_aura()
+mob/living/simple_mob/slime/xenobio/amber/proc/feed_aura()
 	for(var/mob/living/L in view(2, src))
 		if(istype(L, type))
 			continue
@@ -450,7 +450,7 @@
 				continue
 			H.nutrition = between(0, H.nutrition + rand(15, 25), 800)
 
-/mob/living/simple_mob/slime/xenobio/cerulean
+mob/living/simple_mob/slime/xenobio/cerulean
 	desc = "This slime is generally superior in a wide range of attributes, compared to the common slime.  The jack of all trades, but master of none."
 	color = "#4F7EAA"
 	slime_color = "cerulean"
@@ -474,7 +474,7 @@
 
 // Tier 4
 
-/mob/living/simple_mob/slime/xenobio/red
+mob/living/simple_mob/slime/xenobio/red
 	desc = "This slime is full of energy, and very aggressive.  'The red ones go faster.' seems to apply here."
 	color = "#FF3333"
 	slime_color = "red"
@@ -493,7 +493,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime/red // Will enrage if disciplined.
 
 
-/mob/living/simple_mob/slime/xenobio/green
+mob/living/simple_mob/slime/xenobio/green
 	desc = "This slime is radioactive."
 	color = "#14FF20"
 	slime_color = "green"
@@ -514,15 +514,15 @@
 			/mob/living/simple_mob/slime/xenobio/emerald
 		)
 
-/mob/living/simple_mob/slime/xenobio/green/handle_special()
+mob/living/simple_mob/slime/xenobio/green/handle_special()
 	if(stat != DEAD)
 		irradiate()
 	..()
 
-/mob/living/simple_mob/slime/xenobio/green/proc/irradiate()
+mob/living/simple_mob/slime/xenobio/green/proc/irradiate()
 	radiation_pulse(src, RAD_INTENSITY_GREEN_SLIME_TICK)
 
-/mob/living/simple_mob/slime/xenobio/pink
+mob/living/simple_mob/slime/xenobio/pink
 	desc = "This slime has regenerative properties."
 	color = "#FF0080"
 	slime_color = "pink"
@@ -539,18 +539,18 @@
 			/mob/living/simple_mob/slime/xenobio/pink
 		)
 
-/mob/living/simple_mob/slime/xenobio/pink/handle_special()
+mob/living/simple_mob/slime/xenobio/pink/handle_special()
 	if(stat != DEAD)
 		heal_aura()
 	..()
 
-/mob/living/simple_mob/slime/xenobio/pink/proc/heal_aura()
+mob/living/simple_mob/slime/xenobio/pink/proc/heal_aura()
 	for(var/mob/living/L in view(src, 2))
 		if(L.stat == DEAD || !IIsAlly(L))
 			continue
 		L.add_modifier(/datum/modifier/aura/slime_heal, null, src)
 
-/datum/modifier/aura/slime_heal
+datum/modifier/aura/slime_heal
 	name = "slime mending"
 	desc = "You feel somewhat gooy."
 	mob_overlay_state = "pink_sparkles"
@@ -560,7 +560,7 @@
 	on_created_text = "<span class='warning'>Twinkling spores of goo surround you.  It makes you feel healthier.</span>"
 	on_expired_text = "<span class='notice'>The spores of goo have faded, although you feel much healthier than before.</span>"
 
-/datum/modifier/aura/slime_heal/tick()
+datum/modifier/aura/slime_heal/tick()
 	if(holder.stat == DEAD)
 		expire()
 
@@ -578,7 +578,7 @@
 	holder.adjustCloneLoss(-1)
 
 
-/mob/living/simple_mob/slime/xenobio/gold
+mob/living/simple_mob/slime/xenobio/gold
 	desc = "This slime absorbs energy, and cannot be stunned by normal means."
 	color = "#EEAA00"
 	shiny = TRUE
@@ -593,16 +593,16 @@
 			/mob/living/simple_mob/slime/xenobio/sapphire
 		)
 
-/mob/living/simple_mob/slime/xenobio/gold/slimebatoned(mob/living/user, amount)
+mob/living/simple_mob/slime/xenobio/gold/slimebatoned(mob/living/user, amount)
 	power_charge = between(0, power_charge + amount, 10)
 
-/mob/living/simple_mob/slime/xenobio/gold/get_description_interaction(mob/user) // So it doesn't say to use a baton on them.
+mob/living/simple_mob/slime/xenobio/gold/get_description_interaction(mob/user) // So it doesn't say to use a baton on them.
 	return list()
 
 
 // Tier 5
 
-/mob/living/simple_mob/slime/xenobio/oil
+mob/living/simple_mob/slime/xenobio/oil
 	desc = "This slime is explosive and volatile.  Smoking near it is probably a bad idea."
 	color = "#333333"
 	slime_color = "oil"
@@ -620,13 +620,13 @@
 		/mob/living/simple_mob/slime/xenobio/red
 	)
 
-/mob/living/simple_mob/slime/xenobio/oil/proc/explode()
+mob/living/simple_mob/slime/xenobio/oil/proc/explode()
 	if(stat != DEAD)
 		explosion(src.loc, 0, 2, 4) // A bit weaker since the suicide charger tended to gib the poor sod being targeted.
 		if(src) // Delete ourselves if the explosion didn't do it.
 			qdel(src)
 
-/mob/living/simple_mob/slime/xenobio/oil/apply_melee_effects(atom/A)
+mob/living/simple_mob/slime/xenobio/oil/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(ishuman(L))
@@ -646,22 +646,22 @@
 
 	return ..()
 
-/mob/living/simple_mob/slime/xenobio/oil/legacy_ex_act(severity)
+mob/living/simple_mob/slime/xenobio/oil/legacy_ex_act(severity)
 	log_and_message_admins("[src] exploded due to a chain reaction with another explosion.")
 	explode()
 
-/mob/living/simple_mob/slime/xenobio/oil/fire_act(datum/gas_mixture/air, temperature, volume)
+mob/living/simple_mob/slime/xenobio/oil/fire_act(datum/gas_mixture/air, temperature, volume)
 	log_and_message_admins("[src] exploded due to exposure to fire.")
 	explode()
 
-/mob/living/simple_mob/slime/xenobio/oil/bullet_act(obj/projectile/P, def_zone)
+mob/living/simple_mob/slime/xenobio/oil/bullet_act(obj/projectile/P, def_zone)
 	if(P.damage_type && P.damage_type == BURN && P.damage) // Most bullets won't trigger the explosion, as a mercy towards Security.
 		log_and_message_admins("[src] exploded due to bring hit by a burning projectile[P.firer ? " by [key_name(P.firer)]" : ""].")
 		explode()
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/oil/attackby(obj/item/W, mob/living/user)
+mob/living/simple_mob/slime/xenobio/oil/attackby(obj/item/W, mob/living/user)
 	if(istype(W) && W.damage_force && W.damtype == BURN)
 		log_and_message_admins("[src] exploded due to being hit with a burning weapon ([W]) by [key_name(user)].")
 		explode()
@@ -669,7 +669,7 @@
 		..()
 
 
-/mob/living/simple_mob/slime/xenobio/sapphire
+mob/living/simple_mob/slime/xenobio/sapphire
 	desc = "This slime seems a bit brighter than the rest, both figuratively and literally."
 	color = "#2398FF"
 	slime_color = "sapphire"
@@ -689,7 +689,7 @@
 	)
 
 
-/mob/living/simple_mob/slime/xenobio/emerald
+mob/living/simple_mob/slime/xenobio/emerald
 	desc = "This slime is faster than usual, even more so than the red slimes."
 	color = "#22FF22"
 	shiny = TRUE
@@ -706,19 +706,19 @@
 		/mob/living/simple_mob/slime/xenobio/emerald
 	)
 
-/mob/living/simple_mob/slime/xenobio/emerald/handle_special()
+mob/living/simple_mob/slime/xenobio/emerald/handle_special()
 	if(stat != DEAD)
 		zoom_aura()
 	..()
 
-/mob/living/simple_mob/slime/xenobio/emerald/proc/zoom_aura()
+mob/living/simple_mob/slime/xenobio/emerald/proc/zoom_aura()
 	for(var/mob/living/L in view(src, 2))
 		if(L.stat == DEAD || !IIsAlly(L))
 			continue
 		L.add_modifier(/datum/modifier/technomancer/haste, 5 SECONDS, src)
 
 
-/mob/living/simple_mob/slime/xenobio/light_pink
+mob/living/simple_mob/slime/xenobio/light_pink
 	desc = "This slime seems a lot more peaceful than the others."
 	color = "#FF8888"
 	slime_color = "light pink"
@@ -736,7 +736,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime/light_pink
 
 // Special
-/mob/living/simple_mob/slime/xenobio/rainbow
+mob/living/simple_mob/slime/xenobio/rainbow
 	desc = "This slime changes colors constantly."
 	color = null // Uses a special icon_state.
 	slime_color = "rainbow"
@@ -757,12 +757,12 @@
 		/mob/living/simple_mob/slime/xenobio/rainbow
 	)
 
-/mob/living/simple_mob/slime/xenobio/rainbow/Initialize(mapload)
+mob/living/simple_mob/slime/xenobio/rainbow/Initialize(mapload)
 	unify()
 	return ..()
 
 // The RD's pet slime.
-/mob/living/simple_mob/slime/xenobio/rainbow/kendrick
+mob/living/simple_mob/slime/xenobio/rainbow/kendrick
 	name = "Kendrick"
 	desc = "The Research Director's pet slime.  It shifts colors constantly."
 	rainbow_core_candidate = FALSE
@@ -770,6 +770,6 @@
 	// Instead lets just give them an ai_holder that does that for us.
 	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime/passive
 
-/mob/living/simple_mob/slime/xenobio/rainbow/kendrick/Initialize(mapload)
+mob/living/simple_mob/slime/xenobio/rainbow/kendrick/Initialize(mapload)
 	pacify() // So the physical mob also gets made harmless.
 	return ..()

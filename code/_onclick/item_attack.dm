@@ -23,16 +23,16 @@ avoid code duplication. This includes items that may sometimes act as a standard
 */
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
-/obj/item/proc/resolve_attackby(atom/A, mob/user, params, attack_modifier = 1, clickchain_flags)
+obj/item/proc/resolve_attackby(atom/A, mob/user, params, attack_modifier = 1, clickchain_flags)
 	if(!(atom_flags & NOPRINT))
 		add_fingerprint(user)
 	return A.attackby(src, user, params, clickchain_flags, attack_modifier)
 
 // No comment
-/atom/proc/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
+atom/proc/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
 	return I.standard_melee_attack(src, user, clickchain_flags, params, damage_multiplier, user.zone_sel?.selecting, user.a_intent)
 
-/mob/living/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
+mob/living/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
 	if(can_operate(src) && user.a_intent != INTENT_HARM && I.do_surgery(src,user))
 		return NONE
 	if(attempt_vr(src,"vore_attackby",args))
@@ -41,12 +41,12 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 // Used to get how fast a mob should attack, and influences click delay.
 // This is just for inheritence.
-/mob/proc/get_attack_speed()
+mob/proc/get_attack_speed()
 	return DEFAULT_ATTACK_COOLDOWN
 
 // Same as above but actually does useful things.
 // W is the item being used in the attack, if any. modifier is if the attack should be longer or shorter than usual, for whatever reason.
-/mob/living/get_attack_speed(var/obj/item/W)
+mob/living/get_attack_speed(var/obj/item/W)
 	var/speed = base_attack_cooldown
 	if(W && istype(W))
 		speed = W.attackspeed
@@ -58,5 +58,5 @@ avoid code duplication. This includes items that may sometimes act as a standard
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 // todo: redo this
-/obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	return

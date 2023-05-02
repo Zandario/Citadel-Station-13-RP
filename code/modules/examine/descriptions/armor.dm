@@ -1,5 +1,5 @@
 
-/obj/item/clothing/get_description_info()
+obj/item/clothing/get_description_info()
 	var/armor_stats = description_info + "\
 	<br>"
 	var/list/describing = fetch_armor().describe_list()

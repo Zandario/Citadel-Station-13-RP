@@ -1,4 +1,4 @@
-/obj/effect/overmap/visitable/sector/classd
+obj/effect/overmap/visitable/sector/classd
 	name = "Class D Moon"
 	desc = "A rocky planet with radioactive hazards abundant."
 	scanner_desc = @{"[i]Stellar Body[/i]:
@@ -12,19 +12,19 @@
 
 // Shuttle landing area waypoints
 
-/obj/effect/shuttle_landmark/premade/classd/east
+obj/effect/shuttle_landmark/premade/classd/east
 	name = "Class D - Eastern Zone"
 	landmark_tag = "classd_east"
 
-/obj/effect/shuttle_landmark/premade/classd/west
+obj/effect/shuttle_landmark/premade/classd/west
 	name = "Class D - Western Zone"
 	landmark_tag = "classd_west"
 
-/obj/effect/shuttle_landmark/premade/classd/north
+obj/effect/shuttle_landmark/premade/classd/north
 	name = "Class D - Northern Zone"
 	landmark_tag = "classd_north"
 
-/obj/effect/shuttle_landmark/premade/classd/south
+obj/effect/shuttle_landmark/premade/classd/south
 	name = "Class D - Southern Zone"
 	landmark_tag = "classd_south"
 
@@ -32,13 +32,13 @@
 
 //This is a special subtype of the thing that generates ores on a map
 //It will generate more rich ores because of the lower numbers than the normal one
-/datum/random_map/noise/ore/classd
+datum/random_map/noise/ore/classd
 	descriptor = "classd ore distribution map"
 	deep_val = 0.6 //More riches, normal is 0.7 and 0.8
 	rare_val = 0.5
 
 //The check_map_sanity proc is sometimes unsatisfied with how AMAZING our ores are
-/datum/random_map/noise/ore/classd/check_map_sanity(mapload)
+datum/random_map/noise/ore/classd/check_map_sanity(mapload)
 	var/rare_count = 0
 	var/surface_count = 0
 	var/deep_count = 0
@@ -68,7 +68,7 @@
 // Two mob spawners that are placed on the map that spawn some mobs!
 // They keep track of their mob, and when it's dead, spawn another (only if nobody is looking)
 // Note that if your map has step teleports, mobs may wander through them accidentally and not know how to get back
-/obj/tether_away_spawner/beach_outside
+obj/tether_away_spawner/beach_outside
 	name = "Beach Outside Spawner" //Just a name
 	faction = "beach_out" //Sets all the mobs to this faction so they don't infight
 	atmos_comp = TRUE //Sets up their atmos tolerances to work in this setting, even if they don't normally (20% up/down tolerance for each gas, and heat)
@@ -83,7 +83,7 @@
 		/mob/living/simple_mob/animal/giant_spider/webslinger = 2
 	)
 
-/obj/tether_away_spawner/classd/crater
+obj/tether_away_spawner/classd/crater
 	name = "Class D Crater Spawner"
 	faction = "crater"
 	atmos_comp = TRUE
@@ -95,4 +95,3 @@
 		/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi = 3,
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 2
 	)
-

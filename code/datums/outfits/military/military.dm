@@ -1,4 +1,4 @@
-/datum/outfit/military
+datum/outfit/military
 	name = "Military Uniform"
 	abstract_type = /datum/outfit/military
 

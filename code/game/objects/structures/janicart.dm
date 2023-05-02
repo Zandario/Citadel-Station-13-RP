@@ -1,6 +1,6 @@
 GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
-/obj/structure/janitorialcart
+obj/structure/janitorialcart
 	name = "janitorial cart"
 	desc = "The ultimate in janitorial carts! Has space for water, mops, signs, trash bags, and more!"
 	icon = 'icons/obj/janitor.dmi'
@@ -17,17 +17,17 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	var/obj/item/lightreplacer/myreplacer = null
 	var/signs = 0	//maximum capacity hardcoded below
 
-/obj/structure/janitorialcart/Initialize(mapload, ...)
+obj/structure/janitorialcart/Initialize(mapload, ...)
 	. = ..()
 	create_reagents(300)
 
-/obj/structure/janitorialcart/examine(mob/user)
+obj/structure/janitorialcart/examine(mob/user)
 	. = ..()
 	. += "[src] [icon2html(thing = src, target = user)] contains [reagents.total_volume] unit\s of liquid!"
 	//everything else is visible, so doesn't need to be mentioned
 
 
-/obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
+obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/storage/bag/trash) && !mybag)
 		if(!user.attempt_insert_item_for_installation(I, src))
 			return
@@ -87,11 +87,11 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		mybag.attackby(I, user)
 
 
-/obj/structure/janitorialcart/attack_hand(mob/user, list/params)
+obj/structure/janitorialcart/attack_hand(mob/user, list/params)
 	nano_ui_interact(user)
 	return
 
-/obj/structure/janitorialcart/nano_ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/structure/janitorialcart/nano_ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 	data["name"] = capitalize(name)
 	data["bag"] = mybag ? capitalize(mybag.name) : null
@@ -106,7 +106,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/structure/janitorialcart/Topic(href, href_list)
+obj/structure/janitorialcart/Topic(href, href_list)
 	if(!in_range(src, usr))
 		return
 	if(!isliving(usr))
@@ -150,7 +150,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	updateUsrDialog()
 
 
-/obj/structure/janitorialcart/update_icon()
+obj/structure/janitorialcart/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -168,7 +168,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	add_overlay(overlays_to_add)
 
 //old style stupido-cart
-/obj/structure/bed/chair/janicart
+obj/structure/bed/chair/janicart
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
@@ -180,19 +180,19 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	var/obj/item/storage/bag/trash/mybag	= null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 
-/obj/structure/bed/chair/janicart/Initialize(mapload)
+obj/structure/bed/chair/janicart/Initialize(mapload)
 	. = ..()
 	create_reagents(300)
 	update_layer()
 
-/obj/structure/bed/chair/janicart/examine(mob/user)
+obj/structure/bed/chair/janicart/examine(mob/user)
 	. = ..()
 	. += "[icon2html(thing = src, target = user)] This [callme] contains [reagents.total_volume] unit\s of water!"
 	if(mybag)
 		. += "\A [mybag] is hanging on the [callme]."
 
 
-/obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
+obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop))
 		if(reagents.total_volume > 1)
 			reagents.trans_to_obj(I, 2)
@@ -208,14 +208,14 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		to_chat(user, "<span class='notice'>You hook the trashbag onto the [callme].</span>")
 		mybag = I
 
-/obj/structure/bed/chair/janicart/attack_hand(mob/user, list/params)
+obj/structure/bed/chair/janicart/attack_hand(mob/user, list/params)
 	if(mybag)
 		user.grab_item_from_interacted_with(mybag, src)
 		mybag = null
 	else
 		..()
 
-/obj/structure/bed/chair/janicart/relaymove(mob/living/user, direction)
+obj/structure/bed/chair/janicart/relaymove(mob/living/user, direction)
 	if(!CHECK_MOBILITY(user, MOBILITY_CAN_USE))
 		unbuckle_mob()
 	if(user.get_held_item_of_type(/obj/item/key))
@@ -224,7 +224,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	else
 		to_chat(user, "<span class='notice'>You'll need the keys in one of your hands to drive this [callme].</span>")
 
-/obj/structure/bed/chair/janicart/Move()
+obj/structure/bed/chair/janicart/Move()
 	..()
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)
@@ -232,22 +232,22 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 			if(L.buckled == src)
 				L.loc = loc
 
-/obj/structure/bed/chair/janicart/mob_buckled(mob/M, flags, mob/user, semantic)
+obj/structure/bed/chair/janicart/mob_buckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	update_mob()
 
-/obj/structure/bed/chair/janicart/mob_unbuckled(mob/M, flags, mob/user, semantic)
+obj/structure/bed/chair/janicart/mob_unbuckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	M.pixel_x = 0
 	M.pixel_y = 0
 
-/obj/structure/bed/chair/janicart/update_layer()
+obj/structure/bed/chair/janicart/update_layer()
 	if(dir == SOUTH)
 		layer = FLY_LAYER
 	else
 		layer = OBJ_LAYER
 
-/obj/structure/bed/chair/janicart/setDir()
+obj/structure/bed/chair/janicart/setDir()
 	..()
 	update_layer()
 	if(has_buckled_mobs())
@@ -258,7 +258,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 				L.buckled = src //Restoring
 	update_mob()
 
-/obj/structure/bed/chair/janicart/proc/update_mob()
+obj/structure/bed/chair/janicart/proc/update_mob()
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)
 			var/mob/living/L = A
@@ -277,7 +277,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 					L.pixel_x = -13
 					L.pixel_y = 7
 
-/obj/structure/bed/chair/janicart/bullet_act(var/obj/projectile/Proj)
+obj/structure/bed/chair/janicart/bullet_act(var/obj/projectile/Proj)
 	if(has_buckled_mobs())
 		if(prob(85))
 			var/mob/living/L = pick(buckled_mobs)
@@ -285,7 +285,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	visible_message("<span class='warning'>[Proj] ricochets off the [callme]!</span>")
 
 
-/obj/item/key
+obj/item/key
 	name = "key"
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
 	icon = 'icons/obj/vehicles.dmi'

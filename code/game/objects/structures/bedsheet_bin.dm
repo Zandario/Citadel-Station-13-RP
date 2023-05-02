@@ -4,7 +4,7 @@ BEDSHEETS
 LINEN BINS
 */
 
-/obj/item/bedsheet
+obj/item/bedsheet
 	name = "bedsheet"
 	desc = "A surprisingly soft linen bedsheet."
 	icon = 'icons/obj/items.dmi'
@@ -19,7 +19,7 @@ LINEN BINS
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
-/obj/item/bedsheet/attack_self(mob/user)
+obj/item/bedsheet/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -31,7 +31,7 @@ LINEN BINS
 		set_base_layer(initial(layer))
 	add_fingerprint(user)
 
-/obj/item/bedsheet/attackby(obj/item/I, mob/user)
+obj/item/bedsheet/attackby(obj/item/I, mob/user)
 	if(is_sharp(I))
 		user.visible_message("<span class='notice'>\The [user] begins cutting up [src] with [I].</span>", "<span class='notice'>You begin cutting up [src] with [I].</span>")
 		if(do_after(user, 50))
@@ -42,135 +42,135 @@ LINEN BINS
 		return
 	..()
 
-/obj/item/bedsheet/blue
+obj/item/bedsheet/blue
 	icon_state = "sheetblue"
 
-/obj/item/bedsheet/green
+obj/item/bedsheet/green
 	icon_state = "sheetgreen"
 
-/obj/item/bedsheet/orange
+obj/item/bedsheet/orange
 	icon_state = "sheetorange"
 
-/obj/item/bedsheet/purple
+obj/item/bedsheet/purple
 	icon_state = "sheetpurple"
 
-/obj/item/bedsheet/rainbow
+obj/item/bedsheet/rainbow
 	icon_state = "sheetrainbow"
 
-/obj/item/bedsheet/red
+obj/item/bedsheet/red
 	icon_state = "sheetred"
 
-/obj/item/bedsheet/yellow
+obj/item/bedsheet/yellow
 	icon_state = "sheetyellow"
 
-/obj/item/bedsheet/mime
+obj/item/bedsheet/mime
 	icon_state = "sheetmime"
 
-/obj/item/bedsheet/clown
+obj/item/bedsheet/clown
 	icon_state = "sheetclown"
 	item_state = "sheetrainbow"
 
-/obj/item/bedsheet/captain
+obj/item/bedsheet/captain
 	icon_state = "sheetcaptain"
 
-/obj/item/bedsheet/rd
+obj/item/bedsheet/rd
 	icon_state = "sheetrd"
 
-/obj/item/bedsheet/medical
+obj/item/bedsheet/medical
 	icon_state = "sheetmedical"
 
-/obj/item/bedsheet/hos
+obj/item/bedsheet/hos
 	icon_state = "sheethos"
 
-/obj/item/bedsheet/hop
+obj/item/bedsheet/hop
 	icon_state = "sheethop"
 
-/obj/item/bedsheet/ce
+obj/item/bedsheet/ce
 	icon_state = "sheetce"
 
-/obj/item/bedsheet/brown
+obj/item/bedsheet/brown
 	icon_state = "sheetbrown"
 
-/obj/item/bedsheet/ian
+obj/item/bedsheet/ian
 	icon_state = "sheetian"
 
-/obj/item/bedsheet/cosmos
+obj/item/bedsheet/cosmos
 	name = "cosmic space bedsheet"
 	desc = "Made from the dreams of those who wonder at the stars."
 	icon_state = "sheetcosmos"
 
-/obj/item/bedsheet/double
+obj/item/bedsheet/double
 	icon_state = "doublesheet"
 	item_state = "sheet"
 
-/obj/item/bedsheet/bluedouble
+obj/item/bedsheet/bluedouble
 	icon_state = "doublesheetblue"
 	item_state = "sheetblue"
 
-/obj/item/bedsheet/greendouble
+obj/item/bedsheet/greendouble
 	icon_state = "doublesheetgreen"
 	item_state = "sheetgreen"
 
-/obj/item/bedsheet/orangedouble
+obj/item/bedsheet/orangedouble
 	icon_state = "doublesheetorange"
 	item_state = "sheetorange"
 
-/obj/item/bedsheet/purpledouble
+obj/item/bedsheet/purpledouble
 	icon_state = "doublesheetpurple"
 	item_state = "sheetpurple"
 
-/obj/item/bedsheet/rainbowdouble //all the way across the sky.
+obj/item/bedsheet/rainbowdouble //all the way across the sky.
 	icon_state = "doublesheetrainbow"
 	item_state = "sheetrainbow"
 
-/obj/item/bedsheet/reddouble
+obj/item/bedsheet/reddouble
 	icon_state = "doublesheetred"
 	item_state = "sheetred"
 
-/obj/item/bedsheet/yellowdouble
+obj/item/bedsheet/yellowdouble
 	icon_state = "doublesheetyellow"
 	item_state = "sheetyellow"
 
-/obj/item/bedsheet/mimedouble
+obj/item/bedsheet/mimedouble
 	icon_state = "doublesheetmime"
 	item_state = "sheetmime"
 
-/obj/item/bedsheet/clowndouble
+obj/item/bedsheet/clowndouble
 	icon_state = "doublesheetclown"
 	item_state = "sheetrainbow"
 
-/obj/item/bedsheet/captaindouble
+obj/item/bedsheet/captaindouble
 	icon_state = "doublesheetcaptain"
 	item_state = "sheetcaptain"
 
-/obj/item/bedsheet/rddouble
+obj/item/bedsheet/rddouble
 	icon_state = "doublesheetrd"
 	item_state = "sheetrd"
 
-/obj/item/bedsheet/hosdouble
+obj/item/bedsheet/hosdouble
 	icon_state = "doublesheethos"
 	item_state = "sheethos"
 
-/obj/item/bedsheet/hopdouble
+obj/item/bedsheet/hopdouble
 	icon_state = "doublesheethop"
 	item_state = "sheethop"
 
-/obj/item/bedsheet/cedouble
+obj/item/bedsheet/cedouble
 	icon_state = "doublesheetce"
 	item_state = "sheetce"
 
-/obj/item/bedsheet/browndouble
+obj/item/bedsheet/browndouble
 	icon_state = "doublesheetbrown"
 	item_state = "sheetbrown"
 
-/obj/item/bedsheet/iandouble
+obj/item/bedsheet/iandouble
 	icon_state = "doublesheetian"
 	item_state = "sheetian"
 
-/obj/item/bedsheet/cosmosdouble
+obj/item/bedsheet/cosmosdouble
 	icon_state = "doublesheetcosmos"
 
-/obj/structure/bedsheetbin
+obj/structure/bedsheetbin
 	name = "linen bin"
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures.dmi'
@@ -182,7 +182,7 @@ LINEN BINS
 	var/obj/item/hidden = null
 
 
-/obj/structure/bedsheetbin/examine(mob/user)
+obj/structure/bedsheetbin/examine(mob/user)
 	. = ..()
 
 	if(amount < 1)
@@ -194,7 +194,7 @@ LINEN BINS
 	. += "There are [amount] bed sheets in the bin."
 
 
-/obj/structure/bedsheetbin/update_icon_state()
+obj/structure/bedsheetbin/update_icon_state()
 	. = ..()
 	if(!amount)
 		icon_state = "linenbin-empty"
@@ -203,7 +203,7 @@ LINEN BINS
 	else
 		icon_state = "linenbin-full"
 
-/obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
+obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/bedsheet))
 		if(!user.attempt_insert_item_for_installation(I, src))
 			return
@@ -216,7 +216,7 @@ LINEN BINS
 		hidden = I
 		to_chat(user, "<span class='notice'>You hide [I] among the sheets.</span>")
 
-/obj/structure/bedsheetbin/attack_hand(mob/user, list/params)
+obj/structure/bedsheetbin/attack_hand(mob/user, list/params)
 	if(amount >= 1)
 		amount--
 
@@ -240,7 +240,7 @@ LINEN BINS
 
 	add_fingerprint(user)
 
-/obj/structure/bedsheetbin/attack_tk(mob/user as mob)
+obj/structure/bedsheetbin/attack_tk(mob/user as mob)
 	if(amount >= 1)
 		amount--
 

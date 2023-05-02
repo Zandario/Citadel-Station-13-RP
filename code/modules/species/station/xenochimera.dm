@@ -1,4 +1,4 @@
-/datum/species/shapeshifter/xenochimera //Scree's race.
+datum/species/shapeshifter/xenochimera //Scree's race.
 	uid = SPECIES_ID_XENOCHIMERA
 	id = SPECIES_ID_XENOCHIMERA
 	name = SPECIES_XENOCHIMERA
@@ -148,7 +148,7 @@
 
 	var/has_feral_abilities = FALSE
 
-/datum/species/shapeshifter/xenochimera/handle_environment_special(mob/living/carbon/human/H)
+datum/species/shapeshifter/xenochimera/handle_environment_special(mob/living/carbon/human/H)
 	//If they're KO'd/dead, they're probably not thinking a lot about much of anything.
 	if(!H.stat)
 		handle_feralness(H)
@@ -174,20 +174,20 @@
 			H.eye_blurry = max(5,H.eye_blurry)
 	..()
 
-/datum/species/shapeshifter/xenochimera/proc/add_feral_abilities(var/mob/living/carbon/human/H)
+datum/species/shapeshifter/xenochimera/proc/add_feral_abilities(var/mob/living/carbon/human/H)
 	if(!has_feral_abilities)
 		has_feral_abilities = TRUE
 	else
 		return
 
-/datum/species/shapeshifter/xenochimera/proc/remove_feral_spells(var/mob/living/carbon/human/H)
+datum/species/shapeshifter/xenochimera/proc/remove_feral_spells(var/mob/living/carbon/human/H)
 	if(has_feral_abilities)
 		has_feral_abilities = FALSE
 	else
 		return
 
 
-/datum/species/shapeshifter/xenochimera/proc/handle_feralness(var/mob/living/carbon/human/H)
+datum/species/shapeshifter/xenochimera/proc/handle_feralness(var/mob/living/carbon/human/H)
 
 	//Low-ish nutrition has messages and eventually feral
 	var/hungry = H.nutrition <= 200
@@ -383,14 +383,14 @@
 	// HUD update time
 	update_xenochimera_hud(H, danger, feral_state)
 
-/datum/species/shapeshifter/xenochimera/get_bodytype_legacy()
+datum/species/shapeshifter/xenochimera/get_bodytype_legacy()
 	return base_species
 
-/datum/species/shapeshifter/xenochimera/get_race_key(mob/living/carbon/human/H)
+datum/species/shapeshifter/xenochimera/get_race_key(mob/living/carbon/human/H)
 	var/datum/species/real = SScharacters.resolve_species_name(base_species)
 	return real.real_race_key(H)
 
-/datum/species/shapeshifter/xenochimera/proc/update_xenochimera_hud(var/mob/living/carbon/human/H, var/danger, var/feral)
+datum/species/shapeshifter/xenochimera/proc/update_xenochimera_hud(var/mob/living/carbon/human/H, var/danger, var/feral)
 	if(H.xenochimera_danger_display)
 		H.xenochimera_danger_display.invisibility = 0
 		if(danger && feral)
@@ -404,18 +404,18 @@
 
 	return
 
-/atom/movable/screen/xenochimera
+atom/movable/screen/xenochimera
 	icon = 'icons/mob/chimerahud.dmi'
 	invisibility = 101
 
-/atom/movable/screen/xenochimera/danger_level
+atom/movable/screen/xenochimera/danger_level
 	name = "danger level"
 	icon_state = "danger00"		//first number is bool of whether or not we're in danger, second is whether or not we're feral
 	alpha = 200
 
 //Verbs Follow
 
-/mob/living/carbon/human/proc/resp_biomorph(mob/living/carbon/human/target in view(1))
+mob/living/carbon/human/proc/resp_biomorph(mob/living/carbon/human/target in view(1))
 	set name = "Respiratory Biomorph"
 	set desc = "Changes the gases we need to breathe."
 	set category = "Abilities"
@@ -471,7 +471,7 @@
 			)
 
 
-/mob/living/carbon/human/proc/biothermic_adapt(mob/living/carbon/human/target in view(1))
+mob/living/carbon/human/proc/biothermic_adapt(mob/living/carbon/human/target in view(1))
 	set name = "Biothermic Adaptation"
 	set desc = "Changes our core body temperature."
 	set category = "Abilities"
@@ -568,7 +568,7 @@
 				SPAN_WARNING("The sensation fades. You feel made anew."),
 			)
 
-/mob/living/carbon/human/proc/atmos_biomorph(mob/living/carbon/human/target in view(1))
+mob/living/carbon/human/proc/atmos_biomorph(mob/living/carbon/human/target in view(1))
 	set name = "Atmospheric Biomorph"
 	set desc = "Changes our sensitivity to atmospheric pressure."
 	set category = "Abilities"
@@ -622,7 +622,7 @@
 
 //? Abilities
 
-/datum/ability/species/xenochimera
+datum/ability/species/xenochimera
 	abstract_type = /datum/ability/species/xenochimera
 	category = "Xenochimera"
 	ability_check_flags = NONE
@@ -634,7 +634,7 @@
 	var/nutrition_enforced = TRUE
 	var/is_feral = FALSE
 
-/datum/ability/species/xenochimera/check_trigger(mob/user, toggling)
+datum/ability/species/xenochimera/check_trigger(mob/user, toggling)
 	. = ..()
 	if(!.)
 		return
@@ -656,7 +656,7 @@
 		return TRUE
 
 
-/datum/ability/species/xenochimera/on_trigger(mob/user, toggling)
+datum/ability/species/xenochimera/on_trigger(mob/user, toggling)
 	. = ..()
 	if(!ishuman(owner))
 		return
@@ -676,7 +676,7 @@
 		////////////////
 		//Regeneration//
 		////////////////
-/datum/ability/species/xenochimera/regenerate
+datum/ability/species/xenochimera/regenerate
 	name = "Regeneration"
 	desc = "We shed our skin, purging it of damage, regrowing limbs."
 	action_state = "ling_fleshmend"
@@ -687,7 +687,7 @@
 	windup = 10 SECONDS
 	var/healing_amount = 60
 
-/datum/ability/species/xenochimera/regenerate/on_trigger()
+datum/ability/species/xenochimera/regenerate/on_trigger()
 	. = ..()
 	if(!ishuman(owner))
 		return
@@ -718,7 +718,7 @@
 ////////////////////////
 //Timed thermal sight.//
 ////////////////////////
-/datum/ability/species/xenochimera/thermal_sight
+datum/ability/species/xenochimera/thermal_sight
 	name = "Thermal Sight"
 	desc = "We focus ourselves, able to sense prey and threat through walls or mist. We cannot sustain this for long."
 	action_state = "ling_augmented_eyesight"
@@ -728,7 +728,7 @@
 	var/active = FALSE
 	var/duration = 30 SECONDS
 
-/datum/ability/species/xenochimera/thermal_sight/on_trigger()
+datum/ability/species/xenochimera/thermal_sight/on_trigger()
 	. = ..()
 	if(!ishuman(owner))
 		return
@@ -736,7 +736,7 @@
 	toggle_sight(owner)
 	addtimer(CALLBACK(src, .proc/toggle_sight,H), duration, TIMER_UNIQUE)
 
-/datum/ability/species/xenochimera/thermal_sight/proc/toggle_sight(mob/living/carbon/human/H)
+datum/ability/species/xenochimera/thermal_sight/proc/toggle_sight(mob/living/carbon/human/H)
 	if(!active)
 		to_chat(H, "<span class='notice'>We focus outward, gaining a keen sense of all those around us.</span>")
 		H.species.vision_flags |= SEE_MOBS
@@ -753,7 +753,7 @@
 //Voice Mimic//
 ///////////////
 //It's a toggle, but doesn't cost nutriment to be toggled off
-/datum/ability/species/xenochimera/voice_mimic
+datum/ability/species/xenochimera/voice_mimic
 	name = "Voice Mimicry"
 	desc = "We shape our throat and tongue to imitate a person, or a sound. This ability is a toggle."
 	action_state = "ling_mimic_voice"
@@ -762,7 +762,7 @@
 	nutrition_cost_proportional = 5
 	var/active = FALSE
 
-/datum/ability/species/xenochimera/voice_mimic/on_trigger()
+datum/ability/species/xenochimera/voice_mimic/on_trigger()
 	. = ..()
 	if(owner.stat != DEAD)
 		if(ishuman(owner))
@@ -788,7 +788,7 @@
 ///////////////
 //Only to be used during feral state, has a very long cooldown. Mostly to get away.
 
-/datum/ability/species/xenochimera/dissonant_shriek
+datum/ability/species/xenochimera/dissonant_shriek
 	name = "Dissonant Shriek"
 	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics."
 	action_state = "ling_resonant_shriek"
@@ -805,7 +805,7 @@
 	is_feral = TRUE
 
 
-/datum/ability/species/xenochimera/dissonant_shriek/on_trigger()
+datum/ability/species/xenochimera/dissonant_shriek/on_trigger()
 	. = ..()
 	for(var/mob/living/T in get_hearers_in_view(range, owner))
 		if(iscarbon(T))
@@ -827,7 +827,7 @@
 		L.on = TRUE
 		L.broken()
 
-/datum/ability/species/xenochimera/dissonant_shriek/available_check()
+datum/ability/species/xenochimera/dissonant_shriek/available_check()
 	var/mob/living/carbon/human/H
 	if(istype(owner,/mob/living/carbon/human))
 		H = owner
@@ -843,7 +843,7 @@
 //Revive spell//
 ////////////////
 //Will incapacitate you for 10 minutes, and then you can revive.
-/datum/ability/species/xenochimera/hatch
+datum/ability/species/xenochimera/hatch
 	name = "Hatch Stasis"
 	desc = "We attempt to grow an entirely new body from scratch, or death."
 	action_state = "ling_regenerative_stasis"
@@ -852,7 +852,7 @@
 	nutrition_cost_proportional = 1
 	nutrition_enforced = FALSE
 
-/datum/ability/species/xenochimera/hatch/on_trigger()
+datum/ability/species/xenochimera/hatch/on_trigger()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
@@ -872,7 +872,7 @@
 
 		addtimer(CALLBACK(src, .proc/add_pop,H,), 5 MINUTES)
 
-/datum/ability/species/xenochimera/hatch/proc/add_pop()
+datum/ability/species/xenochimera/hatch/proc/add_pop()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.visible_message("<span class = 'warning'> <b>[H] looks ready to burst!</b></span>")
@@ -885,7 +885,7 @@
 //Actual Revive Spell//
 ///////////////////////
 //Not to be used normally. Given by the 'hatch' spell
-/datum/ability/species/xenochimera/hatch_pop
+datum/ability/species/xenochimera/hatch_pop
 	name = "Emerge"
 	desc = "We emerge in our new form."
 	action_state = "ling_revive"
@@ -894,7 +894,7 @@
 	nutrition_cost_minimum = 1
 	nutrition_cost_proportional = 1
 
-/datum/ability/species/xenochimera/hatch_pop/on_trigger()
+datum/ability/species/xenochimera/hatch_pop/on_trigger()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 
@@ -921,7 +921,7 @@
 //Commune / Psychic Messages//
 //////////////////////////////
 
-/datum/ability/species/xenochimera/commune
+datum/ability/species/xenochimera/commune
 	name = "Commune"
 	desc = "Send a telepathic message to an unlucky recipient."
 	action_state = "gen_project"
@@ -930,7 +930,7 @@
 	cooldown = 20 SECONDS
 
 
-/datum/ability/species/xenochimera/commune/on_trigger()
+datum/ability/species/xenochimera/commune/on_trigger()
 	. = ..()
 	var/list/targets = list()
 	var/target = null

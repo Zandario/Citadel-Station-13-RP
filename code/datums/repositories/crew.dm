@@ -1,13 +1,13 @@
 var/global/datum/repository/crew/crew_repository = new()
 
-/datum/repository/crew
+datum/repository/crew
 	var/list/cache_data
 
-/datum/repository/crew/New()
+datum/repository/crew/New()
 	cache_data = list()
 	..()
 
-/datum/repository/crew/proc/health_data(var/zLevel)
+datum/repository/crew/proc/health_data(var/zLevel)
 	var/list/crewmembers = list()
 	if(!zLevel)
 		return crewmembers
@@ -64,7 +64,7 @@ var/global/datum/repository/crew/crew_repository = new()
 
 	return crewmembers
 
-/datum/repository/crew/proc/scan()
+datum/repository/crew/proc/scan()
 	var/list/tracked = list()
 	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		if(istype(H.w_uniform, /obj/item/clothing/under))

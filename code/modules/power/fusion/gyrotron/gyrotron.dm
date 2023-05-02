@@ -1,6 +1,6 @@
 var/list/gyrotrons = list()
 
-/obj/machinery/power/emitter/gyrotron
+obj/machinery/power/emitter/gyrotron
 	name = "gyrotron"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	desc = "It is a heavy duty industrial gyrotron suited for powering fusion reactors."
@@ -16,41 +16,41 @@ var/list/gyrotrons = list()
 	var/mega_energy = 1
 
 
-/obj/machinery/power/emitter/gyrotron/anchored
+obj/machinery/power/emitter/gyrotron/anchored
 	anchored = 1
 	state = 2
 
-/obj/machinery/power/emitter/gyrotron/Initialize(mapload)
+obj/machinery/power/emitter/gyrotron/Initialize(mapload)
 	gyrotrons += src
 	active_power_usage = mega_energy * 50000
 	. = ..()
 
-/obj/machinery/power/emitter/gyrotron/Destroy()
+obj/machinery/power/emitter/gyrotron/Destroy()
 	gyrotrons -= src
 	return ..()
 
-/obj/machinery/power/emitter/gyrotron/process(delta_time)
+obj/machinery/power/emitter/gyrotron/process(delta_time)
 	active_power_usage = mega_energy * 50000
 	. = ..()
 
-/obj/machinery/power/emitter/gyrotron/get_rand_burst_delay()
+obj/machinery/power/emitter/gyrotron/get_rand_burst_delay()
 	return rate * 10
 
-/obj/machinery/power/emitter/gyrotron/get_burst_delay()
+obj/machinery/power/emitter/gyrotron/get_burst_delay()
 	return rate * 10
 
-/obj/machinery/power/emitter/gyrotron/get_emitter_beam()
+obj/machinery/power/emitter/gyrotron/get_emitter_beam()
 	var/obj/projectile/beam/emitter/E = ..()
 	E.damage = mega_energy * 50
 	return E
 
-/obj/machinery/power/emitter/gyrotron/update_icon()
+obj/machinery/power/emitter/gyrotron/update_icon()
 	if (active && powernet && avail(active_power_usage * 0.001))
 		icon_state = "emitter-on"
 	else
 		icon_state = "emitter-off"
 
-/obj/machinery/power/emitter/gyrotron/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/power/emitter/gyrotron/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = input("Enter a new ident tag.", "Gyrotron", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))

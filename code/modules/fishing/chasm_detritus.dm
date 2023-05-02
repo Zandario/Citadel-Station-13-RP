@@ -8,7 +8,7 @@
 #define NO_CORPSES "no_corpses"
 
 /// An object which should replace itself on initialisation with something which fell into a chasm.
-/obj/item/chasm_detritus
+obj/item/chasm_detritus
 	name = "chasm detritus"
 	desc = "Abstract concept of an object which once fell into a deep hole."
 	icon = 'icons/obj/objects.dmi'
@@ -37,7 +37,7 @@
 		),
 	)
 
-/obj/item/chasm_detritus/Initialize(mapload)
+obj/item/chasm_detritus/Initialize(mapload)
 	. = ..()
 	if (prob(default_contents_chance))
 		create_default_object()
@@ -53,12 +53,12 @@
 	return INITIALIZE_HINT_QDEL
 
 /// Instantiates something in its place from the default_contents list.
-/obj/item/chasm_detritus/proc/create_default_object()
+obj/item/chasm_detritus/proc/create_default_object()
 	var/contents_type = pick(default_contents[default_contents_key])
 	new contents_type(get_turf(src))
 
 /// Returns a list of every object which is currently inside of a chasm.
-/obj/item/chasm_detritus/proc/find_chasm_contents()
+obj/item/chasm_detritus/proc/find_chasm_contents()
 /*
 	var/list/chasm_contents = list()
 	if (!GLOB.chasm_storage.len)
@@ -75,12 +75,12 @@
 
 /// Variant of the chasm detritus that allows for an easier time at fishing out
 /// bodies, and sometimes less desireable monsters too.
-/obj/item/chasm_detritus/restricted
+obj/item/chasm_detritus/restricted
 	/// What type do we check for in the contents of the `/obj/effect/abstract/chasm_storage`
 	/// contained in the `GLOB.chasm_storage` global list in `find_chasm_contents()`.
 	var/chasm_storage_restricted_type = /obj
 
-/obj/item/chasm_detritus/restricted/find_chasm_contents()
+obj/item/chasm_detritus/restricted/find_chasm_contents()
 /*
 	var/list/chasm_contents = list()
 	if (!GLOB.chasm_storage.len)
@@ -96,11 +96,11 @@
 */
 	return list() // we don't support tg chasms; this may be subject to removal entirely later.
 
-/obj/item/chasm_detritus/restricted/objects
+obj/item/chasm_detritus/restricted/objects
 	default_contents_chance = 12.5
 	default_contents_key = NO_CORPSES
 
-/obj/item/chasm_detritus/restricted/bodies
+obj/item/chasm_detritus/restricted/bodies
 	default_contents_chance = 50
 	default_contents_key = BODIES_ONLY
 	chasm_storage_restricted_type = /mob

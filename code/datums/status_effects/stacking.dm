@@ -5,7 +5,7 @@
  *
  * this and all subtypes have `stacks` as an argument on apply.
  */
-/datum/status_effect/stacking
+datum/status_effect/stacking
 	abstract_type = /datum/status_effect/stacking
 
 	/// decay amount - this can be negative.
@@ -17,12 +17,12 @@
 	/// default behavior: do we refresh decay timer to maximum (duration) when stacks increase from external sources?
 	var/stacking_resets_decay = TRUE
 
-/datum/status_effect/stacking/on_apply(stacks, ...)
+datum/status_effect/stacking/on_apply(stacks, ...)
 	src.stacks = isnull(stacks)? 1 : stacks
 	ASSERT(src.stacks > 0)
 	return ..()
 
-/datum/status_effect/stacking/decay()
+datum/status_effect/stacking/decay()
 	adjust_stacks(decay_amount, TRUE)
 	if(!stacks)
 		return ..()
@@ -38,7 +38,7 @@
  * * new_stacks - new stacks
  * * decayed - is this from decaying?
  */
-/datum/status_effect/stacking/proc/on_stacks(old_stacks, new_stacks, decayed)
+datum/status_effect/stacking/proc/on_stacks(old_stacks, new_stacks, decayed)
 	return
 
 /**
@@ -46,7 +46,7 @@
  *
  * @return stacks modified
  */
-/datum/status_effect/stacking/proc/adjust_stacks(stacks, decaying)
+datum/status_effect/stacking/proc/adjust_stacks(stacks, decaying)
 	var/old = src.stacks
 	src.stacks = clamp(src.stacks + stacks, 0, max_stacks)
 	on_stacks(old, src.stacks, decaying)
@@ -63,7 +63,7 @@
  *
  * @return stacks applied
  */
-/mob/proc/apply_stacking_effect(datum/status_effect/stacking/path, stacks, maximum)
+mob/proc/apply_stacking_effect(datum/status_effect/stacking/path, stacks, maximum)
 	if(isnull(maximum))
 		maximum = stacks // default no additional stacking
 	if(!ispath(path, /datum/status_effect/stacking))
@@ -82,7 +82,7 @@
  *
  * @return stacks left
  */
-/mob/proc/remove_stacking_effect(datum/status_effect/stacking/path, stacks)
+mob/proc/remove_stacking_effect(datum/status_effect/stacking/path, stacks)
 	if(!ispath(path, /datum/status_effect/stacking))
 		CRASH("[path] is not a stacking effect.")
 	ASSERT(stacks > 0)

@@ -2,7 +2,7 @@
 //		Base Construct
 ////////////////////////////
 
-/datum/category_item/catalogue/fauna/construct
+datum/category_item/catalogue/fauna/construct
 	name = "Constructs"
 	desc = "Although much of the information behind these occult constructs \
 	is presumably still classified, NanoTrasen's general briefings have confirmed \
@@ -13,7 +13,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/construct)
 
 // Obtained by scanning all Constructs.
-/datum/category_item/catalogue/fauna/all_X
+datum/category_item/catalogue/fauna/all_X
 	name = "Collection - Constructs"
 	desc = "You have scanned a large array of different types of Construct, \
 	and therefore you have been granted a large sum of points, through this \
@@ -28,7 +28,7 @@
 		/datum/category_item/catalogue/fauna/construct/wraith
 		)
 
-/mob/living/simple_mob/construct
+mob/living/simple_mob/construct
 	name = "Construct"
 	real_name = "Construct"
 	desc = ""
@@ -91,7 +91,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/construct/place_spell_in_hand(var/path)
+mob/living/simple_mob/construct/place_spell_in_hand(var/path)
 	if(!path || !ispath(path))
 		return 0
 
@@ -123,10 +123,10 @@
 		qdel(S)
 		return 0
 
-/mob/living/simple_mob/construct/cultify()
+mob/living/simple_mob/construct/cultify()
 	return
 
-/mob/living/simple_mob/construct/Initialize(mapload)
+mob/living/simple_mob/construct/Initialize(mapload)
 	. = ..()
 	name = text("[initial(name)] ([rand(1, 1000)])")
 	real_name = name
@@ -135,19 +135,19 @@
 	updateicon()
 
 /*
-/mob/living/simple_mob/construct/update_icon()
+mob/living/simple_mob/construct/update_icon()
 	..()
 	if(do_glow)
 		add_glow()
 */
 
-/mob/living/simple_mob/construct/death()
+mob/living/simple_mob/construct/death()
 	new /obj/item/ectoplasm (src.loc)
 	..(null,"collapses in a shattered heap.")
 	ghostize()
 	qdel(src)
 
-/mob/living/simple_mob/construct/attack_generic(var/mob/user)
+mob/living/simple_mob/construct/attack_generic(var/mob/user)
 	if(istype(user, /mob/living/simple_mob/construct/artificer))
 		var/mob/living/simple_mob/construct/artificer/A = user
 		if(health < getMaxHealth())
@@ -161,7 +161,7 @@
 		return
 	return ..()
 
-/mob/living/simple_mob/construct/examine(mob/user)
+mob/living/simple_mob/construct/examine(mob/user)
 	..(user)
 	var/msg = "<span cass='info'>This is [icon2html(thing = src, target = user)] \a <EM>[src]</EM>!\n"
 	if (src.health < src.getMaxHealth())
@@ -175,16 +175,16 @@
 	to_chat(user, msg)
 
 //Constructs levitate, can fall from a shuttle with no harm, and are piloted by either damned spirits or some otherworldly entity. Let 'em float in space.
-/mob/living/simple_mob/construct/Process_Spacemove()
+mob/living/simple_mob/construct/Process_Spacemove()
 	return 1
 
 
 //Glowing Procs
-/mob/living/simple_mob/construct/proc/add_glow()
+mob/living/simple_mob/construct/proc/add_glow()
 	var/image/eye_glow = image(icon,"glow-[icon_state]")
 	eye_glow.plane = ABOVE_LIGHTING_PLANE
 	add_overlay(eye_glow)
 	set_light(2, -2, l_color = "#FFFFFF")
 
-/mob/living/simple_mob/construct/proc/remove_glow()
+mob/living/simple_mob/construct/proc/remove_glow()
 	cut_overlays()

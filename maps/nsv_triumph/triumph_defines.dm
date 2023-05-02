@@ -26,7 +26,7 @@
 #define Z_LEVEL_LAVALAND_EAST			22
 
 // Camera Networks
-/datum/map/triumph
+datum/map/triumph
 	name = "Triumph"
 	full_name = "NSV Triumph"
 	path = "triumph"
@@ -183,7 +183,7 @@
 								/datum/planet/classp,
 								/datum/planet/classm)
 
-/datum/map/triumph/perform_map_generation()
+datum/map/triumph/perform_map_generation()
 	return 1
 
 // For making the 4-in-1 holomap, we calculate some offsets
@@ -196,12 +196,12 @@
 /// 60
 #define TRIUMPH_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TRIUMPH_MAP_SIZE)) / 2)
 // We have a bunch of stuff common to the station z levels
-/datum/map_z_level/triumph/ship
+datum/map_z_level/triumph/ship
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
 	holomap_legend_x = 220
 	holomap_legend_y = 160
 
-/datum/map_z_level/triumph/ship/deck_one
+datum/map_z_level/triumph/ship/deck_one
 	z = Z_LEVEL_DECK_ONE
 	name = "Deck 1"
 	transit_chance = 33
@@ -210,7 +210,7 @@
 	holomap_offset_x = TRIUMPH_HOLOMAP_MARGIN_X
 	holomap_offset_y = TRIUMPH_HOLOMAP_MARGIN_Y + TRIUMPH_MAP_SIZE*1
 
-/datum/map_z_level/triumph/ship/deck_two
+datum/map_z_level/triumph/ship/deck_two
 	z = Z_LEVEL_DECK_TWO
 	name = "Deck 2"
 	transit_chance = 33
@@ -219,7 +219,7 @@
 	holomap_offset_x = TRIUMPH_HOLOMAP_MARGIN_X
 	holomap_offset_y = TRIUMPH_HOLOMAP_MARGIN_Y + TRIUMPH_MAP_SIZE*2
 
-/datum/map_z_level/triumph/ship/deck_three
+datum/map_z_level/triumph/ship/deck_three
 	z = Z_LEVEL_DECK_THREE
 	name = "Deck 3"
 	transit_chance = 33
@@ -228,7 +228,7 @@
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TRIUMPH_HOLOMAP_MARGIN_X - TRIUMPH_MAP_SIZE
 	holomap_offset_y = TRIUMPH_HOLOMAP_MARGIN_Y + TRIUMPH_MAP_SIZE*1
 
-/datum/map_z_level/triumph/ship/deck_four
+datum/map_z_level/triumph/ship/deck_four
 	z = Z_LEVEL_DECK_FOUR
 	name = "Deck 4"
 	transit_chance = 33
@@ -237,38 +237,38 @@
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TRIUMPH_HOLOMAP_MARGIN_X - TRIUMPH_MAP_SIZE
 	holomap_offset_y = TRIUMPH_HOLOMAP_MARGIN_Y + TRIUMPH_MAP_SIZE*2
 
-/datum/map_z_level/triumph/colony
+datum/map_z_level/triumph/colony
 	z = Z_LEVEL_CENTCOM
 	name = "Flagship"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
-/datum/map_z_level/triumph/ships
+datum/map_z_level/triumph/ships
 	z = Z_LEVEL_SHIPS
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_XENOARCH_EXEMPT
 
-/datum/map_z_level/triumph/misc
+datum/map_z_level/triumph/misc
 	z = Z_LEVEL_MISC
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_XENOARCH_EXEMPT
 
 // Our map is small, if the supermatter is ejected lets not have it just blow up somewhere else
-/obj/machinery/power/supermatter/touch_map_edge()
+obj/machinery/power/supermatter/touch_map_edge()
 	qdel(src)
 
 
 /// Z level dropper. Todo, make something generic so we dont have to copy pasta this
-/obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
+obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
 
-/obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
+obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
 	. = ..()
 
 	if(istype(get_turf(src), /turf/simulated/floor))
 		src:target_z = z
 		return INITIALIZE_HINT_QDEL
 
-/obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
+obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
 	if(!src:target_z)
 		return
 

@@ -1,7 +1,7 @@
 /**
  * returns everyone we're grabbing associated to state
  */
-/mob/proc/grabbing()
+mob/proc/grabbing()
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/obj/item/grab/G in get_held_items())
@@ -10,7 +10,7 @@
 /**
  * returns everyone we're grabbing, recursively; this can include ourselves!
  */
-/mob/proc/grabbing_recursive(list/L = list())
+mob/proc/grabbing_recursive(list/L = list())
 	RETURN_TYPE(/list)
 	. = L
 	for(var/obj/item/grab/G in get_held_items())
@@ -22,14 +22,14 @@
  *
  * @return grab state, or null
  */
-/mob/proc/check_grab(mob/M)
+mob/proc/check_grab(mob/M)
 	for(var/obj/item/grab/G in get_held_items())
 		if(G.affecting == M)
 			return G.state
 /**
  * drops our grab to someone immediately
  */
-/mob/proc/drop_grab(mob/M)
+mob/proc/drop_grab(mob/M)
 	for(var/obj/item/grab/G in get_held_items())
 		if(G.affecting == M)
 			qdel(G)
@@ -37,7 +37,7 @@
 /**
  * drops all grabs immediately
  */
-/mob/proc/drop_grabs()
+mob/proc/drop_grabs()
 	for(var/obj/item/grab/G in get_held_items())
 		qdel(G)
 
@@ -46,7 +46,7 @@
  *
  * @return TRUE / FALSE
  */
-/mob/proc/is_grabbed()
+mob/proc/is_grabbed()
 	return length(grabbed_by)
 
 /**
@@ -54,7 +54,7 @@
  *
  * @return null, or state
  */
-/mob/proc/is_grabbed_by(mob/M)
+mob/proc/is_grabbed_by(mob/M)
 	return (M in grabbed_by)? M.check_grab(src) : null
 
 #define UPGRADE_COOLDOWN	40
@@ -63,7 +63,7 @@
 ///Process_Grab()
 ///Called by client/Move()
 ///Checks to see if you are grabbing or being grabbed by anything and if moving will affect your grab.
-/client/proc/Process_Grab()
+client/proc/Process_Grab()
 	//if we are being grabbed
 	if(isliving(mob))
 		var/mob/living/L = mob
@@ -74,7 +74,7 @@
 		for(var/obj/item/grab/G in list(L.l_hand, L.r_hand))
 			G.reset_kill_state() //no wandering across the station/asteroid while choking someone
 
-/obj/item/grab
+obj/item/grab
 	name = "grab"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "reinforce"
@@ -99,7 +99,7 @@
 	item_state = "nothing"
 	w_class = ITEMSIZE_HUGE
 
-/obj/item/grab/Initialize(mapload, mob/victim)
+obj/item/grab/Initialize(mapload, mob/victim)
 	. = ..()
 	var/mob/user = loc
 	assailant = user
@@ -135,7 +135,7 @@
 	adjust_position()
 
 //This makes sure that the grab screen object is displayed in the correct hand.
-/obj/item/grab/proc/synch() //why is this needed?
+obj/item/grab/proc/synch() //why is this needed?
 	if(QDELETED(src))
 		return
 	if(affecting)
@@ -144,7 +144,7 @@
 		else
 			hud.screen_loc = ui_lhand
 
-/obj/item/grab/process(delta_time)
+obj/item/grab/process(delta_time)
 	if(QDELETED(src)) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
 		return PROCESS_KILL
 
@@ -206,7 +206,7 @@
 
 	adjust_position()
 
-/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
+obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
 	var/announce = (target_zone != last_hit_zone) //only display messages when switching between different target zones
 	last_hit_zone = target_zone
 
@@ -222,13 +222,13 @@
 			if(affecting.eye_blind < 3)
 				affecting.Blind(3)
 
-/obj/item/grab/attack_self(mob/user)
+obj/item/grab/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	return s_click(hud)
 
-/obj/item/grab/throw_resolve_actual(mob/user)
+obj/item/grab/throw_resolve_actual(mob/user)
 	if(affecting.buckled)
 		return
 	if(state < GRAB_AGGRESSIVE)
@@ -236,15 +236,15 @@
 	animate(affecting, pixel_x = initial(affecting.pixel_x), pixel_y = initial(affecting.pixel_y), 4, 1)
 	return affecting
 
-/obj/item/grab/throw_resolve_finalize(atom/movable/resolver, mob/user)
+obj/item/grab/throw_resolve_finalize(atom/movable/resolver, mob/user)
 	qdel(src)
 
-/obj/item/grab/throw_resolve_override(atom/movable/resolved, mob/user)
+obj/item/grab/throw_resolve_override(atom/movable/resolved, mob/user)
 	return TRUE
 
 //Updating pixelshift, position and direction
 //Gets called on process, when the grab gets upgraded or the assailant moves
-/obj/item/grab/proc/adjust_position()
+obj/item/grab/proc/adjust_position()
 	if(QDELETED(src))
 		return
 	if(!affecting)
@@ -291,7 +291,7 @@
 		if(EAST)
 			animate(affecting, pixel_x =-shift, pixel_y = initial(affecting.pixel_y), 5, 1, LINEAR_EASING)
 
-/obj/item/grab/proc/s_click(atom/movable/screen/S)
+obj/item/grab/proc/s_click(atom/movable/screen/S)
 	if(QDELETED(src))
 		return
 	if(!affecting)
@@ -346,7 +346,7 @@
 	adjust_position()
 
 //This is used to make sure the victim hasn't managed to yackety sax away before using the grab.
-/obj/item/grab/proc/confirm()
+obj/item/grab/proc/confirm()
 	if(!assailant || !affecting)
 		qdel(src)
 		return 0
@@ -358,7 +358,7 @@
 
 	return 1
 
-/obj/item/grab/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/grab/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(QDELETED(src))
 		return
 	if(!affecting)
@@ -404,14 +404,14 @@
 	if(target == assailant && state >= GRAB_AGGRESSIVE)
 		devour(affecting, assailant)
 
-/obj/item/grab/proc/reset_kill_state()
+obj/item/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)
 		var/datum/gender/T = GLOB.gender_datums[assailant.get_visible_gender()]
 		assailant.visible_message("<span class='warning'>[assailant] lost [T.his] tight grip on [affecting]'s neck!</span>")
 		hud.icon_state = "kill"
 		state = GRAB_NECK
 
-/obj/item/grab/proc/handle_resist()
+obj/item/grab/proc/handle_resist()
 	var/grab_name
 	var/break_strength = 1
 	var/list/break_chance_table = list(100)
@@ -450,10 +450,10 @@
 		qdel(src)
 
 //returns the number of size categories between affecting and assailant, rounded. Positive means A is larger than B
-/obj/item/grab/proc/size_difference(mob/A, mob/B)
+obj/item/grab/proc/size_difference(mob/A, mob/B)
 	return mob_size_difference(A.mob_size, B.mob_size)
 
-/obj/item/grab/Destroy()
+obj/item/grab/Destroy()
 	if(affecting)
 		animate(affecting, pixel_x = initial(affecting.pixel_x), pixel_y = initial(affecting.pixel_y), 4, 1, LINEAR_EASING)
 		affecting.reset_plane_and_layer()
@@ -468,7 +468,7 @@
 	return ..()
 
 
-/obj/item/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, var/target_zone)
+obj/item/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, var/target_zone)
 
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
@@ -510,7 +510,7 @@
 		if(!bad)
 			to_chat(user, "<span class='notice'>[H]'s skin is normal.</span>")
 
-/obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
+obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
 		to_chat(attacker, "<span class='warning'>You require a better grab to do this.</span>")
 		return
@@ -532,7 +532,7 @@
 		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
 		affecting.adjustHalLoss(clamp(0, max_halloss - affecting.halloss, 30))
 
-/obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return
 
@@ -555,7 +555,7 @@
 
 	attack.handle_eye_attack(attacker, target)
 
-/obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return
 	if(target.lying)
@@ -582,7 +582,7 @@
 
 	qdel(src)
 
-/obj/item/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
+obj/item/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
 	if(state < GRAB_NECK)
 		to_chat(attacker, "<span class='warning'>You require a better grab to do this.</span>")
 		return
@@ -590,7 +590,7 @@
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		return
 
-/obj/item/grab/proc/pin_down(mob/target, mob/attacker)
+obj/item/grab/proc/pin_down(mob/target, mob/attacker)
 	if(state < GRAB_AGGRESSIVE)
 		to_chat(attacker, "<span class='warning'>You require a better grab to do this.</span>")
 		return
@@ -607,14 +607,14 @@
 		attacker.visible_message("<span class='danger'>[attacker] forces [target] to the ground!</span>")
 		apply_pinning(target, attacker)
 
-/obj/item/grab/proc/apply_pinning(mob/target, mob/attacker)
+obj/item/grab/proc/apply_pinning(mob/target, mob/attacker)
 	force_down = 1
 	target.afflict_paralyze(20 * 3)
 	step_to(attacker, target)
 	attacker.setDir(EAST) //face the victim
 	target.setDir(SOUTH) //face up
 
-/obj/item/grab/proc/devour(mob/target, mob/user)
+obj/item/grab/proc/devour(mob/target, mob/user)
 	var/can_eat
 	if((MUTATION_FAT in user.mutations) && ismini(target))
 		can_eat = 1

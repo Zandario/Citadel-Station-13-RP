@@ -1,7 +1,7 @@
 
 #define GEOTHERMAL_TEMP 2473.15
 
-/datum/atmosphere/geothermal_vent
+datum/atmosphere/geothermal_vent
 	base_gases = list(
 	/datum/gas/carbon_dioxide = 0.5,
 	/datum/gas/sulfur_dioxide = 0.34,
@@ -24,7 +24,7 @@ GEOTHERMAL_TURF_CREATE_UN(/turf/simulated/floor/outdoors/rocks/caves)
 GEOTHERMAL_TURF_CREATE_UN(/turf/unsimulated/floor/lava)
 GEOTHERMAL_TURF_CREATE_UN(/turf/simulated/mineral/ignore_cavegen)
 
-/turf/unsimulated/floor/lava
+turf/unsimulated/floor/lava
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "lava"
 	var/special_temperature

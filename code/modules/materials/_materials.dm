@@ -39,23 +39,23 @@
 
 //Returns the material the object is made of, if applicable.
 //Will we ever need to return more than one value here? Or should we just return the "dominant" material.
-/obj/proc/get_material()
+obj/proc/get_material()
 	return null
 
 //mostly for convenience
-/obj/proc/get_material_name()
+obj/proc/get_material_name()
 	var/datum/material/material = get_material()
 	if(material)
 		return material.name
 
-/proc/material_display_name(name)
+proc/material_display_name(name)
 	var/datum/material/material = get_material_by_name(name)
 	if(material)
 		return material.display_name
 	return null
 
 // Material definition and procs follow.
-/datum/material
+datum/material
 	abstract_type = /datum/material
 
 	/**
@@ -169,7 +169,7 @@
 	var/economic_category_material = ECONOMIC_CATEGORY_MATERIAL_DEFAULT
 
 /// Placeholders for light tiles and rglass.
-/datum/material/proc/build_rod_product(mob/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
+datum/material/proc/build_rod_product(mob/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
 	if(!rod_product)
 		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]."))
 		return
@@ -183,7 +183,7 @@
 	S.add_to_stacks(user)
 
 
-/datum/material/proc/build_wired_product(mob/living/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
+datum/material/proc/build_wired_product(mob/living/user, obj/item/stack/used_stack, obj/item/stack/target_stack)
 	if(!wire_product)
 		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]."))
 		return
@@ -204,7 +204,7 @@
  * Arugments:
  * - _id: The ID the material should use. Overrides the existing ID.
  */
-/datum/material/proc/Initialize(_id, ...)
+datum/material/proc/Initialize(_id, ...)
 	if(_id)
 		id = _id
 	else if(isnull(id))
@@ -221,17 +221,17 @@
 
 
 /// This is a placeholder for proper integration of windows/windoors into the system.
-/datum/material/proc/build_windows(mob/living/user, obj/item/stack/used_stack)
+datum/material/proc/build_windows(mob/living/user, obj/item/stack/used_stack)
 	return FALSE
 
 
 /// Weapons handle applying a divisor for this value locally.
-/datum/material/proc/get_blunt_damage()
+datum/material/proc/get_blunt_damage()
 	return weight //todo
 
 
 /// Return the matter comprising this material.
-/datum/material/proc/get_matter()
+datum/material/proc/get_matter()
 	var/list/temp_matter = list()
 	if(islist(composite_material))
 		for(var/material_string in composite_material)
@@ -242,23 +242,23 @@
 
 
 // As above.
-/datum/material/proc/get_edge_damage()
+datum/material/proc/get_edge_damage()
 	return hardness //todo
 
 
 /// Snowflakey, only checked for alien doors at the moment.
-/datum/material/proc/can_open_material_door(mob/living/user)
+datum/material/proc/can_open_material_door(mob/living/user)
 	return 1
 
 
 /// Currently used for weapons and objects made of uranium to irradiate things.
-/datum/material/proc/products_need_process()
+datum/material/proc/products_need_process()
 	return (radioactivity>0) //todo
 
 
 
 /// Places a girder object when a wall is dismantled, also applies reinforced material.
-/datum/material/proc/place_dismantled_girder(turf/target, datum/material/reinf_material, datum/material/girder_material)
+datum/material/proc/place_dismantled_girder(turf/target, datum/material/reinf_material, datum/material/girder_material)
 	var/obj/structure/girder/G = new(target)
 	if(reinf_material)
 		G.reinf_material = reinf_material
@@ -271,30 +271,30 @@
 
 /// General wall debris product placement.
 /// Not particularly necessary aside from snowflakey cult girders.
-/datum/material/proc/place_dismantled_product(turf/target, amount)
+datum/material/proc/place_dismantled_product(turf/target, amount)
 	place_sheet(target, amount)
 
 
 /// Debris product. Used ALL THE TIME.
-/datum/material/proc/place_sheet(turf/target, amount)
+datum/material/proc/place_sheet(turf/target, amount)
 	if(stack_type)
 		return new stack_type(target, ispath(stack_type, /obj/item/stack)? amount : null)
 
 
 // As above.
-/datum/material/proc/place_shard(turf/target)
+datum/material/proc/place_shard(turf/target)
 	if(shard_type)
 		return new /obj/item/material/shard(target, src.name)
 
 
 /// Used by walls and weapons to determine if they break or not.
-/datum/material/proc/is_brittle()
+datum/material/proc/is_brittle()
 	return !!(flags & MATERIAL_BRITTLE)
 
 
-/datum/material/proc/combustion_effect(turf/T, temperature)
+datum/material/proc/combustion_effect(turf/T, temperature)
 	return
 
 
-/datum/material/proc/wall_touch_special(turf/simulated/wall/W, mob/living/L)
+datum/material/proc/wall_touch_special(turf/simulated/wall/W, mob/living/L)
 	return

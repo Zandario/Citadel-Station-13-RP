@@ -10,7 +10,7 @@
 	Biological genetic bombarder:
 	Takes traits from a disk and replaces/adds to the genes in a xenobiological creature.
 */
-/obj/item/disk/xenobio
+obj/item/disk/xenobio
 	name = "biological data disk"
 	desc = "A small disk used for carrying data on genetics."
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -20,7 +20,7 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-/obj/item/disk/xenobio/attack_self(mob/user)
+obj/item/disk/xenobio/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -33,15 +33,15 @@
 			genes = list()
 			genesource = "unknown"
 
-/obj/item/storage/box/xenobiodisk
+obj/item/storage/box/xenobiodisk
 	name = "biological disk box"
 	desc = "A box of biological data disks, apparently."
 
-/obj/item/storage/box/xenobiodisk/PopulateContents()
+obj/item/storage/box/xenobiodisk/PopulateContents()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/xenobio(src)
 
-/obj/machinery/xenobio
+obj/machinery/xenobio
 	density = 1
 	anchored = 1
 	use_power = USE_POWER_IDLE
@@ -56,13 +56,13 @@
 	var/failed_task = 0
 	var/disk_needs_genes = 0
 
-/obj/machinery/xenobio/attack_ai(mob/user as mob)
+obj/machinery/xenobio/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/xenobio/attack_hand(mob/user, list/params)
+obj/machinery/xenobio/attack_hand(mob/user, list/params)
 	nano_ui_interact(user)
 
-/obj/machinery/xenobio/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/xenobio/attackby(obj/item/W as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
@@ -91,7 +91,7 @@
 		return
 	..()
 
-/obj/machinery/xenobio/process(delta_time)
+obj/machinery/xenobio/process(delta_time)
 
 	..()
 	if(!active) return
@@ -99,7 +99,7 @@
 	if(world.time > last_action + action_time)
 		finished_task()
 
-/obj/machinery/xenobio/proc/finished_task()
+obj/machinery/xenobio/proc/finished_task()
 	active = 0
 	in_use = 0
 	if(failed_task)
@@ -115,7 +115,7 @@
 			visible_message("[icon2html(thing = src, target = world)] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
 
-/obj/machinery/xenobio/extractor
+obj/machinery/xenobio/extractor
 	name = "biological product destructive analyzer"
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "traitcopier"
@@ -125,7 +125,7 @@
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 
-/obj/machinery/xenobio/extractor/Initialize(mapload)
+obj/machinery/xenobio/extractor/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/manipulator(src)
@@ -136,7 +136,7 @@
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	RefreshParts()
 
-/obj/machinery/xenobio/extractor/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/xenobio/extractor/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/xenoproduct))
 		if(product)
 			to_chat(user, "There is already a xenobiological product loaded.")
@@ -151,7 +151,7 @@
 		return
 	..()
 
-/obj/machinery/xenobio/extractor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/xenobio/extractor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(!user)
 		return
 
@@ -189,13 +189,13 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/xenobio/proc/eject_disk()
+obj/machinery/xenobio/proc/eject_disk()
 	if(!loaded_disk) return
 	loaded_disk.forceMove(loc)
 	visible_message("[icon2html(thing = src, target = world)] [src] beeps and spits out [loaded_disk].")
 	loaded_disk = null
 
-/obj/machinery/xenobio/extractor/Topic(href, href_list)
+obj/machinery/xenobio/extractor/Topic(href, href_list)
 
 	if(..())
 		return 1
@@ -258,7 +258,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/xenobio/editor
+obj/machinery/xenobio/editor
 	name = "biological genetic bombarder"
 	icon = 'icons/obj/medical/cryogenics.dmi'
 	icon_state = "cellold0"
@@ -267,7 +267,7 @@
 
 	var/mob/living/simple_mob/xeno/slime/occupant
 
-/obj/machinery/xenobio/editor/Initialize(mapload, newdir)
+obj/machinery/xenobio/editor/Initialize(mapload, newdir)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/manipulator(src)
@@ -278,7 +278,7 @@
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	RefreshParts()
 
-/obj/machinery/xenobio/editor/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/xenobio/editor/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/grab))
 		var/obj/item/grab/G = W
 		if(occupant)
@@ -298,7 +298,7 @@
 	..()
 
 
-/obj/machinery/xenobio/editor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/xenobio/editor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
 	if(!user)
 		return
@@ -338,7 +338,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/xenobio/editor/Topic(href, href_list)
+obj/machinery/xenobio/editor/Topic(href, href_list)
 
 	if(..())
 		return 1
@@ -368,12 +368,12 @@
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 
-/obj/machinery/xenobio/editor/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/machinery/xenobio/editor/MouseDroppedOnLegacy(mob/target, mob/user)
 	if(user.stat || user.restrained())
 		return
 	move_into_editor(user,target)
 
-/obj/machinery/xenobio/editor/proc/move_into_editor(var/mob/user,var/mob/living/victim)
+obj/machinery/xenobio/editor/proc/move_into_editor(var/mob/user,var/mob/living/victim)
 
 	if(src.occupant)
 		to_chat(user, "<span class='danger'>The [src] is full, empty it first!</span>")
@@ -397,16 +397,16 @@
 		victim.forceMove(src)
 		occupant = victim
 
-/obj/machinery/xenobio/editor/proc/eject_contents()
+obj/machinery/xenobio/editor/proc/eject_contents()
 	eject_disk()
 	eject_xeno()
 
-/obj/machinery/xenobio/editor/proc/eject_xeno()
+obj/machinery/xenobio/editor/proc/eject_xeno()
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
 
-/obj/item/circuitboard/bioproddestanalyzer
+obj/item/circuitboard/bioproddestanalyzer
 	name = T_BOARD("biological product destructive analyzer")
 	build_path = "/obj/machinery/xenobio/extractor"
 	board_type = "machine"
@@ -417,7 +417,7 @@
 							/obj/item/stock_parts/scanning_module = 3
 							)
 
-/obj/item/circuitboard/biobombarder
+obj/item/circuitboard/biobombarder
 	name = T_BOARD("biological genetic bombarder")
 	build_path = "/obj/machinery/xenobio/editor"
 	board_type = "machine"

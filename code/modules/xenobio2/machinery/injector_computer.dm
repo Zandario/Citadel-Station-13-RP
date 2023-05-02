@@ -5,7 +5,7 @@
 	Manually injects chemicals into a xenobiological creature from a linked machine.
 
 */
-/obj/machinery/computer/xenobio2
+obj/machinery/computer/xenobio2
 	name = "injector control console"
 	desc = "Used to control mechanized biological injectors."
 	icon_keyboard = "med_key"
@@ -19,16 +19,16 @@
 	var/transfer_amount = 5
 	var/active
 
-/obj/machinery/computer/xenobio2/Destroy()
+obj/machinery/computer/xenobio2/Destroy()
 	injector.computer = null
 	..()
 
-/obj/machinery/computer/xenobio2/attack_hand(mob/user, list/params)
+obj/machinery/computer/xenobio2/attack_hand(mob/user, list/params)
 	if(..())
 		return 1
 	nano_ui_interact(user)
 
-/obj/machinery/computer/xenobio2/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/computer/xenobio2/attackby(var/obj/item/W, var/mob/user)
 
 	//Did you want to link it?
 	if(istype(W, /obj/item/multitool))
@@ -46,7 +46,7 @@
 
 	..()
 
-/obj/machinery/computer/xenobio2/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/computer/xenobio2/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(!user)
 		return
 	if(!injector)
@@ -88,7 +88,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/xenobio2/Topic(href, href_list)
+obj/machinery/computer/xenobio2/Topic(href, href_list)
 
 	if(..())
 		return 1
@@ -107,7 +107,7 @@
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 
-/obj/item/circuitboard/xenobio2computer
+obj/item/circuitboard/xenobio2computer
 	name = T_BOARD("injector control console")
 	build_path = /obj/machinery/computer/xenobio2
 	origin_tech = list()	//To be filled

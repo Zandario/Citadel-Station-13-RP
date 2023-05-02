@@ -1,4 +1,4 @@
-/datum/component/beetlejuice
+datum/component/beetlejuice
 	var/keyword
 	var/list/first_heard
 	var/list/count
@@ -9,7 +9,7 @@
 	var/case_sensitive = FALSE
 	var/regex/R
 
-/datum/component/beetlejuice/Initialize()
+datum/component/beetlejuice/Initialize()
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -25,15 +25,15 @@
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_LIVING_SAY_SPECIAL, .proc/say_react)
 
-/datum/component/beetlejuice/proc/update_regex()
+datum/component/beetlejuice/proc/update_regex()
 	R = regex("[REGEX_QUOTE(keyword)]","g[case_sensitive ? "" : "i"]")
 
-/datum/component/beetlejuice/vv_edit_var(var_name, var_value)
+datum/component/beetlejuice/vv_edit_var(var_name, var_value)
 	. = ..()
 	if (var_name == NAMEOF(src, keyword) || var_name == NAMEOF(src, case_sensitive))
 		update_regex()
 
-/datum/component/beetlejuice/proc/say_react(datum/source, mob/speaker,message)
+datum/component/beetlejuice/proc/say_react(datum/source, mob/speaker,message)
 	if(!speaker || !message || !active)
 		return
 	var/found = R.Find(message)
@@ -53,7 +53,7 @@
 			apport(speaker)
 
 
-/datum/component/beetlejuice/proc/apport(atom/target)
+datum/component/beetlejuice/proc/apport(atom/target)
 	var/atom/movable/AM = parent
 	do_teleport(AM,get_turf(target))
 	active = FALSE

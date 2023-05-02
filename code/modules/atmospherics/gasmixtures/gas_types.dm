@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 /**
   * Converts a gas ID to typepath
   */
-/proc/gas_id2path(id)
+proc/gas_id2path(id)
 	return GLOB.meta_gas_id_lookup[id]
 
 //Unomos - global list inits for all of the meta gas lists.
@@ -32,25 +32,25 @@ GLOBAL_LIST_INIT(meta_gas_reagent_id, meta_gas_reagent_id_list())
 GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 
 
-/proc/meta_gas_heat_list()
+proc/meta_gas_heat_list()
 	. = subtypesof(/datum/gas)
 	for(var/gas_path in .)
 		var/datum/gas/gas = gas_path
 		.[gas_path] = initial(gas.specific_heat)
 
-/proc/meta_gas_name_list()
+proc/meta_gas_name_list()
 	. = subtypesof(/datum/gas)
 	for(var/gas_path in .)
 		var/datum/gas/gas = gas_path
 		.[gas_path] = initial(gas.name)
 
-/proc/meta_gas_visibility_list()
+proc/meta_gas_visibility_list()
 	. = subtypesof(/datum/gas)
 	for(var/gas_path in .)
 		var/datum/gas/gas = gas_path
 		.[gas_path] = initial(gas.moles_visible)
 
-/proc/meta_gas_overlay_list()
+proc/meta_gas_overlay_list()
 	. = subtypesof(/datum/gas)
 	for(var/gas_path in .)
 		var/datum/gas/gas = gas_path
@@ -65,38 +65,38 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 				I.appearance_flags = RESET_TRANSFORM | RESET_COLOR | RESET_ALPHA | KEEP_APART
 				.[gas_path][i] = I
 
-/proc/meta_gas_danger_list()
+proc/meta_gas_danger_list()
 	. = subtypesof(/datum/gas)
 	for(var/gas_path in .)
 		var/datum/gas/gas = gas_path
 		.[gas_path] = initial(gas.dangerous)
 
-/proc/meta_gas_id_list()
+proc/meta_gas_id_list()
 	. = subtypesof(/datum/gas)
 	for(var/gas_path in .)
 		var/datum/gas/gas = gas_path
 		.[gas_path] = initial(gas.id)
 
-/proc/meta_gas_fusion_list()
+proc/meta_gas_fusion_list()
 	. = subtypesof(/datum/gas)
 	for(var/gas_path in .)
 		var/datum/gas/gas = gas_path
 		.[gas_path] = initial(gas.fusion_power)
 
-/proc/meta_gas_id_lookup_list()
+proc/meta_gas_id_lookup_list()
 	var/list/gases = subtypesof(/datum/gas)
 	. = list()
 	for(var/gas_path in gases)
 		var/datum/gas/gas = gas_path
 		.[initial(gas.id)] = gas_path
 
-/proc/meta_gas_flag_list()
+proc/meta_gas_flag_list()
 	. = subtypesof(/datum/gas)
 	for(var/gas_path in .)
 		var/datum/gas/gas = gas_path
 		.[gas_path] = initial(gas.gas_flags)
 
-/proc/meta_gas_by_flag_list()
+proc/meta_gas_by_flag_list()
 	. = list()
 	// slightly more tricky
 	var/list/gases = subtypesof(/datum/gas)
@@ -112,28 +112,28 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 				// add to list
 				LAZYADD(.["[i]"], gas_path)
 
-/proc/meta_gas_molar_mass_list()
+proc/meta_gas_molar_mass_list()
 	. = list()
 	var/list/gases = subtypesof(/datum/gas)
 	for(var/gas_path in gases)
 		var/datum/gas/G = gas_path
 		.[gas_path] = initial(G.molar_mass)
 
-/proc/meta_gas_typecache_no_overlays_list()
+proc/meta_gas_typecache_no_overlays_list()
 	. = list()
 	for(var/gastype in subtypesof(/datum/gas))
 		var/datum/gas/gasvar = gastype
 		if (!initial(gasvar.gas_overlay))
 			.[gastype] = TRUE
 
-/proc/meta_gas_reagent_id_list()
+proc/meta_gas_reagent_id_list()
 	. = list()
 	for(var/gastype in subtypesof(/datum/gas))
 		var/datum/gas/gasvar = gastype
 		if(initial(gasvar.gas_reagent_id))
 			.[gastype] = initial(gasvar.gas_reagent_id)
 
-/proc/meta_gas_reagent_amount_list()
+proc/meta_gas_reagent_amount_list()
 	. = list()
 	for(var/gastype in subtypesof(/datum/gas))
 		var/datum/gas/gasvar = gastype
@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 			.[gastype] = initial(gasvar.gas_reagent_amount)
 // Visual overlay
 /*
-/obj/effect/overlay/gas
+obj/effect/overlay/gas
 	icon = 'icons/effects/atmospherics.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE  // should only appear in vis_contents, but to be safe
@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	appearance_flags = TILE_BOUND
 	vis_flags = NONE
 
-/obj/effect/overlay/gas/New(state, alph)
+obj/effect/overlay/gas/New(state, alph)
 	. = ..()
 	icon_state = state
 	alpha = alph
@@ -163,7 +163,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 ||||to add a new gas. They are accessed ||||
 ||||only by meta_gas_list().            ||||
 \*||||||||||||||||||||||||||||||||||||||||*/
-/datum/gas
+datum/gas
 	/// Text ID for things like gas strings. THIS SHOULD NEVER, EVER, BE CHANGED! Pick one and stick with it. Change this and EVERYTHING breaks. The typepath, infact, is more mutable than this!
 	var/id = ""
 	/// Specific heat in J/(mol*K)
@@ -189,26 +189,26 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	var/gas_reagent_amount = 0//How much of the reagent is applied
 	//For a gas that makes up 21% of the atmos you need to be above 1.39, for it to instill any reagents, for lower percentages the number needs to be higher,and viceversa
 
-/datum/gas/oxygen
+datum/gas/oxygen
 	id = "o2"
 	name = "Oxygen"
 	specific_heat = 20
 	molar_mass = 0.032
 	gas_flags = GAS_FLAG_OXIDIZER
 
-/datum/gas/nitrogen
+datum/gas/nitrogen
 	id = "n2"
 	name = "Nitrogen"
 	specific_heat = 20
 	molar_mass = 0.028
 
-/datum/gas/carbon_dioxide
+datum/gas/carbon_dioxide
 	id = "co2"
 	name = "Carbon Dioxide"
 	specific_heat = 30
 	molar_mass = 0.044
 
-/datum/gas/phoron
+datum/gas/phoron
 	id = "phoron"
 	name = "Phoron"
 	//Note that this has a significant impact on TTV yield.
@@ -226,7 +226,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 
 	gas_flags = GAS_FLAG_FUEL | GAS_FLAG_FUSION_FUEL | GAS_FLAG_CONTAMINANT
 
-/datum/gas/volatile_fuel
+datum/gas/volatile_fuel
 	id = "volatile_fuel"
 	name = "Volatile Fuel"
 	specific_heat = 253	// J/(mol*K)	C8H18 gasoline. Isobaric, but good enough.
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 
 	gas_flags = GAS_FLAG_FUEL
 
-/datum/gas/nitrous_oxide
+datum/gas/nitrous_oxide
 	id = "n2o"
 	name = "Nitrous Oxide"
 	specific_heat = 40
@@ -247,7 +247,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 
 //The following is partially stolen from Nebula
 //I am not rewriting our handling of air for this, at least for now.
-/datum/gas/helium
+datum/gas/helium
 	id = "helium"
 	name = "Helium"
 	specific_heat = 80
@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 
 	gas_flags = GAS_FLAG_FUSION_FUEL
 
-/datum/gas/carbon_monoxide
+datum/gas/carbon_monoxide
 	id = "carbon monoxide"
 	name = "Carbon Monoxide"
 	//lore_text = "A highly poisonous gas."
@@ -267,7 +267,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//taste_description = "stale air"
 	//metabolism = 0.05 // As with helium.
 
-/datum/gas/methyl_bromide
+datum/gas/methyl_bromide
 	id = "methyl bromide"
 	name = "Methyl Bromide"
 	//lore_text = "A once-popular fumigant and weedkiller."
@@ -281,7 +281,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	)
 	value = 0.25*/
 
-/datum/gas/nitrodioxide
+datum/gas/nitrodioxide
 	id = "nitrogen dioxide"
 	name = "Nitrogen Dioxide"
 	//color = "#ca6409"
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//gas_symbol_html = "NO<sub>2</sub>"
 	//gas_symbol = "NO2"
 
-/datum/gas/nitricoxide
+datum/gas/nitricoxide
 	id = "nitric oxide"
 	name = "Nitric Oxide"
 	specific_heat = 10
@@ -300,7 +300,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//gas_symbol_html = "NO"
 	//gas_symbol = "NO"
 
-/datum/gas/methane
+datum/gas/methane
 	id = "methane"
 	name = "Methane"
 	specific_heat = 30
@@ -309,7 +309,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//gas_symbol_html = "CH<sub>4</sub>"
 	//gas_symbol = "CH4"
 
-/datum/gas/argon
+datum/gas/argon
 	id = "argon"
 	name = "Argon"
 	//lore_text = "Just when you need it, all of your supplies argon."
@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//value = 0.25
 
 // If narcosis is ever simulated, krypton has a narcotic potency seven times greater than regular airmix.
-/datum/gas/krypton
+datum/gas/krypton
 	id = "krypton"
 	name = "Krypton"
 	specific_heat = 5
@@ -329,7 +329,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//gas_symbol = "Kr"
 	//value = 0.25
 
-/datum/gas/neon
+datum/gas/neon
 	id = "neon"
 	name = "Neon"
 	specific_heat = 20
@@ -338,7 +338,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//gas_symbol = "Ne"
 	//value = 0.25
 
-/datum/gas/ammonia
+datum/gas/ammonia
 	id = "Ammonia"
 	name = "ammonia"
 	specific_heat = 20
@@ -353,7 +353,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//metabolism = REM * 0.5
 	//overdose = 5
 
-/datum/gas/xenon
+datum/gas/xenon
 	id = "Xenon"
 	name = "xenon"
 	specific_heat = 3
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	//gas_symbol = "Xe"
 	//value = 0.25
 
-/datum/gas/chlorine
+datum/gas/chlorine
 	id = "chlorine"
 	name = "Chlorine"
 	//color = "#c5f72d"
@@ -384,7 +384,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	gas_reagent_amount = 10
 
 
-/datum/gas/sulfur_dioxide
+datum/gas/sulfur_dioxide
 	id = "sulfur dioxide"
 	name = "Sulfur Dioxide"
 	specific_heat = 30
@@ -396,7 +396,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 		/singleton/material/gas/oxygen = 0.5
 	)*/
 
-/datum/gas/hydrogen
+datum/gas/hydrogen
 	id = "hydrogen"
 	name = "Hydrogen"
 	//lore_text = "A colorless, flammable gas."
@@ -414,7 +414,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	)
 	value = 0.4*/
 
-/datum/gas/hydrogen/tritium
+datum/gas/hydrogen/tritium
 	id = "tritium"
 	name = "Tritium"
 	/*lore_text = "A radioactive isotope of hydrogen. Useful as a fusion reactor fuel material."
@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	gas_symbol_html = "T"
 	gas_symbol = "T"*/
 
-/datum/gas/hydrogen/deuterium
+datum/gas/hydrogen/deuterium
 	id = "Deuterium"
 	name = "Deuterium"
 	/*lore_text = "One of the two stable isotopes of hydrogen; also known as heavy hydrogen. Useful as a chemically synthesised fusion reactor fuel material."
@@ -447,7 +447,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	neutron_cross_section = 3*/
 
 //Special gas type that are very powerful and shouldnt be avaiable in large portions
-/datum/gas/vimur
+datum/gas/vimur
 	id = "vimur"
 	name = "Vimur"
 	specific_heat = 500	// J/(mol*K) //250% the heat capacity of phoron

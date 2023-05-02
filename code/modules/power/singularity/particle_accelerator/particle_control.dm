@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
-/obj/machinery/particle_accelerator/control_box
+obj/machinery/particle_accelerator/control_box
 	name = "Particle Accelerator Control Computer"
 	desc = "This controls the density of the particles."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
@@ -21,26 +21,26 @@
 	var/parts = null
 	var/datum/wires/particle_acc/control_box/wires = null
 
-/obj/machinery/particle_accelerator/control_box/Initialize(mapload, newdir)
+obj/machinery/particle_accelerator/control_box/Initialize(mapload, newdir)
 	. = ..()
 	wires = new(src)
 	connected_parts = list()
 	active_power_usage = initial(active_power_usage) * (strength + 1)
 
-/obj/machinery/particle_accelerator/control_box/Destroy()
+obj/machinery/particle_accelerator/control_box/Destroy()
 	if(active)
 		toggle_power()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/machinery/particle_accelerator/control_box/attack_hand(mob/user, list/params)
+obj/machinery/particle_accelerator/control_box/attack_hand(mob/user, list/params)
 	if(construction_state >= 3)
 		interact(user)
 	else if(construction_state == 2) // Wires exposed
 		wires.Interact(user)
 
-/obj/machinery/particle_accelerator/control_box/update_state()
+obj/machinery/particle_accelerator/control_box/update_state()
 	if(construction_state < 3)
 		update_use_power(USE_POWER_OFF)
 		assembled = 0
@@ -57,7 +57,7 @@
 		connected_parts = list()
 
 
-/obj/machinery/particle_accelerator/control_box/update_icon()
+obj/machinery/particle_accelerator/control_box/update_icon()
 	if(active)
 		icon_state = "[reference]p[strength]"
 	else
@@ -77,7 +77,7 @@
 				else
 					icon_state = "[reference]c"
 
-/obj/machinery/particle_accelerator/control_box/Topic(href, href_list)
+obj/machinery/particle_accelerator/control_box/Topic(href, href_list)
 	..()
 	//Ignore input if we are broken, !silicon guy cant touch us, or nonai controlling from super far away
 	if(machine_stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !istype(usr, /mob/living/silicon)) || (get_dist(src, usr) > 8 && !istype(usr, /mob/living/silicon/ai)))
@@ -107,12 +107,12 @@
 	updateDialog()
 	update_icon()
 
-/obj/machinery/particle_accelerator/control_box/proc/strength_change()
+obj/machinery/particle_accelerator/control_box/proc/strength_change()
 	for(var/obj/structure/particle_accelerator/part in connected_parts)
 		part.strength = strength
 		part.update_icon()
 
-/obj/machinery/particle_accelerator/control_box/proc/add_strength(var/s)
+obj/machinery/particle_accelerator/control_box/proc/add_strength(var/s)
 	if(assembled)
 		strength++
 		if(strength > strength_upper_limit)
@@ -123,7 +123,7 @@
 			investigate_log("increased to <font color='red'>[strength]</font> by [usr.key]","singulo")
 		strength_change()
 
-/obj/machinery/particle_accelerator/control_box/proc/remove_strength(var/s)
+obj/machinery/particle_accelerator/control_box/proc/remove_strength(var/s)
 	if(assembled)
 		strength--
 		if(strength < 0)
@@ -134,7 +134,7 @@
 			investigate_log("decreased to <font color='green'>[strength]</font> by [usr.key]","singulo")
 		strength_change()
 
-/obj/machinery/particle_accelerator/control_box/power_change()
+obj/machinery/particle_accelerator/control_box/power_change()
 	..()
 	if(machine_stat & NOPOWER)
 		active = 0
@@ -143,7 +143,7 @@
 		update_use_power(USE_POWER_IDLE)
 
 
-/obj/machinery/particle_accelerator/control_box/process(delta_time)
+obj/machinery/particle_accelerator/control_box/process(delta_time)
 	if(src.active)
 		//a part is missing!
 		if( length(connected_parts) < 6 )
@@ -157,7 +157,7 @@
 				PE.emit_particle(src.strength)
 
 
-/obj/machinery/particle_accelerator/control_box/proc/part_scan()
+obj/machinery/particle_accelerator/control_box/proc/part_scan()
 	for(var/obj/structure/particle_accelerator/fuel_chamber/F in orange(1,src))
 		src.setDir(F.dir)
 	connected_parts = list()
@@ -194,7 +194,7 @@
 		return 0
 
 
-/obj/machinery/particle_accelerator/control_box/proc/check_part(var/turf/T, var/type)
+obj/machinery/particle_accelerator/control_box/proc/check_part(var/turf/T, var/type)
 	if(!(T)||!(type))
 		return 0
 	var/obj/structure/particle_accelerator/PA = locate(/obj/structure/particle_accelerator) in T
@@ -206,7 +206,7 @@
 	return 0
 
 
-/obj/machinery/particle_accelerator/control_box/proc/toggle_power()
+obj/machinery/particle_accelerator/control_box/proc/toggle_power()
 	active = !active
 	investigate_log("turned [active?"<font color='red'>ON</font>":"<font color='green'>OFF</font>"] by [usr ? usr.key : "outside forces"]","singulo")
 	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [key_name(usr, usr.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
@@ -226,7 +226,7 @@
 	return 1
 
 
-/obj/machinery/particle_accelerator/control_box/interact(mob/user)
+obj/machinery/particle_accelerator/control_box/interact(mob/user)
 	if((get_dist(src, user) > 1) || (machine_stat & (BROKEN|NOPOWER)))
 		if(!istype(user, /mob/living/silicon))
 			user.unset_machine()

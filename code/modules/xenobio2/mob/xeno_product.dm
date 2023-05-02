@@ -1,7 +1,7 @@
 /*
 Xenobiological product lives here as a basic type.
 */
-/obj/item/xenoproduct
+obj/item/xenoproduct
 	name = "Xenobiological product"
 	desc = "How did this get here?."
 	icon = 'icons/mob/slime2.dmi'
@@ -11,8 +11,7 @@ Xenobiological product lives here as a basic type.
 	var/product = "mess"
 	var/nameVar = "blah"
 
-/obj/item/xenoproduct/Destroy()
+obj/item/xenoproduct/Destroy()
 	traits.Destroy()	//Let's not leave any traits hanging around.
 	traits = null
 	..()
-

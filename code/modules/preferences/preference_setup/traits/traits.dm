@@ -2,7 +2,7 @@ var/list/trait_datums = list() // Assoc list using name = instance.  Traits are 
 var/list/trait_type_to_ref = list() // Similar to above but uses paths, which is more reliable but more risky to save.
 var/list/trait_categories = list() // The categories available for the trait menu.
 
-/hook/startup/proc/populate_trait_list()
+hook/startup/proc/populate_trait_list()
 
 	//create a list of trait datums
 	for(var/trait_type in typesof(/datum/trait) - list(/datum/trait, /datum/trait/modifier))
@@ -25,18 +25,18 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 	return 1
 
-/datum/category_item/player_setup_item/traits
+datum/category_item/player_setup_item/traits
 	name = "Quirks"	sort_order = 1
 	var/current_tab = "Physical"
 
-/datum/category_item/player_setup_item/traits/load_character(var/savefile/S)
+datum/category_item/player_setup_item/traits/load_character(var/savefile/S)
 	S["traits"] >> pref.traits
 
-/datum/category_item/player_setup_item/traits/save_character(var/savefile/S)
+datum/category_item/player_setup_item/traits/save_character(var/savefile/S)
 	S["traits"] << pref.traits
 
 
-/datum/category_item/player_setup_item/traits/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/traits/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	. += "<table align = 'center' width = 100%>"
 	. += "<tr><td colspan=3><hr></td></tr>"
@@ -90,7 +90,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 	. += "</table>"
 	. = jointext(., null)
 
-/datum/category_item/player_setup_item/traits/sanitize_character()
+datum/category_item/player_setup_item/traits/sanitize_character()
 	var/mob/preference_mob = preference_mob()
 	if(!islist(pref.traits))
 		pref.traits = list()
@@ -115,7 +115,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 				pref.traits -= trait_name
 				to_chat(preference_mob, "<span class='warning'>The [trait_name] trait is mutually exclusive with [conflicts].</span>")
 
-/datum/category_item/player_setup_item/traits/OnTopic(href, href_list, user)
+datum/category_item/player_setup_item/traits/OnTopic(href, href_list, user)
 	if(href_list["toggle_trait"])
 		var/datum/trait/T = trait_datums[href_list["toggle_trait"]]
 		if(T.name in pref.traits)
@@ -139,25 +139,25 @@ var/list/trait_categories = list() // The categories available for the trait men
 	return ..()
 
 
-/datum/trait
+datum/trait
 	var/name = null							// Name to show on UI
 	var/desc = null							// Description of what it does, also shown on UI.
 	var/list/mutually_exclusive = list()	// List of trait types which cannot be taken alongside this trait.
 	var/category = null						// What section to place this trait inside.
 
 // Applies effects to the newly spawned mob.
-/datum/trait/proc/apply_trait_post_spawn(var/mob/living/L)
+datum/trait/proc/apply_trait_post_spawn(var/mob/living/L)
 	return
 
 // Used to forbid a trait based on certain criteria (e.g. if they are an FBP).
 // It receives the player_setup_item datum since some reasons for being invalid depend on the currently loaded preferences.
 // Returns a string explaining why the trait is invalid.  Returns null if valid.
-/datum/trait/proc/test_for_invalidity(var/datum/category_item/player_setup_item/traits/setup)
+datum/trait/proc/test_for_invalidity(var/datum/category_item/player_setup_item/traits/setup)
 	return null
 
 // Checks mutually_exclusive.  current_traits needs to be a list of strings.
 // Returns null if everything is well, similar to the above proc.  Otherwise returns an english_list() of conflicting traits.
-/datum/trait/proc/test_for_trait_conflict(var/list/current_traits)
+datum/trait/proc/test_for_trait_conflict(var/list/current_traits)
 	var/list/conflicts = list()
 	var/result
 
@@ -174,7 +174,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 // Similar to above, but uses the above two procs, in one place.
 // Returns TRUE is everything is well.
-/datum/trait/proc/validate(var/list/current_traits, var/datum/category_item/player_setup_item/traits/setup)
+datum/trait/proc/validate(var/list/current_traits, var/datum/category_item/player_setup_item/traits/setup)
 	if(test_for_invalidity(setup))
 		return FALSE
 	if(test_for_trait_conflict(current_traits))
@@ -183,10 +183,10 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 // Creates a description, if one doesn't exist.
 // This one is for inheritence, and so doesn't do anything.
-/datum/trait/proc/generate_desc()
+datum/trait/proc/generate_desc()
 	return desc
 
-/mob/living/proc/apply_traits()
+mob/living/proc/apply_traits()
 	if(!mind || !mind.traits || !mind.traits.len)
 		return
 	for(var/trait in mind.traits)

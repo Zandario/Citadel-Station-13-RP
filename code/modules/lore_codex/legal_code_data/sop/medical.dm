@@ -1,4 +1,4 @@
-/datum/lore/codex/category/medical_sop
+datum/lore/codex/category/medical_sop
 	name = "Medical SOP"
 	data = "This SOP is specific to those in the Medical department, and focuses on Triage/First Aid priority, Proper Cloning procedure and CMD, how to store a body, and DNC orders."
 	children = list(
@@ -9,7 +9,7 @@
 		/datum/lore/codex/page/sop_medical_breach
 		)
 
-/datum/lore/codex/page/sop_triage
+datum/lore/codex/page/sop_triage
 	name = "Triage / First Aid Priority"
 	data = "The priority for Triage, is generally;\
 	<br><br>\
@@ -26,7 +26,7 @@
 	<li>\[4\] <b>Dead</b>: The dead are to be gathered in body bags, and returned to the medical bay in preparation for postmortem instructions.</li>\
 	</ul>"
 
-/datum/lore/codex/page/sop_cloning
+datum/lore/codex/page/sop_cloning
 	name = "Cloning Procedures"
 	data = "Persons whom have committed suicide are not to be cloned, without authorization from the Chief Medical Officer.  \
 	The Chief Medical Officer is fully responsible if they choose to clone a person whom has committed suicide.  \
@@ -52,20 +52,20 @@
 	the patient reawakens inside a functional body.  Once their body is fully functional, dress and process the newly cloned patient, \
 	informing them of any procedures performed on them, including the cloning itself."
 
-/datum/lore/codex/page/sop_cmd
+datum/lore/codex/page/sop_cmd
 	name = "Clone Memory Disorder"
 	data = "Clones, persons transferred to MMIs, and recently restarted synthetics will not remember the events which lead to their demise.  \
 	They are to be told that they have been resurrected, and any further questions they have should be answered, if possible.  Organic \
 	individuals revived by a defibrillator do not experience this phenomenon."
 
-/datum/lore/codex/page/sop_postmortem
+datum/lore/codex/page/sop_postmortem
 	name = "Postmortem Storage"
 	data = "Deceased persons should be kept in the morgue, and should be contained inside black body bags.  The body bag is to be labelled with the deceased's name, along \
 	with 'DNC', 'MIF', or 'Cloned' where applicable.  Bodies in the morgue are to be transferred to Central Command whenever possible.  Funerary \
 	services are to be handled off site.  A service may be held within the Chapel if it is desired, however the body must still be brought to \
 	Central."
 
-/datum/lore/codex/page/sop_medical_breach
+datum/lore/codex/page/sop_medical_breach
 	name = "Breach Response (Medical)"
 	data = "If a room becomes breached, the first priority is to evacuate any crewmembers and guests endangered by the breach, especially if they lack an EVA \
 	suit.  Emergency softsuits are available in cyan colored lockers at key locations on your facility, if an untrained person requires short term EVA \

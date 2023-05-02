@@ -1,4 +1,4 @@
-/datum/lore/codex/category/main_news // The top-level categories for the news thing
+datum/lore/codex/category/main_news // The top-level categories for the news thing
 	name = "Index"
 	data = "Below you'll find a list of articles relevant to the current political climate, especially concerning the Sigmar Concord \
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
@@ -32,14 +32,14 @@
 		/datum/lore/codex/page/volink
 		)
 
-/datum/lore/codex/page/about_news
+datum/lore/codex/page/about_news
 	name = "About the Publisher"
 	data = "The <i>Daedalus Pocket Newscaster</i> is produced and maintained by Occulum Broadcast, the foremost authority on media distribution \
 	and owner-operator of the award-winning Daedalus Dispatch newsletter. We use our unparalleled network of freelance reporters, political scientists, \
 	and other experts to deliver hour-by-hour analysis of a complex interstellar political climate, an analysis which you now hold in your hands. For more \
 	information, feel free to visit our homepage at oc.about.tsc, or the sites of any of our constituents."
 
-/datum/lore/codex/page/lythios
+datum/lore/codex/page/lythios
 	name = "Nanotrasen Acquires Three Systems from People's Republic of Adhomai! Insult to revolution or savy political move? -  6/19/2563"
 	data = "Today Nanotrasen announced that is had purchased three systems from the People's Republic of Adhomai (PRA), a move widely mocked by the Republic's rivals on Adhomai.\
 	The three systems Lythios-43, Miaphus, and Motov were 'settled' as penal colonies in the late 2530's and early 2540's. Since the three systems have been a drain on the \
@@ -66,7 +66,7 @@
 	<br><br>\
 	This is a developing story please stay tuned for more updates."
 
-/datum/lore/codex/page/naramadi
+datum/lore/codex/page/naramadi
 	name = "New Drydock Being Constucted in Naramadi Home System in Apparent Hegemony Military Buildup - 12/10/2563"
 	data = "Orion Confederation intelligence sources confirmed today that the Naramadi Ascendency have begun construction of yet another military drydock in their homesystem.\
 	With the Moghes Hegemony and its Naramadi allies already boasting the largest navy in the galaxy by tonnage the new drydock is seen as a escalation \
@@ -81,7 +81,7 @@
 	With reliance on Orion's allies in the  Vikara Combine growing every day Orion refues to improve its own fleet, pessimeists claijm its only a matter of time before \
 	humanity is put in true danger by the Moghes slaver menace."
 
-/datum/lore/codex/page/vetalans
+datum/lore/codex/page/vetalans
 	name = "AD: Vetalans Syndrome: You are not alone."
 	data = "You don't know where you got it. You don't know why it had to be you. You wish you could enjoy food like you used to, you wish you didn't have \
 	to go to the doctor to get blood donations so often. You are not alone, Vetalans Syndrome effects more people every day. You may think you are a monster \
@@ -94,7 +94,7 @@
 	<br><br>\
 	Remeber you are not alone, you are not a monster, you are alive, we can help you. Call Today."
 
-/datum/lore/codex/page/fire
+datum/lore/codex/page/fire
 	name = "Ecological Disaster in Virgo Erigone, forever fire burns on Phoron moon! 7/28/2564"
 	data = "Today the Vikara Combine released an official report relation to an ongoing disaster on the moon of Virgo-3b in the Virgo Erigone system.\
 	The Nanotrasen leased moon has a rare atmosphere composed primarily of phoron and during routine NT mining operations one week ago, a fire broke out \
@@ -107,14 +107,14 @@
 	and some among its members have suggested a temporary suspension of Nanotrasen's lease on the moon. With Nanotrasen currently unable to stop the fire it is \
 	expected that the facilities on the planet will soon become inactive anyway as employees are relocated away from the hazardous burn."
 
-/datum/lore/codex/page/triumph
+datum/lore/codex/page/triumph
 	name = "Nanotrasen Launches Scientific Fleet into rim of Sigmar Concord. - 8/18/2564"
 	data = "Today Nanotrasen launched a scientific discovery fleet into the further reaches of the Sigmar Concord in the latest of their 'fact finding' expeditions.\
 	Though a small fleet in total it is lead by the mighty NDV Marksman one of the most powerful ships in Nanotrasen's naval fleet. Almost capable of housing the entire \
 	expedition crew on its own. Most of the crew are expected to be quarted from the safety of the flaghsip and compute to smaller science and transport vessels like going \
 	to work on any other planet. Other Vessels in the fleet include NSV Von Braun, NSV Triumph, NDV Duke, and NTV Conestoga among many other vessels."
 
-/datum/lore/codex/page/rockport
+datum/lore/codex/page/rockport
 	name = "Assasination Attempt On New Rockport Governor! - 8/30/2564"
 	data = "In the evening hours of August 24th a lone gunman attacked the limousine of New Rockport Planetary Governor: Samuel Ipswich. \
 	Thankfully the governor's bodyguards were able to protect Governor Ipswich and kill the attacker, however two bodyguards sadly perished in the fighting.\
@@ -130,7 +130,7 @@
 	3 fired on police who attempted to arrest them being killed when police returned fire. 67 members of the conspiracy are still on the run.\
 	The Oculum News Network strongly condemns the violence of these radical conspiracy theorists and wishes the government of New Rockport best wishes."
 
-/datum/lore/codex/page/ad0
+datum/lore/codex/page/ad0
 	name = "AD: Hello travler! Looking to enjoy the shine of the star on land?"
 	data = "Are you weary from all that constant space travel?<br>\
 	Looking to quench a thirst of multiple types?<br>\
@@ -144,7 +144,7 @@
 	Let go of all your stresses and spend some time in paradise.<br>\
 	Brought to you by the Happy Days and Sunshine Corporation."
 
-/datum/lore/codex/page/mescalero
+datum/lore/codex/page/mescalero
 	name = "Slaughter on Mescalero! Marauding Pirates Kill Hundreds! - 9/10/2564"
 	data = "The desert world of Mescalero - one of the many isolated frontier worlds of the Sigmar Sector - with a population numbering in the mere tens of thousands \
 	was thrust into the forefront of the Galactic stage! Its people's abject poverty and lack of wealth did nothing to spare them from the wrath of an as of yet,\
@@ -160,7 +160,7 @@
 	bladed weapons and laser weaponry. NT officials promised that they would track down the pirates responsible for the raid, stating that specialist teams are already \
 	being assembled to counter this new threat."
 
-/datum/lore/codex/page/pirates1
+datum/lore/codex/page/pirates1
 	name = "Pirate Activity on the Rise In Sigmar Concord - 9/18/2064"
 	data = "It is a dangerous galaxy and in the isolated Sigmar Sector the danger grows with each day. Already beset by the rodents of unusual technological sophistication,\
 	Vox raiders and the still unidentified group of pirates responsible for the slaughter on Mescalero, the sector now has to deal with a migration of pirates from nearby human space.\
@@ -169,7 +169,7 @@
 	Orion Confederation and the Vikara Combine, have increased in attempts to stem this criminal tide however, with such a massive area to guard it is doubtful these patrols will have \
 	much effect. Civilian shipping is advised to avoid all unidentified vessels and to stick close to patrol vessels where possible."
 
-/datum/lore/codex/page/ad1
+datum/lore/codex/page/ad1
 	name = "AD: Legendary Horror Series Continues in Its Fourth Installment."
 	data = "THEY HUNGER 4: THE DOORS HAVE EYES\
 	<br><br>\
@@ -185,7 +185,7 @@
 	Millah Su'jii<br>\
 	Maisi Tai."
 
-/datum/lore/codex/page/governments
+datum/lore/codex/page/governments
 	name = "New Governments proclaimed on Motov'maal and Miaphus'irra! NT moves forward with construction on Lythios. - 11/22/2564"
 	data = "Nanotrasen today proclaimed the formations of governments on Miaphus'irra and Motov'maal. The two former People's Repupiblic \
 	of Adhomai penal colonies announced their status as free holds with Nanotrasen as their partners in governance. Nanotrasen had purchased \
@@ -200,7 +200,7 @@
 	It is thought a that in the next few months ground crews will be able to perform construction operations on the surface without needing any extra radiation \
 	protection. Nanotrasen hopes to have the facility active by the end of next year however delays are seen as highly likely to happen."
 
-/datum/lore/codex/page/oriconpubserv
+datum/lore/codex/page/oriconpubserv
 	name = "Orion Confederation Public Service Annoucement - New Mimic Strain Identified! - 5/17/2565"
 	data = "Most of the galaxy is familiar with the humble mimic. The crate imitating pest that has been a fact of spacer life for decades now.\
 	However, following recent reports by Orion Scientists which have been corroborated by their Jargon Federation peers, an entire new strain of \
@@ -212,7 +212,7 @@
 	as the mimic survival methods described within seem to remain effective with the new strain as well as the old. Please keep your subspace comms open \
 	for updates on this new strain and future public service announcements."
 
-/datum/lore/codex/page/pirates2
+datum/lore/codex/page/pirates2
 	name = "Pirates Reign In Sigmar Concord - 8/29/2565"
 	data = "The Unstable Hyperlanes that lie just beyond Orion Space have always been a chaotic and unstable zone. With long range travel difficult \
 	along this unstable Galactic highway many undesirable groups took to calling the area home using the unstable lanes as a means of attacking vulnerable \
@@ -228,7 +228,7 @@
 	The planetary government of Morrigan claims to have not heard anything about the loss of the freighters and state that any contracts they or distributors on their planet have with \
 	Gilthari are strictly confidential. Oculum News Network promises to keep you updated on this story as it develops and wishes all spacemen a safe journey in these dangerous times."
 
-/datum/lore/codex/page/apidaens
+datum/lore/codex/page/apidaens
 	name = "Apidaens Queens Declare Open Door On Trade! - 9/19/2565"
 	data = 	"In a rare public statement the Queens of the Apidaens hives have annouced in unison that they are ending the trade restrictions that have kept their hives and economies \
 	closed off from the wider galaxy. Under the previous policies the honey producig Apidaens and their valuable luxuries were largely closed off from the wider glaactic trade network.\
@@ -238,7 +238,7 @@
 	first. Small sample of Apidaens technology have already leaked to the wider galaxy, showing an apparent apitiude for biotechnology among their species. The Vikara Combine \
 	teams have already released a statement stating optimism with the opening of relations and stating that they can't wait to learn from eachother."
 
-/datum/lore/codex/page/ad2
+datum/lore/codex/page/ad2
 	name = "AD: Vey-Med NIFs: Bridging the Gap between man and machine!"
 	data = "Are you falling behind your synthetic coworkers? \
 	<br><br>\
@@ -258,7 +258,7 @@
 	Contact your doctor immediately if any of they symptoms persist. Vey-Med is not repsonsible for the effects of third party software on effected individuals including \
 	mind altering softwares. Use of third party software and modifications will render warranty on the NIF null and void."
 
-/datum/lore/codex/page/surt
+datum/lore/codex/page/surt
 	name = "Fate of Isolated Mining Settlement Discovered after Months. - 3/13/2566"
 	data = "Nanotrasen annouced today that is has finally discovered the fate of 'Harmony' a mining community on the isolated magmatic world of Surt \
 	the small mining community apparently was destroyed when increased volcanic activity caused the lava pumps in the colony to fail causing the colony \
@@ -267,7 +267,7 @@
 	have been recovered and Nanotrasen has stated that there will be no further attempts to recover the bodies of the victims. Nanotrasen has in a pubblic statement \
 	warned to repsect system wide quarantine due to continued dangers of the site and that breaking said quarantine my result in arrest or even death."
 
-/datum/lore/codex/page/tyrmalins
+datum/lore/codex/page/tyrmalins
 	name = "Mars By-Elections results in Landslide for Tyrmalin Population - 4/2/2566"
 	data = "Martian By-Elections this week have resulted in an unexpected windfall for the Tyrmalin population on the planet.\
 	A dozen Tyrmalin political hopefuls have been elected to the lower Martian house doubling the amount of Tyrmalin representatives \
@@ -286,7 +286,7 @@
 	estimated to record a Tyrmalin population of 11% Tyrmalin interests are becoming ever more important to the \
 	Martian political landscape."
 
-/datum/lore/codex/page/moths
+datum/lore/codex/page/moths
 	name = "Dnin-Nepids Sign Migration Agreement with Orion Confederation. - 6/14/2566"
 	data = "The nomadic Dnin-Nepids and the Orion Confederation have recently annouced an expansion of existing migration treaties between the two powers.\
 	The new treaty will allow some of the smaller city ships of the Dnin-Nepids to move into Orion space as long and dock as long as said docking facilities \
@@ -299,7 +299,7 @@
 	Official representatives have stated that the existing treaty is just an extension of presexisting friendships and good will between the Nepids \
 	and their human friends, more an acknowledgement of the existing reality then any step forward or backward."
 
-/datum/lore/codex/page/fungaltb
+datum/lore/codex/page/fungaltb
 	name = "Fungal Tuberculois Outbreaks Kills Thirty on Asteroind Mining Station - 8/3/2566"
 	data = "The quiet independent asteroid mining station of Rzhavoye-Zoloto suffered a massive tragedy when miners salvaging an unidentified derelict, \
 	accidentally released a sample of Fungal Tuberculois into the ventilation systems of the station. The genetically engineered fungus quickly \
@@ -328,7 +328,7 @@
 	incorporation of  similarly effective anti-fungal agents into their own mass market drugs, deaths from Fungal Tuberculois are now thankfully rare, and with \
 	fewer and fewer samples of the weapon floating about the galaxy, many hope that this grim reminder of the phoron wars will soon only exist in labortories."
 
-/datum/lore/codex/page/pirates3
+datum/lore/codex/page/pirates3
 	name = "Pirate Raids Lock Down the Temhöser Gate, Kill Prominent Naramadi Matriach! - 11/7/2566"
 	data = "With the frontier colonies being more spread out as ever, Piracy is growing rampart in those territories. While Megacorporations such as NanoTrasen, \
 	Hepastheus and even Necropolis Industries might protect certain trade routes neccessary for their continued prosperity, it was always assumed that \
@@ -362,7 +362,7 @@
 	not many traders and transport corporations are willing to risk loosing their ships, and cargo, in wild space, and those that do often raise their prices to be \
 	able to pay for their security staff."
 
-/datum/lore/codex/page/keisani
+datum/lore/codex/page/keisani
 	name = "Keisani 'Rosetta Stone' Released by Dioscuri Xenoarchaeologists. Will This Dead Language Make a Comeback? - 1/14/2567"
 	data = "Today xenoarchaeology teams located on Dioscuri released the largest and most comprehensive codex on the ancient Keisa Language to date \
 	with the latest codex thought to cover over 75% of the ancient language. Xenoarchaeologists hope that the translations can give insight to the \
@@ -376,7 +376,7 @@
 	educators the xenoarchaeology team has also announced it is developing a version for civilian and commercial use, though when this product will be available \
 	remains to be seen."
 
-/datum/lore/codex/page/xenohybrid
+datum/lore/codex/page/xenohybrid
 	name = "Orion Confederation Welcomes First Xenohybrid Diaspora Representative, Prompts Council Chamber Redesign - 1/31/2567"
 	data =	"Elections on the Orion Confederation Member system of Enshamhet this week ended with the appointment of Praetorian Neomorph Melanippe to take \
 	Dysterhet's seat on the Confederation marking the first time a Xenomorph Hybrid has ever held a seat in the highest halls of the Orion Confederation \
@@ -405,7 +405,7 @@
 	to be seen but Xenohybrid activists across Orion have celebrated her election saying it is but another victory in their battle to find acceptance not just with \
 	the Orion Confederation but the galaxy as a whole. Melanippe is expected to take her seat, even if only in hologram form. by June."
 
-/datum/lore/codex/page/ad3
+datum/lore/codex/page/ad3
 	name = "AD: DONK! On your enemies with RIOT DARTS!"
 	data = "Live in a bad hood? Do weapons laws prevent YOU from defending yourself? \
 	<br><br>\
@@ -424,7 +424,7 @@
 	and other Donk Co products. DONK Co Riot Darts can cause severe damage to eyes and eyewear, gentilia, children and Teshari, please use caution when employing \
 	Donk Co Riot Darts against these targets."
 
-/datum/lore/codex/page/prince
+datum/lore/codex/page/prince
 	name = "The New Kingdom of Adhomai Says Final Goobye To Its Prince. Millions Attend Funeral For Prince Thram Azunja - 3/13/2567"
 	data = "The funeral for Crown Prince Thram Azunja drew the attendance of hundreds of thousands of the citizens of the New Kingdom of Adhomai. In accordance with \
 	Adhomai tradition the prince was cremated in one of the original furnace engines of Adhomai first created to hold off the cold on the onset of \
@@ -445,7 +445,7 @@
 	Thram's body burned to ash, the race to replace him was already progressing. Its unclear who among the candidates will emerge as crown prince to lead the \
 	New Kingdom of Adhomai in a rapidly changing galaxy"
 
-/datum/lore/codex/page/blueshield
+datum/lore/codex/page/blueshield
 	name = "Nanotrasen to Expand Bluesheild Program, Highest Funding Since End of Syndicate War - 4/10/2567"
 	data = "The Blueshield has been a stable of Nanotrasen stations for decades. A idea that first came to prominence during the earliest days of the phoron wars \
 	the Blueshield program was formalized following the creation of the Corporate Syndicate whose bloody war against Nanotrasen put Nanotrasen's command staff in such \
@@ -460,7 +460,7 @@
 	this network however, that the increase of budget to Blueshields is simply a correction of earlier oversights, whether this reason holds weight or if the theoriests theory of new corporate \
 	war proves true remains to be seen."
 
-/datum/lore/codex/page/volink
+datum/lore/codex/page/volink
 	name = "Surprise Canidate Shakes Up New Kingdom Crown Prince Selection: Who is Prince Volink Azunja? - 4/24/2567"
 	data = "Since the death of Crown Prince Thram Azunja, the New Kingdom of Adhomai has been in search for a replacement heir to the throne of the \
 	struggling Tajaran state. After almost a month of silence from King Arzthram Azunja, the King finally annouced a royal conferrence, in which potential \
@@ -487,4 +487,3 @@
 	of that nobility, not just for the people of the New Kingdom but for all Tajara. Like Srendarr pulls the worthy from the fields of Messa, I vow to lift all Tajara from the \
 	darkness of this new age, til the old nobility lost in the snow of the Great Frost shines not just on Adhomai but across the galaxy. As for those who say I am unproven I assure them \
 	that they will soon find that I have prooved myself.'"
-

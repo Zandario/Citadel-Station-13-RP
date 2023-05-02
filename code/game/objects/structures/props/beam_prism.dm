@@ -1,6 +1,6 @@
 //A series(?) of prisms for PoIs. The base one only works for beams.
 
-/obj/structure/prop/prism
+obj/structure/prop/prism
 	name = "prismatic turret"
 	desc = "A raised, externally powered 'turret'. It seems to have a massive crystal ring around its base."
 	description_info = "This device is capable of redirecting any beam projectile."
@@ -26,22 +26,22 @@
 
 	interaction_message = "<span class='notice'>The prismatic turret seems to be able to rotate.</span>"
 
-/obj/structure/prop/prism/Initialize(mapload)
+obj/structure/prop/prism/Initialize(mapload)
 	. = ..()
 	if(degrees_from_north)
 		animate(src, transform = turn(NORTH, degrees_from_north), time = 3)
 
-/obj/structure/prop/prism/Destroy()
+obj/structure/prop/prism/Destroy()
 	if(remote_dial)
 		remote_dial.my_turrets -= src
 		remote_dial = null
 	..()
 
-/obj/structure/prop/prism/proc/reset_rotation()
+obj/structure/prop/prism/proc/reset_rotation()
 	var/degrees_to_rotate = -1 * degrees_from_north
 	animate(src, transform = turn(src.transform, degrees_to_rotate), time = 2)
 
-/obj/structure/prop/prism/attack_hand(mob/user, list/params)
+obj/structure/prop/prism/attack_hand(mob/user, list/params)
 	..()
 
 	if(rotation_lock)
@@ -89,7 +89,7 @@
 	else
 		animate(src, transform = turn(src.transform, rotate_degrees), time = 6) //Can't update transform because it will reset the angle.
 
-/obj/structure/prop/prism/proc/rotate_auto(var/new_bearing)
+obj/structure/prop/prism/proc/rotate_auto(var/new_bearing)
 	if(rotation_lock)
 		visible_message("<span class='notice'>\The [src] shudders.</span>")
 		playsound(src, 'sound/effects/clang.ogg', 50, 1)
@@ -117,7 +117,7 @@
 	else
 		animate(src, transform = turn(src.transform, rotate_degrees), time = 6)
 
-/obj/structure/prop/prism/bullet_act(var/obj/projectile/Proj)
+obj/structure/prop/prism/bullet_act(var/obj/projectile/Proj)
 	if(istype(Proj, redirect_type))
 		visible_message("<span class='danger'>\The [src] redirects \the [Proj]!</span>")
 		flick("[initial(icon_state)]+glow", src)
@@ -130,19 +130,19 @@
 
 		Proj.redirect(new_x, new_y, curloc, null)
 
-/obj/structure/prop/prism/incremental
+obj/structure/prop/prism/incremental
 	free_rotate = 0
 	description_info = "This device is capable of redirecting any beam projectile, but only locks to specific positions in rotation."
 
-/obj/structure/prop/prism/incremental/externalcont
+obj/structure/prop/prism/incremental/externalcont
 	external_control_lock = 1
 	description_info = "This device is capable of redirecting any beam projectile, but can only be rotated by a control dial to specific positions."
 
-/obj/structure/prop/prism/externalcont
+obj/structure/prop/prism/externalcont
 	external_control_lock = 1
 	description_info = "This device is capable of redirecting any beam projectile, but can only be rotated by an external control dial."
 
-/obj/structure/prop/prismcontrol
+obj/structure/prop/prismcontrol
 	name = "prismatic dial"
 	desc = "A large dial with a crystalline ring."
 	icon = 'icons/obj/props/prism.dmi'
@@ -154,7 +154,7 @@
 	var/list/my_turrets = list()
 	var/dialID = null
 
-/obj/structure/prop/prismcontrol/attack_hand(mob/user, list/params)
+obj/structure/prop/prismcontrol/attack_hand(mob/user, list/params)
 	..()
 
 	var/confirm = input("Do you want to try to rotate \the [src]?", "[name]") in list("Yes", "No")
@@ -197,7 +197,7 @@
 	for(var/obj/structure/prop/prism/P in my_turrets)
 		P.rotate_auto(new_bearing)
 
-/obj/structure/prop/prismcontrol/Initialize(mapload)
+obj/structure/prop/prismcontrol/Initialize(mapload)
 	. = ..()
 	if(my_turrets.len) //Preset controls.
 		for(var/obj/structure/prop/prism/P in my_turrets)
@@ -209,7 +209,7 @@
 				my_turrets |= P
 				P.remote_dial = src
 
-/obj/structure/prop/prismcontrol/Destroy()
+obj/structure/prop/prismcontrol/Destroy()
 	for(var/obj/structure/prop/prism/P in my_turrets)
 		P.remote_dial = null
 	my_turrets = list()

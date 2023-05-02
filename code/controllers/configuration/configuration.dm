@@ -1,4 +1,4 @@
-/datum/controller/configuration
+datum/controller/configuration
 	name = "Configuration"
 
 	var/directory = "config"
@@ -26,7 +26,7 @@
 	/// If the configuration is loaded
 	var/loaded = FALSE
 
-/datum/controller/configuration/proc/admin_reload()
+datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
 		return
 	log_admin("[key_name_admin(usr)] has forcefully reloaded the configuration from disk.")
@@ -34,7 +34,7 @@
 	full_wipe()
 	Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
-/datum/controller/configuration/proc/Load(_directory)
+datum/controller/configuration/proc/Load(_directory)
 	if(IsAdminAdvancedProcCall())		//If admin proccall is detected down the line it will horribly break everything.
 		return
 	if(_directory)
@@ -61,7 +61,7 @@
 	if (Master)
 		Master.OnConfigLoad()
 
-/datum/controller/configuration/proc/full_wipe()
+datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
 		return
 	entries_by_type.Cut()
@@ -71,13 +71,13 @@
 	maplist = null
 	QDEL_NULL(defaultmap)
 
-/datum/controller/configuration/Destroy()
+datum/controller/configuration/Destroy()
 	full_wipe()
 	config = null
 
 	return ..()
 
-/datum/controller/configuration/proc/InitEntries()
+datum/controller/configuration/proc/InitEntries()
 	var/list/_entries = list()
 	entries = _entries
 	var/list/_entries_by_type = list()
@@ -97,11 +97,11 @@
 		_entries[esname] = E
 		_entries_by_type[I] = E
 
-/datum/controller/configuration/proc/RemoveEntry(datum/config_entry/CE)
+datum/controller/configuration/proc/RemoveEntry(datum/config_entry/CE)
 	entries -= CE.name
 	entries_by_type -= CE.type
 
-/datum/controller/configuration/proc/LoadEntries(filename, list/stack = list())
+datum/controller/configuration/proc/LoadEntries(filename, list/stack = list())
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -203,24 +203,24 @@
 
 	++.
 
-/datum/controller/configuration/can_vv_get(var_name)
+datum/controller/configuration/can_vv_get(var_name)
 	return (var_name != NAMEOF(src, entries_by_type) || !hiding_entries_by_type) && ..()
 
-/datum/controller/configuration/vv_edit_var(var_name, var_value)
+datum/controller/configuration/vv_edit_var(var_name, var_value)
 	var/list/banned_edits = list(NAMEOF(src, entries_by_type), NAMEOF(src, entries), NAMEOF(src, directory))
 	return !(var_name in banned_edits) && ..()
 
-/datum/controller/configuration/stat_entry()
+datum/controller/configuration/stat_entry()
 	return "Edit"
 
-/datum/controller/configuration/proc/Get(entry_type)
+datum/controller/configuration/proc/Get(entry_type)
 	var/datum/config_entry/E = GetEntryDatum(entry_type)
 	if(E && (E.protection & CONFIG_ENTRY_HIDDEN) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Get" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
 		log_admin_private("Config access of [entry_type] attempted by [key_name(usr)]")
 		return
 	return E.config_entry_value
 
-/datum/controller/configuration/proc/GetEntryDatum(entry_type)
+datum/controller/configuration/proc/GetEntryDatum(entry_type)
 	var/datum/config_entry/E = entry_type
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
 	if(entry_is_abstract)
@@ -230,7 +230,7 @@
 		CRASH("Missing config entry for [entry_type]!")
 	return E
 
-/datum/controller/configuration/proc/Set(entry_type, new_val)
+datum/controller/configuration/proc/Set(entry_type, new_val)
 	var/datum/config_entry/E = entry_type
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
 	if(entry_is_abstract)
@@ -244,7 +244,7 @@
 	return E.ValidateAndSet("[new_val]")
 
 /*
-/datum/controller/configuration/proc/LoadModes()
+datum/controller/configuration/proc/LoadModes()
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
 	mode_names = list()
@@ -273,13 +273,13 @@
 	votable_modes += "secret"
 */
 
-/datum/controller/configuration/proc/LoadMOTD()
+datum/controller/configuration/proc/LoadMOTD()
 	motd = file2text("[directory]/motd.txt")
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
 	if(motd || tm_info)
 		motd = motd ? "[motd]<br>[tm_info]" : tm_info
 
-/datum/controller/configuration/proc/loadmaplist(filename)
+datum/controller/configuration/proc/loadmaplist(filename)
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
 	var/list/Lines = world.file2list(filename)
@@ -335,7 +335,7 @@
 				log_config("Unknown command in map vote config: '[command]'")
 
 /*
-/datum/controller/configuration/proc/pick_mode(mode_name)
+datum/controller/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
 	// ^ This guy didn't try hard enough
@@ -346,7 +346,7 @@
 			return new T
 	return new /datum/game_mode/extended()
 
-/datum/controller/configuration/proc/pick_storyteller(storyteller_name)
+datum/controller/configuration/proc/pick_storyteller(storyteller_name)
 	for(var/T in storyteller_cache)
 		var/datum/dynamic_storyteller/S = T
 		var/name = initial(S.name)
@@ -354,7 +354,7 @@
 			return T
 	return /datum/dynamic_storyteller/classic
 
-/datum/controller/configuration/proc/get_runnable_modes()
+datum/controller/configuration/proc/get_runnable_modes()
 	var/list/datum/game_mode/runnable_modes = new
 	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
 	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)
@@ -387,7 +387,7 @@
 			runnable_modes[M] = final_weight
 	return runnable_modes
 
-/datum/controller/configuration/proc/get_runnable_storytellers()
+datum/controller/configuration/proc/get_runnable_storytellers()
 	var/list/datum/dynamic_storyteller/runnable_storytellers = new
 	var/list/probabilities = Get(/datum/config_entry/keyed_list/storyteller_weight)
 	var/list/repeated_mode_adjust = Get(/datum/config_entry/number_list/repeated_mode_adjust)
@@ -409,7 +409,7 @@
 		runnable_storytellers[S] = final_weight
 	return runnable_storytellers
 
-/datum/controller/configuration/proc/get_runnable_midround_modes(crew)
+datum/controller/configuration/proc/get_runnable_midround_modes(crew)
 	var/list/datum/game_mode/runnable_modes = new
 	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
 	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)

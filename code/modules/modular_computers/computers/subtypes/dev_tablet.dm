@@ -1,4 +1,4 @@
-/obj/item/modular_computer/tablet
+obj/item/modular_computer/tablet
 	name = "tablet computer"
 	desc = "A small portable microcomputer"
 	icon = 'icons/obj/modular_tablet.dmi'
@@ -10,7 +10,7 @@
 	w_class = ITEMSIZE_SMALL
 	light_strength = 2 // Same as PDAs
 
-/obj/item/modular_computer/tablet/lease
+obj/item/modular_computer/tablet/lease
 	desc = "A small portable microcomputer. This one has a gold and blue stripe, and a serial number stamped into the case."
 	icon_state = "tabletsol"
 	icon_state_unpowered = "tabletsol"

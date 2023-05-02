@@ -1,4 +1,4 @@
-/datum/language/adherent
+datum/language/adherent
 	id = LANGUAGE_ID_ADHERENT
 	name = LANGUAGE_ADHERENT
 	translation_class = TRANSLATION_CLASS_MACHINE | TRANSLATION_CLASS_ENCRYPTED

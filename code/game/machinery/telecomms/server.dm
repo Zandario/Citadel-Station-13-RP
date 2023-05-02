@@ -6,7 +6,7 @@
 */
 
 
-/obj/machinery/telecomms/server
+obj/machinery/telecomms/server
 	name = "Telecommunication Server"
 	icon_state = "comm_server"
 	desc = "A machine used to store data and network statistics."
@@ -34,11 +34,11 @@
 	/// triangulation efficiency multiplier
 	var/triangulation_efficiency = 1
 
-/obj/machinery/telecomms/server/Initialize(mapload)
+obj/machinery/telecomms/server/Initialize(mapload)
 	. = ..()
 	server_radio = new()
 
-/obj/machinery/telecomms/server/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+obj/machinery/telecomms/server/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 
 	if(signal.data["message"])
 
@@ -117,7 +117,7 @@
 			if(!can_send)
 				relay_information(signal, "/obj/machinery/telecomms/broadcaster")
 
-/obj/machinery/telecomms/server/proc/update_logs()
+obj/machinery/telecomms/server/proc/update_logs()
 	// start deleting the very first log entry
 	if(logs >= 400)
 		for(var/i = 1, i <= logs, i++) // locate the first garbage collectable log entry and remove it
@@ -127,7 +127,7 @@
 				logs--
 				break
 
-/obj/machinery/telecomms/server/proc/add_entry(var/content, var/input)
+obj/machinery/telecomms/server/proc/add_entry(var/content, var/input)
 	var/datum/comm_log_entry/log = new
 	var/identifier = num2text( rand(-1000,1000) + world.time )
 	log.name = "[input] ([md5(identifier)])"
@@ -137,7 +137,7 @@
 	log_entries.Add(log)
 	update_logs()
 
-/obj/machinery/telecomms/server/proc/triangulation_data()
+obj/machinery/telecomms/server/proc/triangulation_data()
 	. = list()
 	if(!triangulation)
 		return
@@ -153,7 +153,7 @@
 			"tag" = key,
 		))
 
-/obj/machinery/telecomms/server/proc/triangulate(atom/movable/victim, reduction_factor = 1.8, update_name)
+obj/machinery/telecomms/server/proc/triangulate(atom/movable/victim, reduction_factor = 1.8, update_name)
 	if(isnull(triangulation))
 		triangulation = list()
 
@@ -190,20 +190,20 @@
 	entry.last_updated = world.time
 	entry.randomize(location)
 
-/obj/machinery/telecomms/server/proc/set_triangulating(state)
+obj/machinery/telecomms/server/proc/set_triangulating(state)
 	triangulating = state
 	if(!state)
 		triangulation = null
 
 // Simple log entry datum
 
-/datum/comm_log_entry
+datum/comm_log_entry
 	var/parameters = list() // carbon-copy to signal.data[]
 	var/name = "data packet (#)"
 	var/garbage_collector = 1 // if set to 0, will not be garbage collected
 	var/input_type = "Speech File"
 
-/datum/network_triangulation
+datum/network_triangulation
 	/// name of target
 	var/scan_name
 	/// last x
@@ -219,7 +219,7 @@
 	/// last turf
 	var/turf/last_turf
 
-/datum/network_triangulation/proc/randomize(turf/real_loc)
+datum/network_triangulation/proc/randomize(turf/real_loc)
 	var/angle = rand(0, 360)
 	var/dist = accuracy * sqrt(rand(1, 10000) * 0.0001)
 	random_x = round(cos(angle) * dist, 1) + real_loc.x

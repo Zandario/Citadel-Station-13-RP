@@ -1,4 +1,4 @@
-/obj/machinery/recharger
+obj/machinery/recharger
 	name = "recharger"
 	desc = "A standard recharger for all devices that use power."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -18,14 +18,14 @@
 	var/base_power_draw = 20000
 	circuit = /obj/item/circuitboard/recharger
 
-/obj/machinery/recharger/examine(mob/user)
+obj/machinery/recharger/examine(mob/user)
 	. = ..()
 	. += "<span class = 'notice'>[charging ? "[charging]" : "Nothing"] is in [src].</span>"
 	if(charging)
 		var/obj/item/cell/C = charging.get_cell()
 		. += "<span class = 'notice'>Current charge: [C.charge] / [C.maxcharge]</span>"
 
-/obj/machinery/recharger/attackby(obj/item/G, mob/user)
+obj/machinery/recharger/attackby(obj/item/G, mob/user)
 	var/allowed = FALSE
 	for (var/allowed_type in allowed_devices)
 		if(istype(G, allowed_type))
@@ -100,7 +100,7 @@
 	else if(default_part_replacement(user, G))
 		return
 
-/obj/machinery/recharger/attack_hand(mob/user, list/params)
+obj/machinery/recharger/attack_hand(mob/user, list/params)
 	if(istype(user,/mob/living/silicon))
 		return
 
@@ -113,7 +113,7 @@
 		charging = null
 		update_icon()
 
-/obj/machinery/cell_charger/attack_ai(mob/user)
+obj/machinery/cell_charger/attack_ai(mob/user)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Borgs can remove the cell if they are near enough
 		if(charging)
 			user.visible_message("[user] removes [charging] from [src].", "You remove [charging] from [src].")
@@ -122,7 +122,7 @@
 			charging = null
 			update_icon()
 
-/obj/machinery/recharger/process(delta_time)
+obj/machinery/recharger/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		update_use_power(USE_POWER_OFF)
 		icon_state = icon_state_idle
@@ -183,7 +183,7 @@
 			var/obj/item/gun/ballistic/cell_loaded/gunny = charging
 			charge_mag(gunny.ammo_magazine)
 
-/obj/machinery/recharger/proc/charge_mag(obj/item/ammo_magazine/cell_mag/maggy)
+obj/machinery/recharger/proc/charge_mag(obj/item/ammo_magazine/cell_mag/maggy)
 	var/tally = maggy.stored_ammo.len
 	for(var/obj/item/ammo_casing/microbattery/batt in maggy)
 		if(batt.shots_left < initial(batt.shots_left))
@@ -196,7 +196,7 @@
 				icon_state = icon_state_charged
 				update_use_power(USE_POWER_IDLE)
 
-/obj/machinery/recharger/emp_act(severity)
+obj/machinery/recharger/emp_act(severity)
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
@@ -208,20 +208,20 @@
 
 	..(severity)
 
-/obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
+obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	if(charging)
 		icon_state = icon_state_charging
 	else
 		icon_state = icon_state_idle
 
-/obj/machinery/recharger/RefreshParts()
+obj/machinery/recharger/RefreshParts()
 	var/E = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating
 	update_active_power_usage(base_power_draw * E)
 	efficiency = active_power_usage * RECHARGER_CHEAT_FACTOR
 
-/obj/machinery/recharger/wallcharger
+obj/machinery/recharger/wallcharger
 	name = "wall recharger"
 	desc = "A more powerful recharger designed for energy weapons."
 	icon = 'icons/obj/stationobjs.dmi'

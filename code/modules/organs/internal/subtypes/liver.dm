@@ -1,11 +1,11 @@
 
-/obj/item/organ/internal/liver
+obj/item/organ/internal/liver
 	name = "liver"
 	icon_state = "liver"
 	organ_tag = "liver"
 	parent_organ = BP_GROIN
 
-/obj/item/organ/internal/liver/tick_life(dt)
+obj/item/organ/internal/liver/tick_life(dt)
 	. = ..()
 
 	if((owner.life_tick % 10) == 0)
@@ -43,7 +43,7 @@
 			if(filter_effect < 3)
 				owner.adjustToxLoss(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * (dt * 5))
 
-/obj/item/organ/internal/liver/handle_germ_effects()
+obj/item/organ/internal/liver/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer
 	if(!.) return
 
@@ -56,14 +56,14 @@
 			//to_chat(owner, "") //Toxins provide their own messages for pain
 			owner.adjustToxLoss(5) //Not realistic to PA but there are basically no 'real' liver infections
 
-/obj/item/organ/internal/liver/grey
+obj/item/organ/internal/liver/grey
 	icon_state = "liver_grey"
 
-/obj/item/organ/internal/liver/grey/colormatch/Initialize(mapload)
+obj/item/organ/internal/liver/grey/colormatch/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/sync_color), 15)
 
-/obj/item/organ/internal/liver/grey/colormatch/proc/sync_color()
+obj/item/organ/internal/liver/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		color = H.species.blood_color

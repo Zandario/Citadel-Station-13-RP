@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/tool/passenger
+obj/item/mecha_parts/mecha_equipment/tool/passenger
 	name = "passenger compartment"
 	desc = "A mountable passenger compartment for exosuits. Rather cramped."
 	icon_state = "mecha_passenger"
@@ -13,16 +13,16 @@
 
 	equip_type = EQUIP_HULL
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
+obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
 		to_chat(AM, "<span class='danger'>You tumble out of the destroyed [src.name]!</span>")
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/Exit(atom/movable/O)
+obj/item/mecha_parts/mecha_equipment/tool/passenger/Exit(atom/movable/O)
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
+obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
 	if (chassis)
 		chassis.visible_message("<span class='notice'>[user] starts to climb into [chassis].</span>")
 
@@ -44,7 +44,7 @@
 		to_chat(user, "You stop entering the exosuit.")
 
 // todo: action
-/mob/proc/verb_eject_mech_passenger()
+mob/proc/verb_eject_mech_passenger()
 	set name = "Eject Passenger"
 	set category = "Exosuit Interface"
 	set src = usr
@@ -63,7 +63,7 @@
 	pod.log_message("[pod.occupant] disembarked.")
 	pod.add_fingerprint(src)
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/go_out()
+obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/go_out()
 	if(!occupant)
 		return
 	remove_verb(occupant, /mob/proc/verb_eject_mech_passenger)
@@ -72,12 +72,12 @@
 	occupant = null
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/attach()
+obj/item/mecha_parts/mecha_equipment/tool/passenger/attach()
 	..()
 	if (chassis)
 		add_obj_verb(chassis, /obj/mecha/proc/move_inside_passenger)
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/detach()
+obj/item/mecha_parts/mecha_equipment/tool/passenger/detach()
 	if(occupant)
 		occupant_message("Unable to detach [src] - equipment occupied.")
 		return
@@ -87,10 +87,10 @@
 	if (M && !(locate(/obj/item/mecha_parts/mecha_equipment/tool/passenger) in M))
 		remove_verb(M, /obj/mecha/proc/move_inside_passenger)
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/get_equip_info()
+obj/item/mecha_parts/mecha_equipment/tool/passenger/get_equip_info()
 	return "[..()] <br />[occupant? "\[Occupant: [occupant]\]|" : ""]Exterior Hatch: <a href='?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/Topic(href,href_list)
+obj/item/mecha_parts/mecha_equipment/tool/passenger/Topic(href,href_list)
 	..()
 	if (href_list["toggle_lock"])
 		door_locked = !door_locked
@@ -102,7 +102,7 @@
 #define LOCKED 1
 #define OCCUPIED 2
 
-/obj/mecha/proc/move_inside_passenger()
+obj/mecha/proc/move_inside_passenger()
 	set category = "Object"
 	set name = "Enter Passenger Compartment"
 	set src in oview(1)

@@ -10,7 +10,7 @@ var/const/tk_maxrange = 15
 
 	By default, emulate the user's unarmed attack
 */
-/atom/proc/attack_tk(mob/user)
+atom/proc/attack_tk(mob/user)
 	if(user.stat) return
 	user.UnarmedAttack(src,0) // attack_hand, attack_paw, etc
 	return
@@ -22,10 +22,10 @@ var/const/tk_maxrange = 15
 	It is used for manipulating things at range, for example, opening and closing closets.
 	There are not a lot of defaults at this time, add more where appropriate.
 */
-/atom/proc/attack_self_tk(mob/user)
+atom/proc/attack_self_tk(mob/user)
 	return
 
-/obj/attack_tk(mob/user)
+obj/attack_tk(mob/user)
 	if(user.stat) return
 	if(anchored)
 		..()
@@ -37,7 +37,7 @@ var/const/tk_maxrange = 15
 	O.focus_object(src)
 	return
 
-/obj/item/attack_tk(mob/user)
+obj/item/attack_tk(mob/user)
 	if(user.stat || !isturf(loc)) return
 	if((MUTATION_TELEKINESIS in user.mutations) && !user.get_active_held_item()) // both should already be true to get here
 		var/obj/item/tk_grab/O = new(src)
@@ -49,7 +49,7 @@ var/const/tk_maxrange = 15
 	return
 
 
-/mob/attack_tk(mob/user)
+mob/attack_tk(mob/user)
 	return // needs more thinking about
 
 /*
@@ -60,7 +60,7 @@ var/const/tk_maxrange = 15
 	* If you click what you are holding, or attack_self(), do an attack_self_tk() on it.
 	* Deletes itself if it is ever not in your hand, or if you should have no access to MUTATION_TELEKINESIS.
 */
-/obj/item/tk_grab
+obj/item/tk_grab
 	name = "Telekinetic Grab"
 	desc = "Magic"
 	icon = 'icons/obj/magic.dmi'//Needs sprites
@@ -75,19 +75,19 @@ var/const/tk_maxrange = 15
 	var/mob/living/host = null
 
 //stops MUTATION_TELEKINESIS grabs being equipped anywhere but into hands
-/obj/item/tk_grab/equipped(mob/user, slot, accessory, creation, silent)
+obj/item/tk_grab/equipped(mob/user, slot, accessory, creation, silent)
 	. = ..()
 	if(slot != SLOT_ID_HANDS)
 		qdel(src)
 
-/obj/item/tk_grab/attack_self(mob/user)
+obj/item/tk_grab/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	if(focus)
 		focus.attack_self_tk(user)
 
-/obj/item/tk_grab/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity)//TODO: go over this
+obj/item/tk_grab/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity)//TODO: go over this
 	if(!target || !user)	return
 	if(last_throw+3 > world.time)	return
 	if(!host || host != user)
@@ -126,7 +126,7 @@ var/const/tk_maxrange = 15
 		last_throw = world.time
 	return
 
-/obj/item/tk_grab/proc/focus_object(var/obj/target, var/mob/living/user)
+obj/item/tk_grab/proc/focus_object(var/obj/target, var/mob/living/user)
 	if(!istype(target,/obj))	return//Cant throw non objects atm might let it do mobs later
 	if(target.anchored || !isturf(target.loc))
 		qdel(src)
@@ -136,7 +136,7 @@ var/const/tk_maxrange = 15
 	apply_focus_overlay()
 	return
 
-/obj/item/tk_grab/proc/apply_focus_overlay()
+obj/item/tk_grab/proc/apply_focus_overlay()
 	if(!focus)	return
 	var/obj/effect/overlay/O = new /obj/effect/overlay(locate(focus.x,focus.y,focus.z))
 	O.name = "sparkles"
@@ -151,7 +151,7 @@ var/const/tk_maxrange = 15
 		qdel(O)
 	return
 
-/obj/item/tk_grab/update_icon()
+obj/item/tk_grab/update_icon()
 	cut_overlays()
 	if(focus && focus.icon && focus.icon_state)
 		add_overlay(image(focus.icon,focus.icon_state))

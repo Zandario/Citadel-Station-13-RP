@@ -3,12 +3,12 @@
 
 var/global/list/obj/machinery/message_server/message_servers = list()
 
-/datum/data_pda_msg
+datum/data_pda_msg
 	var/recipient = "Unspecified" //name of the person
 	var/sender = "Unspecified" //name of the sender
 	var/message = "Blank" //transferred message
 
-/datum/data_pda_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "")
+datum/data_pda_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "")
 
 	if(param_rec)
 		recipient = param_rec
@@ -17,7 +17,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	if(param_message)
 		message = param_message
 
-/datum/data_rc_msg
+datum/data_rc_msg
 	var/rec_dpt = "Unspecified" //name of the person
 	var/send_dpt = "Unspecified" //name of the sender
 	var/message = "Blank" //transferred message
@@ -25,7 +25,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	var/id_auth = "Unauthenticated"
 	var/priority = "Normal"
 
-/datum/data_rc_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "",var/param_stamp = "",var/param_id_auth = "",var/param_priority)
+datum/data_rc_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "",var/param_stamp = "",var/param_id_auth = "",var/param_priority)
 	if(param_rec)
 		rec_dpt = param_rec
 	if(param_sender)
@@ -47,7 +47,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 			else
 				priority = "Undetermined"
 
-/obj/machinery/message_server
+obj/machinery/message_server
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
 	name = "Messaging Server"
@@ -68,18 +68,18 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 			//Messages having theese tokens will be rejected by server. Case sensitive
 	var/spamfilter_limit = MESSAGE_SERVER_DEFAULT_SPAM_LIMIT	//Maximal amount of tokens
 
-/obj/machinery/message_server/Initialize(mapload, newdir)
+obj/machinery/message_server/Initialize(mapload, newdir)
 	. = ..()
 	message_servers += src
 	decryptkey = GenerateKey()
 	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is functioning correctly.")
 
 
-/obj/machinery/message_server/Destroy()
+obj/machinery/message_server/Destroy()
 	message_servers -= src
 	return ..()
 
-/obj/machinery/message_server/proc/GenerateKey()
+obj/machinery/message_server/proc/GenerateKey()
 	//Feel free to move to Helpers.
 	var/newKey
 	newKey += pick("the", "if", "of", "as", "in", "a", "you", "from", "to", "an", "too", "little", "snow", "dead", "drunk", "rosebud", "duck", "al", "le")
@@ -87,7 +87,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	newKey += pick("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 	return newKey
 
-/obj/machinery/message_server/process(delta_time)
+obj/machinery/message_server/process(delta_time)
 	//if(decryptkey == "password")
 	//	decryptkey = generateKey()
 	if(active && (machine_stat & (BROKEN|NOPOWER)))
@@ -96,7 +96,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	update_icon()
 	return
 
-/obj/machinery/message_server/proc/send_pda_message(var/recipient = "",var/sender = "",var/message = "")
+obj/machinery/message_server/proc/send_pda_message(var/recipient = "",var/sender = "",var/message = "")
 	var/result
 	for (var/token in spamfilter)
 		if (findtextEx(message,token))
@@ -105,7 +105,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	pda_msgs += new/datum/data_pda_msg(recipient,sender,message)
 	return result
 
-/obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
+obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
 	rc_msgs += new/datum/data_rc_msg(recipient,sender,message,stamp,id_auth)
 	var/authmsg = "[message]<br>"
 	if (id_auth)
@@ -134,7 +134,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 			Console.set_light(2)
 
 
-/obj/machinery/message_server/attack_hand(mob/user, list/params)
+obj/machinery/message_server/attack_hand(mob/user, list/params)
 //	to_chat(user, "<font color=#4F49AF>There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays.</font>")
 	to_chat(user, "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]")
 	active = !active
@@ -142,7 +142,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 	return
 
-/obj/machinery/message_server/attackby(obj/item/O as obj, mob/living/user as mob)
+obj/machinery/message_server/attackby(obj/item/O as obj, mob/living/user as mob)
 	if (active && !(machine_stat & (BROKEN|NOPOWER)) && (spamfilter_limit < MESSAGE_SERVER_DEFAULT_SPAM_LIMIT*2) && \
 		istype(O, /obj/item/circuitboard/message_monitor))
 		if(!user.attempt_consume_item_for_construction(O))
@@ -152,7 +152,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	else
 		return ..(O, user)
 
-/obj/machinery/message_server/update_icon_state()
+obj/machinery/message_server/update_icon_state()
 	. = ..()
 	if((machine_stat & (BROKEN|NOPOWER)))
 		icon_state = "server-nopower"
@@ -161,21 +161,21 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	else
 		icon_state = "server-on"
 
-/datum/feedback_variable
+datum/feedback_variable
 	var/variable
 	var/value
 	var/details
 
-/datum/feedback_variable/vv_edit_var(var_name, var_value)
+datum/feedback_variable/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, variable) || var_name == NAMEOF(src, value) || var_name == NAMEOF(src, details))
 		return FALSE
 	return ..()
 
-/datum/feedback_variable/New(var/param_variable,var/param_value = 0)
+datum/feedback_variable/New(var/param_variable,var/param_value = 0)
 	variable = param_variable
 	value = param_value
 
-/datum/feedback_variable/proc/inc(var/num = 1)
+datum/feedback_variable/proc/inc(var/num = 1)
 	if(isnum(value))
 		value += num
 	else
@@ -185,7 +185,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		else
 			value = num
 
-/datum/feedback_variable/proc/dec(var/num = 1)
+datum/feedback_variable/proc/dec(var/num = 1)
 	if(isnum(value))
 		value -= num
 	else
@@ -195,36 +195,36 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		else
 			value = -num
 
-/datum/feedback_variable/proc/set_value(var/num)
+datum/feedback_variable/proc/set_value(var/num)
 	if(isnum(num))
 		value = num
 
-/datum/feedback_variable/proc/get_value()
+datum/feedback_variable/proc/get_value()
 	return value
 
-/datum/feedback_variable/proc/get_variable()
+datum/feedback_variable/proc/get_variable()
 	return variable
 
-/datum/feedback_variable/proc/set_details(var/text)
+datum/feedback_variable/proc/set_details(var/text)
 	if(istext(text))
 		details = text
 
-/datum/feedback_variable/proc/add_details(var/text)
+datum/feedback_variable/proc/add_details(var/text)
 	if(istext(text))
 		if(!details)
 			details = text
 		else
 			details += " [text]"
 
-/datum/feedback_variable/proc/get_details()
+datum/feedback_variable/proc/get_details()
 	return details
 
-/datum/feedback_variable/proc/get_parsed()
+datum/feedback_variable/proc/get_parsed()
 	return list(variable,value,details)
 
 var/obj/machinery/blackbox_recorder/blackbox
 
-/obj/machinery/blackbox_recorder
+obj/machinery/blackbox_recorder
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
@@ -252,13 +252,13 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/list/datum/feedback_variable/feedback = new()
 
 	//Only one can exist in the world!
-/obj/machinery/blackbox_recorder/Initialize(mapload, newdir)
+obj/machinery/blackbox_recorder/Initialize(mapload, newdir)
 	. = ..()
 	if(istype(blackbox,/obj/machinery/blackbox_recorder))
 		return INITIALIZE_HINT_QDEL
 	blackbox = src
 
-/obj/machinery/blackbox_recorder/Destroy()
+obj/machinery/blackbox_recorder/Destroy()
 	var/turf/T = locate(1,1,2)
 	if(T)
 		blackbox = null
@@ -280,7 +280,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 			blackbox = BR
 	..()
 
-/obj/machinery/blackbox_recorder/proc/find_feedback_datum(var/variable)
+obj/machinery/blackbox_recorder/proc/find_feedback_datum(var/variable)
 	for(var/datum/feedback_variable/FV in feedback)
 		if(FV.get_variable() == variable)
 			return FV
@@ -288,10 +288,10 @@ var/obj/machinery/blackbox_recorder/blackbox
 	feedback += FV
 	return FV
 
-/obj/machinery/blackbox_recorder/proc/get_round_feedback()
+obj/machinery/blackbox_recorder/proc/get_round_feedback()
 	return feedback
 
-/obj/machinery/blackbox_recorder/proc/round_end_data_gathering()
+obj/machinery/blackbox_recorder/proc/round_end_data_gathering()
 
 	var/pda_msg_amt = 0
 	var/rc_msg_amt = 0
@@ -321,7 +321,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 	feedback_set_details("round_end","[time2text(world.realtime)]") //This one MUST be the last one that gets set.
 
-/obj/machinery/blackbox_recorder/vv_edit_var(var_name, var_value)
+obj/machinery/blackbox_recorder/vv_edit_var(var_name, var_value)
 	var/static/list/blocked_vars		//hacky as fuck kill me
 	if(!blocked_vars)
 		var/obj/machinery/M = new
@@ -332,7 +332,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	return ..()
 
 //This proc is only to be called at round end.
-/obj/machinery/blackbox_recorder/proc/save_all_data_to_sql()
+obj/machinery/blackbox_recorder/proc/save_all_data_to_sql()
 	if(!feedback) return
 
 	round_end_data_gathering() //round_end time logging and some other data processing
@@ -365,7 +365,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 			)
 		)
 
-/proc/feedback_set(variable, value)
+proc/feedback_set(variable, value)
 	if(!blackbox)
 		return
 
@@ -378,7 +378,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 	FV.set_value(value)
 
-/proc/feedback_inc(variable, value)
+proc/feedback_inc(variable, value)
 	if(!blackbox)
 		return
 
@@ -391,7 +391,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 	FV.inc(value)
 
-/proc/feedback_dec(variable, value)
+proc/feedback_dec(variable, value)
 	if(!blackbox)
 		return
 
@@ -404,7 +404,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 	FV.dec(value)
 
-/proc/feedback_set_details(variable, details)
+proc/feedback_set_details(variable, details)
 	if(!blackbox)
 		return
 
@@ -418,7 +418,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 	FV.set_details(details)
 
-/proc/feedback_add_details(variable, details)
+proc/feedback_add_details(variable, details)
 	if(!blackbox)
 		return
 

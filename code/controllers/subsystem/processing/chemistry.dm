@@ -11,12 +11,12 @@ PROCESSING_SUBSYSTEM_DEF(chemistry)
 	var/list/chemical_reactions_by_reagent = list()
 
 
-/datum/controller/subsystem/processing/chemistry/Recover()
+datum/controller/subsystem/processing/chemistry/Recover()
 	chemical_reactions = SSchemistry.chemical_reactions
 	reagent_lookup = SSchemistry.reagent_lookup
 
 // honestly hate that we have to do this but some things INITIALIZE_IMMEDIATE so uh fuck me I guess!
-/datum/controller/subsystem/processing/chemistry/PreInit(recovering)
+datum/controller/subsystem/processing/chemistry/PreInit(recovering)
 	initialize_chemical_reactions()
 	initialize_chemical_reagents()
 	return ..()
@@ -29,7 +29,7 @@ PROCESSING_SUBSYSTEM_DEF(chemistry)
  * - Note that entries in the list are NOT duplicated. So if a reaction pertains to
  * - more than one chemical it will still only appear in only one of the sublists.
  */
-/datum/controller/subsystem/processing/chemistry/proc/initialize_chemical_reactions()
+datum/controller/subsystem/processing/chemistry/proc/initialize_chemical_reactions()
 	var/paths = typesof(/datum/chemical_reaction) - /datum/chemical_reaction
 	chemical_reactions = list()
 	chemical_reactions_by_reagent = list()
@@ -43,7 +43,7 @@ PROCESSING_SUBSYSTEM_DEF(chemistry)
 			chemical_reactions_by_reagent[reagent_id] += D
 
 /// Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
-/datum/controller/subsystem/processing/chemistry/proc/initialize_chemical_reagents()
+datum/controller/subsystem/processing/chemistry/proc/initialize_chemical_reagents()
 	var/paths = typesof(/datum/reagent) - /datum/reagent
 	reagent_lookup = list()
 	for(var/datum/reagent/path as anything in paths)
@@ -59,5 +59,5 @@ PROCESSING_SUBSYSTEM_DEF(chemistry)
  *
  * do not edit the returned instance, it is global!
  */
-/datum/controller/subsystem/processing/chemistry/proc/get_reagent(datum/reagent/id_or_path)
+datum/controller/subsystem/processing/chemistry/proc/get_reagent(datum/reagent/id_or_path)
 	return reagent_lookup[ispath(id_or_path)? initial(id_or_path.id) : id_or_path]

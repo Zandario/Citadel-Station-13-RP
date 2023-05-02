@@ -1,5 +1,5 @@
 //! file contains wrappers and hooks
-/mob/living/carbon/human/drag_drop_buckle_interaction(atom/A, mob/user)
+mob/living/carbon/human/drag_drop_buckle_interaction(atom/A, mob/user)
 	if(!ismob(A) || (A == src))
 		// first of all, if it's not a mob or if it's literally ourselves, kick it down
 		return ..()
@@ -40,7 +40,7 @@
 	return FALSE
 
 // todo: this should become far more deliberate so it isn't easy to accidentally kick someone off
-/mob/living/carbon/human/click_unbuckle_interaction(mob/user)
+mob/living/carbon/human/click_unbuckle_interaction(mob/user)
 	if(user != src)
 		// we can kick people off ourselves, others have to push us down or disarm offhands.
 		return FALSE
@@ -49,7 +49,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/proc/carry_piggyback(mob/living/carbon/other, instant = FALSE, delay_mod = 1, loc_check = TRUE)
+mob/living/carbon/human/proc/carry_piggyback(mob/living/carbon/other, instant = FALSE, delay_mod = 1, loc_check = TRUE)
 	if(loc_check && !Adjacent(other))
 		return FALSE
 	other.visible_message(
@@ -65,7 +65,7 @@
 		SPAN_NOTICE("You climb onto [src]!")
 	)
 
-/mob/living/carbon/human/proc/carry_fireman(mob/living/carbon/other, instant = FALSE, delay_mod = 1, loc_check = TRUE)
+mob/living/carbon/human/proc/carry_fireman(mob/living/carbon/other, instant = FALSE, delay_mod = 1, loc_check = TRUE)
 	if(loc_check && !Adjacent(other))
 		return FALSE
 	visible_message(
@@ -81,6 +81,6 @@
 		SPAN_NOTICE("You pick [other] up over your shoulders!")
 	)
 
-/mob/living/carbon/human/buckle_lying(mob/M)
+mob/living/carbon/human/buckle_lying(mob/M)
 	var/semantic = buckled_mobs[M]
 	return semantic == BUCKLE_SEMANTIC_HUMAN_FIREMAN? 90 : 0

@@ -3,7 +3,7 @@
  *
  * it is YOUR job to monitor for qdels!
  */
-/datum/cassette_tape_iterator
+datum/cassette_tape_iterator
 	/// tape
 	var/obj/item/cassette_tape/tape
 	/// index in reel
@@ -24,7 +24,7 @@
 	/// default delay
 	var/static/default_delay = 1 SECONDS
 
-/datum/cassette_tape_iterator/Destroy()
+datum/cassette_tape_iterator/Destroy()
 	tape?.iterator_killed(src)
 	tape = null	// lol if you try to access after you get a runtime
 	return ..()
@@ -43,7 +43,7 @@
 /**
  * returns delay
  */
-/datum/cassette_tape_iterator/proc/_advance()
+datum/cassette_tape_iterator/proc/_advance()
 	PRIVATE_PROC(TRUE)
 	// prep
 	if(!reel_index)
@@ -80,7 +80,7 @@
 	// we moved past
 	reel_index = null
 
-/datum/cassette_tape_iterator/proc/_init()
+datum/cassette_tape_iterator/proc/_init()
 	// reset
 	if(!tape.reel.len)
 		reel_index = null
@@ -129,7 +129,7 @@
  * null name means it's a noise in the room
  * null message means it's just a delay (or maybe read the opcode)
  */
-/datum/cassette_tape_iterator/proc/next_slow()
+datum/cassette_tape_iterator/proc/next_slow()
 	if(!reel_index)
 		return
 	. = list(
@@ -149,7 +149,7 @@
  * null message means it's just a delay (or maybe read the opcode)
  * returns false if nothing's there
  */
-/datum/cassette_tape_iterator/proc/next_fast(list/L)
+datum/cassette_tape_iterator/proc/next_fast(list/L)
 	if(!reel_index)
 		return FALSE
 	L[CASSETTE_TAPE_DATA_DELAY] = staged_delay
@@ -167,7 +167,7 @@
  * null name means it's a noise in the room
  * null message means it's just a delay (or maybe read the opcode)
  */
-/datum/cassette_tape_iterator/proc/peek_slow()
+datum/cassette_tape_iterator/proc/peek_slow()
 	if(!reel_index)
 		return
 	. = list(
@@ -186,7 +186,7 @@
  * null message means it's just a delay (or maybe read the opcode)
  * returns false if nothing's there
  */
-/datum/cassette_tape_iterator/proc/peek_fast(list/L)
+datum/cassette_tape_iterator/proc/peek_fast(list/L)
 	if(!reel_index)
 		return FALSE
 	L[CASSETTE_TAPE_DATA_DELAY] = staged_delay
@@ -199,12 +199,12 @@
 /**
  * used to **write** to a tape.
  */
-/datum/cassette_tape_iterator/write
+datum/cassette_tape_iterator/write
 
 /**
  * expects **raw** message
  */
-/datum/cassette_tape_iterator/write/proc/write_speech(message, speaker_name, language_id, override_pause)
+datum/cassette_tape_iterator/write/proc/write_speech(message, speaker_name, language_id, override_pause)
 	if(language_id != tape.last_language_id)
 		tape.inject_latest_language(language_id)
 	if(speaker_name != tape.last_speaker_name)
@@ -219,7 +219,7 @@
  *
  * speaker_name to null for actions that are heard by the recorder not associated to anyone
  */
-/datum/cassette_tape_iterator/write/proc/write_emote(message, speaker_name, override_pause)
+datum/cassette_tape_iterator/write/proc/write_emote(message, speaker_name, override_pause)
 	if(speaker_name != tape.last_speaker_name)
 		tape.inject_latest_name(speaker_name)
 	tape.reel += world.time - tape.last_message_time
@@ -228,15 +228,15 @@
 	tape.reel += message
 	tape.increment_messages()
 
-/datum/cassette_tape_iterator/write/proc/tick(dt)
+datum/cassette_tape_iterator/write/proc/tick(dt)
 	tape.used_time += world.time - tape.last_recording_tick
 	tape.last_recording_tick = world.time
 
-/datum/cassette_tape_iterator/write/proc/mark_start()
+datum/cassette_tape_iterator/write/proc/mark_start()
 	tape.last_message_time = world.time
 	tape.last_recording_tick = world.time
 
-/datum/cassette_tape_iterator/write/proc/mark_stop()
+datum/cassette_tape_iterator/write/proc/mark_stop()
 	if(!tape.reel.len)
 		// bro we haven't written anything
 		return
@@ -256,12 +256,12 @@
 /**
  * used to translate a tape
  */
-/datum/cassette_tape_iterator/translator
+datum/cassette_tape_iterator/translator
 
 /**
  * returns lines translated
  */
-/datum/cassette_tape_iterator/translator/proc/translate(datum/translation_context/context)
+datum/cassette_tape_iterator/translator/proc/translate(datum/translation_context/context)
 	// ez
 	. = 0
 	var/list/reel = tape.reel

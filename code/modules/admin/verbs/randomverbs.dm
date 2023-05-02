@@ -1,4 +1,4 @@
-/client/proc/cmd_admin_drop_everything(mob/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_drop_everything(mob/M as mob in GLOB.mob_list)
 	set category = null
 	set name = "Drop Everything"
 	if(!holder)
@@ -16,7 +16,7 @@
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_prison(mob/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_prison(mob/M as mob in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Prison"
 	if(!holder)
@@ -44,7 +44,7 @@
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Allows staff to determine who the newer players are.
-/client/proc/cmd_check_new_players()
+client/proc/cmd_check_new_players()
 	set category = "Admin"
 	set name = "Check new Players"
 	if(!holder)
@@ -77,7 +77,7 @@
 	else
 		to_chat(src, "No matches for that age range found.")
 
-/client/proc/cmd_admin_subtle_message(mob/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_subtle_message(mob/M as mob in GLOB.mob_list)
 	set category = "Special Verbs"
 	set name = "Subtle Message"
 
@@ -101,7 +101,7 @@
 	admin_ticket_log(M, msg)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_world_narrate()
+client/proc/cmd_admin_world_narrate()
 	set category = "Special Verbs"
 	set name = "Global Narrate"
 
@@ -117,7 +117,7 @@
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] Sent a global narrate</span>")
 	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Global Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_direct_narrate(mob/M)
+client/proc/cmd_admin_direct_narrate(mob/M)
 	set category = "Special Verbs"
 	set name = "Direct Narrate"
 
@@ -142,7 +142,7 @@
 	admin_ticket_log(M, msg)
 	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Direct Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_local_narrate(atom/A)
+client/proc/cmd_admin_local_narrate(atom/A)
 	set category = "Special Verbs"
 	set name = "Local Narrate"
 
@@ -163,7 +163,7 @@
 	message_admins("<span class='adminnotice'><b> LocalNarrate: [key_name_admin(usr)] at [ADMIN_COORDJMP(A)]:</b> [msg]<BR></span>")
 	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Local Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
 	set category = "Special Verbs"
 	set name = "Godmode"
 	if(!holder)
@@ -179,7 +179,7 @@
 	feedback_add_details("admin_verb","GOD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
+proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
 		if(!config_legacy.automute_on)
 			return
@@ -231,7 +231,7 @@
 	to_chat(M, "<span class = 'alert'>You have been [muteunmute] from [mute_string].</span>")
 	feedback_add_details("admin_verb","MUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_add_random_ai_law()
+client/proc/cmd_admin_add_random_ai_law()
 	set category = "Fun"
 	set name = "Add Random AI Law"
 	if(!holder)
@@ -254,7 +254,7 @@ Allow admins to set players to be able to respawn/bypass 30 min wait, without th
 Ccomp's first proc.
 */
 
-/client/proc/get_ghosts(var/notify = 0,var/what = 2)
+client/proc/get_ghosts(var/notify = 0,var/what = 2)
 	// what = 1, return ghosts ass list.
 	// what = 2, return mob list
 
@@ -279,7 +279,7 @@ Ccomp's first proc.
 		return mobs
 
 
-/client/proc/allow_character_respawn()
+client/proc/allow_character_respawn()
 	set category = "Special Verbs"
 	set name = "Allow player to respawn"
 	set desc = "Let a player bypass the wait to respawn or allow them to re-enter their corpse."
@@ -315,7 +315,7 @@ Ccomp's first proc.
 	message_admins("Admin [key_name_admin(usr)] allowed [found_client ? key_name_admin(found_client) : target] to bypass the respawn time limit", 1)
 
 
-/client/proc/toggle_antagHUD_use()
+client/proc/toggle_antagHUD_use()
 	set category = "Server"
 	set name = "Toggle antagHUD usage"
 	set desc = "Toggles antagHUD usage for observers"
@@ -349,7 +349,7 @@ Ccomp's first proc.
 
 
 
-/client/proc/toggle_antagHUD_restrictions()
+client/proc/toggle_antagHUD_restrictions()
 	set category = "Server"
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
@@ -379,8 +379,8 @@ Ccomp's first proc.
 If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
 Traitors and the like can also be revived with the previous role mostly intact.
-/N */
-/client/proc/respawn_character()
+N */
+client/proc/respawn_character()
 	set category = "Special Verbs"
 	set name = "Spawn Character"
 	set desc = "(Re)Spawn a client's loaded character."
@@ -539,7 +539,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	return new_character
 
-/client/proc/cmd_admin_add_freeform_ai_law()
+client/proc/cmd_admin_add_freeform_ai_law()
 	set category = "Fun"
 	set name = "Add Custom AI law"
 	if(!holder)
@@ -567,7 +567,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_rejuvenate(mob/living/M as mob in GLOB.mob_list)
 	set category = "Special Verbs"
 	set name = "Rejuvenate"
 	if(!holder)
@@ -589,7 +589,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		alert("Admin revive disabled")
 	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_create_centcom_report()
+client/proc/cmd_admin_create_centcom_report()
 	set category = "Special Verbs"
 	set name = "Create Command Report"
 	if(!holder)
@@ -616,7 +616,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[key_name_admin(src)] has created a command report", 1)
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_delete(atom/A as obj|mob|turf in world)
+client/proc/cmd_admin_delete(atom/A as obj|mob|turf in world)
 	set category = "Admin"
 	set name = "Delete"
 
@@ -625,7 +625,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	admin_delete(A)
 
-/client/proc/cmd_admin_list_open_jobs()
+client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
 	set name = "List free slots"
 
@@ -637,7 +637,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			to_chat(src, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
+client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
 	set category = "Special Verbs"
 	set name = "Explosion"
 
@@ -665,7 +665,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		return
 
-/client/proc/cmd_admin_emp(atom/O as obj|mob|turf in world)
+client/proc/cmd_admin_emp(atom/O as obj|mob|turf in world)
 	set category = "Special Verbs"
 	set name = "EM Pulse"
 
@@ -691,7 +691,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		return
 
-/client/proc/cmd_admin_gib(mob/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_gib(mob/M as mob in GLOB.mob_list)
 	set category = "Special Verbs"
 	set name = "Gib"
 
@@ -712,7 +712,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	M.gib()
 	feedback_add_details("admin_verb","GIB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_gib_self()
+client/proc/cmd_admin_gib_self()
 	set name = "Gibself"
 	set category = "Fun"
 
@@ -727,7 +727,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins("<font color=#4F49AF>[key_name_admin(usr)] used gibself.</font>", 1)
 		feedback_add_details("admin_verb","GIBS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /*
-/client/proc/cmd_manual_ban()
+client/proc/cmd_manual_ban()
 	set name = "Manual Ban"
 	set category = "Special Verbs"
 	if(!authenticated || !holder)
@@ -783,12 +783,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		qdel(M)
 */
 
-/client/proc/update_world()
+client/proc/update_world()
 	// If I see anyone granting powers to specific keys like the code that was here,
 	// I will both remove their SVN access and permanently ban them from my servers.
 	return
 
-/client/proc/cmd_admin_check_contents(mob/living/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_check_contents(mob/living/M as mob in GLOB.mob_list)
 	set category = "Special Verbs"
 	set name = "Check Contents"
 	set popup_menu = FALSE
@@ -799,7 +799,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","CC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /* This proc is DEFERRED. Does not do anything.
-/client/proc/cmd_admin_remove_phoron()
+client/proc/cmd_admin_remove_phoron()
 	set category = "Debug"
 	set name = "Stabilize Atmos."
 	if(!holder)
@@ -829,7 +829,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			T.ttemp = 293.15
 */
 
-/client/proc/toggle_view_range()
+client/proc/toggle_view_range()
 	set category = "Special Verbs"
 	set name = "Change View Range"
 	set desc = "switches between 1x and custom views"
@@ -845,7 +845,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_call_shuttle()
+client/proc/admin_call_shuttle()
 
 	set category = "Admin"
 	set name = "Call Shuttle"
@@ -878,7 +878,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("<font color=#4F49AF>[key_name_admin(usr)] admin-called the emergency shuttle.</font>", 1)
 	return
 
-/client/proc/admin_cancel_shuttle()
+client/proc/admin_cancel_shuttle()
 	set category = "Admin"
 	set name = "Cancel Shuttle"
 
@@ -896,7 +896,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	return
 
-/client/proc/admin_deny_shuttle()
+client/proc/admin_deny_shuttle()
 	set category = "Admin"
 	set name = "Toggle Deny Shuttle"
 
@@ -910,7 +910,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(src)] has [SSemergencyshuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 	message_admins("[key_name_admin(usr)] has [SSemergencyshuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
-/client/proc/cmd_admin_attack_log(mob/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_attack_log(mob/M as mob in GLOB.mob_list)
 	set category = "Special Verbs"
 	set name = "Attack Log"
 
@@ -920,7 +920,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","ATTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/everyone_random()
+client/proc/everyone_random()
 	set category = "Fun"
 	set name = "Make Everyone Random"
 	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
@@ -954,7 +954,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/toggle_random_events()
+client/proc/toggle_random_events()
 	set category = "Server"
 	set name = "Toggle random events on/off"
 
@@ -971,7 +971,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/despawn_player(var/mob/M in living_mob_list)
+client/proc/despawn_player(var/mob/M in living_mob_list)
 	set name = "Cryo Player"
 	set category = "Admin"
 	set desc = "Removes a player from the round as if they'd cryo'd."
@@ -1031,7 +1031,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		M.ghostize()
 		qdel(M) //Bye
 
-/client/proc/cmd_admin_icsubtle_message(mob/M as mob in GLOB.mob_list)
+client/proc/cmd_admin_icsubtle_message(mob/M as mob in GLOB.mob_list)
 	set category = "Special Verbs"
 	set name = "Centcom Message"
 

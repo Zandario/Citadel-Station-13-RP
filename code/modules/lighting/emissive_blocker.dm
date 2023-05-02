@@ -6,7 +6,7 @@
  * This should only be used internally. If you are directly creating more of these, you're
  * almost guaranteed to be doing something wrong.
  */
-/atom/movable/emissive_blocker
+atom/movable/emissive_blocker
 	name = "emissive blocker"
 	plane = EMISSIVE_PLANE
 	layer = FLOAT_LAYER
@@ -17,13 +17,13 @@
 	//Since only render_target handles transform we don't get any applied transform "stacking"
 	appearance_flags = RESET_TRANSFORM
 
-/atom/movable/emissive_blocker/Initialize(mapload, source)
+atom/movable/emissive_blocker/Initialize(mapload, source)
 	. = ..()
 	verbs.Cut() //Cargo culting from lighting object, this maybe affects memory usage?
 	render_source = source
 	color = GLOB.em_block_color
 
-/atom/movable/emissive_blocker/Destroy()
+atom/movable/emissive_blocker/Destroy()
 	if(ismovable(loc))
 		var/atom/movable/AM = loc
 		AM.vis_contents -= src
@@ -31,5 +31,5 @@
 			AM.em_block = null
 	return ..()
 
-/atom/movable/emissive_blocker/forceMove(atom/destination)
+atom/movable/emissive_blocker/forceMove(atom/destination)
 	return FALSE	// nope.

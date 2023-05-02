@@ -2,7 +2,7 @@
  * shim until saycode rewrite
  */
 // todo: refactor this shit to be unified saycode, christ
-/atom/proc/atom_say(message, datum/language/L)
+atom/proc/atom_say(message, datum/language/L)
 	if(!message)
 		return
 	var/list/speech_bubble_hearers = list()
@@ -23,7 +23,7 @@
 			flick_overlay_global(I, speech_bubble_hearers, 3 SECONDS)
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_chat), message, null, FALSE, speech_bubble_hearers, 3 SECONDS)
 
-/atom/proc/say_overhead(var/message, whispering, message_range = 7, var/datum/language/speaking = null, var/list/passed_hearing_list)
+atom/proc/say_overhead(var/message, whispering, message_range = 7, var/datum/language/speaking = null, var/list/passed_hearing_list)
 	var/list/speech_bubble_hearers = list()
 	var/italics
 	if(whispering)
@@ -34,10 +34,10 @@
 	if(length(speech_bubble_hearers))
 		INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_hearers, 30)
 
-/proc/generate_speech_bubble(var/bubble_loc, var/speech_state, var/set_layer = FLOAT_LAYER)
+proc/generate_speech_bubble(var/bubble_loc, var/speech_state, var/set_layer = FLOAT_LAYER)
 	var/image/I = image('icons/mob/talk_vr.dmi', bubble_loc, speech_state, set_layer)
 	I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
 	return I
 
-/atom/proc/speech_bubble(bubble_state = "", bubble_loc = src, list/bubble_recipients = list())
+atom/proc/speech_bubble(bubble_state = "", bubble_loc = src, list/bubble_recipients = list())
 	return

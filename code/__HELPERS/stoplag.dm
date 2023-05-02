@@ -9,7 +9,7 @@
 /**
  * Returns the number of ticks slept.
  */
-/proc/stoplag(initial_delay)
+proc/stoplag(initial_delay)
 	if (!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
 		sleep(world.tick_lag)
 		return 1

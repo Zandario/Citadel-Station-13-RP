@@ -1,4 +1,4 @@
-/obj/item/melee
+obj/item/melee
 	icon = 'icons/obj/weapons.dmi'
 	hitsound = "swing_hit"
 	item_icons = list(

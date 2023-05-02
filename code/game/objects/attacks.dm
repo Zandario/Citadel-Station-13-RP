@@ -1,5 +1,5 @@
 /// Attacks mobs (atm only simple ones due to friendly fire issues) that are adjacent to the target and user.
-/obj/item/proc/cleave(mob/living/user, atom/target)
+obj/item/proc/cleave(mob/living/user, atom/target)
 	if(cleaving)
 		return FALSE // We're busy.
 	if(!target.Adjacent(user))
@@ -29,12 +29,12 @@
 	return hit_mobs > 0 // Returns TRUE if anything got hit.
 
 /// This cannot go into afterattack since some mobs delete themselves upon dying.
-/obj/item/material/pre_attack(atom/target, mob/user, clickchain_flags, list/params)
+obj/item/material/pre_attack(atom/target, mob/user, clickchain_flags, list/params)
 	if(can_cleave && isliving(target))
 		cleave(user, target)
 	return ..()
 
 /// This is purely the visual effect of cleaving.
-/obj/item/proc/cleave_visual(mob/living/user, mob/living/target)
+obj/item/proc/cleave_visual(mob/living/user, mob/living/target)
 	var/obj/effect/temporary_effect/cleave_attack/E = new(get_turf(src))
 	E.dir = get_dir(user, target)

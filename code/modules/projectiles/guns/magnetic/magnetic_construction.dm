@@ -1,5 +1,5 @@
 // We really need some datums for this.
-/obj/item/coilgun_assembly
+obj/item/coilgun_assembly
 	name = "coilgun stock"
 	desc = "It might be a coilgun, someday."
 	icon = 'icons/obj/coilgun.dmi'
@@ -7,7 +7,7 @@
 
 	var/construction_stage = 1
 
-/obj/item/coilgun_assembly/attackby(var/obj/item/thing, var/mob/user)
+obj/item/coilgun_assembly/attackby(var/obj/item/thing, var/mob/user)
 
 	if(istype(thing, /obj/item/stack/material) && construction_stage == 1)
 		var/obj/item/stack/material/reinforcing = thing
@@ -82,12 +82,12 @@
 
 	return ..()
 
-/obj/item/coilgun_assembly/proc/increment_construction_stage()
+obj/item/coilgun_assembly/proc/increment_construction_stage()
 	if(construction_stage < 9)
 		construction_stage++
 	icon_state = "coilgun_construction_[construction_stage]"
 
-/obj/item/coilgun_assembly/examine(var/mob/user)
+obj/item/coilgun_assembly/examine(var/mob/user)
 	. = ..()
 	switch(construction_stage)
 		if(2)

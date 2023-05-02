@@ -1,4 +1,4 @@
-/mob/new_player/Logout()
+mob/new_player/Logout()
 	ready = 0
 
 	..()

@@ -1,10 +1,10 @@
 
-/obj/item/deck/unus
+obj/item/deck/unus
 	name = "deck of unus cards"
 	desc = "Because the crew needed another game to get violently angry about."
 	icon_state = "deck_unus"
 
-/obj/item/deck/unus/Initialize(mapload)
+obj/item/deck/unus/Initialize(mapload)
 	. = ..()
 
 	var/datum/playingcard/P
@@ -37,10 +37,10 @@
 			P.card_icon = "unus_wild"
 			P.back_icon = "card_back_unus"
 			cards += P
-	
-	
 
-/obj/item/deck/unus/shuffle()
+
+
+obj/item/deck/unus/shuffle()
 	var/mob/living/user = usr
 	if (cooldown < world.time - 10)
 		var/list/newcards = list()

@@ -1,7 +1,7 @@
 #define DATUMLESS "NO_DATUM"
 
 //! ## CHANNEL MANAGEMENT
-/datum/controller/subsystem/sounds
+datum/controller/subsystem/sounds
 	/// BYOND max channels
 	var/static/using_channels_max = CHANNEL_HIGHEST_AVAILABLE
 	/// Amount of channels to reserve for random usage rather than reservations being allowed to reserve all channels. Also a nice safeguard for when someone screws up.
@@ -22,7 +22,7 @@
 	/// higher reserve position - decremented and incremented to reserve sound channels, anything above this is reserved. The channel at this index is the highest unreserved channel.
 	var/channel_reserve_high
 
-/datum/controller/subsystem/sounds/proc/setup_available_channels()
+datum/controller/subsystem/sounds/proc/setup_available_channels()
 	channel_list = list()
 	reserved_channels = list()
 	using_channels = list()
@@ -33,7 +33,7 @@
 	channel_reserve_high = length(channel_list)
 
 /// Removes a channel from using list.
-/datum/controller/subsystem/sounds/proc/free_sound_channel(channel)
+datum/controller/subsystem/sounds/proc/free_sound_channel(channel)
 	var/text_channel = num2text(channel)
 	var/using = using_channels[text_channel]
 	using_channels -= text_channel
@@ -44,7 +44,7 @@
 	free_channel(channel)
 
 /// Frees all the channels a datum is using.
-/datum/controller/subsystem/sounds/proc/free_datum_channels(datum/D)
+datum/controller/subsystem/sounds/proc/free_datum_channels(datum/D)
 	var/list/L = using_channels_by_datum[D]
 	if(!L)
 		return
@@ -54,11 +54,11 @@
 	using_channels_by_datum -= D
 
 /// Frees all datumless channels
-/datum/controller/subsystem/sounds/proc/free_datumless_channels()
+datum/controller/subsystem/sounds/proc/free_datumless_channels()
 	free_datum_channels(DATUMLESS)
 
 /// NO AUTOMATIC CLEANUP - If you use this, you better manually free it later! Returns an integer for channel.
-/datum/controller/subsystem/sounds/proc/reserve_sound_channel_datumless()
+datum/controller/subsystem/sounds/proc/reserve_sound_channel_datumless()
 	. = reserve_channel()
 	if(!.) //oh no..
 		return FALSE
@@ -68,7 +68,7 @@
 	using_channels_by_datum[DATUMLESS] += .
 
 /// Reserves a channel for a datum. Automatic cleanup only when the datum is deleted. Returns an integer for channel.
-/datum/controller/subsystem/sounds/proc/reserve_sound_channel(datum/D)
+datum/controller/subsystem/sounds/proc/reserve_sound_channel(datum/D)
 	if(!D) //i don't like typechecks but someone will fuck it up
 		CRASH("Attempted to reserve sound channel without datum using the managed proc.")
 	.= reserve_channel()
@@ -82,7 +82,7 @@
 /**
  * Reserves a channel and updates the datastructure. Private proc.
  */
-/datum/controller/subsystem/sounds/proc/reserve_channel()
+datum/controller/subsystem/sounds/proc/reserve_channel()
 	PRIVATE_PROC(TRUE)
 	if(channel_reserve_high <= random_channels_min) // out of channels
 		return
@@ -93,7 +93,7 @@
 /**
  * Frees a channel and updates the datastructure. Private proc.
  */
-/datum/controller/subsystem/sounds/proc/free_channel(number)
+datum/controller/subsystem/sounds/proc/free_channel(number)
 	PRIVATE_PROC(TRUE)
 	var/text_channel = num2text(number)
 	var/index = reserved_channels[text_channel]
@@ -112,19 +112,19 @@
 	reserved_channels[text_reserved] = index
 
 /// Random available channel, returns text.
-/datum/controller/subsystem/sounds/proc/random_available_channel_text()
+datum/controller/subsystem/sounds/proc/random_available_channel_text()
 	if(channel_random_low > channel_reserve_high)
 		channel_random_low = 1
 	. = "[channel_list[channel_random_low++]]"
 
 /// Random available channel, returns number
-/datum/controller/subsystem/sounds/proc/random_available_channel()
+datum/controller/subsystem/sounds/proc/random_available_channel()
 	if(channel_random_low > channel_reserve_high)
 		channel_random_low = 1
 	. = channel_list[channel_random_low++]
 
 /// How many channels we have left.
-/datum/controller/subsystem/sounds/proc/available_channels_left()
+datum/controller/subsystem/sounds/proc/available_channels_left()
 	return length(channel_list) - random_channels_min
 
 #undef DATUMLESS

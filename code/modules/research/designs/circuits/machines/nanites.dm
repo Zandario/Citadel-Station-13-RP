@@ -1,4 +1,4 @@
-/datum/design/circuit/machine/nanite_chamber
+datum/design/circuit/machine/nanite_chamber
 	name = "Nanite Chamber"
 	build_path = /obj/item/circuitboard/machine/nanite_chamber
 	id = "CircuitNaniteChamber"

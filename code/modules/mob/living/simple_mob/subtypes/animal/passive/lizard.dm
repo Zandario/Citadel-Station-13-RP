@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/lizard
+datum/category_item/catalogue/fauna/lizard
 	name = "Lizard"
 	desc = "A reptile common on Earth, lizards come in a variety \
 	of shapes, sizes, and colorations. Popular as pets due to their \
@@ -6,7 +6,7 @@
 	are now considered a relatively harmless pest across the Frontier."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/lizard
+mob/living/simple_mob/animal/passive/lizard
 	name = "lizard"
 	desc = "A cute, tiny lizard."
 	tt_desc = "E Anolis cuvieri"
@@ -37,7 +37,7 @@
 	bone_amount = 1
 	hide_amount = 1
 
-/mob/living/simple_mob/animal/passive/lizard/large
+mob/living/simple_mob/animal/passive/lizard/large
 	desc = "A cute, big lizard."
 	maxHealth = 20
 	health = 20
@@ -50,7 +50,7 @@
 	mod_min = 90
 	mod_max = 200
 
-/mob/living/simple_mob/animal/passive/lizard/large/defensive
+mob/living/simple_mob/animal/passive/lizard/large/defensive
 	maxHealth = 30
 	health = 30
 

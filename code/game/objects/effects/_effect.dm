@@ -9,7 +9,7 @@
  *
  * however, at a certain point, do consider using /structure or /machinery instead.
  */
-/obj/effect
+obj/effect
 	unacidable = TRUE
 	density = FALSE
 	opacity = FALSE
@@ -20,38 +20,38 @@
 	vis_flags = VIS_INHERIT_PLANE
 	// blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
-/obj/effect/take_damage(damage)
+obj/effect/take_damage(damage)
 	return
 
-/obj/effect/fire_act()
+obj/effect/fire_act()
 	return
 
-/obj/effect/acid_act()
+obj/effect/acid_act()
 	return FALSE
 
-/obj/effect/blob_act(obj/structure/blob/B)
+obj/effect/blob_act(obj/structure/blob/B)
 	return
 
-/obj/effect/legacy_ex_act(severity, target)
+obj/effect/legacy_ex_act(severity, target)
 	return FALSE
 
-/obj/effect/singularity_act()
+obj/effect/singularity_act()
 	qdel(src)
 
 /// The abstract effect ignores even more effects and is often typechecked for atoms that should truly not be fucked with.
-/obj/effect/abstract
+obj/effect/abstract
 
-/obj/effect/abstract/singularity_pull()
+obj/effect/abstract/singularity_pull()
 	return
 
-/obj/effect/abstract/singularity_act()
+obj/effect/abstract/singularity_act()
 	return
 
-/obj/effect/abstract/has_gravity(turf/T)
+obj/effect/abstract/has_gravity(turf/T)
 	return FALSE
 
-/obj/effect/dummy/singularity_pull()
+obj/effect/dummy/singularity_pull()
 	return
 
-/obj/effect/dummy/singularity_act()
+obj/effect/dummy/singularity_act()
 	return

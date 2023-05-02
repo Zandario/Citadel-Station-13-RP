@@ -13,7 +13,7 @@
  * * If there are any global alternate apperances apply them to this mob
  * * Intialize the transform of the mob
  */
-/mob/Initialize(mapload)
+mob/Initialize(mapload)
 	GLOB.mob_list += src
 	set_key_focus(src)
 	if(stat == DEAD)
@@ -70,7 +70,7 @@
  *
  * Returns QDEL_HINT_HARDDEL (don't change this)
  */
-/mob/Destroy()//This makes sure that mobs with GLOB.clients/keys are not just deleted from the game.
+mob/Destroy()//This makes sure that mobs with GLOB.clients/keys are not just deleted from the game.
 	// status effects
 	for(var/id in status_effects)
 		var/datum/status_effect/effect = status_effects[id]
@@ -121,7 +121,7 @@
  *
  * This is simply "mob_"+ a global incrementing counter that goes up for every mob
  */
-/mob/GenerateTag()
+mob/GenerateTag()
 	tag = "mob_[++next_mob_id]"
 
 /**
@@ -130,7 +130,7 @@
  * Goes through hud_possible list and adds the images to the hud_list variable (if not already
  * cached)
  */
-/atom/proc/prepare_huds()
+atom/proc/prepare_huds()
 	hud_list = list()
 	for(var/hud in hud_possible)
 		var/hint = hud_possible[hud]
@@ -144,7 +144,7 @@
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
 				hud_list[hud] = I
 
-/mob/proc/remove_screen_obj_references()
+mob/proc/remove_screen_obj_references()
 	hands = null
 	pullin = null
 	purged = null
@@ -166,14 +166,14 @@
 	spell_masters = null
 	zone_sel = null
 
-/mob/statpanel_data(client/C)
+mob/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		STATPANEL_DATA_ENTRY("Ping", "[round(client.lastping,1)]ms (Avg: [round(client.avgping,1)]ms)")
 
 /// Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 // todo: refactor
-/mob/show_message(msg, type, alt, alt_type)
+mob/show_message(msg, type, alt, alt_type)
 	if(!client && !teleop)
 		return
 
@@ -191,7 +191,7 @@
 		if(teleop)
 			to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[msg]", type = MESSAGE_TYPE_LOCALCHAT)
 
-/mob/proc/saycode_type_eligible(type)
+mob/proc/saycode_type_eligible(type)
 	switch(type)
 		if(SAYCODE_TYPE_VISIBLE)
 			return !is_blind()
@@ -216,7 +216,7 @@
  * * deaf_message (optional) is what deaf people will see.
  * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
  */
-/mob/audible_message(var/message, var/deaf_message, var/hearing_distance, var/self_message)
+mob/audible_message(var/message, var/deaf_message, var/hearing_distance, var/self_message)
 
 	var/range = hearing_distance || world.view
 	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src),range,remote_ghosts = FALSE)
@@ -235,7 +235,7 @@
 			msg = self_message
 		M.show_message(msg, 2, deaf_message, 1)
 
-/mob/proc/findname(msg)
+mob/proc/findname(msg)
 	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
@@ -245,23 +245,23 @@
 #define PARTIALLY_BUCKLED 1
 #define FULLY_BUCKLED 2
 
-/mob/proc/is_buckled()
+mob/proc/is_buckled()
 	// Preliminary work for a future buckle rewrite,
 	// where one might be fully restrained (like an elecrical chair), or merely secured (shuttle chair, keeping you safe but not otherwise restrained from acting)
 	if(!buckled)
 		return UNBUCKLED
 	return restrained() ? FULLY_BUCKLED : PARTIALLY_BUCKLED
 
-/mob/proc/is_blind()
+mob/proc/is_blind()
 	return ((sdisabilities & SDISABILITY_NERVOUS) || blinded || incapacitated(INCAPACITATION_KNOCKOUT))
 
-/mob/proc/is_deaf()
+mob/proc/is_deaf()
 	return ((sdisabilities & SDISABILITY_DEAF) || ear_deaf || incapacitated(INCAPACITATION_KNOCKOUT))
 
-/mob/proc/is_physically_disabled()
+mob/proc/is_physically_disabled()
 	return incapacitated(INCAPACITATION_DISABLED)
 
-/mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
+mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && !CHECK_MOBILITY(src, MOBILITY_CAN_USE))
 		return 1
 
@@ -288,7 +288,7 @@
 #undef FULLY_BUCKLED
 
 ///Is the mob restrained
-/mob/proc/restrained()
+mob/proc/restrained()
 	return
 
 /**
@@ -298,7 +298,7 @@
  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
  * for why this isn't atom/verb/examine()
  */
-/mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
+mob/verb/examinate(atom/A as mob|obj|turf in view()) //It used to be oview(12), but I can't really say why
 	set name = "Examine"
 	set category = "IC"
 
@@ -324,7 +324,7 @@
  * examines something & sends results
  * no pre-checks for dist/view/whatnot
  */
-/mob/proc/do_examinate(atom/A)
+mob/proc/do_examinate(atom/A)
 	var/list/result
 	if(client)
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
@@ -345,7 +345,7 @@
  *
  * overridden here and in /mob/observer/dead for different point span classes and sanity checks
  */
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
+mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
 	set category = "Object"
 
@@ -370,7 +370,7 @@
 	log_emote("POINTED --> at [A] ([COORD(A)]).", src)
 	return 1
 
-/mob/verb/set_self_relative_layer()
+mob/verb/set_self_relative_layer()
 	set name = "Set relative layer"
 	set desc = "Set your relative layer to other mobs on the same layer as yourself"
 	set src = usr
@@ -380,7 +380,7 @@
 	new_layer = clamp(new_layer, -100, 100)
 	set_relative_layer(new_layer)
 
-/mob/verb/shift_relative_behind()
+mob/verb/shift_relative_behind()
 	set name = "Move Behind"
 	set desc = "Move behind of a mob with the same base layer as yourself"
 	set src = usr
@@ -396,7 +396,7 @@
 
 	set_relative_layer(M.relative_layer - 1)
 
-/mob/verb/shift_relative_infront()
+mob/verb/shift_relative_infront()
 	set name = "Move Infront"
 	set desc = "Move infront of a mob with the same base layer as yourself"
 	set src = usr
@@ -412,7 +412,7 @@
 
 	set_relative_layer(M.relative_layer + 1)
 
-/mob/proc/get_relative_shift_targets()
+mob/proc/get_relative_shift_targets()
 	. = list()
 	var/us = isnull(base_layer)? layer : base_layer
 	for(var/mob/M in range(1, src))
@@ -422,7 +422,7 @@
 			. += M
 	. -= src
 
-/mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
+mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
 	return
 
 /**
@@ -430,7 +430,7 @@
  *
  * Calls attack self on the item and updates the inventory hud for hands
  */
-/mob/verb/mode()
+mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
 	set src = usr
@@ -442,7 +442,7 @@
  *
  * This actually gets the mind datums notes
  */
-/mob/verb/memory()
+mob/verb/memory()
 	set name = "Notes"
 	set category = "IC"
 	if(mind)
@@ -453,7 +453,7 @@
 /**
  * Add a note to the mind datum
  */
-/mob/verb/add_memory(msg as message)
+mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
 
@@ -464,7 +464,7 @@
 	else
 		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
 
-/mob/proc/store_memory(msg as message, popup, sane = 1)
+mob/proc/store_memory(msg as message, popup, sane = 1)
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 
 	if (sane)
@@ -481,7 +481,7 @@
 	if (popup)
 		memory()
 
-/mob/proc/update_flavor_text()
+mob/proc/update_flavor_text()
 	set src in usr
 	if(usr != src)
 		to_chat(usr, "No.")
@@ -490,12 +490,12 @@
 	if(msg != null)
 		flavor_text = msg
 
-/mob/proc/warn_flavor_changed()
+mob/proc/warn_flavor_changed()
 	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
 		to_chat(src, "<h2 class='alert'>OOC Warning:</h2>")
 		to_chat(src, "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>")
 
-/mob/proc/print_flavor_text()
+mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
 		var/msg = replacetext(flavor_text, "\n", " ")
 		if(length(msg) <= 40)
@@ -504,13 +504,13 @@
 			return "<font color=#4F49AF>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</font></a>"
 
 /*
-/mob/verb/help()
+mob/verb/help()
 	set name = "Help"
 	src << browse('html/help.html', "window=help")
 	return
 */
 
-/mob/proc/set_respawn_timer(var/time)
+mob/proc/set_respawn_timer(var/time)
 	// Try to figure out what time to use
 
 	// Special cases, can never respawn
@@ -538,7 +538,7 @@
 
 	GLOB.respawn_timers[keytouse] = world.time + time
 
-/mob/observer/dead/set_respawn_timer()
+mob/observer/dead/set_respawn_timer()
 	if(config_legacy.antag_hud_restricted && has_enabled_antagHUD)
 		..(-1)
 	else
@@ -551,7 +551,7 @@
  *
  * Only works if flag/norespawn is allowed in config
  */
-/mob/verb/abandon_mob()
+mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
 	set desc = "Return to the lobby."
@@ -598,13 +598,13 @@
  *
  * Doesn't require the config to be set.
  */
-/mob/verb/return_to_menu()
+mob/verb/return_to_menu()
 	set name = "Return to Menu"
 	set category = "OOC"
 	set desc = "Return to the lobby."
 	return abandon_mob()
 
-/mob/verb/observe()
+mob/verb/observe()
 	set name = "Observe"
 	set category = "OOC"
 
@@ -668,7 +668,7 @@
 GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 //suppress the .click/dblclick macros so people can't use them to identify the location of items or aimbot
-/mob/verb/DisClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
+mob/verb/DisClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
 	set name = ".click"
 	set hidden = TRUE
 	set category = null
@@ -679,7 +679,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		log_click("DROPPED: .click macro from [ckey] at [argu], [sec], [number1]. [number2]")
 		GLOB.exploit_warn_spam_prevention = world.time + 10
 
-/mob/verb/DisDblClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
+mob/verb/DisDblClick(argu = null as anything, sec = "" as text, number1 = 0 as num  , number2 = 0 as num)
 	set name = ".dblclick"
 	set hidden = TRUE
 	set category = null
@@ -697,7 +697,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
  * * refresh the inventory of machines in range if "refresh" sent
  * * handles the strip panel equip and unequip as well if "item" sent
  */
-/mob/Topic(href, href_list)
+mob/Topic(href, href_list)
 	if(href_list["strip"])
 		var/op = href_list["strip"]
 		handle_strip_topic(usr, href_list, op)
@@ -716,7 +716,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	return
 
 
-/mob/proc/pull_damage()
+mob/proc/pull_damage()
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.health - H.halloss <= config_legacy.health_threshold_softcrit)
@@ -727,56 +727,56 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 						return 1
 	return 0
 
-/mob/OnMouseDrop(atom/over, mob/user, proximity, params)
+mob/OnMouseDrop(atom/over, mob/user, proximity, params)
 	. = ..()
 	if(over != user)
 		return
 	. |= mouse_drop_strip_interaction(user)
 
-/mob/proc/can_use_hands()
+mob/proc/can_use_hands()
 	return
 
-/mob/proc/is_active()
+mob/proc/is_active()
 	return (0 >= usr.stat)
 
-/mob/proc/is_dead()
+mob/proc/is_dead()
 	return stat == DEAD
 
-/mob/proc/is_mechanical()
+mob/proc/is_mechanical()
 	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
 		return 1
 	return istype(src, /mob/living/silicon) || get_species_name() == "Machine"
 
-/mob/proc/is_ready()
+mob/proc/is_ready()
 	return client && !!mind
 
-/mob/proc/get_gender()
+mob/proc/get_gender()
 	return gender
 
-/mob/proc/get_visible_gender()
+mob/proc/get_visible_gender()
 	return gender
 
-/mob/proc/see(message)
+mob/proc/see(message)
 	if(!is_active())
 		return 0
 	to_chat(src, message)
 	return 1
 
-/mob/proc/show_viewers(message)
+mob/proc/show_viewers(message)
 	for(var/mob/M in viewers())
 		M.see(message)
 
 /// This might need a rename but it should replace the can this mob use things check
-/mob/proc/IsAdvancedToolUser()
+mob/proc/IsAdvancedToolUser()
 	return 0
 
-/mob/proc/AdjustLosebreath(amount)
+mob/proc/AdjustLosebreath(amount)
 	losebreath = clamp(0, losebreath + amount, 25)
 
-/mob/proc/SetLosebreath(amount)
+mob/proc/SetLosebreath(amount)
 	losebreath = clamp(0, amount, 25)
 
-/mob/proc/get_species_name()
+mob/proc/get_species_name()
 	return ""
 
 /**
@@ -784,27 +784,27 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
  *
  * this should be phased out for get_species_id().
  */
-/mob/proc/get_true_species_name()
+mob/proc/get_true_species_name()
 	return ""
 
 // todo: species vs subspecies
 // /mob/proc/get_species_id()
 // 	return
 
-/mob/proc/flash_weak_pain()
+mob/proc/flash_weak_pain()
 	flick("weak_pain",pain)
 
-/mob/proc/get_visible_implants(var/class = 0)
+mob/proc/get_visible_implants(var/class = 0)
 	var/list/visible_implants = list()
 	for(var/obj/item/O in embedded)
 		if(O.w_class > class)
 			visible_implants += O
 	return visible_implants
 
-/mob/proc/embedded_needs_process()
+mob/proc/embedded_needs_process()
 	return (embedded.len > 0)
 
-/mob/proc/yank_out_object()
+mob/proc/yank_out_object()
 	set category = "Object"
 	set name = "Yank out object"
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
@@ -896,7 +896,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	return 1
 
 /// Check for brain worms in head.
-/mob/proc/has_brain_worms()
+mob/proc/has_brain_worms()
 
 	for(var/I in contents)
 		if(istype(I,/mob/living/simple_mob/animal/borer))
@@ -904,10 +904,10 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 	return 0
 
-/mob/proc/updateicon()
+mob/proc/updateicon()
 	return
 
-/mob/verb/face_direction()
+mob/verb/face_direction()
 
 	set name = "Face Direction"
 	set category = "IC"
@@ -920,7 +920,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	else
 		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
 
-/mob/proc/set_face_dir(newdir)
+mob/proc/set_face_dir(newdir)
 	if(newdir)
 		if(newdir == facing_dir)
 			facing_dir = null
@@ -933,7 +933,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		else
 			facing_dir = dir
 
-/mob/setDir()
+mob/setDir()
 	if(facing_dir)
 		if(!canface() || lying || buckled || restrained())
 			facing_dir = null
@@ -942,85 +942,85 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	else
 		return ..()
 
-/mob/verb/northfaceperm()
+mob/verb/northfaceperm()
 	set hidden = 1
 	set src = usr
 	set_face_dir(client.client_dir(NORTH))
 
-/mob/verb/southfaceperm()
+mob/verb/southfaceperm()
 	set hidden = 1
 	set src = usr
 	set_face_dir(client.client_dir(SOUTH))
 
-/mob/verb/eastfaceperm()
+mob/verb/eastfaceperm()
 	set hidden = 1
 	set src = usr
 	set_face_dir(client.client_dir(EAST))
 
-/mob/verb/westfaceperm()
+mob/verb/westfaceperm()
 	set hidden = 1
 	set src = usr
 	set_face_dir(client.client_dir(WEST))
 
-/mob/proc/adjustEarDamage()
+mob/proc/adjustEarDamage()
 	return
 
-/mob/proc/setEarDamage()
+mob/proc/setEarDamage()
 	return
 
-/mob/proc/isSynthetic()
+mob/proc/isSynthetic()
 	return 0
 
-/mob/proc/is_muzzled()
+mob/proc/is_muzzled()
 	return 0
 
 //Exploitable Info Update
 
-/mob/proc/amend_exploitable(var/obj/item/I)
+mob/proc/amend_exploitable(var/obj/item/I)
 	if(istype(I))
 		exploit_addons |= I
 		var/exploitmsg = html_decode("\n" + "Has " + I.name + ".")
 		exploit_record += exploitmsg
 
-/client/proc/check_has_body_select()
+client/proc/check_has_body_select()
 	return mob && mob.hud_used && istype(mob.zone_sel, /atom/movable/screen/zone_sel)
 
-/client/verb/body_toggle_head()
+client/verb/body_toggle_head()
 	set name = "body-toggle-head"
 	set hidden = 1
 	toggle_zone_sel(list(BP_HEAD, O_EYES, O_MOUTH))
 
-/client/verb/body_r_arm()
+client/verb/body_r_arm()
 	set name = "body-r-arm"
 	set hidden = 1
 	toggle_zone_sel(list(BP_R_ARM,BP_R_HAND))
 
-/client/verb/body_l_arm()
+client/verb/body_l_arm()
 	set name = "body-l-arm"
 	set hidden = 1
 	toggle_zone_sel(list(BP_L_ARM,BP_L_HAND))
 
-/client/verb/body_chest()
+client/verb/body_chest()
 	set name = "body-chest"
 	set hidden = 1
 	toggle_zone_sel(list(BP_TORSO))
 
-/client/verb/body_groin()
+client/verb/body_groin()
 	set name = "body-groin"
 	set hidden = 1
 	toggle_zone_sel(list(BP_GROIN))
 
-/client/verb/body_r_leg()
+client/verb/body_r_leg()
 	set name = "body-r-leg"
 	set hidden = 1
 	toggle_zone_sel(list(BP_R_LEG,BP_R_FOOT))
 
-/client/verb/body_l_leg()
+client/verb/body_l_leg()
 	set name = "body-l-leg"
 	set hidden = 1
 	toggle_zone_sel(list(BP_L_LEG,BP_L_FOOT))
 
-/client/proc/toggle_zone_sel(list/zones)
+client/proc/toggle_zone_sel(list/zones)
 	if(!check_has_body_select())
 		return
 	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
@@ -1029,37 +1029,37 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
 // This is for inheritence since /mob/living will serve most cases. If you need ghosts to use this you'll have to implement that yourself.
-/mob/proc/update_client_color()
+mob/proc/update_client_color()
 	if(client && client.color)
 		animate(client, color = null, time = 10)
 	return
 
-/mob/proc/swap_hand()
+mob/proc/swap_hand()
 	return
 
-/mob/proc/will_show_tooltip()
+mob/proc/will_show_tooltip()
 	if(alpha <= EFFECTIVE_INVIS)
 		return FALSE
 	return TRUE
 
-/mob/MouseEntered(location, control, params)
+mob/MouseEntered(location, control, params)
 	if(usr != src && usr.is_preference_enabled(/datum/client_preference/mob_tooltips) && src.will_show_tooltip())
 		openToolTip(user = usr, tip_src = src, params = params, title = get_nametag_name(usr), content = get_nametag_desc(usr))
 
 	..()
 
-/mob/MouseDown()
+mob/MouseDown()
 	closeToolTip(usr) //No reason not to, really
 
 	..()
 
-/mob/MouseExited()
+mob/MouseExited()
 	closeToolTip(usr) //No reason not to, really
 
 	..()
 
 // Manages a global list of mobs with clients attached, indexed by z-level.
-/mob/proc/update_client_z(new_z) // +1 to register, null to unregister.
+mob/proc/update_client_z(new_z) // +1 to register, null to unregister.
 	if(registered_z != new_z)
 		if(registered_z)
 			GLOB.players_by_zlevel[registered_z] -= src
@@ -1070,11 +1070,11 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		else
 			registered_z = null
 
-/mob/on_changed_z_level(old_z, new_z)
+mob/on_changed_z_level(old_z, new_z)
 	..()
 	update_client_z(new_z)
 
-/mob/verb/local_diceroll(n as num)
+mob/verb/local_diceroll(n as num)
 	set name = "diceroll"
 	set category = "OOC"
 	set desc = "Roll a random number between 1 and a chosen number."
@@ -1098,7 +1098,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
  *
  * @return The datum source of the antimagic
  */
-/mob/proc/anti_magic_check(magic = TRUE, holy = FALSE, chargecost = 1, self = FALSE)
+mob/proc/anti_magic_check(magic = TRUE, holy = FALSE, chargecost = 1, self = FALSE)
 	if(!magic && !holy)
 		return
 	var/list/protection_sources = list()
@@ -1110,7 +1110,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
 		return src
 
-/mob/drop_location()
+mob/drop_location()
 	if(temporary_form)
 		return temporary_form.drop_location()
 	return ..()
@@ -1118,46 +1118,46 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 /**
  * Returns whether or not we should be allowed to examine a target
  */
-/mob/proc/allow_examine(atom/A)
+mob/proc/allow_examine(atom/A)
 	return client && (client.eye == src)
 
 /// Checks for slots that are currently obscured by other garments.
-/mob/proc/check_obscured_slots()
+mob/proc/check_obscured_slots()
 	return
 
-/mob/z_pass_in(atom/movable/AM, dir, turf/old_loc)
+mob/z_pass_in(atom/movable/AM, dir, turf/old_loc)
 	return TRUE	// we don't block
 
-/mob/z_pass_out(atom/movable/AM, dir, turf/new_loc)
+mob/z_pass_out(atom/movable/AM, dir, turf/new_loc)
 	return TRUE
 
 //? Pixel Offsets
 
-/mob/proc/get_buckled_pixel_x_offset()
+mob/proc/get_buckled_pixel_x_offset()
 	if(!buckled)
 		return 0
 	return buckled.get_centering_pixel_x_offset(NONE, src) - get_centering_pixel_x_offset() + buckled.buckle_pixel_x
 
-/mob/proc/get_buckled_pixel_y_offset()
+mob/proc/get_buckled_pixel_y_offset()
 	if(!buckled)
 		return 0
 	return buckled.get_centering_pixel_y_offset(NONE, src) - get_centering_pixel_y_offset() + buckled.buckle_pixel_y
 
-/mob/get_managed_pixel_x()
+mob/get_managed_pixel_x()
 	return ..() + shift_pixel_x + get_buckled_pixel_x_offset()
 
-/mob/get_managed_pixel_y()
+mob/get_managed_pixel_y()
 	return ..() + shift_pixel_y + get_buckled_pixel_y_offset()
 
-/mob/get_centering_pixel_x_offset(dir, atom/aligning)
+mob/get_centering_pixel_x_offset(dir, atom/aligning)
 	. = ..()
 	. += shift_pixel_x
 
-/mob/get_centering_pixel_y_offset(dir, atom/aligning)
+mob/get_centering_pixel_y_offset(dir, atom/aligning)
 	. = ..()
 	. += shift_pixel_y
 
-/mob/proc/reset_pixel_shifting()
+mob/proc/reset_pixel_shifting()
 	if(!shifted_pixels)
 		return
 	shifted_pixels = FALSE
@@ -1167,7 +1167,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	shift_pixel_y = 0
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PIXEL_OFFSET_CHANGED)
 
-/mob/proc/set_pixel_shift_x(val)
+mob/proc/set_pixel_shift_x(val)
 	if(!val)
 		return
 	shifted_pixels = TRUE
@@ -1175,7 +1175,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	shift_pixel_x = val
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PIXEL_OFFSET_CHANGED)
 
-/mob/proc/set_pixel_shift_y(val)
+mob/proc/set_pixel_shift_y(val)
 	if(!val)
 		return
 	shifted_pixels = TRUE
@@ -1183,7 +1183,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	shift_pixel_y = val
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PIXEL_OFFSET_CHANGED)
 
-/mob/proc/adjust_pixel_shift_x(val)
+mob/proc/adjust_pixel_shift_x(val)
 	if(!val)
 		return
 	shifted_pixels = TRUE
@@ -1191,7 +1191,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	pixel_x += val
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PIXEL_OFFSET_CHANGED)
 
-/mob/proc/adjust_pixel_shift_y(val)
+mob/proc/adjust_pixel_shift_y(val)
 	if(!val)
 		return
 	shifted_pixels = TRUE
@@ -1201,15 +1201,15 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 //? Reachability
 
-/mob/CanReachOut(atom/movable/mover, atom/target, obj/item/tool, list/cache)
+mob/CanReachOut(atom/movable/mover, atom/target, obj/item/tool, list/cache)
 	return FALSE
 
-/mob/CanReachIn(atom/movable/mover, atom/target, obj/item/tool, list/cache)
+mob/CanReachIn(atom/movable/mover, atom/target, obj/item/tool, list/cache)
 	return FALSE
 
 //? Radioactivity
 
-/mob/clean_radiation(str, mul, cheap)
+mob/clean_radiation(str, mul, cheap)
 	. = ..()
 	if(cheap)
 		return
@@ -1218,7 +1218,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 //? Abilities
 
-/mob/proc/init_abilities()
+mob/proc/init_abilities()
 	var/list/built = list()
 	var/list/registering = list()
 	for(var/datum/ability/ability_path as anything in abilities)
@@ -1230,7 +1230,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 	for(var/datum/ability/ability as anything in registering)
 		ability.associate(src)
 
-/mob/proc/dispose_abilities()
+mob/proc/dispose_abilities()
 	for(var/datum/ability/ability in abilities)
 		ability.disassociate(src)
 	abilities = null
@@ -1238,14 +1238,14 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 /**
  * mob side registration of abilities. must be called from /datum/ability/proc/associate!
  */
-/mob/proc/register_ability(datum/ability/ability)
+mob/proc/register_ability(datum/ability/ability)
 	LAZYINITLIST(abilities)
 	abilities += ability
 
 /**
  * mob side unregistration of abilities. must be called from /datum/ability/proc/disassociate!
  */
-/mob/proc/unregister_ability(datum/ability/ability)
+mob/proc/unregister_ability(datum/ability/ability)
 	LAZYREMOVE(abilities, ability)
 
 //! Misc
@@ -1259,11 +1259,11 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
  * need_hands - Whether you need hands to use this
  * floor_okay - Whether mobility flags should be checked for MOBILITY_CAN_UI to use.
  */
-/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
+mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	return
 
 /**
  * Checks if we can avoid things like landmine, lava, etc, whether beneficial or harmful.
  */
-/mob/is_avoiding_ground()
+mob/is_avoiding_ground()
 	return ..() || hovering || (buckled?.buckle_flags & BUCKLING_GROUND_HOIST)

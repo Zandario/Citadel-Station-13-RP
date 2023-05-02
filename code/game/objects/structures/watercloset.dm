@@ -1,6 +1,6 @@
 //todo: toothbrushes, and some sort of "toilet-filthinator" for the hos
 
-/obj/structure/toilet
+obj/structure/toilet
 	name = "toilet"
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
@@ -12,12 +12,12 @@
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
-/obj/structure/toilet/Initialize(mapload)
+obj/structure/toilet/Initialize(mapload)
 	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
 
-/obj/structure/toilet/attack_hand(mob/user, list/params)
+obj/structure/toilet/attack_hand(mob/user, list/params)
 	if(swirlie)
 		usr.setClickCooldown(user.get_attack_speed())
 		usr.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
@@ -41,10 +41,10 @@
 	open = !open
 	update_icon()
 
-/obj/structure/toilet/update_icon()
+obj/structure/toilet/update_icon()
 	icon_state = "toilet[open][cistern]"
 
-/obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
+obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(I.is_crowbar())
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
 		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
@@ -97,7 +97,7 @@
 
 	return ..()
 
-/obj/structure/urinal
+obj/structure/urinal
 	name = "urinal"
 	desc = "The HU-452, an experimental urinal."
 	icon = 'icons/obj/watercloset.dmi'
@@ -105,7 +105,7 @@
 	density = 0
 	anchored = 1
 
-/obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
+obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		if(isliving(G.affecting))
@@ -119,24 +119,24 @@
 			else
 				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
 
-/obj/item/reagent_containers/food/urinalcake
+obj/item/reagent_containers/food/urinalcake
 	name = "urinal cake"
 	desc = "A small, pleasant smelling air freshener keeping the bathroom smelling clean. It looks tasty... but, no, you shouldn't... Unless?"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/reagent_containers/food/urinalcake/New()
+obj/item/reagent_containers/food/urinalcake/New()
 	. = ..()
 	reagents.add_reagent("chlorine", 3)
 	reagents.add_reagent("ammonia", 1)
 
-/obj/item/reagent_containers/food/urinalcake/attack_self(mob/living/user)
+obj/item/reagent_containers/food/urinalcake/attack_self(mob/living/user)
 	user.visible_message("<span class='notice'>[user] squishes [src]!</span>", "<span class='notice'>You squish [src].</span>", "<i>You hear a squish.</i>")
 	icon_state = "urinalcake_squish"
 	addtimer(VARSET_CALLBACK(src, icon_state, "urinalcake"), 8)
 
-/obj/machinery/shower
+obj/machinery/shower
 	name = "shower"
 	desc = "The HS-451. Installed in the 2550s by the Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
@@ -152,18 +152,18 @@
 	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
 	var/datum/looping_sound/showering/soundloop
 
-/obj/machinery/shower/Initialize(mapload)
+obj/machinery/shower/Initialize(mapload)
 	create_reagents(50)
 	soundloop = new(list(src), FALSE)
 	return ..()
 
-/obj/machinery/shower/Destroy()
+obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)
 	return ..()
 
 //add heat controls? when emagged, you can freeze to death in it?
 
-/obj/effect/mist
+obj/effect/mist
 	name = "mist"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
@@ -172,7 +172,7 @@
 	anchored = 1
 	mouse_opacity = 0
 
-/obj/machinery/shower/attack_hand(mob/user, list/params)
+obj/machinery/shower/attack_hand(mob/user, list/params)
 	var/mob/living/M = user
 	if(!istype(M))
 		return
@@ -188,7 +188,7 @@
 	else
 		soundloop.stop()
 
-/obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
+obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/analyzer)
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
 	if(I.is_wrench())
@@ -200,7 +200,7 @@
 			user.visible_message("<span class='notice'>[user] adjusts the shower with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
 			add_fingerprint(user)
 
-/obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
+obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
 	cut_overlays()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
 		qdel(mymist)
@@ -228,7 +228,7 @@
 				ismist = 0
 
 //Yes, showers are super powerful as far as washing goes.
-/obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
+obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
 	if(!on)
 		return
 
@@ -324,7 +324,7 @@
 
 	reagents.splash(O, 10)
 
-/obj/machinery/shower/process(delta_time)
+obj/machinery/shower/process(delta_time)
 	if(!on) return
 	for(var/thing in loc)
 		var/atom/movable/AM = thing
@@ -336,7 +336,7 @@
 	wash_floor()
 	reagents.add_reagent("water", reagents.available_volume())
 
-/obj/machinery/shower/proc/wash_floor()
+obj/machinery/shower/proc/wash_floor()
 	if(!ismist && is_washing)
 		return
 	is_washing = 1
@@ -346,7 +346,7 @@
 	spawn(100)
 		is_washing = 0
 
-/obj/machinery/shower/proc/process_heat(mob/living/M)
+obj/machinery/shower/proc/process_heat(mob/living/M)
 	if(!on || !istype(M)) return
 
 	var/temperature = temperature_settings[watertemp]
@@ -360,13 +360,13 @@
 		else if(temperature <= H.species.cold_level_1)
 			to_chat(H, "<span class='warning'>The water is freezing cold!</span>")
 
-/obj/item/bikehorn/rubberducky
+obj/item/bikehorn/rubberducky
 	name = "rubber ducky"
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
 
-/obj/structure/sink
+obj/structure/sink
 	name = "sink"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
@@ -374,7 +374,7 @@
 	anchored = 1
 	var/busy = 0 	//Something's being washed at the moment
 
-/obj/structure/sink/MouseDroppedOnLegacy(var/obj/item/thing, var/mob/user)
+obj/structure/sink/MouseDroppedOnLegacy(var/obj/item/thing, var/mob/user)
 	..()
 	if(!istype(thing) || !thing.is_open_container())
 		return ..()
@@ -388,7 +388,7 @@
 	thing.reagents.clear_reagents()
 	thing.update_icon()
 
-/obj/structure/sink/attack_hand(mob/user, list/params)
+obj/structure/sink/attack_hand(mob/user, list/params)
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
@@ -422,7 +422,7 @@
 	for(var/mob/V in viewers(src, null))
 		V.show_message("<span class='notice'>[user] washes their hands using \the [src].</span>")
 
-/obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob)
+obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob)
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
@@ -488,46 +488,46 @@
 		"<span class='notice'>[user] washes \a [I] using \the [src].</span>", \
 		"<span class='notice'>You wash \a [I] using \the [src].</span>")
 
-/obj/structure/sink/kitchen
+obj/structure/sink/kitchen
 	name = "kitchen sink"
 	icon_state = "sink_alt"
 
-/obj/structure/sink/puddle	//splishy splashy ^_^
+obj/structure/sink/puddle	//splishy splashy ^_^
 	name = "puddle"
 	icon_state = "puddle"
 	desc = "A small pool of some liquid, ostensibly water."
 
-/obj/structure/sink/puddle/attack_hand(mob/user, list/params)
+obj/structure/sink/puddle/attack_hand(mob/user, list/params)
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"
 
-/obj/structure/sink/puddle/attackby(obj/item/O as obj, mob/user as mob)
+obj/structure/sink/puddle/attackby(obj/item/O as obj, mob/user as mob)
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"
 
 //***Oil well puddles from Main.
-/obj/structure/sink/oil_well	//You're not going to enjoy bathing in this...
+obj/structure/sink/oil_well	//You're not going to enjoy bathing in this...
 	name = "oil well"
 	desc = "A bubbling pool of oil.This would probably be valuable, had bluespace technology not destroyed the need for fossil fuels 200 years ago."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "puddle-oil"
 	var/dispensedreagent = /datum/reagent/crude_oil
 
-/obj/structure/sink/oil_well/Initialize(mapload)
+obj/structure/sink/oil_well/Initialize(mapload)
 	.=..()
 	create_reagents(20)
 	reagents.add_reagent(dispensedreagent, 20)
 
 /* Okay, just straight up, I tried to code this like blood overlays, but I just do NOT understand the system. If someone wants to sort it, enable this too.
-/obj/structure/sink/oil_well/attack_hand(mob/user, list/params)
+obj/structure/sink/oil_well/attack_hand(mob/user, list/params)
 	flick("puddle-oil-splash",src)
 	reagents.reaction(M, 20) //Covers target in 20u of oil.
 	to_chat(M, "<span class='notice'>You touch the pool of oil, only to get oil all over yourself. It would be wise to wash this off with water.</span>")
 */
 
-/obj/structure/sink/oil_well/attackby(obj/item/O, mob/user, params)
+obj/structure/sink/oil_well/attackby(obj/item/O, mob/user, params)
 	flick("puddle-oil-splash",src)
 	if(O == /obj/item/shovel) //attempt to deconstruct the puddle with a shovel
 		to_chat(user, "You fill in the oil well with soil.")
@@ -545,7 +545,7 @@
 	else
 		return ..()
 
-/obj/item/plunger
+obj/item/plunger
 	name = "plunger"
 	desc = "It's a plunger, for plunging."
 	icon = 'icons/obj/watercloset.dmi'
@@ -554,7 +554,7 @@
 	var/plunge_mod = 1 //time*plunge_mod = total time we take to plunge an object
 	var/reinforced = FALSE //whether we do heavy duty stuff like geysers
 
-/obj/item/plunger/pre_attack(atom/target, mob/user, clickchain_flags, list/params)
+obj/item/plunger/pre_attack(atom/target, mob/user, clickchain_flags, list/params)
 	if(!isobj(target))
 		return ..()
 	var/obj/O = target
@@ -562,7 +562,7 @@
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return ..()
 
-/obj/item/plunger/throw_impact(atom/hit_atom, mob/living/carbon/human/target, target_zone)
+obj/item/plunger/throw_impact(atom/hit_atom, mob/living/carbon/human/target, target_zone)
 	. = ..()
 	if(target_zone != BP_HEAD)
 		return
@@ -572,7 +572,7 @@
 			H.equip_to_slot_if_possible(src, SLOT_MASK, INV_OP_SUPPRESS_WARNING)
 			H.visible_message("<span class='warning'>The plunger slams into [H]'s face!</span>", "<span class='warning'>The plunger suctions to your face!</span>")
 
-/obj/item/plunger/reinforced
+obj/item/plunger/reinforced
 	name = "reinforced plunger"
 	desc = "It's an Mk7 Reinforced Plunger, for heavy duty plunging."
 	icon_state = "reinforced_plunger"
@@ -581,7 +581,7 @@
 	plunge_mod = 0.8
 
 /* Nooooope, not yet.
-/obj/structure/geyser
+obj/structure/geyser
 	name = "geyser"
 	icon = 'icons/obj/lavaland/terrain.dmi'
 	icon_state = "geyser"
@@ -594,7 +594,7 @@
 	var/max_volume = 500
 	var/start_volume = 50
 
-/obj/structure/geyser/proc/start_chemming()
+obj/structure/geyser/proc/start_chemming()
 	activated = TRUE
 	create_reagents(max_volume, DRAINABLE)
 	reagents.add_reagent(reagent_id, start_volume)
@@ -606,11 +606,11 @@
 		I.color = reagents.get_color()
 		add_overlay(I)
 
-/obj/structure/geyser/process()
+obj/structure/geyser/process()
 	if(activated && reagents.total_volume <= reagents.maximum_volume) //this is also evaluated in add_reagent, but from my understanding proc calls are expensive
 		reagents.add_reagent(reagent_id, potency)
 
-/obj/structure/geyser/plunger_act(obj/item/plunger/P, mob/living/user, _reinforced)
+obj/structure/geyser/plunger_act(obj/item/plunger/P, mob/living/user, _reinforced)
 	if(!_reinforced)
 		to_chat(user, "<span class='warning'>The [P.name] isn't strong enough!</span>")
 		return
@@ -622,11 +622,11 @@
 	if(do_after(user, 50 * P.plunge_mod, target = src) && !activated)
 		start_chemming()
 
-/obj/structure/geyser/random
+obj/structure/geyser/random
 	erupting_state = null
 	var/list/options = list(/datum/reagent/clf3 = 10, /datum/reagent/water/hollowwater = 10, /datum/reagent/medicine/omnizine/protozine = 6, /datum/reagent/wittel = 1)
 
-/obj/structure/geyser/random/Initialize(mapload)
+obj/structure/geyser/random/Initialize(mapload)
 	. = ..()
 	reagent_id = pickweight(options)
 */

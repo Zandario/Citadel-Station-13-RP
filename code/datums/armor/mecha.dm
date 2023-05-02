@@ -1,2 +1,1 @@
-/datum/armor/mecha
-
+datum/armor/mecha

@@ -5,7 +5,7 @@
 // UI minigame phase
 #define MINIGAME_PHASE 3
 
-/datum/fishing_challenge
+datum/fishing_challenge
 	/// When the ui minigame phase started
 	var/start_time
 	/// Is it finished (either by win/lose or window closing)
@@ -39,7 +39,7 @@
 	/// Fishing line visual
 	var/datum/beam/fishing_line
 
-/datum/fishing_challenge/New(atom/spot, reward_path, obj/item/fishing_rod/rod, mob/user)
+datum/fishing_challenge/New(atom/spot, reward_path, obj/item/fishing_rod/rod, mob/user)
 	src.user = user
 	src.reward_path = reward_path
 	src.used_rod = rod
@@ -62,7 +62,7 @@
 		if(rod.hook.fishing_hook_traits & FISHING_HOOK_WEIGHTED)
 			special_effects += FISHING_MINIGAME_RULE_WEIGHTED_BAIT
 
-/datum/fishing_challenge/Destroy(force, ...)
+datum/fishing_challenge/Destroy(force, ...)
 	if(!completed)
 		complete(win = FALSE)
 	if(fishing_line)
@@ -71,7 +71,7 @@
 		QDEL_NULL(lure)
 	. = ..()
 
-/datum/fishing_challenge/proc/start(mob/living/user)
+datum/fishing_challenge/proc/start(mob/living/user)
 	/// Create fishing line visuals
 	fishing_line = used_rod.create_fishing_line(lure, target_py = 5)
 	// If fishing line breaks los / rod gets dropped / deleted
@@ -82,7 +82,7 @@
 	user.action_feedback(SPAN_NOTICE("You start fishing..."), src)
 	playsound(lure, 'sound/effects/splash.ogg', 100)
 
-/datum/fishing_challenge/proc/handle_reel()
+datum/fishing_challenge/proc/handle_reel()
 	SIGNAL_HANDLER_DOES_SLEEP
 	if(phase == WAIT_PHASE) //Reset wait
 		user.bubble_action_feedback("miss!", lure)
@@ -91,18 +91,18 @@
 		start_minigame_phase()
 	return FISHING_ROD_REEL_HANDLED
 
-/datum/fishing_challenge/proc/check_distance()
+datum/fishing_challenge/proc/check_distance()
 	SIGNAL_HANDLER
 	if(get_dist(user,lure) > max_distance)
 		interrupt()
 
 /// Challenge interrupted by something external
-/datum/fishing_challenge/proc/interrupt()
+datum/fishing_challenge/proc/interrupt()
 	SIGNAL_HANDLER
 	if(!completed)
 		complete(FALSE)
 
-/datum/fishing_challenge/proc/complete(win = FALSE, perfect_win = FALSE)
+datum/fishing_challenge/proc/complete(win = FALSE, perfect_win = FALSE)
 	deltimer(next_phase_timer)
 	completed = TRUE
 	if(user)
@@ -120,7 +120,7 @@
 	SEND_SIGNAL(src, COMSIG_FISHING_CHALLENGE_COMPLETED, user, win, perfect_win)
 	qdel(src)
 
-/datum/fishing_challenge/proc/start_baiting_phase()
+datum/fishing_challenge/proc/start_baiting_phase()
 	deltimer(next_phase_timer)
 	phase = WAIT_PHASE
 	//Bobbing animation
@@ -130,7 +130,7 @@
 	var/wait_time = rand(1 SECONDS, 15 SECONDS)
 	next_phase_timer = addtimer(CALLBACK(src, PROC_REF(start_biting_phase)), wait_time, TIMER_STOPPABLE)
 
-/datum/fishing_challenge/proc/start_biting_phase()
+datum/fishing_challenge/proc/start_biting_phase()
 	phase = BITING_PHASE
 	// Trashing animation
 	playsound(lure, 'sound/effects/fish_splash.ogg', 100)
@@ -141,13 +141,13 @@
 	var/wait_time = rand(3 SECONDS, 6 SECONDS)
 	next_phase_timer = addtimer(CALLBACK(src, PROC_REF(start_baiting_phase)), wait_time, TIMER_STOPPABLE)
 
-/datum/fishing_challenge/proc/start_minigame_phase()
+datum/fishing_challenge/proc/start_minigame_phase()
 	phase = MINIGAME_PHASE
 	deltimer(next_phase_timer)
 	start_time = world.time
 	ui_interact(user)
 
-/datum/fishing_challenge/ui_interact(mob/user, datum/tgui/ui)
+datum/fishing_challenge/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Fishing")
@@ -155,32 +155,32 @@
 		ui.set_mouse_hook(TRUE)
 		ui.open()
 
-/datum/fishing_challenge/ui_host(mob/user)
+datum/fishing_challenge/ui_host(mob/user)
 	return lure //Could be the target really
 
 // Manually closing the ui is treated as lose
-/datum/fishing_challenge/ui_close(mob/user)
+datum/fishing_challenge/ui_close(mob/user)
 	. = ..()
 	if(!completed)
 		complete(FALSE)
 
-/datum/fishing_challenge/ui_static_data(mob/user)
+datum/fishing_challenge/ui_static_data(mob/user)
 	. = ..()
 	.["difficulty"] = max(1,min(difficulty,100))
 	.["fish_ai"] = fish_ai
 	.["special_effects"] = special_effects
 	.["background_image"] = background
 
-/datum/fishing_challenge/ui_assets(mob/user)
+datum/fishing_challenge/ui_assets(mob/user)
 	return list(get_asset_datum(/datum/asset/simple/fishing_minigame)) //preset screens
 
-/datum/fishing_challenge/ui_status(mob/user, datum/ui_state/state)
+datum/fishing_challenge/ui_status(mob/user, datum/ui_state/state)
 	return min(
 		get_dist(user, lure) > max_distance ? UI_CLOSE : UI_INTERACTIVE,
 		ui_status_user_is_abled(user, lure),
 	)
 
-/datum/fishing_challenge/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+datum/fishing_challenge/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -195,7 +195,7 @@
 			complete(win = FALSE)
 
 /// The visual that appears over the fishing spot
-/obj/effect/fishing_lure
+obj/effect/fishing_lure
 	icon = 'icons/modules/fishing/fishing.dmi'
 	icon_state = "lure_idle"
 

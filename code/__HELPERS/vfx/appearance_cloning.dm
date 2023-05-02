@@ -1,7 +1,7 @@
 /**
  * clones us as a high-resolution outline
  */
-/atom/proc/vfx_clone_as_outline(alpha = 127, r = 1, g = 1, b = 1)
+atom/proc/vfx_clone_as_outline(alpha = 127, r = 1, g = 1, b = 1)
 	var/mutable_appearance/MA = new
 	MA.appearance = src
 	MA.filters = list(
@@ -24,7 +24,7 @@
 /**
  * clones us as a high-resolution greyscale
  */
-/atom/proc/vfx_clone_as_greyscale(alpha = 127)
+atom/proc/vfx_clone_as_greyscale(alpha = 127)
 	var/static/list/static_greyscale_matrix = color_matrix_greyscale()
 	var/mutable_appearance/MA = new
 	MA.appearance = src

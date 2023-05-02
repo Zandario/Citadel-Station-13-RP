@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/demon/verb/blood_crawl()
+mob/living/simple_mob/vore/demon/verb/blood_crawl()
 	set name = "Bloodcrawl"
 	set desc = "Shift out of reality using blood as your gateway"
 	set category = "Abilities"
@@ -103,7 +103,7 @@
 		density = FALSE
 		force_max_speed = TRUE
 
-/mob/living/simple_mob/vore/demon/verb/phase_shift()
+mob/living/simple_mob/vore/demon/verb/phase_shift()
 	set name = "Phase Shift"
 	set desc = "Shift out of reality temporarily"
 	set category = "Abilities"

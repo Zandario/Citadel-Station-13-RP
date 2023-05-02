@@ -1,9 +1,9 @@
-/datum/random_map/building
+datum/random_map/building
 	descriptor = "generic room"
 	limit_x = 7
 	limit_y = 7
 
-/datum/random_map/building/generate_map()
+datum/random_map/building/generate_map()
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)
 			var/current_cell = get_map_cell(x,y)
@@ -14,7 +14,7 @@
 			else
 				map[current_cell] = FLOOR_CHAR
 
-/datum/random_map/building/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
+datum/random_map/building/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
 	var/list/possible_doors
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)

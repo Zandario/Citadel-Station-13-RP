@@ -2,7 +2,7 @@ var/CMinutes = null
 var/savefile/Banlist
 
 
-/proc/CheckBan(var/ckey, var/id, var/address)
+proc/CheckBan(var/ckey, var/id, var/address)
 	if(!Banlist)		// if Banlist cannot be located for some reason
 		LoadBans()		// try to load the bans
 		if(!Banlist)	// uh oh, can't find bans!
@@ -54,14 +54,14 @@ var/savefile/Banlist
 				return .
 	return 0
 
-/proc/UpdateTime() //No idea why i made this a proc.
+proc/UpdateTime() //No idea why i made this a proc.
 	CMinutes = (world.realtime / 10) / 60
 	return 1
 
-/hook/startup/proc/loadBans()
+hook/startup/proc/loadBans()
 	return LoadBans()
 
-/proc/LoadBans()
+proc/LoadBans()
 
 	Banlist = new("data/banlist.bdb")
 	log_admin("Loading Banlist")
@@ -78,7 +78,7 @@ var/savefile/Banlist
 	ClearTempbans()
 	return 1
 
-/proc/ClearTempbans()
+proc/ClearTempbans()
 	UpdateTime()
 
 	Banlist.cd = "/base"
@@ -96,7 +96,7 @@ var/savefile/Banlist
 	return 1
 
 
-/proc/AddBan(ckey, computerid, reason, bannedby, temp, minutes, address)
+proc/AddBan(ckey, computerid, reason, bannedby, temp, minutes, address)
 
 	var/bantimestamp
 
@@ -121,7 +121,7 @@ var/savefile/Banlist
 			Banlist["minutes"] << bantimestamp
 	return 1
 
-/proc/RemoveBan(foldername)
+proc/RemoveBan(foldername)
 	var/key
 	var/id
 
@@ -150,7 +150,7 @@ var/savefile/Banlist
 
 	return 1
 
-/proc/GetExp(minutes as num)
+proc/GetExp(minutes as num)
 	UpdateTime()
 	var/exp = minutes - CMinutes
 	if (exp <= 0)
@@ -165,7 +165,7 @@ var/savefile/Banlist
 			timeleftstring = "[exp] Minutes"
 		return timeleftstring
 
-/datum/admins/proc/unbanpanel()
+datum/admins/proc/unbanpanel()
 	var/count = 0
 	var/dat
 	//var/dat = "<HR><B>Unban Player:</B> <font color=#4F49AF>(U) = Unban</font> , (E) = Edit Ban <font color='green'>(Total<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 ></font>"
@@ -193,7 +193,7 @@ var/savefile/Banlist
 
 //////////////////////////////////// DEBUG ////////////////////////////////////
 
-/proc/CreateBans()
+proc/CreateBans()
 
 	UpdateTime()
 
@@ -222,8 +222,7 @@ var/savefile/Banlist
 
 	Banlist.cd = "/base"
 
-/proc/ClearAllBans()
+proc/ClearAllBans()
 	Banlist.cd = "/base"
 	for (var/A in Banlist.dir)
 		RemoveBan(A)
-

@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper
+obj/item/mecha_parts/mecha_equipment/tool/sleeper
 	name = "mounted sleeper"
 	desc = "A sleeper. Mountable to an exosuit. (Can be attached to: Medical Exosuits)"
 	icon = 'icons/obj/medical/cryogenic2.dmi'
@@ -15,22 +15,22 @@
 	salvageable = FALSE
 	allow_duplicate = TRUE
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/Initialize(mapload)
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/Initialize(mapload)
 	. = ..()
 	pr_mech_sleeper = new /datum/global_iterator/mech_sleeper(list(src),0)
 	pr_mech_sleeper.set_delay(equip_cooldown)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/Destroy()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/Destroy()
 	qdel(pr_mech_sleeper)
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/Exit(atom/movable/O)
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/Exit(atom/movable/O)
 	return FALSE
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/action(var/mob/living/carbon/human/target)
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/action(var/mob/living/carbon/human/target)
 	if(!action_checks(target))
 		return
 	if(!istype(target))
@@ -70,7 +70,7 @@
 		log_message("[target] loaded. Life support functions engaged.")
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/go_out()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/go_out()
 	if(!occupant)
 		return
 	occupant.forceMove(get_turf(src))
@@ -87,14 +87,14 @@
 	pr_mech_sleeper.stop()
 	set_ready_state(1)
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/detach()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/detach()
 	if(occupant)
 		occupant_message("Unable to detach [src] - equipment occupied.")
 		return
 	pr_mech_sleeper.stop()
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/get_equip_info()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/get_equip_info()
 	var/output = ..()
 	if(output)
 		var/temp = ""
@@ -103,7 +103,7 @@
 		return "[output] [temp]"
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/Topic(href,href_list)
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/Topic(href,href_list)
 	..()
 	var/datum/topic_input/top_filter = new /datum/topic_input(href,href_list)
 	if(top_filter.get("eject"))
@@ -116,7 +116,7 @@
 		inject_reagent(top_filter.getType("inject",/datum/reagent),top_filter.getObj("source"))
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_occupant_stats()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_occupant_stats()
 	if(!occupant)
 		return
 	return {"<html>
@@ -145,7 +145,7 @@
 				</body>
 				</html>"}
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_occupant_dam()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_occupant_dam()
 	var/t1
 	switch(occupant.stat)
 		if(0)
@@ -164,14 +164,14 @@
 				<font color="[occupant.getFireLoss() < 60 ? "blue" : "red"]"><b>Burn Severity:</b> [occupant.getFireLoss()]%</font><br />
 				"}
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_occupant_reagents()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_occupant_reagents()
 	if(occupant.reagents)
 		for(var/datum/reagent/R in occupant.reagents.reagent_list)
 			if(R.volume > 0)
 				. += "[R]: [round(R.volume,0.01)]<br />"
 	return . || "None"
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_available_reagents()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_available_reagents()
 	var/output
 	var/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/SG = locate(/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun) in chassis
 	if(SG && SG.reagents && islist(SG.reagents.reagent_list))
@@ -181,7 +181,7 @@
 	return output
 
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/inject_reagent(var/datum/reagent/R,var/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/SG)
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/inject_reagent(var/datum/reagent/R,var/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/SG)
 	if(!R || !occupant || !SG || !(SG in chassis.equipment))
 		return 0
 	var/to_inject = min(R.volume, inject_amount)
@@ -196,7 +196,7 @@
 		update_equip_info()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/update_equip_info()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/update_equip_info()
 	if(..())
 		send_byjax(chassis.occupant,"msleeper.browser","lossinfo",get_occupant_dam())
 		send_byjax(chassis.occupant,"msleeper.browser","reagents",get_occupant_reagents())
@@ -204,7 +204,7 @@
 		return 1
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/verb/eject()
+obj/item/mecha_parts/mecha_equipment/tool/sleeper/verb/eject()
 	set name = "Sleeper Eject"
 	set category = "Exosuit Interface"
 	set src = usr.loc
@@ -217,9 +217,9 @@
 		return
 	go_out()//and release him from the eternal prison.
 
-/datum/global_iterator/mech_sleeper
+datum/global_iterator/mech_sleeper
 
-/datum/global_iterator/mech_sleeper/process(var/obj/item/mecha_parts/mecha_equipment/tool/sleeper/S)
+datum/global_iterator/mech_sleeper/process(var/obj/item/mecha_parts/mecha_equipment/tool/sleeper/S)
 	if(!S.chassis)
 		S.set_ready_state(1)
 		return stop()

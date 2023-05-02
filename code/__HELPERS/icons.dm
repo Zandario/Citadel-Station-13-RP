@@ -114,21 +114,21 @@ ColorTone(rgb, tone)
 
 #define TO_HEX_DIGIT(n) ascii2text((n&15) + ((n&15)<10 ? 48 : 87))
 
-/icon/proc/MakeLying()
+icon/proc/MakeLying()
 	var/icon/I = new(src,dir=SOUTH)
 	I.BecomeLying()
 	return I
 
-/icon/proc/BecomeLying()
+icon/proc/BecomeLying()
 	Turn(90)
 	Shift(SOUTH,6)
 	Shift(EAST,1)
 
 	// Multiply all alpha values by this float
-/icon/proc/ChangeOpacity(opacity = 1)
+icon/proc/ChangeOpacity(opacity = 1)
 	MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,opacity, 0,0,0,0)
 
-/icon/proc/ColorTone(tone)
+icon/proc/ColorTone(tone)
 	greyscale()
 
 	var/list/TONE = ReadRGB(tone)
@@ -146,14 +146,14 @@ ColorTone(rgb, tone)
 		Blend(upper, ICON_ADD)
 
 // Take the minimum color of two icons; combine transparency as if blending with ICON_ADD
-/icon/proc/MinColors(icon)
+icon/proc/MinColors(icon)
 	var/icon/I = new(src)
 	I.Opaque()
 	I.Blend(icon, ICON_SUBTRACT)
 	Blend(I, ICON_SUBTRACT)
 
 // Take the maximum color of two icons; combine opacity as if blending with ICON_OR
-/icon/proc/MaxColors(icon)
+icon/proc/MaxColors(icon)
 	var/icon/I
 	if(isicon(icon))
 		I = new(icon)
@@ -169,21 +169,21 @@ ColorTone(rgb, tone)
 	Blend(I, ICON_OR)
 
 // make this icon fully opaque--transparent pixels become black
-/icon/proc/Opaque(background = "#000000")
+icon/proc/Opaque(background = "#000000")
 	SwapColor(null, background)
 	MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,0, 0,0,0,1)
 
 // Change a grayscale icon into a white icon where the original color becomes the alpha
 // I.e., black -> transparent, gray -> translucent white, white -> solid white
-/icon/proc/BecomeAlphaMask()
+icon/proc/BecomeAlphaMask()
 	SwapColor(null, "#000000ff")	// don't let transparent become gray
 	MapColors(0,0,0,0.3, 0,0,0,0.59, 0,0,0,0.11, 0,0,0,0, 1,1,1,0)
 
-/icon/proc/UseAlphaMask(mask)
+icon/proc/UseAlphaMask(mask)
 	Opaque()
 	AddAlphaMask(mask)
 
-/icon/proc/AddAlphaMask(mask)
+icon/proc/AddAlphaMask(mask)
 	var/icon/M = new(mask)
 	M.Blend("#ffffff", ICON_SUBTRACT)
 	// apply mask
@@ -215,7 +215,7 @@ ColorTone(rgb, tone)
  * reads RGB or RGBA values to list
  * @return list(r, g, b) or list(r, g, b, a), values 0 to 255.
  */
-/proc/ReadRGB(rgb)
+proc/ReadRGB(rgb)
 	if(!rgb)
 		return
 
@@ -279,7 +279,7 @@ ColorTone(rgb, tone)
 	if(usealpha)
 		. += alpha
 
-/proc/ReadHSV(hsv)
+proc/ReadHSV(hsv)
 	if(!hsv)
 		return
 
@@ -333,7 +333,7 @@ ColorTone(rgb, tone)
 	if(usealpha)
 		. += alpha
 
-/proc/HSVtoRGB(hsv)
+proc/HSVtoRGB(hsv)
 	if(!hsv)
 		return "#000000"
 	var/list/HSV = ReadHSV(hsv)
@@ -364,7 +364,7 @@ ColorTone(rgb, tone)
 
 	return (HSV.len > 3) ? rgb(r,g,b,HSV[4]) : rgb(r,g,b)
 
-/proc/RGBtoHSV(rgb)
+proc/RGBtoHSV(rgb)
 	if(!rgb)
 		return "#0000000"
 	var/list/RGB = ReadRGB(rgb)
@@ -397,7 +397,7 @@ ColorTone(rgb, tone)
 
 	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
 
-/proc/hsv(hue, sat, val, alpha)
+proc/hsv(hue, sat, val, alpha)
 	if(hue < 0 || hue >= 1536)
 		hue %= 1536
 	if(hue < 0)
@@ -439,7 +439,7 @@ ColorTone(rgb, tone)
 
 	amount<0 or amount>1 are allowed
  */
-/proc/BlendHSV(hsv1, hsv2, amount)
+proc/BlendHSV(hsv1, hsv2, amount)
 	var/list/HSV1 = ReadHSV(hsv1)
 	var/list/HSV2 = ReadHSV(hsv2)
 
@@ -507,7 +507,7 @@ ColorTone(rgb, tone)
 
 	amount<0 or amount>1 are allowed
  */
-/proc/BlendRGB(rgb1, rgb2, amount)
+proc/BlendRGB(rgb1, rgb2, amount)
 	var/list/RGB1 = ReadRGB(rgb1)
 	var/list/RGB2 = ReadRGB(rgb2)
 
@@ -525,10 +525,10 @@ ColorTone(rgb, tone)
 
 	return isnull(alpha) ? rgb(r, g, b) : rgb(r, g, b, alpha)
 
-/proc/BlendRGBasHSV(rgb1, rgb2, amount)
+proc/BlendRGBasHSV(rgb1, rgb2, amount)
 	return HSVtoRGB(RGBtoHSV(rgb1), RGBtoHSV(rgb2), amount)
 
-/proc/HueToAngle(hue)
+proc/HueToAngle(hue)
 	// normalize hsv in case anything is screwy
 	if(hue < 0 || hue >= 1536)
 		hue %= 1536
@@ -538,7 +538,7 @@ ColorTone(rgb, tone)
 	hue -= hue >> 8
 	return hue / (1530/360)
 
-/proc/AngleToHue(angle)
+proc/AngleToHue(angle)
 	// normalize hsv in case anything is screwy
 	if(angle < 0 || angle >= 360)
 		angle -= 360 * round(angle / 360)
@@ -549,7 +549,7 @@ ColorTone(rgb, tone)
 
 
 // positive angle rotates forward through red->green->blue
-/proc/RotateHue(hsv, angle)
+proc/RotateHue(hsv, angle)
 	var/list/HSV = ReadHSV(hsv)
 
 	// normalize hsv in case anything is screwy
@@ -576,7 +576,7 @@ ColorTone(rgb, tone)
 	return hsv(HSV[1], HSV[2], HSV[3], (HSV.len > 3 ? HSV[4] : null))
 
 // Change grayscale color to black->tone->white range
-/proc/ColorTone(rgb, tone)
+proc/ColorTone(rgb, tone)
 	var/list/RGB = ReadRGB(rgb)
 	var/list/TONE = ReadRGB(tone)
 
@@ -590,7 +590,7 @@ ColorTone(rgb, tone)
 
 
 //Used in the OLD chem colour mixing algorithm
-/proc/GetColors(hex)
+proc/GetColors(hex)
 	hex = uppertext(hex)
 	// No alpha set? Default to full alpha.
 	if(length(hex) == 7)
@@ -608,7 +608,7 @@ ColorTone(rgb, tone)
 		((hi3 >= 65 ? hi3-55 : hi3-48)<<4) | (lo3 >= 65 ? lo3-55 : lo3-48),
 		((hi4 >= 65 ? hi4-55 : hi4-48)<<4) | (lo4 >= 65 ? lo4-55 : lo4-48))
 
-/proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
+proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
 	var/icon/alpha_mask = new(A.icon,A.icon_state)//So we want the default icon and icon state of A.
 	for(var/V in A.overlays)//For every image in overlays. var/image/I will not work, don't try it.
 		var/image/I = V
@@ -619,7 +619,7 @@ ColorTone(rgb, tone)
 		alpha_mask.Blend(image_overlay,ICON_OR)//OR so they are lumped together in a nice overlay.
 	return alpha_mask//And now return the mask.
 
-/mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.
+mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.
 	var/icon/opacity_icon = new(A.icon, A.icon_state)//Don't really care for overlays/underlays.
 	//Now we need to culculate overlays+underlays and add them together to form an image for a mask.
 	var/icon/alpha_mask = getIconMask(src)//get_flat_icon(src) is accurate but SLOW. Not designed for running each tick. This is also a little slow since it's blending a bunch of icons together but good enough.
@@ -638,7 +638,7 @@ ColorTone(rgb, tone)
 				I.pixel_y++
 		add_overlay(I)//And finally add the overlay.
 
-/proc/getHologramIcon(icon/A, safety = TRUE)//If safety is on, a new icon is not created.
+proc/getHologramIcon(icon/A, safety = TRUE)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
 	// flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
 	// flat_icon.ChangeOpacity(0.5)//Make it half transparent.
@@ -646,7 +646,7 @@ ColorTone(rgb, tone)
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 	return flat_icon
 
-/proc/getPAIHologramIcon(icon/A, safety = TRUE)
+proc/getPAIHologramIcon(icon/A, safety = TRUE)
 	var/icon/flat_icon = safety? A : new(A)
 	flat_icon.SetIntensity(0.75, 1, 0.75)
 	flat_icon.ChangeOpacity(0.7)
@@ -656,7 +656,7 @@ ColorTone(rgb, tone)
 
 //What the mob looks like as animated static
 //By vg's ComicIronic
-/proc/getStaticIcon(icon/A, safety = TRUE)
+proc/getStaticIcon(icon/A, safety = TRUE)
 	var/icon/flat_icon = safety ? A : new(A)
 	flat_icon.Blend(rgb(255,255,255))
 	flat_icon.BecomeAlphaMask()
@@ -666,7 +666,7 @@ ColorTone(rgb, tone)
 
 //What the mob looks like as a pitch black outline
 //By vg's ComicIronic
-/proc/getBlankIcon(icon/A, safety=1)
+proc/getBlankIcon(icon/A, safety=1)
 	var/icon/flat_icon = safety ? A : new(A)
 	flat_icon.Blend(rgb(255,255,255))
 	flat_icon.BecomeAlphaMask()
@@ -677,7 +677,7 @@ ColorTone(rgb, tone)
 
 //Dwarf fortress style icons based on letters (defaults to the first letter of the Atom's name)
 //By vg's ComicIronic
-/proc/getLetterImage(atom/A, letter= "", uppercase = 0)
+proc/getLetterImage(atom/A, letter= "", uppercase = 0)
 	if(!A)
 		return
 
@@ -700,7 +700,7 @@ ColorTone(rgb, tone)
 GLOBAL_LIST_EMPTY(friendly_animal_types)
 
 // Pick a random animal instead of the icon, and use that instead
-/proc/getRandomAnimalImage(atom/A)
+proc/getRandomAnimalImage(atom/A)
 	if(!GLOB.friendly_animal_types.len)
 		for(var/T in typesof(/mob/living/simple_animal))
 			var/mob/living/simple_animal/SA = T
@@ -724,7 +724,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 */
 //Interface for using DrawBox() to draw 1 pixel on a coordinate.
 //Returns the same icon specifed in the argument, but with the pixel drawn
-/proc/DrawPixel(icon/I,colour,drawX,drawY)
+proc/DrawPixel(icon/I,colour,drawX,drawY)
 	if(!I)
 		return 0
 
@@ -741,7 +741,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 
 
 //Interface for easy drawing of one pixel on an atom.
-/atom/proc/DrawPixelOn(colour, drawX, drawY)
+atom/proc/DrawPixelOn(colour, drawX, drawY)
 	var/icon/I = new(icon)
 	var/icon/J = DrawPixel(I, colour, drawX, drawY)
 	if(J) //Only set the icon if it succeeded, the icon without the pixel is 1000x better than a black square.
@@ -750,7 +750,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 	return 0
 /*
 //For creating consistent icons for human looking simple animals
-/proc/get_flat_human_icon(icon_id, datum/role/job/J, datum/preferences/prefs, dummy_key, showDirs = GLOB.cardinals, outfit_override = null)
+proc/get_flat_human_icon(icon_id, datum/role/job/J, datum/preferences/prefs, dummy_key, showDirs = GLOB.cardinals, outfit_override = null)
 	var/static/list/humanoid_icon_cache = list()
 	if(!icon_id || !humanoid_icon_cache[icon_id])
 		var/mob/living/carbon/human/dummy/body = generate_or_wait_for_human_dummy(dummy_key)
@@ -779,12 +779,12 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 //Hook, override to run code on- wait this is images
 //Images have dir without being an atom, so they get their own definition.
 //Lame.
-/image/proc/setDir(newdir)
+image/proc/setDir(newdir)
 	dir = newdir
 /*
 GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0,0,0)))
 
-/obj/proc/make_frozen_visual()
+obj/proc/make_frozen_visual()
 	// Used to make the frozen item visuals for Freon.
 	if(resistance_flags & FREEZE_PROOF)
 		return
@@ -795,7 +795,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		obj_flags |= FROZEN
 
 //Assumes already frozed
-/obj/proc/make_unfrozen()
+obj/proc/make_unfrozen()
 	if(obj_flags & FROZEN)
 		name = replacetext(name, "frozen ", "")
 		remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, GLOB.freon_color_matrix)
@@ -806,7 +806,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 /// Generate a filename for this asset
 /// The same asset will always lead to the same asset name
 /// (Generated names do not include file extention.)
-/proc/generate_asset_name(file)
+proc/generate_asset_name(file)
 	return "asset.[md5(fcopy_rsc(file))]"
 
 /**
@@ -814,7 +814,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
  * exporting it as text, and then parsing the base64 from that.
  * (This relies on byond automatically storing icons in savefiles as base64)
  */
-/proc/icon2base64(icon/icon)
+proc/icon2base64(icon/icon)
 	if (!isicon(icon))
 		return FALSE
 	var/savefile/dummySave = new("tmp/dummySave.sav")
@@ -826,7 +826,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 	dummySave = null
 	fdel("tmp/dummySave.sav") //if you get the idea to try and make this more optimized, make sure to still call unlock on the savefile after every write to unlock it.
 
-/proc/icon2html(thing, target, icon_state, dir = SOUTH, frame = 1, moving = FALSE, sourceonly = FALSE, extra_classes = null)
+proc/icon2html(thing, target, icon_state, dir = SOUTH, frame = 1, moving = FALSE, sourceonly = FALSE, extra_classes = null)
 	if (!thing)
 		return
 //	if(SSlag_switch.measures[DISABLE_USR_ICON2HTML] && usr && !HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES))
@@ -894,7 +894,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		return SSassets.transport.get_asset_url(key)
 	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
 
-/proc/icon2base64html(thing)
+proc/icon2base64html(thing)
 	if (!thing)
 		return
 	var/static/list/bicon_cache = list()
@@ -928,7 +928,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 	return "<img class='icon icon-[A.icon_state]' src='data:image/png;base64,[bicon_cache[key]]'>"
 
 /// Costlier version of icon2html() that uses get_flat_icon() to account for overlays, underlays, etc. Use with extreme moderation, ESPECIALLY on mobs.
-/proc/costly_icon2html(thing, target, sourceonly = FALSE)
+proc/costly_icon2html(thing, target, sourceonly = FALSE)
 	if (!thing)
 		return
 //	if(SSlag_switch.measures[DISABLE_USR_ICON2HTML] && usr && !HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES))
@@ -944,14 +944,14 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 /// VSTATION SPECIFIC ///
 
 //For photo camera.
-/proc/build_composite_icon(atom/A)
+proc/build_composite_icon(atom/A)
 	var/icon/composite = icon(A.icon, A.icon_state, A.dir, 1)
 	for(var/O in A.overlays)
 		var/image/I = O
 		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
 	return composite
 
-/proc/adjust_brightness(color, value)
+proc/adjust_brightness(color, value)
 	if (!color)
 		return "#FFFFFF"
 	if (!value)
@@ -963,7 +963,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 	RGB[3] = clamp(RGB[3]+value,0,255)
 	return rgb(RGB[1],RGB[2],RGB[3])
 
-/proc/sort_atoms_by_layer(list/atoms)
+proc/sort_atoms_by_layer(list/atoms)
 	// Comb sort icons based on levels
 	var/list/result = atoms.Copy()
 	var/gap = result.len
@@ -982,7 +982,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 				swapped = 1
 	return result
 
-/proc/gen_hud_image(file, person, state, plane)
+proc/gen_hud_image(file, person, state, plane)
 	var/image/img = image(file, person, state)
 	img.plane = plane //Thanks Byond.
 	img.layer = MOB_LAYER-0.2
@@ -1004,7 +1004,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
  * * grow_to - Relative to the size of the icon, how big the halo grows while fading (don't use negatives for inward halos, use < 1)
  * * pixel_scale - If you'd like the halo to use pixel scale or the default 'fuzzy' scale
  */
-/proc/animate_aura(atom/A, simple_icons, color = "#00FF22", anim_duration = 5, offset = 1, loops = 1, grow_to = 2, pixel_scale = FALSE)
+proc/animate_aura(atom/A, simple_icons, color = "#00FF22", anim_duration = 5, offset = 1, loops = 1, grow_to = 2, pixel_scale = FALSE)
 	ASSERT(A)
 
 	//Take a guess at this, if they didn't set it
@@ -1067,7 +1067,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
  * * Accurate - Use more accurate color averaging, usually has better results and prevents muddied or overly dark colors. Mad thanks to wwjnc.
  * * ignoreGreyscale - Excempts greyscale colors from the color list, useful for filtering outlines or plate overlays.
  */
-/proc/AverageColor(icon/I, accurate = FALSE, ignoreGreyscale = FALSE)
+proc/AverageColor(icon/I, accurate = FALSE, ignoreGreyscale = FALSE)
 	var/list/colors = ListColors(I, ignoreGreyscale)
 	if(!colors.len)
 		return null
@@ -1093,7 +1093,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		final_average = rgb(colorsum[1]/total, colorsum[2]/total, colorsum[3]/total)
 	return final_average
 
-/proc/ListColors(icon/I, ignoreGreyscale = FALSE)
+proc/ListColors(icon/I, ignoreGreyscale = FALSE)
 	var/list/colors = list()
 	for(var/x_pixel = 1 to I.Width())
 		for(var/y_pixel = 1 to I.Height())
@@ -1104,7 +1104,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 				colors.Add(this_color)
 	return colors
 
-/proc/empty_Y_space(icon/I) //Returns the amount of lines containing only transparent pixels in an icon, starting from the bottom
+proc/empty_Y_space(icon/I) //Returns the amount of lines containing only transparent pixels in an icon, starting from the bottom
 	for(var/y_pixel = 1 to I.Height())
 		for(var/x_pixel = 1 to I.Width())
 			if (I.GetPixel(x_pixel, y_pixel))
@@ -1115,7 +1115,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
  * Input: rr, rg, rb, gr, gg, gb, br, bg, bb, cr, cg, cb
  * Output: RGB string
  */
-/proc/RGBMatrixTransform(list/color, list/cm)
+proc/RGBMatrixTransform(list/color, list/cm)
 	ASSERT(cm.len >= 9)
 	if(cm.len < 12)		// fill in the rest
 		for(var/i in 1 to (12 - cm.len))
@@ -1132,7 +1132,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
  * Setting scream to TRUE will print a stack trace ONCE.
  * Written by Kapu1178
  */
-/proc/icon_exists(file, state, scream)
+proc/icon_exists(file, state, scream)
 	var/static/list/icon_states_cache = list()
 	if(icon_states_cache[file]?[state])
 		return TRUE

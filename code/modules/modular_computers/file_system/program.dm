@@ -1,5 +1,5 @@
 // /program/ files are executable programs that do things.
-/datum/computer_file/program
+datum/computer_file/program
 	filetype = "PRG"
 	//! File name. FILE NAME MUST BE UNIQUE IF YOU WANT THE PROGRAM TO BE DOWNLOADABLE FROM NTNET!
 	filename = "UnknownProgram"
@@ -58,19 +58,19 @@
 	/// GQ/s - current network connectivity transfer rate.
 	var/ntnet_speed = 0
 
-/datum/computer_file/program/New(obj/item/modular_computer/comp = null)
+datum/computer_file/program/New(obj/item/modular_computer/comp = null)
 	..()
 	if(comp && istype(comp))
 		computer = comp
 
-/datum/computer_file/program/Destroy()
+datum/computer_file/program/Destroy()
 	computer = null
 	. = ..()
 
-/datum/computer_file/program/nano_host()
+datum/computer_file/program/nano_host()
 	return computer.nano_host()
 
-/datum/computer_file/program/clone()
+datum/computer_file/program/clone()
 	var/datum/computer_file/program/temp = ..()
 	temp.required_access = required_access
 	temp.nanomodule_path = nanomodule_path
@@ -82,34 +82,34 @@
 	return temp
 
 /// Relays icon update to the computer.
-/datum/computer_file/program/proc/update_computer_icon()
+datum/computer_file/program/proc/update_computer_icon()
 	if(computer)
 		computer.update_icon()
 
 /// Attempts to create a log in global ntnet datum. Returns TRUE on success, FALSE on fail.
-/datum/computer_file/program/proc/generate_network_log(text)
+datum/computer_file/program/proc/generate_network_log(text)
 	if(computer)
 		return computer.add_log(text)
 	return FALSE
 
-/datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = 0, loud = FALSE, mob/user = null)
+datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = 0, loud = FALSE, mob/user = null)
 	if(!(hardware_flag & usage_flags))
 		if(loud && computer && user)
 			to_chat(user, SPAN_WARNING("\The [computer] flashes: \"Hardware Error - Incompatible software\"."))
 		return FALSE
 	return TRUE
 
-/datum/computer_file/program/proc/get_signal(specific_action = 0)
+datum/computer_file/program/proc/get_signal(specific_action = 0)
 	if(computer)
 		return computer.get_ntnet_status(specific_action)
 	return FALSE
 
 /// Called by Process() on device that runs us, once every tick.
-/datum/computer_file/program/proc/process_tick()
+datum/computer_file/program/proc/process_tick()
 	update_netspeed()
 	return TRUE
 
-/datum/computer_file/program/proc/update_netspeed()
+datum/computer_file/program/proc/update_netspeed()
 	ntnet_speed = 0
 	switch(ntnet_status)
 		if(1)
@@ -124,7 +124,7 @@
  * User has to wear their ID or have it inhand for ID Scan to work.
  * Can also be called manually, with optional parameter being access_to_check to scan the user's ID
  */
-/datum/computer_file/program/proc/can_run(mob/living/user, loud = FALSE, access_to_check)
+datum/computer_file/program/proc/can_run(mob/living/user, loud = FALSE, access_to_check)
 	// Defaults to required_access
 	if(!access_to_check)
 		access_to_check = required_access
@@ -153,7 +153,7 @@
  * This attempts to retrieve header data for NanoUIs. If implementing completely new device of different type than existing ones
  * always include the device here in this proc. This proc basically relays the request to whatever is running the program.
  */
-/datum/computer_file/program/proc/get_header_data()
+datum/computer_file/program/proc/get_header_data()
 	if(computer)
 		return computer.get_header_data()
 	return list()
@@ -162,7 +162,7 @@
  * This is performed on program startup. May be overriden to add extra logic. Remember to include ..() call. Return 1 on success, 0 on failure.
  * When implementing new program based device, use this to run the program.
  */
-/datum/computer_file/program/proc/run_program(mob/living/user)
+datum/computer_file/program/proc/run_program(mob/living/user)
 	if(can_run(user, 1) || !requires_access_to_run)
 		computer.active_program = src
 		if(nanomodule_path)
@@ -179,7 +179,7 @@
 	return FALSE
 
 /// Use this proc to kill the program. Designed to be implemented by each program if it requires on-quit logic, such as the NTNRC client.
-/datum/computer_file/program/proc/kill_program(forced = FALSE)
+datum/computer_file/program/proc/kill_program(forced = FALSE)
 	program_state = PROGRAM_STATE_KILLED
 	if(network_destination)
 		generate_network_log("Connection to [network_destination] closed.")
@@ -194,7 +194,7 @@
  * This is called every tick when the program is enabled. Ensure you do parent call if you override it. If parent returns TRUE continue with UI initialisation.
  * It returns FALSE if it can't run or if NanoModule was used instead. I suggest using NanoModules where applicable.
  */
-/datum/computer_file/program/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, force_open = TRUE)
+datum/computer_file/program/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, force_open = TRUE)
 	if(program_state != PROGRAM_STATE_ACTIVE) // Our program was closed. Close the ui if it exists.
 		if(ui)
 			ui.close()
@@ -216,38 +216,38 @@
  *
  *! ALWAYS INCLUDE PARENT CALL ..() OR DIE IN FIRE.
  */
-/datum/computer_file/program/Topic(href, href_list)
+datum/computer_file/program/Topic(href, href_list)
 	if(..())
 		return 1
 	if(computer)
 		return computer.Topic(href, href_list)
 
 /// Relays the call to nano module, if we have one
-/datum/computer_file/program/proc/check_eye(mob/user)
+datum/computer_file/program/proc/check_eye(mob/user)
 	if(NM)
 		return NM.check_eye(user)
 	else
 		return -1
 
-/obj/item/modular_computer/initial_data()
+obj/item/modular_computer/initial_data()
 	return get_header_data()
 
-/obj/item/modular_computer/update_layout()
+obj/item/modular_computer/update_layout()
 	return TRUE
 
-/datum/nano_module/program
+datum/nano_module/program
 	/// Program-Based computer program that runs this nano module. Defaults to null.
 	var/datum/computer_file/program/program = null
 	//available_to_ai = FALSE
 
-/datum/nano_module/program/New(host, topic_manager, program)
+datum/nano_module/program/New(host, topic_manager, program)
 	..()
 	src.program = program
 
-/datum/topic_manager/program
+datum/topic_manager/program
 	var/datum/program
 
-/datum/topic_manager/program/New(datum/program)
+datum/topic_manager/program/New(datum/program)
 	..()
 	src.program = program
 
@@ -255,5 +255,5 @@
  * Calls forwarded to PROGRAM itself should begin with "PRG_"
  * Calls forwarded to COMPUTER running the program should begin with "PC_"
  */
-/datum/topic_manager/program/Topic(href, href_list)
+datum/topic_manager/program/Topic(href, href_list)
 	return program && program.Topic(href, href_list)

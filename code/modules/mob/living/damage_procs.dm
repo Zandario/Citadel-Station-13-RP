@@ -8,7 +8,7 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
+mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 	if(GLOB.Debug2)
 		log_world("## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked].")
 	if(!damage || (blocked >= 100))
@@ -49,7 +49,7 @@
 	return 1
 
 
-/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/blocked = 0)
+mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/blocked = 0)
 	if(blocked >= 100)
 		return 0
 	if(brute)	apply_damage(brute, BRUTE, def_zone, blocked)
@@ -62,7 +62,7 @@
 
 
 
-/mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
+mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
 	if(GLOB.Debug2)
 		log_world("## DEBUG: apply_effect() was called.  The type of effect is [effecttype].  Blocked by [blocked].")
 	if(!effect || (blocked >= 100))
@@ -90,7 +90,7 @@
 	update_health()
 	return 1
 
-/mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/blocked = 0, var/ignite = 0, var/flammable = 0)
+mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/blocked = 0, var/ignite = 0, var/flammable = 0)
 	if(blocked >= 100)
 		return 0
 	if(stun)		apply_effect(stun, STUN, blocked)
@@ -121,7 +121,7 @@
  * - check_armor - do'th we care about armor?
  * - def_zone - zone to check if we do
  */
-/mob/living/proc/afflict_radiation(amt, run_armor, def_zone)
+mob/living/proc/afflict_radiation(amt, run_armor, def_zone)
 	if(amt <= 0)
 		return
 	if(run_armor)
@@ -134,8 +134,7 @@
  * @params
  * - amt - how much
  */
-/mob/living/proc/cure_radiation(amt)
+mob/living/proc/cure_radiation(amt)
 	if(amt <= 0)
 		return
 	radiation = max(0, radiation - amt)
-

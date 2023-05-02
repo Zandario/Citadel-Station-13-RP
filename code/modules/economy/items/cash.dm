@@ -1,4 +1,4 @@
-/obj/item/spacecash
+obj/item/spacecash
 	name = "0 Thaler"
 	desc = "It's worth 0 Thalers."
 	gender = PLURAL
@@ -18,7 +18,7 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
-/obj/item/spacecash/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/spacecash/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/spacecash))
 		if(istype(W, /obj/item/spacecash/ewallet)) return 0
 
@@ -34,7 +34,7 @@
 		to_chat(user, "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>")
 		qdel(src)
 
-/obj/item/spacecash/update_icon()
+obj/item/spacecash/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -69,7 +69,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/item/spacecash/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)
+obj/item/spacecash/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)
 	worth += adjust_worth
 	if(worth > 0)
 		if(update)
@@ -79,13 +79,13 @@
 		qdel(src)
 		return 0
 
-/obj/item/spacecash/proc/set_worth(var/new_worth = 0, var/update = 1)
+obj/item/spacecash/proc/set_worth(var/new_worth = 0, var/update = 1)
 	worth = max(0, new_worth)
 	if(update)
 		update_icon()
 	return worth
 
-/obj/item/spacecash/attack_self(mob/user)
+obj/item/spacecash/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -102,13 +102,13 @@
 	SC.set_worth(amount)
 	usr.put_in_hands(SC)
 
-/obj/item/spacecash/is_static_currency(prevent_types)
+obj/item/spacecash/is_static_currency(prevent_types)
 	return (prevent_types & PAYMENT_TYPE_CASH)? NOT_STATIC_CURRENCY : PLURAL_STATIC_CURRENCY
 
-/obj/item/spacecash/do_static_currency_feedback(amount, mob/user, atom/target, range)
+obj/item/spacecash/do_static_currency_feedback(amount, mob/user, atom/target, range)
 	user.visible_message(SPAN_NOTICE("[user] inserts some cash into [target]."), SPAN_NOTICE("You insert [amount] [CURRENCY_NAME_PLURAL_PROPERR] into [target]."), SPAN_NOTICE("You hear some papers shuffling."), range)
 
-/obj/item/spacecash/consume_static_currency(amount, force, mob/user, atom/target, range)
+obj/item/spacecash/consume_static_currency(amount, force, mob/user, atom/target, range)
 	if(force)
 		amount = min(amount, worth)
 	if(amount > worth)
@@ -121,65 +121,65 @@
 		return
 	update_appearance()
 
-/obj/item/spacecash/amount_static_currency()
+obj/item/spacecash/amount_static_currency()
 	return worth
 
-/obj/item/spacecash/c1
+obj/item/spacecash/c1
 	name = "1 Thaler"
 	icon_state = "spacecash1"
 	desc = "It's worth 1 credit."
 	worth = 1
 
-/obj/item/spacecash/c10
+obj/item/spacecash/c10
 	name = "10 Thaler"
 	icon_state = "spacecash10"
 	desc = "It's worth 10 Thalers."
 	worth = 10
 
-/obj/item/spacecash/c20
+obj/item/spacecash/c20
 	name = "20 Thaler"
 	icon_state = "spacecash20"
 	desc = "It's worth 20 Thalers."
 	worth = 20
 
-/obj/item/spacecash/c50
+obj/item/spacecash/c50
 	name = "50 Thaler"
 	icon_state = "spacecash50"
 	desc = "It's worth 50 Thalers."
 	worth = 50
 
-/obj/item/spacecash/c100
+obj/item/spacecash/c100
 	name = "100 Thaler"
 	icon_state = "spacecash100"
 	desc = "It's worth 100 Thalers."
 	worth = 100
 
-/obj/item/spacecash/c200
+obj/item/spacecash/c200
 	name = "200 Thaler"
 	icon_state = "spacecash200"
 	desc = "It's worth 200 Thalers."
 	worth = 200
 
-/obj/item/spacecash/c500
+obj/item/spacecash/c500
 	name = "500 Thaler"
 	icon_state = "spacecash500"
 	desc = "It's worth 500 Thalers."
 	worth = 500
 
-/obj/item/spacecash/c1000
+obj/item/spacecash/c1000
 	name = "1000 Thaler"
 	icon_state = "spacecash1000"
 	desc = "It's worth 1000 Thalers."
 	worth = 1000
 
-/proc/spawn_money(sum, spawnloc, mob/living/carbon/human/human_user)
+proc/spawn_money(sum, spawnloc, mob/living/carbon/human/human_user)
 	var/obj/item/spacecash/SC = new (spawnloc)
 
 	SC.set_worth(sum)
 	if (ishuman(human_user) && !human_user.get_active_held_item())
 		human_user.put_in_hands(SC)
 
-/obj/item/spacecash/ewallet
+obj/item/spacecash/ewallet
 	name = "charge card"
 	icon_state = "efundcard"
 	desc = "A card that holds an amount of money."
@@ -187,34 +187,34 @@
 	pickup_sound = 'sound/items/pickup/card.ogg'
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
 
-/obj/item/spacecash/ewallet/attack_self(mob/user)
+obj/item/spacecash/ewallet/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	return //Don't act
 
-/obj/item/spacecash/ewallet/attackby()
+obj/item/spacecash/ewallet/attackby()
 	return //like actual
 
-/obj/item/spacecash/ewallet/update_icon()
+obj/item/spacecash/ewallet/update_icon()
 	return //space cash
 
-/obj/item/spacecash/ewallet/examine(mob/user)
+obj/item/spacecash/ewallet/examine(mob/user)
 	. = ..()
 	if (!(user in view(2)) && user!=src.loc)
 		return
 	. += "<font color=#4F49AF>Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth].</font>"
 
-/obj/item/spacecash/ewallet/is_static_currency(prevent_types)
+obj/item/spacecash/ewallet/is_static_currency(prevent_types)
 	return (prevent_types & PAYMENT_TYPE_CHARGE_CARD)? NOT_STATIC_CURRENCY : DISCRETE_STATIC_CURRENCY
 
-/obj/item/spacecash/ewallet/do_static_currency_feedback(amount, mob/user, atom/target, range)
+obj/item/spacecash/ewallet/do_static_currency_feedback(amount, mob/user, atom/target, range)
 	visible_message(SPAN_NOTICE("[user] swipes [src] through [target]."), SPAN_NOTICE("You swipe [src] through [target]."), SPAN_NOTICE("You hear a card swipe."), range)
 
-/obj/item/spacecash/ewallet/amount_static_currency()
+obj/item/spacecash/ewallet/amount_static_currency()
 	return worth
 
-/obj/item/spacecash/ewallet/consume_static_currency(amount, force, mob/user, atom/target, range)
+obj/item/spacecash/ewallet/consume_static_currency(amount, force, mob/user, atom/target, range)
 	if(force)
 		amount = min(amount, worth)
 	if(amount > worth)

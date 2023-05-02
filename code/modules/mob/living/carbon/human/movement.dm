@@ -1,6 +1,6 @@
 #define HUMAN_LOWEST_SLOWDOWN -3
 
-/mob/living/carbon/human/movement_delay(oldloc, direct)
+mob/living/carbon/human/movement_delay(oldloc, direct)
 	. = ..()
 
 	var/tally = 0
@@ -103,7 +103,7 @@
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
 // Also its nice to have these things seperated.
-/mob/living/carbon/human/proc/calculate_item_encumbrance()
+mob/living/carbon/human/proc/calculate_item_encumbrance()
 	if(!buckled && shoes) // Shoes can make you go faster.
 		. += shoes.slowdown
 
@@ -118,7 +118,7 @@
 		. += max(I.slowdown, 0)
 
 // Similar to above, but for turf slowdown.
-/mob/living/carbon/human/proc/calculate_turf_slowdown(turf/T, direct)
+mob/living/carbon/human/proc/calculate_turf_slowdown(turf/T, direct)
 	if(!T)
 		return 0
 
@@ -157,7 +157,7 @@
 
 #undef HUMAN_LOWEST_SLOWDOWN
 
-/mob/living/carbon/human/Process_Spacemove(dir)
+mob/living/carbon/human/Process_Spacemove(dir)
 	//Do we have a working jetpack?
 	var/obj/item/tank/jetpack/thrust
 	if(back)
@@ -181,7 +181,7 @@
 
 	return ..()
 
-/mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
+mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 
 	if(species.species_flags & NO_SLIP)
@@ -204,7 +204,7 @@
 	return(prob_slip)
 
 // Handle footstep sounds
-/mob/living/carbon/human/handle_footstep(turf/T)
+mob/living/carbon/human/handle_footstep(turf/T)
 	if(is_incorporeal())
 		return
 
@@ -264,7 +264,7 @@
 
 //? crawling
 
-/mob/living/carbon/human/try_crawl_under(mob/living/other)
+mob/living/carbon/human/try_crawl_under(mob/living/other)
 	if(!in_selfmove) // we're being shoved under
 		bump_position_swap(other, TRUE)
 		return TRUE
@@ -290,5 +290,5 @@
 	crawling_under_someone = null
 	return TRUE
 
-/mob/living/carbon/human/should_crawl_under(mob/living/other)
+mob/living/carbon/human/should_crawl_under(mob/living/other)
 	return IS_PRONE(src) && !IS_PRONE(other)

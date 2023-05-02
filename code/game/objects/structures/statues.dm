@@ -1,5 +1,5 @@
 //Ported from Cit Main.
-/obj/structure/statue
+obj/structure/statue
 	name = "Statue"
 	desc = "Placeholder. Yell at Firecage if you SOMEHOW see this."
 	icon = 'icons/obj/statue.dmi'
@@ -11,11 +11,11 @@
 	var/materialType = "steel"
 	var/material = "steel"
 
-/obj/structure/statue/Destroy()
+obj/structure/statue/Destroy()
 	density = 0
 	return ..()
 
-/obj/structure/statue/attackby(obj/item/tool/W, mob/living/user, params)
+obj/structure/statue/attackby(obj/item/tool/W, mob/living/user, params)
 	add_fingerprint(user)
 	if(istype(W, /obj/item/tool/wrench))
 		if(anchored)
@@ -82,22 +82,22 @@
 		..()
 		CheckHardness()
 
-/obj/structure/statue/attack_hand(mob/user, list/params)
+obj/structure/statue/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	user.visible_message("[user] rubs some dust off from the [name]'s surface.", \
 						 "<span class='notice'>You rub some dust off from the [name]'s surface.</span>")
 
-/obj/structure/statue/bullet_act(obj/projectile/Proj)
+obj/structure/statue/bullet_act(obj/projectile/Proj)
 	hardness -= Proj.damage
 	..()
 	CheckHardness()
 	return
 
-/obj/structure/statue/proc/CheckHardness()
+obj/structure/statue/proc/CheckHardness()
 	if(hardness <= 0)
 		Dismantle(1)
 
-/obj/structure/statue/proc/Dismantle(devastated = 0)
+obj/structure/statue/proc/Dismantle(devastated = 0)
 	if(!devastated)
 		if (materialType == "steel")
 			var/ore = /obj/item/stack/material/steel
@@ -124,7 +124,7 @@
 				new ore(get_turf(src))
 	qdel(src)
 
-/obj/structure/statue/legacy_ex_act(severity = 1)
+obj/structure/statue/legacy_ex_act(severity = 1)
 	switch(severity)
 		if(1)
 			Dismantle(1)
@@ -142,172 +142,172 @@
 //////////////////////////////////////STATUES/////////////////////////////////////////////////////////////
 //////////////////////////silver///////////////////////////////////////
 
-/obj/structure/statue/silver
+obj/structure/statue/silver
 	hardness = 3
 	materialType = "silver"
 	material = "silver"
 	desc = "This is a valuable statue made from silver."
 
-/obj/structure/statue/silver/hos
+obj/structure/statue/silver/hos
 	name = "Statue of a Head of Security"
 	icon_state = "hos"
 
-/obj/structure/statue/silver/md
+obj/structure/statue/silver/md
 	name = "Statue of a Medical Officer"
 	icon_state = "md"
 
-/obj/structure/statue/silver/janitor
+obj/structure/statue/silver/janitor
 	name = "Statue of a Janitor"
 	icon_state = "jani"
 
-/obj/structure/statue/silver/sec
+obj/structure/statue/silver/sec
 	name = "Statue of a Security Officer"
 	icon_state = "sec"
 
-/obj/structure/statue/silver/secborg
+obj/structure/statue/silver/secborg
 	name = "Statue of a Security Cyborg"
 	icon_state = "secborg"
 
-/obj/structure/statue/silver/medborg
+obj/structure/statue/silver/medborg
 	name = "Statue of a Medical Cyborg"
 	icon_state = "medborg"
 
 //////////////////////gold///////////////////////////////////////
 
-/obj/structure/statue/gold
+obj/structure/statue/gold
 	hardness = 3
 	materialType = "gold"
 	material = "gold"
 	desc = "This is a highly valuable statue made from gold."
 
-/obj/structure/statue/gold/hos
+obj/structure/statue/gold/hos
 	name = "Statue of the Head of Security"
 	icon_state = "hos_g"
 
-/obj/structure/statue/gold/hop
+obj/structure/statue/gold/hop
 	name = "Statue of the Head of Personnel"
 	icon_state = "hop"
 
-/obj/structure/statue/gold/cmo
+obj/structure/statue/gold/cmo
 	name = "Statue of the Chief Medical Officer"
 	icon_state = "cmo"
 
-/obj/structure/statue/gold/ce
+obj/structure/statue/gold/ce
 	name = "Statue of the Chief Engineer"
 	icon_state = "ce"
 
-/obj/structure/statue/gold/rd
+obj/structure/statue/gold/rd
 	name = "Statue of the Research Director"
 	icon_state = "rd"
 
 ////////////////////////////phoron///////////////////////////////////////////////////////////////////////
 
-/obj/structure/statue/phoron
+obj/structure/statue/phoron
 	hardness = 2
 	materialType = "phoron"
 	material = "phoron"
 	desc = "This statue is suitably made from phoron."
 
-/obj/structure/statue/phoron/scientist
+obj/structure/statue/phoron/scientist
 	name = "Statue of a Scientist"
 	icon_state = "sci"
 
-/obj/structure/statue/phoron/xeno
+obj/structure/statue/phoron/xeno
 	name = "Statue of a Xenomorph"
 	icon_state = "xeno"
 
 ////////////////////////uranium///////////////////////////////////
 
-/obj/structure/statue/uranium
+obj/structure/statue/uranium
 	hardness = 3
 	luminosity = 2
 	materialType = "uranium"
 	material = "uranium"
 	desc = "If you can read this, go to Medical."
 
-/obj/structure/statue/uranium/nuke
+obj/structure/statue/uranium/nuke
 	name = "Statue of a Nuclear Fission Explosive"
 	desc = "This is a grand statue of a Nuclear Explosive. It has a sickening green colour."
 	icon_state = "nuke"
 
-/obj/structure/statue/uranium/eng
+obj/structure/statue/uranium/eng
 	name = "Statue of an engineer"
 	desc = "This statue has a sickening green colour."
 	icon_state = "eng"
 
 /////////////////////////diamond/////////////////////////////////////////
 
-/obj/structure/statue/diamond
+obj/structure/statue/diamond
 	hardness = 10
 	materialType = "diamond"
 	material = "diamond"
 	desc = "This is a very expensive diamond statue"
 
-/obj/structure/statue/diamond/captain
+obj/structure/statue/diamond/captain
 	name = "Statue of THE Captain."
 	icon_state = "cap"
 
-/obj/structure/statue/diamond/ai1
+obj/structure/statue/diamond/ai1
 	name = "Statue of the AI hologram."
 	icon_state = "ai1"
 
-/obj/structure/statue/diamond/ai2
+obj/structure/statue/diamond/ai2
 	name = "Statue of the AI core."
 	icon_state = "ai2"
 
 ////////////////////////bananium///////////////////////////////////////
 
-/obj/structure/statue/bananium
+obj/structure/statue/bananium
 	hardness = 3
 	materialType = "bananium"
 	material = "bananium"
 	desc = "A bananium statue with a small engraving:'HOOOOOOONK'."
 
-/obj/structure/statue/bananium/clown
+obj/structure/statue/bananium/clown
 	name = "Statue of a clown"
 	icon_state = "clown"
 
 /////////////////////sandstone/////////////////////////////////////////
 
-/obj/structure/statue/sandstone
+obj/structure/statue/sandstone
 	hardness = 0.5
 	materialType = "sandstone"
 	material = "sandstone"
 
-/obj/structure/statue/sandstone/assistant
+obj/structure/statue/sandstone/assistant
 	name = "Statue of an assistant"
 	desc = "A cheap statue of sandstone for a greyshirt."
 	icon_state = "assist"
 
 /////////////////////marble/////////////////////////////////////////
 
-/obj/structure/statue/marble
+obj/structure/statue/marble
 	hardness = 3
 	materialType = "marble"
 	material = "marble"
 	desc = "This is a shiny statue made from marble."
 
-/obj/structure/statue/marble/male
+obj/structure/statue/marble/male
 	name = "male statue"
 	desc = "This marble statue is shockingly lifelike."
 	icon_state = "human_male"
 
-/obj/structure/statue/marble/female
+obj/structure/statue/marble/female
 	name = "female statue"
 	desc = "This marble statue is shockingly lifelike."
 	icon_state = "human_female"
 
-/obj/structure/statue/marble/monkey
+obj/structure/statue/marble/monkey
 	name = "monkey statue"
 	desc = "This marble statue is shockingly lifelike."
 	icon_state = "monkey"
 
-/obj/structure/statue/marble/corgi
+obj/structure/statue/marble/corgi
 	name = "corgi statue"
 	desc = "This marble statue is shockingly lifelike."
 	icon_state = "corgi"
 
-/obj/structure/statue/marble/venus
+obj/structure/statue/marble/venus
 	name = "venusian statue"
 	desc = "This statue pays homage to an ancient Terran sculpture. Or it's a depiction of someone from Venus. Records are unclear."
 	icon = 'icons/obj/statuelarge.dmi'
@@ -315,29 +315,29 @@
 
 /////////////////////wood/////////////////////////////////////////
 
-/obj/structure/statue/wood
+obj/structure/statue/wood
 	name = "wood statue"
 	desc = "A simple wooden mannequin, generally used to display clothes or equipment. Water frequently."
 	icon_state = "fashion_m"
 
-/obj/structure/statue/bone
+obj/structure/statue/bone
 	name = "bone statue"
 	desc = "A towering menhir of bone, perhaps the colossal rib of some fallen beast."
 	icon = 'icons/obj/statuelarge.dmi'
 	icon_state = "rib"
 
-/obj/structure/statue/bone/skull
+obj/structure/statue/bone/skull
 	name = "skull statue"
 	desc = "A towering bone pillar depicting the skull of some forgotten beast."
 	icon_state = "skull"
 
-/obj/structure/statue/bone/skull/half
+obj/structure/statue/bone/skull/half
 	name = "eroded skull statue"
 	desc = "An eroded pillar depicting the skull of some forgotten beast."
 	icon_state = "skull-half"
 
 //////////////////Memorial/////////////////
-/obj/structure/memorial
+obj/structure/memorial
 	name = "Memorial Wall"
 	desc = "An obsidian memorial wall listing the names of NanoTrasen employees who have fallen in the pursuit of the Company's goals - both scientific and political."
 	icon = 'icons/obj/structures_64x.dmi'

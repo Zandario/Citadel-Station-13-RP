@@ -7,7 +7,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 --NEOFite
 */
 
-/obj/effect/immovablerod
+obj/effect/immovablerod
 	name = "Immovable Rod"
 	desc = "What the fuck is that?"
 	icon = 'icons/obj/objects.dmi'
@@ -16,7 +16,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	density = 1
 	anchored = 1
 
-/obj/effect/immovablerod/Bump(atom/clong)
+obj/effect/immovablerod/Bump(atom/clong)
 	if(istype(clong, /turf/simulated/shuttle)) //Skip shuttles without actually deleting the rod
 		return
 
@@ -41,11 +41,11 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	if(clong && prob(25))
 		src.loc = clong.loc
 
-/obj/effect/immovablerod/Destroy()
+obj/effect/immovablerod/Destroy()
 	walk(src, 0) // Because we might have called walk_towards, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
-/proc/immovablerod()
+proc/immovablerod()
 	var/startx = 0
 	var/starty = 0
 	var/endy = 0

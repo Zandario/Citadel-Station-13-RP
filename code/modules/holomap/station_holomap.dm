@@ -1,7 +1,7 @@
 //
 // Wall mounted holomap of the station
 //
-/obj/machinery/station_map
+obj/machinery/station_map
 	name = "station holomap"
 	desc = "A virtual map of the surrounding station."
 	icon = 'icons/obj/machines/stationmap.dmi'
@@ -31,7 +31,7 @@
 	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
 	var/datum/station_holomap/holomap_datum
 
-/obj/machinery/station_map/Initialize(mapload)
+obj/machinery/station_map/Initialize(mapload)
 	holomap_datum = new
 	original_zLevel = loc.z
 	SSholomaps.station_holomaps += src
@@ -40,13 +40,13 @@
 		setup_holomap()
 	return ..()
 
-/obj/machinery/station_map/Destroy()
+obj/machinery/station_map/Destroy()
 	SSholomaps.station_holomaps -= src
 	stopWatching()
 	holomap_datum = null
 	return ..()
 
-/obj/machinery/station_map/proc/setup_holomap()
+obj/machinery/station_map/proc/setup_holomap()
 	bogus = FALSE
 	var/turf/T = get_turf(src)
 	original_zLevel = T.z
@@ -68,7 +68,7 @@
 	// floor_markings.layer = FLOOR_DECAL_LAYER
 	update_icon()
 
-/obj/machinery/station_map/attack_hand(mob/user, list/params)
+obj/machinery/station_map/attack_hand(mob/user, list/params)
 	if(watching_mob && (watching_mob != user))
 		to_chat(user, "<span class='warning'>Someone else is currently watching the holomap.</span>")
 		return
@@ -78,21 +78,21 @@
 	startWatching(user)
 
 // Let people bump up against it to watch
-/obj/machinery/station_map/Bumped(var/atom/movable/AM)
+obj/machinery/station_map/Bumped(var/atom/movable/AM)
 	if(!watching_mob && isliving(AM) && AM.loc == loc)
 		startWatching(AM)
 
 // In order to actually get Bumped() we need to block movement.  We're (visually) on a wall, so people
 // couldn't really walk into us anyway.  But in reality we are on the turf in front of the wall, so bumping
 // against where we seem is actually trying to *exit* our real loc
-/obj/machinery/station_map/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+obj/machinery/station_map/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 	// log_debug(SPAN_DEBUG("[src] (dir=[dir]) CheckExit([mover], [target])  get_dir() = [get_dir(target, loc)]"))
 	if(get_dir(target, loc) == dir) // Opposite of "normal" since we are visually in the next turf over
 		return FALSE
 	else
 		return TRUE
 
-/obj/machinery/station_map/proc/startWatching(var/mob/user)
+obj/machinery/station_map/proc/startWatching(var/mob/user)
 	// Okay, does this belong on a screen thing or what?
 	// One argument is that this is an "in game" object becuase its in the world.
 	// But I think it actually isn't.  The map isn't holo projected into the whole room, (maybe strat one is!)
@@ -128,19 +128,19 @@
 			else
 				to_chat(user, "<span class='notice'>A hologram of the station appears before your eyes.</span>")
 
-/obj/machinery/station_map/attack_ai(var/mob/living/silicon/robot/user)
+obj/machinery/station_map/attack_ai(var/mob/living/silicon/robot/user)
 	return // TODO - Implement for AI ~Leshana
 	// user.station_holomap.toggleHolomap(user, isAI(user))
 
-/obj/machinery/station_map/process(delta_time)
+obj/machinery/station_map/process(delta_time)
 	if((machine_stat & (NOPOWER|BROKEN)) || !anchored)
 		stopWatching()
 
-/obj/machinery/station_map/proc/checkPosition()
+obj/machinery/station_map/proc/checkPosition()
 	if(!watching_mob || (watching_mob.loc != loc) || (dir != watching_mob.dir))
 		stopWatching()
 
-/obj/machinery/station_map/proc/stopWatching()
+obj/machinery/station_map/proc/stopWatching()
 	if(watching_mob)
 		if(watching_mob.client)
 			animate(holomap_datum.station_map, alpha = 0, time = 5, easing = LINEAR_EASING)
@@ -153,7 +153,7 @@
 	watching_mob = null
 	update_use_power(USE_POWER_IDLE)
 
-/obj/machinery/station_map/power_change()
+obj/machinery/station_map/power_change()
 	. = ..()
 	update_icon()
 	// TODO - Port use_auto_lights from /vg - For now implement it manually here
@@ -162,11 +162,11 @@
 	else
 		set_light(light_range_on, light_power_on)
 
-/obj/machinery/station_map/proc/set_broken()
+obj/machinery/station_map/proc/set_broken()
 	machine_stat |= BROKEN
 	update_icon()
 
-/obj/machinery/station_map/update_icon()
+obj/machinery/station_map/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(machine_stat & BROKEN)
@@ -197,7 +197,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/machinery/station_map/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/station_map/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -205,7 +205,7 @@
 		return
 	return ..()
 
-/obj/machinery/station_map/legacy_ex_act(severity)
+obj/machinery/station_map/legacy_ex_act(severity)
 	switch(severity)
 		if(1)
 			qdel(src)
@@ -218,7 +218,7 @@
 			if (prob(25))
 				set_broken()
 
-/datum/frame/frame_types/station_map
+datum/frame/frame_types/station_map
 	name = "Station Map Frame"
 	frame_class = "display"
 	frame_size = 3
@@ -228,13 +228,13 @@
 	circuit = /obj/item/circuitboard/station_map
 	icon_override = 'icons/obj/machines/stationmap.dmi'
 
-/datum/frame/frame_types/station_map/get_icon_state(var/state)
+datum/frame/frame_types/station_map/get_icon_state(var/state)
 	return "station_map_frame_[state]"
 
-/obj/structure/frame
+obj/structure/frame
 	layer = ABOVE_WINDOW_LAYER
 
-/obj/item/circuitboard/station_map
+obj/item/circuitboard/station_map
 	name = T_BOARD("Station Map")
 	board_type = new /datum/frame/frame_types/station_map
 	build_path = /obj/machinery/station_map

@@ -1,5 +1,5 @@
 
-/obj/item/organ/internal/eyes
+obj/item/organ/internal/eyes
 	name = "eyeballs"
 	icon_state = "eyes"
 	gender = PLURAL
@@ -8,31 +8,31 @@
 	var/list/eye_colour = list(0,0,0)
 	var/innate_flash_protection = FLASH_PROTECTION_NONE
 
-/obj/item/organ/internal/eyes/robotize()
+obj/item/organ/internal/eyes/robotize()
 	..()
 	name = "optical sensor"
 	add_obj_verb(src, /obj/item/organ/internal/eyes/proc/change_eye_color)
 
-/obj/item/organ/internal/eyes/robot
+obj/item/organ/internal/eyes/robot
 	name = "optical sensor"
 
-/obj/item/organ/internal/eyes/robot/Initialize(mapload)
+obj/item/organ/internal/eyes/robot/Initialize(mapload)
 	. = ..()
 	robotize()
 
-/obj/item/organ/internal/eyes/grey
+obj/item/organ/internal/eyes/grey
 	icon_state = "eyes_grey"
 
-/obj/item/organ/internal/eyes/grey/colormatch/Initialize(mapload)
+obj/item/organ/internal/eyes/grey/colormatch/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/sync_color), 15)
 
-/obj/item/organ/internal/eyes/grey/colormatch/proc/sync_color()
+obj/item/organ/internal/eyes/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		color = H.species.blood_color
 
-/obj/item/organ/internal/eyes/proc/change_eye_color()
+obj/item/organ/internal/eyes/proc/change_eye_color()
 	set name = "Change Eye Color"
 	set desc = "Changes your robotic eye color instantly."
 	set category = "IC"
@@ -52,7 +52,7 @@
 		// Finally, update the eye icon on the mob.
 		owner.regenerate_icons()
 
-/obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
+obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
 
 	// Apply our eye colour to the target.
 	if(istype(target) && eye_colour)
@@ -62,7 +62,7 @@
 		target.update_eyes()
 	..()
 
-/obj/item/organ/internal/eyes/proc/update_colour()
+obj/item/organ/internal/eyes/proc/update_colour()
 	if(!owner)
 		return
 	eye_colour = list(
@@ -71,13 +71,13 @@
 		owner.b_eyes ? owner.b_eyes : 0
 		)
 
-/obj/item/organ/internal/eyes/take_damage(amount, var/silent=0)
+obj/item/organ/internal/eyes/take_damage(amount, var/silent=0)
 	var/oldbroken = is_broken()
 	..()
 	if(is_broken() && !oldbroken && owner && !owner.stat)
 		to_chat(owner, "<span class='danger'>You go blind!</span>")
 
-/obj/item/organ/internal/eyes/tick_life(dt)
+obj/item/organ/internal/eyes/tick_life(dt)
 	. = ..()
 
 	if(is_bruised())
@@ -86,7 +86,7 @@
 	if(is_broken())
 		owner.Blind(4)
 
-/obj/item/organ/internal/eyes/handle_germ_effects()
+obj/item/organ/internal/eyes/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer
 	if(!.) return
 
@@ -99,13 +99,13 @@
 			owner.custom_pain("Your eyes are watering, making it harder to see clearly for a moment.",1)
 			owner.eye_blurry += 10
 
-/obj/item/organ/internal/eyes/proc/get_total_protection(var/flash_protection = FLASH_PROTECTION_NONE)
+obj/item/organ/internal/eyes/proc/get_total_protection(var/flash_protection = FLASH_PROTECTION_NONE)
 	return (flash_protection + innate_flash_protection)
 
-/obj/item/organ/internal/eyes/proc/additional_flash_effects(var/intensity)
+obj/item/organ/internal/eyes/proc/additional_flash_effects(var/intensity)
 	return -1
 
-/obj/item/organ/internal/eyes/emp_act(severity)
+obj/item/organ/internal/eyes/emp_act(severity)
 	if(robotic >= ORGAN_ASSISTED)
 		return
 	owner.eye_blurry += (4/severity)

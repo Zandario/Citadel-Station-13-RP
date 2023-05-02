@@ -1,4 +1,4 @@
-/datum/component/caltrop
+datum/component/caltrop
 	var/min_damage
 	var/max_damage
 	var/probability
@@ -6,7 +6,7 @@
 
 	var/cooldown = 0
 
-/datum/component/caltrop/Initialize(_min_damage = 0, _max_damage = 0, _probability = 100,  _flags = NONE)
+datum/component/caltrop/Initialize(_min_damage = 0, _max_damage = 0, _probability = 100,  _flags = NONE)
 	min_damage = _min_damage
 	max_damage = max(_min_damage, _max_damage)
 	probability = _probability
@@ -14,7 +14,7 @@
 
 	RegisterSignal(parent, list(COMSIG_MOVABLE_CROSSED), .proc/Crossed)
 
-/datum/component/caltrop/proc/Crossed(datum/source, atom/movable/AM)
+datum/component/caltrop/proc/Crossed(datum/source, atom/movable/AM)
 	var/atom/A = parent
 	if(!A.has_gravity())
 		return

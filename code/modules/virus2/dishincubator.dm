@@ -1,4 +1,4 @@
-/obj/machinery/disease2/incubator/
+obj/machinery/disease2/incubator/
 	name = "pathogenic incubator"
 	density = 1
 	anchored = 1
@@ -14,7 +14,7 @@
 	var/foodsupply = 0
 	var/toxins = 0
 
-/obj/machinery/disease2/incubator/attackby(var/obj/O as obj, var/mob/user as mob)
+obj/machinery/disease2/incubator/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(default_unfasten_wrench(user, O, 20))
 		return
 
@@ -45,12 +45,12 @@
 
 		src.attack_hand(user)
 
-/obj/machinery/disease2/incubator/attack_hand(mob/user, list/params)
+obj/machinery/disease2/incubator/attack_hand(mob/user, list/params)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/disease2/incubator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/disease2/incubator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/data[0]
@@ -88,7 +88,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/machinery/disease2/incubator/process(delta_time)
+obj/machinery/disease2/incubator/process(delta_time)
 	if(dish && on && dish.virus2)
 		use_power(50,EQUIP)
 		if(!powered(EQUIP))
@@ -142,7 +142,7 @@
 					break
 			SSnanoui.update_uis(src)
 
-/obj/machinery/disease2/incubator/Topic(href, href_list)
+obj/machinery/disease2/incubator/Topic(href, href_list)
 	if (..())
 		return TRUE
 

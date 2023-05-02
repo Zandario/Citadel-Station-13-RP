@@ -4,7 +4,7 @@
 
 //Make sure that w_class is set as if the parent mob was medium sized! This is because w_class is adjusted automatically for mob_size in New()
 
-/obj/item/organ/external/chest
+obj/item/organ/external/chest
 	name = "upper body"
 	organ_tag = BP_TORSO
 	icon_name = "torso"
@@ -23,7 +23,7 @@
 	organ_rel_size = 70
 	base_miss_chance = 10
 
-/obj/item/organ/external/chest/robotize()
+obj/item/organ/external/chest/robotize()
 	if(..() && robotic != ORGAN_NANOFORM)
 		// Give them fancy new organs.
 		owner.internal_organs_by_name[O_CELL] = new /obj/item/organ/internal/cell(owner,1)
@@ -33,7 +33,7 @@
 		owner.internal_organs_by_name[O_HEATSINK] = new /obj/item/organ/internal/robotic/heatsink(owner,1)
 		owner.internal_organs_by_name[O_DIAGNOSTIC] = new /obj/item/organ/internal/robotic/diagnostic(owner,1)
 
-/obj/item/organ/external/chest/handle_germ_effects()
+obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
 
@@ -46,7 +46,7 @@
 		if(prob(.))
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 
-/obj/item/organ/external/groin
+obj/item/organ/external/groin
 	name = "lower body"
 	organ_tag = BP_GROIN
 	icon_name = "groin"
@@ -63,7 +63,7 @@
 	cannot_amputate = TRUE
 	organ_rel_size = 30
 
-/obj/item/organ/external/groin/handle_germ_effects()
+obj/item/organ/external/groin/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
 
@@ -76,7 +76,7 @@
 		if(prob(.))
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 
-/obj/item/organ/external/arm
+obj/item/organ/external/arm
 	organ_tag = BP_L_ARM
 	name = "left arm"
 	icon_name = "l_arm"
@@ -91,7 +91,7 @@
 	damage_force = 7
 	throw_force = 10
 
-/obj/item/organ/external/arm/handle_germ_effects()
+obj/item/organ/external/arm/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
 
@@ -108,7 +108,7 @@
 			else if(organ_tag == BP_R_ARM)
 				owner.drop_held_item_of_index(2)
 
-/obj/item/organ/external/arm/right
+obj/item/organ/external/arm/right
 	organ_tag = BP_R_ARM
 	name = "right arm"
 	icon_name = "r_arm"
@@ -116,7 +116,7 @@
 	joint = "right elbow"
 	amputation_point = "right shoulder"
 
-/obj/item/organ/external/leg
+obj/item/organ/external/leg
 	organ_tag = BP_L_LEG
 	name = "left leg"
 	icon_name = "l_leg"
@@ -132,7 +132,7 @@
 	damage_force = 10
 	throw_force = 12
 
-/obj/item/organ/external/leg/handle_germ_effects()
+obj/item/organ/external/leg/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
 
@@ -146,7 +146,7 @@
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 			owner.afflict_paralyze(20 * 5)
 
-/obj/item/organ/external/leg/right
+obj/item/organ/external/leg/right
 	organ_tag = BP_R_LEG
 	name = "right leg"
 	icon_name = "r_leg"
@@ -155,7 +155,7 @@
 	joint = "right knee"
 	amputation_point = "right hip"
 
-/obj/item/organ/external/foot
+obj/item/organ/external/foot
 	organ_tag = BP_L_FOOT
 	name = "left foot"
 	icon_name = "l_foot"
@@ -171,7 +171,7 @@
 	damage_force = 3
 	throw_force = 6
 
-/obj/item/organ/external/foot/handle_germ_effects()
+obj/item/organ/external/foot/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
 
@@ -185,7 +185,7 @@
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 			owner.afflict_paralyze(20 * 5)
 
-/obj/item/organ/external/foot/right
+obj/item/organ/external/foot/right
 	organ_tag = BP_R_FOOT
 	name = "right foot"
 	icon_name = "r_foot"
@@ -195,7 +195,7 @@
 	joint = "right ankle"
 	amputation_point = "right ankle"
 
-/obj/item/organ/external/hand
+obj/item/organ/external/hand
 	organ_tag = BP_L_HAND
 	name = "left hand"
 	icon_name = "l_hand"
@@ -212,7 +212,7 @@
 	damage_force = 3
 	throw_force = 5
 
-/obj/item/organ/external/hand/handle_germ_effects()
+obj/item/organ/external/hand/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
 
@@ -229,7 +229,7 @@
 			else if(organ_tag == BP_R_HAND)
 				owner.drop_right_held_item()
 
-/obj/item/organ/external/hand/right
+obj/item/organ/external/hand/right
 	organ_tag = BP_R_HAND
 	name = "right hand"
 	icon_name = "r_hand"
@@ -238,7 +238,7 @@
 	joint = "right wrist"
 	amputation_point = "right wrist"
 
-/obj/item/organ/external/head
+obj/item/organ/external/head
 	organ_tag = BP_HEAD
 	icon_name = "head"
 	name = "head"
@@ -263,15 +263,15 @@
 	var/eye_icon = "eyes_s"
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
 
-/obj/item/organ/external/head/Initialize(mapload)
+obj/item/organ/external/head/Initialize(mapload)
 	if(config_legacy.allow_headgibs)
 		cannot_gib = FALSE
 	return ..()
 
-/obj/item/organ/external/head/robotize(company, skip_prosthetics, keep_organs, force)
+obj/item/organ/external/head/robotize(company, skip_prosthetics, keep_organs, force)
 	return ..(company, skip_prosthetics, 1, force)
 
-/obj/item/organ/external/head/removed()
+obj/item/organ/external/head/removed()
 	if(owner)
 		if(iscarbon(owner))
 			name = "[owner.real_name]'s head"
@@ -280,7 +280,7 @@
 	get_icon()
 	..()
 
-/obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), permutation = 0)
+obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), permutation = 0)
 	. = ..()
 	if (!disfigured)
 		if (brute_dam > 40)
@@ -289,7 +289,7 @@
 		if (burn_dam > 40)
 			disfigure("burn")
 
-/obj/item/organ/external/head/handle_germ_effects()
+obj/item/organ/external/head/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.
 
@@ -303,11 +303,11 @@
 			owner.custom_pain("A jolt of pain surges through your [name]!",1)
 			owner.eye_blurry += 20 //Specific level 2 'feature
 
-/obj/item/organ/external/head/attackby(obj/item/I as obj, mob/user as mob)
+obj/item/organ/external/head/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/toy/plushie) || istype(I, /obj/item/organ/external/head))
 		user.visible_message("<span class='notice'>[user] makes \the [I] kiss \the [src]!.</span>", \
 		"<span class='notice'>You make \the [I] kiss \the [src]!.</span>")
 	return ..()
 
-/obj/item/organ/external/head/no_eyes
+obj/item/organ/external/head/no_eyes
 	eye_icon = "blank_eyes"

@@ -1,82 +1,82 @@
-/area/awaymission/labyrinth
+area/awaymission/labyrinth
 	icon_state = "blank"
 
-/area/awaymission/labyrinth/arrival
+area/awaymission/labyrinth/arrival
 	icon_state = "away"
 	requires_power = 0
 
-/area/awaymission/labyrinth/cave
+area/awaymission/labyrinth/cave
 	icon_state = "blue"
 
-/area/awaymission/labyrinth/temple
+area/awaymission/labyrinth/temple
 	icon_state = "away"
 	ambience = null // Todo: Add better ambience.
 
-/area/awaymission/labyrinth/temple/entry
+area/awaymission/labyrinth/temple/entry
 	icon_state = "chapel"
 	ambience = list('sound/music/TheClownChild.ogg')
 
 // These extra areas must break up the large area, or the game crashes when machinery (like an airlock) makes sparks.
 // I have no idea why. It's a nasty bug.
-/area/awaymission/labyrinth/temple/south_east
+area/awaymission/labyrinth/temple/south_east
 	icon_state = "red"
 
-/area/awaymission/labyrinth/temple/south_west
+area/awaymission/labyrinth/temple/south_west
 	icon_state = "bluenew"
 
-/area/awaymission/labyrinth/temple/south
+area/awaymission/labyrinth/temple/south
 	icon_state = "green"
 
-/area/awaymission/labyrinth/temple/west
+area/awaymission/labyrinth/temple/west
 	icon_state = "purple"
 
-/area/awaymission/labyrinth/temple/center
+area/awaymission/labyrinth/temple/center
 	icon_state = "yellow"
 
-/area/awaymission/labyrinth/temple/east
+area/awaymission/labyrinth/temple/east
 	icon_state = "blue"
 
-/area/awaymission/labyrinth/temple/north_east
+area/awaymission/labyrinth/temple/north_east
 	icon_state = "exit"
 
-/area/awaymission/labyrinth/temple/north_west
+area/awaymission/labyrinth/temple/north_west
 	icon_state = "away4"
 
-/area/awaymission/labyrinth/temple/north
+area/awaymission/labyrinth/temple/north
 	icon_state = "blue"
 
-/area/awaymission/labyrinth/boss
+area/awaymission/labyrinth/boss
 	icon_state = "red"
 
-/turf/unsimulated/wall/exterior
+turf/unsimulated/wall/exterior
 	opacity = 0
 	// For the outside of a building, or a massive wall.
 
-/turf/unsimulated/floor/lava
+turf/unsimulated/floor/lava
 	name = "lava"
 	icon_state = "lava"
 	density = 1
 	luminosity = 3
 
-/obj/structure/HonkMother
+obj/structure/HonkMother
 	name = "The Honk Mother"
 	desc = "A monolithic effigy of the legendary Honk Mother, adorned with dazzling rainbow bananium."
 	icon = 'icons/effects/160x160.dmi'
 	pixel_x = -64
 
-/obj/structure/HonkMother/Apex
+obj/structure/HonkMother/Apex
 	icon_state = "HonkMotherApex"
 
-/obj/structure/HonkMother/Base
+obj/structure/HonkMother/Base
 	icon_state = "HonkMotherBase"
 
-/obj/effect/decal/mecha_wreckage/honker/cluwne
+obj/effect/decal/mecha_wreckage/honker/cluwne
 	name = "cluwne mech wreckage"
 	icon_state = "cluwne-broken"
 	desc = "Not so funny anymore."
 
 /*
-/obj/structure/falsewall/cultspecial
+obj/structure/falsewall/cultspecial
 	name = "loose wall"
 	desc = "This wall tile seems loose. Try pushing on it."
 	icon_state = ""
@@ -85,11 +85,11 @@
 	opacity = 1
 */
 
-/obj/machinery/door/airlock/vault/temple
+obj/machinery/door/airlock/vault/temple
 	name = "Catacombs"
 	desc = "In a temple like this, these doors could be booby trapped..."
 
-/obj/machinery/door/airlock/vault/temple/Initialize(mapload)
+obj/machinery/door/airlock/vault/temple/Initialize(mapload)
 	. = ..()
 	if(prob(33))
 		safe = 0
@@ -98,7 +98,7 @@
 	if(prob(50))
 		secured_wires = 0
 
-/obj/mecha/combat/honker/cluwne // What have I done?
+obj/mecha/combat/honker/cluwne // What have I done?
 	desc = "Mechanized Assault Device for Juggernaughting Against Clown Killers. You've only heard legends about this exosuit..."
 	name = "M.A.D. J.A.C.K."
 	icon = 'icons/mecha/mecha_vr.dmi'
@@ -115,7 +115,7 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/honker/cluwne
 	max_equip = 4
 
-/obj/mecha/combat/honker/cluwne/Initialize(mapload)
+obj/mecha/combat/honker/cluwne/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
 	ME.attach(src)
@@ -126,7 +126,7 @@
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/honker
 	ME.attach(src)
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar
+obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar
 	name = "Banana Mortar"
 	icon = 'icons/mecha/mecha_equipment_vr.dmi'
 	icon_state = "mecha_bananamrtr"
@@ -142,7 +142,7 @@
 			return 0
 		return ..()
 
-/obj/item/mecha_parts/mecha_equipment/weapon/honker
+obj/item/mecha_parts/mecha_equipment/weapon/honker
 	name = "\improper HoNkER BlAsT 5000"
 	icon = 'icons/mecha/mecha_equipment_vr.dmi'
 	icon_state = "mecha_honker"
@@ -185,7 +185,7 @@
 		do_after_cooldown()
 		return
 
-/obj/spawner/corpse/tunnelclown
+obj/spawner/corpse/tunnelclown
 	name = "dead tunnel clown"
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
@@ -194,13 +194,13 @@
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
 	corpsepocket1 = /obj/item/bikehorn
 
-/obj/spawner/corpse/tunnelclown/sentinel
+obj/spawner/corpse/tunnelclown/sentinel
 	name = "dead clown sentinel"
 	corpsesuit = /obj/item/clothing/suit/cultrobes
 	corpsehelmet = /obj/item/clothing/head/culthood
 
 /*
-/mob/living/simple_mob/hostile/tunnelclown
+mob/living/simple_mob/hostile/tunnelclown
 	name = "tunnel clown"
 	desc = "A clown driven to madness in the depths of the Honk Mother's Catacombs."
 	faction = "tunnelclown"
@@ -242,7 +242,7 @@
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
 
-/mob/living/simple_mob/hostile/tunnelclown/sentinel
+mob/living/simple_mob/hostile/tunnelclown/sentinel
 	name = "tunnel clown sentinel"
 	desc = "A clown warrior tasked with guarding the Honk Mother's Catacombs."
 	faction = "tunnelclown"
@@ -257,7 +257,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 
-/mob/living/simple_mob/hostile/tunnelclown/death()
+mob/living/simple_mob/hostile/tunnelclown/death()
 	..()
 	if(corpse)
 		new corpse (src.loc)
@@ -266,7 +266,7 @@
 	del src
 	return
 
-/mob/living/simple_mob/hostile/cluwne
+mob/living/simple_mob/hostile/cluwne
 	name = "cluwne"
 	desc = "A mutated clown alleged to have been cursed by the Honk Mother and permanently banished to these catacombs for once being an unfunny shitter who brought grief instead of laughter."
 	faction = "tunnelclown"
@@ -307,7 +307,7 @@
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
 
-/obj/random/mob/clown
+obj/random/mob/clown
 	name = "Random Clown Mob"
 	desc = "This is a random clown spawn. You aren't supposed to see this. Call an admin because reality has broken into the meta."
 	icon = 'icons/mob/clowns_vr.dmi'
@@ -319,7 +319,7 @@
 					prob(1);/mob/living/simple_mob/hostile/tunnelclown)
 */
 
-/obj/item/paper/awaygate/labyrinth/calypso
+obj/item/paper/awaygate/labyrinth/calypso
 	name = "copy of the Final Flight of Calypso"
 	info = {"<h3>THIS IS A COPY OF THE LOGBOOKS AS COPIED BY GREYSON MAXIMUS, CAPTAIN V.O.R.E. NANOTRASEN.</h3>
 			<p><b>//BEGIN//</b>
@@ -352,14 +352,14 @@
 			</p><p>HONK</p>
 			<b>//END//</b>"}
 
-/obj/item/paper/awaygate/labyrinth/research
+obj/item/paper/awaygate/labyrinth/research
 	name = "research notes"
 	info = {"This must be the location of the alleged dig site mentioned in the Calypso's logs. These are the coordinates recovered from the wreck, and everything checks out.
 			My excavation team discovered two monoliths; one near the surface, and another at an underground shrine. I think this is it, but Dr. Madison hasn't come back with his team
 			to confirm. I'm about to leave and check it out for myself. I've translated some of the writing we copied, and it looks like a riddle. Maybe Dr. Madison has already figured
 			it out. He was excited to head back down with the team after I translated it. I wonder what it means. I'll translate the rest when I get back."}
 
-/obj/effect/spawner/lootdrop/labyrinth
+obj/effect/spawner/lootdrop/labyrinth
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
 	lootcount = 1		//how many items will be spawned

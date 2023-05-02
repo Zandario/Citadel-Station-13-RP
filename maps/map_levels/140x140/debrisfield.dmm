@@ -1,215 +1,215 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/space,
-/area/space/debrisfield/unexplored)
+turf/space,
+area/space/debrisfield/unexplored)
 "b" = (
-/obj/structure/table/steel,
-/obj/machinery/microwave,
-/obj/machinery/light/small{
+obj/structure/table/steel,
+obj/machinery/microwave,
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/old_tile/yellow,
-/area/space/debrisfield/explored)
+turf/simulated/floor/tiled/old_tile/yellow,
+area/space/debrisfield/explored)
 "c" = (
-/obj/effect/shuttle_landmark/automatic,
-/turf/space,
-/area/space/debrisfield/explored)
+obj/effect/shuttle_landmark/automatic,
+turf/space,
+area/space/debrisfield/explored)
 "f" = (
-/obj/effect/overmap/visitable/sector/debrisfield,
-/turf/space,
-/area/space/debrisfield/explored)
+obj/effect/overmap/visitable/sector/debrisfield,
+turf/space,
+area/space/debrisfield/explored)
 "j" = (
-/obj/structure/bed/chair/comfy/brown{
+obj/structure/bed/chair/comfy/brown{
 	dir = 4
 	},
-/obj/structure/closet/walllocker/emerglocker{
+obj/structure/closet/walllocker/emerglocker{
 	pixel_y = -32
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "l" = (
-/obj/structure/bed/chair/comfy/brown{
+obj/structure/bed/chair/comfy/brown{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "m" = (
-/obj/structure/table/steel,
-/obj/structure/sink/kitchen,
-/turf/simulated/floor/tiled/old_tile/yellow,
-/area/space/debrisfield/explored)
+obj/structure/table/steel,
+obj/structure/sink/kitchen,
+turf/simulated/floor/tiled/old_tile/yellow,
+area/space/debrisfield/explored)
 "n" = (
-/obj/structure/bed/chair/comfy/brown{
+obj/structure/bed/chair/comfy/brown{
 	dir = 8
 	},
-/obj/structure/closet/walllocker/emerglocker{
+obj/structure/closet/walllocker/emerglocker{
 	pixel_y = -32
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "o" = (
-/turf/simulated/floor/wood,
-/area/space/debrisfield/explored)
+turf/simulated/floor/wood,
+area/space/debrisfield/explored)
 "p" = (
-/obj/structure/table/steel,
-/obj/machinery/light_switch{
+obj/structure/table/steel,
+obj/machinery/light_switch{
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "q" = (
-/obj/structure/table/steel,
-/obj/machinery/light/small{
+obj/structure/table/steel,
+obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/reagent_containers/glass/beaker{
+obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/turf/simulated/floor/tiled/old_tile/yellow,
-/area/space/debrisfield/explored)
+turf/simulated/floor/tiled/old_tile/yellow,
+area/space/debrisfield/explored)
 "r" = (
-/obj/machinery/computer/ship/navigation/telescreen{
+obj/machinery/computer/ship/navigation/telescreen{
 	pixel_x = 32
 	},
-/obj/structure/bed/chair/sofa/corner{
+obj/structure/bed/chair/sofa/corner{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "t" = (
-/obj/structure/closet/walllocker/emerglocker{
+obj/structure/closet/walllocker/emerglocker{
 	pixel_y = -32
 	},
-/obj/structure/bed/chair/sofa/right{
+obj/structure/bed/chair/sofa/right{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "u" = (
-/obj/machinery/door/window/westright{
+obj/machinery/door/window/westright{
 	dir = 1
 	},
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "v" = (
-/obj/structure/simple_door,
-/turf/simulated/floor/wood,
-/area/space/debrisfield/explored)
+obj/structure/simple_door,
+turf/simulated/floor/wood,
+area/space/debrisfield/explored)
 "w" = (
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "2-4"
 	},
-/turf/simulated/wall/wood,
-/area/space/debrisfield/explored)
+turf/simulated/wall/wood,
+area/space/debrisfield/explored)
 "z" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
-/area/space/debrisfield/explored)
+obj/structure/grille,
+obj/structure/window/reinforced/full,
+turf/simulated/floor/plating,
+area/space/debrisfield/explored)
 "E" = (
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "F" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/obj/item/reagent_containers/food/drinks/bottle/cola,
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+obj/structure/closet/secure_closet/freezer/meat,
+obj/item/reagent_containers/food/drinks/soymilk,
+obj/item/reagent_containers/food/drinks/soymilk,
+obj/item/reagent_containers/food/drinks/bottle/milk,
+obj/item/reagent_containers/food/drinks/bottle/milk,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+obj/item/reagent_containers/food/drinks/bottle/cola,
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "G" = (
-/obj/machinery/power/apc/alarms_hidden{
+obj/machinery/power/apc/alarms_hidden{
 	pixel_y = 30
 	},
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "H" = (
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "1-8"
 	},
-/turf/simulated/wall/wood,
-/area/space/debrisfield/explored)
+turf/simulated/wall/wood,
+area/space/debrisfield/explored)
 "J" = (
-/obj/machinery/power/smes/buildable{
+obj/machinery/power/smes/buildable{
 	charge = 15000;
 	cur_coils = 3
 	},
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+turf/simulated/floor/tiled/airless,
+area/space/debrisfield/explored)
 "K" = (
-/obj/machinery/computer/ship/helm{
+obj/machinery/computer/ship/helm{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "M" = (
-/obj/structure/sink{
+obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/obj/structure/toilet{
+obj/structure/toilet{
 	pixel_y = 10
 	},
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/old_tile/yellow,
-/area/space/debrisfield/explored)
+turf/simulated/floor/tiled/old_tile/yellow,
+area/space/debrisfield/explored)
 "O" = (
-/obj/machinery/computer/shuttle_control/explore{
+obj/machinery/computer/shuttle_control/explore{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "P" = (
-/obj/machinery/ion_engine{
+obj/machinery/ion_engine{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+turf/simulated/floor/tiled/airless,
+area/space/debrisfield/explored)
 "S" = (
-/turf/simulated/wall/wood,
-/area/space/debrisfield/explored)
+turf/simulated/wall/wood,
+area/space/debrisfield/explored)
 "W" = (
-/turf/space,
-/area/space/debrisfield/explored)
+turf/space,
+area/space/debrisfield/explored)
 "Y" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/browndouble,
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/browndouble,
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 "Z" = (
-/obj/machinery/computer/ship/sensors,
-/turf/simulated/floor/carpet/oracarpet,
-/area/space/debrisfield/explored)
+obj/machinery/computer/ship/sensors,
+turf/simulated/floor/carpet/oracarpet,
+area/space/debrisfield/explored)
 
 (1,1,1) = {"
 W

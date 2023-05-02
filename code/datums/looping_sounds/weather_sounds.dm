@@ -1,9 +1,9 @@
-/datum/looping_sound/weather
+datum/looping_sound/weather
 	pref_check = /datum/client_preference/weather_sounds
 	soundenvwet = -10000
 	soundenvdry = 0
 
-/datum/looping_sound/weather/outside_blizzard
+datum/looping_sound/weather/outside_blizzard
 	mid_sounds = list(
 		'sound/effects/weather/snowstorm/outside/active_mid1.ogg' = 1,
 		'sound/effects/weather/snowstorm/outside/active_mid1.ogg' = 1,
@@ -15,7 +15,7 @@
 	end_sound = 'sound/effects/weather/snowstorm/outside/active_end.ogg'
 	volume = 40
 
-/datum/looping_sound/weather/inside_blizzard
+datum/looping_sound/weather/inside_blizzard
 	mid_sounds = list(
 		'sound/effects/weather/snowstorm/inside/active_mid1.ogg' = 1,
 		'sound/effects/weather/snowstorm/inside/active_mid2.ogg' = 1,
@@ -27,7 +27,7 @@
 	end_sound = 'sound/effects/weather/snowstorm/inside/active_end.ogg'
 	volume = 20
 
-/datum/looping_sound/weather/outside_snow
+datum/looping_sound/weather/outside_snow
 	mid_sounds = list(
 		'sound/effects/weather/snowstorm/outside/weak_mid1.ogg' = 1,
 		'sound/effects/weather/snowstorm/outside/weak_mid2.ogg' = 1,
@@ -39,7 +39,7 @@
 	end_sound = 'sound/effects/weather/snowstorm/outside/weak_end.ogg'
 	volume = 30
 
-/datum/looping_sound/weather/inside_snow
+datum/looping_sound/weather/inside_snow
 	mid_sounds = list(
 		'sound/effects/weather/snowstorm/inside/weak_mid1.ogg' = 1,
 		'sound/effects/weather/snowstorm/inside/weak_mid2.ogg' = 1,
@@ -51,7 +51,7 @@
 	end_sound = 'sound/effects/weather/snowstorm/inside/weak_end.ogg'
 	volume = 15
 
-/datum/looping_sound/weather/wind
+datum/looping_sound/weather/wind
 	mid_sounds = list(
 		'sound/effects/weather/wind/wind_2_1.ogg' = 1,
 		'sound/effects/weather/wind/wind_2_2.ogg' = 1,
@@ -64,10 +64,10 @@
 	volume = 30
 
 // Don't have special sounds so we just make it quieter indoors.
-/datum/looping_sound/weather/wind/indoors
+datum/looping_sound/weather/wind/indoors
 	volume = 15
 
-/datum/looping_sound/weather/rain
+datum/looping_sound/weather/rain
 	mid_sounds = list(
 		'sound/effects/weather/acidrain_mid.ogg' = 1
 		)
@@ -77,5 +77,5 @@
 	end_sound = 'sound/effects/weather/acidrain_end.ogg'
 	volume = 30
 
-/datum/looping_sound/weather/rain/indoors
+datum/looping_sound/weather/rain/indoors
 	volume = 15

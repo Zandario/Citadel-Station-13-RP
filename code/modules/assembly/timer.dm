@@ -1,4 +1,4 @@
-/obj/item/assembly/timer
+obj/item/assembly/timer
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
@@ -18,14 +18,14 @@
 	var/hearing_range = 3
 
 
-/obj/item/assembly/timer/activate()
+obj/item/assembly/timer/activate()
 	if(!..())
 		return FALSE //Cooldown check
 	timing = !timing
 	update_appearance()
 	return TRUE
 
-/obj/item/assembly/timer/toggle_secure()
+obj/item/assembly/timer/toggle_secure()
 	secured = !secured
 	if(secured)
 		START_PROCESSING(SSobj, src)
@@ -35,7 +35,7 @@
 	update_appearance()
 	return secured
 
-/obj/item/assembly/timer/proc/timer_end()
+obj/item/assembly/timer/proc/timer_end()
 	if(!secured)
 		return FALSE
 	pulse(FALSE)
@@ -46,7 +46,7 @@
 		timing = TRUE
 	update_appearance()
 
-/obj/item/assembly/timer/process(delta_time)
+obj/item/assembly/timer/process(delta_time)
 	if(!timing)
 		return
 	time -= delta_time
@@ -55,18 +55,18 @@
 		timer_end()
 		time = saved_time
 
-/obj/item/assembly/timer/update_appearance()
+obj/item/assembly/timer/update_appearance()
 	. = ..()
 	holder?.update_appearance()
 
-/obj/item/assembly/timer/update_overlays()
+obj/item/assembly/timer/update_overlays()
 	. = ..()
 	attached_overlays = list()
 	if(timing)
 		. += "timer_timing"
 		attached_overlays += "timer_timing"
 
-/obj/item/assembly/timer/ui_interact(mob/user, datum/tgui/ui)
+obj/item/assembly/timer/ui_interact(mob/user, datum/tgui/ui)
 	if(!secured)
 		to_chat(user, SPAN_WARNING("[src] is unsecured!"))
 		return FALSE
@@ -75,7 +75,7 @@
 		ui = new(user, src, "AssemblyTimer", name)
 		ui.open()
 
-/obj/item/assembly/timer/ui_data(mob/user)
+obj/item/assembly/timer/ui_data(mob/user)
 	var/list/data = ..()
 	var/time_left = time
 	data["seconds"] = round(time_left % 60)
@@ -84,7 +84,7 @@
 	data["loop"] = loop
 	return data
 
-/obj/item/assembly/timer/ui_act(action, list/params, datum/tgui/ui)
+obj/item/assembly/timer/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 

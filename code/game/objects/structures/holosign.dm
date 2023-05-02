@@ -1,6 +1,6 @@
 //holographic signs and barriers
 
-/obj/structure/holosign
+obj/structure/holosign
 	name = "holo sign"
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
@@ -8,7 +8,7 @@
 	var/health = 10
 	explosion_resistance = 1
 
-/obj/structure/holosign/Initialize(mapload, source_projector)
+obj/structure/holosign/Initialize(mapload, source_projector)
 	. = ..()
 	if(source_projector)
 		projector = source_projector
@@ -18,13 +18,13 @@
 		alpha = 0
 */
 
-/obj/structure/holosign/Destroy()
+obj/structure/holosign/Destroy()
 	if(projector)
 		projector.signs -= src
 		projector = null
 	return ..()
 
-/obj/structure/holosign/attack_hand(mob/user, list/params)
+obj/structure/holosign/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
@@ -32,13 +32,13 @@
 	take_damage(5, BRUTE, "melee", 1)
 	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
 
-/obj/structure/holosign/wetsign
+obj/structure/holosign/wetsign
 	name = "wet floor sign"
 	desc = "The words flicker as if they mean nothing."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
 
-/obj/structure/holosign/barrier/combifan
+obj/structure/holosign/barrier/combifan
 	name = "holo combifan"
 	desc = "A holographic barrier resembling a blue-accented tiny fan. Though it does not prevent solid objects from passing through, gas and temperature changes are kept out."
 	icon_state = "holo_combifan"
@@ -47,6 +47,3 @@
 	CanAtmosPass = ATMOS_PASS_AIR_BLOCKED
 	layer = ABOVE_TURF_LAYER
 	alpha = 150
-
-
-

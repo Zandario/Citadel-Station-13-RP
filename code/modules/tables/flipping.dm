@@ -1,5 +1,5 @@
 
-/obj/structure/table/proc/straight_table_check(var/direction)
+obj/structure/table/proc/straight_table_check(var/direction)
 	if(health > 100)
 		return 0
 	var/obj/structure/table/T
@@ -12,7 +12,7 @@
 		return 1
 	return T.straight_table_check(direction)
 
-/obj/structure/table/verb/do_flip()
+obj/structure/table/verb/do_flip()
 	set name = "Flip table"
 	set desc = "Flips a non-reinforced table"
 	set category = "Object"
@@ -32,7 +32,7 @@
 
 	return
 
-/obj/structure/table/proc/unflipping_check(var/direction)
+obj/structure/table/proc/unflipping_check(var/direction)
 
 	for(var/mob/M in oview(src,0))
 		return 0
@@ -55,7 +55,7 @@
 				return 0
 	return 1
 
-/obj/structure/table/proc/do_put()
+obj/structure/table/proc/do_put()
 	set name = "Put table back"
 	set desc = "Puts flipped table back"
 	set category = "Object"
@@ -69,7 +69,7 @@
 		return
 	unflip()
 
-/obj/structure/table/proc/flip(var/direction)
+obj/structure/table/proc/flip(var/direction)
 	if( !straight_table_check(turn(direction,90)) || !straight_table_check(turn(direction,-90)) )
 		return 0
 
@@ -99,7 +99,7 @@
 
 	return 1
 
-/obj/structure/table/proc/unflip()
+obj/structure/table/proc/unflip()
 	remove_obj_verb(src, /obj/structure/table/proc/do_put)
 	add_obj_verb(src, /obj/structure/table/verb/do_flip)
 

@@ -1,4 +1,4 @@
-/obj/item/clothing/head/helmet/space/void/zaddat
+obj/item/clothing/head/helmet/space/void/zaddat
 	name = "\improper Hegemony Shroud helmet"
 	desc = "A Hegemony-designed utilitarian environment suit helmet, still common among the Spacer Zaddat."
 	icon_state = "zaddat_hegemony"
@@ -11,7 +11,7 @@
 
 	species_restricted = list(SPECIES_ZADDAT, SPECIES_PROMETHEAN) //on request from maintainer
 
-/obj/item/clothing/suit/space/void/zaddat
+obj/item/clothing/suit/space/void/zaddat
 	name = "\improper Hegemony Shroud"
 	desc = "A Hegemony environment suit, still favored by the Spacer Zaddat because of its durability and ease of manufacture."
 	slowdown = 1
@@ -26,7 +26,7 @@
 
 	breach_threshold = 12
 
-/obj/item/clothing/suit/space/void/zaddat/verb/custom_suit()
+obj/item/clothing/suit/space/void/zaddat/verb/custom_suit()
 	set name = "Customize Shroud"
 	set category = "Object"
 	set desc = "Pick an appearence for your Shroud."

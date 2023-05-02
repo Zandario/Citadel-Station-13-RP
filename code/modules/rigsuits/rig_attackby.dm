@@ -1,4 +1,4 @@
-/obj/item/rig/attackby(obj/item/W as obj, mob/living/user as mob)
+obj/item/rig/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!istype(user))
 		return 0
 
@@ -172,14 +172,14 @@
 	..()
 
 
-/obj/item/rig/attack_hand(mob/user, list/params)
+obj/item/rig/attack_hand(mob/user, list/params)
 
 	if(electrified != 0)
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
 	..()
 
-/obj/item/rig/emag_act(var/remaining_charges, var/mob/user)
+obj/item/rig/emag_act(var/remaining_charges, var/mob/user)
 	if(!subverted)
 		req_access.Cut()
 		req_one_access.Cut()

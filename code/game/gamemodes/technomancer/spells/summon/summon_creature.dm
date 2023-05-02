@@ -1,4 +1,4 @@
-/datum/technomancer/spell/summon_creature
+datum/technomancer/spell/summon_creature
 	name = "Summon Creature"
 	desc = "Teleports a specific creature from their current location in the universe to the targeted tile, \
 	after a delay. The creature summoned can be chosen by using the ability in your hand. \
@@ -11,7 +11,7 @@
 	obj_path = /obj/item/spell/summon/summon_creature
 	category = UTILITY_SPELLS
 
-/obj/item/spell/summon/summon_creature
+obj/item/spell/summon/summon_creature
 	name = "summon creature"
 	desc = "Chitter chitter."
 	summoned_mob_type = null
@@ -38,7 +38,7 @@
 	instability_cost = 10
 	energy_cost = 1000
 
-/obj/item/spell/summon/summon_creature/on_summon(var/mob/living/simple_mob/summoned)
+obj/item/spell/summon/summon_creature/on_summon(var/mob/living/simple_mob/summoned)
 	if(check_for_scepter())
 //		summoned.faction = "technomancer"
 		summoned.friends += owner

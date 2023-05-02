@@ -14,7 +14,7 @@ GLOBAL_VAR(lock_client_view_y)
 /**
  * forces world viewsize; use for config VAS
  */
-/datum/controller/configuration/proc/update_world_viewsize()
+datum/controller/configuration/proc/update_world_viewsize()
 	//! BYONd world.view is immutable, for now we're stuck read-onlying it.
 	if(isnum(world.view))
 		GLOB.game_view_x = GLOB.game_view_y = world.view
@@ -27,7 +27,7 @@ GLOBAL_VAR(lock_client_view_y)
 /**
  * forces screensize update; use for config VAS
  */
-/datum/controller/configuration/proc/update_player_viewsize()
+datum/controller/configuration/proc/update_player_viewsize()
 	var/viewsize_raw = CONFIG_GET(string/max_viewport_size)
 	var/list/viewsize = splittext(viewsize_raw, "x")
 	GLOB.max_client_view_x = text2num(viewsize[1])
@@ -39,7 +39,7 @@ GLOBAL_VAR(lock_client_view_y)
 /**
  * populates important vars that things may read early before we sleep
  */
-/client/proc/pre_init_viewport()
+client/proc/pre_init_viewport()
 	PRIVATE_PROC(TRUE)
 	current_viewport_width = GLOB.max_client_view_x
 	current_viewport_height = GLOB.max_client_view_y
@@ -47,7 +47,7 @@ GLOBAL_VAR(lock_client_view_y)
 /**
  * called on client init to do this without blocking client/New
  */
-/client/proc/init_viewport_blocking()
+client/proc/init_viewport_blocking()
 	PRIVATE_PROC(TRUE)
 	fetch_viewport()
 	refit_viewsize()
@@ -59,7 +59,7 @@ GLOBAL_VAR(lock_client_view_y)
  *
  * return TRUE if changed
  */
-/client/proc/fetch_viewport()
+client/proc/fetch_viewport()
 	PRIVATE_PROC(TRUE)
 	. = FALSE
 	// get vars only; they have to manually refit
@@ -88,7 +88,7 @@ GLOBAL_VAR(lock_client_view_y)
  *
  * this is automatically called every time something modifies us
  */
-/client/proc/refit_viewsize(no_fit)
+client/proc/refit_viewsize(no_fit)
 	PRIVATE_PROC(TRUE)
 	if(!isnull(GLOB.lock_client_view_x) && !isnull(GLOB.lock_client_view_y))
 		view = "[GLOB.lock_client_view_x]x[GLOB.lock_client_view_y]"
@@ -139,7 +139,7 @@ GLOBAL_VAR(lock_client_view_y)
 	view = "[desired_width]x[desired_height]"
 	on_refit_viewsize(desired_width, desired_height, no_fit)
 
-/client/proc/on_refit_viewsize(new_width, new_height, no_fit)
+client/proc/on_refit_viewsize(new_width, new_height, no_fit)
 	var/changed = (current_viewport_height != new_height) || (current_viewport_width != new_width)
 	if(changed)
 		current_viewport_width = new_width
@@ -151,7 +151,7 @@ GLOBAL_VAR(lock_client_view_y)
 /**
  * updates everything when our viewport changes
  */
-/client/proc/post_refit_viewsize(changed)
+client/proc/post_refit_viewsize(changed)
 	if(!changed)
 		return
 	// force perspective swap for ??? reasons (???)
@@ -165,7 +165,7 @@ GLOBAL_VAR(lock_client_view_y)
 /**
  * called to fit our viewport to what we **should** have to get our effective view.
  */
-/client/proc/fit_viewport()
+client/proc/fit_viewport()
 	// by now we already fetched viewport
 	// figure out how big they want it to be based on their settings
 	// note: we only care about horizontal because the splitter.. is, well, horizontal.
@@ -246,7 +246,7 @@ GLOBAL_VAR(lock_client_view_y)
  * warning: this proc doesn't refit instantly, it only queues.
  * client decides what time is best to refit.
  */
-/client/proc/request_viewport_update()
+client/proc/request_viewport_update()
 	set waitfor = FALSE
 	if(!viewport_rwlock)
 		_request_viewport_update()
@@ -261,7 +261,7 @@ GLOBAL_VAR(lock_client_view_y)
  *
  * blocks until finished
  */
-/client/proc/request_viewport_update_blocking()
+client/proc/request_viewport_update_blocking()
 	if(!viewport_rwlock)
 		_request_viewport_update()
 		return
@@ -271,7 +271,7 @@ GLOBAL_VAR(lock_client_view_y)
 	UNTIL(!viewport_queued)
 
 // todo : locks are probably bad when working with request fit
-/client/proc/_request_viewport_update(no_fit, no_fetch)
+client/proc/_request_viewport_update(no_fit, no_fetch)
 	PRIVATE_PROC(TRUE)
 	// if rwlocked, wait; people should be queuing and not calling this directly
 	UNTIL(!viewport_rwlock)
@@ -289,7 +289,7 @@ GLOBAL_VAR(lock_client_view_y)
 /**
  * call this to request a viewport fit
  */
-/client/proc/request_viewport_fit(no_recalc)
+client/proc/request_viewport_fit(no_recalc)
 	set waitfor = FALSE
 	_request_viewport_fit(no_recalc)
 
@@ -300,12 +300,12 @@ GLOBAL_VAR(lock_client_view_y)
  * don't call this from non-buttons because it blocks and
  * absolutely can stack and ruin everyone's day.
  */
-/client/proc/viewport_fit_blocking(no_recalc)
+client/proc/viewport_fit_blocking(no_recalc)
 	UNTIL(!viewport_rwlock)
 	return _request_viewport_fit(no_recalc)
 
 // todo : locks are probably bad when working with request update
-/client/proc/_request_viewport_fit(no_recalc)
+client/proc/_request_viewport_fit(no_recalc)
 	PRIVATE_PROC(TRUE)
 	// if viewport is locked, ignore it
 	if(viewport_rwlock)
@@ -333,7 +333,7 @@ GLOBAL_VAR(lock_client_view_y)
  * - z - zoom of viewport
  * - b - are we letterboxing?
  */
-/client/verb/on_viewport(w as text, h as text, z as num, b as num)
+client/verb/on_viewport(w as text, h as text, z as num, b as num)
 	set name = ".on_viewport"
 	set hidden = TRUE
 	if(viewport_rwlock)	// something is fucking around, don't edit for them
@@ -349,14 +349,14 @@ GLOBAL_VAR(lock_client_view_y)
 /**
  * automatically fit their viewport to show everything optimally
  */
-/client/verb/user_fit_viewport()
+client/verb/user_fit_viewport()
 	set name = "Fit Viewport"
 	set category = "OOC"
 	set desc = "Fit the width of the map window to match the viewport"
 
 	request_viewport_fit()
 
-/client/verb/force_map_zoom(n as num)
+client/verb/force_map_zoom(n as num)
 	set name = ".viewport_zoom"
 	set hidden = TRUE
 	set category = "Debug"
@@ -371,7 +371,7 @@ GLOBAL_VAR(lock_client_view_y)
 	assumed_viewport_zoom = n
 	request_viewport_update(TRUE)
 
-/client/verb/force_map_box(n as num)
+client/verb/force_map_box(n as num)
 	set name = ".viewport_box"
 	set hidden = TRUE
 	set category = "Debug"
@@ -384,7 +384,7 @@ GLOBAL_VAR(lock_client_view_y)
 	assumed_viewport_box = n
 	request_viewport_update(TRUE)
 
-/client/verb/force_onresize_view_update()
+client/verb/force_onresize_view_update()
 	set name = ".viewport_update"
 	set hidden = TRUE
 	set category = "Debug"
@@ -394,7 +394,7 @@ GLOBAL_VAR(lock_client_view_y)
 		return
 	request_viewport_update()
 
-/client/verb/show_winset_debug_values()
+client/verb/show_winset_debug_values()
 	set name = ".viewport_debug"
 	set hidden = TRUE
 	set category = "Debug"

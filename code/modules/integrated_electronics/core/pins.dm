@@ -18,7 +18,7 @@ D [1]/  ||
 
 
 */
-/datum/integrated_io
+datum/integrated_io
 	var/name = "input/output"
 	var/obj/item/integrated_circuit/holder
 	var/datum/weakref/data  // This is a weakref, to reduce typecasts.  Note that oftentimes numbers and text may also occupy this.
@@ -27,7 +27,7 @@ D [1]/  ||
 	var/pin_type			// IC_INPUT, IC_OUTPUT, IC_ACTIVATOR - used in saving assembly wiring
 	var/ord
 
-/datum/integrated_io/New(loc, _name, _data, _pin_type,_ord)
+datum/integrated_io/New(loc, _name, _data, _pin_type,_ord)
 	name = _name
 	if(_data)
 		data = _data
@@ -41,24 +41,24 @@ D [1]/  ||
 	if(!istype(holder))
 		message_admins("ERROR: An integrated_io ([name]) spawned without a valid holder!  This is a bug.")
 
-/datum/integrated_io/Destroy()
+datum/integrated_io/Destroy()
 	disconnect_all()
 	data = null
 	holder = null
 	return ..()
 
-/datum/integrated_io/ui_host()
+datum/integrated_io/ui_host()
 	return holder.ui_host()
 
 
-/datum/integrated_io/proc/data_as_type(var/as_type)
+datum/integrated_io/proc/data_as_type(var/as_type)
 	if(!isweakref(data))
 		return
 	var/datum/weakref/w = data
 	var/output = w.resolve()
 	return istype(output, as_type) ? output : null
 
-/datum/integrated_io/proc/display_data(var/input)
+datum/integrated_io/proc/display_data(var/input)
 	if(isnull(input))
 		return "(null)" // Empty data means nothing to show.
 
@@ -95,16 +95,16 @@ list[](
 
 	return "([input])" // Nothing special needed for numbers or other stuff.
 
-/datum/integrated_io/activate/display_data()
+datum/integrated_io/activate/display_data()
 	return "(\[pulse\])"
 
-/datum/integrated_io/proc/display_pin_type()
+datum/integrated_io/proc/display_pin_type()
 	return IC_FORMAT_ANY
 
-/datum/integrated_io/activate/display_pin_type()
+datum/integrated_io/activate/display_pin_type()
 	return IC_FORMAT_PULSE
 
-/datum/integrated_io/proc/scramble()
+datum/integrated_io/proc/scramble()
 	if(isnull(data))
 		return
 	if(isnum(data))
@@ -113,11 +113,11 @@ list[](
 		write_data_to_pin("ERROR")
 	push_data()
 
-/datum/integrated_io/activate/scramble()
+datum/integrated_io/activate/scramble()
 	push_data()
 
 /* TBI Screw multitools, they're all over the place.
-/datum/integrated_io/proc/handle_wire(datum/integrated_io/linked_pin, obj/item/tool, action, mob/living/user)
+datum/integrated_io/proc/handle_wire(datum/integrated_io/linked_pin, obj/item/tool, action, mob/living/user)
 	if(tool.tool_behaviour == TOOL_MULTITOOL)
 		switch(action)
 			if("wire")
@@ -146,7 +146,7 @@ list[](
 	return FALSE
 */
 
-/datum/integrated_io/proc/write_data_to_pin(new_data)
+datum/integrated_io/proc/write_data_to_pin(new_data)
 	if(isnull(new_data) || isnum(new_data) || istext(new_data) || isweakref(new_data)) // Anything else is a type we don't want.
 		if(istext(new_data))
 			new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
@@ -157,27 +157,27 @@ list[](
 		data = new_list.Copy(max(1,new_list.len - IC_MAX_LIST_LENGTH+1),0)
 		holder.on_data_written()
 
-/datum/integrated_io/proc/push_data()
+datum/integrated_io/proc/push_data()
 	for(var/k in 1 to linked.len)
 		var/datum/integrated_io/io = linked[k]
 		io.write_data_to_pin(data)
 
-/datum/integrated_io/activate/push_data()
+datum/integrated_io/activate/push_data()
 	for(var/k in 1 to linked.len)
 		var/datum/integrated_io/io = linked[k]
 		io.holder.check_then_do_work(io.ord)
 
-/datum/integrated_io/proc/pull_data() //! Bad! Why would you ever use this? Don't do it!!
+datum/integrated_io/proc/pull_data() //! Bad! Why would you ever use this? Don't do it!!
 	for(var/k in 1 to linked.len)
 		var/datum/integrated_io/io = linked[k]
 		write_data_to_pin(io.data) //! Pulls input from any linked pins on pulse, overwriting input you probably want.
 
-/datum/integrated_io/proc/get_linked_to_desc()
+datum/integrated_io/proc/get_linked_to_desc()
 	if(linked.len)
 		return "the [english_list(linked)]"
 	return "nothing"
 /*
-/datum/integrated_io/proc/disconnect()
+datum/integrated_io/proc/disconnect()
 	//First we iterate over everything we are linked to.
 	for(var/datum/integrated_io/their_io in linked)
 		//While doing that, we iterate them as well, and disconnect ourselves from them.
@@ -189,20 +189,20 @@ list[](
 		//Now that we're removed from them, we gotta remove them from us.
 		src.linked.Remove(their_io)
 */
-/datum/integrated_io/proc/connect_pin(datum/integrated_io/pin)
+datum/integrated_io/proc/connect_pin(datum/integrated_io/pin)
 	pin.linked |= src
 	linked |= pin
 
 // Iterates over every linked pin and disconnects them.
-/datum/integrated_io/proc/disconnect_all()
+datum/integrated_io/proc/disconnect_all()
 	for(var/pin in linked)
 		disconnect_pin(pin)
 
-/datum/integrated_io/proc/disconnect_pin(datum/integrated_io/pin)
+datum/integrated_io/proc/disconnect_pin(datum/integrated_io/pin)
 	pin.linked.Remove(src)
 	linked.Remove(pin)
 
-/datum/integrated_io/proc/ask_for_data_type(mob/user, var/default, var/list/allowed_data_types = list("string","number","null"))
+datum/integrated_io/proc/ask_for_data_type(mob/user, var/default, var/list/allowed_data_types = list("string","number","null"))
 	var/type_to_use = tgui_input_list(usr, "Please choose a type to use.","[src] type setting", allowed_data_types)
 	if(!holder.check_interactivity(user))
 		return
@@ -225,22 +225,22 @@ list[](
 				return new_data
 
 // Basically a null check
-/datum/integrated_io/proc/is_valid()
+datum/integrated_io/proc/is_valid()
 	return !isnull(data)
 
 // This proc asks for the data to write, then writes it.
-/datum/integrated_io/proc/ask_for_pin_data(mob/user)
+datum/integrated_io/proc/ask_for_pin_data(mob/user)
 	var/new_data = ask_for_data_type(user)
 	write_data_to_pin(new_data)
 
-/datum/integrated_io/activate/ask_for_pin_data(mob/user) // This just pulses the pin.
+datum/integrated_io/activate/ask_for_pin_data(mob/user) // This just pulses the pin.
 	holder.investigate_log(" was manually pulsed by [key_name(user)].", INVESTIGATE_CIRCUIT)
 	holder.check_then_do_work(ord, ignore_power = TRUE)
 	to_chat(user, "<span class='notice'>You pulse \the [holder]'s [src] pin.</span>")
 
-/datum/integrated_io/activate
+datum/integrated_io/activate
 	name = "activation pin"
 	io_type = PULSE_CHANNEL
 
-/datum/integrated_io/activate/out // All this does is just make the UI say 'out' instead of 'in'
+datum/integrated_io/activate/out // All this does is just make the UI say 'out' instead of 'in'
 	data = 1

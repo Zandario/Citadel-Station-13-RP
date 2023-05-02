@@ -1,4 +1,4 @@
-/spell/targeted/mind_transfer
+spell/targeted/mind_transfer
 	name = "Mind Transfer"
 	desc = "This spell allows the user to switch bodies with a target."
 
@@ -19,7 +19,7 @@
 
 	hud_state = "wiz_mindswap"
 
-/spell/targeted/mind_transfer/cast(list/targets, mob/user)
+spell/targeted/mind_transfer/cast(list/targets, mob/user)
 	..()
 
 	for(var/mob/living/target in targets)

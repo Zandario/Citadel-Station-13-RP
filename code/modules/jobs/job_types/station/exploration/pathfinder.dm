@@ -1,4 +1,4 @@
-/datum/role/job/station/pathfinder
+datum/role/job/station/pathfinder
 	id = JOB_ID_PATHFINDER
 	title = "Pathfinder"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_SENIOR
@@ -25,16 +25,16 @@
 		"Lead Pioneer" = /datum/prototype/alt_title/pathfinder/pioneer
 		)
 
-/datum/prototype/alt_title/expedition_lead
+datum/prototype/alt_title/expedition_lead
 	title = "Expedition Lead"
 
-/datum/prototype/alt_title/exploration_manager
+datum/prototype/alt_title/exploration_manager
 	title = "Exploration Manager"
 
-/datum/prototype/alt_title/pathfinder/pioneer
+datum/prototype/alt_title/pathfinder/pioneer
 	title = "Lead Pioneer"
 
-/datum/outfit/job/station/pathfinder
+datum/outfit/job/station/pathfinder
 	name = OUTFIT_JOB_NAME("Pathfinder")
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	uniform = /obj/item/clothing/under/explorer //TODO: Uniforms.
@@ -52,11 +52,11 @@
 
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
-/datum/outfit/job/station/pathfinder/post_equip(mob/living/carbon/human/H)
+datum/outfit/job/station/pathfinder/post_equip(mob/living/carbon/human/H)
 	..()
 	for(var/obj/item/clothing/accessory/permit/gun/planetside/permit in H.back.contents)
 		permit.set_name(H.real_name)
 
-/datum/outfit/job/station/assistant/explorer
+datum/outfit/job/station/assistant/explorer
 	id_type = /obj/item/card/id/explorer
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL

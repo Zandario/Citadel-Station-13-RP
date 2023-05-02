@@ -1,4 +1,4 @@
-/datum/role/job/station/warden
+datum/role/job/station/warden
 	id = JOB_ID_WARDEN
 	economy_payscale = ECONOMY_PAYSCALE_JOB_SENIOR
 	title = "Warden"
@@ -26,13 +26,13 @@
 		"Dispatch Officer" = /datum/prototype/alt_title/warden/dispatch_officer
 		)
 
-/datum/prototype/alt_title/warden/jailor
+datum/prototype/alt_title/warden/jailor
 	title = "Jailor"
 
-/datum/prototype/alt_title/warden/dispatch_officer
+datum/prototype/alt_title/warden/dispatch_officer
 	title = "Dispatch Officer"
 
-/datum/outfit/job/station/warden
+datum/outfit/job/station/warden
 	name = OUTFIT_JOB_NAME("Warden")
 	uniform = /obj/item/clothing/under/rank/warden
 	l_pocket = /obj/item/flash

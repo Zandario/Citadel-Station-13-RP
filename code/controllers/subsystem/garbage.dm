@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(garbage)
 	#endif
 
 
-/datum/controller/subsystem/garbage/PreInit(recovering)
+datum/controller/subsystem/garbage/PreInit(recovering)
 	queues = new(GC_QUEUE_COUNT)
 	pass_counts = new(GC_QUEUE_COUNT)
 	fail_counts = new(GC_QUEUE_COUNT)
@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(garbage)
 		pass_counts[i] = 0
 		fail_counts[i] = 0
 
-/datum/controller/subsystem/garbage/stat_entry()
+datum/controller/subsystem/garbage/stat_entry()
 	var/list/counts = list()
 	for (var/list/L in queues)
 		counts += length(L)
@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(garbage)
 	msg += "|F:[fail_counts.Join(",")]"
 	return ..() + " [jointext(msg, "")]"
 
-/datum/controller/subsystem/garbage/Shutdown()
+datum/controller/subsystem/garbage/Shutdown()
 	//Adds the del() log to the qdel log file
 	var/list/dellog = list()
 
@@ -83,7 +83,7 @@ SUBSYSTEM_DEF(garbage)
 			dellog += "\tNo hint: [I.no_hint] times"
 	log_qdel(dellog.Join("\n"))
 
-/datum/controller/subsystem/garbage/fire()
+datum/controller/subsystem/garbage/fire()
 	//the fact that this resets its processing each fire (rather then resume where it left off) is intentional.
 	var/queue = GC_QUEUE_CHECK
 
@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(garbage)
 
 
 
-/datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
+datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
 	if (level == GC_QUEUE_CHECK)
 		delslasttick = 0
 		gcedlasttick = 0
@@ -184,7 +184,7 @@ SUBSYSTEM_DEF(garbage)
 		queue.Cut(1,count+1)
 		count = 0
 
-/datum/controller/subsystem/garbage/proc/Queue(datum/D, level = GC_QUEUE_CHECK)
+datum/controller/subsystem/garbage/proc/Queue(datum/D, level = GC_QUEUE_CHECK)
 	if (isnull(D))
 		return
 	if (level > GC_QUEUE_COUNT)
@@ -201,7 +201,7 @@ SUBSYSTEM_DEF(garbage)
 	queue[refid] = gctime
 
 //this is mainly to separate things profile wise.
-/datum/controller/subsystem/garbage/proc/HardDelete(datum/D)
+datum/controller/subsystem/garbage/proc/HardDelete(datum/D)
 	var/time = world.timeofday
 	var/tick = TICK_USAGE
 	var/ticktime = world.time
@@ -232,13 +232,13 @@ SUBSYSTEM_DEF(garbage)
 		message_admins("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete).")
 		postpone(time)
 
-/datum/controller/subsystem/garbage/Recover()
+datum/controller/subsystem/garbage/Recover()
 	if (istype(SSgarbage.queues))
 		for (var/i in 1 to SSgarbage.queues.len)
 			queues[i] |= SSgarbage.queues[i]
 
 
-/datum/qdel_item
+datum/qdel_item
 	var/name = ""
 	var/qdels = 0			//Total number of times it's passed thru qdel.
 	var/destroy_time = 0	//Total amount of milliseconds spent processing this type's Destroy()
@@ -249,12 +249,12 @@ SUBSYSTEM_DEF(garbage)
 	var/no_hint = 0			//Number of times it's not even bother to give a qdel hint
 	var/slept_destroy = 0	//Number of times it's slept in its destroy
 
-/datum/qdel_item/New(mytype)
+datum/qdel_item/New(mytype)
 	name = "[mytype]"
 
 // Should be treated as a replacement for the 'del' keyword.
 // Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
-/proc/qdel(datum/D, force=FALSE, ...)
+proc/qdel(datum/D, force=FALSE, ...)
 	if(!istype(D))
 		del(D)
 		return
@@ -326,7 +326,7 @@ SUBSYSTEM_DEF(garbage)
 /**
  * considered cheap enough to run on live
  */
-/proc/__memdbg_count_datums()
+proc/__memdbg_count_datums()
 	var/list/L = list()
 	var/c = 0
 	var/start = world.timeofday
@@ -347,7 +347,7 @@ SUBSYSTEM_DEF(garbage)
 	B.open()
 
 #ifdef TESTING
-/proc/__memdbg_count_datum_refs()
+proc/__memdbg_count_datum_refs()
 	var/list/L = list()
 	// var/list/L2 = list()
 	var/c = 0

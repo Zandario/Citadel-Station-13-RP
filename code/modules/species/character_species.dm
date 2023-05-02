@@ -1,4 +1,4 @@
-/datum/species/proc/construct_character_species()
+datum/species/proc/construct_character_species()
 	var/datum/character_species/template = new
 	// copy basics
 	template.name = display_name || name
@@ -41,7 +41,7 @@
  *
  * /datum/character_species is a singleton type stored on SScharacters.
  */
-/datum/character_species
+datum/character_species
 	/// Abstract type (i'm addicted to abstract types) @silicons
 	abstract_type = /datum/character_species
 
@@ -113,7 +113,7 @@
 	/// default language when talking; this should probably be part of intrinsics!
 	var/default_language = LANGUAGE_ID_COMMON
 
-/datum/character_species/proc/tweak(datum/species/S)
+datum/character_species/proc/tweak(datum/species/S)
 	// we need this
 	S.default_bodytype = our_bodytype
 	// while we technically don't *need* this, we want this incase someone starts reading from these fields mid game
@@ -125,22 +125,22 @@
 	S.max_additional_languages = max_additional_languages
 	S.default_language = default_language
 
-/datum/character_species/proc/get_default_origin_id()
+datum/character_species/proc/get_default_origin_id()
 	return SScharacters.resolve_origin(default_origin).id
 
-/datum/character_species/proc/get_default_citizenship_id()
+datum/character_species/proc/get_default_citizenship_id()
 	return SScharacters.resolve_citizenship(default_citizenship).id
 
-/datum/character_species/proc/get_default_faction_id()
+datum/character_species/proc/get_default_faction_id()
 	return SScharacters.resolve_faction(default_faction).id
 
-/datum/character_species/proc/get_default_religion_id()
+datum/character_species/proc/get_default_religion_id()
 	return SScharacters.resolve_religion(default_religion).id
 
-/datum/character_species/proc/get_default_culture_id()
+datum/character_species/proc/get_default_culture_id()
 	return SScharacters.resolve_culture(default_culture).id
 
-/datum/character_species/proc/get_intrinsic_language_ids()
+datum/character_species/proc/get_intrinsic_language_ids()
 	RETURN_TYPE(/list)
 	if(!intrinsic_languages)
 		return galactic_language? list(LANGUAGE_ID_COMMON) : list()
@@ -154,14 +154,14 @@
 	if(galactic_language)
 		. |= LANGUAGE_ID_COMMON
 
-/datum/character_species/proc/get_name_language_id()
+datum/character_species/proc/get_name_language_id()
 	var/datum/language/L = name_language
 	return ispath(name_language)? initial(L.id) : name_language
 
-/datum/character_species/proc/get_max_additional_languages()
+datum/character_species/proc/get_max_additional_languages()
 	return max_additional_languages
 
-/datum/character_species/proc/get_whitelisted_language_ids()
+datum/character_species/proc/get_whitelisted_language_ids()
 	RETURN_TYPE(/list)
 	if(!whitelist_languages)
 		return list()
@@ -173,11 +173,11 @@
 		var/datum/language/L = whitelist_languages
 		. += ispath(L)? initial(L.id) : L
 
-/datum/character_species/proc/get_default_language_id()
+datum/character_species/proc/get_default_language_id()
 	var/datum/language/L = default_language
 	return ispath(L)? initial(L.id) : L
 
-/datum/character_species/proc/real_species_uid()
+datum/character_species/proc/real_species_uid()
 	var/datum/species/S = SScharacters.resolve_species_path(real_species_type)
 	return S.uid
 

@@ -1,4 +1,4 @@
-/datum/power/changeling/bioelectrogenesis
+datum/power/changeling/bioelectrogenesis
 	name = "Bioelectrogenesis"
 	desc = "We reconfigure a large number of cells in our body to generate an electric charge.  \
 	On demand, we can attempt to recharge anything in our active hand, or we can touch someone with an electrified hand, shocking them."
@@ -10,7 +10,7 @@
 	verbpath = /mob/living/carbon/human/proc/changeling_bioelectrogenesis
 
 //Recharge whatever's in our hand, or shock people.
-/mob/living/carbon/human/proc/changeling_bioelectrogenesis()
+mob/living/carbon/human/proc/changeling_bioelectrogenesis()
 	set category = "Changeling"
 	set name = "Bioelectrogenesis (20 + 10/shock)"
 	set desc = "Recharges anything in your hand, or shocks people."
@@ -97,7 +97,7 @@
 				src.mind.changeling.chem_charges -= 10
 			return success
 
-/obj/item/electric_hand
+obj/item/electric_hand
 	name = "electrified hand"
 	desc = "You could probably shock someone badly if you touched them, or recharge something."
 	icon = 'icons/obj/weapons.dmi'
@@ -108,12 +108,12 @@
 	var/agony_amount = 60
 	var/electrocute_amount = 10
 
-/obj/item/electric_hand/efficent
+obj/item/electric_hand/efficent
 	shock_cost = 5
 	agony_amount = 80
 	electrocute_amount = 20
 
-/obj/item/electric_hand/Initialize(mapload)
+obj/item/electric_hand/Initialize(mapload)
 	. = ..()
 	if(ismob(loc))
 		visible_message("<span class='warning'>Electrical arcs form around [loc.name]\'s hand!</span>",
@@ -122,11 +122,11 @@
 		var/T = get_turf(src)
 		new /obj/effect/particle_effect/sparks(T)
 
-/obj/item/electric_hand/dropped(mob/user, flags, atom/newLoc)
+obj/item/electric_hand/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	qdel(src)
 
-/obj/item/electric_hand/afterattack(var/atom/target, var/mob/living/carbon/human/user, proximity)
+obj/item/electric_hand/afterattack(var/atom/target, var/mob/living/carbon/human/user, proximity)
 	if(!target)
 		return
 	if(!proximity)

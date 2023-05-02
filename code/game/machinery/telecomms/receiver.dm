@@ -6,7 +6,7 @@
 	Link to Processor Units in case receiver can't send to bus units.
 */
 
-/obj/machinery/telecomms/receiver
+obj/machinery/telecomms/receiver
 	name = "Subspace Receiver"
 	icon_state = "broadcast receiver"
 	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
@@ -24,12 +24,12 @@
 
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/radio/R)
+obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
 
-/obj/machinery/telecomms/receiver/receive_signal(datum/signal/signal)
+obj/machinery/telecomms/receiver/receive_signal(datum/signal/signal)
 	if(!on) // has to be on to receive messages
 		return
 	if(!signal)
@@ -48,7 +48,7 @@
 			if(!can_send)
 				relay_information(signal, "/obj/machinery/telecomms/bus") // Send it to a bus instead, if it's linked to one
 
-/obj/machinery/telecomms/receiver/proc/check_receive_level(datum/signal/signal)
+obj/machinery/telecomms/receiver/proc/check_receive_level(datum/signal/signal)
 	// If it's a direct message from a bluespace radio, we eat it and convert it into a subspace signal locally
 	if(signal.transmission_method == TRANSMISSION_BLUESPACE)
 		var/obj/item/radio/R = signal.data["radio"]

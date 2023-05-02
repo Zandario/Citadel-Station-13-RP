@@ -11,13 +11,13 @@ GLOBAL_LIST_EMPTY(string_lists)
 /**
  * Caches lists with non-numeric stringify-able values (text or typepath).
  */
-/proc/string_list(list/values)
+proc/string_list(list/values)
 	STRING_LIST_IMPL(values)
 
 /**
  * A wrapper for baseturf string lists, to offer support of non list values, and a stack_trace if we have major issues.
  */
-/proc/baseturfs_string_list(list/values, turf/baseturf_holder)
+proc/baseturfs_string_list(list/values, turf/baseturf_holder)
 	if(!islist(values))
 		return values //baseturf things
 	// return values
@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(string_lists)
 		STRING_LIST_IMPL(this)
 	STRING_LIST_IMPL(values)
 
-/turf/baseturfs_ded
+turf/baseturfs_ded
 	name = "Report this"
 	desc = "It looks like base turfs went to the fucking moon, TELL YOUR LOCAL CODER TODAY"
 	icon = 'icons/turf/debug.dmi'

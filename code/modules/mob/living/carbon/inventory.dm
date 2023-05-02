@@ -1,11 +1,11 @@
-/mob/living/carbon/_slot_by_item(obj/item/I)
+mob/living/carbon/_slot_by_item(obj/item/I)
 	if(handcuffed == I)
 		return SLOT_ID_HANDCUFFED
 	if(legcuffed == I)
 		return SLOT_ID_LEGCUFFED
 	return ..()
 
-/mob/living/carbon/_item_by_slot(slot)
+mob/living/carbon/_item_by_slot(slot)
 	switch(slot)
 		if(SLOT_ID_HANDCUFFED)
 			return handcuffed
@@ -14,7 +14,7 @@
 		else
 			return ..()
 
-/mob/living/carbon/_set_inv_slot(slot, obj/item/I, flags)
+mob/living/carbon/_set_inv_slot(slot, obj/item/I, flags)
 	switch(slot)
 		if(SLOT_ID_HANDCUFFED)
 			handcuffed = I
@@ -31,7 +31,7 @@
 		else
 			return ..()
 
-/mob/living/carbon/_get_all_slots(include_restraints)
+mob/living/carbon/_get_all_slots(include_restraints)
 	. = ..()
 	if(include_restraints)
 		if(handcuffed)
@@ -39,7 +39,7 @@
 		if(legcuffed)
 			. += legcuffed._inv_return_attached()
 
-/mob/living/carbon/_get_inventory_slot_ids()
+mob/living/carbon/_get_inventory_slot_ids()
 	return ..() + list(
 		SLOT_ID_HANDCUFFED,
 		SLOT_ID_LEGCUFFED

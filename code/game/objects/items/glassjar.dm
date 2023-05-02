@@ -1,4 +1,4 @@
-/obj/item/glass_jar
+obj/item/glass_jar
 	name = "glass jar"
 	desc = "A small empty jar."
 	icon = 'icons/obj/items.dmi'
@@ -11,11 +11,11 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
-/obj/item/glass_jar/Initialize(mapload)
+obj/item/glass_jar/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/glass_jar/afterattack(var/atom/A, var/mob/user, var/proximity)
+obj/item/glass_jar/afterattack(var/atom/A, var/mob/user, var/proximity)
 	if(!proximity || contains)
 		return
 	if(istype(A, /mob))
@@ -41,7 +41,7 @@
 		update_icon()
 		return
 
-/obj/item/glass_jar/attack_self(mob/user)
+obj/item/glass_jar/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -69,7 +69,7 @@
 			update_icon()
 			return
 
-/obj/item/glass_jar/attackby(var/obj/item/W, var/mob/user)
+obj/item/glass_jar/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/spacecash))
 		if(contains == 0)
 			contains = 1
@@ -81,7 +81,7 @@
 		user.visible_message("<span class='notice'>[user] puts [S.worth] [S.worth > 1 ? "thalers" : "thaler"] into \the [src].</span>")
 		update_icon()
 
-/obj/item/glass_jar/update_icon() // Also updates name and desc
+obj/item/glass_jar/update_icon() // Also updates name and desc
 	underlays.Cut()
 	cut_overlays()
 	switch(contains)

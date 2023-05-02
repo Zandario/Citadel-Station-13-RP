@@ -1,19 +1,19 @@
 //DO NOT USE THIS UNLESS YOU ABSOLUTELY HAVE TO. THIS IS BEING PHASED OUT FOR THE MOVESPEED MODIFICATION SYSTEM.
 //See code/modules/movespeed/movespeed_modifier.dm
-/mob/proc/movement_delay()	//update /living/movement_delay() if you change this
+mob/proc/movement_delay()	//update /living/movement_delay() if you change this
 	SHOULD_CALL_PARENT(TRUE)
 	return cached_multiplicative_slowdown
 
-/mob/proc/applyMoveCooldown(amount)
+mob/proc/applyMoveCooldown(amount)
 	move_delay = max(move_delay, world.time + amount)
 
-/mob/proc/check_move_cooldown()
+mob/proc/check_move_cooldown()
 	return move_delay <= world.time
 
-/client/proc/client_dir(input, direction=-1)
+client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
 
-/client/verb/swap_hand()
+client/verb/swap_hand()
 	set hidden = 1
 	if(istype(mob, /mob/living))
 		var/mob/living/L = mob
@@ -23,7 +23,7 @@
 		R.cycle_modules()
 	return
 
-/client/verb/drop_item()
+client/verb/drop_item()
 	set hidden = 1
 
 	if(isrobot(mob))
@@ -34,7 +34,7 @@
 		return
 	mob.drop_active_held_item()
 
-/client/proc/Move_object(direct)
+client/proc/Move_object(direct)
 	if(mob && mob.control_object)
 		if(mob.control_object.density)
 			step(mob.control_object,direct)
@@ -43,7 +43,7 @@
 		else
 			mob.control_object.forceMove(get_step(mob.control_object,direct))
 
-/mob/CanAllowThrough(atom/movable/mover, turf/target)
+mob/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -58,14 +58,14 @@
 	if(can_cross_under(mover))
 		return TRUE
 
-/mob/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
+mob/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
 	if((buckled?.loc == target) && ismovable(blocker))
 		var/atom/movable/AM = blocker
 		if(AM.pass_flags & ATOM_PASS_BUCKLED)
 			return TRUE
 	return ..()
 
-/mob/proc/can_cross_under(atom/movable/mover)
+mob/proc/can_cross_under(atom/movable/mover)
 	return !mover.density && !mover.throwing
 
 /**
@@ -73,7 +73,7 @@
   *
   * triggers an update the move intent hud as well
   */
-/mob/proc/toggle_move_intent(mob/user)
+mob/proc/toggle_move_intent(mob/user)
 	if(m_intent == MOVE_INTENT_RUN)
 		m_intent = MOVE_INTENT_WALK
 	else
@@ -123,7 +123,7 @@
   *
   */
 
-/client/Move(n, direct)
+client/Move(n, direct)
 	if(!mob.check_move_cooldown()) //do not move anything ahead of this check please
 		return FALSE
 	else
@@ -362,7 +362,7 @@
 
 	mob.last_move_time = world.time
 
-/mob/proc/SelfMove(turf/T, dir)
+mob/proc/SelfMove(turf/T, dir)
 	in_selfmove = TRUE
 	. = Move(T, dir)
 	in_selfmove = FALSE
@@ -374,7 +374,7 @@
 ///Process_Incorpmove
 ///Called by client/Move()
 ///Allows mobs to run though walls
-/client/proc/Process_Incorpmove(direct)
+client/proc/Process_Incorpmove(direct)
 	var/turf/mobloc = get_turf(mob)
 
 	switch(mob.incorporeal_move)
@@ -438,14 +438,14 @@
 	mob.Post_Incorpmove()
 	return 1
 
-/mob/proc/Post_Incorpmove()
+mob/proc/Post_Incorpmove()
 	return
 
 ///Process_Spacemove
 ///Called by /client/Move()
 ///For moving in space
 ///Return 1 for movement 0 for none
-/mob/Process_Spacemove(direction)
+mob/Process_Spacemove(direction)
 	. = ..()
 	if(.)
 		return
@@ -453,7 +453,7 @@
 		update_floating(TRUE)
 		return TRUE
 
-/mob/proc/Check_Dense_Object() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
+mob/proc/Check_Dense_Object() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
 
 	var/dense_object = 0
 	var/shoegrip
@@ -491,12 +491,12 @@
 
 	return dense_object
 
-/mob/proc/Check_Shoegrip()
+mob/proc/Check_Shoegrip()
 	if(flying)	// Checks to see if they are flying.
 		return 1
 	return 0
 
-/mob/proc/Process_Spaceslipping(var/prob_slip = 5)
+mob/proc/Process_Spaceslipping(var/prob_slip = 5)
 	//Setup slipage
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 	if(stat)
@@ -505,15 +505,15 @@
 	prob_slip = round(prob_slip)
 	return(prob_slip)
 
-/mob/proc/mob_has_gravity(turf/T)
+mob/proc/mob_has_gravity(turf/T)
 	return has_gravity(src, T)
 
-/mob/proc/update_gravity()
+mob/proc/update_gravity()
 	return
 
 // Called when a mob successfully moves.
 // Would've been an /atom/movable proc but it caused issues.
-/mob/Moved(atom/oldloc)
+mob/Moved(atom/oldloc)
 	. = ..()
 	client?.parallax_holder?.Update()
 	for(var/obj/O in contents)
@@ -521,10 +521,10 @@
 	reset_pixel_shifting()
 
 // Received from Moved(), useful for items that need to know that their loc just moved.
-/obj/proc/on_loc_moved(atom/oldloc)
+obj/proc/on_loc_moved(atom/oldloc)
 	return
 
-/obj/item/storage/on_loc_moved(atom/oldloc)
+obj/item/storage/on_loc_moved(atom/oldloc)
 	for(var/obj/O in contents)
 		O.on_loc_moved(oldloc)
 
@@ -539,7 +539,7 @@
   * * no transform not set
   * * we are not restrained
   */
-/mob/proc/canface()
+mob/proc/canface()
 	if(world.time <= last_turn)
 		return FALSE
 	if(stat == DEAD || stat == UNCONSCIOUS)
@@ -551,7 +551,7 @@
 	return TRUE
 
 ///Hidden verb to turn east
-/mob/verb/eastface()
+mob/verb/eastface()
 	set hidden = TRUE
 	set src = usr
 	if(!canface())
@@ -561,7 +561,7 @@
 	return TRUE
 
 ///Hidden verb to turn west
-/mob/verb/westface()
+mob/verb/westface()
 	set hidden = TRUE
 	set src = usr
 	if(!canface())
@@ -571,7 +571,7 @@
 	return TRUE
 
 ///Hidden verb to turn north
-/mob/verb/northface()
+mob/verb/northface()
 	set hidden = TRUE
 	set src = usr
 	if(!canface())
@@ -581,7 +581,7 @@
 	return TRUE
 
 ///Hidden verb to turn south
-/mob/verb/southface()
+mob/verb/southface()
 	set hidden = TRUE
 	set src = usr
 	if(!canface())
@@ -591,7 +591,7 @@
 	return TRUE
 
 //! Pixel Shifting
-/mob/verb/eastshift()
+mob/verb/eastshift()
 	set hidden = TRUE
 	set src = usr
 	if(!canface())
@@ -599,7 +599,7 @@
 	if(shift_pixel_x < 16)
 		adjust_pixel_shift_x(1)
 
-/mob/verb/westshift()
+mob/verb/westshift()
 	set hidden = TRUE
 	set src = usr
 	if(!canface())
@@ -607,7 +607,7 @@
 	if(shift_pixel_x > -16)
 		adjust_pixel_shift_x(-1)
 
-/mob/verb/northshift()
+mob/verb/northshift()
 	set hidden = TRUE
 	set src = usr
 	if(!canface())
@@ -615,7 +615,7 @@
 	if(shift_pixel_y < 16)
 		adjust_pixel_shift_y(1)
 
-/mob/verb/southshift()
+mob/verb/southshift()
 	set hidden = TRUE
 	set src = usr
 	if(!canface())
@@ -625,7 +625,7 @@
 
 //? Movement Intercepts
 
-/mob/proc/request_movement_intercept(datum/requesting)
+mob/proc/request_movement_intercept(datum/requesting)
 	if(movement_intercept)
 		if(requesting == movement_intercept)
 			return TRUE
@@ -633,9 +633,9 @@
 	movement_intercept = requesting
 	return TRUE
 
-/mob/proc/clear_movement_intercept()
+mob/proc/clear_movement_intercept()
 	movement_intercept = null
 	return TRUE
 
-/datum/proc/intercept_mob_move(mob/moving, dir)
+datum/proc/intercept_mob_move(mob/moving, dir)
 	return

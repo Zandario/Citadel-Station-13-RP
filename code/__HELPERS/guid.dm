@@ -4,7 +4,7 @@
  *
  * (But may make a nice salt to one)
  */
-/proc/GUID()
+proc/GUID()
 	var/const/GUID_VERSION = "b"
 	var/const/GUID_VARIANT = "d"
 	var/node_id = copytext(md5("[rand() * rand(1, 9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand() * rand(1,9999999)]"), 1, 13)

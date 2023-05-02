@@ -1,12 +1,12 @@
 ///////////////////////////
 //// Spawning and despawning
 
-/datum/spawnpoint/talon
+datum/spawnpoint/talon
 	display_name = "ITV Talon Cryo"
 	restrict_job = list("Talon Captain", "Talon Pilot", "Talon Engineer", "Talon Doctor", "Talon Guard")
 	announce_channel = "Talon"
 
-/obj/machinery/cryopod/talon
+obj/machinery/cryopod/talon
 	announce_channel = "Talon"
 	on_store_message = "has entered cryogenic storage."
 	on_store_name = "ITV Talon Cryo"
@@ -15,16 +15,16 @@
 	on_store_visible_message_1 = "hums and hisses as it moves"
 	on_store_visible_message_2 = "into cryogenic storage."
 
-/obj/machinery/cryopod/robot/talon
+obj/machinery/cryopod/robot/talon
 	announce_channel = "Talon"
 	on_store_name = "ITV Talon Robotic Storage"
 
-/obj/landmark/map_data/talon
+obj/landmark/map_data/talon
     height = 2
 
 ///////////////////////////
 //// The Talon
-/obj/effect/overmap/visitable/ship/talon
+obj/effect/overmap/visitable/ship/talon
 	scanner_name = "ITV Talon"
 	scanner_desc = @{"[i]Registration[/i]: ITV Talon
 [i]Class[/i]: Frigate
@@ -42,13 +42,13 @@
 	skybox_pixel_y = 60
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/talonboat
+obj/machinery/computer/shuttle_control/explore/talonboat
 	name = "boat control console"
 	shuttle_tag = "Talon's boat"
 	req_one_access = list(ACCESS_FACTION_TALON)
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/talonboat
+obj/effect/shuttle_landmark/shuttle_initializer/talonboat
 	name = "Talon's boat bay"
 	base_area = /area/talon/deckone/central_hallway
 	base_turf = /turf/simulated/floor/tiled/monotile
@@ -58,7 +58,7 @@
 
 // The talon's boat
 
-/datum/shuttle/autodock/overmap/talonboat
+datum/shuttle/autodock/overmap/talonboat
 	name = "Talon's boat"
 	current_location = "offmap_spawn_talonboat"
 	docking_controller_tag = "talonboat_docker"
@@ -66,12 +66,12 @@
 	fuel_consumption = 2
 	defer_initialisation = TRUE
 
-/area/shuttle/talonboat
+area/shuttle/talonboat
 	name = "Talon's Boat"
 
 ///////////////////////////
 //// The Lifeboat
-/obj/effect/overmap/visitable/ship/landable/talon_lifeboat
+obj/effect/overmap/visitable/ship/landable/talon_lifeboat
 	name = "Talon lifeboat"
 	desc = "A tiny engineless lifeboat from the ITV Talon."
 	vessel_mass = 1000
@@ -79,7 +79,7 @@
 	shuttle = "Talon lifeboat"
 
 /*
-/obj/effect/overmap/visitable/ship/talon_lifeboat/landable/get_skybox_representation()
+obj/effect/overmap/visitable/ship/talon_lifeboat/landable/get_skybox_representation()
 	var/image/I = image('aro.dmi', "skybox")
 	I.pixel_x = 200
 	I.pixel_y = 200
@@ -87,13 +87,13 @@
 */
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/talon_lifeboat
+obj/machinery/computer/shuttle_control/explore/talon_lifeboat
 	name = "lifeboat control console"
 	shuttle_tag = "Talon lifeboat"
 	req_one_access = list(ACCESS_FACTION_TALON)
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/talon_lifeboat
+obj/effect/shuttle_landmark/shuttle_initializer/talon_lifeboat
 	name = "Talon lifeboat dock"
 	base_area = /area/talon/maintenance/decktwo_aft
 	base_turf = /turf/simulated/floor/reinforced
@@ -103,7 +103,7 @@
 
 // The talon's boat
 
-/datum/shuttle/autodock/overmap/talon_lifeboat
+datum/shuttle/autodock/overmap/talon_lifeboat
 	name = "Talon lifeboat"
 	current_location = "offmap_spawn_talon_lifeboat"
 	docking_controller_tag = "talonlifeboat_docker"
@@ -114,10 +114,10 @@
 
 ///////////////////////////
 //// The Various Machines
-/obj/machinery/telecomms/allinone/talon
+obj/machinery/telecomms/allinone/talon
 	freq_listening = list(PUB_FREQ, TALON_FREQ)
 
-/obj/item/paper/talon_shields
+obj/item/paper/talon_shields
 	name = "To whatever asshole"
 	info = {"To whatever <b>asshole</b> keeps resetting the shield generator,<br>\
 Please stop fucking around before you get us all killed. thanks.<br>\
@@ -132,7 +132,7 @@ Good luck<br>\
 <br>\
 <i>Harry Townes</i>"}
 
-/obj/item/paper/talon_lifeboat
+obj/item/paper/talon_lifeboat
 	name = "Survival Directions"
 	info = {"<h3>Survival Directions</h3><br>
 <b>Only jettison lifeboat into space if no other means of survival available.</b><br>
@@ -144,27 +144,27 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 "}
 
 //Prevents remote control of drones
-/obj/machinery/drone_fabricator/talon
+obj/machinery/drone_fabricator/talon
 	name = "somewhat glitchy drone fabricator"
 	desc = "Obtained from a derelict, it seems to work sometimes, not work sometimes, and work TOO good sometimes. Didn't come with a control console either..."
 	drone_type = /mob/living/silicon/robot/drone/talon
 
-/mob/living/silicon/robot/drone/talon
+mob/living/silicon/robot/drone/talon
 	foreign_droid = TRUE
 	idcard_type = /obj/item/card/id/synthetic/talon
 
-/obj/item/card/id/synthetic/talon
+obj/item/card/id/synthetic/talon
 	name = "\improper Talon synthetic ID"
 	desc = "Access module for Talon synthetics"
 	icon_state = "id-robot"
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/card/id/synthetic/talon/Initialize(mapload)
+obj/item/card/id/synthetic/talon/Initialize(mapload)
 	. = ..()
 	access = list(ACCESS_FACTION_TALON, ACCESS_SPECIAL_SILICONS)
 
-/obj/machinery/power/smes/buildable/offmap_spawn/Initialize(mapload, install_coils)
+obj/machinery/power/smes/buildable/offmap_spawn/Initialize(mapload, install_coils)
 	. = ..()
 	charge = 1e7
 	RCon = TRUE
@@ -172,77 +172,77 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	output_level = output_level_max
 	input_attempt = TRUE
 
-/obj/machinery/power/apc/talon
+obj/machinery/power/apc/talon
 	req_access = list()
 	req_one_access = list(ACCESS_FACTION_TALON)
 	alarms_hidden = 1
 
-/obj/machinery/power/apc/talon/hyper
+obj/machinery/power/apc/talon/hyper
 	cell_type = /obj/item/cell/hyper
 
-/obj/machinery/alarm/talon
+obj/machinery/alarm/talon
 	req_access = list()
 	req_one_access = list(ACCESS_FACTION_TALON)
 	alarms_hidden = 1
 
-/obj/machinery/door/firedoor/glass/talon
+obj/machinery/door/firedoor/glass/talon
 	req_access = list()
 	req_one_access = list(ACCESS_FACTION_TALON)
 
-/obj/machinery/door/firedoor/glass/talon/hidden
+obj/machinery/door/firedoor/glass/talon/hidden
 	name = "\improper Emergency Shutter System"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This model fits flush with the walls, and has a panel in the floor for maintenance."
 	icon = 'icons/obj/doors/DoorHazardHidden.dmi'
 
-/obj/machinery/camera/network/talon
+obj/machinery/camera/network/talon
 	network = list(NETWORK_TALON_SHIP)
 
-/obj/machinery/photocopier/faxmachine/talon
+obj/machinery/photocopier/faxmachine/talon
 	department = "ITV Talon"
 	desc = "The ship's fax machine! It's a safe assumption that most of the departments listed aren't on your ship, since the ship only has one."
 
-/obj/item/clothing/head/helmet/space/void/captain/talon
+obj/item/clothing/head/helmet/space/void/captain/talon
 	name = "talon captain's voidsuit helmet"
 	camera_networks = list(NETWORK_TALON_HELMETS)
-/obj/item/clothing/suit/space/void/captain/talon
+obj/item/clothing/suit/space/void/captain/talon
 	name = "talon captain's voidsuit"
 
-/obj/item/clothing/head/helmet/space/void/security/talon
+obj/item/clothing/head/helmet/space/void/security/talon
 	name = "talon guard's voidsuit helmet"
 	camera_networks = list(NETWORK_TALON_HELMETS)
-/obj/item/clothing/suit/space/void/security/talon
+obj/item/clothing/suit/space/void/security/talon
 	name = "talon guard's voidsuit"
 
-/obj/item/clothing/head/helmet/space/void/medical/talon
+obj/item/clothing/head/helmet/space/void/medical/talon
 	name = "talon doctor's voidsuit helmet"
 	camera_networks = list(NETWORK_TALON_HELMETS)
-/obj/item/clothing/suit/space/void/medical/talon
+obj/item/clothing/suit/space/void/medical/talon
 	name = "talon doctor's voidsuit"
 
-/obj/item/clothing/head/helmet/space/void/atmos/talon
+obj/item/clothing/head/helmet/space/void/atmos/talon
 	name = "talon engineer's voidsuit helmet"
 	camera_networks = list(NETWORK_TALON_HELMETS)
-/obj/item/clothing/suit/space/void/atmos/talon
+obj/item/clothing/suit/space/void/atmos/talon
 	name = "talon engineer's voidsuit"
 
-/obj/item/clothing/head/helmet/space/void/pilot/talon
+obj/item/clothing/head/helmet/space/void/pilot/talon
 	name = "talon pilot's voidsuit helmet"
 	camera_networks = list(NETWORK_TALON_HELMETS)
-/obj/item/clothing/suit/space/void/pilot/talon
+obj/item/clothing/suit/space/void/pilot/talon
 	name = "talon pilot's voidsuit"
 
-/obj/item/gps/command/taloncap
+obj/item/gps/command/taloncap
 	gps_tag = "TALC"
-/obj/item/gps/security/talonguard
+obj/item/gps/security/talonguard
 	gps_tag = "TALG"
-/obj/item/gps/medical/talonmed
+obj/item/gps/medical/talonmed
 	gps_tag = "TALM"
-/obj/item/gps/engineering/taloneng
+obj/item/gps/engineering/taloneng
 	gps_tag = "TALE"
-/obj/item/gps/explorer/talonpilot
+obj/item/gps/explorer/talonpilot
 	gps_tag = "TALP"
 
-/obj/structure/closet/secure_closet/talon_captain
+obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
 	req_access = list(ACCESS_FACTION_TALON)
 	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/captain
@@ -262,7 +262,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/gps/command/taloncap
 	)
 
-/obj/structure/closet/secure_closet/talon_guard
+obj/structure/closet/secure_closet/talon_guard
 	name = "talon guard's locker"
 	req_access = list(ACCESS_FACTION_TALON)
 	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/guard
@@ -291,7 +291,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/melee/baton
 	)
 
-/obj/structure/closet/secure_closet/talon_doctor
+obj/structure/closet/secure_closet/talon_doctor
 	name = "talon doctor's locker"
 	req_access = list(ACCESS_FACTION_TALON)
 	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/doctor
@@ -313,7 +313,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/gps/medical/talonmed
 	)
 
-/obj/structure/closet/secure_closet/talon_engineer
+obj/structure/closet/secure_closet/talon_engineer
 	name = "talon engineer's locker"
 	req_access = list(ACCESS_FACTION_TALON)
 	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/engineer
@@ -336,7 +336,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/gps/engineering/taloneng
 	)
 
-/obj/structure/closet/secure_closet/talon_pilot
+obj/structure/closet/secure_closet/talon_pilot
 	name = "talon pilot's locker"
 	req_access = list(ACCESS_FACTION_TALON)
 	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/pilot
@@ -367,7 +367,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 ///////////////////////////
 //// Computers
 // Talon helmet cameras
-/datum/computer_file/program/camera_monitor/talon_helmet
+datum/computer_file/program/camera_monitor/talon_helmet
 	filename = "talhcammon"
 	filedesc = "Helmet Camera Monitoring (Talon)"
 	extended_desc = "This program allows remote access to Talon helmet camera systems."
@@ -376,7 +376,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	required_access = ACCESS_FACTION_TALON
 
 // Talon ship cameras
-/datum/computer_file/program/camera_monitor/talon_ship
+datum/computer_file/program/camera_monitor/talon_ship
 	filename = "talscammon"
 	filedesc = "Ship Camera Monitoring (Talon)"
 	extended_desc = "This program allows remote access to the Talon's camera system."
@@ -384,78 +384,78 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	tguimodule_path = /datum/tgui_module_old/camera/ntos/talon_ship
 	required_access = ACCESS_FACTION_TALON
 
-/datum/tgui_module_old/camera/ntos/talon_ship
+datum/tgui_module_old/camera/ntos/talon_ship
 	name = "Talon Ship Camera Monitor"
-/datum/tgui_module_old/camera/ntos/talon_ship/New(host)
+datum/tgui_module_old/camera/ntos/talon_ship/New(host)
 	. = ..(host, list(NETWORK_TALON_SHIP, NETWORK_THUNDER))
 
-/datum/tgui_module_old/camera/ntos/talon_helmet
+datum/tgui_module_old/camera/ntos/talon_helmet
 	name = "Talon Helmet Camera Monitor"
-/datum/tgui_module_old/camera/ntos/talon_helmet/New(host)
+datum/tgui_module_old/camera/ntos/talon_helmet/New(host)
 	. = ..(host, list(NETWORK_TALON_HELMETS))
 
-/datum/computer_file/program/power_monitor/talon
+datum/computer_file/program/power_monitor/talon
 	filename = "tpowermonitor"
 	filedesc = "Power Monitoring (Talon)"
 	required_access = ACCESS_FACTION_TALON
-/datum/computer_file/program/alarm_monitor/talon
+datum/computer_file/program/alarm_monitor/talon
 	filename = "talarmmonitoreng"
 	filedesc = "Alarm Monitoring (Talon)"
 	required_access = ACCESS_FACTION_TALON
-/datum/computer_file/program/rcon_console/talon
+datum/computer_file/program/rcon_console/talon
 	filename = "trconconsole"
 	filedesc = "RCON Remote Control (Talon)"
 	required_access = ACCESS_FACTION_TALON
-/datum/computer_file/program/atmos_control/talon
+datum/computer_file/program/atmos_control/talon
 	filename = "tatmoscontrol"
 	filedesc = "Atmosphere Control (Talon)"
 	required_access = ACCESS_FACTION_TALON
-/datum/computer_file/program/suit_sensors/talon
+datum/computer_file/program/suit_sensors/talon
 	filename = "tsensormonitor"
 	filedesc = "Suit Sensors Monitoring (Talon)"
 	required_access = ACCESS_FACTION_TALON
 
 // Modular computer/console presets
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/pilot
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/pilot
 	name = "pilot's laptop"
 
 /* PENDING HARDSYNC!
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/pilot/install_default_programs()
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/pilot/install_default_programs()
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/ship_nav())
 */
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/engineer
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/engineer
 	name = "engineer's laptop"
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/engineer/install_default_programs()
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/engineer/install_default_programs()
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/power_monitor/talon())
 	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor/talon())
 	hard_drive.store_file(new/datum/computer_file/program/rcon_console/talon())
 	hard_drive.store_file(new/datum/computer_file/program/atmos_control/talon())
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/security
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/security
 	name = "guard's laptop"
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/security/install_default_programs()
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/security/install_default_programs()
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor/talon_ship())
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/medical
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/medical
 	name = "doctor's laptop"
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/medical/install_default_programs()
+obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/medical/install_default_programs()
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/suit_sensors/talon())
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor/talon_helmet())
 	set_autorun("tsensormonitor")
 
 //Generic modular consoles scattered around
-/obj/item/modular_computer/console/preset/talon
+obj/item/modular_computer/console/preset/talon
 	name = "talon modular computer"
 
-/obj/item/modular_computer/console/preset/talon/install_default_hardware()
+obj/item/modular_computer/console/preset/talon/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
@@ -463,7 +463,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	network_card = new/obj/item/computer_hardware/network_card/wired(src)
 	nano_printer = new/obj/item/computer_hardware/nano_printer(src)
 
-/obj/item/modular_computer/console/preset/talon/install_default_programs()
+obj/item/modular_computer/console/preset/talon/install_default_programs()
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/power_monitor/talon())
 	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor/talon())
@@ -476,11 +476,11 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 // Just in case someone decides to clean up radio.dm and remove this Im going to leave a copy commented out here. Might save someone some trouble later trying to find this. Bloop
 /*
-/obj/item/bluespace_radio/talon_prelinked
+obj/item/bluespace_radio/talon_prelinked
 	name = "bluespace radio (talon)"
 	handset = /obj/item/radio/bluespace_handset/linked/talon_prelinked
 
-/obj/item/radio/bluespace_handset/linked/talon_prelinked
+obj/item/radio/bluespace_handset/linked/talon_prelinked
 	bs_tx_preload_id = "talon_aio" //Transmit to a receiver
 	bs_rx_preload_id = "talon_aio" //Recveive from a transmitter
 */
@@ -491,25 +491,25 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 */
 /*
 // Talon offmap spawn stuff
-/datum/map_template/triumph_lateload/offmap/talon1
+datum/map_template/triumph_lateload/offmap/talon1
 	name = "Offmap Ship - Talon Z1"
 	desc = "Offmap spawn ship, the Talon."
 	mappath = "maps/map_levels/140x140/talon/talon1.dmm"
 	associated_map_datum = /datum/map_z_level/triumph_lateload/talon1
 
-/datum/map_template/triumph_lateload/offmap/talon2
+datum/map_template/triumph_lateload/offmap/talon2
 	name = "Offmap Ship - Talon Z2"
 	desc = "Offmap spawn ship, the Talon."
 	mappath = "maps/map_levels/140x140/talon/talon2.dmm"
 	associated_map_datum = /datum/map_z_level/triumph_lateload/talon2
 
-/datum/map_z_level/triumph_lateload/talon1
+datum/map_z_level/triumph_lateload/talon1
 	name = "Talon Deck One"
 	flags = MAP_LEVEL_PLAYER
 	base_turf = /turf/space
 	z = Z_LEVEL_TALON1
 
-/datum/map_z_level/triumph_lateload/talon2
+datum/map_z_level/triumph_lateload/talon2
 	name = "Talon Deck Two"
 	flags = MAP_LEVEL_PLAYER
 	base_turf = /turf/simulated/open

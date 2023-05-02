@@ -1,9 +1,9 @@
-/datum/component/shrink
+datum/component/shrink
 	var/olddens
 	var/oldopac
 	dupe_mode = COMPONENT_DUPE_HIGHLANDER
 
-/datum/component/shrink/Initialize(shrink_time)
+datum/component/shrink/Initialize(shrink_time)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/atom/parent_atom = parent
@@ -28,7 +28,7 @@
 	QDEL_IN(src, shrink_time)
 
 
-/datum/component/shrink/Destroy()
+datum/component/shrink/Destroy()
 	var/atom/parent_atom = parent
 	parent_atom.transform = parent_atom.transform.Scale(2,2)
 	parent_atom.density = olddens

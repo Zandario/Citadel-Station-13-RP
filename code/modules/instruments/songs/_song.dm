@@ -2,7 +2,7 @@
 #define MUSIC_MAXLINES 1000
 #define MUSIC_MAXLINECHARS 300
 
-/datum/song
+datum/song
 	/// Name of the song
 	var/name = "Untitled"
 
@@ -113,7 +113,7 @@
 	var/cached_exponential_dropoff = 1.045
 	/////////////////////////////////////////////////////////////////////////
 
-/datum/song/New(atom/parent, list/instrument_ids)
+datum/song/New(atom/parent, list/instrument_ids)
 	SSinstruments.on_song_new(src)
 	lines = list()
 	tempo = sanitize_tempo(tempo)
@@ -126,7 +126,7 @@
 	volume = clamp(volume, min_volume, max_volume)
 	update_sustain()
 
-/datum/song/Destroy()
+datum/song/Destroy()
 	stop_playing()
 	SSinstruments.on_song_del(src)
 	lines = null
@@ -135,7 +135,7 @@
 	parent = null
 	return ..()
 
-/datum/song/proc/do_hearcheck()
+datum/song/proc/do_hearcheck()
 	last_hearcheck = world.time
 	var/list/old = hearing_mobs.Copy()
 	hearing_mobs.len = 0
@@ -147,7 +147,7 @@
 		terminate_sound_mob(i)
 
 /// I can either be a datum, id, or path (if the instrument has no id).
-/datum/song/proc/set_instrument(datum/instrument/I)
+datum/song/proc/set_instrument(datum/instrument/I)
 	if(using_instrument)
 		using_instrument.songs_using -= src
 	using_instrument = null
@@ -170,7 +170,7 @@
 			legacy = FALSE
 
 /// THIS IS A BLOCKING CALL.
-/datum/song/proc/start_playing(mob/user)
+datum/song/proc/start_playing(mob/user)
 	if(playing)
 		return
 	if(!using_instrument?.ready())
@@ -185,7 +185,7 @@
 	. = do_play_lines(user)
 	stop_playing()
 
-/datum/song/proc/stop_playing()
+datum/song/proc/stop_playing()
 	if(!playing)
 		return
 	playing = FALSE
@@ -197,7 +197,7 @@
 	updateDialog()
 
 /// THIS IS A BLOCKING CALL.
-/datum/song/proc/do_play_lines(user)
+datum/song/proc/do_play_lines(user)
 	if(!playing)
 		return
 	do_hearcheck()
@@ -206,31 +206,31 @@
 	else
 		do_play_lines_synthesized(user)
 
-/datum/song/proc/should_stop_playing(mob/user)
+datum/song/proc/should_stop_playing(mob/user)
 	return QDELETED(parent) || !using_instrument || !playing
 
-/datum/song/proc/sanitize_tempo(new_tempo)
+datum/song/proc/sanitize_tempo(new_tempo)
 	new_tempo = abs(new_tempo)
 	return clamp(round(new_tempo, world.tick_lag), world.tick_lag, 5 SECONDS)
 
-/datum/song/proc/get_bpm()
+datum/song/proc/get_bpm()
 	return 600 / tempo
 
-/datum/song/proc/set_bpm(bpm)
+datum/song/proc/set_bpm(bpm)
 	tempo = sanitize_tempo(600 / bpm)
 
 /// Updates the window for our user. Override in subtypes.
-/datum/song/proc/updateDialog(mob/user)
+datum/song/proc/updateDialog(mob/user)
 	nano_ui_interact(user)
 
-/datum/song/process(wait)
+datum/song/process(wait)
 	if(!playing)
 		return PROCESS_KILL
 	var/delay = world.time - last_process_decay
 	process_decay(delay)
 	last_process_decay = world.time
 
-/datum/song/proc/update_sustain()
+datum/song/proc/update_sustain()
 	// Exponential is easy
 	cached_exponential_dropoff = sustain_exponential_dropoff
 	// Linear, not so much, since it's a target duration from 100 volume rather than an exponential rate.
@@ -239,27 +239,27 @@
 	var/volume_decrease_per_decisecond = volume_diff / target_duration
 	cached_linear_dropoff = volume_decrease_per_decisecond
 
-/datum/song/proc/set_volume(volume)
+datum/song/proc/set_volume(volume)
 	src.volume = clamp(volume, max(0, min_volume), min(100, max_volume))
 	update_sustain()
 	updateDialog()
 
-/datum/song/proc/set_dropoff_volume(volume)
+datum/song/proc/set_dropoff_volume(volume)
 	sustain_dropoff_volume = clamp(volume, INSTRUMENT_MIN_SUSTAIN_DROPOFF, 100)
 	update_sustain()
 	updateDialog()
 
-/datum/song/proc/set_exponential_drop_rate(drop)
+datum/song/proc/set_exponential_drop_rate(drop)
 	sustain_exponential_dropoff = clamp(drop, INSTRUMENT_EXP_FALLOFF_MIN, INSTRUMENT_EXP_FALLOFF_MAX)
 	update_sustain()
 	updateDialog()
 
-/datum/song/proc/set_linear_falloff_duration(duration)
+datum/song/proc/set_linear_falloff_duration(duration)
 	sustain_linear_duration = clamp(duration, 0.1, INSTRUMENT_MAX_TOTAL_SUSTAIN)
 	update_sustain()
 	updateDialog()
 
-/datum/song/vv_edit_var(var_name, var_value)
+datum/song/vv_edit_var(var_name, var_value)
 	. = ..()
 	if(.)
 		switch(var_name)
@@ -273,12 +273,12 @@
 				set_linear_falloff_duration(var_value)
 
 // subtype for handheld instruments, like violin
-/datum/song/handheld
+datum/song/handheld
 
-/datum/song/handheld/updateDialog(mob/user)
+datum/song/handheld/updateDialog(mob/user)
 	parent.nano_ui_interact(user || usr)
 
-/datum/song/handheld/should_stop_playing(mob/user)
+datum/song/handheld/should_stop_playing(mob/user)
 	. = ..()
 	if(.)
 		return TRUE
@@ -286,12 +286,12 @@
 	return I.should_stop_playing(user)
 
 // subtype for stationary structures, like pianos
-/datum/song/stationary
+datum/song/stationary
 
-/datum/song/stationary/updateDialog(mob/user)
+datum/song/stationary/updateDialog(mob/user)
 	parent.nano_ui_interact(user || usr)
 
-/datum/song/stationary/should_stop_playing(mob/user)
+datum/song/stationary/should_stop_playing(mob/user)
 	. = ..()
 	if(.)
 		return TRUE

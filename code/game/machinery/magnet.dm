@@ -4,7 +4,7 @@
 // tl;dr: it's magnets lol
 // This was created for firing ranges, but I suppose this could have other applications - Doohl
 
-/obj/machinery/magnetic_module
+obj/machinery/magnetic_module
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "floor_magnet-f"
 	name = "Electromagnetic Generator"
@@ -32,7 +32,7 @@
 	var/center_y = 0
 	var/max_dist = 20 // absolute value of center_x,y cannot exceed this integer
 
-/obj/machinery/magnetic_module/Initialize(mapload, newdir)
+obj/machinery/magnetic_module/Initialize(mapload, newdir)
 	. = ..()
 	var/turf/T = loc
 	hide(!T.is_plating())
@@ -46,12 +46,12 @@
 		magnetic_process()
 
 // update the invisibility and icon
-/obj/machinery/magnetic_module/hide(intact)
+obj/machinery/magnetic_module/hide(intact)
 	invisibility = intact ? 101 : 0
 	updateicon()
 
 // update the icon_state
-/obj/machinery/magnetic_module/proc/updateicon()
+obj/machinery/magnetic_module/proc/updateicon()
 	var/state="floor_magnet"
 	var/onstate=""
 	if(!on)
@@ -63,7 +63,7 @@
 	else
 		icon_state = "[state][onstate]"
 
-/obj/machinery/magnetic_module/receive_signal(datum/signal/signal)
+obj/machinery/magnetic_module/receive_signal(datum/signal/signal)
 	var/command = signal.data["command"]
 	var/modifier = signal.data["modifier"]
 	var/signal_code = signal.data["code"]
@@ -71,7 +71,7 @@
 
 		Cmd(command, modifier)
 
-/obj/machinery/magnetic_module/proc/Cmd(command, modifier)
+obj/machinery/magnetic_module/proc/Cmd(command, modifier)
 	if(command)
 		switch(command)
 			if("set-electriclevel")
@@ -125,7 +125,7 @@
 					spawn()
 						magnetic_process()
 
-/obj/machinery/magnetic_module/process(delta_time)
+obj/machinery/magnetic_module/process(delta_time)
 	if(machine_stat & NOPOWER)
 		on = FALSE
 
@@ -164,7 +164,7 @@
 
 	updateicon()
 
-/obj/machinery/magnetic_module/proc/magnetic_process() // proc that actually does the pull_active
+obj/machinery/magnetic_module/proc/magnetic_process() // proc that actually does the pull_active
 	if(pull_active)
 		return
 	while(on)
@@ -186,12 +186,12 @@
 
 	pull_active = FALSE
 
-/obj/machinery/magnetic_module/Destroy()
+obj/machinery/magnetic_module/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, freq)
 	..()
 
-/obj/machinery/magnetic_controller
+obj/machinery/magnetic_controller
 	name = "Magnetic Control Console"
 	icon = 'icons/obj/airlock_machines.dmi' // uses an airlock machine icon, THINK GREEN HELP THE ENVIRONMENT - RECYCLING!
 	icon_state = "airlock_control_standby"
@@ -223,7 +223,7 @@
 	var/datum/radio_frequency/radio_connection
 
 
-/obj/machinery/magnetic_controller/Initialize(mapload, newdir)
+obj/machinery/magnetic_controller/Initialize(mapload, newdir)
 	. = ..()
 
 	if(autolink)
@@ -241,17 +241,17 @@
 		filter_path() // renders rpath
 
 
-/obj/machinery/magnetic_controller/process(delta_time)
+obj/machinery/magnetic_controller/process(delta_time)
 	if(magnets.len == 0 && autolink)
 		for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 
 
-/obj/machinery/magnetic_controller/attack_ai(mob/user)
+obj/machinery/magnetic_controller/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/magnetic_controller/attack_hand(mob/user, list/params)
+obj/machinery/magnetic_controller/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
@@ -279,7 +279,7 @@
 	user << browse(dat, "window=magnet;size=400x500")
 	onclose(user, "magnet")
 
-/obj/machinery/magnetic_controller/Topic(href, href_list)
+obj/machinery/magnetic_controller/Topic(href, href_list)
 	if(..())
 		return TRUE
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -344,7 +344,7 @@
 
 	updateUsrDialog()
 
-/obj/machinery/magnetic_controller/proc/MagnetMove()
+obj/machinery/magnetic_controller/proc/MagnetMove()
 	if(looping) return
 
 	while(moving && rpath.len >= 1)
@@ -390,7 +390,7 @@
 	looping = FALSE
 
 
-/obj/machinery/magnetic_controller/proc/filter_path()
+obj/machinery/magnetic_controller/proc/filter_path()
 	// Generates the rpath variable using the path string, think of this as "string2list"
 	// Doesn't use params2list() because of the akward way it stacks entities
 	rpath = list() //  clear rpath
@@ -405,7 +405,7 @@
 
 		// there doesn't HAVE to be separators but it makes paths syntatically visible
 
-/obj/machinery/magnetic_controller/Destroy()
+obj/machinery/magnetic_controller/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 	..()

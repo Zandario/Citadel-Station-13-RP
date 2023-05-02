@@ -1,4 +1,4 @@
-/obj/structure/blob/factory
+obj/structure/blob/factory
 	name = "factory blob"
 	base_name = "factory"
 	icon = 'icons/mob/blob.dmi'
@@ -14,7 +14,7 @@
 	var/spore_delay = 0
 	var/spore_cooldown = 8 SECONDS
 
-/obj/structure/blob/factory/Destroy()
+obj/structure/blob/factory/Destroy()
 	for(var/mob/living/L in spores)
 		var/mob/living/simple_mob/blob/spore/spore = L
 		if(istype(spore) && spore.factory == src)
@@ -24,7 +24,7 @@
 	spores = null
 	return ..()
 
-/obj/structure/blob/factory/pulsed()
+obj/structure/blob/factory/pulsed()
 	. = ..()
 	if(spores.len >= max_spores)
 		return
@@ -47,7 +47,7 @@
 			spores += S
 		S.update_icons()
 
-/obj/structure/blob/factory/sluggish // Capable of producing MORE spores, but quite a bit slower than normal.
+obj/structure/blob/factory/sluggish // Capable of producing MORE spores, but quite a bit slower than normal.
 	name = "sluggish factory blob"
 	max_spores = 4
 	spore_cooldown = 16 SECONDS

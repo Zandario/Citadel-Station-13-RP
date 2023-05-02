@@ -1,13 +1,13 @@
-/datum/gene/monkey
+datum/gene/monkey
 	name="Monkey"
 
-/datum/gene/monkey/New()
+datum/gene/monkey/New()
 	block = DNABLOCK_MONKEY
 
-/datum/gene/monkey/can_activate(mob/M, flags)
+datum/gene/monkey/can_activate(mob/M, flags)
 	return istype(M, /mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey)
 
-/datum/gene/monkey/activate(mob/living/M, connected, flags)
+datum/gene/monkey/activate(mob/living/M, connected, flags)
 	if(!istype(M,/mob/living/carbon/human))
 		//testing("Cannot monkey-ify [M], type is [M.type].")
 		return
@@ -78,7 +78,7 @@
 	qdel(M)
 	return
 
-/datum/gene/monkey/deactivate(mob/living/M, connected, flags)
+datum/gene/monkey/deactivate(mob/living/M, connected, flags)
 	if(!istype(M,/mob/living/carbon/monkey))
 		// testing("Cannot humanize [M], type is [M.type].")
 		return

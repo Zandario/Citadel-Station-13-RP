@@ -3,7 +3,7 @@
 
 // if i have to maintain this perfect example of why we shouldn't just merge code just because someone made it and instead we should enforce some modicrum of fucking code standards one more time, i'm going to remove it entirely because fuck off.
 
-/obj/item/gun/energy/modular
+obj/item/gun/energy/modular
 	name = "the very concept of a modular weapon"
 	desc = "An idea, given physical form? Contact your God, the Maker has made a mistake."
 	icon_state = "mod_pistol"
@@ -22,11 +22,11 @@
 	firemodes = list()
 	var/emp_vuln = TRUE
 
-/obj/item/gun/energy/modular/Initialize(mapload)
+obj/item/gun/energy/modular/Initialize(mapload)
 	. = ..()
 	generatefiremodes()
 
-/obj/item/gun/energy/modular/examine(mob/user)
+obj/item/gun/energy/modular/examine(mob/user)
 	. = ..()
 	if(primarycore)
 		. += "The modular weapon has a [primarycore.name] installed in the primary core slot."
@@ -44,12 +44,12 @@
 		. += "The modular weapon has a [circuit.name] installed in the fire control slot."
 
 // hilariously snowflake proc to force a firemode switch because i can't be assed to do it properly holy shit fuck you
-/obj/item/gun/energy/modular/proc/generatefiremodes()
+obj/item/gun/energy/modular/proc/generatefiremodes()
 	do_generatefiremodes()
 	var/datum/firemode/new_mode = firemodes[1]
 	new_mode.apply_to(src)
 
-/obj/item/gun/energy/modular/proc/do_generatefiremodes() //Accepts no args. Checks the gun's current components and generates projectile types, firemode costs and max burst. Should be called after changing parts or part values.
+obj/item/gun/energy/modular/proc/do_generatefiremodes() //Accepts no args. Checks the gun's current components and generates projectile types, firemode costs and max burst. Should be called after changing parts or part values.
 	if(!circuit)
 		return FALSE
 	if(!primarycore)
@@ -153,17 +153,17 @@
 		else
 			return FALSE
 
-/obj/item/gun/energy/modular/emp_act(severity)
+obj/item/gun/energy/modular/emp_act(severity)
 	if(!emp_vuln)
 		return FALSE
 	return ..()
 
-/obj/item/gun/energy/modular/AltClick(mob/user)
+obj/item/gun/energy/modular/AltClick(mob/user)
 	generatefiremodes()
 	to_chat(user, "You hit the reset on the weapon's internal checking system.")
 
 
-/obj/item/gun/energy/modular/special_check(mob/user)
+obj/item/gun/energy/modular/special_check(mob/user)
 	. = ..()
 	if(!circuit)
 		to_chat(user, "<span class='warning'>The gun is missing parts!</span>")
@@ -189,7 +189,7 @@
 		new_mode.apply_to(src)
 		return FALSE
 
-/obj/item/gun/energy/modular/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
+obj/item/gun/energy/modular/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
 	if(I.is_screwdriver())
 		to_chat(user, "<span class='notice'>You [assembled ? "disassemble" : "assemble"] the gun.</span>")
 		assembled = !assembled
@@ -290,18 +290,18 @@
 	return ..()
 
 //these are debug ones.
-/obj/item/gun/energy/modular/twocore
+obj/item/gun/energy/modular/twocore
 	name = "bicore modular weapon"
 	cores = 2
 
-/obj/item/gun/energy/modular/threecore
+obj/item/gun/energy/modular/threecore
 	name = "tricore modular weapon"
 	cores = 3
 
 
 
 //parts
-/obj/item/modularlaser
+obj/item/modularlaser
 	name = "modular laser part"
 	desc = "I shouldn't exist."
 	icon = 'icons/obj/device_alt.dmi'

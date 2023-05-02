@@ -1,6 +1,6 @@
 /******************************Lantern*******************************/
 
-/obj/item/flashlight/lantern
+obj/item/flashlight/lantern
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A mining lantern."
@@ -10,7 +10,7 @@
 
 /*****************************Pickaxe********************************/
 
-/obj/item/pickaxe
+obj/item/pickaxe
 	name = "mining drill"
 	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
 	icon = 'icons/obj/items.dmi'
@@ -33,7 +33,7 @@
 	var/excavation_amount = 200
 	var/destroy_artefacts = FALSE // some mining tools will destroy artefacts completely while avoiding side-effects.
 
-/obj/item/pickaxe/bone
+obj/item/pickaxe/bone
 	name = "bone pickaxe"
 	icon_state = "bpickaxe"
 	item_state = "bpickaxe"
@@ -41,7 +41,7 @@
 	origin_tech = list(TECH_MATERIAL = 1)
 	desc = "A sturdy pick fashioned from some animal's bone, wound with powerful sinew."
 
-/obj/item/pickaxe/silver
+obj/item/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
@@ -49,7 +49,7 @@
 	origin_tech = list(TECH_MATERIAL = 3)
 	desc = "This makes no metallurgic sense."
 
-/obj/item/pickaxe/drill
+obj/item/pickaxe/drill
 	name = "advanced mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
 	item_state = "jackhammer"
@@ -59,7 +59,7 @@
 	drill_verb = "drilling"
 	sand_dig = TRUE
 
-/obj/item/pickaxe/jackhammer
+obj/item/pickaxe/jackhammer
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
@@ -68,7 +68,7 @@
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
 
-/obj/item/pickaxe/gold
+obj/item/pickaxe/gold
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
@@ -77,7 +77,7 @@
 	desc = "This makes no metallurgic sense."
 	drill_verb = "picking"
 
-/obj/item/pickaxe/plasmacutter
+obj/item/pickaxe/plasmacutter
 	name = "plasma cutter"
 	icon_state = "plasmacutter"
 	item_state = "gun"
@@ -91,7 +91,7 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/pickaxe/diamond
+obj/item/pickaxe/diamond
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
@@ -100,7 +100,7 @@
 	desc = "A pickaxe with a diamond pick head."
 	drill_verb = "picking"
 
-/obj/item/pickaxe/diamonddrill // When people ask about the badass leader of the mining tools, they are talking about ME!
+obj/item/pickaxe/diamonddrill // When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
@@ -110,7 +110,7 @@
 	drill_verb = "drilling"
 	sand_dig = TRUE
 
-/obj/item/pickaxe/borgdrill
+obj/item/pickaxe/borgdrill
 	name = "enhanced sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
@@ -119,7 +119,7 @@
 	drill_verb = "hammering"
 	sand_dig = TRUE
 
-/obj/item/pickaxe/icepick //Cannot actually lobotomize people. Yet.
+obj/item/pickaxe/icepick //Cannot actually lobotomize people. Yet.
 	name = "icepick"
 	desc = "A simple icepick, for all your digging, climbing, and lobotomizing needs."
 	slot_flags = SLOT_BELT
@@ -136,7 +136,7 @@
 	sharp = 1
 
 //Snowflake drill that works like a chainsaw! How fun. Honestly they should probably all work like this or something. I dunno. Might be a fun mining overhaul later.
-/obj/item/pickaxe/tyrmalin
+obj/item/pickaxe/tyrmalin
 	name = "\improper Tyrmalin excavator"
 	desc = "A mining drill build from scrap parts, often found on Tyrmalin mining operations. No two are alike."
 	icon_state = "goblindrill"
@@ -146,7 +146,7 @@
 	active = 0
 	var/jam_chance = TRUE
 
-/obj/item/pickaxe/tyrmalin/Initialize(mapload)
+obj/item/pickaxe/tyrmalin/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
@@ -154,11 +154,11 @@
 	R.add_reagent("fuel", max_fuel)
 	START_PROCESSING(SSobj, src)
 
-/obj/item/pickaxe/tyrmalin/Destroy()
+obj/item/pickaxe/tyrmalin/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/pickaxe/tyrmalin/proc/turnOn(mob/user as mob)
+obj/item/pickaxe/tyrmalin/proc/turnOn(mob/user as mob)
 	if(active)
 		return
 
@@ -183,7 +183,7 @@
 		else
 			to_chat(user, "You fumble with the string.")
 
-/obj/item/pickaxe/tyrmalin/proc/turnOff(mob/user as mob)
+obj/item/pickaxe/tyrmalin/proc/turnOff(mob/user as mob)
 	if(!active) return
 	to_chat(user, "You switch the gas nozzle on the drill, turning it off.")
 	attack_verb = list("bluntly hit", "beat", "knocked")
@@ -194,7 +194,7 @@
 	active = 0
 	update_icon()
 
-/obj/item/pickaxe/tyrmalin/attack_self(mob/user)
+obj/item/pickaxe/tyrmalin/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -203,7 +203,7 @@
 	else
 		turnOff(user)
 
-/obj/item/pickaxe/tyrmalin/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+obj/item/pickaxe/tyrmalin/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
 	if(active)
@@ -233,7 +233,7 @@
 		else
 			to_chat(usr, "<span class='notice'>Don't move while you're refilling the [src].</span>")
 
-/obj/item/pickaxe/tyrmalin/process(delta_time)
+obj/item/pickaxe/tyrmalin/process(delta_time)
 	if(!active)
 		return
 
@@ -244,15 +244,15 @@
 		to_chat(usr, "\The [src] sputters to a stop!")
 		turnOff()
 
-/obj/item/pickaxe/tyrmalin/proc/get_fuel()
+obj/item/pickaxe/tyrmalin/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
-/obj/item/pickaxe/tyrmalin/examine(mob/user)
+obj/item/pickaxe/tyrmalin/examine(mob/user)
 	. = ..()
 	if(max_fuel)
 		. += "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>"
 
-/obj/item/pickaxe/tyrmalin/update_icon()
+obj/item/pickaxe/tyrmalin/update_icon()
 	if(active)
 		icon_state = "goblindrill1"
 		item_state = "goblindrill1"
@@ -263,7 +263,7 @@
 
 /*****************************Shovel********************************/
 
-/obj/item/shovel
+obj/item/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items.dmi'
@@ -280,7 +280,7 @@
 	edge = 1
 	var/digspeed = 40
 
-/obj/item/shovel/bone
+obj/item/shovel/bone
 	name = "serrated bone shovel"
 	desc = "A wicked tool that cleaves through dirt just as easily as it does flesh. The design was styled after ancient tribal designs."
 	icon = 'icons/obj/mining.dmi'
@@ -291,7 +291,7 @@
 	attack_verb = list("slashed", "impaled", "stabbed", "sliced")
 	sharp = 1
 
-/obj/item/shovel/spade
+obj/item/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"
@@ -300,7 +300,7 @@
 	throw_force = 7.0
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/shovel/spade/bone
+obj/item/shovel/spade/bone
 	name = "primitive spade"
 	desc = "A small shove cruedly fashioned out of some beast's scapula."
 	icon = 'icons/obj/mining.dmi'
@@ -308,7 +308,7 @@
 
 /**********************Mining car (Crate like thing, not the rail car)**************************/
 
-/obj/structure/closet/crate/miningcar
+obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
 	icon = 'icons/obj/storage.dmi'
@@ -319,7 +319,7 @@
 
 // Flags.
 
-/obj/item/stack/flag
+obj/item/stack/flag
 	name = "flags"
 	desc = "Some colourful flags."
 	singular_name = "flag"
@@ -331,37 +331,37 @@
 	var/upright = 0
 	var/base_state
 
-/obj/item/stack/flag/Initialize(mapload, new_amount, merge)
+obj/item/stack/flag/Initialize(mapload, new_amount, merge)
 	. = ..()
 	base_state = icon_state
 
-/obj/item/stack/flag/blue
+obj/item/stack/flag/blue
 	name = "blue flags"
 	singular_name = "blue flag"
 	icon_state = "blueflag"
 
-/obj/item/stack/flag/red
+obj/item/stack/flag/red
 	name = "red flags"
 	singular_name = "red flag"
 	icon_state = "redflag"
 
-/obj/item/stack/flag/yellow
+obj/item/stack/flag/yellow
 	name = "yellow flags"
 	singular_name = "yellow flag"
 	icon_state = "yellowflag"
 
-/obj/item/stack/flag/green
+obj/item/stack/flag/green
 	name = "green flags"
 	singular_name = "green flag"
 	icon_state = "greenflag"
 
-/obj/item/stack/flag/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/stack/flag/attackby(obj/item/W as obj, mob/user as mob)
 	if(upright && istype(W,src.type))
 		src.attack_hand(user)
 	else
 		..()
 
-/obj/item/stack/flag/attack_hand(mob/user, list/params)
+obj/item/stack/flag/attack_hand(mob/user, list/params)
 	if(upright)
 		upright = 0
 		icon_state = base_state
@@ -370,7 +370,7 @@
 	else
 		..()
 
-/obj/item/stack/flag/attack_self(mob/user)
+obj/item/stack/flag/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

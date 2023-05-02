@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
-/obj/machinery/containment_field
+obj/machinery/containment_field
 	name = "Containment Field"
 	desc = "An energy field."
 	icon = 'icons/obj/singularity.dmi'
@@ -14,34 +14,34 @@
 	var/obj/machinery/field_generator/FG2 = null
 	var/hasShocked = 0 //Used to add a delay between shocks. In some cases this used to crash servers by spawning hundreds of sparks every second.
 
-/obj/machinery/containment_field/Destroy()
+obj/machinery/containment_field/Destroy()
 	if(FG1 && !FG1.clean_up)
 		FG1.cleanup()
 	if(FG2 && !FG2.clean_up)
 		FG2.cleanup()
 	. = ..()
 
-/obj/machinery/containment_field/attack_hand(mob/user, list/params)
+obj/machinery/containment_field/attack_hand(mob/user, list/params)
 	if(get_dist(src, user) > 1)
 		return 0
 	else
 		shock(user)
 		return 1
 
-/obj/machinery/containment_field/CanAllowThrough(atom/movable/mover, turf/target)
+obj/machinery/containment_field/CanAllowThrough(atom/movable/mover, turf/target)
 	if(isliving(mover))
 		return FALSE
 	return ..()
 
-/obj/machinery/containment_field/Bumped(atom/movable/bumped_atom)
+obj/machinery/containment_field/Bumped(atom/movable/bumped_atom)
 	. = ..()
 	if(isliving(bumped_atom))
 		shock(bumped_atom)
 
-/obj/machinery/containment_field/legacy_ex_act(severity)
+obj/machinery/containment_field/legacy_ex_act(severity)
 	return 0
 
-/obj/machinery/containment_field/shock(mob/living/user as mob)
+obj/machinery/containment_field/shock(mob/living/user as mob)
 	if(hasShocked)
 		return 0
 	if(!FG1 || !FG2)
@@ -59,7 +59,7 @@
 
 		hasShocked = 0
 
-/obj/machinery/containment_field/proc/set_master(var/master1,var/master2)
+obj/machinery/containment_field/proc/set_master(var/master1,var/master2)
 	if(!master1 || !master2)
 		return 0
 	FG1 = master1

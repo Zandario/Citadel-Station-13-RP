@@ -16,10 +16,10 @@ SUBSYSTEM_DEF(bellies)
 	var/list/currentrun = list()
 	var/ignored_bellies = 0
 
-/datum/controller/subsystem/bellies/stat_entry()
+datum/controller/subsystem/bellies/stat_entry()
 	return ..() + " #: [belly_list.len] | P: [ignored_bellies]"
 
-/datum/controller/subsystem/bellies/fire(resumed = 0)
+datum/controller/subsystem/bellies/fire(resumed = 0)
 	if (!resumed)
 		ignored_bellies = 0
 		src.currentrun = belly_list.Copy()

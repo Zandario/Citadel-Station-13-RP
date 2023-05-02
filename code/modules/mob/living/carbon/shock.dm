@@ -1,8 +1,8 @@
-/mob/living/var/traumatic_shock = 0
-/mob/living/carbon/var/shock_stage = 0
+mob/living/var/traumatic_shock = 0
+mob/living/carbon/var/shock_stage = 0
 
 // proc to find out in how much pain the mob is at the moment
-/mob/living/carbon/proc/updateshock()
+mob/living/carbon/proc/updateshock()
 	if (!can_feel_pain())
 		shock_stage = 0
 		src.traumatic_shock = 0
@@ -35,5 +35,5 @@
 	return src.traumatic_shock
 
 
-/mob/living/carbon/proc/handle_shock()
+mob/living/carbon/proc/handle_shock()
 	updateshock()

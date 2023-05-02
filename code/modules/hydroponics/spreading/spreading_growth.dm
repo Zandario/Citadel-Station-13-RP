@@ -1,6 +1,6 @@
 #define NEIGHBOR_REFRESH_TIME 50
 
-/obj/effect/plant/proc/get_cardinal_neighbors()
+obj/effect/plant/proc/get_cardinal_neighbors()
 	var/list/cardinal_neighbors = list()
 	for(var/check_dir in GLOB.cardinal)
 		var/turf/simulated/T = get_step(get_turf(src), check_dir)
@@ -8,7 +8,7 @@
 			cardinal_neighbors |= T
 	return cardinal_neighbors
 
-/obj/effect/plant/proc/update_neighbors()
+obj/effect/plant/proc/update_neighbors()
 	// Update our list of valid neighboring turfs.
 	neighbors = list()
 	for(var/turf/simulated/floor in get_cardinal_neighbors())
@@ -41,7 +41,7 @@
 		if(neighbor.seed == src.seed)
 			neighbor.neighbors -= T
 
-/obj/effect/plant/process(delta_time)
+obj/effect/plant/process(delta_time)
 
 	// Something is very wrong, kill ourselves.
 	if(!seed)
@@ -126,7 +126,7 @@
 
 //spreading vines aren't created on their final turf.
 //Instead, they are created at their parent and then move to their destination.
-/obj/effect/plant/proc/spread_to(turf/target_turf)
+obj/effect/plant/proc/spread_to(turf/target_turf)
 	var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 
 	spawn(1) // This should do a little bit of animation.
@@ -163,7 +163,7 @@
 
 		child.finish_spreading()
 
-/obj/effect/plant/proc/die_off()
+obj/effect/plant/proc/die_off()
 	// Kill off our plant.
 	if(plant) plant.die()
 	// This turf is clear now, let our buddies know.

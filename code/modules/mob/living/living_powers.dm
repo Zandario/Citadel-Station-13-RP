@@ -1,11 +1,11 @@
-/mob/living/proc/reveal(var/silent, var/message = "<span class='warning'>You have been revealed! You are no longer hidden.</span>")
+mob/living/proc/reveal(var/silent, var/message = "<span class='warning'>You have been revealed! You are no longer hidden.</span>")
 	if(status_flags & STATUS_HIDING)
 		status_flags &= ~STATUS_HIDING
 		reset_plane_and_layer()
 		if(!silent && message)
 			to_chat(src, message)
 
-/mob/living/proc/hide()
+mob/living/proc/hide()
 	set name = "Hide"
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
 	set category = "Abilities"

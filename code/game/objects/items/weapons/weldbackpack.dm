@@ -1,4 +1,4 @@
-/obj/item/weldpack
+obj/item/weldpack
 	name = "Welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
 	slot_flags = SLOT_BACK
@@ -12,7 +12,7 @@
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
-/obj/item/weldpack/Initialize(mapload)
+obj/item/weldpack/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
@@ -21,18 +21,18 @@
 	nozzle = new nozzle_type(src)
 	nozzle_attached = 1
 
-/obj/item/weldpack/Destroy()
+obj/item/weldpack/Destroy()
 	if(nozzle)
 		QDEL_NULL(nozzle)
 	return ..()
 
-/obj/item/weldpack/dropped(mob/user, flags, atom/newLoc)
+obj/item/weldpack/dropped(mob/user, flags, atom/newLoc)
 	..()
 	if(nozzle)
 		return_nozzle()
 		to_chat(user, "<span class='notice'>\The [nozzle] retracts to its fueltank.</span>")
 
-/obj/item/weldpack/proc/get_nozzle(var/mob/living/user)
+obj/item/weldpack/proc/get_nozzle(var/mob/living/user)
 	if(!ishuman(user))
 		return 0
 
@@ -48,11 +48,11 @@
 
 	return 1
 
-/obj/item/weldpack/proc/return_nozzle(var/mob/living/user)
+obj/item/weldpack/proc/return_nozzle(var/mob/living/user)
 	nozzle.forceMove(src)
 	nozzle_attached = 1
 
-/obj/item/weldpack/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/weldpack/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weldingtool) && !(W == nozzle))
 		var/obj/item/weldingtool/T = W
 		if(T.welding & prob(50))
@@ -84,7 +84,7 @@
 		to_chat(user,"<span class='warning'>The tank scoffs at your insolence. It only provides services to welders.</span>")
 	return
 
-/obj/item/weldpack/attack_hand(mob/user, list/params)
+obj/item/weldpack/attack_hand(mob/user, list/params)
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/wearer = user
 		if(wearer.back == src)
@@ -98,7 +98,7 @@
 	else
 		..()
 
-/obj/item/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
+obj/item/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
@@ -108,11 +108,11 @@
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
 		to_chat(user,"<span class='warning'>The pack is already full!</span>")
 
-/obj/item/weldpack/examine(mob/user)
+obj/item/weldpack/examine(mob/user)
 	. = ..()
 	. += "[icon2html(thing = src, target = world)] [src] has [src.reagents.total_volume] units of fuel left!"
 
-/obj/item/weldpack/survival
+obj/item/weldpack/survival
 	name = "emergency welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
 	slot_flags = SLOT_BACK

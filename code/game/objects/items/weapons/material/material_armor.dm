@@ -26,7 +26,7 @@ Protectiveness | Armor %
 
 
 // Putting these at /clothing/ level saves a lot of code duplication in armor/helmets/gauntlets/etc
-/obj/item/clothing
+obj/item/clothing
 	var/datum/material/material = null // Why isn't this a datum?
 	var/applies_material_color = TRUE
 	var/unbreakable = FALSE
@@ -35,22 +35,22 @@ Protectiveness | Armor %
 	/// multiplier for mat slowdown from weight
 	var/material_weight_factor
 
-/obj/item/clothing/Initialize(mapload, material_key)
+obj/item/clothing/Initialize(mapload, material_key)
 	. = ..()
 	if(!material_key)
 		material_key = default_material
 	if(material_key) // May still be null if a material was not specified as a default.
 		set_material(material_key)
 
-/obj/item/clothing/Destroy()
+obj/item/clothing/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/clothing/get_material()
+obj/item/clothing/get_material()
 	return material
 
 // Debating if this should be made an /obj/item/ proc.
-/obj/item/clothing/proc/set_material(var/new_material)
+obj/item/clothing/proc/set_material(var/new_material)
 	material = get_material_by_name(new_material)
 	if(!material)
 		qdel(src)
@@ -65,11 +65,11 @@ Protectiveness | Armor %
 
 // This is called when someone wearing the object gets hit in some form (melee, bullet_act(), etc).
 // Note that this cannot change if someone gets hurt, as it merely reacts to being hit.
-/obj/item/clothing/proc/clothing_impact(var/obj/source, var/damage)
+obj/item/clothing/proc/clothing_impact(var/obj/source, var/damage)
 	if(material && damage)
 		material_impact(source, damage)
 
-/obj/item/clothing/proc/material_impact(var/obj/source, var/damage)
+obj/item/clothing/proc/material_impact(var/obj/source, var/damage)
 	if(!material || unbreakable)
 		return
 
@@ -87,7 +87,7 @@ Protectiveness | Armor %
 	if(health <= 0)
 		shatter()
 
-/obj/item/clothing/proc/shatter()
+obj/item/clothing/proc/shatter()
 	if(!material)
 		return
 	var/turf/T = get_turf(src)
@@ -102,7 +102,7 @@ Protectiveness | Armor %
 	qdel(src)
 
 // Might be best to make ablative vests a material armor using a new material to cut down on this copypaste.
-/obj/item/clothing/suit/armor/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/clothing/suit/armor/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(!material) // No point checking for reflection.
 		return ..()
 
@@ -156,13 +156,13 @@ Protectiveness | Armor %
 
 				return PROJECTILE_CONTINUE // complete projectile permutation
 
-/proc/calculate_material_armor(amount)
+proc/calculate_material_armor(amount)
 	var/result = 1 - MATERIAL_ARMOR_COEFFICENT * amount / (1 + MATERIAL_ARMOR_COEFFICENT * abs(amount))
 	result = result * 100
 	result = abs(result - 100)
 	return round(result) * 0.01
 
-/obj/item/clothing/proc/update_armor()
+obj/item/clothing/proc/update_armor()
 	if(material)
 		var/melee_armor = 0, bullet_armor = 0, laser_armor = 0, energy_armor = 0, bomb_armor = 0
 
@@ -194,23 +194,23 @@ Protectiveness | Armor %
 			siemens_coefficient = clamp( material.conductivity / 10, 0,  10)
 		slowdown = clamp(0, round(material.weight / 10, 0.1) * material_weight_factor, 6)
 
-/obj/item/clothing/suit/armor/material
+obj/item/clothing/suit/armor/material
 	name = "armor"
 	default_material = MAT_STEEL
 
-/obj/item/clothing/suit/armor/material/makeshift
+obj/item/clothing/suit/armor/material/makeshift
 	name = "sheet armor"
 	desc = "This appears to be two 'sheets' of a material held together by cable.  If the sheets are strong, this could be rather protective."
 	icon_state = "material_armor_makeshift"
 
-/obj/item/clothing/suit/armor/material/makeshift/durasteel
+obj/item/clothing/suit/armor/material/makeshift/durasteel
 	default_material = "durasteel"
 
-/obj/item/clothing/suit/armor/material/makeshift/glass
+obj/item/clothing/suit/armor/material/makeshift/glass
 	default_material = "glass"
 
 // Used to craft sheet armor, and possibly other things in the Future(tm).
-/obj/item/material/armor_plating
+obj/item/material/armor_plating
 	name = "armor plating"
 	desc = "A sheet designed to protect something."
 	icon = 'icons/obj/items.dmi'
@@ -220,7 +220,7 @@ Protectiveness | Armor %
 	thrown_force_divisor = 0.2
 	var/wired = FALSE
 
-/obj/item/material/armor_plating/attackby(var/obj/O, mob/user)
+obj/item/material/armor_plating/attackby(var/obj/O, mob/user)
 	if(istype(O, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/S = O
 		if(wired)
@@ -257,18 +257,18 @@ Protectiveness | Armor %
 
 
 // Used to craft the makeshift helmet
-/obj/item/clothing/head/helmet/bucket
+obj/item/clothing/head/helmet/bucket
 	name = "improvised armor (bucket)"
 	desc = "It's a bucket with a large hole cut into it. Desperate times require desperate measures, and you can't get more desperate than trusting a CleanMate bucket as a helmet."
 	inv_hide_flags = HIDEEARS|HIDEEYES|BLOCKHAIR
 	icon_state = "bucket"
 	armor_type = /datum/armor/misc/bucket
 
-/obj/item/clothing/head/helmet/bucket/wood
+obj/item/clothing/head/helmet/bucket/wood
 	name = "wooden bucket"
 	icon_state = "woodbucket"
 
-/obj/item/clothing/head/helmet/bucket/attackby(var/obj/O, mob/user)
+obj/item/clothing/head/helmet/bucket/attackby(var/obj/O, mob/user)
 	if(istype(O, /obj/item/stack/material))
 		var/obj/item/stack/material/S = O
 		if(S.use(2))
@@ -283,16 +283,16 @@ Protectiveness | Armor %
 	else
 		..()
 
-/obj/item/clothing/head/helmet/material
+obj/item/clothing/head/helmet/material
 	name = "helmet"
 	inv_hide_flags = HIDEEARS|HIDEEYES|BLOCKHAIR
 	default_material = MAT_STEEL
 
-/obj/item/clothing/head/helmet/material/makeshift
+obj/item/clothing/head/helmet/material/makeshift
 	name = "bucket"
 	desc = "A bucket with plating applied to the outside.  Very crude, but could potentially be rather protective, if \
 	it was plated with something strong."
 	icon_state = "material_armor_makeshift"
 
-/obj/item/clothing/head/helmet/material/makeshift/durasteel
+obj/item/clothing/head/helmet/material/makeshift/durasteel
 	default_material = "durasteel"

@@ -1,4 +1,4 @@
-/obj/item/nullrod
+obj/item/nullrod
 	name = "null rod"
 	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
 	icon = 'icons/obj/weapons.dmi'
@@ -25,11 +25,11 @@
 	var/SA_bonus_damage = 35 // 50 total against demons and aberrations.
 	var/SA_vulnerability = MOB_CLASS_DEMONIC | MOB_CLASS_ABERRATION
 
-/obj/item/nullrod/Initialize(mapload)
+obj/item/nullrod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
-/obj/item/nullrod/afterattack(atom/A, mob/user as mob, proximity)
+obj/item/nullrod/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if (istype(A, /turf/simulated/floor))
@@ -40,7 +40,7 @@
 		if(SA_vulnerability & tm.mob_class)
 			tm.apply_damage(SA_bonus_damage) // fuck em
 
-/obj/item/nullrod/attack_self(mob/user)
+obj/item/nullrod/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -53,7 +53,7 @@
   * Arguments:
   * * M The mob choosing a nullrod reskin
   */
-/obj/item/nullrod/proc/reskin_holy_weapon(mob/living/L)
+obj/item/nullrod/proc/reskin_holy_weapon(mob/living/L)
 	if(GLOB.holy_weapon_type)
 		return
 	var/obj/item/holy_weapon
@@ -88,7 +88,7 @@
   * Arguments:
   * * user The mob interacting with a menu
   */
-/obj/item/nullrod/proc/check_menu(mob/user)
+obj/item/nullrod/proc/check_menu(mob/user)
 	if(!istype(user))
 		return FALSE
 	if(QDELETED(src) || reskinned)
@@ -97,14 +97,14 @@
 		return FALSE
 	return TRUE
 
-/obj/item/nullrod/proc/jedi_spin(mob/living/user)
+obj/item/nullrod/proc/jedi_spin(mob/living/user)
 	for(var/i in list(NORTH,SOUTH,EAST,WEST,EAST,SOUTH,NORTH,SOUTH,EAST,WEST,EAST,SOUTH))
 		user.setDir(i)
 		if(i == WEST)
 			user.emote("flip")
 		sleep(1)
 
-/obj/item/nullrod/godhand
+obj/item/nullrod/godhand
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	name = "god hand"
@@ -112,11 +112,11 @@
 	damtype = BURN
 	attack_verb = list("punched", "cross countered", "pummeled")
 
-/obj/item/nullrod/godhand/Initialize(mapload)
+obj/item/nullrod/godhand/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_ITEM_NODROP, HAND_REPLACEMENT_TRAIT)
 
-/obj/item/nullrod/staff
+obj/item/nullrod/staff
 	icon_state = "godstaff-red"
 	item_state = "godstaff-red"
 	name = "red holy staff"
@@ -126,13 +126,13 @@
 	defend_chance = 50
 	var/shield_icon = "shield-red"
 
-/obj/item/nullrod/staff/blue
+obj/item/nullrod/staff/blue
 	name = "blue holy staff"
 	icon_state = "godstaff-blue"
 	item_state = "godstaff-blue"
 	shield_icon = "shield-old"
 
-/obj/item/nullrod/claymore
+obj/item/nullrod/claymore
 	icon_state = "claymore"
 	item_state = "claymore"
 	name = "holy claymore"
@@ -143,7 +143,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/nullrod/claymore/darkblade
+obj/item/nullrod/claymore/darkblade
 	icon_state = "cultblade"
 	item_state = "cultblade"
 	name = "dark blade"
@@ -151,7 +151,7 @@
 	slot_flags = SLOT_BELT
 	hitsound = 'sound/hallucinations/growl1.ogg'
 
-/obj/item/nullrod/claymore/chainsaw_sword
+obj/item/nullrod/claymore/chainsaw_sword
 	icon_state = "chainsword1"
 	item_state = "chainsword1"
 	name = "sacred chainsaw sword"
@@ -162,32 +162,32 @@
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsaw_attack.ogg'
 
-/obj/item/nullrod/claymore/glowing
+obj/item/nullrod/claymore/glowing
 	icon_state = "swordon"
 	item_state = "swordon"
 	name = "force weapon"
 	desc = "The blade glows with the power of faith. Or possibly a battery."
 	slot_flags = SLOT_BELT
 
-/obj/item/nullrod/claymore/katana
+obj/item/nullrod/claymore/katana
 	name = "\improper Hanzo steel"
 	desc = "Capable of cutting clean through a holy claymore."
 	icon_state = "katana"
 	item_state = "katana"
 	slot_flags = SLOT_BELT | SLOT_BACK
 
-/obj/item/nullrod/claymore/multiverse
+obj/item/nullrod/claymore/multiverse
 	name = "extradimensional blade"
 	desc = "Once the harbinger of an interdimensional war, its sharpness fluctuates wildly."
 	icon_state = "multiverse"
 	item_state = "multiverse"
 	slot_flags = SLOT_BELT
 
-/obj/item/nullrod/claymore/multiverse/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/nullrod/claymore/multiverse/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	damage_force = rand(1, 30)
 	return ..()
 
-/obj/item/nullrod/claymore/saber
+obj/item/nullrod/claymore/saber
 	name = "light energy sword"
 	hitsound = 'sound/weapons/blade1.ogg'
 	icon_state = "swordblue"
@@ -195,19 +195,19 @@
 	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
 	slot_flags = SLOT_BELT
 
-/obj/item/nullrod/claymore/saber/red
+obj/item/nullrod/claymore/saber/red
 	name = "dark energy sword"
 	icon_state = "swordred"
 	item_state = "swordred"
 	desc = "Woefully ineffective when used on steep terrain."
 
-/obj/item/nullrod/claymore/saber/pirate
+obj/item/nullrod/claymore/saber/pirate
 	name = "nautical energy sword"
 	icon_state = "cutlass1"
 	item_state = "cutlass1"
 	desc = "Convincing HR that your religion involved piracy was no mean feat."
 
-/obj/item/nullrod/sord
+obj/item/nullrod/sord
 	name = "\improper UNREAL SORD"
 	desc = "This thing is so unspeakably HOLY you are having a hard time even holding it."
 	icon_state = "sord"
@@ -218,7 +218,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/nullrod/scythe
+obj/item/nullrod/scythe
 	icon_state = "rscythe"
 	item_state = "rscythe"
 	name = "reaper scythe"
@@ -229,7 +229,7 @@
 	edge = 1
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
-/obj/item/nullrod/scythe/vibro
+obj/item/nullrod/scythe/vibro
 	icon_state = "hfrequency0"
 	item_state = "hfrequency1"
 	name = "high frequency blade"
@@ -237,14 +237,14 @@
 	attack_verb = list("chopped", "sliced", "cut", "zandatsu'd")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
-/obj/item/nullrod/scythe/spellblade
+obj/item/nullrod/scythe/spellblade
 	icon_state = "spellblade"
 	item_state = "spellblade"
 	name = "dormant spellblade"
 	desc = "The blade grants the wielder nearly limitless power...if they can figure out how to turn it on, that is."
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
-/obj/item/nullrod/hammmer
+obj/item/nullrod/hammmer
 	icon_state = "hammeron"
 	item_state = "hammeron"
 	name = "relic war hammer"
@@ -252,7 +252,7 @@
 	slot_flags = SLOT_BELT
 	attack_verb = list("smashed", "bashed", "hammered", "crunched")
 
-/obj/item/nullrod/chainsaw
+obj/item/nullrod/chainsaw
 	name = "chainsaw hand"
 	desc = "Good? Bad? You're the guy with the chainsaw hand."
 	icon_state = "chainsaw_on"
@@ -262,11 +262,11 @@
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsaw_attack.ogg'
 
-/obj/item/nullrod/chainsaw/Initialize(mapload)
+obj/item/nullrod/chainsaw/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_ITEM_NODROP, HAND_REPLACEMENT_TRAIT)
 
-/obj/item/nullrod/clown
+obj/item/nullrod/clown
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "clownrender"
 	item_state = "render"
@@ -276,7 +276,7 @@
 	sharp = 1
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/nullrod/pride_hammer
+obj/item/nullrod/pride_hammer
 	icon_state = "pride"
 	item_state = "pride"
 	name = "Pride-struck Hammer"
@@ -288,7 +288,7 @@
 	attack_verb = list("attacked", "smashed", "crushed", "splattered", "cracked")
 	hitsound = 'sound/weapons/resonator_blast.ogg'
 
-/obj/item/nullrod/pride_hammer/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
+obj/item/nullrod/pride_hammer/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
@@ -298,7 +298,7 @@
 		to_chat(user, "<span class='notice'>Your pride reflects on [H].</span>")
 		to_chat(H, "<span class='userdanger'>You feel insecure, taking on [user]'s burden.</span>")
 
-/obj/item/nullrod/whip
+obj/item/nullrod/whip
 	name = "holy whip"
 	desc = "What a terrible night to be on Space Station 13."
 	icon_state = "chain"
@@ -309,7 +309,7 @@
 	attack_verb = list("whipped", "lashed")
 	hitsound = 'sound/weapons/towelwhip.ogg'
 
-/obj/item/nullrod/fedora
+obj/item/nullrod/fedora
 	name = "atheist's fedora"
 	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
 	icon_state = "fedora"
@@ -323,7 +323,7 @@
 	sharp = 1
 	attack_verb = list("enlightened", "redpilled")
 
-/obj/item/nullrod/armblade
+obj/item/nullrod/armblade
 	name = "dark blessing"
 	desc = "Particularly twisted deities grant gifts of dubious value."
 	icon_state = "arm_blade"
@@ -331,21 +331,21 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/nullrod/armblade/Initialize(mapload)
+obj/item/nullrod/armblade/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_ITEM_NODROP, HAND_REPLACEMENT_TRAIT)
 
-/obj/item/nullrod/armblade/claw
+obj/item/nullrod/armblade/claw
 	name = "profane blessing"
 	icon_state = "ling_claw"
 	item_state = "ling_claw"
 
-/obj/item/nullrod/armblade/tentacle
+obj/item/nullrod/armblade/tentacle
 	name = "unholy blessing"
 	icon_state = "tentacle"
 	item_state = "tentacle"
 
-/obj/item/nullrod/carp
+obj/item/nullrod/carp
 	name = "carp-sie plushie"
 	desc = "An adorable stuffed toy that resembles the god of all carp. The teeth look pretty sharp. Activate it to receive the blessing of Carp-Sie."
 	icon = 'icons/obj/toy.dmi'
@@ -356,7 +356,7 @@
 	hitsound = 'sound/weapons/bite.ogg'
 	var/used_blessing = FALSE
 
-/obj/item/nullrod/carp/attack_self(mob/user)
+obj/item/nullrod/carp/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -366,7 +366,7 @@
 		user.faction |= "carp"
 		used_blessing = TRUE
 
-/obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
+obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
 	name = "monk's staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
 	damage_force = 15
@@ -378,7 +378,7 @@
 	icon_state = "bostaff0"
 	item_state = "bostaff0"
 
-/obj/item/nullrod/claymore/bostaff/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/nullrod/claymore/bostaff/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	add_fingerprint(user)
 	if(!issilicon(target))
 		return ..()
@@ -402,7 +402,7 @@
 	else
 		return ..()
 
-/obj/item/nullrod/tribal_knife
+obj/item/nullrod/tribal_knife
 	icon_state = "crysknife"
 	item_state = "crysknife"
 	name = "arrhythmic knife"
@@ -412,10 +412,10 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/nullrod/tribal_knife/process(delta_time)
+obj/item/nullrod/tribal_knife/process(delta_time)
 	slowdown = rand(-2, 2)
 
-/obj/item/nullrod/pitchfork
+obj/item/nullrod/pitchfork
 	icon_state = "pitchfork0"
 	name = "unholy pitchfork"
 	desc = "Holding this makes you look absolutely devilish."
@@ -423,14 +423,14 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharp = 1
 
-/obj/item/nullrod/egyptian
+obj/item/nullrod/egyptian
 	name = "egyptian staff"
 	desc = "A tutorial in mummification is carved into the staff. You could probably craft the wraps if you had some cloth."
 	icon_state = "pharaoh_sceptre"
 	item_state = "pharaoh_sceptre"
 	attack_verb = list("bashes", "smacks", "whacks")
 
-/obj/item/nullrod/rosary
+obj/item/nullrod/rosary
 	icon_state = "rosary"
 	item_state = null
 	name = "prayer beads"
@@ -443,12 +443,12 @@
 	var/praying = FALSE
 	var/deity_name = "Coderbus" //This is the default, hopefully won't actually appear if the religion subsystem is running properly
 
-/obj/item/nullrod/rosary/Initialize(mapload)
+obj/item/nullrod/rosary/Initialize(mapload)
 	.=..()
 	if(GLOB.deity)
 		deity_name = GLOB.deity
 
-/obj/item/nullrod/rosary/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/nullrod/rosary/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(!isliving(target))

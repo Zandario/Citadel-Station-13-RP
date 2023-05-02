@@ -1,4 +1,4 @@
-/obj/machinery/computer/fusion_fuel_control
+obj/machinery/computer/fusion_fuel_control
 	name = "fuel injection control computer"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "fuel"
@@ -7,14 +7,14 @@
 	var/id_tag
 	var/scan_range = 25
 
-/obj/machinery/computer/fusion_fuel_control/attack_ai(mob/user)
+obj/machinery/computer/fusion_fuel_control/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/computer/fusion_fuel_control/attack_hand(mob/user, list/params)
+obj/machinery/computer/fusion_fuel_control/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	interact(user)
 
-/obj/machinery/computer/fusion_fuel_control/interact(var/mob/user)
+obj/machinery/computer/fusion_fuel_control/interact(var/mob/user)
 
 	if(machine_stat & (BROKEN|NOPOWER))
 		user.unset_machine()
@@ -72,7 +72,7 @@
 	popup.open()
 	user.set_machine(src)
 
-/obj/machinery/computer/fusion_fuel_control/Topic(href, href_list)
+obj/machinery/computer/fusion_fuel_control/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -94,7 +94,7 @@
 	updateDialog()
 
 
-/obj/machinery/computer/fusion_fuel_control/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/computer/fusion_fuel_control/attackby(var/obj/item/W, var/mob/user)
 	..()
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = input("Enter a new ident tag.", "Fuel Control", id_tag) as null|text
@@ -102,7 +102,7 @@
 			id_tag = new_ident
 		return
 
-/obj/machinery/computer/fusion_fuel_control/update_icon()
+obj/machinery/computer/fusion_fuel_control/update_icon()
 	if(machine_stat & (BROKEN))
 		icon = 'icons/obj/computer.dmi'
 		icon_state = "broken"

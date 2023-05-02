@@ -1,7 +1,7 @@
-/mob/living/proc/handle_autohiss(message, datum/language/L)
+mob/living/proc/handle_autohiss(message, datum/language/L)
 	return message // no autohiss at this level
 
-/mob/living/carbon/human/handle_autohiss(message, datum/language/L)
+mob/living/carbon/human/handle_autohiss(message, datum/language/L)
 	if(!client || autohiss_mode == AUTOHISS_OFF || autohiss_type == AUTOHISS_TYPE_NONE) // no need to process if there's no client or they have autohiss off
 		return message
 
@@ -46,19 +46,19 @@
 
 	return jointext(., null)
 
-/mob/living
+mob/living
 	var/autohiss_mode = AUTOHISS_OFF
 	var/autohiss_type = AUTOHISS_TYPE_NONE
 
 //If you are planning on adding autohiss for a new species, please change autohiss_type_to_datum, toggle_autohiss_type,
 //as well as code/modules/client/preference_setup/vore/04_autohiss.dm to add in the new species as well.
 
-/datum/autohiss_maps
+datum/autohiss_maps
 	var/list/basic //The things we will replace on basic settings.
 	var/list/extra //The things we will replace on full settings, on top of basic.
 	var/list/exempt //If we are speaking this language, we will not apply autohiss. (Usually for native languages to a species.)
 
-/datum/autohiss_maps/unathi
+datum/autohiss_maps/unathi
 	basic = list(
 			"s" = list("ss", "sss", "ssss")
 		)
@@ -67,13 +67,13 @@
 		)
 	exempt = list(LANGUAGE_UNATHI)
 
-/datum/autohiss_maps/tajaran
+datum/autohiss_maps/tajaran
 	basic = list(
 			"r" = list("rr", "rrr", "rrrr")
 		)
 	exempt = list(LANGUAGE_SIIK,LANGUAGE_AKHANI)
 
-/proc/autohiss_type_to_datum(type)
+proc/autohiss_type_to_datum(type)
 	RETURN_TYPE(/datum/autohiss_maps)
 	switch(type)
 		if(AUTOHISS_TYPE_UNATHI)
@@ -83,7 +83,7 @@
 		else
 			CRASH("Autohiss could not convert '[type]' to maps!")
 
-/mob/living/carbon/human/verb/toggle_autohiss()
+mob/living/carbon/human/verb/toggle_autohiss()
 	set name = "Toggle Autohiss"
 	set category = "OOC"
 	set desc = "Toggle your autohiss configuration between disabled, basic, and full."
@@ -100,7 +100,7 @@
 			to_chat(src, SPAN_NOTICE("Autohiss disabled."))
 
 
-/mob/living/carbon/human/verb/toggle_autohiss_type()
+mob/living/carbon/human/verb/toggle_autohiss_type()
 	set name = "Toggle Autohiss Type"
 	set category = "OOC"
 	set desc = "Set the type of autohissing you will do."

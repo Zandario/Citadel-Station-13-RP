@@ -1,4 +1,4 @@
-/obj/mecha/combat
+obj/mecha/combat
 	force = 30
 	var/melee_cooldown = 10
 	var/melee_can_hit = 1
@@ -28,7 +28,7 @@
 		)
 
 /*
-/obj/mecha/combat/range_action(target as obj|mob|turf)
+obj/mecha/combat/range_action(target as obj|mob|turf)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
 		target = pick(view(3,target))
 	if(selected_weapon)
@@ -36,7 +36,7 @@
 	return
 */
 
-/obj/mecha/combat/melee_action(atom/T)
+obj/mecha/combat/melee_action(atom/T)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
 		T = SAFEPICK(oview(1,src))
 	if(!melee_can_hit)
@@ -129,7 +129,7 @@
 					melee_can_hit = 1
 	return
 
-/obj/mecha/combat/moved_inside(var/mob/living/carbon/human/H as mob)
+obj/mecha/combat/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())
 		if(H.client)
 			H.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
@@ -137,7 +137,7 @@
 	else
 		return 0
 
-/obj/mecha/combat/mmi_moved_inside(var/obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
+obj/mecha/combat/mmi_moved_inside(var/obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
 	if(..())
 		if(occupant.client)
 			occupant.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
@@ -145,13 +145,13 @@
 	else
 		return 0
 
-/obj/mecha/combat/go_out()
+obj/mecha/combat/go_out()
 	if(src.occupant && src.occupant.client)
 		src.occupant.client.mouse_pointer_icon = initial(src.occupant.client.mouse_pointer_icon)
 	..()
 	return
 
-/obj/mecha/combat/Topic(href,href_list)
+obj/mecha/combat/Topic(href,href_list)
 	..()
 	var/datum/topic_input/top_filter = new (href,href_list)
 	if(top_filter.get("close"))

@@ -1,6 +1,6 @@
 // Glitterflies! Little butterfly-like creatures that float around and be cute.
 
-/datum/category_item/catalogue/fauna/glitterfly
+datum/category_item/catalogue/fauna/glitterfly
 	name = "Sivian Fauna - Glitterfly"
 	desc = "Classification: S Lepidoptera adamas \
 	<br><br>\
@@ -12,7 +12,7 @@
 	produce large amounts of reflective flake-like dandruff."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/glitterfly_rare
+datum/category_item/catalogue/fauna/glitterfly_rare
 	name = "Sivian Fauna - Adela's Glitterfly"
 	desc = "Classification: S Lepidoptera adamas \
 	<br><br>\
@@ -21,7 +21,7 @@
 	climate-controlled habitat."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/sif/glitterfly
+mob/living/simple_mob/animal/sif/glitterfly
 	name = "glitterfly"
 	desc = "A large, shiny butterfly!"
 	description_info = "Glitterflies tend to have a wingspan equivalent to the length of an average human head."
@@ -56,7 +56,7 @@
 	say_list_type = /datum/say_list/glitterfly
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/glitterfly
 
-/mob/living/simple_mob/animal/sif/glitterfly/Initialize(mapload)
+mob/living/simple_mob/animal/sif/glitterfly/Initialize(mapload)
 	. = ..()
 	var/colorlist = list(rgb(rand(100,255), rand(100,255), rand(100,255)) =  10, rgb(rand(5,100), rand(5,100), rand(5,100)) = 2, "#222222" = 1)
 	color = pickweight(colorlist)
@@ -66,7 +66,7 @@
 
 	adjust_scale(round(rand(90, 105) / 100))
 
-/mob/living/simple_mob/animal/sif/glitterfly/rare
+mob/living/simple_mob/animal/sif/glitterfly/rare
 	name = "sparkling glitterfly"
 	desc = "A large, incredibly shiny butterfly!"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/glitterfly, /datum/category_item/catalogue/fauna/glitterfly_rare)
@@ -79,22 +79,22 @@
 
 	plane = ABOVE_LIGHTING_PLANE
 
-/mob/living/simple_mob/animal/sif/glitterfly/rare/Initialize(mapload)
+mob/living/simple_mob/animal/sif/glitterfly/rare/Initialize(mapload)
 	. = ..()
 
-/datum/say_list/glitterfly
+datum/say_list/glitterfly
 	speak = list("Pi..","Po...", "Pa...")
 	emote_see = list("vibrates","flutters", "twirls")
 	emote_hear = list("pips", "clicks", "chirps")
 
-/datum/ai_holder/simple_mob/melee/evasive/glitterfly
+datum/ai_holder/simple_mob/melee/evasive/glitterfly
 	hostile = FALSE
 	can_flee = TRUE
 	flee_when_outmatched = TRUE
 	outmatched_threshold = 100
 	max_home_distance = 5
 
-/datum/ai_holder/simple_mob/melee/evasive/glitterfly/handle_special_strategical()
+datum/ai_holder/simple_mob/melee/evasive/glitterfly/handle_special_strategical()
 	if(prob(1))
 		var/friendly_animal_corpse = FALSE
 		for(var/mob/living/simple_mob/animal/A in view(vision_range,holder))

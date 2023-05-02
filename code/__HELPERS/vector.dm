@@ -42,7 +42,7 @@
  * 	would be called before this if you are going to move an object based on it's vector data.
  */
 
-/datum/plot_vector
+datum/plot_vector
 	var/turf/source
 	var/turf/target
 	/// Direction of travel in degrees.
@@ -57,7 +57,7 @@
 	var/offset_x = 0
 	var/offset_y = 0
 
-/datum/plot_vector/proc/setup(turf/S, turf/T, xo = 0, yo = 0, angle_offset=0)
+datum/plot_vector/proc/setup(turf/S, turf/T, xo = 0, yo = 0, angle_offset=0)
 	source = S
 	target = T
 
@@ -110,17 +110,17 @@
 	offset_x *= world.icon_size
 	offset_y *= world.icon_size
 
-/datum/plot_vector/proc/increment()
+datum/plot_vector/proc/increment()
 	loc_x += offset_x
 	loc_y += offset_y
 
-/datum/plot_vector/proc/return_angle()
+datum/plot_vector/proc/return_angle()
 	return angle
 
-/datum/plot_vector/proc/return_hypotenuse()
+datum/plot_vector/proc/return_hypotenuse()
 	return sqrt(((offset_x / 32) ** 2) + ((offset_y / 32) ** 2))
 
-/datum/plot_vector/proc/return_location(datum/vector_loc/data)
+datum/plot_vector/proc/return_location(datum/vector_loc/data)
 	if(!data)
 		data = new()
 	data.loc = locate(round(loc_x / world.icon_size, 1), round(loc_y / world.icon_size, 1), loc_z)
@@ -137,10 +137,10 @@
  * return_turf()
  * 	Returns the turf the object should be currently located in.
  */
-/datum/vector_loc
+datum/vector_loc
 	var/turf/loc
 	var/pixel_x
 	var/pixel_y
 
-/datum/vector_loc/proc/return_turf()
+datum/vector_loc/proc/return_turf()
 	return loc

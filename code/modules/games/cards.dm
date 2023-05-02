@@ -1,20 +1,20 @@
-/datum/playingcard
+datum/playingcard
 	var/name = "playing card"
 	var/card_icon = "card_back"
 	var/back_icon = "card_back"
 
-/obj/item/deck
+obj/item/deck
 	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/playing_cards.dmi'
 	var/list/cards = list()
 	var/cooldown = 0 // to prevent spam shuffle
 
-/obj/item/deck/holder
+obj/item/deck/holder
 	name = "card box"
 	desc = "A small leather case to show how classy you are compared to everyone else."
 	icon_state = "card_holder"
 
-/obj/item/deck/cards
+obj/item/deck/cards
 	name = "deck of cards"
 	desc = "A simple deck of playing cards."
 	icon_state = "deck"
@@ -22,7 +22,7 @@
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 
-/obj/item/deck/cards/Initialize(mapload)
+obj/item/deck/cards/Initialize(mapload)
 	. = ..()
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
@@ -53,7 +53,7 @@
 		P.card_icon = "joker"
 		cards += P
 
-/obj/item/deck/attackby(obj/O as obj, mob/user as mob)
+obj/item/deck/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O,/obj/item/hand))
 		var/obj/item/hand/H = O
 		if(H.parentdeck == src)
@@ -67,14 +67,14 @@
 			return
 	..()
 
-/obj/item/deck/attack_hand(mob/user, list/params)
+obj/item/deck/attack_hand(mob/user, list/params)
 	var/mob/living/carbon/human/H = user
 	if(istype(src.loc, /obj/item/storage) || src == H.r_store || src == H.l_store || src.loc == user) // so objects can be removed from storage containers or pockets. also added a catch-all, so if it's in the mob you'll pick it up.
 		..()
 	else // but if they're not, or are in your hands, you can still draw cards.
 		draw_card()
 
-/obj/item/deck/verb/draw_card()
+obj/item/deck/verb/draw_card()
 
 	set category = "Object"
 	set name = "Draw"
@@ -116,7 +116,7 @@
 	user.visible_message("<span class='notice'>\The [user] draws a card.</span>")
 	to_chat(user,"<span class='notice'>It's the [P].</span>")
 
-/obj/item/deck/verb/deal_card()
+obj/item/deck/verb/deal_card()
 
 	set category = "Object"
 	set name = "Deal"
@@ -140,7 +140,7 @@
 
 	deal_at(usr, M, 1)
 
-/obj/item/deck/verb/deal_card_multi()
+obj/item/deck/verb/deal_card_multi()
 
 	set category = "Object"
 	set name = "Deal Multiple Cards"
@@ -167,7 +167,7 @@
 
 	deal_at(usr, M, dcard)
 
-/obj/item/deck/proc/deal_at(mob/user, mob/target, dcard) // Take in the no. of card to be dealt
+obj/item/deck/proc/deal_at(mob/user, mob/target, dcard) // Take in the no. of card to be dealt
 	var/obj/item/hand/H = new(get_step(user, user.dir))
 	var/i
 	for(i = 0, i < dcard, i++)
@@ -184,7 +184,7 @@
 	H.throw_at_old(get_step(target,target.dir),10,1,H)
 
 
-/obj/item/hand/attackby(obj/O as obj, mob/user as mob)
+obj/item/hand/attackby(obj/O as obj, mob/user as mob)
 	if(cards.len == 1 && istype(O, /obj/item/pen))
 		var/datum/playingcard/P = cards[1]
 		if(P.name != "Blank Card")
@@ -212,21 +212,21 @@
 
 	..()
 
-/obj/item/deck/attack_self(mob/user)
+obj/item/deck/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	shuffle()
 
 
-/obj/item/deck/verb/verb_shuffle()
+obj/item/deck/verb/verb_shuffle()
 	set category = "Object"
 	set name = "Shuffle"
 	set desc = "Shuffle the cards in the deck."
 	set src in view(1)
 	shuffle()
 
-/obj/item/deck/proc/shuffle()
+obj/item/deck/proc/shuffle()
 	var/mob/living/user = usr
 	if (cooldown < world.time - 10) // 15 ticks cooldown
 		var/list/newcards = list()
@@ -241,7 +241,7 @@
 	else
 		return
 
-/obj/item/deck/OnMouseDropLegacy(mob/user as mob) // Code from Paper bin, so you can still pick up the deck
+obj/item/deck/OnMouseDropLegacy(mob/user as mob) // Code from Paper bin, so you can still pick up the deck
 	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
 		if(!istype(usr, /mob/living/simple_mob))
 			if( !usr.get_active_held_item() )		//if active hand is empty
@@ -257,7 +257,7 @@
 				to_chat(user,"<span class='notice'>You pick up [src].</span>")
 				user.put_in_hands(src)
 
-/obj/item/deck/verb_pickup(mob/user as mob) // Snowflaked so pick up verb work as intended
+obj/item/deck/verb_pickup(mob/user as mob) // Snowflaked so pick up verb work as intended
 	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
 		if(!istype(usr, /mob/living/simple_mob))
 			if( !usr.get_active_held_item() )		//if active hand is empty
@@ -274,7 +274,7 @@
 				user.put_in_hands(src)
 	return
 
-/obj/item/pack/
+obj/item/pack/
 	name = "Card Pack"
 	desc = "For those with disposible income."
 
@@ -287,7 +287,7 @@
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 
-/obj/item/pack/attack_self(mob/user)
+obj/item/pack/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -301,7 +301,7 @@
 	H.update_icon()
 	user.put_in_active_hand(H)
 
-/obj/item/hand
+obj/item/hand
 	name = "hand of cards"
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
@@ -314,7 +314,7 @@
 	var/list/cards = list()
 	var/parentdeck = null
 
-/obj/item/hand/verb/discard()
+obj/item/hand/verb/discard()
 
 	set category = "Object"
 	set name = "Discard"
@@ -349,7 +349,7 @@
 	if(!cards.len)
 		qdel(src)
 
-/obj/item/hand/attack_self(mob/user)
+obj/item/hand/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -357,14 +357,14 @@
 	update_icon()
 	user.visible_message("<span class = 'notice'>\The [user] [concealed ? "conceals" : "reveals"] their hand.</span>")
 
-/obj/item/hand/examine(mob/user)
+obj/item/hand/examine(mob/user)
 	. = ..()
 	if((!concealed) && cards.len)
 		. += "It contains: "
 		for(var/datum/playingcard/P in cards)
 			. += "\The [P.name]."
 
-/obj/item/hand/verb/Removecard()
+obj/item/hand/verb/Removecard()
 
 	set category = "Object"
 	set name = "Remove card"
@@ -401,7 +401,7 @@
 		qdel(src)
 	return
 
-/obj/item/hand/update_icon(direction = 0)
+obj/item/hand/update_icon(direction = 0)
 	if(!cards.len)
 		return		// about to be deleted
 	if(cards.len > 1)
@@ -454,13 +454,13 @@
 		add_overlay(I)
 		i++
 
-/obj/item/hand/dropped(mob/user, flags, atom/newLoc)
+obj/item/hand/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(locate(/obj/structure/table, loc))
 		update_icon(user.dir)
 	else
 		update_icon()
 
-/obj/item/hand/pickup(mob/user, flags, atom/oldLoc)
+obj/item/hand/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	update_icon()

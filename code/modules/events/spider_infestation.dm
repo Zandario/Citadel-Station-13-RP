@@ -1,20 +1,20 @@
-/var/global/sent_spiders_to_station = 0
+var/global/sent_spiders_to_station = 0
 
-/datum/event/spider_infestation
+datum/event/spider_infestation
 	announceWhen	= 90
 	var/spawncount = 1
 
 
-/datum/event/spider_infestation/setup()
+datum/event/spider_infestation/setup()
 	announceWhen = rand(announceWhen, announceWhen + 60)
 	spawncount = rand(9 * severity, 13 * severity)	//spiderlings only have a 50% chance to grow big and strong
 	sent_spiders_to_station = 0
 
-/datum/event/spider_infestation/announce()
+datum/event/spider_infestation/announce()
 	command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 
 
-/datum/event/spider_infestation/start()
+datum/event/spider_infestation/start()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/component/unary/vent_pump/temp_vent in GLOB.machines)
 		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in GLOB.using_map.station_levels))

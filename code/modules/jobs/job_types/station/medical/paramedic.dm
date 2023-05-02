@@ -1,4 +1,4 @@
-/datum/role/job/station/paramedic
+datum/role/job/station/paramedic
 	id = JOB_ID_PARAMEDIC
 	title = "Paramedic"
 	flag = PARAMEDIC
@@ -20,8 +20,8 @@
 		"Medical Responder" = /datum/prototype/alt_title/medical_responder,
 		"Biotechnical Responder" = /datum/prototype/alt_title/biotech_responder
 		)
-		
-/datum/prototype/alt_title/biotech_responder
+
+datum/prototype/alt_title/biotech_responder
 	title = "Biotechnical Responder"
 	title_outfit = /datum/outfit/job/station/paramedic/emt  //TODO: add OSSNECRO outfits.
 	background_allow = list(
@@ -29,19 +29,19 @@
 	)
 	background_enforce = TRUE
 
-/datum/prototype/alt_title/emt
+datum/prototype/alt_title/emt
 	title = "Emergency Medical Technician"
 	title_blurb = "An Emergency Medical Technician is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their \
 					own. They are capable of keeping a patient stabilized until they reach the hands of someone with more training."
 	title_outfit = /datum/outfit/job/station/paramedic/emt
 
-/datum/prototype/alt_title/medical_responder
+datum/prototype/alt_title/medical_responder
 	title = "Medical Responder"
 	title_blurb = "A Medical Responder is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their \
 					own. They are capable of keeping a patient stabilized until they reach the hands of someone with more training."
 	title_outfit = /datum/outfit/job/station/paramedic/emt
 
-/datum/outfit/job/station/paramedic
+datum/outfit/job/station/paramedic
 	name = OUTFIT_JOB_NAME("Paramedic")
 	uniform = /obj/item/clothing/under/rank/medical/scrubs/black
 	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
@@ -60,7 +60,7 @@
 
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
-/datum/outfit/job/station/paramedic/emt
+datum/outfit/job/station/paramedic/emt
 	name = OUTFIT_JOB_NAME("Emergency Medical Technician")
 	uniform = /obj/item/clothing/under/rank/medical/paramedic
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/emt

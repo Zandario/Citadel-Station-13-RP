@@ -1,6 +1,6 @@
 
 // These are found on the surface, and contain a drone (braintype, inside a borg shell), with a special module and semi-random laws.
-/obj/structure/ghost_pod/manual/lost_drone
+obj/structure/ghost_pod/manual/lost_drone
 	name = "drone pod"
 	desc = "This is a pod which appears to contain a drone. You might be able to reactivate it, if you're brave enough."
 	description_info = "This contains a dormant drone, which can be activated. The drone will be another player, once activated. \
@@ -12,10 +12,10 @@
 	confirm_before_open = TRUE
 	needscharger = TRUE
 
-/obj/structure/ghost_pod/manual/lost_drone/trigger()
+obj/structure/ghost_pod/manual/lost_drone/trigger()
 	..("<span class='notice'>\The [src] appears to be attempting to restart the robot contained inside.</span>", "is attempting to open \a [src].")
 
-/obj/structure/ghost_pod/manual/lost_drone/create_occupant(var/mob/M)
+obj/structure/ghost_pod/manual/lost_drone/create_occupant(var/mob/M)
 	density = FALSE
 	var/mob/living/silicon/robot/lost/randomlaws/R = new(get_turf(src))
 	R.adjustBruteLoss(rand(5, 30))
@@ -35,7 +35,7 @@
 	log_and_message_admins("successfully opened \a [src] and got a Lost Drone.")
 	..()
 
-/obj/structure/ghost_pod/automatic/gravekeeper_drone
+obj/structure/ghost_pod/automatic/gravekeeper_drone
 	name = "drone pod"
 	desc = "This is a pod which appears to contain a drone. You might be able to reactivate it, if you're brave enough."
 	description_info = "This contains a dormant drone, which may activate at any moment. The drone will be another player, once activated. \
@@ -46,7 +46,7 @@
 	ghost_query_type = /datum/ghost_query/gravekeeper_drone
 	needscharger = TRUE
 
-/obj/structure/ghost_pod/automatic/gravekeeper_drone/create_occupant(var/mob/M)
+obj/structure/ghost_pod/automatic/gravekeeper_drone/create_occupant(var/mob/M)
 	density = FALSE
 	var/mob/living/silicon/robot/gravekeeper/R = new(get_turf(src))
 	if(M.mind)
@@ -60,7 +60,7 @@
 	R.Namepick()
 	..()
 
-/obj/structure/ghost_pod/ghost_activated/swarm_drone
+obj/structure/ghost_pod/ghost_activated/swarm_drone
 	name = "drone shell"
 	desc = "A heavy metallic ball."
 	icon = 'icons/mob/swarmbot.dmi'
@@ -71,7 +71,7 @@
 	var/drone_class = "general"
 	var/drone_type = /mob/living/silicon/robot/drone/swarm
 
-/obj/structure/ghost_pod/ghost_activated/swarm_drone/create_occupant(var/mob/M)
+obj/structure/ghost_pod/ghost_activated/swarm_drone/create_occupant(var/mob/M)
 	var/mob/living/silicon/robot/drone/swarm/R = new drone_type(get_turf(src))
 	if(M.mind)
 		M.mind.transfer(R)
@@ -88,27 +88,27 @@
 	if(!QDELETED(src))
 		qdel(src)
 
-/obj/structure/ghost_pod/ghost_activated/swarm_drone/event/Initialize(mapload)
+obj/structure/ghost_pod/ghost_activated/swarm_drone/event/Initialize(mapload)
 	. = ..()
 
 	var/turf/T = get_turf(src)
 	say_dead_object("A <span class='notice'>[drone_class] swarm drone</span> shell is now available in \the [T.loc].", src)
 
-/obj/structure/ghost_pod/ghost_activated/swarm_drone/event/gunner
+obj/structure/ghost_pod/ghost_activated/swarm_drone/event/gunner
 	name = "gunner shell"
 
 	drone_class = "gunner"
 	drone_type = /mob/living/silicon/robot/drone/swarm/gunner
 
-/obj/structure/ghost_pod/ghost_activated/swarm_drone/event/melee
+obj/structure/ghost_pod/ghost_activated/swarm_drone/event/melee
 	name = "impaler shell"
 
 	drone_class = "impaler"
 	drone_type = /mob/living/silicon/robot/drone/swarm/melee
 
-/obj/structure/ghost_pod/manual/lost_drone/dogborg
+obj/structure/ghost_pod/manual/lost_drone/dogborg
 
-/obj/structure/ghost_pod/manual/lost_drone/dogborg/create_occupant(var/mob/M)
+obj/structure/ghost_pod/manual/lost_drone/dogborg/create_occupant(var/mob/M)
 	var/response = alert(M, "What type of lost drone are you? Do note, that dogborgs may have experienced different type of corruption ((Potential for having vore-related laws))", "Drone Type", "Regular", "Dogborg")
 	if(!(response == "Dogborg"))	// No response somehow or Regular
 		return ..()

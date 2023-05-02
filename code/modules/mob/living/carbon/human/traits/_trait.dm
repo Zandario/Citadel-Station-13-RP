@@ -1,4 +1,4 @@
-/datum/trait
+datum/trait
 	var/name
 	var/desc = "Contact a developer if you see this trait."
 
@@ -17,7 +17,7 @@
 	var/list/traits
 
 /// Proc can be overridden lower to include special changes, make sure to call up though for the vars changes
-/datum/trait/proc/apply(datum/species/S, mob/living/carbon/human/H)
+datum/trait/proc/apply(datum/species/S, mob/living/carbon/human/H)
 	SHOULD_CALL_PARENT(TRUE)
 
 	for(var/trait in traits)
@@ -32,6 +32,6 @@
 			S.vars[V] = var_changes[V]
 
 //Similar to the above, but for removing. Probably won't be called often/ever.
-/datum/trait/proc/remove(datum/species/S)
+datum/trait/proc/remove(datum/species/S)
 	ASSERT(S)
 	return

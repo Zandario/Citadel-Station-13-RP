@@ -2,19 +2,19 @@
  * Returns the atom sitting on the turf.
  * For example, using this on a disk, which is in a bag, on a mob, will return the mob because it's on the turf.
  */
-/proc/get_atom_on_turf(atom/movable/AM)
+proc/get_atom_on_turf(atom/movable/AM)
 	var/atom/mloc = AM
 	while(mloc && mloc.loc && !istype(mloc.loc, /turf/))
 		mloc = mloc.loc
 	return mloc
 
-/proc/iswall(turf/T)
+proc/iswall(turf/T)
 	return (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall) || istype(T, /turf/simulated/shuttle/wall))
 
-/proc/isfloor(turf/T)
+proc/isfloor(turf/T)
 	return (istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
 
-/proc/turf_clear(turf/T)
+proc/turf_clear(turf/T)
 	for(var/atom/A in T)
 		if(!(A.atom_flags & ATOM_ABSTRACT))
 			return 0
@@ -24,7 +24,7 @@
  * Picks a turf without a mob from the given list of turfs, if one exists.
  * If no such turf exists, picks any random turf from the given list of turfs.
  */
-/proc/pick_mobless_turf_if_exists(list/start_turfs)
+proc/pick_mobless_turf_if_exists(list/start_turfs)
 	if(!start_turfs.len)
 		return null
 
@@ -40,7 +40,7 @@
 /**
  * Picks a turf that is clearance tiles away from the map edge given by dir, on z-level Z.
  */
-/proc/pick_random_edge_turf(dir, Z, clearance = TRANSITIONEDGE + 1)
+proc/pick_random_edge_turf(dir, Z, clearance = TRANSITIONEDGE + 1)
 	if(!dir)
 		return
 	switch(dir)
@@ -53,7 +53,7 @@
 		if(WEST)
 			return locate(clearance, rand(clearance, world.maxy - clearance), Z)
 
-/proc/is_below_sound_pressure(turf/T)
+proc/is_below_sound_pressure(turf/T)
 	var/pressure =  T.return_pressure() || 0
 	if(pressure < SOUND_MINIMUM_PRESSURE)
 		return TRUE
@@ -67,7 +67,7 @@
  * Returns an assoc list that describes how turfs would be changed if the
  * Turfs in turfs_src were translated by shifting the src_origin to the dst_origin
  */
-/proc/get_turf_translation(turf/src_origin, turf/dst_origin, list/turfs_src)
+proc/get_turf_translation(turf/src_origin, turf/dst_origin, list/turfs_src)
 	var/list/turf_map = list()
 	for(var/turf/source in turfs_src)
 		var/x_pos = (source.x - src_origin.x)
@@ -82,7 +82,7 @@
 
 	return turf_map
 
-/proc/translate_turfs(list/translation, area/base_area = null, turf/base_turf)
+proc/translate_turfs(list/translation, area/base_area = null, turf/base_turf)
 	for(var/turf/source in translation)
 
 		var/turf/target = translation[source]
@@ -99,7 +99,7 @@
 	// for(var/turf/source in translation)
 	// 	source.ChangeTurf(base_turf ? base_turf : get_base_turf_by_area(source), 1, 1)
 
-/proc/translate_turf(turf/Origin, turf/Destination, turftoleave = null)
+proc/translate_turf(turf/Origin, turf/Destination, turftoleave = null)
 
 	// You can stay, though.
 	if (istype(Origin, /turf/space))
@@ -168,7 +168,7 @@
  * Used for border objects. This returns true if this atom is on the border between the two specified turfs.
  * This assumes that the atom is located inside the target turf.
  */
-/atom/proc/is_between_turfs(turf/origin, turf/target)
+atom/proc/is_between_turfs(turf/origin, turf/target)
 	if (atom_flags & ATOM_BORDER)
 		var/testdir = get_dir(target, origin)
 		return (dir & testdir)
@@ -186,7 +186,7 @@
  * * test_dir - The prospective dir of some atom you'd like to put on this turf.
  * * is_fulltile - Whether the thing you're attempting to move to this turf takes up the entire tile or whether it supports multiple movable atoms on its tile.
  */
-/proc/valid_window_location(turf/dest_turf, test_dir, is_fulltile = FALSE)
+proc/valid_window_location(turf/dest_turf, test_dir, is_fulltile = FALSE)
 	if(!dest_turf)
 		return FALSE
 	for(var/obj/turf_content in dest_turf)

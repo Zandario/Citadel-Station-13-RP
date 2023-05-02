@@ -9,7 +9,7 @@
  ** - MAX_STACK_SIZE - Size of a stack of mineral sheets. Constant.
  */
 
-/datum/component/material_container
+datum/component/material_container
 	var/total_amount = 0
 	var/max_amount
 	var/sheet_type
@@ -23,7 +23,7 @@
 	var/datum/callback/after_insert
 
 /// Sets up the proper signals and fills the list of materials with the appropriate references.
-/datum/component/material_container/Initialize(list/mat_list, max_amt = 0, _show_on_examine = FALSE, list/allowed_types, datum/callback/_precondition, datum/callback/_after_insert, _disable_attackby)
+datum/component/material_container/Initialize(list/mat_list, max_amt = 0, _show_on_examine = FALSE, list/allowed_types, datum/callback/_precondition, datum/callback/_after_insert, _disable_attackby)
 	materials = list()
 	max_amount = max(0, max_amt)
 	show_on_examine = _show_on_examine
@@ -45,7 +45,7 @@
 		var/datum/material/M = getmaterialref(mat) || mat
 		materials[M] = 0
 
-/datum/component/material_container/proc/OnExamine(datum/source, mob/user)
+datum/component/material_container/proc/OnExamine(datum/source, mob/user)
 	if(show_on_examine)
 		for(var/I in materials)
 			var/datum/material/M = I
@@ -54,7 +54,7 @@
 				to_chat(user, "<span class='notice'>It has [amt] units of [lowertext(M.name)] stored.</span>")
 
 /// Proc that allows players to fill the parent with mats
-/datum/component/material_container/proc/OnAttackBy(datum/source, obj/item/I, mob/living/user)
+datum/component/material_container/proc/OnAttackBy(datum/source, obj/item/I, mob/living/user)
 	var/list/tc = allowed_typecache
 	if(disable_attackby)
 		return
@@ -79,7 +79,7 @@
 	user_insert(I, user)
 
 /// Proc used for when player inserts materials
-/datum/component/material_container/proc/user_insert(obj/item/I, mob/living/user)
+datum/component/material_container/proc/user_insert(obj/item/I, mob/living/user)
 	set waitfor = FALSE
 	var/requested_amount
 	var/active_held = user.get_active_held_item()  // differs from I when using MUTATION_TELEKINESIS
@@ -111,7 +111,7 @@
 		user.put_in_active_hand(I)
 
 /// Proc specifically for inserting items, returns the amount of materials entered.
-/datum/component/material_container/proc/insert_item(obj/item/I, var/multiplier = 1, stack_amt)
+datum/component/material_container/proc/insert_item(obj/item/I, var/multiplier = 1, stack_amt)
 	if(!I)
 		return FALSE
 	if(istype(I, /obj/item/stack))
@@ -126,7 +126,7 @@
 	last_inserted_id = insert_item_materials(I, multiplier)
 	return material_amount
 
-/datum/component/material_container/proc/insert_item_materials(obj/item/I, multiplier = 1)
+datum/component/material_container/proc/insert_item_materials(obj/item/I, multiplier = 1)
 	var/primary_mat
 	var/max_mat_value = 0
 	for(var/MAT in materials)
@@ -137,7 +137,7 @@
 	return primary_mat
 
 /// Proc for putting a stack inside of the container
-/datum/component/material_container/proc/insert_stack(obj/item/stack/S, amt, multiplier = 1)
+datum/component/material_container/proc/insert_stack(obj/item/stack/S, amt, multiplier = 1)
 	if(isnull(amt))
 		amt = S.amount
 
@@ -160,7 +160,7 @@
 	return amt
 
 /// For inserting an amount of material
-/datum/component/material_container/proc/insert_amount_mat(amt, var/datum/material/mat)
+datum/component/material_container/proc/insert_amount_mat(amt, var/datum/material/mat)
 	if(!istype(mat))
 		mat = getmaterialref(mat)
 	if(amt > 0 && has_space(amt))
@@ -175,7 +175,7 @@
 	return FALSE
 
 /// Uses an amount of a specific material, effectively removing it.
-/datum/component/material_container/proc/use_amount_mat(amt, var/datum/material/mat)
+datum/component/material_container/proc/use_amount_mat(amt, var/datum/material/mat)
 	if(!istype(mat))
 		mat = getmaterialref(mat)
 	var/amount = materials[mat]
@@ -187,7 +187,7 @@
 	return FALSE
 
 /// Proc for transfering materials to another container.
-/datum/component/material_container/proc/transer_amt_to(var/datum/component/material_container/T, amt, var/datum/material/mat)
+datum/component/material_container/proc/transer_amt_to(var/datum/component/material_container/T, amt, var/datum/material/mat)
 	if(!istype(mat))
 		mat = getmaterialref(mat)
 	if((amt==0)||(!T)||(!mat))
@@ -202,7 +202,7 @@
 	return FALSE
 
 /// Proc for checking if there is room in the component, returning the amount or else the amount lacking.
-/datum/component/material_container/proc/can_insert_amount_mat(amt, mat)
+datum/component/material_container/proc/can_insert_amount_mat(amt, mat)
 	if(amt && mat)
 		var/datum/material/M = mat
 		if(M)
@@ -213,7 +213,7 @@
 
 
 /// For consuming a dictionary of materials. mats is the map of materials to use and the corresponding amounts, example: list(M/datum/material/glass =100, datum/material/iron=200)
-/datum/component/material_container/proc/use_materials(list/mats, multiplier=1)
+datum/component/material_container/proc/use_materials(list/mats, multiplier=1)
 	if(!mats || !length(mats))
 		return FALSE
 
@@ -239,7 +239,7 @@
 	return total_amount_save - total_amount
 
 /// For spawning mineral sheets at a specific location. Used by machines to output sheets.
-/datum/component/material_container/proc/retrieve_sheets(sheet_amt, var/datum/material/M, target = null)
+datum/component/material_container/proc/retrieve_sheets(sheet_amt, var/datum/material/M, target = null)
 	if(!M.sheet_type)
 		return 0 //Add greyscale sheet handling here later
 	if(sheet_amt <= 0)
@@ -263,7 +263,7 @@
 
 
 /// Proc to get all the materials and dump them as sheets
-/datum/component/material_container/proc/retrieve_all(target = null)
+datum/component/material_container/proc/retrieve_all(target = null)
 	var/result = 0
 	for(var/MAT in materials)
 		var/amount = materials[MAT]
@@ -271,11 +271,11 @@
 	return result
 
 /// Proc that returns TRUE if the container has space
-/datum/component/material_container/proc/has_space(amt = 0)
+datum/component/material_container/proc/has_space(amt = 0)
 	return (total_amount + amt) <= max_amount
 
 /// Checks if its possible to afford a certain amount of materials. Takes a dictionary of materials.
-/datum/component/material_container/proc/has_materials(list/mats, multiplier=1)
+datum/component/material_container/proc/has_materials(list/mats, multiplier=1)
 	if(!mats || !mats.len)
 		return FALSE
 
@@ -297,7 +297,7 @@
 	return TRUE
 
 /// Returns all the categories in a recipe.
-/datum/component/material_container/proc/get_categories(list/mats)
+datum/component/material_container/proc/get_categories(list/mats)
 	var/list/categories = list()
 	for(var/x in mats) //Loop through all required materials
 		if(!istext(x)) //This means its not a category
@@ -307,7 +307,7 @@
 
 
 /// Returns TRUE if you have enough of the specified material.
-/datum/component/material_container/proc/has_enough_of_material(var/datum/material/req_mat, amount, multiplier=1)
+datum/component/material_container/proc/has_enough_of_material(var/datum/material/req_mat, amount, multiplier=1)
 	if(!materials[req_mat]) //Do we have the resource?
 		return FALSE //Can't afford it
 	var/amount_required = amount * multiplier
@@ -316,7 +316,7 @@
 	return FALSE //Can't afford it
 
 /// Returns TRUE if you have enough of a specified material category (Which could be multiple materials)
-/datum/component/material_container/proc/has_enough_of_category(category, amount, multiplier=1)
+datum/component/material_container/proc/has_enough_of_category(category, amount, multiplier=1)
 	for(var/i in SSmaterials.materials_by_category[category])
 		var/datum/material/mat = i
 		if(materials[mat] >= amount) //we have enough
@@ -324,20 +324,20 @@
 	return FALSE
 
 /// Turns a material amount into the amount of sheets it should output
-/datum/component/material_container/proc/amount2sheet(amt)
+datum/component/material_container/proc/amount2sheet(amt)
 	if(amt >= MINERAL_MATERIAL_AMOUNT)
 		return round(amt / MINERAL_MATERIAL_AMOUNT)
 	return FALSE
 
 /// Turns an amount of sheets into the amount of material amount it should output
-/datum/component/material_container/proc/sheet2amount(sheet_amt)
+datum/component/material_container/proc/sheet2amount(sheet_amt)
 	if(sheet_amt > 0)
 		return sheet_amt * MINERAL_MATERIAL_AMOUNT
 	return FALSE
 
 
 ///returns the amount of material relevant to this container; if this container does not support glass, any glass in 'I' will not be taken into account
-/datum/component/material_container/proc/get_item_material_amount(obj/item/I)
+datum/component/material_container/proc/get_item_material_amount(obj/item/I)
 	if(!istype(I))
 		return FALSE
 	var/material_amount = 0
@@ -346,7 +346,7 @@
 	return material_amount
 
 /// Returns the amount of a specific material in this container.
-/datum/component/material_container/proc/get_material_amount(var/datum/material/mat)
+datum/component/material_container/proc/get_material_amount(var/datum/material/mat)
 	if(!istype(mat))
 		mat = getmaterialref(mat)
 	return(materials[mat])

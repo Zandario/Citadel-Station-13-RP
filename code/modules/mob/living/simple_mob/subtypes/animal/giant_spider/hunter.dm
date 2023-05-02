@@ -2,7 +2,7 @@
 // The leaping attack is somewhat telegraphed and can be dodged if one is paying attention.
 // The AI would've followed up after a successful leap with dragging the downed victim away, but the dragging code was too janky.
 
-/datum/category_item/catalogue/fauna/giant_spider/hunter_spider
+datum/category_item/catalogue/fauna/giant_spider/hunter_spider
 	name = "Giant Spider - Hunter"
 	desc = "This specific spider has been catalogued as 'Hunter', \
 	and it belongs to the 'Hunter' caste. \
@@ -15,7 +15,7 @@
 	The venom inside these spiders has no special properties beyond being toxic."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/giant_spider/hunter
+mob/living/simple_mob/animal/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/hunter_spider)
 
@@ -49,7 +49,7 @@
 	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
 
 // Multiplies damage if the victim is stunned in some form, including a successful leap.
-/mob/living/simple_mob/animal/giant_spider/hunter/apply_bonus_melee_damage(atom/A, damage_amount)
+mob/living/simple_mob/animal/giant_spider/hunter/apply_bonus_melee_damage(atom/A, damage_amount)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.incapacitated(INCAPACITATION_DISABLED))
@@ -58,7 +58,7 @@
 
 
 // The actual leaping attack.
-/mob/living/simple_mob/animal/giant_spider/hunter/do_special_attack(atom/A)
+mob/living/simple_mob/animal/giant_spider/hunter/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
@@ -115,15 +115,15 @@
 
 
 // This AI would've isolated people it stuns with its 'leap' attack, by dragging them away.
-/datum/ai_holder/simple_mob/melee/hunter_spider
+datum/ai_holder/simple_mob/melee/hunter_spider
 
 /*
 
-/datum/ai_holder/simple_mob/melee/hunter_spider/post_special_attack(mob/living/L)
+datum/ai_holder/simple_mob/melee/hunter_spider/post_special_attack(mob/living/L)
 	drag_away(L)
 
 // Called after a successful leap.
-/datum/ai_holder/simple_mob/melee/hunter_spider/proc/drag_away(mob/living/L)
+datum/ai_holder/simple_mob/melee/hunter_spider/proc/drag_away(mob/living/L)
 	to_chat(world, "Doing drag_away attack on [L]")
 	if(!istype(L))
 		to_chat(world, "Invalid type.")

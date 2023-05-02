@@ -11,9 +11,9 @@ SUBSYSTEM_DEF(holomaps)
 	var/static/list/extraMiniMaps = list()
 	var/static/list/station_holomaps = list()
 
-/datum/controller/subsystem/holomaps/Recover()
+datum/controller/subsystem/holomaps/Recover()
 	subsystem_flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 
-/datum/controller/subsystem/holomaps/Initialize(timeofday)
+datum/controller/subsystem/holomaps/Initialize(timeofday)
 	generateHoloMinimaps()
 	. = ..()

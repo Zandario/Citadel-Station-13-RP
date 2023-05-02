@@ -1,4 +1,4 @@
-/datum/keybinding
+datum/keybinding
 	var/list/hotkey_keys
 	var/list/classic_keys
 	var/name
@@ -8,17 +8,17 @@
 	var/weight = WEIGHT_LOWEST
 	var/keybind_signal
 
-/datum/keybinding/New()
+datum/keybinding/New()
 
 	// Default keys to the master "hotkey_keys"
 	if(LAZYLEN(hotkey_keys) && !LAZYLEN(classic_keys))
 		classic_keys = hotkey_keys.Copy()
 
-/datum/keybinding/proc/down(client/user)
+datum/keybinding/proc/down(client/user)
     return FALSE
 
-/datum/keybinding/proc/up(client/user)
+datum/keybinding/proc/up(client/user)
 	return FALSE
 
-/datum/keybinding/proc/can_use(client/user)
+datum/keybinding/proc/can_use(client/user)
 	return TRUE

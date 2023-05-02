@@ -1,10 +1,10 @@
-/datum/turf_initializer/proc/InitializeTurf(var/turf/T)
+datum/turf_initializer/proc/InitializeTurf(var/turf/T)
 	return
 
-/area
+area
 	var/datum/turf_initializer/turf_initializer = null
 
-/area/LateInitialize()
+area/LateInitialize()
 	. = ..()
 	if(turf_initializer)
 		for(var/turf/simulated/T in src)

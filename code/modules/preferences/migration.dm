@@ -6,7 +6,7 @@
  * - options - the loaded global options list
  * - prefs - prefs if any; if null, we're probably doing a clientless migration.
  */
-/datum/controller/subsystem/characters/proc/perform_global_migrations(savefile/S, current_version, list/errors, list/options, datum/preferences/prefs)
+datum/controller/subsystem/characters/proc/perform_global_migrations(savefile/S, current_version, list/errors, list/options, datum/preferences/prefs)
 	if(current_version < 13)
 		if(prefs)
 			addtimer(CALLBACK(prefs, /datum/preferences/proc/force_reset_keybindings), 5 SECONDS)
@@ -28,7 +28,7 @@
  * - options - the loaded character options list
  * - prefs - prefs if any; if null, we're probably doing a clientless migration.
  */
-/datum/controller/subsystem/characters/proc/perform_character_migrations(savefile/S, current_version, list/errors, list/character, datum/preferences/prefs)
+datum/controller/subsystem/characters/proc/perform_character_migrations(savefile/S, current_version, list/errors, list/character, datum/preferences/prefs)
 	if(current_version < 1)
 		// MIGRATE JOBS
 		var/alternative_option
@@ -210,7 +210,7 @@
 /**
  * clientless migration of savefiles
  */
-/datum/controller/subsystem/characters/proc/migrate_savefile(path, list/errors = list())
+datum/controller/subsystem/characters/proc/migrate_savefile(path, list/errors = list())
 	var/savefile/S
 	if(istype(path, /savefile))
 		S = path
@@ -252,7 +252,7 @@
 
 // the oh god oh fuck proc that migrates every file at once
 /*
-/proc/___migrate_all_savefiles()
+proc/___migrate_all_savefiles()
 	// oh fuck you
 	. = 0
 	var/timer = REALTIMEOFDAY
@@ -272,4 +272,3 @@
 	var/took = REALTIMEOFDAY - timer
 	to_chat(world, SPAN_DANGER("Migrated [.] savefiles in [round(took * 0.1, 0.1)] seconds."))
 */
-

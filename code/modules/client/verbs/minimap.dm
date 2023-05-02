@@ -1,4 +1,4 @@
-/client/verb/show_station_minimap()
+client/verb/show_station_minimap()
 	set category = "OOC"
 	set name = "Show Station Minimap"
 	set desc = "Shows a minimap of the currently loaded station map."

@@ -1,4 +1,4 @@
-/datum/hud_data
+datum/hud_data
 	var/icon              // If set, overrides ui_style.
 	var/has_a_intent = 1  // Set to draw intent box.
 	var/has_m_intent = 1  // Set to draw move intent box.
@@ -35,7 +35,7 @@
 		SLOT_ID_BELT =         list("loc" = ui_belt,      "name" = "Belt",         "slot" = SLOT_ID_BELT,      "state" = "belt")
 		)
 
-/datum/hud_data/New()
+datum/hud_data/New()
 	..()
 	for(var/slot in gear)
 		equip_slots |= gear[slot]["slot"]
@@ -45,7 +45,7 @@
 
 	equip_slots |= SLOT_ID_LEGCUFFED
 
-/datum/hud_data/diona
+datum/hud_data/diona
 	has_internals = 0
 	gear = list(
 		SLOT_ID_UNIFORM =   list("loc" = ui_iclothing, "name" = "Uniform",      "slot" = SLOT_ID_UNIFORM, "state" = "center", "toggle" = 1),
@@ -59,7 +59,7 @@
 		SLOT_ID_RIGHT_POCKET =     list("loc" = ui_storage2,  "name" = "Right Pocket", "slot" = SLOT_ID_RIGHT_POCKET,   "state" = "pocket"),
 		)
 
-/datum/hud_data/monkey
+datum/hud_data/monkey
 	gear = list(
 		SLOT_ID_MASK =         list("loc" = ui_shoes,     "name" = "Mask", "slot" = SLOT_ID_MASK, "state" = "mask",  "toggle" = 1),
 		SLOT_ID_BACK =         list("loc" = ui_sstore1,   "name" = "Back", "slot" = SLOT_ID_BACK,      "state" = "back"),

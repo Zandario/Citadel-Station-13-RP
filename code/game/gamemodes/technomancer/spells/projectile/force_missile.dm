@@ -1,4 +1,4 @@
-/datum/technomancer/spell/force_missile
+datum/technomancer/spell/force_missile
 	name = "Force Missile"
 	desc = "This fires a missile at your target.  It's cheap to use, however the projectile itself moves and impacts in such a way \
 	that armor designed to protect from blunt force will mitigate this function as well."
@@ -7,7 +7,7 @@
 	obj_path = /obj/item/spell/projectile/force_missile
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/projectile/force_missile
+obj/item/spell/projectile/force_missile
 	name = "force missile"
 	icon_state = "force_missile"
 	desc = "Make it rain!"
@@ -19,7 +19,7 @@
 	cooldown = 5
 	fire_sound = 'sound/weapons/wave.ogg'
 
-/obj/projectile/force_missile
+obj/projectile/force_missile
 	name = "force missile"
 	icon_state = "force_missile"
 	damage = 25

@@ -70,7 +70,7 @@
 #define WM_TO_W(WM, T)			(((WM)*60)/(T))
 #define WM_TO_KW(WM, T)			(((WM)*(60*0.001))/(T))
 
-/proc/render_power_unit(unit)
+proc/render_power_unit(unit)
 	switch(unit)
 		if(ENUM_POWER_UNIT_GENERIC)
 			return "u"
@@ -81,7 +81,7 @@
 		if(ENUM_POWER_UNIT_WATT_HOUR)
 			return "Wh"
 
-/proc/render_power_scale(scale)
+proc/render_power_scale(scale)
 	switch(scale)
 		if(ENUM_POWER_SCALE_NONE)
 			return ""
@@ -100,7 +100,7 @@
  * renders power unit
  * expensive!
  */
-/proc/render_power(amount, power_scale = ENUM_POWER_SCALE_NONE, unit = ENUM_POWER_UNIT_GENERIC, accuracy = POWER_ACCURACY, conversion = TRUE)
+proc/render_power(amount, power_scale = ENUM_POWER_SCALE_NONE, unit = ENUM_POWER_UNIT_GENERIC, accuracy = POWER_ACCURACY, conversion = TRUE)
 	if(!conversion)
 		return "[round(amount, accuracy)] [render_power_scale(power_scale)][render_power_unit(unit)]"
 	if(amount <= 0)

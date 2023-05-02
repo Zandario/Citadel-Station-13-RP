@@ -19,12 +19,12 @@ SUBSYSTEM_DEF(statpanels)
 	/// cached sdql2 data
 	var/cache_sdql_data
 
-/datum/controller/subsystem/statpanels/Initialize()
+datum/controller/subsystem/statpanels/Initialize()
 	spawn()
 		manual_ticking()
 	return ..()
 
-/datum/controller/subsystem/statpanels/fire(resumed = FALSE, no_tick_check)
+datum/controller/subsystem/statpanels/fire(resumed = FALSE, no_tick_check)
 	if(!resumed)
 		// dispose / rebuild caches
 		cache_mc_data = null
@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(statpanels)
 //? Errors will cause JS panel error spam.
 //? Thus, we rigidly check references, even for things like GLOB which shouldn't ever be missing.
 
-/datum/controller/subsystem/statpanels/proc/fetch_mc_data()
+datum/controller/subsystem/statpanels/proc/fetch_mc_data()
 	if(cache_mc_data)
 		return cache_mc_data
 	. = list()
@@ -105,7 +105,7 @@ SUBSYSTEM_DEF(statpanels)
 	. = url_encode(json_encode(.))
 	cache_mc_data = .
 
-/datum/controller/subsystem/statpanels/proc/build_server_data()
+datum/controller/subsystem/statpanels/proc/build_server_data()
 	if(cache_server_data)
 		return cache_server_data
 	. = list()
@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(statpanels)
 	. = url_encode(json_encode(.))
 	cache_server_data = .
 
-/datum/controller/subsystem/statpanels/proc/fetch_ticket_data()
+datum/controller/subsystem/statpanels/proc/fetch_ticket_data()
 	if(cache_ticket_data)
 		return cache_ticket_data
 	if(!GLOB.ahelp_tickets)
@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(statpanels)
 		. = url_encode(json_encode(GLOB.ahelp_tickets.stat_data()))
 	cache_ticket_data = .
 
-/datum/controller/subsystem/statpanels/proc/fetch_sdql2_data()
+datum/controller/subsystem/statpanels/proc/fetch_sdql2_data()
 	if(cache_sdql_data)
 		return cache_sdql_data
 	. = list()
@@ -153,7 +153,7 @@ SUBSYSTEM_DEF(statpanels)
  *
  * tl;dr this ensures we push data while MC is initializing.
  */
-/datum/controller/subsystem/statpanels/proc/manual_ticking()
+datum/controller/subsystem/statpanels/proc/manual_ticking()
 	while(!Master.initialized)
 		fire(null, TRUE)
 		sleep(10)

@@ -1,69 +1,69 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/mine/explored/underdark)
+turf/template_noop,
+area/mine/explored/underdark)
 "b" = (
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "c" = (
-/obj/tether_away_spawner/underdark_normal,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/tether_away_spawner/underdark_normal,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "d" = (
-/obj/structure/closet/crate/mimic/dangerous,
-/obj/random/underdark,
-/obj/random/underdark,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/structure/closet/crate/mimic/dangerous,
+obj/random/underdark,
+obj/random/underdark,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "e" = (
-/turf/simulated/wall/r_lead,
-/area/mine/explored/underdark)
+turf/simulated/wall/r_lead,
+area/mine/explored/underdark)
 "f" = (
-/obj/structure/frame/computer,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/structure/frame/computer,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "g" = (
-/obj/structure/frame,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/structure/frame,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "h" = (
-/obj/machinery/the_singularitygen,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/machinery/the_singularitygen,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "i" = (
-/obj/random/underdark/uncertain,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/random/underdark/uncertain,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "j" = (
-/turf/simulated/mineral/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+turf/simulated/mineral/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "k" = (
-/obj/structure/closet/crate/mimic/safe,
-/obj/item/stack/cable_coil/brown,
-/obj/item/stack/material/lead{
+obj/structure/closet/crate/mimic/safe,
+obj/item/stack/cable_coil/brown,
+obj/item/stack/material/lead{
 	amount = 10
 	},
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "l" = (
-/obj/machinery/power/port_gen/pacman/super,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/machinery/power/port_gen/pacman/super,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "m" = (
-/obj/structure/closet/crate/mimic,
-/obj/item/stack/material/uranium{
+obj/structure/closet/crate/mimic,
+obj/item/stack/material/uranium{
 	amount = 5
 	},
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "n" = (
-/obj/effect/decal/remains,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/effect/decal/remains,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 "B" = (
-/obj/structure/salvageable/data,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
-/area/mine/explored/underdark)
+obj/structure/salvageable/data,
+turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+area/mine/explored/underdark)
 
 (1,1,1) = {"
 a

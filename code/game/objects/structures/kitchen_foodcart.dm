@@ -1,4 +1,4 @@
-/obj/structure/foodcart
+obj/structure/foodcart
 	name = "Foodcart"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "foodcart-0"
@@ -7,14 +7,14 @@
 	opacity = 0
 	density = 1
 
-/obj/structure/foodcart/Initialize(mapload)
+obj/structure/foodcart/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/reagent_containers/food))
 			I.loc = src
 	update_icon()
 
-/obj/structure/foodcart/attackby(obj/item/O as obj, mob/user as mob)
+obj/structure/foodcart/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/reagent_containers/food))
 		if(!user.attempt_insert_item_for_installation(O, src))
 			return
@@ -22,7 +22,7 @@
 		return
 	return ..()
 
-/obj/structure/foodcart/attack_hand(mob/user, list/params)
+obj/structure/foodcart/attack_hand(mob/user, list/params)
 	if(contents.len)
 		var/obj/item/reagent_containers/food/choice = input("What would you like to grab from the cart?") as null|obj in contents
 		if(choice)
@@ -35,7 +35,7 @@
 				choice.loc = get_turf(src)
 			update_icon()
 
-/obj/structure/foodcart/update_icon()
+obj/structure/foodcart/update_icon()
 	if(contents.len < 5)
 		icon_state = "foodcart-[contents.len]"
 	else

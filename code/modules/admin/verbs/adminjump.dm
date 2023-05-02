@@ -1,4 +1,4 @@
-/client/proc/Jump(var/area/A in GLOB.sortedAreas)
+client/proc/Jump(var/area/A in GLOB.sortedAreas)
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"
@@ -14,7 +14,7 @@
 	else
 		alert("Admin jumping disabled")
 
-/client/proc/jumptoturf(turf/T in world)
+client/proc/jumptoturf(turf/T in world)
 	set name = "Jump to Turf"
 	set category = "Admin"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
@@ -27,7 +27,7 @@
 	else
 		alert("Admin jumping disabled")
 
-/client/proc/jumptomob(var/mob/M in GLOB.mob_list)
+client/proc/jumptomob(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
 	set popup_menu = FALSE
@@ -48,7 +48,7 @@
 	else
 		alert("Admin jumping disabled")
 
-/client/proc/jumptocoord(tx as num, ty as num, tz as num)
+client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
 	set name = "Jump to Coordinate"
 
@@ -69,7 +69,7 @@
 	else
 		alert("Admin jumping disabled")
 
-/client/proc/jumptokey()
+client/proc/jumptokey()
 	set category = "Admin"
 	set name = "Jump to Key"
 
@@ -92,7 +92,7 @@
 	else
 		alert("Admin jumping disabled")
 
-/client/proc/Getmob(var/mob/M in GLOB.mob_list)
+client/proc/Getmob(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
@@ -108,7 +108,7 @@
 	else
 		alert("Admin jumping disabled")
 
-/client/proc/Getkey()
+client/proc/Getkey()
 	set category = "Admin"
 	set name = "Get Key"
 	set desc = "Key to teleport"
@@ -137,7 +137,7 @@
 	else
 		alert("Admin jumping disabled")
 
-/client/proc/sendmob(var/mob/M in sortmobs())
+client/proc/sendmob(var/mob/M in sortmobs())
 	set category = "Admin"
 	set name = "Send Mob"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))

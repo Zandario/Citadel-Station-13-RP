@@ -1,4 +1,4 @@
-/obj/machinery/vr_sleeper
+obj/machinery/vr_sleeper
 	name = "virtual reality sleeper"
 	desc = "A fancy bed with built-in sensory I/O ports and connectors to interface users' minds with their bodies in virtual reality."
 	icon = 'icons/obj/medical/cryogenic2.dmi'
@@ -15,18 +15,18 @@
 	active_power_usage = 200
 	light_color = "#FF0000"
 
-/obj/machinery/vr_sleeper/Initialize(mapload)
+obj/machinery/vr_sleeper/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/machinery/vr_sleeper/process(delta_time)
+obj/machinery/vr_sleeper/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
-/obj/machinery/vr_sleeper/update_icon()
+obj/machinery/vr_sleeper/update_icon()
 	icon_state = "syndipod_[occupant ? "1" : "0"]"
 
-/obj/machinery/vr_sleeper/Topic(href, href_list)
+obj/machinery/vr_sleeper/Topic(href, href_list)
 	if(..())
 		return TRUE
 
@@ -41,7 +41,7 @@
 
 	return 1
 
-/obj/machinery/vr_sleeper/attackby(obj/item/I, mob/user)
+obj/machinery/vr_sleeper/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
@@ -53,14 +53,14 @@
 		return
 
 
-/obj/machinery/vr_sleeper/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/machinery/vr_sleeper/MouseDroppedOnLegacy(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !isliving(target))
 		return
 	go_in(target, user)
 
 
 
-/obj/machinery/sleeper/relaymove(mob/user)
+obj/machinery/sleeper/relaymove(mob/user)
 	..()
 	if(usr.incapacitated())
 		return
@@ -68,7 +68,7 @@
 
 
 
-/obj/machinery/vr_sleeper/emp_act(severity)
+obj/machinery/vr_sleeper/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -80,7 +80,7 @@
 
 	..(severity)
 
-/obj/machinery/vr_sleeper/verb/eject()
+obj/machinery/vr_sleeper/verb/eject()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Eject VR Capsule"
@@ -97,7 +97,7 @@
 	go_out()
 	add_fingerprint(usr)
 
-/obj/machinery/vr_sleeper/verb/climb_in()
+obj/machinery/vr_sleeper/verb/climb_in()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Enter VR Capsule"
@@ -107,12 +107,12 @@
 	go_in(usr, usr)
 	add_fingerprint(usr)
 
-/obj/machinery/vr_sleeper/relaymove(mob/user)
+obj/machinery/vr_sleeper/relaymove(mob/user)
 	if(user.incapacitated())
 		return 0 //maybe they should be able to get out with cuffs, but whatever
 	go_out()
 
-/obj/machinery/vr_sleeper/proc/go_in(mob/M, mob/user)
+obj/machinery/vr_sleeper/proc/go_in(mob/M, mob/user)
 	if(!M)
 		return
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -145,7 +145,7 @@
 		enter_vr()
 	return
 
-/obj/machinery/vr_sleeper/proc/go_out()
+obj/machinery/vr_sleeper/proc/go_out()
 	if(!occupant)
 		return
 
@@ -163,7 +163,7 @@
 	update_use_power(1)
 	update_icon()
 
-/obj/machinery/vr_sleeper/proc/enter_vr()
+obj/machinery/vr_sleeper/proc/enter_vr()
 
 	// No mob to transfer a mind from
 	if(!occupant)

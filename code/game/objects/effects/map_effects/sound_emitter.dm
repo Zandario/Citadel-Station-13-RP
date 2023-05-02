@@ -1,5 +1,5 @@
 // Plays a sound at its location every so often.
-/obj/effect/map_effect/interval/sound_emitter
+obj/effect/map_effect/interval/sound_emitter
 	name = "sound emitter"
 	icon_state = "sound_emitter"
 	var/list/sounds_to_play = list(null) // List containing sound files or strings of sound groups.
@@ -31,7 +31,7 @@
 
 	var/sound_preference = null // Player preference to check before playing this sound to them, if any.
 
-/obj/effect/map_effect/interval/sound_emitter/trigger()
+obj/effect/map_effect/interval/sound_emitter/trigger()
 	playsound(
 		src,
 		pick(sounds_to_play),
@@ -48,39 +48,39 @@
 		)
 	..()
 
-/obj/effect/map_effect/interval/sound_emitter/thunder
+obj/effect/map_effect/interval/sound_emitter/thunder
 	sounds_to_play = list("thunder")
 	interval_lower_bound = 10 SECONDS
 	interval_upper_bound = 15 SECONDS
 
-/obj/effect/map_effect/interval/sound_emitter/geiger
+obj/effect/map_effect/interval/sound_emitter/geiger
 	sounds_to_play = list('sound/items/geiger/low1.ogg', 'sound/items/geiger/low2.ogg', 'sound/items/geiger/low3.ogg', 'sound/items/geiger/low4.ogg')
 	interval_lower_bound = 1 SECOND
 	interval_upper_bound = 1 SECOND
 
-/obj/effect/map_effect/interval/sound_emitter/geiger/med
+obj/effect/map_effect/interval/sound_emitter/geiger/med
 	sounds_to_play = list('sound/items/geiger/med1.ogg', 'sound/items/geiger/med2.ogg', 'sound/items/geiger/med3.ogg', 'sound/items/geiger/med4.ogg')
 
-/obj/effect/map_effect/interval/sound_emitter/geiger/high
+obj/effect/map_effect/interval/sound_emitter/geiger/high
 	sounds_to_play = list('sound/items/geiger/high1.ogg', 'sound/items/geiger/high2.ogg', 'sound/items/geiger/high3.ogg', 'sound/items/geiger/high4.ogg')
 
-/obj/effect/map_effect/interval/sound_emitter/geiger/ext
+obj/effect/map_effect/interval/sound_emitter/geiger/ext
 	sounds_to_play = list('sound/items/geiger/ext1.ogg', 'sound/items/geiger/ext2.ogg', 'sound/items/geiger/ext3.ogg', 'sound/items/geiger/ext4.ogg')
 
-/obj/effect/map_effect/interval/sound_emitter/punching
+obj/effect/map_effect/interval/sound_emitter/punching
 	sounds_to_play = list("punch")
 	interval_lower_bound = 5
 	interval_upper_bound = 1 SECOND
 
-/obj/effect/map_effect/interval/sound_emitter/explosions
+obj/effect/map_effect/interval/sound_emitter/explosions
 	sounds_to_play = list(SFX_ALIAS_EXPLOSION)
 	interval_lower_bound = 5 SECONDS
 	interval_upper_bound = 10 SECONDS
 
-/obj/effect/map_effect/interval/sound_emitter/explosions/distant
+obj/effect/map_effect/interval/sound_emitter/explosions/distant
 	sounds_to_play = list('sound/soundbytes/effects/explosion/explosionfar.ogg')
 
-/obj/effect/map_effect/interval/sound_emitter/ballistic_gunfight
+obj/effect/map_effect/interval/sound_emitter/ballistic_gunfight
 	sounds_to_play = list(
 		'sound/weapons/Gunshot1.ogg',
 		'sound/weapons/Gunshot_deagle.ogg',
@@ -93,7 +93,7 @@
 	interval_lower_bound = 5
 	interval_upper_bound = 2 SECONDS
 
-/obj/effect/map_effect/interval/sound_emitter/energy_gunfight
+obj/effect/map_effect/interval/sound_emitter/energy_gunfight
 	sounds_to_play = list(
 		'sound/weapons/Taser.ogg',
 		'sound/weapons/laser.ogg',
@@ -108,12 +108,12 @@
 
 
 // I'm not sorry.
-/obj/effect/map_effect/interval/sound_emitter/clownsteps
+obj/effect/map_effect/interval/sound_emitter/clownsteps
 	sounds_to_play = list("clownstep")
 	interval_lower_bound = 5
 	interval_upper_bound = 1 SECOND
 
-/obj/effect/map_effect/interval/sound_emitter/bikehorns
+obj/effect/map_effect/interval/sound_emitter/bikehorns
 	sounds_to_play = list('sound/items/bikehorn.ogg')
 	interval_lower_bound = 5
 	interval_upper_bound = 1 SECOND

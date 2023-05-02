@@ -3,14 +3,14 @@
  *
  * Blocks certain actions while this mob is being observed by something.
  */
-/datum/component/unobserved_actor
+datum/component/unobserved_actor
 	/// Dictates what behaviour you're blocked from while observed
 	var/unobserved_flags = NONE
 	/// Cooldown to prevent message spam when holding a move button
 	COOLDOWN_DECLARE(message_cooldown)
 
 
-/datum/component/unobserved_actor/Initialize(unobserved_flags = NONE)
+datum/component/unobserved_actor/Initialize(unobserved_flags = NONE)
 	. = ..()
 	if (!isliving(parent))
 		return ELEMENT_INCOMPATIBLE
@@ -19,7 +19,7 @@
 	src.unobserved_flags = unobserved_flags
 
 
-/datum/component/unobserved_actor/RegisterWithParent()
+datum/component/unobserved_actor/RegisterWithParent()
 	if (unobserved_flags & NO_OBSERVED_MOVEMENT)
 		RegisterSignal(parent, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_tried_move))
 		RegisterSignal(parent, COMSIG_ATOM_PRE_DIR_CHANGE, PROC_REF(on_tried_turn))
@@ -30,7 +30,7 @@
 		RegisterSignal(parent, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(on_tried_attack))
 
 
-/datum/component/unobserved_actor/UnregisterFromParent()
+datum/component/unobserved_actor/UnregisterFromParent()
 	UnregisterSignal(parent, list(
 		COMSIG_MOVABLE_PRE_MOVE,
 		COMSIG_ATOM_PRE_DIR_CHANGE,
@@ -42,7 +42,7 @@
 
 
 /// Called when the mob tries to move
-/datum/component/unobserved_actor/proc/on_tried_move(mob/living/source)
+datum/component/unobserved_actor/proc/on_tried_move(mob/living/source)
 	SIGNAL_HANDLER
 	if (!check_if_seen(source))
 		return
@@ -50,7 +50,7 @@
 
 
 /// Called when the mob tries to change direction
-/datum/component/unobserved_actor/proc/on_tried_turn(mob/living/source)
+datum/component/unobserved_actor/proc/on_tried_turn(mob/living/source)
 	SIGNAL_HANDLER
 	if (!check_if_seen(source))
 		return
@@ -58,14 +58,14 @@
 
 /*
 /// Called when the mob tries to use an ability
-/datum/component/unobserved_actor/proc/on_tried_ability(mob/living/source)
+datum/component/unobserved_actor/proc/on_tried_ability(mob/living/source)
 	SIGNAL_HANDLER
 	if (!check_if_seen(source))
 		return
 	return COMPONENT_BLOCK_ABILITY_START
 
 /// Called when the mob tries to cast a spell
-/datum/component/unobserved_actor/proc/on_tried_spell(mob/living/source)
+datum/component/unobserved_actor/proc/on_tried_spell(mob/living/source)
 	SIGNAL_HANDLER
 	if (!check_if_seen(source))
 		return
@@ -74,7 +74,7 @@
 
 
 /// Called when the mob tries to attack
-/datum/component/unobserved_actor/proc/on_tried_attack(mob/living/source)
+datum/component/unobserved_actor/proc/on_tried_attack(mob/living/source)
 	SIGNAL_HANDLER
 	if (!check_if_seen(source))
 		return
@@ -82,7 +82,7 @@
 
 
 /// Checks if the mob is visible to something else, and provides a balloon alert of feedback if appropriate.
-/datum/component/unobserved_actor/proc/check_if_seen(mob/living/source)
+datum/component/unobserved_actor/proc/check_if_seen(mob/living/source)
 	var/observed = can_be_seen(source)
 	if (observed && COOLDOWN_FINISHED(src, message_cooldown))
 		// source.balloon_alert(source, "something can see you!")
@@ -95,7 +95,7 @@
  * Returns true if you can be seen by something.
  * Not a very robust algorithm but it'll work in the majority of situations.
  */
-/datum/component/unobserved_actor/proc/can_be_seen(mob/living/source)
+datum/component/unobserved_actor/proc/can_be_seen(mob/living/source)
 	var/turf/my_turf = get_turf(source)
 	// Check for darkness
 	if(my_turf.lighting_overlay && my_turf.get_lumcount() < 0.1) // No one can see us in the darkness, right?

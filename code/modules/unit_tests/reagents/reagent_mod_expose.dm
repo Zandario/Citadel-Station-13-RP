@@ -1,16 +1,16 @@
 // testing the mob expose procs are working
 
-/datum/reagent/method_patch_test
+datum/reagent/method_patch_test
 	name = "method patch test"
 
-/datum/reagent/method_patch_test/expose_mob(mob/living/target, methods = PATCH, reac_volume, show_message = TRUE)
+datum/reagent/method_patch_test/expose_mob(mob/living/target, methods = PATCH, reac_volume, show_message = TRUE)
 	. = ..()
 	if(methods & PATCH)
 		target.health = 90
 	if(methods & INJECT)
 		target.health = 80
 
-/datum/unit_test/reagent_mob_expose/Run()
+datum/unit_test/reagent_mob_expose/Run()
 	// Life() is handled just by tests
 	SSmobs.pause()
 
@@ -54,6 +54,6 @@
 	syringe.afterattack(human, human, TRUE)
 	TEST_ASSERT_EQUAL(human.health, 80, "Human health did not update after injection from syringe")
 
-/datum/unit_test/reagent_mob_expose/Destroy()
+datum/unit_test/reagent_mob_expose/Destroy()
 	SSmobs.ignite()
 	return ..()

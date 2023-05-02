@@ -3,7 +3,7 @@
 // -----------------------------
 // An item designed for hauling the belongings of a character.
 // So this cannot be abused for other uses, we make it two-handed and inable to have its storage looked into.
-/obj/item/storage/laundry_basket
+obj/item/storage/laundry_basket
 	name = "laundry basket"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "laundry-empty"
@@ -20,7 +20,7 @@
 	collection_mode = 1
 	var/linked
 
-/obj/item/storage/laundry_basket/attack_hand(mob/user, list/params)
+obj/item/storage/laundry_basket/attack_hand(mob/user, list/params)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.get_organ("r_hand")
@@ -35,7 +35,7 @@
 		return
 	return ..()
 
-/obj/item/storage/laundry_basket/attack_self(mob/user)
+obj/item/storage/laundry_basket/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -43,7 +43,7 @@
 	to_chat(user, "<span class='notice'>You dump the [src]'s contents onto \the [T].</span>")
 	return ..()
 
-/obj/item/storage/laundry_basket/pickup(mob/user, flags, atom/oldLoc)
+obj/item/storage/laundry_basket/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	if(!use_to_pickup)
 		return		// DON'T FUCKING INFINITELY RECURSE
@@ -54,38 +54,38 @@
 	user.put_in_inactive_hand(O)
 	linked = O
 
-/obj/item/storage/laundry_basket/update_icon_state()
+obj/item/storage/laundry_basket/update_icon_state()
 	. = ..()
 	if(contents.len)
 		icon_state = "laundry-full"
 	else
 		icon_state = "laundry-empty"
 
-/obj/item/storage/laundry_basket/OnMouseDropLegacy(obj/over_object as obj)
+obj/item/storage/laundry_basket/OnMouseDropLegacy(obj/over_object as obj)
 	if(over_object == usr)
 		return
 	else
 		return ..()
 
-/obj/item/storage/laundry_basket/dropped(mob/user, flags, atom/newLoc)
+obj/item/storage/laundry_basket/dropped(mob/user, flags, atom/newLoc)
 	if(use_to_pickup)	// sigh refactor this shit when
 		QDEL_NULL(linked)
 	return ..()
 
-/obj/item/storage/laundry_basket/show_to(mob/user as mob)
+obj/item/storage/laundry_basket/show_to(mob/user as mob)
 	return
 
-/obj/item/storage/laundry_basket/open(mob/user as mob)
+obj/item/storage/laundry_basket/open(mob/user as mob)
 
 
 //Offhand
 // TODO: REFACTOR THIS SHIT
-/obj/item/storage/laundry_basket/offhand
+obj/item/storage/laundry_basket/offhand
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "offhand"
 	name = "second hand"
 	use_to_pickup = 0
 
-/obj/item/storage/laundry_basket/offhand/dropped(mob/user, flags, atom/newLoc)
+obj/item/storage/laundry_basket/offhand/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	user.drop_item_to_ground(linked)

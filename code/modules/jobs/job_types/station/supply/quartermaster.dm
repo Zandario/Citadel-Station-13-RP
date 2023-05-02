@@ -1,4 +1,4 @@
-/datum/role/job/station/quartermaster
+datum/role/job/station/quartermaster
 	id = JOB_ID_QUARTERMASTER
 	title = "Quartermaster"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_SENIOR
@@ -37,17 +37,17 @@
 		"Logisticai-Adept" = /datum/prototype/alt_title/logisticai_adept
 		)
 
-/datum/prototype/alt_title/logisticai_adept
+datum/prototype/alt_title/logisticai_adept
 	title = "Logisticai-Adept"
 	background_allow = list(
 		/datum/lore/character_background/faction/naramadiguilds
 	)
 	background_enforce = TRUE
 
-/datum/prototype/alt_title/supply_chief
+datum/prototype/alt_title/supply_chief
 	title = "Supply Chief"
 
-/datum/outfit/job/station/quartermaster
+datum/outfit/job/station/quartermaster
 	name = OUTFIT_JOB_NAME("Quartermaster")
 	uniform = /obj/item/clothing/under/rank/cargo
 	l_ear = /obj/item/radio/headset/headset_mine

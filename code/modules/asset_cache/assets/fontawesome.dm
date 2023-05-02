@@ -1,4 +1,4 @@
-/datum/asset/simple/namespaced/fontawesome
+datum/asset/simple/namespaced/fontawesome
 	assets = list(
 		"fa-regular-400.eot" = 'html/font-awesome/webfonts/fa-regular-400.eot',
 		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',

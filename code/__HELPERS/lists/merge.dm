@@ -5,7 +5,7 @@
  *
  * originally made for dynamic tool functions
  */
-/proc/merge_double_lazy_assoc_list(list/A, list/B)
+proc/merge_double_lazy_assoc_list(list/A, list/B)
 	. = A.Copy()
 	for(var/key in B)
 		if(.[key])

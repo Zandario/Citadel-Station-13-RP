@@ -3,12 +3,12 @@ This component was designed to attach to Horrors, Abominations, and Cult mobs. I
 It also serves the purposes of portraying the Lore accurate effect of "Acausal Logic Engine Disruption" - ie; the supernatural elements disrupt electronics. Classic horror.
 */
 
-/datum/component/horror_aura
+datum/component/horror_aura
 	var/radius = 4
 	var/emp_radius = 2
 	var/remain_while_dead = FALSE
 
-/datum/component/horror_aura/Initialize(radius)
+datum/component/horror_aura/Initialize(radius)
 	if(radius)
 		src.radius = radius
 	if(. & COMPONENT_INCOMPATIBLE)
@@ -18,11 +18,11 @@ It also serves the purposes of portraying the Lore accurate effect of "Acausal L
 	else
 		START_PROCESSING(SSobj, src)
 
-/datum/component/horror_aura/Destroy()
+datum/component/horror_aura/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/datum/component/horror_aura/process()
+datum/component/horror_aura/process()
 	if(ismob(parent) && !remain_while_dead)
 		var/mob/M = parent
 		if(IS_DEAD(M))
@@ -30,17 +30,17 @@ It also serves the purposes of portraying the Lore accurate effect of "Acausal L
 			return
 	aura_effect()
 
-/datum/component/horror_aura/proc/aura_effect()
+datum/component/horror_aura/proc/aura_effect()
 	for(var/mob/living/carbon/human/H in range(radius, parent))
 		if(!iscultist(H) && !istype(H.head, /obj/item/clothing/head/helmet/para))
 			H.hallucination += 15
 	var/turf/T = get_turf(parent)
 	empulse(T, 0, 0, 0, emp_radius)
 
-/datum/component/horror_aura/weak
+datum/component/horror_aura/weak
 	radius = 2
 	emp_radius = 1
 
-/datum/component/horror_aura/strong
+datum/component/horror_aura/strong
 	radius = 7
 	emp_radius = 3

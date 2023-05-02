@@ -1,4 +1,4 @@
-/obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/table/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -15,7 +15,7 @@
 			continue
 		return TRUE
 
-/obj/structure/table/CheckExit(atom/movable/AM, atom/newLoc)
+obj/structure/table/CheckExit(atom/movable/AM, atom/newLoc)
 	if(check_standard_flag_pass(AM))
 		return TRUE
 	if(flipped == -1 || !flipped)
@@ -23,7 +23,7 @@
 	return !density || !(get_dir(loc, newLoc) & dir)
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
-/obj/structure/table/proc/check_cover(obj/projectile/P, turf/from)
+obj/structure/table/proc/check_cover(obj/projectile/P, turf/from)
 	var/turf/cover
 	if(flipped==1)
 		cover = get_turf(src)
@@ -55,7 +55,7 @@
 				return 1
 	return 1
 
-/obj/structure/table/attackby(obj/item/W, mob/user, list/params)
+obj/structure/table/attackby(obj/item/W, mob/user, list/params)
 	// Handle harm intent grabbing/tabling.
 	if(istype(W, /obj/item/grab) && get_dist(src,user)<2)
 		var/obj/item/grab/G = W
@@ -144,5 +144,5 @@
 		return
 	return ..()
 
-/obj/structure/table/attack_tk() // no telehulk sorry
+obj/structure/table/attack_tk() // no telehulk sorry
 	return

@@ -1,4 +1,4 @@
-/datum/lore/codex/category/corporate_regulations
+datum/lore/codex/category/corporate_regulations
 	name = "Corporate Regulations"
 	data = "Corporate Regulations are rules set by us, NanoTrasen, that all visitors and employees must follow while working at \
 	or otherwise on-board a NanoTrasen installation, which if you are reading this, you likely are at one.  Corporate Regulations, \
@@ -13,7 +13,7 @@
 		/datum/lore/codex/category/corporate_major_violations
 		)
 
-/datum/lore/codex/category/contraband
+datum/lore/codex/category/contraband
 	name = "Contraband"
 	data = "Here is a list of various types of 'contraband' that are prohibited from being brought onto the facility."
 	children = list(
@@ -22,7 +22,7 @@
 		/datum/lore/codex/page/contraband_restricted
 		)
 
-/datum/lore/codex/page/not_contraband
+datum/lore/codex/page/not_contraband
 	name = "Not Contraband"
 	data = "Here is a list of objects which are not actually contraband onboard NanoTrasen facilities in Vir, despite popular belief.\
 	<ul>\
@@ -32,7 +32,7 @@
 	<li><b></b></li>\
 	</ul>"
 
-/datum/lore/codex/page/contraband_controlled
+datum/lore/codex/page/contraband_controlled
 	name = "Controlled Objects"
 	data = "A 'controlled' object is contraband that NanoTrasen has deemed harmful, or otherwise undesired for the \
 	facility, but which is not illegal by Law or dangerous to possess.  Vessels docking with the facility which possess these \
@@ -48,7 +48,7 @@
 	<li><b></b></li>\
 	</ul>"
 
-/datum/lore/codex/page/contraband_restricted
+datum/lore/codex/page/contraband_restricted
 	name = "Restricted Objects"
 	data = "A 'restricted' object is contraband which Nanotrasen deems dangerous to the welfare of the facility as a whole, \
 	such as a deadly weapon, <u>by someone not authorized to handle it.</u>  Vessels docking with the facility which possess these \
@@ -65,7 +65,7 @@
 	<li><b>Illicit Identification Cards</b>, which includes forgeries, as well as ID cards designed to tamper with electronics.</li>\
 	</ul>"
 
-/datum/lore/codex/page/corporate_punishments
+datum/lore/codex/page/corporate_punishments
 	name = "Punishments (Corporate)"
 	data = "Violations of Corporate Regulations can be resolved in a wide variety of ways.  The Command staff on-board the facility \
 	have discretion to decide on what form of punishment to use, however it is advised for the punishment to fit the severity of the \
@@ -91,7 +91,7 @@
 	</ul>"
 
 // Minor Violations area
-/datum/lore/codex/category/corporate_minor_violations
+datum/lore/codex/category/corporate_minor_violations
 	name = "Minor Violations (Corporate)"
 	data = "Here is a list of the less severe violations of Corporate Regulations that might occur.  We wish to emphasize that for \
 	the minor corporate violations, the local Command team has a lot more discretion to choose a suitable punishment, however \
@@ -112,7 +112,7 @@
 		/datum/lore/codex/page/law/hooliganism
 		)
 
-/datum/lore/codex/page/law/minor_trespass
+datum/lore/codex/page/law/minor_trespass
 	name = "Minor Trespass"
 	definition = "Being in an area which a person does not have access to, and does not have permission to be in."
 	suggested_punishments = "Removal from area. Fine of up to 150 thaler or brig time of up to 10 minutes at discretion of \
@@ -123,7 +123,7 @@
 	do a job by someone with access, or were given access on their ID. Trespassing and theft often committed together; \
 	both sentences should be applied."
 
-/datum/lore/codex/page/law/petty_company_theft/add_content()
+datum/lore/codex/page/law/petty_company_theft/add_content()
 	name = "Petty Theft of Company Property"
 	keywords += list("Petty Theft")
 	definition = "Taking or using the Company's property without permission, which is of low value."
@@ -136,7 +136,7 @@
 	[quick_link("Grand Theft")] is reserved for extremely valuable or dangerous objects being stolen."
 	..()
 
-/datum/lore/codex/page/law/misuse_of_comms/add_content()
+datum/lore/codex/page/law/misuse_of_comms/add_content()
 	name = "Misuse of Public Communications"
 	keywords += list("Misuse of Comms")
 	definition = "Repetitively using the radio, PDA relays, or other public communication methods as a means to annoy, disturb, \
@@ -145,7 +145,7 @@
 	notes = "Using languages besides Galactic Common on the radio can consitute Misuse of Public Communications if the station is on Blue alert or higher."
 	..()
 
-/datum/lore/codex/page/law/failure_to_execute_order
+datum/lore/codex/page/law/failure_to_execute_order
 	name = "Failure to Execute an Order"
 	definition = "Refusing to follow a valid, lawful order of a Superior, when able to do so, as an employee of NanoTrasen."
 	suggested_punishments = "50 thaler fine. Demotion at discretion of Superior."
@@ -154,13 +154,13 @@
 	This includes orders from someone who is not necessarily the direct superior of the offender, but has authority in that context, for instance the Chief Engineer \
 	giving an order about engineering matters."
 
-/datum/lore/codex/page/law/littering
+datum/lore/codex/page/law/littering
 	name = "Littering"
 	definition = "Failing to throw garbage away, or otherwise creating a mess."
 	suggested_punishments = "50 thaler fine issued to litterer.  Demotion at discretion of Superior <u>for extreme cases or repeat offenders</u>."
 	suggested_fine = 50
 
-/datum/lore/codex/page/law/graffiti
+datum/lore/codex/page/law/graffiti
 	name = "Graffiti"
 	definition = "Defacing Company property, or otherwise writing or drawing on Company property without authorization."
 	suggested_punishments = "Up to 150 thaler fine issued to to those responsible. Cleanup of graffiti. Demotion at discretion of Superior."
@@ -168,21 +168,21 @@
 	notes = "This applies for a wide variety of forms of graffiti, including writing on the walls or the floor, or drawing on the floor \
 	with painting tools.  Authorization for painting or otherwise altering the floor or walls' appearance can be granted by Command staff."
 
-/datum/lore/codex/page/law/false_complaint
+datum/lore/codex/page/law/false_complaint
 	name = "Filing a False Complaint"
 	definition = "Knowingly filing a complaint which is false, and in bad faith, to Internal Affairs, Command, or Security."
 	suggested_punishments = "Fine of 250 thaler.  Demotion at discretion of Superior."
 	suggested_fine = 250
 	notes = "If someone's complaint is merely incorrect but not maliciously so, it does not count for this charge."
 
-/datum/lore/codex/page/law/breaking_sop_minor
+datum/lore/codex/page/law/breaking_sop_minor
 	name = "Breaking Standard Operating Procedure (Minor)"
 	definition = "Actively and willfully disregarding the station's Standard Operating Procedures, without risking serious threat to station property or crew."
 	suggested_punishments = "Fine of 100 thaler. Demotion at discretion of Superior."
 	suggested_fine = 100
 	notes = "This includes refusal to activate suit sensors on blue or red alert."
 
-/datum/lore/codex/page/law/resisting_arrest
+datum/lore/codex/page/law/resisting_arrest
 	name = "Resisting Arrest"
 	definition = "Noncompliance with an Arresting Officer, whom has cause, and is following SOP."
 	suggested_punishments = "Fine of up to 200 thaler, or brig time extention up to 20 minutes. Demotion at discretion of Superior."
@@ -190,7 +190,7 @@
 	suggested_brig_time = 20 MINUTES
 	notes = "If this disputed, an Internal Affairs Agent (if available) is to be the impartial mediator."
 
-/datum/lore/codex/page/law/control_contraband
+datum/lore/codex/page/law/control_contraband
 	name = "Possession of a Controlled Item (Contraband)"
 	definition = "Carrying an object which NanoTrasen has deemed harmful, or otherwise undesired for the \
 	station, but which is not illegal by Law or dangerous to possess."
@@ -198,7 +198,7 @@
 	notes = "Visitors boarding the station with controlled items must leave the item outside the station (e.g. their vessel), or surrender \
 	it to the Security team for the duration of their stay.  A list of contraband is provided inside this book."
 
-/datum/lore/codex/page/law/disrespecting_head
+datum/lore/codex/page/law/disrespecting_head
 	name = "Disrespecting a Head of Staff"
 	definition = "Knowingly insulting, belittling, offending, or otherwise disrespecting a Head of Staff of NanoTrasen, while also \
 	an employee of NanoTrasen."
@@ -206,14 +206,14 @@
 	suggested_fine = 100
 	notes = "Accidential cases resulting from, for example, ignorance of a species' culture, invalidates this charge."
 
-/datum/lore/codex/page/law/indecent_exposure
+datum/lore/codex/page/law/indecent_exposure
 	name = "Indecent Exposure"
 	definition = "To be intentionally and publicly unclothed in public."
 	suggested_punishments = "Fine of 150 thaler. Demotion at discretion of Superior."
 	suggested_fine = 150
 	notes = "Exceptions are allowed based on species.  See the Dress Code section of General SOP for more details."
 
-/datum/lore/codex/page/law/hooliganism
+datum/lore/codex/page/law/hooliganism
 	name = "Hooliganism"
 	definition = "To intentionally engage in disruptive behavior such as belligerent drunkenness, disorderly shouting, or aggressive assembly. "
 	suggested_punishments = "Fine of 100 thaler or brig time of 15 minutes. Demotion at discretion of Superior."
@@ -221,7 +221,7 @@
 	notes = "People who are intoxicated and being an annoyance can be brigged until they become sober, at the discretion of the Arresting Officer."
 
 // Major Violations area
-/datum/lore/codex/category/corporate_major_violations
+datum/lore/codex/category/corporate_major_violations
 	name = "Major Violations (Corporate)"
 	data = "Here is a list of the more severe violations of Corporate Regulations that might occur.  If someone is guilty of \
 	a violation listed here, it is highly recommended that a report be sent to your local Central Command."
@@ -238,7 +238,7 @@
 
 		)
 
-/datum/lore/codex/page/law/major_trespass/add_content()
+datum/lore/codex/page/law/major_trespass/add_content()
 	name = "Major Trespass"
 	keywords += list("Infiltration")
 	definition = "Being in an restricted, or otherwise dangerous (to themselves or others) area which they do not have access to, \
@@ -248,7 +248,7 @@
 	Other areas may warrant the [quick_link("Minor Trespass")] charge instead."
 	..()
 
-/datum/lore/codex/page/law/i_am_the_law/add_content()
+datum/lore/codex/page/law/i_am_the_law/add_content()
 	name = "Exceeding Official Powers"
 	definition = "Acting beyond what is allowed by Corporate Regulations  or Standard Operating Procedure, generally as a member of Command or Security."
 	suggested_punishments = "Demotion or termination at discretion of Station Admin.  Send notice to Central Command if a Head of Staff or Station Director had exceeded their powers."
@@ -257,7 +257,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/abuse_of_office/add_content()
+datum/lore/codex/page/law/abuse_of_office/add_content()
 	name = "Abuse of Office"
 	definition = "Doing illegal, immoral, or otherwise disallowed actions, in an official capacity, placing their own interests ahead of the interests of the Company."
 	suggested_punishments = "Demotion.  Termination at discretion of Station Admin.  Send notice to Central Command if a Head of Staff or Station Director had abused their office."
@@ -266,7 +266,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/restricted_contraband
+datum/lore/codex/page/law/restricted_contraband
 	name = "Possession of a Restricted Item"
 	definition = "Carrying an object which Nanotrasen deems dangerous to the welfare of the station as a whole, such as a deadly weapon, by someone not authorized to handle it."
 	suggested_punishments = "Confiscation of the restricted item, and notice be sent to Central Command.  Persons may be detained and investigated if deemed necessary."
@@ -276,28 +276,28 @@
 	Roles authorized to handle a weapon by default include; Station Director, Head of Personnel, Head of Security, Security Officers, Detectives, and anyone possessing \
 	a valid weapon permit."
 
-/datum/lore/codex/page/law/breaking_sop_major
+datum/lore/codex/page/law/breaking_sop_major
 	name = "Breaking Standard Operation Procedure (Major)"
 	definition = "Actively and willfully disregarding the station's Standard Operating Procedures, where the probable effects includes death or destruction."
 	suggested_punishments = "30 minutes to 1 hour of Brig time.  Demotion left to discretion of Superior, but strongly suggested.  Termination at discretion of Station Director."
 	suggested_brig_time = 1 HOUR
 	notes = "This includes non-compliance to orders from Emergency Responders, entering breached areas without proper EVA gear."
 
-/datum/lore/codex/page/law/neglect_of_duty
+datum/lore/codex/page/law/neglect_of_duty
 	name = "Neglect of Duty"
 	definition = "To fail to meet satisfactory work standards."
 	suggested_punishments = "Demotion at discretion of Superior.  Termination at discretion of Station Director."
 	notes = "This includes accidents, refusing or failing to work, or simply not providing a resonable amount of productivity, when the offender is capable of work.  This charge \
 	is meant to be applied only by Command staff to their subordinates, and not from individual Security Officers."
 
-/datum/lore/codex/page/law/deception
+datum/lore/codex/page/law/deception
 	name = "Deception"
 	definition = "To lie in an official report."
 	suggested_punishments = "Demotion.  Termination at discretion of Station Director.  Notify Central Command."
 	notes = "This includes lying or withholding information to your superior in a report or lying to the crew about a situation."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/wrongful_dismissal
+datum/lore/codex/page/law/wrongful_dismissal
 	name = "Wrongful Dismissal"
 	definition = "To demote, dismiss, terminate, or otherwise reduce a crewmember's rank for no valid, or a knowingly false reason."
 	suggested_punishments = "Demotion.  Termination at discretion of Station Director.  Notify Central Command."
@@ -305,7 +305,7 @@
 	give this charge out on their own."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/abuse_of_confiscated_equipment
+datum/lore/codex/page/law/abuse_of_confiscated_equipment
 	name = "Abuse of Confiscated Equipment"
 	definition = "To take and use equipment confiscated as evidence or contraband, generally as a member of Security or Command."
 	suggested_punishments = "Demotion of the user.  Termination at discretion of Station Director.  Return confiscated equipment to evidence storage."

@@ -1,4 +1,4 @@
-/datum/technomancer/spell/corona
+datum/technomancer/spell/corona
 	name = "Corona"
 	desc = "Causes the victim to glow very brightly, which while harmless in itself, makes it easier for them to be hit.  The \
 	bright glow also makes it very difficult to be stealthy.  The effect lasts for one minute."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_corona"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/modifier/corona
+obj/item/spell/modifier/corona
 	name = "corona"
 	desc = "How brillient!"
 	icon_state = "radiance"
@@ -19,7 +19,7 @@
 	modifier_type = /datum/modifier/technomancer/corona
 	modifier_duration = 1 MINUTE
 
-/datum/modifier/technomancer/corona
+datum/modifier/technomancer/corona
 	name = "corona"
 	desc = "You appear to be glowing really bright.  It doesn't seem to hurt, however hiding will be impossible."
 	mob_overlay_state = "corona"
@@ -29,5 +29,5 @@
 	evasion = -30
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/technomancer/corona/tick()
+datum/modifier/technomancer/corona/tick()
 	holder.break_cloak()

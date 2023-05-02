@@ -4,7 +4,7 @@
 /// Multiplier for the fishing weights of fish for the rescue hook.
 #define RESCUE_HOOK_FISH_MULTIPLIER 0
 
-/obj/item/fishing_hook
+obj/item/fishing_hook
 	name = "simple fishing hook"
 	desc = "A simple fishing hook."
 	icon = 'icons/modules/fishing/hook.dmi'
@@ -24,7 +24,7 @@
  * certain `fish_type` (or FISHING_DUD), additive. Is applied after
  * `get_hook_bonus_multiplicative()`.
  */
-/obj/item/fishing_hook/proc/get_hook_bonus_additive(fish_type)
+obj/item/fishing_hook/proc/get_hook_bonus_additive(fish_type)
 	return FISHING_DEFAULT_HOOK_BONUS_ADDITIVE
 
 /**
@@ -32,7 +32,7 @@
  * certain `fish_type` (or FISHING_DUD), multiplicative. Is applied before
  * `get_hook_bonus_additive()`.
  */
-/obj/item/fishing_hook/proc/get_hook_bonus_multiplicative(fish_type)
+obj/item/fishing_hook/proc/get_hook_bonus_multiplicative(fish_type)
 	return FISHING_DEFAULT_HOOK_BONUS_MULTIPLICATIVE
 
 /**
@@ -42,29 +42,29 @@
  * Arguments:
  * * target_fish_source - The /datum/fish_source we're trying to fish in.
  */
-/obj/item/fishing_hook/proc/reason_we_cant_fish(datum/fish_source/target_fish_source)
+obj/item/fishing_hook/proc/reason_we_cant_fish(datum/fish_source/target_fish_source)
 	return null
 
 /**
  * can we hook an atom
  */
-/obj/item/fishing_hook/proc/can_hook_atom(atom/movable/AM)
+obj/item/fishing_hook/proc/can_hook_atom(atom/movable/AM)
 	return isitem(AM) || adminbus_hooking
 
-/obj/item/fishing_hook/magnet
+obj/item/fishing_hook/magnet
 	name = "magnetic hook"
 	desc = "Won't make catching fish any easier, but it might help with looking for other things."
 	icon_state = "treasure"
 	rod_overlay_icon_state = "hook_treasure_overlay"
 	// chasm_detritus_type = /obj/item/chasm_detritus/restricted/objects
 
-/obj/item/fishing_hook/magnet/get_hook_bonus_multiplicative(fish_type, datum/fish_source/source)
+obj/item/fishing_hook/magnet/get_hook_bonus_multiplicative(fish_type, datum/fish_source/source)
 	if(fish_type == FISHING_DUD || ispath(fish_type, /obj/item/fish))
 		return ..()
 	// We multiply the odds by five for everything that's not a fish nor a dud
 	return MAGNET_HOOK_BONUS_MULTIPLIER
 
-/obj/item/fishing_hook/magnet/can_hook_atom(atom/movable/AM)
+obj/item/fishing_hook/magnet/can_hook_atom(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.isSynthetic())
@@ -73,19 +73,19 @@
 		return TRUE
 	return ..()
 
-/obj/item/fishing_hook/shiny
+obj/item/fishing_hook/shiny
 	name = "shiny lure hook"
 	icon_state = "gold_shiny"
 	fishing_hook_traits = FISHING_HOOK_SHINY
 	rod_overlay_icon_state = "hook_shiny_overlay"
 
-/obj/item/fishing_hook/weighted
+obj/item/fishing_hook/weighted
 	name = "weighted hook"
 	icon_state = "weighted"
 	fishing_hook_traits = FISHING_HOOK_WEIGHTED
 	rod_overlay_icon_state = "hook_weighted_overlay"
 
-/obj/item/fishing_hook/rescue
+obj/item/fishing_hook/rescue
 	name = "rescue hook"
 	desc = "An unwieldy hook meant to help with the rescue of those that have fallen down in chasms. You can tell there's no way you'll catch any fish with this, and that it won't be of any use outside of chasms."
 	icon_state = "rescue"
@@ -93,21 +93,21 @@
 	// chasm_detritus_type = /obj/item/chasm_detritus/restricted/bodies
 
 // This hook can only fish in chasms.
-/obj/item/fishing_hook/rescue/reason_we_cant_fish(datum/fish_source/target_fish_source)
+obj/item/fishing_hook/rescue/reason_we_cant_fish(datum/fish_source/target_fish_source)
 	// if(istype(target_fish_source, /datum/fish_source/chasm))
 		// return ..()
 	return "The hook on your fishing rod wasn't meant for traditional fishing, rendering it useless at doing so!"
 
-/obj/item/fishing_hook/rescue/can_hook_atom(atom/movable/AM)
+obj/item/fishing_hook/rescue/can_hook_atom(atom/movable/AM)
 	return isliving(AM) || ..()
 
-/obj/item/fishing_hook/rescue/get_hook_bonus_multiplicative(fish_type, datum/fish_source/source)
+obj/item/fishing_hook/rescue/get_hook_bonus_multiplicative(fish_type, datum/fish_source/source)
 	// Sorry, you won't catch fish with this.
 	if(ispath(fish_type, /obj/item/fish))
 		return RESCUE_HOOK_FISH_MULTIPLIER
 	return ..()
 
-/obj/item/fishing_hook/bone
+obj/item/fishing_hook/bone
 	name = "bone hook"
 	desc = "a simple hook carved from sharpened bone"
 	icon_state = "hook_bone"

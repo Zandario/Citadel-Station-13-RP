@@ -1,4 +1,4 @@
-/mob/Logout()
+mob/Logout()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGOUT, client)
 	SSnanoui.user_logout(src) // this is used to clean up (remove) this user's Nano UIs

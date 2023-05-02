@@ -19,7 +19,7 @@ When mapping these in, be sure to give at least a one tile clearance, as NORTH f
 two tiles on initialization, and which way a cliff is facing may change during maploading.
 */
 
-/obj/structure/cliff
+obj/structure/cliff
 	name = "cliff"
 	desc = "A steep rock ledge. You might be able to climb it if you feel bold enough."
 	description_info = "Walking off the edge of a cliff while on top will cause you to fall off, causing severe injury.<br>\
@@ -46,32 +46,32 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	var/uphill_penalty = 30 // Odds of a projectile not making it up the cliff.
 
 // These arrange their sprites at runtime, as opposed to being statically placed in the map file.
-/obj/structure/cliff/automatic
+obj/structure/cliff/automatic
 	icon_state = "cliffbuilder"
 	dir = NORTH
 
-/obj/structure/cliff/automatic/corner
+obj/structure/cliff/automatic/corner
 	icon_state = "cliffbuilder-corner"
 	dir = NORTHEAST
 	corner = TRUE
 
 // Tiny part that doesn't block, used for making 'ramps'.
-/obj/structure/cliff/automatic/ramp
+obj/structure/cliff/automatic/ramp
 	icon_state = "cliffbuilder-ramp"
 	dir = NORTHEAST
 	density = FALSE
 	ramp = TRUE
 
 // Made automatically as needed by automatic cliffs.
-/obj/structure/cliff/bottom
+obj/structure/cliff/bottom
 	bottom = TRUE
 
-/obj/structure/cliff/automatic/Initialize(mapload)
+obj/structure/cliff/automatic/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
 // Paranoid about the maploader, direction is very important to cliffs, since they may get bigger if initialized while facing NORTH.
-/obj/structure/cliff/automatic/LateInitialize()
+obj/structure/cliff/automatic/LateInitialize()
 	if(dir in GLOB.cardinal)
 		icon_variant = pick("a", "b", "c")
 
@@ -80,7 +80,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 	update_icon()
 
-/obj/structure/cliff/proc/make_bottom()
+obj/structure/cliff/proc/make_bottom()
 	// First, make sure there's room to put the bottom side.
 	var/turf/T = locate(x, y - 1, z)
 	if(!istype(T))
@@ -101,11 +101,11 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	bottom.density = density
 	bottom.update_icon()
 
-/obj/structure/cliff/setDir(new_dir)
+obj/structure/cliff/setDir(new_dir)
 	..()
 	update_icon()
 
-/obj/structure/cliff/update_icon()
+obj/structure/cliff/update_icon()
 	icon_state = "cliff-[dir][icon_variant][bottom ? "-bottom" : ""][corner ? "-corner" : ""][ramp ? "-ramp" : ""]"
 
 	// Now for making the top-side look like a different turf.
@@ -133,7 +133,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 // Movement-related code.
 
-/obj/structure/cliff/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/cliff/CanAllowThrough(atom/movable/mover, turf/target)
 	if(isliving(mover))
 		var/mob/living/L = mover
 		if(L.hovering) // Flying mobs can always pass.
@@ -148,7 +148,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 				return FALSE
 		return TRUE
 
-/obj/structure/cliff/Bumped(atom/A)
+obj/structure/cliff/Bumped(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(should_fall(L))
@@ -156,7 +156,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			return
 	..()
 
-/obj/structure/cliff/proc/should_fall(mob/living/L)
+obj/structure/cliff/proc/should_fall(mob/living/L)
 	if(L.hovering)
 		return FALSE
 
@@ -165,7 +165,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 		return TRUE
 	return FALSE
 
-/obj/structure/cliff/proc/fall_off_cliff(mob/living/L)
+obj/structure/cliff/proc/fall_off_cliff(mob/living/L)
 	if(!istype(L))
 		return FALSE
 	var/turf/T = get_step(src, global.reverse_dir[dir])
@@ -219,7 +219,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			sleep(5)
 			bottom_cliff.fall_off_cliff(L)
 
-/obj/structure/cliff/can_climb(mob/living/user, post_climb_check = FALSE)
+obj/structure/cliff/can_climb(mob/living/user, post_climb_check = FALSE)
 	// Cliff climbing requires climbing gear.
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -234,7 +234,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	return FALSE
 
 // This tells AI mobs to not be dumb and step off cliffs willingly.
-/obj/structure/cliff/is_safe_to_step(mob/living/L)
+obj/structure/cliff/is_safe_to_step(mob/living/L)
 	if(should_fall(L))
 		return FALSE
 	return ..()

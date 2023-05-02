@@ -1,12 +1,12 @@
 /* Drones */
 
-/obj/item/robot_module/drone
+obj/item/robot_module/drone
 	name = "drone module"
 	hide_on_manifest = 1
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
 
-/obj/item/robot_module/drone/get_modules()
+obj/item/robot_module/drone/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/borg/sight/meson,
@@ -30,7 +30,7 @@
 		/obj/item/pipe_dispenser
 	)
 
-/obj/item/robot_module/drone/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/drone/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	MATTER_SYNTH(MATSYN_METAL, metal, 25000)
 	MATTER_SYNTH(MATSYN_GLASS, glass, 25000)
@@ -38,7 +38,7 @@
 	MATTER_SYNTH(MATSYN_PLASTIC, plastic, 25000)
 	MATTER_SYNTH(MATSYN_WIRE, wire, 30)
 
-/obj/item/robot_module/drone/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/drone/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	R.internals = new/obj/item/tank/jetpack/carbondioxide(src)
@@ -64,28 +64,28 @@
 	CYBORG_STACK(material/cyborg/wood , MATSYN_WOOD)
 	CYBORG_STACK(material/cyborg/plastic, MATSYN_PLASTIC)
 
-/obj/item/robot_module/drone/construction
+obj/item/robot_module/drone/construction
 	name = "construction drone module"
 	hide_on_manifest = 1
 	channels = list("Engineering" = 1)
 	languages = list()
 
-/obj/item/robot_module/drone/construction/get_modules()
+obj/item/robot_module/drone/construction/get_modules()
 	. = ..()
 	. |= /obj/item/rcd/electric/mounted/borg/lesser
 
-/obj/item/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+obj/item/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	..()
 	return
 
-/obj/item/robot_module/drone/mining
+obj/item/robot_module/drone/mining
 	name = "miner drone module"
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
 
-/obj/item/robot_module/drone/mining/get_modules()
+obj/item/robot_module/drone/mining/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/borg/sight/material,
@@ -95,9 +95,9 @@
 		/obj/item/storage/bag/sheetsnatcher/borg
 	)
 
-/obj/item/robot_module/drone/mining/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/drone/mining/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	src.emag = new /obj/item/pickaxe/diamonddrill(src)
 
-/obj/item/robot_module/drone/construction/matriarch
+obj/item/robot_module/drone/construction/matriarch
 	name = "matriarch drone module"

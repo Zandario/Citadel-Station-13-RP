@@ -1,6 +1,6 @@
 var/list/table_icon_cache = list()
 
-/obj/structure/table
+obj/structure/table
 	name = "table frame"
 	icon = 'icons/obj/tables.dmi'
 	icon_state = "frame"
@@ -39,7 +39,7 @@ var/list/table_icon_cache = list()
 	/// Do people pixel-place items or center place?
 	var/item_pixel_place = TRUE
 
-/obj/structure/table/proc/update_material()
+obj/structure/table/proc/update_material()
 	var/old_maxhealth = maxhealth
 	if(!material)
 		maxhealth = 10
@@ -51,7 +51,7 @@ var/list/table_icon_cache = list()
 
 	health += maxhealth - old_maxhealth
 
-/obj/structure/table/take_damage(amount)
+obj/structure/table/take_damage(amount)
 	// If the table is made of a brittle material, and is *not* reinforced with a non-brittle material, damage is multiplied by TABLE_BRITTLE_MATERIAL_MULTIPLIER
 	if(material && material.is_brittle())
 		if(reinforced)
@@ -64,10 +64,10 @@ var/list/table_icon_cache = list()
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
 		return break_to_parts() // if we break and form shards, return them to the caller to do !FUN! things with
 
-/obj/structure/table/blob_act()
+obj/structure/table/blob_act()
 	take_damage(100)
 
-/obj/structure/table/Initialize(mapload)
+obj/structure/table/Initialize(mapload)
 	. = ..()
 
 	// One table per turf.
@@ -90,20 +90,20 @@ var/list/table_icon_cache = list()
 		update_material()
 
 
-/obj/structure/table/LateInitialize()		// CURSE YOU DUMB AS ROCKS MATERIAL SYSTEM
+obj/structure/table/LateInitialize()		// CURSE YOU DUMB AS ROCKS MATERIAL SYSTEM
 	. = ..()
 	update_connections(FALSE)
 	update_icon()
 	update_desc()
 	update_material()
 
-/obj/structure/table/Destroy()
+obj/structure/table/Destroy()
 	material = null
 	reinforced = null
 	update_connections(TRUE) // Update tables around us to ignore us (material=null forces no connections)
 	. = ..()
 
-/obj/structure/table/examine(mob/user)
+obj/structure/table/examine(mob/user)
 	. = ..()
 	if(health < maxhealth)
 		switch(health / maxhealth)
@@ -114,7 +114,7 @@ var/list/table_icon_cache = list()
 			if(0.5 to 1.0)
 				. += "<span class='notice'>It has a few scrapes and dents.</span>"
 
-/obj/structure/table/attackby(obj/item/W, mob/user)
+obj/structure/table/attackby(obj/item/W, mob/user)
 
 	if(reinforced && W.is_screwdriver())
 		remove_reinforced(W, user)
@@ -182,7 +182,7 @@ var/list/table_icon_cache = list()
 
 	return ..()
 
-/obj/structure/table/attack_hand(mob/user, list/params)
+obj/structure/table/attack_hand(mob/user, list/params)
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
@@ -190,11 +190,11 @@ var/list/table_icon_cache = list()
 			return
 	..()
 
-/obj/structure/table/attack_alien(mob/user as mob)
+obj/structure/table/attack_alien(mob/user as mob)
 	visible_message("<span class='danger'>\The [user] tears apart \the [src]!</span>")
 	src.break_to_parts()
 
-/obj/structure/table/attack_generic(mob/user as mob, var/damage)
+obj/structure/table/attack_generic(mob/user as mob, var/damage)
 	if(damage >= 10)
 		if(reinforced && prob(70))
 			visible_message("<span class='danger'>\The [user] smashes against \the [src]!</span>")
@@ -209,13 +209,13 @@ var/list/table_icon_cache = list()
 	visible_message("<span class='notice'>\The [user] scratches at \the [src]!</span>")
 	return ..()
 
-/obj/structure/table/MouseDroppedOnLegacy(obj/item/stack/material/what)
+obj/structure/table/MouseDroppedOnLegacy(obj/item/stack/material/what)
 	if(can_reinforce && isliving(usr) && (!usr.stat) && istype(what) && usr.get_active_held_item() == what && Adjacent(usr))
 		reinforce_table(what, usr)
 	else
 		return ..()
 
-/obj/structure/table/proc/reinforce_table(obj/item/stack/material/S, mob/user)
+obj/structure/table/proc/reinforce_table(obj/item/stack/material/S, mob/user)
 	if(reinforced)
 		to_chat(user, "<span class='warning'>\The [src] is already reinforced!</span>")
 		return
@@ -238,7 +238,7 @@ var/list/table_icon_cache = list()
 		update_icon()
 		update_material()
 
-/obj/structure/table/update_desc()
+obj/structure/table/update_desc()
 	. = ..()
 	if(material)
 		name = "[material.display_name] table"
@@ -252,7 +252,7 @@ var/list/table_icon_cache = list()
 		desc = initial(desc)
 
 // Returns the material to set the table to.
-/obj/structure/table/proc/common_material_add(obj/item/stack/material/S, mob/user, verb) // Verb is actually verb without 'e' or 'ing', which is added. Works for 'plate'/'plating' and 'reinforce'/'reinforcing'.
+obj/structure/table/proc/common_material_add(obj/item/stack/material/S, mob/user, verb) // Verb is actually verb without 'e' or 'ing', which is added. Works for 'plate'/'plating' and 'reinforce'/'reinforcing'.
 	var/datum/material/M = S.get_material()
 	if(!istype(M))
 		to_chat(user, "<span class='warning'>You cannot [verb]e \the [src] with \the [S].</span>")
@@ -269,7 +269,7 @@ var/list/table_icon_cache = list()
 	return M
 
 // Returns the material to set the table to.
-/obj/structure/table/proc/common_material_remove(mob/user, datum/material/M, delay, what, type_holding, sound)
+obj/structure/table/proc/common_material_remove(mob/user, datum/material/M, delay, what, type_holding, sound)
 	if(!M.stack_type)
 		to_chat(user, "<span class='warning'>You are unable to remove the [what] from this [src]!</span>")
 		return M
@@ -289,13 +289,13 @@ var/list/table_icon_cache = list()
 	manipulating = 0
 	return null
 
-/obj/structure/table/proc/remove_reinforced(obj/item/S, mob/user)
+obj/structure/table/proc/remove_reinforced(obj/item/S, mob/user)
 	reinforced = common_material_remove(user, reinforced, 40 * S.tool_speed, "reinforcements", "screws", S.tool_sound)
 
-/obj/structure/table/proc/remove_material(obj/item/W, mob/user)
+obj/structure/table/proc/remove_material(obj/item/W, mob/user)
 	material = common_material_remove(user, material, 20 * W.tool_speed, "plating", "bolts", W.tool_sound)
 
-/obj/structure/table/proc/dismantle(obj/item/W, mob/user)
+obj/structure/table/proc/dismantle(obj/item/W, mob/user)
 	if(manipulating)
 		return
 	manipulating = TRUE
@@ -318,7 +318,7 @@ var/list/table_icon_cache = list()
 //     if(S) shards += S
 // is to avoid filling the list with nulls, as place_shard won't place shards of certain materials (holo-wood, holo-steel)
 
-/obj/structure/table/proc/break_to_parts(full_return = 0)
+obj/structure/table/proc/break_to_parts(full_return = 0)
 	var/list/shards = list()
 	var/obj/item/material/shard/S = null
 	if(reinforced)
@@ -344,7 +344,7 @@ var/list/table_icon_cache = list()
 	qdel(src)
 	return shards
 
-/proc/get_table_image(var/icon/ticon,var/ticonstate,var/tdir,var/tcolor,var/talpha)
+proc/get_table_image(var/icon/ticon,var/ticonstate,var/tdir,var/tcolor,var/talpha)
 	var/icon_cache_key = "\ref[ticon]-[ticonstate]-[tdir]-[tcolor]-[talpha]"
 	var/image/I = table_icon_cache[icon_cache_key]
 	if(!I)
@@ -357,7 +357,7 @@ var/list/table_icon_cache = list()
 
 	return I
 
-/obj/structure/table/update_icon()
+obj/structure/table/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -423,7 +423,7 @@ var/list/table_icon_cache = list()
 	add_overlay(overlays_to_add)
 
 // set propagate if you're updating a table that should update tables around it too, for example if it's a new table or something important has changed (like material).
-/obj/structure/table/update_connections(propagate=0)
+obj/structure/table/update_connections(propagate=0)
 	if(!material)
 		connections = list("0", "0", "0", "0")
 		if(propagate)
@@ -490,7 +490,7 @@ var/list/table_icon_cache = list()
     turn(dir, angle) turns dir by angle degrees counter-clockwise
 */
 
-/proc/dirs_to_corner_states(list/dirs)
+proc/dirs_to_corner_states(list/dirs)
 	if(!istype(dirs))
 		return
 
@@ -516,7 +516,7 @@ var/list/table_icon_cache = list()
  *
  * proc usually used for helping us commit war crimes with custom_smooth().
  */
-/atom/proc/get_corner_state_using_junctions(corner)
+atom/proc/get_corner_state_using_junctions(corner)
 	// north, south, east, west, in that order
 	// which translates to northwest, southeast, northeast, southwest in that order
 	// honestly fuck you, precompute.
@@ -532,7 +532,7 @@ var/list/table_icon_cache = list()
 		if(3)
 			return ((smoothing_junction & SOUTHWEST_JUNCTION)? CORNER_DIAGONAL : NONE) | ((smoothing_junction & WEST_JUNCTION)? CORNER_CLOCKWISE : NONE) | ((smoothing_junction & SOUTH_JUNCTION)? CORNER_COUNTERCLOCKWISE : NONE)
 
-/datum/silly_datum_to_block_byond_bug_2072419
+datum/silly_datum_to_block_byond_bug_2072419
 
 #undef CORNER_NONE
 #undef CORNER_COUNTERCLOCKWISE

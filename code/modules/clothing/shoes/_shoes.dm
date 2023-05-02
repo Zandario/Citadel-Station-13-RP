@@ -1,5 +1,5 @@
 //Shoes
-/obj/item/clothing/shoes
+obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	item_icons = list(
@@ -38,7 +38,7 @@
 	var/list/inside_emotes = list()
 	var/recent_squish = 0
 
-/obj/item/clothing/shoes/Initialize(mapload)
+obj/item/clothing/shoes/Initialize(mapload)
 	. = ..()
 	inside_emotes = list(
 		"<font color='red'>You feel weightless for a moment as \the [name] moves upwards.</font>",
@@ -47,7 +47,7 @@
 		"<font color='red'>More motion while \the [name] move, feet pressing down against you.</font>"
 	)
 
-/obj/item/clothing/shoes/proc/draw_knife()
+obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
 	set desc = "Pull out your boot knife."
 	set category = "IC"
@@ -67,13 +67,13 @@
 
 	update_icon()
 
-/obj/item/clothing/shoes/attack_hand(mob/user, list/params)
+obj/item/clothing/shoes/attack_hand(mob/user, list/params)
 	if(can_hold_knife == 1 && holding && src.loc == user)
 		draw_knife()
 		return
 	..()
 
-/obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
+obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
 	if((can_hold_knife == 1) && (istype(I, /obj/item/material/shard) || \
 	 istype(I, /obj/item/material/butterfly) || \
 	 istype(I, /obj/item/material/kitchen/utensil) || \
@@ -104,7 +104,7 @@
 	else
 		return ..()
 
-/obj/item/clothing/shoes/attack_self(mob/user)
+obj/item/clothing/shoes/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return //gtfo my shoe
@@ -115,7 +115,7 @@
 
 	..()
 
-/obj/item/clothing/shoes/verb/toggle_layer()
+obj/item/clothing/shoes/verb/toggle_layer()
 	set name = "Switch Shoe Layer"
 	set category = "Object"
 
@@ -125,7 +125,7 @@
 	shoes_under_pants = !shoes_under_pants
 	update_icon()
 
-/obj/item/clothing/shoes/update_icon()
+obj/item/clothing/shoes/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(blood_DNA)
@@ -145,11 +145,11 @@
 
 	return ..()
 
-/obj/item/clothing/shoes/clean_blood()
+obj/item/clothing/shoes/clean_blood()
 	update_icon()
 	return ..()
 
-/obj/item/clothing/shoes/proc/handle_movement(turf/walking, running)
+obj/item/clothing/shoes/proc/handle_movement(turf/walking, running)
 	if(prob(1) && !recent_squish)
 		recent_squish = 1
 		spawn(100)

@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers/acid
+obj/structure/reagent_dispensers/acid
 	name = "Sulphuric Acid Dispenser"
 	desc = "A dispenser of acid for industrial processes."
 	icon = 'icons/obj/objects.dmi'

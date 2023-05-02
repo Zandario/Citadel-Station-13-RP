@@ -1,9 +1,9 @@
-/proc/load_configuration()
+proc/load_configuration()
 	config_legacy = new /datum/configuration_legacy()
 	config_legacy.load("config/legacy/config.txt")
 	config_legacy.load("config/legacy/game_options.txt","game_options")
 
-/datum/configuration_legacy
+datum/configuration_legacy
 	var/server_name = null				// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 
@@ -254,7 +254,7 @@
 	var/max_client_view_y
 
 
-/datum/configuration_legacy/New()
+datum/configuration_legacy/New()
 	var/list/L = subtypesof(/datum/game_mode)
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -273,7 +273,7 @@
 					src.votable_modes += M.config_tag
 	src.votable_modes += "secret"
 
-/datum/configuration_legacy/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
+datum/configuration_legacy/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 	var/list/Lines = world.file2list(filename)
 
 	for(var/t in Lines)
@@ -888,7 +888,7 @@
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
-/datum/configuration_legacy/proc/pick_mode(mode_name)
+datum/configuration_legacy/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
 	for (var/game_mode in gamemode_cache)
@@ -897,7 +897,7 @@
 			return M
 	return gamemode_cache["extended"]
 
-/datum/configuration_legacy/proc/get_runnable_modes()
+datum/configuration_legacy/proc/get_runnable_modes()
 	var/list/runnable_modes = list()
 	for(var/game_mode in gamemode_cache)
 		var/datum/game_mode/M = gamemode_cache[game_mode]
@@ -905,7 +905,7 @@
 			runnable_modes |= M
 	return runnable_modes
 
-/datum/configuration_legacy/proc/post_load()
+datum/configuration_legacy/proc/post_load()
 	//apply a default value to config_legacy.python_path, if needed
 	if (!config_legacy.python_path)
 		if(world.system_type == UNIX)

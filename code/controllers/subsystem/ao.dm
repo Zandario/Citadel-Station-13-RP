@@ -8,14 +8,14 @@ SUBSYSTEM_DEF(ao)
 	var/list/image_cache = list()
 	var/list/turf/queue = list()
 
-/datum/controller/subsystem/ao/stat_entry()
+datum/controller/subsystem/ao/stat_entry()
 	return ..() + "Queue: [queue.len]"
 
-/datum/controller/subsystem/ao/Initialize(start_timeofday)
+datum/controller/subsystem/ao/Initialize(start_timeofday)
 	fire(FALSE, TRUE)
 	..()
 
-/datum/controller/subsystem/ao/fire(resumed = 0, no_mc_tick = FALSE)
+datum/controller/subsystem/ao/fire(resumed = 0, no_mc_tick = FALSE)
 	if (!resumed)
 		idex = 1
 

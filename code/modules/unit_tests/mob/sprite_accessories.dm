@@ -1,4 +1,4 @@
-/datum/unit_test/sprite_accessory_uniqueness/Run()
+datum/unit_test/sprite_accessory_uniqueness/Run()
 	var/list/ids = list()
 	var/list/names_hair = list()
 	var/list/names_beard = list()
@@ -49,4 +49,3 @@
 				Fail("duplciate name [S.name] on [path] against [names_marking[S.name]:type]")
 			else
 				names_marking[S.name] = S
-

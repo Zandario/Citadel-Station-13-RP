@@ -1,4 +1,4 @@
-/obj/item/fuel
+obj/item/fuel
 	name = "Magnetic Storage Ring"
 	desc = "A magnetic storage ring."
 	icon = 'icons/obj/items.dmi'
@@ -10,17 +10,17 @@
 	var/s_time = 1.0
 	var/content = null
 
-/obj/item/fuel/H
+obj/item/fuel/H
 	name = "Hydrogen storage ring"
 	content = "Hydrogen"
 	fuel = 1e-12		//pico-kilogram
 
-/obj/item/fuel/antiH
+obj/item/fuel/antiH
 	name = "Anti-Hydrogen storage ring"
 	content = "Anti-Hydrogen"
 	fuel = 1e-12		//pico-kilogram
 
-/obj/item/fuel/attackby(obj/item/fuel/F, mob/user)
+obj/item/fuel/attackby(obj/item/fuel/F, mob/user)
 	..()
 	if(istype(src, /obj/item/fuel/antiH))
 		if(istype(F, /obj/item/fuel/antiH))
@@ -41,7 +41,7 @@
 			qdel(src)
 			F:annihilation(F.fuel)
 
-/obj/item/fuel/antiH/proc/annihilation(var/mass)
+obj/item/fuel/antiH/proc/annihilation(var/mass)
 
 	var/strength = convert2energy(mass)
 
@@ -67,11 +67,11 @@
 	return
 
 
-/obj/item/fuel/examine(mob/user)
+obj/item/fuel/examine(mob/user)
 	if(get_dist(src, user) <= 1)
 		. += "A magnetic storage ring, it contains [fuel]kg of [content ? content : "nothing"]."
 
-/obj/item/fuel/proc/injest(mob/M as mob)
+obj/item/fuel/proc/injest(mob/M as mob)
 	switch(content)
 		if("Anti-Hydrogen")
 			M.gib() //Yikes!
@@ -80,7 +80,7 @@
 	qdel(src)
 	return
 
-/obj/item/fuel/attack(mob/M as mob, mob/user as mob)
+obj/item/fuel/attack(mob/M as mob, mob/user as mob)
 	if (user != M)
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
 		O.source = user

@@ -1,4 +1,4 @@
-/obj/machinery/computer/diseasesplicer
+obj/machinery/computer/diseasesplicer
 	name = "disease splicer"
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
@@ -11,7 +11,7 @@
 	var/splicing = 0
 	var/scanning = 0
 
-/obj/machinery/computer/diseasesplicer/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
+obj/machinery/computer/diseasesplicer/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
 	if(I.is_screwdriver())
 		return ..(I, user)
 
@@ -35,21 +35,21 @@
 
 	return ..()
 
-/obj/machinery/computer/diseasesplicer/attack_ai(var/mob/user as mob)
+obj/machinery/computer/diseasesplicer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/diseasesplicer/attack_hand(mob/user, list/params)
+obj/machinery/computer/diseasesplicer/attack_hand(mob/user, list/params)
 	if(..())
 		return TRUE
 	ui_interact(user)
 
-/obj/machinery/computer/diseasesplicer/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/diseasesplicer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DiseaseSplicer", name)
 		ui.open()
 
-/obj/machinery/computer/diseasesplicer/ui_data(mob/user)
+obj/machinery/computer/diseasesplicer/ui_data(mob/user)
 	var/list/data = list()
 
 	data["dish_inserted"] = !!dish
@@ -93,7 +93,7 @@
 
 	return data
 
-/obj/machinery/computer/diseasesplicer/process(delta_time)
+obj/machinery/computer/diseasesplicer/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -130,7 +130,7 @@
 			ping("\The [src] pings, \"Backup disk saved.\"")
 			SStgui.update_uis(src)
 
-/obj/machinery/computer/diseasesplicer/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/diseasesplicer/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 

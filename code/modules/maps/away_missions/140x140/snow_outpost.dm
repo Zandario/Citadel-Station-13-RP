@@ -1,4 +1,4 @@
-/obj/effect/overmap/visitable/sector/gateway/snowoutpost
+obj/effect/overmap/visitable/sector/gateway/snowoutpost
 	initial_generic_waypoints = list("tether_excursion_snow_outpost")
 	in_space = 0
 	scanner_name = "Snowy Outpost"
@@ -9,13 +9,13 @@
 
 // -- Areas -- //
 
-/area/awaymission/snow_outpost
+area/awaymission/snow_outpost
 	icon_state = "blank"
 	mobcountmax = 0
 	floracountmax = 0
 	ambience = list('sound/music/main.ogg', 'sound/ambience/maintenance/maintenance4.ogg', 'sound/ambience/sif/sif1.ogg', 'sound/ambience/ruins/ruins1.ogg')
 
-/area/awaymission/snow_outpost/outside
+area/awaymission/snow_outpost/outside
 	icon_state = "away1"
 	always_unpowered = 1
 	dynamic_lighting = 0
@@ -29,7 +29,7 @@
 					/obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/ausbushes/genericbush, /obj/structure/flora/ausbushes/pointybush,
 					/obj/structure/flora/ausbushes/lavendergrass, /obj/structure/flora/ausbushes/sparsegrass, /obj/structure/flora/ausbushes/fullgrass)
 
-/area/awaymission/snow_outpost/outside/EvalValidSpawnTurfs()
+area/awaymission/snow_outpost/outside/EvalValidSpawnTurfs()
 	..()
 	if(mobcountmax || floracountmax)
 		for(var/turf/simulated/floor/water/W in src)
@@ -37,18 +37,18 @@
 		for(var/turf/simulated/floor/outdoors/ice/I in src)
 			valid_spawn_turfs -= I
 
-/area/awaymission/snow_outpost/dark
+area/awaymission/snow_outpost/dark
 	icon_state = "red"
 	requires_power = 1
 	always_unpowered = 1
 	dynamic_lighting = 1
 
-/area/awaymission/snow_outpost/outside/nospawn
+area/awaymission/snow_outpost/outside/nospawn
 	icon_state = "away2"
 	mobcountmax = 0
 	floracountmax = 0
 
-/area/awaymission/snow_outpost/powered
+area/awaymission/snow_outpost/powered
 	requires_power = 0
 	dynamic_lighting = 1
 	icon_state = "away"

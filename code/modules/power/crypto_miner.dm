@@ -10,7 +10,7 @@
  */
 GLOBAL_VAR_INIT(points_mined, 0)
 GLOBAL_VAR_INIT(power_per_point, 1000 KILOWATTS)
-/obj/machinery/power/crypto_miner
+obj/machinery/power/crypto_miner
     name = "Encryption Reinforcing Heater"
     desc = "This device uses massive amounts of electric energy to create entropy levels. These Entropy levels are used to reinforce encryptions of NT communications.<br> Use a multitool to configure the powerlevel, powerlevel of zero or below mean the device is off."
     icon = 'icons/obj/salvageable.dmi' //salvageable.dmi
@@ -28,7 +28,7 @@ GLOBAL_VAR_INIT(power_per_point, 1000 KILOWATTS)
     var/temperature_damage = 0//If not sufficently cooled the circuits take damage and calculations get weaker, at 100 we condsider the circuit fried and it needs repairs/replacement
 
 
-/obj/machinery/power/crypto_miner/examine(mob/user)
+obj/machinery/power/crypto_miner/examine(mob/user)
     . = ..()
     if(GLOB.points_mined)//Only show this if someone actually mined
         . += "[src] is [power_level? "on":"off"]. Current Power Level reads [power_level]."
@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(power_per_point, 1000 KILOWATTS)
         . += "A total of [GLOB.points_mined] points has been mined."
 
 
-/obj/machinery/power/crypto_miner/process(delta_time)
+obj/machinery/power/crypto_miner/process(delta_time)
     if(!powernet || !power_level || !anchored)
         return
 
@@ -63,7 +63,7 @@ GLOBAL_VAR_INIT(power_per_point, 1000 KILOWATTS)
         GLOB.points_mined += newpoints
         GLOB.power_per_point = round(1 MEGAWATTS * (1.00276 ** GLOB.points_mined))//1.00276 doubles the first time at 250 points, which is the most expansive item in the vendor currently
 
-/obj/machinery/power/crypto_miner/attackby(obj/item/W, mob/user)
+obj/machinery/power/crypto_miner/attackby(obj/item/W, mob/user)
 
     if(istype(W, /obj/item/card/id))
         var/obj/item/card/id/used_id = W
@@ -88,7 +88,7 @@ GLOBAL_VAR_INIT(power_per_point, 1000 KILOWATTS)
     return ..()
 
 
-/obj/machinery/power/crypto_miner/proc/heat_environ(var/power_used)
+obj/machinery/power/crypto_miner/proc/heat_environ(var/power_used)
     var/datum/gas_mixture/env = loc.return_air()
     if(!env)
         if(temperature_damage < 100)
@@ -96,7 +96,7 @@ GLOBAL_VAR_INIT(power_per_point, 1000 KILOWATTS)
         return
     env.adjust_thermal_energy(power_used)
 
-/obj/machinery/power/crypto_miner/proc/process_thermal_properties()
+obj/machinery/power/crypto_miner/proc/process_thermal_properties()
     var/datum/gas_mixture/env = loc.return_air()
     if(!env)
         efficency = 0
@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(power_per_point, 1000 KILOWATTS)
         efficency = efficency - (temperature_damage/100)//One thermal damage means a reduction of 1% on the total efficency
     efficency = clamp(efficency, 0,1)
 
-/obj/machinery/power/crypto_miner/proc/repair(var/mob/user,var/delay,var/damage_repaired)
+obj/machinery/power/crypto_miner/proc/repair(var/mob/user,var/delay,var/damage_repaired)
     if(temperature_damage)
         to_chat(user, SPAN_NOTICE("You start to fix some damage on the [src]'s circuit"))
         if(do_after(user,delay,src))
@@ -128,4 +128,3 @@ GLOBAL_VAR_INIT(power_per_point, 1000 KILOWATTS)
                 to_chat(user, SPAN_NOTICE("You completely restore the [src]'s circuit"))
     else
         to_chat(user, SPAN_NOTICE("There is no damage on the [src]'s circuit"))
-

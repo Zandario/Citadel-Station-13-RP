@@ -1,7 +1,7 @@
 /**
  * wave effects
  */
-/datum/automata/wave
+datum/automata/wave
 	/// type of spread
 	var/wave_spread = WAVE_SPREAD_MINIMAL
 	/// last turfs, assoc list to true for fast hash lookup. makes sure we don't fold in on ourselves.
@@ -15,7 +15,7 @@
 	/// power at which the automata stops
 	var/power_considered_dead = WAVE_AUTOMATA_POWER_DEAD
 
-/datum/automata/wave/setup_auto(turf/T, power, dir)
+datum/automata/wave/setup_auto(turf/T, power, dir)
 	power_initial = power
 	last = list()
 	edges = list()
@@ -172,7 +172,7 @@
 	}
 //! Evil defines end
 
-/datum/automata/wave/tick()
+datum/automata/wave/tick()
 	// remove old acting
 	cleanup_turfs_acting()
 	// cache for sanic speed
@@ -331,7 +331,7 @@
 	if(!edges.len)
 		stop(TRUE)
 
-/datum/automata/wave/cleanup()
+datum/automata/wave/cleanup()
 	. = ..()
 	last = edges = powers = null
 
@@ -340,30 +340,30 @@
  * returns new power.
  * dirs are byond directions
  */
-/datum/automata/wave/proc/act(turf/T, dirs, power)
+datum/automata/wave/proc/act(turf/T, dirs, power)
 	return max(power - 1, 0)
 
 /**
  * debugging wave automata - displays powers.
  */
-/datum/automata/wave/debug
+datum/automata/wave/debug
 	/// impacted turfs
 	var/list/turf/impacted = list()
 	/// additional dense falloff
 	var/dense_falloff = 0
 
-/datum/automata/wave/debug/Destroy()
+datum/automata/wave/debug/Destroy()
 	clear_impacted()
 	if(GLOB.active_wave_automata_test == src)
 		GLOB.active_wave_automata_test = null
 	return ..()
 
-/datum/automata/wave/debug/proc/clear_impacted()
+datum/automata/wave/debug/proc/clear_impacted()
 	for(var/turf/T in impacted)
 		T.maptext = null
 	impacted = list()
 
-/datum/automata/wave/debug/act(turf/T, dirs, power)
+datum/automata/wave/debug/act(turf/T, dirs, power)
 	. = ..()
 	if(T.density)
 		. -= dense_falloff
@@ -377,7 +377,7 @@
 
 GLOBAL_DATUM(active_wave_automata_test, /datum/automata/wave)
 
-/proc/wave_automata_test(turf/T, type = WAVE_SPREAD_MINIMAL, dense_falloff = 0, power = 50, dirs)
+proc/wave_automata_test(turf/T, type = WAVE_SPREAD_MINIMAL, dense_falloff = 0, power = 50, dirs)
 	power = clamp(power, 0, 100)
 	var/datum/automata/wave/debug/W = new
 	W.wave_spread = type

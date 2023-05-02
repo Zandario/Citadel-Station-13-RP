@@ -1,4 +1,4 @@
-/obj/item/flash
+obj/item/flash
 	name = "flash"
 	desc = "Used for blinding and being an asshole."
 	icon = 'icons/obj/device.dmi'
@@ -33,11 +33,11 @@
 
 	var/cell_type = /obj/item/cell/device
 
-/obj/item/flash/Initialize(mapload)
+obj/item/flash/Initialize(mapload)
 	. = ..()
 	power_supply = new cell_type(src)
 
-/obj/item/flash/attackby(var/obj/item/W, var/mob/user)
+obj/item/flash/attackby(var/obj/item/W, var/mob/user)
 	if(W.is_screwdriver() && broken)
 		if(repairing)
 			to_chat(user, "<span class='notice'>\The [src] is already being repaired!</span>")
@@ -56,7 +56,7 @@
 	else
 		..()
 
-/obj/item/flash/update_icon()
+obj/item/flash/update_icon()
 	var/obj/item/cell/battery = power_supply
 
 	if(use_external_power)
@@ -68,10 +68,10 @@
 		icon_state = "[base_icon]"
 	return
 
-/obj/item/flash/get_cell()
+obj/item/flash/get_cell()
 	return power_supply
 
-/obj/item/flash/proc/get_external_power_supply()
+obj/item/flash/proc/get_external_power_supply()
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return R.cell
@@ -85,14 +85,14 @@
 					return suit.cell
 	return null
 
-/obj/item/flash/proc/clown_check(var/mob/user)
+obj/item/flash/proc/clown_check(var/mob/user)
 	if(user && (MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='warning'>\The [src] slips out of your hand.</span>")
 		user.drop_active_held_item()
 		return 0
 	return 1
 
-/obj/item/flash/proc/flash_recharge()
+obj/item/flash/proc/flash_recharge()
 	//Every ten seconds the flash doesn't get used, the times_used variable goes down by one, making the flash less likely to burn out,
 	// as well as being able to flash more before reaching max_flashes cap.
 	for(var/i=0, i < max_flashes, i++)
@@ -115,7 +115,7 @@
 	update_icon()
 
 // Returns true if the device can flash.
-/obj/item/flash/proc/check_capacitor(var/mob/user)
+obj/item/flash/proc/check_capacitor(var/mob/user)
 	//spamming the flash before it's fully charged (60 seconds) increases the chance of it breaking
 	//It will never break on the first use.
 	var/obj/item/cell/battery = power_supply
@@ -147,11 +147,11 @@
 		return TRUE
 
 //attack_as_weapon
-/obj/item/flash/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/flash/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	flash_mob(target, user)
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/item/flash/proc/flash_mob(mob/M, mob/user)
+obj/item/flash/proc/flash_mob(mob/M, mob/user)
 	if(!user || !M)
 		return	//sanity
 
@@ -238,7 +238,7 @@
 	else
 		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")
 
-/obj/item/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+obj/item/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	if(!user || !clown_check(user))
 		return
 
@@ -274,7 +274,7 @@
 
 	return
 
-/obj/item/flash/emp_act(severity)
+obj/item/flash/emp_act(severity)
 	if(broken)	return
 	flash_recharge()
 	if(!check_capacitor())
@@ -291,7 +291,7 @@
 				M.show_message("<span class='disarm'>[C] is blinded by the flash!</span>")
 	..()
 
-/obj/item/flash/synthetic
+obj/item/flash/synthetic
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
@@ -300,21 +300,21 @@
 	can_repair = FALSE
 
 //attack_as_weapon
-/obj/item/flash/synthetic/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/flash/synthetic/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 	if(!broken)
 		broken = 1
 		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		update_icon()
 
-/obj/item/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+obj/item/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1
 		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		update_icon()
 
-/obj/item/flash/robot
+obj/item/flash/robot
 	name = "mounted flash"
 	can_break = FALSE
 	use_external_power = TRUE

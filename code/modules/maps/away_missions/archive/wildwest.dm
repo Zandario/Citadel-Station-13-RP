@@ -7,7 +7,7 @@
 /*
  * Wish Granter
 
-/obj/machinery/wish_granter_dark
+obj/machinery/wish_granter_dark
 	name = "Wish Granter"
 	desc = "You're not so sure about this, anymore..."
 	icon = 'icons/obj/device.dmi'
@@ -20,7 +20,7 @@
 	var/chargesa = 1
 	var/insistinga = 0
 
-/obj/machinery/wish_granter_dark/attack_hand(mob/user, list/params)
+obj/machinery/wish_granter_dark/attack_hand(mob/user, list/params)
 	usr.set_machine(src)
 
 	if(chargesa <= 0)
@@ -99,7 +99,7 @@
 ///////////////Meatgrinder//////////////
 
 /*
-/obj/effect/meatgrinder
+obj/effect/meatgrinder
 	name = "Meat Grinder"
 	desc = "What is that thing?"
 	density = 1
@@ -109,13 +109,13 @@
 	var/triggerproc = "explode" //name of the proc thats called when the mine is triggered
 	var/triggered = 0
 
-/obj/effect/meatgrinder/New()
+obj/effect/meatgrinder/New()
 	icon_state = "blob"
 
-/obj/effect/meatgrinder/HasEntered(AM as mob|obj)
+obj/effect/meatgrinder/HasEntered(AM as mob|obj)
 	Bumped(AM)
 
-/obj/effect/meatgrinder/Bumped(mob/M as mob|obj)
+obj/effect/meatgrinder/Bumped(mob/M as mob|obj)
 
 	if(triggered) return
 
@@ -125,7 +125,7 @@
 		triggered = 1
 		call(src,triggerproc)(M)
 
-/obj/effect/meatgrinder/proc/triggerrad1(mob)
+obj/effect/meatgrinder/proc/triggerrad1(mob)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	for(var/mob/O in viewers(world.view, src.loc))
 		s.set_up(3, 1, src)
@@ -134,7 +134,7 @@
 		spawn(0)
 			qdel(src)
 
-/obj/effect/meatgrinder
+obj/effect/meatgrinder
 	name = "Meat Grinder"
 	icon_state = "blob"
 	triggerproc = "triggerrad1"
@@ -142,7 +142,7 @@
 
 /////For the Wishgranter///////////
 
-/mob/living/carbon/proc/immortality()
+mob/living/carbon/proc/immortality()
 	set category = "Immortality"
 	set name = "Resurrection"
 

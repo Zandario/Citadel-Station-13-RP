@@ -1,6 +1,6 @@
 
 
-/var/all_ui_styles = list(
+var/all_ui_styles = list(
 	UI_STYLE_MIDNIGHT     = 'icons/mob/screen/midnight.dmi',
 	UI_STYLE_ORANGE       = 'icons/mob/screen/orange.dmi',
 	UI_STYLE_OLD          = 'icons/mob/screen/old.dmi',
@@ -10,7 +10,7 @@
 	UI_STYLE_HOLOGRAM     = 'icons/mob/screen/holo.dmi'
 	)
 
-/var/all_ui_styles_robot = list(
+var/all_ui_styles_robot = list(
 	UI_STYLE_MIDNIGHT     = 'icons/mob/screen1_robot.dmi',
 	UI_STYLE_ORANGE       = 'icons/mob/screen1_robot.dmi',
 	UI_STYLE_OLD          = 'icons/mob/screen1_robot.dmi',
@@ -29,13 +29,13 @@ var/global/list/all_tooltip_styles = list(
 	"Clockwork"
 	)
 
-/proc/ui_style2icon(ui_style)
+proc/ui_style2icon(ui_style)
 	if(ui_style in all_ui_styles)
 		return all_ui_styles[ui_style]
 	return all_ui_styles[UI_STYLE_WHITE]
 
 
-/client/verb/change_ui()
+client/verb/change_ui()
 	set name = "Change UI"
 	set category = "Preferences"
 	set desc = "Configure your user interface"

@@ -1,4 +1,4 @@
-/datum/unit_test/chain_pull_through_space
+datum/unit_test/chain_pull_through_space
 	var/turf/open/space/space_tile
 	var/claimed_tile
 	var/mob/living/carbon/human/alice
@@ -7,7 +7,7 @@
 	var/targetz = 5
 	var/datum/turf_reservation/reserved
 
-/datum/unit_test/chain_pull_through_space/New()
+datum/unit_test/chain_pull_through_space/New()
 	..()
 
 	//reserve a tile that is always empty for our z destination
@@ -31,7 +31,7 @@
 	charlie = new(locate(run_loc_floor_bottom_left.x + 4, run_loc_floor_bottom_left.y, run_loc_floor_bottom_left.z))
 	charlie.name = "Charlie"
 
-/datum/unit_test/chain_pull_through_space/Destroy()
+datum/unit_test/chain_pull_through_space/Destroy()
 	space_tile.ChangeTurf(claimed_tile)
 	qdel(alice)
 	qdel(bob)
@@ -39,7 +39,7 @@
 	qdel(reserved)
 	return ..()
 
-/datum/unit_test/chain_pull_through_space/Run()
+datum/unit_test/chain_pull_through_space/Run()
 	// Alice pulls Bob, who pulls Charlie
 	// Normally, when Alice moves forward, the rest follow
 	alice.start_pulling(bob)

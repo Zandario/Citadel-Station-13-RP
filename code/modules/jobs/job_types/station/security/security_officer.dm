@@ -1,4 +1,4 @@
-/datum/role/job/station/officer
+datum/role/job/station/officer
 	id = JOB_ID_SECURITY_OFFICER
 	title = "Security Officer"
 	flag = OFFICER
@@ -24,19 +24,19 @@
 		"Security Guard" = /datum/prototype/alt_title/security_officer/guard
 		)
 
-/datum/prototype/alt_title/security_officer/junior
+datum/prototype/alt_title/security_officer/junior
 	title = "Junior Officer"
 	title_blurb = "A Junior Officer is an inexperienced Security Officer. They likely have training, but not experience, and are frequently \
 					paired off with a more senior co-worker. Junior Officers may also be expected to take over the boring duties of other Officers \
 					including patrolling the station or maintaining specific posts."
 
-/datum/prototype/alt_title/security_officer/cadet
+datum/prototype/alt_title/security_officer/cadet
 	title = "Security Cadet"
 
-/datum/prototype/alt_title/security_officer/guard
+datum/prototype/alt_title/security_officer/guard
 	title = "Security Guard"
 
-/datum/outfit/job/station/security_officer
+datum/outfit/job/station/security_officer
 	name = OUTFIT_JOB_NAME("Security Officer")
 	uniform = /obj/item/clothing/under/rank/security
 	l_pocket = /obj/item/flash

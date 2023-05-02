@@ -50,7 +50,7 @@
 #define CSC(x) (1 / sin(x))
 
 // Greatest Common Divisor - Euclid's algorithm
-/proc/GCD(a, b)
+proc/GCD(a, b)
 	return b ? GCD(b, (a) % (b)) : a
 
 // Least Common Multiple
@@ -85,7 +85,7 @@
 // Returns the nth root of x.
 #define ROOT(n, x) ((x) ** (1 / (n)))
 
-/proc/Mean(...)
+proc/Mean(...)
 	var/sum = 0
 	for(var/val in args)
 		sum += val
@@ -93,7 +93,7 @@
 
 // The quadratic formula. Returns a list with the solutions, or an empty list
 // if they are imaginary.
-/proc/SolveQuadratic(a, b, c)
+proc/SolveQuadratic(a, b, c)
 	ASSERT(a)
 	. = list()
 	var/d		= b*b - 4 * a * c
@@ -121,7 +121,7 @@
 #define GET_ANGLE_OF_INCIDENCE(face, input) (MODULUS((face) - (input), 360))
 
 //Finds the shortest angle that angle A has to change to get to angle B. Aka, whether to move clock or counterclockwise.
-/proc/closer_angle_difference(a, b)
+proc/closer_angle_difference(a, b)
 	if(!isnum(a) || !isnum(b))
 		return
 	a = SIMPLIFY_DEGREES(a)
@@ -146,7 +146,7 @@
 //95% chance that the number is within 2stddev
 //98% chance that the number is within 3stddev...etc
 #define ACCURACY 10000
-/proc/gaussian(mean, stddev)
+proc/gaussian(mean, stddev)
 	var/static/gaussian_next
 	var/R1;var/R2;var/working
 	if(gaussian_next != null)
@@ -164,7 +164,7 @@
 	return (mean + stddev * R1)
 #undef ACCURACY
 
-/proc/get_turf_in_angle(angle, turf/starting, increments)
+proc/get_turf_in_angle(angle, turf/starting, increments)
 	var/pixel_x = 0
 	var/pixel_y = 0
 	for(var/i in 1 to increments)
@@ -189,7 +189,7 @@
 	return locate(new_x, new_y, starting.z)
 
 // Returns a list where [1] is all x values and [2] is all y values that overlap between the given pair of rectangles
-/proc/get_overlap(x1, y1, x2, y2, x3, y3, x4, y4)
+proc/get_overlap(x1, y1, x2, y2, x3, y3, x4, y4)
 	var/list/region_x1 = list()
 	var/list/region_y1 = list()
 	var/list/region_x2 = list()

@@ -1,4 +1,4 @@
-/datum/gm_action/atmos_leak
+datum/gm_action/atmos_leak
 	name = "atmospherics leak"
 	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_SYNTHETIC)
 	var/area/target_area	// Chosen target area
@@ -16,7 +16,7 @@
 	severity
 
 // Decide which area will be targeted!
-/datum/gm_action/atmos_leak/set_up()
+datum/gm_action/atmos_leak/set_up()
 	severity = pickweight(EVENT_LEVEL_MUNDANE = 8,
 	EVENT_LEVEL_MODERATE = 5,
 	EVENT_LEVEL_MAJOR = 3
@@ -53,11 +53,11 @@
 		log_debug(SPAN_DEBUGWARNING("atmos_leak event: Giving up after too many failures to pick target area"))
 		return
 
-/datum/gm_action/atmos_leak/announce()
+datum/gm_action/atmos_leak/announce()
 	if(target_area)
 		command_announcement.Announce("Warning, hazardous [GLOB.meta_gas_names[gas_type]] gas leak detected in \the [target_area], evacuate the area.", "Hazard Alert")
 
-/datum/gm_action/atmos_leak/start()
+datum/gm_action/atmos_leak/start()
 	if(!target_turf)
 		return
 	..()
@@ -73,5 +73,5 @@
 		target_turf.assume_air(air_contents)
 		playsound(target_turf, 'sound/effects/smoke.ogg', 50, 1)
 
-/datum/gm_action/atmos_leak/get_weight()
+datum/gm_action/atmos_leak/get_weight()
 	return 15 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10 + metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 30)	// Synthetics are counted in higher value because they can wirelessly connect to alarms.

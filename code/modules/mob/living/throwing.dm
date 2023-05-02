@@ -1,5 +1,5 @@
 //! shitcode in this file oop
-/mob/living/throw_item(obj/item/I, atom/target, overhand, neat = a_intent == INTENT_HELP, force = throw_impulse, overhand = in_throw_mode == THROW_MODE_OVERHAND)
+mob/living/throw_item(obj/item/I, atom/target, overhand, neat = a_intent == INTENT_HELP, force = throw_impulse, overhand = in_throw_mode == THROW_MODE_OVERHAND)
 	if(!I)
 		return FALSE
 	throw_mode_off()
@@ -69,7 +69,7 @@
 	trigger_aiming(TARGET_CAN_CLICK)
 	return TRUE
 
-/mob/living/throw_at(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force)
+mob/living/throw_at(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force)
 	. = ..()
 	if(!.)
 		return

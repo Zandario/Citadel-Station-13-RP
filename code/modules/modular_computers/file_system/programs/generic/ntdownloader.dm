@@ -1,4 +1,4 @@
-/datum/computer_file/program/ntnetdownload
+datum/computer_file/program/ntnetdownload
 	filename = "ntndownloader"
 	filedesc = "NTNet Software Download Tool"
 	program_icon_state = "generic"
@@ -20,7 +20,7 @@
 	var/downloaderror = ""
 	var/list/downloads_queue[0]
 
-/datum/computer_file/program/ntnetdownload/kill_program()
+datum/computer_file/program/ntnetdownload/kill_program()
 	..()
 	downloaded_file = null
 	download_completion = 0
@@ -29,7 +29,7 @@
 	ui_header = "downloader_finished.gif"
 
 
-/datum/computer_file/program/ntnetdownload/proc/begin_file_download(var/filename)
+datum/computer_file/program/ntnetdownload/proc/begin_file_download(var/filename)
 	if(downloaded_file)
 		return 0
 
@@ -52,7 +52,7 @@
 
 	downloaded_file = PRG.clone()
 
-/datum/computer_file/program/ntnetdownload/proc/check_file_download(var/filename)
+datum/computer_file/program/ntnetdownload/proc/check_file_download(var/filename)
 	//returns 1 if file can be downloaded, returns 0 if download prohibited
 	var/datum/computer_file/program/PRG = ntnet_global.find_ntnet_file_by_name(filename)
 
@@ -68,7 +68,7 @@
 
 	return 1
 
-/datum/computer_file/program/ntnetdownload/proc/abort_file_download()
+datum/computer_file/program/ntnetdownload/proc/abort_file_download()
 	if(!downloaded_file)
 		return
 	generate_network_log("Aborted download of file [hacked_download ? "**ENCRYPTED**" : downloaded_file.filename].[downloaded_file.filetype].")
@@ -76,7 +76,7 @@
 	download_completion = 0
 	ui_header = "downloader_finished.gif"
 
-/datum/computer_file/program/ntnetdownload/proc/complete_file_download()
+datum/computer_file/program/ntnetdownload/proc/complete_file_download()
 	if(!downloaded_file)
 		return
 	generate_network_log("Completed download of file [hacked_download ? "**ENCRYPTED**" : downloaded_file.filename].[downloaded_file.filetype].")
@@ -87,7 +87,7 @@
 	download_completion = 0
 	ui_header = "downloader_finished.gif"
 
-/datum/computer_file/program/ntnetdownload/process_tick()
+datum/computer_file/program/ntnetdownload/process_tick()
 	if(!downloaded_file)
 		return
 	if(download_completion >= downloaded_file.size)
@@ -108,7 +108,7 @@
 			download_netspeed = NTNETSPEED_ETHERNET
 	download_completion += download_netspeed
 
-/datum/computer_file/program/ntnetdownload/Topic(href, href_list)
+datum/computer_file/program/ntnetdownload/Topic(href, href_list)
 	if(..())
 		return 1
 	if(href_list["PRG_downloadfile"])
@@ -129,11 +129,11 @@
 		return 1
 	return 0
 
-/datum/nano_module/program/computer_ntnetdownload
+datum/nano_module/program/computer_ntnetdownload
 	name = "Network Downloader"
 	var/obj/item/modular_computer/my_computer = null
 
-/datum/nano_module/program/computer_ntnetdownload/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/computer_ntnetdownload/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	if(program)
 		my_computer = program.computer
 

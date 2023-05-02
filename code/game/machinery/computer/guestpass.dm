@@ -1,7 +1,7 @@
 /////////////////////////////////////////////
 //Guest pass ////////////////////////////////
 /////////////////////////////////////////////
-/obj/item/card/id/guest
+obj/item/card/id/guest
 	name = "guest pass"
 	desc = "Allows temporary access to station areas."
 	icon_state = "guest"
@@ -12,20 +12,20 @@
 	var/expired = 0
 	var/reason = "NOT SPECIFIED"
 
-/obj/item/card/id/guest/GetAccess()
+obj/item/card/id/guest/GetAccess()
 	if (world.time > expiration_time)
 		return access
 	else
 		return temp_access
 
-/obj/item/card/id/guest/examine(mob/user)
+obj/item/card/id/guest/examine(mob/user)
 	. = ..()
 	if (world.time < expiration_time)
 		. += "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>"
 	else
 		. += "<span class='warning'>It expired at [worldtime2stationtime(expiration_time)].</span>"
 
-/obj/item/card/id/guest/read()
+obj/item/card/id/guest/read()
 	if(!Adjacent(usr))
 		return //Too far to read
 	if (world.time > expiration_time)
@@ -39,7 +39,7 @@
 	to_chat(usr, "<span class='notice'>Issuing reason: [reason].</span>")
 	return
 
-/obj/item/card/id/guest/attack_self(mob/user)
+obj/item/card/id/guest/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -56,16 +56,16 @@
 			expiration_time = world.time
 			expired = 1
 
-/obj/item/card/id/guest/Initialize(mapload)
+obj/item/card/id/guest/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/card/id/guest/Destroy()
+obj/item/card/id/guest/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/card/id/guest/process(delta_time)
+obj/item/card/id/guest/process(delta_time)
 	if(expired == 0 && world.time >= expiration_time)
 		visible_message("<span class='warning'>\The [src] flashes a few times before turning red.</span>")
 		icon_state = "guest_invalid"
@@ -77,7 +77,7 @@
 //Guest pass terminal////////////////////////
 /////////////////////////////////////////////
 
-/obj/machinery/computer/guestpass
+obj/machinery/computer/guestpass
 	name = "guest pass terminal"
 	icon_state = "guest"
 	plane = TURF_PLANE
@@ -96,11 +96,11 @@
 	var/list/internal_log = list()
 	var/mode = 0  // 0 - making pass, 1 - viewing logs
 
-/obj/machinery/computer/guestpass/Initialize(mapload)
+obj/machinery/computer/guestpass/Initialize(mapload)
 	. = ..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
-/obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
+obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
 	if(istype(I, /obj/item/card/id))
 		if(!giver)
 			if(!user.attempt_insert_item_for_installation(I, src))
@@ -112,10 +112,10 @@
 		return
 	..()
 
-/obj/machinery/computer/guestpass/attack_ai(var/mob/user as mob)
+obj/machinery/computer/guestpass/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/guestpass/attack_hand(mob/user, list/params)
+obj/machinery/computer/guestpass/attack_hand(mob/user, list/params)
 	if(..())
 		return
 
@@ -128,7 +128,7 @@
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/computer/guestpass/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/computer/guestpass/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/list/data = list()
@@ -159,7 +159,7 @@
 		ui.open()
 		//ui.set_auto_update(5)
 
-/obj/machinery/computer/guestpass/Topic(href, href_list)
+obj/machinery/computer/guestpass/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.set_machine(src)

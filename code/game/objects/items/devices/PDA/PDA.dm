@@ -3,7 +3,7 @@
 
 GLOBAL_LIST_EMPTY(PDAs)
 
-/obj/item/pda
+obj/item/pda
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
@@ -65,11 +65,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/obj/item/paicard/pai = null	// A slot for a personal AI device
 
-/obj/item/pda/examine(mob/user)
+obj/item/pda/examine(mob/user)
 	. = ..()
 	. += "The time [stationtime2text()] is displayed in the corner of the screen."
 
-/obj/item/pda/CtrlClick()
+obj/item/pda/CtrlClick()
 	if (issilicon(usr))
 		return
 
@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 	..()
 
-/obj/item/pda/AltClick()
+obj/item/pda/AltClick()
 	if(issilicon(usr))
 		return
 
@@ -89,47 +89,47 @@ GLOBAL_LIST_EMPTY(PDAs)
 			to_chat(usr, "<span class='notice'>This PDA does not have an ID in it.</span>")
 
 
-/obj/item/pda/medical
+obj/item/pda/medical
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-m"
 
-/obj/item/pda/viro
+obj/item/pda/viro
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-v"
 
-/obj/item/pda/engineering
+obj/item/pda/engineering
 	default_cartridge = /obj/item/cartridge/engineering
 	icon_state = "pda-e"
 
-/obj/item/pda/security
+obj/item/pda/security
 	default_cartridge = /obj/item/cartridge/security
 	icon_state = "pda-s"
 
-/obj/item/pda/detective
+obj/item/pda/detective
 	default_cartridge = /obj/item/cartridge/detective
 	icon_state = "pda-det"
 
-/obj/item/pda/warden
+obj/item/pda/warden
 	default_cartridge = /obj/item/cartridge/security
 	icon_state = "pda-warden"
 
-/obj/item/pda/janitor
+obj/item/pda/janitor
 	default_cartridge = /obj/item/cartridge/janitor
 	icon_state = "pda-j"
 	ringtone = "slip"
 
-/obj/item/pda/science
+obj/item/pda/science
 	default_cartridge = /obj/item/cartridge/signal/science
 	icon_state = "pda-tox"
 	ringtone = "boom"
 
-/obj/item/pda/clown
+obj/item/pda/clown
 	default_cartridge = /obj/item/cartridge/clown
 	icon_state = "pda-clown"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
 	ringtone = "honk"
 
-/obj/item/pda/mime
+obj/item/pda/mime
 	default_cartridge = /obj/item/cartridge/mime
 	icon_state = "pda-mime"
 	message_silent = 1
@@ -137,83 +137,83 @@ GLOBAL_LIST_EMPTY(PDAs)
 	ringtone = "silence"
 	newstone = "silence"
 
-/obj/item/pda/heads
+obj/item/pda/heads
 	default_cartridge = /obj/item/cartridge/head
 	icon_state = "pda-h"
 	news_silent = 1
 
-/obj/item/pda/heads/hop
+obj/item/pda/heads/hop
 	default_cartridge = /obj/item/cartridge/hop
 	icon_state = "pda-hop"
 
-/obj/item/pda/heads/hos
+obj/item/pda/heads/hos
 	default_cartridge = /obj/item/cartridge/hos
 	icon_state = "pda-hos"
 
-/obj/item/pda/heads/blueshield
+obj/item/pda/heads/blueshield
 	default_cartridge = /obj/item/cartridge/security
 	icon_state = "pda-hop"
 
-/obj/item/pda/heads/ce
+obj/item/pda/heads/ce
 	default_cartridge = /obj/item/cartridge/ce
 	icon_state = "pda-ce"
 
-/obj/item/pda/heads/cmo
+obj/item/pda/heads/cmo
 	default_cartridge = /obj/item/cartridge/cmo
 	icon_state = "pda-cmo"
 
-/obj/item/pda/heads/rd
+obj/item/pda/heads/rd
 	default_cartridge = /obj/item/cartridge/rd
 	icon_state = "pda-rd"
 
-/obj/item/pda/captain
+obj/item/pda/captain
 	default_cartridge = /obj/item/cartridge/captain
 	icon_state = "pda-c"
 	detonate = 0
 	//toff = 1
 
-/obj/item/pda/ert
+obj/item/pda/ert
 	default_cartridge = /obj/item/cartridge/captain
 	icon_state = "pda-h"
 	detonate = 0
 //	hidden = 1
 
-/obj/item/pda/cargo
+obj/item/pda/cargo
 	default_cartridge = /obj/item/cartridge/quartermaster
 	icon_state = "pda-cargo"
 
-/obj/item/pda/quartermaster
+obj/item/pda/quartermaster
 	default_cartridge = /obj/item/cartridge/quartermaster
 	icon_state = "pda-q"
 
-/obj/item/pda/shaftminer
+obj/item/pda/shaftminer
 	icon_state = "pda-miner"
 	default_cartridge = /obj/item/cartridge/miner
 
-/obj/item/pda/syndicate
+obj/item/pda/syndicate
 	default_cartridge = /obj/item/cartridge/syndicate
 	icon_state = "pda-syn"
 	hidden = 1
 
-/obj/item/pda/chaplain
+obj/item/pda/chaplain
 	default_cartridge = /obj/item/cartridge/service
 	icon_state = "pda-holy"
 	ringtone = "holy"
 
-/obj/item/pda/lawyer
+obj/item/pda/lawyer
 	default_cartridge = /obj/item/cartridge/lawyer
 	icon_state = "pda-lawyer"
 	ringtone = "..."
 
-/obj/item/pda/botanist
+obj/item/pda/botanist
 	default_cartridge = /obj/item/cartridge/service
 	icon_state = "pda-hydro"
 
-/obj/item/pda/roboticist
+obj/item/pda/roboticist
 	default_cartridge = /obj/item/cartridge/signal/science
 	icon_state = "pda-robot"
 
-/obj/item/pda/librarian
+obj/item/pda/librarian
 	default_cartridge = /obj/item/cartridge/service
 	icon_state = "pda-libb"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a WGW-11 series e-reader."
@@ -221,41 +221,41 @@ GLOBAL_LIST_EMPTY(PDAs)
 	message_silent = 1 //Quiet in the library!
 	news_silent = 0		// Librarian is above the law!  (That and alt job title is reporter)
 
-/obj/item/pda/clear
+obj/item/pda/clear
 	icon_state = "pda-transp"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a special edition with a transparent case."
 	note = "Congratulations, you have chosen the Thinktronic 5230 Personal Data Assistant Deluxe Special Max Turbo Limited Edition!"
 
-/obj/item/pda/chef
+obj/item/pda/chef
 	default_cartridge = /obj/item/cartridge/service
 	icon_state = "pda-chef"
 
-/obj/item/pda/bar
+obj/item/pda/bar
 	default_cartridge = /obj/item/cartridge/service
 	icon_state = "pda-bar"
 
-/obj/item/pda/atmos
+obj/item/pda/atmos
 	default_cartridge = /obj/item/cartridge/atmos
 	icon_state = "pda-atmo"
 
-/obj/item/pda/chemist
+obj/item/pda/chemist
 	default_cartridge = /obj/item/cartridge/chemistry
 	icon_state = "pda-chem"
 
-/obj/item/pda/geneticist
+obj/item/pda/geneticist
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-gene"
 
 
 // Special AI/pAI PDAs that cannot explode.
-/obj/item/pda/ai
+obj/item/pda/ai
 	icon_state = "NONE"
 	ringtone = "data"
 	newstone = "news"
 	detonate = 0
 
 
-/obj/item/pda/ai/proc/set_name_and_job(newname as text, newjob as text, newrank as null|text)
+obj/item/pda/ai/proc/set_name_and_job(newname as text, newjob as text, newrank as null|text)
 	owner = newname
 	ownjob = newjob
 	if(newrank)
@@ -265,7 +265,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	name = newname + " (" + ownjob + ")"
 
 //AI verb and proc for sending PDA messages.
-/obj/item/pda/ai/verb/cmd_send_pdamesg()
+obj/item/pda/ai/verb/cmd_send_pdamesg()
 	set category = "AI IM"
 	set name = "Send Message"
 	set src in usr
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		var/selected = plist[c]
 		create_message(usr, selected, 0)
 
-/obj/item/pda/ai/verb/cmd_toggle_pda_receiver()
+obj/item/pda/ai/verb/cmd_toggle_pda_receiver()
 	set category = "AI IM"
 	set name = "Toggle Sender/Receiver"
 	set src in usr
@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	toff = !toff
 	to_chat(usr, "<span class='notice'>PDA sender/receiver toggled [(toff ? "Off" : "On")]!</span>")
 
-/obj/item/pda/ai/verb/cmd_toggle_pda_silent()
+obj/item/pda/ai/verb/cmd_toggle_pda_silent()
 	set category = "AI IM"
 	set name = "Toggle Ringer"
 	set src in usr
@@ -301,7 +301,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	message_silent=!message_silent
 	to_chat(usr, "<span class='notice'>PDA ringer toggled [(message_silent ? "Off" : "On")]!</span>")
 
-/obj/item/pda/ai/verb/cmd_show_message_log()
+obj/item/pda/ai/verb/cmd_show_message_log()
 	set category = "AI IM"
 	set name = "Show Message Log"
 	set src in usr
@@ -318,11 +318,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 	usr << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
 
 
-/obj/item/pda/ai/can_use()
+obj/item/pda/ai/can_use()
 	return 1
 
 
-/obj/item/pda/ai/attack_self(mob/user)
+obj/item/pda/ai/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -332,12 +332,12 @@ GLOBAL_LIST_EMPTY(PDAs)
 	return
 
 
-/obj/item/pda/ai/pai
+obj/item/pda/ai/pai
 	ringtone = "assist"
 
 
 // Used for the PDA multicaster, which mirrors messages sent to it to a specific department,
-/obj/item/pda/multicaster
+obj/item/pda/multicaster
 	ownjob = "Relay"
 	icon_state = "NONE"
 	ringtone = "data"
@@ -346,7 +346,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/list/cartridges_to_send_to = list()
 
 // This is what actually mirrors the message,
-/obj/item/pda/multicaster/new_message(var/sending_unit, var/sender, var/sender_job, var/message)
+obj/item/pda/multicaster/new_message(var/sending_unit, var/sender, var/sender_job, var/message)
 	if(sender)
 		var/list/targets = list()
 		for(var/obj/item/pda/pda in GLOB.PDAs)
@@ -357,7 +357,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				create_message(target, sender, sender_job, message)
 
 // This has so much copypasta,
-/obj/item/pda/multicaster/create_message(var/obj/item/pda/P, var/original_sender, var/original_job, var/t)
+obj/item/pda/multicaster/create_message(var/obj/item/pda/P, var/original_sender, var/original_job, var/t)
 	t = sanitize(t, MAX_MESSAGE_LEN, 0)
 	t = replace_characters(t, list("&#34;" = "\""))
 	if (!t || !istype(P))
@@ -387,43 +387,43 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		return
 
-/obj/item/pda/multicaster/command/Initialize(mapload)
+obj/item/pda/multicaster/command/Initialize(mapload)
 	. = ..()
 	owner = "Command Department"
 	name = "Command Department (Relay)"
 	cartridges_to_send_to = command_cartridges
 
-/obj/item/pda/multicaster/security/Initialize(mapload)
+obj/item/pda/multicaster/security/Initialize(mapload)
 	. = ..()
 	owner = "Security Department"
 	name = "Security Department (Relay)"
 	cartridges_to_send_to = security_cartridges
 
-/obj/item/pda/multicaster/engineering/Initialize(mapload)
+obj/item/pda/multicaster/engineering/Initialize(mapload)
 	. = ..()
 	owner = "Engineering Department"
 	name = "Engineering Department (Relay)"
 	cartridges_to_send_to = engineering_cartridges
 
-/obj/item/pda/multicaster/medical/Initialize(mapload)
+obj/item/pda/multicaster/medical/Initialize(mapload)
 	. = ..()
 	owner = "Medical Department"
 	name = "Medical Department (Relay)"
 	cartridges_to_send_to = medical_cartridges
 
-/obj/item/pda/multicaster/research/Initialize(mapload)
+obj/item/pda/multicaster/research/Initialize(mapload)
 	. = ..()
 	owner = "Research Department"
 	name = "Research Department (Relay)"
 	cartridges_to_send_to = research_cartridges
 
-/obj/item/pda/multicaster/cargo/Initialize(mapload)
+obj/item/pda/multicaster/cargo/Initialize(mapload)
 	. = ..()
 	owner = "Cargo Department"
 	name = "Cargo Department (Relay)"
 	cartridges_to_send_to = cargo_cartridges
 
-/obj/item/pda/multicaster/civilian/Initialize(mapload)
+obj/item/pda/multicaster/civilian/Initialize(mapload)
 	. = ..()
 	owner = "Civilian Services Department"
 	name = "Civilian Services Department (Relay)"
@@ -433,7 +433,7 @@ GLOBAL_LIST_EMPTY(PDAs)
  *	The Actual PDA
  */
 
-/obj/item/pda/Initialize(mapload)
+obj/item/pda/Initialize(mapload)
 	. = ..()
 	GLOB.PDAs += src
 	tim_sort(GLOB.PDAs, cmp = /proc/cmp_name_asc)
@@ -470,7 +470,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				log_debug(SPAN_DEBUG("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen."))
 
 
-/obj/item/pda/proc/can_use()
+obj/item/pda/proc/can_use()
 
 	if(!ismob(loc))
 		return 0
@@ -483,23 +483,23 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		return 0
 
-/obj/item/pda/GetAccess()
+obj/item/pda/GetAccess()
 	if(id)
 		return id.GetAccess()
 	else
 		return ..()
 
-/obj/item/pda/GetID()
+obj/item/pda/GetID()
 	return id
 
-/obj/item/pda/OnMouseDropLegacy(obj/over_object as obj, src_location, over_location)
+obj/item/pda/OnMouseDropLegacy(obj/over_object as obj, src_location, over_location)
 	var/mob/M = usr
 	if((!istype(over_object, /atom/movable/screen)) && can_use())
 		return attack_self(M)
 	return
 
 
-/obj/item/pda/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/item/pda/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	ui_tick++
 	var/datum/nanoui/old_ui = SSnanoui.get_open_ui(user, src, "main")
 	var/auto_update = 1
@@ -674,7 +674,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	ui.set_auto_update(auto_update)
 
 //NOTE: graphic resources are loaded on client login
-/obj/item/pda/attack_self(mob/user)
+obj/item/pda/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -687,7 +687,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	nano_ui_interact(user) //NanoUI requires this proc
 	return
 
-/obj/item/pda/Topic(href, href_list)
+obj/item/pda/Topic(href, href_list)
 	if(href_list["cartmenu"] && !isnull(cartridge))
 		cartridge.Topic(href, href_list)
 		return 1
@@ -994,14 +994,14 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	return 1 // return 1 tells it to refresh the UI in NanoUI
 
-/obj/item/pda/update_icon()
+obj/item/pda/update_icon()
 	..()
 
 	cut_overlays()
 	if(new_message || new_news)
 		add_overlay(image(icon, "pda-r"))
 
-/obj/item/pda/proc/detonate_act(var/obj/item/pda/P)
+obj/item/pda/proc/detonate_act(var/obj/item/pda/P)
 	//TODO: sometimes these attacks show up on the message server
 	var/i = rand(1,100)
 	var/j = rand(0,1) //Possibility of losing the PDA after the detonation
@@ -1065,7 +1065,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		message = "<span class='warning'>[message]</span>"
 		M.show_message(message, 1)
 
-/obj/item/pda/proc/remove_id()
+obj/item/pda/proc/remove_id()
 	if (id)
 		if (ismob(loc))
 			var/mob/M = loc
@@ -1075,7 +1075,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			id.forceMove(drop_location())
 		id = null
 
-/obj/item/pda/proc/remove_pen()
+obj/item/pda/proc/remove_pen()
 	var/obj/item/pen/O = locate() in src
 	if(O)
 		if(istype(loc, /mob))
@@ -1088,7 +1088,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		to_chat(usr, "<span class='notice'>This PDA does not have a pen in it.</span>")
 
-/obj/item/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/pda/P, var/tap = 1)
+obj/item/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/pda/P, var/tap = 1)
 	if(tap)
 		U.visible_message("<span class='notice'>\The [U] taps on their PDA's screen.</span>")
 	var/t = input(U, "Please enter message", P.name, null) as text
@@ -1157,7 +1157,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		to_chat(U, "<span class='notice'>ERROR: Messaging server is not responding.</span>")
 
-/obj/item/pda/proc/new_info(var/beep_silent, var/message_tone, var/reception_message)
+obj/item/pda/proc/new_info(var/beep_silent, var/message_tone, var/reception_message)
 	if (!beep_silent)
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(2, loc))
@@ -1175,22 +1175,22 @@ GLOBAL_LIST_EMPTY(PDAs)
 			to_chat(L, reception_message)
 		SSnanoui.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
 
-/obj/item/pda/proc/new_news(var/message)
+obj/item/pda/proc/new_news(var/message)
 	new_info(news_silent, newstone, news_silent ? "" : "[icon2html(thing = src, target = world)] <b>[message]</b>")
 
 	if(!news_silent)
 		new_news = 1
 		update_icon()
 
-/obj/item/pda/ai/new_news(var/message)
+obj/item/pda/ai/new_news(var/message)
 	// Do nothing
 
-/obj/item/pda/proc/new_message_from_pda(var/obj/item/pda/sending_device, var/message)
+obj/item/pda/proc/new_message_from_pda(var/obj/item/pda/sending_device, var/message)
 	if (is_jammed(src))
 		return
 	new_message(sending_device, sending_device.owner, sending_device.ownjob, message)
 
-/obj/item/pda/proc/new_message(var/sending_unit, var/sender, var/sender_job, var/message, var/reply = 1)
+obj/item/pda/proc/new_message(var/sending_unit, var/sender, var/sender_job, var/message, var/reply = 1)
 	var/reception_message = "[icon2html(thing = src, target = world)] <b>Message from [sender] ([sender_job]), </b>\"[message]\" ([reply ? "<a href='byond://?src=\ref[src];choice=Message;notap=[istype(loc, /mob/living/silicon)];skiprefresh=1;target=\ref[sending_unit]'>Reply</a>" : "Unable to Reply"])"
 	new_info(message_silent, ringtone, reception_message)
 
@@ -1198,7 +1198,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	new_message = 1
 	update_icon()
 
-/obj/item/pda/ai/new_message(var/atom/movable/sending_unit, var/sender, var/sender_job, var/message)
+obj/item/pda/ai/new_message(var/atom/movable/sending_unit, var/sender, var/sender_job, var/message)
 	var/track = ""
 	if(ismob(sending_unit.loc) && isAI(loc))
 		track = "(<a href='byond://?src=\ref[loc];track=\ref[sending_unit.loc];trackname=[html_encode(sender)]'>Follow</a>)"
@@ -1209,7 +1209,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	log_pda("(PDA: [sending_unit]) sent \"[message]\" to [name]",usr)
 	new_message = 1
 
-/obj/item/pda/verb/verb_reset_pda()
+obj/item/pda/verb/verb_reset_pda()
 	set category = "Object"
 	set name = "Reset PDA"
 	set src in usr
@@ -1224,7 +1224,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
 
-/obj/item/pda/verb/verb_remove_id()
+obj/item/pda/verb/verb_remove_id()
 	set category = "Object"
 	set name = "Remove id"
 	set src in usr
@@ -1241,7 +1241,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
 
 
-/obj/item/pda/verb/verb_remove_pen()
+obj/item/pda/verb/verb_remove_pen()
 	set category = "Object"
 	set name = "Remove pen"
 	set src in usr
@@ -1254,7 +1254,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
 
-/obj/item/pda/verb/verb_remove_cartridge()
+obj/item/pda/verb/verb_remove_cartridge()
 	set category = "Object"
 	set name = "Remove cartridge"
 	set src in usr
@@ -1281,7 +1281,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
 	cartridge = null
 
-/obj/item/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
+obj/item/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
 	if(choice == 1)
 		if (id)
 			remove_id()
@@ -1306,7 +1306,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	return 0
 
 // access to status display signals
-/obj/item/pda/attackby(obj/item/C as obj, mob/user as mob)
+obj/item/pda/attackby(obj/item/C as obj, mob/user as mob)
 	..()
 	if(istype(C, /obj/item/cartridge) && !cartridge)
 		if(!user.attempt_insert_item_for_installation(C, src))
@@ -1351,7 +1351,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				return
 			to_chat(user, "<span class='notice'>You slot \the [C] into \the [src].</span>")
 
-/obj/item/pda/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/pda/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/carbon/C = target
 	if (istype(C, /mob/living/carbon))
 		switch(scanmode)
@@ -1406,7 +1406,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				else
 					to_chat(user, "<span class='notice'>No radiation detected.</span>")
 
-/obj/item/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+obj/item/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	switch(scanmode)
 
@@ -1477,7 +1477,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		to_chat(user,"<span class='notice'>Paper scanned and OCRed to notekeeper.</span>") //concept of scanning paper copyright brainoblivion 2009
 
 
-/obj/item/pda/proc/explode() //This needs tuning. //Sure did.
+obj/item/pda/proc/explode() //This needs tuning. //Sure did.
 	if(!src.detonate) return
 	var/turf/T = get_turf(src.loc)
 	if(T)
@@ -1485,7 +1485,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		explosion(T, 0, 0, 1, rand(1,2))
 	return
 
-/obj/item/pda/Destroy()
+obj/item/pda/Destroy()
 	GLOB.PDAs -= src
 	if (src.id && prob(100)) //IDs are kept in 100% of the cases //TODO: WHY?
 		src.id.forceMove(get_turf(src.loc))
@@ -1495,7 +1495,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	QDEL_NULL(src.pai)
 	return ..()
 
-/obj/item/pda/clown/Crossed(atom/movable/AM as mob|obj) //Clown PDA is slippery.
+obj/item/pda/clown/Crossed(atom/movable/AM as mob|obj) //Clown PDA is slippery.
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -1506,7 +1506,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if(src.cartridge.charges < 5)
 				src.cartridge.charges++
 
-/obj/item/pda/proc/available_pdas()
+obj/item/pda/proc/available_pdas()
 	var/list/names = list()
 	var/list/plist = list()
 
@@ -1536,13 +1536,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 
 //Some spare PDAs in a box
-/obj/item/storage/box/PDAs
+obj/item/storage/box/PDAs
 	name = "box of spare PDAs"
 	desc = "A box of spare PDA microcomputers."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
 
-/obj/item/storage/box/PDAs/New()
+obj/item/storage/box/PDAs/New()
 	..()
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)
@@ -1560,11 +1560,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 	new newcart(src)
 
 // Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
-/obj/item/pda/emp_act(severity)
+obj/item/pda/emp_act(severity)
 	for(var/atom/A in src)
 		A.emp_act(severity)
 
-/obj/item/pda/proc/analyze_air()
+obj/item/pda/proc/analyze_air()
 	var/list/results = list()
 	var/turf/T = get_turf(src.loc)
 	if(!isnull(T))
@@ -1599,20 +1599,20 @@ GLOBAL_LIST_EMPTY(PDAs)
 	return results
 
 //! ## VR FILE MERGE ## !//
-/obj/item/pda/centcom
+obj/item/pda/centcom
 	default_cartridge = /obj/item/cartridge/captain
 	icon_state = "pda-h"
 	detonate = 0
 //	hidden = 1
 
-/obj/item/pda/pathfinder
+obj/item/pda/pathfinder
 	default_cartridge = /obj/item/cartridge/signal/science
 	icon_state = "pda-lawyer"
 
-/obj/item/pda/explorer
+obj/item/pda/explorer
 	default_cartridge = /obj/item/cartridge/signal/science
 	icon_state = "pda-det"
 
-/obj/item/pda/sar
+obj/item/pda/sar
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-h"

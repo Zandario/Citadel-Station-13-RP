@@ -2,13 +2,13 @@
 #define TRACKING_NO_COVERAGE 1
 #define TRACKING_TERMINATE 2
 
-/mob/living/silicon/ai/var/max_locations = 30
-/mob/living/silicon/ai/var/stored_locations[0]
+mob/living/silicon/ai/var/max_locations = 30
+mob/living/silicon/ai/var/stored_locations[0]
 
-/proc/InvalidPlayerTurf(turf/T as turf)
+proc/InvalidPlayerTurf(turf/T as turf)
 	return !(T && (T.z in GLOB.using_map.player_levels))
 
-/mob/living/silicon/ai/proc/get_camera_list()
+mob/living/silicon/ai/proc/get_camera_list()
 	if(src.stat == 2)
 		return
 
@@ -25,7 +25,7 @@
 	return T
 
 
-/mob/living/silicon/ai/proc/ai_camera_list(var/camera in get_camera_list())
+mob/living/silicon/ai/proc/ai_camera_list(var/camera in get_camera_list())
 	set category = "AI Commands"
 	set name = "Show Camera List"
 
@@ -40,7 +40,7 @@
 
 	return
 
-/mob/living/silicon/ai/proc/ai_store_location(loc as text)
+mob/living/silicon/ai/proc/ai_store_location(loc as text)
 	set category = "AI Commands"
 	set name = "Store Camera Location"
 	set desc = "Stores your current camera location by the given name"
@@ -66,10 +66,10 @@
 	stored_locations[loc] = L
 	to_chat(src, "Location '[loc]' stored")
 
-/mob/living/silicon/ai/proc/sorted_stored_locations()
+mob/living/silicon/ai/proc/sorted_stored_locations()
 	return sortList(stored_locations)
 
-/mob/living/silicon/ai/proc/ai_goto_location(loc in sorted_stored_locations())
+mob/living/silicon/ai/proc/ai_goto_location(loc in sorted_stored_locations())
 	set category = "AI Commands"
 	set name = "Goto Camera Location"
 	set desc = "Returns to the selected camera location"
@@ -81,7 +81,7 @@
 	var/L = stored_locations[loc]
 	src.eyeobj.setLoc(L)
 
-/mob/living/silicon/ai/proc/ai_remove_location(loc in sorted_stored_locations())
+mob/living/silicon/ai/proc/ai_remove_location(loc in sorted_stored_locations())
 	set category = "AI Commands"
 	set name = "Delete Camera Location"
 	set desc = "Deletes the selected camera location"
@@ -94,14 +94,14 @@
 	to_chat(src, "Location [loc] removed")
 
 // Used to allow the AI is write in mob names/camera name from the CMD line.
-/datum/trackable
+datum/trackable
 	var/list/names = list()
 	var/list/namecounts = list()
 	var/list/humans = list()
 	var/list/others = list()
 	var/list/cameras = list()
 
-/mob/living/silicon/ai/proc/trackable_mobs()
+mob/living/silicon/ai/proc/trackable_mobs()
 	if(usr.stat == 2)
 		return list()
 
@@ -128,7 +128,7 @@
 	src.track = TB
 	return targets
 
-/mob/living/silicon/ai/proc/ai_camera_track(var/target_name in trackable_mobs())
+mob/living/silicon/ai/proc/ai_camera_track(var/target_name in trackable_mobs())
 	set category = "AI Commands"
 	set name = "Follow With Camera"
 	set desc = "Select who you would like to track."
@@ -143,7 +143,7 @@
 	src.track = null
 	ai_actual_track(target)
 
-/mob/living/silicon/ai/proc/ai_cancel_tracking(var/forced = 0)
+mob/living/silicon/ai/proc/ai_cancel_tracking(var/forced = 0)
 	if(!cameraFollow)
 		return
 
@@ -151,7 +151,7 @@
 	cameraFollow.tracking_cancelled()
 	cameraFollow = null
 
-/mob/living/silicon/ai/proc/ai_actual_track(mob/living/target as mob)
+mob/living/silicon/ai/proc/ai_actual_track(mob/living/target as mob)
 	if(!istype(target))	return
 	var/mob/living/silicon/ai/U = usr
 
@@ -185,7 +185,7 @@
 				return
 			sleep(10)
 
-/obj/machinery/camera/attack_ai(var/mob/living/silicon/ai/user as mob)
+obj/machinery/camera/attack_ai(var/mob/living/silicon/ai/user as mob)
 	if (!istype(user))
 		return
 	if (!src.can_use())
@@ -193,10 +193,10 @@
 	user.eyeobj.setLoc(get_turf(src))
 
 
-/mob/living/silicon/ai/attack_ai(var/mob/user as mob)
+mob/living/silicon/ai/attack_ai(var/mob/user as mob)
 	ai_camera_list()
 
-/proc/camera_sort(list/L)
+proc/camera_sort(list/L)
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 
@@ -213,14 +213,14 @@
 	return L
 
 
-/mob/living/proc/near_camera()
+mob/living/proc/near_camera()
 	if (!isturf(loc))
 		return 0
 	else if(!GLOB.cameranet.checkVis(src))
 		return 0
 	return 1
 
-/mob/living/proc/tracking_status()
+mob/living/proc/tracking_status()
 	// Easy checks first.
 	// Don't detect mobs on CentCom. Since the wizard den is on CentCom, we only need this.
 	var/obj/item/card/id/id = GetIdCard()
@@ -240,12 +240,12 @@
 	 // Now, are they viewable by a camera? (This is last because it's the most intensive check)
 	return near_camera() ? TRACKING_POSSIBLE : TRACKING_NO_COVERAGE
 
-/mob/living/silicon/robot/tracking_status()
+mob/living/silicon/robot/tracking_status()
 	. = ..()
 	if(. == TRACKING_NO_COVERAGE)
 		return camera && camera.can_use() ? TRACKING_POSSIBLE : TRACKING_NO_COVERAGE
 
-/mob/living/carbon/human/tracking_status()
+mob/living/carbon/human/tracking_status()
 	//Cameras can't track people wearing an agent card or a ninja hood.
 	if(istype(head, /obj/item/clothing/head/helmet/space/rig))
 		var/obj/item/clothing/head/helmet/space/rig/helmet = head
@@ -261,16 +261,16 @@
 		if(T && (T.z in GLOB.using_map.station_levels) && hassensorlevel(src, SUIT_SENSOR_TRACKING))
 			return TRACKING_POSSIBLE
 
-/mob/living/proc/tracking_initiated()
+mob/living/proc/tracking_initiated()
 
-/mob/living/silicon/robot/tracking_initiated()
+mob/living/silicon/robot/tracking_initiated()
 	tracking_entities++
 	if(tracking_entities == 1 && has_zeroth_law())
 		to_chat(src, "<span class='warning'>Internal camera is currently being accessed.</span>")
 
-/mob/living/proc/tracking_cancelled()
+mob/living/proc/tracking_cancelled()
 
-/mob/living/silicon/robot/tracking_initiated()
+mob/living/silicon/robot/tracking_initiated()
 	tracking_entities--
 	if(!tracking_entities && has_zeroth_law())
 		to_chat(src, "<span class='notice'>Internal camera is no longer being accessed.</span>")

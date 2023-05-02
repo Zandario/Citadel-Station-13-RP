@@ -65,7 +65,7 @@ Class Procs:
 // The rest of the air subsystem is defined in air.dm
 //
 
-/datum/controller/subsystem/air
+datum/controller/subsystem/air
 	//Geometry lists
 	var/list/zones = list()
 	var/list/edges = list()
@@ -80,16 +80,16 @@ Class Procs:
 	var/current_cycle = 0
 	var/next_id = 1 //Used to keep track of zone UIDs.
 
-/datum/controller/subsystem/air/proc/add_zone(datum/zas_zone/z)
+datum/controller/subsystem/air/proc/add_zone(datum/zas_zone/z)
 	zones.Add(z)
 	z.name = "Zone [next_id++]"
 	mark_zone_update(z)
 
-/datum/controller/subsystem/air/proc/remove_zone(datum/zas_zone/z)
+datum/controller/subsystem/air/proc/remove_zone(datum/zas_zone/z)
 	zones.Remove(z)
 	zones_to_update.Remove(z)
 
-/datum/controller/subsystem/air/proc/merge(datum/zas_zone/A, datum/zas_zone/B)
+datum/controller/subsystem/air/proc/merge(datum/zas_zone/A, datum/zas_zone/B)
 	#ifdef ZAS_ASSERTIONS
 	ASSERT(istype(A))
 	ASSERT(istype(B))
@@ -104,7 +104,7 @@ Class Procs:
 		B.c_merge(A)
 		mark_zone_update(A)
 
-/datum/controller/subsystem/air/proc/connect(turf/simulated/A, turf/simulated/B, given_block, given_dir)
+datum/controller/subsystem/air/proc/connect(turf/simulated/A, turf/simulated/B, given_block, given_dir)
 	#ifdef ZAS_ASSERTIONS
 	ASSERT(istype(A))
 	ASSERT(isturf(B))
@@ -152,7 +152,7 @@ Class Procs:
 	if(direct)
 		c.mark_direct()
 
-/datum/controller/subsystem/air/proc/mark_for_update(turf/T)
+datum/controller/subsystem/air/proc/mark_for_update(turf/T)
 	#ifdef ZAS_ASSERTIONS
 	ASSERT(isturf(T))
 	#endif
@@ -161,7 +161,7 @@ Class Procs:
 	T.add_overlay(mark)
 	#endif
 
-/datum/controller/subsystem/air/proc/mark_zone_update(datum/zas_zone/Z)
+datum/controller/subsystem/air/proc/mark_zone_update(datum/zas_zone/Z)
 	#ifdef ZAS_ASSERTIONS
 	ASSERT(istype(Z))
 	#endif
@@ -170,7 +170,7 @@ Class Procs:
 	zones_to_update += Z
 	Z.needs_update = 1
 
-/datum/controller/subsystem/air/proc/mark_edge_sleeping(datum/zas_edge/E)
+datum/controller/subsystem/air/proc/mark_edge_sleeping(datum/zas_edge/E)
 	#ifdef ZAS_ASSERTIONS
 	ASSERT(istype(E))
 	#endif
@@ -179,7 +179,7 @@ Class Procs:
 	active_edges -= E
 	E.sleeping = 1
 
-/datum/controller/subsystem/air/proc/mark_edge_active(datum/zas_edge/E)
+datum/controller/subsystem/air/proc/mark_edge_active(datum/zas_edge/E)
 	#ifdef ZAS_ASSERTIONS
 	ASSERT(istype(E))
 	#endif
@@ -188,10 +188,10 @@ Class Procs:
 	active_edges += E
 	E.sleeping = 0
 
-/datum/controller/subsystem/air/proc/equivalent_pressure(datum/zas_zone/A, datum/zas_zone/B)
+datum/controller/subsystem/air/proc/equivalent_pressure(datum/zas_zone/A, datum/zas_zone/B)
 	return A.air.compare(B.air)
 
-/datum/controller/subsystem/air/proc/get_edge(datum/zas_zone/A, datum/zas_zone/B)
+datum/controller/subsystem/air/proc/get_edge(datum/zas_zone/A, datum/zas_zone/B)
 
 	if(istype(B))
 		for(var/datum/zas_edge/zone/edge in A.edges)
@@ -210,7 +210,7 @@ Class Procs:
 		edge.recheck()
 		return edge
 
-/datum/controller/subsystem/air/proc/has_same_air(turf/A, turf/B)
+datum/controller/subsystem/air/proc/has_same_air(turf/A, turf/B)
 	return A.initial_gas_mix == B.initial_gas_mix		// bad idea but fuck it.
 /*
 	if(A.oxygen != B.oxygen) return 0
@@ -221,6 +221,6 @@ Class Procs:
 	return 1
 */
 
-/datum/controller/subsystem/air/proc/remove_edge(datum/zas_edge/E)
+datum/controller/subsystem/air/proc/remove_edge(datum/zas_edge/E)
 	edges.Remove(E)
 	if(!E.sleeping) active_edges.Remove(E)

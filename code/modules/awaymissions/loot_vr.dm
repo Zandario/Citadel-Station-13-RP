@@ -1,5 +1,5 @@
 // Legacy version. Need to investigate what the hell lootdrop in loot.dm does later. -Ace
-/obj/landmark/loot_spawn
+obj/landmark/loot_spawn
 	name = "loot spawner"
 	icon_state = "grabbed1"
 	var/live_cargo = 1 // So you can turn off aliens.
@@ -7,12 +7,12 @@
 	var/spawned_faction = "hostile" // Spawned mobs can have their faction changed.
 
 
-/obj/landmark/loot_spawn/low
+obj/landmark/loot_spawn/low
 	name = "low prob loot spawner"
 	icon_state = "grabbed"
 	low_probability = 1
 
-/obj/landmark/loot_spawn/New()
+obj/landmark/loot_spawn/New()
 
 	switch(pick( \
 	low_probability * 1000;"nothing", \
@@ -347,49 +347,49 @@
 
 /**********************************/
 
-/obj/structure/symbol
+obj/structure/symbol
 	anchored = 1
 	layer = 3.5
 	name = "strange symbol"
 	icon = 'icons/obj/decals.dmi'
 
-/obj/structure/symbol/ca
+obj/structure/symbol/ca
 	desc = "It looks like a skull, or maybe a crown."
 	icon_state = "ca"
 
-/obj/structure/symbol/da
+obj/structure/symbol/da
 	desc = "It looks like a lightning bolt."
 	icon_state = "da"
 
-/obj/structure/symbol/em
+obj/structure/symbol/em
 	desc = "It looks kind of like a cup. Specifically, a martini glass."
 	icon_state = "em"
 
-/obj/structure/symbol/es
+obj/structure/symbol/es
 	desc = "It looks like two horizontal lines, with a dotted line in the middle, like a highway, or race track."
 	icon_state = "es"
 
-/obj/structure/symbol/fe
+obj/structure/symbol/fe
 	desc = "It looks like an arrow pointing upward. Maybe even a spade."
 	icon_state = "fe"
 
-/obj/structure/symbol/gu
+obj/structure/symbol/gu
 	desc = "It looks like an unfolded square box from the top with a cross on it."
 	icon_state = "gu"
 
-/obj/structure/symbol/lo
+obj/structure/symbol/lo
 	desc = "It looks like the letter 'Y' with an underline."
 	icon_state = "lo"
 
-/obj/structure/symbol/pr
+obj/structure/symbol/pr
 	desc = "It looks like a box with a cross on it."
 	icon_state = "pr"
 
-/obj/structure/symbol/sa
+obj/structure/symbol/sa
 	desc = "It looks like a right triangle with a dot to the side. It reminds you of a wooden strut between a wall and ceiling."
 	icon_state = "sa"
 
-/obj/structure/symbol/maint
+obj/structure/symbol/maint
 	name = "maintenance panel"
 	desc = "This sign suggests that the wall it's attached to can be opened somehow."
 	icon_state = "maintenance_panel"

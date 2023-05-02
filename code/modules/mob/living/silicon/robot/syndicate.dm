@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/syndicate
+mob/living/silicon/robot/syndicate
 	lawupdate = 0
 	scrambledcodes = 1
 	icon_state = "securityrobot"
@@ -6,14 +6,14 @@
 	lawchannel = "State"
 	idcard_type = /obj/item/card/id/syndicate
 
-/mob/living/silicon/robot/syndicate/Initialize(mapload)
+mob/living/silicon/robot/syndicate/Initialize(mapload)
 	if(!cell)
 		cell = new /obj/item/cell(src)
 		cell.maxcharge = 25000
 		cell.charge = 25000
 	. = ..()
 
-/mob/living/silicon/robot/syndicate/init()
+mob/living/silicon/robot/syndicate/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
 	laws = new /datum/ai_laws/syndicate_override

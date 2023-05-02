@@ -1,4 +1,4 @@
-/mob/living/silicon/pai/death(gibbed)
+mob/living/silicon/pai/death(gibbed)
 	if(card)
 		card.removePersonality()
 		src.loc = get_turf(card)

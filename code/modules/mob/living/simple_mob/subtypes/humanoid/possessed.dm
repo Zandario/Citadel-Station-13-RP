@@ -2,7 +2,7 @@
 //The base is based off of the EVA Rig.
 //todo: Add catalogue data.
 
-/mob/living/simple_mob/humanoid/possessed
+mob/living/simple_mob/humanoid/possessed
 	name = "old EVA RIG suit"
 	desc = "A light hardsuit for repairs and maintenance to the outside of habitats and vessels. Seems to be worn down and damaged. But it seems to still be moving. Is someone in it?"
 	icon = 'icons/mob/possessed.dmi'
@@ -53,13 +53,13 @@
 // Will eventually leave a full corpse with an activated RIG on it. But not yet.
 
 //Miasma Cloud "Item"
-/obj/item/grenade/chem_grenade/miasma
+obj/item/grenade/chem_grenade/miasma
 	name = "Miasma Bomb"
 	desc = "You probably shouldn't be able to see this."
 	stage = 2
 	path = 1
 
-/obj/item/grenade/chem_grenade/miasma/Initialize(mapload)
+obj/item/grenade/chem_grenade/miasma/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
@@ -77,13 +77,13 @@
 	detonate()
 
 //Has a chance to play one of the listed sounds when it moves.
-/mob/living/simple_mob/humanoid/possessed/Moved()
+mob/living/simple_mob/humanoid/possessed/Moved()
 	. = ..()
 	if(prob(5) && silenced == 0)
 		playsound(src, pick('sound/h_sounds/headcrab.ogg', 'sound/h_sounds/holla.ogg', 'sound/h_sounds/lynx.ogg', 'sound/h_sounds/mumble.ogg', 'sound/h_sounds/yell.ogg'), 50, 1)
 
 //Plays the sound every ~4 seconds.
-/mob/living/simple_mob/humanoid/possessed/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/humanoid/possessed/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -93,7 +93,7 @@
 	idle--
 
 //Dies with a variety of messages, a disgusting sound, then drops the control module, bones, blood, gibs, and a cloud of miasma.
-/mob/living/simple_mob/humanoid/possessed/Destroy()
+mob/living/simple_mob/humanoid/possessed/Destroy()
 	var/droploc = get_turf(src)
 	playsound(src, 'sound/effects/blobattack.ogg', 40, 1)
 	visible_message(SPAN_CRITICAL(pick("\The The horrid screech of metal grating metal cuts through the air as the suit's interlocking joints grind and fold inwards upon itself. A putrid wash of decayed flesh spills forwards, staining the ground dark with the contents of the collapsing RIG's long expired pilot.",
@@ -123,20 +123,20 @@
 	..()
 
 //What about if someone's in it? Well here you go.
-/mob/living/simple_mob/humanoid/possessed/Login()
+mob/living/simple_mob/humanoid/possessed/Login()
 	. = ..()
 	to_chat(src,"<b>Why are you in this [src]? Why can't you say more than a few phrases? Why. What. Kill. Kill. Kill. Kill. KILL! KILL! KILL!</b> [player_msg]")
 
-/obj/item/rig/eva/old
+obj/item/rig/eva/old
 	name = "old EVA suit control module"
 	desc = "A light hardsuit for repairs and maintenance to the outside of habitats and vessels. It appears to be pretty old and worn down."
 	isTrapped = 1
 
-/obj/item/rig/eva/old/spring
+obj/item/rig/eva/old/spring
 	springtrapped = 1
 
 //Now let's make some more!
-/mob/living/simple_mob/humanoid/possessed/industrial
+mob/living/simple_mob/humanoid/possessed/industrial
 	name = "old industrial RIG suit"
 	desc = "A heavy, powerful hardsuit used by construction crews and mining corporations. Seems to be worn down and damaged. But it seems to still be moving. Is someone in it?"
 	icon_state = "industrial-rig"
@@ -144,15 +144,15 @@
 	rig2 = /obj/item/rig/industrial/old/spring
 	armor_legacy_mob = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)
 
-/obj/item/rig/industrial/old
+obj/item/rig/industrial/old
 	name = "old Industrial hardsuit"
 	desc = "A heavy, powerful hardsuit used by construction crews and mining corporations. It appears to be pretty old and worn down."
 	isTrapped = 1
 
-/obj/item/rig/industrial/old/spring
+obj/item/rig/industrial/old/spring
 	springtrapped = 1
 
-/mob/living/simple_mob/humanoid/possessed/merc
+mob/living/simple_mob/humanoid/possessed/merc
 	name = "old crimson hardsuit"
 	desc = "A blood-red hardsuit featuring some fairly illegal technology. Seems to be worn down and damaged. But it seems to still be moving. Is someone in it?"
 	icon_state = "merc-rig"
@@ -160,15 +160,15 @@
 	rig2 = /obj/item/rig/merc/old/spring
 	armor_legacy_mob = list(melee = 80, bullet = 65, laser = 50, energy = 15, bomb = 80, bio = 100, rad = 60)
 
-/obj/item/rig/merc/old
+obj/item/rig/merc/old
 	name = "old crimson hardsuit control module"
 	desc = "A blood-red hardsuit featuring some fairly illegal technology. It appears to be pretty old and worn down."
 	isTrapped = 1
 
-/obj/item/rig/merc/old/spring
+obj/item/rig/merc/old/spring
 	springtrapped = 1
 
-/mob/living/simple_mob/humanoid/possessed/merc/feral	// Special one that moves faster attacks faster. Intended as a special mech pilot
+mob/living/simple_mob/humanoid/possessed/merc/feral	// Special one that moves faster attacks faster. Intended as a special mech pilot
 	desc = "A blood-red hardsuit featuring some fairly illegal technology. Seems to be worn down and damaged but moving with surprising speed!"
 	movement_cooldown 				= 2		//You can try running
 	base_attack_cooldown 			= 3		//You will just die tired

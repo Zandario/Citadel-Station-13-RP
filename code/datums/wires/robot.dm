@@ -1,14 +1,14 @@
-/datum/wires/robot
+datum/wires/robot
 	randomize = TRUE
 	wire_count = 5
 	holder_type = /mob/living/silicon/robot
 	proper_name = "Cyborg"
 
-/datum/wires/robot/New(atom/_holder)
+datum/wires/robot/New(atom/_holder)
 	wires = list(WIRE_AI_CONTROL, WIRE_BORG_CAMERA, WIRE_BORG_LAWCHECK, WIRE_BORG_LOCKED)
 	return ..()
 
-/datum/wires/robot/get_status()
+datum/wires/robot/get_status()
 	. = ..()
 	var/mob/living/silicon/robot/R = holder
 	. += "The LawSync light is [R.lawupdate ? "on" : "off"]."
@@ -16,7 +16,7 @@
 	. += "The Camera light is [(R.camera && R.camera.status == 1) ? "on" : "off"]."
 	. += "The lockdown light is [R.lockcharge ? "on" : "off"]."
 
-/datum/wires/robot/on_cut(wire, mend)
+datum/wires/robot/on_cut(wire, mend)
 	var/mob/living/silicon/robot/R = holder
 	switch(wire)
 		if(WIRE_BORG_LAWCHECK) //Cut the law wire, and the borg will no longer receive law updates from its AI
@@ -41,7 +41,7 @@
 			R.SetLockdown(!mend)
 	..()
 
-/datum/wires/robot/on_pulse(wire)
+datum/wires/robot/on_pulse(wire)
 	var/mob/living/silicon/robot/R = holder
 	switch(wire)
 		if(WIRE_AI_CONTROL) //pulse the AI wire to make the borg reselect an AI
@@ -56,7 +56,7 @@
 		if(WIRE_BORG_LOCKED)
 			R.SetLockdown(!R.lockdown) // Toggle
 
-/datum/wires/robot/interactable(mob/user)
+datum/wires/robot/interactable(mob/user)
 	var/mob/living/silicon/robot/R = holder
 	if(R.wiresexposed)
 		return TRUE

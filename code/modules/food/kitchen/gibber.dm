@@ -1,5 +1,5 @@
 
-/obj/machinery/gibber
+obj/machinery/gibber
 	name = "gibber"
 	desc = "The name isn't descriptive enough?"
 	icon = 'icons/obj/kitchen.dmi'
@@ -19,14 +19,14 @@
 	active_power_usage = 500
 
 //auto-gibs anything that bumps into it
-/obj/machinery/gibber/autogibber
+obj/machinery/gibber/autogibber
 	var/turf/input_plate
 
-/obj/machinery/gibber/autogibber/Initialize(mapload, newdir)
+obj/machinery/gibber/autogibber/Initialize(mapload, newdir)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/gibber/autogibber/LateInitialize()
+obj/machinery/gibber/autogibber/LateInitialize()
 	. = ..()
 	for(var/i in GLOB.cardinal)
 		var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
@@ -41,7 +41,7 @@
 		log_misc("a [src] didn't find an input plate.")
 		return
 
-/obj/machinery/gibber/autogibber/Bumped(var/atom/A)
+obj/machinery/gibber/autogibber/Bumped(var/atom/A)
 	if(!input_plate) return
 
 	if(ismob(A))
@@ -53,11 +53,11 @@
 			M.gib()
 
 
-/obj/machinery/gibber/Initialize(mapload)
+obj/machinery/gibber/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/machinery/gibber/update_overlays()
+obj/machinery/gibber/update_overlays()
 	. = ..()
 	if (dirty)
 		. += image('icons/obj/kitchen.dmi', "grbloody")
@@ -70,11 +70,11 @@
 	else
 		. += image('icons/obj/kitchen.dmi', "gridle")
 
-/obj/machinery/gibber/relaymove(mob/user as mob)
+obj/machinery/gibber/relaymove(mob/user as mob)
 	src.go_out()
 	return
 
-/obj/machinery/gibber/attack_hand(mob/user, list/params)
+obj/machinery/gibber/attack_hand(mob/user, list/params)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
@@ -83,16 +83,16 @@
 	else
 		src.startgibbing(user)
 
-/obj/machinery/gibber/examine()
+obj/machinery/gibber/examine()
 	. = ..()
 	. += "The safety guard is [emagged ? "<span class='danger'>disabled</span>" : "enabled"]."
 
-/obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
 	to_chat(user, "<span class='danger'>You [emagged ? "disable" : "enable"] the gibber safety guard.</span>")
 	return 1
 
-/obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
 	var/obj/item/grab/G = W
 
 	if(default_unfasten_wrench(user, W, 40))
@@ -108,12 +108,12 @@
 	move_into_gibber(user,G.affecting)
 	// Grab() process should clean up the grab item, no need to del it.
 
-/obj/machinery/gibber/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/machinery/gibber/MouseDroppedOnLegacy(mob/target, mob/user)
 	if(user.stat || user.restrained())
 		return
 	move_into_gibber(user,target)
 
-/obj/machinery/gibber/proc/move_into_gibber(var/mob/user,var/mob/living/victim)
+obj/machinery/gibber/proc/move_into_gibber(var/mob/user,var/mob/living/victim)
 
 	if(src.occupant)
 		to_chat(user, "<span class='danger'>The gibber is full, empty it first!</span>")
@@ -144,7 +144,7 @@
 		occupant = victim
 		update_icon()
 
-/obj/machinery/gibber/verb/eject()
+obj/machinery/gibber/verb/eject()
 	set category = "Object"
 	set name = "Empty Gibber"
 	set src in oview(1)
@@ -155,7 +155,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/gibber/proc/go_out()
+obj/machinery/gibber/proc/go_out()
 	if(operating || !src.occupant)
 		return
 	for(var/obj/O in src)
@@ -166,7 +166,7 @@
 	update_icon()
 	return
 
-/obj/machinery/gibber/proc/startgibbing(mob/user as mob)
+obj/machinery/gibber/proc/startgibbing(mob/user as mob)
 	if(src.operating)
 		return
 	if(!src.occupant)

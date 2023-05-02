@@ -1,5 +1,5 @@
 /** INTERNAL BLEEDING **/
-/datum/wound/internal_bleeding
+datum/wound/internal_bleeding
 	internal = TRUE
 	stages = list("severed artery" = 30, "cut artery" = 20, "damaged artery" = 10, "bruised artery" = 5)
 	autoheal_cutoff = 5

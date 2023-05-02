@@ -2,7 +2,7 @@
 #define LOCKON_IGNORE_RESULT "ignore_my_result"
 #define LOCKON_RANGING_BREAK_CHECK if(current_ranging_id != this_id){return LOCKON_IGNORE_RESULT}
 
-/datum/component/lockon_aiming
+datum/component/lockon_aiming
 	dupe_mode = COMPONENT_DUPE_ALLOWED
 	var/lock_icon = 'icons/mob/cameramob.dmi'
 	var/lock_icon_state = "marker"
@@ -20,7 +20,7 @@
 	var/datum/callback/on_lock
 	var/datum/callback/can_target_callback
 
-/datum/component/lockon_aiming/Initialize(range, list/typecache, amount, list/immune, datum/callback/when_locked, icon, icon_state, datum/callback/target_callback)
+datum/component/lockon_aiming/Initialize(range, list/typecache, amount, list/immune, datum/callback/when_locked, icon, icon_state, datum/callback/target_callback)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(target_callback)
@@ -49,12 +49,12 @@
 	generate_lock_visuals()
 	START_PROCESSING(SSfastprocess, src)
 
-/datum/component/lockon_aiming/Destroy()
+datum/component/lockon_aiming/Destroy()
 	clear_visuals()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
-/datum/component/lockon_aiming/proc/show_visuals()
+datum/component/lockon_aiming/proc/show_visuals()
 	LAZYINITLIST(lock_images)
 	var/mob/M = parent
 	if(!M.client)
@@ -70,7 +70,7 @@
 		M.client.images |= I
 		lock_images |= I
 
-/datum/component/lockon_aiming/proc/clear_visuals()
+datum/component/lockon_aiming/proc/clear_visuals()
 	var/mob/M = parent
 	if(!M.client)
 		return
@@ -81,42 +81,42 @@
 		qdel(i)
 	lock_images.Cut()
 
-/datum/component/lockon_aiming/proc/refresh_visuals()
+datum/component/lockon_aiming/proc/refresh_visuals()
 	clear_visuals()
 	show_visuals()
 
-/datum/component/lockon_aiming/proc/generate_lock_visuals()
+datum/component/lockon_aiming/proc/generate_lock_visuals()
 	lock_appearance = mutable_appearance(icon = lock_icon, icon_state = lock_icon_state, layer = FLOAT_LAYER)
 
-/datum/component/lockon_aiming/proc/unlock_all(refresh_vis = TRUE)
+datum/component/lockon_aiming/proc/unlock_all(refresh_vis = TRUE)
 	LAZYCLEARLIST(locked_weakrefs)
 	if(refresh_vis)
 		refresh_visuals()
 
-/datum/component/lockon_aiming/proc/unlock(atom/A, refresh_vis = TRUE)
+datum/component/lockon_aiming/proc/unlock(atom/A, refresh_vis = TRUE)
 	if(!A.weak_reference)
 		return
 	LAZYREMOVE(locked_weakrefs, A.weak_reference)
 	if(refresh_vis)
 		refresh_visuals()
 
-/datum/component/lockon_aiming/proc/lock(atom/A, refresh_vis = TRUE)
+datum/component/lockon_aiming/proc/lock(atom/A, refresh_vis = TRUE)
 	LAZYDISTINCTADD(locked_weakrefs, WEAKREF(A))
 	if(refresh_vis)
 		refresh_visuals()
 
-/datum/component/lockon_aiming/proc/add_immune_atom(atom/A)
+datum/component/lockon_aiming/proc/add_immune_atom(atom/A)
 	var/datum/weakref/R = WEAKREF(A)
 	if(immune_weakrefs && (immune_weakrefs[R]))
 		return
 	LAZYSET(immune_weakrefs, R, TRUE)
 
-/datum/component/lockon_aiming/proc/remove_immune_atom(atom/A)
+datum/component/lockon_aiming/proc/remove_immune_atom(atom/A)
 	if(!A.weak_reference || !immune_weakrefs)		//if A doesn't have a weakref how did it get on the immunity list?
 		return
 	LAZYREMOVE(immune_weakrefs, A.weak_reference)
 
-/datum/component/lockon_aiming/process(delta_time)
+datum/component/lockon_aiming/process(delta_time)
 	if(update_disabled)
 		return
 	if(!last_location)
@@ -135,7 +135,7 @@
 	if(changed)
 		autolock()
 
-/datum/component/lockon_aiming/proc/autolock()
+datum/component/lockon_aiming/proc/autolock()
 	var/mob/M = parent
 	if(!M.client)
 		return FALSE
@@ -152,11 +152,11 @@
 	refresh_visuals()
 	on_lock.Invoke(locked_weakrefs)
 
-/datum/component/lockon_aiming/proc/can_target(atom/A)
+datum/component/lockon_aiming/proc/can_target(atom/A)
 	var/mob/M = A
 	return is_type_in_typecache(A, target_typecache) && !(ismob(A) && mob_stat_check && M.stat != CONSCIOUS) && !immune_weakrefs[WEAKREF(A)]
 
-/datum/component/lockon_aiming/proc/get_nearest(turf/T, list/typecache, amount, range)
+datum/component/lockon_aiming/proc/get_nearest(turf/T, list/typecache, amount, range)
 	current_ranging_id++
 	var/this_id = current_ranging_id
 	var/list/L = list()

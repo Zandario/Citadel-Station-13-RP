@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/tool/powertool/welding
+obj/item/mecha_parts/mecha_equipment/tool/powertool/welding
 	name = "welding laser"
 	desc = "An exosuit-mounted welding laser."
 	icon_state = "mecha_laser-rig"
@@ -12,7 +12,7 @@
 
 	tooltype = /obj/item/weldingtool/electric/mounted/exosuit
 
-/obj/item/mecha_parts/mecha_equipment/tool/powertool/welding/action(var/atom/target)
+obj/item/mecha_parts/mecha_equipment/tool/powertool/welding/action(var/atom/target)
 	..()
 
 	var/datum/beam/weld_beam = null
@@ -23,7 +23,7 @@
 	if(!do_after(chassis.occupant, 0.3 SECONDS, target))
 		qdel(weld_beam)
 
-/obj/item/mecha_parts/mecha_equipment/tool/powertool/welding/attach(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/tool/powertool/welding/attach(obj/mecha/M as obj)
 	..()
 
 	if(enable_special)

@@ -1,17 +1,17 @@
-/datum/unarmed_attack/bite/sharp //eye teeth
+datum/unarmed_attack/bite/sharp //eye teeth
 	attack_verb = list("bit", "chomped on")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	sharp = 1
 	edge = 1
 
-/datum/unarmed_attack/diona
+datum/unarmed_attack/diona
 	attack_verb = list("lashed", "bludgeoned")
 	attack_noun = list("tendril")
 	eye_attack_text = "a tendril"
 	eye_attack_text_victim = "a tendril"
 
-/datum/unarmed_attack/claws
+datum/unarmed_attack/claws
 	attack_verb = list("scratched", "clawed", "slashed")
 	attack_noun = list("claws")
 	eye_attack_text = "claws"
@@ -21,7 +21,7 @@
 	sharp = 1
 	edge = 1
 
-/datum/unarmed_attack/claws/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+datum/unarmed_attack/claws/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/skill = user.skills["combat"]
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
@@ -53,48 +53,48 @@
 				if(3 to 4)	user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [pick("", "", "the side of")] [target]'s [affecting.name]!</span>")
 				if(5)		user.visible_message("<span class='danger'>[user] tears [T.his] [pick(attack_noun)] [pick("deep into", "into", "across")] [target]'s [affecting.name]!</span>")
 
-/datum/unarmed_attack/claws/strong
+datum/unarmed_attack/claws/strong
 	attack_verb = list("slashed")
 	damage = 5
 	shredding = 1
 
-/datum/unarmed_attack/claws/strong/xeno
+datum/unarmed_attack/claws/strong/xeno
 	attack_verb = list("slashed", "gouged", "stabbed")
 	damage = 10
 
-/datum/unarmed_attack/claws/strong/xeno/queen
+datum/unarmed_attack/claws/strong/xeno/queen
 	attack_verb = list("slashed", "gouged", "stabbed", "gored")
 	damage = 15
 
-/datum/unarmed_attack/bite/strong
+datum/unarmed_attack/bite/strong
 	attack_verb = list("mauled")
 	damage = 8
 	shredding = 1
 
-/datum/unarmed_attack/bite/strong/xeno
+datum/unarmed_attack/bite/strong/xeno
 	damage = 10
 
-/datum/unarmed_attack/slime_glomp
+datum/unarmed_attack/slime_glomp
 	attack_verb = list("glomped")
 	attack_noun = list("body")
 	damage = 2
 
-/datum/unarmed_attack/slime_glomp/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
+datum/unarmed_attack/slime_glomp/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
 	..()
 	user.apply_stored_shock_to(target)
 
-/datum/unarmed_attack/stomp/weak
+datum/unarmed_attack/stomp/weak
 	attack_verb = list("jumped on")
 
-/datum/unarmed_attack/stomp/weak/get_unarmed_damage()
+datum/unarmed_attack/stomp/weak/get_unarmed_damage()
 	return damage
 
-/datum/unarmed_attack/stomp/weak/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+datum/unarmed_attack/stomp/weak/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	user.visible_message("<span class='warning'>[user] jumped up and down on \the [target]'s [affecting.name]!</span>")
 	playsound(user.loc, attack_sound, 25, 1, -1)
 
-/datum/unarmed_attack/bite/sharp/numbing //Is using this against someone you are truly trying to fight a bad idea? Yes. Yes it is.
+datum/unarmed_attack/bite/sharp/numbing //Is using this against someone you are truly trying to fight a bad idea? Yes. Yes it is.
 	attack_verb = list("bit")
 	attack_noun = list("fangs")
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -102,7 +102,7 @@
 	sharp = 1
 	edge = 1
 
-/datum/unarmed_attack/bite/sharp/numbing/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+datum/unarmed_attack/bite/sharp/numbing/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 
 	attack_damage = clamp(attack_damage, 1, 5)
@@ -141,16 +141,16 @@
 					to_chat(target, "<font color='red'><b>Your [affecting.name] feels like it's going to burst! Moments later, you simply can't feel your [affecting.name] any longer, the numbness slowly spreading throughout your body!</b></font>")
 					target.bloodstr.add_reagent("numbenzyme",attack_damage)
 
-/datum/unarmed_attack/claws/shadekin
+datum/unarmed_attack/claws/shadekin
 	var/energy_gain = 3
 
-/datum/unarmed_attack/claws/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+datum/unarmed_attack/claws/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	..()
 	user.shadekin_adjust_energy(energy_gain)
 
-/datum/unarmed_attack/bite/sharp/shadekin
+datum/unarmed_attack/bite/sharp/shadekin
 	var/energy_gain = 3
 
-/datum/unarmed_attack/bite/sharp/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+datum/unarmed_attack/bite/sharp/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	..()
 	user.shadekin_adjust_energy(energy_gain)

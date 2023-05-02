@@ -1,4 +1,4 @@
-/datum/species/nevrean
+datum/species/nevrean
 	uid = SPECIES_ID_NEVREAN
 	id = SPECIES_ID_NEVREAN
 	name = SPECIES_NEVREAN

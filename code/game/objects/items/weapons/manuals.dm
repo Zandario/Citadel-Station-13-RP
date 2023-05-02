@@ -1,18 +1,18 @@
 /*********************MANUALS (BOOKS)***********************/
 
-/obj/item/book/manual
+obj/item/book/manual
 	icon = 'icons/obj/library.dmi'
 	due_date = 0 // Game time in 1/10th seconds
 	unique = 1   // 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
 
-/obj/item/book/manual/wiki_linked
+obj/item/book/manual/wiki_linked
 	name = "Wiki Linked Book"
 	author = "Buggy Coders"
 	title = "Unknown Wiki Book"
 	/// wiki page
 	var/wiki_page
 
-/obj/item/book/manual/wiki_linked/Initialize(mapload)
+obj/item/book/manual/wiki_linked/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -27,19 +27,19 @@
 
 		"}
 
-/obj/item/book/manual/wiki_linked/sop
+obj/item/book/manual/wiki_linked/sop
 	name = "Standard Operating Procedures"
 	author = "Nanotrasen"
 	title = "Standard Operating Procedures"
 	wiki_page = "Standard_Operating_Procedure"
 
-/obj/item/book/manual/engineering_construction
+obj/item/book/manual/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Station Repairs and Construction"
 
-/obj/item/book/manual/engineering_construction/Initialize(mapload)
+obj/item/book/manual/engineering_construction/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -54,13 +54,13 @@
 
 		"}
 
-/obj/item/book/manual/engineering_particle_accelerator
+obj/item/book/manual/engineering_particle_accelerator
 	name = "Particle Accelerator User's Guide"
 	icon_state ="bookParticleAccelerator"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Particle Accelerator User's Guide"
 
-/obj/item/book/manual/engineering_particle_accelerator/Initialize(mapload)
+obj/item/book/manual/engineering_particle_accelerator/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -101,13 +101,13 @@
 			"}
 
 
-/obj/item/book/manual/supermatter_engine
+obj/item/book/manual/supermatter_engine
 	name = "Supermatter Engine Operating Manual"
 	icon_state = "bookSupermatter"
 	author = "Central Engineering Division"
 	title = "Supermatter Engine Operating Manual"
 
-/obj/item/book/manual/supermatter_engine/Initialize(mapload)
+obj/item/book/manual/supermatter_engine/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<h1><strong>Guide: Supermatter Engine</strong></h1>
@@ -146,7 +146,7 @@
 
 // TESLA Engine
 
-/obj/item/book/manual/tesla_engine
+obj/item/book/manual/tesla_engine
 	name = "Tesla Operating Manual"
 	icon_state ="bookTesla"
 	author = "Engineering Encyclopedia"
@@ -215,13 +215,13 @@
 			</html>"}
 
 //R-UST port
-/obj/item/book/manual/rust_engine
+obj/item/book/manual/rust_engine
 	name = "R-UST Operating Manual"
 	icon_state = "bookSupermatter"
 	author = "Nanotrasen Engineering Safety Board"
 	title = "R-UST Operating Manual"
 
-/obj/item/book/manual/rust_engine/Initialize(mapload)
+obj/item/book/manual/rust_engine/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<h1><strong>Guide: R-UST Fusion Reactor</strong></h1>
@@ -274,19 +274,19 @@
 	author = "Nanotrasen Engineering Safety Board"
 	title = "Burn Chamber Operating Manual"
 
-/obj/item/book/manual/burn_chamber/Initialize(mapload)
+obj/item/book/manual/burn_chamber/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 
 			</html>"}
 */
-/obj/item/book/manual/fission_engine
+obj/item/book/manual/fission_engine
 	name = "Fission Reactor Operating Manual"
 	icon_state = "bookSupermatter"
 	author = "Nanotrasen Engineering Safety Board"
 	title = "Fission Reactor Operating Manual"
 
-/obj/item/book/manual/fission_engine/Initialize(mapload)
+obj/item/book/manual/fission_engine/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<h1><strong>Guide: Fission Reactor</strong></h1>
@@ -335,13 +335,13 @@
 				<li>Use the multitool from step 6 to link the core to the computer in the control room.</li>
 				</ol>
 			</html>"}
-/obj/item/book/manual/engineering_hacking
+obj/item/book/manual/engineering_hacking
 	name = "Hacking"
 	icon_state ="bookHacking"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Hacking"
 
-/obj/item/book/manual/engineering_hacking/Initialize(mapload)
+obj/item/book/manual/engineering_hacking/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -357,7 +357,7 @@
 		"}
 
 
-/obj/item/book/manual/engineering_singularity_safety
+obj/item/book/manual/engineering_singularity_safety
 	name = "Singularity Safety in Special Circumstances"
 	icon_state ="bookEngineeringSingularitySafety"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -409,7 +409,7 @@
 			"}
 
 
-/obj/item/book/manual/hydroponics_pod_people
+obj/item/book/manual/hydroponics_pod_people
 	name = "The Diona Harvest - From Seed to Market"
 	icon_state ="bookHydroponicsPodPeople"
 	author = "Farmer John"
@@ -447,7 +447,7 @@
 				"}
 
 
-/obj/item/book/manual/medical_cloning
+obj/item/book/manual/medical_cloning
 	name = "Cloning Techniques of the 26th Century"
 	icon_state ="bookCloning"
 	author = "Medical Journal, volume 3"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -540,7 +540,7 @@
 				"}
 
 
-/obj/item/book/manual/ripley_build_and_repair
+obj/item/book/manual/ripley_build_and_repair
 	name = "APLU \"Ripley\" Construction and Operation Manual"
 	icon_state ="book"
 	author = "Randall Varn, Einstein Engines Senior Mechanic"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -617,7 +617,7 @@
 			"}
 
 
-/obj/item/book/manual/research_and_development
+obj/item/book/manual/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
 	author = "Dr. L. Ight"
@@ -686,7 +686,7 @@
 			"}
 
 
-/obj/item/book/manual/robotics_cyborgs
+obj/item/book/manual/robotics_cyborgs
 	name = "Cyborgs for Dummies"
 	icon_state = "borgbook"
 	author = "XISC"
@@ -891,14 +891,14 @@
 		"}
 
 
-/obj/item/book/manual/security_space_law
+obj/item/book/manual/security_space_law
 	name = "Corporate Regulations"
 	desc = "A set of corporate guidelines for keeping law and order on privately-owned space stations."
 	icon_state = "bookSpaceLaw"
 	author = "The Company"
 	title = "Corporate Regulations"
 
-/obj/item/book/manual/security_space_law/Initialize(mapload)
+obj/item/book/manual/security_space_law/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -915,14 +915,14 @@
 
 
 
-/obj/item/book/manual/medical_diagnostics_manual
+obj/item/book/manual/medical_diagnostics_manual
 	name = "Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
 	author = "Medical Department"
 	title = "Medical Diagnostics Manual"
 
-/obj/item/book/manual/medical_diagnostics_manual/Initialize(mapload)
+obj/item/book/manual/medical_diagnostics_manual/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -963,13 +963,13 @@
 		"}
 
 
-/obj/item/book/manual/engineering_guide
+obj/item/book/manual/engineering_guide
 	name = "Engineering Textbook"
 	icon_state ="bookEngineering2"
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
 
-/obj/item/book/manual/engineering_guide/Initialize(mapload)
+obj/item/book/manual/engineering_guide/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -984,7 +984,7 @@
 		"}
 
 
-/obj/item/book/manual/chef_recipes
+obj/item/book/manual/chef_recipes
 	name = "Chef Recipes"
 	icon_state = "cooked_book"
 	author = "Victoria Ponsonby"
@@ -1043,7 +1043,7 @@
 			"}
 
 
-/obj/item/book/manual/barman_recipes
+obj/item/book/manual/barman_recipes
 	name = "Barman Recipes"
 	icon_state = "barbook"
 	author = "Sir John Rose"
@@ -1098,7 +1098,7 @@
 			"}
 
 
-/obj/item/book/manual/detective
+obj/item/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
 	icon_state ="bookDetective"
 	author = "The Company"
@@ -1141,7 +1141,7 @@
 				</body>
 			</html>"}
 
-/obj/item/book/manual/nuclear
+obj/item/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
 	icon_state ="bookNuclear"
 	author = "Syndicate"
@@ -1192,7 +1192,7 @@
 			</html>
 			"}
 
-/obj/item/book/manual/atmospipes
+obj/item/book/manual/atmospipes
 	name = "Pipes and You: Getting To Know Your Scary Tools"
 	icon_state = "pipingbook"
 	author = "Maria Crash, Senior Atmospherics Technician"
@@ -1300,7 +1300,7 @@
 			</html>
 			"}
 
-/obj/item/book/manual/evaguide
+obj/item/book/manual/evaguide
 	name = "EVA Gear and You: Not Spending All Day Inside, 2nd Edition"
 	icon_state = "evabook"
 	author = "Maria Crash, Senior Atmospherics Technician"
@@ -1427,14 +1427,14 @@
 
 //Books originally stored in manuals_vr. Consolidated.
 
-/obj/item/book/manual/standard_operating_procedure
+obj/item/book/manual/standard_operating_procedure
 	name = "Standard Operating Procedure"
 	desc = "A set of corporate guidelines for keeping space stations running smoothly."
 	icon_state = "sop"
 	author = "NanoTrasen"
 	title = "Standard Operating Procedure"
 
-/obj/item/book/manual/standard_operating_procedure/Initialize(mapload)
+obj/item/book/manual/standard_operating_procedure/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -1449,14 +1449,14 @@
 
 		"}
 
-/obj/item/book/manual/command_guide
+obj/item/book/manual/command_guide
 	name = "The Chain of Command"
 	desc = "A set of corporate guidelines outlining the entire command structure of NanoTrasen from top to bottom."
 	icon_state = "commandGuide"
 	author = "Jeremiah Acacius"
 	title = "Corporate Regulations"
 
-/obj/item/book/manual/command_guide/Initialize(mapload)
+obj/item/book/manual/command_guide/Initialize(mapload)
 	. = ..()
 	dat = {"
 
@@ -1471,13 +1471,13 @@
 
 		"}
 
-/obj/item/book/manual/the_humanized_mice
+obj/item/book/manual/the_humanized_mice
 	name = "The Humanized Mice"
 	icon_state = "hum_mic"
 	author = "Melora Creager"
 	title = "The Humanized Mice"
 
-/obj/item/book/manual/the_humanized_mice/Initialize(mapload)
+obj/item/book/manual/the_humanized_mice/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -1532,13 +1532,13 @@
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 
-/obj/item/book/manual/legal/sop_vol1
+obj/item/book/manual/legal/sop_vol1
 	name = "SOP Volume 1: Alert Levels"
 	icon_state = "sop_se"
 	author = "NanoTrasen"
 	title = "SOP Volume 1: Alert Levels"
 
-/obj/item/book/manual/legal/sop_vol1/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol1/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -1641,13 +1641,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol2
+obj/item/book/manual/legal/sop_vol2
 	name = "SOP Volume 2: Emergency Situations Protocol"
 	icon_state = "sop_se"
 	author = "NanoTrasen"
 	title = "SOP Volume 2: Emergency Situations Protocol"
 
-/obj/item/book/manual/legal/sop_vol2/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol2/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -1823,13 +1823,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol3
+obj/item/book/manual/legal/sop_vol3
 	name = "SOP Volume 3: Legal Clauses"
 	icon_state = "sop_se"
 	author = "NanoTrasen"
 	title = "SOP Volume 3: Legal Clauses"
 
-/obj/item/book/manual/legal/sop_vol3/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol3/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -1894,13 +1894,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol4
+obj/item/book/manual/legal/sop_vol4
 	name = "SOP Volume 4: Courtesy Procedures"
 	icon_state = "sop_se"
 	author = "NanoTrasen"
 	title = "SOP Volume 4: Courtesy Procedures"
 
-/obj/item/book/manual/legal/sop_vol4/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol4/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -1960,13 +1960,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol5_1
+obj/item/book/manual/legal/sop_vol5_1
 	name = "SOP Volume 5.1: Department Regulations (Cargo)"
 	icon_state = "sop_se_vol5"
 	author = "NanoTrasen"
 	title = "SOP Volume 5.1: Department Regulations (Cargo)"
 
-/obj/item/book/manual/legal/sop_vol5_1/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol5_1/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -2036,13 +2036,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol5_2
+obj/item/book/manual/legal/sop_vol5_2
 	name = "SOP Volume 5.2: Department Regulations (Engineering)"
 	icon_state = "sop_se_vol5"
 	author = "NanoTrasen"
 	title = "SOP Volume 5.2: Department Regulations (Engineering)"
 
-/obj/item/book/manual/legal/sop_vol5_2/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol5_2/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -2117,13 +2117,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol5_3
+obj/item/book/manual/legal/sop_vol5_3
 	name = "SOP Volume 5.3: Department Regulations (Medical)"
 	icon_state = "sop_se_vol5"
 	author = "NanoTrasen"
 	title = "SOP Volume 5.3: Department Regulations (Medical)"
 
-/obj/item/book/manual/legal/sop_vol5_3/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol5_3/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -2290,13 +2290,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol5_4
+obj/item/book/manual/legal/sop_vol5_4
 	name = "SOP Volume 5.4: Department Regulations (Research)"
 	icon_state = "sop_se_vol5"
 	author = "NanoTrasen"
 	title = "SOP Volume 5.4: Department Regulations (Research)"
 
-/obj/item/book/manual/legal/sop_vol5_4/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol5_4/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -2407,13 +2407,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol5_5
+obj/item/book/manual/legal/sop_vol5_5
 	name = "SOP Volume 5.5: Department Regulations (Security)"
 	icon_state = "sop_se_vol5"
 	author = "NanoTrasen"
 	title = "SOP Volume 5.5: Department Regulations (Security)"
 
-/obj/item/book/manual/legal/sop_vol5_5/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol5_5/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -2661,13 +2661,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol5_6
+obj/item/book/manual/legal/sop_vol5_6
 	name = "SOP Volume 5.6: Department Regulations (Command)"
 	icon_state = "sop_se_vol5"
 	author = "NanoTrasen"
 	title = "SOP Volume 5.6: Department Regulations (Command)"
 
-/obj/item/book/manual/legal/sop_vol5_6/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol5_6/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -2728,13 +2728,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/sop_vol5_7
+obj/item/book/manual/legal/sop_vol5_7
 	name = "SOP Volume 5.7: Department Regulations (Internal Affairs)"
 	icon_state = "sop_se_vol5"
 	author = "NanoTrasen"
 	title = "SOP Volume 5.7: Department Regulations (Internal Affairs)"
 
-/obj/item/book/manual/legal/sop_vol5_7/Initialize(mapload)
+obj/item/book/manual/legal/sop_vol5_7/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -2864,13 +2864,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/cr_vol1
+obj/item/book/manual/legal/cr_vol1
 	name = "Corporate Regulations Volume 1: Introduction"
 	icon_state = "corpreg_se"
 	author = "NanoTrasen"
 	title = "Corporate Regulations Volume 1: Introduction"
 
-/obj/item/book/manual/legal/cr_vol1/Initialize(mapload)
+obj/item/book/manual/legal/cr_vol1/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -2997,13 +2997,13 @@
 			"}
 
 
-/obj/item/book/manual/legal/cr_vol2
+obj/item/book/manual/legal/cr_vol2
 	name = "Corporate Regulations Volume 2: Infractions (Low)"
 	icon_state = "corpreg_se"
 	author = "NanoTrasen"
 	title = "Corporate Regulations Volume 2: Infractions (Low)"
 
-/obj/item/book/manual/legal/cr_vol2/Initialize(mapload)
+obj/item/book/manual/legal/cr_vol2/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -3255,13 +3255,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/cr_vol3
+obj/item/book/manual/legal/cr_vol3
 	name = "Corporate Regulations Volume 3: Infractions (Moderate)"
 	icon_state = "corpreg_se"
 	author = "NanoTrasen"
 	title = "Corporate Regulations Volume 3: Infractions (Moderate)"
 
-/obj/item/book/manual/legal/cr_vol3/Initialize(mapload)
+obj/item/book/manual/legal/cr_vol3/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -3453,13 +3453,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/cr_vol4
+obj/item/book/manual/legal/cr_vol4
 	name = "Corporate Regulations Volume 4: Infractions (Severe)"
 	icon_state = "corpreg_se"
 	author = "NanoTrasen"
 	title = "Corporate Regulations Volume 4: Infractions (Severe)"
 
-/obj/item/book/manual/legal/cr_vol4/Initialize(mapload)
+obj/item/book/manual/legal/cr_vol4/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>
@@ -3578,13 +3578,13 @@
 			</html>
 			"}
 
-/obj/item/book/manual/legal/cr_vol5
+obj/item/book/manual/legal/cr_vol5
 	name = "Corporate Regulations Volume 5: Supplementals"
 	icon_state = "corpreg_se"
 	author = "NanoTrasen"
 	title = "Corporate Regulations Volume 5: Supplementals"
 
-/obj/item/book/manual/legal/cr_vol5/Initialize(mapload)
+obj/item/book/manual/legal/cr_vol5/Initialize(mapload)
 	. = ..()
 	dat = {"<html>
 				<head>

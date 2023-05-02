@@ -1,4 +1,4 @@
-/proc/path_to_instrument_ids(path)
+proc/path_to_instrument_ids(path)
 	if(!ispath(path))
 		path = text2path(path)
 		if(!ispath(path))
@@ -13,14 +13,14 @@
 			. |= init_id
 
 /// Get all non admin_only instruments.
-/proc/get_allowed_instrument_ids()
+proc/get_allowed_instrument_ids()
 	. = list()
 	for(var/id in SSinstruments.instrument_data)
 		var/datum/instrument/I = SSinstruments.instrument_data[id]
 		if(!I.admin_only)
 			. += I.id
 
-/datum/instrument
+datum/instrument
 	/// Used for categorization subtypes.
 	abstract_type = /datum/instrument
 
@@ -51,23 +51,23 @@
 	/// Volume multiplier. Synthesized instruments are quite loud and I don't like to cut off potential detail via editing. (someone correct me if this isn't a thing)
 	var/volume_multiplier = 1/3
 
-/datum/instrument/New()
+datum/instrument/New()
 	if(isnull(id))
 		id = "[type]"
 
-/datum/instrument/proc/Initialize()
+datum/instrument/proc/Initialize()
 	if(instrument_flags & (INSTRUMENT_LEGACY | INSTRUMENT_DO_NOT_AUTOSAMPLE))
 		return
 	calculate_samples()
 
-/datum/instrument/proc/ready()
+datum/instrument/proc/ready()
 	if(instrument_flags & INSTRUMENT_LEGACY)
 		return legacy_instrument_path && legacy_instrument_ext
 	else if(instrument_flags & INSTRUMENT_DO_NOT_AUTOSAMPLE)
 		return length(samples)
 	return (length(samples) >= 128)
 
-/datum/instrument/Destroy()
+datum/instrument/Destroy()
 	SSinstruments.instrument_data -= id
 	for(var/i in songs_using)
 		var/datum/song/S = i
@@ -77,7 +77,7 @@
 	songs_using = null
 	return ..()
 
-/datum/instrument/proc/calculate_samples()
+datum/instrument/proc/calculate_samples()
 	if(!length(real_samples))
 		CRASH("No real samples defined for [id] [type] on calculate_samples() call.")
 	var/list/real_keys = list()

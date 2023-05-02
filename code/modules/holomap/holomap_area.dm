@@ -2,71 +2,71 @@
 ** Holomap vars and procs on /area
 */
 
-/area
+area
 	var/holomap_color = null // Color of this area on station holomap
 
-/area/rnd
+area/rnd
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
-/area/outpost/research
+area/outpost/research
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
-/area/server
+area/server
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
-/area/assembly
+area/assembly
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
-/area/bridge
+area/bridge
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
-/area/teleporter
+area/teleporter
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
-/area/teleporter/departing
+area/teleporter/departing
 	holomap_color = null
 
-/area/security
+area/security
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
-/area/tether/surfacebase/security
+area/tether/surfacebase/security
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
-/area/medical
+area/medical
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
-/area/tether/surfacebase/medical
+area/tether/surfacebase/medical
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
-/area/engineering
+area/engineering
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
-/area/engineering/atmos/intake
+area/engineering/atmos/intake
 	holomap_color = null
-/area/maintenance/substation/engineering
+area/maintenance/substation/engineering
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
-/area/storage/tech
+area/storage/tech
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
-/area/quartermaster
+area/quartermaster
 	holomap_color = HOLOMAP_AREACOLOR_CARGO
-/area/tether/surfacebase/mining_main
+area/tether/surfacebase/mining_main
 	holomap_color = HOLOMAP_AREACOLOR_CARGO
 
-/area/hallway
+area/hallway
 	holomap_color = HOLOMAP_AREACOLOR_HALLWAYS
-/area/bridge/hallway
+area/bridge/hallway
 	holomap_color = HOLOMAP_AREACOLOR_HALLWAYS
 
-/area/crew_quarters/sleep
+area/crew_quarters/sleep
 	holomap_color = HOLOMAP_AREACOLOR_DORMS
-/area/crew_quarters/sleep/cryo
+area/crew_quarters/sleep/cryo
 	holomap_color = null
 
 // Heads
-/area/crew_quarters/captain
+area/crew_quarters/captain
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
-/area/crew_quarters/heads/hop
+area/crew_quarters/heads/hop
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
-/area/crew_quarters/heads/hor
+area/crew_quarters/heads/hor
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
-/area/crew_quarters/heads/chief
+area/crew_quarters/heads/chief
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
-/area/crew_quarters/heads/hos
+area/crew_quarters/heads/hos
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
-/area/crew_quarters/heads/cmo
+area/crew_quarters/heads/cmo
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
-/area/crew_quarters/medbreak
+area/crew_quarters/medbreak
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL

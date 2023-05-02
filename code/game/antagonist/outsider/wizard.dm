@@ -1,6 +1,6 @@
 var/datum/antagonist/wizard/wizards
 
-/datum/antagonist/wizard
+datum/antagonist/wizard
 	id = MODE_WIZARD
 	role_type = BE_WIZARD
 	role_text = "Space Wizard"
@@ -17,11 +17,11 @@ var/datum/antagonist/wizard/wizards
 	initial_spawn_target = 1
 
 
-/datum/antagonist/wizard/New()
+datum/antagonist/wizard/New()
 	..()
 	wizards = src
 
-/datum/antagonist/wizard/create_objectives(datum/mind/wizard)
+datum/antagonist/wizard/create_objectives(datum/mind/wizard)
 
 	if(!..())
 		return
@@ -64,13 +64,13 @@ var/datum/antagonist/wizard/wizards
 		wizard.objectives |= hijack_objective
 	return
 
-/datum/antagonist/wizard/update_antag_mob(datum/mind/wizard)
+datum/antagonist/wizard/update_antag_mob(datum/mind/wizard)
 	..()
 	wizard.store_memory("<B>Remember:</B> do not forget to prepare your spells.")
 	wizard.current.real_name = "[pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)]"
 	wizard.current.name = wizard.current.real_name
 
-/datum/antagonist/wizard/equip(mob/living/carbon/human/wizard_mob)
+datum/antagonist/wizard/equip(mob/living/carbon/human/wizard_mob)
 
 	if(!..())
 		return 0
@@ -89,7 +89,7 @@ var/datum/antagonist/wizard/wizards
 	wizard_mob.equip_to_slot_or_del(new /obj/item/spellbook(wizard_mob), /datum/inventory_slot_meta/abstract/hand/right)
 	return 1
 
-/datum/antagonist/wizard/check_victory()
+datum/antagonist/wizard/check_victory()
 	var/survivor
 	for(var/datum/mind/player in current_antagonists)
 		if(!player.current || player.current.stat)
@@ -103,28 +103,28 @@ var/datum/antagonist/wizard/wizards
 /**
  * To batch-remove wizard spells. Linked to mind.dm.
  */
-/mob/proc/spellremove()
+mob/proc/spellremove()
 	for(var/spell/spell_to_remove in src.spell_list)
 		remove_spell(spell_to_remove)
 
 /**
  * Does this clothing slot count as wizard garb? (Combines a few checks)
  */
-/proc/is_wiz_garb(obj/item/clothing/Clothing)
+proc/is_wiz_garb(obj/item/clothing/Clothing)
 	return Clothing && Clothing.wizard_garb
 
 /**
  * Checks if the wizard is wearing the proper attire.
  * Made a proc so this is not repeated 14 (or more) times.
  */
-/mob/proc/wearing_wiz_garb()
+mob/proc/wearing_wiz_garb()
 	to_chat(src, "Silly creature, you're not a human. Only humans can cast this spell.")
 	return FALSE
 
 /**
  * Humans can wear clothes.
  */
-/mob/living/carbon/human/wearing_wiz_garb()
+mob/living/carbon/human/wearing_wiz_garb()
 	if(!is_wiz_garb(src.wear_suit))
 		to_chat(src, SPAN_WARNING("I don't feel strong enough without my robe."))
 		return FALSE

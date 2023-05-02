@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/hard_candy
+obj/item/reagent_containers/hard_candy
 	name = "hard candy"
 	desc = "You shouldn't be seeing this. Contact an Admin or Maintainer!"
 	icon = 'icons/obj/food.dmi'
@@ -22,7 +22,7 @@
 	var/headcolor = rgb(0, 0, 0)
 	volume = 20
 
-/obj/item/reagent_containers/hard_candy/proc/On_Consume(mob/M, mob/user)
+obj/item/reagent_containers/hard_candy/proc/On_Consume(mob/M, mob/user)
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
 		M.temporarily_remove_from_inventory(src, INV_OP_FORCE)
@@ -34,13 +34,13 @@
 				user.put_in_hands(trash)
 		qdel(src)
 
-/obj/item/reagent_containers/hard_candy/attack_self(mob/user)
+obj/item/reagent_containers/hard_candy/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	return
 
-/obj/item/reagent_containers/hard_candy/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/reagent_containers/hard_candy/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -122,7 +122,7 @@
 				bitecount++
 				On_Consume(target, user)
 
-/obj/item/reagent_containers/hard_candy/process()
+obj/item/reagent_containers/hard_candy/process()
 	if(!owner)
 		stack_trace("candy processing without an owner")
 		return PROCESS_KILL
@@ -135,7 +135,7 @@
 		succ()
 		next_succ = world.time + succ_int
 
-/obj/item/reagent_containers/hard_candy/equipped(mob/user, var/slot)
+obj/item/reagent_containers/hard_candy/equipped(mob/user, var/slot)
 	. = ..()
 	if(!iscarbon(user))
 		return
@@ -146,7 +146,7 @@
 	owner = user
 	START_PROCESSING(SSobj, src)
 
-/obj/item/reagent_containers/hard_candy/proc/succ()
+obj/item/reagent_containers/hard_candy/proc/succ()
 	if(reagents.total_volume)
 		if(reagents.total_volume > succsize)
 			reagents.trans_to_mob(owner, succsize, CHEM_INGEST)
@@ -155,11 +155,11 @@
 		succcount++
 		On_Consume(owner, owner)
 
-/obj/item/reagent_containers/hard_candy/Destroy()
+obj/item/reagent_containers/hard_candy/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/reagent_containers/hard_candy/proc/change_head_color(C)
+obj/item/reagent_containers/hard_candy/proc/change_head_color(C)
 	headcolor = C
 	cut_overlay(head)
 	head.color = C
@@ -167,7 +167,7 @@
 
 //Lollipops
 
-/obj/item/reagent_containers/hard_candy/lollipop
+obj/item/reagent_containers/hard_candy/lollipop
 	name = "lollipop"
 	desc = "A delicious lollipop."
 	icon = 'icons/obj/food.dmi'
@@ -175,7 +175,7 @@
 	item_state = "lollipop_stick"
 	trash = /obj/item/trash/lollipop_stick
 
-/obj/item/reagent_containers/hard_candy/lollipop/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("sugar", 4)
 	reagents.add_reagent("nutriment", 1)
@@ -183,111 +183,111 @@
 	change_head_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
 
 //Pre-Made Medicated lollipops.
-/obj/item/reagent_containers/hard_candy/lollipop/bicard
+obj/item/reagent_containers/hard_candy/lollipop/bicard
 	name = "Bicari-pop"
 	desc = "A candy perfect for those stingy ouchies. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 
-/obj/item/reagent_containers/hard_candy/lollipop/bicard/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/bicard/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("bicaridine", 5)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((210), (55), (45)))
 
-/obj/item/reagent_containers/hard_candy/lollipop/citalopram
+obj/item/reagent_containers/hard_candy/lollipop/citalopram
 	name = "Happy-pop"
 	desc = "A candy perfect for those frowny feelings. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 
-/obj/item/reagent_containers/hard_candy/lollipop/citalopram/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/citalopram/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("citalopram", 5)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((250), (115), (235)))
 
-/obj/item/reagent_containers/hard_candy/lollipop/combat
+obj/item/reagent_containers/hard_candy/lollipop/combat
 	name = "Commed-pop"
 	desc = "A lolipop devised to heal wounds overtime, with a slower amount of reagent use. Can be eaten or put in the mask slot"
 
-/obj/item/reagent_containers/hard_candy/lollipop/combat/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/combat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("bicaridine", 5)
 	reagents.add_reagent("kelotane", 5)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((200), (0), (255)))
 
-/obj/item/reagent_containers/hard_candy/lollipop/dexalin
+obj/item/reagent_containers/hard_candy/lollipop/dexalin
 	name = "Dexa-pop"
 	desc = "A candy perfect for those raspy gaspies. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 
-/obj/item/reagent_containers/hard_candy/lollipop/dexalin/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/dexalin/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("dexalin", 5)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((10), (150), (220)))
 
-/obj/item/reagent_containers/hard_candy/lollipop/dylovene
+obj/item/reagent_containers/hard_candy/lollipop/dylovene
 	name = "Dylo-pop"
 	desc = "A candy perfect for keeping your blood sweet. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 
-/obj/item/reagent_containers/hard_candy/lollipop/dylovene/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/dylovene/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("dylovene", 5)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((35), (160), (80)))
 
-/obj/item/reagent_containers/hard_candy/lollipop/ethylredoxrazine
+obj/item/reagent_containers/hard_candy/lollipop/ethylredoxrazine
 	name = "Ethylredox-a-pop"
 	desc = "A candy perfect for the functional alcoholic. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 
-/obj/item/reagent_containers/hard_candy/lollipop/ethylredoxrazine/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/ethylredoxrazine/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("ethylredoxrazine", 5)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((140), (110), (90)))
 
-/obj/item/reagent_containers/hard_candy/lollipop/hyronalin
+obj/item/reagent_containers/hard_candy/lollipop/hyronalin
 	name = "Hyrona-pop"
 	desc = "A candy perfect for keeping your cells from melting. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 
-/obj/item/reagent_containers/hard_candy/lollipop/hyronalin/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/hyronalin/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("hyronalin", 5)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((70), (120), (25)))
 
-/obj/item/reagent_containers/hard_candy/lollipop/kelotane
+obj/item/reagent_containers/hard_candy/lollipop/kelotane
 	name = "Kelo-pop"
 	desc = "A candy perfect for those sizzly wizzlies. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 
-/obj/item/reagent_containers/hard_candy/lollipop/kelotane/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/kelotane/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("kelotane", 5)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((250), (180), (40)))
 
-/obj/item/reagent_containers/hard_candy/lollipop/tramadol
+obj/item/reagent_containers/hard_candy/lollipop/tramadol
 	name = "Tram-pop"
 	desc = "Your reward for behaving so well in the medbay. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 
-/obj/item/reagent_containers/hard_candy/lollipop/tramadol/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/tramadol/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("tramadol", 4)
 	reagents.add_reagent("sugar", 1)
 	change_head_color(rgb((210), (50), (195)))
-/obj/item/reagent_containers/hard_candy/lollipop/tricord
+obj/item/reagent_containers/hard_candy/lollipop/tricord
 	name = "Tricord-pop"
 	desc = "A lolipop laced with tricordazine, a slow healing reagent. Can be eaten or put in the mask slot."
 	nutriment_desc = list("cough syrup" = 1, "artificial sweetness" = 1)
 	volume = 15
 
-/obj/item/reagent_containers/hard_candy/lollipop/tricord/Initialize(mapload)
+obj/item/reagent_containers/hard_candy/lollipop/tricord/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("tricordrazine", 10)
 	reagents.add_reagent("sugar", 1)

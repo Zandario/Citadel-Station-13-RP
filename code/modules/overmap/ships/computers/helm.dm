@@ -1,20 +1,20 @@
 // LEGACY_RECORD_STRUCTURE(all_waypoints, waypoint)
 GLOBAL_LIST_EMPTY(all_waypoints)
-/datum/computer_file/data/waypoint
+datum/computer_file/data/waypoint
 	var/list/fields
 	filetype = "WPT"
 
-/datum/computer_file/data/waypoint/New()
+datum/computer_file/data/waypoint/New()
 	..()
 	fields = list()
 	GLOB.all_waypoints.Add(src)
 
-/datum/computer_file/data/waypoint/Destroy()
+datum/computer_file/data/waypoint/Destroy()
 	. = ..()
 	GLOB.all_waypoints.Remove(src);
 // End LEGACY_RECORD_STRUCTURE(all_waypoints, waypoint)
 
-/obj/machinery/computer/ship/helm
+obj/machinery/computer/ship/helm
 	name = "helm control console"
 	icon_keyboard = "teleport_key"
 	icon_screen = "helm"
@@ -34,21 +34,21 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	req_one_access = list(ACCESS_GENERAL_PILOT)
 
 // fancy sprite
-/obj/machinery/computer/ship/helm/adv
+obj/machinery/computer/ship/helm/adv
 	icon_keyboard = null
 	icon_state = "adv_helm"
 	icon_screen = "adv_helm_screen"
 	light_color = "#70ffa0"
 
-/obj/machinery/computer/ship/helm/Initialize(mapload)
+obj/machinery/computer/ship/helm/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/computer/ship/helm/LateInitialize()
+obj/machinery/computer/ship/helm/LateInitialize()
 	. = ..()
 	get_known_sectors()
 
-/obj/machinery/computer/ship/helm/proc/get_known_sectors()
+obj/machinery/computer/ship/helm/proc/get_known_sectors()
 	var/area/overmap/map = locate() in world
 	for(var/obj/effect/overmap/visitable/sector/S in map)
 		if (S.known)
@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			R.fields["y"] = S.y
 			known_sectors[S.name] = R
 
-/obj/machinery/computer/ship/helm/process(delta_time)
+obj/machinery/computer/ship/helm/process(delta_time)
 	..()
 	if(autopilot && dx && dy && !autopilot_disabled)
 		var/turf/T = locate(dx,dy,GLOB.using_map.overmap_z)
@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 				linked.accelerate(direction, accellimit)
 		return
 
-/obj/machinery/computer/ship/helm/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/ship/helm/ui_interact(mob/user, datum/tgui/ui)
 	if(!linked)
 		display_reconnect_dialog(user, "helm")
 		return
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 		ui = new(user, src, "OvermapHelm", "[linked.name] Helm Control") // 565, 545
 		ui.open()
 
-/obj/machinery/computer/ship/helm/ui_data(mob/user)
+obj/machinery/computer/ship/helm/ui_data(mob/user)
 	var/list/data = ..()
 
 	var/turf/T = get_turf(linked)
@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	data["locations"] = locations
 	return data
 
-/obj/machinery/computer/ship/helm/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/ship/helm/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -255,28 +255,28 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 		playsound(src, SFX_ALIAS_TERMINAL, 50, 1)
 
 
-/obj/machinery/computer/ship/navigation
+obj/machinery/computer/ship/navigation
 	name = "navigation console"
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
 	circuit = /obj/item/circuitboard/nav
 	var/datum/tgui_module_old/ship/nav/nav_tgui
 
-/obj/machinery/computer/ship/navigation/Initialize(mapload)
+obj/machinery/computer/ship/navigation/Initialize(mapload)
 	. = ..()
 	nav_tgui = new(src)
 
-/obj/machinery/computer/ship/navigation/Destroy()
+obj/machinery/computer/ship/navigation/Destroy()
 	QDEL_NULL(nav_tgui)
 	. = ..()
 
-/obj/machinery/computer/ship/navigation/sync_linked(user)
+obj/machinery/computer/ship/navigation/sync_linked(user)
 	return nav_tgui?.sync_linked()
 
-/obj/machinery/computer/ship/navigation/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/ship/navigation/ui_interact(mob/user, datum/tgui/ui)
 	return nav_tgui?.ui_interact(user, ui)
 
-/obj/machinery/computer/ship/navigation/telescreen	//little hacky but it's only used on one ship so it should be okay
+obj/machinery/computer/ship/navigation/telescreen	//little hacky but it's only used on one ship so it should be okay
 	icon_state = "tele_nav"
 	layer = ABOVE_WINDOW_LAYER
 	icon_keyboard = null
@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	circuit = /obj/item/circuitboard/nav/tele
 	density = 0
 
-/obj/machinery/computer/ship/navigation/telescreen/update_icon()
+obj/machinery/computer/ship/navigation/telescreen/update_icon()
 	if(machine_stat & NOPOWER || machine_stat & BROKEN)
 		icon_state = "tele_off"
 		set_light(0)

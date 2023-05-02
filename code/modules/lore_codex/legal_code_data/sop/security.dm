@@ -1,4 +1,4 @@
-/datum/lore/codex/category/security_sop
+datum/lore/codex/category/security_sop
 	name = "Security SOP"
 	data = "This SOP is specific to those in the Security department, and focuses on proper arrest procedure, processing, escalation of force, and such."
 	children = list(
@@ -12,7 +12,7 @@
 		/datum/lore/codex/page/sop_hostage
 		)
 
-/datum/lore/codex/page/sop_arrest
+datum/lore/codex/page/sop_arrest
 	name = "Arrest Procedure"
 	data = "Security is responsible for the health and safety of anyone they arrest.  Unless the safety of any crewmember if threatened, all attempts at arrest \
 	are to follow this procedure.\
@@ -29,7 +29,7 @@
 	Resisting Arrest may be added to the suspect's punishment if they are found guilty of other crimes.  Return to the brig with the \
 	suspect for processing."
 
-/datum/lore/codex/page/sop_processing
+datum/lore/codex/page/sop_processing
 	name = "Processing"
 	data = "Processing is the responsibility of the Arresting Officer, or the Warden if the Warden chooses to do so.  The suspect is to be informed \
 	again of the cause for their arrest, and that they will be searched.  Suspects are assumed to be innocent until they are proven guilty.  \
@@ -49,7 +49,7 @@
 	major Law violations generally require a long brig sentence, or Holding until Transfer, as well as a fax to the VGA.  See the specific violation contained \
 	in this book for more details."
 
-/datum/lore/codex/page/sop_brigging
+datum/lore/codex/page/sop_brigging
 	name = "Brigging"
 	data = "The Prisoner is to remain handcuffed during this process, until noted.  Set their security record to Incarcerated.  They are to be brought to an available cell.  \
 	The cell timer should be set to the prisoner's sentencing time at this point, but not engaged.  They are to be brought into the cell.  If their sentence time is Hold until Transfer, \
@@ -69,14 +69,14 @@
 	their time is up and they have returned to their normal clothing.  The Prisoner's possessions are to be returned to the Prisoner at this time, and \
 	their security record must be set to Released."
 
-/datum/lore/codex/page/sop_solitary
+datum/lore/codex/page/sop_solitary
 	name = "Solitary Confinement"
 	data = "Solitary confinement is only to be used with prisoners possessing Hold until Transfer sentences that cannot be trusted with access to the normal \
 	brig, due to attempts at escaping, or posing a threat to other prisoners, or themselves.  A prisoner is to never be placed inside Solitary as a first course of \
 	action.  Prisoners inside Solitary are to still be checked up on by the Warden."
 
 // Sad that we need this page to exist.
-/datum/lore/codex/page/sop_prisoner_rights
+datum/lore/codex/page/sop_prisoner_rights
 	name = "Prisoners' Rights"
 	data = "Prisoners are still under the protections of local Sif Law and Corporate Regulations, and still have their Sapient Rights (if applicable), sans their freedom of movement.  \
 	Prisoners are entitled to have their communication devices (Radio, PDA, Communicator), provided they do not abuse them.  Departmental radios must be \
@@ -84,7 +84,7 @@
 	are also entitled to receive medical care.  Their timer continues to run while they are outside their cell in order to receive medical treatment, if \
 	leaving is needed."
 
-/datum/lore/codex/page/sop_sec_alert_levels
+datum/lore/codex/page/sop_sec_alert_levels
 	name = "Alert Levels for Security"
 	data = "For Green, Lethal weaponry are to be hidden, except in emergencies.  Non-lethal weaponry such as tasers may be worn on the belt or suit.  \
 	Officers may wear their armor vest if desired.  Helmets are permitted but not recommended.  Weaponry and specialized armor from the Armory should \
@@ -96,7 +96,7 @@
 	For Red, Security may have weapons drawn at all times, however properly handling of weapons should not be disregarded.  Body armor and \
 	helmets are mandatory.  Specialized armor may be distributed by the Warden and Head of Security, when appropiate."
 
-/datum/lore/codex/page/sop_escalation
+datum/lore/codex/page/sop_escalation
 	name = "Escalation of Force"
 	data = "Safety > Passive > Less-than-Lethal > Neutralize\
 	<br>\
@@ -113,7 +113,7 @@
 	further lethal force may constitute a Murder charge.</li>\
 	</ul>"
 
-/datum/lore/codex/page/sop_hostage
+datum/lore/codex/page/sop_hostage
 	name = "Hostage Response"
 	data = "In the event of a serious hostage situation, the hostage's life is the highest priority.  Do not do anything that will present \
 	undue risk to the hostage, or otherwise will get them killed.  Negotiation should be the first response, as opposed to violently rushing the hostage taker."

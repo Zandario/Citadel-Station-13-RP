@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
-/area/rift/surfacebase/outside/west_deep)
+turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
+area/rift/surfacebase/outside/west_deep)
 "g" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "A" = (
-/obj/random/crystal/normal_ice,
-/turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
-/area/rift/surfacebase/outside/west_deep)
+obj/random/crystal/normal_ice,
+turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
+area/rift/surfacebase/outside/west_deep)
 
 (1,1,1) = {"
 a

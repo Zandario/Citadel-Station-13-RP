@@ -3,7 +3,7 @@
  *
  * make your own subtype please, to set name/desc.
  */
-/obj/item/offhand
+obj/item/offhand
 	name = "broken offhand"
 	desc = "fire coderbus"
 	item_flags = ITEM_DROPDEL | ITEM_ABSTRACT | ITEM_NOBLUDGEON
@@ -15,7 +15,7 @@
 	unequip_sound = null
 
 // just in case
-/obj/item/offhand/can_equip(mob/M, slot, mob/user, flags)
+obj/item/offhand/can_equip(mob/M, slot, mob/user, flags)
 	if(slot != SLOT_ID_HANDS)
 		return FALSE
 	return ..()
@@ -31,7 +31,7 @@
  * - flags - inv flags
  * - ... - the rest of the args are passed into New() of the offhand.
  */
-/mob/proc/allocate_offhand(type, index, flags, ...)
+mob/proc/allocate_offhand(type, index, flags, ...)
 	RETURN_TYPE(/obj/item/offhand)
 	var/obj/item/offhand/O = new type(arglist(list(src) + args.Copy(4)))
 	if(index)

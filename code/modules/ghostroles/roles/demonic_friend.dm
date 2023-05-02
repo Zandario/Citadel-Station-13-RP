@@ -1,10 +1,10 @@
-/datum/role/ghostrole/demonic_friend
+datum/role/ghostrole/demonic_friend
 	name = "Demonic Friend"
 	desc = "You are someone's demonic friend from hell."
 	instantiator = /datum/ghostrole_instantiator/human/random/demonic_friend
 	assigned_role = "SuperFriend"
 
-/datum/role/ghostrole/demonic_friend/PostInstantiate(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
+datum/role/ghostrole/demonic_friend/PostInstantiate(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
 	if(params["spell"])
 		var/obj/effect/proc_holder/spell/targeted/summon_friend/S = spawnpoint?.params["spell"]
@@ -23,7 +23,7 @@
 	else
 		addtimer(CALLBACK(created, /mob/proc/dust), 15 SECONDS)
 
-/datum/role/ghostrole/demonic_friend/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
+datum/role/ghostrole/demonic_friend/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
 	if(params["owner"])
 		var/datum/mind/owner = spawnpoint?.params["owner"]
@@ -36,10 +36,10 @@
 	else
 		to_chat(created, span_danger("Your owner is already dead! You will soon perish."))
 
-/datum/ghostrole_instantiator/human/random/demonic_friend
+datum/ghostrole_instantiator/human/random/demonic_friend
 	equip_outfit = /datum/outfit/demonic_friend
 
-/datum/ghostrole_instantiator/human/random/demonic_friend/Equip(client/C, mob/M, list/params)
+datum/ghostrole_instantiator/human/random/demonic_friend/Equip(client/C, mob/M, list/params)
 	. = ..()
 	var/mob/living/carbon/human/H = .
 	if(!istype(H))
@@ -50,14 +50,14 @@
 		ID.registered_name = "[_M.name]'s best friend"
 		ID.update_label()
 
-/obj/structure/ghost_role_spawner/demonic_friend
+obj/structure/ghost_role_spawner/demonic_friend
 	name = "Essence of friendship"
 	desc = "Oh boy! Oh boy! A friend!"
 	icon = 'icons/obj/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 	role_type = /datum/role/ghostrole/demonic_friend
 
-/datum/outfit/demonic_friend
+datum/outfit/demonic_friend
 	name = "Demonic Friend"
 	uniform = /obj/item/clothing/under/misc/assistantformal
 	shoes = /obj/item/clothing/shoes/laceup

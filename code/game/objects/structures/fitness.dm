@@ -1,16 +1,16 @@
-/obj/structure/fitness
+obj/structure/fitness
 	icon = 'icons/obj/stationobjs.dmi'
 	anchored = 1
 	var/being_used = 0
 
-/obj/structure/fitness/punchingbag
+obj/structure/fitness/punchingbag
 	name = "punching bag"
 	desc = "A punching bag."
 	icon_state = "punchingbag"
 	density = 1
 	var/list/hit_message = list("hit", "punch", "kick", "robust")
 
-/obj/structure/fitness/punchingbag/attack_hand(mob/user, list/params)
+obj/structure/fitness/punchingbag/attack_hand(mob/user, list/params)
 	if(!istype(user))
 		..()
 		return
@@ -25,20 +25,20 @@
 			user.nutrition = user.nutrition - 5
 			to_chat(user, "<span class='warning'>You [pick(hit_message)] \the [src].</span>")
 
-/obj/structure/fitness/weightlifter
+obj/structure/fitness/weightlifter
 	name = "weightlifting machine"
 	desc = "A machine used to lift weights."
 	icon_state = "weightlifter"
 	var/weight = 1
 	var/list/qualifiers = list("with ease", "without any trouble", "with great effort")
 
-/obj/structure/fitness/weightlifter/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/fitness/weightlifter/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 75, 1)
 		weight = ((weight) % qualifiers.len) + 1
 		to_chat(user, "You set the machine's weight level to [weight].")
 
-/obj/structure/fitness/weightlifter/attack_hand(mob/user, list/params)
+obj/structure/fitness/weightlifter/attack_hand(mob/user, list/params)
 	if(!istype(user))
 		return
 	if(user.loc != src.loc)

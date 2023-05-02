@@ -1,10 +1,10 @@
-/obj/item/organ/internal/robotic/heatsink
+obj/item/organ/internal/robotic/heatsink
 	name = "heatsink"
 	icon_state = "heatsink"
 
 	organ_tag = O_HEATSINK
 
-/obj/item/organ/internal/robotic/heatsink/handle_organ_proc_special()
+obj/item/organ/internal/robotic/heatsink/handle_organ_proc_special()
 	if(owner && owner.stat != DEAD)
 		owner.bodytemperature += round(owner.robobody_count * 0.75, 0.1)
 
@@ -33,7 +33,7 @@
 
 	return
 
-/obj/item/organ/internal/robotic/heatsink/proc/get_environment_temperature()
+obj/item/organ/internal/robotic/heatsink/proc/get_environment_temperature()
 	if(istype(owner.loc, /obj/mecha))
 		var/obj/mecha/M = owner.loc
 		return M.return_temperature()

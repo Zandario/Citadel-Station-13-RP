@@ -1,10 +1,10 @@
-/datum/event/ionstorm
+datum/event/ionstorm
 	has_skybox_image = TRUE
 	var/botEmagChance = 0
 	var/cloud_hueshift
 	var/list/players = list()
 
-/datum/event/ionstorm/get_skybox_image()
+datum/event/ionstorm/get_skybox_image()
 	if(!cloud_hueshift)
 		cloud_hueshift = color_matrix_rotate_hue(rand(-3, 3) * 15)
 	var/image/res = image('icons/skybox/ionbox.dmi', "ions")
@@ -13,11 +13,11 @@
 	res.blend_mode = BLEND_ADD
 	return res
 
-/datum/event/ionstorm/setup()
+datum/event/ionstorm/setup()
 	endWhen = rand(500, 1500)
 
 // Interestingly enough, announce() actually *DOES* this event for some reason.
-/datum/event/ionstorm/announce()
+datum/event/ionstorm/announce()
 //		command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions", "Anomaly Alert")
 	for (var/mob/living/carbon/human/player in GLOB.player_list)
 		if(	!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
@@ -57,7 +57,7 @@
 					"admin","ponies","heresy","meow","Pun Pun","monkey","Ian","moron","pizza","message","spam",\
 					"director", "Hello", "Hi!"," ","nuke","crate","dwarf","xeno")
 */
-/datum/event/ionstorm/tick()
+datum/event/ionstorm/tick()
 	if(botEmagChance)
 		for(var/mob/living/bot/bot in GLOB.mob_list)
 			if(!(bot.z in affecting_z))
@@ -65,17 +65,17 @@
 			if(prob(botEmagChance))
 				bot.emag_act(1)
 
-/datum/event/ionstorm/end()
+datum/event/ionstorm/end()
 	if(prob(50))
 		spawn(rand(5000,8000))
 			command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 // Overmap version
-/datum/event/ionstorm/overmap/announce()
+datum/event/ionstorm/overmap/announce()
 	return
 
 /*
-/proc/IonStorm(botEmagChance = 10)
+proc/IonStorm(botEmagChance = 10)
 
 /*Deuryn's current project, notes here for those who care.
 Revamping the random laws so they don't suck.

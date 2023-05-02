@@ -1,4 +1,4 @@
-/datum/role/job/station/chef
+datum/role/job/station/chef
 	id = JOB_ID_CHEF
 	title = "Chef"
 	flag = CHEF
@@ -22,22 +22,22 @@
 		"Line Cook" = /datum/prototype/alt_title/chef/line
 	)
 
-/datum/prototype/alt_title/chef/souschef
+datum/prototype/alt_title/chef/souschef
 	title = "Sous-chef"
 
-/datum/prototype/alt_title/chef/kitchen_worker
+datum/prototype/alt_title/chef/kitchen_worker
 	title = "Kitchen Worker"
 	title_blurb = "A Kitchen Worker has the same duties, though they may be less experienced."
 
-/datum/prototype/alt_title/chef/line
+datum/prototype/alt_title/chef/line
 	title = "Line Cook"
 
 // Chef Alt Titles
-/datum/prototype/alt_title/chef/cook
+datum/prototype/alt_title/chef/cook
 	title = "Cook"
 	title_blurb = "A Cook has the same duties, though they may be less experienced."
 
-/datum/outfit/job/station/chef
+datum/outfit/job/station/chef
 	name = OUTFIT_JOB_NAME("Chef")
 	uniform = /obj/item/clothing/under/rank/chef
 	suit = /obj/item/clothing/suit/chef
@@ -46,6 +46,6 @@
 	pda_type = /obj/item/pda/chef
 	l_ear = /obj/item/radio/headset/headset_service
 
-/datum/outfit/job/station/chef/cook
+datum/outfit/job/station/chef/cook
 	name = OUTFIT_JOB_NAME("Cook")
 	id_pda_assignment = "Cook"

@@ -7,7 +7,7 @@
 #define BREAKER_ACTION_INUSE      5
 #define BREAKER_ACTION_WRENCH     6
 
-/obj/structure/femur_breaker
+obj/structure/femur_breaker
 	name = "femur breaker"
 	desc = "A large structure used to break the femurs of traitors and treasonists."
 	icon = 'icons/obj/femur_breaker.dmi'
@@ -22,7 +22,7 @@
 	var/slat_status = BREAKER_SLAT_RAISED
 	var/current_action = 0 // What's currently happening to the femur breaker
 
-/obj/structure/femur_breaker/examine(mob/user)
+obj/structure/femur_breaker/examine(mob/user)
 	. = ..()
 	. += "It is [anchored ? "secured to the floor." : "unsecured."]"
 	if (slat_status == BREAKER_SLAT_RAISED)
@@ -32,7 +32,7 @@
 	if (LAZYLEN(buckled_mobs))
 		. += "Someone appears to be strapped in. You can help them unbuckle, or activate the femur breaker."
 
-/obj/structure/femur_breaker/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+obj/structure/femur_breaker/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	add_fingerprint(user)
 
 	// Currently being used
@@ -72,7 +72,7 @@
 				slat_status = BREAKER_SLAT_DROPPED
 				icon_state = "breaker_drop"
 
-/obj/structure/femur_breaker/proc/damage_leg(mob/living/carbon/human/H)
+obj/structure/femur_breaker/proc/damage_leg(mob/living/carbon/human/H)
 	var/where_we_snappin_boys = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	H.emote("scream")
 	H.apply_damage(150, BRUTE, where_we_snappin_boys)
@@ -82,11 +82,11 @@
 		cracka_lackin.apply_wound(cracka)
 	H.adjustBruteLoss(rand(5,20) + (max(0, H.health))) //Make absolutely sure they end up in crit, so that they can succumb if they wish.
 
-/obj/structure/femur_breaker/proc/raise_slat()
+obj/structure/femur_breaker/proc/raise_slat()
 	slat_status = BREAKER_SLAT_RAISED
 	icon_state = "breaker_raised"
 
-/obj/structure/femur_breaker/proc/drop_slat(mob/user)
+obj/structure/femur_breaker/proc/drop_slat(mob/user)
 	if (buckled_mobs.len)
 		var/mob/living/carbon/human/H = buckled_mobs[1]
 
@@ -101,7 +101,7 @@
 	slat_status = BREAKER_SLAT_DROPPED
 	icon_state = "breaker"
 
-/obj/structure/femur_breaker/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+obj/structure/femur_breaker/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if (!anchored)
 		to_chat(usr, "<span class='warning'>The [src] needs to be wrenched to the floor!</span>")
 		return FALSE
@@ -116,7 +116,7 @@
 
 	return ..(M, force, FALSE)
 
-/obj/structure/femur_breaker/post_buckle_mob(mob/living/M)
+obj/structure/femur_breaker/post_buckle_mob(mob/living/M)
 	if (!istype(M, /mob/living/carbon/human))
 		return
 
@@ -135,7 +135,7 @@
 
 	..()
 
-/obj/structure/femur_breaker/can_be_unfasten_wrench(mob/user, silent)
+obj/structure/femur_breaker/can_be_unfasten_wrench(mob/user, silent)
 	if (LAZYLEN(buckled_mobs))
 		if (!silent)
 			to_chat(user, "<span class='warning'>Can't unfasten, someone's strapped in!</span>")
@@ -146,7 +146,7 @@
 
 	return ..()
 
-/obj/structure/femur_breaker/wrench_act(mob/living/user, obj/item/I)
+obj/structure/femur_breaker/wrench_act(mob/living/user, obj/item/I)
 	if (current_action)
 		return
 

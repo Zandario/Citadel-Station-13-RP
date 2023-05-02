@@ -3,14 +3,14 @@
  */
 // What??? Warranty? What warranty? I don't need no stinking warranty!
 
-/datum/events
+datum/events
 	var/list/events
 
-/datum/events/New()
+datum/events/New()
 	..()
 	events = new
 
-/datum/events/proc/addEventType(event_type as text)
+datum/events/proc/addEventType(event_type as text)
 	if(!(event_type in events) || !islist(events[event_type]))
 		events[event_type] = list()
 		return 1
@@ -26,7 +26,7 @@
  * * New event
  * * null on error
  */
-/datum/events/proc/addEvent(event_type as text, proc_holder, proc_name as text)
+datum/events/proc/addEvent(event_type as text, proc_holder, proc_name as text)
 	if(!event_type || !proc_holder || !proc_name)
 		return
 	addEventType(event_type)
@@ -43,7 +43,7 @@
  * Returns:
  * * null
  */
-/datum/events/proc/fireEvent()
+datum/events/proc/fireEvent()
 	//to_chat(world, "Events in [args[1]] called")
 	var/list/event = SAFEACCESS(events,args[1])
 	if(istype(event))
@@ -62,7 +62,7 @@
  * * 1 - if event cleared
  * * null - on error
  */
-/datum/events/proc/clearEvent(event_type as text, datum/event/E)
+datum/events/proc/clearEvent(event_type as text, datum/event/E)
 	if(!event_type || !E)
 		return
 	var/list/event = SAFEACCESS(events, event_type)
@@ -70,16 +70,16 @@
 	return 1
 
 
-/datum/event
+datum/event
 	var/listener
 	var/proc_name
 
-/datum/event/New(tlistener,tprocname)
+datum/event/New(tlistener,tprocname)
 	listener = tlistener
 	proc_name = tprocname
 	return ..()
 
-/datum/event/proc/Fire()
+datum/event/proc/Fire()
 	//to_chat(world, "Event fired")
 	if(listener)
 		call(listener,proc_name)(arglist(args))

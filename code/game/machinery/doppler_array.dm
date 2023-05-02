@@ -1,6 +1,6 @@
 var/list/doppler_arrays = list()
 
-/obj/machinery/doppler_array
+obj/machinery/doppler_array
 	name = "tachyon-doppler array"
 	desc = "A highly precise directional sensor array which measures the release of quants from decaying tachyons. The doppler shifting of the mirror-image formed by these quants can reveal the size, location and temporal affects of energetic disturbances within a large radius ahead of the array."
 	anchored = TRUE
@@ -9,15 +9,15 @@ var/list/doppler_arrays = list()
 
 	icon_state = "doppler"
 
-/obj/machinery/doppler_array/Initialize(mapload, newdir)
+obj/machinery/doppler_array/Initialize(mapload, newdir)
 	. = ..()
 	doppler_arrays += src
 
-/obj/machinery/doppler_array/Destroy()
+obj/machinery/doppler_array/Destroy()
 	doppler_arrays -= src
 	return ..()
 
-/obj/machinery/doppler_array/proc/sense_explosion(x0, y0, z0, devastation_range, heavy_impact_range, light_impact_range, took)
+obj/machinery/doppler_array/proc/sense_explosion(x0, y0, z0, devastation_range, heavy_impact_range, light_impact_range, took)
 	if(machine_stat & NOPOWER)
 		return
 	if(z != z0)
@@ -51,7 +51,7 @@ var/list/doppler_arrays = list()
 	for(var/mob/O in hearers(src, null))
 		O.show_message("<span class='game say'><span class='name'>[src]</span> states coldly, \"[message]\"</span>",2)
 
-/obj/machinery/doppler_array/power_change()
+obj/machinery/doppler_array/power_change()
 	..()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"

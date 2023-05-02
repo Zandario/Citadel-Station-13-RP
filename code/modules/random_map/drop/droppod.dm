@@ -4,7 +4,7 @@
 #define SD_EMPTY_TILE 3
 #define SD_SUPPLY_TILE 7
 
-/datum/random_map/droppod
+datum/random_map/droppod
 	descriptor = "drop pod"
 	initial_wall_cell = 0
 	limit_x = 3
@@ -23,7 +23,7 @@
 	var/placement_explosion_light = 6
 	var/placement_explosion_flash = 4
 
-/datum/random_map/droppod/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/supplied_drop, var/list/supplied_drops, var/automated)
+datum/random_map/droppod/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/supplied_drop, var/list/supplied_drops, var/automated)
 
 	if(supplied_drop)
 		drop_type = supplied_drop
@@ -38,7 +38,7 @@
 	if(limit_y % 2 == 0) limit_y++
 	..()
 
-/datum/random_map/droppod/generate_map()
+datum/random_map/droppod/generate_map()
 
 	// No point calculating these 200 times.
 	var/x_midpoint = CEILING(limit_x / 2, 1)
@@ -78,7 +78,7 @@
 		map[current_cell] = SD_SUPPLY_TILE
 	return 1
 
-/datum/random_map/droppod/apply_to_map()
+datum/random_map/droppod/apply_to_map()
 	if(placement_explosion_dev || placement_explosion_heavy || placement_explosion_light || placement_explosion_flash)
 		var/turf/T = locate((origin_x + CEILING(limit_x / 2, 1)-1), (origin_y + CEILING(limit_y / 2, 1)-1), origin_z)
 		if(istype(T))
@@ -86,7 +86,7 @@
 			sleep(15) // Let the explosion finish proccing before we ChangeTurf(), otherwise it might destroy our spawned objects.
 	return ..()
 
-/datum/random_map/droppod/get_appropriate_path(var/value)
+datum/random_map/droppod/get_appropriate_path(var/value)
 	if(value == SD_FLOOR_TILE || value == SD_SUPPLY_TILE)
 		return floor_type
 	else if(value == SD_WALL_TILE)
@@ -96,7 +96,7 @@
 	return null
 
 // Pods are circular. Get the direction this object is facing from the center of the pod.
-/datum/random_map/droppod/get_spawn_dir(var/x, var/y)
+datum/random_map/droppod/get_spawn_dir(var/x, var/y)
 	var/x_midpoint = CEILING(limit_x / 2, 1)
 	var/y_midpoint = CEILING(limit_y / 2, 1)
 	if(x == x_midpoint && y == y_midpoint)
@@ -107,7 +107,7 @@
 		return null
 	return get_dir(middle, target)
 
-/datum/random_map/droppod/get_additional_spawns(var/value, var/turf/T, var/spawn_dir)
+datum/random_map/droppod/get_additional_spawns(var/value, var/turf/T, var/spawn_dir)
 
 	// Splatter anything under us that survived the explosion.
 	if(value != SD_EMPTY_TILE && T.contents.len)
@@ -123,7 +123,7 @@
 	else if(value == SD_SUPPLY_TILE)
 		get_spawned_drop(T)
 
-/datum/random_map/droppod/proc/get_spawned_drop(var/turf/T)
+datum/random_map/droppod/proc/get_spawned_drop(var/turf/T)
 	var/obj/structure/bed/chair/C = new(T)
 	C.set_light(3, l_color = "#CC0000")
 	var/mob/living/drop
@@ -147,7 +147,7 @@
 				drop.buckled = null
 			drop.forceMove(T)
 
-/datum/admins/proc/call_drop_pod()
+datum/admins/proc/call_drop_pod()
 	set category = "Fun"
 	set desc = "Call an immediate drop pod on your location."
 	set name = "Call Drop Pod"

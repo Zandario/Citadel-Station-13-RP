@@ -1,4 +1,4 @@
-/datum/antagonist
+datum/antagonist
 
 	// Text shown when becoming this antagonist.
 	var/list/restricted_jobs =     list()   // Jobs that cannot be this antagonist (depending on config)
@@ -84,7 +84,7 @@
 	var/can_hear_aooc = TRUE		// If FALSE, the antag can neither speak nor hear AOOC. If TRUE, they can at least hear it.
 	var/can_speak_aooc = TRUE		// If TRUE, the antag can freely spean in AOOC.
 
-/datum/antagonist/New()
+datum/antagonist/New()
 	..()
 	cur_max = hard_cap
 	get_starting_locations()
@@ -98,10 +98,10 @@
 		if(role_text) hud_icon_reference[role_text] = antaghud_indicator
 		if(faction_role_text) hud_icon_reference[faction_role_text] = antaghud_indicator
 
-/datum/antagonist/proc/tick()
+datum/antagonist/proc/tick()
 	return 1
 
-/datum/antagonist/proc/get_candidates(var/ghosts_only)
+datum/antagonist/proc/get_candidates(var/ghosts_only)
 	candidates = list() // Clear.
 
 	// Prune restricted status. Broke it up for readability.
@@ -129,12 +129,12 @@
 
 	return candidates
 
-/datum/antagonist/proc/attempt_random_spawn()
+datum/antagonist/proc/attempt_random_spawn()
 	build_candidate_list(flags & (ANTAG_OVERRIDE_MOB|ANTAG_OVERRIDE_JOB))
 	attempt_spawn()
 	finalize_spawn()
 
-/datum/antagonist/proc/attempt_late_spawn(var/datum/mind/player)
+datum/antagonist/proc/attempt_late_spawn(var/datum/mind/player)
 	if(!can_late_spawn())
 		return 0
 	if(!istype(player))
@@ -152,7 +152,7 @@
 		add_antagonist(player,0,0,0,1,1)
 	return 1
 
-/datum/antagonist/proc/build_candidate_list(var/ghosts_only)
+datum/antagonist/proc/build_candidate_list(var/ghosts_only)
 	// Get the raw list of potential players.
 	update_current_antag_max()
 	candidates = get_candidates(ghosts_only)
@@ -162,7 +162,7 @@
 //Attempting to spawn an antag role with ANTAG_OVERRIDE_JOB should be done before jobs are assigned,
 //so that they do not occupy regular job slots. All other antag roles should be spawned after jobs are
 //assigned, so that job restrictions can be respected.
-/datum/antagonist/proc/attempt_spawn(var/rebuild_candidates = 1)
+datum/antagonist/proc/attempt_spawn(var/rebuild_candidates = 1)
 
 	// Update our boundaries.
 	if(!candidates.len)
@@ -176,7 +176,7 @@
 
 	return 1
 
-/datum/antagonist/proc/draft_antagonist(var/datum/mind/player)
+datum/antagonist/proc/draft_antagonist(var/datum/mind/player)
 	//Check if the player can join in this antag role, or if the player has already been given an antag role.
 	if(!can_become_antag(player) || (player.assigned_role in roundstart_restricted))
 		log_debug(SPAN_DEBUG("[player.ckey] was selected for [role_text] by lottery, but is not allowed to be that role."))
@@ -201,7 +201,7 @@
 	return 1
 
 //Spawns all pending_antagonists. This is done separately from attempt_spawn in case the game mode setup fails.
-/datum/antagonist/proc/finalize_spawn()
+datum/antagonist/proc/finalize_spawn()
 	if(!pending_antagonists)
 		return
 
@@ -210,7 +210,7 @@
 		add_antagonist(player,0,0,1)
 
 //Resets all pending_antagonists, clearing their special_role (and assigned_role if ANTAG_OVERRIDE_JOB is set)
-/datum/antagonist/proc/reset()
+datum/antagonist/proc/reset()
 	for(var/datum/mind/player in pending_antagonists)
 		if(flags & ANTAG_OVERRIDE_JOB)
 			player.assigned_role = null

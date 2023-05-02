@@ -1,4 +1,4 @@
-/obj/structure/blob/shield
+obj/structure/blob/shield
 	name = "thick blob"
 	base_name = "thick"
 	icon = 'icons/mob/blob.dmi'
@@ -8,10 +8,10 @@
 	point_return = 4
 	CanAtmosPass = ATMOS_PASS_AIR_BLOCKED
 
-/obj/structure/blob/shield/core
+obj/structure/blob/shield/core
 	point_return = 0
 
-/obj/structure/blob/shield/update_icon()
+obj/structure/blob/shield/update_icon()
 	..()
 	if(integrity <= 75)
 		icon_state = "blob_shield_damaged"

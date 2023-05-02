@@ -1,7 +1,7 @@
-/proc/gibs(atom/location, var/datum/dna/MobDNA, gibber_type = /obj/effect/gibspawner/generic, var/fleshcolor, var/bloodcolor)
+proc/gibs(atom/location, var/datum/dna/MobDNA, gibber_type = /obj/effect/gibspawner/generic, var/fleshcolor, var/bloodcolor)
 	new gibber_type(location,MobDNA,fleshcolor,bloodcolor)
 
-/obj/effect/gibspawner
+obj/effect/gibspawner
 	var/sparks = 0 //whether sparks spread on Gib()
 	var/list/gibtypes = list()
 	var/list/gibamounts = list()
@@ -9,14 +9,14 @@
 	var/fleshcolor //Used for gibbed humans.
 	var/bloodcolor //Used for gibbed humans.
 
-/obj/effect/gibspawner/New(location, datum/dna/MobDNA, fleshcolor, bloodcolor)
+obj/effect/gibspawner/New(location, datum/dna/MobDNA, fleshcolor, bloodcolor)
 	..()
 
 	if(fleshcolor) src.fleshcolor = fleshcolor
 	if(bloodcolor) src.bloodcolor = bloodcolor
 	Gib(loc,MobDNA)
 
-/obj/effect/gibspawner/proc/Gib(atom/location, datum/dna/MobDNA = null)
+obj/effect/gibspawner/proc/Gib(atom/location, datum/dna/MobDNA = null)
 	if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
 		to_chat(world, SPAN_WARNING("Gib list length mismatch!"))
 		return

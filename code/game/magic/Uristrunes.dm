@@ -1,7 +1,7 @@
 
 var/list/word_to_uristrune_table = null
 
-/proc/word_to_uristrune_bit(word)
+proc/word_to_uristrune_bit(word)
 	if(word_to_uristrune_table == null)
 		word_to_uristrune_table = list()
 
@@ -20,7 +20,7 @@ var/list/word_to_uristrune_table = null
 
 
 
-/proc/get_uristrune_cult(word1, word2, word3)
+proc/get_uristrune_cult(word1, word2, word3)
 	var/animated
 
 	if((word1 == cultwords["travel"] && word2 == cultwords["self"])						\
@@ -59,7 +59,7 @@ var/list/word_to_uristrune_table = null
 
 var/list/uristrune_cache = list()
 
-/proc/get_uristrune(symbol_bits, animated = 0)
+proc/get_uristrune(symbol_bits, animated = 0)
 	var/lookup = "[symbol_bits]-[animated]"
 
 	if(lookup in uristrune_cache)

@@ -9,7 +9,7 @@
 /*******
 * film *
 *******/
-/obj/item/camera_film
+obj/item/camera_film
 	name = "film cartridge"
 	icon = 'icons/obj/items.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
@@ -23,7 +23,7 @@
 ********/
 var/global/photo_count = 0
 
-/obj/item/photo
+obj/item/photo
 	name = "photo"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "photo"
@@ -37,31 +37,31 @@ var/global/photo_count = 0
 	var/icon/tiny
 	var/photo_size = 3
 
-/obj/item/photo/Initialize(mapload)
+obj/item/photo/Initialize(mapload)
 	. = ..()
 	id = photo_count++
 
-/obj/item/photo/attack_self(mob/user)
+obj/item/photo/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	user.examinate(src)
 
-/obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
+obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/pen))
 		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text, 128)
 		if(loc == user && user.stat == 0)
 			scribble = txt
 	..()
 
-/obj/item/photo/examine(mob/user)
+obj/item/photo/examine(mob/user)
 	if(in_range(user, src))
 		show(user)
 		return ..()
 	else
 		to_chat(user, "<span class='notice'>It is too far away.</span>")
 
-/obj/item/photo/proc/show(mob/user as mob)
+obj/item/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo_[id].png")
 	user << browse("<html><head><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
@@ -71,7 +71,7 @@ var/global/photo_count = 0
 	onclose(user, "[name]")
 	return
 
-/obj/item/photo/verb/rename()
+obj/item/photo/verb/rename()
 	set name = "Rename photo"
 	set category = "Object"
 	set src in usr
@@ -87,14 +87,14 @@ var/global/photo_count = 0
 /**************
 * photo album *
 **************/
-/obj/item/storage/photo_album
+obj/item/storage/photo_album
 	name = "Photo album"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
 	can_hold = list(/obj/item/photo)
 
-/obj/item/storage/photo_album/OnMouseDropLegacy(obj/over_object as obj)
+obj/item/storage/photo_album/OnMouseDropLegacy(obj/over_object as obj)
 	if((istype(usr, /mob/living/carbon/human)))
 		if(!( istype(over_object, /atom/movable/screen) ))
 			return ..()
@@ -107,7 +107,7 @@ var/global/photo_count = 0
 /*********
 * camera *
 *********/
-/obj/item/camera
+obj/item/camera
 	name = "camera"
 	icon = 'icons/obj/items.dmi'
 	desc = "A polaroid camera. 10 photos left."
@@ -125,7 +125,7 @@ var/global/photo_count = 0
 	var/size = 3
 	var/list/picture_planes = list()
 
-/obj/item/camera/verb/change_size()
+obj/item/camera/verb/change_size()
 	set name = "Set Photo Focus"
 	set category = "Object"
 	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3,5,7)
@@ -133,7 +133,7 @@ var/global/photo_count = 0
 		size = nsize
 		to_chat(usr, "<span class='notice'>Camera will now take [size]x[size] photos.</span>")
 
-/obj/item/camera/attack_self(mob/user)
+obj/item/camera/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -145,7 +145,7 @@ var/global/photo_count = 0
 	to_chat(user, "You switch the camera [on ? "on" : "off"].")
 	return
 
-/obj/item/camera/attackby(obj/item/I as obj, mob/user as mob)
+obj/item/camera/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
 			to_chat(user, "<span class='notice'>[src] still has some film in it!</span>")
@@ -158,7 +158,7 @@ var/global/photo_count = 0
 	..()
 
 
-/obj/item/camera/proc/get_icon(list/turfs, turf/center)
+obj/item/camera/proc/get_icon(list/turfs, turf/center)
 
 	//Bigger icon base to capture those icons that were shifted to the next tile
 	//i.e. pretty much all wall-mounted machinery
@@ -208,7 +208,7 @@ var/global/photo_count = 0
 	return res
 
 
-/obj/item/camera/proc/get_mobs(turf/the_turf as turf)
+obj/item/camera/proc/get_mobs(turf/the_turf as turf)
 	var/mob_detail
 	for(var/mob/living/carbon/A in the_turf)
 		if(A.invisibility) continue
@@ -228,7 +228,7 @@ var/global/photo_count = 0
 
 	return mob_detail
 
-/obj/item/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+obj/item/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(!on || !pictures_left || ismob(target.loc)) return
 	captureimage(target, user, flag)
 
@@ -243,7 +243,7 @@ var/global/photo_count = 0
 		icon_state = icon_on
 		on = 1
 
-/obj/item/camera/proc/can_capture_turf(turf/T, mob/user)
+obj/item/camera/proc/can_capture_turf(turf/T, mob/user)
 	var/viewer = user
 	if(user.client)		//To make shooting through security cameras possible
 		viewer = user.client.eye
@@ -251,7 +251,7 @@ var/global/photo_count = 0
 
 	return can_see
 
-/obj/item/camera/proc/captureimage(atom/target, mob/user, flag)
+obj/item/camera/proc/captureimage(atom/target, mob/user, flag)
 	var/x_c = target.x - (size-1)/2
 	var/y_c = target.y + (size-1)/2
 	var/z_c	= target.z
@@ -271,7 +271,7 @@ var/global/photo_count = 0
 
 	printpicture(user, p)
 
-/obj/item/camera/proc/createpicture(atom/target, mob/user, list/turfs, mobs, flag)
+obj/item/camera/proc/createpicture(atom/target, mob/user, list/turfs, mobs, flag)
 	var/icon/photoimage = get_icon(turfs, target)
 
 	var/icon/small_img = icon(photoimage)
@@ -294,12 +294,12 @@ var/global/photo_count = 0
 	p.photo_size = size
 	return p
 
-/obj/item/camera/proc/printpicture(mob/user, obj/item/photo/p)
+obj/item/camera/proc/printpicture(mob/user, obj/item/photo/p)
 	p.loc = user.loc
 	if(!user.get_inactive_held_item())
 		user.put_in_inactive_hand(p)
 
-/obj/item/photo/proc/copy(var/copy_id = 0)
+obj/item/photo/proc/copy(var/copy_id = 0)
 	var/obj/item/photo/p = new/obj/item/photo()
 
 	p.name = name
@@ -317,7 +317,7 @@ var/global/photo_count = 0
 
 	return p
 
-/obj/item/camera/spooky
+obj/item/camera/spooky
 	name = "camera obscura"
 	desc = "A polaroid camera, some say it can see ghosts!"
 	//see_ghosts = CAMERA_SEE_GHOSTS_BASIC (We should discuss whether this should exist before I bother coding it.)

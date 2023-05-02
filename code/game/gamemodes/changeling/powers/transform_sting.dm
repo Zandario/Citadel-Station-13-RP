@@ -1,5 +1,5 @@
 //Suggested to leave unchecked because this is why we can't have nice things.
-/datum/power/changeling/transformation_sting
+datum/power/changeling/transformation_sting
 	name = "Transformation Sting"
 	desc = "We silently sting a human, injecting a retrovirus that forces them to transform into another."
 	helptext = "Does not provide a warning to others. The victim will transform much like a changeling would."
@@ -7,7 +7,7 @@
 	genomecost = 3
 	verbpath = /mob/proc/changeling_transformation_sting
 
-/mob/proc/changeling_transformation_sting()
+mob/proc/changeling_transformation_sting()
 	set category = "Changeling"
 	set name = "Transformation sting (40)"
 	set desc="Sting target"

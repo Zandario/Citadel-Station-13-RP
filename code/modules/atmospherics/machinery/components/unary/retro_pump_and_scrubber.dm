@@ -2,17 +2,17 @@
 ///
 /// Vents first
 
-/obj/machinery/atmospherics/component/unary/vent_pump/retro
+obj/machinery/atmospherics/component/unary/vent_pump/retro
 	icon_state = "map_vent"
 
-/obj/machinery/atmospherics/component/unary/vent_pump/retro/on
+obj/machinery/atmospherics/component/unary/vent_pump/retro/on
 	use_power = USE_POWER_IDLE
 	icon_state = "map_vent_out"
 
-/obj/machinery/atmospherics/component/unary/vent_pump/retro/on/welded
+obj/machinery/atmospherics/component/unary/vent_pump/retro/on/welded
 	welded = 1
 
-/obj/machinery/atmospherics/component/unary/vent_pump/retro/update_icon(safety = 0)
+obj/machinery/atmospherics/component/unary/vent_pump/retro/update_icon(safety = 0)
 	if(!check_icon_cache())
 		return
 
@@ -40,17 +40,17 @@
 //////////////////////
 /// Scrubbers now ////
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/retro
+obj/machinery/atmospherics/component/unary/vent_scrubber/retro
 	icon_state = "map_scrubber_off"	/// Will get replaced on mapload
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/retro/on
+obj/machinery/atmospherics/component/unary/vent_scrubber/retro/on
 	use_power = USE_POWER_IDLE
 	icon_state = "map_scrubber_on"
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/retro/on/welded
+obj/machinery/atmospherics/component/unary/vent_scrubber/retro/on/welded
 	welded = 1
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/retro/update_icon(safety = 0)
+obj/machinery/atmospherics/component/unary/vent_scrubber/retro/update_icon(safety = 0)
 	if(!check_icon_cache())
 		return
 

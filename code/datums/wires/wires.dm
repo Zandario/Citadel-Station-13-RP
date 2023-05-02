@@ -1,4 +1,4 @@
-/datum/wires
+datum/wires
 	/// TRUE if the wires will be different every time a new wire datum is created.
 	var/randomize = FALSE
 	/// The atom the wires belong too. For example: an airlock.
@@ -19,7 +19,7 @@
 	/// An associative list of signalers attached to the wires. The wire color is the key, and the signaler object reference is the value.
 	var/list/assemblies
 
-/datum/wires/New(atom/_holder)
+datum/wires/New(atom/_holder)
 	..()
 	if(!istype(_holder, holder_type))
 		CRASH("Our holder is null/the wrong type!")
@@ -44,7 +44,7 @@
 		else
 			colors = GLOB.wire_color_directory[holder_type]
 
-/datum/wires/Destroy()
+datum/wires/Destroy()
 	holder = null
 	for(var/color in colors)
 		detach_assembly(color)
@@ -56,7 +56,7 @@
  * In the `colors` list, the name of the color is the key, and the wire is the value.
  * For example: `colors["red"] = WIRE_ELECTRIFY`. This will look like `list("red" = WIRE_ELECTRIFY)` internally.
  */
-/datum/wires/proc/randomize()
+datum/wires/proc/randomize()
 	var/static/list/possible_colors = list("red", "blue", "green", "darkmagenta", "orange", "brown", "gold", "grey", "cyan", "white", "purple", "pink", "darkslategrey", "yellow")
 	var/list/my_possible_colors = possible_colors.Copy()
 
@@ -72,30 +72,30 @@
  * Arugments:
  * * user - the mob trying to interact with the wires.
  */
-/datum/wires/proc/Interact(mob/user)
+datum/wires/proc/Interact(mob/user)
 	if(user && istype(user) && holder && interactable(user))
 		ui_interact(user)
 
 /**
  * Base proc, intended to be overriden. Wire datum specific checks you want to run before the TGUI is shown to the user should go here.
  */
-/datum/wires/proc/interactable(mob/user)
+datum/wires/proc/interactable(mob/user)
 	return TRUE
 
 /// Users will be interacting with our holder object and not the wire datum directly, therefore we need to return the holder.
-/datum/wires/ui_host()
+datum/wires/ui_host()
 	return holder
 
-/datum/wires/ui_interact(mob/user, datum/tgui/ui = null)
+datum/wires/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Wires", "[proper_name] wires")
 		ui.open()
 
-/datum/wires/ui_state(mob/user, datum/tgui_module/module)
+datum/wires/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/datum/wires/ui_data(mob/user)
+datum/wires/ui_data(mob/user)
 	var/list/data = list()
 	var/list/replace_colors
 
@@ -150,7 +150,7 @@
 	data["status"] = status
 	return data
 
-/datum/wires/ui_act(action, list/params)
+datum/wires/ui_act(action, list/params)
 	if(..())
 		return
 
@@ -214,7 +214,7 @@
  * Arguments:
  * * user - the mob who is interacting with the wires.
  */
-/datum/wires/proc/can_see_wire_info(mob/user)
+datum/wires/proc/can_see_wire_info(mob/user)
  	// TODO: Reimplement this if we ever get Advanced Admin Interaction.
 	// if(user.can_admin_interact())
 		// return TRUE
@@ -226,20 +226,20 @@
 /**
  * Base proc, intended to be overwritten. Put wire information you'll see at the botton of the TGUI window here, such as "The red light is blinking".
  */
-/datum/wires/proc/get_status()
+datum/wires/proc/get_status()
 	return list()
 
 /**
  * Clears the `colors` list, and randomizes it to a new set of color-to-wire relations.
  */
-/datum/wires/proc/shuffle_wires()
+datum/wires/proc/shuffle_wires()
 	colors.Cut()
 	randomize()
 
 /**
  * Repairs all cut wires.
  */
-/datum/wires/proc/repair()
+datum/wires/proc/repair()
 	cut_wires.Cut()
 
 /**
@@ -248,7 +248,7 @@
  * Arguments:
  * * duds - the amount of dud wires to generate.
  */
-/datum/wires/proc/add_duds(duds)
+datum/wires/proc/add_duds(duds)
 	while(duds)
 		var/dud = WIRE_DUD_PREFIX + "[--duds]"
 		if(dud in wires)
@@ -261,7 +261,7 @@
  * Arugments:
  * * wire - a wire define, NOT a color. For example `WIRE_ELECTRIFY`.
  */
-/datum/wires/proc/is_dud(wire)
+datum/wires/proc/is_dud(wire)
 	return findtext(wire, WIRE_DUD_PREFIX, 1, length(WIRE_DUD_PREFIX) + 1)
 
 /**
@@ -270,7 +270,7 @@
  * Arugments:
  * * color - a wire color.
  */
-/datum/wires/proc/is_dud_color(color)
+datum/wires/proc/is_dud_color(color)
 	return is_dud(get_wire(color))
 
 /**
@@ -279,7 +279,7 @@
  * Arugments:
  * * color - a wire color.
  */
-/datum/wires/proc/get_wire(color)
+datum/wires/proc/get_wire(color)
 	return colors[color]
 
 /**
@@ -288,7 +288,7 @@
  * Arugments:
  * * wire - a wire define, NOT a color. For example `WIRE_ELECTRIFY`.
  */
-/datum/wires/proc/is_cut(wire)
+datum/wires/proc/is_cut(wire)
 	return (wire in cut_wires)
 
 /**
@@ -297,13 +297,13 @@
  * Arugments:
  * * wire - a wire color.
  */
-/datum/wires/proc/is_color_cut(color)
+datum/wires/proc/is_color_cut(color)
 	return is_cut(get_wire(color))
 
 /**
  * Determines if all of the wires are cut. Returns TRUE they're all cut, FALSE otherwise.
  */
-/datum/wires/proc/is_all_cut()
+datum/wires/proc/is_all_cut()
 	return (length(cut_wires) == length(wires))
 
 /**
@@ -312,7 +312,7 @@
  * Arugments:
  * * wire - a wire define, NOT a color. For example `WIRE_ELECTRIFY`.
  */
-/datum/wires/proc/cut(wire)
+datum/wires/proc/cut(wire)
 	if(is_cut(wire))
 		cut_wires -= wire
 		on_cut(wire, mend = TRUE)
@@ -326,19 +326,19 @@
  * Arugments:
  * * color - a wire color.
  */
-/datum/wires/proc/cut_color(color)
+datum/wires/proc/cut_color(color)
 	cut(get_wire(color))
 
 /**
  * Cuts a random wire.
  */
-/datum/wires/proc/cut_random()
+datum/wires/proc/cut_random()
 	cut(wires[rand(1, length(wires))])
 
 /**
  * Cuts all wires.
  */
-/datum/wires/proc/cut_all()
+datum/wires/proc/cut_all()
 	for(var/wire in wires)
 		cut(wire)
 
@@ -352,7 +352,7 @@
  * * wire - a wire define, NOT color. For example 'WIRE_ELECTRIFY'.
  * * mend - TRUE if we're mending the wire. FALSE if we're cutting.
  */
-/datum/wires/proc/on_cut(wire, mend = FALSE)
+datum/wires/proc/on_cut(wire, mend = FALSE)
 	return
 
 /**
@@ -361,7 +361,7 @@
  * Arugments:
  * * wire - a wire define, NOT a color. For example `WIRE_ELECTRIFY`.
  */
-/datum/wires/proc/pulse(wire)
+datum/wires/proc/pulse(wire)
 	if(is_cut(wire))
 		return
 	on_pulse(wire)
@@ -372,7 +372,7 @@
  * Arugments:
  * * wire - a wire color.
  */
-/datum/wires/proc/pulse_color(color)
+datum/wires/proc/pulse_color(color)
 	pulse(get_wire(color))
 
 /**
@@ -384,7 +384,7 @@
  * Arugments:
  * * wire - a wire define, NOT color. For example 'WIRE_ELECTRIFY'.
  */
-/datum/wires/proc/on_pulse(wire)
+datum/wires/proc/on_pulse(wire)
 	return
 
 /**
@@ -395,7 +395,7 @@
  * Arugments:
  * * S - the attached signaler receiving the signal.
  */
-/datum/wires/proc/pulse_assembly(obj/item/assembly/signaler/S)
+datum/wires/proc/pulse_assembly(obj/item/assembly/signaler/S)
 	for(var/color in assemblies)
 		if(S == assemblies[color])
 			pulse_color(color)
@@ -411,7 +411,7 @@
  * * color - the wire color.
  * * S - the signaler that a mob is trying to attach.
  */
-/datum/wires/proc/attach_assembly(color, obj/item/assembly/signaler/S)
+datum/wires/proc/attach_assembly(color, obj/item/assembly/signaler/S)
 	if(S && istype(S) && !is_attached(color))
 		assemblies[color] = S
 		S.forceMove(holder)
@@ -426,7 +426,7 @@
  * Arguments:
  * * color - the wire color.
  */
-/datum/wires/proc/detach_assembly(color)
+datum/wires/proc/detach_assembly(color)
 	var/obj/item/assembly/signaler/S = get_attached(color)
 	if(S && istype(S))
 		assemblies -= color
@@ -440,7 +440,7 @@
  * Arguments:
  * * color - the wire color.
  */
-/datum/wires/proc/get_attached(color)
+datum/wires/proc/get_attached(color)
 	if(assemblies[color])
 		return assemblies[color]
 	return null
@@ -451,18 +451,18 @@
  * Arguments:
  * * color - the wire color.
  */
-/datum/wires/proc/is_attached(color)
+datum/wires/proc/is_attached(color)
 	if(assemblies[color])
 		return TRUE
 
-/datum/wires/proc/RenameDoor(var/obj/machinery/door/airlock/A = holder)
+datum/wires/proc/RenameDoor(var/obj/machinery/door/airlock/A = holder)
 	var/t = sanitizeSafe(input(usr, "Enter a new name.", holder.name), MAX_NAME_LEN)
 	holder.name = t
 	holder.update_icon()
 	message_admins("[usr]([usr.ckey]) renamed a door to ''[t]'' at [holder.x],[holder.y],[holder.z].")
 	log_admin("[usr]([usr.ckey]) renamed a door to ''[t]'' at [holder.x],[holder.y],[holder.z].")
 
-/datum/wires/proc/DescribeDoor(var/obj/machinery/door/airlock/A = holder)
+datum/wires/proc/DescribeDoor(var/obj/machinery/door/airlock/A = holder)
 	var/t = sanitizeSafe(input(usr, "Enter a new description.", holder.desc), MAX_MESSAGE_LEN) // max len values are in misc.dm for reference, can be set to MAX_NAME_LEN to reduce length allowance
 	holder.desc = t
 	holder.update_icon()

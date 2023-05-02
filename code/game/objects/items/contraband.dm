@@ -1,30 +1,30 @@
 //Let's get some REAL contraband stuff in here. Because come on, getting brigged for LIPSTICK is no fun.
 
 //Illicit drugs~
-/obj/item/storage/pill_bottle/happy
+obj/item/storage/pill_bottle/happy
 	name = "bottle of Happy pills"
 	desc = "Highly illegal drug. When you want to see the rainbow."
 	//wrapper_color = COLOR_PINK
 	starts_with = list(/obj/item/reagent_containers/pill/happy = 7)
 
-/obj/item/storage/pill_bottle/zoom
+obj/item/storage/pill_bottle/zoom
 	name = "bottle of Zoom pills"
 	desc = "Highly illegal drug. Trade brain for speed."
 	//wrapper_color = COLOR_BLUE
 	starts_with = list(/obj/item/reagent_containers/pill/zoom = 7)
 
-/obj/item/reagent_containers/glass/beaker/vial/random
+obj/item/reagent_containers/glass/beaker/vial/random
 	atom_flags = NONE
 	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)
 
-/obj/item/reagent_containers/glass/beaker/vial/random/toxin
+obj/item/reagent_containers/glass/beaker/vial/random/toxin
 	random_reagent_list = list(
 		list("mindbreaker" = 10, "space_drugs" = 20)	= 3,
 		list("carpotoxin" = 15)							= 2,
 		list("impedrezene" = 15)						= 2,
 		list("zombiepowder" = 10)						= 1)
 
-/obj/item/reagent_containers/glass/beaker/vial/random/Initialize(mapload)
+obj/item/reagent_containers/glass/beaker/vial/random/Initialize(mapload)
 	. = ..()
 	if(is_open_container())
 		atom_flags ^= OPENCONTAINER
@@ -41,7 +41,7 @@
 	update_icon()
 
 //Pulled from former _vr.
-/obj/item/stolenpackage
+obj/item/stolenpackage
 	name = "stolen package"
 	desc = "What's in the box?"
 	icon = 'icons/obj/storage.dmi'
@@ -49,7 +49,7 @@
 	item_state = "table_parts"
 	w_class = ITEMSIZE_HUGE
 
-/obj/item/stolenpackage/attack_self(mob/user)
+obj/item/stolenpackage/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -144,26 +144,26 @@
 	to_chat(user, "You unwrap the package.")
 	qdel(src)
 
-/obj/item/storage/fancy/cigar/havana
+obj/item/storage/fancy/cigar/havana
 	name = "\improper Havana cigar case"
 	desc = "Save these for the fancy-pantses at the next CentCom black tie reception. You can't blow the smoke from such majestic stogies in just anyone's face."
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar/havana)
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette/cigar/havana = 7)
 
-/obj/item/storage/fancy/cigar/cohiba
+obj/item/storage/fancy/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar case"
 	desc = "If Havana cigars were meant for the black tie reception, then these are meant to be family heirlooms instead of being smoked. These are the pinnacle of smoking luxury, make no mistake."
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba)
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba = 7)
 
-/obj/item/storage/fancy/cigar/taj
+obj/item/storage/fancy/cigar/taj
 	name = "\improper S'rendarr's Hand case"
 	desc = "A luxury medicinal cigar exported from Adhomai. The trifecta flag on the case showing a symbol of unity amongst producers of S'rendarr's from all Tajaran nations."
 	icon_state = "cigarcase-taj"
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar/taj)
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette/cigar/taj = 7)
 
-/obj/item/storage/fancy/cigar/taj/premium
+obj/item/storage/fancy/cigar/taj/premium
 	name = "\improper S'rendarr's Own case"
 	desc = "Truly luxurious medicinal cigars bearing the proof marks of the Confederate Commonwealth, the \"united\" galactic lobbying body of all three Tajaran states, marking these cigars as the best Adhomai has to offer."
 	icon_state = "cigarcase-tajalt"
@@ -171,7 +171,7 @@
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette/cigar/taj/premium = 7)
 
 
-/obj/item/stolenpackageplus
+obj/item/stolenpackageplus
 	name = "curated stolen package"
 	desc = "What's in this slightly more robust box?"
 	icon = 'icons/obj/storage.dmi'
@@ -179,7 +179,7 @@
 	item_state = "table_parts"
 	w_class = ITEMSIZE_HUGE
 
-/obj/item/stolenpackageplus/attack_self(mob/user)
+obj/item/stolenpackageplus/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -239,7 +239,7 @@
 
 //Ported from Main.
 
-/obj/item/skub
+obj/item/skub
 	name = "skub"
 	desc = "A standard jar of skub."
 	icon = 'icons/obj/items.dmi'

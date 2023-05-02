@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(time_track)
 	var/stat_time_text = "Calculating..."
 	var/time_dilation_text = "Calculating..."
 
-/datum/controller/subsystem/time_track/fire()
+datum/controller/subsystem/time_track/fire()
 	if(++last_measurement == measurement_delay)
 		last_measurement = 0
 		var/current_realtime = REALTIMEOFDAY

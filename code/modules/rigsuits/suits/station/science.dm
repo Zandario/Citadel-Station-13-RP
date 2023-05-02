@@ -1,4 +1,4 @@
-/obj/item/rig/hazmat
+obj/item/rig/hazmat
 	name = "AMI control module"
 	suit_type = "hazmat hardsuit"
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
@@ -31,7 +31,7 @@
 		/obj/item/bluespace_radio,
 	)
 
-/datum/armor/rig/ami
+datum/armor/rig/ami
 	melee = 0.45
 	bullet = 0.2
 	laser = 0.45
@@ -40,7 +40,7 @@
 	bio = 1.0
 	rad = 0.9
 
-/obj/item/rig/hazmat/equipped
+obj/item/rig/hazmat/equipped
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/maneuvering_jets,
@@ -48,6 +48,6 @@
 		/obj/item/rig_module/device/drill,
 		)
 
-/obj/item/clothing/head/helmet/space/rig/hazmat
+obj/item/clothing/head/helmet/space/rig/hazmat
 	light_overlay = "hardhat_light"
 	camera_networks = list(NETWORK_RESEARCH,NETWORK_COMMAND)

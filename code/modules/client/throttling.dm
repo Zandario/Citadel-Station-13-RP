@@ -3,7 +3,7 @@
  * if not,
  * blocks next execution of hot verb for x seconds
  */
-/client/proc/throttle_verb(time = world.tick_lag)
+client/proc/throttle_verb(time = world.tick_lag)
 	if(verb_throttle > world.time)
 		to_chat(src, SPAN_WARNING("Verb on cooldown."))
 		return FALSE

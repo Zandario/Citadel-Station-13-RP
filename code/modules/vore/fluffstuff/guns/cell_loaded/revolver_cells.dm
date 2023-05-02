@@ -1,41 +1,41 @@
 // The Casing //
-/obj/item/ammo_casing/microbattery/combat
+obj/item/ammo_casing/microbattery/combat
 	name = "\'Hydra\' microbattery - UNKNOWN"
 	desc = "A miniature battery for an energy weapon."
 	//catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 1, TECH_MAGNETS = 2)
 
-/obj/item/ammo_casing/microbattery/combat/lethal
+obj/item/ammo_casing/microbattery/combat/lethal
 	name = "\'Hydra\' microbattery - LETHAL"
 	type_color = "#bf3d3d"
 	type_name = "<span style='color:#bf3d3d;font-weight:bold;'>LETHAL</span>"
 	projectile_type = /obj/projectile/beam
 
-/obj/item/ammo_casing/microbattery/combat/stun
+obj/item/ammo_casing/microbattery/combat/stun
 	name = "\'Hydra\' microbattery - STUN"
 	type_color = "#0f81bc"
 	type_name = "<span style='color:#0f81bc;font-weight:bold;'>STUN</span>"
 	projectile_type = /obj/projectile/beam/stun/blue
 
-/obj/item/ammo_casing/microbattery/combat/net
+obj/item/ammo_casing/microbattery/combat/net
 	name = "\'Hydra\' microbattery - NET"
 	type_color = "#43f136"
 	type_name = "<span style='color:#43d136;font-weight:bold;'>NET</span>"
 	projectile_type = /obj/projectile/beam/energy_net
 
-/obj/item/ammo_casing/microbattery/combat/xray
+obj/item/ammo_casing/microbattery/combat/xray
 	name = "\'Hydra\' microbattery - XRAY"
 	type_color = "#32c025"
 	type_name = "<span style='color:#32c025;font-weight:bold;'>XRAY</span>"
 	projectile_type = /obj/projectile/beam/xray
 
-/obj/item/ammo_casing/microbattery/combat/shotstun
+obj/item/ammo_casing/microbattery/combat/shotstun
 	name = "\'Hydra\' microbattery - SCATTERSTUN"
 	type_color = "#88ffff"
 	type_name = "<span style='color:#88ffff;font-weight:bold;'>SCATTERSTUN</span>"
 	projectile_type = /obj/projectile/bullet/pellet/e_shot_stun
 
-/obj/projectile/bullet/pellet/e_shot_stun
+obj/projectile/bullet/pellet/e_shot_stun
 	icon_state = "spell"
 	damage = 2
 	agony = 20
@@ -47,19 +47,19 @@
 	sharp = 0
 	damage_flag = ARMOR_MELEE
 
-/obj/item/ammo_casing/microbattery/combat/ion
+obj/item/ammo_casing/microbattery/combat/ion
 	name = "\'Hydra\' microbattery - ION"
 	type_color = "#d084d6"
 	type_name = "<span style='color:#d084d6;font-weight:bold;'>ION</span>"
 	projectile_type = /obj/projectile/ion/small
 
-/obj/item/ammo_casing/microbattery/combat/stripper
+obj/item/ammo_casing/microbattery/combat/stripper
 	name = "\'Hydra\' microbattery - STRIPPER"
 	type_color = "#fc8d0f"
 	type_name = "<span style='color:#fc8d0f;font-weight:bold;'>STRIPPER</span>"
 	projectile_type = /obj/projectile/bullet/stripper
 
-/obj/projectile/bullet/stripper
+obj/projectile/bullet/stripper
 	icon_state = "magicm"
 	nodamage = 1
 	agony = 5
@@ -67,7 +67,7 @@
 	sharp = 0
 	damage_flag = ARMOR_MELEE
 
-/obj/projectile/bullet/stripper/on_hit(var/atom/stripped)
+obj/projectile/bullet/stripper/on_hit(var/atom/stripped)
 	if(ishuman(stripped))
 		var/mob/living/carbon/human/H = stripped
 		if(!H.permit_stripped)
@@ -76,13 +76,13 @@
 		//Hats can stay! Most other things fall off with removing these.
 	..()
 
-/obj/item/ammo_casing/microbattery/combat/final
+obj/item/ammo_casing/microbattery/combat/final
 	name = "\'Hydra\' microbattery - FINAL OPTION"
 	type_color = "#fcfc0f"
 	type_name = "<span style='color:#000000;font-weight:bold;'>FINAL OPTION</span>" //Doesn't look good in yellow in chat
 	projectile_type = /obj/projectile/beam/final_option
 
-/obj/projectile/beam/final_option
+obj/projectile/beam/final_option
 	name = "final option beam"
 	icon_state = "omnilaser"
 	nodamage = 1
@@ -94,7 +94,7 @@
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
 	impact_type = /obj/effect/projectile/impact/laser_omni
 
-/obj/projectile/beam/final_option/on_hit(var/atom/impacted)
+obj/projectile/beam/final_option/on_hit(var/atom/impacted)
 	if(isliving(impacted))
 		var/mob/living/L = impacted
 		if(L.mind)

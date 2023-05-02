@@ -41,7 +41,7 @@
  * message - The message to send.
  * channel_tag - Required. If "", the message with be sent to all connected (Game-type for TGS3) channels. Otherwise, it will be sent to TGS4 channels with that tag (Delimited by ','s).
  */
-/proc/send2chat(message, channel_tag)
+proc/send2chat(message, channel_tag)
 	if(channel_tag == null || !world.TgsAvailable())
 		return
 
@@ -66,7 +66,7 @@
  * category - The category of the mssage.
  * message - The message to send.
  */
-/proc/send2adminchat(category, message, embed_links = FALSE)
+proc/send2adminchat(category, message, embed_links = FALSE)
 	category = replacetext(replacetext(category, "\proper", ""), "\improper", "")
 	message = replacetext(replacetext(message, "\proper", ""), "\improper", "")
 	if(!embed_links)

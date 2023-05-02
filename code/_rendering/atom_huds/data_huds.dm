@@ -7,41 +7,41 @@
 
 /* DATA HUD DATUMS */
 
-/atom/proc/add_to_all_human_data_huds()
+atom/proc/add_to_all_human_data_huds()
 	for(var/datum/atom_hud/data/human/hud in GLOB.huds)
 		hud.add_to_hud(src)
 
-/atom/proc/remove_from_all_data_huds()
+atom/proc/remove_from_all_data_huds()
 	for(var/datum/atom_hud/data/hud in GLOB.huds)
 		hud.remove_from_hud(src)
 
-/datum/atom_hud/data
+datum/atom_hud/data
 
-/datum/atom_hud/data/human/medical
+datum/atom_hud/data/human/medical
 	hud_icons = list(BIOLOGY_HUD, LIFE_HUD)
 
-/datum/atom_hud/data/human/job_id
+datum/atom_hud/data/human/job_id
 	hud_icons = list(ID_HUD)
 
-/datum/atom_hud/data/human/security
+datum/atom_hud/data/human/security
 
-/datum/atom_hud/data/human/security/basic
+datum/atom_hud/data/human/security/basic
 	hud_icons = list(ID_HUD, WANTED_HUD)
 
-/datum/atom_hud/data/human/security/advanced
+datum/atom_hud/data/human/security/advanced
 	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
 
-/datum/atom_hud/antag
+datum/atom_hud/antag
 	hud_icons = list(ANTAG_HUD)
 
 // one of these days we'll make /datum/hud_supplier
 // and we can standardize everything
 // today is not that day for i have no patience or motivation left
 
-/mob/proc/update_hud_med_health()
+mob/proc/update_hud_med_health()
 	return
 
-/mob/living/update_hud_med_health()
+mob/living/update_hud_med_health()
 	. = ..()
 	var/image/I = hud_list[LIFE_HUD]
 	if(!I)
@@ -51,7 +51,7 @@
 	else
 		I.icon_state = RoundHealth((health-config_legacy.health_threshold_crit)/(getMaxHealth()-config_legacy.health_threshold_crit)*100)
 
-/mob/proc/update_hud_med_status()
+mob/proc/update_hud_med_status()
 	var/image/holder = hud_list[BIOLOGY_HUD]
 	if(!holder)
 		return
@@ -68,11 +68,11 @@
 	else
 		holder.icon_state = "healthy"
 
-/mob/proc/update_hud_med_all()
+mob/proc/update_hud_med_all()
 	update_hud_med_health()
 	update_hud_med_status()
 
-/mob/proc/update_hud_sec_implants()
+mob/proc/update_hud_sec_implants()
 	var/image/Itrack = hud_list[IMPTRACK_HUD]
 	var/image/Ichem = hud_list[IMPCHEM_HUD]
 	var/image/Iloyal = hud_list[IMPLOYAL_HUD]
@@ -91,10 +91,10 @@
 		if(istype(I, /obj/item/implant/chem))
 			Ichem?.icon_state = "chem"
 
-/mob/proc/update_hud_sec_job()
+mob/proc/update_hud_sec_job()
 	return
 
-/mob/living/carbon/human/update_hud_sec_job()
+mob/living/carbon/human/update_hud_sec_job()
 	. = ..()
 	var/image/holder = hud_list[ID_HUD]
 	if(!holder)
@@ -108,11 +108,11 @@
 	else
 		holder.icon_state = "unknown"
 
-/mob/proc/update_hud_sec_status()
+mob/proc/update_hud_sec_status()
 	var/image/holder = hud_list[WANTED_HUD]
 	holder?.icon_state = ""
 
-/mob/living/carbon/human/update_hud_sec_status()
+mob/living/carbon/human/update_hud_sec_status()
 	var/image/holder = hud_list[WANTED_HUD]
 	if(!holder)
 		return
@@ -139,7 +139,7 @@
 					holder.icon_state = "huddischarged"
 					break
 
-/mob/proc/update_hud_antag()
+mob/proc/update_hud_antag()
 	var/image/holder = hud_list[ANTAG_HUD]
 	if(!holder)
 		return
@@ -151,15 +151,15 @@
 		else
 			holder.icon_state = "syndicate"
 
-/proc/RoundHealth(health, icon = GLOB.hud_icon_files[LIFE_HUD])
+proc/RoundHealth(health, icon = GLOB.hud_icon_files[LIFE_HUD])
 	var/list/icon_states = icon_states(icon)
 	for(var/icon_state in icon_states)
 		if(health >= text2num(icon_state))
 			return icon_state
 	return icon_states[icon_states.len] // If we had no match, return the last element
 
-/mob/proc/check_viruses()
+mob/proc/check_viruses()
 	return FALSE
 
-/mob/living/carbon/human/check_viruses()
+mob/living/carbon/human/check_viruses()
 	return !!length(virus2 & virusDB)

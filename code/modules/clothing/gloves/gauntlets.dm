@@ -6,7 +6,7 @@
  *			ADD SPRITES FOR ANY ACTUAL GAUNTLET ITEMS, THE BASE GLOVE ITEM HAS NO SPRITE, FOR GOOD REASON
  */
 
-/obj/item/clothing/gloves/gauntlets	//Used to cover gloves, otherwise act as gloves.
+obj/item/clothing/gloves/gauntlets	//Used to cover gloves, otherwise act as gloves.
 	name = "gauntlets"
 	desc = "These gloves go over regular gloves."
 	glove_level = 3
@@ -14,7 +14,7 @@
 	punch_force = 5
 	var/obj/item/clothing/gloves/gloves = null	//Undergloves
 
-/obj/item/clothing/gloves/gauntlets/equip_worn_over_check(mob/M, slot, mob/user, obj/item/I, flags)
+obj/item/clothing/gloves/gauntlets/equip_worn_over_check(mob/M, slot, mob/user, obj/item/I, flags)
 	if(slot != SLOT_ID_GLOVES)
 		return FALSE
 

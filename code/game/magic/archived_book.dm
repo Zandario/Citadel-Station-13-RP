@@ -32,7 +32,7 @@ datum/book_manager/proc/freeid()
 
 	return id
 
-/client/proc/delbook()
+client/proc/delbook()
 	set name = "Delete Book"
 	set desc = "Permamently deletes a book from the database."
 	set category = "Admin"

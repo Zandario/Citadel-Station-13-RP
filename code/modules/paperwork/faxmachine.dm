@@ -4,7 +4,7 @@ var/list/alldepartments = list()
 
 var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
-/obj/machinery/photocopier/faxmachine
+obj/machinery/photocopier/faxmachine
 	name = "fax machine"
 	icon = 'icons/modules/paperwork/machinery/fax.dmi'
 	icon_state = "fax"
@@ -23,7 +23,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	var/department = "Unknown" // our department
 	var/destination = null // the department we're sending to
 
-/obj/machinery/photocopier/faxmachine/Initialize(mapload)
+obj/machinery/photocopier/faxmachine/Initialize(mapload)
 	. = ..()
 	allfaxes += src
 	if(!destination)
@@ -31,7 +31,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	if(!(("[department]" in alldepartments) || ("[department]" in admin_departments)) )
 		alldepartments |= department
 
-/obj/machinery/photocopier/faxmachine/attack_hand(mob/user, list/params)
+obj/machinery/photocopier/faxmachine/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 
 	nano_ui_interact(user)
@@ -41,7 +41,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/photocopier/faxmachine/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/photocopier/faxmachine/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/list/data = list()
@@ -66,7 +66,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		ui.open()
 		ui.set_auto_update(10) //this machine is so unimportant let's not have it update that often.
 
-/obj/machinery/photocopier/faxmachine/Topic(href, href_list)
+obj/machinery/photocopier/faxmachine/Topic(href, href_list)
 	if(href_list["send"])
 		if(copyitem)
 			if (destination in admin_departments)
@@ -121,7 +121,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	SSnanoui.update_uis(src)
 
-/obj/machinery/photocopier/faxmachine/proc/sendfax(destination)
+obj/machinery/photocopier/faxmachine/proc/sendfax(destination)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -138,7 +138,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 
-/obj/machinery/photocopier/faxmachine/proc/receivefax(obj/item/incoming)
+obj/machinery/photocopier/faxmachine/proc/receivefax(obj/item/incoming)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return 0
 
@@ -164,7 +164,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	use_power(active_power_usage)
 	return 1
 
-/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(mob/sender, destination)
+obj/machinery/photocopier/faxmachine/proc/send_admin_fax(mob/sender, destination)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -201,7 +201,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 
 
-/obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
+obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
 	var/msg = "<span class='notice'><b><font color='[font_colour]'>[faxname]: </font>[get_options_bar(sender, 2,1,1)]"
 	msg += "(<a href='?_src_=holder;FaxReply=\ref[sender];originfax=\ref[src];replyorigin=[reply_type]'>REPLY</a>)</b>: "
 	msg += "Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;AdminFaxView=\ref[sent]'>view message</a></span>"

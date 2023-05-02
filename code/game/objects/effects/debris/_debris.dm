@@ -7,4 +7,4 @@
  * dirt
  * etc
  */
-/obj/effect/debris
+obj/effect/debris

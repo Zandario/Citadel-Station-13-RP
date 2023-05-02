@@ -1,4 +1,4 @@
-/proc/pixel_shift_screen_loc(screen_loc, x, y)
+proc/pixel_shift_screen_loc(screen_loc, x, y)
 	var/list/split1 = splittext(screen_loc, ",")
 	if(length(split1) == 1)
 		// bah

@@ -1,5 +1,5 @@
 // Event Meta instances represent choices for the event manager to choose for random events.
-/datum/event_meta
+datum/event_meta
 	var/name 		= ""
 	var/enabled 	= 1	// Whether or not the event is available for random selection at all
 	var/weight 		= 0	// The base weight of this event. A zero means it may never fire, but see get_weight()
@@ -11,7 +11,7 @@
 	var/list/role_weights = list()
 	var/datum/event/event_type
 
-/datum/event_meta/New(var/event_severity, var/event_name, var/datum/event/type, var/event_weight, var/list/job_weights, var/is_one_shot = 0, var/min_event_weight = 0, var/max_event_weight = 0, var/add_to_queue = 1)
+datum/event_meta/New(var/event_severity, var/event_name, var/datum/event/type, var/event_weight, var/list/job_weights, var/is_one_shot = 0, var/min_event_weight = 0, var/max_event_weight = 0, var/add_to_queue = 1)
 	name = event_name
 	severity = event_severity
 	event_type = type
@@ -23,7 +23,7 @@
 	if(job_weights)
 		role_weights = job_weights
 
-/datum/event_meta/proc/get_weight(var/list/active_with_role)
+datum/event_meta/proc/get_weight(var/list/active_with_role)
 	if(!enabled)
 		return 0
 
@@ -40,11 +40,11 @@
 
 	return total_weight
 
-/datum/event_meta/no_overmap/get_weight()	// These events have overmap equivalents, and shouldn't fire randomly if overmap is used
+datum/event_meta/no_overmap/get_weight()	// These events have overmap equivalents, and shouldn't fire randomly if overmap is used
 	return GLOB.using_map.use_overmap ? 0 : ..()
 
 // Event datums define and execute the actual events themselves.
-/datum/event			//NOTE: Times are measured in master controller ticks!
+datum/event			//NOTE: Times are measured in master controller ticks!
 	var/startWhen		= 0	//When in the lifetime to call start().
 	var/announceWhen	= 0	//When in the lifetime to call announce().
 	var/endWhen			= 0	//When in the lifetime the event should end.
@@ -60,19 +60,19 @@
 	var/has_skybox_image	= FALSE	// True if SSskybox should query this event for an image to put in the skybox.
 	var/obj/effect/overmap/visitable/ship/victim = null	// Ship that triggered this event on itself.  Some messages might be different etc.
 
-/datum/event/nothing
+datum/event/nothing
 
 // Called first before processing.
 // Allows you to setup your event, such as randomly
 //	 setting the startWhen and or announceWhen variables.
 // Only called once.
-/datum/event/proc/setup()
+datum/event/proc/setup()
 	return
 
 // Called when the tick is equal to the startWhen variable.
 // Allows you to start before announcing or vice versa.
 // Only called once.
-/datum/event/proc/start()
+datum/event/proc/start()
 	if(has_skybox_image)
 		for(var/z in affecting_z)
 			SSparallax.queue_z_vis_update(z)
@@ -80,14 +80,14 @@
 // Called when the tick is equal to the announceWhen variable.
 // Allows you to announce before starting or vice versa.
 // Only called once.
-/datum/event/proc/announce()
+datum/event/proc/announce()
 	return
 
 // Called on or after the tick counter is equal to startWhen.
 // You can include code related to your event or add your own
 //	 time stamped events.
 // Called more than once.
-/datum/event/proc/tick()
+datum/event/proc/tick()
 	return
 
 // Called on or after the tick is equal or more than endWhen
@@ -96,18 +96,18 @@
 //	 the activeFor variable.
 // For example: if(activeFor == myOwnVariable + 30) doStuff()
 // Only called once.
-/datum/event/proc/end()
+datum/event/proc/end()
 	if(has_skybox_image)
 		for(var/z in affecting_z)
 			SSparallax.queue_z_vis_update(z)
 
 // Returns the latest point of event processing.
-/datum/event/proc/lastProcessAt()
+datum/event/proc/lastProcessAt()
 	return max(startWhen, max(announceWhen, endWhen))
 
 // Do not override this proc, instead use the appropiate procs.
 // This proc will handle the calls to the appropiate procs.
-/datum/event/process(delta_time)
+datum/event/process(delta_time)
 	if(activeFor > startWhen && activeFor < endWhen)
 		tick()
 
@@ -129,7 +129,7 @@
 	activeFor++
 
 // Called when start(), announce() and end() has all been called.
-/datum/event/proc/kill()
+datum/event/proc/kill()
 	// If this event was forcefully killed run end() for individual cleanup
 	if(isRunning)
 		isRunning = 0
@@ -139,10 +139,10 @@
 	SSevents.event_complete(src)
 
 // Called during building of skybox to get overlays
-/datum/event/proc/get_skybox_image()
+datum/event/proc/get_skybox_image()
 	return
 
-/datum/event/proc/get_parallax_image()
+datum/event/proc/get_parallax_image()
 	var/image/I = get_skybox_image()
 	if(!I)
 		return
@@ -150,7 +150,7 @@
 	I.layer = PARALLAX_VIS_LAYER_BELOW
 	return I
 
-/datum/event/New(var/datum/event_meta/EM)
+datum/event/New(var/datum/event_meta/EM)
 	// Event needs to be responsible for this, as stuff like APLUs currently make their own events for curious reasons
 	SSevents.active_events += src
 
@@ -167,11 +167,11 @@
 	setup()
 	..()
 
-/datum/event/Destroy()
+datum/event/Destroy()
 	victim = null
 	. = ..()
 
-/datum/event/proc/location_name()
+datum/event/proc/location_name()
 	if(victim)
 		return victim.name
 	return station_name()

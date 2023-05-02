@@ -1,4 +1,4 @@
-/datum/game_mode/traitorren
+datum/game_mode/traitorren
 	name = "Traitors & Renegades"
 	round_description = "Subversive elements have invaded the station, and certain individuals are feeling uncertain about their safety."
 	extended_round_description = "Traitors and renegades spawn during this round."

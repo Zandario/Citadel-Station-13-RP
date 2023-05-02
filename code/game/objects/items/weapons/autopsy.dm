@@ -2,7 +2,7 @@
 //moved these here from code/defines/obj/weapon.dm
 //please preference put stuff where it's easy to find - C
 // todo: redo autopsy
-/obj/item/autopsy_scanner
+obj/item/autopsy_scanner
 	name = "biopsy scanner"
 	desc = "Extracts information on wounds."
 	icon = 'icons/obj/autopsy_scanner.dmi'
@@ -15,20 +15,20 @@
 	var/target_name = null
 	var/timeofdeath = null
 
-/datum/autopsy_data_scanner
+datum/autopsy_data_scanner
 	var/weapon = null // this is the DEFINITE weapon type that was used
 	var/list/organs_scanned = list() // this maps a number of scanned organs to
 									 // the wounds to those organs with this data's weapon type
 	var/organ_names = ""
 
-/datum/autopsy_data
+datum/autopsy_data
 	var/weapon = null
 	var/pretend_weapon = null
 	var/damage = 0
 	var/hits = 0
 	var/time_inflicted = 0
 
-/datum/autopsy_data/proc/copy()
+datum/autopsy_data/proc/copy()
 	var/datum/autopsy_data/W = new()
 	W.weapon = weapon
 	W.pretend_weapon = pretend_weapon
@@ -37,7 +37,7 @@
 	W.time_inflicted = time_inflicted
 	return W
 
-/obj/item/autopsy_scanner/proc/add_data(var/obj/item/organ/external/O)
+obj/item/autopsy_scanner/proc/add_data(var/obj/item/organ/external/O)
 	if(!O.autopsy_data.len && !O.trace_chemicals.len) return
 
 	for(var/V in O.autopsy_data)
@@ -73,7 +73,7 @@
 		if(O.trace_chemicals[V] > 0 && !chemtraces.Find(V))
 			chemtraces += V
 
-/obj/item/autopsy_scanner/verb/print_data()
+obj/item/autopsy_scanner/verb/print_data()
 	set category = "Object"
 	set src in view(usr, 1)
 	set name = "Print Data"
@@ -160,7 +160,7 @@
 	if(istype(usr,/mob/living/carbon))
 		usr.put_in_hands(P)
 
-/obj/item/autopsy_scanner/do_surgery(mob/living/carbon/human/M, mob/living/user)
+obj/item/autopsy_scanner/do_surgery(mob/living/carbon/human/M, mob/living/user)
 	if(!istype(M))
 		return 0
 

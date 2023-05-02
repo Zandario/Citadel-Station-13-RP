@@ -1,23 +1,23 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/template_noop,
-/area/submap/Rocky4)
+turf/template_noop,
+area/submap/Rocky4)
 "c" = (
-/turf/simulated/mineral/ignore_mapgen,
-/area/submap/Rocky4)
+turf/simulated/mineral/ignore_mapgen,
+area/submap/Rocky4)
 "d" = (
-/obj/structure/flora/tree/sif,
-/turf/template_noop,
-/area/submap/Rocky4)
+obj/structure/flora/tree/sif,
+turf/template_noop,
+area/submap/Rocky4)
 "e" = (
-/turf/simulated/floor/outdoors/rocks,
-/area/submap/Rocky4)
+turf/simulated/floor/outdoors/rocks,
+area/submap/Rocky4)
 "f" = (
-/turf/simulated/floor/water,
-/area/submap/Rocky4)
+turf/simulated/floor/water,
+area/submap/Rocky4)
 
 (1,1,1) = {"
 a

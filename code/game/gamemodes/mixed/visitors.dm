@@ -1,4 +1,4 @@
-/datum/game_mode/visitors
+datum/game_mode/visitors
 	name = "Technomancers & Ninja"
 	round_description = "A space wizard and a ninja have invaded the station!"
 	extended_round_description = "A ninja and wizard spawn during this round."

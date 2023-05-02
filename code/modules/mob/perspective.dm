@@ -11,7 +11,7 @@
   * - forceful - if the client is desynced from our using perspective, do we force it back?
   * - no_optimizations - if true, it'll be a true reset. use for things like cancel camera view which should always force updates.
   */
-/mob/proc/reset_perspective(datum/perspective/P, apply = TRUE, forceful = TRUE, no_optimizations)
+mob/proc/reset_perspective(datum/perspective/P, apply = TRUE, forceful = TRUE, no_optimizations)
 	if(P)
 		ASSERT(istype(P) || ismovable(P))
 	if(!no_optimizations && (																																\
@@ -68,7 +68,7 @@
 /**
  * verb that allows someone to instantly shunt their perspective back to the default
  */
-/mob/verb/cancel_camera()
+mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "OOC"
 
@@ -77,11 +77,11 @@
 /**
  * gets the perspective we're using
  */
-/mob/proc/get_using_perspective()
+mob/proc/get_using_perspective()
 	RETURN_TYPE(/datum/perspective)
 	return using_perspective || get_perspective()
 
-/mob/get_perspective()
+mob/get_perspective()
 	// mobs never lazygen their perspectives
 	ensure_self_perspective()
 	return ..()
@@ -89,7 +89,7 @@
 /**
  * updates our curent perspective
  */
-/mob/proc/update_perspective(shunted)
+mob/proc/update_perspective(shunted)
 	if(!client)
 		return
 	if(using_perspective != client.using_perspective)	// shunt them back in, useful if something's temporarily shunted our client away
@@ -106,13 +106,13 @@
 /**
  * we're considered to be viewing from some/something else's perspective
  */
-/mob/proc/IsRemoteViewing()
+mob/proc/IsRemoteViewing()
 	return get_using_perspective()?.considered_remote(src)
 
 /**
  * for mob make_perspective, set our current_values
  */
-/mob/make_perspective()
+mob/make_perspective()
 	. = ..()
 	self_perspective.see_in_dark = see_in_dark
 	self_perspective.see_invisible = see_invisible
@@ -129,7 +129,7 @@
  * @params
  * - perspective - this must be a /datum/perspective or an /atom.
  */
-/mob/proc/shunt_perspective(datum/perspective/perspective)
+mob/proc/shunt_perspective(datum/perspective/perspective)
 	if(perspective_shunted())
 		return FALSE
 	if(ismovable(perspective))
@@ -142,7 +142,7 @@
  * wrapper for when we want to un-shunt our perspective
  * from a shunt_perspective call.
  */
-/mob/proc/unshunt_perspective()
+mob/proc/unshunt_perspective()
 	if(!perspective_shunted())
 		return FALSE
 	reset_perspective()
@@ -151,7 +151,7 @@
 /**
  * returns if our perspective is shunted elsewhere
  */
-/mob/proc/perspective_shunted()
+mob/proc/perspective_shunted()
 	return self_perspective != using_perspective
 
 //? Perspective - Self
@@ -164,40 +164,40 @@
 /**
  * wrapper for self_perspective.AddSight for regexing later
  */
-/mob/proc/AddSightSelf(flags)
+mob/proc/AddSightSelf(flags)
 	ensure_self_perspective()
 	self_perspective.AddSight(flags)
 
 /**
  * ditto
  */
-/mob/proc/RemoveSightSelf(flags)
+mob/proc/RemoveSightSelf(flags)
 	ensure_self_perspective()
 	self_perspective.RemoveSight(flags)
 
 /**
  * ditto
  */
-/mob/proc/SetSightSelf(flags)
+mob/proc/SetSightSelf(flags)
 	ensure_self_perspective()
 	self_perspective.SetSight(flags)
 
 /**
  * ditto
  */
-/mob/proc/SetSeeInvisibleSelf(see_invisible)
+mob/proc/SetSeeInvisibleSelf(see_invisible)
 	ensure_self_perspective()
 	self_perspective.SetSeeInvis(see_invisible)
 
 /**
  * ditto
  */
-/mob/proc/SetSeeInDarkSelf(see_invisible)
+mob/proc/SetSeeInDarkSelf(see_invisible)
 	ensure_self_perspective()
 	self_perspective.SetDarksight(see_invisible)
 
 /**
  * ditto
  */
-/mob/proc/GetSeeInDarkSelf()
+mob/proc/GetSeeInDarkSelf()
 	return self_perspective? self_perspective.see_in_dark : see_in_dark

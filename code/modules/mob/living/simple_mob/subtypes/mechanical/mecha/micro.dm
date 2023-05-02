@@ -1,7 +1,7 @@
 // Tiny mecha.
 // Designed for ranged attacks.
 
-/datum/category_item/catalogue/technology/mouse_tank
+datum/category_item/catalogue/technology/mouse_tank
 	name = "Whisker Tank"
 	desc = "Unofficially dubbed the 'Whisker Tank', this micro mecha is not unfamiliar \
 	in several neighboring sectors. Known for its speed and small size, theories \
@@ -12,7 +12,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 
-/mob/living/simple_mob/mechanical/mecha/mouse_tank
+mob/living/simple_mob/mechanical/mecha/mouse_tank
 	name = "\improper Whisker Tank"
 	desc = "A shockingly functional, miniaturized tank. Its inventor is unknown, but widely reviled."
 	catalogue_data = list(/datum/category_item/catalogue/technology/mouse_tank)
@@ -39,11 +39,11 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
-/mob/living/simple_mob/mechanical/mecha/mouse_tank/manned
+mob/living/simple_mob/mechanical/mecha/mouse_tank/manned
 	pilot_type = /mob/living/simple_mob/animal/space/mouse_army/operative
 
 // Immune to heat damage, resistant to lasers, and it spits fire.
-/datum/category_item/catalogue/technology/mouse_tank/livewire
+datum/category_item/catalogue/technology/mouse_tank/livewire
 	name = "Livewire Assault Tank"
 	desc = "Dubbed the 'Livewire Assault Tank', this pattern of the 'standard' Whisker \
 	tank has been condemned by multiple governments and corporations due to the \
@@ -52,7 +52,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 
-/mob/living/simple_mob/mechanical/mecha/mouse_tank/livewire
+mob/living/simple_mob/mechanical/mecha/mouse_tank/livewire
 	name = "\improper Livewire Assault Tank"
 	desc = "A scorched, miniaturized light tank. It is mentioned only in hushed whispers."
 	catalogue_data = list(/datum/category_item/catalogue/technology/mouse_tank/livewire)
@@ -78,11 +78,11 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
-/mob/living/simple_mob/mechanical/mecha/mouse_tank/livewire/manned
+mob/living/simple_mob/mechanical/mecha/mouse_tank/livewire/manned
 	pilot_type = /mob/living/simple_mob/animal/space/mouse_army/pyro
 
 //Rockets? Rockets.
-/datum/category_item/catalogue/technology/mouse_tank/eraticator
+datum/category_item/catalogue/technology/mouse_tank/eraticator
 	name = "Eraticator Artillery Platform"
 	desc = "Rare and fearsome weapons platforms, 'Eraticators', as they have come to be \
 	known, are frighteningly powerful long ranged tanks built entirely around exotic \
@@ -90,7 +90,7 @@
 	but formidable foe. It is often accompanied by mechanized reinforcements."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/mechanical/mecha/mouse_tank/eraticator
+mob/living/simple_mob/mechanical/mecha/mouse_tank/eraticator
 	name = "\improper Eraticator Artillery Platform"
 	desc = "A heavy, miniaturized artillery platform. If you can hear it squeaking, you're too close."
 	catalogue_data = list(/datum/category_item/catalogue/technology/mouse_tank/eraticator)
@@ -116,5 +116,5 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
-/mob/living/simple_mob/mechanical/mecha/mouse_tank/eraticator/manned
+mob/living/simple_mob/mechanical/mecha/mouse_tank/eraticator/manned
 	pilot_type = /mob/living/simple_mob/animal/space/mouse_army/ammo

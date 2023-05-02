@@ -33,7 +33,7 @@
  * - range - max range
  * - tool - the item we're using to reach; not important
  */
-/atom/movable/proc/Reachability(atom/target, depth = DEFAULT_REACHABILITY_DEPTH, range = 1, obj/item/tool)
+atom/movable/proc/Reachability(atom/target, depth = DEFAULT_REACHABILITY_DEPTH, range = 1, obj/item/tool)
 	if(!target)
 		// apologies sir, you may not grasp the void...
 		return FALSE
@@ -154,7 +154,7 @@
  *
  * todo: range doesn't currently work
  */
-/atom/movable/proc/CheapReachability(atom/target, depth = DEFAULT_REACHABILITY_DEPTH, range, obj/item/tool)
+atom/movable/proc/CheapReachability(atom/target, depth = DEFAULT_REACHABILITY_DEPTH, range, obj/item/tool)
 	var/turf/curr = target.loc
 	var/turf/source
 	if(isturf(curr))
@@ -174,7 +174,7 @@
 		return FALSE
 	return curr.TurfAdjacency(source)
 
-/atom/movable/reachability_delegate
+atom/movable/reachability_delegate
 	pass_flags = ATOM_PASS_CLICK | ATOM_PASS_TABLE
 	invisibility = INVISIBILITY_ABSTRACT
 
@@ -182,16 +182,16 @@
 /**
  * checks what we can directly reach
  */
-/atom/movable/proc/DirectAccess()
+atom/movable/proc/DirectAccess()
 	return list(src, loc)
 
-/mob/DirectAccess()
+mob/DirectAccess()
 	return ..() + get_equipped_items()
 
 /**
  * gets DirectAccess as a hashed list for quick lookups
  */
-/atom/movable/proc/DirectAccessCache()
+atom/movable/proc/DirectAccessCache()
 	. = list()
 	// procs like these make me wish ss13 was run on node.js or something equally stupid
 	// return Object.assign({}, ...data.map((atom) => ({[atom]: true})));
@@ -210,7 +210,7 @@
  * - tool - what mover is using to reach with if applicable
  * - cache - direct access to the "directly open" cache list. Add things to this with cache[obj] = TRUE
  */
-/atom/proc/CanReachOut(atom/movable/mover, atom/target, obj/item/tool, list/cache)
+atom/proc/CanReachOut(atom/movable/mover, atom/target, obj/item/tool, list/cache)
 	// todo: signal when we care about signals
 	return FALSE
 
@@ -226,7 +226,7 @@
  * - tool - what mover is using to reach with if applicable
  * - cache - direct access to the "checking" cache list. Add things to this with cache[obj] = TRUE
  */
-/atom/proc/CanReachIn(atom/movable/mover, atom/target, obj/item/tool, list/cache)
+atom/proc/CanReachIn(atom/movable/mover, atom/target, obj/item/tool, list/cache)
 	// todo: signal when we care about signals
 	return TRUE
 
@@ -237,17 +237,17 @@
  * this proc needs refactored at some point to allow for complexity if necessary
  * but for now it works so don't fuck with it
  */
-/atom/proc/AllowClick(atom/movable/mover, atom/target, obj/item/tool)
+atom/proc/AllowClick(atom/movable/mover, atom/target, obj/item/tool)
 	return FALSE
 
-/turf/AllowClick(atom/movable/mover, atom/target, obj/item/tool)
+turf/AllowClick(atom/movable/mover, atom/target, obj/item/tool)
 	return TRUE
 
 //! Obfuscation
 /**
  * is the atom obscured by a OBJ_PREVENT_CLICK_UNDER object above it
  */
-/atom/proc/IsObsecured()
+atom/proc/IsObsecured()
 	if(!isturf(loc))
 		return FALSE
 	var/turf/T = get_turf_pixel(src)
@@ -258,7 +258,7 @@
 			return TRUE
 	return FALSE
 
-/turf/IsObsecured()
+turf/IsObsecured()
 	for(var/obj/O in contents)
 		if(O.obj_flags & OBJ_PREVENT_CLICK_UNDER)
 			return TRUE

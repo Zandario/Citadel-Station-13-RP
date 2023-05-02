@@ -1,7 +1,7 @@
 // Code for slimes attacking other things.
 
 // Slime attacks change based on intent.
-/mob/living/simple_mob/slime/xenobio/apply_attack(mob/living/L, damage_to_do)
+mob/living/simple_mob/slime/xenobio/apply_attack(mob/living/L, damage_to_do)
 	if(istype(L))
 		switch(a_intent)
 			if(INTENT_HELP) // This shouldn't happen but just in case.
@@ -66,7 +66,7 @@
 	else
 		return ..() // Do the regular stuff if we're hitting a window/mech/etc.
 
-/mob/living/simple_mob/slime/xenobio/apply_melee_effects(mob/living/L)
+mob/living/simple_mob/slime/xenobio/apply_melee_effects(mob/living/L)
 	if(istype(L) && a_intent == INTENT_HARM)
 		// Pump them full of toxins, if able.
 		if(L.reagents && L.can_inject() && reagent_injected)

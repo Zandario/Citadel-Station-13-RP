@@ -1,6 +1,6 @@
 
 
-/obj/vehicle
+obj/vehicle
 	name = "Vehicle"
 	icon = 'icons/vehicles/vehicles.dmi'
 	density = 1
@@ -62,7 +62,7 @@
 
 
 
-/obj/vehicle/Initialize(mapload)
+obj/vehicle/Initialize(mapload)
 	. = ..()
 	events = new
 	icon_state += "-unmanned"
@@ -81,17 +81,17 @@
 //################ Helpers ###########################################################
 
 
-/obj/vehicle/proc/removeVerb(verb_path)
+obj/vehicle/proc/removeVerb(verb_path)
 	remove_obj_verb(src, verb_path)
 
-/obj/vehicle/proc/addVerb(verb_path)
+obj/vehicle/proc/addVerb(verb_path)
 	add_obj_verb(src, verb_path)
 
 /*/obj/vehicle/proc/add_airtank() //In airtight.dm -Agouri
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
 	return internal_tank*/
 
-/obj/vehicle/proc/add_cell(var/obj/item/cell/C=null)
+obj/vehicle/proc/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
@@ -108,20 +108,20 @@
 	cabin_air.nitrogen = N2STANDARD*cabin_air.volume/(R_IDEAL_GAS_EQUATION*cabin_air.temperature)
 	return cabin_air*/
 
-/obj/vehicle/proc/add_radio()
+obj/vehicle/proc/add_radio()
 	radio = new(src)
 	radio.name = "[src] radio"
 	radio.icon = icon
 	radio.icon_state = icon_state
 	radio.subspace_transmission = 1
 
-/obj/vehicle/proc/add_iterators()
+obj/vehicle/proc/add_iterators()
 	pr_inertial_movement = new /datum/global_iterator/vehicle_intertial_movement(null,0)
 	//pr_internal_damage = new /datum/global_iterator/vehicle_internal_damage(list(src),0)
 	//pr_int_temp_processor = new /datum/global_iterator/vehicle_preserve_temp(list(src)) //In airtight.dm's add_airtight_iterators -Agouri
 	//pr_give_air = new /datum/global_iterator/vehicle_tank_give_air(list(src)            //Same here -Agouri
 
-/obj/vehicle/proc/check_for_support()
+obj/vehicle/proc/check_for_support()
 	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/simulated, orange(1, src)) || locate(/turf/unsimulated, orange(1, src)))
 		return 1
 	else
@@ -130,7 +130,7 @@
 //################ Logs and messages ############################################
 
 
-/obj/vehicle/proc/log_message(message as text,red=null)
+obj/vehicle/proc/log_message(message as text,red=null)
 	log.len++
 	log[log.len] = list("time"=world.timeofday,"message"="[red?"<font color='red'>":null][message][red?"</font>":null]")
 	return log.len
@@ -140,7 +140,7 @@
 //################ Global Iterator Datums ######################################
 
 
-/datum/global_iterator/vehicle_intertial_movement //inertial movement in space
+datum/global_iterator/vehicle_intertial_movement //inertial movement in space
 	delay = 7
 
 	process(var/obj/vehicle/V as obj, direction)
@@ -152,7 +152,7 @@
 		return
 
 
-/datum/global_iterator/mecha_internal_damage // processing internal damage
+datum/global_iterator/mecha_internal_damage // processing internal damage
 
 	process(var/obj/mecha/mecha)
 		if(!mecha.hasInternalDamage())
@@ -187,5 +187,5 @@
 				mecha.cell.maxcharge -= min(20,mecha.cell.maxcharge)
 		return
 
-/obj/vehicle/get_cell()
+obj/vehicle/get_cell()
 	return cell

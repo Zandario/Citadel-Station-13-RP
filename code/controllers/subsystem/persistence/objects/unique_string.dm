@@ -11,7 +11,7 @@
  * notice how we can't delete strings?
  * that's intentional, and for optimization.
  */
-/datum/controller/subsystem/persistence
+datum/controller/subsystem/persistence
 
 /**
  * gets a persistent string
@@ -20,7 +20,7 @@
  * - key - key of string
  * - group - optional group-specific. null counts as its own group.
  */
-/datum/controller/subsystem/persistence/proc/GetString(key, group)
+datum/controller/subsystem/persistence/proc/GetString(key, group)
 	return LoadString(group, key)
 
 /**
@@ -32,7 +32,7 @@
  * - group - optional group-specific. null counts as its own group.
  * - flush - immediately invoke SQL; otherwise subsystem decides when.
  */
-/datum/controller/subsystem/persistence/proc/SetString(key, value, group, flush)
+datum/controller/subsystem/persistence/proc/SetString(key, value, group, flush)
 	SaveString(group, key, value)
 
 /**
@@ -40,17 +40,17 @@
  */
 //! This segment will be uncommented when maploader rework is done and we have station map IDs.
 /*
-/datum/controller/subsystem/persistence/proc/_map_string_group()
+datum/controller/subsystem/persistence/proc/_map_string_group()
 	PRIVATE_PROC(TRUE)
 	return current_map_id? "__map_[current_map_id]" : null
 
-/datum/controller/subsystem/persistence/proc/GetMapString(key)
+datum/controller/subsystem/persistence/proc/GetMapString(key)
 	var/group = _map_string_group()
 	if(!group)
 		return
 	return GetString(key, group)
 
-/datum/controller/subsystem/persistence/proc/SetMapString(key, value, flush)
+datum/controller/subsystem/persistence/proc/SetMapString(key, value, flush)
 	var/group = _map_string_group()
 	if(!group)
 		return
@@ -59,7 +59,7 @@
 
 //! Why the usr fuckery? Because we intentionally wish to obfuscate admin proccalls, since we properly sanitize **everything** in these procs.
 
-/datum/controller/subsystem/persistence/proc/LoadString(group = OBJECT_PERSISTENCE_GROUP_NONE, key)
+datum/controller/subsystem/persistence/proc/LoadString(group = OBJECT_PERSISTENCE_GROUP_NONE, key)
 	if(!SSdbcore.Connect())
 		return
 	var/oldusr = usr
@@ -78,7 +78,7 @@
 	. = query.item[1]
 	qdel(query)
 
-/datum/controller/subsystem/persistence/proc/SaveString(group = OBJECT_PERSISTENCE_GROUP_NONE, key, value)
+datum/controller/subsystem/persistence/proc/SaveString(group = OBJECT_PERSISTENCE_GROUP_NONE, key, value)
 	if(!SSdbcore.Connect())
 		return
 	var/oldusr = usr
@@ -95,7 +95,7 @@
 	usr = oldusr
 	qdel(query)
 
-/datum/controller/subsystem/persistence/proc/benchmark_strings()
+datum/controller/subsystem/persistence/proc/benchmark_strings()
 	var/oldusr = usr
 	usr = null
 	message_admins("SSpersist: benchmarking string storage")
@@ -119,20 +119,20 @@
 	message_admins("SSpersist: loading 1000 strings took [end - start] ds")
 	usr = oldusr
 
-/datum/controller/subsystem/persistence/proc/string_save_benchmark(list/pointer, list/keys, list/values, amt)
+datum/controller/subsystem/persistence/proc/string_save_benchmark(list/pointer, list/keys, list/values, amt)
 	set waitfor = FALSE
 	for(var/i in 1 to amt)
 		_string_save_benchmark(pointer, keys[i], values[i])
 
-/datum/controller/subsystem/persistence/proc/string_load_benchmark(list/pointer, list/keys, amt)
+datum/controller/subsystem/persistence/proc/string_load_benchmark(list/pointer, list/keys, amt)
 	set waitfor = FALSE
 	for(var/i in 1 to amt)
 		_string_load_benchmark(pointer, keys[i])
 
-/datum/controller/subsystem/persistence/proc/_string_save_benchmark(list/pointer, key, value)
+datum/controller/subsystem/persistence/proc/_string_save_benchmark(list/pointer, key, value)
 	SaveString("benchmark", key, value)
 	pointer[1]--
 
-/datum/controller/subsystem/persistence/proc/_string_load_benchmark(list/pointer, key)
+datum/controller/subsystem/persistence/proc/_string_load_benchmark(list/pointer, key)
 	LoadString("benchmark", key)
 	pointer[1]--

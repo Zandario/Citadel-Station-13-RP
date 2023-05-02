@@ -1,4 +1,4 @@
-/obj/item/clothing/gloves/arm_guard
+obj/item/clothing/gloves/arm_guard
 	name = "arm guards"
 	desc = "These arm guards will protect your hands and arms."
 	body_cover_flags = HANDS|ARMS
@@ -8,7 +8,7 @@
 	drop_sound = 'sound/items/drop/metalshield.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
-/obj/item/clothing/gloves/arm_guard/can_equip(mob/M, slot, mob/user, flags)
+obj/item/clothing/gloves/arm_guard/can_equip(mob/M, slot, mob/user, flags)
 	. = ..()
 	if(!.)
 		return
@@ -28,7 +28,7 @@
 				return FALSE
 	return TRUE
 
-/obj/item/clothing/gloves/arm_guard/laserproof
+obj/item/clothing/gloves/arm_guard/laserproof
 	name = "ablative arm guards"
 	desc = "These arm guards will protect your hands and arms from energy weapons."
 	icon_state = "arm_guards_laser"
@@ -36,7 +36,7 @@
 	siemens_coefficient = 0.4 //This is worse than the other ablative pieces, to avoid this from becoming the poor warden's insulated gloves.
 	armor_type = /datum/armor/station/ablative
 
-/obj/item/clothing/gloves/arm_guard/bulletproof
+obj/item/clothing/gloves/arm_guard/bulletproof
 	name = "bullet resistant arm guards"
 	desc = "These arm guards will protect your hands and arms from ballistic weapons."
 	icon_state = "arm_guards_bullet"
@@ -44,7 +44,7 @@
 	siemens_coefficient = 0.7
 	armor_type = /datum/armor/station/ballistic
 
-/obj/item/clothing/gloves/arm_guard/riot
+obj/item/clothing/gloves/arm_guard/riot
 	name = "riot arm guards"
 	desc = "These arm guards will protect your hands and arms from close combat weapons."
 	icon_state = "arm_guards_riot"
@@ -52,7 +52,7 @@
 	siemens_coefficient = 0.5
 	armor_type = /datum/armor/station/riot
 
-/obj/item/clothing/gloves/arm_guard/combat
+obj/item/clothing/gloves/arm_guard/combat
 	name = "combat arm guards"
 	desc = "These arm guards will protect your hands and arms from a variety of weapons."
 	icon_state = "arm_guards_combat"
@@ -60,7 +60,7 @@
 	siemens_coefficient = 0.6
 	armor_type = /datum/armor/station/combat
 
-/obj/item/clothing/gloves/arm_guard/flexitac
+obj/item/clothing/gloves/arm_guard/flexitac
 	name = "tactical arm guards"
 	desc = "These arm guards will protect your hands and arms from a variety of weapons while still allowing mobility."
 	icon_state = "arm_guards_flexitac"
@@ -70,7 +70,7 @@
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = ARMS
 
-/obj/item/clothing/gloves/arm_guard/combat/imperial
+obj/item/clothing/gloves/arm_guard/combat/imperial
 	name = "imperial gauntlets"
 	desc = "Made of some exotic metal, and crafted by space elves. Elves have delicate hands."
 	icon_state = "ge_gloves"

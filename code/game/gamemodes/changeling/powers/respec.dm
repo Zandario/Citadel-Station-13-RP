@@ -1,4 +1,4 @@
-/mob/proc/changeling_respec()
+mob/proc/changeling_respec()
 	set category = "Changeling"
 	set name = "Re-adapt"
 	set desc = "Allows us to refund our purchased abilities."

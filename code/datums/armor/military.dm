@@ -1,4 +1,4 @@
-/datum/armor/military/jumpsuit
+datum/armor/military/jumpsuit
 	melee = 0.2
 	melee_tier = MELEE_TIER_DEFAULT
 	bullet = 0.1

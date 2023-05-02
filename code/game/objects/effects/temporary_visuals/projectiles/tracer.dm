@@ -1,12 +1,12 @@
-/datum/beam_components_cache
+datum/beam_components_cache
 	var/list/beam_components = list()
 
-/datum/beam_components_cache/Destroy()
+datum/beam_components_cache/Destroy()
 	for(var/component in beam_components)
 		qdel(component)
 	return ..()
 
-/proc/generate_tracer_between_points(datum/point/starting, datum/point/ending, datum/beam_components_cache/beam_components, beam_type, color, qdel_in = 5, light_range = 2, light_color_override, light_intensity = 1, instance_key)		//Do not pass z-crossing points as that will not be properly (and likely will never be properly until it's absolutely needed) supported!
+proc/generate_tracer_between_points(datum/point/starting, datum/point/ending, datum/beam_components_cache/beam_components, beam_type, color, qdel_in = 5, light_range = 2, light_color_override, light_intensity = 1, instance_key)		//Do not pass z-crossing points as that will not be properly (and likely will never be properly until it's absolutely needed) supported!
 	if(!istype(starting) || !istype(ending) || !ispath(beam_type))
 		return
 	var/datum/point/midpoint = point_midpoint_points(starting, ending)
@@ -33,96 +33,96 @@
 		line = null
 	beam_components.beam_components += PB
 
-/obj/effect/projectile/tracer
+obj/effect/projectile/tracer
 	name = "beam"
 	icon = 'icons/obj/projectiles_tracer.dmi'
 
-/obj/effect/projectile/tracer/stun
+obj/effect/projectile/tracer/stun
 	icon_state = "stun"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FFFFFF"
 
-/obj/effect/projectile/tracer/lightning
+obj/effect/projectile/tracer/lightning
 	icon_state = "lightning"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00C6FF"
 
-/obj/effect/projectile/tracer/laser_pulse
+obj/effect/projectile/tracer/laser_pulse
 	icon_state = "u_laser"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#0066FF"
 
-/obj/effect/projectile/tracer/emitter
+obj/effect/projectile/tracer/emitter
 	icon_state = "emitter"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
 
-/obj/effect/projectile/tracer/darkmatterstun
+obj/effect/projectile/tracer/darkmatterstun
 	icon_state = "darkt"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#8837A3"
 
-/obj/effect/projectile/tracer/laser_omni
+obj/effect/projectile/tracer/laser_omni
 	icon_state = "beam_omni"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00C6FF"
 
-/obj/effect/projectile/tracer/xray
+obj/effect/projectile/tracer/xray
 	icon_state = "xray"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
 
-/obj/effect/projectile/tracer/laser_heavy
+obj/effect/projectile/tracer/laser_heavy
 	icon_state = "beam_heavy"
 	light_range = 3
 	light_power = 1
 	light_color = "#FF0D00"
 
-/obj/effect/projectile/tracer/secutorkill
+obj/effect/projectile/tracer/secutorkill
 	icon_state = "beam"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#BF2F4B"
 
-/obj/effect/projectile/tracer/darkmatter
+obj/effect/projectile/tracer/darkmatter
 	icon_state = "darkb"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#8837A3"
 
-/obj/effect/projectile/tracer/inversion
+obj/effect/projectile/tracer/inversion
 	icon_state = "invert"
 	light_range = 2
 	light_power = -2
 	light_color = "#FFFFFF"
 
-/obj/effect/projectile/tracer/laser
+obj/effect/projectile/tracer/laser
 	icon_state = "beam"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FF0D00"
 
-/obj/effect/projectile/tracer/laser_blue
+obj/effect/projectile/tracer/laser_blue
 	icon_state = "beam_blue"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#0066FF"
 
-/obj/effect/projectile/tungsten/tracer
+obj/effect/projectile/tungsten/tracer
 	icon_state = "mhd_laser"
 	light_range = 4
 	light_power = 3
 	light_color = "#3300ff"
 
 // Medigun
-/obj/effect/projectile/tracer/medigun
+obj/effect/projectile/tracer/medigun
 	icon = 'icons/obj/projectiles_vr.dmi'
 	icon_state = "medbeam"
 	light_range = 2

@@ -1,4 +1,4 @@
-/obj/item/organ/internal/stomach
+obj/item/organ/internal/stomach
 	name = "stomach"
 	icon_state = "stomach"
 	organ_tag = O_STOMACH
@@ -11,7 +11,7 @@
 
 	var/deadly_hold = TRUE	// Does the stomach do damage to mobs eaten by its owner? Xenos should probably have this FALSE.
 
-/obj/item/organ/internal/stomach/Initialize(mapload)
+obj/item/organ/internal/stomach/Initialize(mapload)
 	. = ..()
 
 	if(reagents)
@@ -19,7 +19,7 @@
 	else
 		create_reagents(30)
 
-/obj/item/organ/internal/stomach/handle_organ_proc_special()
+obj/item/organ/internal/stomach/handle_organ_proc_special()
 	if(owner && istype(owner, /mob/living/carbon/human))
 		if(reagents)
 			if(reagents.total_volume + 2 < max_acid_volume && prob(20))
@@ -32,7 +32,7 @@
 			owner.custom_pain("There's a twisting pain in your abdomen!",1)
 			owner.vomit(FALSE, TRUE)
 
-/obj/item/organ/internal/stomach/handle_germ_effects()
+obj/item/organ/internal/stomach/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer
 	if(!.) return
 
@@ -46,11 +46,11 @@
 			owner.adjustToxLoss(3)
 			owner.vomit(FALSE, TRUE)
 
-/obj/item/organ/internal/stomach/xeno
+obj/item/organ/internal/stomach/xeno
 	color = "#555555"
 	acidtype = "pacid"
 
-/obj/item/organ/internal/stomach/machine
+obj/item/organ/internal/stomach/machine
 	name = "reagent cycler"
 	icon_state = "cycler"
 	organ_tag = O_CYCLER
@@ -59,7 +59,7 @@
 
 	acidtype = "sacid"
 
-/obj/item/organ/internal/stomach/machine/handle_organ_proc_special()
+obj/item/organ/internal/stomach/machine/handle_organ_proc_special()
 	..()
 	if(owner && owner.stat != DEAD)
 		owner.bodytemperature += round(owner.robobody_count * 0.25, 0.1)

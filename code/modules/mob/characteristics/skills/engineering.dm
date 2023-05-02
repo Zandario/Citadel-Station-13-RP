@@ -1,4 +1,4 @@
-/datum/characteristic_skill/engineering
+datum/characteristic_skill/engineering
 	abstract_type = /datum/characteristic_skill/engineering
 	category = "Engineering"
 
@@ -7,7 +7,7 @@
  *
  * Implementation status: not started
  */
-/datum/characteristic_skill/engineering/electrical
+datum/characteristic_skill/engineering/electrical
 	id = "electrical"
 	name = "Electrical Engineering"
 	desc = "How experienced you are with powe, wiring, hacking, etc."
@@ -26,7 +26,7 @@
  *
  * Implementation status: not started
  */
-/datum/characteristic_skill/engineering/construction
+datum/characteristic_skill/engineering/construction
 	id = "construction"
 	name = "Construction"
 	desc = "How good you are at building or breaking things down."
@@ -45,7 +45,7 @@
  *
  * Implementation status: not started
  */
-/datum/characteristic_skill/engineering/atmospherics
+datum/characteristic_skill/engineering/atmospherics
 	id = "atmospherics"
 	name = "Atmospherics"
 	desc = "How experienced you are with gas mechanics, atmospherics machinery, etc."
@@ -64,7 +64,7 @@
  *
  * Implementation status: not started
  */
-/datum/characteristic_skill/engineering/engines
+datum/characteristic_skill/engineering/engines
 	id = "engines"
 	name = "Engine & Voidcraft Operation"
 	desc = "How experienced you are with various engines, as well as with systems aboard a ship."

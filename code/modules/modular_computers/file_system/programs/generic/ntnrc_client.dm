@@ -1,4 +1,4 @@
-/datum/computer_file/program/chatclient
+datum/computer_file/program/chatclient
 	filename = "ntnrc_client"
 	filedesc = "NTNet Relay Chat Client"
 	program_icon_state = "command"
@@ -18,10 +18,10 @@
 	var/operator_mode = 0		// Channel operator mode
 	var/netadmin_mode = 0		// Administrator mode (invisible to other users + bypasses passwords)
 
-/datum/computer_file/program/chatclient/New()
+datum/computer_file/program/chatclient/New()
 	username = "DefaultUser[rand(100, 999)]"
 
-/datum/computer_file/program/chatclient/Topic(href, href_list)
+datum/computer_file/program/chatclient/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -159,7 +159,7 @@
 		else
 			channel.password = newpassword
 
-/datum/computer_file/program/chatclient/process_tick()
+datum/computer_file/program/chatclient/process_tick()
 	..()
 	if(program_state != PROGRAM_STATE_KILLED)
 		ui_header = "ntnrc_idle.gif"
@@ -174,16 +174,16 @@
 	else
 		ui_header = "ntnrc_idle.gif"
 
-/datum/computer_file/program/chatclient/kill_program(var/forced = 0)
+datum/computer_file/program/chatclient/kill_program(var/forced = 0)
 	if(channel)
 		channel.remove_client(src)
 		channel = null
 	..(forced)
 
-/datum/nano_module/program/computer_chatclient
+datum/nano_module/program/computer_chatclient
 	name = "NTNet Relay Chat Client"
 
-/datum/nano_module/program/computer_chatclient/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/computer_chatclient/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	if(!ntnet_global || !ntnet_global.chat_channels)
 		return
 

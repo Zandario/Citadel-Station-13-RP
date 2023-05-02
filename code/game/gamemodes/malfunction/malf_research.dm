@@ -1,4 +1,4 @@
-/datum/malf_research
+datum/malf_research
 	var/stored_cpu = 0								// Currently stored amount of CPU time.
 	var/last_tick = 0								// Last process() tick.
 	var/max_cpu = 0									// Maximal amount of CPU time stored.
@@ -8,7 +8,7 @@
 	var/mob/living/silicon/ai/owner = null			// AI which owns this research datum.
 	var/datum/malf_research_ability/focus = null	// Currently researched item
 
-/datum/malf_research/New()
+datum/malf_research/New()
 	setup_abilities()
 	last_tick = world.time
 
@@ -16,7 +16,7 @@
 // Proc:		setup_abilities()
 // Parameters: 	None
 // Description: Sets up basic abilities for AI Malfunction gamemode.
-/datum/malf_research/proc/setup_abilities()
+datum/malf_research/proc/setup_abilities()
 	available_abilities = list()
 	unlocked_abilities = list()
 
@@ -28,7 +28,7 @@
 // Proc:		finish_research()
 // Parameters: 	None
 // Description: Finishes currently focused research.
-/datum/malf_research/proc/finish_research()
+datum/malf_research/proc/finish_research()
 	if(!focus)
 		return
 	to_chat(owner, "<b>Research Completed</b>: [focus.name]")
@@ -43,7 +43,7 @@
 // Proc:		process()
 // Parameters: 	None
 // Description: Processes CPU gain and research progress based on "realtime" calculation.
-/datum/malf_research/process(var/idle = 0)
+datum/malf_research/process(var/idle = 0)
 	if(idle)		// No power or running on APU. Do nothing.
 		last_tick = world.time
 		return
@@ -62,8 +62,3 @@
 		focus.process(cpu_gained)
 		if(focus.unlocked)
 			finish_research()
-
-
-
-
-

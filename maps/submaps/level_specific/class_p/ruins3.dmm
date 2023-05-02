@@ -1,47 +1,47 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/ruins)
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/ruins)
 "j" = (
-/turf/simulated/floor/classp/outdoors,
-/area/class_p/ruins)
+turf/simulated/floor/classp/outdoors,
+area/class_p/ruins)
 "m" = (
-/turf/simulated/wall/classp,
-/area/class_p/ruins)
+turf/simulated/wall/classp,
+area/class_p/ruins)
 "F" = (
-/obj/random/mob/robotic/hivebot{
+obj/random/mob/robotic/hivebot{
 	mob_faction = "frozen"
 	},
-/turf/simulated/floor/classp/outdoors,
-/area/class_p/ruins)
+turf/simulated/floor/classp/outdoors,
+area/class_p/ruins)
 "L" = (
-/obj/structure/table/gamblingtable,
-/obj/random/triumph/uncertain,
-/turf/simulated/floor/carpet/purcarpet/classp,
-/area/class_p/ruins)
+obj/structure/table/gamblingtable,
+obj/random/triumph/uncertain,
+turf/simulated/floor/carpet/purcarpet/classp,
+area/class_p/ruins)
 "M" = (
-/turf/simulated/floor/outdoors/snow/classp/no_tree,
-/area/class_p/ruins)
+turf/simulated/floor/outdoors/snow/classp/no_tree,
+area/class_p/ruins)
 "N" = (
-/obj/structure/closet/crate/secure/loot,
-/turf/simulated/floor/wood/classp,
-/area/class_p/ruins)
+obj/structure/closet/crate/secure/loot,
+turf/simulated/floor/wood/classp,
+area/class_p/ruins)
 "O" = (
-/obj/structure/bed,
-/turf/simulated/floor/carpet/purcarpet/classp,
-/area/class_p/ruins)
+obj/structure/bed,
+turf/simulated/floor/carpet/purcarpet/classp,
+area/class_p/ruins)
 "Q" = (
-/obj/random/mob/robotic/hivebot{
+obj/random/mob/robotic/hivebot{
 	mob_faction = "frozen"
 	},
-/turf/simulated/floor/outdoors/snow/classp/no_tree,
-/area/class_p/ruins)
+turf/simulated/floor/outdoors/snow/classp/no_tree,
+area/class_p/ruins)
 "S" = (
-/turf/simulated/floor/carpet/purcarpet/classp,
-/area/class_p/ruins)
+turf/simulated/floor/carpet/purcarpet/classp,
+area/class_p/ruins)
 "W" = (
-/turf/simulated/floor/wood/classp,
-/area/class_p/ruins)
+turf/simulated/floor/wood/classp,
+area/class_p/ruins)
 
 (1,1,1) = {"
 a

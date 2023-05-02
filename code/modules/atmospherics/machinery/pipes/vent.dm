@@ -1,7 +1,7 @@
 //
 // Vent Pipe - Unpowered vent
 //
-/obj/machinery/atmospherics/pipe/vent
+obj/machinery/atmospherics/pipe/vent
 	icon = 'icons/obj/atmospherics/pipe_vent.dmi'
 	icon_state = "intact"
 
@@ -18,28 +18,28 @@
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "passive vent"
 
-/obj/machinery/atmospherics/pipe/vent/init_dir()
+obj/machinery/atmospherics/pipe/vent/init_dir()
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/pipe/vent/high_volume
+obj/machinery/atmospherics/pipe/vent/high_volume
 	name = "Larger vent"
 	volume = 1000
 
-/obj/machinery/atmospherics/pipe/vent/process(delta_time)
+obj/machinery/atmospherics/pipe/vent/process(delta_time)
 	if(parent)
 		parent.mingle_with_turf(loc, volume)
 
-/obj/machinery/atmospherics/pipe/vent/Destroy()
+obj/machinery/atmospherics/pipe/vent/Destroy()
 	if(node1)
 		node1.disconnect(src)
 		node1 = null
 
 	. = ..()
 
-/obj/machinery/atmospherics/pipe/vent/pipeline_expansion()
+obj/machinery/atmospherics/pipe/vent/pipeline_expansion()
 	return list(node1)
 
-/obj/machinery/atmospherics/pipe/vent/update_icon()
+obj/machinery/atmospherics/pipe/vent/update_icon()
 	if(node1)
 		icon_state = "intact"
 
@@ -48,7 +48,7 @@
 	else
 		icon_state = "exposed"
 
-/obj/machinery/atmospherics/pipe/vent/atmos_init()
+obj/machinery/atmospherics/pipe/vent/atmos_init()
 	var/connect_direction = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
@@ -58,7 +58,7 @@
 
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/vent/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipe/vent/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
 			qdel(parent)
@@ -68,7 +68,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/pipe/vent/hide(var/i) //to make the little pipe section invisible, the icon changes.
+obj/machinery/atmospherics/pipe/vent/hide(var/i) //to make the little pipe section invisible, the icon changes.
 	if(node1)
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 		setDir(get_dir(src, node1))

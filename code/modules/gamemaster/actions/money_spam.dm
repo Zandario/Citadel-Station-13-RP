@@ -1,4 +1,4 @@
-/datum/gm_action/pda_spam
+datum/gm_action/pda_spam
 	name = "PDA spam"
 	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
@@ -6,18 +6,18 @@
 	var/obj/machinery/message_server/useMS
 	var/obj/machinery/exonet_node/node
 
-/datum/gm_action/pda_spam/set_up()
+datum/gm_action/pda_spam/set_up()
 	last_spam_time = world.time
 	pick_message_server()
 
-/datum/gm_action/pda_spam/proc/pick_message_server()
+datum/gm_action/pda_spam/proc/pick_message_server()
 	if(message_servers)
 		for (var/obj/machinery/message_server/MS in message_servers)
 			if(MS.active)
 				useMS = MS
 				break
 
-/datum/gm_action/pda_spam/start()
+datum/gm_action/pda_spam/start()
 	..()
 	while(world.time < last_spam_time + 3000)
 		if(!node)
@@ -117,5 +117,5 @@
 				if(L)
 					to_chat(L, "[icon2html(thing = P, target = L)] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)")
 
-/datum/gm_action/pda_spam/get_weight()
+datum/gm_action/pda_spam/get_weight()
 	return 25 * metric.count_people_in_department(DEPARTMENT_EVERYONE)

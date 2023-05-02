@@ -12,9 +12,9 @@ log transactions
 #define TRANSFER_FUNDS 2
 #define VIEW_TRANSACTION_LOGS 3
 
-/obj/item/card/id/var/money = 2000
+obj/item/card/id/var/money = 2000
 
-/obj/machinery/atm
+obj/machinery/atm
 	name = "Automatic Teller Machine"
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/terminals.dmi'
@@ -37,14 +37,14 @@ log transactions
 	var/view_screen = NO_SCREEN
 	var/datum/effect_system/spark_spread/spark_system
 
-/obj/machinery/atm/Initialize(mapload)
+obj/machinery/atm/Initialize(mapload)
 	. = ..()
 	machine_id = "ATM Terminal #[GLOB.num_financial_terminals++]"
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-/obj/machinery/atm/process(delta_time)
+obj/machinery/atm/process(delta_time)
 	if(machine_stat & NOPOWER)
 		return
 
@@ -65,7 +65,7 @@ log transactions
 			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 		break
 
-/obj/machinery/atm/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/atm/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		return
 
@@ -81,7 +81,7 @@ log transactions
 	to_chat(user, SPAN_WARNING("[icon2html(thing = src, target = user)] The [src] beeps: \"[response]\""))
 	return TRUE
 
-/obj/machinery/atm/attackby(obj/item/I, mob/user)
+obj/machinery/atm/attackby(obj/item/I, mob/user)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	if(istype(I, /obj/item/card))
@@ -127,7 +127,7 @@ log transactions
 	else
 		..()
 
-/obj/machinery/atm/attack_hand(mob/user, list/params)
+obj/machinery/atm/attack_hand(mob/user, list/params)
 	if(istype(user, /mob/living/silicon))
 		to_chat (user, SPAN_WARNING("A firewall prevents you from interfacing with this device!"))
 		return
@@ -225,7 +225,7 @@ log transactions
 	else
 		user << browse(null,"window=atm")
 
-/obj/machinery/atm/Topic(var/href, var/href_list)
+obj/machinery/atm/Topic(var/href, var/href_list)
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("transfer")
@@ -453,7 +453,7 @@ log transactions
 	src.attack_hand(usr)
 
 //stolen wholesale and then edited a bit from newscasters, which are awesome and by Agouri
-/obj/machinery/atm/proc/scan_user(mob/living/carbon/human/human_user as mob)
+obj/machinery/atm/proc/scan_user(mob/living/carbon/human/human_user as mob)
 	if(!authenticated_account)
 		if(human_user.wear_id)
 			var/obj/item/card/id/I
@@ -479,7 +479,7 @@ log transactions
 					view_screen = NO_SCREEN
 
 // put the currently held id on the ground or in the hand of the user
-/obj/machinery/atm/proc/release_held_id(mob/living/carbon/human/human_user as mob)
+obj/machinery/atm/proc/release_held_id(mob/living/carbon/human/human_user as mob)
 	if(!held_card)
 		return
 
@@ -491,7 +491,7 @@ log transactions
 	held_card = null
 
 
-/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
+obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/spacecash/ewallet/E = new /obj/item/spacecash/ewallet(loc)
 	if(ishuman(human_user) && !human_user.get_active_held_item())
 		human_user.put_in_hands(E)

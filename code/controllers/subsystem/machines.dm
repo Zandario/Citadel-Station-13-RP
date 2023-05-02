@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(machines)
 
 	var/list/current_run = list()
 
-/datum/controller/subsystem/machines/stat_entry()
+datum/controller/subsystem/machines/stat_entry()
 	var/msg = list(
 		"MC/MS: [round((cost ? global.processing_machines.len/cost_machinery : 0),0.1)]",
 		"&emsp;Cost: { PiNet: [round(cost_pipenets,1)] | M: [round(cost_machinery,1)] | PowNet: [round(cost_powernets,1)] | PowObj: [round(cost_power_objects,1)] }",
@@ -40,14 +40,14 @@ SUBSYSTEM_DEF(machines)
 	)
 	return ..() + jointext(msg, "<br>")
 
-/datum/controller/subsystem/machines/Initialize(timeofday)
+datum/controller/subsystem/machines/Initialize(timeofday)
 	makepowernets()
 	report_progress("Initializing atmos machinery...")
 	setup_atmos_machinery(GLOB.machines)
 	fire()
 	return ..()
 
-/datum/controller/subsystem/machines/fire(resumed = 0)
+datum/controller/subsystem/machines/fire(resumed = 0)
 	var/timer = TICK_USAGE
 
 	INTERNAL_PROCESS_STEP(SSMACHINES_POWER_OBJECTS,FALSE,process_power_objects,cost_power_objects,SSMACHINES_PIPENETS) // Higher priority, damnit
@@ -57,21 +57,21 @@ SUBSYSTEM_DEF(machines)
 
 // rebuild all power networks from scratch - only called at world creation or by the admin verb
 // The above is a lie. Turbolifts also call this proc.
-/datum/controller/subsystem/machines/proc/makepowernets()
+datum/controller/subsystem/machines/proc/makepowernets()
 	// TODO - check to not run while in the middle of a tick!
 	for(var/datum/powernet/PN in powernets)
 		qdel(PN)
 	powernets.Cut()
 	setup_powernets_for_cables(cable_list)
 
-/datum/controller/subsystem/machines/proc/setup_powernets_for_cables(list/cables)
+datum/controller/subsystem/machines/proc/setup_powernets_for_cables(list/cables)
 	for(var/obj/structure/cable/PC in cables)
 		if(!PC.powernet)
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
 
-/datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/atmos_machines)
+datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/atmos_machines)
 	for(var/obj/machinery/atmospherics/machine in atmos_machines)
 		machine.atmos_init()
 		CHECK_TICK
@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(machines)
 			T.broadcast_status()
 		CHECK_TICK
 
-/datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
+datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
 	if (!resumed)
 		src.current_run = global.pipe_networks.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -107,7 +107,7 @@ SUBSYSTEM_DEF(machines)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
+datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
 		src.current_run = global.processing_machines.Copy()
 
@@ -123,7 +123,7 @@ SUBSYSTEM_DEF(machines)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/machines/proc/process_powernets(resumed = 0)
+datum/controller/subsystem/machines/proc/process_powernets(resumed = 0)
 	if (!resumed)
 		src.current_run = global.powernets.Copy()
 
@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(machines)
 
 // Actually only processes power DRAIN objects.
 // Currently only used by powersinks. These items get priority processed before machinery
-/datum/controller/subsystem/machines/proc/process_power_objects(resumed = 0)
+datum/controller/subsystem/machines/proc/process_power_objects(resumed = 0)
 	if (!resumed)
 		src.current_run = global.processing_power_items.Copy()
 
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(machines)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/machines/Recover()
+datum/controller/subsystem/machines/Recover()
 	// TODO - PHASE 2
 	// if (istype(SSmachines.pipenets))
 	// 	pipenets = SSmachines.pipenets

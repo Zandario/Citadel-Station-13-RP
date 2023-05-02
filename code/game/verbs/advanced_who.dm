@@ -1,5 +1,5 @@
 
-/client/verb/who_advanced()
+client/verb/who_advanced()
 	set name = "Advanced Who"
 	set category = "OOC"
 

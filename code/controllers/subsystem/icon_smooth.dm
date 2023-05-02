@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(icon_smooth)
 	var/list/smooth_queue = list()
 	var/list/deferred = list()
 
-/datum/controller/subsystem/icon_smooth/fire()
+datum/controller/subsystem/icon_smooth/fire()
 	var/list/smooth_queue_cache = smooth_queue
 	while(length(smooth_queue_cache))
 		var/atom/smoothing_atom = smooth_queue_cache[length(smooth_queue_cache)]
@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(icon_smooth)
 		else
 			can_fire = FALSE
 
-/datum/controller/subsystem/icon_smooth/Initialize()
+datum/controller/subsystem/icon_smooth/Initialize()
 	var/list/queue = smooth_queue
 	smooth_queue = list()
 
@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(icon_smooth)
 	return ..()
 
 
-/datum/controller/subsystem/icon_smooth/proc/add_to_queue(atom/thing)
+datum/controller/subsystem/icon_smooth/proc/add_to_queue(atom/thing)
 	if(thing.smoothing_flags & SMOOTH_QUEUED)
 		return
 	thing.smoothing_flags |= SMOOTH_QUEUED
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(icon_smooth)
 	if(!can_fire)
 		can_fire = TRUE
 
-/datum/controller/subsystem/icon_smooth/proc/remove_from_queues(atom/thing)
+datum/controller/subsystem/icon_smooth/proc/remove_from_queues(atom/thing)
 	thing.smoothing_flags &= ~SMOOTH_QUEUED
 	smooth_queue -= thing
 	// if(blueprint_queue)

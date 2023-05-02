@@ -1,7 +1,7 @@
 // The GOLEM is a spell-flinging synthetic.
 
 // Cataloguer data below - strange we can catalogue space golem wizards
-/datum/category_item/catalogue/technology/drone/technomancer_golem
+datum/category_item/catalogue/technology/drone/technomancer_golem
 	name = "Drone - Technomancer Golem"
 	desc = "Some sort of advanced, unnatural looking synthetic, built for combat.\
 	It has a black-and-blue chassis, and wields some sort of... stun baton in it's hand.\
@@ -11,7 +11,7 @@
 	no traces of paint visible and any 'writing' visible is uncomprehendable, short term scan unable to translate."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/mechanical/technomancer_golem
+mob/living/simple_mob/mechanical/technomancer_golem
 	name = "unknown synthetic"
 	desc = "A rather unusual looking synthetic."
 	icon = 'icons/mob/mob.dmi'
@@ -66,19 +66,19 @@
 		"haste"				= /obj/item/spell/modifier/haste
 		)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/Initialize(mapload)
+mob/living/simple_mob/mechanical/technomancer_golem/Initialize(mapload)
 	core = new(src)
 	return ..()
 
-/mob/living/simple_mob/mechanical/technomancer_golem/Destroy()
+mob/living/simple_mob/mechanical/technomancer_golem/Destroy()
 	qdel(core)
 	return ..()
 
-/mob/living/simple_mob/mechanical/technomancer_golem/unref_spell()
+mob/living/simple_mob/mechanical/technomancer_golem/unref_spell()
 	active_spell = null
 	return ..()
 
-/mob/living/simple_mob/mechanical/technomancer_golem/death()
+mob/living/simple_mob/mechanical/technomancer_golem/death()
 	..()
 	visible_message("\The [src] disintegrates!")
 	new /obj/effect/debris/cleanable/blood/gibs/robot(src.loc)
@@ -87,7 +87,7 @@
 	s.start()
 	qdel(src)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/place_spell_in_hand(var/path)
+mob/living/simple_mob/mechanical/technomancer_golem/place_spell_in_hand(var/path)
 	if(!path || !ispath(path))
 		return FALSE
 	if(active_spell)
@@ -95,26 +95,26 @@
 
 	active_spell = new path(src)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/verb/test_giving_spells()
+mob/living/simple_mob/mechanical/technomancer_golem/verb/test_giving_spells()
 	var/choice = input(usr, "What spell?", "Give spell") as null|anything in known_spells
 	if(choice)
 		place_spell_in_hand(known_spells[choice])
 	else
 		qdel(active_spell)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/get_technomancer_core()
+mob/living/simple_mob/mechanical/technomancer_golem/get_technomancer_core()
 	return core
 
-/mob/living/simple_mob/mechanical/technomancer_golem/can_special_attack(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/can_special_attack(atom/A)
 	if(active_spell) // Don't bother checking everything else if no spell is ready.
 		return ..()
 	return FALSE
 
-/mob/living/simple_mob/mechanical/technomancer_golem/should_special_attack(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/should_special_attack(atom/A)
 	return instability < 50 // Don't kill ourselves by casting everything.
 
 
-/mob/living/simple_mob/mechanical/technomancer_golem/do_special_attack(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/do_special_attack(atom/A)
 	var/proximity = Adjacent(A)
 	if(active_spell)
 		if(proximity && active_spell.cast_methods & CAST_MELEE) // Use melee method if available and close enough.
@@ -123,7 +123,7 @@
 			return active_spell.on_ranged_cast(A, src)
 	return ..()
 
-/mob/living/simple_mob/mechanical/technomancer_golem/melee_pre_animation(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/melee_pre_animation(atom/A)
 	if(active_spell && active_spell.cast_methods & CAST_MELEE|CAST_RANGED) // If they're trying to melee-cast a spell, use the special animation instead.
 		special_pre_animation(A)
 		return
@@ -133,7 +133,7 @@
 	icon_state = "golem_pre_melee"
 	setClickCooldown(2)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/melee_post_animation(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/melee_post_animation(atom/A)
 	if(casting) // Some spells delete themselves when used, so we use a different variable set earlier instead.
 		special_post_animation(A)
 		return
@@ -143,22 +143,22 @@
 	icon_state = "golem"
 	setClickCooldown(6)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/ranged_pre_animation(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/ranged_pre_animation(atom/A)
 	flick("golem_pre_ranged", src)
 	icon_living = "golem_pre_ranged"
 	icon_state = "golem_pre_ranged"
 	setClickCooldown(5)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/ranged_post_animation(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/ranged_post_animation(atom/A)
 	flick("golem_post_ranged", src)
 	icon_living = "golem"
 	icon_state = "golem"
 	setClickCooldown(5)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/special_pre_animation(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/special_pre_animation(atom/A)
 	casting = TRUE
 	ranged_pre_animation(A) // Both have the same animation.
 
-/mob/living/simple_mob/mechanical/technomancer_golem/special_post_animation(atom/A)
+mob/living/simple_mob/mechanical/technomancer_golem/special_post_animation(atom/A)
 	casting = FALSE
 	ranged_post_animation(A)

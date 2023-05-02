@@ -1,4 +1,4 @@
-/datum/species/alraune
+datum/species/alraune
 	uid = SPECIES_ID_ALRAUNE
 	id = SPECIES_ID_ALRAUNE
 	name = SPECIES_ALRAUNE
@@ -110,11 +110,11 @@
 		O_FRUIT   = /obj/item/organ/internal/fruitgland,
 	)
 
-/datum/species/alraune/can_breathe_water()
+datum/species/alraune/can_breathe_water()
 	return TRUE //eh, why not? Aquatic plants are a thing.
 
 
-/datum/species/alraune/handle_environment_special(mob/living/carbon/human/H)
+datum/species/alraune/handle_environment_special(mob/living/carbon/human/H)
 	if(H.inStasisNow()) // if they're in stasis, they won't need this stuff.
 		return
 
@@ -339,7 +339,7 @@
 	return 1
 
 
-/mob/living/carbon/human/proc/alraune_fruit_select() //So if someone doesn't want fruit/vegetables, they don't have to select one.
+mob/living/carbon/human/proc/alraune_fruit_select() //So if someone doesn't want fruit/vegetables, they don't have to select one.
 	set name = "Select Fruit"
 	set desc = "Select what fruit/vegetable you wish to grow."
 	set category = "Abilities"
@@ -360,7 +360,7 @@
 	else
 		to_chat(src, SPAN_NOTICE("You lack the organ required to produce fruit."))
 
-/mob/living/carbon/human/proc/alraune_fruit_pick()
+mob/living/carbon/human/proc/alraune_fruit_pick()
 	set name = "Pick Fruit"
 	set desc = "Pick fruit off of [src]."
 	set category = "Object"
@@ -406,10 +406,10 @@
 
 //End of fruit gland code.
 
-/datum/species/alraune/get_bodytype_legacy()
+datum/species/alraune/get_bodytype_legacy()
 	return base_species
 
 //! WARNING SHITCODE
-/datum/species/alraune/get_race_key(mob/living/carbon/human/H)
+datum/species/alraune/get_race_key(mob/living/carbon/human/H)
 	var/datum/species/real = SScharacters.resolve_species_name(base_species || SPECIES_HUMAN)
 	return real.real_race_key(H)

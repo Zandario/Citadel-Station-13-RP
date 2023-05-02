@@ -1,4 +1,4 @@
-/datum/map_template/shelter
+datum/map_template/shelter
 	var/shelter_id
 	var/description
 	var/blacklisted_turfs
@@ -6,14 +6,14 @@
 	var/banned_areas
 	var/banned_objects
 
-/datum/map_template/shelter/New()
+datum/map_template/shelter/New()
 	. = ..()
 	blacklisted_turfs = typecacheof(list(/turf/unsimulated, /turf/simulated/floor))
 	// todo: if you have to modify this list again ping silicons and yell at them to code AREA_IMMUTABLE, AREA_FORBID_MAPLOADING_ITEMS, wnd maybe, just maybe, subareas.
 	banned_areas = typecacheof(/area/shuttle, /area/rift/surfacebase/shuttle)
 	banned_objects = list()
 
-/datum/map_template/shelter/proc/check_deploy(turf/deploy_location)
+datum/map_template/shelter/proc/check_deploy(turf/deploy_location)
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
 		var/area/A = get_area(T)
@@ -30,13 +30,13 @@
 				return SHELTER_DEPLOY_ANCHORED_OBJECTS
 	return SHELTER_DEPLOY_ALLOWED
 
-/datum/map_template/shelter/proc/add_roof(turf/deploy_location)
+datum/map_template/shelter/proc/add_roof(turf/deploy_location)
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
 		if(isopenturf(T))
 			T.ChangeTurf(/turf/simulated/shuttle/floor/voidcraft)
 
-/datum/map_template/shelter/proc/annihilate_plants(turf/deploy_location)
+datum/map_template/shelter/proc/annihilate_plants(turf/deploy_location)
 	var/deleted_atoms = 0
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
@@ -45,12 +45,12 @@
 			qdel(AM)
 	admin_notice("<span class='danger'>Annihilated [deleted_atoms] plants.</span>", R_DEBUG)
 
-/datum/map_template/shelter/proc/update_lighting(turf/deploy_location)
+datum/map_template/shelter/proc/update_lighting(turf/deploy_location)
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
 		T.lighting_build_overlay()
 
-/datum/map_template/shelter/alpha
+datum/map_template/shelter/alpha
 	name = "Shelter Alpha"
 	shelter_id = "shelter_alpha"
 	description = "A cosy self-contained pressurized shelter, with \
@@ -59,7 +59,7 @@
 		absolutely free!"
 	mappath = "maps/templates/shelters/shelter_1.dmm"
 
-/datum/map_template/shelter/beta
+datum/map_template/shelter/beta
 	name = "Shelter Beta"
 	shelter_id = "shelter_beta"
 	description = "An extremely luxurious shelter, containing all \
@@ -69,7 +69,7 @@
 		an ash storm."
 	mappath = "maps/templates/shelters/shelter_2.dmm"
 
-/datum/map_template/shelter/gamma
+datum/map_template/shelter/gamma
 	name = "Shelter Gamma"
 	shelter_id = "shelter_gamma"
 	description = "A luxury elite bar which holds an entire bar \
@@ -79,7 +79,7 @@
 		death."
 	mappath = "maps/templates/shelters/shelter_3.dmm"
 
-/datum/map_template/shelter/delta
+datum/map_template/shelter/delta
 	name = "Shelter Delta"
 	shelter_id = "shelter_delta"
 	description = "A small firebase that contains equipment and supplies \
@@ -89,7 +89,7 @@
 		possible."
 	mappath = "maps/templates/shelters/shelter_4.dmm"
 
-/datum/map_template/shelter/phi
+datum/map_template/shelter/phi
 	name = "Shelter Phi"
 	shelter_id = "shelter_phi"
 	description = "An heavily modified variant of the luxury shelter, \

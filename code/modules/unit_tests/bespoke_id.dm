@@ -1,4 +1,4 @@
-/datum/unit_test/bespoke_id/Run()
+datum/unit_test/bespoke_id/Run()
 	var/datum/element/base = /datum/element
 	var/base_index = initial(base.id_arg_index)
 

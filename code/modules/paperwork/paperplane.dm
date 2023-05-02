@@ -1,5 +1,5 @@
 // Ported from TG. Known issue: Throw hit can possibly double-proc. Seems to be throw code.
-/obj/item/paperplane
+obj/item/paperplane
 	name = "paper plane"
 	desc = "Paper folded into the shape of a plane."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -11,7 +11,7 @@
 
 	var/obj/item/paper/internalPaper
 
-/obj/item/paperplane/Initialize(mapload, obj/item/paper/newPaper)
+obj/item/paperplane/Initialize(mapload, obj/item/paper/newPaper)
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
@@ -28,13 +28,13 @@
 		internalPaper = new /obj/item/paper(src)
 	update_icon()
 
-/obj/item/paperplane/Destroy()
+obj/item/paperplane/Destroy()
 	if(internalPaper)
 		qdel(internalPaper)
 		internalPaper = null
 	return ..()
 
-/obj/item/paperplane/update_icon()
+obj/item/paperplane/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -49,7 +49,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/item/paperplane/attack_self(mob/user)
+obj/item/paperplane/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -60,7 +60,7 @@
 	qdel(src)
 	user.put_in_hands(internal_paper_tmp)
 
-/obj/item/paperplane/attackby(obj/item/P, mob/living/carbon/human/user, params)
+obj/item/paperplane/attackby(obj/item/P, mob/living/carbon/human/user, params)
 	..()
 	if(istype(P, /obj/item/pen))
 		to_chat(user, "<span class='notice'>You should unfold [src] before changing it.</span>")
@@ -87,7 +87,7 @@
 
 	add_fingerprint(user)
 
-/obj/item/paperplane/throw_impact(atom/hit_atom)
+obj/item/paperplane/throw_impact(atom/hit_atom)
 	if(..() || !ishuman(hit_atom))//if the plane is caught or it hits a nonhuman
 		return
 	var/mob/living/carbon/human/H = hit_atom
@@ -101,7 +101,7 @@
 			E.take_damage(2.5)
 		H.emote("scream")
 
-/obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
+obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
 	if ( istype(user) )
 		if( (!in_range(src, user)) || user.stat || user.restrained() )
 			return

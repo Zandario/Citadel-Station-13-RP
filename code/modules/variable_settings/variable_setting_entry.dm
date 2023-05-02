@@ -1,7 +1,7 @@
 /**
   * Variable settings entry. There cannot be duplicate entries of the same typepath in a controller.
   */
-/datum/variable_setting_entry
+datum/variable_setting_entry
 	/// User friendly name
 	var/name = "Entry"
 	/// User friendly description
@@ -15,7 +15,7 @@
 	/// Value type
 	var/value_type = VSC_VALUE_NUMBER
 
-/datum/variable_setting_entry/New(_value)
+datum/variable_setting_entry/New(_value)
 	if(!islist(_value))
 		value = initial_value = _value
 	else
@@ -23,16 +23,16 @@
 		initial_value = deep_copy_list(_value)
 	// we do not handle datums yet.
 
-/datum/variable_setting_entry/proc/reset_to_default()
+datum/variable_setting_entry/proc/reset_to_default()
 	if(islist(initial_value))
 		value = deep_copy_list(initial_value)
 	else
 		value = initial_value
 
-/datum/variable_setting_entry/proc/set_value(newvalue)
+datum/variable_setting_entry/proc/set_value(newvalue)
 	value = newvalue
 
-/datum/variable_setting_entry/proc/render_value()
+datum/variable_setting_entry/proc/render_value()
 	switch(value_type)
 		if(VSC_VALUE_NUMBER)
 			return value
@@ -41,20 +41,20 @@
 		else
 			return value
 
-/datum/variable_setting_entry/proc/ui_html(datum/variable_settings_controller/host, category)
+datum/variable_setting_entry/proc/ui_html(datum/variable_settings_controller/host, category)
 	. = list()
 	. += "<b>[name]</b><br><a href='?src=[REF(host)];target=[type];set=1;category=[category]'>Set</a> \[[render_value()]\]<br>"
 	. += "[desc]"
 	return jointext(., "")
 
-/datum/variable_setting_entry/proc/prompt_value(mob/user)
+datum/variable_setting_entry/proc/prompt_value(mob/user)
 	switch(value_type)
 		if(VSC_VALUE_NUMBER)
 			return input(user, "Input a number.", "Set Value", value) as num|null
 		if(VSC_VALUE_BOOLEAN)
 			return !value
 
-/datum/variable_setting_entry/proc/OnTopic(href, href_list)
+datum/variable_setting_entry/proc/OnTopic(href, href_list)
 	if(href_list["set"])
 		var/val = prompt_value(usr)
 		if(isnull(val))

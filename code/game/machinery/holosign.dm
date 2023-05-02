@@ -1,5 +1,5 @@
 ////////////////////HOLOSIGN///////////////////////////////////////
-/obj/machinery/holosign
+obj/machinery/holosign
 	name = "holosign"
 	desc = "Small wall-mounted holographic projector"
 	icon = 'icons/obj/holosign.dmi'
@@ -14,36 +14,36 @@
 	var/on_icon = "sign_on"
 	var/off_icon = "sign_off"
 
-/obj/machinery/holosign/proc/toggle()
+obj/machinery/holosign/proc/toggle()
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	lit = !lit
 	update_use_power(lit ? USE_POWER_ACTIVE : USE_POWER_IDLE)
 	update_icon()
 
-/obj/machinery/holosign/update_icon()
+obj/machinery/holosign/update_icon()
 	if(!lit)
 		icon_state = off_icon
 	else
 		icon_state = on_icon
 
-/obj/machinery/holosign/power_change()
+obj/machinery/holosign/power_change()
 	if(machine_stat & NOPOWER)
 		lit = 0
 		update_use_power(USE_POWER_OFF)
 	update_icon()
 
-/obj/machinery/holosign/surgery
+obj/machinery/holosign/surgery
 	name = "surgery holosign"
 	desc = "Small wall-mounted holographic projector. This one reads SURGERY."
 	on_icon = "surgery"
 
-/obj/machinery/holosign/exit
+obj/machinery/holosign/exit
 	name = "exit holosign"
 	desc = "Small wall-mounted holographic projector. This one reads EXIT."
 	on_icon = "emergencyexit"
 
-/obj/machinery/holosign/bar
+obj/machinery/holosign/bar
 	name = "bar holosign"
 	desc = "Small wall-mounted holographic projector. This one reads OPEN."
 	icon_state = "barclosed"
@@ -53,13 +53,13 @@
 
 ////////////////////SWITCH///////////////////////////////////////
 
-/obj/machinery/button/holosign
+obj/machinery/button/holosign
 	name = "holosign switch"
 	desc = "A remote control switch for holosign."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "crema_switch"
 
-/obj/machinery/button/holosign/attack_hand(mob/user, list/params)
+obj/machinery/button/holosign/attack_hand(mob/user, list/params)
 	if(..())
 		return
 

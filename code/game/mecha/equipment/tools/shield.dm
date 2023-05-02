@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/combat_shield
+obj/item/mecha_parts/mecha_equipment/combat_shield
 	name = "linear combat shield"
 	desc = "A shield generator that forms a rectangular, unidirectionally projectile-blocking wall in front of the exosuit."
 	icon_state = "shield"
@@ -15,19 +15,19 @@
 
 	equip_type = EQUIP_HULL
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/Initialize(mapload)
+obj/item/mecha_parts/mecha_equipment/combat_shield/Initialize(mapload)
 	. = ..()
 	my_shield = new my_shield_type
 	my_shield.shield_regen_delay = equip_cooldown
 	my_shield.my_tool = src
 	return
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/critfail()
+obj/item/mecha_parts/mecha_equipment/combat_shield/critfail()
 	..()
 	my_shield.adjust_health(-200)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/Destroy()
+obj/item/mecha_parts/mecha_equipment/combat_shield/Destroy()
 	chassis.cut_overlay(drone_overlay)
 	my_shield.forceMove(src)
 	my_shield.destroy_shields()
@@ -37,14 +37,14 @@
 	my_shield = null
 	..()
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/add_equip_overlay(obj/mecha/M)
+obj/item/mecha_parts/mecha_equipment/combat_shield/add_equip_overlay(obj/mecha/M)
 	..()
 	if(!drone_overlay)
 		drone_overlay = new(src.icon, icon_state = "shield_droid")
 	M.add_overlay(drone_overlay)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/attach(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/combat_shield/attach(obj/mecha/M as obj)
 	..()
 	if(chassis)
 		my_shield.shield_health = 0
@@ -52,7 +52,7 @@
 		my_shield.forceMove(chassis)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/detach()
+obj/item/mecha_parts/mecha_equipment/combat_shield/detach()
 	chassis.cut_overlay(drone_overlay)
 	..()
 	my_shield.destroy_shields()
@@ -61,12 +61,12 @@
 	my_shield.forceMove(src)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/handle_movement_action()
+obj/item/mecha_parts/mecha_equipment/combat_shield/handle_movement_action()
 	if(chassis)
 		my_shield.update_shield_positions()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/proc/toggle_shield()
+obj/item/mecha_parts/mecha_equipment/combat_shield/proc/toggle_shield()
 	if(chassis)
 		my_shield.attack_self(chassis.occupant)
 		if(my_shield.active)
@@ -78,12 +78,12 @@
 			step_delay = 1
 			log_message("Deactivated.")
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/Topic(href, href_list)
+obj/item/mecha_parts/mecha_equipment/combat_shield/Topic(href, href_list)
 	..()
 	if(href_list["toggle_shield"])
 		toggle_shield()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/get_equip_info()
+obj/item/mecha_parts/mecha_equipment/combat_shield/get_equip_info()
 	if(!chassis) return
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_shield=1'>[my_shield.active?"Dea":"A"]ctivate</a>"

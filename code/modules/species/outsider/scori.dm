@@ -1,4 +1,4 @@
-/datum/species/scori
+datum/species/scori
 	uid = SPECIES_ID_SCORI
 	name = "Scorian"
 	name_plural = SPECIES_SCORI
@@ -61,5 +61,5 @@
 		/mob/living/carbon/human/proc/tie_hair
 		)
 
-/datum/species/scori/equip_survival_gear()
+datum/species/scori/equip_survival_gear()
 	return

@@ -1,6 +1,6 @@
 var/datum/antagonist/rogue_ai/malf
 
-/datum/antagonist/rogue_ai
+datum/antagonist/rogue_ai
 	id = MODE_MALFUNCTION
 	role_type = BE_MALF
 	role_text = "Rampant AI"
@@ -18,12 +18,12 @@ var/datum/antagonist/rogue_ai/malf
 	initial_spawn_target = 1
 	antaghud_indicator = "malf"
 
-/datum/antagonist/rogue_ai/New()
+datum/antagonist/rogue_ai/New()
 	..()
 	malf = src
 
 
-/datum/antagonist/rogue_ai/get_candidates()
+datum/antagonist/rogue_ai/get_candidates()
 	..()
 	for(var/datum/mind/player in candidates)
 		if(player.assigned_role && player.assigned_role != "AI")
@@ -34,7 +34,7 @@ var/datum/antagonist/rogue_ai/malf
 
 
 // Ensures proper reset of all malfunction related things.
-/datum/antagonist/rogue_ai/remove_antagonist(var/datum/mind/player, var/show_message, var/implanted)
+datum/antagonist/rogue_ai/remove_antagonist(var/datum/mind/player, var/show_message, var/implanted)
 	if(..(player,show_message,implanted))
 		var/mob/living/silicon/ai/p = player.current
 		if(istype(p))
@@ -43,7 +43,7 @@ var/datum/antagonist/rogue_ai/malf
 	return 0
 
 // Malf setup things have to be here, since game tends to break when it's moved somewhere else. Don't blame me, i didn't design this system.
-/datum/antagonist/rogue_ai/greet(var/datum/mind/player)
+datum/antagonist/rogue_ai/greet(var/datum/mind/player)
 
 	// Initializes the AI's malfunction stuff.
 	spawn(0)
@@ -81,7 +81,7 @@ var/datum/antagonist/rogue_ai/malf
 		to_chat(malf, "Good luck!")
 
 
-/datum/antagonist/rogue_ai/update_antag_mob(var/datum/mind/player, var/preserve_appearance)
+datum/antagonist/rogue_ai/update_antag_mob(var/datum/mind/player, var/preserve_appearance)
 
 	// Get the mob.
 	if((flags & ANTAG_OVERRIDE_MOB) && (!player.current || (mob_path && !istype(player.current, mob_path))))
@@ -92,7 +92,7 @@ var/datum/antagonist/rogue_ai/malf
 	player.original = player.current
 	return player.current
 
-/datum/antagonist/rogue_ai/set_antag_name(var/mob/living/silicon/player)
+datum/antagonist/rogue_ai/set_antag_name(var/mob/living/silicon/player)
 	if(!istype(player))
 		testing("rogue_ai set_antag_name called on non-silicon mob [player]!")
 		return
@@ -101,4 +101,3 @@ var/datum/antagonist/rogue_ai/malf
 	if (newname)
 		player.SetName(newname)
 	if(player.mind) player.mind.name = player.name
-

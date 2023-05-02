@@ -10,7 +10,7 @@ Initial Design Goals (X = Complete, / = WIP):
 [X]Some form of system that calculates "instability" based off of prosthetics, augments, and implants at spawn, that also increases when more are added.
 */
 
-/datum/component/cyberpsychosis
+datum/component/cyberpsychosis
 	var/capacity = 100
 	var/cybernetics_count = 0
 	var/counted = 0
@@ -19,20 +19,20 @@ Initial Design Goals (X = Complete, / = WIP):
 	var/symptom_delay = 3000
 	var/last_symptom = 0
 
-/datum/component/cyberpsychosis/Initialize(radius)
+datum/component/cyberpsychosis/Initialize(radius)
 	if(!istype(parent))
 		return COMPONENT_INCOMPATIBLE
 	else
 		START_PROCESSING(SSobj, src)
 
-/datum/component/cyberpsychosis/process()
+datum/component/cyberpsychosis/process()
 	count_cybernetics()
 	update_capacity()
 	update_medication()
 	process_symptoms()
 
 //This proc will tabulate the number of prosthetic limbs, organs, augments, and implants into a number.
-/datum/component/cyberpsychosis/proc/count_cybernetics()
+datum/component/cyberpsychosis/proc/count_cybernetics()
 	var/mob/living/carbon/human/H = parent
 	. = 0
 	if(counted)
@@ -44,14 +44,14 @@ Initial Design Goals (X = Complete, / = WIP):
 				counted = 1
 
 //This subtracts the above sum from var/capacity, which is set to 100 by default.
-/datum/component/cyberpsychosis/proc/update_capacity()
+datum/component/cyberpsychosis/proc/update_capacity()
 	if(adjusted)
 		return
 	if(!adjusted && cybernetics_count >= 1)
 		capacity -= cybernetics_count*5
 		adjusted = 1
 
-/datum/component/cyberpsychosis/proc/update_medication()
+datum/component/cyberpsychosis/proc/update_medication()
 	var/mob/living/carbon/human/H = parent
 	if(!medicated && H.reagents.has_reagent("neuratrextate", 1))
 		medicated = 1
@@ -63,14 +63,14 @@ Initial Design Goals (X = Complete, / = WIP):
 //This proc will provide different symptoms, with the frequency inversely related to the value of capacity.
 //This is basically the one that all the above checkboxes will address.
 
-/datum/component/cyberpsychosis/proc/process_symptoms()
+datum/component/cyberpsychosis/proc/process_symptoms()
 	if(medicated)
 		return
 	if(world.time > last_symptom + symptom_delay)
 		fire_symptoms()
 		last_symptom = world.time
 
-/datum/component/cyberpsychosis/proc/fire_symptoms()
+datum/component/cyberpsychosis/proc/fire_symptoms()
 	var/mob/living/carbon/human/H = parent
 	if(capacity <= 95) //This level is benign in terms of capacity loss. Don't want to just dump symptoms on them on the daily.
 		var/message_t1 = rand(1,6)
@@ -184,6 +184,6 @@ Initial Design Goals (X = Complete, / = WIP):
 		H.add_modifier(modifier_to_add * berserk_length)
 		return
 
-/datum/component/cyberpsychosis/Destroy()
+datum/component/cyberpsychosis/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()

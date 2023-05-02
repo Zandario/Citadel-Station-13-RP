@@ -1,6 +1,6 @@
 /*****************************Money bag********************************/
 
-/obj/item/moneybag
+obj/item/moneybag
 	icon = 'icons/obj/storage.dmi'
 	name = "Money bag"
 	icon_state = "moneybag"
@@ -8,7 +8,7 @@
 	throw_force = 2.0
 	w_class = ITEMSIZE_LARGE
 
-/obj/item/moneybag/attack_hand(mob/user, list/params)
+obj/item/moneybag/attack_hand(mob/user, list/params)
 	var/amt_supermatter = 0
 	var/amt_bananium = 0
 	var/amt_mhydrogen = 0
@@ -75,7 +75,7 @@
 		dat += text("Iron coins: [amt_iron] <A href='?src=\ref[src];remove=iron'>Remove one</A><br>")
 	user << browse("[dat]", "window=moneybag")
 
-/obj/item/moneybag/attackby(obj/item/W, mob/user)
+obj/item/moneybag/attackby(obj/item/W, mob/user)
 	..()
 	if (istype(W, /obj/item/coin))
 		var/obj/item/coin/C = W
@@ -88,7 +88,7 @@
 			O.forceMove(src)
 		to_chat(user, "<font color=#4F49AF>You empty the [C.name] into the bag.</font>")
 
-/obj/item/moneybag/Topic(href, href_list)
+obj/item/moneybag/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.set_machine(src)
@@ -126,7 +126,7 @@
 	return
 
 
-/obj/item/moneybag/vault/Initialize(mapload)
+obj/item/moneybag/vault/Initialize(mapload)
 	. = ..()
 	new /obj/item/coin/copper(src)
 	new /obj/item/coin/copper(src)

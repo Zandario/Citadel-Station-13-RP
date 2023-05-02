@@ -1,4 +1,4 @@
-/obj/machinery/computer/ship/disperser/proc/fire(mob/user)
+obj/machinery/computer/ship/disperser/proc/fire(mob/user)
 	log_and_message_admins("attempted to launch a disperser beam.")
 	if(!link_parts())
 		return FALSE //no disperser, no service
@@ -72,23 +72,23 @@
 	fire_at_event(finaltarget, chargetype)
 	return TRUE
 
-/obj/machinery/computer/ship/disperser/proc/fire_at_event(obj/effect/overmap/event/finaltarget, chargetype)
+obj/machinery/computer/ship/disperser/proc/fire_at_event(obj/effect/overmap/event/finaltarget, chargetype)
 	if(chargetype & finaltarget.weaknesses)
 		var/turf/T = finaltarget.loc
 		qdel(finaltarget)
 		GLOB.overmap_event_handler.update_hazards(T)
 
-/obj/machinery/computer/ship/disperser/proc/handle_beam(turf/start, direction)
+obj/machinery/computer/ship/disperser/proc/handle_beam(turf/start, direction)
 	set waitfor = FALSE
 	start.Beam(get_target_turf(start, direction), "bsa_beam", time = 50, maxdistance = world.maxx)
 	if(front)
 		front.layer = initial(front.layer)
 
-/obj/machinery/computer/ship/disperser/proc/handle_overbeam()
+obj/machinery/computer/ship/disperser/proc/handle_overbeam()
 	set waitfor = FALSE
 	linked.Beam(get_step(linked, overmapdir), "bsa_beam", time = 150, maxdistance = world.maxx)
 
-/obj/machinery/computer/ship/disperser/proc/get_target_turf(turf/start, direction)
+obj/machinery/computer/ship/disperser/proc/get_target_turf(turf/start, direction)
 	switch(direction)
 		if(NORTH)
 			return locate(start.x,world.maxy,start.z)

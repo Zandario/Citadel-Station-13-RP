@@ -1,4 +1,4 @@
-/mob/new_player
+mob/new_player
 	var/ready = 0
 	var/spawning = 0			// Referenced when you want to delete the new_player later on in the code.
 	var/totalPlayers = 0		// Player counts for the Lobby tab
@@ -16,18 +16,18 @@
 
 	anchored = 1	// Don't get pushed around
 
-/mob/new_player/Initialize(mapload)
+mob/new_player/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)	// "yes i know what I'm doing"
 	GLOB.mob_list += src
 	atom_flags |= ATOM_INITIALIZED
 	return INITIALIZE_HINT_NORMAL
 
-/mob/new_player/verb/new_player_panel()
+mob/new_player/verb/new_player_panel()
 	set src = usr
 	set waitfor = FALSE
 	new_player_panel_proc()
 
-/mob/new_player/proc/new_player_panel_proc()
+mob/new_player/proc/new_player_panel_proc()
 	if(age_gate_result == null && client.prefs && !client.is_preference_enabled(/datum/client_preference/debug/age_verified)) // run first time verification
 		verifyage()
 	if(!client)
@@ -81,7 +81,7 @@
 	panel.open()
 	return
 
-/mob/new_player/proc/age_gate()
+mob/new_player/proc/age_gate()
 	var/list/dat = list("<center>")
 	dat += "Enter your date of birth here, to confirm that you are over 18.<BR>"
 	dat += "<b>Your date of birth is not saved, only the fact that you are over/under 18 is.</b><BR>"
@@ -118,7 +118,7 @@
 
 	return age_gate_result
 
-/mob/new_player/proc/verifyage()
+mob/new_player/proc/verifyage()
 	UNTIL(client.prefs.initialized)	// fuck this stupid ass broken piece of shit age gate
 	if(client.holder)		// they're an admin
 		client.set_preference(/datum/client_preference/debug/age_verified, 1)
@@ -150,7 +150,7 @@
 
 
 
-/mob/new_player/statpanel_data(client/C)
+mob/new_player/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		STATPANEL_DATA_LINE("")
@@ -175,10 +175,10 @@
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
-/mob/new_player/update_mobility()
+mob/new_player/update_mobility()
 	return
 
-/mob/new_player/Topic(href, href_list[])
+mob/new_player/Topic(href, href_list[])
 	if(src != usr)
 		return 0
 
@@ -440,7 +440,7 @@
 		show_hidden_jobs = !show_hidden_jobs
 		LateChoices()
 
-/mob/new_player/proc/handle_server_news()
+mob/new_player/proc/handle_server_news()
 	if(!client)
 		return
 	var/savefile/F = get_server_news()
@@ -459,7 +459,7 @@
 		popup.set_content(dat)
 		popup.open()
 
-/mob/new_player/proc/time_till_respawn()
+mob/new_player/proc/time_till_respawn()
 	if(!ckey)
 		return -1	// What?
 
@@ -477,7 +477,7 @@
 	// Timer still going
 	return timer - world.time
 
-/mob/new_player/proc/AttemptLateSpawn(rank)
+mob/new_player/proc/AttemptLateSpawn(rank)
 	if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified))
 		return
 	if (src != usr)
@@ -573,7 +573,7 @@
 
 	qdel(src)
 
-/mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message)
+mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message)
 	if (SSticker.current_state == GAME_STATE_PLAYING)
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
@@ -581,7 +581,7 @@
 		GLOB.global_announcer.autosay("A new [rank] has arrived on the station.", "Arrivals Announcement Computer")
 
 
-/mob/new_player/proc/create_character(var/turf/T)
+mob/new_player/proc/create_character(var/turf/T)
 	if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified))
 		return FALSE
 	if(!spawn_checks_vr())
@@ -664,7 +664,7 @@
 
 	return new_character
 
-/mob/new_player/proc/ViewManifest()
+mob/new_player/proc/ViewManifest()
 	var/dat = "<div align='center'>"
 	dat += data_core.get_manifest(OOC = 1)
 
@@ -673,19 +673,19 @@
 	popup.set_content(dat)
 	popup.open()
 
-/mob/new_player/Move()
+mob/new_player/Move()
 	return 0
 
-/mob/new_player/proc/close_spawn_windows()
+mob/new_player/proc/close_spawn_windows()
 
 	src << browse(null, "window=latechoices") //closes late choices window
 	src << browse(null, "window=preferences_window") //closes the player setup window
 	panel.close()
 
-/mob/new_player/proc/has_admin_rights()
+mob/new_player/proc/has_admin_rights()
 	return check_rights(R_ADMIN, 0, src)
 
-/mob/new_player/get_species_name()
+mob/new_player/get_species_name()
 	var/datum/species/chosen_species = client?.prefs?.real_species_datum()
 
 	if(!chosen_species)
@@ -696,28 +696,28 @@
 
 	return SPECIES_HUMAN
 
-/mob/new_player/get_gender()
+mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()
 	return client.prefs.biological_gender
 
-/mob/new_player/is_ready()
+mob/new_player/is_ready()
 	return ready && ..()
 
 // Prevents lobby players from seeing say, even with ghostears
-/mob/new_player/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
+mob/new_player/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
 	return
 
 // Prevents lobby players from seeing emotes, even with ghosteyes
-/mob/new_player/show_message(msg, type, alt, alt_type)
+mob/new_player/show_message(msg, type, alt, alt_type)
 	return
 
-/mob/new_player/hear_radio()
+mob/new_player/hear_radio()
 	return
 
-/mob/new_player/MayRespawn()
+mob/new_player/MayRespawn()
 	return 1
 
-/mob/new_player/proc/spawn_checks_vr() //Custom spawn checks.
+mob/new_player/proc/spawn_checks_vr() //Custom spawn checks.
 	var/pass = TRUE
 
 	//Are they on the VERBOTEN LIST?
@@ -767,6 +767,6 @@
 			alert(src,"There were problems with spawning your character. Check your message log for details.","Error","OK")
 	return pass
 
-/mob/new_player/make_perspective()
+mob/new_player/make_perspective()
 	. = ..()
 	self_perspective.AddScreen(GLOB.lobby_image)

@@ -29,10 +29,10 @@ SUBSYSTEM_DEF(plants)
 	var/list/processing = list()
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/plants/stat_entry()
+datum/controller/subsystem/plants/stat_entry()
 	return ..() + " P:[processing.len]|S:[seeds.len]"
 
-/datum/controller/subsystem/plants/Initialize(timeofday)
+datum/controller/subsystem/plants/Initialize(timeofday)
 	setup()
 	return ..()
 
@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(plants)
  * and mutant varieties use their uid converted to a string instead.
  * Looks like shit but it's sort of necessary.
  */
-/datum/controller/subsystem/plants/proc/setup()
+datum/controller/subsystem/plants/proc/setup()
 	//Build the icon lists.
 	for(var/icostate in icon_states('icons/obj/hydroponics_growing.dmi'))
 		var/split = findtext(icostate,"-")
@@ -102,7 +102,7 @@ SUBSYSTEM_DEF(plants)
 		gene_masked_list.Add(list(list("tag" = gene_tag, "mask" = gene_mask)))
 
 ///Proc for creating a random seed type.
-/datum/controller/subsystem/plants/proc/create_random_seed(var/survive_on_station)
+datum/controller/subsystem/plants/proc/create_random_seed(var/survive_on_station)
 	var/datum/seed/seed = new()
 	seed.randomize()
 	seed.uid = SSplants.seeds.len + 1
@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(plants)
 		seed.set_trait(TRAIT_HIGHKPA_TOLERANCE,200)
 	return seed
 
-/datum/controller/subsystem/plants/fire(resumed = 0)
+datum/controller/subsystem/plants/fire(resumed = 0)
 	if(!resumed)
 		src.currentrun = processing.Copy()
 
@@ -141,15 +141,15 @@ SUBSYSTEM_DEF(plants)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/plants/proc/add_plant(var/obj/effect/plant/plant)
+datum/controller/subsystem/plants/proc/add_plant(var/obj/effect/plant/plant)
 	processing |= plant
 
-/datum/controller/subsystem/plants/proc/remove_plant(var/obj/effect/plant/plant)
+datum/controller/subsystem/plants/proc/remove_plant(var/obj/effect/plant/plant)
 	processing -= plant
 
 
 ///Debug Verb for testing seed genes.
-/client/proc/show_plant_genes()
+client/proc/show_plant_genes()
 	set category = "Debug"
 	set name = "Show Plant Genes"
 	set desc = "Prints the round's plant gene masks."

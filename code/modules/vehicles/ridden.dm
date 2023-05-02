@@ -1,4 +1,4 @@
-/obj/vehicle/ridden
+obj/vehicle/ridden
 	name = "ridden vehicle"
 	// todo: i wish byond planes weren't monolithic and awful but we should probably have a proper plane system haha.
 	plane = MOB_PLANE
@@ -10,11 +10,11 @@
 	var/riding_filter_type = /datum/component/riding_filter/vehicle
 	var/riding_handler_type
 
-/obj/vehicle/ridden/Initialize(mapload)
+obj/vehicle/ridden/Initialize(mapload)
 	. = ..()
 	AddComponent(riding_filter_type, riding_handler_type)
 
-/obj/vehicle/ridden/examine(mob/user)
+obj/vehicle/ridden/examine(mob/user)
 	. = ..()
 	if(key_type)
 		if(!inserted_key)
@@ -22,17 +22,17 @@
 		else
 			. += "<span class='notice'>Alt-click [src] to remove the key.</span>"
 
-/obj/vehicle/ridden/generate_action_type(actiontype)
+obj/vehicle/ridden/generate_action_type(actiontype)
 	var/datum/action/vehicle/ridden/A = ..()
 	. = A
 	if(istype(A))
 		A.vehicle_ridden_target = src
 
-/obj/vehicle/ridden/mob_unbuckled(mob/M, flags, mob/user, semantic)
+obj/vehicle/ridden/mob_unbuckled(mob/M, flags, mob/user, semantic)
 	remove_occupant(M)
 	return ..()
 
-/obj/vehicle/ridden/mob_buckled(mob/M, flags, mob/user, semantic)
+obj/vehicle/ridden/mob_buckled(mob/M, flags, mob/user, semantic)
 	add_occupant(M)
 	/*
 	if(M.get_num_legs() < legs_required)
@@ -41,7 +41,7 @@
 	*/
 	return ..()
 
-/obj/vehicle/ridden/attackby(obj/item/I, mob/user, params)
+obj/vehicle/ridden/attackby(obj/item/I, mob/user, params)
 	if(key_type && !is_key(inserted_key) && is_key(I))
 		if(user.transfer_item_to_loc(I, src))
 			to_chat(user, "<span class='notice'>You insert \the [I] into \the [src].</span>")
@@ -53,7 +53,7 @@
 		return
 	return ..()
 
-/obj/vehicle/ridden/AltClick(mob/user)
+obj/vehicle/ridden/AltClick(mob/user)
 	. = ..()
 	if(inserted_key && user.Adjacent(src) && !user.incapacitated())
 		if(!is_occupant(user))
@@ -65,7 +65,7 @@
 		inserted_key = null
 		return TRUE
 
-/obj/vehicle/ridden/proc/drive_check(mob/user)
+obj/vehicle/ridden/proc/drive_check(mob/user)
 	if(key_type && !is_key(inserted_key))
 		to_chat(user, SPAN_WARNING("[src] has no key inserted."))
 		return FALSE

@@ -1,8 +1,8 @@
-/datum/event/rogue_drone
+datum/event/rogue_drone
 	endWhen = 1000
 	var/list/drones_list = list()
 
-/datum/event/rogue_drone/start()
+datum/event/rogue_drone/start()
 	//spawn them at the same place as carp
 	var/list/possible_spawns = list()
 	for(var/obj/landmark/C in GLOB.landmarks_list)
@@ -19,7 +19,7 @@
 		var/mob/living/simple_mob/mechanical/combat_drone/event/D = new(get_turf(pick(possible_spawns)))
 		drones_list.Add(D)
 
-/datum/event/rogue_drone/announce()
+datum/event/rogue_drone/announce()
 	var/msg
 	var/rng = rand(1,5)
 	switch(rng)
@@ -38,7 +38,7 @@
 
 	command_announcement.Announce(msg, "Rogue drone alert")
 
-/datum/event/rogue_drone/end()
+datum/event/rogue_drone/end()
 	var/num_recovered = 0
 	for(var/mob/living/simple_mob/mechanical/combat_drone/D in drones_list)
 		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()

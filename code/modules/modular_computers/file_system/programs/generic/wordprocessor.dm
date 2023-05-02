@@ -1,4 +1,4 @@
-/datum/computer_file/program/wordprocessor
+datum/computer_file/program/wordprocessor
 	filename = "wordprocessor"
 	filedesc = "NanoWord"
 	extended_desc = "This program allows the editing and preview of text documents."
@@ -14,7 +14,7 @@
 	var/error
 	var/is_edited
 
-/datum/computer_file/program/wordprocessor/proc/get_file(var/filename)
+datum/computer_file/program/wordprocessor/proc/get_file(var/filename)
 	var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
 	if(!HDD)
 		return
@@ -23,14 +23,14 @@
 		return
 	return F
 
-/datum/computer_file/program/wordprocessor/proc/open_file(var/filename)
+datum/computer_file/program/wordprocessor/proc/open_file(var/filename)
 	var/datum/computer_file/data/F = get_file(filename)
 	if(F)
 		open_file = F.filename
 		loaded_data = F.stored_data
 		return 1
 
-/datum/computer_file/program/wordprocessor/proc/save_file(var/filename)
+datum/computer_file/program/wordprocessor/proc/save_file(var/filename)
 	var/datum/computer_file/data/F = get_file(filename)
 	if(!F) //try to make one if it doesn't exist
 		F = create_file(filename, loaded_data)
@@ -48,7 +48,7 @@
 	is_edited = 0
 	return 1
 
-/datum/computer_file/program/wordprocessor/proc/create_file(var/newname, var/data = "")
+datum/computer_file/program/wordprocessor/proc/create_file(var/newname, var/data = "")
 	if(!newname)
 		return
 	var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
@@ -64,7 +64,7 @@
 	if(HDD.store_file(F))
 		return F
 
-/datum/computer_file/program/wordprocessor/Topic(href, href_list)
+datum/computer_file/program/wordprocessor/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -181,10 +181,10 @@
 			error = "Hardware error: Printer was unable to print the file. It may be out of paper."
 			return 1
 
-/datum/nano_module/program/computer_wordprocessor
+datum/nano_module/program/computer_wordprocessor
 	name = "Word Processor"
 
-/datum/nano_module/program/computer_wordprocessor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/computer_wordprocessor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 	var/datum/computer_file/program/wordprocessor/PRG
 	PRG = program

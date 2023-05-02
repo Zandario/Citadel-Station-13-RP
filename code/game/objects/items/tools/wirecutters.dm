@@ -1,7 +1,7 @@
 /*
  * Wirecutters
  */
-/obj/item/tool/wirecutters
+obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
 	icon = 'icons/obj/tools.dmi'
@@ -25,7 +25,7 @@
 	tool_speed = 1
 	var/random_color = TRUE
 
-/obj/item/tool/wirecutters/Initialize(mapload)
+obj/item/tool/wirecutters/Initialize(mapload)
 	. = ..()
 	if(random_color)
 		switch(pick("red","yellow","green","blue"))
@@ -42,7 +42,7 @@
 				icon_state = "cutters_blue"
 				item_state = "cutters_blue"
 
-/obj/item/tool/wirecutters/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/tool/wirecutters/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/carbon/C = target
 	if(istype(C) && user.a_intent == INTENT_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
@@ -52,21 +52,21 @@
 		return
 	return ..()
 
-/obj/item/tool/wirecutters/bone
+obj/item/tool/wirecutters/bone
 	name = "primitive wirecutters"
 	desc = "Dull wirecutters knapped from bone."
 	icon_state = "cutters_bone"
 	tool_speed = 1.25
 	random_color = FALSE
 
-/obj/item/tool/wirecutters/brass
+obj/item/tool/wirecutters/brass
 	name = "brass wirecutters"
 	desc = "Brass plated wirecutters that never seem to lose their edge."
 	icon_state = "cutters_brass"
 	tool_speed = 0.75
 	random_color = FALSE
 
-/datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters
+datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters
 	name = "Precursor Alpha Object - Wire Seperator"
 	desc = "An object appearing to have a tool shape. It has two handles, and two \
 	sides which are attached to each other in the center. At the end on each side \
@@ -79,7 +79,7 @@
 	energy and signals, just as humans do."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/tool/wirecutters/alien
+obj/item/tool/wirecutters/alien
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters)
@@ -89,19 +89,19 @@
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	random_color = FALSE
 
-/obj/item/tool/wirecutters/cyborg
+obj/item/tool/wirecutters/cyborg
 	name = "wirecutters"
 	desc = "This cuts wires.  With science."
 	tool_sound = 'sound/items/jaws_cut.ogg'
 	tool_speed = 0.5
 
-/obj/item/tool/wirecutters/RIGset
+obj/item/tool/wirecutters/RIGset
 	name = "integrated wirecutters"
 	desc = "If you're seeing this, someone did a dum-dum."
 	tool_sound = 'sound/items/jaws_cut.ogg'
 	tool_speed = 0.7
 
-/obj/item/tool/wirecutters/hybrid
+obj/item/tool/wirecutters/hybrid
 	name = "strange wirecutters"
 	desc = "This cuts wires.  With <span class='alien'>Science!</span>"
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters)
@@ -115,7 +115,7 @@
 	reach = 2
 
 
-/obj/item/tool/wirecutters/power
+obj/item/tool/wirecutters/power
 	name = "jaws of life"
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
 	icon_state = "jaws_cutter"
@@ -128,19 +128,19 @@
 	random_color = FALSE
 	var/obj/item/tool/crowbar/power/counterpart = null
 
-/obj/item/tool/wirecutters/power/Initialize(mapload, no_counterpart = TRUE)
+obj/item/tool/wirecutters/power/Initialize(mapload, no_counterpart = TRUE)
 	. = ..()
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src
 
-/obj/item/tool/wirecutters/power/Destroy()
+obj/item/tool/wirecutters/power/Destroy()
 	if(counterpart)
 		counterpart.counterpart = null // So it can qdel cleanly.
 		QDEL_NULL(counterpart)
 	return ..()
 
-/obj/item/tool/wirecutters/power/attack_self(mob/user)
+obj/item/tool/wirecutters/power/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -151,7 +151,7 @@
 	forceMove(counterpart)
 	to_chat(user, "<span class='notice'>You attach the pry jaws to [src].</span>")
 
-/obj/item/tool/wirecutters/crystal
+obj/item/tool/wirecutters/crystal
 	name = "crystalline shears"
 	desc = "A crystalline shearing tool of an alien make."
 	icon_state = "crystal_wirecutter"
@@ -160,7 +160,7 @@
 	matter = list(MATERIAL_CRYSTAL = 1250)
 	tool_speed = 0.2
 
-/obj/item/tool/wirecutters/crystal/Initialize()
+obj/item/tool/wirecutters/crystal/Initialize()
 	. = ..()
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)

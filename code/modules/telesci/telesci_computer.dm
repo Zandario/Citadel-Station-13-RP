@@ -1,4 +1,4 @@
-/obj/machinery/computer/telescience
+obj/machinery/computer/telescience
 	name = "\improper Telepad Control Console"
 	desc = "Used to teleport objects to and from the telescience telepad."
 	icon_screen = "teleport"
@@ -29,24 +29,24 @@
 	var/list/crystals = list()
 	var/obj/item/gps/inserted_gps
 
-/obj/machinery/computer/telescience/Destroy()
+obj/machinery/computer/telescience/Destroy()
 	eject()
 	if(inserted_gps)
 		inserted_gps.forceMove(loc)
 		inserted_gps = null
 	return ..()
 
-/obj/machinery/computer/telescience/examine(mob/user)
+obj/machinery/computer/telescience/examine(mob/user)
 	. = ..()
 	. += "There are [crystals.len ? crystals.len : "no"] bluespace crystal\s in the crystal slots."
 
-/obj/machinery/computer/telescience/Initialize(mapload)
+obj/machinery/computer/telescience/Initialize(mapload)
 	. = ..()
 	recalibrate()
 	for(var/i = 1; i <= starting_crystals; i++)
 		crystals += new /obj/item/ore/bluespace_crystal/artificial(src) // starting crystals
 
-/obj/machinery/computer/telescience/attackby(obj/item/W, mob/user, params)
+obj/machinery/computer/telescience/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/ore/bluespace_crystal))
 		if(crystals.len >= max_crystals)
 			to_chat(user, SPAN_WARNING("There are not enough crystal slots."))
@@ -71,18 +71,18 @@
 	else
 		return ..()
 
-/obj/machinery/computer/telescience/proc/get_max_allowed_distance()
+obj/machinery/computer/telescience/proc/get_max_allowed_distance()
 	return FLOOR((crystals.len * telepad.efficiency * powerCoefficient), 1)
 
-/obj/machinery/computer/telescience/attack_ai(mob/user)
+obj/machinery/computer/telescience/attack_ai(mob/user)
 	src.attack_hand(user)
 
-/obj/machinery/computer/telescience/attack_hand(mob/user, list/params)
+obj/machinery/computer/telescience/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/computer/telescience/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/computer/telescience/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/data[0]
@@ -122,7 +122,7 @@
 		ui.open()
 		ui.set_auto_update(5)
 
-/obj/machinery/computer/telescience/proc/sparks()
+obj/machinery/computer/telescience/proc/sparks()
 	if(telepad)
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 		s.set_up(5, 1, get_turf(telepad))
@@ -130,7 +130,7 @@
 	else
 		return
 
-/obj/machinery/computer/telescience/proc/telefail()
+obj/machinery/computer/telescience/proc/telefail()
 	switch(rand(99))
 		if(0 to 85)
 			sparks()
@@ -163,7 +163,7 @@
 			spacevine_infestation()
 			return
 
-/obj/machinery/computer/telescience/proc/doteleport(mob/user)
+obj/machinery/computer/telescience/proc/doteleport(mob/user)
 
 	if(teleport_cooldown > world.time)
 		return
@@ -280,7 +280,7 @@
 			investigate_log(log_msg, "telesci")
 			updateDialog()
 
-/obj/machinery/computer/telescience/proc/teleport(mob/user)
+obj/machinery/computer/telescience/proc/teleport(mob/user)
 	distance = clamp(distance, 0, get_max_allowed_distance())
 	if(rotation == null || distance == null || z_co == null)
 		temp_msg = "ERROR!<BR>Set a distance, rotation and sector."
@@ -301,13 +301,13 @@
 		return
 	return
 
-/obj/machinery/computer/telescience/proc/eject()
+obj/machinery/computer/telescience/proc/eject()
 	for(var/obj/item/I in crystals)
 		I.forceMove(src.loc)
 		crystals -= I
 	distance = 0
 
-/obj/machinery/computer/telescience/Topic(href, href_list)
+obj/machinery/computer/telescience/Topic(href, href_list)
 	if(..())
 		return
 	if(!telepad || telepad.panel_open)
@@ -365,14 +365,14 @@
 
 	updateDialog()
 
-/obj/machinery/computer/telescience/proc/recalibrate()
+obj/machinery/computer/telescience/proc/recalibrate()
 	teles_left = rand(40, 50)
 	distance_off = rand(-4, 4)
 	rotation_off = rand(-10, 10)
 
 
 // Procedure that calculates the actual trajectory taken!
-/proc/simple_projectile_trajectory(var/src_x, var/src_y, var/rotation, var/distance)
+proc/simple_projectile_trajectory(var/src_x, var/src_y, var/rotation, var/distance)
 	var/time = distance / 10 // 100ms per distance seems fine?
 	var/dest_x = src_x + distance*sin(rotation);
 	var/dest_y = src_y + distance*cos(rotation);

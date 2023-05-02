@@ -1,4 +1,4 @@
-/datum/characteristic_skill/voidcraft
+datum/characteristic_skill/voidcraft
 	abstract_type = /datum/characteristic_skill/voidcraft
 	category = "General"
 
@@ -7,7 +7,7 @@
  *
  * implementation status: not started
  */
-/datum/characteristic_skill/voidcraft/eva
+datum/characteristic_skill/voidcraft/eva
 	id = "eva"
 	name = "EVA"
 	desc = "How well you can perform EVA."
@@ -26,7 +26,7 @@
  *
  * implementation status: not started
  */
-/datum/characteristic_skill/voidcraft/piloting
+datum/characteristic_skill/voidcraft/piloting
 	id = "pilot"
 	name = "Piloting"
 	desc = "How well you can pilot voidcraft of various function."

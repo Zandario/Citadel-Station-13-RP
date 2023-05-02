@@ -3,7 +3,7 @@
 
 //PACMAN variant that can run on the small plasma tanks.
 //a true relic of code history.
-/obj/machinery/power/port_gen/pacman2
+obj/machinery/power/port_gen/pacman2
 	name = "Pacman II"
 	desc = "P.A.C.M.A.N. type II portable generator. Uses liquid phoron as a fuel source."
 	power_gen = 4500
@@ -167,7 +167,7 @@
 				usr << browse(null, "window=port_gen")
 				usr.machine = null
 
-/obj/machinery/power/port_gen/pacman2/emag_act(var/remaining_uses, var/mob/user)
+obj/machinery/power/port_gen/pacman2/emag_act(var/remaining_uses, var/mob/user)
 	emagged = 1
 	emp_act(1)
 	return 1

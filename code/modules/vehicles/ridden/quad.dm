@@ -1,4 +1,4 @@
-/obj/vehicle/ridden/quadbike
+obj/vehicle/ridden/quadbike
 	name = "electric all terrain vehicle"
 	desc = "A ridable electric ATV designed for all terrain. Except space."
 	icon = 'icons/obj/vehicles_64x64.dmi'
@@ -13,10 +13,10 @@
 
 
 
-/obj/vehicle/ridden/quadbike/nokey
+obj/vehicle/ridden/quadbike/nokey
 	key_type = null
 
-/obj/item/key/quadbike
+obj/item/key/quadbike
 	name = "key"
 	desc = "A keyring with a small steel key, and a blue fob reading \"ZOOM!\"."
 	icon = 'icons/obj/vehicles.dmi'
@@ -24,7 +24,7 @@
 	w_class = ITEMSIZE_TINY
 
 
-/datum/component/riding_handler/vehicle/ridden/quadbike
+datum/component/riding_handler/vehicle/ridden/quadbike
 	vehicle_move_delay = 2
 	allowed_turf_types = list(
 		/turf/simulated,
@@ -37,9 +37,9 @@
 	CF_RIDING_CHECK_INCAPACITATED
 	)
 
-/datum/component/riding_handler/vehicle/ridden/quadbike/
+datum/component/riding_handler/vehicle/ridden/quadbike/
 
-/datum/component/riding_handler/vehicle/ridden/quadbike
+datum/component/riding_handler/vehicle/ridden/quadbike
 	rider_offsets = list(
 		list(
 			list(0, 7, 0.1, null),
@@ -53,12 +53,12 @@
 	CF_RIDING_HANDLER_IS_CONTROLLABLE)
 
 		// Overlay shenanagens, WIP @ktoma36
-/obj/vehicle/ridden/quadbike/random/Initialize(mapload)
+obj/vehicle/ridden/quadbike/random/Initialize(mapload)
 	. = ..()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 	update_icon()
 
-/obj/vehicle/ridden/quadbike/update_icon()
+obj/vehicle/ridden/quadbike/update_icon()
 	..()
 	cut_overlays()
 	var/list/overlays_to_add = list()

@@ -31,7 +31,7 @@ Notes:
 */
 
 
-/datum/tooltip
+datum/tooltip
 	var/client/owner
 	var/control = "mainwindow.tooltip"
 	var/showing = 0
@@ -39,7 +39,7 @@ Notes:
 	var/init = 0
 
 
-/datum/tooltip/New(client/C)
+datum/tooltip/New(client/C)
 	if (C)
 		owner = C
 		var/datum/asset/stuff = get_asset_datum(/datum/asset/simple/jquery)
@@ -49,7 +49,7 @@ Notes:
 	..()
 
 
-/datum/tooltip/proc/show(atom/movable/thing, params = null, title = null, content = null, theme = "default", special = "none")
+datum/tooltip/proc/show(atom/movable/thing, params = null, title = null, content = null, theme = "default", special = "none")
 	if (!thing || !params || (!title && !content) || !owner || !isnum(world.icon_size))
 		return FALSE
 	if (!init)
@@ -85,7 +85,7 @@ Notes:
 	return TRUE
 
 
-/datum/tooltip/proc/hide()
+datum/tooltip/proc/hide()
 	queueHide = showing ? TRUE : FALSE
 
 	if (queueHide)
@@ -95,7 +95,7 @@ Notes:
 
 	return TRUE
 
-/datum/tooltip/proc/do_hide()
+datum/tooltip/proc/do_hide()
 	winshow(owner, control, FALSE)
 
 /* TG SPECIFIC CODE */
@@ -104,7 +104,7 @@ Notes:
 //Open a tooltip for user, at a location based on params
 //Theme is a CSS class in tooltip.html, by default this wrapper chooses a CSS class based on the user's UI_style (Midnight, Plasmafire, Retro, etc)
 //Includes sanity.checks
-/proc/openToolTip(mob/user = null, atom/movable/tip_src = null, params = null, title = "", content = "", theme = "")
+proc/openToolTip(mob/user = null, atom/movable/tip_src = null, params = null, title = "", content = "", theme = "")
 	if(istype(user))
 		if(user.client && user.client.tooltips)
 			if(!theme && user.client.prefs && user.client.prefs.tooltipstyle)
@@ -116,7 +116,7 @@ Notes:
 
 //Arbitrarily close a user's tooltip
 //Includes sanity checks.
-/proc/closeToolTip(mob/user)
+proc/closeToolTip(mob/user)
 	if(istype(user))
 		if(user.client && user.client.tooltips)
 			user.client.tooltips.hide()

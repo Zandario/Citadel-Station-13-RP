@@ -1,22 +1,22 @@
-/datum/random_map/automata/cave_system
+datum/random_map/automata/cave_system
 	iterations = 5
 	descriptor = "moon caves"
 	var/list/ore_turfs = list()
 	var/make_cracked_turfs = TRUE
 
-/datum/random_map/automata/cave_system/generate_map()
+datum/random_map/automata/cave_system/generate_map()
 	. = ..()
 	for(var/i in 1 to map.len)
 		if(map[i] == WALL_CHAR)
 			ore_turfs += i
 
-/datum/random_map/automata/cave_system/no_cracks
+datum/random_map/automata/cave_system/no_cracks
 	make_cracked_turfs = FALSE
 
-/datum/random_map/automata/cave_system/get_appropriate_path(var/value)
+datum/random_map/automata/cave_system/get_appropriate_path(var/value)
 	return
 
-/datum/random_map/automata/cave_system/get_map_char(var/value)
+datum/random_map/automata/cave_system/get_map_char(var/value)
 	switch(value)
 		if(DOOR_CHAR)
 			return "x"
@@ -25,7 +25,7 @@
 	return ..(value)
 
 // Create ore turfs.
-/datum/random_map/automata/cave_system/cleanup()
+datum/random_map/automata/cave_system/cleanup()
 	var/ore_count = round(map.len/16)
 	while((ore_count>0) && (ore_turfs.len>0))
 		if(!priority_process)
@@ -39,7 +39,7 @@
 		ore_count--
 	return 1
 
-/datum/random_map/automata/cave_system/apply_to_turf(var/x,var/y)
+datum/random_map/automata/cave_system/apply_to_turf(var/x,var/y)
 	var/current_cell = get_map_cell(x,y)
 	if(!current_cell)
 		return 0

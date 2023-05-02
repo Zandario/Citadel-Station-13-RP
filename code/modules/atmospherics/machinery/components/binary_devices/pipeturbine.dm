@@ -1,5 +1,5 @@
 
-/obj/machinery/atmospherics/pipeturbine
+obj/machinery/atmospherics/pipeturbine
 	name = "turbine"
 	desc = "A gas turbine. Converting pressure into energy since 1884."
 	icon = 'icons/obj/pipeturbine.dmi'
@@ -19,7 +19,7 @@
 	var/datum/pipe_network/network1
 	var/datum/pipe_network/network2
 
-/obj/machinery/atmospherics/pipeturbine/Initialize(mapload)
+obj/machinery/atmospherics/pipeturbine/Initialize(mapload)
 	. = ..()
 	air_in.volume = 200
 	air_out.volume = 800
@@ -34,7 +34,7 @@
 		if(WEST)
 			initialize_directions = NORTH|SOUTH
 
-/obj/machinery/atmospherics/pipeturbine/Destroy()
+obj/machinery/atmospherics/pipeturbine/Destroy()
 	. = ..()
 
 	if(node1)
@@ -47,7 +47,7 @@
 	node1 = null
 	node2 = null
 
-/obj/machinery/atmospherics/pipeturbine/process(delta_time)
+obj/machinery/atmospherics/pipeturbine/process(delta_time)
 	..()
 	if(anchored && !(machine_stat & BROKEN))
 		kin_energy *= 1 - kin_loss
@@ -71,7 +71,7 @@
 	if (network2)
 		network2.update = 1
 
-/obj/machinery/atmospherics/pipeturbine/update_icon()
+obj/machinery/atmospherics/pipeturbine/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -86,7 +86,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/machinery/atmospherics/pipeturbine/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/atmospherics/pipeturbine/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		anchored = !anchored
 		playsound(src, W.tool_sound, 50, 1)
@@ -120,7 +120,7 @@
 		return
 	..()
 
-/obj/machinery/atmospherics/pipeturbine/verb/rotate_clockwise()
+obj/machinery/atmospherics/pipeturbine/verb/rotate_clockwise()
 	set name = "Rotate Turbine Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -131,7 +131,7 @@
 	src.setDir(turn(src.dir, 270))
 
 
-/obj/machinery/atmospherics/pipeturbine/verb/rotate_counterclockwise()
+obj/machinery/atmospherics/pipeturbine/verb/rotate_counterclockwise()
 	set name = "Rotate Turbine Counterclockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -142,10 +142,10 @@
 	src.setDir(turn(src.dir, 90))
 
 //Goddamn copypaste from binary base class because atmospherics machinery API is not damn flexible
-/obj/machinery/atmospherics/pipeturbine/get_neighbor_nodes_for_init()
+obj/machinery/atmospherics/pipeturbine/get_neighbor_nodes_for_init()
 	return list(node1, node2)
 
-/obj/machinery/atmospherics/pipeturbine/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+obj/machinery/atmospherics/pipeturbine/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node1)
 		network1 = new_network
 
@@ -159,7 +159,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/pipeturbine/atmos_init()
+obj/machinery/atmospherics/pipeturbine/atmos_init()
 	if(node1 && node2)
 		return
 
@@ -176,7 +176,7 @@
 			node2 = target
 			break
 
-/obj/machinery/atmospherics/pipeturbine/build_network()
+obj/machinery/atmospherics/pipeturbine/build_network()
 	if(!network1 && node1)
 		network1 = new /datum/pipe_network()
 		network1.normal_members += src
@@ -188,7 +188,7 @@
 		network2.build_network(node2, src)
 
 
-/obj/machinery/atmospherics/pipeturbine/return_network(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipeturbine/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
 	if(reference==node1)
@@ -199,7 +199,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/pipeturbine/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
+obj/machinery/atmospherics/pipeturbine/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 	if(network1 == old_network)
 		network1 = new_network
 	if(network2 == old_network)
@@ -207,7 +207,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/pipeturbine/return_network_air(datum/pipe_network/reference)
+obj/machinery/atmospherics/pipeturbine/return_network_air(datum/pipe_network/reference)
 	var/list/results = list()
 
 	if(network1 == reference)
@@ -217,7 +217,7 @@
 
 	return results
 
-/obj/machinery/atmospherics/pipeturbine/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipeturbine/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node1)
 		qdel(network1)
 		node1 = null
@@ -229,7 +229,7 @@
 	return null
 
 
-/obj/machinery/power/turbinemotor
+obj/machinery/power/turbinemotor
 	name = "motor"
 	desc = "Electrogenerator. Converts rotation into power."
 	icon = 'icons/obj/pipeturbine.dmi'
@@ -240,22 +240,22 @@
 	var/kin_to_el_ratio = 0.1	//How much kinetic energy will be taken from turbine and converted into electricity
 	var/obj/machinery/atmospherics/pipeturbine/turbine
 
-/obj/machinery/power/turbinemotor/Initialize(mapload)
+obj/machinery/power/turbinemotor/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/power/turbinemotor/LateInitialize()
+obj/machinery/power/turbinemotor/LateInitialize()
 	. = ..()
 	updateConnection()
 
-/obj/machinery/power/turbinemotor/proc/updateConnection()
+obj/machinery/power/turbinemotor/proc/updateConnection()
 	turbine = null
 	if(src.loc && anchored)
 		turbine = locate(/obj/machinery/atmospherics/pipeturbine) in get_step(src,dir)
 		if (turbine.machine_stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
 			turbine = null
 
-/obj/machinery/power/turbinemotor/process(delta_time)
+obj/machinery/power/turbinemotor/process(delta_time)
 	updateConnection()
 	if(!turbine || !anchored || machine_stat & (BROKEN))
 		return
@@ -264,7 +264,7 @@
 	turbine.kin_energy -= power_generated
 	add_avail(power_generated * 0.001)
 
-/obj/machinery/power/turbinemotor/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/power/turbinemotor/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		anchored = !anchored
 		playsound(src, W.tool_sound, 50, 1)
@@ -274,7 +274,7 @@
 	else
 		..()
 
-/obj/machinery/power/turbinemotor/verb/rotate_clockwise()
+obj/machinery/power/turbinemotor/verb/rotate_clockwise()
 	set name = "Rotate Motor Clockwise"
 	set category = "Object"
 	set src in view(1)
@@ -284,7 +284,7 @@
 
 	src.setDir(turn(src.dir, 270))
 
-/obj/machinery/power/turbinemotor/verb/rotate_counterclockwise()
+obj/machinery/power/turbinemotor/verb/rotate_counterclockwise()
 	set name = "Rotate Motor Counterclockwise"
 	set category = "Object"
 	set src in view(1)

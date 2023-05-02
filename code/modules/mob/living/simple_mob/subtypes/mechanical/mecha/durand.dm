@@ -2,7 +2,7 @@
 // They can also root themselves to become even tankier.
 // The AI doesn't do this currently.
 
-/datum/category_item/catalogue/technology/durand
+datum/category_item/catalogue/technology/durand
 	name = "Exosuit - Durand"
 	desc = "The Durand is an old combat exosuit; once the most durable exosuit ever developed by humans. \
 	In modern times, this exosuit has been dethroned from that title, yet it remains one of the more well built and armored \
@@ -15,7 +15,7 @@
 	more advanced war machines."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/durand
+mob/living/simple_mob/mechanical/mecha/combat/durand
 	name = "durand"
 	desc = "An aging combat exosuit utilized by many corporations. It was originally developed to fight in the First Contact War."
 	catalogue_data = list(/datum/category_item/catalogue/technology/durand)
@@ -42,19 +42,19 @@
 	var/defense_mode = FALSE
 	var/defense_deflect = 35
 
-/mob/living/simple_mob/mechanical/mecha/combat/durand/proc/set_defense_mode(new_mode)
+mob/living/simple_mob/mechanical/mecha/combat/durand/proc/set_defense_mode(new_mode)
 	defense_mode = new_mode
 	deflect_chance = defense_mode ? defense_deflect : initial(deflect_chance)
 	to_chat(src, SPAN_NOTICE("You [defense_mode ? "en" : "dis"]able defense mode."))
 
-/mob/living/simple_mob/mechanical/mecha/combat/durand/SelfMove(turf/n, direct)
+mob/living/simple_mob/mechanical/mecha/combat/durand/SelfMove(turf/n, direct)
 	if(defense_mode)
 		to_chat(src, SPAN_WARNING( "You are in defense mode, you cannot move."))
 		return FALSE
 	return ..()
 
 // So players can toggle it too.
-/mob/living/simple_mob/mechanical/mecha/combat/durand/verb/toggle_defense_mode()
+mob/living/simple_mob/mechanical/mecha/combat/durand/verb/toggle_defense_mode()
 	set name = "Toggle Defense Mode"
 	set desc = "Toggles a special mode which makes you immobile and much more resilient."
 	set category = "Abilities"
@@ -62,6 +62,6 @@
 	set_defense_mode(!defense_mode)
 
 // Variant that starts in defense mode, perhaps for PoIs.
-/mob/living/simple_mob/mechanical/mecha/combat/durand/defensive/Initialize(mapload)
+mob/living/simple_mob/mechanical/mecha/combat/durand/defensive/Initialize(mapload)
 	set_defense_mode(TRUE)
 	return ..()

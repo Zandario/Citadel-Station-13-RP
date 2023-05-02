@@ -2,7 +2,7 @@
 /// It has the ability to react to that signal on behalf of a separate listener however
 /// This has great use, primarily for components, but it carries with it some overhead
 /// So we do it separately as it needs to hold state which is very likely to lead to bugs if it remains as an element.
-/datum/component/connect_loc_behalf
+datum/component/connect_loc_behalf
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 
 	/// An assoc list of signal -> procpath to register to the loc this object is on.
@@ -12,19 +12,19 @@
 
 	var/atom/tracked_loc
 
-/datum/component/connect_loc_behalf/Initialize(atom/movable/tracked, list/connections)
+datum/component/connect_loc_behalf/Initialize(atom/movable/tracked, list/connections)
 	. = ..()
 	if (!istype(tracked))
 		return COMPONENT_INCOMPATIBLE
 	src.connections = connections
 	src.tracked = tracked
 
-/datum/component/connect_loc_behalf/RegisterWithParent()
+datum/component/connect_loc_behalf/RegisterWithParent()
 	RegisterSignal(tracked, COMSIG_MOVABLE_MOVED, .proc/on_moved)
 	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/handle_tracked_qdel)
 	update_signals()
 
-/datum/component/connect_loc_behalf/UnregisterFromParent()
+datum/component/connect_loc_behalf/UnregisterFromParent()
 	unregister_signals()
 	UnregisterSignal(tracked, list(
 		COMSIG_MOVABLE_MOVED,
@@ -33,11 +33,11 @@
 
 	tracked = null
 
-/datum/component/connect_loc_behalf/proc/handle_tracked_qdel()
+datum/component/connect_loc_behalf/proc/handle_tracked_qdel()
 	SIGNAL_HANDLER
 	qdel(src)
 
-/datum/component/connect_loc_behalf/proc/update_signals()
+datum/component/connect_loc_behalf/proc/update_signals()
 	unregister_signals()
 	//You may ask yourself, isn't this just silencing an error?
 	//The answer is yes, but there's no good cheap way to fix it
@@ -55,7 +55,7 @@
 	for (var/signal in connections)
 		parent.RegisterSignal(tracked_loc, signal, connections[signal])
 
-/datum/component/connect_loc_behalf/proc/unregister_signals()
+datum/component/connect_loc_behalf/proc/unregister_signals()
 	if(isnull(tracked_loc))
 		return
 
@@ -63,7 +63,6 @@
 
 	tracked_loc = null
 
-/datum/component/connect_loc_behalf/proc/on_moved(sigtype, atom/movable/tracked, atom/old_loc)
+datum/component/connect_loc_behalf/proc/on_moved(sigtype, atom/movable/tracked, atom/old_loc)
 	SIGNAL_HANDLER
 	update_signals()
-

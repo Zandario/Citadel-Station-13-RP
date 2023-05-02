@@ -1,4 +1,4 @@
-/proc/make_types_fancy(list/types)
+proc/make_types_fancy(list/types)
 	if (ispath(types))
 		types = list(types)
 	. = list()
@@ -36,21 +36,21 @@
 				break
 		.[typename] = type
 
-/proc/get_fancy_list_of_atom_types()
+proc/get_fancy_list_of_atom_types()
 	var/static/list/pre_generated_list
 	if (!pre_generated_list) //init
 		pre_generated_list = make_types_fancy(typesof(/atom))
 	return pre_generated_list
 
 
-/proc/get_fancy_list_of_datum_types()
+proc/get_fancy_list_of_datum_types()
 	var/static/list/pre_generated_list
 	if (!pre_generated_list) //init
 		pre_generated_list = make_types_fancy(sortList(typesof(/datum) - typesof(/atom)))
 	return pre_generated_list
 
 
-/proc/filter_fancy_list(list/L, filter as text)
+proc/filter_fancy_list(list/L, filter as text)
 	var/list/matches = new
 	for(var/key in L)
 		var/value = L[key]
@@ -58,7 +58,7 @@
 			matches[key] = value
 	return matches
 
-/proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
 		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
 		if (isnull(value))

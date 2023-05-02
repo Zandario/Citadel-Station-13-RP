@@ -1,4 +1,4 @@
-/datum/atmosphere/planet/lavaland
+datum/atmosphere/planet/lavaland
 	base_gases = list(
 	/datum/gas/oxygen = 0.14,
 	/datum/gas/nitrogen = 0.20,
@@ -12,15 +12,15 @@
 
 
 
-/datum/time/lavaland
+datum/time/lavaland
 	seconds_in_day = 2 HOURS
 
-/datum/planet/lavaland
+datum/planet/lavaland
 	name = "Lava Land"
 	desc = "The fabled."
 	current_time = new /datum/time/lavaland()
 
-/datum/planet/lavaland/update_sun()
+datum/planet/lavaland/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
@@ -97,7 +97,7 @@
 
 	update_sun_deferred(new_brightness, new_color)
 
-/datum/weather_holder/lavaland
+datum/weather_holder/lavaland
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_ASH_STORM	= new /datum/weather/lavaland/ash_storm(),
@@ -110,12 +110,12 @@
 		WEATHER_PRE_ASH_STORM = 90
 		)
 
-/datum/weather/lavaland
+datum/weather/lavaland
 	name = "lavaland base"
 	temp_high = 350.1
 	temp_low = 301.15  // -10c
 
-/datum/weather/lavaland/clear
+datum/weather/lavaland/clear
 	name = "clear"
 	timer_low_bound = 6			// How long this weather must run before it tries to change, in minutes
 	timer_high_bound = 15		// How long this weather can run before it tries to change, in minutes
@@ -131,7 +131,7 @@
 	sky_visible = FALSE
 	observed_message = "The air smooths out."
 
-/datum/weather/lavaland/pre_ash_storm
+datum/weather/lavaland/pre_ash_storm
 	name = "transitioning to ash"
 	timer_low_bound = 1			// How long this weather must run before it tries to change, in minutes
 	timer_high_bound = 1		// How long this weather can run before it tries to change, in minutes
@@ -150,7 +150,7 @@
 	sky_visible = FALSE
 	observed_message = "The air smooths out."
 
-/datum/weather/lavaland/ash_storm
+datum/weather/lavaland/ash_storm
 	name = "ash storm"
 	icon_state = "ashfall"
 	light_modifier = 0.5
@@ -175,7 +175,7 @@
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
-/datum/weather/lavaland/ash_storm/process_effects()
+datum/weather/lavaland/ash_storm/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing

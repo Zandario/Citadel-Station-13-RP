@@ -1,4 +1,4 @@
-/obj/machinery/computer/mecha
+obj/machinery/computer/mecha
 	name = "Exosuit Control"
 	desc = "Used to track exosuits, as well as view their logs and activate EMP beacons."
 	icon_keyboard = "rd_key"
@@ -10,21 +10,21 @@
 	var/screen = 0
 	var/list/stored_data
 
-/obj/machinery/computer/mecha/attack_ai(mob/user)
+obj/machinery/computer/mecha/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/mecha/attack_hand(mob/user, list/params)
+obj/machinery/computer/mecha/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/mecha/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/mecha/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MechaControlConsole", name)
 		ui.open()
 
-/obj/machinery/computer/mecha/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/mecha/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["beacons"] = list()
@@ -38,7 +38,7 @@
 
 	return data
 
-/obj/machinery/computer/mecha/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/mecha/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -68,14 +68,14 @@
 			stored_data = null
 			return TRUE
 
-/obj/item/mecha_parts/mecha_tracking
+obj/item/mecha_parts/mecha_tracking
 	name = "Exosuit tracking beacon"
 	desc = "Device used to transmit exosuit data."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion2"
 	origin_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
 
-/obj/item/mecha_parts/mecha_tracking/ui_data(mob/user)
+obj/item/mecha_parts/mecha_tracking/ui_data(mob/user)
 	var/list/data = ..()
 	if(!in_mecha())
 		return FALSE
@@ -101,36 +101,36 @@
 
 	return data
 
-/obj/item/mecha_parts/mecha_tracking/emp_act()
+obj/item/mecha_parts/mecha_tracking/emp_act()
 	qdel(src)
 	return
 
-/obj/item/mecha_parts/mecha_tracking/legacy_ex_act()
+obj/item/mecha_parts/mecha_tracking/legacy_ex_act()
 	qdel(src)
 	return
 
-/obj/item/mecha_parts/mecha_tracking/proc/in_mecha()
+obj/item/mecha_parts/mecha_tracking/proc/in_mecha()
 	if(istype(loc, /obj/mecha))
 		return loc
 	return 0
 
-/obj/item/mecha_parts/mecha_tracking/proc/shock()
+obj/item/mecha_parts/mecha_tracking/proc/shock()
 	var/obj/mecha/M = in_mecha()
 	if(M)
 		M.emp_act(4)
 	qdel(src)
 
-/obj/item/mecha_parts/mecha_tracking/proc/get_mecha_log()
+obj/item/mecha_parts/mecha_tracking/proc/get_mecha_log()
 	if(!in_mecha())
 		return list()
 	var/obj/mecha/M = loc
 	return M.get_log_tgui()
 
 
-/obj/item/storage/box/mechabeacons
+obj/item/storage/box/mechabeacons
 	name = "Exosuit Tracking Beacons"
 
-/obj/item/storage/box/mechabeacons/PopulateContents()
+obj/item/storage/box/mechabeacons/PopulateContents()
 	new /obj/item/mecha_parts/mecha_tracking(src)
 	new /obj/item/mecha_parts/mecha_tracking(src)
 	new /obj/item/mecha_parts/mecha_tracking(src)

@@ -1,13 +1,13 @@
 //Also contains /obj/structure/closet/body_bag because I doubt anyone would think to look for bodybags in /object/structures
 
-/obj/item/bodybag
+obj/item/bodybag
 	name = "body bag"
 	desc = "A folded bag designed for the storage and transportation of cadavers."
 	icon = 'icons/obj/medical/bodybag.dmi'
 	icon_state = "bodybag_folded"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/bodybag/attack_self(mob/user)
+obj/item/bodybag/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -16,12 +16,12 @@
 	qdel(src)
 
 
-/obj/item/storage/box/bodybags
+obj/item/storage/box/bodybags
 	name = "body bags"
 	desc = "This box contains body bags."
 	icon_state = "bodybags"
 
-/obj/item/storage/box/bodybags/New()
+obj/item/storage/box/bodybags/New()
 	..()
 	new /obj/item/bodybag(src)
 	new /obj/item/bodybag(src)
@@ -32,7 +32,7 @@
 	new /obj/item/bodybag(src)
 
 
-/obj/structure/closet/body_bag
+obj/structure/closet/body_bag
 	name = "body bag"
 	desc = "A plastic bag designed for the storage and transportation of cadavers."
 	icon = 'icons/obj/medical/bodybag.dmi'
@@ -46,7 +46,7 @@
 	storage_capacity = (MOB_MEDIUM * 2) - 1
 	var/contains_body = 0
 
-/obj/structure/closet/body_bag/attackby(obj/item/W, mob/user)
+obj/structure/closet/body_bag/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_held_item() != W)
@@ -68,17 +68,17 @@
 		cut_overlays()
 		return
 
-/obj/structure/closet/body_bag/store_mobs(var/stored_units)
+obj/structure/closet/body_bag/store_mobs(var/stored_units)
 	contains_body = ..()
 	return contains_body
 
-/obj/structure/closet/body_bag/close()
+obj/structure/closet/body_bag/close()
 	if(..())
 		density = 0
 		return 1
 	return 0
 
-/obj/structure/closet/body_bag/OnMouseDropLegacy(over_object, src_location, over_location)
+obj/structure/closet/body_bag/OnMouseDropLegacy(over_object, src_location, over_location)
 	..()
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))	return 0
@@ -90,24 +90,24 @@
 			qdel(src)
 		return folded
 
-/obj/structure/closet/body_bag/relaymove(mob/user,direction)
+obj/structure/closet/body_bag/relaymove(mob/user,direction)
 	if(src.loc != get_turf(src))
 		src.loc.relaymove(user,direction)
 	else
 		..()
 
-/obj/structure/closet/body_bag/proc/get_occupants()
+obj/structure/closet/body_bag/proc/get_occupants()
 	var/list/occupants = list()
 	for(var/mob/living/carbon/human/H in contents)
 		occupants += H
 	return occupants
 
-/obj/structure/closet/body_bag/proc/update(var/broadcast=0)
+obj/structure/closet/body_bag/proc/update(var/broadcast=0)
 	if(istype(loc, /obj/structure/morgue))
 		var/obj/structure/morgue/M = loc
 		M.update(broadcast)
 
-/obj/structure/closet/body_bag/update_icon()
+obj/structure/closet/body_bag/update_icon()
 	if(opened)
 		icon_state = icon_opened
 	else
@@ -117,7 +117,7 @@
 			icon_state = icon_closed
 
 
-/obj/item/bodybag/cryobag
+obj/item/bodybag/cryobag
 	name = "stasis bag"
 	desc = "A non-reusable plastic bag designed to slow down bodily functions such as circulation and breathing, \
 	especially useful if short on time or in a hostile enviroment."
@@ -127,7 +127,7 @@
 	origin_tech = list(TECH_BIO = 4)
 	var/obj/item/reagent_containers/syringe/syringe
 
-/obj/item/bodybag/cryobag/attack_self(mob/user)
+obj/item/bodybag/cryobag/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -138,7 +138,7 @@
 		syringe = null
 	qdel(src)
 
-/obj/structure/closet/body_bag/cryobag
+obj/structure/closet/body_bag/cryobag
 	name = "stasis bag"
 	desc = "A non-reusable plastic bag designed to slow down bodily functions such as circulation and breathing, \
 	especially useful if short on time or in a hostile enviroment."
@@ -152,16 +152,16 @@
 	var/stasis_level = 3 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
 	var/obj/item/reagent_containers/syringe/syringe
 
-/obj/structure/closet/body_bag/cryobag/Initialize(mapload)
+obj/structure/closet/body_bag/cryobag/Initialize(mapload)
 	tank = new tank_type(null) //It's in nullspace to prevent ejection when the bag is opened.
 	..()
 
-/obj/structure/closet/body_bag/cryobag/Destroy()
+obj/structure/closet/body_bag/cryobag/Destroy()
 	QDEL_NULL(syringe)
 	QDEL_NULL(tank)
 	return ..()
 
-/obj/structure/closet/body_bag/cryobag/attack_hand(mob/user, list/params)
+obj/structure/closet/body_bag/cryobag/attack_hand(mob/user, list/params)
 	if(used)
 		var/confirm = tgui_alert(user, "Are you sure you want to open \the [src]? \The [src] will expire upon opening it.", "Confirm Opening", list("No", "Yes"))
 		if(confirm == "Yes")
@@ -169,7 +169,7 @@
 	else
 		..()
 
-/obj/structure/closet/body_bag/cryobag/open()
+obj/structure/closet/body_bag/cryobag/open()
 	. = ..()
 	if(used)
 		var/obj/item/O = new/obj/item(src.loc)
@@ -179,14 +179,14 @@
 		O.desc = "Pretty useless now..."
 		qdel(src)
 
-/obj/structure/closet/body_bag/cryobag/OnMouseDropLegacy(over_object, src_location, over_location)
+obj/structure/closet/body_bag/cryobag/OnMouseDropLegacy(over_object, src_location, over_location)
 	. = ..()
 	if(. && syringe)
 		var/obj/item/bodybag/cryobag/folded = .
 		folded.syringe = syringe
 		syringe = null
 
-/obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
+obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(stasis_level)
@@ -198,7 +198,7 @@
 		O.preserve(STASIS_BAG_TRAIT)
 	..()
 
-/obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
+obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(0)
@@ -208,19 +208,19 @@
 		O.unpreserve(STASIS_BAG_TRAIT)
 	..()
 
-/obj/structure/closet/body_bag/cryobag/return_air() //Used to make stasis bags protect from vacuum.
+obj/structure/closet/body_bag/cryobag/return_air() //Used to make stasis bags protect from vacuum.
 	if(tank)
 		return tank.air_contents
 	..()
 
-/obj/structure/closet/body_bag/cryobag/proc/inject_occupant(var/mob/living/carbon/human/H)
+obj/structure/closet/body_bag/cryobag/proc/inject_occupant(var/mob/living/carbon/human/H)
 	if(!syringe)
 		return
 
 	if(H.reagents)
 		syringe.reagents.trans_to_mob(H, 30, CHEM_BLOOD)
 
-/obj/structure/closet/body_bag/cryobag/examine(mob/user)
+obj/structure/closet/body_bag/cryobag/examine(mob/user)
 	. = ..()
 	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
 		. += "<span class='info'>You peer into \the [src].</span>"
@@ -229,7 +229,7 @@
 		for(var/mob/living/L in contents)
 			user.do_examinate(L)
 
-/obj/structure/closet/body_bag/cryobag/attackby(obj/item/W, mob/user)
+obj/structure/closet/body_bag/cryobag/attackby(obj/item/W, mob/user)
 	if(opened)
 		..()
 	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.

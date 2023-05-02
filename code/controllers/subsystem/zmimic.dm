@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(zmimic)
 	var/fixup_hit = 0
 
 // for admin proc-call
-/datum/controller/subsystem/zmimic/proc/update_all()
+datum/controller/subsystem/zmimic/proc/update_all()
 	// disable()
 	can_fire = FALSE
 	log_debug("SSzmimic: update_all() invoked.")
@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(zmimic)
 		can_fire = TRUE
 
 // for admin proc-call
-/datum/controller/subsystem/zmimic/proc/hard_reset()
+datum/controller/subsystem/zmimic/proc/hard_reset()
 	// disable()
 	can_fire = FALSE
 	log_debug("SSzmimic: hard_reset() invoked.")
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(zmimic)
 		next_fire = world.time + wait
 		can_fire = TRUE
 
-/datum/controller/subsystem/zmimic/stat_entry()
+datum/controller/subsystem/zmimic/stat_entry()
 	var/list/entries = list(
 		"",	// newline
 		"ZSt: [build_zstack_display()]",	// This is a human-readable list of the z-stacks known to ZM.
@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(zmimic)
 	return ..() + entries.Join("<br>&emsp;")
 
 // 1, 2, 3..=7, 8
-/datum/controller/subsystem/zmimic/proc/build_zstack_display()
+datum/controller/subsystem/zmimic/proc/build_zstack_display()
 	if (!zlev_maximums.len)
 		return "<none>"
 	var/list/zmx = list()
@@ -148,14 +148,14 @@ SUBSYSTEM_DEF(zmimic)
 	while (idx <= zlev_maximums.len)
 	return jointext(zmx, ", ")
 
-/datum/controller/subsystem/zmimic/Initialize(timeofday)
+datum/controller/subsystem/zmimic/Initialize(timeofday)
 	calculate_zstack_limits()
 	// Flush the queue.
 	fire(FALSE, TRUE)
 	return ..()
 
 // If you add a new Zlevel or change Z-connections, call this.
-/datum/controller/subsystem/zmimic/proc/calculate_zstack_limits()
+datum/controller/subsystem/zmimic/proc/calculate_zstack_limits()
 	zlev_maximums = new(world.maxz)
 	var/start_zlev = 1
 	for (var/z in 1 to world.maxz)
@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(zmimic)
 // 	wake()
 
 /// Fully reset Z-Mimic, rebuilding state from scratch. Use this if you change Z-stack mappings after Z-Mimic has initialized. Expensive.
-/datum/controller/subsystem/zmimic/proc/RebuildZState()
+datum/controller/subsystem/zmimic/proc/RebuildZState()
 	// suspend()
 	UNTIL(state == SS_IDLE)
 
@@ -193,7 +193,7 @@ SUBSYSTEM_DEF(zmimic)
 			CHECK_TICK
 	// wake()
 
-/datum/controller/subsystem/zmimic/fire(resumed = FALSE, no_mc_tick = FALSE)
+datum/controller/subsystem/zmimic/fire(resumed = FALSE, no_mc_tick = FALSE)
 	if (!resumed)
 		qt_idex = 1
 		qo_idex = 1
@@ -479,7 +479,7 @@ SUBSYSTEM_DEF(zmimic)
 		curr_ov.Cut(1, qo_idex)
 		qo_idex = 1
 
-/datum/controller/subsystem/zmimic/proc/flush_z_state(turf/T)
+datum/controller/subsystem/zmimic/proc/flush_z_state(turf/T)
 	if (T.below) // Z-Mimic turfs aren't necessarily above another turf.
 		if (T.below.mimic_above_copy)
 			QDEL_NULL(T.below.mimic_above_copy)
@@ -489,7 +489,7 @@ SUBSYSTEM_DEF(zmimic)
 	for (var/atom/movable/openspace/mimic/OO in T)
 		qdel(OO)
 
-/datum/controller/subsystem/zmimic/proc/simple_appearance_copy(turf/T, new_appearance, target_plane)
+datum/controller/subsystem/zmimic/proc/simple_appearance_copy(turf/T, new_appearance, target_plane)
 	if (T.mz_flags & MZ_MIMIC_OVERWRITE)
 		T.appearance = new_appearance
 		T.name = initial(T.name)
@@ -513,7 +513,7 @@ SUBSYSTEM_DEF(zmimic)
 // For each of overlay,underlay, call fixup_appearance_planes; if it returns a new appearance, replace self
 
 /// Generate a new appearance from `appearance` with planes mangled to work with Z-Mimic. Do not pass a depth.
-/datum/controller/subsystem/zmimic/proc/fixup_appearance_planes(appearance, depth = 0)
+datum/controller/subsystem/zmimic/proc/fixup_appearance_planes(appearance, depth = 0)
 
 	// Adding this to guard against a reported runtime - supposed to be impossible, so cause is unclear.
 	if(!appearance)
@@ -609,9 +609,9 @@ SUBSYSTEM_DEF(zmimic)
 #define FMT_DEPTH(X) (X == null ? "(null)" : X)
 
 // This is a dummy object used so overlays can be shown in the analyzer.
-/atom/movable/openspace/debug
+atom/movable/openspace/debug
 
-/atom/movable/openspace/debug/turf
+atom/movable/openspace/debug/turf
 	var/turf/parent
 	var/computed_depth
 
@@ -623,7 +623,7 @@ var/list/zmimic_fixed_planes = list(
 	"-45" = "Turf plane (Non-Z)"
 )
 
-/client/proc/analyze_openturf(turf/T)
+client/proc/analyze_openturf(turf/T)
 	set name = "Analyze Openturf"
 	set desc = "Show the layering of an openturf and everything it's mimicking."
 	set category = "Debug"
@@ -736,7 +736,7 @@ var/list/zmimic_fixed_planes = list(
 		qdel(item)
 
 // Yes, I know this proc is a bit of a mess. Feel free to clean it up.
-/datum/controller/subsystem/zmimic/proc/debug_fmt_thing(atom/A, list/out, turf/original)
+datum/controller/subsystem/zmimic/proc/debug_fmt_thing(atom/A, list/out, turf/original)
 	if (istype(A, /atom/movable/openspace/mimic))
 		var/atom/movable/openspace/mimic/OO = A
 		var/base = "<li>[fmt_label("Mimic", A)] plane [A.plane], layer [A.layer], depth [FMT_DEPTH(OO.depth)], fixup [OO.have_performed_fixup ? "Y" : "N"]"
@@ -775,12 +775,12 @@ var/list/zmimic_fixed_planes = list(
 	else
 		return "<li>[fmt_label("?", A)] plane [A.plane], layer [A.layer], Z-level [A.z] - [A] ([A.type])</li>"
 
-/datum/controller/subsystem/zmimic/proc/fmt_label(label, atom/target, vv = TRUE)
+datum/controller/subsystem/zmimic/proc/fmt_label(label, atom/target, vv = TRUE)
 	. = "\icon[target] <b>\[[label]\]</b> "
 	if (vv)
 		. += "(<a href='?_src_=vars;Vars=\ref[target]'>VV</a>) "
 
-/datum/controller/subsystem/zmimic/proc/debug_fmt_planelist(list/things, list/out, turf/original)
+datum/controller/subsystem/zmimic/proc/debug_fmt_planelist(list/things, list/out, turf/original)
 	if (things)
 		out += "<ul>"
 		for (var/thing in things)

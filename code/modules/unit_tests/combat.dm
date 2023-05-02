@@ -1,4 +1,4 @@
-/datum/unit_test/harm_punch/Run()
+datum/unit_test/harm_punch/Run()
 	var/mob/living/carbon/human/puncher = allocate(/mob/living/carbon/human/consistent)
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 
@@ -10,7 +10,7 @@
 
 	TEST_ASSERT(victim.getBruteLoss() > 0, "Victim took no brute damage after being punched")
 
-/datum/unit_test/harm_melee/Run()
+datum/unit_test/harm_melee/Run()
 	var/mob/living/carbon/human/tider = allocate(/mob/living/carbon/human/consistent)
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
@@ -21,7 +21,7 @@
 
 	TEST_ASSERT(victim.getBruteLoss() > 0, "Victim took no brute damage after being hit by a toolbox")
 
-/datum/unit_test/harm_different_damage/Run()
+datum/unit_test/harm_different_damage/Run()
 	var/mob/living/carbon/human/attacker = allocate(/mob/living/carbon/human/consistent)
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/weldingtool/welding_tool = allocate(/obj/item/weldingtool)
@@ -35,24 +35,24 @@
 	TEST_ASSERT_EQUAL(victim.getBruteLoss(), 0, "Victim took brute damage from a lit welding tool")
 	TEST_ASSERT(victim.getFireLoss() > 0, "Victim took no burn damage after being hit by a lit welding tool")
 
-/datum/unit_test/attack_chain
+datum/unit_test/attack_chain
 	var/attack_hit
 	var/post_attack_hit
 	var/pre_attack_hit
 
-/datum/unit_test/attack_chain/proc/attack_hit()
+datum/unit_test/attack_chain/proc/attack_hit()
 	SIGNAL_HANDLER
 	attack_hit = TRUE
 
-/datum/unit_test/attack_chain/proc/post_attack_hit()
+datum/unit_test/attack_chain/proc/post_attack_hit()
 	SIGNAL_HANDLER
 	post_attack_hit = TRUE
 
-/datum/unit_test/attack_chain/proc/pre_attack_hit()
+datum/unit_test/attack_chain/proc/pre_attack_hit()
 	SIGNAL_HANDLER
 	pre_attack_hit = TRUE
 
-/datum/unit_test/attack_chain/Run()
+datum/unit_test/attack_chain/Run()
 	var/mob/living/carbon/human/attacker = allocate(/mob/living/carbon/human/consistent)
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
@@ -69,7 +69,7 @@
 	TEST_ASSERT(attack_hit, "Attack signal was not fired")
 	TEST_ASSERT(post_attack_hit, "Post-attack signal was not fired")
 
-/datum/unit_test/disarm/Run()
+datum/unit_test/disarm/Run()
 	var/mob/living/carbon/human/attacker = allocate(/mob/living/carbon/human/consistent)
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human/consistent)
 	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)

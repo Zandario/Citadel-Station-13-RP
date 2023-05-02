@@ -1,14 +1,14 @@
 // todo: proper tgui preferences
 
-/datum/preferences/proc/language_pick(mob/user)
+datum/preferences/proc/language_pick(mob/user)
 	if(GLOB.language_picker_active[REF(user)])
 		return
 	new /datum/tgui_language_picker(user, src)
 
-/datum/preferences/proc/route_language_pick(id, mob/user)
+datum/preferences/proc/route_language_pick(id, mob/user)
 	return language_pick_finalize(id, user)
 
-/datum/preferences/proc/language_pick_finalize(id, mob/user)
+datum/preferences/proc/language_pick_finalize(id, mob/user)
 	var/datum/language/L = SScharacters.resolve_language_id(id)
 	if(!L)
 		to_chat(user, SPAN_WARNING("BUG: Invalid language ID: [id]"))
@@ -28,13 +28,13 @@
 	return TRUE
 
 GLOBAL_LIST_EMPTY(language_picker_active)
-/datum/tgui_language_picker
+datum/tgui_language_picker
 	/// user ref
 	var/user_ref
 	/// preferences
 	var/datum/preferences/prefs
 
-/datum/tgui_language_picker/New(mob/user, datum/preferences/prefs)
+datum/tgui_language_picker/New(mob/user, datum/preferences/prefs)
 	if(!istype(user) || !istype(prefs))
 		qdel(src)
 		CRASH("what?")
@@ -43,27 +43,27 @@ GLOBAL_LIST_EMPTY(language_picker_active)
 	GLOB.language_picker_active[user_ref] = src
 	open()
 
-/datum/tgui_language_picker/Destroy()
+datum/tgui_language_picker/Destroy()
 	SStgui.close_uis(src)
 	GLOB.language_picker_active -= user_ref
 	return ..()
 
-/datum/tgui_language_picker/proc/open()
+datum/tgui_language_picker/proc/open()
 	var/mob/M = locate(user_ref)
 	ASSERT(M)
 	ui_interact(M)
 
-/datum/tgui_language_picker/ui_interact(mob/user, datum/tgui/ui)
+datum/tgui_language_picker/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "LanguagePicker", "Choose language")
 		ui.autoupdate = FALSE			// why the fuck are you updating language data??
 		ui.open()
 
-/datum/tgui_language_picker/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
+datum/tgui_language_picker/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
 	return UI_INTERACTIVE
 
-/datum/tgui_language_picker/ui_static_data(mob/user)
+datum/tgui_language_picker/ui_static_data(mob/user)
 	var/list/data = ..()
 	var/list/built = list()
 	var/list/categories = list("General")
@@ -81,12 +81,12 @@ GLOBAL_LIST_EMPTY(language_picker_active)
 	data["categories"] = categories
 	return data
 
-/datum/tgui_language_picker/ui_close(mob/user, datum/tgui_module/module)
+datum/tgui_language_picker/ui_close(mob/user, datum/tgui_module/module)
 	. = ..()
 	if(!QDELING(src))
 		qdel(src)
 
-/datum/tgui_language_picker/ui_act(action, list/params, datum/tgui/ui)
+datum/tgui_language_picker/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	switch(action)
 		if("pick")

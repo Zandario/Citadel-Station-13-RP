@@ -1,8 +1,8 @@
-/atom
+atom
 	var/CanAtmosPass = ATMOS_PASS_NOT_BLOCKED
 	var/CanAtmosPassVertical = ATMOS_PASS_VERTICAL_DEFAULT
 
-/atom/proc/CanAtmosPass(turf/T, d)
+atom/proc/CanAtmosPass(turf/T, d)
 	switch (CanAtmosPass)
 		if (ATMOS_PASS_PROC)
 			return ATMOS_PASS_NOT_BLOCKED
@@ -21,12 +21,12 @@
  *
  * works for multi-tile objects
  */
-/atom/proc/air_update_turf()
+atom/proc/air_update_turf()
 
-/turf/air_update_turf()
+turf/air_update_turf()
 	queue_zone_update()
 
-/atom/movable/air_update_turf()
+atom/movable/air_update_turf()
 	update_nearby_tiles()
 
 
@@ -35,10 +35,10 @@
  *
  * *warning*: only works for non-multi-tile objects!
  */
-/atom/proc/air_update_self()
+atom/proc/air_update_self()
 	return
 
-/turf/air_update_self()
+turf/air_update_self()
 	queue_zone_update()
 
 /**
@@ -54,7 +54,7 @@
  * a - temperature of one side
  * b - temperature of other side
  */
-/atom/movable/proc/BlockThermalConductivity(a, b)
+atom/movable/proc/BlockThermalConductivity(a, b)
 	return FALSE
 
 */

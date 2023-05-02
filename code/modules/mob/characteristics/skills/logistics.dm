@@ -1,4 +1,4 @@
-/datum/characteristic_skill/logistics
+datum/characteristic_skill/logistics
 	abstract_type = /datum/characteristic_skill/logistics
 	category = "Logistics"
 
@@ -7,7 +7,7 @@
  *
  * Implementation status: not started
  */
-/datum/characteristic_skill/logistics/salvage
+datum/characteristic_skill/logistics/salvage
 	id = "salvage"
 	name = "Salvage"
 	desc = "How experienced you are with salvaging and mining. Each level provides additional boosts to mining equipment speed and efficiency."
@@ -26,7 +26,7 @@
  *
  * Implementation status: not started
  */
-/datum/characteristic_skill/logistics/cargo
+datum/characteristic_skill/logistics/cargo
 	id = "cargo"
 	name = "Logistics"
 	desc = "How experienced you are running logistics, deck supply, etc."

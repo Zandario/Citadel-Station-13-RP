@@ -1,4 +1,4 @@
-/mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
+mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 	var/param = null
 	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 	if(istype(src, /mob/living/carbon/human/dummy))
@@ -1052,7 +1052,7 @@
 
 
 
-/mob/living/carbon/human/verb/pose()
+mob/living/carbon/human/verb/pose()
 	set name = "Set Pose"
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
@@ -1061,7 +1061,7 @@
 
 	pose =  sanitize(input(usr, "This is [src]. [T.he]...", "Pose", null)  as text)
 
-/mob/living/carbon/human/verb/set_flavor()
+mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."
 	set category = "IC"
@@ -1102,7 +1102,7 @@
 	HTML += "<tt>"
 	src << browse(HTML, "window=flavor_changes;size=430x300")
 
-/mob/living/carbon/human/proc/handle_emote_vr(var/act,var/m_type=1,var/message = null)
+mob/living/carbon/human/proc/handle_emote_vr(var/act,var/m_type=1,var/message = null)
 
 	switch(act)
 		if ("vwag")
@@ -1243,10 +1243,10 @@
 
 	return 0
 
-/mob/living/carbon/human/proc/spam_flag_false() //used for addtimer
+mob/living/carbon/human/proc/spam_flag_false() //used for addtimer
 	spam_flag = FALSE
 
-/mob/living/carbon/human/proc/toggle_tail_vr(var/setting,var/message = 0)
+mob/living/carbon/human/proc/toggle_tail_vr(var/setting,var/message = 0)
 	if(!tail_style || !tail_style.ani_state)
 		if(message)
 			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
@@ -1258,7 +1258,7 @@
 		update_tail_showing()
 	return 1
 
-/mob/living/carbon/human/proc/toggle_wing_vr(var/setting,var/message = 0)
+mob/living/carbon/human/proc/toggle_wing_vr(var/setting,var/message = 0)
 	if(!wing_style || !wing_style.ani_state)
 		if(message)
 			to_chat(src, "<span class='warning'>You don't have wings that support this.</span>")
@@ -1270,7 +1270,7 @@
 		update_wing_showing()
 	return 1
 
-/mob/living/carbon/human/proc/toggle_wing_spread(var/folded,var/message = 0)
+mob/living/carbon/human/proc/toggle_wing_spread(var/folded,var/message = 0)
 	if(!wing_style)
 		if(message)
 			to_chat(src, "<span class='warning'>You don't have wings!</span>")
@@ -1287,7 +1287,7 @@
 		update_wing_showing()
 	return 1
 
-/mob/living/carbon/human/verb/toggle_gender_identity_vr()
+mob/living/carbon/human/verb/toggle_gender_identity_vr()
 	set name = "Set Gender Identity"
 	set desc = "Sets the pronouns when examined and performing an emote."
 	set category = "IC"
@@ -1297,7 +1297,7 @@
 	change_gender_identity(new_gender_identity)
 	return 1
 
-/mob/living/carbon/human/verb/switch_tail_layer()
+mob/living/carbon/human/verb/switch_tail_layer()
 	set name = "Switch tail layer"
 	set category = "IC"
 	set desc = "Switch tail layer on top."

@@ -1,15 +1,15 @@
-/obj/item/reagent_containers/cartridge
+obj/item/reagent_containers/cartridge
 	/// prespawn with a reagent?
 	var/spawn_reagent
 	/// prespawn amount instead of max?
 	var/spawn_amount
 
-/obj/item/reagent_containers/cartridge/Initialize(mapload)
+obj/item/reagent_containers/cartridge/Initialize(mapload)
 	. = ..()
 	if(spawn_reagent)
 		reagents.add_reagent(spawn_reagent, spawn_amount || volume)
 
-/obj/item/reagent_containers/cartridge/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+obj/item/reagent_containers/cartridge/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if (!is_open_container() || !proximity_flag)
 		return
 

@@ -8,5 +8,5 @@
  * - levels - levels fallen so far, preventing a fall in the first place has this at 0, breaking a falling object from z2 to z1's floor would be 1, etc.
  * - fall_flags - see __DEFINES/mapping/multiz.dm
  */
-/atom/proc/prevent_z_fall(atom/movable/victim, levels = 0, fall_flags)
+atom/proc/prevent_z_fall(atom/movable/victim, levels = 0, fall_flags)
 	return fall_flags

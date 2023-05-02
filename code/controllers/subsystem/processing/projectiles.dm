@@ -8,7 +8,7 @@ PROCESSING_SUBSYSTEM_DEF(projectiles)
 	var/global_pixel_speed = 2
 	var/global_iterations_per_move = 16
 
-/datum/controller/subsystem/processing/projectiles/proc/set_pixel_speed(new_speed)
+datum/controller/subsystem/processing/projectiles/proc/set_pixel_speed(new_speed)
 	global_pixel_speed = new_speed
 	for(var/i in processing)
 		var/obj/projectile/P = i

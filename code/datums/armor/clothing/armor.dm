@@ -1,6 +1,6 @@
-/datum/armor/general
+datum/armor/general
 
-/datum/armor/general/medieval
+datum/armor/general/medieval
 	melee = 0.75
 	bullet = 0.25
 	laser = 0.1
@@ -9,13 +9,13 @@
 	bio = 0.2
 	rad = 0.2
 
-/datum/armor/general/medieval/light
+datum/armor/general/medieval/light
 	melee = 0.4
 
-/datum/armor/general/medieval/mesh
+datum/armor/general/medieval/mesh
 	melee = 0.55
 
-/datum/armor/general/radsuit
+datum/armor/general/radsuit
 	melee = 0.1
 	bullet = 0.05
 	laser = 0.05
@@ -23,7 +23,7 @@
 	bio = 0.6
 	rad = 1.0
 
-/datum/armor/general/biosuit
+datum/armor/general/biosuit
 	melee = 0.1
 	bullet = 0.05
 	laser = 0.05
@@ -31,13 +31,13 @@
 	bio = 1.0
 	rad = 0.3
 
-/datum/armor/general/biosuit/anomaly
+datum/armor/general/biosuit/anomaly
 	rad = 1.0
 
-/datum/armor/general/beekeeper
+datum/armor/general/beekeeper
 	bio = 1.0
 
-/datum/armor/general/space
+datum/armor/general/space
 	melee = 0.2
 	bullet = 0.05
 	laser = 0.1
@@ -46,25 +46,25 @@
 	bio = 1.0
 	rad = 0.2
 
-/datum/armor/general/space/armored
+datum/armor/general/space/armored
 	melee = 0.4
 	bullet = 0.15
 	laser = 0.25
 	energy = 0.15
 	bomb = 0.35
 
-/datum/armor/general/bone
+datum/armor/general/bone
 	melee = 0.25
 	bullet = 0.05
 	laser = 0.05
 	energy = 0
 
-/datum/armor/general/samurai
+datum/armor/general/samurai
 	melee = 1.0
 	bullet = 0.5
 	laser = 0.05
 
-/datum/armor/general/utilitarian_military
+datum/armor/general/utilitarian_military
 	melee = 0.15
 	bullet = 0.4
 	laser = 0.6

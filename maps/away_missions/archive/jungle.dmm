@@ -1,760 +1,760 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
-/area)
+turf/space,
+area)
 "ab" = (
-/turf/simulated/mineral,
-/area)
+turf/simulated/mineral,
+area)
 "ac" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma6"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "ad" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma12"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "ae" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma10"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "af" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma3"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "ag" = (
-/obj/landmark/loot_spawn,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_six)
+obj/landmark/loot_spawn,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_six)
 "ah" = (
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_six)
+turf/simulated/floor/tiled/white,
+area/jungle/temple_six)
 "aj" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma6"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "ak" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma12"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "al" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma10"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "am" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma3"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "an" = (
-/obj/landmark/loot_spawn/low,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_two)
+obj/landmark/loot_spawn/low,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_two)
 "ao" = (
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_two)
+turf/simulated/floor/tiled/white,
+area/jungle/temple_two)
 "ap" = (
-/obj/landmark/loot_spawn,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_two)
+obj/landmark/loot_spawn,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_two)
 "aq" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma6"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "ar" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma12"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "as" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma10"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "av" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma3"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "aw" = (
-/obj/landmark/loot_spawn/low,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_four)
+obj/landmark/loot_spawn/low,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_four)
 "ax" = (
-/obj/landmark/loot_spawn,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_four)
+obj/landmark/loot_spawn,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_four)
 "ay" = (
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_four)
+turf/simulated/floor/tiled/white,
+area/jungle/temple_four)
 "az" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma5"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "aC" = (
-/obj/landmark/loot_spawn/low,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_six)
+obj/landmark/loot_spawn/low,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_six)
 "aE" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma5"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "aF" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma14"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "aG" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma8"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "aI" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma4"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "aJ" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma9"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "aK" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma5"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "aL" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma14"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "aM" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma8"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "aO" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma4"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "aP" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma9"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "aQ" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma14"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "aR" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma8"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "aT" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma4"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "aU" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma9"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "aV" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma13"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "aW" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma7"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "aX" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma11"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "aZ" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma13"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "ba" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma1"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "bb" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma7"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "bc" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma11"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "bf" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma1"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "bg" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma13"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "bh" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma2"
 	},
-/area/jungle/temple_two)
+area/jungle/temple_two)
 "bj" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma7"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "bk" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma11"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "bm" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma2"
 	},
-/area/jungle/temple_four)
+area/jungle/temple_four)
 "bn" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma1"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "bp" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma2"
 	},
-/area/jungle/temple_six)
+area/jungle/temple_six)
 "br" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma6"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bs" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma12"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bt" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma10"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bu" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma3"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bv" = (
-/obj/landmark/loot_spawn,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_one)
+obj/landmark/loot_spawn,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_one)
 "bw" = (
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_one)
+turf/simulated/floor/tiled/white,
+area/jungle/temple_one)
 "by" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma6"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "bz" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma12"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "bA" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma10"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "bB" = (
-/obj/landmark/loot_spawn/low,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_one)
+obj/landmark/loot_spawn/low,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_one)
 "bC" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma3"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "bD" = (
-/obj/landmark/loot_spawn/low,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_three)
+obj/landmark/loot_spawn/low,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_three)
 "bF" = (
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_three)
+turf/simulated/floor/tiled/white,
+area/jungle/temple_three)
 "bG" = (
-/obj/landmark/loot_spawn,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_three)
+obj/landmark/loot_spawn,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_three)
 "bJ" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma6"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "bK" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma12"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "bL" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma10"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "bM" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma9"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bN" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma3"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "bO" = (
-/obj/landmark/loot_spawn,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_five)
+obj/landmark/loot_spawn,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_five)
 "bP" = (
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_five)
+turf/simulated/floor/tiled/white,
+area/jungle/temple_five)
 "bQ" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma5"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bR" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma14"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bS" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma8"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bU" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma4"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "bV" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma5"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "bW" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma14"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "bX" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma8"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "bZ" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma4"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "ca" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma9"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "cb" = (
-/obj/landmark/loot_spawn/low,
-/turf/simulated/floor/tiled/white,
-/area/jungle/temple_five)
+obj/landmark/loot_spawn/low,
+turf/simulated/floor/tiled/white,
+area/jungle/temple_five)
 "cd" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma5"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "cf" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma14"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "cg" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma8"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "ci" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma4"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "cj" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma9"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "ck" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma13"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "cl" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma13"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "cm" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma7"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "cn" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma11"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "cp" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma7"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "cq" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma11"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "cs" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma1"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "ct" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma1"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "cw" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma2"
 	},
-/area/jungle/temple_one)
+area/jungle/temple_one)
 "cx" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma2"
 	},
-/area/jungle/temple_three)
+area/jungle/temple_three)
 "cy" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma13"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "cz" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma7"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "cA" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma11"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "cC" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma1"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "cE" = (
-/turf/unsimulated/wall{
+turf/unsimulated/wall{
 	icon_state = "plasma2"
 	},
-/area/jungle/temple_five)
+area/jungle/temple_five)
 "cF" = (
-/turf/simulated/floor/water,
-/area/jungle)
+turf/simulated/floor/water,
+area/jungle)
 "cG" = (
-/turf/simulated/floor/outdoors/grass/forest,
-/area/jungle)
+turf/simulated/floor/outdoors/grass/forest,
+area/jungle)
 "cH" = (
-/turf/simulated/mineral,
-/area/jungle)
+turf/simulated/mineral,
+area/jungle)
 "cI" = (
-/obj/structure/largecrate,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/structure/largecrate,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "cJ" = (
-/obj/structure/closet/crate/secure/gear,
-/obj/item/extinguisher,
-/obj/item/material/minihoe,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/structure/closet/crate/secure/gear,
+obj/item/extinguisher,
+obj/item/material/minihoe,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "cK" = (
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "cN" = (
-/obj/structure/bed/roller,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/structure/bed/roller,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "cO" = (
-/obj/item/storage/firstaid,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/item/storage/firstaid,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "cQ" = (
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+turf/simulated/floor/tiled/white,
+area/jungle)
 "cR" = (
-/obj/item/trash/chips,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/item/trash/chips,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "cS" = (
-/obj/item/trash/pistachios,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/item/trash/pistachios,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "cT" = (
-/obj/item/bot_assembly/medibot,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/item/bot_assembly/medibot,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "cU" = (
-/obj/structure/barricade,
-/obj/structure/sign/redcross,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/structure/barricade,
+obj/structure/sign/redcross,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "cV" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+turf/simulated/floor/tiled/white,
+area/jungle)
 "cW" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+turf/simulated/floor/tiled/white,
+area/jungle)
 "cX" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+turf/simulated/floor/tiled/white,
+area/jungle)
 "cY" = (
-/obj/structure/barricade,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/structure/barricade,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "cZ" = (
-/obj/item/storage/pill_bottle/antitox,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/item/storage/pill_bottle/antitox,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "db" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+turf/simulated/floor/tiled/white,
+area/jungle)
 "dc" = (
-/obj/machinery/gateway/centeraway,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/machinery/gateway/centeraway,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "dd" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+turf/simulated/floor/tiled/white,
+area/jungle)
 "de" = (
-/obj/structure/reagent_dispensers,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/structure/reagent_dispensers,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "df" = (
-/obj/item/pen,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/item/pen,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "dg" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+turf/simulated/floor/tiled/white,
+area/jungle)
 "dh" = (
-/obj/machinery/gateway,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/machinery/gateway,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "di" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+turf/simulated/floor/tiled/white,
+area/jungle)
 "dj" = (
-/obj/item/trash/raisins,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/item/trash/raisins,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "dk" = (
-/obj/structure/closet/crate/secure/gear,
-/obj/item/material/knife/machete/hatchet,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/structure/closet/crate/secure/gear,
+obj/item/material/knife/machete/hatchet,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "dm" = (
-/obj/item/trash/sosjerky,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/item/trash/sosjerky,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "dn" = (
-/obj/item/trash/chips,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/item/trash/chips,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "do" = (
-/turf/simulated/floor/outdoors/grass,
-/area/jungle/crash_ship_one)
+turf/simulated/floor/outdoors/grass,
+area/jungle/crash_ship_one)
 "dp" = (
-/obj/item/secbot_assembly,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/item/secbot_assembly,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "dq" = (
-/obj/item/trash/candy,
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+obj/item/trash/candy,
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "ds" = (
-/obj/structure/barricade,
-/obj/structure/sign/securearea{
+obj/structure/barricade,
+obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'DANGEROUS WILDLIFE'. Sounds like some of the local fauna are vicious.";
 	name = "DANGEROUS WILDLIFE"
 	},
-/turf/simulated/floor/outdoors/grass,
-/area/jungle)
+turf/simulated/floor/outdoors/grass,
+area/jungle)
 "dt" = (
-/obj/structure/largecrate,
-/turf/simulated/floor/tiled/white,
-/area/jungle)
+obj/structure/largecrate,
+turf/simulated/floor/tiled/white,
+area/jungle)
 "du" = (
-/turf/simulated/floor/outdoors/grass,
-/area/jungle/crash_ship_two)
+turf/simulated/floor/outdoors/grass,
+area/jungle/crash_ship_two)
 "dv" = (
-/turf/simulated/floor/outdoors/grass/forest,
-/area/jungle/crash_ship_source)
+turf/simulated/floor/outdoors/grass/forest,
+area/jungle/crash_ship_source)
 "dw" = (
-/turf/simulated/floor/outdoors/dirt,
-/area/jungle/crash_ship_source)
+turf/simulated/floor/outdoors/dirt,
+area/jungle/crash_ship_source)
 "dy" = (
-/obj/landmark/loot_spawn/low,
-/turf/simulated/floor/outdoors/dirt,
-/area/jungle/crash_ship_source)
+obj/landmark/loot_spawn/low,
+turf/simulated/floor/outdoors/dirt,
+area/jungle/crash_ship_source)
 "dA" = (
-/turf/simulated/floor/outdoors/dirt,
-/turf/simulated/shuttle/wall,
-/area/jungle/crash_ship_source)
+turf/simulated/floor/outdoors/dirt,
+turf/simulated/shuttle/wall,
+area/jungle/crash_ship_source)
 "dB" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/structure/window/reinforced,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dC" = (
-/obj/structure/grille,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/structure/grille,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dD" = (
-/obj/structure/grille{
+obj/structure/grille{
 	density = 0;
 	icon_state = "brokengrille"
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dE" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/structure/grille,
+obj/structure/window/reinforced,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dF" = (
-/turf/simulated/floor/tiled/white,
-/turf/simulated/shuttle/wall{
+turf/simulated/floor/tiled/white,
+turf/simulated/shuttle/wall{
 	icon_state = "swall_c"
 	},
-/area/jungle/crash_ship_source)
+area/jungle/crash_ship_source)
 "dG" = (
-/turf/simulated/shuttle/wall,
-/area/jungle/crash_ship_source)
+turf/simulated/shuttle/wall,
+area/jungle/crash_ship_source)
 "dH" = (
-/obj/landmark/loot_spawn/low,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/landmark/loot_spawn/low,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dI" = (
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dJ" = (
-/obj/item/material/knife/machete/hatchet,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/item/material/knife/machete/hatchet,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dL" = (
-/obj/structure/girder,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/structure/girder,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dN" = (
-/obj/item/cell,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/item/cell,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dO" = (
-/obj/structure/grille{
+obj/structure/grille{
 	density = 0;
 	icon_state = "brokengrille"
 	},
-/turf/simulated/floor/outdoors/dirt,
-/area/jungle/crash_ship_source)
+turf/simulated/floor/outdoors/dirt,
+area/jungle/crash_ship_source)
 "dP" = (
-/obj/item/storage/toolbox/mechanical,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/item/storage/toolbox/mechanical,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dR" = (
-/obj/item/storage/toolbox/emergency,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/item/storage/toolbox/emergency,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dS" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dT" = (
-/obj/item/storage/firstaid/regular,
-/turf/simulated/floor/outdoors/dirt,
-/area/jungle/crash_ship_source)
+obj/item/storage/firstaid/regular,
+turf/simulated/floor/outdoors/dirt,
+area/jungle/crash_ship_source)
 "dV" = (
-/obj/item/storage/toolbox/electrical,
-/turf/simulated/floor/tiled/white,
-/area/jungle/crash_ship_source)
+obj/item/storage/toolbox/electrical,
+turf/simulated/floor/tiled/white,
+area/jungle/crash_ship_source)
 "dY" = (
-/turf/simulated/floor/outdoors/grass/forest,
-/area/jungle/crash_ship_clean)
+turf/simulated/floor/outdoors/grass/forest,
+area/jungle/crash_ship_clean)
 "dZ" = (
-/turf/simulated/floor/outdoors/grass,
-/area/jungle/crash_ship_three)
+turf/simulated/floor/outdoors/grass,
+area/jungle/crash_ship_three)
 "ea" = (
-/turf/simulated/floor/outdoors/grass,
-/area/jungle/crash_ship_four)
+turf/simulated/floor/outdoors/grass,
+area/jungle/crash_ship_four)
 
 (1,1,1) = {"
 aa

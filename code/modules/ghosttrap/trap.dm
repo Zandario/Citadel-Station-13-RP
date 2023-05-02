@@ -3,18 +3,18 @@
 
 var/list/ghost_traps
 
-/proc/get_ghost_trap(trap_key)
+proc/get_ghost_trap(trap_key)
 	if(!ghost_traps)
 		populate_ghost_traps()
 	return ghost_traps[trap_key]
 
-/proc/populate_ghost_traps()
+proc/populate_ghost_traps()
 	ghost_traps = list()
 	for(var/traptype in typesof(/datum/ghosttrap))
 		var/datum/ghosttrap/G = new traptype
 		ghost_traps[G.object] = G
 
-/datum/ghosttrap
+datum/ghosttrap
 	var/object = "positronic brain"
 	var/list/ban_checks = list("AI","Cyborg")
 	var/pref_check = BE_AI
@@ -22,7 +22,7 @@ var/list/ghost_traps
 	var/ghost_trap_role = "Positronic Brain"
 
 // Check for bans, proper atom types, etc.
-/datum/ghosttrap/proc/assess_candidate(var/mob/observer/dead/candidate)
+datum/ghosttrap/proc/assess_candidate(var/mob/observer/dead/candidate)
 	if(!istype(candidate) || !candidate.client || !candidate.ckey)
 		return 0
 	if(!candidate.MayRespawn())
@@ -36,7 +36,7 @@ var/list/ghost_traps
 	return 1
 
 // Print a message to all ghosts with the right prefs/lack of bans.
-/datum/ghosttrap/proc/request_player(var/mob/target, var/request_string)
+datum/ghosttrap/proc/request_player(var/mob/target, var/request_string)
 	if(!target)
 		return
 	for(var/mob/observer/dead/O in GLOB.player_list)
@@ -52,7 +52,7 @@ var/list/ghost_traps
 			to_chat(O, "[request_string]<a href='?src=\ref[src];candidate=\ref[O];target=\ref[target]'>Click here</a> if you wish to play as this option.")
 
 // Handles a response to request_player().
-/datum/ghosttrap/Topic(href, href_list)
+datum/ghosttrap/Topic(href, href_list)
 	if(..())
 		return 1
 	if(href_list["candidate"] && href_list["target"])
@@ -65,7 +65,7 @@ var/list/ghost_traps
 		return 1
 
 // Shunts the ckey/mind into the target mob.
-/datum/ghosttrap/proc/transfer_personality(var/mob/candidate, var/mob/target)
+datum/ghosttrap/proc/transfer_personality(var/mob/candidate, var/mob/target)
 	if(!assess_candidate(candidate))
 		return 0
 	target.ckey = candidate.ckey
@@ -77,7 +77,7 @@ var/list/ghost_traps
 	return 1
 
 // Fluff!
-/datum/ghosttrap/proc/welcome_candidate(var/mob/target)
+datum/ghosttrap/proc/welcome_candidate(var/mob/target)
 	to_chat(target, "<b>You are a positronic brain, brought into existence on [station_name()].</b>")
 	to_chat(target, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
 	to_chat(target, "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
@@ -92,21 +92,21 @@ var/list/ghost_traps
 	P.icon_state = "posibrain-occupied"
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
-/datum/ghosttrap/proc/set_new_name(var/mob/target)
+datum/ghosttrap/proc/set_new_name(var/mob/target)
 	var/newname = sanitizeSafe(input(target,"Enter a name, or leave blank for the default name.", "Name change","") as text, MAX_NAME_LEN)
 	if (newname != "")
 		target.real_name = newname
 		target.name = target.real_name
 
 // Doona pods and walking mushrooms.
-/datum/ghosttrap/plant
+datum/ghosttrap/plant
 	object = "living plant"
 	ban_checks = list("Dionaea")
 	pref_check = BE_PLANT
 	ghost_trap_message = "They are occupying a living plant now."
 	ghost_trap_role = "Plant"
 
-/datum/ghosttrap/plant/welcome_candidate(var/mob/target)
+datum/ghosttrap/plant/welcome_candidate(var/mob/target)
 	to_chat(target, "<span class='green'><B>You awaken slowly, stirring into sluggish motion as the air caresses you.</B></span>")
 	// This is a hack, replace with some kind of species blurb proc.
 	if(istype(target,/mob/living/carbon/alien/diona))

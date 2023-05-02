@@ -1,4 +1,4 @@
-/proc/get_station_areas(list/area/excluded_areas)
+proc/get_station_areas(list/area/excluded_areas)
 	var/list/area/grand_list_of_areas = list()
 	// Assemble areas that all exists (See DM reference if you are confused about loop labels)
 	looping_station_areas:
@@ -18,7 +18,7 @@
 /**
  * Checks if any living humans are in a given area!
  */
-/proc/is_area_occupied(area/myarea)
+proc/is_area_occupied(area/myarea)
 	// Testing suggests looping over human_mob_list is quicker than looping over area contents
 	for(var/mob/living/carbon/human/H in human_mob_list)
 		// Conditions for exclusion here, like if disconnected people start blocking it.

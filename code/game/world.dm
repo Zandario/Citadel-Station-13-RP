@@ -31,7 +31,7 @@ GLOBAL_LIST(topic_status_cache)
  * Non-compiled-in maps are maploaded, all atoms are new()ed
  * All atoms in both compiled and uncompiled maps are initialized()
  */
-/world/New()
+world/New()
 #ifdef USE_BYOND_TRACY
 	#warn USE_BYOND_TRACY is enabled
 	init_byond_tracy()
@@ -118,11 +118,11 @@ GLOBAL_LIST(topic_status_cache)
 	if(config_legacy.ToRban)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/ToRban_autoupdate), 5 MINUTES)
 
-/world/proc/InitTgs()
+world/proc/InitTgs()
 	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)
 	GLOB.revdata.load_tgs_info()
 
-/world/proc/HandleTestRun()
+world/proc/HandleTestRun()
 	//trigger things to run the whole process
 	Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
@@ -135,7 +135,7 @@ GLOBAL_LIST(topic_status_cache)
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), cb, 10 SECONDS))
 
-/world/proc/SetupLogs()
+world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
 		var/realtime = world.realtime
@@ -197,9 +197,9 @@ GLOBAL_LIST(topic_status_cache)
 	// log which is ultimately public.
 	log_runtime(GLOB.revdata.get_log_message())
 
-/world/proc/_setup_logs_boilerplate()
+world/proc/_setup_logs_boilerplate()
 
-/world/Topic(T, addr, master, key)
+world/Topic(T, addr, master, key)
 	TGS_TOPIC	//redirect to server tools if necessary
 
 	if(!SSfail2topic)
@@ -228,7 +228,7 @@ GLOBAL_LIST(topic_status_cache)
 	handler = new handler()
 	return handler.TryRun(input)
 
-/world/proc/FinishTestRun()
+world/proc/FinishTestRun()
 	set waitfor = FALSE
 	var/list/fail_reasons
 	if(GLOB)
@@ -249,7 +249,7 @@ GLOBAL_LIST(topic_status_cache)
 	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
 	qdel(src) //shut it down
 
-/world/Reboot(reason = 0, fast_track = FALSE)
+world/Reboot(reason = 0, fast_track = FALSE)
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr && Master && GLOB) // why && Master / GLOB? if OOM, MC gets erased :D
 			message_admins("Blocked reboot request from [key_name_admin(usr)]. Please use the Reboot World verb.")
@@ -302,17 +302,17 @@ GLOBAL_LIST(topic_status_cache)
 	sleep(1 SECONDS)
 	..()
 
-/world/Del()
+world/Del()
 	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (debug_server)
 		call(debug_server, "auxtools_shutdown")()
 	. = ..()
 
-/hook/startup/proc/loadMode()
+hook/startup/proc/loadMode()
 	world.load_mode()
 	return 1
 
-/world/proc/load_mode()
+world/proc/load_mode()
 	if(!fexists("data/mode.txt"))
 		return
 
@@ -323,17 +323,17 @@ GLOBAL_LIST(topic_status_cache)
 			master_mode = Lines[1]
 			log_misc("Saved mode is '[master_mode]'")
 
-/world/proc/save_mode(var/the_mode)
+world/proc/save_mode(var/the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
 
-/hook/startup/proc/loadMods()
+hook/startup/proc/loadMods()
 	world.load_mods()
 	world.load_mentors() // no need to write another hook.
 	return 1
 
-/world/proc/load_mods()
+world/proc/load_mods()
 	if(config_legacy.admin_legacy_system)
 		var/text = file2text("config/moderators.txt")
 		if (!text)
@@ -354,7 +354,7 @@ GLOBAL_LIST(topic_status_cache)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(GLOB.directory[ckey])
 
-/world/proc/load_mentors()
+world/proc/load_mentors()
 	if(config_legacy.admin_legacy_system)
 		var/text = file2text("config/mentors.txt")
 		if (!text)
@@ -374,7 +374,7 @@ GLOBAL_LIST(topic_status_cache)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
 				D.associate(GLOB.directory[ckey])
 
-/world/proc/update_status()
+world/proc/update_status()
 	. = ""
 	if(!config)
 		status = "<b>SERVER LOADING OR BROKEN.</b> (18+)"
@@ -411,7 +411,7 @@ GLOBAL_LIST(topic_status_cache)
 
 	status = .
 
-/world/proc/update_hub_visibility(new_value)					//CITADEL PROC: TG's method of changing visibility
+world/proc/update_hub_visibility(new_value)					//CITADEL PROC: TG's method of changing visibility
 	if(new_value)				//I'm lazy so this is how I wrap it to a bool number
 		new_value = TRUE
 	else
@@ -426,20 +426,20 @@ GLOBAL_LIST(topic_status_cache)
 		hub_password = "SORRYNOPASSWORD"
 
 // Things to do when a new z-level was just made.
-/world/proc/max_z_changed(old_z_count, new_z_count)
+world/proc/max_z_changed(old_z_count, new_z_count)
 	assert_players_by_zlevel_list()
 	assert_gps_level_list()
 	for(var/datum/controller/subsystem/S in Master.subsystems)
 		S.on_max_z_changed(old_z_count, new_z_count)
 
-/proc/assert_players_by_zlevel_list()
+proc/assert_players_by_zlevel_list()
 	if(!islist(GLOB.players_by_zlevel))
 		GLOB.players_by_zlevel = list()
 	while(GLOB.players_by_zlevel.len < world.maxz)
 		GLOB.players_by_zlevel[++GLOB.players_by_zlevel.len] = list()
 
 // Call this to make a new blank z-level, don't modify maxz directly.
-/world/proc/increment_max_z()
+world/proc/increment_max_z()
 	. = ++maxz
 	max_z_changed(. - 1, .)
 
@@ -449,7 +449,7 @@ GLOBAL_LIST(topic_status_cache)
  * which is really bad?? because we kind of need it??
  * therefore
  */
-/world/proc/ensure_logging_active()
+world/proc/ensure_logging_active()
 // if we're unit testing do not ever redirect world.log or the test won't show output.
 #ifndef UNIT_TESTS
 	// we already know, we don't care
@@ -465,7 +465,7 @@ GLOBAL_LIST(topic_status_cache)
 /**
  * world/New is running, shunt all of the output back.
  */
-/world/proc/shunt_redirected_log()
+world/proc/shunt_redirected_log()
 // if we're unit testing do not ever redirect world.log or the test won't show output.
 #ifndef UNIT_TESTS
 	if(!(OVERRIDE_LOG_DIRECTORY_PARAMETER in params))
@@ -486,7 +486,7 @@ GLOBAL_LIST(topic_status_cache)
 //! END
 
 
-/world/proc/init_byond_tracy()
+world/proc/init_byond_tracy()
 	var/library
 
 	switch (system_type)

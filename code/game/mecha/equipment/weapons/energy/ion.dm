@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
+obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
 	equip_cooldown = 40
 	name = "mkIV ion heavy cannon"
 	desc = "An upscaled variant of anti-mechanical weaponry constructed by NT, such as the EW Halicon."
@@ -9,7 +9,7 @@
 
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 4, TECH_MAGNET = 4)
 
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/ion/rigged
+obj/item/mecha_parts/mecha_equipment/weapon/energy/ion/rigged
 	equip_cooldown = 30
 	name = "jury-rigged ion cannon"
 	desc = "A tesla coil modified to amplify an ionic wave, and use it as a projectile."

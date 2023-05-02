@@ -1,4 +1,4 @@
-/obj/machinery/washing_machine
+obj/machinery/washing_machine
 	name = "Washing Machine"
 	icon = 'icons/obj/machines/washing_machine.dmi'
 	icon_state = "wm_10"
@@ -25,7 +25,7 @@
 		/obj/item/clothing/head/helmet/space
 		)
 
-/obj/machinery/washing_machine/verb/start()
+obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
 	set category = "Object"
 	set src in oview(1)
@@ -58,7 +58,7 @@
 		state = 4
 	update_icon()
 
-/obj/machinery/washing_machine/verb/climb_out()
+obj/machinery/washing_machine/verb/climb_out()
 	set name = "Climb out"
 	set category = "Object"
 	set src in usr.loc
@@ -67,10 +67,10 @@
 	if(state in list(1,3,6))
 		usr.loc = src.loc
 
-/obj/machinery/washing_machine/update_icon()
+obj/machinery/washing_machine/update_icon()
 	icon_state = "wm_[state][panel_open]"
 
-/obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
 	if(state == 2 && washing.len < 1)
 		if(default_deconstruction_screwdriver(user, W))
 			return
@@ -120,7 +120,7 @@
 		..()
 	update_icon()
 
-/obj/machinery/washing_machine/attack_hand(mob/user, list/params)
+obj/machinery/washing_machine/attack_hand(mob/user, list/params)
 	switch(state)
 		if(1)
 			state = 2
@@ -156,7 +156,7 @@
 
 	update_icon()
 
-/obj/machinery/washing_machine/AltClick(mob/user)
+obj/machinery/washing_machine/AltClick(mob/user)
 	if(!user.Reachability(src))
 		return
 	if(!istype(usr, /mob/living)) //ew ew ew usr, but it's the only way to check.

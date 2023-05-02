@@ -13,7 +13,7 @@
 #define VERM_SPIDERS 3
 #define VERM_ROACHES 4
 
-/datum/gm_action/infestation
+datum/gm_action/infestation
 	var/location
 	var/locstring
 	var/spawn_area_type
@@ -24,7 +24,7 @@
 	var/list/players = list()
 	has_skybox_image = TRUE
 
-/datum/gm_action/infestation/get_skybox_image()
+datum/gm_action/infestation/get_skybox_image()
 	var/color1 = color_matrix_multiply(color_matrix_rotate_hue(rand(-3, 3) * 15), rgba_auto_greyscale_matrix("#8888ff"))
 	var/color2 = color_matrix_multiply(color_matrix_rotate_hue(rand(-3, 3) * 15), rgba_auto_greyscale_matrix("#88ff88"))
 	var/image/res = image('icons/skybox/caelus.dmi', "aurora")
@@ -33,16 +33,16 @@
 	animate_color_shift(res, color1, color2, 1080 * 0.5, 1080 * 0.5)
 	return res
 
-/datum/gm_action/infestation/setup()
+datum/gm_action/infestation/setup()
 	announceWhen = rand(announceWhen, announceWhen + 3)
 	startWhen = announceWhen - 1
 	endWhen = 50
 
-/datum/gm_action/infestation/announce()
+datum/gm_action/infestation/announce()
 	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
 
 
-/datum/gm_action/infestation/start()
+datum/gm_action/infestation/start()
 	location = rand(1,9)
 	switch(location)
 		if(LOC_KITCHEN)
@@ -86,7 +86,7 @@
 		locstring = "public hallways"
 		spawncount = rand(2 * severity, 5 * severity)
 
-/datum/gm_action/infestation/end()
+datum/gm_action/infestation/end()
 	var/list/vents = list()
 	for(var/areapath in typesof(spawn_area_type))
 		var/area/A = locate(areapath)

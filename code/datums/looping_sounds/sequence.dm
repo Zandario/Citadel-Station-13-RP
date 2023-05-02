@@ -1,57 +1,57 @@
 // These looping sounds work off of a sequence of things (usually letters or numbers) given to them.
 
 // Base sequencer type.
-/datum/looping_sound/sequence
+datum/looping_sound/sequence
 	var/sequence = "The quick brown fox jumps over the lazy dog"	// The string to iterate over.
 	var/position = 1				// Where we are inside the sequence. IE the index we're on for the above.
 	var/loop_sequence = TRUE		// If it should loop the entire sequence upon reaching the end. Otherwise stop() is called.
 	var/repeat_sequnce_delay = 2 SECONDS // How long to wait when reaching the end, if the above var is true, in deciseconds.
 	var/next_iteration_delay = 0
 
-/datum/looping_sound/sequence/vv_edit_var(var_name, var_value)
+datum/looping_sound/sequence/vv_edit_var(var_name, var_value)
 	if(var_name == "sequence")
 		set_new_sequence(var_value)
 	return ..()
 
-/datum/looping_sound/sequence/proc/iterate_on_sequence()
+datum/looping_sound/sequence/proc/iterate_on_sequence()
 	var/data = get_data_from_position()
 	next_iteration_delay = process_data(data)
 	increment_position()
 
-/datum/looping_sound/sequence/proc/get_data_from_position()
+datum/looping_sound/sequence/proc/get_data_from_position()
 	return sequence[position]
 
 // Override to do something based on the input.
-/datum/looping_sound/sequence/proc/process_data(input)
+datum/looping_sound/sequence/proc/process_data(input)
 	return
 
 // Changes the sequence, and sets the position back to the start.
-/datum/looping_sound/sequence/proc/set_new_sequence(new_sequence)
+datum/looping_sound/sequence/proc/set_new_sequence(new_sequence)
 	sequence = new_sequence
 	reset_position()
 
 // Called to advance the position, and handle reaching the end if so.
-/datum/looping_sound/sequence/proc/increment_position()
+datum/looping_sound/sequence/proc/increment_position()
 	position++
 	if(position > get_max_position())
 		reached_end_of_sequence()
 
-/datum/looping_sound/sequence/proc/get_max_position()
+datum/looping_sound/sequence/proc/get_max_position()
 	return length(sequence)
 
-/datum/looping_sound/sequence/proc/reset_position()
+datum/looping_sound/sequence/proc/reset_position()
 	position = 1
 
 // Called when the sequence is finished being iterated over.
 // If looping is on, the position will be reset, otherwise processing will stop.
-/datum/looping_sound/sequence/proc/reached_end_of_sequence()
+datum/looping_sound/sequence/proc/reached_end_of_sequence()
 	if(loop_sequence)
 		next_iteration_delay += repeat_sequnce_delay
 		reset_position()
 	else
 		stop()
 
-/datum/looping_sound/sequence/sound_loop(starttime)
+datum/looping_sound/sequence/sound_loop(starttime)
 	iterate_on_sequence()
 
 	timerid = addtimer(CALLBACK(src, .proc/sound_loop, world.time), next_iteration_delay, TIMER_STOPPABLE)
@@ -63,7 +63,7 @@
 #define MORSE_BASE_DELAY 1
 // This implements an automatic conversion of text (the sequence) into audible morse code.
 // This can be useful for flavor purposes. For 'real' usage its suggested to also display the sequence in text form, for the benefit of those without sound.
-/datum/looping_sound/sequence/morse
+datum/looping_sound/sequence/morse
 	// This is just to pass validation in the base type.
 	mid_sounds = list('sound/effects/tones/440_sine_01.ogg')
 	mid_length = 1
@@ -149,7 +149,7 @@
 	)
 
 
-/datum/looping_sound/sequence/morse/process_data(letter)
+datum/looping_sound/sequence/morse/process_data(letter)
 	letter = uppertext(letter) // Make it case-insensative.
 
 	// If it's whitespace, treat it as a (Morse) space.

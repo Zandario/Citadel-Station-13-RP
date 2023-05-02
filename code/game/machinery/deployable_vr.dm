@@ -1,4 +1,4 @@
-/obj/structure/barricade/cutout
+obj/structure/barricade/cutout
 	name = "stand-up figure"
 	desc = "Some sort of wooden stand-up figure..."
 	icon = 'icons/obj/cardboard_cutout.dmi'
@@ -17,7 +17,7 @@
 	var/static/list/cutout_types
 	var/static/list/painters = list(/obj/item/reagent_containers/glass/paint, /obj/item/floor_painter)//, /obj/item/closet_painter)
 
-/obj/structure/barricade/cutout/Initialize(mapload, material_name)
+obj/structure/barricade/cutout/Initialize(mapload, material_name)
 	. = ..()
 	color = null
 	if(human_name)
@@ -31,7 +31,7 @@
 			var/obj/structure/barricade/cutout/pathed_type = cutout_type
 			cutout_types[initial(pathed_type.construct_name)] = cutout_type
 
-/obj/structure/barricade/cutout/proc/topple()
+obj/structure/barricade/cutout/proc/topple()
 	if(toppled)
 		return
 	toppled = TRUE
@@ -41,7 +41,7 @@
 	desc = initial(desc)
 	visible_message(SPAN_WARNING("[src] topples over!"))
 
-/obj/structure/barricade/cutout/proc/untopple()
+obj/structure/barricade/cutout/proc/untopple()
 	if(!toppled)
 		return
 	toppled = FALSE
@@ -51,25 +51,25 @@
 	desc = fake_desc
 	visible_message(SPAN_WARNING("[src] is uprighted to their proper position."))
 
-/obj/structure/barricade/cutout/CheckHealth()
+obj/structure/barricade/cutout/CheckHealth()
 	if(!toppled && (health < (maxhealth/2)))
 		topple()
 	..()
 
-/obj/structure/barricade/cutout/attack_hand(mob/user, list/params)
+obj/structure/barricade/cutout/attack_hand(mob/user, list/params)
 	if((. = ..()))
 		return
 
 	if(toppled)
 		untopple()
 
-/obj/structure/barricade/cutout/examine(mob/user)
+obj/structure/barricade/cutout/examine(mob/user)
 	. = ..()
 
 	if(Adjacent(user))
 		. += SPAN_NOTICE("... from this distance, they seem to be made of [material.name] ...")
 
-/obj/structure/barricade/cutout/attackby(obj/I, mob/user)
+obj/structure/barricade/cutout/attackby(obj/I, mob/user)
 	if(is_type_in_list(I, painters))
 		var/choice = tgui_input_list(user, "What would you like to paint the cutout as?", "Cutout Painting", cutout_types)
 		if(!choice || !Adjacent(user, src) || I != user.get_active_held_item())
@@ -84,81 +84,81 @@
 		return ..()
 
 //Variants
-/obj/structure/barricade/cutout/greytide
+obj/structure/barricade/cutout/greytide
 	icon_state = "cutout_greytide"
 	construct_name = "greytide"
-/obj/structure/barricade/cutout/clown
+obj/structure/barricade/cutout/clown
 	icon_state = "cutout_clown"
 	construct_name = "clown"
-/obj/structure/barricade/cutout/mime
+obj/structure/barricade/cutout/mime
 	icon_state = "cutout_mime"
 	construct_name = "mime"
-/obj/structure/barricade/cutout/traitor
+obj/structure/barricade/cutout/traitor
 	icon_state = "cutout_traitor"
 	construct_name = "criminal employee"
-/obj/structure/barricade/cutout/fluke
+obj/structure/barricade/cutout/fluke
 	icon_state = "cutout_fluke"
 	construct_name = "nuclear operative"
-/obj/structure/barricade/cutout/cultist
+obj/structure/barricade/cutout/cultist
 	icon_state = "cutout_cultist"
 	construct_name = "presumed cultist"
-/obj/structure/barricade/cutout/servant
+obj/structure/barricade/cutout/servant
 	icon_state = "cutout_servant"
 	construct_name = "druid"
-/obj/structure/barricade/cutout/new_servant
+obj/structure/barricade/cutout/new_servant
 	icon_state = "cutout_new_servant"
 	construct_name = "other druid"
-/obj/structure/barricade/cutout/viva
+obj/structure/barricade/cutout/viva
 	icon_state = "cutout_viva"
 	human_name = FALSE
 	fake_name = "Unknown"
 	construct_name = "advanced greytide"
-/obj/structure/barricade/cutout/wizard
+obj/structure/barricade/cutout/wizard
 	icon_state = "cutout_wizard"
 	construct_name = "wizard"
-/obj/structure/barricade/cutout/shadowling
+obj/structure/barricade/cutout/shadowling
 	icon_state = "cutout_shadowling"
 	human_name = FALSE
 	fake_name = "Unknown"
 	construct_name = "dark creature"
-/obj/structure/barricade/cutout/fukken_xeno
+obj/structure/barricade/cutout/fukken_xeno
 	icon_state = "cutout_fukken_xeno"
 	human_name = FALSE
 	fake_name = "xenomorph"
 	construct_name = "alien"
-/obj/structure/barricade/cutout/swarmer
+obj/structure/barricade/cutout/swarmer
 	icon_state = "cutout_swarmer"
 	human_name = FALSE
 	fake_name = "swarmer"
 	construct_name = "robot"
-/obj/structure/barricade/cutout/free_antag
+obj/structure/barricade/cutout/free_antag
 	icon_state = "cutout_free_antag"
 	construct_name = "hot lizard"
-/obj/structure/barricade/cutout/deathsquad
+obj/structure/barricade/cutout/deathsquad
 	icon_state = "cutout_deathsquad"
 	construct_name = "unknown"
-/obj/structure/barricade/cutout/ian
+obj/structure/barricade/cutout/ian
 	icon_state = "cutout_ian"
 	human_name = FALSE
 	fake_name = "corgi"
 	construct_name = "dog"
-/obj/structure/barricade/cutout/ntsec
+obj/structure/barricade/cutout/ntsec
 	icon_state = "cutout_ntsec"
 	construct_name = "nt security"
-/obj/structure/barricade/cutout/lusty
+obj/structure/barricade/cutout/lusty
 	icon_state = "cutout_lusty"
 	human_name = FALSE
 	fake_name = "xenomorph"
 	construct_name = "hot alien"
-/obj/structure/barricade/cutout/gondola
+obj/structure/barricade/cutout/gondola
 	icon_state = "cutout_gondola"
 	construct_name = "creature"
-/obj/structure/barricade/cutout/monky
+obj/structure/barricade/cutout/monky
 	icon_state = "cutout_monky"
 	human_name = FALSE
 	fake_name = "monkey"
 	construct_name = "monkey"
-/obj/structure/barricade/cutout/law
+obj/structure/barricade/cutout/law
 	icon_state = "cutout_law"
 	human_name = FALSE
 	fake_name = "Beepsky"
@@ -166,13 +166,13 @@
 
 
 
-/obj/random/cutout //Random wooden standup figure
+obj/random/cutout //Random wooden standup figure
 	name = "random wooden figure"
 	desc = "This is a random wooden figure."
 	icon = 'icons/obj/cardboard_cutout.dmi'
 	icon_state = "cutout_random"
 	spawn_nothing_percentage = 80 //Only spawns 20% of the time to avoid being predictable
 
-/obj/random/cutout/item_to_spawn()
+obj/random/cutout/item_to_spawn()
 	var/list/cutout_types = subtypesof(/obj/structure/barricade/cutout)
 	return pick(cutout_types)

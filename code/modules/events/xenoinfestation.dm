@@ -16,7 +16,7 @@
 #define DRONE "drone"
 #define HUNTER "hunter"
 
-/datum/event/xeno_infestation
+datum/event/xeno_infestation
 	var/location
 	var/locstring
 	var/spawn_area_type
@@ -30,20 +30,20 @@
 	var/strength = 2//one player = 2 points
 	var/additional_players = 3//adds three points of aliens independent of player count
 
-/datum/event/xeno_infestation/extreme
+datum/event/xeno_infestation/extreme
 	strength = 4
 	additional_players = 10
 
-/datum/event/xeno_infestation/setup()
+datum/event/xeno_infestation/setup()
 	// make sure startWhen doesn't go to 0 or below!
 	announceWhen = rand(2, 5)
 	startWhen = announceWhen - 1
 	endWhen = 30
 
-/datum/event/xeno_infestation/announce()
+datum/event/xeno_infestation/announce()
 	command_announcement.Announce("Bioscans indicate that Lizards have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
 
-/datum/event/xeno_infestation/start()
+datum/event/xeno_infestation/start()
 	location = rand(1,9)
 	switch(location)
 		if(LOC_KITCHEN)
@@ -79,7 +79,7 @@
 
 
 
-/datum/event/xeno_infestation/end()
+datum/event/xeno_infestation/end()
 	var/list/vents = list()
 	for(var/areapath in typesof(spawn_area_type))
 		var/area/A = locate(areapath)
@@ -114,11 +114,11 @@
 						new /mob/living/simple_mob/animal/space/alien(V.loc)
 				spawn_types[xeno_type]--
 
-/datum/event/xeno_infestation/proc/log_this()
+datum/event/xeno_infestation/proc/log_this()
 	log_debug(SPAN_DEBUGINFO("Xenomorph Infestation Event: Spawned the following: [spawn_types[MOTHER]] Queen Mother(s), [spawn_types[EMPRESS]] Empress(es), [spawn_types[QUEEN]] Queen(s), [spawn_types[PRAE]] Preatorian(s), [spawn_types[SENTINEL]] Sentinel(s), [spawn_types[DRONE]] Drone(s), and [spawn_types[HUNTER]] Hunter(s). Spawning in [locstring]"))
 
 
-/datum/event/xeno_infestation/proc/fill_spawn_type()
+datum/event/xeno_infestation/proc/fill_spawn_type()
 	var/player_value = get_player_count() * strength
 	if(additional_players)
 		player_value += additional_players
@@ -175,7 +175,7 @@
 		else
 			player_value -= 1
 
-/datum/event/xeno_infestation/proc/get_player_count()
+datum/event/xeno_infestation/proc/get_player_count()
 	var/i = 0
 	for(var/mob/living/carbon/human/C in living_mob_list)
 		var/turf/T = get_turf(C)

@@ -1,5 +1,5 @@
 //Stand-in until this is made more lore-friendly.
-/datum/species/xenos
+datum/species/xenos
 	id = SPECIES_ID_XENOMORPH
 	uid = SPECIES_ID_XENOMORPH
 	name = SPECIES_XENO
@@ -84,24 +84,24 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/unseverable/xeno)
 		)
 
-/datum/species/xenos/get_bodytype_legacy()
+datum/species/xenos/get_bodytype_legacy()
 	return SPECIES_XENO
 
-/datum/species/xenos/get_random_name()
+datum/species/xenos/get_random_name()
 	return "alien [caste_name] ([alien_number])"
 
-/datum/species/xenos/can_understand(var/mob/other)
+datum/species/xenos/can_understand(var/mob/other)
 
 	if(istype(other,/mob/living/carbon/alien/larva))
 		return 1
 
 	return 0
 
-/datum/species/xenos/hug(var/mob/living/carbon/human/H,var/mob/living/target)
+datum/species/xenos/hug(var/mob/living/carbon/human/H,var/mob/living/target)
 	H.visible_message("<span class='notice'>[H] caresses [target] with its scythe-like arm.</span>", \
 					"<span class='notice'>You caress [target] with your scythe-like arm.</span>")
 
-/datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
+datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
 
 	if(H.mind)
 		H.mind.assigned_role = "Alien"
@@ -113,7 +113,7 @@
 
 	..()
 
-/datum/species/xenos/handle_environment_special(var/mob/living/carbon/human/H)
+datum/species/xenos/handle_environment_special(var/mob/living/carbon/human/H)
 
 	var/turf/T = H.loc
 	if(!T) return
@@ -127,7 +127,7 @@
 			P.stored_plasma = min(max(P.stored_plasma,0),P.max_plasma)
 	..()
 
-/datum/species/xenos/proc/regenerate(var/mob/living/carbon/human/H)
+datum/species/xenos/proc/regenerate(var/mob/living/carbon/human/H)
 	var/heal_rate = weeds_heal_rate
 	var/mend_prob = 10
 	if (!H.resting)
@@ -162,16 +162,16 @@
 
 	return 0
 /*
-/datum/species/xenos/handle_login_special(var/mob/living/carbon/human/H)
+datum/species/xenos/handle_login_special(var/mob/living/carbon/human/H)
 	H.AddInfectionImages()
 	..()
 
-/datum/species/xenos/handle_logout_special(var/mob/living/carbon/human/H)
+datum/species/xenos/handle_logout_special(var/mob/living/carbon/human/H)
 	H.RemoveInfectionImages()
 	..()
 */
 
-/datum/species/xenos/drone
+datum/species/xenos/drone
 	uid = SPECIES_ID_XENOMORPH_DRONE
 	name = SPECIES_XENO_DRONE
 	caste_name = "drone"
@@ -205,14 +205,14 @@
 		/mob/living/carbon/human/proc/corrosive_acid
 		)
 
-/datum/species/xenos/drone/handle_post_spawn(var/mob/living/carbon/human/H)
+datum/species/xenos/drone/handle_post_spawn(var/mob/living/carbon/human/H)
 
 	var/mob/living/carbon/human/A = H
 	if(!istype(A))
 		return ..()
 	..()
 
-/datum/species/xenos/hunter
+datum/species/xenos/hunter
 	uid = SPECIES_ID_XENOMORPH_HUNTER
 	name = SPECIES_XENO_HUNTER
 	weeds_plasma_rate = 5
@@ -243,7 +243,7 @@
 		/mob/living/carbon/human/proc/regurgitate
 		)
 
-/datum/species/xenos/sentinel
+datum/species/xenos/sentinel
 	uid = SPECIES_ID_XENOMORPH_SENTINEL
 	name = SPECIES_XENO_SENTINEL
 	weeds_plasma_rate = 10
@@ -276,7 +276,7 @@
 		/mob/living/carbon/human/proc/acidspit
 		)
 
-/datum/species/xenos/queen
+datum/species/xenos/queen
 	uid = SPECIES_ID_XENOMORPH_QUEEN
 	name = SPECIES_XENO_QUEEN
 	total_health = 250
@@ -318,7 +318,7 @@
 		/mob/living/carbon/human/proc/resin
 		)
 
-/datum/species/xenos/queen/handle_login_special(var/mob/living/carbon/human/H)
+datum/species/xenos/queen/handle_login_special(var/mob/living/carbon/human/H)
 	..()
 	// Make sure only one official queen exists at any point.
 	if(!alien_queen_exists(1,H))
@@ -328,7 +328,7 @@
 		H.real_name = "alien princess ([alien_number])"
 		H.name = H.real_name
 
-/datum/hud_data/alien
+datum/hud_data/alien
 
 	icon = 'icons/mob/screen1_alien.dmi'
 	has_a_intent =  1

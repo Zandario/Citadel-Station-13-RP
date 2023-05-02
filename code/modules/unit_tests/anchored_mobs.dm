@@ -1,4 +1,4 @@
-/datum/unit_test/anchored_mobs/Run()
+datum/unit_test/anchored_mobs/Run()
 	var/list/L = list()
 	for(var/i in typesof(/mob))
 		var/mob/M = i

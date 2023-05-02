@@ -1,4 +1,4 @@
-/datum/role/job/station/field_medic
+datum/role/job/station/field_medic
 	id = JOB_ID_FIELD_MEDIC
 	title = "Field Medic"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_DANGER
@@ -21,13 +21,13 @@
 		"Search and Rescue" = /datum/prototype/alt_title/field_medic/sar
 		)
 
-/datum/prototype/alt_title/expedition_medic
+datum/prototype/alt_title/expedition_medic
 	title = "Expedition Medic"
 
-/datum/prototype/alt_title/field_medic/sar
+datum/prototype/alt_title/field_medic/sar
 	title = "Search and Rescue"
 
-/datum/outfit/job/station/sar
+datum/outfit/job/station/sar
 	name = OUTFIT_JOB_NAME("Field Medic")
 	uniform = /obj/item/clothing/under/utility/blue
 	suit = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar

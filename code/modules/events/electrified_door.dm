@@ -1,11 +1,11 @@
-/datum/event/electrified_door
+datum/event/electrified_door
 	var/obj/machinery/door/airlock/chosen_door
 	var/list/area/excluded = list(
 		/area/shuttle,
 		/area/crew_quarters
 	)
 
-/datum/event/electrified_door/setup()
+datum/event/electrified_door/setup()
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)
 	//try 10 times
 	for(var/i in 1 to 10)
@@ -20,7 +20,7 @@
 				chosen_door = target_door
 				return
 
-/datum/event/electrified_door/start()
+datum/event/electrified_door/start()
 
 	if(!chosen_door)
 		return

@@ -1,7 +1,7 @@
-/datum/technomancer/assistance
+datum/technomancer/assistance
 	var/one_use_only = 0
 
-/datum/technomancer/assistance/apprentice
+datum/technomancer/assistance/apprentice
 	name = "Friendly Apprentice"
 	desc = "A one-time use teleporter that sends a less powerful manipulator of space to you, who will do their best to protect \
 	and serve you.  They get their own catalog and can buy spells for themselves, however they have a smaller pool to buy with.  \
@@ -12,7 +12,7 @@
 
 /*
 // For when no one wants to play support.
-/datum/technomancer/assistance/golem
+datum/technomancer/assistance/golem
 	name = "Friendly GOLEM unit"
 	desc = "Teleports a specially designed synthetic unit to you, which is very durable, has an advanced AI, and can also use \
 	functions.  It knows Shield, Targeted Blink, Beam, Mend Life, Mend Synthetic, Lightning, Repel Missiles, Corona, Ionic Bolt, Dispel, and Chain Lightning.  \
@@ -21,7 +21,7 @@
 	obj_path = null //TODO
 	one_use_only = 1
 
-/datum/technomancer/assistance/ninja
+datum/technomancer/assistance/ninja
 	name = "Neutral Cyberassassin"
 	desc = "Someone almost as enigmatic as you will also arrive at your destination, with their own goals and motivations.  \
 	This could prove to be a problem if they decide to go against you, so this is only recommended as a challenge."
@@ -30,7 +30,7 @@
 	one_use_only = 1
 
 // Hardmode.
-/datum/technomancer/assistance/enemy_technomancer
+datum/technomancer/assistance/enemy_technomancer
 	name = "Enemy Technomancer"
 	desc = "Another manipulator of space will arrive on the colony in addition to you, most likely wanting to oppose you in \
 	some form, if you purchase this.  This is only recommended as a challenge."

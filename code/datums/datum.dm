@@ -8,7 +8,7 @@
  * thing in the entire game, and so you can easily cause memory usage to rise a lot with careless
  * use of variables at this level
  */
-/datum
+datum
 	/**
 	 * Tick count time when this object was destroyed.
 	 *
@@ -70,7 +70,7 @@
  *
  * Sends a [COMSIG_TOPIC] signal
  */
-/datum/Topic(href, href_list[])
+datum/Topic(href, href_list[])
 	..()
 	SEND_SIGNAL(src, COMSIG_TOPIC, usr, href_list)
 
@@ -90,7 +90,7 @@
  *
  * Returns [QDEL_HINT_QUEUE]
  */
-/datum/proc/Destroy(force=FALSE, ...)
+datum/proc/Destroy(force=FALSE, ...)
 	SHOULD_CALL_PARENT(TRUE)
 	//SHOULD_NOT_SLEEP(TRUE)
 	tag = null
@@ -128,7 +128,7 @@
 
 ///Only override this if you know what you're doing. You do not know what you're doing
 ///This is a threat
-/datum/proc/clear_signal_refs()
+datum/proc/clear_signal_refs()
 	var/list/lookup = comp_lookup
 	if(lookup)
 		for(var/sig in lookup)
@@ -145,14 +145,14 @@
 		UnregisterSignal(target, signal_procs[target])
 
 #ifdef DATUMVAR_DEBUGGING_MODE
-/datum/proc/save_vars()
+datum/proc/save_vars()
 	cached_vars = list()
 	for(var/i in vars)
 		if(i == "cached_vars")
 			continue
 		cached_vars[i] = vars[i]
 
-/datum/proc/check_changed_vars()
+datum/proc/check_changed_vars()
 	. = list()
 	for(var/i in vars)
 		if(i == "cached_vars")
@@ -160,27 +160,27 @@
 		if(cached_vars[i] != vars[i])
 			.[i] = list(cached_vars[i], vars[i])
 
-/datum/proc/txt_changed_vars()
+datum/proc/txt_changed_vars()
 	var/list/l = check_changed_vars()
 	var/t = "[src]([REF(src)]) changed vars:"
 	for(var/i in l)
 		t += "\"[i]\" \[[l[i][1]]\] --> \[[l[i][2]]\] "
 	t += "."
 
-/datum/proc/to_chat_check_changed_vars(target = world)
+datum/proc/to_chat_check_changed_vars(target = world)
 	to_chat(target, txt_changed_vars())
 #endif
 
 ///Return a LIST for serialize_datum to encode! Not the actual json!
-/datum/proc/serialize_list(list/options)
+datum/proc/serialize_list(list/options)
 	CRASH("Attempted to serialize datum [src] of type [type] without serialize_list being implemented!")
 
 ///Accepts a LIST from deserialize_datum. Should return src or another datum.
-/datum/proc/deserialize_list(json, list/options)
+datum/proc/deserialize_list(json, list/options)
 	CRASH("Attempted to deserialize datum [src] of type [type] without deserialize_list being implemented!")
 
 ///Serializes into JSON. Does not encode type.
-/datum/proc/serialize_json(list/options)
+datum/proc/serialize_json(list/options)
 	. = serialize_list(options)
 	if(!islist(.))
 		. = null
@@ -188,14 +188,14 @@
 		. = json_encode(.)
 
 ///Deserializes from JSON. Does not parse type.
-/datum/proc/deserialize_json(list/input, list/options)
+datum/proc/deserialize_json(list/input, list/options)
 	var/list/jsonlist = json_decode(input)
 	. = deserialize_list(jsonlist)
 	if(!istype(., /datum))
 		. = null
 
 ///Convert a datum into a json blob
-/proc/json_serialize_datum(datum/D, list/options)
+proc/json_serialize_datum(datum/D, list/options)
 	if(!istype(D))
 		return
 	var/list/jsonlist = D.serialize_list(options)
@@ -204,7 +204,7 @@
 	return json_encode(jsonlist)
 
 /// Convert a list of json to datum
-/proc/json_deserialize_datum(list/jsonlist, list/options, target_type, strict_target_type = FALSE)
+proc/json_deserialize_datum(list/jsonlist, list/options, target_type, strict_target_type = FALSE)
 	if(!islist(jsonlist))
 		if(!istext(jsonlist))
 			CRASH("Invalid JSON")
@@ -244,7 +244,7 @@
  *
  * This sends a signal reporting the cooldown end.
  */
-/proc/end_cooldown(datum/source, index)
+proc/end_cooldown(datum/source, index)
 	if(QDELETED(source))
 		return
 	SEND_SIGNAL(source, COMSIG_CD_STOP(index))
@@ -259,7 +259,7 @@
  *
  * This sends a signal reporting the cooldown end, passing the time left as an argument.
  */
-/proc/reset_cooldown(datum/source, index)
+proc/reset_cooldown(datum/source, index)
 	if(QDELETED(source))
 		return
 	SEND_SIGNAL(source, COMSIG_CD_RESET(index), S_TIMER_COOLDOWN_TIMELEFT(source, index))
@@ -276,7 +276,7 @@
  * reserved:
  * "type" - this is always the type at time of saving. this is for current limitations, DO NOT use this if at all possible.
  */
-/datum/proc/serialize()
+datum/proc/serialize()
 	return list("type" = "[type]")
 
 /**
@@ -285,7 +285,7 @@
  * @params
  * * data - json_decode()'d list.
  */
-/datum/proc/deserialize(list/data)
+datum/proc/deserialize(list/data)
 	return
 
 /**
@@ -293,7 +293,7 @@
  * you are responsible for knowing what datums this is valid for.
  * you are responsible for sanitizing the input.
  */
-/proc/deserialize_datum(list/data)
+proc/deserialize_datum(list/data)
 	if(istext(data))
 		data = json_decode(data)
 	var/path = text2path(data["type"])
@@ -303,6 +303,6 @@
 /**
  * serializes a datum into a json text string
  */
-/proc/serialize_datum(datum/D)
+proc/serialize_datum(datum/D)
 	ASSERT(isdatum(D))
 	return json_encode(D.serialize())

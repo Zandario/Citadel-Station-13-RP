@@ -2,7 +2,7 @@
 //////////////////////////////////
 //			Xenobiologist
 //////////////////////////////////
-/datum/role/job/station/xenobiologist
+datum/role/job/station/xenobiologist
 	title = "Xenobiologist"
 	flag = XENOBIOLOGIST
 	departments = list(DEPARTMENT_RESEARCH)
@@ -28,11 +28,11 @@
 		)
 
 // Xenibiologist Alt Titles
-/datum/prototype/alt_title/xenozoologist
+datum/prototype/alt_title/xenozoologist
 	title = "Xenozoologist"
 	title_blurb = "Xenozoologists are well versed in their study of extra-terrestrial life." // Someone make a better blurb please
 
-/datum/prototype/alt_title/xenoanthropologist
+datum/prototype/alt_title/xenoanthropologist
 	title = "Xenoanthropologist"
 	title_blurb = "Xenoanthropologist still heavily focuses their study on alien lifeforms, but their specialty leans more towards fellow sapient beings than simple animals."
 */

@@ -1,6 +1,6 @@
 // A fluff structure for certain PoIs involving crashed ships.
 // They can be scanned by a cataloguer to obtain the data held inside, and determine what caused whatever is happening on the ship.
-/obj/structure/prop/blackbox
+obj/structure/prop/blackbox
 	name = "blackbox recorder"
 	desc = "A study machine that logs information about whatever it's attached to, hopefully surviving even if its carrier does not. \
 	This one looks like it has ceased writing to its internal data storage."
@@ -8,18 +8,18 @@
 	icon_state = "blackbox_off"
 
 // Black boxes are resistant to explosions.
-/obj/structure/prop/blackbox/legacy_ex_act(severity)
+obj/structure/prop/blackbox/legacy_ex_act(severity)
 	..(++severity)
 
 
-/obj/structure/prop/blackbox/quarantined_shuttle
+obj/structure/prop/blackbox/quarantined_shuttle
 	catalogue_data = list(/datum/category_item/catalogue/information/blackbox/quarantined_shuttle)
 
 // The actual 'data' on the black box. Obtainable with a Cataloguer.
-/datum/category_item/catalogue/information/blackbox
+datum/category_item/catalogue/information/blackbox
 	value = CATALOGUER_REWARD_MEDIUM
 
-/datum/category_item/catalogue/information/blackbox/quarantined_shuttle
+datum/category_item/catalogue/information/blackbox/quarantined_shuttle
 	name = "Black Box Data - MBT-540"
 	desc = {"
 		<B>Pilot's Log for Major Bill's Transportation Shuttle MBT-540</B><BR>
@@ -50,10 +50,10 @@
 		<B>Captain Adisu 17:23:58:09:</B> I don't think they're opening those doors Ted. I don't think they're coming.
 	"}
 
-/obj/structure/prop/blackbox/crashed_med_shuttle
+obj/structure/prop/blackbox/crashed_med_shuttle
 	catalogue_data = list(/datum/category_item/catalogue/information/blackbox/crashed_med_shuttle)
 
-/datum/category_item/catalogue/information/blackbox/crashed_med_shuttle
+datum/category_item/catalogue/information/blackbox/crashed_med_shuttle
 	name = "Black Box Data - VMV Aurora's Light" // This might be incorrect.
 	desc = {"
 		\[Unable to recover data before this point.\]<BR>
@@ -107,10 +107,10 @@
 		<B>End of transcript.</B>
 	"}
 
-/obj/structure/prop/blackbox/xenofrigate
+obj/structure/prop/blackbox/xenofrigate
 	catalogue_data = list(/datum/category_item/catalogue/information/blackbox/xenofrigate)
 
-/datum/category_item/catalogue/information/blackbox/xenofrigate
+datum/category_item/catalogue/information/blackbox/xenofrigate
 	name = "Black Box Data - MBT-540"
 	desc = {"
 		<BR>
@@ -131,10 +131,10 @@
 		<B>End of second log.</B>
 	"}
 
-/obj/structure/prop/blackbox/mackerel_wreck
+obj/structure/prop/blackbox/mackerel_wreck
 	catalogue_data = list(/datum/category_item/catalogue/information/blackbox/mackerel_wreck)
 
-/datum/category_item/catalogue/information/blackbox/mackerel_wreck
+datum/category_item/catalogue/information/blackbox/mackerel_wreck
 	name = "Black Box Data - ITV Phish Phood"
 	desc = {"
 		<BR>
@@ -174,10 +174,10 @@
 		No match found for either speaker, but contextual clues and use of Old Earth russian (\'brat\', approximately \'brother\' or \'pal\') suggests out-of-sector criminal elements.
 	"}
 
-/obj/structure/prop/blackbox/gecko_wreck
+obj/structure/prop/blackbox/gecko_wreck
 	catalogue_data = list(/datum/category_item/catalogue/information/blackbox/gecko_wreck)
 
-/datum/category_item/catalogue/information/blackbox/gecko_wreck
+datum/category_item/catalogue/information/blackbox/gecko_wreck
 	name = "Black Box Data - ITV Sticky Situation"
 	desc = {"
 		<BR>
@@ -214,10 +214,10 @@
 		Audio resynthesis of firearm discharge matches common high-caliber ballistic sidearm cartridges, best match 10mm Watson Special. An uncommon cartridge, one not manufactured locally.
 	"}
 
-/obj/structure/prop/blackbox/salamander_wreck
+obj/structure/prop/blackbox/salamander_wreck
 	catalogue_data = list(/datum/category_item/catalogue/information/blackbox/salamander_wreck)
 
-/datum/category_item/catalogue/information/blackbox/salamander_wreck
+datum/category_item/catalogue/information/blackbox/salamander_wreck
 	name = "Black Box Data - ITV Unity"
 	desc = {"
 		<BR>

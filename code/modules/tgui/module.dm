@@ -22,7 +22,7 @@
  *
  * /datum/tgui_module is just a wrapper. the $tgui and $src data keys are what powers a module.
  */
-/datum/tgui_module
+datum/tgui_module
 	/// root datum - only one for the moment, sorry
 	var/datum/host
 	/// autodel - register signal to delete with parent, usually used for standalones / modules that behave like components.
@@ -34,7 +34,7 @@
 	/// expected type
 	var/expected_type
 
-/datum/tgui_module/New(datum/host)
+datum/tgui_module/New(datum/host)
 	src.host = host
 	if(expected_type && !istype(host, expected_type))
 		CRASH("bad host: [host] not [expected_type] instead [isdatum(host)? host.type : "(not datum)"]")
@@ -42,30 +42,30 @@
 		RegisterSignal(host, COMSIG_PARENT_QDELETING, /datum/tgui_module/proc/on_host_del)
 	ASSERT(!ephemeral || autodel)
 
-/datum/tgui_module/Destroy()
+datum/tgui_module/Destroy()
 	src.host = null
 	return ..()
 
-/datum/tgui_module/proc/on_host_del(datum/source)
+datum/tgui_module/proc/on_host_del(datum/source)
 	SIGNAL_HANDLER
 	qdel(src)
 
-/datum/tgui_module/ui_host(mob/user, datum/tgui_module/module)
+datum/tgui_module/ui_host(mob/user, datum/tgui_module/module)
 	return isnull(host)? src : host.ui_host(user, src)
 
-/datum/tgui_module/ui_close(mob/user, datum/tgui_module/module)
+datum/tgui_module/ui_close(mob/user, datum/tgui_module/module)
 	. = ..()
 	host?.ui_close(user, src)
 	if(ephemeral)
 		qdel(src)
 
-/datum/tgui_module/ui_state(mob/user, datum/tgui_module/module)
+datum/tgui_module/ui_state(mob/user, datum/tgui_module/module)
 	return isnull(host)? ..() : host.ui_state(user, src)
 
-/datum/tgui_module/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
+datum/tgui_module/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
 	return isnull(host)? ..() : host.ui_status(user, state, src)
 
-/datum/tgui_module/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+datum/tgui_module/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, tgui_id)
@@ -74,19 +74,19 @@
 /**
  * called directly, if operating standalone. routes to static_data(user), with all other args skipped.
  */
-/datum/tgui_module/ui_static_data(mob/user)
+datum/tgui_module/ui_static_data(mob/user)
 	return static_data(user)
 
 /**
  * called directly, if operating standalone. routes to data(user), with all other args skipped.
  */
-/datum/tgui_module/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+datum/tgui_module/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	return data(user)
 
 /**
  * called directly, if operating standalone.
  */
-/datum/tgui_module/ui_act(action, list/params, datum/tgui/ui)
+datum/tgui_module/ui_act(action, list/params, datum/tgui/ui)
 	// we only override this to provide comment
 	// yes yes proc overhead sue me it's called like 10k times a round, tops.
 	return ..()
@@ -94,7 +94,7 @@
 /**
  * returns static module data
  */
-/datum/tgui_module/proc/static_data(mob/user, ...)
+datum/tgui_module/proc/static_data(mob/user, ...)
 	return list(
 		"$tgui" = tgui_id,
 		"$src" = REF(src),
@@ -103,7 +103,7 @@
 /**
  * returns module data
  */
-/datum/tgui_module/proc/data(mob/user, ...)
+datum/tgui_module/proc/data(mob/user, ...)
 	return list()
 
 /**
@@ -112,7 +112,7 @@
  *
  * we use id instead of module to prevent potential security issues down the line.
  */
-/datum/proc/ui_module_route(action, list/params, datum/tgui/ui, id)
+datum/proc/ui_module_route(action, list/params, datum/tgui/ui, id)
 	if(!id)
 		// no id?
 		// i know that guy!
@@ -133,7 +133,7 @@
  *
  * return TRUE for ui update + prevent propagation to the module
  */
-/datum/proc/ui_module_act(action, list/params, datum/tgui/ui, id)
+datum/proc/ui_module_act(action, list/params, datum/tgui/ui, id)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_UI_MODULE_ACT, usr, id, action, params, ui)
 
@@ -150,7 +150,7 @@
  * * ui - root tgui module is in
  * * state - ui state
  */
-/datum/proc/ui_module_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+datum/proc/ui_module_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	return list()
 
 /**
@@ -166,7 +166,7 @@
  * * ui - root tgui module is in
  * * state - ui state
  */
-/datum/proc/ui_module_static(mob/user, datum/tgui/ui, datum/ui_state/state)
+datum/proc/ui_module_static(mob/user, datum/tgui/ui, datum/ui_state/state)
 	return list()
 
 /**
@@ -183,7 +183,7 @@
  * * updates - list(id = list(data...), ...) of modules to update.
  * * force - (optional) send update even if UI is not interactive
  */
-/datum/tgui/proc/push_modules(list/updates, force)
+datum/tgui/proc/push_modules(list/updates, force)
 	if(isnull(user.client) || !initialized || closing)
 		return
 	if(!force && status < UI_UPDATE)

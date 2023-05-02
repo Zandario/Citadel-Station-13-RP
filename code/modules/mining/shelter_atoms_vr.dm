@@ -1,4 +1,4 @@
-/obj/structure/fans/hardlight
+obj/structure/fans/hardlight
 	name = "hardlight shield"
 	desc = "Retains air, allows passage."
 	plane = TURF_PLANE

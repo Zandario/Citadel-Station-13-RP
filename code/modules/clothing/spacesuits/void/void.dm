@@ -1,5 +1,5 @@
 //NASA Voidsuit
-/obj/item/clothing/head/helmet/space/void
+obj/item/clothing/head/helmet/space/void
 	name = "void helmet"
 	desc = "A high-tech dark red space suit helmet. Used for AI satellite maintenance."
 	icon_state = "void"
@@ -32,7 +32,7 @@
 
 	light_overlay = "helmet_light"
 
-/obj/item/clothing/suit/space/void
+obj/item/clothing/suit/space/void
 	name = "voidsuit"
 	icon_state = "void"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "space_suit_syndicate", SLOT_ID_LEFT_HAND = "space_suit_syndicate")
@@ -81,7 +81,7 @@
 
 	action_button_name = "Toggle Helmet"
 
-/obj/item/clothing/suit/space/void/examine(mob/user)
+obj/item/clothing/suit/space/void/examine(mob/user)
 	. = ..()
 	var/list/part_list = new
 	for(var/obj/item/I in list(helmet,boots,tank,cooler))
@@ -90,14 +90,14 @@
 	if(tank && in_range(src,user))
 		. += "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
 
-/obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
+obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
 	..()
 	if(istype(helmet))
 		helmet.refit_for_species(target_species)
 	if(istype(boots))
 		boots.refit_for_species(target_species)
 
-/obj/item/clothing/suit/space/void/equipped(mob/M)
+obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
 
 	var/mob/living/carbon/human/H = M
@@ -133,7 +133,7 @@
 			to_chat(M, "Your suit's cooling unit deploys.")
 			ADD_TRAIT(cooler, TRAIT_ITEM_NODROP, TOGGLE_CLOTHING_TRAIT)
 
-/obj/item/clothing/suit/space/void/unequipped(mob/user, slot, flags)
+obj/item/clothing/suit/space/void/unequipped(mob/user, slot, flags)
 	. = ..()
 
 	if(helmet)
@@ -156,7 +156,7 @@
 		if(cooler.loc != src)
 			cooler.forceMove(src)
 
-/obj/item/clothing/suit/space/void/verb/toggle_helmet()
+obj/item/clothing/suit/space/void/verb/toggle_helmet()
 
 	set name = "Toggle Helmet"
 	set category = "Object"
@@ -192,7 +192,7 @@
 			playsound(src, 'sound/items/helmetdeploy.ogg', 40, 1)
 	helmet.update_light(H)
 
-/obj/item/clothing/suit/space/void/verb/toggle_magboots()
+obj/item/clothing/suit/space/void/verb/toggle_magboots()
 	set name = "Toggle Magboots"
 	set category = "Object"
 	set src in usr
@@ -223,13 +223,13 @@
 			to_chat(H, "<span class='info'>You deploy your magboots.</span>")
 
 // below is code for the action button method. im dumb. but it works? if you figure out a way to make it better tell me // hey peesh i made it better -hatter
-/obj/item/clothing/suit/space/void/attack_self(mob/user)
+obj/item/clothing/suit/space/void/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	toggle_helmet()
 
-/obj/item/clothing/suit/space/void/verb/eject_tank()
+obj/item/clothing/suit/space/void/verb/eject_tank()
 
 	set name = "Eject Voidsuit Tank/Cooler"
 	set category = "Object"
@@ -262,7 +262,7 @@
 	REMOVE_TRAIT(removing, TRAIT_ITEM_NODROP, TOGGLE_CLOTHING_TRAIT)
 	removing.forceMove(drop_location())
 
-/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!istype(user,/mob/living)) return
 

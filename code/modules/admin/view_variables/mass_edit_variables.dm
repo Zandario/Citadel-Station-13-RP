@@ -1,4 +1,4 @@
-/client/proc/cmd_mass_modify_object_variables(atom/A, var_name)
+client/proc/cmd_mass_modify_object_variables(atom/A, var_name)
 	set category = "Debug"
 	set name = "Mass Edit Variables"
 	set desc="(target) Edit all instances of a target item's variables"
@@ -14,7 +14,7 @@
 	src.massmodify_variables(A, var_name, method)
 	//SSblackbox.record_feedback("tally", "admin_verb", 1, "Mass Edit Variables") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/massmodify_variables(datum/O, var_name = "", method = 0)
+client/proc/massmodify_variables(datum/O, var_name = "", method = 0)
 	if(!check_rights(R_VAREDIT))
 		return
 	if(!istype(O))
@@ -198,7 +198,7 @@
 	message_admins("[key_name_admin(src)] mass modified [original_name]'s [variable] to [O.vars[variable]] ([accepted] objects modified)")
 
 //not using global lists as vv is a debug function and debug functions should rely on as less things as possible.
-/proc/get_all_of_type(var/T, subtypes = TRUE)
+proc/get_all_of_type(var/T, subtypes = TRUE)
 	var/list/typecache = list()
 	typecache[T] = 1
 	if (subtypes)

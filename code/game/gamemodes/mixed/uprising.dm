@@ -1,4 +1,4 @@
-/datum/game_mode/uprising
+datum/game_mode/uprising
 	name = "Revolution & Cult"
 	config_tag = "uprising"
 	round_description = "Some crewmembers are attempting to start a revolution while a cult plots in the shadows!"

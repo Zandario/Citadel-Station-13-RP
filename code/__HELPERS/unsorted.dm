@@ -7,7 +7,7 @@
 #define BIT_TEST_ALL(bitfield, req_mask) ((~(bitfield) & (req_mask)) == 0)
 
 /// Inverts the colour of an HTML string.
-/proc/invertHTML(HTMLstring)
+proc/invertHTML(HTMLstring)
 	if (!(istext(HTMLstring)))
 		CRASH("Given non-text argument!")
 	else if(length(HTMLstring) != 7)
@@ -57,7 +57,7 @@
  * Negative values for offset are accepted, think of it in relation to North, -x is west, -y is south. Error defaults to positive.
  * Turf and target are seperate in case you want to teleport some distance from a turf the target is not standing on or something.
  */
-/proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
+proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 
 	// Generic location finding variable.
 	var/dirx = 0
@@ -167,7 +167,7 @@
 	return destination
 
 
-/proc/LinkBlocked(turf/A, turf/B)
+proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null)
 		return TRUE
 	var/adir = get_dir(A,B)
@@ -191,7 +191,7 @@
 	return FALSE
 
 
-/proc/DirBlocked(turf/loc, dir)
+proc/DirBlocked(turf/loc, dir)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)
 			continue
@@ -212,17 +212,17 @@
 			return TRUE // It's a real, air blocking door.
 	return FALSE
 
-/proc/TurfBlockedNonWindow(turf/loc)
+proc/TurfBlockedNonWindow(turf/loc)
 	for(var/obj/O in loc)
 		if(O.density && !istype(O, /obj/structure/window))
 			return TRUE
 	return FALSE
 
-/proc/sign(x)
+proc/sign(x)
 	return x!=0?x/abs(x):0
 
 /// Ultra-Fast Bresenham Line-Drawing Algorithm.
-/proc/getline(atom/M,atom/N)
+proc/getline(atom/M,atom/N)
 	/// Starting x coordinate.
 	var/px = M.x
 	/// Starting y coordinate.
@@ -279,7 +279,7 @@
 
 #define LOCATE_COORDS(X, Y, Z) locate(clamp(X, 1, world.maxx), clamp(Y, 1, world.maxy), Z)
 // /Uses a fast Bresenham rasterization algorithm to return the turfs in a thin circle.
-/proc/getcircle(turf/center, var/radius)
+proc/getcircle(turf/center, var/radius)
 	if(!radius) return list(center)
 
 	var/x = 0
@@ -306,7 +306,7 @@
 #undef LOCATE_COORDS
 
 /// Returns whether or not a player is a guest using their ckey as an input.
-/proc/IsGuestKey(key)
+proc/IsGuestKey(key)
 	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
 		return FALSE
 
@@ -322,7 +322,7 @@
 	return 1
 
 /// Ensure the frequency is within bounds of what it should be sending/recieving at.
-/proc/sanitize_frequency(frequency, low = PUBLIC_LOW_FREQ, high = PUBLIC_HIGH_FREQ)
+proc/sanitize_frequency(frequency, low = PUBLIC_LOW_FREQ, high = PUBLIC_HIGH_FREQ)
 	frequency = round(frequency)
 	frequency = max(low, frequency)
 	frequency = min(high, frequency)
@@ -332,11 +332,11 @@
 	return frequency
 
 /// Turns 1479 into 147.9.
-/proc/format_frequency(frequency)
+proc/format_frequency(frequency)
 	return "[round(frequency / 10)].[frequency % 10]"
 
 /// Opposite of format, returns as a number.
-/proc/unformat_frequency(frequency)
+proc/unformat_frequency(frequency)
 	frequency = text2num(frequency)
 	return frequency * 10
 
@@ -344,11 +344,11 @@
 
 
 /// Picks a string of symbols to display as the law number for hacked or ion laws.
-/proc/ionnum()
+proc/ionnum()
 	return "[pick("1","2","3","4","5","6","7","8","9","0")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
 
 /// When an AI is activated, it can choose from a list of non-slaved borgs to have as a slave.
-/proc/freeborg()
+proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
 	for (var/mob/living/silicon/robot/A in GLOB.player_list)
@@ -363,7 +363,7 @@
 		return borgs[select]
 
 /// When a borg is activated, it can choose which AI it wants to be slaved to.
-/proc/active_ais()
+proc/active_ais()
 	. = list()
 	for(var/mob/living/silicon/ai/A in living_mob_list)
 		if(A.stat == DEAD)
@@ -374,7 +374,7 @@
 	return .
 
 /// Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
-/proc/select_active_ai_with_fewest_borgs()
+proc/select_active_ai_with_fewest_borgs()
 	var/mob/living/silicon/ai/selected
 	var/list/active = active_ais()
 	for(var/mob/living/silicon/ai/A in active)
@@ -383,7 +383,7 @@
 
 	return selected
 
-/proc/select_active_ai(mob/user)
+proc/select_active_ai(mob/user)
 	var/list/ais = active_ais()
 	if(ais.len)
 		if(user)
@@ -393,7 +393,7 @@
 			. = pick(ais)
 	return .
 
-/proc/get_sorted_mobs()
+proc/get_sorted_mobs()
 	var/list/old_list = getmobs()
 	var/list/AI_list = list()
 	var/list/Dead_list = list()
@@ -422,7 +422,7 @@
 	return new_list
 
 /// Returns a list of all mobs with their name.
-/proc/getmobs(ghostfollow = FALSE)
+proc/getmobs(ghostfollow = FALSE)
 
 	var/list/mobs = sortmobs()
 	var/list/names = list()
@@ -449,11 +449,11 @@
 
 	return creatures
 
-/proc/getmobs_ghost_follow()
+proc/getmobs_ghost_follow()
 	return getmobs(TRUE)
 
 /// Orders mobs by type then by name.
-/proc/sortmobs()
+proc/sortmobs()
 	var/list/moblist = list()
 	var/list/sortmob = sortList(GLOB.mob_list, cmp=/proc/cmp_name_asc)
 	for(var/mob/observer/eye/M in sortmob)
@@ -491,14 +491,14 @@
 	return moblist
 
 /// Forces a variable to be positive.
-/proc/modulus(variable)
+proc/modulus(variable)
 	if(variable >= 0)
 		return variable
 	if(variable < 0)
 		return -variable
 
 /// Returns the turf located at the map edge in the specified direction relative to A.
-/proc/get_edge_target_turf(atom/A, direction) //Used for mass driver
+proc/get_edge_target_turf(atom/A, direction) //Used for mass driver
 
 	var/turf/target = locate(A.x, A.y, A.z)
 	if(!A || !target)
@@ -523,7 +523,7 @@
  * result is bounded to map size
  * note range is non-pythagorean
  */
-/proc/get_ranged_target_turf(atom/A, direction, range) //Used for disposal system
+proc/get_ranged_target_turf(atom/A, direction, range) //Used for disposal system
 
 	var/x = A.x
 	var/y = A.y
@@ -542,17 +542,17 @@
  * Returns turf relative to A offset in dx and dy tiles.
  * Bound to map limits.
  */
-/proc/get_offset_target_turf(atom/A, dx, dy)
+proc/get_offset_target_turf(atom/A, dx, dy)
 	var/x = min(world.maxx, max(1, A.x + dx))
 	var/y = min(world.maxy, max(1, A.y + dy))
 	return locate(x,y,A.z)
 
 /// Makes sure MIDDLE is between LOW and HIGH. If not, it adjusts it. Returns the adjusted value.
-/proc/between(var/low, var/middle, var/high)
+proc/between(var/low, var/middle, var/high)
 	return max(min(middle, high), low)
 
 /// Returns random gauss number.
-/proc/GaussRand(sigma)
+proc/GaussRand(sigma)
 	var/x,y,rsq
 	do
 		x=2*rand()-1
@@ -562,11 +562,11 @@
 	return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 /// Returns random gauss number, rounded to 'roundto'.
-/proc/GaussRandRound(sigma, roundto)
+proc/GaussRandRound(sigma, roundto)
 	return round(GaussRand(sigma),roundto)
 
 /// Step-towards method of determining whether one atom can see another. Similar to viewers()
-/proc/can_see(atom/source, atom/target, length = 5) //I couldn't be arsed to do actual raycasting :I This is horribly inaccurate.
+proc/can_see(atom/source, atom/target, length = 5) //I couldn't be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
 	var/steps = 0
@@ -587,7 +587,7 @@
 
 	return 1
 
-/proc/is_blocked_turf(turf/target)
+proc/is_blocked_turf(turf/target)
 	var/cant_pass = FALSE
 	if(target.density)
 		cant_pass = TRUE
@@ -596,7 +596,7 @@
 			cant_pass = TRUE
 	return cant_pass
 
-/proc/get_step_towards2(atom/source , atom/target)
+proc/get_step_towards2(atom/source , atom/target)
 	var/base_dir = get_dir(source, get_step_towards(source, target))
 	var/turf/temp = get_step_towards(source, target)
 
@@ -628,14 +628,14 @@
  * Takes: Anything that could possibly have variables and a varname to check.
  * Returns: 1 if found, 0 if not.
  */
-/proc/hasvar(datum/Ref, varname)
+proc/hasvar(datum/Ref, varname)
 	if(Ref.vars.Find(lowertext(varname)))
 		return TRUE
 	else
 		return FALSE
 
 /// Simple datum for storing coordinates.
-/datum/coords
+datum/coords
 	var/x_pos = null
 	var/y_pos = null
 	var/z_pos = null
@@ -647,7 +647,7 @@
  *        Movement based on lower left corner. Tiles that do not fit
  *        into the new area will not be moved.
  */
-/area/proc/move_contents_to(area/A, turftoleave = null, direction = null)
+area/proc/move_contents_to(area/A, turftoleave = null, direction = null)
 	if(!A || !src)
 		return FALSE
 
@@ -752,7 +752,7 @@
 					refined_trg -= B
 					continue moving
 
-/proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
+proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 	if(!original)
 		return null
 
@@ -780,7 +780,7 @@
  * Does *not* affect gases etc; copied turfs will be changed via ChangeTurf,
  * and the dir, icon, and icon_state copied. All other vars will remain default.
  */
-/area/proc/copy_contents_to(area/A , platingRequired = 0)
+area/proc/copy_contents_to(area/A , platingRequired = 0)
 	if(!A || !src)
 		return FALSE
 
@@ -899,16 +899,16 @@
 
 	return copiedobjs
 
-/proc/get_cardinal_dir(atom/A, atom/B)
+proc/get_cardinal_dir(atom/A, atom/B)
 	var/dx = abs(B.x - A.x)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
 
 /// Chances are 1:value. anyprob(1) will always return true.
-/proc/anyprob(value)
+proc/anyprob(value)
 	return (rand(1,value)==value)
 
-/proc/view_or_range(distance = world.view, center = usr, type)
+proc/view_or_range(distance = world.view, center = usr, type)
 	switch(type)
 		if("view")
 			. = view(distance,center)
@@ -916,7 +916,7 @@
 			. = range(distance,center)
 	return
 
-/proc/oview_or_orange(distance = world.view, center = usr, type)
+proc/oview_or_orange(distance = world.view, center = usr, type)
 	switch(type)
 		if("view")
 			. = oview(distance,center)
@@ -924,7 +924,7 @@
 			. = orange(distance,center)
 	return
 
-/proc/get_mob_with_client_list()
+proc/get_mob_with_client_list()
 	var/list/mobs = list()
 	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
@@ -932,7 +932,7 @@
 	return mobs
 
 
-/proc/parse_zone(zone)
+proc/parse_zone(zone)
 	if      (zone == "r_hand") return "right hand"
 	else if (zone == "l_hand") return "left hand"
 	else if (zone == "l_arm")  return "left arm"
@@ -947,18 +947,18 @@
 	else if (zone == "r_foot") return "right foot"
 	else                       return zone
 
-/proc/get(atom/loc, type)
+proc/get(atom/loc, type)
 	while(loc)
 		if(istype(loc, type))
 			return loc
 		loc = loc.loc
 	return null
 
-/proc/get_turf_or_move(turf/location)
+proc/get_turf_or_move(turf/location)
 	return get_turf(location)
 
 /// Quick type checks for some tools.
-/var/global/list/common_tools = list(
+var/global/list/common_tools = list(
 	/obj/item/multitool,
 	/obj/item/stack/cable_coil,
 	/obj/item/tool/crowbar,
@@ -968,20 +968,20 @@
 	/obj/item/weldingtool,
 )
 
-/proc/istool(O)
+proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
 		return TRUE
 	return FALSE
 
 
-/proc/is_wire_tool(obj/item/I)
+proc/is_wire_tool(obj/item/I)
 	if(istype(I, /obj/item/multitool) || I.is_wirecutter())
 		return TRUE
 	if(istype(I, /obj/item/assembly/signaler))
 		return TRUE
 	return
 
-/proc/is_hot(obj/item/W as obj)
+proc/is_hot(obj/item/W as obj)
 	switch(W.type)
 		if(/obj/item/weldingtool)
 			var/obj/item/weldingtool/WT = W
@@ -1012,7 +1012,7 @@
 			return FALSE
 
 /// Whether or not the given item counts as sharp in terms of dealing damage.
-/proc/is_sharp(obj/O as obj)
+proc/is_sharp(obj/O as obj)
 	if(!O)
 		return FALSE
 	if(O.sharp)
@@ -1022,7 +1022,7 @@
 	return FALSE
 
 /// Whether or not the given item counts as cutting with an edge in terms of removing limbs.
-/proc/has_edge(obj/O as obj)
+proc/has_edge(obj/O as obj)
 	if(!O)
 		return FALSE
 	if(O.edge)
@@ -1030,7 +1030,7 @@
 	return FALSE
 
 /// Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
-/proc/can_puncture(obj/item/W as obj) //For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
+proc/can_puncture(obj/item/W as obj) //For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!W)
 		return FALSE
 	if(W.sharp)
@@ -1045,7 +1045,7 @@
 		istype(W, /obj/item/shovel) \
 	)
 
-/proc/is_surgery_tool(obj/item/W as obj)
+proc/is_surgery_tool(obj/item/W as obj)
 	return (	\
 	istype(W, /obj/item/surgical/scalpel)   || \
 	istype(W, /obj/item/surgical/hemostat)  || \
@@ -1059,11 +1059,11 @@
  * check if mob is lying down on something we can operate him on.
  * The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
  */
-/proc/can_operate(mob/living/carbon/M)
+proc/can_operate(mob/living/carbon/M)
 	return M.lying
 
 /// Returns an instance of a valid surgery surface.
-/mob/living/proc/get_surgery_surface()
+mob/living/proc/get_surgery_surface()
 	if(!lying)
 		return null //Not lying down means no surface.
 	var/obj/surface = null
@@ -1088,7 +1088,7 @@ var/list/WALLITEMS = list(
 	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment,
 )
 
-/proc/gotwallitem(loc, dir)
+proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
 		for(var/item in WALLITEMS)
 			if(istype(O, item))
@@ -1120,15 +1120,15 @@ var/list/WALLITEMS = list(
 					return 1
 	return 0
 
-/proc/format_text(text)
+proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
-/proc/topic_link(datum/D, arglist, content)
+proc/topic_link(datum/D, arglist, content)
 	if(istype(arglist,/list))
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
-/proc/get_random_colour(simple, lower = 0, upper = 255)
+proc/get_random_colour(simple, lower = 0, upper = 255)
 	var/colour
 	if(simple)
 		colour = pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))
@@ -1141,16 +1141,16 @@ var/list/WALLITEMS = list(
 	return colour
 
 
-/atom/proc/get_light_and_color(atom/origin)
+atom/proc/get_light_and_color(atom/origin)
 	if(origin)
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
 /// Call to generate a stack trace and print to runtime logs.
-/proc/crash_with(msg)
+proc/crash_with(msg)
 	CRASH(msg)
 
-/proc/screen_loc2turf(scr_loc, turf/origin)
+proc/screen_loc2turf(scr_loc, turf/origin)
 	var/tX = splittext(scr_loc, ",")
 	var/tY = splittext(tX[2], ":")
 	var/tZ = origin.z
@@ -1162,7 +1162,7 @@ var/list/WALLITEMS = list(
 	return locate(tX, tY, tZ)
 
 /// Displays something as commonly used (non-submultiples) SI units.
-/proc/format_SI(var/number, var/symbol)
+proc/format_SI(var/number, var/symbol)
 	switch(round(abs(number)))
 		if(0 to 1000-1)
 			return "[number] [symbol]"
@@ -1176,7 +1176,7 @@ var/list/WALLITEMS = list(
 			return "[round(number / 1e12, 0.1)] T[symbol]" // tera
 
 /// Ultra range (no limitations on distance, faster than range for distances > 8); including areas drastically decreases performance.
-/proc/urange(dist = 0, atom/center = usr, orange = 0, areas = 0)
+proc/urange(dist = 0, atom/center = usr, orange = 0, areas = 0)
 	if(!dist)
 		if(!orange)
 			return list(center)
@@ -1195,7 +1195,7 @@ var/list/WALLITEMS = list(
 			. |= T.loc
 
 /// Similar function to range(), but with no limitations on the distance; will search spiralling outwards from the center.
-/proc/spiral_range(dist = 0, center = usr, orange = 0)
+proc/spiral_range(dist = 0, center = usr, orange = 0)
 	if(!dist)
 		if(!orange)
 			return list(center)
@@ -1253,7 +1253,7 @@ var/list/WALLITEMS = list(
 	return L
 
 /// Similar function to RANGE_TURFS(), but will search spiralling outwards from the center (like the above, but only turfs).
-/proc/spiral_range_turfs(dist = 0, center = usr, orange = 0, list/outlist = list(), tick_checked)
+proc/spiral_range_turfs(dist = 0, center = usr, orange = 0, list/outlist = list(), tick_checked)
 	outlist.Cut()
 	if(!dist)
 		outlist += center
@@ -1314,7 +1314,7 @@ var/list/WALLITEMS = list(
  * Returns 0 if they can use it, a value representing why they can't if not.
  * Flags are in `code/__defines/misc.dm`
  */
-/atom/proc/use_check(mob/user, use_flags = 0, show_messages = FALSE)
+atom/proc/use_check(mob/user, use_flags = 0, show_messages = FALSE)
 	. = 0
 	if (NOT_FLAG(USE_ALLOW_NONLIVING) && !isliving(user))
 		//No message for ghosts.
@@ -1357,7 +1357,7 @@ var/list/WALLITEMS = list(
  * Returns direction-string, rounded to multiples of 22.5, from the first parameter to the second
  * N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW
  */
-/proc/get_adir(turf/A, turf/B)
+proc/get_adir(turf/A, turf/B)
 	var/degree = get_visual_angle(A, B)
 	switch(round(degree%360, 22.5))
 		if(0)
@@ -1393,7 +1393,7 @@ var/list/WALLITEMS = list(
 		if(337.5)
 			return "North-Northwest"
 
-/atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 250)
+atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 250)
 	var/initialpixelx = pixel_x
 	var/initialpixely = pixel_y
 	var/shiftx = rand(-pixelshiftx,pixelshiftx)
@@ -1406,14 +1406,14 @@ var/list/WALLITEMS = list(
  * get_holder_at_turf_level(): Similar to get_turf(), will return the "highest up" holder of this atom, excluding the turf.
  * Example: A fork inside a box inside a locker will return the locker. Essentially, get_just_before_turf().
  */ //Credit to /vg/
-/proc/get_holder_at_turf_level(const/atom/movable/O)
+proc/get_holder_at_turf_level(const/atom/movable/O)
 	if(!istype(O)) //atom/movable does not include areas
 		return
 	var/atom/A
 	for(A=O, A && !isturf(A.loc), A=A.loc); //Semicolon is for the empty statement
 	return A
 
-/proc/get_safe_ventcrawl_target(obj/machinery/atmospherics/component/unary/vent_pump/start_vent)
+proc/get_safe_ventcrawl_target(obj/machinery/atmospherics/component/unary/vent_pump/start_vent)
 	if(!start_vent.network || !start_vent.network.normal_members.len)
 		return
 	var/list/vent_list = list()
@@ -1429,7 +1429,7 @@ var/list/WALLITEMS = list(
 		return
 	return pick(vent_list)
 
-/proc/split_into_3(total)
+proc/split_into_3(total)
 	if(!total || !isnum(total))
 		return
 
@@ -1445,7 +1445,7 @@ var/list/WALLITEMS = list(
 	return list(part1, part2, part3)
 
 /// Sender is optional
-/proc/admin_chat_message(message = "Debug Message", color = "#FFFFFF", sender)
+proc/admin_chat_message(message = "Debug Message", color = "#FFFFFF", sender)
 	// Adds TGS3 integration to those fancy verbose round event messages.
 	if(message)
 		send2irc("Event", message)
@@ -1461,7 +1461,7 @@ var/list/WALLITEMS = list(
 		world.Export("[config_legacy.chat_webhook_url]?[query_string]")
 
 /// This is a helper for anything that wants to render the map in TGUI.
-/proc/get_tgui_plane_masters()
+proc/get_tgui_plane_masters()
 	. = list()
 
 	//! 'Utility' planes

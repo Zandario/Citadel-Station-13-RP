@@ -8,7 +8,7 @@
  * @params
  * * mask - an /icon instance or an icon file
  */
-/icon/proc/alpha_mask(icon/mask)
+icon/proc/alpha_mask(icon/mask)
 	var/our_x = Width()
 	var/our_y = Height()
 	var/icon/temp = icon(mask)

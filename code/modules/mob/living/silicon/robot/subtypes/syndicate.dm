@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/silicon/robot/syndicate
+datum/category_item/catalogue/fauna/silicon/robot/syndicate
 	name = "Robot - Syndicate"
 	desc = "The Syndicated Corporations were able to field their own cyborgs \
 	through the Phoron Wars, albeit to a greatly limited degree. Issues with \
@@ -9,7 +9,7 @@
 	is not unheard of for parties to discover active models in the field. Such \
 	encounters often end poorly."
 	value = CATALOGUER_REWARD_MEDIUM
-/mob/living/silicon/robot/syndicate
+mob/living/silicon/robot/syndicate
 	lawupdate = 0
 	scrambledcodes = 1
 	icon_state = "syndie_bloodhound"
@@ -20,7 +20,7 @@
 	icon_selected = FALSE
 	catalogue_data = list(/datum/category_item/catalogue/fauna/silicon/robot/syndicate)
 
-/mob/living/silicon/robot/syndicate/init()
+mob/living/silicon/robot/syndicate/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
 	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
@@ -39,20 +39,20 @@
 
 	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
-/mob/living/silicon/robot/syndicate/protector/init()
+mob/living/silicon/robot/syndicate/protector/init()
 	..()
 	module = new /obj/item/robot_module/robot/syndicate/protector(src)
 	updatename("Protector")
 
-/mob/living/silicon/robot/syndicate/mechanist/init()
+mob/living/silicon/robot/syndicate/mechanist/init()
 	..()
 	module = new /obj/item/robot_module/robot/syndicate/mechanist(src)
 	updatename("Mechanist")
 
-/mob/living/silicon/robot/syndicate/combat_medic/init()
+mob/living/silicon/robot/syndicate/combat_medic/init()
 	..()
 	module = new /obj/item/robot_module/robot/syndicate/combat_medic(src)
 	updatename("Combat Medic")
 
-/mob/living/silicon/robot/syndicate/speech_bubble_appearance()
+mob/living/silicon/robot/syndicate/speech_bubble_appearance()
 	return "synthetic_evil"

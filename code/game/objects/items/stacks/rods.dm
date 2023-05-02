@@ -1,4 +1,4 @@
-/obj/item/stack/rods
+obj/item/stack/rods
 	name = "metal rod"
 	desc = "Some rods. Can be used for building, or something."
 	singular_name = "metal rod"
@@ -14,7 +14,7 @@
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
-/obj/item/stack/rods/cyborg
+obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"
 	desc = "A device that makes metal rods."
 	gender = NEUTER
@@ -24,12 +24,12 @@
 	stacktype = /obj/item/stack/rods
 	no_variants = TRUE
 
-/obj/item/stack/rods/Initialize(mapload, new_amount, merge)
+obj/item/stack/rods/Initialize(mapload, new_amount, merge)
 	. = ..()
 	recipes = rods_recipes
 	update_icon()
 
-/obj/item/stack/rods/update_icon()
+obj/item/stack/rods/update_icon()
 	var/amount = get_amount()
 	if((amount <= 5) && (amount > 0))
 		icon_state = "rods-[amount]"
@@ -40,7 +40,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 0),
 	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1))
 
-/obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 
@@ -73,7 +73,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 	..()
 
 /*
-/obj/item/stack/rods/attack_self(mob/user)
+obj/item/stack/rods/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

@@ -2,7 +2,7 @@
 #define ROD_SLOT_LINE "line"
 #define ROD_SLOT_HOOK "hook"
 
-/obj/item/fishing_rod
+obj/item/fishing_rod
 	name = "fishing rod"
 	desc = "You can fish with this."
 	icon = 'icons/modules/fishing/fishing_rod.dmi'
@@ -40,7 +40,7 @@
 
 	var/default_line_color = "gray"
 
-/obj/item/fishing_rod/Destroy(force)
+obj/item/fishing_rod/Destroy(force)
 	. = ..()
 	//Remove any leftover fishing lines
 	QDEL_LIST(fishing_lines)
@@ -49,7 +49,7 @@
  * Catch weight modifier for the given fish_type (or FISHING_DUD)
  * and source, multiplicative. Called before `additive_fish_bonus()`.
  */
-/obj/item/fishing_rod/proc/multiplicative_fish_bonus(fish_type, datum/fish_source/source)
+obj/item/fishing_rod/proc/multiplicative_fish_bonus(fish_type, datum/fish_source/source)
 	if(!hook)
 		return FISHING_DEFAULT_HOOK_BONUS_MULTIPLICATIVE
 	return hook.get_hook_bonus_multiplicative(fish_type)
@@ -58,7 +58,7 @@
  * Catch weight modifier for the given fish_type (or FISHING_DUD)
  * and source, additive. Called after `multiplicative_fish_bonus()`.
  */
-/obj/item/fishing_rod/proc/additive_fish_bonus(fish_type, datum/fish_source/source)
+obj/item/fishing_rod/proc/additive_fish_bonus(fish_type, datum/fish_source/source)
 	if(!hook)
 		return FISHING_DEFAULT_HOOK_BONUS_ADDITIVE
 	return hook.get_hook_bonus_additive(fish_type)
@@ -70,20 +70,20 @@
  * Arguments:
  * * target_fish_source - The /datum/fish_source we're trying to fish in.
  */
-/obj/item/fishing_rod/proc/reason_we_cant_fish(datum/fish_source/target_fish_source)
+obj/item/fishing_rod/proc/reason_we_cant_fish(datum/fish_source/target_fish_source)
 	return hook?.reason_we_cant_fish(target_fish_source)
 
-/obj/item/fishing_rod/proc/consume_bait()
+obj/item/fishing_rod/proc/consume_bait()
 	if(isnull(bait))
 		return
 	QDEL_NULL(bait)
 	SStgui.update_uis(src)
 	update_icon()
 
-/obj/item/fishing_rod/on_attack_self(mob/user)
+obj/item/fishing_rod/on_attack_self(mob/user)
 	reel(user)
 
-/obj/item/fishing_rod/proc/reel(mob/user, atom/target)
+obj/item/fishing_rod/proc/reel(mob/user, atom/target)
 	// signal first for fishing minigame
 	if(SEND_SIGNAL(src, COMSIG_FISHING_ROD_REEL) & FISHING_ROD_REEL_HANDLED)
 		return TRUE
@@ -104,7 +104,7 @@
 		clear_hooked_item()
 
 /// Generates the fishing line visual from the current user to the target and updates inhands
-/obj/item/fishing_rod/proc/create_fishing_line(atom/movable/target, target_py = null)
+obj/item/fishing_rod/proc/create_fishing_line(atom/movable/target, target_py = null)
 	var/mob/user = loc
 	if(!istype(user))
 		return
@@ -118,12 +118,12 @@
 	update_worn_icon()
 	return fishing_line_beam
 
-/obj/item/fishing_rod/proc/clear_line(datum/source)
+obj/item/fishing_rod/proc/clear_line(datum/source)
 	SIGNAL_HANDLER
 	fishing_lines -= source
 	update_worn_icon()
 
-/obj/item/fishing_rod/dropped(mob/user, flags, atom/newLoc)
+obj/item/fishing_rod/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(currently_hooked_item)
 		clear_hooked_item()
@@ -132,7 +132,7 @@
 	QDEL_LIST(fishing_lines)
 
 /// Hooks the item
-/obj/item/fishing_rod/proc/hook_item(mob/user, atom/target_atom)
+obj/item/fishing_rod/proc/hook_item(mob/user, atom/target_atom)
 	if(currently_hooked_item)
 		return FALSE
 	if(!can_be_hooked(target_atom))
@@ -148,20 +148,20 @@
 		RegisterSignal(currently_hooked_item, COMSIG_MOB_PROCESS_RESIST, PROC_REF(hooked_mob_resisted))
 	return TRUE
 
-/obj/item/fishing_rod/proc/hooked_mob_resisted()
+obj/item/fishing_rod/proc/hooked_mob_resisted()
 	clear_hooked_item()
 	TIMER_COOLDOWN_START(src, CD_INDEX_FISHING_ROD_MOB_HOOK, 5 SECONDS)
 
-/obj/item/fishing_rod/proc/hooked_item_moved(atom/movable/source)
+obj/item/fishing_rod/proc/hooked_item_moved(atom/movable/source)
 	if(!isturf(source.loc))
 		clear_hooked_item()
 
 /// Checks what can be hooked
-/obj/item/fishing_rod/proc/can_be_hooked(atom/movable/target)
+obj/item/fishing_rod/proc/can_be_hooked(atom/movable/target)
 	// Could be made dependent on actual hook, ie magnet to hook metallic items
 	return hook?.can_hook_atom(target) || adminbus_hooking
 
-/obj/item/fishing_rod/proc/clear_hooked_item()
+obj/item/fishing_rod/proc/clear_hooked_item()
 	SIGNAL_HANDLER
 
 	if(!QDELETED(hooked_item_fishing_line))
@@ -173,7 +173,7 @@
 	currently_hooked_item = null
 
 // Checks fishing line for interruptions and range
-/obj/item/fishing_rod/proc/check_los(datum/beam/source)
+obj/item/fishing_rod/proc/check_los(datum/beam/source)
 	SIGNAL_HANDLER
 	. = NONE
 
@@ -181,7 +181,7 @@
 		SEND_SIGNAL(source, COMSIG_FISHING_LINE_SNAPPED) //Stepped out of range or los interrupted
 		return BEAM_CANCEL_DRAW
 
-/obj/item/fishing_rod/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+obj/item/fishing_rod/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 
 	// Reel in if able
@@ -209,7 +209,7 @@
  *
  * @return TRUE / FALSE on success / fail.
  */
-/obj/item/fishing_rod/proc/try_hook_item(atom/movable/target, mob/user)
+obj/item/fishing_rod/proc/try_hook_item(atom/movable/target, mob/user)
 	if(!check_fishing_reach(target, user))
 		return FALSE
 	if(SEND_SIGNAL(target, COMSIG_FISHING_ROD_CAST, src, user) & FISHING_ROD_CAST_HANDLED)
@@ -221,7 +221,7 @@
  *
  * @return TRUE / FALSE on success / fail, null if not a fishing spot.
  */
-/obj/item/fishing_rod/proc/try_initiate_fishing(atom/target, mob/user)
+obj/item/fishing_rod/proc/try_initiate_fishing(atom/target, mob/user)
 	if(!check_fishing_reach(target, user))
 		return FALSE
 	if(SEND_SIGNAL(target, COMSIG_FISHING_ROD_CAST, src, user) & FISHING_ROD_CAST_HANDLED)
@@ -232,19 +232,19 @@
 		return null
 	return spot.try_start_fishing(src, user)
 
-/obj/item/fishing_rod/proc/check_fishing_reach(atom/target, mob/user)
+obj/item/fishing_rod/proc/check_fishing_reach(atom/target, mob/user)
 	if(!isturf(target) && !isturf(target.loc))
 		return FALSE // NO
 	return user.Reachability(target, depth = 1, range = cast_range, tool = src)
 
-/obj/item/fishing_rod/ui_interact(mob/user, datum/tgui/ui)
+obj/item/fishing_rod/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "FishingRod", name)
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
-/obj/item/fishing_rod/update_overlays()
+obj/item/fishing_rod/update_overlays()
 	. = ..()
 	var/line_color = line?.line_color || default_line_color
 	/// Line part by the rod, always visible
@@ -267,7 +267,7 @@
 			bait_state = real_bait.rod_overlay_icon_state
 		. += bait_state
 
-/obj/item/fishing_rod/render_apply_overlays(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used)
+obj/item/fishing_rod/render_apply_overlays(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used)
 	var/slot_key = slot_meta.render_key
 	var/line_color = line?.line_color || default_line_color
 	var/mutable_appearance/reel_overlay = mutable_appearance(icon_used, "reel_[slot_key]")
@@ -283,7 +283,7 @@
 		MA.overlays += mutable_appearance(icon_used, "hook_[slot_key]")
 	return ..()
 
-/obj/item/fishing_rod/attackby(obj/item/attacking_item, mob/living/user, list/params, clickchain_flags, damage_multiplier)
+obj/item/fishing_rod/attackby(obj/item/attacking_item, mob/living/user, list/params, clickchain_flags, damage_multiplier)
 	if(slot_check(attacking_item,ROD_SLOT_LINE))
 		use_slot(ROD_SLOT_LINE, user, attacking_item)
 		SStgui.update_uis(src)
@@ -307,7 +307,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/fishing_rod/ui_data(mob/user)
+obj/item/fishing_rod/ui_data(mob/user)
 	. = ..()
 	var/list/data = list()
 
@@ -325,7 +325,7 @@
 	return data
 
 /// Checks if the item fits the slot
-/obj/item/fishing_rod/proc/slot_check(obj/item/item,slot)
+obj/item/fishing_rod/proc/slot_check(obj/item/item,slot)
 	if(!istype(item))
 		return FALSE
 	switch(slot)
@@ -340,7 +340,7 @@
 				return FALSE
 	return TRUE
 
-/obj/item/fishing_rod/ui_act(action, list/params)
+obj/item/fishing_rod/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return .
@@ -355,7 +355,7 @@
 			return TRUE
 
 /// Ideally this will be replaced with generic slotted storage datum + display
-/obj/item/fishing_rod/proc/use_slot(slot, mob/user, obj/item/new_item)
+obj/item/fishing_rod/proc/use_slot(slot, mob/user, obj/item/new_item)
 	var/obj/item/current_item
 	switch(slot)
 		if(ROD_SLOT_BAIT)
@@ -400,7 +400,7 @@
 		update_icon()
 	return TRUE
 
-/obj/item/fishing_rod/Exited(atom/movable/gone, direction)
+obj/item/fishing_rod/Exited(atom/movable/gone, direction)
 	. = ..()
 	if(gone == bait)
 		bait = null
@@ -409,12 +409,12 @@
 	if(gone == hook)
 		hook = null
 
-/obj/item/fishing_rod/bone
+obj/item/fishing_rod/bone
 	name = "bone fishing rod"
 	desc = "A humble rod, made with whatever happened to be on hand."
 	icon_state = "fishing_rod_bone"
 
-/obj/item/fishing_rod/master
+obj/item/fishing_rod/master
 	name = "master fishing rod"
 	desc = "The mythical rod of a lost fisher king. Said to be imbued with un-paralleled fishing power. There's writing on the back of the pole. \"中国航天制造\""
 	difficulty_modifier = -10
@@ -422,21 +422,21 @@
 	icon_state = "fishing_rod_master"
 
 
-/obj/item/fishing_rod/tech
+obj/item/fishing_rod/tech
 	name = "advanced fishing rod"
 	desc = "An embedded universal constructor along with micro-fusion generator makes this marvel of technology never run out of bait. Interstellar treaties prevent using it outside of recreational fishing."
 	icon_state = "fishing_rod_science"
 
-/obj/item/fishing_rod/tech/Initialize(mapload)
+obj/item/fishing_rod/tech/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/food/snacks/bait/doughball/synthetic/infinite_supply_of_bait = new(src)
 	bait = infinite_supply_of_bait
 	update_icon()
 
-/obj/item/fishing_rod/tech/consume_bait()
+obj/item/fishing_rod/tech/consume_bait()
 	return
 
-/obj/item/fishing_rod/tech/use_slot(slot, mob/user, obj/item/new_item)
+obj/item/fishing_rod/tech/use_slot(slot, mob/user, obj/item/new_item)
 	if(slot == ROD_SLOT_BAIT)
 		return
 	return ..()
@@ -445,26 +445,26 @@
 #undef ROD_SLOT_LINE
 #undef ROD_SLOT_HOOK
 
-/datum/beam/fishing_line
+datum/beam/fishing_line
 	// Is the fishing rod held in left side hand
 	var/lefthand = FALSE
 
-/datum/beam/fishing_line/Start()
+datum/beam/fishing_line/Start()
 	update_offsets(origin.dir)
 	. = ..()
 	RegisterSignal(origin, COMSIG_ATOM_DIR_CHANGE, PROC_REF(handle_dir_change))
 
-/datum/beam/fishing_line/Destroy()
+datum/beam/fishing_line/Destroy()
 	SEND_SIGNAL(src, COMSIG_FISHING_LINE_SNAPPED)
 	UnregisterSignal(origin, COMSIG_ATOM_DIR_CHANGE)
 	. = ..()
 
-/datum/beam/fishing_line/proc/handle_dir_change(atom/movable/source, olddir, newdir)
+datum/beam/fishing_line/proc/handle_dir_change(atom/movable/source, olddir, newdir)
 	SIGNAL_HANDLER
 	update_offsets(newdir)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/beam/, redrawing))
 
-/datum/beam/fishing_line/proc/update_offsets(user_dir)
+datum/beam/fishing_line/proc/update_offsets(user_dir)
 	switch(user_dir)
 		if(SOUTH)
 			override_origin_pixel_x = lefthand ? lefthand_s_px : righthand_s_px
@@ -480,7 +480,7 @@
 			override_origin_pixel_y = lefthand ? lefthand_n_py : righthand_n_py
 
 // Make these inline with final sprites
-/datum/beam/fishing_line
+datum/beam/fishing_line
 	var/righthand_s_px = 13
 	var/righthand_s_py = 16
 

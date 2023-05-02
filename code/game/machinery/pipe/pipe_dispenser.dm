@@ -1,4 +1,4 @@
-/obj/machinery/pipedispenser
+obj/machinery/pipedispenser
 	name = "Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
@@ -11,23 +11,23 @@
 	var/disposals = FALSE
 
 
-/obj/machinery/pipedispenser/attack_hand(mob/user, list/params)
+obj/machinery/pipedispenser/attack_hand(mob/user, list/params)
 	if((. = ..()))
 		return
 	ui_interact(user)
 
-/obj/machinery/pipedispenser/ui_assets(mob/user)
+obj/machinery/pipedispenser/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/pipes),
 	)
 
-/obj/machinery/pipedispenser/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/pipedispenser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PipeDispenser", name)
 		ui.open()
 
-/obj/machinery/pipedispenser/ui_data(mob/user)
+obj/machinery/pipedispenser/ui_data(mob/user)
 	var/list/data = list(
 		"disposals" = disposals,
 		"p_layer" = p_layer,
@@ -59,7 +59,7 @@
 
 	return data
 
-/obj/machinery/pipedispenser/ui_act(action, params)
+obj/machinery/pipedispenser/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -102,7 +102,7 @@
 				VARSET_IN(src, wait, FALSE, 15)
 
 
-/obj/machinery/pipedispenser/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/pipedispenser/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
 		if(!user.attempt_consume_item_for_construction(W))
 			return
@@ -139,7 +139,7 @@
 	else
 		return ..()
 
-/obj/machinery/pipedispenser/disposal
+obj/machinery/pipedispenser/disposal
 	name = "Disposal Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
@@ -148,7 +148,7 @@
 	disposals = TRUE
 
 //Allow you to drag-drop disposal pipes into it
-/obj/machinery/pipedispenser/disposal/MouseDroppedOnLegacy(var/obj/structure/disposalconstruct/pipe as obj, mob/usr as mob)
+obj/machinery/pipedispenser/disposal/MouseDroppedOnLegacy(var/obj/structure/disposalconstruct/pipe as obj, mob/usr as mob)
 	if(!CHECK_MOBILITY(usr, MOBILITY_CAN_UI))
 		return
 
@@ -162,10 +162,10 @@
 	qdel(pipe)
 
 //Adding a pipe dispensers that spawn unhooked from the ground
-/obj/machinery/pipedispenser/orderable
+obj/machinery/pipedispenser/orderable
 	anchored = FALSE
 	unwrenched = TRUE
 
-/obj/machinery/pipedispenser/disposal/orderable
+obj/machinery/pipedispenser/disposal/orderable
 	anchored = FALSE
 	unwrenched = TRUE

@@ -1,10 +1,10 @@
-/obj/structure/crystal
+obj/structure/crystal
 	name = "large crystal"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "crystal"
 	density = TRUE
 
-/obj/structure/crystal/Initialize(mapload)
+obj/structure/crystal/Initialize(mapload)
 	. = ..()
 	icon_state = pick("ano70","ano80")
 	desc = pick(
@@ -14,7 +14,7 @@
 	"Something twinkles faintly as you look at it.",
 	"It's mesmerizing to behold.")
 
-/obj/structure/crystal/Destroy()
+obj/structure/crystal/Destroy()
 	visible_message(SPAN_DANGER("[src] shatters!"))
 	if(prob(75))
 		new /obj/item/material/shard/phoron(loc)

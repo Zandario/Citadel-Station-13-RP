@@ -1,4 +1,4 @@
-/datum/technomancer/spell/condensation
+datum/technomancer/spell/condensation
 	name = "Condensation"
 	desc = "This causes rapid formation of liquid at the target, causing floors to become wet, entities to be soaked, and fires \
 	to be extinguished.  You can also fill contains with water if they are targeted directly."
@@ -8,7 +8,7 @@
 	obj_path = /obj/item/spell/condensation
 	category = UTILITY_SPELLS
 
-/obj/item/spell/condensation
+obj/item/spell/condensation
 	name = "condensation"
 	desc = "Stronger than it appears."
 	icon_state = "condensation"
@@ -16,7 +16,7 @@
 	aspect = ASPECT_AIR
 	cooldown = 2 SECONDS
 
-/obj/item/spell/condensation/on_ranged_cast(atom/hit_atom, mob/user)
+obj/item/spell/condensation/on_ranged_cast(atom/hit_atom, mob/user)
 	if(pay_energy(200))
 		if(istype(hit_atom, /turf/simulated) && within_range(hit_atom))
 			var/turf/simulated/T = hit_atom

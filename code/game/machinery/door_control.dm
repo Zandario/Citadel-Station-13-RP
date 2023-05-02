@@ -1,4 +1,4 @@
-/obj/machinery/button/remote
+obj/machinery/button/remote
 	name = "remote object control"
 	desc = "It controls objects, remotely."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -18,23 +18,23 @@
 				2=Network Access
 	*/
 
-/obj/machinery/button/remote/attack_ai(mob/user)
+obj/machinery/button/remote/attack_ai(mob/user)
 	if(wires & 2)
 		return attack_hand(user)
 	else
 		to_chat(user, "Error, no route to host.")
 
-/obj/machinery/button/remote/attackby(obj/item/W, mob/user)
+obj/machinery/button/remote/attackby(obj/item/W, mob/user)
 	return attack_hand(user)
 
-/obj/machinery/button/remote/emag_act(remaining_charges, mob/user)
+obj/machinery/button/remote/emag_act(remaining_charges, mob/user)
 	if(LAZYLEN(req_access) || LAZYLEN(req_one_access.len))
 		req_access = req_access ? list() : null
 		req_one_access = req_one_access ? list() : null // if it's not set keep it not set
 		playsound(src.loc, "sparks", 100, TRUE)
 		return 1
 
-/obj/machinery/button/remote/attack_hand(mob/user, list/params)
+obj/machinery/button/remote/attack_hand(mob/user, list/params)
 	if(..())
 		return
 
@@ -53,14 +53,14 @@
 	spawn(15)
 		update_icon()
 
-/obj/machinery/button/remote/proc/trigger()
+obj/machinery/button/remote/proc/trigger()
 	return
 
-/obj/machinery/button/remote/power_change()
+obj/machinery/button/remote/power_change()
 	..()
 	update_icon()
 
-/obj/machinery/button/remote/update_icon()
+obj/machinery/button/remote/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else
@@ -77,7 +77,7 @@
 #define SHOCK  0x8
 #define SAFE   0x10
 
-/obj/machinery/button/remote/airlock
+obj/machinery/button/remote/airlock
 	icon = 'icons/obj/stationobjs.dmi'
 	name = "remote door-control"
 	desc = "It controls doors, remotely."
@@ -91,7 +91,7 @@
 	 */
 	var/specialfunctions = 1
 
-/obj/machinery/button/remote/airlock/trigger()
+obj/machinery/button/remote/airlock/trigger()
 	for(var/obj/machinery/door/airlock/D in GLOB.machines)
 		if(D.id_tag == id)
 			if(specialfunctions & OPEN)
@@ -131,12 +131,12 @@
 /*
 	Blast door remote control
 */
-/obj/machinery/button/remote/blast_door
+obj/machinery/button/remote/blast_door
 	icon = 'icons/obj/stationobjs.dmi'
 	name = "remote blast door-control"
 	desc = "It controls blast doors, remotely."
 
-/obj/machinery/button/remote/blast_door/trigger()
+obj/machinery/button/remote/blast_door/trigger()
 	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
@@ -151,11 +151,11 @@
 /*
 	Emitter remote control
 */
-/obj/machinery/button/remote/emitter
+obj/machinery/button/remote/emitter
 	name = "remote emitter control"
 	desc = "It controls emitters, remotely."
 
-/obj/machinery/button/remote/emitter/trigger(mob/user)
+obj/machinery/button/remote/emitter/trigger(mob/user)
 	for(var/obj/machinery/power/emitter/E in GLOB.machines)
 		if(E.id == id)
 			spawn(0)
@@ -165,13 +165,13 @@
 /*
 	Mass driver remote control
 */
-/obj/machinery/button/remote/driver
+obj/machinery/button/remote/driver
 	name = "mass driver button"
 	desc = "A remote control switch for a mass driver."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
 
-/obj/machinery/button/remote/driver/trigger(mob/user)
+obj/machinery/button/remote/driver/trigger(mob/user)
 	active = TRUE
 	update_icon()
 
@@ -200,7 +200,7 @@
 
 	return
 
-/obj/machinery/button/remote/driver/update_icon()
+obj/machinery/button/remote/driver/update_icon()
 	if(!active || (machine_stat & NOPOWER))
 		icon_state = "launcherbtt"
 	else

@@ -1,7 +1,7 @@
 /**********************Mint**************************/
 
 
-/obj/machinery/mineral/mint
+obj/machinery/mineral/mint
 	name = "Coin press"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "coinpress0"
@@ -26,11 +26,11 @@
 	var/chosen = MAT_STEEL //which material will be used to make coins
 	var/coinsToProduce = 10
 
-/obj/machinery/mineral/mint/Initialize(mapload)
+obj/machinery/mineral/mint/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/mineral/mint/LateInitialize()
+obj/machinery/mineral/mint/LateInitialize()
 	for(var/dir in GLOB.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
 		if(input)
@@ -41,11 +41,11 @@
 			break
 	START_PROCESSING(SSobj, src)
 
-/obj/machinery/mineral/mint/Destroy()
+obj/machinery/mineral/mint/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/machinery/mineral/mint/process(delta_time)
+obj/machinery/mineral/mint/process(delta_time)
 	if (input)
 		var/obj/item/stack/O
 		O = locate(/obj/item/stack, input.loc)
@@ -81,7 +81,7 @@
 			if(processed)
 				qdel(O)
 
-/obj/machinery/mineral/mint/attack_hand(mob/user, list/params)
+obj/machinery/mineral/mint/attack_hand(mob/user, list/params)
 
 	var/dat = "<b>Coin Press</b><br>"
 
@@ -166,7 +166,7 @@
 	dat += text("<br><A href='?src=\ref[src];makeCoins=[1]'>Make coins</A>")
 	user << browse("[dat]", "window=mint")
 
-/obj/machinery/mineral/mint/Topic(href, href_list)
+obj/machinery/mineral/mint/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.set_machine(src)
@@ -337,7 +337,7 @@
 
 /**********************Coin Machine**************************/
 
-/obj/machinery/coinbank
+obj/machinery/coinbank
 	name = "\improper Coin Bank"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "coinvend"
@@ -361,23 +361,23 @@
 	var/wrenchable = TRUE
 	var/datum/wires/coinbank/wires = null
 
-/obj/machinery/coinbank/Initialize(mapload)
+obj/machinery/coinbank/Initialize(mapload)
 	. = ..()
 	wires = new/datum/wires/coinbank(src)
 
-/obj/machinery/coinbank/Destroy()
+obj/machinery/coinbank/Destroy()
 	qdel(wires)
 	for(var/A in item_records)	//Get rid of item records.
 		qdel(A)
 	wires = null
 	return ..()
 
-/obj/machinery/coinbank/proc/accept_check(var/obj/item/O as obj)
+obj/machinery/coinbank/proc/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/coin))
 		return 1
 	return 0
 
-/obj/machinery/coinbank/process(delta_time)
+obj/machinery/coinbank/process(delta_time)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(src.seconds_electrified > 0)
@@ -385,19 +385,19 @@
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
 
-/obj/machinery/coinbank/power_change()
+obj/machinery/coinbank/power_change()
 	var/old_stat = machine_stat
 	..()
 	if(old_stat != machine_stat)
 		update_icon()
 
-/obj/machinery/coinbank/update_icon()
+obj/machinery/coinbank/update_icon()
 	if(machine_stat & (BROKEN|NOPOWER))
 		icon_state = icon_off
 	else
 		icon_state = icon_on
 
-/obj/machinery/coinbank/attackby(obj/item/O, mob/user)
+obj/machinery/coinbank/attackby(obj/item/O, mob/user)
 	if(O.is_screwdriver())
 		panel_open = !panel_open
 		user.visible_message("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].", "You [panel_open ? "open" : "close"] the maintenance panel of \the [src].")
@@ -454,7 +454,7 @@
 		to_chat(user, "<span class='notice'>\The [O] doesn't fit into the [src] slot.</span>")
 		return 1
 
-/obj/machinery/coinbank/proc/stock(obj/item/O)
+obj/machinery/coinbank/proc/stock(obj/item/O)
 	var/hasRecord = FALSE	//Check to see if this passes or not.
 	for(var/datum/stored_item/I in item_records)
 		if((O.type == I.item_path) && (O.name == I.item_name))
@@ -467,14 +467,14 @@
 		item_records.Add(item)
 	SSnanoui.update_uis(src)
 
-/obj/machinery/coinbank/proc/vend(datum/stored_item/I)
+obj/machinery/coinbank/proc/vend(datum/stored_item/I)
 	I.get_product(get_turf(src))
 	SSnanoui.update_uis(src)
 
-/obj/machinery/coinbank/attack_ai(mob/user as mob)
+obj/machinery/coinbank/attack_ai(mob/user as mob)
 	attack_hand(user)
 
-/obj/machinery/coinbank/attack_hand(mob/user, list/params)
+obj/machinery/coinbank/attack_hand(mob/user, list/params)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	wires.Interact(user)
@@ -484,7 +484,7 @@
 *   SmartFridge Menu
 ********************/
 
-/obj/machinery/coinbank/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/coinbank/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/data[0]
@@ -508,7 +508,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/machinery/coinbank/Topic(href, href_list)
+obj/machinery/coinbank/Topic(href, href_list)
 	if(..()) return 0
 
 	var/mob/user = usr
@@ -537,7 +537,7 @@
 		return 1
 	return 0
 
-/obj/machinery/coinbank/proc/throw_item()
+obj/machinery/coinbank/proc/throw_item()
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)

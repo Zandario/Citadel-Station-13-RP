@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 /// value -> trait name, generated on use from trait_by_type global
 GLOBAL_LIST(trait_name_map)
 
-/proc/generate_trait_name_map()
+proc/generate_trait_name_map()
 	. = list()
 	for(var/key in GLOB.traits_by_type)
 		for(var/tname in GLOB.traits_by_type[key])

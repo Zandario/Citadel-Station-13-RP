@@ -1,4 +1,4 @@
-/obj/structure/blob/normal
+obj/structure/blob/normal
 	name = "normal blob"
 	base_name = "blob"
 	icon_state = "blob"
@@ -7,7 +7,7 @@
 	max_integrity = 25
 	health_regen = 1
 
-/obj/structure/blob/normal/update_icon()
+obj/structure/blob/normal/update_icon()
 	..()
 	if(integrity <= 15)
 		icon_state = "blob_damaged"

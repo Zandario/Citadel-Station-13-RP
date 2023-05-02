@@ -1,510 +1,510 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/simulated/wall/snowbrick,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/wall/snowbrick,
+area/awaymission/snow_outpost/powered)
 "ab" = (
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "ac" = (
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "ad" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "ae" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "af" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "ag" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "ah" = (
-/obj/machinery/gateway/centeraway,
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/gateway/centeraway,
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "ai" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "aj" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "ak" = (
-/obj/machinery/gateway,
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/gateway,
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "al" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "am" = (
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
 	},
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/washing_machine,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "an" = (
-/obj/machinery/door/airlock/alien/public,
-/turf/simulated/wall/snowbrick,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/alien/public,
+turf/simulated/wall/snowbrick,
+area/awaymission/snow_outpost/powered)
 "ao" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/machinery/crystal/ice,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "ap" = (
-/turf/simulated/floor/outdoors/ice,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/outdoors/ice,
+area/awaymission/snow_outpost/outside)
 "aq" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/dungeon,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/floor/dungeon,
+area/awaymission/snow_outpost/outside/nospawn)
 "ar" = (
-/turf/simulated/floor/water/deep,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/water/deep,
+area/awaymission/snow_outpost/outside)
 "as" = (
-/turf/simulated/wall/r_wall,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/wall/r_wall,
+area/awaymission/snow_outpost/outside/nospawn)
 "at" = (
-/obj/machinery/light/flicker,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/light/flicker,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "au" = (
-/obj/machinery/door/airlock/silver,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/machinery/door/airlock/silver,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "av" = (
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced/full,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/grille,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+obj/structure/grille,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "aw" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
+obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
 	icon_state = "map";
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ax" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/high_volume{
+obj/machinery/atmospherics/component/unary/vent_pump/high_volume{
 	dir = 8;
 	frequency = 1379;
 	id_tag = "sec_fore_pump"
 	},
-/obj/structure/grille,
-/obj/structure/railing{
+obj/structure/grille,
+obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ay" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "az" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary,
-/obj/structure/grille,
-/obj/structure/railing{
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary,
+obj/structure/grille,
+obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5;
 	icon_state = "intact"
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aB" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/structure/grille,
+obj/structure/window/reinforced/full,
+obj/structure/window/reinforced,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "aC" = (
-/obj/structure/railing,
-/turf/simulated/floor/dungeon,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/structure/railing,
+turf/simulated/floor/dungeon,
+area/awaymission/snow_outpost/outside/nospawn)
 "aD" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/floor/outdoors/ice,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/machinery/crystal/ice,
+turf/simulated/floor/outdoors/ice,
+area/awaymission/snow_outpost/outside/nospawn)
 "aE" = (
-/turf/simulated/wall,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/wall,
+area/awaymission/snow_outpost/powered)
 "aF" = (
-/obj/structure/table/standard{
+obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/southleft,
-/obj/machinery/door/window/northleft,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/firedoor,
+obj/machinery/door/window/southleft,
+obj/machinery/door/window/northleft,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aH" = (
-/obj/machinery/suit_cycler,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/suit_cycler,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aI" = (
-/obj/machinery/suit_cycler/mining,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/suit_cycler/mining,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aJ" = (
-/obj/machinery/suit_cycler/medical,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/suit_cycler/medical,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aK" = (
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 28
 	},
-/turf/simulated/floor/bluegrid{
+turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	temperature = 80
 	},
-/area/awaymission/snow_outpost/powered)
+area/awaymission/snow_outpost/powered)
 "aL" = (
-/obj/machinery/suit_cycler/engineering,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/suit_cycler/engineering,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aM" = (
-/obj/machinery/suit_cycler/security,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/suit_cycler/security,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aN" = (
-/obj/machinery/suit_cycler/syndicate,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/suit_cycler/syndicate,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aO" = (
-/obj/machinery/light/flicker,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/light/flicker,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "aP" = (
-/obj/machinery/replicator,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/replicator,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aQ" = (
-/turf/simulated/floor/bluegrid{
+turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	temperature = 80
 	},
-/area/awaymission/snow_outpost/powered)
+area/awaymission/snow_outpost/powered)
 "aR" = (
-/obj/mecha/combat/marauder/mauler{
+obj/mecha/combat/marauder/mauler{
 	operation_req_access = newlist()
 	},
-/turf/simulated/floor/bluegrid{
+turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	temperature = 80
 	},
-/area/awaymission/snow_outpost/powered)
+area/awaymission/snow_outpost/powered)
 "aS" = (
-/obj/machinery/porta_turret/stationary/syndie,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/porta_turret/stationary/syndie,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aT" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+mob/living/simple_mob/mechanical/viscerator/mercenary,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "aU" = (
-/obj/machinery/dna_scannernew,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/dna_scannernew,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aV" = (
-/obj/machinery/clonepod/transhuman/full,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/clonepod/transhuman/full,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aW" = (
-/obj/machinery/sleeper{
+obj/machinery/sleeper{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aX" = (
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	dir = 2;
 	layer = 3.3;
 	pixel_x = 0;
 	pixel_y = 26
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/ionrifle,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/ranged/ionrifle,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aY" = (
-/obj/machinery/implantchair,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/implantchair,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "aZ" = (
-/obj/machinery/sleep_console,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/sleep_console,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ba" = (
-/obj/machinery/bodyscanner,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/bodyscanner,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bb" = (
-/obj/machinery/body_scanconsole,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/body_scanconsole,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bc" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber{
+obj/machinery/atmospherics/component/unary/vent_scrubber{
 	dir = 8
 	},
-/obj/structure/ore_box,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/structure/ore_box,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bd" = (
-/obj/machinery/telecomms/relay,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/telecomms/relay,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "be" = (
-/obj/machinery/telecomms/broadcaster,
-/obj/machinery/light/flicker{
+obj/machinery/telecomms/broadcaster,
+obj/machinery/light/flicker{
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bf" = (
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/washing_machine,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bg" = (
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 28
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bh" = (
-/obj/structure/ghost_pod/manual/lost_drone/dogborg,
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+obj/structure/ghost_pod/manual/lost_drone/dogborg,
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "bi" = (
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bj" = (
-/obj/machinery/porta_turret/stationary/syndie,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/porta_turret/stationary/syndie,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "bk" = (
-/obj/machinery/power/breakerbox/activated,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/power/breakerbox/activated,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bl" = (
-/obj/machinery/power/smes/buildable/point_of_interest,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/power/smes/buildable/point_of_interest,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bm" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+obj/machinery/atmospherics/pipe/tank/air{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bn" = (
-/obj/machinery/door/airlock/silver,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/machinery/door/airlock/silver,
+obj/machinery/door/firedoor,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/outside/nospawn)
 "bo" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/atmospherics/component/unary/vent_scrubber,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bp" = (
-/obj/machinery/door/airlock/highsecurity,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/highsecurity,
+obj/machinery/door/firedoor,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bq" = (
-/obj/machinery/door/airlock/silver,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/silver,
+obj/machinery/door/firedoor,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "br" = (
-/obj/structure/table/standard,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/southright,
-/obj/machinery/door/window/northleft,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/machinery/door/firedoor,
+obj/machinery/door/window/southright,
+obj/machinery/door/window/northleft,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bs" = (
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "bt" = (
-/turf/simulated/wall/solidrock{
+turf/simulated/wall/solidrock{
 	block_tele = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "bu" = (
-/turf/simulated/floor/outdoors/ice{
+turf/simulated/floor/outdoors/ice{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "bv" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/floor/outdoors/ice{
+obj/machinery/crystal/ice,
+turf/simulated/floor/outdoors/ice{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "bw" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/wall/r_wall,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+turf/simulated/wall/r_wall,
+area/awaymission/snow_outpost/powered)
 "bx" = (
-/obj/machinery/door/airlock/silver,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/silver,
+obj/machinery/door/firedoor,
+obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "by" = (
-/obj/machinery/atmospherics/component/unary/vent_pump,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/atmospherics/component/unary/vent_pump,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bz" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber{
+obj/machinery/atmospherics/component/unary/vent_scrubber{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bA" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
+obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	icon_state = "intact";
 	dir = 9
 	},
-/obj/machinery/light/flicker{
+obj/machinery/light/flicker{
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bC" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
+obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
 	icon_state = "map";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bD" = (
-/obj/machinery/atmospherics/component/unary/vent_pump{
+obj/machinery/atmospherics/component/unary/vent_pump{
 	dir = 4;
 	use_power = 0
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bE" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security{
+obj/machinery/door/firedoor,
+obj/machinery/door/airlock/security{
 	being_shocked = 1;
 	locked = 1;
 	name = "Outpost Security Airlock";
 	use_power = 0
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bF" = (
-/obj/machinery/door/airlock/silver,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/silver,
+obj/machinery/door/firedoor,
+obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4;
 	icon_state = "intact"
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bI" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bJ" = (
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	dir = 2;
 	layer = 3.3;
 	pixel_x = 0;
 	pixel_y = 26
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4;
 	icon_state = "intact"
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bK" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/cyan,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/atmospherics/pipe/manifold4w/hidden/cyan,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bL" = (
-/obj/machinery/atmospherics/component/unary/vent_pump{
+obj/machinery/atmospherics/component/unary/vent_pump{
 	dir = 8;
 	external_pressure_bound = 140;
 	external_pressure_bound_default = 140;
@@ -513,36 +513,36 @@
 	pressure_checks_default = 1;
 	use_power = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bM" = (
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
 	},
-/obj/machinery/atmospherics/component/unary/vent_scrubber{
+obj/machinery/atmospherics/component/unary/vent_scrubber{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bN" = (
-/obj/machinery/door/airlock/silver,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/door/airlock/silver,
+obj/machinery/door/firedoor,
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4;
 	icon_state = "intact"
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bO" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber{
+obj/machinery/atmospherics/component/unary/vent_scrubber{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bP" = (
-/obj/machinery/atmospherics/component/unary/vent_pump{
+obj/machinery/atmospherics/component/unary/vent_pump{
 	dir = 1;
 	external_pressure_bound = 0;
 	external_pressure_bound_default = 0;
@@ -555,2041 +555,2041 @@
 	pump_direction = 0;
 	use_power = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bQ" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber{
+obj/machinery/atmospherics/component/unary/vent_scrubber{
 	icon_state = "map_scrubber_off";
 	dir = 1
 	},
-/obj/machinery/light/flicker,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/light/flicker,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bR" = (
-/obj/structure/table/standard{
+obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/southright,
-/obj/machinery/door/window/northleft,
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/firedoor,
+obj/machinery/door/window/southright,
+obj/machinery/door/window/northleft,
+obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bS" = (
-/obj/tether_away_spawner/underdark_hard,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/tether_away_spawner/underdark_hard,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bT" = (
-/mob/living/simple_mob/humanoid/merc/ranged/laser,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/ranged/laser,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bU" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space,
-/turf/simulated/floor/bluegrid{
+mob/living/simple_mob/humanoid/merc/ranged/space,
+turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	temperature = 80
 	},
-/area/awaymission/snow_outpost/powered)
+area/awaymission/snow_outpost/powered)
 "bV" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/ranged,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bW" = (
-/mob/living/simple_mob/humanoid/merc/melee,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/melee,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bX" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/melee/sword/space,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "bY" = (
-/obj/structure/loot_pile/surface/bones,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/surface/bones,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "bZ" = (
-/obj/random/firstaid,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/random/firstaid,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "ca" = (
-/obj/random/landmine,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/random/landmine,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "cb" = (
-/obj/random/ammo,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/random/ammo,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cc" = (
-/obj/effect/decal/remains/human,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/effect/decal/remains/human,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "cd" = (
-/turf/simulated/mineral/ignore_mapgen,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/mineral/ignore_mapgen,
+area/awaymission/snow_outpost/outside)
 "ce" = (
-/turf/simulated/wall/sandstone,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/wall/sandstone,
+area/awaymission/snow_outpost/dark)
 "cf" = (
-/obj/item/ore/diamond,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/item/ore/diamond,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cg" = (
-/obj/structure/boulder,
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+obj/structure/boulder,
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "ch" = (
-/turf/simulated/floor/tiled/kafel_full/yellow,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/tiled/kafel_full/yellow,
+area/awaymission/snow_outpost/dark)
 "ci" = (
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "cj" = (
-/obj/item/ore,
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+obj/item/ore,
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "ck" = (
-/obj/structure/bed/alien,
-/turf/simulated/floor/tiled/kafel_full/yellow,
-/area/awaymission/snow_outpost/dark)
+obj/structure/bed/alien,
+turf/simulated/floor/tiled/kafel_full/yellow,
+area/awaymission/snow_outpost/dark)
 "cl" = (
-/obj/structure/cult/talisman,
-/turf/simulated/floor/tiled/kafel_full/yellow,
-/area/awaymission/snow_outpost/dark)
+obj/structure/cult/talisman,
+turf/simulated/floor/tiled/kafel_full/yellow,
+area/awaymission/snow_outpost/dark)
 "cm" = (
-/obj/machinery/artifact,
-/obj/structure/anomaly_container,
-/turf/simulated/floor/tiled/kafel_full/yellow,
-/area/awaymission/snow_outpost/dark)
+obj/machinery/artifact,
+obj/structure/anomaly_container,
+turf/simulated/floor/tiled/kafel_full/yellow,
+area/awaymission/snow_outpost/dark)
 "cn" = (
-/obj/structure/simple_door/sandstone,
-/turf/simulated/floor/tiled/kafel_full/yellow,
-/area/awaymission/snow_outpost/dark)
+obj/structure/simple_door/sandstone,
+turf/simulated/floor/tiled/kafel_full/yellow,
+area/awaymission/snow_outpost/dark)
 "co" = (
-/obj/structure/loot_pile/surface/alien,
-/turf/simulated/floor/tiled/kafel_full/yellow,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/surface/alien,
+turf/simulated/floor/tiled/kafel_full/yellow,
+area/awaymission/snow_outpost/dark)
 "cp" = (
-/mob/living/simple_mob/animal/passive/tindalos,
-/turf/simulated/floor/tiled/kafel_full/yellow,
-/area/awaymission/snow_outpost/dark)
+mob/living/simple_mob/animal/passive/tindalos,
+turf/simulated/floor/tiled/kafel_full/yellow,
+area/awaymission/snow_outpost/dark)
 "cq" = (
-/obj/structure/closet/crate/secure/loot,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/crate/secure/loot,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "cr" = (
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/outside)
 "cs" = (
-/obj/item/ore,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/item/ore,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "ct" = (
-/obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/effect/floor_decal/asteroid,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cu" = (
-/obj/structure/anomaly_container,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/structure/anomaly_container,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "cv" = (
-/turf/simulated/wall,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/wall,
+area/awaymission/snow_outpost/dark)
 "cw" = (
-/obj/item/frame/apc,
-/obj/item/module/power_control,
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+obj/item/frame/apc,
+obj/item/module/power_control,
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "cx" = (
-/obj/structure/table/steel,
-/obj/machinery/cell_charger,
-/obj/random/powercell,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/steel,
+obj/machinery/cell_charger,
+obj/random/powercell,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cy" = (
-/obj/structure/table/steel,
-/obj/item/storage/excavation,
-/obj/item/measuring_tape,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/steel,
+obj/item/storage/excavation,
+obj/item/measuring_tape,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cz" = (
-/obj/machinery/power/port_gen/pacman/super,
-/obj/structure/cable/yellow{
+obj/machinery/power/port_gen/pacman/super,
+obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "cA" = (
-/obj/structure/cable/yellow{
+obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "cB" = (
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cC" = (
-/obj/structure/table/steel,
-/obj/item/folder,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/steel,
+obj/item/folder,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cD" = (
-/obj/structure/table/rack,
-/obj/item/pickaxe,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/rack,
+obj/item/pickaxe,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cE" = (
-/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cF" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/maint/technical,
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "cG" = (
-/obj/structure/table/steel,
-/obj/random/tech_supply,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/steel,
+obj/random/tech_supply,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cH" = (
-/obj/structure/table/rack,
-/obj/item/shovel,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/rack,
+obj/item/shovel,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cI" = (
-/obj/structure/boulder,
-/obj/effect/decal/mecha_wreckage/ripley,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/boulder,
+obj/effect/decal/mecha_wreckage/ripley,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cJ" = (
-/obj/structure/boulder,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/boulder,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cK" = (
-/obj/structure/loot_pile/maint/junk,
-/turf/simulated/floor/plating/external,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/maint/junk,
+turf/simulated/floor/plating/external,
+area/awaymission/snow_outpost/dark)
 "cL" = (
-/obj/structure/table/steel,
-/obj/item/tool/wrench,
-/obj/item/storage/box/samplebags,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/steel,
+obj/item/tool/wrench,
+obj/item/storage/box/samplebags,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cM" = (
-/obj/structure/table/steel,
-/obj/item/stack/flag/yellow,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/steel,
+obj/item/stack/flag/yellow,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cN" = (
-/obj/random/toolbox,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/random/toolbox,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cO" = (
-/obj/structure/closet/crate,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/crate,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cP" = (
-/obj/machinery/floodlight,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/machinery/floodlight,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "cQ" = (
-/obj/structure/ore_box,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+obj/structure/ore_box,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "cR" = (
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/asteroid_steel,
+area/awaymission/snow_outpost/powered)
 "cS" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/light/small,
+turf/simulated/floor/tiled/asteroid_steel,
+area/awaymission/snow_outpost/powered)
 "cT" = (
-/obj/machinery/space_heater,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/space_heater,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "cU" = (
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "cV" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/structure/bed,
+obj/item/bedsheet,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "cW" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "cX" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/light{
+obj/structure/bed,
+obj/item/bedsheet,
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "cY" = (
-/obj/structure/table/standard,
-/obj/structure/bedsheetbin,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/structure/bedsheetbin,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "cZ" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "da" = (
-/obj/structure/old_roboprinter,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/old_roboprinter,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "db" = (
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "dc" = (
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/obj/item/ore/gold,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+obj/item/ore/gold,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "dd" = (
-/obj/structure/table/standard,
-/obj/item/flashlight/lamp,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/item/flashlight/lamp,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "de" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/structure/bed,
+obj/item/bedsheet,
+obj/machinery/light,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "df" = (
-/obj/structure/window/reinforced/full,
-/turf/simulated/wall,
-/area/awaymission/snow_outpost/powered)
+obj/structure/window/reinforced/full,
+turf/simulated/wall,
+area/awaymission/snow_outpost/powered)
 "dg" = (
-/obj/machinery/light{
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "dh" = (
-/obj/structure/table/standard,
-/obj/machinery/cell_charger,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/machinery/cell_charger,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "di" = (
-/obj/structure/table/standard,
-/obj/item/cell/high,
-/obj/item/cell/high,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/item/cell/high,
+obj/item/cell/high,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dj" = (
-/obj/structure/loot_pile/maint/trash,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/structure/loot_pile/maint/trash,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dk" = (
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dl" = (
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	operating = 0;
 	pixel_x = 31
 	},
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dm" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "dn" = (
-/obj/structure/closet/crate/trashcart,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/structure/closet/crate/trashcart,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "do" = (
-/obj/structure/closet/crate/engineering,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/structure/closet/crate/engineering,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dp" = (
-/obj/machinery/light,
-/obj/machinery/space_heater,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/light,
+obj/machinery/space_heater,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dq" = (
-/obj/machinery/space_heater,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/space_heater,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dr" = (
-/obj/structure/closet/secure_closet/engineering_welding,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/structure/closet/secure_closet/engineering_welding,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "ds" = (
-/obj/structure/table/rack,
-/obj/item/pickaxe/drill,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/rack,
+obj/item/pickaxe/drill,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "dt" = (
-/obj/machinery/vending/cola,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/vending/cola,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "du" = (
-/obj/machinery/vending/snack,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/vending/snack,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "dv" = (
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/washing_machine,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "dw" = (
-/obj/structure/ore_box,
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/ore_box,
+turf/simulated/floor/tiled/asteroid_steel,
+area/awaymission/snow_outpost/powered)
 "dx" = (
-/obj/machinery/light{
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "dy" = (
-/obj/item/stool,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/item/stool,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "dz" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	brightness_color = "#DA0205";
 	brightness_power = 1;
 	brightness_range = 5;
 	dir = 8
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "dA" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/asteroid_steel,
+area/awaymission/snow_outpost/powered)
 "dB" = (
-/obj/structure/table/standard,
-/obj/item/pizzabox,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/item/pizzabox,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "dC" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dD" = (
-/obj/machinery/light{
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "dE" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/machinery/light/small,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "dF" = (
-/obj/structure/closet/crate,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/storage/toolbox,
-/obj/random/toolbox,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/crate,
+obj/item/stack/cable_coil,
+obj/item/stack/cable_coil,
+obj/item/storage/toolbox,
+obj/random/toolbox,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "dG" = (
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "dH" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/tree/sif,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "dI" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/maint/technical,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "dJ" = (
-/obj/structure/table/woodentable,
-/obj/item/cell/device/weapon/recharge/alien,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/woodentable,
+obj/item/cell/device/weapon/recharge/alien,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "dK" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/structure/table/steel,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "dL" = (
-/obj/structure/table/woodentable,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/woodentable,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "dM" = (
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "dN" = (
-/turf/simulated/floor/snow/snow2,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/snow/snow2,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark6";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "dO" = (
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "dP" = (
-/turf/simulated/floor/snow/snow2,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/snow/snow2,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark10";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "dQ" = (
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "dR" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	icon_state = "heater";
 	dir = 4
 	},
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "dS" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 4;
 	icon_state = "propulsion_l"
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "dT" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/table/rack,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/suit/space,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/table/rack,
+obj/item/clothing/head/helmet/space,
+obj/item/clothing/head/helmet/space,
+obj/item/clothing/head/helmet/space,
+obj/item/clothing/head/helmet/space,
+obj/item/clothing/suit/space,
+obj/item/clothing/suit/space,
+obj/item/clothing/suit/space,
+obj/item/clothing/suit/space,
+obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "dU" = (
-/obj/structure/dispenser/oxygen,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/dispenser/oxygen,
+obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "dV" = (
-/obj/machinery/door/airlock/external{
+obj/machinery/door/airlock/external{
 	density = 1;
 	frequency = 1331;
 	id_tag = "merc_shuttle_outer";
 	name = "Ship External Access";
 	req_access = list(150)
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "dW" = (
-/obj/effect/floor_decal/corner/green/border{
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 9
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "dX" = (
-/obj/machinery/gibber,
-/obj/effect/floor_decal/corner/green/border{
+obj/machinery/gibber,
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "dY" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/green/border{
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "dZ" = (
-/obj/machinery/bodyscanner{
+obj/machinery/bodyscanner{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/green/border{
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ea" = (
-/obj/machinery/body_scanconsole,
-/obj/effect/floor_decal/corner/green/border{
+obj/machinery/body_scanconsole,
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 5
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eb" = (
-/turf/simulated/floor/tiled/steel,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/tiled/steel,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark5";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "ec" = (
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "ed" = (
-/obj/structure/table/steel,
-/obj/item/gun/ballistic/automatic/wt550,
-/obj/item/gun/ballistic/automatic/p90,
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/item/gun/ballistic/automatic/wt550,
+obj/item/gun/ballistic/automatic/p90,
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "ee" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "ef" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eg" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/external,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eh" = (
-/obj/effect/floor_decal/corner/green/border{
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ei" = (
-/obj/machinery/optable,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/optable,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ej" = (
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ek" = (
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "el" = (
-/obj/machinery/organ_printer/flesh,
-/obj/effect/floor_decal/corner/green/border{
+obj/machinery/organ_printer/flesh,
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 5
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "em" = (
-/turf/simulated/floor/tiled/steel,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/tiled/steel,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark9";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/powered)
+area/awaymission/snow_outpost/powered)
 "en" = (
-/turf/simulated/floor/tiled/steel,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/tiled/steel,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark6";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "eo" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/mechanical/viscerator,
+mob/living/simple_mob/mechanical/viscerator,
+mob/living/simple_mob/mechanical/viscerator,
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "ep" = (
-/obj/structure/table/steel,
-/obj/machinery/light/small{
+obj/structure/table/steel,
+obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "eq" = (
-/obj/effect/floor_decal/borderfloor/corner{
+obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "er" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "es" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "et" = (
-/obj/effect/debris/cleanable/blood/drip,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/effect/debris/cleanable/blood/drip,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eu" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ev" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1";
 	pixel_x = 0
 	},
-/obj/effect/floor_decal/corner/green/border{
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "ew" = (
-/obj/structure/table/steel,
-/obj/effect/floor_decal/borderfloor/full,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/effect/floor_decal/borderfloor/full,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "ex" = (
-/obj/structure/table/steel,
-/obj/item/grenade/smokebomb,
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/item/grenade/smokebomb,
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "ey" = (
-/obj/effect/floor_decal/borderfloor/corner,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/effect/floor_decal/borderfloor/corner,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "ez" = (
-/obj/effect/floor_decal/borderfloor,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/effect/floor_decal/borderfloor,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eA" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1";
 	pixel_x = 0
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eB" = (
-/obj/structure/table/standard,
-/obj/item/storage/firstaid/surgery,
-/obj/effect/floor_decal/corner/green/border{
+obj/structure/table/standard,
+obj/item/storage/firstaid/surgery,
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 10
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eC" = (
-/obj/structure/table/standard,
-/obj/item/tank/anesthetic,
-/obj/effect/floor_decal/corner/green/border,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/item/tank/anesthetic,
+obj/effect/floor_decal/corner/green/border,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eD" = (
-/obj/effect/floor_decal/corner/green/border,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/effect/floor_decal/corner/green/border,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eE" = (
-/obj/structure/table/standard,
-/obj/item/clothing/gloves/sterile,
-/obj/item/clothing/gloves/sterile,
-/obj/effect/floor_decal/corner/green/border,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/item/clothing/gloves/sterile,
+obj/item/clothing/gloves/sterile,
+obj/effect/floor_decal/corner/green/border,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eF" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/spray/sterilizine,
-/obj/item/reagent_containers/spray/sterilizine,
-/obj/effect/floor_decal/corner/green/border,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/standard,
+obj/item/reagent_containers/spray/sterilizine,
+obj/item/reagent_containers/spray/sterilizine,
+obj/effect/floor_decal/corner/green/border,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eG" = (
-/obj/structure/table/standard,
-/obj/item/storage/box/masks,
-/obj/effect/floor_decal/corner/green/border{
+obj/structure/table/standard,
+obj/item/storage/box/masks,
+obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 6
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eH" = (
-/obj/machinery/light{
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eI" = (
-/obj/structure/bed/chair/office/dark{
+obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eJ" = (
-/obj/machinery/door/airlock/security{
+obj/machinery/door/airlock/security{
 	locked = 1
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eK" = (
-/obj/machinery/door/airlock/glass,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/glass,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "eL" = (
-/turf/simulated/floor/tiled/steel,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/tiled/steel,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark10";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "eM" = (
-/obj/machinery/computer/communications,
-/obj/effect/floor_decal/borderfloor{
+obj/machinery/computer/communications,
+obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eN" = (
-/obj/effect/floor_decal/borderfloor/corner{
+obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eO" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eP" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/closet/secure_closet/freezer/fridge,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eQ" = (
-/obj/structure/table/steel,
-/obj/item/material/knife,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/item/material/knife,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eR" = (
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eS" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eT" = (
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eU" = (
-/obj/structure/table/steel,
-/obj/random/toolbox,
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/random/toolbox,
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "eV" = (
-/obj/structure/table/steel,
-/obj/machinery/light/small{
+obj/structure/table/steel,
+obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "eW" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/floor/plating,
+area/awaymission/snow_outpost/outside/nospawn)
 "eX" = (
-/obj/structure/table/steel,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/table/steel,
+obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eY" = (
-/obj/machinery/light{
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "eZ" = (
-/mob/living/simple_mob/animal/giant_spider/ion,
-/turf/simulated/floor/outdoors/ice{
+mob/living/simple_mob/animal/giant_spider/ion,
+turf/simulated/floor/outdoors/ice{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "fa" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1";
 	pixel_x = 0
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fb" = (
-/obj/item/stool,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/item/stool,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fc" = (
-/obj/structure/table/steel,
-/obj/random/projectile,
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/random/projectile,
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "fd" = (
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "fe" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/floor/plating,
+area/awaymission/snow_outpost/outside/nospawn)
 "ff" = (
-/obj/machinery/door/airlock/glass,
-/obj/effect/floor_decal/borderfloor{
+obj/machinery/door/airlock/glass,
+obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fg" = (
-/obj/effect/floor_decal/corner/grey,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/effect/floor_decal/corner/grey,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fh" = (
-/obj/machinery/door/airlock/glass,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/glass,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fi" = (
-/obj/structure/table/steel,
-/obj/item/pizzabox,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/item/pizzabox,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fj" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fk" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fl" = (
-/obj/machinery/door/airlock/glass,
-/obj/effect/floor_decal/borderfloor,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/glass,
+obj/effect/floor_decal/borderfloor,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fm" = (
-/obj/effect/floor_decal/borderfloor/corner{
+obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fn" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/floor/plating,
+area/awaymission/snow_outpost/outside/nospawn)
 "fo" = (
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 8;
 	name = "BSD APC";
 	pixel_x = -24
 	},
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "fp" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "fq" = (
-/obj/machinery/computer/area_atmos,
-/obj/effect/floor_decal/borderfloor{
+obj/machinery/computer/area_atmos,
+obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fr" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fs" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "ft" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fu" = (
-/obj/structure/table/steel,
-/obj/item/paper{
+obj/structure/table/steel,
+obj/item/paper{
 	info = "We need to take a short stop. The engine's are in need of minor repairs due to turbulence, should be a week's time. We've got reserve food supplies but pleanty of locale fauna to subsist on too if need be. PCRC is keeping most of there assets near New Reykjavik and locale authorities are more mindful then most to travel in this kind of weather. Our outfit should be at the rendezvous point in less then ten days assuming the upper ecehelon hasn't dropped ties with us yet.";
 	name = "Operation Progress/M-53"
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fv" = (
-/obj/structure/table/steel,
-/obj/item/paper_bin,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/item/paper_bin,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fw" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/light,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fx" = (
-/obj/structure/closet/toolcloset,
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+obj/structure/closet/toolcloset,
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "fy" = (
-/obj/machinery/portable_atmospherics/canister/empty/oxygen,
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/portable_atmospherics/canister/empty/oxygen,
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "fz" = (
-/obj/machinery/atmospherics/pipe/tank/oxygen,
-/obj/machinery/light/small{
+obj/machinery/atmospherics/pipe/tank/oxygen,
+obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/yellow,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/yellow,
+area/awaymission/snow_outpost/powered)
 "fA" = (
-/obj/machinery/light{
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fB" = (
-/obj/structure/bed/chair/office/dark,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/bed/chair/office/dark,
+obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fC" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "fD" = (
-/obj/effect/floor_decal/borderfloor/corner{
+obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor/corner{
+obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fE" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1";
 	pixel_x = 0
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fF" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/bed,
+obj/item/bedsheet,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fG" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/hydro,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock,
+turf/simulated/floor/tiled/hydro,
+area/awaymission/snow_outpost/powered)
 "fH" = (
-/turf/simulated/floor/tiled/hydro,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/hydro,
+area/awaymission/snow_outpost/powered)
 "fI" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/mechanical/viscerator,
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "fJ" = (
-/obj/structure/table/steel,
-/obj/item/gun/ballistic/pistol,
-/obj/machinery/light/small{
+obj/structure/table/steel,
+obj/item/gun/ballistic/pistol,
+obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "fK" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fL" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/structure/bed,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/bed,
+obj/item/bedsheet,
+obj/structure/bed,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fM" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/hydro,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/hydro,
+area/awaymission/snow_outpost/powered)
 "fN" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/mechanical/viscerator,
+mob/living/simple_mob/mechanical/viscerator,
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "fO" = (
-/obj/structure/table/steel,
-/obj/random/energy,
-/turf/simulated/floor/tiled/steel_grid,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/steel,
+obj/random/energy,
+turf/simulated/floor/tiled/steel_grid,
+area/awaymission/snow_outpost/powered)
 "fP" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fQ" = (
-/obj/structure/toilet{
+obj/structure/toilet{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/hydro,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/hydro,
+area/awaymission/snow_outpost/powered)
 "fR" = (
-/obj/machinery/light,
-/obj/structure/table/rack,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/head/helmet/space,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/suit/space,
-/obj/item/clothing/suit/space,
-/obj/effect/floor_decal/borderfloor{
+obj/machinery/light,
+obj/structure/table/rack,
+obj/item/clothing/head/helmet/space,
+obj/item/clothing/head/helmet/space,
+obj/item/clothing/head/helmet/space,
+obj/item/clothing/head/helmet/space,
+obj/item/clothing/suit/space,
+obj/item/clothing/suit/space,
+obj/item/clothing/suit/space,
+obj/item/clothing/suit/space,
+obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fS" = (
-/obj/structure/dispenser/oxygen,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/dispenser/oxygen,
+obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fT" = (
-/obj/structure/table/woodentable,
-/obj/random/projectile,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/woodentable,
+obj/random/projectile,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fU" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/light,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/bed,
+obj/item/bedsheet,
+obj/machinery/light,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "fV" = (
-/obj/tether_away_spawner/aerostat_inside,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/tether_away_spawner/aerostat_inside,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "fW" = (
-/obj/item/ore/gold,
-/obj/tether_away_spawner/aerostat_inside,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/item/ore/gold,
+obj/tether_away_spawner/aerostat_inside,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "fX" = (
-/obj/structure/flora/tree/pine,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/tree/pine,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "fY" = (
-/obj/structure/flora/ausbushes/grassybush,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/grassybush,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "fZ" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/flora/ausbushes/fullgrass,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "ga" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/sparsegrass,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gb" = (
-/obj/item/shovel,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/item/shovel,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "gc" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/flora/ausbushes/sunnybush,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "gd" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/stalkybush,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "ge" = (
-/obj/structure/flora/tree/dead,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/tree/dead,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gf" = (
-/obj/item/ammo_casing/a45,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/item/ammo_casing/a45,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gg" = (
-/obj/item/ammo_casing/a45,
-/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/item/ammo_casing/a45,
+obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gh" = (
-/obj/structure/flora/tree/pine{
+obj/structure/flora/tree/pine{
 	icon_state = "pine_2"
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gi" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/outdoors/ice,
-/area/awaymission/snow_outpost/dark)
+obj/structure/flora/tree/sif,
+turf/simulated/floor/outdoors/ice,
+area/awaymission/snow_outpost/dark)
 "gj" = (
-/obj/item/ammo_casing/a45,
-/obj/random/landmine,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/item/ammo_casing/a45,
+obj/random/landmine,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gk" = (
-/obj/random/landmine,
-/turf/simulated/floor/outdoors/dirt{
+obj/random/landmine,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/outside)
+area/awaymission/snow_outpost/outside)
 "gl" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/outdoors/dirt{
+obj/effect/spider/stickyweb,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gm" = (
-/obj/item/ammo_casing/a45,
-/obj/item/ammo_casing/a45,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/item/ammo_casing/a45,
+obj/item/ammo_casing/a45,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gn" = (
-/turf/simulated/floor/outdoors/dirt{
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/outside)
+area/awaymission/snow_outpost/outside)
 "go" = (
-/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gp" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/outside)
+obj/effect/spider/stickyweb,
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/outside)
 "gq" = (
-/obj/item/clothing/accessory/storage/webbing,
-/obj/item/material/knife/tacknife/combatknife,
-/turf/simulated/floor/outdoors/dirt{
+obj/item/clothing/accessory/storage/webbing,
+obj/item/material/knife/tacknife/combatknife,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gr" = (
-/mob/living/simple_mob/animal/giant_spider,
-/turf/simulated/floor/outdoors/dirt{
+mob/living/simple_mob/animal/giant_spider,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gs" = (
-/obj/effect/debris/cleanable/cobweb,
-/turf/simulated/floor/outdoors/dirt{
+obj/effect/debris/cleanable/cobweb,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gt" = (
-/obj/random/mob/spider,
-/turf/simulated/floor/outdoors/dirt{
+obj/random/mob/spider,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gu" = (
-/mob/living/simple_mob/animal/giant_spider/lurker,
-/turf/simulated/floor/outdoors/dirt{
+mob/living/simple_mob/animal/giant_spider/lurker,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gv" = (
-/obj/effect/debris/cleanable/cobweb2,
-/turf/simulated/floor/outdoors/dirt{
+obj/effect/debris/cleanable/cobweb2,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gw" = (
-/mob/living/simple_mob/animal/giant_spider/webslinger,
-/turf/simulated/floor/outdoors/dirt{
+mob/living/simple_mob/animal/giant_spider/webslinger,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gx" = (
-/obj/effect/debris/cleanable/cobweb2,
-/mob/living/simple_mob/animal/giant_spider/lurker,
-/turf/simulated/floor/outdoors/dirt{
+obj/effect/debris/cleanable/cobweb2,
+mob/living/simple_mob/animal/giant_spider/lurker,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gy" = (
-/obj/random/landmine,
-/turf/simulated/floor/outdoors/ice,
-/area/awaymission/snow_outpost/dark)
+obj/random/landmine,
+turf/simulated/floor/outdoors/ice,
+area/awaymission/snow_outpost/dark)
 "gz" = (
-/obj/random/mob/spider/mutant,
-/turf/simulated/floor/outdoors/dirt{
+obj/random/mob/spider/mutant,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gA" = (
-/mob/living/simple_mob/animal/giant_spider/lurker,
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/dark)
+mob/living/simple_mob/animal/giant_spider/lurker,
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/dark)
 "gB" = (
-/obj/structure/flora/tree/pine{
+obj/structure/flora/tree/pine{
 	icon_state = "pine_2"
 	},
-/obj/structure/flora/tree/pine{
+obj/structure/flora/tree/pine{
 	icon_state = "pine_2"
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gC" = (
-/obj/structure/flora/tree/pine{
+obj/structure/flora/tree/pine{
 	icon_state = "pine_3"
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gD" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/porta_turret/alien/destroyed,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/machinery/porta_turret/alien/destroyed,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "gE" = (
-/obj/structure/closet/crate,
-/obj/item/reagent_containers/hypospray,
-/obj/item/reagent_containers/glass/bottle/stoxin,
-/obj/item/reagent_containers/glass/bottle/antitoxin,
-/obj/item/reagent_containers/pill/antitox,
-/obj/item/reagent_containers/pill/antitox,
-/obj/item/reagent_containers/pill/antitox,
-/obj/item/reagent_containers/pill/paracetamol,
-/obj/random/firstaid,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/crate,
+obj/item/reagent_containers/hypospray,
+obj/item/reagent_containers/glass/bottle/stoxin,
+obj/item/reagent_containers/glass/bottle/antitoxin,
+obj/item/reagent_containers/pill/antitox,
+obj/item/reagent_containers/pill/antitox,
+obj/item/reagent_containers/pill/antitox,
+obj/item/reagent_containers/pill/paracetamol,
+obj/random/firstaid,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "gF" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "gG" = (
-/obj/structure/closet/crate,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/energy,
-/obj/item/material/star,
-/obj/item/material/star,
-/obj/item/material/star,
-/obj/item/material/star,
-/obj/item/material/star,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/crate,
+obj/random/contraband,
+obj/random/contraband,
+obj/random/contraband,
+obj/random/energy,
+obj/item/material/star,
+obj/item/material/star,
+obj/item/material/star,
+obj/item/material/star,
+obj/item/material/star,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "gH" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "gI" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "gJ" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/structure/prop/alien/power,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/structure/prop/alien/power,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "gK" = (
-/obj/effect/spider/stickyweb,
-/mob/living/simple_mob/animal/giant_spider/lurker,
-/turf/simulated/floor/outdoors/dirt{
+obj/effect/spider/stickyweb,
+mob/living/simple_mob/animal/giant_spider/lurker,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "gL" = (
-/obj/structure/loot_pile/maint/boxfort,
-/turf/simulated/shuttle/floor/alienplating,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/maint/boxfort,
+turf/simulated/shuttle/floor/alienplating,
+area/awaymission/snow_outpost/dark)
 "gP" = (
-/obj/structure/flora/tree/pine{
+obj/structure/flora/tree/pine{
 	icon_state = "pine_2"
 	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/sparsegrass,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gQ" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/sparsegrass,
+obj/structure/flora/ausbushes/sparsegrass,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gR" = (
-/obj/structure/flora/tree/dead,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/tree/dead,
+obj/structure/flora/ausbushes/sparsegrass,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gS" = (
-/obj/structure/flora/tree/pine{
+obj/structure/flora/tree/pine{
 	icon_state = "pine_2"
 	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/sparsegrass,
+obj/structure/flora/ausbushes/sparsegrass,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gT" = (
-/obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/brflowers,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gU" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/sparsegrass,
+obj/structure/flora/ausbushes/brflowers,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gV" = (
-/obj/structure/flora/tree/pine{
+obj/structure/flora/tree/pine{
 	icon_state = "pine_2"
 	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/sparsegrass,
+obj/structure/flora/ausbushes/brflowers,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "gW" = (
-/obj/structure/flora/tree/pine{
+obj/structure/flora/tree/pine{
 	icon_state = "pine_2"
 	},
-/turf/simulated/floor/outdoors/ice,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/outdoors/ice,
+area/awaymission/snow_outpost/outside)
 "gX" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/outdoors/ice,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/sparsegrass,
+turf/simulated/floor/outdoors/ice,
+area/awaymission/snow_outpost/outside)
 "gY" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/effect/floor_decal/rust,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "gZ" = (
-/obj/random/trash,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/random/trash,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "ha" = (
-/obj/structure/closet/cabinet,
-/obj/item/lipstick/random,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/cabinet,
+obj/item/lipstick/random,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hb" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/structure/curtain/open/bed,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/bed,
+obj/item/bedsheet,
+obj/structure/curtain/open/bed,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hc" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/pill/happy{
+obj/structure/table/woodentable,
+obj/item/reagent_containers/pill/happy{
 	name = "pill"
 	},
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hd" = (
-/obj/structure/curtain/black,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/structure/curtain/black,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "he" = (
-/obj/random/trash,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/random/trash,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hf" = (
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hg" = (
-/obj/effect/decal/remains/mouse,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/effect/decal/remains/mouse,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "hh" = (
-/obj/structure/closet/cabinet,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/cabinet,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hi" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/pill/methylphenidate{
+obj/structure/table/woodentable,
+obj/item/reagent_containers/pill/methylphenidate{
 	name = "pill"
 	},
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hj" = (
-/obj/structure/bed/chair/comfy/beige{
+obj/structure/bed/chair/comfy/beige{
 	icon_state = "armchair_preview";
 	dir = 1
 	},
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hk" = (
-/obj/item/reagent_containers/pill/citalopram{
+obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hl" = (
-/obj/random/junk,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/random/junk,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "hm" = (
-/obj/structure/closet/cabinet,
-/obj/item/contraband/poster,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/cabinet,
+obj/item/contraband/poster,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hn" = (
-/obj/structure/bed/chair/comfy/beige,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/bed/chair/comfy/beige,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "ho" = (
-/obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
-/obj/item/reagent_containers/syringe/drugs,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/woodentable,
+obj/item/flashlight/lamp,
+obj/item/reagent_containers/syringe/drugs,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hp" = (
-/obj/structure/bed/chair/comfy/beige,
-/obj/item/reagent_containers/pill/citalopram{
+obj/structure/bed/chair/comfy/beige,
+obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hq" = (
-/obj/structure/loot_pile/maint/junk,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/maint/junk,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "hr" = (
-/obj/item/reagent_containers/pill/citalopram{
+obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
-/obj/item/reagent_containers/pill/citalopram{
+obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hs" = (
-/obj/structure/table/standard,
-/obj/item/storage/pill_bottle/happy,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/standard,
+obj/item/storage/pill_bottle/happy,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "ht" = (
-/obj/structure/table/standard,
-/obj/item/stack/medical/splint,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/standard,
+obj/item/stack/medical/splint,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "hu" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/pill/citalopram,
-/obj/item/reagent_containers/pill/citalopram,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/standard,
+obj/item/reagent_containers/pill/citalopram,
+obj/item/reagent_containers/pill/citalopram,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "hv" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/pill/tramadol,
-/obj/item/reagent_containers/pill/tramadol,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/standard,
+obj/item/reagent_containers/pill/tramadol,
+obj/item/reagent_containers/pill/tramadol,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "hw" = (
-/obj/structure/closet/cabinet,
-/obj/item/clothing/accessory/jacket,
-/obj/item/material/butterfly/switchblade,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/cabinet,
+obj/item/clothing/accessory/jacket,
+obj/item/material/butterfly/switchblade,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hx" = (
-/obj/item/reagent_containers/pill/zoom{
+obj/item/reagent_containers/pill/zoom{
 	name = "pill"
 	},
-/obj/random/trash,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/random/trash,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hy" = (
-/obj/item/reagent_containers/pill/zoom{
+obj/item/reagent_containers/pill/zoom{
 	name = "pill"
 	},
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hz" = (
-/obj/structure/loot_pile/maint/boxfort,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/maint/boxfort,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hA" = (
-/obj/structure/table/standard,
-/obj/item/surgical/scalpel,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/standard,
+obj/item/surgical/scalpel,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "hB" = (
-/obj/item/wheelchair,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/item/wheelchair,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "hC" = (
-/obj/structure/table/standard,
-/obj/random/firstaid,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/standard,
+obj/random/firstaid,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "hD" = (
-/obj/structure/loot_pile/maint/junk,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/structure/loot_pile/maint/junk,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "hE" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+obj/effect/floor_decal/rust,
+obj/structure/table/standard,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "hF" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/pill/zoom,
-/obj/item/reagent_containers/pill/zoom,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/standard,
+obj/item/reagent_containers/pill/zoom,
+obj/item/reagent_containers/pill/zoom,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "hG" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/pill/tramadol{
+obj/structure/table/woodentable,
+obj/item/reagent_containers/pill/tramadol{
 	name = "pill"
 	},
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hH" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong/guard,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong/guard,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "hI" = (
-/obj/structure/girder,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/structure/girder,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "hJ" = (
-/obj/item/material/shard,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/item/material/shard,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "hK" = (
-/obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/woodentable,
+obj/item/flashlight/lamp,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hL" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/syringe/drugs,
-/turf/simulated/floor/carpet,
-/area/awaymission/snow_outpost/dark)
+obj/structure/table/woodentable,
+obj/item/reagent_containers/syringe/drugs,
+turf/simulated/floor/carpet,
+area/awaymission/snow_outpost/dark)
 "hM" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/effect/spider/stickyweb,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hN" = (
-/obj/effect/spider/spiderling/frost,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/outside)
+obj/effect/spider/spiderling/frost,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/outside)
 "hO" = (
-/obj/item/spacecash/c100,
-/obj/item/spacecash/c100,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/item/spacecash/c100,
+obj/item/spacecash/c100,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hP" = (
-/obj/random/mob/spider/mutant,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/outside)
+obj/random/mob/spider/mutant,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/outside)
 "hQ" = (
-/obj/item/spacecash/c100,
-/obj/item/spacecash/c100,
-/obj/item/spacecash/c100,
-/obj/effect/decal/remains,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/item/spacecash/c100,
+obj/item/spacecash/c100,
+obj/item/spacecash/c100,
+obj/effect/decal/remains,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hR" = (
-/obj/random/mob/spider,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/random/mob/spider,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hS" = (
-/obj/item/grenade/spawnergrenade/spider,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/item/grenade/spawnergrenade/spider,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hT" = (
-/obj/random/toolbox,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/random/toolbox,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hU" = (
-/obj/effect/decal/mecha_wreckage/ripley,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/effect/decal/mecha_wreckage/ripley,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hV" = (
-/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hW" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+mob/living/simple_mob/animal/giant_spider/frost,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hX" = (
-/obj/effect/spider/stickyweb,
-/obj/effect/spider/stickyweb,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/effect/spider/stickyweb,
+obj/effect/spider/stickyweb,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "hY" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
-/turf/simulated/floor/outdoors/ice{
+mob/living/simple_mob/animal/giant_spider/frost,
+turf/simulated/floor/outdoors/ice{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "hZ" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+mob/living/simple_mob/animal/giant_spider/frost,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "ia" = (
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/outside)
 "ib" = (
-/obj/structure/flora/tree/pine,
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/tree/pine,
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/outside)
 "ic" = (
-/obj/structure/flora/grass/green,
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/grass/green,
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/outside)
 "id" = (
-/turf/simulated/floor/water,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/water,
+area/awaymission/snow_outpost/outside)
 "ie" = (
-/obj/structure/flora/tree/dead,
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/tree/dead,
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/outside)
 "if" = (
-/turf/simulated/shuttle/wall,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/shuttle/wall,
+area/awaymission/snow_outpost/outside)
 "ig" = (
-/obj/structure/shuttle/window,
-/obj/structure/grille,
-/turf/simulated/shuttle/plating,
-/area/awaymission/snow_outpost/outside)
+obj/structure/shuttle/window,
+obj/structure/grille,
+turf/simulated/shuttle/plating,
+area/awaymission/snow_outpost/outside)
 "ih" = (
-/obj/structure/flora/grass/both,
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/grass/both,
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/outside)
 "ii" = (
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	icon_state = "chair_preview";
 	dir = 1
 	},
-/obj/machinery/status_display{
+obj/machinery/status_display{
 	density = 0;
 	layer = 4;
 	pixel_x = -32;
 	pixel_y = 0
 	},
-/obj/structure/loot_pile/maint/junk,
-/turf/simulated/floor/water,
-/area/awaymission/snow_outpost/outside)
+obj/structure/loot_pile/maint/junk,
+turf/simulated/floor/water,
+area/awaymission/snow_outpost/outside)
 "ij" = (
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	icon_state = "chair_preview";
 	dir = 1
 	},
-/obj/effect/decal/remains/posi,
-/obj/machinery/light{
+obj/effect/decal/remains/posi,
+obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
 	pixel_y = 0
 	},
-/obj/machinery/vending/wallmed1{
+obj/machinery/vending/wallmed1{
 	layer = 3.3;
 	name = "Emergency NanoMed";
 	pixel_x = 28;
 	pixel_y = 0
 	},
-/obj/item/clothing/shoes/brown,
-/obj/item/clothing/under/brandjumpsuit/mbill,
-/obj/item/clothing/head/soft/mbill,
-/turf/simulated/floor/water,
-/area/awaymission/snow_outpost/outside)
+obj/item/clothing/shoes/brown,
+obj/item/clothing/under/brandjumpsuit/mbill,
+obj/item/clothing/head/soft/mbill,
+turf/simulated/floor/water,
+area/awaymission/snow_outpost/outside)
 "ik" = (
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	icon_state = "chair_preview";
 	dir = 1
 	},
-/obj/structure/closet/walllocker/emerglocker/east,
-/obj/item/radio/intercom{
+obj/structure/closet/walllocker/emerglocker/east,
+obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -28
 	},
-/obj/structure/closet/crate/hydroponics{
+obj/structure/closet/crate/hydroponics{
 	desc = "All you need to destroy that pesky planet.";
 	name = "exotic seeds crate";
 	starts_with = list(/obj/item/seeds/random = 6, /obj/item/seeds/replicapod = 2, /obj/item/seeds/ambrosiavulgarisseed = 2, /obj/item/seeds/kudzuseed, /obj/item/seeds/libertymycelium, /obj/item/seeds/reishimycelium)
 	},
-/turf/simulated/floor/water,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/water,
+area/awaymission/snow_outpost/outside)
 "il" = (
-/obj/structure/shuttle/engine/propulsion/burst,
-/turf/simulated/shuttle/wall,
-/area/awaymission/snow_outpost/outside)
+obj/structure/shuttle/engine/propulsion/burst,
+turf/simulated/shuttle/wall,
+area/awaymission/snow_outpost/outside)
 "im" = (
-/obj/structure/door_assembly/door_assembly_ext{
+obj/structure/door_assembly/door_assembly_ext{
 	anchored = 1
 	},
-/turf/simulated/floor/water,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/water,
+area/awaymission/snow_outpost/outside)
 "in" = (
-/turf/unsimulated/mineral,
-/area/awaymission/snow_outpost/outside)
+turf/unsimulated/mineral,
+area/awaymission/snow_outpost/outside)
 "io" = (
-/obj/structure/flora/grass/brown,
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/grass/brown,
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/outside)
 "ip" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/effect/spider/stickyweb,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "iq" = (
-/obj/structure/flora/ausbushes/palebush,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/ausbushes/palebush,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "ir" = (
-/obj/structure/flora/grass/both,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/grass/both,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "is" = (
-/turf/simulated/mineral,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/mineral,
+area/awaymission/snow_outpost/outside)
 "it" = (
-/obj/structure/flora/grass/brown,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/grass/brown,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "iu" = (
-/obj/structure/shuttle/engine/propulsion/burst{
+obj/structure/shuttle/engine/propulsion/burst{
 	icon_state = "propulsion";
 	dir = 8
 	},
-/turf/simulated/shuttle/wall,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/shuttle/wall,
+area/awaymission/snow_outpost/outside)
 "iv" = (
-/obj/effect/spider/eggcluster/small/frost,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/effect/spider/eggcluster/small/frost,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "iw" = (
-/obj/machinery/door/airlock/external{
+obj/machinery/door/airlock/external{
 	name = "Escape Pod Hatch";
 	welded = 1
 	},
-/turf/simulated/shuttle/floor,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/shuttle/floor,
+area/awaymission/snow_outpost/outside)
 "ix" = (
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/structure/closet/walllocker/emerglocker{
+obj/structure/closet/walllocker/emerglocker{
 	pixel_y = 28
 	},
-/obj/item/radio/intercom{
+obj/item/radio/intercom{
 	pixel_y = -26
 	},
-/turf/simulated/shuttle/floor,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/shuttle/floor,
+area/awaymission/snow_outpost/outside)
 "iy" = (
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed1{
+obj/machinery/vending/wallmed1{
 	name = "Emergency NanoMed";
 	pixel_y = 28
 	},
-/obj/machinery/light,
-/obj/item/weldingtool/largetank,
-/turf/simulated/shuttle/floor,
-/area/awaymission/snow_outpost/outside)
+obj/machinery/light,
+obj/item/weldingtool/largetank,
+turf/simulated/shuttle/floor,
+area/awaymission/snow_outpost/outside)
 "iz" = (
-/obj/machinery/status_display{
+obj/machinery/status_display{
 	density = 0;
 	layer = 4;
 	pixel_x = 0;
 	pixel_y = -32
 	},
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	icon_state = "chair_preview";
 	dir = 8
 	},
-/obj/effect/decal/remains,
-/obj/effect/debris/cleanable/blood/splatter,
-/obj/item/ammo_casing/spent,
-/obj/item/clothing/under/suit_jacket/really_black,
-/obj/item/clothing/shoes/dress,
-/obj/item/clothing/glasses/sunglasses,
-/obj/random/multiple/gun/projectile/handgun,
-/turf/simulated/shuttle/floor,
-/area/awaymission/snow_outpost/outside)
+obj/effect/decal/remains,
+obj/effect/debris/cleanable/blood/splatter,
+obj/item/ammo_casing/spent,
+obj/item/clothing/under/suit_jacket/really_black,
+obj/item/clothing/shoes/dress,
+obj/item/clothing/glasses/sunglasses,
+obj/random/multiple/gun/projectile/handgun,
+turf/simulated/shuttle/floor,
+area/awaymission/snow_outpost/outside)
 "iA" = (
-/mob/living/simple_mob/animal/giant_spider/frost/sif{
+mob/living/simple_mob/animal/giant_spider/frost/sif{
 	ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "iB" = (
-/mob/living/simple_mob/animal/giant_spider/carrier{
+mob/living/simple_mob/animal/giant_spider/carrier{
 	ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "iC" = (
-/obj/effect/spider/stickyweb,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/effect/spider/stickyweb,
+obj/effect/spider/stickyweb,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "iD" = (
-/obj/structure/closet/crate/mimic/dangerous,
-/turf/simulated/floor/outdoors/dirt{
+obj/structure/closet/crate/mimic/dangerous,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "iF" = (
-/obj/structure/closet/crate/mimic/guaranteed,
-/turf/simulated/floor/outdoors/dirt{
+obj/structure/closet/crate/mimic/guaranteed,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "iG" = (
-/obj/structure/closet/grave,
-/obj/structure/gravemarker,
-/turf/simulated/floor/outdoors/dirt{
+obj/structure/closet/grave,
+obj/structure/gravemarker,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "iH" = (
-/obj/structure/closet/crate/mimic/dangerous,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/powered)
+obj/structure/closet/crate/mimic/dangerous,
+turf/simulated/floor,
+area/awaymission/snow_outpost/powered)
 "iI" = (
-/obj/structure/closet/crate/mimic/guaranteed,
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/powered)
+obj/structure/closet/crate/mimic/guaranteed,
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/powered)
 "iJ" = (
-/obj/structure/closet/crate/mimic/guaranteed,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/closet/crate/mimic/guaranteed,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "iL" = (
-/obj/vehicle_old/bike,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/vehicle_old/bike,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "iM" = (
-/obj/effect/decal/remains/deer,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+obj/effect/decal/remains/deer,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "iN" = (
-/turf/simulated/floor/water/deep,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/water/deep,
+area/awaymission/snow_outpost/dark)
 "iR" = (
-/obj/machinery/atmospherics/component/unary/vent_pump{
+obj/machinery/atmospherics/component/unary/vent_pump{
 	dir = 8;
 	external_pressure_bound = 140;
 	external_pressure_bound_default = 140;
@@ -2598,283 +2598,283 @@
 	pressure_checks_default = 1;
 	use_power = 1
 	},
-/obj/item/stack/material/phoron,
-/obj/machinery/light/flicker{
+obj/item/stack/material/phoron,
+obj/machinery/light/flicker{
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "iS" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/table/woodentable,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "iT" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/item/toy/plushie/spider,
-/turf/simulated/floor/tiled/steel,
-/area/awaymission/snow_outpost/powered)
+obj/structure/bed,
+obj/item/bedsheet,
+obj/item/toy/plushie/spider,
+turf/simulated/floor/tiled/steel,
+area/awaymission/snow_outpost/powered)
 "iU" = (
-/turf/simulated/floor/snow/snow2,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/snow/snow2,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark5";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "iV" = (
-/turf/simulated/floor/snow/snow2,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/snow/snow2,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark9";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "iW" = (
-/obj/effect/decal/remains/deer,
-/turf/simulated/floor/outdoors/dirt{
+obj/effect/decal/remains/deer,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "iX" = (
-/obj/structure/bonfire/permanent,
-/turf/simulated/floor/outdoors/dirt{
+obj/structure/bonfire/permanent,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "iZ" = (
-/obj/structure/dogbed,
-/turf/simulated/floor/outdoors/dirt{
+obj/structure/dogbed,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "jb" = (
-/obj/structure/flora/tree/sif,
-/turf/unsimulated/mineral,
-/area/awaymission/snow_outpost/outside)
+obj/structure/flora/tree/sif,
+turf/unsimulated/mineral,
+area/awaymission/snow_outpost/outside)
 "jo" = (
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "jv" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+obj/machinery/door/airlock,
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "jK" = (
-/obj/random/mob/spider/mutant,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/random/mob/spider/mutant,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "jO" = (
-/obj/structure/ore_box,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/ore_box,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "ki" = (
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor,
+area/awaymission/snow_outpost/dark)
 "kV" = (
-/turf/simulated/floor/outdoors/ice,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/outdoors/ice,
+area/awaymission/snow_outpost/dark)
 "lA" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/flora/tree/sif,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "oT" = (
-/obj/structure/flora/tree/pine,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/flora/tree/pine,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "pV" = (
-/turf/unsimulated/mineral,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/unsimulated/mineral,
+area/awaymission/snow_outpost/outside/nospawn)
 "qL" = (
-/obj/random/landmine,
-/turf/simulated/floor/outdoors/dirt{
+obj/random/landmine,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "ri" = (
-/obj/machinery/light/flicker{
+obj/machinery/light/flicker{
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "rs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4;
 	icon_state = "intact"
 	},
-/obj/machinery/light/flicker,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/light/flicker,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "uq" = (
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "uy" = (
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "xN" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/snow_outpost/dark)
+obj/effect/spider/stickyweb,
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/snow_outpost/dark)
 "yC" = (
-/turf/simulated/floor/tiled,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/tiled,
+area/awaymission/snow_outpost/dark)
 "yM" = (
-/turf/simulated/wall/r_wall,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/wall/r_wall,
+area/awaymission/snow_outpost/powered)
 "yY" = (
-/obj/effect/spider/spiderling/frost,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/effect/spider/spiderling/frost,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "za" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/flora/ausbushes/sparsegrass,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "zF" = (
-/obj/machinery/light/flicker{
+obj/machinery/light/flicker{
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "Cl" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/floor/outdoors/dirt{
+obj/machinery/crystal/ice,
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "DR" = (
-/turf/simulated/floor/tiled/steel,
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/floor/tiled/steel,
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark9";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/outside/nospawn)
+area/awaymission/snow_outpost/outside/nospawn)
 "EA" = (
-/turf/simulated/shuttle/wall/dark{
+turf/simulated/shuttle/wall/dark{
 	icon_state = "dark0";
 	name = "Unknown Shuttle"
 	},
-/area/awaymission/snow_outpost/powered)
+area/awaymission/snow_outpost/powered)
 "EV" = (
-/obj/machinery/light{
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "Gr" = (
-/turf/simulated/floor/outdoors/dirt{
+turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
-/area/awaymission/snow_outpost/dark)
+area/awaymission/snow_outpost/dark)
 "GU" = (
-/turf/simulated/floor/water/deep,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/floor/water/deep,
+area/awaymission/snow_outpost/outside/nospawn)
 "Iz" = (
-/turf/simulated/floor/outdoors/ice,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/floor/outdoors/ice,
+area/awaymission/snow_outpost/outside/nospawn)
 "Jn" = (
-/obj/effect/shuttle_landmark{
+obj/effect/shuttle_landmark{
 	base_area = /area/awaymission/snow_outpost/outside;
 	base_turf = /turf/simulated/floor/snow/snow2;
 	landmark_tag = "tether_excursion_snow_outpost";
 	name = "Snowy Landing Site"
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside)
 "JY" = (
-/obj/random/landmine,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/random/landmine,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "KI" = (
-/obj/machinery/light/flicker{
+obj/machinery/light/flicker{
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "Lh" = (
-/turf/simulated/mineral/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/mineral/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "Lq" = (
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "MR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/machinery/light/flicker{
+obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+obj/machinery/light/flicker{
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "MV" = (
-/obj/machinery/door/airlock/silver,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/door/airlock/silver,
+obj/machinery/door/firedoor,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "NH" = (
-/obj/machinery/light/flicker{
+obj/machinery/light/flicker{
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/powered)
 "PZ" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/machinery/crystal/ice,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "QY" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+mob/living/simple_mob/animal/giant_spider/frost,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "Rs" = (
-/turf/unsimulated/mineral,
-/area/awaymission/snow_outpost/dark)
+turf/unsimulated/mineral,
+area/awaymission/snow_outpost/dark)
 "RF" = (
-/turf/simulated/mineral/ignore_mapgen,
-/area/awaymission/snow_outpost/outside/nospawn)
+turf/simulated/mineral/ignore_mapgen,
+area/awaymission/snow_outpost/outside/nospawn)
 "RY" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/outside/nospawn)
+obj/structure/flora/tree/sif,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/outside/nospawn)
 "SO" = (
-/obj/machinery/light{
+obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 "Tb" = (
-/obj/structure/flora/ausbushes/grassybush,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/flora/ausbushes/grassybush,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "Uy" = (
-/obj/effect/overmap/visitable/sector/gateway/snowoutpost,
-/turf/simulated/mineral/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/effect/overmap/visitable/sector/gateway/snowoutpost,
+turf/simulated/mineral/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "Vk" = (
-/turf/simulated/mineral/ignore_mapgen,
-/area/awaymission/snow_outpost/powered)
+turf/simulated/mineral/ignore_mapgen,
+area/awaymission/snow_outpost/powered)
 "VF" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/machinery/crystal/ice,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "VK" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/simulated/floor/snow/snow2,
-/area/awaymission/snow_outpost/dark)
+obj/structure/flora/ausbushes/stalkybush,
+turf/simulated/floor/snow/snow2,
+area/awaymission/snow_outpost/dark)
 "Wj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/machinery/light/flicker,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+obj/machinery/light/flicker,
+turf/simulated/floor/tiled/white,
+area/awaymission/snow_outpost/powered)
 "Zg" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/awaymission/snow_outpost/dark)
+obj/machinery/crystal/ice,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/awaymission/snow_outpost/dark)
 "ZW" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/old_tile/white,
-/area/awaymission/snow_outpost/powered)
+obj/machinery/light,
+turf/simulated/floor/tiled/old_tile/white,
+area/awaymission/snow_outpost/powered)
 
 (1,1,1) = {"
 in

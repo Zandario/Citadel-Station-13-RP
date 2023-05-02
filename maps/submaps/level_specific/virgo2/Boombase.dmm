@@ -1,184 +1,184 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "ab" = (
-/turf/template_noop,
-/area/submap/virgo2/BoomBase)
+turf/template_noop,
+area/submap/virgo2/BoomBase)
 "ac" = (
-/obj/effect/decal/remains/human,
-/turf/template_noop,
-/area/submap/virgo2/BoomBase)
+obj/effect/decal/remains/human,
+turf/template_noop,
+area/submap/virgo2/BoomBase)
 "ad" = (
-/obj/item/material/shard,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/item/material/shard,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/BoomBase)
 "ae" = (
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "af" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/structure/girder,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "ag" = (
-/obj/structure/girder,
-/obj/item/stack/rods,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/structure/girder,
+obj/item/stack/rods,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "ah" = (
-/turf/simulated/wall/virgo2,
-/area/submap/virgo2/BoomBase)
+turf/simulated/wall/virgo2,
+area/submap/virgo2/BoomBase)
 "ai" = (
-/obj/structure/closet/crate/secure/phoron,
-/obj/fiftyspawner/phoron,
-/turf/simulated/floor/plating,
-/area/submap/virgo2/BoomBase)
+obj/structure/closet/crate/secure/phoron,
+obj/fiftyspawner/phoron,
+turf/simulated/floor/plating,
+area/submap/virgo2/BoomBase)
 "aj" = (
-/obj/structure/closet/crate/secure/phoron,
-/obj/fiftyspawner/phoron,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/structure/closet/crate/secure/phoron,
+obj/fiftyspawner/phoron,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "ak" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/effect/debris/cleanable/ash,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+obj/effect/debris/cleanable/ash,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "al" = (
-/obj/effect/debris/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "am" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/effect/spider,
-/obj/item/material/shard,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+obj/effect/spider,
+obj/item/material/shard,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "an" = (
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "ao" = (
-/mob/living/simple_mob/animal/space/jelly,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+mob/living/simple_mob/animal/space/jelly,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "ap" = (
-/obj/machinery/portable_atmospherics/canister/empty/phoron,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/machinery/portable_atmospherics/canister/empty/phoron,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "aq" = (
-/obj/machinery/portable_atmospherics/canister/empty/phoron,
-/obj/item/material/shard,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/machinery/portable_atmospherics/canister/empty/phoron,
+obj/item/material/shard,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "ar" = (
-/obj/effect/decal/remains/human,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/decal/remains/human,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "as" = (
-/obj/item/material/shard,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/item/material/shard,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "at" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/spider/stickyweb,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "au" = (
-/obj/effect/debris/cleanable/dirt,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "av" = (
-/obj/effect/debris/cleanable/ash,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/ash,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "aw" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+obj/effect/spider/stickyweb,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "ax" = (
-/obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/animal/space/jelly,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+mob/living/simple_mob/animal/space/jelly,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "ay" = (
-/obj/structure/table,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/structure/table,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "az" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/structure/table/standard,
-/obj/item/tank/phoron,
-/obj/item/fuel_assembly/phoron,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+obj/structure/table/standard,
+obj/item/tank/phoron,
+obj/item/fuel_assembly/phoron,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "aA" = (
-/obj/effect/decal/remains/human,
-/obj/effect/debris/cleanable/ash,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/decal/remains/human,
+obj/effect/debris/cleanable/ash,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "aB" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/BoomBase)
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/BoomBase)
 "aC" = (
-/obj/item/material/shard,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/item/material/shard,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "aD" = (
-/obj/effect/debris/cleanable/ash,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/ash,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/submap/virgo2/BoomBase)
 "aE" = (
-/obj/item/transfer_valve,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/item/transfer_valve,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/BoomBase)
 "aF" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/effect/debris/cleanable/ash,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+obj/effect/debris/cleanable/ash,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "aG" = (
-/obj/effect/decal/remains/human,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/decal/remains/human,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/BoomBase)
 "aH" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/tether_away_spawner/aerostat_surface,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+obj/tether_away_spawner/aerostat_surface,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "aI" = (
-/obj/tether_away_spawner/aerostat_surface,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/tether_away_spawner/aerostat_surface,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/BoomBase)
 "aJ" = (
-/obj/structure/ghost_pod/manual/lost_drone/dogborg,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/structure/ghost_pod/manual/lost_drone/dogborg,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "aT" = (
-/obj/effect/debris/cleanable/dirt,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/dirt,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/BoomBase)
 "aU" = (
-/obj/effect/debris/cleanable/ash,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/debris/cleanable/ash,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/BoomBase)
 "aV" = (
-/obj/effect/spider/stickyweb,
-/obj/item/material/shard,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/spider/stickyweb,
+obj/item/material/shard,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/BoomBase)
 "aY" = (
-/obj/effect/spider/stickyweb,
-/obj/effect/debris/cleanable/ash,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/spider/stickyweb,
+obj/effect/debris/cleanable/ash,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "aZ" = (
-/obj/effect/decal/remains/human,
-/obj/effect/debris/cleanable/ash,
-/turf/simulated/floor/plating/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/effect/decal/remains/human,
+obj/effect/debris/cleanable/ash,
+turf/simulated/floor/plating/virgo2,
+area/submap/virgo2/BoomBase)
 "ba" = (
-/obj/item/stack/rods,
-/turf/simulated/wall/virgo2,
-/area/submap/virgo2/BoomBase)
+obj/item/stack/rods,
+turf/simulated/wall/virgo2,
+area/submap/virgo2/BoomBase)
 
 (1,1,1) = {"
 aa

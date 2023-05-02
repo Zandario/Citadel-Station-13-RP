@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers/virusfood
+obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
 	desc = "A dispenser of virus food. Yum."
 	icon = 'icons/obj/objects.dmi'

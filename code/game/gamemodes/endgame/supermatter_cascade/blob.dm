@@ -1,5 +1,5 @@
 // QUALITY COPYPASTA
-/turf/unsimulated/wall/supermatter
+turf/unsimulated/wall/supermatter
 	name = "Bluespace"
 	desc = "THE END IS right now actually."
 
@@ -14,16 +14,16 @@
 	var/next_check=0
 	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
 
-/turf/unsimulated/wall/supermatter/Initialize(mapload)
+turf/unsimulated/wall/supermatter/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSturfs, src)
 	next_check = world.time+5 SECONDS
 
-/turf/unsimulated/wall/supermatter/Destroy()
+turf/unsimulated/wall/supermatter/Destroy()
 	STOP_PROCESSING(SSturfs, src)
 	return ..()
 
-/turf/unsimulated/wall/supermatter/process(delta_time)
+turf/unsimulated/wall/supermatter/process(delta_time)
 	// Only check infrequently.
 	if(next_check>world.time) return
 
@@ -60,10 +60,10 @@
 		STOP_PROCESSING(SSturfs, src)
 		return
 
-/turf/unsimulated/wall/supermatter/attack_generic(mob/user as mob)
+turf/unsimulated/wall/supermatter/attack_generic(mob/user as mob)
 	return attack_hand(user)
 
-/turf/unsimulated/wall/supermatter/attack_robot(mob/user as mob)
+turf/unsimulated/wall/supermatter/attack_robot(mob/user as mob)
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
@@ -71,14 +71,14 @@
 	return
 
 // /vg/: Don't let ghosts fuck with this.
-/turf/unsimulated/wall/supermatter/attack_ghost(mob/user as mob)
+turf/unsimulated/wall/supermatter/attack_ghost(mob/user as mob)
 	. = ..()
 	user.examinate(src)
 
-/turf/unsimulated/wall/supermatter/attack_ai(mob/user as mob)
+turf/unsimulated/wall/supermatter/attack_ai(mob/user as mob)
 	return user.examinate(src)
 
-/turf/unsimulated/wall/supermatter/attack_hand(mob/user, list/params)
+turf/unsimulated/wall/supermatter/attack_hand(mob/user, list/params)
 	user.visible_message("<span class=\"warning\">\The [user] reaches out and touches \the [src]... And then blinks out of existance.</span>",\
 		"<span class=\"danger\">You reach out and touch \the [src]. Everything immediately goes quiet. Your last thought is \"That was not a wise decision.\"</span>",\
 		"<span class=\"warning\">You hear an unearthly noise.</span>")
@@ -87,7 +87,7 @@
 
 	Consume(user)
 
-/turf/unsimulated/wall/supermatter/attackby(obj/item/W as obj, mob/living/user as mob)
+turf/unsimulated/wall/supermatter/attackby(obj/item/W as obj, mob/living/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\
 		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
 		"<span class=\"warning\">Everything suddenly goes silent.</span>")
@@ -96,7 +96,7 @@
 	Consume(W)
 
 
-/turf/unsimulated/wall/supermatter/Bumped(atom/AM as mob|obj)
+turf/unsimulated/wall/supermatter/Bumped(atom/AM as mob|obj)
 	if(istype(AM, /mob/living))
 		var/mob/living/M = AM
 		var/datum/gender/T = GLOB.gender_datums[M.get_visible_gender()]
@@ -111,7 +111,7 @@
 	Consume(AM)
 
 
-/turf/unsimulated/wall/supermatter/proc/Consume(atom/movable/AM)
+turf/unsimulated/wall/supermatter/proc/Consume(atom/movable/AM)
 	if((!isobj(AM) && !ismob(AM)) || isobserver(AM))
 		return
 

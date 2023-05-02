@@ -1,4 +1,4 @@
-/obj/structure/door_assembly
+obj/structure/door_assembly
 	name = "airlock assembly"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_as_0"
@@ -14,117 +14,117 @@
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
 	var/created_name = null
 
-/obj/structure/door_assembly/Initialize(mapload)
+obj/structure/door_assembly/Initialize(mapload)
 	. = ..()
 	update_state()
 
-/obj/structure/door_assembly/door_assembly_com
+obj/structure/door_assembly/door_assembly_com
 	base_icon_state = "com"
 	base_name = "Command airlock"
 	glass_type = "/glass_command"
 	airlock_type = "/command"
 
-/obj/structure/door_assembly/door_assembly_sec
+obj/structure/door_assembly/door_assembly_sec
 	base_icon_state = "sec"
 	base_name = "Security airlock"
 	glass_type = "/glass_security"
 	airlock_type = "/security"
 
-/obj/structure/door_assembly/door_assembly_eng
+obj/structure/door_assembly/door_assembly_eng
 	base_icon_state = "eng"
 	base_name = "Engineering airlock"
 	glass_type = "/glass_engineering"
 	airlock_type = "/engineering"
 
-/obj/structure/door_assembly/door_assembly_eat
+obj/structure/door_assembly/door_assembly_eat
 	base_icon_state = "eat"
 	base_name = "Engineering atmos airlock"
 	glass_type = "/glass_engineeringatmos"
 	airlock_type = "/engineering"
 
-/obj/structure/door_assembly/door_assembly_min
+obj/structure/door_assembly/door_assembly_min
 	base_icon_state = "min"
 	base_name = "Mining airlock"
 	glass_type = "/glass_mining"
 	airlock_type = "/mining"
 
-/obj/structure/door_assembly/door_assembly_atmo
+obj/structure/door_assembly/door_assembly_atmo
 	base_icon_state = "atmo"
 	base_name = "Atmospherics airlock"
 	glass_type = "/glass_atmos"
 	airlock_type = "/atmos"
 
-/obj/structure/door_assembly/door_assembly_research
+obj/structure/door_assembly/door_assembly_research
 	base_icon_state = "res"
 	base_name = "Research airlock"
 	glass_type = "/glass_research"
 	airlock_type = "/research"
 
-/obj/structure/door_assembly/door_assembly_science
+obj/structure/door_assembly/door_assembly_science
 	base_icon_state = "sci"
 	base_name = "Science airlock"
 	glass_type = "/glass_science"
 	airlock_type = "/science"
 
-/obj/structure/door_assembly/door_assembly_med
+obj/structure/door_assembly/door_assembly_med
 	base_icon_state = "med"
 	base_name = "Medical airlock"
 	glass_type = "/glass_medical"
 	airlock_type = "/medical"
 
-/obj/structure/door_assembly/door_assembly_ext
+obj/structure/door_assembly/door_assembly_ext
 	base_icon_state = "ext"
 	base_name = "External airlock"
 	glass_type = "/glass_external"
 	airlock_type = "/external"
 
-/obj/structure/door_assembly/door_assembly_mai
+obj/structure/door_assembly/door_assembly_mai
 	base_icon_state = "mai"
 	base_name = "Maintenance airlock"
 	airlock_type = "/maintenance"
 	glass = -1
 
-/obj/structure/door_assembly/door_assembly_fre
+obj/structure/door_assembly/door_assembly_fre
 	base_icon_state = "fre"
 	base_name = "Freezer airlock"
 	airlock_type = "/freezer"
 	glass = -1
 
-/obj/structure/door_assembly/door_assembly_hatch
+obj/structure/door_assembly/door_assembly_hatch
 	base_icon_state = "hatch"
 	base_name = "airtight hatch"
 	airlock_type = "/hatch"
 	glass = -1
 
-/obj/structure/door_assembly/door_assembly_mhatch
+obj/structure/door_assembly/door_assembly_mhatch
 	base_icon_state = "mhatch"
 	base_name = "maintenance hatch"
 	airlock_type = "/maintenance_hatch"
 	glass = -1
 
-/obj/structure/door_assembly/door_assembly_highsecurity // Borrowing this until WJohnston makes sprites for the assembly
+obj/structure/door_assembly/door_assembly_highsecurity // Borrowing this until WJohnston makes sprites for the assembly
 	base_icon_state = "highsec"
 	base_name = "high security airlock"
 	airlock_type = "/highsecurity"
 	glass = -1
 
-/obj/structure/door_assembly/door_assembly_voidcraft
+obj/structure/door_assembly/door_assembly_voidcraft
 	base_icon_state = "voidcraft"
 	base_name = "voidcraft hatch"
 	airlock_type = "/voidcraft"
 	glass = -1
 
-/obj/structure/door_assembly/door_assembly_voidcraft/vertical
+obj/structure/door_assembly/door_assembly_voidcraft/vertical
 	base_icon_state = "voidcraft_vertical"
 	airlock_type = "/voidcraft/vertical"
 
-/obj/structure/door_assembly/door_assembly_alien
+obj/structure/door_assembly/door_assembly_alien
 	base_icon_state = "alien"
 	base_name = "alien airlock"
 	airlock_type = "/alien"
 	glass = -1
 
-/obj/structure/door_assembly/multi_tile
+obj/structure/door_assembly/multi_tile
 	icon = 'icons/obj/doors/door_assembly2x1.dmi'
 	dir = EAST
 	var/width = 1
@@ -137,7 +137,7 @@
 	airlock_type = "/multi_tile/glass"
 	glass = -1 //To prevent bugs in deconstruction process.
 
-/obj/structure/door_assembly/multi_tile/Initialize(mapload)
+obj/structure/door_assembly/multi_tile/Initialize(mapload)
 	if(dir in list(EAST, WEST))
 		bound_width = width * world.icon_size
 		bound_height = world.icon_size
@@ -146,7 +146,7 @@
 		bound_height = width * world.icon_size
 	return ..()
 
-/obj/structure/door_assembly/multi_tile/Move()
+obj/structure/door_assembly/multi_tile/Move()
 	. = ..()
 	if(dir in list(EAST, WEST))
 		bound_width = width * world.icon_size
@@ -155,18 +155,18 @@
 		bound_width = world.icon_size
 		bound_height = width * world.icon_size
 
-/obj/structure/door_assembly/proc/rename_door(mob/living/user)
+obj/structure/door_assembly/proc/rename_door(mob/living/user)
 	var/t = sanitizeSafe(input(user, "Enter the name for the windoor.", src.name, src.created_name), MAX_NAME_LEN)
 	if(!in_range(src, user) && src.loc != user)	return
 	created_name = t
 	update_state()
 
-/obj/structure/door_assembly/attack_robot(mob/living/silicon/robot/user)
+obj/structure/door_assembly/attack_robot(mob/living/silicon/robot/user)
 	if(Adjacent(user) && (user.module && (istype(user.module,/obj/item/robot_module/robot/engineering/general)) \
 	|| istype(user.module,/obj/item/robot_module/drone))) //Only dron (and engiborg) needs this.
 		rename_door(user)
 
-/obj/structure/door_assembly/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/door_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen))
 		rename_door(user)
 		return
@@ -309,7 +309,7 @@
 		..()
 	update_state()
 
-/obj/structure/door_assembly/proc/update_state()
+obj/structure/door_assembly/proc/update_state()
 	icon_state = "door_as_[glass == 1 ? "g" : ""][istext(glass) ? glass : base_icon_state][state]"
 	name = ""
 	switch (state)
@@ -324,7 +324,7 @@
 
 // Airlock frames are indestructable, so bullets hitting them would always be stopped.
 // To fix this, airlock assemblies will sometimes let bullets pass through, since generally the sprite shows them partially open.
-/obj/structure/door_assembly/bullet_act(var/obj/projectile/P)
+obj/structure/door_assembly/bullet_act(var/obj/projectile/P)
 	if(prob(40)) // Chance for the frame to let the bullet keep going.
 		return PROJECTILE_CONTINUE
 	return ..()

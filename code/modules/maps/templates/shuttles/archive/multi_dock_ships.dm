@@ -11,7 +11,7 @@ archived cousin here.
 //////////////////
 /// Trade Ship ///
 //////////////////
-/datum/shuttle/autodock/multi/trade
+datum/shuttle/autodock/multi/trade
 	name = "Trade"
 	current_location = "trade_dock"
 	shuttle_area = /area/shuttle/trade
@@ -31,7 +31,7 @@ archived cousin here.
 /////////////////////////
 /// Mercenary Shuttle ///
 /////////////////////////
-/datum/shuttle/autodock/multi/mercenary
+datum/shuttle/autodock/multi/mercenary
 	name = "Mercenary"
 	warmup_time = 8
 	move_time = 60
@@ -60,7 +60,7 @@ archived cousin here.
 /////////////////////
 /// Ninja Shuttle ///
 /////////////////////
-/datum/shuttle/autodock/multi/ninja
+datum/shuttle/autodock/multi/ninja
 	name = "Ninja"
 	warmup_time = 8
 	move_time = 60
@@ -92,7 +92,7 @@ archived cousin here.
 ////////////////
 /// Skipjack ///
 ////////////////
-/datum/shuttle/autodock/multi/heist
+datum/shuttle/autodock/multi/heist
 	name = "Skipjack"
 	warmup_time = 8
 	move_time = 60
@@ -124,7 +124,7 @@ archived cousin here.
 ///////////////////
 /// ERT Shuttle ///
 ///////////////////
-/datum/shuttle/autodock/multi/specialops
+datum/shuttle/autodock/multi/specialops
 	name = "NDV Phantom"
 	can_cloak = TRUE
 	cloaked = FALSE
@@ -152,4 +152,3 @@ archived cousin here.
 	departure_message = "Attention. A NT support vessel is now leaving Virgo-3B."
 	defer_initialisation = TRUE
 	move_direction = WEST
-

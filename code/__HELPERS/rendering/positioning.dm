@@ -7,7 +7,7 @@
  *  eg: center_image(I, 32,32)
  *  eg2: center_image(I, 96,96)
  */
-/proc/center_appearance(mutable_appearance/MA, x_dimension, y_dimension)
+proc/center_appearance(mutable_appearance/MA, x_dimension, y_dimension)
 	MA.pixel_x = (WORLD_ICON_SIZE - x_dimension) * 0.5
 	MA.pixel_y = (WORLD_ICON_SIZE - y_dimension) * 0.5
 	return MA

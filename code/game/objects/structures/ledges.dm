@@ -1,4 +1,4 @@
-/obj/structure/ledge
+obj/structure/ledge
 	name = "rock ledge"
 	desc = "An easily scaleable rocky ledge."
 	icon = 'icons/obj/ledges.dmi'
@@ -11,7 +11,7 @@
 	layer = STAIRS_LAYER
 	icon_state = "ledge"
 
-/obj/structure/ledge_corner
+obj/structure/ledge_corner
 	icon_state = "ledge-corner"
 	atom_flags = NONE
 	name = "rock ledge"
@@ -23,27 +23,27 @@
 	anchored = TRUE
 	layer = STAIRS_LAYER
 
-/obj/structure/ledge/ledge_nub
+obj/structure/ledge/ledge_nub
 	desc = "Part of a rocky ledge."
 	icon_state = "ledge-nub"
 	density = FALSE
 	solidledge = FALSE
 
-/obj/structure/ledge/ledge_stairs
+obj/structure/ledge/ledge_stairs
 	name = "rock stairs"
 	desc = "A colorful set of rocky stairs"
 	icon_state = "ledge-stairs"
 	density = FALSE
 	solidledge = FALSE
 
-/obj/structure/ledge/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/ledge/CanAllowThrough(atom/movable/mover, turf/target)
 	if(!solidledge)
 		return TRUE
 	if(!(get_dir(mover, target) & turn(dir, 180)))
 		return TRUE
 	return ..()
 
-/obj/structure/ledge/CheckExit(atom/movable/AM, atom/newLoc)
+obj/structure/ledge/CheckExit(atom/movable/AM, atom/newLoc)
 	if(check_standard_flag_pass(AM))
 		return TRUE
 	if(!solidledge)
@@ -52,7 +52,7 @@
 		return TRUE
 	return FALSE
 
-/obj/structure/ledge/do_climb(var/mob/living/user)
+obj/structure/ledge/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
 
@@ -75,7 +75,7 @@
 	usr.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
 	climbers -= user
 
-/obj/structure/ledge/can_climb(var/mob/living/user, post_climb_check=0)
+obj/structure/ledge/can_climb(var/mob/living/user, post_climb_check=0)
 	if(!..())
 		return 0
 

@@ -19,35 +19,35 @@
  * Areas
 */
 //Gateroom gets its own APC specifically for the gate
-/area/awaymission/gateroom
+area/awaymission/gateroom
 
 //Library, medbay, storage room
-/area/awaymission/southblock
+area/awaymission/southblock
 
 //Arrivals, security, hydroponics, shuttles (since they dont move, they dont need specific areas)
-/area/awaymission/arrivalblock
+area/awaymission/arrivalblock
 
 //Crew quarters, cafeteria, chapel
-/area/awaymission/midblock
+area/awaymission/midblock
 
 //engineering, bridge (not really north but it doesnt really need its own APC)
-/area/awaymission/northblock
+area/awaymission/northblock
 
 //That massive research room
-/area/awaymission/research
+area/awaymission/research
 
 //Syndicate shuttle
-/area/awaymission/syndishuttle
+area/awaymission/syndishuttle
 
 
 /*
  * Landmarks - Instead of spawning a new object type, I'll spawn the bible using a landmark!
  */
-/obj/landmark/sc_bible_spawner
+obj/landmark/sc_bible_spawner
 	name = "Safecode hint spawner"
 	delete_me = TRUE
 
-/obj/landmark/sc_bible_spawner/Initialize(mapload)
+obj/landmark/sc_bible_spawner/Initialize(mapload)
 	. = ..()
 	var/obj/item/storage/bible/B = new /obj/item/storage/bible/booze(src.loc)
 	B.name = "The Holy book of the Geometer"
@@ -70,35 +70,35 @@ obj/item/gun/energy/laser/retro/sc_retro
 	//clumsy_check = 0 //No sense in having a harmless gun blow up in the clowns face
 
 //Syndicate silenced pistol. This definition is not necessary, it's just habit.
-/obj/item/gun/ballistic/silenced/sc_silenced
+obj/item/gun/ballistic/silenced/sc_silenced
 
 //Make it so that these guns only spawn with a couple bullets... if any
-/obj/item/gun/ballistic/silenced/sc_silenced/Initialize(mapload, starts_loaded)
+obj/item/gun/ballistic/silenced/sc_silenced/Initialize(mapload, starts_loaded)
 	. = ..()
 	for(var/ammo in loaded)
 		if(prob(95)) //95% chance
 			loaded -= ammo
 
 //Syndicate sub-machine guns.
-/obj/item/gun/ballistic/automatic/c20r/sc_c20r
+obj/item/gun/ballistic/automatic/c20r/sc_c20r
 
-/obj/item/gun/ballistic/automatic/c20r/sc_c20r/Initialize(mapload, starts_loaded)
+obj/item/gun/ballistic/automatic/c20r/sc_c20r/Initialize(mapload, starts_loaded)
 	. = ..()
 	for(var/ammo in loaded)
 		if(prob(95)) //95% chance
 			loaded -= ammo
 
 //Barman's shotgun
-/obj/item/gun/ballistic/shotgun/pump/sc_pump
+obj/item/gun/ballistic/shotgun/pump/sc_pump
 
-/obj/item/gun/ballistic/shotgun/pump/sc_pump/Initialize(mapload, starts_loaded)
+obj/item/gun/ballistic/shotgun/pump/sc_pump/Initialize(mapload, starts_loaded)
 	. = ..()
 	for(var/ammo in loaded)
 		if(prob(95)) //95% chance
 			loaded -= ammo
 
 //Lasers
-/obj/item/gun/energy/laser/practice/sc_laser
+obj/item/gun/energy/laser/practice/sc_laser
 	name = "Old laser"
 	desc = "A once potent weapon, years of dust have collected in the chamber and lens of this weapon, weakening the beam significantly."
 	//clumsy_check = 0
@@ -115,35 +115,35 @@ var/sc_safecode4 = "[rand(0,9)]"
 var/sc_safecode5 = "[rand(0,9)]"
 
 //Pieces of paper actually containing the hints
-/obj/item/paper/sc_safehint_paper_prison
+obj/item/paper/sc_safehint_paper_prison
 	name = "smudged paper"
 
-/obj/item/paper/sc_safehint_paper_prison/Initialize(mapload)
+obj/item/paper/sc_safehint_paper_prison/Initialize(mapload)
 	. = ..()
 	info = "<i>The ink is smudged, you can only make out a couple numbers:</i> '[sc_safecode1]**[sc_safecode4]*'"
 
-/obj/item/paper/sc_safehint_paper_hydro
+obj/item/paper/sc_safehint_paper_hydro
 	name = "shredded paper"
 
-/obj/item/paper/sc_safehint_paper_hydro/Initialize(mapload)
+obj/item/paper/sc_safehint_paper_hydro/Initialize(mapload)
 	. = ..()
 	info = "<i>Although the paper is shredded, you can clearly see the number:</i> '[sc_safecode2]'"
 
-/obj/item/paper/sc_safehint_paper_caf
+obj/item/paper/sc_safehint_paper_caf
 	name = "blood-soaked paper"
 	//This does not have to be in New() because it is a constant. There are no variables in it i.e. [sc_safcode]
 	info = "<font color=red><i>This paper is soaked in blood, it is impossible to read any text.</i></font>"
 
-/obj/item/paper/sc_safehint_paper_bible
+obj/item/paper/sc_safehint_paper_bible
 	name = "hidden paper"
 
-/obj/item/paper/sc_safehint_paper_bible/Initialize(mapload)
+obj/item/paper/sc_safehint_paper_bible/Initialize(mapload)
 	. = ..()
 	info = {"<i>It would appear that the pen hidden with the paper had leaked ink over the paper.
 			However you can make out the last three digits:</i>'[sc_safecode3][sc_safecode4][sc_safecode5]'
 			"}
 
-/obj/item/paper/sc_safehint_paper_shuttle
+obj/item/paper/sc_safehint_paper_shuttle
 	info = {"<b>Target:</b> Research-station Epsilon<br>
 			<b>Objective:</b> Prototype weaponry. The captain likely keeps them locked in her safe.<br>
 			<br>
@@ -159,10 +159,10 @@ var/sc_safecode5 = "[rand(0,9)]"
 /*
  * Captain's safe
  */
-/obj/item/storage/secure/safe/sc_ssafe
+obj/item/storage/secure/safe/sc_ssafe
 	name = "Captain's secure safe"
 
-/obj/item/storage/secure/safe/sc_ssafe/Initialize(mapload)
+obj/item/storage/secure/safe/sc_ssafe/Initialize(mapload)
 	. = ..()
 	l_code = "[sc_safecode1][sc_safecode2][sc_safecode3][sc_safecode4][sc_safecode5]"
 	l_set = 1
@@ -176,21 +176,21 @@ var/sc_safecode5 = "[rand(0,9)]"
 /*
  * Modified Nar-Sie
 
-/obj/machinery/singularity/narsie/sc_Narsie
+obj/machinery/singularity/narsie/sc_Narsie
 	desc = "Your body becomes weak and your feel your mind slipping away as you try to comprehend what you know can't be possible."
 	move_self = 0 //Contianed narsie does not move!
 	grav_pull = 0 //Contained narsie does not pull stuff in!
 
 //Override this to prevent no adminlog runtimes and admin warnings about a singularity without containment
-/obj/machinery/singularity/narsie/sc_Narsie/admin_investigate_setup()
+obj/machinery/singularity/narsie/sc_Narsie/admin_investigate_setup()
 	return
 
-/obj/machinery/singularity/narsie/sc_Narsie/process(delta_time)
+obj/machinery/singularity/narsie/sc_Narsie/process(delta_time)
 	eat()
 	if(prob(25))
 		mezzer()
 
-/obj/machinery/singularity/narsie/sc_Narsie/consume(var/atom/A)
+obj/machinery/singularity/narsie/sc_Narsie/consume(var/atom/A)
 	if(is_type_in_list(A, uneatable))
 		return 0
 	if (istype(A,/mob/living))
@@ -211,6 +211,6 @@ var/sc_safecode5 = "[rand(0,9)]"
 		T.ChangeTurf(/turf/space)
 	return
 
-/obj/machinery/singularity/narsie/sc_Narsie/legacy_ex_act()
+obj/machinery/singularity/narsie/sc_Narsie/legacy_ex_act()
 	return
 */

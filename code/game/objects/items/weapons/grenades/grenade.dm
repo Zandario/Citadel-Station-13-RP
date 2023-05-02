@@ -1,4 +1,4 @@
-/obj/item/grenade
+obj/item/grenade
 	name = "grenade"
 	desc = "A hand held grenade, with an adjustable timer."
 	w_class = ITEMSIZE_SMALL
@@ -14,7 +14,7 @@
 	var/loadable = TRUE
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 
-/obj/item/grenade/proc/clown_check(var/mob/living/user)
+obj/item/grenade/proc/clown_check(var/mob/living/user)
 	if((MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
 
@@ -44,7 +44,7 @@
 	return*/
 
 
-/obj/item/grenade/examine(mob/user)
+obj/item/grenade/examine(mob/user)
 	. = ..()
 	if(det_time > 1)
 		. += "<span class = 'notice'>The timer is set to [det_time/10] seconds.</span>"
@@ -53,7 +53,7 @@
 		. += "<span class = 'danger'>The [src] is set for instant detonation.</span>"
 
 
-/obj/item/grenade/attack_self(mob/user)
+obj/item/grenade/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -69,7 +69,7 @@
 	return
 
 
-/obj/item/grenade/proc/activate(mob/user as mob)
+obj/item/grenade/proc/activate(mob/user as mob)
 	if(active)
 		return
 
@@ -85,14 +85,14 @@
 		return
 
 
-/obj/item/grenade/proc/detonate()
+obj/item/grenade/proc/detonate()
 //	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
 
 
-/obj/item/grenade/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/grenade/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_screwdriver())
 		switch(det_time)
 			if (1)
@@ -111,7 +111,7 @@
 	..()
 	return
 
-/obj/item/grenade/attack_hand(mob/user, list/params)
+obj/item/grenade/attack_hand(mob/user, list/params)
 	walk(src, null, null)
 	..()
 	return

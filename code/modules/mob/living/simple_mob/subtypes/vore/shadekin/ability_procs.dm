@@ -1,5 +1,5 @@
 // Phase shifting procs (and related procs)
-/mob/living/simple_mob/shadekin/proc/phase_shift()
+mob/living/simple_mob/shadekin/proc/phase_shift()
 	var/turf/T = get_turf(src)
 	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,"<span class='warning'>You can't use that here!</span>")
@@ -89,19 +89,19 @@
 		density = FALSE
 		force_max_speed = TRUE
 
-/mob/living/simple_mob/shadekin/UnarmedAttack()
+mob/living/simple_mob/shadekin/UnarmedAttack()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return FALSE //Nope.
 
 	. = ..()
 
-/mob/living/simple_mob/shadekin/can_fall()
+mob/living/simple_mob/shadekin/can_fall()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return FALSE //Nope!
 
 	return ..()
 
-/mob/living/simple_mob/shadekin/zMove(direction)
+mob/living/simple_mob/shadekin/zMove(direction)
 	if(ability_flags & AB_PHASE_SHIFTED)
 		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 		if(destination)
@@ -111,7 +111,7 @@
 	return ..()
 
 // Healing others
-/mob/living/simple_mob/shadekin/proc/mend_other()
+mob/living/simple_mob/shadekin/proc/mend_other()
 	//I hate to crunch a view() but I only want ones I can see
 	var/list/viewed = oview(1)
 	var/list/targets = list()

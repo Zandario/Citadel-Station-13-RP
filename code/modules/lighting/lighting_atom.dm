@@ -1,4 +1,4 @@
-/atom
+atom
 	/// Intensity of the light.
 	var/light_power = 1
 	/// Range in tiles of the light.
@@ -23,7 +23,7 @@
 #define NONSENSICAL_VALUE -99999
 
 /// The proc you should always use to set the light of this atom.
-/atom/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE, angle = NONSENSICAL_VALUE, no_update = FALSE)
+atom/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE, angle = NONSENSICAL_VALUE, no_update = FALSE)
 	if(l_range > 0 && l_range < MINIMUM_USEFUL_LIGHT_RANGE)
 		l_range = MINIMUM_USEFUL_LIGHT_RANGE	//Brings the range up to 1.4
 	if (l_power != null)
@@ -47,7 +47,7 @@
 
 // Will update the light (duh).
 // Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
-/atom/proc/update_light()
+atom/proc/update_light()
 	if (QDELING(src))
 		return
 
@@ -70,7 +70,7 @@
  * This exists to act as a hook for associated behavior.
  * It notifies (potentially) affected light sources so they can update (if needed).
  */
-/atom/proc/set_opacity(new_opacity)
+atom/proc/set_opacity(new_opacity)
 	if (new_opacity == opacity)
 		return
 	SEND_SIGNAL(src, COMSIG_ATOM_SET_OPACITY, new_opacity)
@@ -79,7 +79,7 @@
 
 // Should always be used to change the opacity of an atom.
 // It notifies (potentially) affected light sources so they can update (if needed).
-/atom/set_opacity(new_opacity)
+atom/set_opacity(new_opacity)
 	. = ..()
 	if (!.)
 		return
@@ -101,7 +101,7 @@
 		if (old_has_opaque_atom != T.has_opaque_atom)
 			T.reconsider_lights()
 
-/atom/movable/forceMove()
+atom/movable/forceMove()
 	. = ..()
 
 	if (light_source_solo)
@@ -113,7 +113,7 @@
 			L = thing
 			L.source_atom.update_light()
 
-/atom/vv_edit_var(var_name, var_value)
+atom/vv_edit_var(var_name, var_value)
 	switch (var_name)
 		if (NAMEOF(src, light_range))
 			set_light(l_range=var_value)
@@ -138,7 +138,7 @@
 	return ..()
 
 
-/atom/setDir(newdir)
+atom/setDir(newdir)
 	. = ..()
 	if (light_source_solo)
 		if (light_source_solo.light_angle)

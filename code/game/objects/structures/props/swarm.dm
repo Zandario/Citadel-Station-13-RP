@@ -1,4 +1,4 @@
-/obj/structure/cult/pylon/swarm
+obj/structure/cult/pylon/swarm
 	name = "Swarm Construct"
 	desc = "A small pod."
 	icon = 'icons/mob/swarmbot.dmi'
@@ -11,7 +11,7 @@
 
 	var/list/active_beams
 
-/obj/structure/cult/pylon/swarm/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/cult/pylon/swarm/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living))
 		var/mob/living/L = mover
 		if(L.faction == "swarmer")
@@ -22,17 +22,17 @@
 			return TRUE
 	return ..()
 
-/obj/structure/cult/pylon/swarm/Initialize(mapload)
+obj/structure/cult/pylon/swarm/Initialize(mapload)
 	. = ..()
 	active_beams = list()
 
-/obj/structure/cult/pylon/swarm/Destroy()
+obj/structure/cult/pylon/swarm/Destroy()
 	for(var/datum/beam/B in active_beams)
 		QDEL_NULL(B)
 	active_beams = null
 	..()
 
-/obj/structure/cult/pylon/swarm/pylonhit(var/damage)
+obj/structure/cult/pylon/swarm/pylonhit(var/damage)
 	if(!isbroken)
 		if(prob(1 + damage * 3))
 			visible_message("<span class='danger'>[shatter_message]</span>")
@@ -43,7 +43,7 @@
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
-/obj/structure/cult/pylon/swarm/attackpylon(mob/user as mob, var/damage)
+obj/structure/cult/pylon/swarm/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
 		if(prob(1 + damage * 3))
 			user.visible_message(
@@ -69,12 +69,12 @@
 			to_chat(user, "You hit \the [src]!")
 		playsound(get_turf(src),impact_sound, 75, 1)
 
-/obj/structure/cult/pylon/swarm/pylon_unique()
+obj/structure/cult/pylon/swarm/pylon_unique()
 	. = ..()
 
 	return .
 
-/obj/structure/cult/pylon/swarm/zp_well
+obj/structure/cult/pylon/swarm/zp_well
 	name = "Zero Point Well"
 	desc = "Infinite cosmic power, itty bitty usability."
 
@@ -84,7 +84,7 @@
 
 	activation_cooldown = 0	// These things run constantly.
 
-/obj/structure/cult/pylon/swarm/zp_well/pylon_unique()
+obj/structure/cult/pylon/swarm/zp_well/pylon_unique()
 	. = ..()
 
 	for(var/mob/living/silicon/robot/drone/swarm/S in view(3, src))
@@ -104,7 +104,7 @@
 
 	return .
 
-/obj/structure/cult/pylon/swarm/defender
+obj/structure/cult/pylon/swarm/defender
 	name = "Zero Point Wall"
 	desc = "Infinite cosmic power, itty bitty passability."
 
@@ -112,7 +112,7 @@
 
 	description_info = "An infinitely small point in space spread upon infinitely many finitely-bounded points in space. Nice."
 
-/obj/structure/cult/pylon/swarm/defender/pylonhit(var/damage)
+obj/structure/cult/pylon/swarm/defender/pylonhit(var/damage)
 	if(!isbroken)
 		if(prob(1 + damage * 3) && round(damage * 0.8) >= 30)
 			visible_message("<span class='danger'>[shatter_message]</span>")
@@ -123,7 +123,7 @@
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
-/obj/structure/cult/pylon/swarm/defender/attackpylon(mob/user as mob, var/damage)
+obj/structure/cult/pylon/swarm/defender/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
 		if(prob(1 + damage * 3) && round(damage * 0.8) >= 25)
 			user.visible_message(

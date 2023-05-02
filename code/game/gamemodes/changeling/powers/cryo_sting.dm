@@ -1,4 +1,4 @@
-/datum/power/changeling/cryo_sting
+datum/power/changeling/cryo_sting
 	name = "Cryogenic Sting"
 	desc = "We silently sting a biological with a cocktail of chemicals that freeze them."
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing.  Has \
@@ -8,7 +8,7 @@
 	genomecost = 1
 	verbpath = /mob/proc/changeling_cryo_sting
 
-/mob/proc/changeling_cryo_sting()
+mob/proc/changeling_cryo_sting()
 	set category = "Changeling"
 	set name = "Cryogenic Sting (20)"
 	set desc = "Chills and freezes a biological creature."

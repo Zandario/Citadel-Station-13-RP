@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(map_orientation_patterns, list(
 	TEXT_WEST = new /datum/map_orientation_pattern/west
 	))
 
-/datum/map_orientation_pattern
+datum/map_orientation_pattern
 	var/invert_x
 	var/invert_y
 	var/swap_xy
@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(map_orientation_patterns, list(
 	var/yi
 	var/turn_angle
 
-/datum/map_orientation_pattern/north
+datum/map_orientation_pattern/north
 	invert_y = TRUE
 	invert_x = TRUE
 	swap_xy = FALSE
@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(map_orientation_patterns, list(
 	yi = 1
 	turn_angle = 180
 
-/datum/map_orientation_pattern/south
+datum/map_orientation_pattern/south
 	invert_y = FALSE
 	invert_x = FALSE
 	swap_xy = FALSE
@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(map_orientation_patterns, list(
 	yi = -1
 	turn_angle = 0
 
-/datum/map_orientation_pattern/east
+datum/map_orientation_pattern/east
 	invert_y = TRUE
 	invert_x = FALSE
 	swap_xy = TRUE
@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(map_orientation_patterns, list(
 	yi = 1
 	turn_angle = 90
 
-/datum/map_orientation_pattern/west
+datum/map_orientation_pattern/west
 	invert_y = FALSE
 	invert_x = TRUE
 	swap_xy = TRUE

@@ -1,4 +1,4 @@
-/datum/component/jousting
+datum/component/jousting
 	var/current_direction = NONE
 	var/max_tile_charge = 5
 	var/min_tile_charge = 2				//tiles before this code gets into effect.
@@ -15,24 +15,24 @@
 	var/mob/current_holder
 	var/current_timerid
 
-/datum/component/jousting/Initialize()
+datum/component/jousting/Initialize()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/on_equip)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/on_attack)
 
-/datum/component/jousting/proc/on_equip(datum/source, mob/user, slot)
+datum/component/jousting/proc/on_equip(datum/source, mob/user, slot)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/mob_move, TRUE)
 	current_holder = user
 
-/datum/component/jousting/proc/on_drop(datum/source, mob/user)
+datum/component/jousting/proc/on_drop(datum/source, mob/user)
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	current_holder = null
 	current_direction = NONE
 	current_tile_charge = 0
 
-/datum/component/jousting/proc/on_attack(datum/source, var/mob/living/target, mob/user)
+datum/component/jousting/proc/on_attack(datum/source, var/mob/living/target, mob/user)
 	if(user != current_holder)
 		return
 	var/current = current_tile_charge
@@ -59,7 +59,7 @@
 		if(length(msg))
 			user.visible_message("<span class='danger'>[msg]!</span>")
 
-/datum/component/jousting/proc/mob_move(datum/source, newloc, dir)
+datum/component/jousting/proc/mob_move(datum/source, newloc, dir)
 	if(!current_holder || (requires_mount && ((requires_mob_riding && !ismob(current_holder.buckled)) || (!current_holder.buckled))))
 		return
 	if(dir != current_direction)
@@ -71,5 +71,5 @@
 		deltimer(current_timerid)
 	current_timerid = addtimer(CALLBACK(src, .proc/reset_charge), movement_reset_tolerance, TIMER_STOPPABLE)
 
-/datum/component/jousting/proc/reset_charge()
+datum/component/jousting/proc/reset_charge()
 	current_tile_charge = 0

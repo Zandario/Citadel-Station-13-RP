@@ -1,19 +1,19 @@
-/turf
+turf
 	var/needs_air_update = FALSE
 
-/turf/proc/has_valid_zone()
+turf/proc/has_valid_zone()
 	return FALSE
 
-/turf/simulated
+turf/simulated
 	var/datum/zas_zone/zone
 	var/open_directions
 	/// Do we show gas overlays?
 	var/allow_gas_overlays = TRUE
 
-/turf/simulated/has_valid_zone()
+turf/simulated/has_valid_zone()
 	return zone && !zone.invalid
 
-/turf/proc/update_air_properties()
+turf/proc/update_air_properties()
 	var/block = CanAtmosPass(src, NONE)
 	if(block == ATMOS_PASS_AIR_BLOCKED)
 		//dbg(blocked)
@@ -77,7 +77,7 @@ GLOBAL_REAL_VAR(list/gzn_check) = list(NORTH, SOUTH, EAST, WEST)
 	This implementation may produce false negatives but it (hopefully) will not produce any false postiives.
 */
 ///Simple heuristic for determining if removing the turf from it's zone will not partition the zone (A very bad thing).
-/turf/simulated/proc/can_safely_remove_from_zone()
+turf/simulated/proc/can_safely_remove_from_zone()
 	if(isnull(zone))
 		return TRUE
 
@@ -111,7 +111,7 @@ GLOBAL_REAL_VAR(list/gzn_check) = list(NORTH, SOUTH, EAST, WEST)
 
 //* End *//
 
-/turf/simulated/update_air_properties()
+turf/simulated/update_air_properties()
 	#ifdef ZAS_BREAKPOINT_HOOKS
 	if(zas_verbose)
 		pass()
@@ -247,16 +247,16 @@ GLOBAL_REAL_VAR(list/gzn_check) = list(NORTH, SOUTH, EAST, WEST)
 	for(var/turf/T as anything in postponed)
 		air_master.connect(src, T, postponed[T], postponed_dirs[T])
 
-/turf/proc/post_update_air_properties()
+turf/proc/post_update_air_properties()
 	connections?.update_all()
 
-/turf/proc/make_air()
+turf/proc/make_air()
 	air = new /datum/gas_mixture
 	air.copy_from_turf(src)
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 
-/turf/simulated/proc/c_copy_air()
+turf/simulated/proc/c_copy_air()
 	if(!air)
 		air = new /datum/gas_mixture
 	air.copy_from(zone.air)

@@ -1,4 +1,4 @@
-/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
+proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 	if(M.client)
@@ -34,7 +34,7 @@
 			M.client.screen += D
 			H.cl = M.client
 
-/obj/effect/bmode//Cleaning up the tree a bit
+obj/effect/bmode//Cleaning up the tree a bit
 	density = 1
 	anchored = 1
 	layer = LAYER_HUD_BASE
@@ -43,18 +43,18 @@
 	icon = 'icons/misc/buildmode.dmi'
 	var/obj/effect/bmode/buildholder/master = null
 
-/obj/effect/bmode/Destroy()
+obj/effect/bmode/Destroy()
 	if(master && master.cl)
 		master.cl.screen -= src
 	master = null
 	return ..()
 
-/obj/effect/bmode/builddir
+obj/effect/bmode/builddir
 	icon_state = "build"
 	screen_loc = "TOP,LEFT"
 
 
-/obj/effect/bmode/builddir/Click()
+obj/effect/bmode/builddir/Click()
 	switch(dir)
 		if(NORTH)
 			setDir(EAST)
@@ -68,12 +68,12 @@
 			setDir(NORTH)
 	return 1
 
-/obj/effect/bmode/buildhelp
+obj/effect/bmode/buildhelp
 	icon = 'icons/misc/buildmode.dmi'
 	icon_state = "buildhelp"
 	screen_loc = "TOP,LEFT+1"
 
-/obj/effect/bmode/buildhelp/Click()
+obj/effect/bmode/buildhelp/Click()
 	switch(master.cl.buildmode)
 		if(1) // Basic Build
 			to_chat(usr, "<span class='notice'>***********************************************************</span>")
@@ -144,17 +144,17 @@
 			to_chat(usr, "<span class='notice'>***********************************************************</span>")
 	return 1
 
-/obj/effect/bmode/buildquit
+obj/effect/bmode/buildquit
 	icon_state = "buildquit"
 	screen_loc = "TOP,LEFT+3"
 
-/obj/effect/bmode/buildquit/Click()
+obj/effect/bmode/buildquit/Click()
 	togglebuildmode(master.cl.mob)
 	return 1
 
 GLOBAL_LIST_EMPTY(buildholders)
 
-/obj/effect/bmode/buildholder
+obj/effect/bmode/buildholder
 	density = 0
 	anchored = 1
 	var/client/cl = null
@@ -165,11 +165,11 @@ GLOBAL_LIST_EMPTY(buildholders)
 	var/atom/movable/throw_atom = null
 	var/list/selected_mobs = list()
 
-/obj/effect/bmode/buildholder/New()
+obj/effect/bmode/buildholder/New()
 	GLOB.buildholders += src
 	return ..()
 
-/obj/effect/bmode/buildholder/Destroy()
+obj/effect/bmode/buildholder/Destroy()
 	GLOB.buildholders -= src
 	qdel(builddir)
 	builddir = null
@@ -186,15 +186,15 @@ GLOBAL_LIST_EMPTY(buildholders)
 	cl = null
 	return ..()
 
-/obj/effect/bmode/buildholder/proc/select_AI_mob(client/C, mob/living/unit)
+obj/effect/bmode/buildholder/proc/select_AI_mob(client/C, mob/living/unit)
 	selected_mobs += unit
 	C.images += unit.selected_image
 
-/obj/effect/bmode/buildholder/proc/deselect_AI_mob(client/C, mob/living/unit)
+obj/effect/bmode/buildholder/proc/deselect_AI_mob(client/C, mob/living/unit)
 	selected_mobs -= unit
 	C.images -= unit.selected_image
 
-/obj/effect/bmode/buildmode
+obj/effect/bmode/buildmode
 	icon_state = "buildmode1"
 	screen_loc = "TOP,LEFT+2"
 	var/varholder = "name"
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 	var/new_light_range = 3
 	var/new_light_intensity = 3
 
-/obj/effect/bmode/buildmode/Click(location, control, params)
+obj/effect/bmode/buildmode/Click(location, control, params)
 	var/list/pa = params2list(params)
 
 	if(pa.Find("middle"))
@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 							new_light_color = input
 	return 1
 
-/proc/build_click(var/mob/user, buildmode, params, var/obj/object)
+proc/build_click(var/mob/user, buildmode, params, var/obj/object)
 	var/obj/effect/bmode/buildholder/holder = null
 	for(var/obj/effect/bmode/buildholder/H in GLOB.buildholders)
 		if(H.cl == user.client)
@@ -557,7 +557,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 					to_chat(user, SPAN_NOTICE("Commanded [i] mob\s to move to \the [T]."))
 					log_admin("[key_name(usr)] buildmode AI: Commanded [i] mob\s to move to \the [T].")
 
-/obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
+obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
 	var/desired_path = input("Enter full or partial typepath.","Typepath","[default_path]")
 
 	var/list/types = typesof(/atom)
@@ -581,7 +581,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 			result = default_path
 	return result
 
-/obj/effect/bmode/buildmode/proc/make_rectangle(var/turf/A, var/turf/B, var/turf/wall_type, var/turf/floor_type)
+obj/effect/bmode/buildmode/proc/make_rectangle(var/turf/A, var/turf/B, var/turf/wall_type, var/turf/floor_type)
 	if(!A || !B) // No coords
 		return
 	if(A.z != B.z) // Not same z-level

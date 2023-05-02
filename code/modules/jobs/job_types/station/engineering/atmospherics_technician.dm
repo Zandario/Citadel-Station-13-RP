@@ -1,4 +1,4 @@
-/datum/role/job/station/atmos
+datum/role/job/station/atmos
 	id = JOB_ID_ATMOSPHERIC_TECHNICIAN
 	title = "Atmospheric Technician"
 	flag = ATMOSTECH
@@ -28,24 +28,24 @@
 		)
 
 // Atmos Tech Alt Titles
-/datum/prototype/alt_title/atmos_maint
+datum/prototype/alt_title/atmos_maint
 	title = "Atmospherics Maintainer"
 
-/datum/prototype/alt_title/pipe_spec
+datum/prototype/alt_title/pipe_spec
 	title = "Pipe Network Specialist"
 
-/datum/prototype/alt_title/disposals_tech
+datum/prototype/alt_title/disposals_tech
 	title = "Disposals Technician"
 	title_blurb = "A Disposals Technician is an Atmospheric Technician still and can fulfill all the same duties, although specializes more in disposals delivery system's operations and configurations."
 
-/datum/prototype/alt_title/atmos_artificer
+datum/prototype/alt_title/atmos_artificer
 	title = "Artificer"
 	background_allow = list(
 		/datum/lore/character_background/faction/naramadiguilds
 	)
 	background_enforce = TRUE
 
-/datum/outfit/job/station/atmospherics_technician
+datum/outfit/job/station/atmospherics_technician
 	name = OUTFIT_JOB_NAME("Atmospheric technician")
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
 	l_ear = /obj/item/radio/headset/headset_eng

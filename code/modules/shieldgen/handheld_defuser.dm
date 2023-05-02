@@ -1,4 +1,4 @@
-/obj/item/shield_diffuser
+obj/item/shield_diffuser
 	name = "portable shield diffuser"
 	desc = "A small handheld device designed to disrupt energy barriers."
 	description_info = "This device disrupts shields on directly adjacent tiles (in a + shaped pattern), in a similar way the floor mounted variant does. It is, however, portable and run by an internal battery. Can be recharged with a regular recharger."
@@ -10,21 +10,21 @@
 	var/enabled = 0
 
 
-/obj/item/shield_diffuser/Initialize(mapload)
+obj/item/shield_diffuser/Initialize(mapload)
 	. = ..()
 	if(cell)
 		cell = new cell(src)
 
-/obj/item/shield_diffuser/Destroy()
+obj/item/shield_diffuser/Destroy()
 	QDEL_NULL(cell)
 	if(enabled)
 		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/shield_diffuser/get_cell()
+obj/item/shield_diffuser/get_cell()
 	return cell
 
-/obj/item/shield_diffuser/process(delta_time)
+obj/item/shield_diffuser/process(delta_time)
 	if(!enabled)
 		return PROCESS_KILL
 
@@ -38,13 +38,13 @@
 			if(istype(S) && cell.checked_use_scaled(CELL_COST_SHIELD_DIFFUSION))
 				qdel(S)
 
-/obj/item/shield_diffuser/update_icon()
+obj/item/shield_diffuser/update_icon()
 	if(enabled)
 		icon_state = "hdiffuser_on"
 	else
 		icon_state = "hdiffuser_off"
 
-/obj/item/shield_diffuser/attack_self(mob/user)
+obj/item/shield_diffuser/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -56,12 +56,12 @@
 		STOP_PROCESSING(SSobj, src)
 	to_chat(user, "You turn \the [src] [enabled ? "on" : "off"].")
 
-/obj/item/shield_diffuser/examine(mob/user)
+obj/item/shield_diffuser/examine(mob/user)
 	. = ..()
 	to_chat(user, "The charge meter reads [cell ? cell.percent() : 0]%")
 	to_chat(user, "It is [enabled ? "enabled" : "disabled"].")
 
-/obj/item/shield_diffuser/attack_hand(mob/user, list/params)
+obj/item/shield_diffuser/attack_hand(mob/user, list/params)
 	if(user.get_inactive_held_item() == src)
 		if(cell)
 			cell.update_icon()
@@ -76,7 +76,7 @@
 	else
 		return ..()
 
-/obj/item/shield_diffuser/attackby(obj/item/W, mob/user as mob)
+obj/item/shield_diffuser/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/cell))
 		if(istype(W, /obj/item/cell/device))
 			if(!cell)

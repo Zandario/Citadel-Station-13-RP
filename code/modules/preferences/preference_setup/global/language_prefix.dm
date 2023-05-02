@@ -1,12 +1,12 @@
-/datum/category_item/player_setup_item/player_global/language_prefix
+datum/category_item/player_setup_item/player_global/language_prefix
 	name = "Language Prefix"
 	is_global = TRUE
 	save_key = GLOBAL_DATA_LANGUAGE_PREFIX
 
-/datum/category_item/player_setup_item/player_global/language_prefix/proc/valid_prefix(c)
+datum/category_item/player_setup_item/player_global/language_prefix/proc/valid_prefix(c)
 	return length(c) == 1 && !(c in list(";", ":", ".", "!", "*", "^")) && !contains_az09(c)
 
-/datum/category_item/player_setup_item/player_global/language_prefix/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/player_global/language_prefix/filter_data(datum/preferences/prefs, data, list/errors)
 	var/list/prefixes = data
 	prefixes = sanitize_islist(prefixes)
 	for(var/c in prefixes)
@@ -16,13 +16,13 @@
 		return default_value()
 	return prefixes
 
-/datum/category_item/player_setup_item/player_global/language_prefix/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/player_global/language_prefix/content(datum/preferences/prefs, mob/user, data)
 	var/list/prefixes = data
 	. = list()
 	. += "<b>Language Keys</b><br>"
 	. += "  [jointext(prefixes, "")] [href_simple(prefs, "change", "Change")] [href_simple(prefs, "reset", "Reset")]"
 
-/datum/category_item/player_setup_item/player_global/language_prefix/act(datum/preferences/prefs, mob/user, action, list/params)
+datum/category_item/player_setup_item/player_global/language_prefix/act(datum/preferences/prefs, mob/user, action, list/params)
 	switch(action)
 		if("change")
 			var/char
@@ -51,16 +51,16 @@
 			return PREFERENCES_REFRESH
 	return ..()
 
-/datum/category_item/player_setup_item/player_global/language_prefix/default_value(randomizing)
+datum/category_item/player_setup_item/player_global/language_prefix/default_value(randomizing)
 	return config_legacy.language_prefixes.Copy()
 
-/datum/preferences/proc/get_language_prefixes()
+datum/preferences/proc/get_language_prefixes()
 	var/list/L = get_global_data(GLOBAL_DATA_LANGUAGE_PREFIX)
 	return L.Copy()
 
-/datum/preferences/proc/get_primary_language_prefix()
+datum/preferences/proc/get_primary_language_prefix()
 	var/list/L = get_global_data(GLOBAL_DATA_LANGUAGE_PREFIX)
 	return L[1]
 
-/datum/preferences/proc/is_language_prefix(c)
+datum/preferences/proc/is_language_prefix(c)
 	return c in get_global_data(GLOBAL_DATA_LANGUAGE_PREFIX)

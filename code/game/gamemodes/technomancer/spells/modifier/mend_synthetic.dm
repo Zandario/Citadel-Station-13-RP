@@ -1,4 +1,4 @@
-/datum/technomancer/spell/mend_synthetic
+datum/technomancer/spell/mend_synthetic
 	name = "Mend Synthetic"
 	desc = "Repairs minor damage to prosthetics.  \
 	Instability is split between the target and technomancer, if seperate.  The function will end prematurely \
@@ -9,7 +9,7 @@
 	ability_icon_state = "tech_mendsynth"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/modifier/mend_synthetic
+obj/item/spell/modifier/mend_synthetic
 	name = "mend synthetic"
 	desc = "You are the Robotics lab"
 	icon_state = "mend_synthetic"
@@ -19,7 +19,7 @@
 	modifier_type = /datum/modifier/technomancer/mend_synthetic
 	modifier_duration = 10 SECONDS
 
-/datum/modifier/technomancer/mend_synthetic
+datum/modifier/technomancer/mend_synthetic
 	name = "mend synthetic"
 	desc = "Something seems to be repairing you."
 	mob_overlay_state = "cyan_sparkles"
@@ -28,7 +28,7 @@
 	on_expired_text = "<span class='notice'>The sparkles have faded, although your systems seem to be better than before.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/technomancer/mend_synthetic/tick()
+datum/modifier/technomancer/mend_synthetic/tick()
 	if(!holder.getActualBruteLoss() && !holder.getActualFireLoss()) // No point existing if the spell can't heal.
 		expire()
 		return

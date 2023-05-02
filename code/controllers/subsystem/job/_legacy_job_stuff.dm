@@ -1,19 +1,19 @@
-/datum/controller/subsystem/job
+datum/controller/subsystem/job
 		//job_debug info
 	var/list/job_debug = list()
 		//Cache of icons for job info window
 	var/list/job_icons = list()
 
-/datum/controller/subsystem/job/proc/job_debug(text)
+datum/controller/subsystem/job/proc/job_debug(text)
 	if(!verbose_logging)
 		return FALSE
 	subsystem_log(text)
 	return TRUE
 
-/datum/controller/subsystem/job/proc/GetPlayerAltTitle(mob/new_player/player, rank)
+datum/controller/subsystem/job/proc/GetPlayerAltTitle(mob/new_player/player, rank)
 	return player.client.prefs.get_job_alt_title_name(get_job(rank))
 
-/datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, rank, latejoin = 0)
+datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, rank, latejoin = 0)
 	job_debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 	if(player && player.mind && rank)
 		var/datum/role/job/job = get_job(rank)
@@ -33,14 +33,14 @@
 	return 0
 
 /// Making additional slot on the fly.
-/datum/controller/subsystem/job/proc/FreeRole(rank)
+datum/controller/subsystem/job/proc/FreeRole(rank)
 	var/datum/role/job/job = get_job(rank)
 	if(job && job.total_positions != -1)
 		job.total_positions++
 		return 1
 	return 0
 
-/datum/controller/subsystem/job/proc/FindOccupationCandidates(datum/role/job/job, level)
+datum/controller/subsystem/job/proc/FindOccupationCandidates(datum/role/job/job, level)
 	job_debug("Running FOC, Job: [job], Level: [level]")
 	var/list/candidates = list()
 	for(var/mob/new_player/player in divide_unassigned)
@@ -54,7 +54,7 @@
 	return candidates
 
 
-/datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
+datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
 	job_debug("GRJ Giving random job, Player: [player]")
 	for(var/datum/role/job/job in shuffle(occupations))
 		var/reasons = job.check_client_availability_one(player.client)
@@ -72,7 +72,7 @@
  * This proc is called before the level loop of DivideOccupations() and will try to select a head,
  * ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check.
  */
-/datum/controller/subsystem/job/proc/FillHeadPosition()
+datum/controller/subsystem/job/proc/FillHeadPosition()
 	for(var/level in JOB_PRIORITY_HIGH to JOB_PRIORITY_LOW step -1)
 		for(var/command_position in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 			var/datum/role/job/job = get_job(command_position)
@@ -123,7 +123,7 @@
  * This proc is called at the start of the level loop of DivideOccupations() and will cause
  * head jobs to be checked before any other jobs of the same level.
  */
-/datum/controller/subsystem/job/proc/CheckHeadPositions(level)
+datum/controller/subsystem/job/proc/CheckHeadPositions(level)
 	for(var/command_position in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 		var/datum/role/job/job = get_job(command_position)
 		if(!job || (job.current_positions >= job.spawn_positions))
@@ -140,7 +140,7 @@
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
  **/
-/datum/controller/subsystem/job/proc/DivideOccupations()
+datum/controller/subsystem/job/proc/DivideOccupations()
 	/// gather for speed
 	gather_unassigned()
 	// todo: optimize this hellproc
@@ -241,7 +241,7 @@
 	dispose_unassigned()
 	return 1
 
-/datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank, joined_late = 0)
+datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank, joined_late = 0)
 	if(!H)
 		return null
 
@@ -464,7 +464,7 @@
 	H.reset_perspective(no_optimizations = TRUE)
 	return H
 
-/datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
+datum/controller/subsystem/job/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!config_legacy.load_jobs_from_txt)
 		return 0
 
@@ -499,7 +499,7 @@
 	return 1
 
 
-/datum/controller/subsystem/job/proc/HandleFeedbackGathering()
+datum/controller/subsystem/job/proc/HandleFeedbackGathering()
 	for(var/datum/role/job/job in occupations)
 		var/tmp_str = "|[job.title]|"
 
@@ -531,7 +531,7 @@
 		tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
 		feedback_add_details("job_preferences",tmp_str)
 
-/datum/controller/subsystem/job/proc/LateSpawn(client/C, rank)
+datum/controller/subsystem/job/proc/LateSpawn(client/C, rank)
 
 	var/fail_deadly = FALSE
 

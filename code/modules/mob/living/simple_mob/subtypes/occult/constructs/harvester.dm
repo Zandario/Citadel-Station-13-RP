@@ -2,7 +2,7 @@
 //		Harvester
 ////////////////////////////
 
-/datum/category_item/catalogue/fauna/construct/harvester
+datum/category_item/catalogue/fauna/construct/harvester
 	name = "Constructs - Harvester"
 	desc = "Harvesters are incredibly rare Construct forms, observed \
 	only during the Blood Cult raid on the NDV Marksman. Fragile, but \
@@ -12,7 +12,7 @@
 	though they are presumed dead."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/construct/harvester
+mob/living/simple_mob/construct/harvester
 	name = "Harvester"
 	real_name = "Harvester"
 	construct_type = "harvester"
@@ -52,7 +52,7 @@
 			/spell/rune_write
 		)
 
-/mob/living/simple_mob/construct/harvester/Initialize(mapload)
+mob/living/simple_mob/construct/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/strong)
 
@@ -60,7 +60,7 @@
 //		Greater Harvester
 ////////////////////////////
 
-/mob/living/simple_mob/construct/harvester/greater
+mob/living/simple_mob/construct/harvester/greater
 	name = "Greater Harvester"
 	real_name = "Chosen"
 	construct_type = "Chosen"

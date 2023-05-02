@@ -58,39 +58,39 @@ Class Procs:
 */
 
 
-/datum/zas_edge
+datum/zas_edge
 	var/datum/zas_zone/A
 	var/list/connecting_turfs = list()
 	var/direct = 0
 	var/sleeping = 1
 	var/coefficient = 0
 
-/datum/zas_edge/New()
+datum/zas_edge/New()
 	CRASH("Cannot make connection edge without specifications.")
 
-/datum/zas_edge/proc/add_connection(datum/zas_connection/c)
+datum/zas_edge/proc/add_connection(datum/zas_connection/c)
 	coefficient++
 	if(c.direct()) direct++
 	//to_chat(world, "Connection added: [type] Coefficient: [coefficient]")
 
-/datum/zas_edge/proc/remove_connection(datum/zas_connection/c)
+datum/zas_edge/proc/remove_connection(datum/zas_connection/c)
 	//to_chat(world, "Connection removed: [type] Coefficient: [coefficient-1]")
 	coefficient--
 	if(coefficient <= 0)
 		erase()
 	if(c.direct()) direct--
 
-/datum/zas_edge/proc/contains_zone(datum/zas_zone/Z)
+datum/zas_edge/proc/contains_zone(datum/zas_zone/Z)
 
-/datum/zas_edge/proc/erase()
+datum/zas_edge/proc/erase()
 	air_master.remove_edge(src)
 	//to_chat(world, "[type] Erased.")
 
-/datum/zas_edge/proc/tick()
+datum/zas_edge/proc/tick()
 
-/datum/zas_edge/proc/recheck()
+datum/zas_edge/proc/recheck()
 
-/datum/zas_edge/proc/flow(list/movable, differential, repelled)
+datum/zas_edge/proc/flow(list/movable, differential, repelled)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/airflow/retrigger_delay, retrigger_delay)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/airflow/stun_pressure, stun_pressure)
 	for(var/i = 1; i <= movable.len; i++)
@@ -125,10 +125,10 @@ Class Procs:
 				spawn
 					if(M) M.GotoAirflowDest(differential/10)
 
-/datum/zas_edge/zone
+datum/zas_edge/zone
 	var/datum/zas_zone/B
 
-/datum/zas_edge/zone/New(datum/zas_zone/A, datum/zas_zone/B)
+datum/zas_edge/zone/New(datum/zas_zone/A, datum/zas_zone/B)
 
 	src.A = A
 	src.B = B
@@ -137,23 +137,23 @@ Class Procs:
 	//id = edge_id(A,B)
 	//to_chat(world, "New edge between [A] and [B]")
 
-/datum/zas_edge/zone/add_connection(datum/zas_connection/c)
+datum/zas_edge/zone/add_connection(datum/zas_connection/c)
 	. = ..()
 	connecting_turfs.Add(c.A)
 
-/datum/zas_edge/zone/remove_connection(datum/zas_connection/c)
+datum/zas_edge/zone/remove_connection(datum/zas_connection/c)
 	connecting_turfs.Remove(c.A)
 	. = ..()
 
-/datum/zas_edge/zone/contains_zone(datum/zas_zone/Z)
+datum/zas_edge/zone/contains_zone(datum/zas_zone/Z)
 	return A == Z || B == Z
 
-/datum/zas_edge/zone/erase()
+datum/zas_edge/zone/erase()
 	A.edges.Remove(src)
 	B.edges.Remove(src)
 	. = ..()
 
-/datum/zas_edge/zone/tick()
+datum/zas_edge/zone/tick()
 	CACHE_VSC_PROP(atmos_vsc, /atmos/airflow/lightest_pressure, lightest_pressure)
 	if(A.invalid || B.invalid)
 		erase()
@@ -187,21 +187,21 @@ Class Procs:
 	air_master.mark_zone_update(A)
 	air_master.mark_zone_update(B)
 
-/datum/zas_edge/zone/recheck()
+datum/zas_edge/zone/recheck()
 	// Edges with only one side being vacuum need processing no matter how close.
 	if(!A.air.compare(B.air, vacuum_exception = 1))
 		air_master.mark_edge_active(src)
 
 //Helper proc to get connections for a zone.
-/datum/zas_edge/zone/proc/get_connected_zone(datum/zas_zone/from)
+datum/zas_edge/zone/proc/get_connected_zone(datum/zas_zone/from)
 	if(A == from) return B
 	else return A
 
-/datum/zas_edge/unsimulated
+datum/zas_edge/unsimulated
 	var/turf/B
 	var/datum/gas_mixture/air
 
-/datum/zas_edge/unsimulated/New(datum/zas_zone/A, turf/B)
+datum/zas_edge/unsimulated/New(datum/zas_zone/A, turf/B)
 	src.A = A
 	src.B = B
 	A.edges.Add(src)
@@ -209,24 +209,24 @@ Class Procs:
 	//id = 52*A.id
 	//to_chat(world, "New edge from [A] to [B].")
 
-/datum/zas_edge/unsimulated/add_connection(datum/zas_connection/c)
+datum/zas_edge/unsimulated/add_connection(datum/zas_connection/c)
 	. = ..()
 	connecting_turfs.Add(c.B)
 	air.group_multiplier = coefficient
 
-/datum/zas_edge/unsimulated/remove_connection(datum/zas_connection/c)
+datum/zas_edge/unsimulated/remove_connection(datum/zas_connection/c)
 	connecting_turfs.Remove(c.B)
 	air.group_multiplier = coefficient
 	. = ..()
 
-/datum/zas_edge/unsimulated/erase()
+datum/zas_edge/unsimulated/erase()
 	A.edges.Remove(src)
 	. = ..()
 
-/datum/zas_edge/unsimulated/contains_zone(datum/zas_zone/Z)
+datum/zas_edge/unsimulated/contains_zone(datum/zas_zone/Z)
 	return A == Z
 
-/datum/zas_edge/unsimulated/tick()
+datum/zas_edge/unsimulated/tick()
 	if(A.invalid)
 		erase()
 		return
@@ -246,14 +246,14 @@ Class Procs:
 
 	air_master.mark_zone_update(A)
 
-/datum/zas_edge/unsimulated/recheck()
+datum/zas_edge/unsimulated/recheck()
 	// Edges with only one side being vacuum need processing no matter how close.
 	// Note: This handles the glaring flaw of a room holding pressure while exposed to space, but
 	// does not specially handle the less common case of a simulated room exposed to an unsimulated pressurized turf.
 	if(!A.air.compare(air, vacuum_exception = 1))
 		air_master.mark_edge_active(src)
 
-/proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
+proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
 	//This implements a simplistic version of the Stefan-Boltzmann law.
 	var/energy_delta = ((A.temperature - B.temperature) ** 4) * STEFAN_BOLTZMANN_CONSTANT * connecting_tiles * 2.5
 	var/maximum_energy_delta = max(0, min(A.temperature * A.heat_capacity() * A.group_multiplier, B.temperature * B.heat_capacity() * B.group_multiplier))

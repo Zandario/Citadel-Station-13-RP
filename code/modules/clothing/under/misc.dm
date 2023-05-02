@@ -1,7 +1,7 @@
 
 //Misc
 
-/obj/item/clothing/under/hazard
+obj/item/clothing/under/hazard
 	name = "hazard jumpsuit"
 	desc = "A high visibility jumpsuit made from heat and radiation resistant materials."
 	icon_state = "hazard"
@@ -10,7 +10,7 @@
 	armor_type = /datum/armor/engineering/jumpsuit
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/under/sterile
+obj/item/clothing/under/sterile
 	name = "sterile jumpsuit"
 	desc = "A sterile white jumpsuit with medical markings. Protects against all manner of biohazards."
 	icon_state = "sterile"
@@ -19,7 +19,7 @@
 	armor_type = /datum/armor/medical/jumpsuit
 
 //Pirate Mate Fatigues
-/obj/item/clothing/under/worn_fatigues
+obj/item/clothing/under/worn_fatigues
 	name = "special ops fatigues"
 	desc = "These worn fatigues match the pattern known to be used by JSDF Marine Corps special forces."
 	icon_state = "russobluecamo"

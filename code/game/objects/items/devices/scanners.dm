@@ -11,7 +11,7 @@ REAGENT SCANNER
 HALOGEN COUNTER	- Radcount on mobs
 */
 
-/obj/item/healthanalyzer
+obj/item/healthanalyzer
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	icon = 'icons/obj/device.dmi'
@@ -28,22 +28,22 @@ HALOGEN COUNTER	- Radcount on mobs
 	var/advscan = 0
 	var/showadvscan = 1
 
-/obj/item/healthanalyzer/Initialize(mapload)
+obj/item/healthanalyzer/Initialize(mapload)
 	. = ..()
 	if(advscan >= 1)
 		add_obj_verb(src, /obj/item/healthanalyzer/proc/toggle_adv)
 
-/obj/item/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
+obj/item/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
 	if(user.a_intent != INTENT_HELP) //in case it is ever used as a surgery tool
 		return ..()
 	scan_mob(M, user) //default surgery behaviour is just to scan as usual
 	return 1
 
-/obj/item/healthanalyzer/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/healthanalyzer/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	scan_mob(target, user)
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/item/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
+obj/item/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
 	var/dat = ""
 	if ((MUTATION_CLUMSY in user.mutations) && prob(50))
 		user.visible_message(SPAN_WARNING("\The [user] has analyzed the floor's vitals!"), SPAN_WARNING("You try to analyze the floor's vitals!"))
@@ -287,7 +287,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	dat += "</blockquote>"
 	user.show_message(dat, 1)
 
-/obj/item/healthanalyzer/verb/toggle_mode()
+obj/item/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
 	set category = "Object"
 
@@ -298,7 +298,7 @@ HALOGEN COUNTER	- Radcount on mobs
 		if(0)
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
-/obj/item/healthanalyzer/proc/toggle_adv()
+obj/item/healthanalyzer/proc/toggle_adv()
 	set name = "Toggle Advanced Scan"
 	set category = "Object"
 
@@ -309,33 +309,33 @@ HALOGEN COUNTER	- Radcount on mobs
 		if(0)
 			to_chat(usr, "The scanner will now perform a basic analysis.")
 
-/obj/item/healthanalyzer/apidean
+obj/item/healthanalyzer/apidean
 	name = "\improper Apidean health analyzer"
 	desc = "This medical scanner feels oddly warm and has two insectiod antennae."
 	icon_state = "apidae-health"
 
-/obj/item/healthanalyzer/improved //reports bone fractures, IB, quantity of beneficial reagents in stomach; also regular health analyzer stuff
+obj/item/healthanalyzer/improved //reports bone fractures, IB, quantity of beneficial reagents in stomach; also regular health analyzer stuff
 	name = "improved health analyzer"
 	desc = "A miracle of medical technology, this handheld scanner can produce an accurate and specific report of a patient's biosigns."
 	advscan = 1
 	origin_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
 	icon_state = "health1"
 
-/obj/item/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
+obj/item/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
 	name = "advanced health analyzer"
 	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
 	advscan = 2
 	origin_tech = list(TECH_MAGNET = 6, TECH_BIO = 7)
 	icon_state = "health2"
 
-/obj/item/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
+obj/item/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
 	name = "phasic health analyzer"
 	desc = "Possibly the most advanced health analyzer to ever have existed, utilising bluespace technology to determine almost everything worth knowing about a patient."
 	advscan = 3
 	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health3"
 
-/obj/item/analyzer
+obj/item/analyzer
 	name = "analyzer"
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	icon = 'icons/obj/device.dmi'
@@ -351,12 +351,12 @@ HALOGEN COUNTER	- Radcount on mobs
 
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
-/obj/item/analyzer/apidean
+obj/item/analyzer/apidean
 	name = "\improper Apidean analyzer"
 	desc = "This analyzer has a strange, soft exterior and seems to faintly breathe."
 	icon_state = "apidae-analyzer"
 
-/obj/item/analyzer/longrange
+obj/item/analyzer/longrange
 	name = "long-range analyzer"
 	desc = "A hand-held environmental scanner which reports current gas levels. This one uses bluespace technology."
 	icon = 'icons/obj/device.dmi'
@@ -370,14 +370,14 @@ HALOGEN COUNTER	- Radcount on mobs
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 20)
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 
-/obj/item/analyzer/atmosanalyze(var/mob/user)
+obj/item/analyzer/atmosanalyze(var/mob/user)
 	var/air = user.return_air()
 	if (!air)
 		return
 
 	return atmosanalyzer_scan(src, air, user)
 
-/obj/item/analyzer/attack_self(mob/user)
+obj/item/analyzer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -390,20 +390,20 @@ HALOGEN COUNTER	- Radcount on mobs
 	analyze_gases(src, user)
 	return
 
-/obj/item/analyzer/afterattack(var/obj/O, var/mob/user, var/proximity)
+obj/item/analyzer/afterattack(var/obj/O, var/mob/user, var/proximity)
 	if(proximity)
 		if(istype(O, /obj/item/tank)) // don't double post what atmosanalyzer_scan returns
 			return
 		analyze_gases(O, user)
 	return
 
-/obj/item/analyzer/longrange/afterattack(var/obj/O, var/mob/user, var/proximity)
+obj/item/analyzer/longrange/afterattack(var/obj/O, var/mob/user, var/proximity)
 	if(istype(O, /obj/item/tank)) // don't double post what atmosanalyzer_scan returns
 		return
 	analyze_gases(O, user)
 	return
 
-/obj/item/mass_spectrometer
+obj/item/mass_spectrometer
 	name = "mass spectrometer"
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon = 'icons/obj/device.dmi'
@@ -421,19 +421,19 @@ HALOGEN COUNTER	- Radcount on mobs
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/mass_spectrometer/Initialize(mapload)
+obj/item/mass_spectrometer/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(5)
 	reagents = R
 	R.my_atom = src
 
-/obj/item/mass_spectrometer/on_reagent_change()
+obj/item/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)
 		icon_state = initial(icon_state) + "_s"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/mass_spectrometer/attack_self(mob/user)
+obj/item/mass_spectrometer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -462,13 +462,13 @@ HALOGEN COUNTER	- Radcount on mobs
 		reagents.clear_reagents()
 	return
 
-/obj/item/mass_spectrometer/adv
+obj/item/mass_spectrometer/adv
 	name = "advanced mass spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
-/obj/item/reagent_scanner
+obj/item/reagent_scanner
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon = 'icons/obj/device.dmi'
@@ -485,7 +485,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/reagent_scanner/afterattack(obj/O, mob/living/user, proximity)
+obj/item/reagent_scanner/afterattack(obj/O, mob/living/user, proximity)
 	if(!proximity || user.stat || !istype(O))
 		return
 	if(!istype(user))
@@ -510,18 +510,18 @@ HALOGEN COUNTER	- Radcount on mobs
 
 	return
 
-/obj/item/reagent_scanner/apidean
+obj/item/reagent_scanner/apidean
 	name = "\improper Apidean taster"
 	desc = "This reagent scanner appears to be an artificially created lifeform. Often used by Apidaen guards to test food and drinks during diplomatic meetings."
 	icon_state = "apidae-reagent"
 
-/obj/item/reagent_scanner/adv
+obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
-/obj/item/slime_scanner
+obj/item/slime_scanner
 	name = "slime scanner"
 	icon_state = "xenobio"
 	item_state = "xenobio"
@@ -533,7 +533,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	throw_range = 7
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 20)
 
-/obj/item/slime_scanner/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slime_scanner/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
 	if(!istype(target, /mob/living/simple_mob/slime/xenobio))
 		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")

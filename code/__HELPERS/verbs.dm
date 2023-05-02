@@ -6,7 +6,7 @@
   * * target - Who the verb is being added to, client or mob typepath
   * * verb - typepath to a verb, or a list of verbs, supports lists of lists
   */
-/proc/add_verb(client/target, verb_or_list_to_add)
+proc/add_verb(client/target, verb_or_list_to_add)
 	if(!target)
 		CRASH("add_verb called without a target")
 	if(IsAdminAdvancedProcCall())
@@ -62,7 +62,7 @@
   * * target - Who the verb is being removed from, client or mob typepath
   * * verb - typepath to a verb, or a list of verbs, supports lists of lists
   */
-/proc/remove_verb(client/target, verb_or_list_to_remove)
+proc/remove_verb(client/target, verb_or_list_to_remove)
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -107,12 +107,12 @@
  * handles adding an obj verb
  * makes replacing easier later
  */
-/proc/add_obj_verb(atom/A, verb_or_list_to_add)
+proc/add_obj_verb(atom/A, verb_or_list_to_add)
 	A.verbs |= verb_or_list_to_add
 
 /**
  * handles removing an obj verb
  * makes replacing easier later
  */
-/proc/remove_obj_verb(atom/A, verb_or_list_to_remove)
+proc/remove_obj_verb(atom/A, verb_or_list_to_remove)
 	A.verbs -= verb_or_list_to_remove

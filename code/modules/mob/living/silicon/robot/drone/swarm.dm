@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/drone/swarm
+mob/living/silicon/robot/drone/swarm
 	name = "swarm drone"
 	real_name = "drone"
 	icon = 'icons/mob/swarmbot.dmi'
@@ -51,7 +51,7 @@
 		/spell/aoe_turf/conjure/swarmer/melee
 		)
 
-/mob/living/silicon/robot/drone/swarm/Initialize(mapload)
+mob/living/silicon/robot/drone/swarm/Initialize(mapload)
 	. = ..()
 
 	add_language(LANGUAGE_SWARMBOT, 1)
@@ -59,12 +59,12 @@
 	for(var/spell in spell_setup)
 		src.add_spell(new spell, "nano_spell_ready", /atom/movable/screen/movable/spell_master/swarm)
 
-/mob/living/silicon/robot/drone/swarm/init()
+mob/living/silicon/robot/drone/swarm/init()
 	..()
 	QDEL_NULL(aiCamera)
 	flavor_text = "Some form of ancient machine."
 
-/mob/living/silicon/robot/drone/swarm/gunner
+mob/living/silicon/robot/drone/swarm/gunner
 	name = "swarm gunner"
 	real_name = "drone"
 	icon = 'icons/mob/swarmbot.dmi'
@@ -80,7 +80,7 @@
 		/spell/aoe_turf/blink/swarm
 		)
 
-/mob/living/silicon/robot/drone/swarm/melee
+mob/living/silicon/robot/drone/swarm/melee
 	name = "swarm melee"
 	real_name = "drone"
 	icon = 'icons/mob/swarmbot.dmi'
@@ -95,4 +95,3 @@
 		/spell/aoe_turf/conjure/forcewall/swarm,
 		/spell/aoe_turf/blink/swarm
 		)
-

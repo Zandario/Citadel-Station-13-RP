@@ -1,4 +1,4 @@
-/datum/unit_test/amputation/Run()
+datum/unit_test/amputation/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
 
@@ -12,7 +12,7 @@
 	TEST_ASSERT_EQUAL(length(patient.get_missing_limbs()), 1, "Patient did not lose any limbs")
 	TEST_ASSERT_EQUAL(patient.get_missing_limbs()[1], BODY_ZONE_R_ARM, "Patient is missing a limb that isn't the one we operated on")
 
-/datum/unit_test/brain_surgery/Run()
+datum/unit_test/brain_surgery/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 	patient.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
 	patient.setOrganLoss(ORGAN_SLOT_BRAIN, 20)
@@ -27,7 +27,7 @@
 	TEST_ASSERT(!patient.has_trauma_type(), "Patient kept their brain trauma after brain surgery")
 	TEST_ASSERT(patient.getOrganLoss(ORGAN_SLOT_BRAIN) < 20, "Patient did not heal their brain damage after brain surgery")
 
-/datum/unit_test/head_transplant/Run()
+datum/unit_test/head_transplant/Run()
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/alice = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/bob = allocate(/mob/living/carbon/human)
@@ -54,7 +54,7 @@
 	TEST_ASSERT(!isnull(alice.get_bodypart(BODY_ZONE_HEAD)), "Alice has no head after prosthetic replacement")
 	TEST_ASSERT_EQUAL(alice.get_visible_name(), "Bob", "Bob's head was transplanted onto Alice's body, but their name is not Bob")
 
-/datum/unit_test/multiple_surgeries/Run()
+datum/unit_test/multiple_surgeries/Run()
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/patient_zero = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/patient_one = allocate(/mob/living/carbon/human)
@@ -77,7 +77,7 @@
 	INVOKE_ASYNC(surgery_step, /datum/surgery_step/proc/initiate, user, patient_one, BODY_ZONE_CHEST, scalpel, surgery_for_one)
 	TEST_ASSERT(surgery_for_one.step_in_progress, "Surgery on patient one was not initiated, despite having rod of asclepius")
 
-/datum/unit_test/tend_wounds/Run()
+datum/unit_test/tend_wounds/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 	patient.take_overall_damage(100, 100)
 

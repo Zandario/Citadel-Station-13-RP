@@ -1,4 +1,4 @@
-/datum/power/changeling/escape_restraints
+datum/power/changeling/escape_restraints
 	name = "Escape Restraints"
 	desc = "We evolve more complex joints"
 	helptext = "We can instantly escape from most restraints and bindings, but we cannot do it often."
@@ -8,7 +8,7 @@
 	verbpath = /mob/proc/changeling_escape_restraints
 
 //Escape Cuffs. By design this does not escape from straight jackets
-/mob/proc/changeling_escape_restraints()
+mob/proc/changeling_escape_restraints()
 	set category = "Changeling"
 	set name = "Escape Restraints (40)"
 	set desc = "Removes handcuffs and legcuffs instantly."

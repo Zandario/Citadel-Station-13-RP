@@ -1,9 +1,9 @@
-/datum/map_template/submap
+datum/map_template/submap
 	abstract_type = /datum/map_template/submap
 	var/prefix = null
 	var/suffix = null
 
-/datum/map_template/submap/New()
+datum/map_template/submap/New()
 	// if(!name && id)
 	//	name = id
 
@@ -11,5 +11,5 @@
 		mappath = prefix + suffix
 	..(path = mappath)
 
-/datum/map_template/submap/level_specific
+datum/map_template/submap/level_specific
 	abstract_type = /datum/map_template/submap/level_specific

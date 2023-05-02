@@ -2,7 +2,7 @@
  * Home of the telecube.
  */
 
-/datum/category_item/catalogue/anomalous/precursor_a/telecube
+datum/category_item/catalogue/anomalous/precursor_a/telecube
 	name = "Quantomatically Entangled Digicube"
 
 	desc = "An enigmatic cube that appears superficially similar to a Positronic Cube. \
@@ -17,7 +17,7 @@
 	value = CATALOGUER_REWARD_HARD
 
 // Standard one needs to be smacked onto another one to link together.
-/obj/item/telecube
+obj/item/telecube
 	name = "locus"
 	desc = "A strange metallic cube that pulses silently."
 	description_info = "Ctrl-Clicking on this object will attempt to activate its unique ability."
@@ -54,7 +54,7 @@
 
 	var/omniteleport = FALSE // Will this teleport anchored things too?
 
-/obj/item/telecube/Initialize(mapload)
+obj/item/telecube/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	last_teleport = world.time
@@ -89,11 +89,11 @@
 
 	return
 
-/obj/item/telecube/process(delta_time)
+obj/item/telecube/process(delta_time)
 	..()
 	update_icon()
 
-/obj/item/telecube/update_icon()
+obj/item/telecube/update_icon()
 	. = ..()
 	glow.color = glow_color
 	charge.color = glow_color
@@ -112,7 +112,7 @@
 		cut_overlay(charge)
 		add_overlay(glow)
 
-/obj/item/telecube/Destroy()
+obj/item/telecube/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(mate)
 		var/turf/T = get_turf(mate)
@@ -123,7 +123,7 @@
 
 	..()
 
-/obj/item/telecube/proc/pair_cube(var/obj/item/telecube/M)
+obj/item/telecube/proc/pair_cube(var/obj/item/telecube/M)
 	if(mate)
 		return 0
 	else
@@ -131,7 +131,7 @@
 		update_icon()
 		return 1
 
-/obj/item/telecube/proc/teleport_to_mate(var/atom/movable/A, var/areaporting = FALSE)
+obj/item/telecube/proc/teleport_to_mate(var/atom/movable/A, var/areaporting = FALSE)
 	. = FALSE
 
 	if(!A)
@@ -169,7 +169,7 @@
 		for(var/atom/movable/M in orange(teleport_range, A))
 			teleport_to_mate(M, TRUE)
 
-/obj/item/telecube/proc/swap_with_mate()
+obj/item/telecube/proc/swap_with_mate()
 	. = FALSE
 
 	if(!mate || !teleport_range)
@@ -187,49 +187,49 @@
 	. = TRUE
 	return .
 
-/obj/item/telecube/CtrlClick(mob/user)
+obj/item/telecube/CtrlClick(mob/user)
 	if(Adjacent(user))
 		if(teleport_to_mate(user))
 			last_teleport = world.time
 	return
 
-/obj/item/telecube/AltClick(mob/user)
+obj/item/telecube/AltClick(mob/user)
 	if(Adjacent(user))
 		if(swap_with_mate())
 			last_teleport = world.time
 			mate.last_teleport = world.time
 	return
 
-/obj/item/telecube/Bump(atom/movable/AM)
+obj/item/telecube/Bump(atom/movable/AM)
 	if(teleport_to_mate(AM))
 		last_teleport = world.time
 	. = ..()
 
-/obj/item/telecube/Bumped(atom/movable/M as mob|obj)
+obj/item/telecube/Bumped(atom/movable/M as mob|obj)
 	if(teleport_to_mate(M))
 		last_teleport = world.time
 	. = ..()
 
 // Subtypes
 
-/obj/item/telecube/mated
+obj/item/telecube/mated
 	start_paired = TRUE
 
-/obj/item/telecube/randomized
+obj/item/telecube/randomized
 	randomize_colors = TRUE
 
-/obj/item/telecube/randomized/mated
+obj/item/telecube/randomized/mated
 	start_paired = TRUE
 
-/obj/item/telecube/precursor
+obj/item/telecube/precursor
 	glow_color = "#FF1D8E"
 	shell_color = "#2F1B26"
 
-/obj/item/telecube/precursor/mated
+obj/item/telecube/precursor/mated
 	start_paired = TRUE
 
-/obj/item/telecube/precursor/mated/zone
+obj/item/telecube/precursor/mated/zone
 	teleport_range = 2
 
-/obj/item/telecube/precursor/mated/mirrorcolor
+obj/item/telecube/precursor/mated/mirrorcolor
 	mirror_colors = TRUE

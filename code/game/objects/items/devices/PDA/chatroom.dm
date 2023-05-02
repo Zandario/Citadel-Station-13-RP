@@ -1,6 +1,6 @@
 var/list/chatrooms = list()
 
-/datum/chatroom
+datum/chatroom
 	var/name = "Generic Chatroom"
 	var/list/logged_in = list()
 	var/list/logs = list() // chat logs
@@ -11,6 +11,6 @@ var/list/chatrooms = list()
 	var/password = "" // blank for no password.
 	var/operator = "" // name of the operator
 
-/datum/chatroom/proc/attempt_connect(var/obj/item/pda/device, var/obj/password)
+datum/chatroom/proc/attempt_connect(var/obj/item/pda/device, var/obj/password)
 	if(!device)
 		return

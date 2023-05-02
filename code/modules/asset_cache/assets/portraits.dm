@@ -1,7 +1,7 @@
-/datum/asset/simple/portraits
+datum/asset/simple/portraits
 	assets = list()
 
-/datum/asset/simple/portraits/New()
+datum/asset/simple/portraits/New()
 	if(!length(SSpersistent_paintings.paintings))
 		return
 	for(var/datum/painting/portrait as anything in SSpersistent_paintings.paintings)

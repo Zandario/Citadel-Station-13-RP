@@ -1,4 +1,4 @@
-/datum/gm_action
+datum/gm_action
 	var/name = "no name"				// Simple name, for organization.
 	var/enabled = TRUE					// If not enabled, this action is never taken.
 	var/departments = list()			// What kinds of departments are affected by this action.  Multiple departments can be listed.
@@ -9,19 +9,19 @@
 	var/datum/controller/subsystem/gamemaster/gm = null
 	var/severity = 1					// The severity of the action. This is here to prevent continued future defining of this var on actions, un-used.
 
-/datum/gm_action/proc/set_up()
+datum/gm_action/proc/set_up()
 	return
 
-/datum/gm_action/proc/get_weight()
+datum/gm_action/proc/get_weight()
 	return
 
-/datum/gm_action/proc/start()
+datum/gm_action/proc/start()
 	if(!reusable)
 		enabled = FALSE
 	return
 
-/datum/gm_action/proc/end()
+datum/gm_action/proc/end()
 	return
 
-/datum/gm_action/proc/announce()
+datum/gm_action/proc/announce()
 	return

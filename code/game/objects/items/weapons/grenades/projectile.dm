@@ -1,4 +1,4 @@
-/obj/item/grenade/shooter
+obj/item/grenade/shooter
 	name = "projectile grenade"	// I have no idea what else to call this, but the base type should never be used
 	icon_state = "frggrenade"
 	item_state = "grenade"
@@ -10,7 +10,7 @@
 
 	loadable = FALSE
 
-/obj/item/grenade/shooter/detonate()
+obj/item/grenade/shooter/detonate()
 	..()
 
 	var/turf/O = get_turf(src)
@@ -23,34 +23,34 @@
 
 
 
-/obj/item/grenade/shooter/rubber
+obj/item/grenade/shooter/rubber
 	name = "rubber pellet grenade"
 	desc = "An anti-riot grenade that fires a cloud of rubber projectiles upon detonation."
 	projectile_types = list(/obj/projectile/bullet/pistol/rubber)
 
 // Exists mostly so I don't have to copy+paste the sprite vars to a billion things
-/obj/item/grenade/shooter/energy
+obj/item/grenade/shooter/energy
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	spread_range = 3	// Because dear god
 
-/obj/item/grenade/shooter/energy/laser
+obj/item/grenade/shooter/energy/laser
 	name = "laser grenade"
 	desc = "A horrifically dangerous rave in a can."
 	projectile_types = list(/obj/projectile/beam/midlaser)
 
-/obj/item/grenade/shooter/energy/flash
+obj/item/grenade/shooter/energy/flash
 	name = "flash grenade"
 	desc = "A grenade that creates a large number of flashes upon detonation."
 	projectile_types = list(/obj/projectile/energy/flash)
 
-/obj/item/grenade/shooter/energy/tesla
+obj/item/grenade/shooter/energy/tesla
 	name = "tesla grenade"
 	projectile_types = list(/obj/projectile/beam/chain_lightning/lesser)
 
 
 // This is just fragmentate, but less specific. Don't know how to make either of them less awful, at the moment
-/obj/proc/launch_many_projectiles(var/turf/T=get_turf(src), var/spreading_range = 5, var/list/projectiletypes=list(/obj/projectile/bullet/pistol/rubber))
+obj/proc/launch_many_projectiles(var/turf/T=get_turf(src), var/spreading_range = 5, var/list/projectiletypes=list(/obj/projectile/bullet/pistol/rubber))
 	set waitfor = 0
 	var/list/target_turfs = getcircle(T, spreading_range)
 

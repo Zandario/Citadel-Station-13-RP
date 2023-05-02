@@ -1,4 +1,4 @@
-/obj/item/hailer
+obj/item/hailer
 	name = "hailer"
 	desc = "Used by obese officers to save their breath for running."
 	icon = 'icons/obj/device.dmi'
@@ -11,7 +11,7 @@
 	var/spamcheck = 0
 	var/insults
 
-/obj/item/hailer/verb/set_message()
+obj/item/hailer/verb/set_message()
 	set name = "Set Hailer Message"
 	set category = "Object"
 	set desc = "Alter the message shouted by your hailer."
@@ -28,7 +28,7 @@
 
 	to_chat(usr, "You configure the hailer to shout \"[use_message]\".")
 
-/obj/item/hailer/attack_self(mob/user)
+obj/item/hailer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -51,7 +51,7 @@
 	spawn(20)
 		spamcheck = 0
 
-/obj/item/hailer/emag_act(var/remaining_charges, var/mob/user)
+obj/item/hailer/emag_act(var/remaining_charges, var/mob/user)
 	if(isnull(insults))
 		to_chat(user, "<span class='danger'>You overload \the [src]'s voice synthesizer.</span>")
 		insults = rand(1, 3)//to prevent dickflooding

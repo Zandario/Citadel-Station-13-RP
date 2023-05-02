@@ -1,5 +1,5 @@
 //replaces our stun baton code with /tg/station's code
-/obj/item/melee/baton
+obj/item/melee/baton
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."
 	icon = 'icons/obj/weapons.dmi'
@@ -26,24 +26,24 @@
 	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
 	var/integrated_cell = FALSE
 
-/obj/item/melee/baton/Initialize(mapload)
+obj/item/melee/baton/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/melee/baton/get_cell()
+obj/item/melee/baton/get_cell()
 	return bcell
 
-/obj/item/melee/baton/suicide_act(mob/user)
+obj/item/melee/baton/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	user.visible_message("<span class='suicide'>\The [user] is putting the live [name] in [TU.his] mouth! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return (FIRELOSS)
 
-/obj/item/melee/baton/loaded/Initialize(mapload)
+obj/item/melee/baton/loaded/Initialize(mapload)
 	. = ..()
 	bcell = new/obj/item/cell/device/weapon(src)
 	update_icon()
 
-/obj/item/melee/baton/proc/deductcharge(var/chrgdeductamt)
+obj/item/melee/baton/proc/deductcharge(var/chrgdeductamt)
 	if(status)		//Only deducts charge when it's on
 		if(bcell)
 			if(bcell.checked_use(chrgdeductamt))
@@ -52,13 +52,13 @@
 				return 0
 	return null
 
-/obj/item/melee/baton/proc/powercheck(var/chrgdeductamt)
+obj/item/melee/baton/proc/powercheck(var/chrgdeductamt)
 	if(bcell)
 		if(bcell.charge < chrgdeductamt)
 			status = FALSE
 			update_icon()
 
-/obj/item/melee/baton/update_icon()
+obj/item/melee/baton/update_icon()
 	if(status)
 		icon_state = "[initial(icon_state)]_active"
 	else if(!bcell)
@@ -71,14 +71,14 @@
 	else
 		set_light(0)
 
-/obj/item/melee/baton/examine(mob/user)
+obj/item/melee/baton/examine(mob/user)
 	. = ..()
 	if(bcell)
 		. += "<span class='notice'>The [src] is [round(bcell.percent())]% charged.</span>"
 	if(!bcell)
 		. += "<span class='warning'>The [src] does not have a power source installed.</span>"
 
-/obj/item/melee/baton/attackby(obj/item/W, mob/user)
+obj/item/melee/baton/attackby(obj/item/W, mob/user)
 	if(use_external_power)
 		return
 	if(istype(W, /obj/item/cell))
@@ -94,7 +94,7 @@
 		else
 			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
 
-/obj/item/melee/baton/attack_hand(mob/user, list/params)
+obj/item/melee/baton/attack_hand(mob/user, list/params)
 	if(user.get_inactive_held_item() == src)
 		if(bcell && !integrated_cell)
 			bcell.update_icon()
@@ -108,7 +108,7 @@
 	else
 		return ..()
 
-/obj/item/melee/baton/attack_self(mob/user)
+obj/item/melee/baton/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -130,7 +130,7 @@
 			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
 	add_fingerprint(user)
 
-/obj/item/melee/baton/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/baton/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(status && (MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='danger'>You accidentally hit yourself with the [src]!</span>")
 		user.afflict_paralyze(20 * 30)
@@ -139,7 +139,7 @@
 	deductcharge(hitcost)
 	return ..()
 
-/obj/item/melee/baton/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/baton/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/L = target
 	if(!istype(L))
 		return
@@ -180,18 +180,18 @@
 			H.forcesay(hit_appends)
 	powercheck(hitcost)
 
-/obj/item/melee/baton/emp_act(severity)
+obj/item/melee/baton/emp_act(severity)
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
 //secborg stun baton module
-/obj/item/melee/baton/robot
+obj/item/melee/baton/robot
 	hitcost = 500
 	use_external_power = TRUE
 
 //Makeshift stun baton. Replacement for stun gloves.
-/obj/item/melee/baton/cattleprod
+obj/item/melee/baton/cattleprod
 	name = "stunprod"
 	desc = "An improvised stun baton."
 	icon_state = "stunprod"
@@ -204,7 +204,7 @@
 	attack_verb = list("poked")
 	slot_flags = null
 
-/obj/item/melee/baton/cattleprod/attackby(obj/item/W, mob/user)
+obj/item/melee/baton/cattleprod/attackby(obj/item/W, mob/user)
 	if(use_external_power)
 		return
 	if(istype(W, /obj/item/cell))
@@ -231,7 +231,7 @@
 		else
 			user.visible_message("<span class='warning'>You can't put the crystal onto the stunprod while it has a power cell installed!</span>")
 
-/obj/item/melee/baton/get_description_interaction(mob/user)
+obj/item/melee/baton/get_description_interaction(mob/user)
 	var/list/results = list()
 
 	if(bcell)
@@ -243,7 +243,7 @@
 
 	return results
 
-/obj/item/melee/baton/cattleprod/teleprod
+obj/item/melee/baton/cattleprod/teleprod
 	name = "teleprod"
 	desc = "An improvised stun baton with a bluespace crystal attached to the tip."
 	icon_state = "teleprod"
@@ -256,13 +256,13 @@
 	attack_verb = list("poked")
 	slot_flags = null
 
-/obj/item/melee/baton/cattleprod/teleprod/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/baton/cattleprod/teleprod/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 	do_teleport(target, get_turf(target), 15)
 
 
 // Rare version of a baton that causes lesser lifeforms to really hate the user and attack them.
-/obj/item/melee/baton/shocker
+obj/item/melee/baton/shocker
 	name = "shocker"
 	desc = "A device that appears to arc electricity into a target to incapacitate or otherwise hurt them, similar to a stun baton.  It looks inefficent."
 	description_info = "Hitting a lesser lifeform with this while it is on will compel them to attack you above other nearby targets.  Otherwise \
@@ -273,7 +273,7 @@
 	agonyforce = 25 // Less efficent than a regular baton.
 	attack_verb = list("poked")
 
-/obj/item/melee/baton/shocker/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/baton/shocker/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/L = target
 	if(!istype(L))
 		return
@@ -282,27 +282,27 @@
 		L.taunt(user)
 
 // Borg version, for the lost module.
-/obj/item/melee/baton/shocker/robot
+obj/item/melee/baton/shocker/robot
 	use_external_power = TRUE
 
-/obj/item/melee/baton/stunsword
+obj/item/melee/baton/stunsword
 	name = "stunsword"
 	desc = "Not actually sharp, this sword is functionally identical to its baton counterpart."
 	icon_state = "stunsword"
 	item_state = "baton"
 
-/obj/item/melee/baton/stunlance
+obj/item/melee/baton/stunlance
 	name = "stun lance"
 	desc = "Designed by NanoTrasen for mounted expeditions, the stun lance is useful for running down and incapacitating wildlife for study. Its efficacy on fugitives is tacitly implied."
 	icon_state = "stunlance"
 	w_class = ITEMSIZE_NORMAL
 	reach = 2
 
-/obj/item/melee/baton/stunlance/Initialize(mapload)
+obj/item/melee/baton/stunlance/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/jousting)
 
-/obj/item/melee/baton/loaded/mini
+obj/item/melee/baton/loaded/mini
 	name = "Personal Defense Baton"
 	desc = "A smaller, more potent version of a hand-held tazer, one zap and the target is sure to be on the ground, and the <b>integrated</b> cell empty. Standard issue to Command staff, indentured sex workers and anyone else who might get mobbed by dissatisfied clientele. Do not lick."
 	icon_state = "mini_baton"
@@ -315,13 +315,13 @@
 	integrated_cell = TRUE
 	hitcost = 1150
 
-/obj/item/melee/baton/loaded/mini/Initialize(mapload)
+obj/item/melee/baton/loaded/mini/Initialize(mapload)
 	. = ..()
 	if(!bcell)
 		bcell = new/obj/item/cell/device/weapon(src)
 	update_icon()
 
-/obj/item/melee/baton/loaded/mini/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/baton/loaded/mini/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/L = target
 	if(!istype(L))
 		return

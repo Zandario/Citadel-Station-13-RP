@@ -1,4 +1,4 @@
-/obj/item/rig/internalaffairs
+obj/item/rig/internalaffairs
 	name = "augmented tie"
 	suit_type = "augmented suit"
 	desc = "The last suit you'll ever wear."
@@ -22,7 +22,7 @@
 	helm_type = null
 	boot_type = null
 
-/obj/item/rig/internalaffairs/equipped
+obj/item/rig/internalaffairs/equipped
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/device/flash,

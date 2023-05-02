@@ -1,11 +1,11 @@
-/obj/structure/closet/syndicate
+obj/structure/closet/syndicate
 	name = "armory closet"
 	desc = "Why is this here?"
 	icon_state = "syndicate"
 	icon_closed = "syndicate"
 	icon_opened = "syndicateopen"
 
-/obj/structure/closet/syndicate/personal
+obj/structure/closet/syndicate/personal
 	desc = "It's a storage unit for operative gear."
 
 	starts_with = list(
@@ -22,7 +22,7 @@
 		/obj/item/clothing/shoes/magboots)
 
 
-/obj/structure/closet/syndicate/suit
+obj/structure/closet/syndicate/suit
 	desc = "It's a storage unit for voidsuits."
 
 	starts_with = list(
@@ -33,7 +33,7 @@
 		/obj/item/clothing/head/helmet/space/void/merc)
 
 
-/obj/structure/closet/syndicate/nuclear
+obj/structure/closet/syndicate/nuclear
 	desc = "It's a storage unit for nuclear-operative gear."
 
 	starts_with = list(
@@ -45,10 +45,10 @@
 	/obj/item/pda/syndicate,
 	/obj/item/radio/uplink)
 
-/obj/structure/closet/syndicate/resources
+obj/structure/closet/syndicate/resources
 	desc = "An old, dusty locker."
 
-/obj/structure/closet/syndicate/resources/Initialize(mapload)
+obj/structure/closet/syndicate/resources/Initialize(mapload)
 	. = ..()
 	if(!contents.len)
 		var/common_min = 30 //Minimum amount of minerals in the stack for common minerals
@@ -100,10 +100,10 @@
 		if(pickednum == 50)
 			new /obj/item/tank/jetpack/carbondioxide(src)
 
-/obj/structure/closet/syndicate/resources/everything
+obj/structure/closet/syndicate/resources/everything
 	desc = "It's an emergency storage closet for repairs."
 
-/obj/structure/closet/syndicate/resources/everything/Initialize(mapload)
+obj/structure/closet/syndicate/resources/everything/Initialize(mapload)
 	var/list/resources = list(
 		/obj/item/stack/material/steel,
 		/obj/item/stack/material/glass,
@@ -124,7 +124,7 @@
 	return ..()
 
 //Clown Ops!
-/obj/structure/closet/syndicate/clownops/personal
+obj/structure/closet/syndicate/clownops/personal
 	desc = "It's a storage unit for operative gear."
 
 	starts_with = list(

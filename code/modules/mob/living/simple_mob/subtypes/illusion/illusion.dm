@@ -1,6 +1,6 @@
 // Illusion type mobs pretend to be other things visually, and generally cannot be harmed as they're not 'real'.
 
-/mob/living/simple_mob/illusion
+mob/living/simple_mob/illusion
 	name = "illusion"
 	desc = "If you can read me, the game broke. Please report this to a coder."
 
@@ -24,10 +24,10 @@
 	var/atom/movable/copying = null // The thing we're trying to look like.
 	var/realistic = FALSE // If true, things like bullets and weapons will hit it, to be a bit more convincing from a distance.
 
-/mob/living/simple_mob/illusion/update_icon() // We don't want the appearance changing AT ALL unless by copy_appearance().
+mob/living/simple_mob/illusion/update_icon() // We don't want the appearance changing AT ALL unless by copy_appearance().
 	return
 
-/mob/living/simple_mob/illusion/proc/copy_appearance(atom/movable/thing_to_copy)
+mob/living/simple_mob/illusion/proc/copy_appearance(atom/movable/thing_to_copy)
 	if(!thing_to_copy)
 		return FALSE
 	appearance = thing_to_copy.appearance
@@ -39,13 +39,13 @@
 
 // Because we can't perfectly duplicate some examine() output, we directly examine the AM it is copying.  It's messy but
 // this is to prevent easy checks from the opposing force.
-/mob/living/simple_mob/illusion/examine(mob/user)
+mob/living/simple_mob/illusion/examine(mob/user)
 	if(copying)
 		copying.examine(user)
 		return
 
 
-/mob/living/simple_mob/illusion/bullet_act(obj/projectile/P)
+mob/living/simple_mob/illusion/bullet_act(obj/projectile/P)
 	if(!P)
 		return
 
@@ -54,7 +54,7 @@
 
 	return PROJECTILE_FORCE_MISS
 
-/mob/living/simple_mob/illusion/attack_hand(mob/user, list/params)
+mob/living/simple_mob/illusion/attack_hand(mob/user, list/params)
 	var/mob/living/M = user
 	if(!istype(M))
 		return
@@ -85,7 +85,7 @@
 				M.visible_message(SPAN_DANGER("\The [M] [response_harm] \the [src]"))
 				M.do_attack_animation(src)
 
-/mob/living/simple_mob/illusion/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
+mob/living/simple_mob/illusion/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
 	if(realistic)
 		return ..()
 
@@ -93,27 +93,27 @@
 	visible_message(SPAN_WARNING( "\The [user]'s [I] goes through \the [src]!"))
 	return FALSE
 
-/mob/living/simple_mob/illusion/legacy_ex_act()
+mob/living/simple_mob/illusion/legacy_ex_act()
 	return
 
 // Try to have the same tooltip, or else it becomes really obvious which one is fake.
-/mob/living/simple_mob/illusion/get_nametag_name(mob/user)
+mob/living/simple_mob/illusion/get_nametag_name(mob/user)
 	if(copying)
 		return copying.get_nametag_name(user)
 
-/mob/living/simple_mob/illusion/get_nametag_desc(mob/user)
+mob/living/simple_mob/illusion/get_nametag_desc(mob/user)
 	if(copying)
 		return copying.get_nametag_desc(user)
 
 // Cataloguer stuff. I don't think this will actually come up but better safe than sorry.
-/mob/living/simple_mob/illusion/get_catalogue_data()
+mob/living/simple_mob/illusion/get_catalogue_data()
 	if(copying)
 		return copying.get_catalogue_data()
 
-/mob/living/simple_mob/illusion/can_catalogue()
+mob/living/simple_mob/illusion/can_catalogue()
 	if(copying)
 		return copying.can_catalogue()
 
-/mob/living/simple_mob/illusion/get_catalogue_delay()
+mob/living/simple_mob/illusion/get_catalogue_delay()
 	if(copying)
 		return copying.get_catalogue_delay()

@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/cartridge/dispenser
+obj/item/reagent_containers/cartridge/dispenser
 	name = "dispenser cartridge"
 	desc = "This goes in a chemical dispenser."
 	icon_state = "cartridge"
@@ -9,15 +9,15 @@
 	/// label - the dispenser sees this, not what's in us
 	var/label
 
-/obj/item/reagent_containers/cartridge/dispenser/Initialize(mapload)
+obj/item/reagent_containers/cartridge/dispenser/Initialize(mapload)
 	. = ..()
 	set_label(label)
 
-/obj/item/reagent_containers/cartridge/dispenser/proc/set_label(new_label)
+obj/item/reagent_containers/cartridge/dispenser/proc/set_label(new_label)
 	label = new_label
 	name = "[initial(name)] ([label])"
 
-/obj/item/reagent_containers/cartridge/dispenser/verb/set_label_verb()
+obj/item/reagent_containers/cartridge/dispenser/verb/set_label_verb()
 	set name = "Set Label"
 	set category = "Object"
 	set src in usr
@@ -31,7 +31,7 @@
 
 	set_label(new_label)
 
-/obj/item/reagent_containers/cartridge/dispenser/examine(mob/user)
+obj/item/reagent_containers/cartridge/dispenser/examine(mob/user)
 	. = ..()
 	. += "It has a capacity of [volume] units."
 	if(reagents.total_volume <= 0)
@@ -41,7 +41,7 @@
 	if(!is_open_container())
 		. += "The cap is sealed."
 
-/obj/item/reagent_containers/cartridge/dispenser/attack_self(mob/user)
+obj/item/reagent_containers/cartridge/dispenser/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -53,14 +53,14 @@
 		atom_flags |= OPENCONTAINER
 
 
-/obj/item/reagent_containers/cartridge/dispenser/large
+obj/item/reagent_containers/cartridge/dispenser/large
 	name = "large dispenser cartridge"
 	volume = 1000
 
-/obj/item/reagent_containers/cartridge/dispenser/medium
+obj/item/reagent_containers/cartridge/dispenser/medium
 	name = "medium dispenser cartridge"
 	volume = 500
 
-/obj/item/reagent_containers/cartridge/dispenser/small
+obj/item/reagent_containers/cartridge/dispenser/small
 	name = "small dispenser cartridge"
 	volume = 250

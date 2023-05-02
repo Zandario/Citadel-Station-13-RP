@@ -1,4 +1,4 @@
-/obj/item/towel
+obj/item/towel
 	name = "towel"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "towel"
@@ -12,7 +12,7 @@
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
-/obj/item/towel/equipped(var/M, var/slot)
+obj/item/towel/equipped(var/M, var/slot)
 	..()
 	LAZYINITLIST(sprite_sheets)
 	switch(slot)
@@ -23,7 +23,7 @@
 		if(SLOT_ID_BELT)
 			sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/clothing/species/teshari/belt.dmi')
 
-/obj/item/towel/attack_self(mob/user)
+obj/item/towel/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -37,6 +37,6 @@
 	else if(H.fire_stacks < 0)
 		H.fire_stacks = (min(0, H.fire_stacks + 1.5))
 
-/obj/item/towel/random/Initialize(mapload)
+obj/item/towel/random/Initialize(mapload)
 	. = ..()
 	add_atom_colour("#"+get_random_colour(), FIXED_COLOUR_PRIORITY)

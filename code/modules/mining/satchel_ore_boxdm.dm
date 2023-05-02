@@ -1,7 +1,7 @@
 
 /**********************Ore box**************************/
 //Why the hell is this file called satchel_ore_boxdm.dm? -CK
-/obj/structure/ore_box
+obj/structure/ore_box
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox0"
 	name = "ore box"
@@ -10,10 +10,10 @@
 	var/last_update = 0
 	var/list/stored_ore = list()
 
-/obj/structure/ore_box/legacy_ex_act(severity)
+obj/structure/ore_box/legacy_ex_act(severity)
 	return //if an overstuffed ore box explodes it crashes the server, thank you GC
 
-/obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/ore))
 		if(!user.attempt_insert_item_for_installation(W, src))
 			return
@@ -27,7 +27,7 @@
 		for(var/obj/item/ore/O in S.contents)
 			S.remove_from_storage(O, src) //This will move the item to this item's contents
 
-/obj/structure/ore_box/examine(mob/user)
+obj/structure/ore_box/examine(mob/user)
 	. = ..()
 
 	to_chat(user,"It holds:")
@@ -36,12 +36,12 @@
 		to_chat(user,"- [stored_ore[ore]] [initial(O.name)]")
 
 /// Sigh.
-/obj/structure/ore_box/Entered(atom/movable/AM, atom/oldLoc)
+obj/structure/ore_box/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()
 	if(istype(AM, /obj/item/ore))
 		take(AM)
 
-/obj/structure/ore_box/proc/take(obj/item/ore/O)
+obj/structure/ore_box/proc/take(obj/item/ore/O)
 	if(!istype(O))
 		return
 	if(!stored_ore[O.type])
@@ -50,7 +50,7 @@
 		stored_ore[O.type]++
 	qdel(O)
 
-/obj/structure/ore_box/proc/deposit(atom/newloc)
+obj/structure/ore_box/proc/deposit(atom/newloc)
 	if(isEmpty())
 		return FALSE
 	var/path = stored_ore[1]
@@ -60,10 +60,10 @@
 		stored_ore -= path
 	return TRUE
 
-/obj/structure/ore_box/proc/isEmpty()
+obj/structure/ore_box/proc/isEmpty()
 	return !length(stored_ore)
 
-/obj/structure/ore_box/verb/empty_box()
+obj/structure/ore_box/verb/empty_box()
 	set name = "Empty Ore Box"
 	set category = "Object"
 	set src in view(1)

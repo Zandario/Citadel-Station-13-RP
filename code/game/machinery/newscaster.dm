@@ -2,7 +2,7 @@
 //################### NEWSCASTERS BE HERE! ####
 //###-Agouri###################################
 
-/datum/feed_message
+datum/feed_message
 	var/author =""
 	var/body =""
 	var/message_type ="Story"
@@ -17,7 +17,7 @@
 	var/icon/backup_caption = ""
 	var/post_time = 0
 
-/datum/feed_channel
+datum/feed_channel
 	var/channel_name=""
 	var/list/datum/feed_message/messages = list()
 	var/locked=0
@@ -28,7 +28,7 @@
 	var/updated = 0
 	var/announcement = ""
 
-/datum/feed_message/proc/clear()
+datum/feed_message/proc/clear()
 	src.author = ""
 	src.body = ""
 	src.caption = ""
@@ -40,10 +40,10 @@
 	src.backup_img = null
 	parent_channel.update()
 
-/datum/feed_channel/proc/update()
+datum/feed_channel/proc/update()
 	updated = world.time
 
-/datum/feed_channel/proc/clear()
+datum/feed_channel/proc/clear()
 	src.channel_name = ""
 	src.messages = list()
 	src.locked = 0
@@ -54,14 +54,14 @@
 	src.announcement = ""
 	update()
 
-/datum/feed_network
+datum/feed_network
 	var/list/datum/feed_channel/network_channels = list()
 	var/datum/feed_message/wanted_issue
 
-/datum/feed_network/New()
+datum/feed_network/New()
 	CreateFeedChannel("Station Announcements", "SS13", 1, 1, "New Station Announcement Available")
 
-/datum/feed_network/proc/CreateFeedChannel(channel_name, author, locked, adminChannel = 0, announcement_message)
+datum/feed_network/proc/CreateFeedChannel(channel_name, author, locked, adminChannel = 0, announcement_message)
 	var/datum/feed_channel/newChannel = new /datum/feed_channel
 	newChannel.channel_name = channel_name
 	newChannel.author = author
@@ -73,7 +73,7 @@
 		newChannel.announcement = "Breaking news from [channel_name]!"
 	network_channels += newChannel
 
-/datum/feed_network/proc/SubmitArticle(msg, author, channel_name, obj/item/photo/photo, adminMessage = 0, message_type = "")
+datum/feed_network/proc/SubmitArticle(msg, author, channel_name, obj/item/photo/photo, adminMessage = 0, message_type = "")
 	var/datum/feed_message/newMsg = new /datum/feed_message
 	newMsg.author = author
 	newMsg.body = msg
@@ -90,13 +90,13 @@
 			insert_message_in_channel(FC, newMsg) //Adding message to the network's appropriate feed_channel
 			break
 
-/datum/feed_network/proc/insert_message_in_channel(datum/feed_channel/FC, datum/feed_message/newMsg)
+datum/feed_network/proc/insert_message_in_channel(datum/feed_channel/FC, datum/feed_message/newMsg)
 	FC.messages += newMsg
 	newMsg.parent_channel = FC
 	FC.update()
 	alert_readers(FC.announcement)
 
-/datum/feed_network/proc/alert_readers(annoncement)
+datum/feed_network/proc/alert_readers(annoncement)
 	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
 		NEWSCASTER.newsAlert(annoncement)
 		NEWSCASTER.update_icon()
@@ -122,7 +122,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 
 var/list/obj/machinery/newscaster/allCasters = list() //Global list that will contain reference to all newscasters in existence.
 
-/obj/machinery/newscaster
+obj/machinery/newscaster
 	name = "newscaster"
 	desc = "A standard newsfeed handler for use on commercial space stations. All the news you absolutely have no use for, in one place!"
 	icon = 'icons/obj/terminals.dmi'
@@ -175,11 +175,11 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	var/obj/machinery/exonet_node/node = null
 	circuit = /obj/item/circuitboard/newscaster
 
-/obj/machinery/newscaster/security_unit //Security unit
+obj/machinery/newscaster/security_unit //Security unit
 	name = "Security Newscaster"
 	securityCaster = 1
 
-/obj/machinery/newscaster/Initialize(mapload, newdir)
+obj/machinery/newscaster/Initialize(mapload, newdir)
 	. = ..()
 	allCasters += src
 	paper_remaining = 15 // Will probably change this to something better
@@ -188,15 +188,15 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	update_icon() //for any custom ones on the map...
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/newscaster/LateInitialize()
+obj/machinery/newscaster/LateInitialize()
 	. = ..()
 	node = get_exonet_node()
 
-/obj/machinery/newscaster/Destroy()
+obj/machinery/newscaster/Destroy()
 	allCasters -= src
 	return ..()
 
-/obj/machinery/newscaster/update_icon()
+obj/machinery/newscaster/update_icon()
 	if(!ispowered || isbroken)
 		icon_state = "newscaster_off"
 		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
@@ -218,7 +218,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	icon_state = "newscaster_normal"
 	return
 
-/obj/machinery/newscaster/power_change()
+obj/machinery/newscaster/power_change()
 	if(isbroken) //Broken shit can't be powered.
 		return
 	..()
@@ -230,7 +230,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			ispowered = FALSE
 			update_icon()
 
-/obj/machinery/newscaster/legacy_ex_act(severity)
+obj/machinery/newscaster/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -247,10 +247,10 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 				isbroken=1
 			update_icon()
 
-/obj/machinery/newscaster/attack_ai(mob/user)
+obj/machinery/newscaster/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/newscaster/attack_hand(mob/user, list/params) //########### THE MAIN BEEF IS HERE! And in the proc below this...############
+obj/machinery/newscaster/attack_hand(mob/user, list/params) //########### THE MAIN BEEF IS HERE! And in the proc below this...############
 	if(!ispowered || isbroken)
 		return
 
@@ -505,7 +505,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		human_or_robot_user << browse(dat, "window=newscaster_main;size=400x600")
 		onclose(human_or_robot_user, "newscaster_main")
 
-/obj/machinery/newscaster/Topic(href, href_list)
+obj/machinery/newscaster/Topic(href, href_list)
 	if(..())
 		return
 	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
@@ -753,25 +753,25 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		else if(href_list["refresh"])
 			updateUsrDialog()
 
-/obj/machinery/newscaster/attackby(obj/item/I, mob/user)
+obj/machinery/newscaster/attackby(obj/item/I, mob/user)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	else
 		attack_hand(user)
 	return
 
-/obj/machinery/newscaster/attack_ai(mob/user)
+obj/machinery/newscaster/attack_ai(mob/user)
 	return attack_hand(user) //or maybe it'll have some special functions? No idea.
 
-/datum/news_photo
+datum/news_photo
 	var/is_synth = 0
 	var/obj/item/photo/photo = null
 
-/datum/news_photo/New(obj/item/photo/p, synth)
+datum/news_photo/New(obj/item/photo/p, synth)
 	is_synth = synth
 	photo = p
 
-/obj/machinery/newscaster/proc/AttachPhoto(mob/user as mob)
+obj/machinery/newscaster/proc/AttachPhoto(mob/user as mob)
 	if(photo_data)
 		if(!photo_data.is_synth)
 			photo_data.photo.loc = src.loc
@@ -795,7 +795,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 //###################################### NEWSPAPER! ######################################################################
 //########################################################################################################################
 
-/obj/item/newspaper
+obj/item/newspaper
 	name = "newspaper"
 	desc = "An issue of The Griffon, the newspaper circulating aboard most stations."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -812,7 +812,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
-/obj/item/newspaper/attack_self(mob/user)
+obj/item/newspaper/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -894,7 +894,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	else
 		to_chat(user, "The paper is full of intelligible symbols!")
 
-/obj/item/newspaper/Topic(href, href_list)
+obj/item/newspaper/Topic(href, href_list)
 	var/mob/living/U = usr
 	..()
 	if((src in U.contents) || (istype(loc, /turf) && in_range(src, U)))
@@ -925,7 +925,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		if(istype(src.loc, /mob))
 			attack_self(src.loc)
 
-/obj/item/newspaper/attackby(obj/item/W, mob/user)
+obj/item/newspaper/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/pen))
 		if(scribble_page == curr_page)
 			to_chat(user, "<font color=#4F49AF>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>")
@@ -943,7 +943,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 ////////////////////////////////////helper procs
 
-/obj/machinery/newscaster/proc/scan_user(mob/living/user)
+obj/machinery/newscaster/proc/scan_user(mob/living/user)
 	if(istype(user,/mob/living/carbon/human))                       //User is a human
 		var/mob/living/carbon/human/human_user = user
 		var/obj/item/card/id/I = human_user.GetIdCard()
@@ -955,7 +955,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		var/mob/living/silicon/ai_user = user
 		scanned_user = "[ai_user.name] ([ai_user.job])"
 
-/obj/machinery/newscaster/proc/print_paper()
+obj/machinery/newscaster/proc/print_paper()
 	feedback_inc("newscaster_newspapers_printed",1)
 	var/obj/item/newspaper/NEWSPAPER = new /obj/item/newspaper
 	for(var/datum/feed_channel/FC in news_network.network_channels)
@@ -966,7 +966,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	paper_remaining--
 	return
 
-/obj/machinery/newscaster/proc/newsAlert(news_call)
+obj/machinery/newscaster/proc/newsAlert(news_call)
 	if(!node || !node.on || !node.allow_external_newscasters) //The messages will still be there once the connection returns.
 		return
 	var/turf/T = get_turf(src)

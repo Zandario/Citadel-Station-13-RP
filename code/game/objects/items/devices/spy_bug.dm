@@ -1,4 +1,4 @@
-/obj/item/camerabug
+obj/item/camerabug
 	name = "mobile camera pod"
 	desc = "A camera pod used by tactical operators. Must be linked to a camera scanner unit."
 	icon = 'icons/obj/grenade.dmi'
@@ -16,11 +16,11 @@
 	var/obj/machinery/camera/bug/camera
 	var/camtype = /obj/machinery/camera/bug
 
-/obj/item/camerabug/Initialize(mapload)
+obj/item/camerabug/Initialize(mapload)
 	. = ..()
 	camera = new camtype(src)
 
-/obj/item/camerabug/attack_self(mob/user)
+obj/item/camerabug/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -31,7 +31,7 @@
 		spawn(0)
 		qdel(src)
 
-/obj/item/camerabug/verb/reset()
+obj/item/camerabug/verb/reset()
 	set name = "Reset camera bug"
 	set category = "Object"
 	if(linkedmonitor)
@@ -41,7 +41,7 @@
 	camera = new camtype(src)
 	to_chat(usr, "<span class='notice'>You turn the [src] off and on again, delinking it from any monitors.")
 
-/obj/item/brokenbug
+obj/item/brokenbug
 	name = "broken mobile camera pod"
 	desc = "A camera pod formerly used by tactical operators. The lens is smashed, and the circuits are damaged beyond repair."
 	icon = 'icons/obj/grenade.dmi'
@@ -54,7 +54,7 @@
 	throw_speed = 3
 	origin_tech = list(TECH_ENGINEERING = 1)
 
-/obj/item/brokenbug/spy
+obj/item/brokenbug/spy
 	name = "broken bug"
 	desc = ""	//Even when it's broken it's inconspicuous
 	icon = 'icons/obj/weapons.dmi'
@@ -69,7 +69,7 @@
 	throw_range = 15
 	throw_speed = 3
 
-/obj/item/camerabug/spy
+obj/item/camerabug/spy
 	name = "bug"
 	desc = ""	//Nothing to see here
 	icon = 'icons/obj/weapons.dmi'
@@ -81,11 +81,11 @@
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_ILLEGAL = 3)
 	camtype = /obj/machinery/camera/bug/spy
 
-/obj/item/camerabug/examine(mob/user)
+obj/item/camerabug/examine(mob/user)
 	. = ..()
 	. += "It has a tiny camera inside. Needs to be both configured and brought in contact with monitor device to be fully functional."
 
-/obj/item/camerabug/attackby(obj/item/W as obj, mob/living/user as mob)
+obj/item/camerabug/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W, /obj/item/bug_monitor))
 		var/obj/item/bug_monitor/SM = W
 		if(!linkedmonitor)
@@ -109,7 +109,7 @@
 			qdel(src)
 		..()
 
-/obj/item/camerabug/bullet_act()
+obj/item/camerabug/bullet_act()
 	visible_message("The [src] lens shatters!")
 	new brokentype(get_turf(src))
 	if(linkedmonitor)
@@ -118,13 +118,13 @@
 	spawn(0)
 	qdel(src)
 
-/obj/item/camerabug/Destroy()
+obj/item/camerabug/Destroy()
 	if(linkedmonitor)
 		linkedmonitor.unpair(src)
 	linkedmonitor = null
 	..()
 
-/obj/item/bug_monitor
+obj/item/bug_monitor
 	name = "mobile camera pod monitor"
 	desc = "A portable camera console designed to work with mobile camera pods."
 	icon = 'icons/obj/device.dmi'
@@ -137,7 +137,7 @@
 	var/obj/machinery/camera/bug/selected_camera
 	var/list/obj/machinery/camera/bug/cameras = new()
 
-/obj/item/bug_monitor/attack_self(mob/user)
+obj/item/bug_monitor/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -146,20 +146,20 @@
 
 	view_cameras(user)
 
-/obj/item/bug_monitor/attackby(obj/item/W as obj, mob/living/user as mob)
+obj/item/bug_monitor/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W, /obj/item/camerabug))
 		W.attackby(src, user)
 	else
 		return ..()
 
-/obj/item/bug_monitor/proc/unpair(var/obj/item/camerabug/SB)
+obj/item/bug_monitor/proc/unpair(var/obj/item/camerabug/SB)
 	if(SB.camera in cameras)
 		cameras -= SB.camera
 
-/obj/item/bug_monitor/proc/pair(var/obj/item/camerabug/SB)
+obj/item/bug_monitor/proc/pair(var/obj/item/camerabug/SB)
 	cameras += SB.camera
 
-/obj/item/bug_monitor/proc/view_cameras(mob/user)
+obj/item/bug_monitor/proc/view_cameras(mob/user)
 	if(!can_use_cam(user))
 		return
 
@@ -173,7 +173,7 @@
 	selected_camera = null
 	operating = 0
 
-/obj/item/bug_monitor/proc/view_camera(mob/user)
+obj/item/bug_monitor/proc/view_camera(mob/user)
 	spawn(0)
 		while(selected_camera && Adjacent(user))
 			var/turf/T = get_turf(selected_camera)
@@ -190,7 +190,7 @@
 		user.unset_machine()
 		user.reset_perspective()
 
-/obj/item/bug_monitor/proc/can_use_cam(mob/user)
+obj/item/bug_monitor/proc/can_use_cam(mob/user)
 	if(operating)
 		return
 
@@ -201,7 +201,7 @@
 
 	return TRUE
 
-/obj/item/bug_monitor/spy
+obj/item/bug_monitor/spy
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
@@ -209,26 +209,26 @@
 	item_state = "electronic"
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_ILLEGAL = 3)
 
-/obj/item/bug_monitor/spy/examine(mob/user)
+obj/item/bug_monitor/spy/examine(mob/user)
 	. = ..()
 	. += "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made."
 
-/obj/machinery/camera/bug/check_eye(var/mob/user as mob)
+obj/machinery/camera/bug/check_eye(var/mob/user as mob)
 	return FALSE
 
-/obj/machinery/camera/bug
+obj/machinery/camera/bug
 	network = list(NETWORK_SECURITY)
 
-/obj/machinery/camera/bug/Initialize(mapload)
+obj/machinery/camera/bug/Initialize(mapload)
 	. = ..()
 	name = "Camera #[rand(1000,9999)]"
 	c_tag = name
 
-/obj/machinery/camera/bug/spy
+obj/machinery/camera/bug/spy
 	// These cheap toys are accessible from the mercenary camera console as well - only the antag ones though!
 	network = list(NETWORK_MERCENARY)
 
-/obj/machinery/camera/bug/spy/Initialize(mapload)
+obj/machinery/camera/bug/spy/Initialize(mapload)
 	. = ..()
 	name = "DV-136ZB #[rand(1000,9999)]"
 	c_tag = name

@@ -1,6 +1,6 @@
 var/list/fuel_injectors = list()
 
-/obj/machinery/fusion_fuel_injector
+obj/machinery/fusion_fuel_injector
 	name = "fuel injector"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "injector0"
@@ -18,28 +18,28 @@ var/list/fuel_injectors = list()
 	var/injecting = 0
 	var/obj/item/fuel_assembly/cur_assembly
 
-/obj/machinery/fusion_fuel_injector/Initialize(mapload)
+obj/machinery/fusion_fuel_injector/Initialize(mapload)
 	. = ..()
 	fuel_injectors += src
 
-/obj/machinery/fusion_fuel_injector/Destroy()
+obj/machinery/fusion_fuel_injector/Destroy()
 	if(cur_assembly)
 		cur_assembly.forceMove(get_turf(src))
 		cur_assembly = null
 	fuel_injectors -= src
 	return ..()
 
-/obj/machinery/fusion_fuel_injector/mapped
+obj/machinery/fusion_fuel_injector/mapped
 	anchored = 1
 
-/obj/machinery/fusion_fuel_injector/process(delta_time)
+obj/machinery/fusion_fuel_injector/process(delta_time)
 	if(injecting)
 		if(machine_stat & (BROKEN|NOPOWER))
 			StopInjecting()
 		else
 			Inject()
 
-/obj/machinery/fusion_fuel_injector/attackby(obj/item/W, mob/user)
+obj/machinery/fusion_fuel_injector/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = input("Enter a new ident tag.", "Fuel Injector", id_tag) as null|text
@@ -79,7 +79,7 @@ var/list/fuel_injectors = list()
 
 	return ..()
 
-/obj/machinery/fusion_fuel_injector/attack_hand(mob/user, list/params)
+obj/machinery/fusion_fuel_injector/attack_hand(mob/user, list/params)
 
 	if(injecting)
 		to_chat(user, "<span class='warning'>Shut \the [src] off before playing with the fuel rod!</span>")
@@ -95,19 +95,19 @@ var/list/fuel_injectors = list()
 		to_chat(user, "<span class='warning'>There is no fuel rod in \the [src].</span>")
 		return
 
-/obj/machinery/fusion_fuel_injector/proc/BeginInjecting()
+obj/machinery/fusion_fuel_injector/proc/BeginInjecting()
 	if(!injecting && cur_assembly)
 		icon_state = "injector1"
 		injecting = 1
 		update_use_power(USE_POWER_IDLE)
 
-/obj/machinery/fusion_fuel_injector/proc/StopInjecting()
+obj/machinery/fusion_fuel_injector/proc/StopInjecting()
 	if(injecting)
 		injecting = 0
 		icon_state = "injector0"
 		update_use_power(USE_POWER_OFF)
 
-/obj/machinery/fusion_fuel_injector/proc/Inject()
+obj/machinery/fusion_fuel_injector/proc/Inject()
 	if(!injecting)
 		return
 	if(cur_assembly)
@@ -130,7 +130,7 @@ var/list/fuel_injectors = list()
 	else
 		StopInjecting()
 
-/obj/machinery/fusion_fuel_injector/verb/rotate_clockwise()
+obj/machinery/fusion_fuel_injector/verb/rotate_clockwise()
 	set category = "Object"
 	set name = "Rotate Generator Clockwise"
 	set src in view(1)
@@ -140,7 +140,7 @@ var/list/fuel_injectors = list()
 
 	src.setDir(turn(src.dir, 270))
 
-/obj/machinery/fusion_fuel_injector/verb/rotate_counterclockwise()
+obj/machinery/fusion_fuel_injector/verb/rotate_counterclockwise()
 	set category = "Object"
 	set name = "Rotate Generator Counterclockwise"
 	set src in view(1)

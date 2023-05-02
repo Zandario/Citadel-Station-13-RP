@@ -1,4 +1,4 @@
-/spell/targeted/projectile/magic_missile
+spell/targeted/projectile/magic_missile
 	name = "Magic Missile"
 	desc = "This spell fires several, slow moving, magic projectiles at nearby targets."
 
@@ -23,7 +23,7 @@
 
 	amt_dam_fire = 10
 
-/spell/targeted/projectile/magic_missile/prox_cast(var/list/targets, atom/spell_holder)
+spell/targeted/projectile/magic_missile/prox_cast(var/list/targets, atom/spell_holder)
 	spell_holder.visible_message("<span class='danger'>\The [spell_holder] pops with a flash!</span>")
 	for(var/mob/living/M in targets)
 		apply_spell_damage(M)
@@ -31,7 +31,7 @@
 
 //PROJECTILE
 
-/obj/projectile/spell_projectile/seeking/magic_missile
+obj/projectile/spell_projectile/seeking/magic_missile
 	name = "magic missile"
 	icon_state = "magicm"
 

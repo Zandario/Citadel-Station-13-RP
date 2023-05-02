@@ -1,4 +1,4 @@
-/proc/emoji_parse(text) //turns :ai: into an emoji in text.
+proc/emoji_parse(text) //turns :ai: into an emoji in text.
 	. = text
 	if(!CONFIG_GET(flag/emojis))
 		return
@@ -34,7 +34,7 @@
 		break
 	return parsed
 
-/proc/emoji_sanitize(text) //cuts any text that would not be parsed as an emoji
+proc/emoji_sanitize(text) //cuts any text that would not be parsed as an emoji
 	. = text
 	if(!CONFIG_GET(flag/emojis))
 		return

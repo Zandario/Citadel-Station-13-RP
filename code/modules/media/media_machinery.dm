@@ -1,5 +1,5 @@
 // Machinery serving as a media source.
-/obj/machinery/media
+obj/machinery/media
 	var/playing = 0				// Am I playing right now?
 	var/media_url = ""			// URL of media I am playing
 	var/media_start_time = 0	// world.time when it started playing
@@ -11,7 +11,7 @@
 
 // Notify everyone in the area of new music.
 // YOU MUST SET MEDIA_URL AND MEDIA_START_TIME YOURSELF!
-/obj/machinery/media/proc/update_music()
+obj/machinery/media/proc/update_music()
 	update_media_source()
 	// Bail if we lost connection to master.
 	if(!master_area)
@@ -21,7 +21,7 @@
 		if(M && M.client)
 			M.update_music()
 
-/obj/machinery/media/proc/update_media_source()
+obj/machinery/media/proc/update_media_source()
 	var/area/A = get_area_master(src)
 	if(!A)
 		return
@@ -35,7 +35,7 @@
 		A.media_source = src
 	master_area = A
 
-/obj/machinery/media/proc/disconnect_media_source()
+obj/machinery/media/proc/disconnect_media_source()
 	var/area/A = get_area_master(src)
 	// Sanity
 	if(!A)
@@ -53,23 +53,22 @@
 			M.update_music()
 	master_area = null
 
-/obj/machinery/media/Move()
+obj/machinery/media/Move()
 	disconnect_media_source() // This line is imperative because it prevents a bug wherein multiple areas that *once* but *no longer* have a jukebox in them still hear whatever the original jukebox is now playing, regardless of area. -Drofoljaelisglis
 	..()
 	if(anchored)
 		update_music()
 
-/obj/machinery/media/forceMove(var/atom/destination)
+obj/machinery/media/forceMove(var/atom/destination)
 	disconnect_media_source()
 	..()
 	if(anchored)
 		update_music()
 
-/obj/machinery/media/Initialize(mapload)
+obj/machinery/media/Initialize(mapload)
 	. = ..()
 	update_media_source()
 
-/obj/machinery/media/Destroy()
+obj/machinery/media/Destroy()
 	disconnect_media_source()
 	. = ..()
-

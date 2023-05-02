@@ -1,5 +1,5 @@
 // Targets, the things that actually get shot!
-/obj/item/target
+obj/item/target
 	name = "shooting target"
 	desc = "A shooting target."
 	icon = 'icons/obj/objects.dmi'
@@ -9,7 +9,7 @@
 	var/icon/virtualIcon
 	var/list/bulletholes = list()
 
-/obj/item/target/Destroy()
+obj/item/target/Destroy()
 	// if a target is deleted and associated with a stake, force stake to forget
 	for(var/obj/structure/target_stake/T in view(3,src))
 		if(T.pinned_target == src)
@@ -18,7 +18,7 @@
 			break
 	return ..() // delete target
 
-/obj/item/target/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/target/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weldingtool))
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
 		var/obj/item/weldingtool/WT = W
@@ -29,7 +29,7 @@
 		return ..()
 
 
-/obj/item/target/attack_hand(mob/user, list/params)
+obj/item/target/attack_hand(mob/user, list/params)
 	// taking pinned targets off!
 	var/obj/structure/target_stake/stake
 	for(var/obj/structure/target_stake/T in view(3,src))
@@ -58,16 +58,16 @@
 	else
 		return ..()
 
-/obj/item/target/syndicate
+obj/item/target/syndicate
 		icon_state = "target_s"
 		desc = "A shooting target that looks like a hostile agent."
 		hp = 2600 // i guess syndie targets are sturdier?
-/obj/item/target/alien
+obj/item/target/alien
 		icon_state = "target_q"
 		desc = "A shooting target with a threatening silhouette."
 		hp = 2350 // alium onest too kinda
 
-/obj/item/target/bullet_act(var/obj/projectile/Proj)
+obj/item/target/bullet_act(var/obj/projectile/Proj)
 	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
 	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1)
 	var/decaltype = 1 // 1 - scorch, 2 - bullet
@@ -137,7 +137,7 @@
 
 
 // Small memory holder entity for transparent bullet holes
-/datum/bullethole
+datum/bullethole
 	// First box
 	var/b1x1 = 0
 	var/b1x2 = 0
@@ -148,7 +148,7 @@
 	var/b2y1 = 0
 	var/b2y2 = 0
 
-/datum/bullethole/New(obj/item/target/Target, pixel_x = 0, pixel_y = 0)
+datum/bullethole/New(obj/item/target/Target, pixel_x = 0, pixel_y = 0)
 	if(!Target)
 		return
 

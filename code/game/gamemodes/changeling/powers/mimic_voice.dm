@@ -1,4 +1,4 @@
-/datum/power/changeling/mimicvoice
+datum/power/changeling/mimicvoice
 	name = "Mimic Voice"
 	desc = "We shape our vocal glands to sound like a desired voice."
 	helptext = "Will turn your voice into the name that you enter. We must constantly expend chemicals to maintain our form like this"
@@ -8,7 +8,7 @@
 
 // Fake Voice
 
-/mob/proc/changeling_mimicvoice()
+mob/proc/changeling_mimicvoice()
 	set category = "Changeling"
 	set name = "Mimic Voice"
 	set desc = "Shape our vocal glands to form a voice of someone we choose. We cannot regenerate chemicals when mimicing."

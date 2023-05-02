@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers
+obj/structure/reagent_dispensers
 	name = "Dispenser"
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
@@ -16,11 +16,11 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
-/obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 		return
 
 
-/obj/structure/reagent_dispensers/Initialize(mapload)
+obj/structure/reagent_dispensers/Initialize(mapload)
 	. = ..()
 	create_reagents(starting_capacity)
 	for(var/thing in starting_reagents)
@@ -29,7 +29,7 @@
 	if (!possible_transfer_amounts)
 		remove_obj_verb(src, /obj/structure/reagent_dispensers/verb/set_APTFT)
 
-/obj/structure/reagent_dispensers/examine(mob/user)
+obj/structure/reagent_dispensers/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		. += "<span class='notice'>It contains:</span>"
@@ -39,7 +39,7 @@
 		else
 			. += "<span class='notice'>Nothing.</span>"
 
-/obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
+obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
 	set category = "Object"
 	set src in view(1)
@@ -47,7 +47,7 @@
 	if (N)
 		amount_per_transfer_from_this = N
 
-/obj/structure/reagent_dispensers/legacy_ex_act(severity)
+obj/structure/reagent_dispensers/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -63,5 +63,5 @@
 				qdel(src)
 				return
 
-/obj/structure/reagent_dispensers/blob_act()
+obj/structure/reagent_dispensers/blob_act()
 	qdel(src)

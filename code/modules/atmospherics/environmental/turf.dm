@@ -1,5 +1,5 @@
 // everything relating to turfs for atmospherics - environmental
-/turf
+turf
 	CanAtmosPass = ATMOS_PASS_PROC
 	CanAtmosPassVertical = ATMOS_PASS_PROC
 	/// our air mixture, if any - this refers **just** to ours, not our zone.
@@ -13,7 +13,7 @@
  * semantically means "we can pass to them", not "they can pass to us"
  * use CheckAirBlock instead
  */
-/turf/CanAtmosPass(turf/T, d)
+turf/CanAtmosPass(turf/T, d)
 	if(blocks_air)
 		return ATMOS_PASS_AIR_BLOCKED
 	if(T == src)
@@ -42,7 +42,7 @@
 				// can't go lower than this
 				return
 
-/turf/proc/CheckAirBlock(turf/other)
+turf/proc/CheckAirBlock(turf/other)
 	if(other == src)
 		return CanAtmosPass(src, NONE)
 	var/d = other.z == z? get_dir(src, other) : get_dir_multiz(src, other)
@@ -52,7 +52,7 @@
 /**
  * heuristically grab nearby adjacent tiles
  */
-/turf/proc/AtmosAdjacencyFloodfillHeuristic(amount, radius)
+turf/proc/AtmosAdjacencyFloodfillHeuristic(amount, radius)
 	. = list()
 	amount = clamp(amount, 0, 100)
 	if(!amount)
@@ -80,14 +80,14 @@
  * this does not take into account volume, and for ZAS, can return a whole room's air
  * for operations that care about this, prefer using other procs!
  */
-/atom/proc/return_air()
+atom/proc/return_air()
 	RETURN_TYPE(/datum/gas_mixture)
 	return loc?.return_air()
 
-/area/return_air()
+area/return_air()
 	CRASH("How was /area reached?")
 
-/turf/return_air()
+turf/return_air()
 	RETURN_TYPE(/datum/gas_mixture)
 	//Create gas mixture to hold data for passing
 	var/datum/gas_mixture/GM = new
@@ -97,7 +97,7 @@
 /**
  * queues us for a zone rebuild
  */
-/turf/proc/queue_zone_update()
+turf/proc/queue_zone_update()
 	if(turf_flags & TURF_ZONE_REBUILD_QUEUED)
 		return
 	turf_flags |= TURF_ZONE_REBUILD_QUEUED
@@ -108,7 +108,7 @@
  */
 
 // ATMOS_TODO: remove /unsimulated
-/turf/simulated/return_air()
+turf/simulated/return_air()
 	RETURN_TYPE(/datum/gas_mixture)
 	if(zone)
 		if(!zone.invalid)

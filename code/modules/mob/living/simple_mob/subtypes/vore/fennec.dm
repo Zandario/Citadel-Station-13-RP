@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/fennec		//TODO: VIRGO_LORE_WRITING_WIP
+datum/category_item/catalogue/fauna/fennec		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Wildlife - Fennec"
 	desc = "A small, dusty, big-eared sandfox, native to Virgo 4. It looks like a Zorren that's on all fours, \
 	and it's easy to see the resemblance to the little dunefox-like critters the Zorren are. However, the fennecs \
@@ -6,7 +6,7 @@
 	attitude, willing to eat damn near anything they come across or can bump into. Bapping them will make them stop."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/fennec
+mob/living/simple_mob/vore/fennec
 	name = "fennec" //why isn't this in the fox file, fennecs are foxes silly.
 	desc = "It's a dusty big-eared sandfox! Adorable!"
 	tt_desc = "Vulpes zerda"
@@ -35,7 +35,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 // Activate Noms!
-/mob/living/simple_mob/vore/fennec
+mob/living/simple_mob/vore/fennec
 	vore_active = 1
 	vore_bump_chance = 10
 	vore_bump_emote	= "playfully lunges at"
@@ -43,7 +43,7 @@
 	vore_default_mode = DM_HOLD
 	vore_icons = SA_ICON_LIVING
 
-/datum/say_list/fennec
+datum/say_list/fennec
 	speak = list("SKREEEE!","Chrp?","Ararrrararr.")
 	emote_hear = list("screEEEEeeches!","chirps.")
 	emote_see = list("earflicks","sniffs at the ground")

@@ -1,7 +1,7 @@
-/mob/living/silicon/robot/proc/transform_with_anim()
+mob/living/silicon/robot/proc/transform_with_anim()
 	INVOKE_ASYNC(src, .proc/do_transform_animation)
 
-/mob/living/silicon/robot/proc/do_transform_animation()
+mob/living/silicon/robot/proc/do_transform_animation()
 	notransform = TRUE
 	dir = SOUTH
 	var/obj/effect/temp_visual/decoy/fading/fivesecond/ANM = new /obj/effect/temp_visual/decoy/fading/fivesecond(loc, src)

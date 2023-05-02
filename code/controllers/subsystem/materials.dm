@@ -12,15 +12,15 @@ SUBSYSTEM_DEF(materials)
 	// however, i can't be assed to write Recover() until we do procedural materials
 	// thus, dealing with it later :^)
 
-/datum/controller/subsystem/materials/Initialize()
+datum/controller/subsystem/materials/Initialize()
 	initialize_materials()
 	return ..()
 
-/datum/controller/subsystem/materials/Recover()
+datum/controller/subsystem/materials/Recover()
 	initialize_materials()
 	return ..()
 
-/datum/controller/subsystem/materials/proc/initialize_materials()
+datum/controller/subsystem/materials/proc/initialize_materials()
 	material_lookup = list()
 	legacy_material_lookup = list()
 
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(materials)
  * @params
  * id_or_path - id or typepath
  */
-/datum/controller/subsystem/materials/proc/get_material(datum/material/id_or_path)
+datum/controller/subsystem/materials/proc/get_material(datum/material/id_or_path)
 	if(istext(id_or_path))
 		// yay it's an id
 		return material_lookup[id_or_path]
@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(materials)
  *
  * expensive (duh) use sparingly
  */
-/datum/controller/subsystem/materials/proc/all_materials()
+datum/controller/subsystem/materials/proc/all_materials()
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/id in material_lookup)
@@ -77,5 +77,5 @@ SUBSYSTEM_DEF(materials)
  * DO NOT USE THIS PROC
  * Use SSmaterials.get_material()!
  */
-/proc/get_material_by_name(name)
+proc/get_material_by_name(name)
 	return SSmaterials.legacy_material_lookup[name]

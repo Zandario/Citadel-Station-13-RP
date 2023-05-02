@@ -4,7 +4,7 @@
 #define PROCESS_COMPRESS	2
 #define PROCESS_ALLOY		3
 
-/obj/machinery/mineral/processing_unit_console
+obj/machinery/mineral/processing_unit_console
 	name = "production machine console"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi'
 	icon_state = "console"
@@ -16,7 +16,7 @@
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = FALSE
 
-/obj/machinery/mineral/processing_unit_console/Initialize(mapload)
+obj/machinery/mineral/processing_unit_console/Initialize(mapload)
 	. = ..()
 	src.machine = locate(/obj/machinery/mineral/processing_unit) in range(5, src)
 	if (machine)
@@ -25,17 +25,17 @@
 		log_debug(SPAN_DEBUG("Ore processing machine console at [src.x], [src.y], [src.z] [ADMIN_JMP(src)] could not find its machine!"))
 		qdel(src)
 
-/obj/machinery/mineral/processing_unit_console/Destroy()
+obj/machinery/mineral/processing_unit_console/Destroy()
 	if(inserted_id)
 		inserted_id.forceMove(loc) //Prevents deconstructing from deleting whatever ID was inside it.
 	. = ..()
 
-/obj/machinery/mineral/processing_unit_console/attack_hand(mob/user, list/params)
+obj/machinery/mineral/processing_unit_console/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	interact(user)
 
-/obj/machinery/mineral/processing_unit_console/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/mineral/processing_unit_console/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/card/id))
 		if(!powered())
 			return
@@ -47,7 +47,7 @@
 		return
 	..()
 
-/obj/machinery/mineral/processing_unit_console/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/machinery/mineral/processing_unit_console/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	. = ..()
 
 	user.set_machine(src)
@@ -92,7 +92,7 @@
 	onclose(user, "processor_console")
 	return
 
-/obj/machinery/mineral/processing_unit_console/Topic(href, href_list)
+obj/machinery/mineral/processing_unit_console/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.set_machine(src)
@@ -145,7 +145,7 @@
 /**********************Mineral processing unit**************************/
 
 
-/obj/machinery/mineral/processing_unit
+obj/machinery/mineral/processing_unit
 	name = "material processor" //This isn't actually a goddamn furnace, we're in space and it's processing platinum and flammable phoron...
 	icon = 'icons/obj/machines/mining_machines_vr.dmi'
 	icon_state = "furnace"
@@ -181,7 +181,7 @@
 		MAT_VAUDIUM = 50,
 		MAT_VERDANTIUM = 60)
 
-/obj/machinery/mineral/processing_unit/Initialize(mapload)
+obj/machinery/mineral/processing_unit/Initialize(mapload)
 	. = ..()
 	// initialize static alloy_data list
 	if(!alloy_data)
@@ -193,7 +193,7 @@
 		ores_processing[O.name] = 0
 		ores_stored[O.name] = 0
 
-/obj/machinery/mineral/processing_unit/Initialize(mapload)
+obj/machinery/mineral/processing_unit/Initialize(mapload)
 	. = ..()
 	// TODO - Eschew input/output machinery and just use dirs ~Leshana
 	//Locate our output and input machinery.
@@ -205,7 +205,7 @@
 		if(src.output) break
 	return
 
-/obj/machinery/mineral/processing_unit/proc/toggle_speed()
+obj/machinery/mineral/processing_unit/proc/toggle_speed()
 	speed_process = !speed_process // switching gears
 	if(speed_process) // high gear
 		STOP_MACHINE_PROCESSING(src)
@@ -214,7 +214,7 @@
 		STOP_PROCESSING(SSfastprocess, src)
 		START_MACHINE_PROCESSING(src)
 
-/obj/machinery/mineral/processing_unit/process(delta_time)
+obj/machinery/mineral/processing_unit/process(delta_time)
 
 	if (!src.output || !src.input)
 		return

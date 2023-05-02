@@ -1,4 +1,4 @@
-/obj/machinery/power/quantumpad
+obj/machinery/power/quantumpad
 	name = "quantum pad"
 	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
 	icon = 'icons/obj/telescience.dmi'
@@ -20,17 +20,17 @@
 	var/map_pad_id = "" as text //what's my name
 	var/map_pad_link_id = "" as text //who's my friend
 
-/obj/machinery/power/quantumpad/Initialize(mapload)
+obj/machinery/power/quantumpad/Initialize(mapload)
 	. = ..()
 	connect_to_network()
 	if(map_pad_id)
 		mapped_quantum_pads[map_pad_id] = src
 
-/obj/machinery/power/quantumpad/Destroy()
+obj/machinery/power/quantumpad/Destroy()
 	mapped_quantum_pads -= map_pad_id
 	return ..()
 
-/obj/machinery/power/quantumpad/RefreshParts()
+obj/machinery/power/quantumpad/RefreshParts()
 	var/E = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating
@@ -45,7 +45,7 @@
 	teleport_cooldown = initial(teleport_cooldown)
 	teleport_cooldown -= (E * 100)
 
-/obj/machinery/power/quantumpad/attackby(obj/item/I, mob/user)
+obj/machinery/power/quantumpad/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
@@ -70,7 +70,7 @@
 
 	return ..()
 
-/obj/machinery/power/quantumpad/update_icon()
+obj/machinery/power/quantumpad/update_icon()
 	. = ..()
 
 	if(inoperable() || panel_open)
@@ -78,7 +78,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/quantumpad/attack_hand(mob/user, list/params)
+obj/machinery/power/quantumpad/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
@@ -113,7 +113,7 @@
 	src.add_fingerprint(user)
 	doteleport(user)
 
-/obj/machinery/power/quantumpad/attack_ghost(mob/observer/dead/ghost)
+obj/machinery/power/quantumpad/attack_ghost(mob/observer/dead/ghost)
 	. = ..()
 	if(.)
 		return
@@ -122,7 +122,7 @@
 	if(linked_pad && !QDELETED(linked_pad))
 		ghost.forceMove(get_turf(linked_pad))
 
-/obj/machinery/power/quantumpad/proc/doteleport(mob/user)
+obj/machinery/power/quantumpad/proc/doteleport(mob/user)
 	if(!linked_pad)
 		return
 	playsound(get_turf(src), 'sound/weapons/flash.ogg', 25, 1)
@@ -167,7 +167,7 @@
 					continue
 			do_teleport(ROI, get_turf(linked_pad), local = FALSE, asoundin = 'sound/weapons/emitter2.ogg', asoundout = 'sound/weapons/emitter2.ogg')
 
-/obj/machinery/power/quantumpad/proc/initMappedLink()
+obj/machinery/power/quantumpad/proc/initMappedLink()
 	. = FALSE
 	var/obj/machinery/power/quantumpad/link = mapped_quantum_pads[map_pad_link_id]
 	if(link)

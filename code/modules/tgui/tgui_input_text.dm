@@ -13,7 +13,7 @@
  * * encode - Toggling this determines if input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
-/proc/default_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
+proc/default_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
 	return input(user, message, title, default) as text|null
 
 /**
@@ -33,7 +33,7 @@
  * * encode - Toggling this determines if input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
+proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -75,7 +75,7 @@
  * * encode - If toggled, input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * callback - The callback to be invoked when a choice is made.
  */
-/proc/tgui_input_text_async(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, datum/callback/callback, timeout = 60 SECONDS)
+proc/tgui_input_text_async(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, datum/callback/callback, timeout = 60 SECONDS)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -105,7 +105,7 @@
  * Datum used for instantiating and using a TGUI-controlled text input that prompts the user with
  * a message and has an input for text entry.
  */
-/datum/tgui_input_text
+datum/tgui_input_text
 	/// Boolean field describing if the tgui_input_text was closed by the user.
 	var/closed
 	/// The default (or current) value, shown as a default.
@@ -128,7 +128,7 @@
 	var/title
 
 
-/datum/tgui_input_text/New(mob/user, message, title, default, max_length, multiline, encode, timeout)
+datum/tgui_input_text/New(mob/user, message, title, default, max_length, multiline, encode, timeout)
 	src.default = default
 	src.encode = encode
 	src.max_length = max_length
@@ -140,7 +140,7 @@
 		start_time = world.time
 		QDEL_IN(src, timeout)
 
-/datum/tgui_input_text/Destroy(force, ...)
+datum/tgui_input_text/Destroy(force, ...)
 	SStgui.close_uis(src)
 	. = ..()
 
@@ -148,24 +148,24 @@
  * Waits for a user's response to the tgui_input_text's prompt before returning. Returns early if
  * the window was closed by the user.
  */
-/datum/tgui_input_text/proc/wait()
+datum/tgui_input_text/proc/wait()
 	while (!entry && !closed && !QDELETED(src))
 		stoplag(1)
 
-/datum/tgui_input_text/ui_interact(mob/user, datum/tgui/ui)
+datum/tgui_input_text/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TextInputModal")
 		ui.open()
 
-/datum/tgui_input_text/ui_close(mob/user, datum/tgui_module/module)
+datum/tgui_input_text/ui_close(mob/user, datum/tgui_module/module)
 	. = ..()
 	closed = TRUE
 
-/datum/tgui_input_text/ui_state(mob/user, datum/tgui_module/module)
+datum/tgui_input_text/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.always_state
 
-/datum/tgui_input_text/ui_static_data(mob/user)
+datum/tgui_input_text/ui_static_data(mob/user)
 	. = list()
 	.["large_buttons"] = FALSE//user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
 	.["max_length"] = max_length
@@ -175,12 +175,12 @@
 	.["swapped_buttons"] = FALSE//user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
 	.["title"] = title
 
-/datum/tgui_input_text/ui_data(mob/user)
+datum/tgui_input_text/ui_data(mob/user)
 	. = list()
 	if(timeout)
 		.["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
 
-/datum/tgui_input_text/ui_act(action, list/params)
+datum/tgui_input_text/ui_act(action, list/params)
 	. = ..()
 	if (.)
 		return
@@ -200,7 +200,7 @@
 			SStgui.close_uis(src)
 			return TRUE
 
-/datum/tgui_input_text/proc/set_entry(entry)
+datum/tgui_input_text/proc/set_entry(entry)
 	if(!isnull(entry))
 		var/converted_entry = encode ? html_encode(entry) : entry
 		src.entry = trim(converted_entry, max_length)
@@ -210,22 +210,22 @@
  *
  * An asynchronous version of tgui_input_text to be used with callbacks instead of waiting on user responses.
  */
-/datum/tgui_input_text/async
+datum/tgui_input_text/async
 	// The callback to be invoked by the tgui_input_text upon having a choice made.
 	var/datum/callback/callback
 
-/datum/tgui_input_text/async/New(mob/user, message, title, default, max_length, multiline, encode, callback, timeout)
+datum/tgui_input_text/async/New(mob/user, message, title, default, max_length, multiline, encode, callback, timeout)
 	..(user, message, title, default, max_length, multiline, encode, timeout)
 	src.callback = callback
 
-/datum/tgui_input_text/async/Destroy(force, ...)
+datum/tgui_input_text/async/Destroy(force, ...)
 	QDEL_NULL(callback)
 	. = ..()
 
-/datum/tgui_input_text/async/set_entry(entry)
+datum/tgui_input_text/async/set_entry(entry)
 	. = ..()
 	if(!isnull(src.entry))
 		callback?.InvokeAsync(src.entry)
 
-/datum/tgui_input_text/async/wait()
+datum/tgui_input_text/async/wait()
 	return

@@ -3,7 +3,7 @@
  * Distillery, used for over-time temperature-based mixes.
  */
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery
+obj/machinery/portable_atmospherics/powered/reagent_distillery
 	name = "chemical distillery"
 	desc = "A complex machine utilizing state-of-the-art components to mix chemicals at different temperatures."
 	use_power = USE_POWER_IDLE
@@ -62,18 +62,18 @@
 // A multiplier for the production amount. This should really only ever be lower than one, otherwise you end up with duping.
 	var/efficiency = 1
 
-/obj/item/reagent_containers/glass/distilling
+obj/item/reagent_containers/glass/distilling
 	name = "distilling chamber"
 	desc = "You should not be seeing this."
 	volume = 600
 
 	var/obj/machinery/portable_atmospherics/powered/reagent_distillery/Master
 
-/obj/item/reagent_containers/glass/distilling/Destroy()
+obj/item/reagent_containers/glass/distilling/Destroy()
 	Master = null
 	..()
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/Initialize(mapload)
+obj/machinery/portable_atmospherics/powered/reagent_distillery/Initialize(mapload)
 	. = ..()
 
 	Reservoir = new (src)
@@ -86,7 +86,7 @@
 
 	update_icon()
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/proc/setup_overlay_vars()
+obj/machinery/portable_atmospherics/powered/reagent_distillery/proc/setup_overlay_vars()
 	overlay_output_beaker = image(icon = src.icon, icon_state = "[base_state]-output")
 	overlay_input_beaker = image(icon = src.icon, icon_state = "[base_state]-input")
 	overlay_off = image(icon = src.icon, icon_state = "[base_state]-bad")
@@ -96,7 +96,7 @@
 	overlay_dumping = image(icon = src.icon, icon_state = "[base_state]-dump")
 	overlay_connected = image(icon = src.icon, icon_state = "[base_state]-connector")
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/Destroy()
+obj/machinery/portable_atmospherics/powered/reagent_distillery/Destroy()
 	qdel(Reservoir)
 	Reservoir = null
 	if(InputBeaker)
@@ -108,7 +108,7 @@
 
 	..()
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/attack_hand(mob/user, list/params)
+obj/machinery/portable_atmospherics/powered/reagent_distillery/attack_hand(mob/user, list/params)
 	var/list/options = list()
 	options["examine"] = radial_examine
 	options["use"] = radial_use
@@ -173,7 +173,7 @@
 
 	update_icon()
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/portable_atmospherics/powered/reagent_distillery/attackby(obj/item/W as obj, mob/user as mob)
 	var/list/options = list()
 	if(istype(W, /obj/item/reagent_containers/glass))
 		if(!InputBeaker)
@@ -209,7 +209,7 @@
 
 	update_icon()
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/use_power(var/amount, var/chan = -1)
+obj/machinery/portable_atmospherics/powered/reagent_distillery/use_power(var/amount, var/chan = -1)
 	last_power_draw = amount
 	if(use_cell && cell && cell.charge)
 		var/needed = DYNAMIC_W_TO_CELL_UNITS(amount, 1)
@@ -223,7 +223,7 @@
 		chan = power_channel
 	A.use_power_oneoff(amount, chan)
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/process(delta_time)
+obj/machinery/portable_atmospherics/powered/reagent_distillery/process(delta_time)
 	..()
 
 	var/run_pump = FALSE
@@ -277,7 +277,7 @@
 
 	update_icon()
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/update_icon()
+obj/machinery/portable_atmospherics/powered/reagent_distillery/update_icon()
 	..()
 	cut_overlays()
 
@@ -307,7 +307,7 @@
  * Subtypes
  */
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/industrial
+obj/machinery/portable_atmospherics/powered/reagent_distillery/industrial
 	name = "industrial chemical distillery"
 	desc = "A gas-operated variant of a chemical distillery. Able to reach much higher, and lower, temperatures through the use of treated gas."
 

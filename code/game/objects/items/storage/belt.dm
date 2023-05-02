@@ -1,4 +1,4 @@
-/obj/item/storage/belt
+obj/item/storage/belt
 	name = "belt"
 	desc = "Can hold various things."
 	icon = 'icons/obj/clothing/belts.dmi'
@@ -13,7 +13,7 @@
 	pickup_sound = 'sound/items/pickup/toolbelt.ogg'
 	var/show_above_suit = 0
 
-/obj/item/storage/belt/verb/toggle_layer()
+obj/item/storage/belt/verb/toggle_layer()
 	set name = "Switch Belt Layer"
 	set category = "Object"
 
@@ -24,7 +24,7 @@
 	update_icon()
 
 // todo: this bad lol
-/obj/item/storage/belt/render_apply_overlays(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used)
+obj/item/storage/belt/render_apply_overlays(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used)
 	. = ..()
 	var/static/icon/funny_belt_icon = 'icons/mob/clothing/belt.dmi'
 	for(var/obj/item/I in contents)
@@ -34,16 +34,16 @@
 		MA.add_overlay(image(icon = funny_belt_icon, icon_state = state))
 
 // todo: this bad lol x2
-/obj/item/storage/belt/proc/resolve_belt_state(obj/item/I, icon/ifile)
+obj/item/storage/belt/proc/resolve_belt_state(obj/item/I, icon/ifile)
 	return I.belt_state || I.item_state || I.icon_state
 
-/obj/item/storage/update_icon()
+obj/item/storage/update_icon()
 	. = ..()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_belt()
 
-/obj/item/storage/belt/utility
+obj/item/storage/belt/utility
 	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "Can hold various tools."
 	icon_state = "utility"
@@ -78,7 +78,7 @@
 		/obj/item/integrated_electronics/debugger,
 		)
 
-/obj/item/storage/belt/utility/full
+obj/item/storage/belt/utility/full
 	starts_with = list(
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/wrench,
@@ -88,7 +88,7 @@
 		/obj/item/stack/cable_coil/random_belt
 	)
 
-/obj/item/storage/belt/utility/atmostech
+obj/item/storage/belt/utility/atmostech
 	starts_with = list(
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/wrench,
@@ -97,13 +97,13 @@
 		/obj/item/tool/wirecutters,
 	)
 
-/obj/item/storage/belt/utility/chief
+obj/item/storage/belt/utility/chief
 	name = "chief engineer's toolbelt"
 	desc = "Holds tools, looks snazzy."
 	icon_state = "utilitybelt_ce"
 	item_state = "utility_ce"
 
-/obj/item/storage/belt/utility/chief/full
+obj/item/storage/belt/utility/chief/full
 	starts_with = list(
 		/obj/item/tool/screwdriver/power,
 		/obj/item/tool/crowbar/power,
@@ -114,7 +114,7 @@
 		/obj/item/analyzer/longrange
 	)
 
-/obj/item/storage/belt/medical
+obj/item/storage/belt/medical
 	name = "medical belt"
 	desc = "Can hold various medical equipment."
 	icon_state = "medical"
@@ -148,12 +148,12 @@
 		/obj/item/storage/quickdraw/syringe_case
 		)
 
-/obj/item/storage/belt/medical/emt
+obj/item/storage/belt/medical/emt
 	name = "EMT utility belt"
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "ems"
 
-/obj/item/storage/belt/security
+obj/item/storage/belt/security
 	name = "security belt"
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "security"
@@ -191,7 +191,7 @@
 		/obj/item/holowarrant
 		)
 
-/obj/item/storage/belt/detective
+obj/item/storage/belt/detective
 	name = "forensic utility belt"
 	desc = "A belt for holding forensics equipment."
 	icon_state = "security"
@@ -234,7 +234,7 @@
 		/obj/item/holowarrant
 		)
 
-/obj/item/storage/belt/explorer
+obj/item/storage/belt/explorer
 	name = "pathfinder's bandolier"
 	desc = "A versatile bandolier fitted with eight pouches that can hold a wide variety of items such as tools, small melee weapons, batteries, ammunition, and more; ideal for any pathfinder who has too much stuff and not enough pockets."
 	icon_state = "bandolier"
@@ -289,7 +289,7 @@
 		/obj/item/ano_scanner
 		)
 
-/obj/item/storage/belt/soulstone
+obj/item/storage/belt/soulstone
 	name = "soul stone belt"
 	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away"
 	icon_state = "soulstone"
@@ -298,17 +298,17 @@
 		/obj/item/soulstone
 		)
 
-/obj/item/storage/belt/soulstone/full
+obj/item/storage/belt/soulstone/full
 	starts_with = list(/obj/item/soulstone = 6)
 
-/obj/item/storage/belt/utility/alien
+obj/item/storage/belt/utility/alien
 	name = "alien belt"
 	desc = "A belt(?) that can hold things."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "belt"
 	item_state = "security"
 
-/obj/item/storage/belt/utility/alien/full
+obj/item/storage/belt/utility/alien/full
 	starts_with = list(
 		/obj/item/tool/screwdriver/alien,
 		/obj/item/tool/wrench/alien,
@@ -319,7 +319,7 @@
 		/obj/item/stack/cable_coil/alien
 	)
 
-/obj/item/storage/belt/medical/alien
+obj/item/storage/belt/medical/alien
 	name = "alien belt"
 	desc = "A belt(?) that can hold things."
 	icon = 'icons/obj/abductor.dmi'
@@ -354,7 +354,7 @@
 		/obj/item/surgical
 		)
 
-/obj/item/storage/belt/medical/alien
+obj/item/storage/belt/medical/alien
 	starts_with = list(
 		/obj/item/surgical/scalpel/alien,
 		/obj/item/surgical/hemostat/alien,
@@ -366,7 +366,7 @@
 		/obj/item/surgical/surgicaldrill/alien
 	)
 
-/obj/item/storage/belt/champion
+obj/item/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"
 	icon_state = "champion"
@@ -375,7 +375,7 @@
 		"/obj/item/clothing/mask/luchador"
 		)
 
-/obj/item/storage/belt/security/tactical
+obj/item/storage/belt/security/tactical
 	name = "combat belt"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
 	icon_state = "swat"
@@ -383,12 +383,12 @@
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 
-/obj/item/storage/belt/security/tactical/bandolier
+obj/item/storage/belt/security/tactical/bandolier
 	name = "combat belt"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
 	icon_state = "bandolier"
 
-/obj/item/storage/belt/spike_bandolier
+obj/item/storage/belt/spike_bandolier
 	name = "spike bandolier"
 	desc = "A bandolier used to hold spikes, and only spikes."
 	icon_state = "bandolier"
@@ -398,7 +398,7 @@
 	can_hold = list(/obj/item/melee/spike)
 	starts_with = list(/obj/item/melee/spike = 14)
 
-/obj/item/storage/belt/janitor
+obj/item/storage/belt/janitor
 	name = "janitorial belt"
 	desc = "A belt used to hold most janitorial supplies."
 	icon_state = "janitor"
@@ -423,7 +423,7 @@
 		/obj/item/soap
 		)
 
-/obj/item/storage/belt/archaeology
+obj/item/storage/belt/archaeology
 	name = "excavation gear-belt"
 	desc = "Can hold various excavation gear."
 	icon_state = "gear"
@@ -457,7 +457,7 @@
 		/obj/item/pickaxe/excavationdrill
 		)
 
-/obj/item/storage/belt/fannypack
+obj/item/storage/belt/fannypack
 	name = "leather fannypack"
 	desc = "A dorky fannypack for keeping small items in."
 	icon_state = "fannypack_leather"
@@ -466,52 +466,52 @@
 	storage_slots = null
 	max_storage_space = ITEMSIZE_COST_NORMAL * 2
 
-/obj/item/storage/belt/fannypack/black
+obj/item/storage/belt/fannypack/black
  	name = "black fannypack"
  	icon_state = "fannypack_black"
  	item_state = "fannypack_black"
 
-/obj/item/storage/belt/fannypack/blue
+obj/item/storage/belt/fannypack/blue
  	name = "blue fannypack"
  	icon_state = "fannypack_blue"
  	item_state = "fannypack_blue"
 
-/obj/item/storage/belt/fannypack/cyan
+obj/item/storage/belt/fannypack/cyan
  	name = "cyan fannypack"
  	icon_state = "fannypack_cyan"
  	item_state = "fannypack_cyan"
 
-/obj/item/storage/belt/fannypack/green
+obj/item/storage/belt/fannypack/green
  	name = "green fannypack"
  	icon_state = "fannypack_green"
  	item_state = "fannypack_green"
 
-/obj/item/storage/belt/fannypack/orange
+obj/item/storage/belt/fannypack/orange
  	name = "orange fannypack"
  	icon_state = "fannypack_orange"
  	item_state = "fannypack_orange"
 
-/obj/item/storage/belt/fannypack/purple
+obj/item/storage/belt/fannypack/purple
  	name = "purple fannypack"
  	icon_state = "fannypack_purple"
  	item_state = "fannypack_purple"
 
-/obj/item/storage/belt/fannypack/red
+obj/item/storage/belt/fannypack/red
  	name = "red fannypack"
  	icon_state = "fannypack_red"
  	item_state = "fannypack_red"
 
-/obj/item/storage/belt/fannypack/white
+obj/item/storage/belt/fannypack/white
  	name = "white fannypack"
  	icon_state = "fannypack_white"
  	item_state = "fannypack_white"
 
-/obj/item/storage/belt/fannypack/yellow
+obj/item/storage/belt/fannypack/yellow
  	name = "yellow fannypack"
  	icon_state = "fannypack_yellow"
  	item_state = "fannypack_yellow"
 
-/obj/item/storage/belt/sheath
+obj/item/storage/belt/sheath
 	name = "sabre sheath"
 	desc = "An ornate sheath designed to hold an officer's blade."
 	icon_state = "sheath-sabre"
@@ -524,7 +524,7 @@
 		/obj/item/melee/sabre,
 		)
 
-/obj/item/storage/belt/sheath/update_icon()
+obj/item/storage/belt/sheath/update_icon()
 	icon_state = "sheath"
 	item_state = "sheath"
 	if(contents.len)
@@ -534,13 +534,13 @@
 		var/mob/living/L = loc
 		L.regenerate_icons()
 	..()
-/obj/item/storage/belt/ranger
+obj/item/storage/belt/ranger
 	name = "ranger belt"
 	desc = "The fancy utility-belt holding the tools, cuffs and gadgets of the Go Go ERT-Rangers. The belt buckle is not real phoron, but it is still surprisingly comfortable to wear."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_belt"
 
-/obj/item/storage/belt/dualholster
+obj/item/storage/belt/dualholster
 	name = "dual holster gunbelt"
 	desc = "Belts like these were popular on old Earth, but were largely supplanted by modular holsters. This gunbelt is too bulky to be comfortably anchored to clothes without support."
 	icon_state = "dual_holster"
@@ -583,7 +583,7 @@
 		/obj/item/gun/ballistic/pirate
 		)
 
-/obj/item/storage/belt/quiver
+obj/item/storage/belt/quiver
 	name = "leather quiver"
 	desc = "A quiver made from the hide of some animal. Used to hold arrows."
 	icon_state = "quiver"
@@ -593,7 +593,7 @@
 		/obj/item/ammo_casing/arrow
 		)
 
-/obj/item/storage/belt/quiver/full
+obj/item/storage/belt/quiver/full
 	name = "leather quiver"
 	desc = "A quiver made from the hide of some animal. Used to hold arrows."
 	icon_state = "quiver"
@@ -606,7 +606,7 @@
 		/obj/item/ammo_casing/arrow = 15
 		)
 
-/obj/item/storage/belt/quiver/full/ash
+obj/item/storage/belt/quiver/full/ash
 	name = "leather quiver"
 	desc = "A quiver made from the hide of some animal. Used to hold arrows."
 	icon_state = "quiver"
@@ -619,13 +619,13 @@
 		/obj/item/ammo_casing/arrow/bone = 15
 		)
 
-/obj/item/storage/belt/utility/crystal
+obj/item/storage/belt/utility/crystal
 	name = "crystalline tool harness"
 	desc = "A segmented belt of strange crystalline material."
 	icon_state = "utilitybelt_crystal"
 	item_state = "utilitybelt_crystal"
 
-/obj/item/storage/belt/utility/crystal/Initialize()
+obj/item/storage/belt/utility/crystal/Initialize()
 	new /obj/item/multitool/crystal(src)
 	new /obj/item/tool/wrench/crystal(src)
 	new /obj/item/tool/crowbar/crystal(src)

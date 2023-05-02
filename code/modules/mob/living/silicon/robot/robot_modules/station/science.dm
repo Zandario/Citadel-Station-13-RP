@@ -1,4 +1,4 @@
-/obj/item/robot_module/robot/research
+obj/item/robot_module/robot/research
 	name = "research module"
 	channels = list("Science" = 1)
 	sprites = list(
@@ -19,12 +19,12 @@
 		"W02M" = "worm-engineering"
 	)
 
-/obj/item/robot_module/robot/research/get_synths()
+obj/item/robot_module/robot/research/get_synths()
 	. = ..()
 	MATTER_SYNTH(MATSYN_NANITES, nanite, 10000)
 	MATTER_SYNTH(MATSYN_WIRE, wire)
 
-/obj/item/robot_module/robot/research/get_modules()
+obj/item/robot_module/robot/research/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/portable_destructive_analyzer,
@@ -50,7 +50,7 @@
 		/obj/item/gun/energy/taser/xeno/robot
 	)
 
-/obj/item/robot_module/robot/research/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/research/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	src.emag = new /obj/item/borg/combat/shield(src)
 
@@ -62,7 +62,7 @@
 
 	CYBORG_STACK(cable_coil/cyborg, list(MATSYN_WIRE))
 
-/obj/item/robot_module/robot/research/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+obj/item/robot_module/robot/research/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 
 	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
@@ -73,7 +73,7 @@
 
 	..()
 
-/obj/item/robot_module/robot/quad/sci
+obj/item/robot_module/robot/quad/sci
 	name = "SciQuad Module"
 	sprites = list(
 		"Research Hound" = "science",
@@ -86,7 +86,7 @@
 	can_be_pushed = 0
 	can_shred = TRUE
 
-/obj/item/robot_module/robot/quad/sci/get_modules()
+obj/item/robot_module/robot/quad/sci/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/portable_destructive_analyzer,
@@ -113,12 +113,12 @@
 		/obj/item/surgical/circular_saw/cyborg
 	)
 
-/obj/item/robot_module/robot/quad/sci/get_synths()
+obj/item/robot_module/robot/quad/sci/get_synths()
 	. = ..()
 	MATTER_SYNTH(MATSYN_NANITES, nanite, 10000)
 	MATTER_SYNTH(MATSYN_WIRE, wire)
 
-/obj/item/robot_module/robot/quad/sci/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/sci/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	var/obj/item/stack/nanopaste/N = new /obj/item/stack/nanopaste(src)
 	N.uses_charge = 1

@@ -1,7 +1,7 @@
 /**
  * modifiers applied to characteristics holders temporarily
  */
-/datum/characteristic_modifier
+datum/characteristic_modifier
 
 
 

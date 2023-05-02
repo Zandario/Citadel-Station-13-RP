@@ -1,4 +1,4 @@
-/obj/item/paper_bin
+obj/item/paper_bin
 	name = "paper bin"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper_bin1"
@@ -20,7 +20,7 @@
 
 
 
-/obj/item/paper_bin/OnMouseDropLegacy(mob/user as mob)
+obj/item/paper_bin/OnMouseDropLegacy(mob/user as mob)
 	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
 		if(!istype(usr, /mob/living/simple_mob))
 			if( !usr.get_active_held_item() )		//if active hand is empty
@@ -38,7 +38,7 @@
 
 	return
 
-/obj/item/paper_bin/attack_hand(mob/user, list/params)
+obj/item/paper_bin/attack_hand(mob/user, list/params)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
@@ -83,7 +83,7 @@
 	return
 
 
-/obj/item/paper_bin/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
+obj/item/paper_bin/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
 	if(!istype(I, /obj/item/paper))
 		return ..()
 
@@ -96,7 +96,7 @@
 	amount++
 
 
-/obj/item/paper_bin/examine(mob/user)
+obj/item/paper_bin/examine(mob/user)
 	. = ..()
 	if(get_dist(src, user) <= 1)
 		if(amount)
@@ -104,19 +104,19 @@
 		else
 			. += "<span class='notice'>There are no papers in the bin.</span>"
 
-/obj/item/paper_bin/update_icon()
+obj/item/paper_bin/update_icon()
 	if(amount < 1)
 		icon_state = "paper_bin0"
 	else
 		icon_state = "paper_bin1"
 
-/obj/item/paper_bin/bundlenatural
+obj/item/paper_bin/bundlenatural
 	name = "natural paper bundle"
 	desc = "A bundle of paper created using traditional methods."
 	icon_state = "paper_bundle"
 	papers = /obj/item/paper/natural
 
-/obj/item/paper_bin/bundlenatural/attack_hand(mob/user, list/params)
+obj/item/paper_bin/bundlenatural/attack_hand(mob/user, list/params)
 	if(amount < 1)
 		qdel(src)
 	return ..()

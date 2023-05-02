@@ -1,5 +1,5 @@
 ///////////////////// Mob Living /////////////////////
-/mob/living
+mob/living
 	var/digestable = TRUE				// Can the mob be digested inside a belly?
 	var/devourable = TRUE				// Can the mob be devoured at all?
 	var/feeding = TRUE					// Can the mob be vorishly force fed or fed to others?
@@ -43,7 +43,7 @@
 //
 // Hook for generic creation of stuff on new creatures
 //
-/hook/living_new/proc/vore_setup(mob/living/M)
+hook/living_new/proc/vore_setup(mob/living/M)
 	add_verb(M, /mob/living/proc/escapeOOC)
 	add_verb(M, /mob/living/proc/lick)
 	add_verb(M, /mob/living/proc/smell)
@@ -60,7 +60,7 @@
 	//return TRUE to hook-caller
 	return TRUE
 
-/mob/living/proc/init_vore()
+mob/living/proc/init_vore()
 	//Something else made organs, meanwhile.
 	if(LAZYLEN(vore_organs))
 		return TRUE
@@ -97,7 +97,7 @@
 //
 // Handle being clicked, perhaps with something to devour
 //
-/mob/living/proc/vore_attackby(obj/item/I,mob/user)
+mob/living/proc/vore_attackby(obj/item/I,mob/user)
 	//Handle case: /obj/item/grab
 	if(istype(I,/obj/item/grab))
 		var/obj/item/grab/G = I
@@ -184,7 +184,7 @@
 //
 //	Verb for saving vore preferences to save file
 //
-/mob/living/proc/save_vore_prefs()
+mob/living/proc/save_vore_prefs()
 	if(!client || !client.prefs_vr)
 		return FALSE
 	if(!copy_to_prefs_vr())
@@ -194,7 +194,7 @@
 
 	return TRUE
 
-/mob/living/proc/apply_vore_prefs()
+mob/living/proc/apply_vore_prefs()
 	if(!client || !client.prefs_vr)
 		return FALSE
 	if(!client.prefs_vr.load_vore())
@@ -204,7 +204,7 @@
 
 	return TRUE
 
-/mob/living/proc/copy_to_prefs_vr()
+mob/living/proc/copy_to_prefs_vr()
 	if(!client || !client.prefs_vr)
 		to_chat(src,"<span class='warning'>You attempted to save your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>")
 		return FALSE
@@ -237,7 +237,7 @@
 //
 //	Proc for applying vore preferences, given bellies
 //
-/mob/living/proc/copy_from_prefs_vr()
+mob/living/proc/copy_from_prefs_vr()
 	if(!client || !client.prefs_vr)
 		to_chat(src,"<span class='warning'>You attempted to apply your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>")
 		return FALSE
@@ -268,7 +268,7 @@
 //
 // Release everything in every vore organ
 //
-/mob/living/proc/release_vore_contents(var/include_absorbed = TRUE, var/silent = FALSE)
+mob/living/proc/release_vore_contents(var/include_absorbed = TRUE, var/silent = FALSE)
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.release_all_contents(include_absorbed, silent)
@@ -276,7 +276,7 @@
 //
 // Returns examine messages for bellies
 //
-/mob/living/proc/examine_bellies()
+mob/living/proc/examine_bellies()
 	if(!show_pudge()) //Some clothing or equipment can hide this.
 		return ""
 
@@ -290,10 +290,10 @@
 //
 // Whether or not people can see our belly messages
 //
-/mob/living/proc/show_pudge()
+mob/living/proc/show_pudge()
 	return TRUE //Can override if you want.
 
-/mob/living/carbon/human/show_pudge()
+mob/living/carbon/human/show_pudge()
 	//A uniform could hide it.
 	if(istype(w_uniform,/obj/item/clothing))
 		var/obj/item/clothing/under = w_uniform
@@ -312,7 +312,7 @@
 //
 // Clearly super important. Obviously.
 //
-/mob/living/proc/lick(var/mob/living/tasted in living_mobs(1))
+mob/living/proc/lick(var/mob/living/tasted in living_mobs(1))
 	set name = "Lick"
 	set category = "IC"
 	set desc = "Lick someone nearby!"
@@ -329,7 +329,7 @@
 	visible_message("<span class='warning'>[src] licks [tasted]!</span>","<span class='notice'>You lick [tasted]. They taste rather like [tasted.get_taste_message()].</span>","<b>Slurp!</b>")
 
 
-/mob/living/proc/get_taste_message(allow_generic = 1)
+mob/living/proc/get_taste_message(allow_generic = 1)
 	if(!vore_taste && !allow_generic)
 		return FALSE
 
@@ -351,7 +351,7 @@
 	return taste_message
 
 // This is just the above proc but switched about.
-/mob/living/proc/smell(mob/living/smelled in living_mobs(1))
+mob/living/proc/smell(mob/living/smelled in living_mobs(1))
 	set name = "Smell"
 	set category = "IC"
 	set desc = "Smell someone nearby!"
@@ -365,7 +365,7 @@
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	visible_message("<span class='warning'>[src] smells [smelled]!</span>","<span class='notice'>You smell [smelled]. They smell like [smelled.get_smell_message()].</span>","<b>Sniff!</b>")
 
-/mob/living/proc/get_smell_message(allow_generic = 1)
+mob/living/proc/get_smell_message(allow_generic = 1)
 	if(!vore_smell && !allow_generic)
 		return FALSE
 
@@ -384,7 +384,7 @@
 //
 // OOC Escape code for pref-breaking or AFK preds
 //
-/mob/living/proc/escapeOOC()
+mob/living/proc/escapeOOC()
 	set name = "OOC Escape"
 	set category = "Vore"
 
@@ -430,11 +430,11 @@
 //
 // Eating procs depending on who clicked what
 //
-/mob/living/proc/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey)
+mob/living/proc/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey)
 	var/belly = user.vore_selected
 	return perform_the_nom(user, prey, user, belly)
 
-/mob/living/proc/eat_held_mob(var/mob/living/user, var/mob/living/prey, var/mob/living/pred)
+mob/living/proc/eat_held_mob(var/mob/living/user, var/mob/living/prey, var/mob/living/pred)
 	var/belly
 	if(user != pred)
 		belly = input("Choose Belly") in pred.vore_organs
@@ -442,18 +442,18 @@
 		belly = pred.vore_selected
 	return perform_the_nom(user, prey, pred, belly)
 
-/mob/living/proc/feed_self_to_grabbed(var/mob/living/user, var/mob/living/pred)
+mob/living/proc/feed_self_to_grabbed(var/mob/living/user, var/mob/living/pred)
 	var/belly = input("Choose Belly") in pred.vore_organs
 	return perform_the_nom(user, user, pred, belly)
 
-/mob/living/proc/feed_grabbed_to_other(var/mob/living/user, var/mob/living/prey, var/mob/living/pred)
+mob/living/proc/feed_grabbed_to_other(var/mob/living/user, var/mob/living/prey, var/mob/living/pred)
 	var/belly = input("Choose Belly") in pred.vore_organs
 	return perform_the_nom(user, prey, pred, belly)
 
 //
 // Master vore proc that actually does vore procedures
 //
-/mob/living/proc/perform_the_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/obj/belly/belly, var/delay)
+mob/living/proc/perform_the_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/obj/belly/belly, var/delay)
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
 		log_debug(SPAN_DEBUG("[user] attempted to feed [prey] to [pred], via [lowertext(belly.name)] but it went wrong."))
@@ -515,28 +515,28 @@
 // Magical pred-air breathing for inside preds
 // overrides a proc defined on atom called by breathe.dm
 //
-/obj/belly/return_air()
+obj/belly/return_air()
 	return return_air_for_internal_lifeform()
 
-/obj/belly/return_air_for_internal_lifeform()
+obj/belly/return_air_for_internal_lifeform()
 	//Free air until someone wants to code processing it for reals from predbreaths
 	var/datum/gas_mixture/belly_air/air = new(1000)
 	return air
 
 // This is about 0.896m^3 of atmosphere
-/datum/gas_mixture/belly_air
+datum/gas_mixture/belly_air
     volume = 2500
     temperature = 293.150
     total_moles = 104
 
-/datum/gas_mixture/belly_air/New()
+datum/gas_mixture/belly_air/New()
     . = ..()
     gas = list(
         /datum/gas/oxygen = 21,
         /datum/gas/nitrogen = 79)
 
 // Procs for micros stuffed into boots and the like to escape from them
-/mob/living/proc/escape_clothes(obj/item/clothing/C)
+mob/living/proc/escape_clothes(obj/item/clothing/C)
 	set waitfor = FALSE
 	ASSERT(loc == C)
 
@@ -581,11 +581,11 @@
 		forceMove(C.loc)
 	return
 
-/mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
+mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
 	var/belly = user.vore_selected
 	return perform_the_nom(user, prey, user, belly, delay = 1) //1/10th of a second is probably fine.
 
-/mob/living/proc/glow_toggle()
+mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"
 	set category = "Abilities"
 	set desc = "Toggle your glowing on/off!"
@@ -596,7 +596,7 @@
 
 	to_chat(src,"<span class='notice'>You <b>[glow_toggle ? "en" : "dis"]</b>able your body's glow.</span>")
 
-/mob/living/proc/glow_color()
+mob/living/proc/glow_color()
 	set name = "Glow (Set Color)"
 	set category = "Abilities"
 	set desc = "Pick a color for your body's glow."
@@ -607,7 +607,7 @@
 	if(new_color)
 		glow_color = new_color
 
-/mob/living/proc/eat_trash()
+mob/living/proc/eat_trash()
 	set name = "Eat Trash"
 	set category = "Abilities"
 	set desc = "Consume held garbage."
@@ -717,13 +717,13 @@
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
 	return
 
-/mob/living/proc/switch_scaling()
+mob/living/proc/switch_scaling()
 	set name = "Switch scaling mode"
 	set category = "Preferences"
 	set desc = "Switch sharp/fuzzy scaling for current mob."
 	appearance_flags ^= PIXEL_SCALE
 
-/mob/living/examine(mob/user)
+mob/living/examine(mob/user)
 	. = ..()
 
 	if(ooc_notes)
@@ -737,13 +737,13 @@
 	if(showvoreprefs && ckey) //ckey so non-controlled mobs don't display it.
 		. += SPAN_BOLDNOTICE("<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
 
-/mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
+mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])
 		display_voreprefs(usr)
 		return TRUE
 	return ..()
 
-/mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument
+mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument
 	if(!user)
 		CRASH("display_voreprefs() was called without an associated user.")
 	var/dispvoreprefs = "<b>[src]'s vore preferences</b><br><br><br>"

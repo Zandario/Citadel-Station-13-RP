@@ -27,27 +27,27 @@ VIRGO3B_TURF_CREATE_UN(/turf/simulated/floor/tiled/kafel_full/yellow)
 
 
 
-/turf/simulated/open/virgo3b
+turf/simulated/open/virgo3b
 	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
 
-/turf/simulated/floor/virgo3b_indoors
+turf/simulated/floor/virgo3b_indoors
 	initial_gas_mix = ATMOSPHERE_ID_VIRGO3B
 
-/turf/simulated/floor/outdoors/dirt/virgo3b
+turf/simulated/floor/outdoors/dirt/virgo3b
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
 
-/turf/simulated/floor/outdoors/grass/sif
+turf/simulated/floor/outdoors/grass/sif
 	baseturfs = /turf/simulated/floor/outdoors/dirt/virgo3b
 
-/turf/simulated/mineral/rich/indoors
+turf/simulated/mineral/rich/indoors
 	outdoors = FALSE
 
 //Unsimulated
-/turf/unsimulated/mineral/virgo3b
+turf/unsimulated/mineral/virgo3b
 	blocks_air = TRUE
 
-/turf/simulated/mineral/virgo3b/rich/make_ore(var/rare_ore)
+turf/simulated/mineral/virgo3b/rich/make_ore(var/rare_ore)
 	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name
@@ -79,4 +79,3 @@ VIRGO3B_TURF_CREATE_UN(/turf/simulated/floor/tiled/kafel_full/yellow)
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
-

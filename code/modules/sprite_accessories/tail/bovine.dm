@@ -1,11 +1,11 @@
-/datum/sprite_accessory/tail/cow
+datum/sprite_accessory/tail/cow
 	name = "cow tail, colorable"
 	id = "tail_cow"
 	icon_state = "cow"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/tail/satyr
+datum/sprite_accessory/tail/satyr
 	name = "goat legs, colorable"
 	id = "tail_satyr_legs"
 	icon_state = "satyr"

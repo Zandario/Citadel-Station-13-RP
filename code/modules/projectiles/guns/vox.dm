@@ -3,7 +3,7 @@
  *  Alien pinning weapon.
  */
 
-/obj/item/gun/launcher/spikethrower
+obj/item/gun/launcher/spikethrower
 	name = "spike thrower"
 	desc = "A vicious alien projectile weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 
@@ -18,33 +18,33 @@
 	fire_sound = 'sound/weapons/bladeslice.ogg'
 	fire_sound_text = "a strange noise"
 
-/obj/item/gun/launcher/spikethrower/Initialize(mapload)
+obj/item/gun/launcher/spikethrower/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 
-/obj/item/gun/launcher/spikethrower/Destroy()
+obj/item/gun/launcher/spikethrower/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/gun/launcher/spikethrower/process(delta_time)
+obj/item/gun/launcher/spikethrower/process(delta_time)
 	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)
 		spikes++
 		last_regen = world.time
 		update_icon()
 
-/obj/item/gun/launcher/spikethrower/examine(mob/user)
+obj/item/gun/launcher/spikethrower/examine(mob/user)
 	. = ..()
 	. += "It has [spikes] spike\s remaining."
 
-/obj/item/gun/launcher/spikethrower/update_icon_state()
+obj/item/gun/launcher/spikethrower/update_icon_state()
 	. = ..()
 	icon_state = "spikethrower[spikes]"
 
-/obj/item/gun/launcher/spikethrower/update_release_force()
+obj/item/gun/launcher/spikethrower/update_release_force()
 	return
 
-/obj/item/gun/launcher/spikethrower/consume_next_projectile()
+obj/item/gun/launcher/spikethrower/consume_next_projectile()
 	if(spikes < 1) return null
 	spikes--
 	return new /obj/item/spike(src)
@@ -52,7 +52,7 @@
 /*
  * Vox Darkmatter Cannon
  */
-/obj/item/gun/energy/darkmatter
+obj/item/gun/energy/darkmatter
 	name = "dark matter gun"
 	desc = "A vicious alien beam weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 	icon_state = "darkcannon"
@@ -71,7 +71,7 @@
 		list(mode_name="scatter burst", burst=8, fire_delay=null, move_delay=4, burst_accuracy=list(0, 0, 0, 0, 0, 0, 0, 0), dispersion=list(3, 3, 3, 3, 3, 3, 3, 3, 3), projectile_type=/obj/projectile/energy/darkmatter, charge_cost = 300),
 		)
 
-/obj/projectile/beam/stun/darkmatter
+obj/projectile/beam/stun/darkmatter
 	name = "dark matter wave"
 	icon_state = "darkt"
 	fire_sound = 'sound/weapons/eLuger.ogg'
@@ -85,7 +85,7 @@
 	tracer_type = /obj/effect/projectile/tracer/darkmatterstun
 	impact_type = /obj/effect/projectile/impact/darkmatterstun
 
-/obj/projectile/beam/darkmatter
+obj/projectile/beam/darkmatter
 	name = "dark matter bolt"
 	icon_state = "darkb"
 	fire_sound = 'sound/weapons/eLuger.ogg'
@@ -101,7 +101,7 @@
 	tracer_type = /obj/effect/projectile/tracer/darkmatter
 	impact_type = /obj/effect/projectile/impact/darkmatter
 
-/obj/projectile/energy/darkmatter
+obj/projectile/energy/darkmatter
 	name = "dark matter pellet"
 	icon_state = "dark_pellet"
 	fire_sound = 'sound/weapons/eLuger.ogg'
@@ -116,7 +116,7 @@
 /*
  * Vox Sonic Cannon
  */
-/obj/item/gun/energy/sonic
+obj/item/gun/energy/sonic
 	name = "soundcannon"
 	desc = "A vicious alien sound weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 	icon_state = "noise"
@@ -134,7 +134,7 @@
 		list(mode_name="normal", projectile_type=/obj/projectile/sonic/strong, charge_cost = 600),
 		)
 
-/obj/projectile/sonic
+obj/projectile/sonic
 	name = "sonic pulse"
 	icon_state = "sound"
 	fire_sound = 'sound/effects/basscannon.ogg'
@@ -145,13 +145,13 @@
 	embed_chance = 0
 	vacuum_traversal = 0
 
-/obj/projectile/sonic/weak
+obj/projectile/sonic/weak
 	agony = 50
 
-/obj/projectile/sonic/strong
+obj/projectile/sonic/strong
 	damage = 45
 
-/obj/projectile/sonic/strong/on_hit(var/atom/movable/target, var/blocked = 0)
+obj/projectile/sonic/strong/on_hit(var/atom/movable/target, var/blocked = 0)
 	if(ismob(target))
 		var/throwdir = get_dir(firer,target)
 		target.throw_at_old(get_edge_target_turf(target, throwdir), rand(1,6), 10)

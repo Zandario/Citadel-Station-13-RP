@@ -1,21 +1,21 @@
-/datum/category_group/player_setup_category/occupation_preferences
+datum/category_group/player_setup_category/occupation_preferences
 	name = "Occupation"
 	sort_order = 3
 	category_item_type = /datum/category_item/player_setup_item/occupation
 	auto_split = FALSE
 
-/datum/category_item/player_setup_item/occupation
+datum/category_item/player_setup_item/occupation
 	is_global = FALSE
 	load_order = PREFERENCE_LOAD_ORDER_OCCUPATIONS
 
 /**
  * save format: list(job id = priority)
  */
-/datum/category_item/player_setup_item/occupation/jobs
+datum/category_item/player_setup_item/occupation/jobs
 	name = "Job Preferences"
 	save_key = CHARACTER_DATA_JOBS
 
-/datum/category_item/player_setup_item/occupation/jobs/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/occupation/jobs/filter_data(datum/preferences/prefs, data, list/errors)
 	var/list/jobs = sanitize_islist(data)
 	var/highest
 	for(var/id in jobs)
@@ -33,7 +33,7 @@
 #define START_COLUMN . += "<td width='10%' valign='top'><table width='100%' cellpadding='1' cellspacing='0'>"
 #define END_COLUMN . += "</table></td>"
 #define NEW_COLUMN END_COLUMN; START_COLUMN; count = 0;
-/datum/category_item/player_setup_item/occupation/jobs/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/occupation/jobs/content(datum/preferences/prefs, mob/user, data)
 	// cast data
 	var/list/current = data
 	// if they have assistant selected all other jobs are irrelevant
@@ -98,7 +98,7 @@
 #undef END_COLUMN
 #undef START_COLUMN
 
-/datum/category_item/player_setup_item/occupation/jobs/proc/render_job(datum/preferences/prefs, datum/role/job/J, current_priority, assistant_selected)
+datum/category_item/player_setup_item/occupation/jobs/proc/render_job(datum/preferences/prefs, datum/role/job/J, current_priority, assistant_selected)
 	. = list()
 	. += "<tr bgcolor='[J.selection_color]'><td width='60%' align='right'>"
 	// left side
@@ -148,7 +148,7 @@
 /**
  * return null if allowed, otherwise return error to display
  */
-/datum/category_item/player_setup_item/occupation/jobs/proc/check_job(datum/preferences/prefs, datum/role/job/J, current_priority)
+datum/category_item/player_setup_item/occupation/jobs/proc/check_job(datum/preferences/prefs, datum/role/job/J, current_priority)
 	var/client/C = pref.client
 	if(!C)
 		return null
@@ -157,7 +157,7 @@
 		return J.get_availability_error(C, reasons)
 	return null
 
-/datum/category_item/player_setup_item/occupation/jobs/act(datum/preferences/prefs, mob/user, action, list/params)
+datum/category_item/player_setup_item/occupation/jobs/act(datum/preferences/prefs, mob/user, action, list/params)
 	switch(action)
 		if("job")
 			var/job_id = params["job"]
@@ -203,14 +203,14 @@
 			return PREFERENCES_REFRESH_UPDATE_PREVIEW
 	return ..()
 
-/datum/category_item/player_setup_item/occupation/jobs/default_value(randomizing)
+datum/category_item/player_setup_item/occupation/jobs/default_value(randomizing)
 	return list()
 
-/datum/preferences/proc/available_alt_titles(datum/role/job/J)
+datum/preferences/proc/available_alt_titles(datum/role/job/J)
 	RETURN_TYPE(/list)
 	return J.alt_title_query(all_background_ids())
 
-/datum/preferences/proc/check_alt_title(datum/role/job/J, alt_title)
+datum/preferences/proc/check_alt_title(datum/role/job/J, alt_title)
 	return J.alt_title_check(alt_title, all_background_ids())
 
 /**
@@ -218,11 +218,11 @@
  *
  * save format: list(job id = title NAME)
  */
-/datum/category_item/player_setup_item/occupation/alt_titles
+datum/category_item/player_setup_item/occupation/alt_titles
 	name = "(Virtual) Alt Titles"
 	save_key = CHARACTER_DATA_ALT_TITLES
 
-/datum/category_item/player_setup_item/occupation/alt_titles/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/occupation/alt_titles/filter_data(datum/preferences/prefs, data, list/errors)
 	var/list/jobs = sanitize_islist(data)
 	var/list/background_ids_cached = prefs.all_background_ids()
 	// check the ones we have to ensure compliance
@@ -244,7 +244,7 @@
 		jobs[J.id] = forced
 	return jobs
 
-/datum/category_item/player_setup_item/occupation/alt_titles/default_value(randomizing)
+datum/category_item/player_setup_item/occupation/alt_titles/default_value(randomizing)
 	return list()
 
 /**
@@ -252,14 +252,14 @@
  *
  * save format: overflow mode as enum define
  */
-/datum/category_item/player_setup_item/occupation/overflow_mode
+datum/category_item/player_setup_item/occupation/overflow_mode
 	name = "(Virtual) Overflow Mode"
 	save_key = CHARACTER_DATA_OVERFLOW_MODE
 
-/datum/category_item/player_setup_item/occupation/overflow_mode/default_value(randomizing)
+datum/category_item/player_setup_item/occupation/overflow_mode/default_value(randomizing)
 	return JOB_ALTERNATIVE_BE_ASSISTANT
 
-/datum/category_item/player_setup_item/occupation/overflow_mode/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/occupation/overflow_mode/filter_data(datum/preferences/prefs, data, list/errors)
 	var/static/list/static_list = list(
 		JOB_ALTERNATIVE_BE_ASSISTANT,
 		JOB_ALTERNATIVE_GET_RANDOM,
@@ -267,16 +267,16 @@
 	)
 	return sanitize_inlist(data, static_list, JOB_ALTERNATIVE_BE_ASSISTANT)
 
-/datum/preferences/proc/get_job_priority(datum/role/job/J)
+datum/preferences/proc/get_job_priority(datum/role/job/J)
 	var/list/jobs = get_character_data(CHARACTER_DATA_JOBS)
 	return jobs[J.id]
 
-/datum/preferences/proc/get_job_alt_title_name(datum/role/job/J)
+datum/preferences/proc/get_job_alt_title_name(datum/role/job/J)
 	RETURN_TYPE(/datum/prototype/alt_title)
 	var/list/titles = get_character_data(CHARACTER_DATA_ALT_TITLES)
 	return titles[J.id] || J.title
 
-/datum/preferences/proc/preview_job_id()
+datum/preferences/proc/preview_job_id()
 	var/list/jobs = get_character_data(CHARACTER_DATA_JOBS)
 	if(jobs[JOB_ID_ASSISTANT])
 		return JOB_ID_ASSISTANT
@@ -284,7 +284,7 @@
 		if(jobs[id] == JOB_PRIORITY_HIGH)
 			return id
 
-/datum/preferences/proc/effective_job_priorities()
+datum/preferences/proc/effective_job_priorities()
 	RETURN_TYPE(/list)
 	. = list()
 	var/datum/lore/character_background/faction/F = lore_faction_datum()
@@ -294,7 +294,7 @@
 			continue
 		.[id] = priorities[id]
 
-/datum/preferences/proc/effective_job_priority(datum/role/job/J)
+datum/preferences/proc/effective_job_priority(datum/role/job/J)
 	if(!lore_faction_job_check(J))
 		return JOB_PRIORITY_NEVER
 	var/list/jobs = get_character_data(CHARACTER_DATA_JOBS)
@@ -304,7 +304,7 @@
  * gets effective job priority of a job for current slot; used for
  * roundstart procs. returns JOB_PRIORITY_NEVER if we can't be said job.
  */
-/client/proc/effective_job_priority(datum/role/job/J)
+client/proc/effective_job_priority(datum/role/job/J)
 	if(J.check_client_availability_one(src) != ROLE_AVAILABLE)
 		return JOB_PRIORITY_NEVER
 	return prefs?.effective_job_priority(J)
@@ -315,7 +315,7 @@
  *
  * @return list of id = priority
  */
-/client/proc/effective_job_priorities()
+client/proc/effective_job_priorities()
 	RETURN_TYPE(/list)
 	. = list()
 	var/list/priorities = sanitize_islist(prefs.get_character_data(CHARACTER_DATA_JOBS))
@@ -330,7 +330,7 @@
 /**
  * resets job prefs
  */
-/datum/preferences/proc/reset_jobs()
+datum/preferences/proc/reset_jobs()
 	set_character_data(CHARACTER_DATA_JOBS, list())
 	set_character_data(CHARACTER_DATA_ALT_TITLES, list())
 	set_character_data(CHARACTER_DATA_OVERFLOW_MODE, JOB_ALTERNATIVE_BE_ASSISTANT)
@@ -338,17 +338,17 @@
 /**
  * resets any jobs set to high to medium
  */
-/datum/preferences/proc/demote_high_priority_jobs()
+datum/preferences/proc/demote_high_priority_jobs()
 	var/list/jobs = get_character_data(CHARACTER_DATA_JOBS)
 	for(var/id in jobs)
 		if(jobs[id] == JOB_PRIORITY_HIGH)
 			jobs[id] = JOB_PRIORITY_MEDIUM
 	set_character_data(CHARACTER_DATA_JOBS, jobs)
 
-/datum/preferences/proc/get_job_alternative()
+datum/preferences/proc/get_job_alternative()
 	return get_character_data(CHARACTER_DATA_OVERFLOW_MODE)
 
-/datum/preferences/proc/set_job_priority(id, priority)
+datum/preferences/proc/set_job_priority(id, priority)
 	var/datum/role/job/J = SSjob.job_by_id(id)
 	if(!J)
 		return
@@ -361,7 +361,7 @@
 		current[id] = priority
 	set_character_data(CHARACTER_DATA_JOBS, current)
 
-/datum/preferences/proc/set_job_title(id, title)
+datum/preferences/proc/set_job_title(id, title)
 	var/datum/role/job/J = SSjob.job_by_id(id)
 	if(!J)
 		return

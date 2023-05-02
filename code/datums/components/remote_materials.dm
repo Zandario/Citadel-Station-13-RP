@@ -5,7 +5,7 @@ fallback to a local material storage in case remote storage is unavailable, and
 handles linking back and forth.
 */
 
-/datum/component/remote_materials
+datum/component/remote_materials
 	// Three possible states:
 	// 1. silo exists, materials is parented to silo
 	// 2. silo is null, materials is parented to parent
@@ -16,7 +16,7 @@ handles linking back and forth.
 	var/allow_standalone
 	var/local_size = INFINITY
 
-/datum/component/remote_materials/Initialize(category, mapload, allow_standalone = TRUE, force_connect = FALSE)
+datum/component/remote_materials/Initialize(category, mapload, allow_standalone = TRUE, force_connect = FALSE)
 	if (!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -32,7 +32,7 @@ handles linking back and forth.
 	else if (allow_standalone)
 		_MakeLocal()
 
-/datum/component/remote_materials/proc/LateInitialize()
+datum/component/remote_materials/proc/LateInitialize()
 	silo = GLOB.ore_silo_default
 	if (silo)
 		silo.connected += src
@@ -40,7 +40,7 @@ handles linking back and forth.
 	else
 		_MakeLocal()
 
-/datum/component/remote_materials/Destroy()
+datum/component/remote_materials/Destroy()
 	if (silo)
 		silo.connected -= src
 		silo.updateUsrDialog()
@@ -52,7 +52,7 @@ handles linking back and forth.
 		mat_container.retrieve_all(P.drop_location())
 	return ..()
 
-/datum/component/remote_materials/proc/_MakeLocal()
+datum/component/remote_materials/proc/_MakeLocal()
 	silo = null
 	mat_container = parent.AddComponent(/datum/component/material_container,
 		list(/datum/material/iron, /datum/material/glass, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/plasma, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace, /datum/material/plastic),
@@ -60,13 +60,13 @@ handles linking back and forth.
 		FALSE,
 		/obj/item/stack)
 
-/datum/component/remote_materials/proc/set_local_size(size)
+datum/component/remote_materials/proc/set_local_size(size)
 	local_size = size
 	if (!silo && mat_container)
 		mat_container.max_amount = size
 
 // called if disconnected by ore silo UI or destruction
-/datum/component/remote_materials/proc/disconnect_from(obj/machinery/ore_silo/old_silo)
+datum/component/remote_materials/proc/disconnect_from(obj/machinery/ore_silo/old_silo)
 	if (!old_silo || silo != old_silo)
 		return
 	silo = null
@@ -74,12 +74,12 @@ handles linking back and forth.
 	if (allow_standalone)
 		_MakeLocal()
 
-/datum/component/remote_materials/proc/OnAttackBy(datum/source, obj/item/I, mob/user)
+datum/component/remote_materials/proc/OnAttackBy(datum/source, obj/item/I, mob/user)
 	if (silo && istype(I, /obj/item/stack))
 		if (silo.remote_attackby(parent, user, I))
 			return COMPONENT_NO_AFTERATTACK
 
-/datum/component/remote_materials/proc/OnMultitool(datum/source, mob/user, obj/item/I)
+datum/component/remote_materials/proc/OnMultitool(datum/source, mob/user, obj/item/I)
 	if(!I.multitool_check_buffer(user, I))
 		return COMPONENT_BLOCK_TOOL_ATTACK
 	var/obj/item/multitool/M = I
@@ -100,14 +100,14 @@ handles linking back and forth.
 		to_chat(user, "<span class='notice'>You connect [parent] to [silo] from the multitool's buffer.</span>")
 		return COMPONENT_BLOCK_TOOL_ATTACK
 
-/datum/component/remote_materials/proc/on_hold()
+datum/component/remote_materials/proc/on_hold()
 	return silo && silo.holds["[get_area(parent)]/[category]"]
 
-/datum/component/remote_materials/proc/silo_log(obj/machinery/M, action, amount, noun, list/mats)
+datum/component/remote_materials/proc/silo_log(obj/machinery/M, action, amount, noun, list/mats)
 	if (silo)
 		silo.silo_log(M || parent, action, amount, noun, mats)
 
-/datum/component/remote_materials/proc/format_amount()
+datum/component/remote_materials/proc/format_amount()
 	if (mat_container)
 		return "[mat_container.total_amount] / [mat_container.max_amount == INFINITY ? "Unlimited" : mat_container.max_amount] ([silo ? "remote" : "local"])"
 	else

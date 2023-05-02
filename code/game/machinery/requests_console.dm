@@ -32,7 +32,7 @@ var/req_console_supplies = list()
 var/req_console_information = list()
 var/list/obj/machinery/requests_console/allConsoles = list()
 
-/obj/machinery/requests_console
+obj/machinery/requests_console
 	name = "requests console"
 	desc = "A console intended to send requests to different departments on the station."
 	anchored = TRUE
@@ -74,11 +74,11 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	light_range = 0
 	var/datum/legacy_announcement/announcement = new
 
-/obj/machinery/requests_console/power_change()
+obj/machinery/requests_console/power_change()
 	..()
 	update_icon()
 
-/obj/machinery/requests_console/update_icon()
+obj/machinery/requests_console/update_icon()
 	if(machine_stat & NOPOWER)
 		if(icon_state != "req_comp_off")
 			icon_state = "req_comp_off"
@@ -86,7 +86,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		if(icon_state == "req_comp_off")
 			icon_state = "req_comp[newmessagepriority]"
 
-/obj/machinery/requests_console/Initialize(mapload, newdir)
+obj/machinery/requests_console/Initialize(mapload, newdir)
 	. = ..()
 
 	announcement.title = "[department] announcement"
@@ -103,7 +103,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 	set_light(1)
 
-/obj/machinery/requests_console/Destroy()
+obj/machinery/requests_console/Destroy()
 	allConsoles -= src
 	var/lastDeptRC = 1
 	for (var/obj/machinery/requests_console/Console in allConsoles)
@@ -119,12 +119,12 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			req_console_information -= department
 	return ..()
 
-/obj/machinery/requests_console/attack_hand(mob/user, list/params)
+obj/machinery/requests_console/attack_hand(mob/user, list/params)
 	if(..(user))
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/requests_console/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/requests_console/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 
 	data["department"] = department
@@ -151,7 +151,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/machinery/requests_console/Topic(href, href_list)
+obj/machinery/requests_console/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -229,7 +229,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	return
 
 					//err... hacking code, which has no reason for existing... but anyway... it was once supposed to unlock priority 3 messaging on that console (EXTREME priority...), but the code for that was removed.
-/obj/machinery/requests_console/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/requests_console/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(computer_deconstruction_screwdriver(user, O))
 		return
 	if(istype(O, /obj/item/multitool))
@@ -274,7 +274,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			updateUsrDialog()
 	return
 
-/obj/machinery/requests_console/proc/reset_message(var/mainmenu = 0)
+obj/machinery/requests_console/proc/reset_message(var/mainmenu = 0)
 	message = ""
 	recipient = ""
 	priority = 0
@@ -299,49 +299,49 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 ///Relay Info
 // #define RC_INFO   4
 
-/obj/machinery/requests_console/preset
+obj/machinery/requests_console/preset
 	name = ""
 	department = ""
 	departmentType = ""
 	announcementConsole = 0
 
 // Departments
-/obj/machinery/requests_console/preset/cargo
+obj/machinery/requests_console/preset/cargo
 	name = "Cargo RC"
 	department = "Cargo Bay"
 	departmentType = RC_SUPPLY
 
-/obj/machinery/requests_console/preset/security
+obj/machinery/requests_console/preset/security
 	name = "Security RC"
 	department = "Security"
 	departmentType = RC_ASSIST
 
-/obj/machinery/requests_console/preset/engineering
+obj/machinery/requests_console/preset/engineering
 	name = "Engineering RC"
 	department = "Engineering"
 	departmentType = RC_ASSIST|RC_SUPPLY
 
-/obj/machinery/requests_console/preset/atmos
+obj/machinery/requests_console/preset/atmos
 	name = "Atmospherics RC"
 	department = "Atmospherics"
 	departmentType = RC_ASSIST|RC_SUPPLY
 
-/obj/machinery/requests_console/preset/medical
+obj/machinery/requests_console/preset/medical
 	name = "Medical RC"
 	department = "Medical Department"
 	departmentType = RC_ASSIST|RC_SUPPLY
 
-/obj/machinery/requests_console/preset/research
+obj/machinery/requests_console/preset/research
 	name = "Research RC"
 	department = "Research Department"
 	departmentType = RC_ASSIST|RC_SUPPLY
 
-/obj/machinery/requests_console/preset/janitor
+obj/machinery/requests_console/preset/janitor
 	name = "Janitor RC"
 	department = "Janitorial"
 	departmentType = RC_ASSIST
 
-/obj/machinery/requests_console/preset/bridge
+obj/machinery/requests_console/preset/bridge
 	name = "Bridge RC"
 	department = "Bridge"
 	departmentType = RC_ASSIST|RC_INFO
@@ -349,37 +349,37 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 // Heads
 
-/obj/machinery/requests_console/preset/ce
+obj/machinery/requests_console/preset/ce
 	name = "Chief Engineer RC"
 	department = "Chief Engineer's Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
-/obj/machinery/requests_console/preset/cmo
+obj/machinery/requests_console/preset/cmo
 	name = "Chief Medical Officer RC"
 	department = "Chief Medical Officer's Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
-/obj/machinery/requests_console/preset/hos
+obj/machinery/requests_console/preset/hos
 	name = "Head of Security RC"
 	department = "Head of Security's Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
-/obj/machinery/requests_console/preset/rd
+obj/machinery/requests_console/preset/rd
 	name = "Research Director RC"
 	department = "Research Director's Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
-/obj/machinery/requests_console/preset/captain
+obj/machinery/requests_console/preset/captain
 	name = "Captain RC"
 	department = "Captain's Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
-/obj/machinery/requests_console/preset/ai
+obj/machinery/requests_console/preset/ai
 	name = "AI RC"
 	department = "AI"
 	departmentType = RC_ASSIST|RC_INFO

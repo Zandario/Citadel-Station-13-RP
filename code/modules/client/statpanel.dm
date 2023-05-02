@@ -17,11 +17,11 @@
  */
 //! external - state
 
-/client/proc/statpanel_init()
+client/proc/statpanel_init()
 	src << output(null, "statbrowser:byond_init")
 	init_verbs()
 
-/client/proc/statpanel_check()
+client/proc/statpanel_check()
 	if(statpanel_ready)
 		return
 	to_chat(src, SPAN_USERDANGER("Statpanel failed to load, click <a href='?src=[REF(src)];statpanel=reload'>here</a> to reload the panel "))
@@ -29,7 +29,7 @@
 /**
  * boots statpanel up during connect
  */
-/client/proc/statpanel_boot()
+client/proc/statpanel_boot()
 	// loads statbrowser if it isn't there
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
 	// if it is there and we can't tell because byond is byond, send it a signal to reload
@@ -40,7 +40,7 @@
 /**
  * cleans up statpanel stuff during disconnect
  */
-/client/proc/statpanel_dispose()
+client/proc/statpanel_dispose()
 	statpanel_ready = FALSE
 	statpanel_tab = null
 	statpanel_tabs = null
@@ -51,14 +51,14 @@
 /**
  * instructs statpanel to reload
  */
-/client/proc/statpanel_reload()
+client/proc/statpanel_reload()
 	// this is janky as shit tbh - init_verbs shouldn't be our reset call too.
 	init_verbs(TRUE)
 
 /**
  * only called for debug; fully reset statbrowser.
  */
-/client/proc/statpanel_reset()
+client/proc/statpanel_reset()
 	statpanel_dispose()
 	sleep(1)
 	src << browse("RELOADING", "window=statbrowser")
@@ -69,7 +69,7 @@
 /**
  * called by statbrowser when it's ready
  */
-/client/proc/statpanel_ready()
+client/proc/statpanel_ready()
 	statpanel_tabs = list()
 	statpanel_init()
 	statpanel_ready = TRUE
@@ -77,7 +77,7 @@
 /**
  * called to set/dispose admin token
  */
-/client/proc/statpanel_token(token)
+client/proc/statpanel_token(token)
 	if(!token)
 		src << output(null, "statbrowser:byond_dispose_token")
 		return
@@ -89,7 +89,7 @@
  * @params
  * - status: use to set if the panel should exist
  */
-/client/proc/statpanel_tab(tab, status)
+client/proc/statpanel_tab(tab, status)
 	. = (statpanel_tab == tab)
 	if(isnull(status))
 		return
@@ -102,7 +102,7 @@
 			src << output(url_encode(tab), "statbrowser:byond_add_tab")
 			return FALSE	// don't add yet, this is unfortunate but we'll add one tick of update delay to let it add first
 
-/client/proc/list_turf(turf/T)
+client/proc/list_turf(turf/T)
 	if(statpanel_turf)
 		unlist_turf()
 	if(!T || !list_turf_check(T))
@@ -123,7 +123,7 @@
 	src << output("[url_encode(T.name)];[url_encode(REF(T))];[icon2html(T, src, sourceonly = TRUE)];[url_encode(json_encode(data))]", "statbrowser:byond_turf_set")
 */
 
-/client/proc/unlist_turf()
+client/proc/unlist_turf()
 	// using byond atm
 	if(statpanel_for_turf)
 		statpanel_for_turf = FALSE
@@ -138,13 +138,13 @@
 */
 	statpanel_turf = null
 
-/client/proc/list_turf_check(turf/T)
+client/proc/list_turf_check(turf/T)
 	return mob.TurfAdjacent(T)
 
 /**
  * must return list(name, icon, ref).
  */
-/client/proc/statpanel_encode_atom(atom/movable/AM)
+client/proc/statpanel_encode_atom(atom/movable/AM)
 	RETURN_TYPE(/list)
 	if(AM.mouse_opacity == MOUSE_OPACITY_TRANSPARENT)
 		return
@@ -162,30 +162,30 @@
 		ismob(AM) ||(length(AM.overlays) > 2)? costly_icon2html(AM, src, sourceonly = TRUE) : icon2html(AM, src, sourceonly = TRUE)
 	)
 
-/client/proc/__stat_hook_turf_enter(datum/source, atom/movable/AM)
+client/proc/__stat_hook_turf_enter(datum/source, atom/movable/AM)
 	var/list/got = statpanel_encode_atom(AM)
 	if(!got)
 		return
 	src << output("[url_encode(json_encode(got))]", "statbrowser:byond_turf_add")
 
-/client/proc/__stat_hook_turf_exit(datum/source, atom/movable/AM)
+client/proc/__stat_hook_turf_exit(datum/source, atom/movable/AM)
 	src << output("[url_encode(REF(AM))]", "statbrowser:byond_turf_del")
 
 //! external - load
 /// for legacy shit like rigsuits that didn't get the hint about not using verbs
-/client/proc/queue_legacy_verb_update()
+client/proc/queue_legacy_verb_update()
 	if(HAS_TRAIT(src, "VERB_UPDATE_QUEUED"))
 		return
 	ADD_TRAIT(src, "VERB_UPDATE_QUEUED", "FUCK")
 	addtimer(CALLBACK(src, .proc/legacy_verb_update), 1 SECONDS)
 
 /// -_-
-/client/proc/legacy_verb_update()
+client/proc/legacy_verb_update()
 	REMOVE_TRAIT(src, "VERB_UPDATE_QUEUED", "FUCK")
 	init_verbs(FALSE)
 
 /// compiles a full list of verbs and sends it to the browser
-/client/proc/init_verbs(reset = FALSE)
+client/proc/init_verbs(reset = FALSE)
 	var/list/verblist = list()
 	var/list/verbstoprocess = verbs.Copy()
 	if(mob)
@@ -207,7 +207,7 @@
 
 //! native
 
-/client/Stat()
+client/Stat()
 	if(!statpanel_on_byond)
 		return
 	..()	// hit mob.Stat()
@@ -249,10 +249,10 @@
  * 1. a text string
  * 2. a text string associated to a value
  */
-/datum/proc/statpanel_data(client/C)
+datum/proc/statpanel_data(client/C)
 	return list()
 
-/client/statpanel_data(client/C)
+client/statpanel_data(client/C)
 	var/datum/D = statobj
 	return istype(D)? D.statpanel_data(C) : list()
 
@@ -264,7 +264,7 @@
  * * action - (optional) action; in some cases there is none.
  * * auth - successful admin authentication. obviously, non admins will always fail this.
  */
-/datum/proc/statpanel_click(client/C, action, auth)
+datum/proc/statpanel_click(client/C, action, auth)
 	return
 
 /**
@@ -272,7 +272,7 @@
  *
  * todo: do we move this to /datum/statpanel?
  */
-/client/proc/_statpanel_act(action, list/params)
+client/proc/_statpanel_act(action, list/params)
 	switch(action)
 		if("reload")
 			statpanel_reload()
@@ -303,21 +303,21 @@
 /**
  * grabs statpanel data to send on tick
  */
-/client/proc/_statpanel_data()
+client/proc/_statpanel_data()
 	. = statpanel_data(src)
 	if(!islist(.))
 		CRASH("[.] was not list.")
 
 //! verb hooks - js stat
 
-/client/verb/hook_statpanel_ready()
+client/verb/hook_statpanel_ready()
 	set name = ".statpanel_ready"
 	set hidden = TRUE
 	set instant = TRUE
 
 	statpanel_ready()
 
-/client/verb/hook_statpanel_add_tab(tab as text)
+client/verb/hook_statpanel_add_tab(tab as text)
 	set name = ".statpanel_tab_add"
 	set hidden = TRUE
 	set instant = TRUE
@@ -326,21 +326,21 @@
 		return // bail
 	statpanel_tabs |= tab
 
-/client/verb/hook_statpanel_remove_tab(tab as text)
+client/verb/hook_statpanel_remove_tab(tab as text)
 	set name = ".statpanel_tab_remove"
 	set hidden = TRUE
 	set instant = TRUE
 
 	statpanel_tabs -= tab
 
-/client/verb/hook_statpanel_wipe_tabs()
+client/verb/hook_statpanel_wipe_tabs()
 	set name = ".statpanel_tab_reset"
 	set hidden = TRUE
 	set instant = TRUE
 
 	statpanel_tabs = list()
 
-/client/verb/hook_statpanel_set_tab(tab as text)
+client/verb/hook_statpanel_set_tab(tab as text)
 	set name = ".statpanel_tab"
 	set hidden = TRUE
 	set instant = TRUE
@@ -351,7 +351,7 @@
 
 //! verb hooks - tab switcher
 
-/client/verb/hook_statswitcher_set_tab(tab as text)
+client/verb/hook_statswitcher_set_tab(tab as text)
 	set name = ".statswitcher"
 	set hidden = TRUE
 	set instant = TRUE
@@ -360,7 +360,7 @@
 
 //? Verbs - For Players
 
-/client/verb/fix_stat_panel()
+client/verb/fix_stat_panel()
 	set name = "Fix Stat Panel"
 	set category = "OOC"
 

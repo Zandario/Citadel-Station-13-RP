@@ -1,4 +1,4 @@
-/mob/living/simple_mob/shadekin //Spawning the prototype spawns a random one, see initialize()
+mob/living/simple_mob/shadekin //Spawning the prototype spawns a random one, see initialize()
 	name = "shadekin"
 	desc = "Some sort of fluffer. Big ears, long tail."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
@@ -77,7 +77,7 @@
 
 	var/list/shadekin_abilities
 
-/mob/living/simple_mob/shadekin/Initialize(mapload)
+mob/living/simple_mob/shadekin/Initialize(mapload)
 	//You spawned the prototype, and want a totally random one.
 	if(type == /mob/living/simple_mob/shadekin)
 
@@ -129,11 +129,11 @@
 
 	return ..()
 
-/mob/living/simple_mob/shadekin/Destroy()
+mob/living/simple_mob/shadekin/Destroy()
 	QDEL_LIST_NULL(shadekin_abilities)
 	. = ..()
 
-/mob/living/simple_mob/shadekin/init_vore()
+mob/living/simple_mob/shadekin/init_vore()
 	if(LAZYLEN(vore_organs))
 		return
 
@@ -188,14 +188,14 @@
 		"The chaos of being digested fades as you're snuffed out by a harsh clench! You're steadily broken down into a thick paste, processed and absorbed by the predator!"
 		)
 
-/mob/living/simple_mob/shadekin/Life(seconds, times_fired)
+mob/living/simple_mob/shadekin/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 
 	if(ability_flags & AB_PHASE_SHIFTED)
 		density = FALSE
 
-/mob/living/simple_mob/shadekin/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/shadekin/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -204,7 +204,7 @@
 		nutrition = max(0, nutrition-5)
 		energy = min(100,energy+1)
 
-/mob/living/simple_mob/shadekin/update_icon()
+mob/living/simple_mob/shadekin/update_icon()
 	. = ..()
 
 	cut_overlay(tailimage)
@@ -214,7 +214,7 @@
 	add_overlay(tailimage)
 	add_overlay(eye_icon_state)
 
-/mob/living/simple_mob/shadekin/statpanel_data(client/C)
+mob/living/simple_mob/shadekin/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Shadekin"))
 		STATPANEL_DATA_LINE("")
@@ -224,7 +224,7 @@
 			STATPANEL_DATA_CLICK("[ability.ability_name]", "[ability.name]", "\ref[ability]")
 
 //They phase back to the dark when killed
-/mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
+mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
 	cut_overlays()
 	icon_state = ""
 	flick("tp_out",src)
@@ -234,22 +234,22 @@
 	. = ..(FALSE, deathmessage)
 
 //They reach nutritional equilibrium (important for blue-eyes healbelly)
-/mob/living/simple_mob/shadekin/Life(seconds, times_fired)
+mob/living/simple_mob/shadekin/Life(seconds, times_fired)
 	if((. = ..()))
 		handle_shade()
 
-/mob/living/simple_mob/shadekin/is_incorporeal()
+mob/living/simple_mob/shadekin/is_incorporeal()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return TRUE
 	return FALSE
 
-/mob/living/simple_mob/shadekin/handle_atmos()
+mob/living/simple_mob/shadekin/handle_atmos()
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return
 	else
 		return .=..()
 
-/mob/living/simple_mob/shadekin/proc/handle_shade()
+mob/living/simple_mob/shadekin/proc/handle_shade()
 	//Shifted kin don't gain/lose energy (and save time if we're at the cap)
 	var/darkness = 1
 
@@ -327,10 +327,10 @@
 			if(0 to 20)
 				energyhud.icon_state = "energy4"
 
-/mob/living/simple_mob/shadekin/speech_bubble_appearance()
+mob/living/simple_mob/shadekin/speech_bubble_appearance()
 	return "ghost"
 
-/mob/living/simple_mob/shadekin/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/shadekin/apply_melee_effects(var/atom/A)
 	. = ..(A)
 	if(isliving(A)) //We punched something!
 		var/mob/living/L = A
@@ -353,7 +353,7 @@
 			energy += gains
 
 //Special hud elements for darkness and energy gains
-/mob/living/simple_mob/shadekin/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
+mob/living/simple_mob/shadekin/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
 	//Darkness hud
 	darkhud = new /atom/movable/screen()
 	darkhud.icon = ui_style
@@ -373,12 +373,12 @@
 	hud_elements |= energyhud
 
 // When someone clicks us with an empty hand
-/mob/living/simple_mob/shadekin/attack_hand(mob/user, list/params)
+mob/living/simple_mob/shadekin/attack_hand(mob/user, list/params)
 	. = ..()
 	if(user.a_intent == INTENT_HELP)
 		shy_approach = FALSE //ACCLIMATED
 
-/datum/say_list/shadekin
+datum/say_list/shadekin
 	speak = list("Marrr.", "Marrr?", "Marrr!")
 	emote_hear = list("chrrrrrs", "wurbles", "wrrrrbles")
 	emote_see = list("tailtwitches", "earflicks")

@@ -1,4 +1,4 @@
-/datum/weather_holder
+datum/weather_holder
 	/// Reference to the planet datum that holds this datum.
 	var/datum/planet/our_planet = null
 	/// The current weather that is affecting the planet.
@@ -23,7 +23,7 @@
 	var/atom/movable/weather_visuals/special/special_visuals = null
 
 
-/datum/weather_holder/New(source)
+datum/weather_holder/New(source)
 	..()
 	our_planet = source
 	for(var/A in allowed_weather_types)
@@ -34,7 +34,7 @@
 	special_visuals = new()
 
 
-/datum/weather_holder/proc/change_weather(new_weather)
+datum/weather_holder/proc/change_weather(new_weather)
 	var/old_light_modifier = null
 	var/datum/weather/old_weather = null
 	if(current_weather)
@@ -68,7 +68,7 @@
 	log_debug(SPAN_DEBUGINFO("[our_planet.name]'s weather is now [new_weather], with a temperature of [temperature]&deg;K ([temperature - T0C]&deg;C | [temperature * 1.8 - 459.67]&deg;F)."))
 
 
-/datum/weather_holder/process(delta_time)
+datum/weather_holder/process(delta_time)
 	if(world.time >= next_weather_shift)
 		// Roundstart (hopefully).
 		if(!current_weather)
@@ -81,7 +81,7 @@
 
 
 // Should only have to be called once.
-/datum/weather_holder/proc/initialize_weather()
+datum/weather_holder/proc/initialize_weather()
 	if(!current_weather)
 		change_weather(get_next_weather())
 		build_forecast()
@@ -91,14 +91,14 @@
  * Used to determine what the weather will be soon, in a semi-random fashion.
  * The forecast is made by calling this repeatively, from the bottom (highest index) of the forecast list.
  */
-/datum/weather_holder/proc/get_next_weather(datum/weather/W)
+datum/weather_holder/proc/get_next_weather(datum/weather/W)
 	// At roundstart, choose a suitable initial weather.
 	if(!current_weather)
 		return pickweight(roundstart_weather_chances)
 	return pickweight(W?.transition_chances)
 
 
-/datum/weather_holder/proc/advance_forecast()
+datum/weather_holder/proc/advance_forecast()
 	var/new_weather = forecast[1]
 	// Remove what we just took out, shortening the list.
 	forecast.Cut(1, 2)
@@ -111,7 +111,7 @@
  * Creates a list of future weather shifts, that the planet will undergo at some point in the future.
  * Determining it ahead of time allows for attentive players to plan further ahead, if they can see the forecast.
  */
-/datum/weather_holder/proc/build_forecast()
+datum/weather_holder/proc/build_forecast()
 	var/desired_length = 3
 	if(forecast.len >= desired_length)
 		return
@@ -135,23 +135,23 @@
  * Wipes the forecast and regenerates it.
  * Used for when the weather is forcefully changed, such as with admin verbs.
  */
-/datum/weather_holder/proc/rebuild_forecast()
+datum/weather_holder/proc/rebuild_forecast()
 	forecast.Cut()
 	build_forecast()
 
 
-/datum/weather_holder/proc/update_icon_effects()
+datum/weather_holder/proc/update_icon_effects()
 	if(current_weather.icon)
 		visuals.icon = current_weather.icon
 	visuals.icon_state = current_weather.icon_state
 
 
-/datum/weather_holder/proc/update_temperature()
+datum/weather_holder/proc/update_temperature()
 	temperature = LERP(current_weather.temp_low, current_weather.temp_high, our_planet.sun_position)
 	our_planet.needs_work |= PLANET_PROCESS_TEMP
 
 
-/datum/weather_holder/proc/update_wind()
+datum/weather_holder/proc/update_wind()
 	var/new_wind_speed = rand(current_weather.wind_low, current_weather.wind_high)
 	if(!new_wind_speed)
 		wind_speed = 0
@@ -163,7 +163,7 @@
 	message_all_outdoor_players(SPAN_WARNING( message))
 
 
-/datum/weather_holder/proc/message_all_outdoor_players(message)
+datum/weather_holder/proc/message_all_outdoor_players(message)
 	for(var/mob/M in GLOB.player_list) // Don't need to care about clientless mobs.
 		if(M.z in our_planet.expected_z_levels)
 			var/turf/T = get_turf(M)
@@ -172,18 +172,18 @@
 			to_chat(M, message)
 
 
-/datum/weather_holder/proc/get_weather_datum(desired_type)
+datum/weather_holder/proc/get_weather_datum(desired_type)
 	return allowed_weather_types[desired_type]
 
 
-/datum/weather_holder/proc/show_transition_message()
+datum/weather_holder/proc/show_transition_message()
 	if(!current_weather.transition_messages.len)
 		return
 
 	var/message = pick(current_weather.transition_messages) // So everyone gets the same message.
 	message_all_outdoor_players(message)
 
-/datum/weather
+datum/weather
 	var/name = "weather base"
 	var/icon = 'icons/effects/weather.dmi'
 	/// Icon to apply to turf undergoing weather.
@@ -234,14 +234,14 @@
 	var/indoor_sounds_type = null
 
 
-/datum/weather/New()
+datum/weather/New()
 	if(outdoor_sounds_type)
 		outdoor_sounds = new outdoor_sounds_type(list(), FALSE, TRUE)
 	if(indoor_sounds_type)
 		indoor_sounds = new indoor_sounds_type(list(), FALSE, TRUE)
 
 
-/datum/weather/proc/process_effects()
+datum/weather/proc/process_effects()
 	// Need to reset the show_message var, just in case.
 	show_message = FALSE
 	// Only bother with the code below if we actually need to display something.
@@ -252,7 +252,7 @@
 	return
 
 
-/datum/weather/proc/process_sounds()
+datum/weather/proc/process_sounds()
 	// No point bothering if we have no sounds.
 	if(!outdoor_sounds && !indoor_sounds)
 		return
@@ -283,14 +283,14 @@
 				hear_outdoor_sounds(M, FALSE)
 
 
-/datum/weather/proc/start_sounds()
+datum/weather/proc/start_sounds()
 	if(outdoor_sounds)
 		outdoor_sounds.start()
 	if(indoor_sounds)
 		indoor_sounds.start()
 
 
-/datum/weather/proc/stop_sounds()
+datum/weather/proc/stop_sounds()
 	if(outdoor_sounds)
 		outdoor_sounds.stop()
 	if(indoor_sounds)
@@ -304,7 +304,7 @@
 
 
 /// Adds or removes someone from the outdoor list.
-/datum/weather/proc/hear_outdoor_sounds(mob/M, adding)
+datum/weather/proc/hear_outdoor_sounds(mob/M, adding)
 	if(!outdoor_sounds)
 		return
 	if(adding)
@@ -314,7 +314,7 @@
 
 
 /// Adds or removes someone from the indoor list.
-/datum/weather/proc/hear_indoor_sounds(mob/M, adding)
+datum/weather/proc/hear_indoor_sounds(mob/M, adding)
 	if(!indoor_sounds)
 		return
 	if(adding)
@@ -324,7 +324,7 @@
 
 
 /// All this does is hold the weather icon.
-/atom/movable/weather_visuals
+atom/movable/weather_visuals
 	icon = 'icons/effects/weather.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = PLANE_PLANETLIGHTING
@@ -334,5 +334,5 @@
  * This is for special effects for specific types of weather, such as lightning flashes in a storm.
  * It's a seperate object to allow the use of flick().
  */
-/atom/movable/weather_visuals/special
+atom/movable/weather_visuals/special
 	plane = ABOVE_LIGHTING_PLANE

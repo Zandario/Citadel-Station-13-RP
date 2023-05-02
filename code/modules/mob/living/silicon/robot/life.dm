@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/Life(seconds, times_fired)
+mob/living/silicon/robot/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -6,7 +6,7 @@
 	clamp_values()
 	handle_regular_UI_updates()
 
-/mob/living/silicon/robot/PhysicalLife(seconds, times_fired)
+mob/living/silicon/robot/PhysicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -18,7 +18,7 @@
 		process_locks()
 		process_queued_alarms()
 
-/mob/living/silicon/robot/proc/clamp_values()
+mob/living/silicon/robot/proc/clamp_values()
 	var/datum/status_effect/effect
 	effect = is_unconscious()
 	if(effect?.time_left() > 20 SECONDS)
@@ -30,7 +30,7 @@
 	adjustOxyLoss(0)
 	adjustFireLoss(0)
 
-/mob/living/silicon/robot/proc/use_power()
+mob/living/silicon/robot/proc/use_power()
 	// Debug only
 	// to_chat(world, "DEBUG: life.dm line 35: cyborg use_power() called at tick [controller_iteration]")
 	used_power_this_tick = 0
@@ -58,7 +58,7 @@
 			lights_on = 0
 			set_light(0)
 
-/mob/living/silicon/robot/handle_regular_UI_updates()
+mob/living/silicon/robot/handle_regular_UI_updates()
 
 	if(src.camera && !scrambledcodes)
 		if(IS_DEAD(src) || wires.is_cut(WIRE_BORG_CAMERA))
@@ -120,7 +120,7 @@
 
 	return 1
 
-/mob/living/silicon/robot/handle_regular_hud_updates()
+mob/living/silicon/robot/handle_regular_hud_updates()
 	. = ..()
 	var/fullbright = FALSE
 	var/seemeson = FALSE
@@ -231,7 +231,7 @@
 			reset_perspective()
 	return 1
 
-/mob/living/silicon/robot/proc/update_items()
+mob/living/silicon/robot/proc/update_items()
 	if (src.client)
 		src.client.screen -= src.contents
 		for(var/obj/I in src.contents)
@@ -245,7 +245,7 @@
 		src.module_state_3:screen_loc = ui_inv3
 	updateicon()
 
-/mob/living/silicon/robot/proc/process_killswitch()
+mob/living/silicon/robot/proc/process_killswitch()
 	if(killswitch)
 		killswitch_time --
 		if(killswitch_time <= 0)
@@ -255,7 +255,7 @@
 			spawn(5)
 				gib()
 
-/mob/living/silicon/robot/proc/process_locks()
+mob/living/silicon/robot/proc/process_locks()
 	if(weapon_lock)
 		uneq_all()
 		weaponlock_time --
@@ -266,7 +266,7 @@
 			weaponlock_time = 120
 
 // todo: better way
-/mob/living/silicon/robot/update_mobility()
+mob/living/silicon/robot/update_mobility()
 	. = ..()
 	if(!is_component_functioning("actuator"))
 		mobility_flags &= ~MOBILITY_CAN_MOVE
@@ -274,11 +274,11 @@
 		mobility_flags &= ~(MOBILITY_FLAGS_ANY_INTERACTION | MOBILITY_CAN_MOVE | MOBILITY_CAN_PULL | MOBILITY_CAN_RESIST)
 	return mobility_flags
 
-/mob/living/silicon/robot/update_fire()
+mob/living/silicon/robot/update_fire()
 	cut_overlay(image("icon"='icons/mob/OnFire.dmi', "icon_state" = get_fire_icon_state()))
 	if(on_fire)
 		add_overlay(image("icon"='icons/mob/OnFire.dmi', "icon_state" = get_fire_icon_state()))
 
-/mob/living/silicon/robot/fire_act()
+mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
 		IgniteMob()

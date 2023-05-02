@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/silicon/robot/gravekeeper
+datum/category_item/catalogue/fauna/silicon/robot/gravekeeper
 	name = "Robot - Gravekeeper"
 	desc = "Gravekeepers are often politely ignored. Serving as guards and custodians \
 	of funeral grounds, Gravekeepers only care about tending to their assigned station. \
@@ -6,7 +6,7 @@
 	loot the burial sites they oversee, are often met with violence."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/silicon/robot/gravekeeper
+mob/living/silicon/robot/gravekeeper
 	lawupdate = 0
 	scrambledcodes = 1
 	icon_state = "drone-lost"
@@ -18,7 +18,7 @@
 	can_be_antagged = FALSE
 	catalogue_data = list(/datum/category_item/catalogue/fauna/silicon/robot/gravekeeper)
 
-/mob/living/silicon/robot/gravekeeper/init()
+mob/living/silicon/robot/gravekeeper/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
 	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.

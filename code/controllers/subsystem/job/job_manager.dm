@@ -1,22 +1,22 @@
 // todo: refactor _job.dm
-/datum/controller/subsystem/job
+datum/controller/subsystem/job
 
 //? Jobs
 
-/datum/controller/subsystem/job/proc/job_by_id(id)
+datum/controller/subsystem/job/proc/job_by_id(id)
 	RETURN_TYPE(/datum/role/job)
 	return job_lookup[id]
 
-/datum/controller/subsystem/job/proc/job_by_type(path)
+datum/controller/subsystem/job/proc/job_by_type(path)
 	RETURN_TYPE(/datum/role/job)
 	return type_occupations[path]
 
 // todo: this should not be used most of the time, id/type is better
-/datum/controller/subsystem/job/proc/job_by_title(title)
+datum/controller/subsystem/job/proc/job_by_title(title)
 	RETURN_TYPE(/datum/role/job)
 	return name_occupations[title]
 
-/datum/controller/subsystem/job/proc/all_job_ids(faction)
+datum/controller/subsystem/job/proc/all_job_ids(faction)
 	RETURN_TYPE(/list)
 	. = list()
 	if(faction)
@@ -28,7 +28,7 @@
 		for(var/id as anything in job_lookup)
 			. += id
 
-/datum/controller/subsystem/job/proc/all_job_types(faction)
+datum/controller/subsystem/job/proc/all_job_types(faction)
 	RETURN_TYPE(/list)
 	. = list()
 	if(faction)
@@ -41,7 +41,7 @@
 			. += path
 
 // todo: avoid doing this where possible, id/type is better
-/datum/controller/subsystem/job/proc/all_job_titles(faction)
+datum/controller/subsystem/job/proc/all_job_titles(faction)
 	RETURN_TYPE(/list)
 	. = list()
 	if(faction)
@@ -53,7 +53,7 @@
 		for(var/title as anything in name_occupations)
 			. += title
 
-/datum/controller/subsystem/job/proc/all_jobs(faction)
+datum/controller/subsystem/job/proc/all_jobs(faction)
 	RETURN_TYPE(/list)
 	. = list()
 	if(faction)

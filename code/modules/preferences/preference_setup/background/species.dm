@@ -1,11 +1,11 @@
-/datum/category_item/player_setup_item/background/char_species
+datum/category_item/player_setup_item/background/char_species
 	name = "Character Species"
 	sort_order = 1
 	save_key = CHARACTER_DATA_CHAR_SPECIES
 	load_order = PREFERENCE_LOAD_ORDER_CHAR_SPECIES
 	// todo: proper view-only section support
 
-/datum/category_item/player_setup_item/background/char_species/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/background/char_species/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	var/datum/character_species/CS = prefs.character_species_datum()
 	. += "<center>"
@@ -24,7 +24,7 @@
 	. += "[CS.desc]"
 	. += "</div>"
 
-/datum/category_item/player_setup_item/background/char_species/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
+datum/category_item/player_setup_item/background/char_species/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
 	var/datum/character_species/CS = SScharacters.resolve_character_species(data)
 	if((CS.species_spawn_flags & SPECIES_SPAWN_RESTRICTED) && !(flags & PREF_COPY_TO_NO_CHECK_SPECIES))
 		errors?.Add(SPAN_WARNING("[CS.name] is a restricted species. You cannot join as this as most normal roles."))
@@ -34,7 +34,7 @@
 		return FALSE
 	return TRUE
 
-/datum/category_item/player_setup_item/background/char_species/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/background/char_species/filter_data(datum/preferences/prefs, data, list/errors)
 	// resolve
 	var/datum/character_species/CS = SScharacters.resolve_character_species(data)
 	if(CS)
@@ -49,7 +49,7 @@
 		return data
 	return informed_default_value(prefs)
 
-/datum/category_item/player_setup_item/background/char_species/informed_default_value(datum/preferences/prefs, randomizing)
+datum/category_item/player_setup_item/background/char_species/informed_default_value(datum/preferences/prefs, randomizing)
 	// do they have a valid real species we can use?
 	var/real_id = prefs.get_character_data(CHARACTER_DATA_REAL_SPECIES)
 	var/datum/character_species/CS = SScharacters.resolve_character_species(real_id)
@@ -58,10 +58,10 @@
 	// no :(
 	return default_value()
 
-/datum/category_item/player_setup_item/background/char_species/default_value(randomizing)
+datum/category_item/player_setup_item/background/char_species/default_value(randomizing)
 	return SScharacters.default_species_id()
 
-/datum/category_item/player_setup_item/background/char_species/act(datum/preferences/prefs, mob/user, action, list/params)
+datum/category_item/player_setup_item/background/char_species/act(datum/preferences/prefs, mob/user, action, list/params)
 	switch(action)
 		if("change")
 			prefs.species_pick(user)
@@ -69,13 +69,13 @@
 	return ..()
 
 // todo: proper view-only section support
-/datum/category_item/player_setup_item/background/real_species
+datum/category_item/player_setup_item/background/real_species
 	name = "(Virtual) Real Species"
 	sort_order = 2
 	save_key = CHARACTER_DATA_REAL_SPECIES
 	load_order = PREFERENCE_LOAD_ORDER_REAL_SPECIES
 
-/datum/category_item/player_setup_item/background/real_species/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/background/real_species/filter_data(datum/preferences/prefs, data, list/errors)
 	var/datum/species/S = SScharacters.resolve_species_id(data)
 	if(!S)
 		return SScharacters.default_species_id()
@@ -83,35 +83,35 @@
 		return SScharacters.default_species_id()
 	return data
 
-/datum/category_item/player_setup_item/background/real_species/default_value(randomizing)
+datum/category_item/player_setup_item/background/real_species/default_value(randomizing)
 	return SScharacters.default_species_id()
 
-/datum/category_item/player_setup_item/background/real_species/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/background/real_species/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	if(!ishuman(M))
 		return TRUE
 	var/mob/living/carbon/human/H = M
 	// we construct character species
 	H.set_species(SScharacters.construct_character_species(prefs.get_character_data(CHARACTER_DATA_CHAR_SPECIES)))
 
-/datum/preferences/proc/real_species_id()
+datum/preferences/proc/real_species_id()
 	return get_character_data(CHARACTER_DATA_REAL_SPECIES)
 
-/datum/preferences/proc/character_species_id()
+datum/preferences/proc/character_species_id()
 	return get_character_data(CHARACTER_DATA_CHAR_SPECIES)
 
-/datum/preferences/proc/character_species_datum()
+datum/preferences/proc/character_species_datum()
 	RETURN_TYPE(/datum/character_species)
 	return SScharacters.resolve_character_species(get_character_data(CHARACTER_DATA_CHAR_SPECIES))
 
-/datum/preferences/proc/character_species_name()
+datum/preferences/proc/character_species_name()
 	return SScharacters.resolve_character_species(get_character_data(CHARACTER_DATA_CHAR_SPECIES))?.name || "ERROR"
 
-/datum/preferences/proc/real_species_datum()
+datum/preferences/proc/real_species_datum()
 	RETURN_TYPE(/datum/species)
 	return SScharacters.resolve_species_id(get_character_data(CHARACTER_DATA_REAL_SPECIES))
 
-/datum/preferences/proc/real_species_name()
+datum/preferences/proc/real_species_name()
 	return SScharacters.resolve_species_id(get_character_data(CHARACTER_DATA_REAL_SPECIES)).name
 
-/datum/preferences/proc/character_species_job_check(datum/role/job/J)
+datum/preferences/proc/character_species_job_check(datum/role/job/J)
 	return TRUE	// todo

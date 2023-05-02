@@ -1,14 +1,14 @@
 var/warrant_uid = 0
-/datum/datacore/var/list/warrants[] = list()
-/datum/data/record/warrant
+datum/datacore/var/list/warrants[] = list()
+datum/data/record/warrant
 	var/warrant_id
 
-/datum/data/record/warrant/New()
+datum/data/record/warrant/New()
 	..()
 	warrant_id = warrant_uid++
 
 
-/datum/computer_file/program/digitalwarrant
+datum/computer_file/program/digitalwarrant
 	filename = "digitalwarrant"
 	filedesc = "Warrant Assistant"
 	extended_desc = "Official NTsec program for creation and handling of warrants."
@@ -22,11 +22,11 @@ var/warrant_uid = 0
 	usage_flags = PROGRAM_ALL
 	nanomodule_path = /datum/nano_module/program/digitalwarrant/
 
-/datum/nano_module/program/digitalwarrant/
+datum/nano_module/program/digitalwarrant/
 	name = "Warrant Assistant"
 	var/datum/data/record/warrant/activewarrant
 
-/datum/nano_module/program/digitalwarrant/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/digitalwarrant/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	if(activewarrant)
@@ -53,7 +53,7 @@ var/warrant_uid = 0
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/program/digitalwarrant/Topic(href, href_list)
+datum/nano_module/program/digitalwarrant/Topic(href, href_list)
 	if(..())
 		return 1
 

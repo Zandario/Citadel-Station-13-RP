@@ -1,4 +1,4 @@
-/obj/item/clothing/shoes/leg_guard
+obj/item/clothing/shoes/leg_guard
 	name = "leg guards"
 	desc = "These will protect your legs and feet."
 	body_cover_flags = LEGS|FEET
@@ -10,7 +10,7 @@
 	drop_sound = 'sound/items/drop/boots.ogg'
 	pickup_sound = 'sound/items/pickup/boots.ogg'
 
-/obj/item/clothing/shoes/leg_guard/can_equip(mob/M, slot, mob/user, flags)
+obj/item/clothing/shoes/leg_guard/can_equip(mob/M, slot, mob/user, flags)
 	. = ..()
 	if(!.)
 		return
@@ -30,7 +30,7 @@
 				return FALSE
 	return TRUE
 
-/obj/item/clothing/shoes/leg_guard/laserproof
+obj/item/clothing/shoes/leg_guard/laserproof
 	name = "ablative leg guards"
 	desc = "These will protect your legs and feet from energy weapons."
 	icon_state = "leg_guards_laser"
@@ -38,7 +38,7 @@
 	siemens_coefficient = 0.1
 	armor_type = /datum/armor/station/ablative
 
-/obj/item/clothing/shoes/leg_guard/bulletproof
+obj/item/clothing/shoes/leg_guard/bulletproof
 	name = "bullet resistant leg guards"
 	desc = "These will protect your legs and feet from ballistic weapons."
 	icon_state = "leg_guards_bullet"
@@ -46,7 +46,7 @@
 	siemens_coefficient = 0.7
 	armor_type = /datum/armor/station/ballistic
 
-/obj/item/clothing/shoes/leg_guard/riot
+obj/item/clothing/shoes/leg_guard/riot
 	name = "riot leg guards"
 	desc = "These will protect your legs and feet from close combat weapons."
 	icon_state = "leg_guards_riot"
@@ -54,7 +54,7 @@
 	siemens_coefficient = 0.5
 	armor_type = /datum/armor/station/riot
 
-/obj/item/clothing/shoes/leg_guard/combat
+obj/item/clothing/shoes/leg_guard/combat
 	name = "combat leg guards"
 	desc = "These will protect your legs and feet from a variety of weapons."
 	icon_state = "leg_guards_combat"
@@ -62,7 +62,7 @@
 	siemens_coefficient = 0.6
 	armor_type = /datum/armor/station/combat
 
-/obj/item/clothing/shoes/leg_guard/flexitac
+obj/item/clothing/shoes/leg_guard/flexitac
 	name = "tactical leg guards"
 	desc = "These will protect your legs and feet from a variety of weapons while still allowing mobility."
 	icon_state = "leg_guards_flexitac"

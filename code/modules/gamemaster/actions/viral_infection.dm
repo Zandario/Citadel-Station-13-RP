@@ -1,13 +1,13 @@
-/var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
+var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
 
-/datum/gm_action/viral_infection
+datum/gm_action/viral_infection
 	name = "viral infection"
 	departments = list(DEPARTMENT_MEDICAL)
 	chaotic = 5
 	var/list/viruses = list()
 	severity = 1
 
-/datum/gm_action/viral_infection/set_up()
+datum/gm_action/viral_infection/set_up()
 	severity = pickweight(EVENT_LEVEL_MUNDANE = 20,
 		EVENT_LEVEL_MODERATE = 10,
 		EVENT_LEVEL_MAJOR = 3
@@ -24,7 +24,7 @@
 		D.makerandom(strength)
 		viruses += D
 
-/datum/gm_action/viral_infection/announce()
+datum/gm_action/viral_infection/announce()
 	var/level
 	if (severity == EVENT_LEVEL_MUNDANE)
 		return
@@ -37,7 +37,7 @@
 		if(severity == EVENT_LEVEL_MAJOR || prob(60))
 			command_announcement.Announce("Confirmed outbreak of level [level] biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
 
-/datum/gm_action/viral_infection/start()
+datum/gm_action/viral_infection/start()
 	if(!viruses.len) return
 
 	..()
@@ -79,5 +79,5 @@
 	log_admin("Virus event affecting [english_list(used_candidates_text)] started; Viruses: [english_list(used_viruses_text)]")
 	message_admins("Virus event affecting [english_list(used_candidates_links)] started; Viruses: [english_list(used_viruses_links)]")
 
-/datum/gm_action/viral_infection/get_weight()
+datum/gm_action/viral_infection/get_weight()
 	return (metric.count_people_in_department(DEPARTMENT_MEDICAL) * 20)

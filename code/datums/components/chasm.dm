@@ -1,5 +1,5 @@
 // Used by /turf/open/chasm and subtypes to implement the "dropping" mechanic
-/datum/component/chasm
+datum/component/chasm
 	var/turf/target_turf
 	var/fall_message = "GAH! Ah... where are you?"
 	var/oblivion_message = "You stumble and stare into the abyss before you. It stares back, and you fall into the enveloping dark."
@@ -23,20 +23,20 @@
 		/obj/effect/dummy/phased_mob
 		))
 
-/datum/component/chasm/Initialize(turf/target)
+datum/component/chasm/Initialize(turf/target)
 	RegisterSignal(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/Entered)
 	target_turf = target
 	START_PROCESSING(SSobj, src) // process on create, in case stuff is still there
 
-/datum/component/chasm/proc/Entered(datum/source, atom/movable/AM)
+datum/component/chasm/proc/Entered(datum/source, atom/movable/AM)
 	START_PROCESSING(SSobj, src)
 	drop_stuff(AM)
 
-/datum/component/chasm/process(delta_time)
+datum/component/chasm/process(delta_time)
 	if (!drop_stuff())
 		STOP_PROCESSING(SSobj, src)
 
-/datum/component/chasm/proc/is_safe()
+datum/component/chasm/proc/is_safe()
 	//if anything matching this typecache is found in the chasm, we don't drop things
 	var/static/list/chasm_safeties_typecache = typecacheof(list(/obj/structure/lattice/catwalk, /obj/structure/stone_tile))
 
@@ -47,7 +47,7 @@
 			LAZYREMOVE(found_safeties, S)
 	return LAZYLEN(found_safeties)
 
-/datum/component/chasm/proc/drop_stuff(AM)
+datum/component/chasm/proc/drop_stuff(AM)
 	. = 0
 	if (is_safe())
 		return FALSE
@@ -59,7 +59,7 @@
 			. = 1
 			INVOKE_ASYNC(src, .proc/drop, thing)
 
-/datum/component/chasm/proc/droppable(atom/movable/AM)
+datum/component/chasm/proc/droppable(atom/movable/AM)
 	// avoid an infinite loop, but allow falling a large distance
 	if(falling_atoms[AM] && falling_atoms[AM] > 30)
 		return FALSE
@@ -86,7 +86,7 @@
 				return FALSE
 	return TRUE
 
-/datum/component/chasm/proc/drop(atom/movable/AM)
+datum/component/chasm/proc/drop(atom/movable/AM)
 	//Make sure the item is still there after our sleep
 	if(!AM || QDELETED(AM))
 		return

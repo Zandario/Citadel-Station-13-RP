@@ -1,4 +1,4 @@
-/client/proc/start_line_profiling()
+client/proc/start_line_profiling()
 	set category = "Profile"
 	set name = "Start Line Profiling"
 	set desc = "Starts tracking line by line profiling for code lines that support it"
@@ -9,7 +9,7 @@
 	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Line Profiling")
 	log_admin("[key_name(src)] started line by line profiling.")
 
-/client/proc/stop_line_profiling()
+client/proc/stop_line_profiling()
 	set category = "Profile"
 	set name = "Stop Line Profiling"
 	set desc = "Stops tracking line by line profiling for code lines that support it"
@@ -20,7 +20,7 @@
 	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Stop Line Profiling")
 	log_admin("[key_name(src)] stopped line by line profiling.")
 
-/client/proc/show_line_profiling()
+client/proc/show_line_profiling()
 	set category = "Profile"
 	set name = "Show Line Profiling"
 	set desc = "Shows tracked profiling info from code lines that support it"

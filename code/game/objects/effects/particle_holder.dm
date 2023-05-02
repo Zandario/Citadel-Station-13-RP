@@ -2,7 +2,7 @@
  * Objects can only have one particle on them at a time, so we use these abstract effects to hold and display the effects.
  * You know, so multiple particle effects can exist at once. Also because some objects do not display particles due to how their visuals are built.
  */
-/obj/effect/abstract/particle_holder
+obj/effect/abstract/particle_holder
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = ABOVE_MOB_LAYER
@@ -14,7 +14,7 @@
 	/// Besides the item we're also sometimes attached to other stuff! (items held emitting particles on a mob).
 	var/datum/weakref/weak_additional
 
-/obj/effect/abstract/particle_holder/Initialize(mapload, particle_path = /particles/smoke)
+obj/effect/abstract/particle_holder/Initialize(mapload, particle_path = /particles/smoke)
 	. = ..()
 	if(!loc)
 		stack_trace("particle holder was created with no loc!")
@@ -26,7 +26,7 @@
 	particles = new particle_path
 	update_visual_contents(loc)
 
-/obj/effect/abstract/particle_holder/Destroy(force)
+obj/effect/abstract/particle_holder/Destroy(force)
 	var/atom/movable/attached = weak_attached.resolve()
 	var/atom/movable/additional_attached
 	if(weak_additional)
@@ -40,13 +40,13 @@
 	return ..()
 
 /// Signal called when parent is moved.
-/obj/effect/abstract/particle_holder/proc/on_move(atom/movable/attached, atom/oldloc, direction)
+obj/effect/abstract/particle_holder/proc/on_move(atom/movable/attached, atom/oldloc, direction)
 	SIGNAL_HANDLER
 	if(attached.loc.type != last_attached_location_type)
 		update_visual_contents(attached)
 
 /// Signal called when parent is deleted.
-/obj/effect/abstract/particle_holder/proc/on_qdel(atom/movable/attached, force)
+obj/effect/abstract/particle_holder/proc/on_qdel(atom/movable/attached, force)
 	SIGNAL_HANDLER
 	qdel(src)//our parent is gone and we need to be as well
 
@@ -55,7 +55,7 @@
  * Subtypes of particle holders can override this for particles that should always be turf level or do special things when repositioning.
  * This base subtype has some logic for items, as the loc of items becomes mobs very often hiding the particles.
  */
-/obj/effect/abstract/particle_holder/proc/update_visual_contents(atom/movable/attached_to)
+obj/effect/abstract/particle_holder/proc/update_visual_contents(atom/movable/attached_to)
 	// Remove old.
 	if(weak_additional)
 		var/atom/movable/resolved_location = weak_additional.resolve()

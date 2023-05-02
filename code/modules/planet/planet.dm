@@ -1,7 +1,7 @@
 // This holds information about a specific 'planetside' area, such as its time, weather, etc.  This will most likely be used to model Sif,
 // but away missions may also have use for this.
 
-/datum/planet
+datum/planet
 	var/name = "a rock"
 	var/desc = "Someone neglected to write a nice description for this poor rock."
 
@@ -38,7 +38,7 @@
 	var/moon_name = null // Purely for flavor. Null means no moon exists.
 	var/moon_phase = null // Set if above is defined.
 
-/datum/planet/New()
+datum/planet/New()
 	..()
 	weather_holder = new(src)
 	current_time = current_time.make_random_time()
@@ -55,7 +55,7 @@
 			))
 	update_sun()
 
-/datum/planet/process(delta_time, last_fire)
+datum/planet/process(delta_time, last_fire)
 	if(current_time)
 		var/difference = world.time - last_fire
 		current_time = current_time.add_seconds((difference / 10) * PLANET_TIME_MODIFIER)
@@ -64,14 +64,14 @@
 		update_sun()
 
 // This changes the position of the sun on the planet.
-/datum/planet/proc/update_sun()
+datum/planet/proc/update_sun()
 	sun_last_process = world.time
 
-/datum/planet/proc/update_weather()
+datum/planet/proc/update_weather()
 	if(weather_holder)
 		weather_holder.process()
 
-/datum/planet/proc/update_sun_deferred(new_brightness, new_color)
+datum/planet/proc/update_sun_deferred(new_brightness, new_color)
 	set waitfor = FALSE
 	ASSERT(args.len < 3)
 	// Delta updates: changing the sun while it's still updating will permanently corrupt ambient lights (short of resetting them globally)
@@ -83,7 +83,7 @@
 
 	needs_work |= PLANET_PROCESS_SUN
 
-/datum/planet/proc/update_sunlight()
+datum/planet/proc/update_sunlight()
 	if (sun_next_brightness == sun_apparent_brightness && sun_next_color == sun_apparent_color)
 		log_debug("update_sunlight(): apparent == next, not bothering")
 		return

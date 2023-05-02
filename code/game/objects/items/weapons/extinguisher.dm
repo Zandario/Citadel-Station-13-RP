@@ -1,4 +1,4 @@
-/obj/item/extinguisher
+obj/item/extinguisher
 	name = "fire extinguisher"
 	desc = "A traditional red fire extinguisher."
 	icon = 'icons/obj/items.dmi'
@@ -22,7 +22,7 @@
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
 
-/obj/item/extinguisher/mini
+obj/item/extinguisher/mini
 	name = "fire extinguisher"
 	desc = "A light and compact fibreglass-framed model fire extinguisher."
 	icon_state = "miniFE0"
@@ -35,21 +35,21 @@
 	spray_particles = 3
 	sprite_name = "miniFE"
 
-/obj/item/extinguisher/mini/plasman
+obj/item/extinguisher/mini/plasman
 	name = "emergency phoronoid extinguisher"
 	desc = "A mini fire extinguisher for use by burning phoronoids. Let's just hope it works."
 	max_water = 300
 
-/obj/item/extinguisher/Initialize(mapload)
+obj/item/extinguisher/Initialize(mapload)
 	. = ..()
 	create_reagents(max_water)
 	reagents.add_reagent("water", max_water)
 
-/obj/item/extinguisher/examine(mob/user)
+obj/item/extinguisher/examine(mob/user)
 	. = ..()
 	. += "[icon2html(thing = src, target = user)] [src.name] contains [src.reagents.total_volume] units of water left!"
 
-/obj/item/extinguisher/attack_self(mob/user)
+obj/item/extinguisher/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -58,7 +58,7 @@
 	desc = "The safety is [safety ? "on" : "off"]."
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
 
-/obj/item/extinguisher/proc/propel_object(var/obj/O, mob/user, movementdirection)
+obj/item/extinguisher/proc/propel_object(var/obj/O, mob/user, movementdirection)
 	if(O.anchored) return
 
 	var/obj/structure/bed/chair/C
@@ -76,7 +76,7 @@
 		O.Move(get_step(user,movementdirection), movementdirection)
 		sleep(3)
 
-/obj/item/extinguisher/afterattack(var/atom/target, var/mob/user, var/flag)
+obj/item/extinguisher/afterattack(var/atom/target, var/mob/user, var/flag)
 	//TODO; Add support for reagents in water.
 
 	if( istype(target, /obj/structure/reagent_dispensers/watertank) && flag)

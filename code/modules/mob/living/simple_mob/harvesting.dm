@@ -1,4 +1,4 @@
-/mob/living/simple_mob
+mob/living/simple_mob
 	/// What do you hit the mob with (on help) to get something from it?
 	var/obj/harvest_tool
 	/// How long do we have to wait until it's harvestable again?
@@ -14,7 +14,7 @@
 	/// Associative list of paths and their chances. path = straws in the lot
 	var/list/harvest_results
 
-/mob/living/simple_mob/examine(mob/user)
+mob/living/simple_mob/examine(mob/user)
 	. = ..()
 	if(stat != DEAD && user && harvest_tool && (get_dist(user, src) <= 3))
 		. += SPAN_NOTICE("\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [round(harvest_cooldown, 0.1)] minutes.")
@@ -24,7 +24,7 @@
 		else
 			. += SPAN_NOTICE("It can be [harvest_verb] now.")
 
-/mob/living/simple_mob/proc/livestock_harvest(var/obj/item/tool, var/mob/living/user)
+mob/living/simple_mob/proc/livestock_harvest(var/obj/item/tool, var/mob/living/user)
 	if(!LAZYLEN(harvest_results))	// Might be a unique interaction of an object using the proc to do something weird, or just someone's a donk.
 		harvest_recent = world.time
 		return

@@ -1,7 +1,7 @@
-/datum/asset/spritesheet/chat
+datum/asset/spritesheet/chat
 	name = "chat"
 
-/datum/asset/spritesheet/chat/create_spritesheets()
+datum/asset/spritesheet/chat/create_spritesheets()
 	InsertAll("emoji", EMOJI_SET)
 	InsertAll("emoji", EMOJI32_SET)
 	/*

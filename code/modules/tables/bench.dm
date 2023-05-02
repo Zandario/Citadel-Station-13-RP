@@ -1,4 +1,4 @@
-/obj/structure/table/bench
+obj/structure/table/bench
 	name = "bench frame"
 	icon = 'icons/obj/bench.dmi'
 	icon_state = "frame"
@@ -7,11 +7,11 @@
 	flipped = -1
 	density = 0
 
-/obj/structure/table/bench/update_desc()
+obj/structure/table/bench/update_desc()
 	if(material)
 		name = "[material.display_name] bench"
 	else
 		name = "bench frame"
 
-/obj/structure/table/bench/CanAllowThrough(atom/movable/mover)
+obj/structure/table/bench/CanAllowThrough(atom/movable/mover)
 	return 1

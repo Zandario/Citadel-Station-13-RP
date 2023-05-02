@@ -4,7 +4,7 @@
 #define STATE_COUNT_DIAGONAL	7
 
 
-/mob/verb/ChooseDMI(dmi as file)
+mob/verb/ChooseDMI(dmi as file)
 	var/dmifile = file(dmi)
 	if(isfile(dmifile) && (copytext("[dmifile]",-4) == ".dmi"))
 		SliceNDice(dmifile)
@@ -12,7 +12,7 @@
 		world << "\red Bad DMI file '[dmifile]'"
 
 
-/proc/SliceNDice(dmifile as file)
+proc/SliceNDice(dmifile as file)
 	var/icon/sourceIcon = icon(dmifile)
 	var/list/states = sourceIcon.IconStates()
 	world << "<B>[dmifile] - states: [states.len]</B>"

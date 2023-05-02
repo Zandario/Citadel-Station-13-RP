@@ -1,30 +1,30 @@
-/datum/filter_editor
+datum/filter_editor
 	var/atom/target
 
-/datum/filter_editor/New(atom/target)
+datum/filter_editor/New(atom/target)
 	src.target = target
 
-/datum/filter_editor/ui_state(mob/user, datum/tgui_module/module)
+datum/filter_editor/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.admin_state
 
-/datum/filter_editor/ui_interact(mob/user, datum/tgui/ui)
+datum/filter_editor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Filteriffic")
 		ui.open()
 
-/datum/filter_editor/ui_static_data(mob/user)
+datum/filter_editor/ui_static_data(mob/user)
 	var/list/data = list()
 	data["filter_info"] = GLOB.master_filter_info
 	return data
 
-/datum/filter_editor/ui_data()
+datum/filter_editor/ui_data()
 	var/list/data = list()
 	data["target_name"] = target.name
 	data["target_filter_data"] = target.filter_data
 	return data
 
-/datum/filter_editor/ui_act(action, list/params)
+datum/filter_editor/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
@@ -96,7 +96,7 @@
 			message_admins("LOCAL CLOWN [usr.ckey] JUST MASS FILTER EDITED [count] WITH PATH OF [params["path"]]!")
 			log_admin("LOCAL CLOWN [usr.ckey] JUST MASS FILTER EDITED [count] WITH PATH OF [params["path"]]!")
 
-/client/proc/open_filter_editor(atom/in_atom)
+client/proc/open_filter_editor(atom/in_atom)
 	if(holder)
 		holder.filteriffic = new /datum/filter_editor(in_atom)
 		holder.filteriffic.ui_interact(mob)

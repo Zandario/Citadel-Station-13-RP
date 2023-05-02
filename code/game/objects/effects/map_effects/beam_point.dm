@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 // Creates and manages a beam attached to itself and another beam_point.
 // You can do cool things with these such as moving the beam_point to move the beam, turning them on and off on a timer, triggered by external input, and more.
-/obj/effect/map_effect/beam_point
+obj/effect/map_effect/beam_point
 	name = "beam point"
 	icon_state = "beam_point"
 
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 	var/beam_type = /obj/effect/ebeam // The type of beam. Default has no special properties. Some others may do things like hurt things touching it.
 	var/beam_sleep_time = 3 // How often the beam updates visually. Suggested to leave this alone, 3 is already fast.
 
-/obj/effect/map_effect/beam_point/Initialize(mapload)
+obj/effect/map_effect/beam_point/Initialize(mapload)
 	GLOB.all_beam_points += src
 	if(make_beams_on_init)
 		create_beams()
@@ -40,14 +40,14 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 			handle_beam_timer()
 	return ..()
 
-/obj/effect/map_effect/beam_point/Destroy()
+obj/effect/map_effect/beam_point/Destroy()
 	destroy_all_beams()
 	use_timer = FALSE
 	GLOB.all_beam_points -= src
 	return ..()
 
 // This is the top level proc to make the magic happen.
-/obj/effect/map_effect/beam_point/proc/create_beams()
+obj/effect/map_effect/beam_point/proc/create_beams()
 	if(my_beams.len >= max_beams)
 		return
 	var/beams_to_fill = max_beams - my_beams.len
@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 		build_beam(point)
 
 // Finds a suitable beam point.
-/obj/effect/map_effect/beam_point/proc/seek_beam_point()
+obj/effect/map_effect/beam_point/proc/seek_beam_point()
 	for(var/obj/effect/map_effect/beam_point/point in GLOB.all_beam_points)
 		if(id != point.id)
 			continue // Not linked together by ID.
@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 // Checks if the two points have an active beam between them.
 // Used to make sure two points don't have more than one beam.
-/obj/effect/map_effect/beam_point/proc/has_active_beam(var/obj/effect/map_effect/beam_point/them)
+obj/effect/map_effect/beam_point/proc/has_active_beam(var/obj/effect/map_effect/beam_point/them)
 	// First, check our beams.
 	for(var/datum/beam/B in my_beams)
 		if(B.target == them)
@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 	return FALSE
 
-/obj/effect/map_effect/beam_point/proc/build_beam(var/atom/beam_target)
+obj/effect/map_effect/beam_point/proc/build_beam(var/atom/beam_target)
 	if(!beam_target)
 		log_debug(SPAN_DEBUG("[src] ([src.type] \[[x],[y],[z]\])[ADMIN_JMP(src)] failed to build its beam due to not having a target."))
 		return FALSE
@@ -101,7 +101,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 	return TRUE
 
-/obj/effect/map_effect/beam_point/proc/destroy_beam(var/datum/beam/B)
+obj/effect/map_effect/beam_point/proc/destroy_beam(var/datum/beam/B)
 	if(!B)
 		log_debug(SPAN_DEBUG("[src] ([src.type] \[[x],[y],[z]\])[ADMIN_JMP(src)] was asked to destroy a beam that does not exist."))
 		return FALSE
@@ -117,13 +117,13 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 	return TRUE
 
-/obj/effect/map_effect/beam_point/proc/destroy_all_beams()
+obj/effect/map_effect/beam_point/proc/destroy_all_beams()
 	for(var/datum/beam/B in my_beams)
 		destroy_beam(B)
 	return TRUE
 
 // This code makes me sad.
-/obj/effect/map_effect/beam_point/proc/handle_beam_timer()
+obj/effect/map_effect/beam_point/proc/handle_beam_timer()
 	if(!use_timer || QDELETED(src))
 		return
 
@@ -161,21 +161,21 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 // Remember, beam_points ONLY connect to other beam_points with the same id variable.
 
 // Creates the beam when instantiated and stays on until told otherwise.
-/obj/effect/map_effect/beam_point/instant
+obj/effect/map_effect/beam_point/instant
 	make_beams_on_init = TRUE
 
-/obj/effect/map_effect/beam_point/instant/electric
+obj/effect/map_effect/beam_point/instant/electric
 	beam_icon_state = "nzcrentrs_power"
 	beam_type = /obj/effect/ebeam/reactive/electric
 	beam_creation_sound = 'sound/effects/lightningshock.ogg'
 	beam_destruction_sound = "sparks"
 
 // Turns on and off on a timer.
-/obj/effect/map_effect/beam_point/timer
+obj/effect/map_effect/beam_point/timer
 	use_timer = TRUE
 
 // Shocks people who touch the beam while it's on. Flicks on and off on a specific pattern.
-/obj/effect/map_effect/beam_point/timer/electric
+obj/effect/map_effect/beam_point/timer/electric
 	beam_icon_state = "nzcrentrs_power"
 	beam_type = /obj/effect/ebeam/reactive/electric
 	beam_creation_sound = 'sound/effects/lightningshock.ogg'
@@ -183,10 +183,10 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 	seek_range = 3
 
 // Is only a target for other beams to connect to.
-/obj/effect/map_effect/beam_point/end
+obj/effect/map_effect/beam_point/end
 	max_beams = 0
 
 // Can only have one beam.
-/obj/effect/map_effect/beam_point/mono
+obj/effect/map_effect/beam_point/mono
 	make_beams_on_init = TRUE
 	max_beams = 1

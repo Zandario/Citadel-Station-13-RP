@@ -1,10 +1,10 @@
-/datum/wires/jukebox
+datum/wires/jukebox
 	randomize = TRUE
 	holder_type = /obj/machinery/media/jukebox
 	wire_count = 11
 	proper_name = "Jukebox"
 
-/datum/wires/jukebox/New(atom/_holder)
+datum/wires/jukebox/New(atom/_holder)
 	wires = list(
 		WIRE_MAIN_POWER1, WIRE_JUKEBOX_HACK,
 		WIRE_SPEEDUP, WIRE_SPEEDDOWN, WIRE_REVERSE,
@@ -12,14 +12,14 @@
 	)
 	return ..()
 
-/datum/wires/jukebox/interactable(mob/user)
+datum/wires/jukebox/interactable(mob/user)
 	var/obj/machinery/media/jukebox/A = holder
 	if(A.panel_open)
 		return TRUE
 	return FALSE
 
 // Show the status of lights as a hint to the current state
-/datum/wires/jukebox/get_status()
+datum/wires/jukebox/get_status()
 	var/obj/machinery/media/jukebox/A = holder
 	. = ..()
 	. += "The power light is [A.machine_stat & (BROKEN|NOPOWER) ? "off." : "on."]"
@@ -27,7 +27,7 @@
 	. += "The data light is [is_cut(WIRE_REVERSE) ? "hauntingly dark." : "glowing softly."]"
 
 // Give a hint as to what each wire does
-/datum/wires/jukebox/on_pulse(wire)
+datum/wires/jukebox/on_pulse(wire)
 	var/obj/machinery/media/jukebox/A = holder
 	switch(wire)
 		if(WIRE_MAIN_POWER1)
@@ -52,7 +52,7 @@
 		else
 			A.shock(usr, 10) // The nothing wires give a chance to shock just for fun
 
-/datum/wires/jukebox/on_cut(wire, mend)
+datum/wires/jukebox/on_cut(wire, mend)
 	var/obj/machinery/media/jukebox/A = holder
 
 	switch(wire)

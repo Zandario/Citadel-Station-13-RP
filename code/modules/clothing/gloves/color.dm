@@ -1,4 +1,4 @@
-/obj/item/clothing/gloves/yellow
+obj/item/clothing/gloves/yellow
 	desc = "These gloves will protect the wearer from electric shock."
 	name = "insulated gloves"
 	icon_state = "yellow"
@@ -7,7 +7,7 @@
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
-/obj/item/clothing/gloves/fyellow //Cheap Chinese Crap
+obj/item/clothing/gloves/fyellow //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of proper insulated gloves. No way this can end badly."
 	name = "budget insulated gloves"
 	icon_state = "yellow"
@@ -16,13 +16,13 @@
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
-/obj/item/clothing/gloves/fyellow/Initialize(mapload)
+obj/item/clothing/gloves/fyellow/Initialize(mapload)
 	. = ..()
 	//Picks a value between 0 and 1.25, in 5% increments
 	var/shock_pick = rand(0,15)
 	siemens_coefficient = shock_pick * 0.05
 
-/obj/item/clothing/gloves/black
+obj/item/clothing/gloves/black
 	desc = "These work gloves are thick and fire-resistant."
 	name = "black gloves"
 	icon_state = "black"
@@ -33,52 +33,52 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/orange
+obj/item/clothing/gloves/orange
 	name = "orange gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "orange"
 
-/obj/item/clothing/gloves/red
+obj/item/clothing/gloves/red
 	name = "red gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "red"
 
-/obj/item/clothing/gloves/rainbow
+obj/item/clothing/gloves/rainbow
 	name = "rainbow gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "rainbow"
 
-/obj/item/clothing/gloves/blue
+obj/item/clothing/gloves/blue
 	name = "blue gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "blue"
 
-/obj/item/clothing/gloves/purple
+obj/item/clothing/gloves/purple
 	name = "purple gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "purple"
 
-/obj/item/clothing/gloves/green
+obj/item/clothing/gloves/green
 	name = "green gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "green"
 
-/obj/item/clothing/gloves/grey
+obj/item/clothing/gloves/grey
 	name = "grey gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "gray"
 
-/obj/item/clothing/gloves/light_brown
+obj/item/clothing/gloves/light_brown
 	name = "light brown gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "lightbrown"
 
-/obj/item/clothing/gloves/brown
+obj/item/clothing/gloves/brown
 	name = "brown gloves"
 	desc = "A pair of gloves, they don't look special in any way."
 	icon_state = "brown"
 
-/obj/item/clothing/gloves/evening
+obj/item/clothing/gloves/evening
 	desc = "A pair of gloves that reach past the elbow.  Fancy!"
 	name = "evening gloves"
 	icon_state = "evening_gloves"
@@ -89,7 +89,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/fingerless
+obj/item/clothing/gloves/fingerless
 	desc = "A pair of gloves that don't actually cover the fingers."
 	name = "fingerless gloves"
 	icon_state = "fingerlessgloves"

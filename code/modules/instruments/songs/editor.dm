@@ -1,4 +1,4 @@
-/datum/song/proc/instrument_status_ui()
+datum/song/proc/instrument_status_ui()
 	. = list()
 	. += "<div class='statusDisplay'>"
 	. += "<b><a href='?src=[REF(src)];switchinstrument=1'>Current instrument</a>:</b> "
@@ -27,7 +27,7 @@
 	. += "<a href='?src=[REF(src)];togglesustainhold=1'>Sustain indefinitely last held note</a>: [full_sustain_held_note? "Enabled" : "Disabled"].<br>"
 	. += "</div>"
 
-/datum/song/nano_ui_interact(mob/user)
+datum/song/nano_ui_interact(mob/user)
 	var/list/dat = list()
 
 	dat += instrument_status_ui()
@@ -84,7 +84,7 @@
 	popup.set_content(dat.Join(""))
 	popup.open()
 
-/datum/song/proc/ParseSong(text)
+datum/song/proc/ParseSong(text)
 	set waitfor = FALSE
 	//split into lines
 	lines = splittext(text, "\n")
@@ -108,7 +108,7 @@
 				linenum++
 		updateDialog(usr)		// make sure updates when complete
 
-/datum/song/Topic(href, href_list)
+datum/song/Topic(href, href_list)
 	if(usr.default_can_use_topic(parent) < UI_UPDATE)
 		usr << browse(null, "window=instrument")
 		usr.unset_machine()

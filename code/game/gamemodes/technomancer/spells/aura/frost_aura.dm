@@ -1,4 +1,4 @@
-/datum/technomancer/spell/frost_aura
+datum/technomancer/spell/frost_aura
 	name = "Chilling Aura"
 	desc = "Lowers the core body temperature of everyone around you (except for your friends), causing them to become very slow if \
 	they stay within four meters of you."
@@ -9,7 +9,7 @@
 	ability_icon_state = "tech_frostaura"
 	category = DEFENSIVE_SPELLS // Scepter-less frost aura is nonlethal.
 
-/obj/item/spell/aura/frost
+obj/item/spell/aura/frost
 	name = "chilling aura"
 	desc = "Your enemies will find it hard to chase you if they freeze to death."
 	icon_state = "generic"
@@ -17,7 +17,7 @@
 	aspect = ASPECT_FROST
 	glow_color = "#00B3FF"
 
-/obj/item/spell/aura/frost/process(delta_time)
+obj/item/spell/aura/frost/process(delta_time)
 	if(!pay_energy(100))
 		qdel(src)
 	var/list/nearby_mobs = range(round(calculate_spell_power(4)),owner)

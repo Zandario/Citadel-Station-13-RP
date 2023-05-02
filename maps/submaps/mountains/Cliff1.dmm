@@ -1,50 +1,50 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 "c" = (
-/obj/item/ore,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+obj/item/ore,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 "d" = (
-/obj/random/outcrop,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+obj/random/outcrop,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 "e" = (
-/obj/structure/cliff/automatic/corner,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+obj/structure/cliff/automatic/corner,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 "f" = (
-/obj/structure/cliff/automatic{
+obj/structure/cliff/automatic{
 	dir = 5
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 "g" = (
-/obj/structure/cliff/automatic{
+obj/structure/cliff/automatic{
 	dir = 9
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 "h" = (
-/obj/structure/cliff/automatic,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+obj/structure/cliff/automatic,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 "i" = (
-/obj/structure/cliff/automatic/corner{
+obj/structure/cliff/automatic/corner{
 	dir = 9
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 "j" = (
-/obj/random/humanoidremains{
+obj/random/humanoidremains{
 	spawn_nothing_percentage = 70
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/cave/random_cliff)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/cave/random_cliff)
 
 (1,1,1) = {"
 a

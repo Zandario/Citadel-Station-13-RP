@@ -1,6 +1,6 @@
 /* Syndicate modules */
 
-/obj/item/robot_module/robot/syndicate
+obj/item/robot_module/robot/syndicate
 	name = "illegal robot module"
 	hide_on_manifest = 1
 	languages = list(
@@ -31,14 +31,14 @@
 	var/id
 
 // All syndie modules get these, and the base borg items (flash, crowbar, etc).
-/obj/item/robot_module/robot/syndicate/get_modules()
+obj/item/robot_module/robot/syndicate/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/pinpointer/shuttle/merc,
 		/obj/item/melee/energy/sword
 	)
 
-/obj/item/robot_module/robot/syndicate/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/syndicate/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	var/jetpack = new/obj/item/tank/jetpack/carbondioxide(src)
 	. += jetpack
@@ -47,13 +47,13 @@
 	id = R.idcard
 	. += id
 
-/obj/item/robot_module/robot/syndicate/Destroy()
+obj/item/robot_module/robot/syndicate/Destroy()
 	src.modules -= id
 	id = null
 	return ..()
 
 // Gets a big shield and a gun that shoots really fast to scare the opposing force.
-/obj/item/robot_module/robot/syndicate/protector
+obj/item/robot_module/robot/syndicate/protector
 	name = "protector robot module"
 	sprites = list(
 		"Cerberus - Treaded" = "syndie_treadhound",
@@ -62,7 +62,7 @@
 		"XI-ALP" = "syndi-heavy"
 	)
 
-/obj/item/robot_module/robot/syndicate/protector/get_modules()
+obj/item/robot_module/robot/syndicate/protector/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/shield_projector/rectangle/weak,
@@ -72,14 +72,14 @@
 	)
 
 // 95% engi-borg and 15% roboticist.
-/obj/item/robot_module/robot/syndicate/mechanist
+obj/item/robot_module/robot/syndicate/mechanist
 	name = "mechanist robot module"
 	sprites = list(
 		"XI-GUS" = "spidersyndi",
 		"WTOperator" = "sleekhos"
 	)
 
-/obj/item/robot_module/robot/syndicate/mechanist/get_modules()
+obj/item/robot_module/robot/syndicate/mechanist/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/borg/sight/meson,
@@ -102,14 +102,14 @@
 		/obj/item/card/emag
 	)
 
-/obj/item/robot_module/robot/syndicate/mechanist/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/syndicate/mechanist/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	MATTER_SYNTH(MATSYN_NANITES, nanite, 10000)
 	MATTER_SYNTH(MATSYN_WIRE, wire)
 	MATTER_SYNTH(MATSYN_METAL, metal, 40000)
 	MATTER_SYNTH(MATSYN_GLASS, glass, 40000)
 
-/obj/item/robot_module/robot/syndicate/mechanist/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/syndicate/mechanist/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	// General engineering/hacking.
 
@@ -147,13 +147,13 @@
 
 
 // Mediborg optimized for on-the-field healing, but can also do surgery if needed.
-/obj/item/robot_module/robot/syndicate/combat_medic
+obj/item/robot_module/robot/syndicate/combat_medic
 	name = "combat medic robot module"
 	sprites = list(
 		"Telemachus" = "toiletbotantag"
 	)
 
-/obj/item/robot_module/robot/syndicate/combat_medic/get_modules()
+obj/item/robot_module/robot/syndicate/combat_medic/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/borg/sight/hud/med,
@@ -181,11 +181,11 @@
 		/obj/item/roller_holder
 	)
 
-/obj/item/robot_module/robot/syndicate/combat_medic/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/syndicate/combat_medic/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	MATTER_SYNTH(MATSYN_DRUGS, medicine, 15000)
 
-/obj/item/robot_module/robot/syndicate/combat_medic/Initialize(mapload)
+obj/item/robot_module/robot/syndicate/combat_medic/Initialize(mapload)
 	. = ..()
 
 	// Materials.
@@ -209,7 +209,7 @@
 	S.synths = list(medicine)
 	. += S
 
-/obj/item/robot_module/robot/syndicate/combat_medic/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+obj/item/robot_module/robot/syndicate/combat_medic/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 
 	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)

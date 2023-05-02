@@ -1,8 +1,8 @@
-/datum/category_item/player_setup_item/general/flavor
+datum/category_item/player_setup_item/general/flavor
 	name = "Flavor"
 	sort_order = 6
 
-/datum/category_item/player_setup_item/general/flavor/load_character(var/savefile/S)
+datum/category_item/player_setup_item/general/flavor/load_character(var/savefile/S)
 	S["flavor_texts_general"]	>> pref.flavor_texts["general"]
 	S["flavor_texts_head"]		>> pref.flavor_texts["head"]
 	S["flavor_texts_face"]		>> pref.flavor_texts["face"]
@@ -18,7 +18,7 @@
 	for(var/module in robot_module_types)
 		S["flavour_texts_robot_[module]"] >> pref.flavour_texts_robot[module]
 
-/datum/category_item/player_setup_item/general/flavor/save_character(var/savefile/S)
+datum/category_item/player_setup_item/general/flavor/save_character(var/savefile/S)
 	S["flavor_texts_general"]	<< pref.flavor_texts["general"]
 	S["flavor_texts_head"]		<< pref.flavor_texts["head"]
 	S["flavor_texts_face"]		<< pref.flavor_texts["face"]
@@ -33,11 +33,11 @@
 	for(var/module in robot_module_types)
 		S["flavour_texts_robot_[module]"] << pref.flavour_texts_robot[module]
 
-/datum/category_item/player_setup_item/general/flavor/sanitize_character()
+datum/category_item/player_setup_item/general/flavor/sanitize_character()
 	return
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/flavor/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/general/flavor/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -54,12 +54,12 @@
 	character.ooc_notes 				= pref.metadata
 	return TRUE
 
-/datum/category_item/player_setup_item/general/flavor/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/general/flavor/content(datum/preferences/prefs, mob/user, data)
 	. += "<b>Flavor:</b><br>"
 	. += "<a href='?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
 	. += "<a href='?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
 
-/datum/category_item/player_setup_item/general/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/general/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["flavor_text"])
 		switch(href_list["flavor_text"])
 			if("open")
@@ -90,7 +90,7 @@
 
 	return ..()
 
-/datum/category_item/player_setup_item/general/flavor/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
+datum/category_item/player_setup_item/general/flavor/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
 	. = TRUE
 	if(!length(prefs.flavor_texts["general"]))
 		var/enforcing = CONFIG_GET(flag/enforce_flavor_text)
@@ -101,7 +101,7 @@
 		else
 			warnings += error
 
-/datum/category_item/player_setup_item/general/flavor/proc/SetFlavorText(mob/user)
+datum/category_item/player_setup_item/general/flavor/proc/SetFlavorText(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
 	HTML += "<b>Set Flavour Text</b> <hr />"
@@ -138,7 +138,7 @@
 	user << browse(HTML, "window=flavor_text;size=430x300")
 	return
 
-/datum/category_item/player_setup_item/general/flavor/proc/SetFlavourTextRobot(mob/user)
+datum/category_item/player_setup_item/general/flavor/proc/SetFlavourTextRobot(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
 	HTML += "<b>Set Robot Flavour Text</b> <hr />"

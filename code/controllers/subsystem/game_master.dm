@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(gamemaster)
 	var/next_action = 0					// Minimum amount of time of nothingness until the GM can pick something again.
 	var/last_department_used = null		// If an event was done for a specific department, it is written here, so it doesn't do it again.
 
-/datum/controller/subsystem/gamemaster/Initialize()
+datum/controller/subsystem/gamemaster/Initialize()
 	available_actions = init_subtypes(/datum/gm_action)
 	for(var/datum/gm_action/action in available_actions)
 		action.gm = src
@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(gamemaster)
 				sleep(30 SECONDS)
 	return ..()
 
-/datum/controller/subsystem/gamemaster/fire(resumed)
+datum/controller/subsystem/gamemaster/fire(resumed)
 	if(SSticker && SSticker.current_state == GAME_STATE_PLAYING && !suspended)
 		adjust_staleness(1)
 		adjust_danger(-1)
@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(gamemaster)
 			start_action()
 
 // This is run before committing to an action/event.
-/datum/controller/subsystem/gamemaster/proc/pre_action_checks()
+datum/controller/subsystem/gamemaster/proc/pre_action_checks()
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		log_debug(SPAN_DEBUG("Game Master unable to start event: SSticker is nonexistant, or the game is not ongoing."))
 		return FALSE
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(gamemaster)
 		return FALSE
 	return TRUE
 
-/datum/controller/subsystem/gamemaster/proc/start_action()
+datum/controller/subsystem/gamemaster/proc/start_action()
 	if(!pre_action_checks()) // Make sure we're not doing last minute events, or early events.
 		return
 	log_debug(SPAN_DEBUG("Game Master now starting action decision."))
@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(gamemaster)
 			log_debug(SPAN_DEBUG("[choice.name] was chosen by the Game Master, and is now being ran."))
 			INVOKE_ASYNC(src, .proc/run_action, choice)
 
-/datum/controller/subsystem/gamemaster/proc/run_action(var/datum/gm_action/action)
+datum/controller/subsystem/gamemaster/proc/run_action(var/datum/gm_action/action)
 	action.set_up()
 	action.start()
 	action.announce()
@@ -102,7 +102,7 @@ SUBSYSTEM_DEF(gamemaster)
 	last_department_used = action.departments[1]
 
 
-/datum/controller/subsystem/gamemaster/proc/decide_best_action(var/list/most_active_departments)
+datum/controller/subsystem/gamemaster/proc/decide_best_action(var/list/most_active_departments)
 	if(!most_active_departments.len) // Server's empty?
 		log_debug(SPAN_DEBUG("Game Master failed to find any active departments."))
 		return list()

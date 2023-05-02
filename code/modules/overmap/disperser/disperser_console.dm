@@ -1,6 +1,6 @@
 //Amazing disperser from Bxil(tm). Some icons, sounds, and some code shamelessly stolen from ParadiseSS13.
 
-/obj/machinery/computer/ship/disperser
+obj/machinery/computer/ship/disperser
 	name = "obstruction removal ballista control"
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "security_key"
@@ -27,16 +27,16 @@
 	var/next_shot = 0 //round time where the next shot can start from
 	var/const/coolinterval = 2 MINUTES //time to wait between safe shots in deciseconds
 
-/obj/machinery/computer/ship/disperser/Initialize(mapload)
+obj/machinery/computer/ship/disperser/Initialize(mapload)
 	. = ..()
 	link_parts()
 	reset_calibration()
 
-/obj/machinery/computer/ship/disperser/Destroy()
+obj/machinery/computer/ship/disperser/Destroy()
 	release_links()
 	. = ..()
 
-/obj/machinery/computer/ship/disperser/proc/link_parts()
+obj/machinery/computer/ship/disperser/proc/link_parts()
 	if(is_valid_setup())
 		return TRUE
 
@@ -60,14 +60,14 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/computer/ship/disperser/proc/is_valid_setup()
+obj/machinery/computer/ship/disperser/proc/is_valid_setup()
 	if(front && middle && back)
 		var/everything_in_range = (get_dist(src, front) < link_range) && (get_dist(src, middle) < link_range) && (get_dist(src, back) < link_range)
 		var/everything_in_order = (middle.Adjacent(front) && middle.Adjacent(back)) && (front.dir == middle.dir && middle.dir == back.dir)
 		return everything_in_order && everything_in_range
 	return FALSE
 
-/obj/machinery/computer/ship/disperser/proc/release_links()
+obj/machinery/computer/ship/disperser/proc/release_links()
 	UnregisterSignal(front, COMSIG_TURF_MULTIZ_DEL)
 	UnregisterSignal(middle, COMSIG_TURF_MULTIZ_DEL)
 	UnregisterSignal(back, COMSIG_TURF_MULTIZ_DEL)
@@ -75,7 +75,7 @@
 	middle = null
 	back = null
 
-/obj/machinery/computer/ship/disperser/proc/get_calibration()
+obj/machinery/computer/ship/disperser/proc/get_calibration()
 	var/list/calresult[caldigit]
 	for(var/i = 1 to caldigit)
 		if(calibration[i] == calexpected[i])
@@ -86,38 +86,38 @@
 			calresult[i] = 0
 	return calresult
 
-/obj/machinery/computer/ship/disperser/proc/reset_calibration()
+obj/machinery/computer/ship/disperser/proc/reset_calibration()
 	calexpected = new /list(caldigit)
 	calibration = new /list(caldigit)
 	for(var/i = 1 to caldigit)
 		calexpected[i] = rand(0,9)
 		calibration[i] = 0
 
-/obj/machinery/computer/ship/disperser/proc/cal_accuracy()
+obj/machinery/computer/ship/disperser/proc/cal_accuracy()
 	var/top = 0
 	var/divisor = caldigit * 2 //maximum possible value, aka 100% accuracy
 	for(var/i in get_calibration())
 		top += i
 	return round(top * 100 / divisor)
 
-/obj/machinery/computer/ship/disperser/proc/get_next_shot_seconds()
+obj/machinery/computer/ship/disperser/proc/get_next_shot_seconds()
 	return max(0, (next_shot - world.time) / 10)
 
-/obj/machinery/computer/ship/disperser/proc/cool_failchance()
+obj/machinery/computer/ship/disperser/proc/cool_failchance()
 	return get_next_shot_seconds() * 1000 / coolinterval
 
-/obj/machinery/computer/ship/disperser/proc/get_charge_type()
+obj/machinery/computer/ship/disperser/proc/get_charge_type()
 	var/obj/structure/ship_munition/disperser_charge/B = locate() in get_turf(back)
 	if(B)
 		return B.chargetype
 	return OVERMAP_WEAKNESS_NONE
 
-/obj/machinery/computer/ship/disperser/proc/get_charge()
+obj/machinery/computer/ship/disperser/proc/get_charge()
 	var/obj/structure/ship_munition/disperser_charge/B = locate() in get_turf(back)
 	if(B)
 		return B
 
-/obj/machinery/computer/ship/disperser/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/machinery/computer/ship/disperser/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	if(!linked)
 		display_reconnect_dialog(user, "disperser synchronization")
 		return
@@ -127,7 +127,7 @@
 		ui = new(user, src, "OvermapDisperser", "[linked.name] ORB control") // 400, 550
 		ui.open()
 
-/obj/machinery/computer/ship/disperser/ui_data(mob/user)
+obj/machinery/computer/ship/disperser/ui_data(mob/user)
 	var/list/data = list()
 	data["faillink"] = FALSE
 	data["calibration"] = null
@@ -162,7 +162,7 @@
 
 	return data
 
-/obj/machinery/computer/ship/disperser/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/ship/disperser/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 

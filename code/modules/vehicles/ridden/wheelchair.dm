@@ -1,4 +1,4 @@
-/obj/vehicle/ridden/wheelchair
+obj/vehicle/ridden/wheelchair
 	name = "wheelchair"
 	desc = "You sit in this. Either by will or force."
 	icon = 'icons/obj/furniture.dmi'		//Todo, move icon for wheelchair shit into their own folder
@@ -7,7 +7,7 @@
 	max_integrity = 50
 	riding_handler_type = /datum/component/riding_handler/vehicle/ridden/wheelchair
 
-/obj/vehicle/ridden/wheelchair/update_icon()
+obj/vehicle/ridden/wheelchair/update_icon()
 	..()
 	cut_overlays()
 	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", layer = src.layer + 1)
@@ -15,7 +15,7 @@
 	return
 
 
-/datum/component/riding_handler/vehicle/ridden/wheelchair
+datum/component/riding_handler/vehicle/ridden/wheelchair
 	vehicle_move_delay = 2
 	allowed_turf_types = list(
 		/turf/simulated,
@@ -23,7 +23,7 @@
 	)
 
 
-/datum/component/riding_handler/vehicle/ridden/wheelchair
+datum/component/riding_handler/vehicle/ridden/wheelchair
 	rider_offsets = list(
 		list(
 			list(0, 0, -0.1, null),
@@ -42,7 +42,7 @@
 
 
 
-/obj/item/wheelchair
+obj/item/wheelchair
 	name = "wheelchair"
 	desc = "A folded wheelchair that can be carried around."
 	icon = 'icons/obj/furniture.dmi'	//Todo, move icon for wheelchair shit into their own folder
@@ -52,7 +52,7 @@
 	/// What we unfold to
 	var/unfolded_type = /obj/vehicle/ridden/wheelchair
 
-/obj/item/wheelchair/attack_self(mob/user)
+obj/item/wheelchair/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -62,7 +62,7 @@
 	R.color = src.color
 	qdel(src)
 
-/obj/vehicle/ridden/wheelchair/OnMouseDropLegacy(over_object, src_location, over_location)
+obj/vehicle/ridden/wheelchair/OnMouseDropLegacy(over_object, src_location, over_location)
 	..()
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))	return
@@ -81,12 +81,12 @@
 /*
 //Dolly Below
 
-/obj/structure/bed/chair/wheelchair/dolly
+obj/structure/bed/chair/wheelchair/dolly
 	name = "transport dolly"
 	desc = "The safest way to transport high-risk patients."
 	icon_state = "wheelchair_dolly"
 
-/obj/structure/bed/chair/wheelchair/dolly/setDir()
+obj/structure/bed/chair/wheelchair/dolly/setDir()
 	..()
 	cut_overlays()
 	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "d_overlay", layer = FLY_LAYER, dir = src.dir)

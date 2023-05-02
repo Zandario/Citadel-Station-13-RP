@@ -2,7 +2,7 @@
 //	Yargh Yargh Fiddle De Di
 ///////////////////////////////
 
-/datum/category_item/catalogue/fauna/pirate
+datum/category_item/catalogue/fauna/pirate
 	name = "Pirates"
 	desc = "Life on the Frontier is often harsh, and there are many \
 	natural hazards which must be navigated and accounted for. In the \
@@ -15,7 +15,7 @@
 ///////////////////////////////
 //		Knife Priate
 ///////////////////////////////
-/mob/living/simple_mob/humanoid/pirate
+mob/living/simple_mob/humanoid/pirate
 	name = "Pirate"
 	desc = "Does what he wants cause a pirate is free."
 	tt_desc = "E Homo sapiens"
@@ -51,7 +51,7 @@
 
 //Armored Variant
 
-/mob/living/simple_mob/humanoid/pirate/armored
+mob/living/simple_mob/humanoid/pirate/armored
 	name = "Armored Pirate"
 	desc = "Does what he wants cause a pirate is free. This one wears crude armor."
 	icon_state = "piratemelee-armor"
@@ -66,7 +66,7 @@
 //		Machete Priate
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/machete
+mob/living/simple_mob/humanoid/pirate/machete
 	name = "Pirate Brush Cutter"
 	desc = "Does what he wants cause a pirate is free. This one has got a machete."
 	tt_desc = "E Homo sapiens"
@@ -92,7 +92,7 @@
 
 //Armored Variant
 
-/mob/living/simple_mob/humanoid/pirate/machete/armored
+mob/living/simple_mob/humanoid/pirate/machete/armored
 	name = "Armored Brush Cutter"
 	desc = "Does what he wants cause a pirate is free. This one has got a machete and wears crude armor."
 	icon_state = "piratemelee-machete-armor"
@@ -107,7 +107,7 @@
 //		E-Sword Priate
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/las
+mob/living/simple_mob/humanoid/pirate/las
 	name = "Pirate Duelist"
 	desc = "Does what he wants cause a pirate is free. This one has a energy sword."
 	tt_desc = "E Homo sapiens"
@@ -127,7 +127,7 @@
 	corpse = /obj/spawner/corpse/pirate/melee_energy
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/las/armored
+mob/living/simple_mob/humanoid/pirate/las/armored
 	name = "Armored Duelist"
 	desc = "Does what he wants cause a pirate is free. This one has an energy sword."
 	icon_state = "piratemelee-las-armor"
@@ -142,7 +142,7 @@
 ///////////////////////////////
 //		Shield Pirate
 ///////////////////////////////
-/mob/living/simple_mob/humanoid/pirate/shield
+mob/living/simple_mob/humanoid/pirate/shield
 	name = "Pirate Buckler"
 	desc = "Does what he wants cause a pirate is free. This one carries a shield for added protection."
 	icon_state = "piratemelee-shield"
@@ -151,7 +151,7 @@
 	corpse = /obj/spawner/corpse/pirate/melee_shield
 
 //This Should Allow all childs of the shield priate to block
-/mob/living/simple_mob/humanoid/pirate/shield/attackby(var/obj/item/O as obj, var/mob/user as mob)
+mob/living/simple_mob/humanoid/pirate/shield/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.damage_force)
 		if(prob(15))
 			visible_message("<span class='danger'>\The [src] blocks \the [O] with its shield!</span>")
@@ -164,7 +164,7 @@
 		to_chat(user, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		visible_message("<span class='warning'>\The [user] gently taps [src] with \the [O].</span>")
 
-/mob/living/simple_mob/humanoid/merc/melee/sword/bullet_act(var/obj/projectile/Proj)
+mob/living/simple_mob/humanoid/merc/melee/sword/bullet_act(var/obj/projectile/Proj)
 	if(!Proj)	return
 	if(prob(25))
 		visible_message("<font color='red'><B>[src] blocks [Proj] with its shield!</B></font>")
@@ -175,7 +175,7 @@
 		..()
 
 // Armored Variant
-/mob/living/simple_mob/humanoid/pirate/shield/armored
+mob/living/simple_mob/humanoid/pirate/shield/armored
 	name = "Armored Buckler"
 	desc = "Does what he wants cause a pirate is free. This carries a shield and wears crude armor."
 	icon_state = "piratemelee-shield-armor"
@@ -190,7 +190,7 @@
 //	Shield Machete Pirate
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/shield/machete
+mob/living/simple_mob/humanoid/pirate/shield/machete
 	name = "Pirate Sword and Boarder"
 	desc = "Does what he wants cause a pirate is free. This one has got a machete and a shield."
 	icon_state = "piratemelee-shield-machete"
@@ -213,7 +213,7 @@
 	corpse = /obj/spawner/corpse/pirate/melee_shield_machete
 
 // Armored Variant
-/mob/living/simple_mob/humanoid/pirate/shield/machete/armored
+mob/living/simple_mob/humanoid/pirate/shield/machete/armored
 	name = "Armored Sword and Boarder"
 	desc = "Does what he wants cause a pirate is free. This one is equipped old fashioned sword and shield along with crude armor."
 	icon_state = "piratemelee-shield-machete-armor"
@@ -228,7 +228,7 @@
 //		Pirate Pistolier
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/ranged
+mob/living/simple_mob/humanoid/pirate/ranged
 	name = "Pirate Pistolier"
 	desc = "Does what he wants since a pirate is free. This one is armed with a zip gun."
 	icon_state = "pirateranged"
@@ -250,7 +250,7 @@
 
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/ranged/armored
+mob/living/simple_mob/humanoid/pirate/ranged/armored
 	name = "Armored Pistolier"
 	desc = "Does what he wants cause a pirate is free. This is armed with a zip gun and wears crude armor."
 	icon_state = "pirateranged-armor"
@@ -265,7 +265,7 @@
 //		Pirate Blunderbuster
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/ranged/shotgun
+mob/living/simple_mob/humanoid/pirate/ranged/shotgun
 	name = "Pirate Blunderbuster"
 	desc = "Does what he wants since a pirate is free. This one has a sawn off shotgun."
 	icon_state = "pirateranged-blunder"
@@ -286,7 +286,7 @@
 	corpse = /obj/spawner/corpse/pirate/ranged_blunderbuss
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/ranged/shotgun/armored
+mob/living/simple_mob/humanoid/pirate/ranged/shotgun/armored
 	name = "Armored Blunderbuster"
 	desc = "Does what he wants cause a pirate is free. This is armed with a sawn off shotgun and wears crude armor."
 	icon_state = "pirateranged-blunder-armor"
@@ -301,7 +301,7 @@
 //		Pirate Ziplas
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/ranged/handcannon
+mob/living/simple_mob/humanoid/pirate/ranged/handcannon
 	name = "Pirate Handcannon"
 	desc = "Does what he wants since a pirate is free. This one has an improvised laser pistol."
 	icon_state = "pirateranged-handcannon"
@@ -322,7 +322,7 @@
 	corpse = /obj/spawner/corpse/pirate/ranged_laser
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/ranged/handcannon/armored
+mob/living/simple_mob/humanoid/pirate/ranged/handcannon/armored
 	name = "Armored Handcannon"
 	desc = "Does what he wants cause a pirate is free. This one has a improvised laser pistol and crude armor."
 	icon_state = "pirateranged-handcannon-armor"
@@ -336,7 +336,7 @@
 ///////////////////////////////
 //		First Mate
 ///////////////////////////////
-/mob/living/simple_mob/humanoid/pirate/mate
+mob/living/simple_mob/humanoid/pirate/mate
 	name = "First Mate"
 	desc = "A leading figure amongst the pirate hoards. This one is armed with a laser cutlass"
 	tt_desc = "E Homo sapiens"
@@ -359,7 +359,7 @@
 ///////////////////////////////
 //		Mate Pistolier
 ///////////////////////////////
-/mob/living/simple_mob/humanoid/pirate/mate/ranged
+mob/living/simple_mob/humanoid/pirate/mate/ranged
 	name = "Mate Pistolier"
 	desc = "A leading figure amongst the pirate hoards. This one is armed with a obsolete laser pistol."
 	icon_state = "mate-pistoler"
@@ -386,7 +386,7 @@
 
 	corpse = /obj/spawner/corpse/pirate/mate/pistol
 
-/mob/living/simple_mob/humanoid/pirate/mate/ranged/bosun /// Special Mech Pilot Pirate
+mob/living/simple_mob/humanoid/pirate/mate/ranged/bosun /// Special Mech Pilot Pirate
 	name = "Bosun"
 	desc = "An oily pirate mechanist. Thankfully he has but an old laser to defend himself with."
 	icon_state = "bosun"
@@ -401,7 +401,7 @@
 //		Mate Sweeper
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/mate/ranged/shotgun
+mob/living/simple_mob/humanoid/pirate/mate/ranged/shotgun
 	name = "Mate Blunderbuster"
 	desc = "A leading figure amongst the pirate hoards. This one is armed with a four barreled shotgun"
 	icon_state = "mate-shotgun"
@@ -429,7 +429,7 @@
 //		Mate Marksman
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/mate/ranged/rifle
+mob/living/simple_mob/humanoid/pirate/mate/ranged/rifle
 	name = "Mate Marksman"
 	desc = "A leading figure amongst the pirate hoards. This one is armed with a rifle."
 	icon_state = "mate-rifle"
@@ -456,7 +456,7 @@
 ///////////////////////////////
 //		Pirate Captain
 ///////////////////////////////
-/mob/living/simple_mob/humanoid/pirate/captain
+mob/living/simple_mob/humanoid/pirate/captain
 	name = "Pirate Captain"
 	desc = "Leader of a Pirate Vessel armed with an entire belt of improvised laser pistols. A true villian indeed."
 	icon_state = "captain"
@@ -477,14 +477,14 @@
 
 	var/obj/item/shield_projector/shields = null
 
-/mob/living/simple_mob/humanoid/pirate/captain/Initialize(mapload)
+mob/living/simple_mob/humanoid/pirate/captain/Initialize(mapload)
 	shields = new /obj/item/shield_projector/rectangle/automatic/drone(src)
 	return ..()
 
-/mob/living/simple_mob/humanoid/pirate/captain/Process_Spacemove(var/check_drift = 0)
+mob/living/simple_mob/humanoid/pirate/captain/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 
-/obj/item/shield_projector/rectangle/automatic/drone
+obj/item/shield_projector/rectangle/automatic/drone
 	shield_health = 150
 	max_shield_health = 150
 	shield_regen_delay = 10 SECONDS
@@ -496,68 +496,68 @@
 /*
 //Classic Pirates - Re-enable these later for a small % novelty chance.
 
-/mob/living/simple_mob/humanoid/pirate/old
+mob/living/simple_mob/humanoid/pirate/old
 	icon_state = "old-piratemelee"
 	icon_living = "old-piratemelee"
 	icon_dead = "old-piratemelee_dead"
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/armored/old
+mob/living/simple_mob/humanoid/pirate/armored/old
 	icon_state = "old-piratemelee-armor"
 	icon_living = "old-piratemelee-armor"
 	loot_list = list(/obj/item/material/knife/tacknife = 100, /obj/item/clothing/suit/armor/material/makeshift = 100)
 
 //Machete Pirate
-/mob/living/simple_mob/humanoid/pirate/machete/old
+mob/living/simple_mob/humanoid/pirate/machete/old
 	icon_state = "old-piratemelee-machete"
 	icon_living = "old-piratemelee-machete"
 	icon_dead = "old-piratemelee_dead"
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/machete/armored/old
+mob/living/simple_mob/humanoid/pirate/machete/armored/old
 	icon_state = "old-piratemelee-machete-armor"
 	icon_living = "old-piratemelee-machete-armor"
 	loot_list = list(/obj/item/material/knife/machete = 100, /obj/item/clothing/suit/armor/material/makeshift = 100)
 
 //E-Sword Pirate
-/mob/living/simple_mob/humanoid/pirate/las/old
+mob/living/simple_mob/humanoid/pirate/las/old
 	icon_state = "old-piratemelee-las"
 	icon_living = "old-piratemelee-las"
 	icon_dead = "old-piratemelee_dead"
 	loot_list = list(/obj/item/melee/energy/sword/pirate = 100)
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/las/armored/old
+mob/living/simple_mob/humanoid/pirate/las/armored/old
 	icon_state = "old-piratemelee-las-armor"
 	icon_living = "old-piratemelee-las-armor"
 	loot_list = list(/obj/item/melee/energy/sword/pirate = 100, /obj/item/clothing/suit/armor/material/makeshift = 100)
 
 //Shield Pirate
-/mob/living/simple_mob/humanoid/pirate/shield/old
+mob/living/simple_mob/humanoid/pirate/shield/old
 	icon_state = "old-piratemelee-shield"
 	icon_living = "old-piratemelee-shield"
 
 // Armored Variant
-/mob/living/simple_mob/humanoid/pirate/shield/armored/old
+mob/living/simple_mob/humanoid/pirate/shield/armored/old
 	icon_state = "old-piratemelee-shield-armor"
 	icon_living = "old-piratemelee-shield-armor"
 	loot_list = list(/obj/item/material/knife/tacknife = 100, /obj/item/clothing/suit/armor/material/makeshift = 100)
 
 //Shield Machete Pirate
-/mob/living/simple_mob/humanoid/pirate/shield/machete/old
+mob/living/simple_mob/humanoid/pirate/shield/machete/old
 	icon_state = "old-piratemelee-shield-machete"
 	icon_living = "old-piratemelee-shield-machete"
 	icon_dead = "old-piratemelee_dead"
 	loot_list = list(/obj/item/material/knife/machete = 100)
 
 // Armored Variant
-/mob/living/simple_mob/humanoid/pirate/shield/machete/armored/old
+mob/living/simple_mob/humanoid/pirate/shield/machete/armored/old
 	icon_state = "old-piratemelee-shield-machete-armor"
 	icon_living = "old-piratemelee-shield-machete-armor"
 	loot_list = list(/obj/item/material/knife/machete = 100, /obj/item/clothing/suit/armor/material/makeshift = 100)
 
 //Pirate Pistolier
-/mob/living/simple_mob/humanoid/pirate/ranged/old
+mob/living/simple_mob/humanoid/pirate/ranged/old
 	icon_state = "old-pirateranged"
 	icon_living = "old-pirateranged"
 	icon_dead = "old-piratemelee_dead"
@@ -565,14 +565,14 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/ranged/armored/old
+mob/living/simple_mob/humanoid/pirate/ranged/armored/old
 	icon_state = "old-pirateranged-armor"
 	icon_living = "old-pirateranged-armor"
 	loot_list = list(/obj/item/material/knife/tacknife = 100, /obj/item/gun/ballistic/pirate = 100, /obj/item/clothing/suit/armor/material/makeshift = 100)
 
 //Pirate Blunderbuster
 
-/mob/living/simple_mob/humanoid/pirate/ranged/shotgun
+mob/living/simple_mob/humanoid/pirate/ranged/shotgun
 	name = "Pirate Blunderbuster"
 	desc = "Does what he wants since a pirate is free. This one has a sawn off shotgun."
 	icon_state = "pirateranged-blunder"
@@ -591,7 +591,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/ranged/shotgun/armored
+mob/living/simple_mob/humanoid/pirate/ranged/shotgun/armored
 	name = "Armored Blunderbuster"
 	desc = "Does what he wants cause a pirate is free. This is armed with a sawn off shotgun and wears crude armor."
 	icon_state = "pirateranged-blunder-armor"
@@ -604,7 +604,7 @@
 //		Pirate Ziplas
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/ranged/handcannon
+mob/living/simple_mob/humanoid/pirate/ranged/handcannon
 	name = "Pirate Handcannon"
 	desc = "Does what he wants since a pirate is free. This one has an improvised laser pistol."
 	icon_state = "pirateranged-handcannon"
@@ -623,7 +623,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive
 
 //Armored Variant
-/mob/living/simple_mob/humanoid/pirate/ranged/handcannon/armored
+mob/living/simple_mob/humanoid/pirate/ranged/handcannon/armored
 	name = "Armored Handcannon"
 	desc = "Does what he wants cause a pirate is free. This one has a improvised laser pistol and crude armor."
 	icon_state = "pirateranged-handcannon-armor"
@@ -635,7 +635,7 @@
 ///////////////////////////////
 //		First Mate
 ///////////////////////////////
-/mob/living/simple_mob/humanoid/pirate/mate
+mob/living/simple_mob/humanoid/pirate/mate
 	name = "First Mate"
 	desc = "A leading figure amongst the pirate hoards. This one is armed with a laser cutlass"
 	tt_desc = "E Homo sapiens"
@@ -657,7 +657,7 @@
 ///////////////////////////////
 //		Mate Pistolier
 ///////////////////////////////
-/mob/living/simple_mob/humanoid/pirate/mate/ranged
+mob/living/simple_mob/humanoid/pirate/mate/ranged
 	name = "Mate Pistolier"
 	desc = "A leading figure amongst the pirate hoards. This one is armed with a obsolete laser pistol."
 	icon_state = "mate-pistoler"
@@ -682,7 +682,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged
 
-/mob/living/simple_mob/humanoid/pirate/mate/ranged/bosun /// Special Mech Pilot Pirate
+mob/living/simple_mob/humanoid/pirate/mate/ranged/bosun /// Special Mech Pilot Pirate
 	name = "Bosun"
 	desc = "An oily pirate mechanist. Thankfully he has but an old laser to defend himself with."
 	icon_state = "bosun"
@@ -695,7 +695,7 @@
 //		Mate Sweeper
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/mate/ranged/shotgun
+mob/living/simple_mob/humanoid/pirate/mate/ranged/shotgun
 	name = "Mate Blunderbuster"
 	desc = "A leading figure amongst the pirate hoards. This one is armed with a four barreled shotgun"
 	icon_state = "mate-shotgun"
@@ -721,7 +721,7 @@
 //		Mate Marksman
 ///////////////////////////////
 
-/mob/living/simple_mob/humanoid/pirate/mate/ranged/rifle
+mob/living/simple_mob/humanoid/pirate/mate/ranged/rifle
 	name = "Mate Marksman"
 	desc = "A leading figure amongst the pirate hoards. This one is armed with a rifle."
 	icon_state = "mate-rifle"
@@ -746,7 +746,7 @@
 ///////////////////////////////
 //		Pirate Captain
 ///////////////////////////////
-/mob/living/simple_mob/humanoid/pirate/captain
+mob/living/simple_mob/humanoid/pirate/captain
 	name = "Pirate Captain"
 	desc = "Leader of a Pirate Vessel armed with an entire belt of improvised laser pistols. A true villian indeed."
 	icon_state = "captain"
@@ -767,14 +767,14 @@
 
 	var/obj/item/shield_projector/shields = null
 
-/mob/living/simple_mob/humanoid/pirate/captain/Initialize(mapload)
+mob/living/simple_mob/humanoid/pirate/captain/Initialize(mapload)
 	shields = new /obj/item/shield_projector/rectangle/automatic/drone(src)
 	return ..()
 
-/mob/living/simple_mob/humanoid/pirate/captain/Process_Spacemove(var/check_drift = 0)
+mob/living/simple_mob/humanoid/pirate/captain/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 
-/obj/item/shield_projector/rectangle/automatic/drone
+obj/item/shield_projector/rectangle/automatic/drone
 	shield_health = 150
 	max_shield_health = 150
 	shield_regen_delay = 10 SECONDS

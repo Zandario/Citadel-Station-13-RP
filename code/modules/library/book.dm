@@ -1,4 +1,4 @@
-/obj/item/book
+obj/item/book
 	name = "book"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book"
@@ -19,13 +19,13 @@
 	drop_sound = 'sound/items/drop/book.ogg'
 	pickup_sound = 'sound/items/pickup/book.ogg'
 
-/obj/item/book/attack_self(mob/user)
+obj/item/book/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	on_read(user)
 
-/obj/item/book/proc/on_read(mob/user)
+obj/item/book/proc/on_read(mob/user)
 	if(carved)
 		if(store)
 			to_chat(user, "<span class='notice'>[store] falls out of [title]!</span>")
@@ -42,7 +42,7 @@
 	else
 		to_chat(user, "This book is completely blank!")
 
-/obj/item/book/attackby(obj/item/W, mob/user)
+obj/item/book/attackby(obj/item/W, mob/user)
 	if(carved)
 		if(!store)
 			if(W.w_class < ITEMSIZE_LARGE)
@@ -126,7 +126,7 @@
 	else
 		..()
 
-/obj/item/book/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/book/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(user.zone_sel.selecting == O_EYES)
@@ -139,11 +139,11 @@
 * Book Bundle (Multi-page book)
 */
 
-/obj/item/book/bundle
+obj/item/book/bundle
 	var/page = 1 //current page
 	var/list/pages = list() //the contents of each page
 
-/obj/item/book/bundle/proc/show_content(mob/user as mob)
+obj/item/book/bundle/proc/show_content(mob/user as mob)
 	var/dat
 	var/obj/item/W = pages[page]
 	// first
@@ -180,12 +180,12 @@
 			dat += "<HTML><HEAD><TITLE>Page [page]</TITLE></HEAD><BODY>[pages[page]]</BODY></HTML>"
 		user << browse(dat, "window=[name]")
 
-/obj/item/book/bundle/on_read(mob/user)
+obj/item/book/bundle/on_read(mob/user)
 	show_content(user)
 	add_fingerprint(usr)
 	update_icon()
 
-/obj/item/book/bundle/Topic(href, href_list)
+obj/item/book/bundle/Topic(href, href_list)
 	if(..())
 		return 1
 	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)))

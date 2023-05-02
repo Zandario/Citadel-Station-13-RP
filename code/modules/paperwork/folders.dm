@@ -1,4 +1,4 @@
-/obj/item/folder
+obj/item/folder
 	name = "folder"
 	desc = "A folder."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -8,39 +8,39 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
-/obj/item/folder/blue
+obj/item/folder/blue
 	desc = "A blue folder."
 	icon_state = "folder_blue"
 
-/obj/item/folder/red
+obj/item/folder/red
 	desc = "A red folder."
 	icon_state = "folder_red"
 
-/obj/item/folder/yellow
+obj/item/folder/yellow
 	desc = "A yellow folder."
 	icon_state = "folder_yellow"
 
-/obj/item/folder/white
+obj/item/folder/white
 	desc = "A white folder."
 	icon_state = "folder_white"
 
-/obj/item/folder/blue_captain
+obj/item/folder/blue_captain
 	desc = "A blue folder with Facility Director markings."
 	icon_state = "folder_captain"
 
-/obj/item/folder/blue_hop
+obj/item/folder/blue_hop
 	desc = "A blue folder with HoP markings."
 	icon_state = "folder_hop"
 
-/obj/item/folder/white_cmo
+obj/item/folder/white_cmo
 	desc = "A white folder with CMO markings."
 	icon_state = "folder_cmo"
 
-/obj/item/folder/white_rd
+obj/item/folder/white_rd
 	desc = "A white folder with RD markings."
 	icon_state = "folder_rd"
 
-/obj/item/folder/white_rd/Initialize(mapload)
+obj/item/folder/white_rd/Initialize(mapload)
 	. = ..()
 	//add some memos
 	var/obj/item/paper/P = new(src)
@@ -48,21 +48,21 @@
 	P.info = "<br>We keep test dummies in pens here for a reason"
 	update_icon()
 
-/obj/item/folder/yellow_ce
+obj/item/folder/yellow_ce
 	desc = "A yellow folder with CE markings."
 	icon_state = "folder_ce"
 
-/obj/item/folder/red_hos
+obj/item/folder/red_hos
 	desc = "A red folder with HoS markings."
 	icon_state = "folder_hos"
 
-/obj/item/folder/update_icon()
+obj/item/folder/update_icon()
 	cut_overlays()
 	if(contents.len)
 		add_overlay("folder_paper")
 	return
 
-/obj/item/folder/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/folder/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo) || istype(W, /obj/item/paper_bundle))
 		if(!user.attempt_insert_item_for_installation(W, src))
 			return
@@ -75,13 +75,13 @@
 	else
 		return ..()
 
-/obj/item/folder/attack_self(mob/user)
+obj/item/folder/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/obj/item/folder/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/item/folder/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	var/dat = "<title>[name]</title>"
 
 	for(var/obj/item/paper/P in src)
@@ -94,7 +94,7 @@
 	onclose(user, "folder")
 	add_fingerprint(usr)
 
-/obj/item/folder/Topic(href, href_list)
+obj/item/folder/Topic(href, href_list)
 	..()
 	if((usr.stat || usr.restrained()))
 		return

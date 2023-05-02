@@ -1,4 +1,4 @@
-/datum/fish_source/moisture_trap
+datum/fish_source/moisture_trap
 	catalog_description = "moisture trap basins"
 	fish_table = list(
 		FISHING_DUD = 20,

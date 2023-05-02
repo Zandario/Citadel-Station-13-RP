@@ -1,4 +1,4 @@
-/datum/component/thermite
+datum/component/thermite
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	var/amount
 	var/burn_require
@@ -21,7 +21,7 @@
 		/turf/closed/wall/r_wall
 		)
 
-/datum/component/thermite/Initialize(_amount)
+datum/component/thermite/Initialize(_amount)
 	if(!istype(parent, /turf) || blacklist[parent.type])
 		return COMPONENT_INCOMPATIBLE
 
@@ -42,17 +42,17 @@
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby_react)
 	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, .proc/flame_react)
 
-/datum/component/thermite/UnregisterFromParent()
+datum/component/thermite/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT)
 	UnregisterSignal(parent, COMSIG_PARENT_ATTACKBY)
 	UnregisterSignal(parent, COMSIG_ATOM_FIRE_ACT)
 
-/datum/component/thermite/Destroy()
+datum/component/thermite/Destroy()
 	var/turf/master = parent
 	master.cut_overlay(overlay)
 	return ..()
 
-/datum/component/thermite/InheritComponent(datum/component/thermite/newC, i_am_original, list/arguments)
+datum/component/thermite/InheritComponent(datum/component/thermite/newC, i_am_original, list/arguments)
 	if(!i_am_original)
 		return
 	if(newC)
@@ -60,7 +60,7 @@
 	else
 		amount += arguments[1]
 
-/datum/component/thermite/proc/thermite_melt(mob/user)
+datum/component/thermite/proc/thermite_melt(mob/user)
 	var/turf/master = parent
 	master.cut_overlay(overlay)
 	playsound(master, 'sound/items/welder.ogg', 100, TRUE)
@@ -68,7 +68,7 @@
 	addtimer(CALLBACK(src, .proc/burn_parent, fakefire, user), min(amount * 0.35 SECONDS, 20 SECONDS))
 	UnregisterFromParent()
 
-/datum/component/thermite/proc/burn_parent(var/datum/fakefire, mob/user)
+datum/component/thermite/proc/burn_parent(var/datum/fakefire, mob/user)
 	var/turf/master = parent
 	if(!QDELETED(fakefire))
 		qdel(fakefire)
@@ -79,14 +79,14 @@
 		master.burn_tile()
 	qdel(src)
 
-/datum/component/thermite/proc/clean_react(datum/source, strength)
+datum/component/thermite/proc/clean_react(datum/source, strength)
 	//Thermite is just some loose powder, you could probably clean it with your hands. << todo?
 	qdel(src)
 
-/datum/component/thermite/proc/flame_react(datum/source, exposed_temperature, exposed_volume)
+datum/component/thermite/proc/flame_react(datum/source, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 1922) // This is roughly the real life requirement to ignite thermite
 		thermite_melt()
 
-/datum/component/thermite/proc/attackby_react(datum/source, obj/item/thing, mob/user, params)
+datum/component/thermite/proc/attackby_react(datum/source, obj/item/thing, mob/user, params)
 	if(thing.is_hot())
 		thermite_melt(user)

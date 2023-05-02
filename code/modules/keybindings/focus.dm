@@ -1,4 +1,4 @@
-/mob
+mob
 	/// What receives our keyboard inputs, defaulting to src.
 	var/datum/key_focus
 	/// a singular thing that can intercept keyboard inputs
@@ -7,7 +7,7 @@
 /**
  * set our keyboard input focus
  */
-/mob/proc/set_key_focus(datum/new_focus)
+mob/proc/set_key_focus(datum/new_focus)
 	if(key_focus == new_focus)
 		return
 	key_focus = new_focus
@@ -19,7 +19,7 @@
  *
  * @return TRUE/FALSE for success/fail
  */
-/mob/proc/request_key_intercept(datum/intercepting)
+mob/proc/request_key_intercept(datum/intercepting)
 	if(key_intercept)
 		return FALSE
 	key_intercept = intercepting
@@ -30,7 +30,7 @@
  *
  * @return old intercept, or null if none found
  */
-/mob/proc/clear_key_intercept()
+mob/proc/clear_key_intercept()
 	if(!key_intercept)
 		return
 	. = key_intercept

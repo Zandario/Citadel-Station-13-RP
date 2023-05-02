@@ -2,7 +2,7 @@
  * Defines the helmets, gloves and shoes for rigs.
  */
 
-/obj/item/clothing/head/helmet/space/rig
+obj/item/clothing/head/helmet/space/rig
 	name = "helmet"
 	atom_flags = PHORONGUARD
 	clothing_flags = THICKMATERIAL | ALLOW_SURVIVALFOOD | CLOTHING_IGNORE_BELTLINK | CLOTHING_IGNORE_DELIMB | ALLOWINTERNALS
@@ -42,7 +42,7 @@
 		SPECIES_ZORREN_HIGH,
 	)
 
-/obj/item/clothing/gloves/gauntlets/rig
+obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
 	clothing_flags = THICKMATERIAL | CLOTHING_IGNORE_BELTLINK | CLOTHING_IGNORE_DELIMB
 	atom_flags = PHORONGUARD
@@ -76,7 +76,7 @@
 		SPECIES_ZORREN_HIGH,
 	)
 
-/obj/item/clothing/shoes/magboots/rig
+obj/item/clothing/shoes/magboots/rig
 	name = "boots"
 	atom_flags = PHORONGUARD
 	clothing_flags = CLOTHING_IGNORE_BELTLINK | CLOTHING_IGNORE_DELIMB
@@ -113,7 +113,7 @@
 		SPECIES_ZORREN_HIGH,
 	)
 
-/obj/item/clothing/suit/space/rig
+obj/item/clothing/suit/space/rig
 	name = "chestpiece"
 	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit)
 
@@ -164,7 +164,7 @@
 		SPECIES_ZORREN_HIGH,
 	)
 
-/obj/item/clothing/suit/space/rig/attack_hand(mob/user, list/params)
+obj/item/clothing/suit/space/rig/attack_hand(mob/user, list/params)
 	if(tacknife)
 		tacknife.loc = get_turf(src)
 		if(user.put_in_active_hand(tacknife))
@@ -175,7 +175,7 @@
 		return
 	..()
 
-/obj/item/clothing/suit/space/rig/attackby(obj/item/I, mob/living/M)
+obj/item/clothing/suit/space/rig/attackby(obj/item/I, mob/living/M)
 	if(istype(I, /obj/item/material/knife/tacknife))
 		if(tacknife)
 			return
@@ -188,10 +188,10 @@
 	..()
 
 //TODO: move this to modules
-/obj/item/clothing/head/helmet/space/rig/proc/prevent_track()
+obj/item/clothing/head/helmet/space/rig/proc/prevent_track()
 	return FALSE
 
-/obj/item/clothing/gloves/gauntlets/rig/Touch(atom/A, proximity)
+obj/item/clothing/gloves/gauntlets/rig/Touch(atom/A, proximity)
 
 	if(!A || !proximity)
 		return FALSE
@@ -213,7 +213,7 @@
 
 //Rig pieces for non-spacesuit based rigs
 
-/obj/item/clothing/head/lightrig
+obj/item/clothing/head/lightrig
 	name = "mask"
 	clothing_flags = THICKMATERIAL | ALLOWINTERNALS | CLOTHING_IGNORE_BELTLINK | CLOTHING_IGNORE_DELIMB
 	atom_flags = PHORONGUARD
@@ -221,7 +221,7 @@
 	heat_protection    = HEAD|FACE|EYES
 	cold_protection    = HEAD|FACE|EYES
 
-/obj/item/clothing/suit/lightrig
+obj/item/clothing/suit/lightrig
 	name = "suit"
 	allowed = list(/obj/item/flashlight)
 	inv_hide_flags = HIDEJUMPSUIT
@@ -231,7 +231,7 @@
 	heat_protection    = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection    = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
-/obj/item/clothing/shoes/lightrig
+obj/item/clothing/shoes/lightrig
 	name = "boots"
 	atom_flags = PHORONGUARD
 	clothing_flags = CLOTHING_IGNORE_BELTLINK | CLOTHING_IGNORE_DELIMB
@@ -240,7 +240,7 @@
 	cold_protection    = FEET
 	heat_protection    = FEET
 
-/obj/item/clothing/gloves/gauntlets/lightrig
+obj/item/clothing/gloves/gauntlets/lightrig
 	name = "gloves"
 	clothing_flags = THICKMATERIAL | CLOTHING_IGNORE_BELTLINK | CLOTHING_IGNORE_DELIMB
 	atom_flags = PHORONGUARD

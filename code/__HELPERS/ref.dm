@@ -3,7 +3,7 @@
  * If it ever becomes necesary to get a more performant REF(), this lies here in wait
  * #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
  */
-/proc/REF(input)
+proc/REF(input)
 	if(istype(input, /datum))
 		var/datum/thing = input
 		if(thing.datum_flags & DF_USE_TAG)

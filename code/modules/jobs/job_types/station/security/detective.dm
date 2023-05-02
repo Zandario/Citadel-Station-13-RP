@@ -1,4 +1,4 @@
-/datum/role/job/station/detective
+datum/role/job/station/detective
 	id = JOB_ID_DETECTIVE
 	title = "Detective"
 	flag = DETECTIVE
@@ -22,23 +22,23 @@
 		"Investigatory Specialist" = /datum/prototype/alt_title/detective/inv_spec
 		)
 
-/datum/prototype/alt_title/detective/inv_spec
+datum/prototype/alt_title/detective/inv_spec
 	title = "Investigatory Specialist"
 	background_allow = list(
 		/datum/lore/character_background/faction/onkhera_necropolis
 	)
 	background_enforce = TRUE
 
-/datum/prototype/alt_title/detective/csi
+datum/prototype/alt_title/detective/csi
 	title = "Crime Scene Investigator"
 
 /// Detective Alt Titles
-/datum/prototype/alt_title/detective/forensics_tech
+datum/prototype/alt_title/detective/forensics_tech
 	title = "Forensic Technician"
 	title_blurb = "A Forensic Technician works more with hard evidence and labwork than a Detective, but they share the purpose of solving crimes."
 	title_outfit = /datum/outfit/job/station/detective/forensic
 
-/datum/outfit/job/station/detective
+datum/outfit/job/station/detective
 	name = OUTFIT_JOB_NAME("Detective")
 	head = /obj/item/clothing/head/det
 	uniform = /obj/item/clothing/under/det
@@ -59,12 +59,12 @@
 	messenger_bag = /obj/item/storage/backpack/messenger/sec
 	dufflebag = /obj/item/storage/backpack/dufflebag/sec
 
-/datum/outfit/job/station/detective/forensic
+datum/outfit/job/station/detective/forensic
 	name = OUTFIT_JOB_NAME("Forensic technician")
 	head = null
 	suit = /obj/item/clothing/suit/storage/forensics/blue
 
-/datum/outfit/job/station/detective/vice
+datum/outfit/job/station/detective/vice
 	name = OUTFIT_JOB_NAME("Vice Investigator")
 	head = null
 	uniform = /obj/item/clothing/under/hawaiian

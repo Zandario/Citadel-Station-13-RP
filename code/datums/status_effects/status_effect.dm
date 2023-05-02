@@ -7,7 +7,7 @@
  * each effect potentially has its own amount of variable arguments that
  * can be passed into apply_status_effect. they will be detailed per-file.
  */
-/datum/status_effect
+datum/status_effect
 	abstract_type = /datum/status_effect
 	/// unique identifier
 	var/identifier = "effect"
@@ -28,7 +28,7 @@
 	/// mob we're affecting
 	var/mob/owner
 
-/datum/status_effect/New(mob/owner, duration, list/arguments)
+datum/status_effect/New(mob/owner, duration, list/arguments)
 	ASSERT(isnull(owner.status_effects[identifier]))
 	src.owner = owner
 	owner.status_effects[identifier] = src
@@ -38,7 +38,7 @@
 	rebuild_decay_timer()
 	on_apply(arglist(arguments))
 
-/datum/status_effect/Destroy()
+datum/status_effect/Destroy()
 	owner?.status_effects?.Remove(identifier)
 	on_remove()
 	owner = null
@@ -47,19 +47,19 @@
 		decay_timer = null
 	return ..()
 
-/datum/status_effect/proc/tick(dt)
+datum/status_effect/proc/tick(dt)
 	SHOULD_NOT_SLEEP(TRUE)
 
 /**
  * decays - this *must* either delete ourselves or automatically reapply the decay timer!
  */
-/datum/status_effect/proc/decay()
+datum/status_effect/proc/decay()
 	qdel(src)
 
 /**
  * called on full removal
  */
-/datum/status_effect/proc/on_remove()
+datum/status_effect/proc/on_remove()
 	SHOULD_CALL_PARENT(TRUE)
 	if(!isnull(tick_interval))
 		SSstatus_effects.ticking -= src
@@ -70,7 +70,7 @@
  * @params
  * * ... - rest of parameters from /mob/apply_status_effect()
  */
-/datum/status_effect/proc/on_apply(...)
+datum/status_effect/proc/on_apply(...)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!isnull(tick_interval))
 		SSstatus_effects.ticking += src
@@ -82,7 +82,7 @@
  * * old_timeleft - old time remaining
  * * ... - rest of parameters from /mob/apply_status_effect() or /datum/status_effect/refresh()
  */
-/datum/status_effect/proc/on_refreshed(old_timeleft, ...)
+datum/status_effect/proc/on_refreshed(old_timeleft, ...)
 	return
 
 /**
@@ -96,7 +96,7 @@
  *
  * @return were we refreshed?
  */
-/datum/status_effect/proc/refresh(duration, ...)
+datum/status_effect/proc/refresh(duration, ...)
 	SHOULD_NOT_SLEEP(TRUE)
 	var/left = time_left()
 	if(isnull(duration))
@@ -109,23 +109,23 @@
 	on_refreshed(arglist(built))
 	return TRUE
 
-/datum/status_effect/proc/time_left()
+datum/status_effect/proc/time_left()
 	return (started + duration) - world.time
 
-/datum/status_effect/proc/set_duration_from_apply(duration)
+datum/status_effect/proc/set_duration_from_apply(duration)
 	src.duration = duration
 	rebuild_decay_timer()
 
-/datum/status_effect/proc/set_duration_from_now(duration)
+datum/status_effect/proc/set_duration_from_now(duration)
 	src.duration = duration
 	started = world.time
 	rebuild_decay_timer()
 
-/datum/status_effect/proc/adjust_duration(duration)
+datum/status_effect/proc/adjust_duration(duration)
 	src.duration += duration
 	rebuild_decay_timer()
 
-/datum/status_effect/proc/set_tick_interval(interval)
+datum/status_effect/proc/set_tick_interval(interval)
 	var/was_ticking = !isnull(tick_interval)
 	tick_interval = interval
 	if(was_ticking && isnull(interval))
@@ -133,7 +133,7 @@
 	else if(!was_ticking && !isnull(interval))
 		SSstatus_effects.ticking += src
 
-/datum/status_effect/proc/rebuild_decay_timer()
+datum/status_effect/proc/rebuild_decay_timer()
 	if(decay_timer)
 		deltimer(decay_timer)
 		decay_timer = null
@@ -145,7 +145,7 @@
 		return
 	decay_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/status_effect, decay)), time_left, TIMER_STOPPABLE)
 
-/datum/status_effect/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
+datum/status_effect/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
 	if(raw_edit)
 		return ..()
 	switch(var_name)
@@ -162,7 +162,7 @@
 		if(NAMEOF(src, duration))
 			rebuild_decay_timer()
 
-/datum/status_effect/proc/on_examine(list/examine_list)
+datum/status_effect/proc/on_examine(list/examine_list)
 	return
 
 //? Mob procs
@@ -179,7 +179,7 @@
  *
  * @return effect datum created / refreshed / whatever, null on failure
  */
-/mob/proc/apply_status_effect(datum/status_effect/path, duration, list/additional)
+mob/proc/apply_status_effect(datum/status_effect/path, duration, list/additional)
 	if(isnull(status_effects))
 		status_effects = list()
 	var/id = initial(path.identifier)
@@ -202,7 +202,7 @@
  *
  * @return stacks **left**. for single effects this is probably 0.
  */
-/mob/proc/remove_status_effect(datum/status_effect/path, stacks = INFINITY, ...)
+mob/proc/remove_status_effect(datum/status_effect/path, stacks = INFINITY, ...)
 	var/id = initial(path.identifier)
 	var/datum/status_effect/found = status_effects?[id]
 	if(isnull(found))
@@ -223,13 +223,13 @@
  *
  * @return effect datum found or null
  */
-/mob/proc/has_status_effect(datum/status_effect/path)
+mob/proc/has_status_effect(datum/status_effect/path)
 	var/id = initial(path.identifier)
 	return LAZYACCESS(status_effects, id)
 
 //? Alert object
 
-/atom/movable/screen/alert/status_effect
+atom/movable/screen/alert/status_effect
 	name = "Curse of Mundanity"
 	desc = "You don't feel any different..."
 	var/datum/status_effect/attached_effect

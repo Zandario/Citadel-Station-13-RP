@@ -1,4 +1,4 @@
-/datum/outfit/wizard
+datum/outfit/wizard
 	abstract_type = /datum/outfit/wizard
 
 	uniform = /obj/item/clothing/under/color/lightpurple
@@ -10,17 +10,17 @@
 	back = /obj/item/storage/backpack
 	backpack_contents = list(/obj/item/storage/box = 1)
 
-/datum/outfit/wizard/blue
+datum/outfit/wizard/blue
 	name = "Wizard - Blue"
 	head = /obj/item/clothing/head/wizard
 	suit = /obj/item/clothing/suit/wizrobe
 
-/datum/outfit/wizard/red
+datum/outfit/wizard/red
 	name = "Wizard - Red"
 	head = /obj/item/clothing/head/wizard/red
 	suit = /obj/item/clothing/suit/wizrobe/red
 
-/datum/outfit/wizard/marisa
+datum/outfit/wizard/marisa
 	name = "Wizard - Marisa"
 	head = /obj/item/clothing/head/wizard/marisa
 	suit = /obj/item/clothing/suit/wizrobe/marisa

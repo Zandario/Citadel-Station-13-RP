@@ -1,5 +1,5 @@
 // Based on catwalk.dm from https://github.com/Endless-Horizon/CEV-Eris
-/obj/structure/catwalk
+obj/structure/catwalk
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	plane = TURF_PLANE
@@ -23,7 +23,7 @@
 		/obj/item/stack/tile/floor/white = "#e8e8e8",
 	)
 
-/obj/structure/catwalk/Initialize(mapload)
+obj/structure/catwalk/Initialize(mapload)
 	. = ..()
 	for(var/obj/structure/catwalk/O in range(1))
 		O.update_icon()
@@ -33,14 +33,14 @@
 			return INITIALIZE_HINT_QDEL
 	update_icon()
 
-/obj/structure/catwalk/Destroy()
+obj/structure/catwalk/Destroy()
 	var/turf/location = loc
 	. = ..()
 	location.alpha = initial(location.alpha)
 	for(var/obj/structure/catwalk/L in orange(location, 1))
 		L.update_icon()
 
-/obj/structure/catwalk/update_icon()
+obj/structure/catwalk/update_icon()
 	var/connectdir = 0
 	for(var/direction in GLOB.cardinal)
 		if(locate(/obj/structure/catwalk, get_step(src, direction)))
@@ -68,7 +68,7 @@
 	icon_state = "catwalk[connectdir]-[diagonalconnect]"
 
 
-/obj/structure/catwalk/legacy_ex_act(severity)
+obj/structure/catwalk/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -78,7 +78,7 @@
 			qdel(src)
 	return
 
-/obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
+obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
 	if(istype(C, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = C
 		if(WT.isOn())
@@ -98,19 +98,19 @@
 		user.setClickCooldown(user.get_attack_speed(C))
 	return ..()
 
-/obj/structure/catwalk/Crossed()
+obj/structure/catwalk/Crossed()
 	. = ..()
 	if(isliving(usr) && !usr.is_incorporeal())
 		playsound(src, pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg'), 25, 1)
 
-/obj/structure/catwalk/CheckExit(atom/movable/O, turf/target)
+obj/structure/catwalk/CheckExit(atom/movable/O, turf/target)
 	if(O.check_pass_flags(ATOM_PASS_GRILLE))
 		return TRUE
 	if(target && target.z < src.z)
 		return FALSE
 	return TRUE
 
-/obj/structure/catwalk/take_damage(amount)
+obj/structure/catwalk/take_damage(amount)
 	health -= amount
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
@@ -118,16 +118,16 @@
 		new /obj/item/stack/rods(get_turf(src))
 		qdel(src)
 
-/obj/structure/catwalk/prevent_z_fall(atom/movable/victim, levels = 0, fall_flags)
+obj/structure/catwalk/prevent_z_fall(atom/movable/victim, levels = 0, fall_flags)
 	return fall_flags | FALL_BLOCKED
 
-/obj/structure/catwalk/z_pass_in(atom/movable/AM, dir, turf/old_loc)
+obj/structure/catwalk/z_pass_in(atom/movable/AM, dir, turf/old_loc)
 	return dir == UP
 
-/obj/structure/catwalk/z_pass_out(atom/movable/AM, dir, turf/new_loc)
+obj/structure/catwalk/z_pass_out(atom/movable/AM, dir, turf/new_loc)
 	return dir == UP
 
-/obj/effect/catwalk_plated
+obj/effect/catwalk_plated
 	name = "plated catwalk spawner"
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk_plated"
@@ -139,21 +139,21 @@
 	var/tile = /obj/item/stack/tile/floor
 	var/platecolor = "#858a8f"
 
-/obj/effect/catwalk_plated/Initialize(mapload)
+obj/effect/catwalk_plated/Initialize(mapload)
 	. = ..()
 	activate()
 
-/obj/effect/catwalk_plated/attack_hand(mob/user, list/params)
+obj/effect/catwalk_plated/attack_hand(mob/user, list/params)
 	attack_generic()
 
-/obj/effect/catwalk_plated/attack_ghost()
+obj/effect/catwalk_plated/attack_ghost()
 	. = ..()
 	attack_generic()
 
-/obj/effect/catwalk_plated/attack_generic()
+obj/effect/catwalk_plated/attack_generic()
 	activate()
 
-/obj/effect/catwalk_plated/proc/activate()
+obj/effect/catwalk_plated/proc/activate()
 	if(activated) return
 
 	if(locate(/obj/structure/catwalk) in loc)
@@ -172,17 +172,17 @@
 	*/
 	qdel(src)
 
-/obj/effect/catwalk_plated/dark
+obj/effect/catwalk_plated/dark
 	icon_state = "catwalk_plateddark"
 	tile = /obj/item/stack/tile/floor/dark
 	platecolor = "#4f4f4f"
 
-/obj/effect/catwalk_plated/white
+obj/effect/catwalk_plated/white
 	icon_state = "catwalk_platedwhite"
 	tile = /obj/item/stack/tile/floor/white
 	platecolor = "#e8e8e8"
 
-/obj/structure/catwalk/plank
+obj/structure/catwalk/plank
 	name = "plank bridge"
 	desc = "Some flimsy wooden planks, generally set across a hazardous area."
 	plane = TURF_PLANE
@@ -192,7 +192,7 @@
 	density = 0
 	anchored = 1.0
 
-/obj/structure/catwalk/plank/Crossed()
+obj/structure/catwalk/plank/Crossed()
 	. = ..()
 	if(isliving(usr) && !usr.is_incorporeal())
 		switch(rand(1,100))
@@ -205,14 +205,14 @@
 			if(51 to 100)
 				return
 
-/obj/structure/catwalk/plank/take_damage(amount)
+obj/structure/catwalk/plank/take_damage(amount)
 	health -= amount
 	update_icon()
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
 		Destroy()
 
-/obj/structure/catwalk/plank/update_icon()
+obj/structure/catwalk/plank/update_icon()
 	if(health > 75)
 		icon_state = "[initial(icon_state)]"
 	if(health < 75)
@@ -223,7 +223,7 @@
 		icon_state = "[initial(icon_state)]_dangerous"
 
 //Ashlander Catwalks, for bridges?
-/obj/structure/catwalk/ashlander
+obj/structure/catwalk/ashlander
 	name = "sandstone bridge"
 	desc = "Sandstone tiles, bound together by hardy sinew and anchored to a blessed bone frame."
 	plane = TURF_PLANE
@@ -233,7 +233,7 @@
 	density = 0
 	anchored = 1.0
 
-/obj/structure/catwalk/ashlander/update_icon()
+obj/structure/catwalk/ashlander/update_icon()
 	var/connectdir = 0
 	for(var/direction in GLOB.cardinal)
 		if(locate(/obj/structure/catwalk/ashlander, get_step(src, direction)))

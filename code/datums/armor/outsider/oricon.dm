@@ -1,6 +1,6 @@
-/datum/armor/oricon
+datum/armor/oricon
 
-/datum/armor/oricon/peacekeeper
+datum/armor/oricon/peacekeeper
 	melee = 0.5
 	bullet = 0.5
 	laser = 0.5

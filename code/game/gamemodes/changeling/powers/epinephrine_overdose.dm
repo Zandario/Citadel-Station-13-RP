@@ -1,4 +1,4 @@
-/datum/power/changeling/epinephrine_overdose
+datum/power/changeling/epinephrine_overdose
 	name = "Epinephrine Overdose"
 	desc = "We evolve additional sacs of adrenaline throughout our body."
 	helptext = "We can instantly recover from stuns and reduce the effect of future stuns, but we will suffer toxicity in the long term.  Can be used while unconscious."
@@ -7,7 +7,7 @@
 	genomecost = 2
 	verbpath = /mob/proc/changeling_epinephrine_overdose
 
-/datum/modifier/unstoppable
+datum/modifier/unstoppable
 	name = "unstoppable"
 	desc = "We feel limitless amounts of energy surge in our veins.  Nothing can stop us!"
 
@@ -17,7 +17,7 @@
 	disable_duration_percent = 0
 
 //Recover from stuns.
-/mob/proc/changeling_epinephrine_overdose()
+mob/proc/changeling_epinephrine_overdose()
 	set category = "Changeling"
 	set name = "Epinephrine Overdose (30)"
 	set desc = "Removes all stuns instantly, and reduces future stuns."
@@ -44,7 +44,7 @@
 	feedback_add_details("changeling_powers","UNS")
 	return 1
 
-/datum/reagent/epinephrine
+datum/reagent/epinephrine
 	name = "Epinephrine"
 	id = "epinephrine"
 	description = "Reduces stun times, but causing toxicity due to high concentration."
@@ -53,7 +53,7 @@
 	metabolism = REM * 2
 	overdose = 5 //This is intentionally low, as we want the ling to take some tox damage, to discourage spamming the ability.
 
-/datum/reagent/epinephrine/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/epinephrine/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	M.add_chemical_effect(CE_SPEEDBOOST, 3)

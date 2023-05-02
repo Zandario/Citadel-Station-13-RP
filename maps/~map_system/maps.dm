@@ -3,7 +3,7 @@ GLOBAL_DATUM_INIT(using_map, /datum/map, new USING_MAP_DATUM)
 
 var/list/all_maps = list()
 
-/hook/startup/proc/initialise_map_list()
+hook/startup/proc/initialise_map_list()
 	for(var/type in typesof(/datum/map) - /datum/map)
 		var/datum/map/M
 		if(type == GLOB.using_map.type)
@@ -18,7 +18,7 @@ var/list/all_maps = list()
 	return 1
 
 
-/datum/map
+datum/map
 	var/name = "Unnamed Map"
 	var/full_name = "Unnamed Map"
 	var/path
@@ -129,7 +129,7 @@ var/list/all_maps = list()
 
 	var/list/planet_datums_to_make = list() // Types of `/datum/planet`s that will be instantiated by SSPlanets.
 
-/datum/map/New()
+datum/map/New()
 	..()
 	if(zlevel_datum_type)
 		for(var/type in subtypesof(zlevel_datum_type))
@@ -140,7 +140,7 @@ var/list/all_maps = list()
 		allowed_jobs = subtypesof(/datum/role/job)
 
 // Gets the current time on a current zlevel, and returns a time datum
-/datum/map/proc/get_zlevel_time(var/z)
+datum/map/proc/get_zlevel_time(var/z)
 	if(!z)
 		z = 1
 	var/datum/planet/P = z <= SSplanets.z_to_planet.len ? SSplanets.z_to_planet[z] : null
@@ -154,7 +154,7 @@ var/list/all_maps = list()
 		return T
 
 // Returns a boolean for if it's night or not on a particular zlevel
-/datum/map/proc/get_night(var/z)
+datum/map/proc/get_night(var/z)
 	if(!z)
 		z = 1
 	var/datum/time/now = get_zlevel_time(z)
@@ -169,20 +169,20 @@ var/list/all_maps = list()
 		return FALSE
 
 // Boolean for if we should use SSnightshift night hours
-/datum/map/proc/get_nightshift()
+datum/map/proc/get_nightshift()
 	return get_night(1) //Defaults to z1, customize however you want on your own maps
 
-/datum/map/proc/setup_map()
+datum/map/proc/setup_map()
 	return
 
-/datum/map/proc/perform_map_generation()
+datum/map/proc/perform_map_generation()
 	return
 
-/datum/map/proc/get_network_access(var/network)
+datum/map/proc/get_network_access(var/network)
 	return 0
 
 // By default transition randomly to another zlevel
-/datum/map/proc/get_transit_zlevel(var/current_z_level)
+datum/map/proc/get_transit_zlevel(var/current_z_level)
 	var/list/candidates = GLOB.using_map.accessible_z_levels.Copy()
 	candidates.Remove(num2text(current_z_level))
 
@@ -190,7 +190,7 @@ var/list/all_maps = list()
 		return current_z_level
 	return text2num(pickweight(candidates))
 
-/datum/map/proc/get_empty_zlevel()
+datum/map/proc/get_empty_zlevel()
 	if(empty_levels == null)
 		world.increment_max_z()
 		empty_levels = list(world.maxz)
@@ -203,7 +203,7 @@ var/list/all_maps = list()
 // Get the list of zlevels that a computer on srcz can see maps of (for power/crew monitor, cameras, etc)
 // The long_range parameter expands the coverage.  Default is to return map_levels for long range otherwise just srcz.
 // zLevels outside station_levels will return an empty list.
-/datum/map/proc/get_map_levels(var/srcz, var/long_range = TRUE, var/om_range = 0)
+datum/map/proc/get_map_levels(var/srcz, var/long_range = TRUE, var/om_range = 0)
 	// Overmap behavior
 	if(use_overmap)
 		var/obj/effect/overmap/visitable/O = get_overmap_sector(srcz)
@@ -230,13 +230,13 @@ var/list/all_maps = list()
 		else
 			return list(srcz)
 
-/datum/map/proc/get_zlevel_name(var/index)
+datum/map/proc/get_zlevel_name(var/index)
 	var/datum/map_z_level/Z = zlevels["[index]"]
 	return Z?.name
 
 // Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
 // This list needs to be purged but people insist on adding more cruft to the radio.
-/datum/map/proc/default_internal_channels()
+datum/map/proc/default_internal_channels()
 	return list(
 		num2text(PUB_FREQ)   = list(),
 		num2text(AI_FREQ)    = list(ACCESS_SPECIAL_SILICONS),
@@ -257,7 +257,7 @@ var/list/all_maps = list()
 // 	subtype of /datum/map_z_level and set zlevel_datum_type on /datum/map to have the lists auto-initialized.
 
 // Structure to hold zlevel info together in one nice convenient package.
-/datum/map_z_level
+datum/map_z_level
 	var/z = 0				// Actual z-index of the zlevel. This had better be right!
 	var/name				// Friendly name of the zlevel
 	var/flags = 0			// Bitflag of which *_levels lists this z should be put into.
@@ -272,7 +272,7 @@ var/list/all_maps = list()
 	var/holomap_legend_y = 96	// y position of the holomap legend for this z
 
 // Default constructor applies itself to the parent map datum
-/datum/map_z_level/New(var/datum/map/map, _z)
+datum/map_z_level/New(var/datum/map/map, _z)
 	if(_z)
 		src.z = _z
 	if(!z)
@@ -307,7 +307,7 @@ var/list/all_maps = list()
 	LIST_NUMERIC_SET(map.holomap_legend_x, z, holomap_legend_x)
 	LIST_NUMERIC_SET(map.holomap_legend_y, z, holomap_legend_y)
 
-/datum/map_z_level/Destroy(var/force)
+datum/map_z_level/Destroy(var/force)
 	stack_trace("Attempt to delete a map_z_level instance [log_info_line(src)]")
 	if(!force)
 		return QDEL_HINT_LETMELIVE // No.

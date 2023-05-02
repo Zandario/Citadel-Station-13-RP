@@ -1,7 +1,7 @@
 #define RAISE_ANIMATE_TIME 20
 #define FALL_ANIMATE_TIME 20
 
-/obj/item/circuitboard/machine/nanite_chamber
+obj/item/circuitboard/machine/nanite_chamber
 	name = T_BOARD("nanite chamber")
 	build_path = /obj/machinery/nanite_chamber
 	req_components = list(
@@ -10,7 +10,7 @@
 		/obj/item/stock_parts/scanning_module = 1,
 	)
 
-/obj/machinery/nanite_chamber
+obj/machinery/nanite_chamber
 	name = "nanite chamber"
 	anchored = TRUE
 	density = TRUE
@@ -68,22 +68,22 @@
 		MAT_VALHOLLIDE = 6000,
 	)
 
-/obj/machinery/nanite_chamber/Initialize(mapload)
+obj/machinery/nanite_chamber/Initialize(mapload)
 	. = ..()
 	detect_connection()
 
-/obj/machinery/nanite_chamber/Destroy()
+obj/machinery/nanite_chamber/Destroy()
 	drop_contents()
 	for(var/obj/machinery/computer/nanite_chamber/controller as anything in linked)
 		controller.unlink_chamber()
 	return ..()
 
-/obj/machinery/nanite_chamber/update_overlays()
+obj/machinery/nanite_chamber/update_overlays()
 	. = ..()
 	if(locked)
 		. += "[base_icon_state]_bolted"
 
-/obj/machinery/nanite_chamber/update_icon_state()
+obj/machinery/nanite_chamber/update_icon_state()
 	if(operating)
 		icon_state = "[base_icon_state]_active"
 	else if(occupant)
@@ -94,27 +94,27 @@
 		icon_state = "[base_icon_state]"
 	return ..()
 
-/obj/machinery/nanite_chamber/interact(mob/user)
+obj/machinery/nanite_chamber/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 	toggle_open(user, FALSE)
 	return TRUE
 
-/obj/machinery/nanite_chamber/proc/detect_connection()
+obj/machinery/nanite_chamber/proc/detect_connection()
 	for(var/obj/machinery/computer/nanite_chamber/controller in orange(1, src))
 		controller.relink()
 
-/obj/machinery/nanite_chamber/proc/set_locked(new_value)
+obj/machinery/nanite_chamber/proc/set_locked(new_value)
 	locked = new_value
 
-/obj/machinery/nanite_chamber/proc/toggle_locked()
+obj/machinery/nanite_chamber/proc/toggle_locked()
 	set_locked(!locked)
 
-/obj/machinery/nanite_chamber/proc/is_locked()
+obj/machinery/nanite_chamber/proc/is_locked()
 	return locked || operating || cancelling
 
-/obj/machinery/nanite_chamber/proc/operate_for(time = 15 SECONDS, effects_in = 7 SECONDS, datum/callback/effects_callback)
+obj/machinery/nanite_chamber/proc/operate_for(time = 15 SECONDS, effects_in = 7 SECONDS, datum/callback/effects_callback)
 	if(operating)
 		return FALSE
 	operating = TRUE
@@ -124,11 +124,11 @@
 	addtimer(effects_callback, min(effects_in, time))
 	addtimer(CALLBACK(src, PROC_REF(finish_operating)), time)
 
-/obj/machinery/nanite_chamber/proc/finish_operating()
+obj/machinery/nanite_chamber/proc/finish_operating()
 	operating = FALSE
 	update_icon()
 
-/obj/machinery/nanite_chamber/proc/cancel_operation(immediate)
+obj/machinery/nanite_chamber/proc/cancel_operation(immediate)
 	if(!operating || cancelling)
 		return
 	cancelling = TRUE
@@ -142,22 +142,22 @@
 	else
 		do_cancel_operation()
 
-/obj/machinery/nanite_chamber/proc/do_cancel_operation()
+obj/machinery/nanite_chamber/proc/do_cancel_operation()
 	operating = FALSE
 	update_icon()
 	cancelling = FALSE
 
-/obj/machinery/nanite_chamber/proc/try_refresh_protean()
+obj/machinery/nanite_chamber/proc/try_refresh_protean()
 	operate_for(15 SECONDS, 7 SECONDS, CALLBACK(src, PROC_REF(refresh_protean)))
 
-/obj/machinery/nanite_chamber/proc/refresh_protean()
+obj/machinery/nanite_chamber/proc/refresh_protean()
 	var/obj/item/organ/internal/nano/refactory/protean_refactory = locate() in occupant.internal_organs
 	if(isnull(protean_refactory))
 		return
 	protean_refactory.materials[MAT_STEEL] = protean_refactory.max_storage
 	occupant.innate_feedback(SPAN_NOTICE("Your refactory chimes as your nanite reserves are refilled by the chamber."))
 
-/obj/machinery/nanite_chamber/proc/try_rebuild_protean(mob/user)
+obj/machinery/nanite_chamber/proc/try_rebuild_protean(mob/user)
 	if(!check_reconstruction_costs())
 		user?.ui_feedback(SPAN_WARNING("Insufficient materials."), src)
 		return
@@ -167,7 +167,7 @@
 	consume_reconstruction_costs()
 	operate_for(30 SECONDS, 10 SECONDS, CALLBACK(src, PROC_REF(rebuild_protean)))
 
-/obj/machinery/nanite_chamber/proc/rebuild_protean()
+obj/machinery/nanite_chamber/proc/rebuild_protean()
 	if(!isnull(occupant))
 		cancel_operation()
 		return
@@ -199,17 +199,17 @@
 	their_chest?.robotize(GLOB.all_robolimbs[initial(nt_path.company)])
 	update_icon()
 
-/obj/machinery/nanite_chamber/proc/open(mob/user)
+obj/machinery/nanite_chamber/proc/open(mob/user)
 	if(open)
 		return TRUE
 	return toggle_open(user)
 
-/obj/machinery/nanite_chamber/proc/close(mob/user)
+obj/machinery/nanite_chamber/proc/close(mob/user)
 	if(!open)
 		return TRUE
 	return toggle_open(user)
 
-/obj/machinery/nanite_chamber/proc/toggle_open(mob/user, silent = TRUE)
+obj/machinery/nanite_chamber/proc/toggle_open(mob/user, silent = TRUE)
 	if(is_locked())
 		if(!silent)
 			user.action_feedback(SPAN_WARNING("[src] is locked!"), src)
@@ -227,7 +227,7 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/nanite_chamber/proc/drop_contents(update)
+obj/machinery/nanite_chamber/proc/drop_contents(update)
 	var/atom/where = drop_location()
 	for(var/atom/movable/AM as anything in held_items)
 		AM.forceMove(where)
@@ -240,7 +240,7 @@
 		for(var/obj/machinery/computer/nanite_chamber/controller as anything in linked)
 			controller.update_static_data()
 
-/obj/machinery/nanite_chamber/proc/take_contents(update)
+obj/machinery/nanite_chamber/proc/take_contents(update)
 	if(!occupant)
 		var/mob/living/new_mob = locate() in loc
 		if(new_mob)
@@ -263,7 +263,7 @@
 		for(var/obj/machinery/computer/nanite_chamber/controller as anything in linked)
 			controller.update_static_data()
 
-/obj/machinery/nanite_chamber/proc/check_reconstruction_costs()
+obj/machinery/nanite_chamber/proc/check_reconstruction_costs()
 	var/list/avail = available_materials()
 	var/list/wanted = protean_reconstruction_costs()
 	for(var/mat in wanted)
@@ -274,7 +274,7 @@
 /**
  * estimate cost of reconstruction for proteans, null if no protean found.
  */
-/obj/machinery/nanite_chamber/proc/protean_reconstruction_costs()
+obj/machinery/nanite_chamber/proc/protean_reconstruction_costs()
 	if(isnull(protean_core))
 		return
 	. = list()
@@ -287,7 +287,7 @@
 		for(var/mat in protean_cost_refactory)
 			.[mat] += protean_cost_refactory[mat]
 
-/obj/machinery/nanite_chamber/proc/consume_reconstruction_costs()
+obj/machinery/nanite_chamber/proc/consume_reconstruction_costs()
 	var/list/remaining = protean_reconstruction_costs()
 	for(var/obj/item/stack/material/matstack in held_items)
 		var/key = matstack.material.id
@@ -297,19 +297,19 @@
 		remaining[key] -= consumed
 		matstack.use(CEILING(consumed / SHEET_MATERIAL_AMOUNT, 1))
 
-/obj/machinery/nanite_chamber/proc/available_materials()
+obj/machinery/nanite_chamber/proc/available_materials()
 	. = list()
 	for(var/obj/item/stack/material/matstack in held_items)
 		.[matstack.material.id] += matstack.amount * SHEET_MATERIAL_AMOUNT
 
-/obj/machinery/nanite_chamber/relaymove_from_contents(mob/user, direction)
+obj/machinery/nanite_chamber/relaymove_from_contents(mob/user, direction)
 	if(open(user))
 		return TRUE
 	if(!(world.time % 5))
 		user.selfmove_feedback(SPAN_WARNING("[src] is locked!"))
 	return FALSE
 
-/obj/machinery/nanite_chamber/contents_resist(mob/escapee)
+obj/machinery/nanite_chamber/contents_resist(mob/escapee)
 	if(open(escapee))
 		return FALSE
 	if(!contents_resist_sequence(escapee, 1 MINUTE))
@@ -322,7 +322,7 @@
 	)
 	return TRUE
 
-/obj/machinery/nanite_chamber/contents_resist_finish(mob/escapee)
+obj/machinery/nanite_chamber/contents_resist_finish(mob/escapee)
 	set_locked(FALSE)
 	open(escapee)
 	escapee.action_feedback(SPAN_WARNING("You kick open [src], freeing yourself!"))

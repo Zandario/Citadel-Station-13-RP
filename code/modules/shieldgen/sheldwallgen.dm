@@ -1,5 +1,5 @@
 ////FIELD GEN START //shameless copypasta from fieldgen, powersink, and grille
-/obj/machinery/shieldwallgen
+obj/machinery/shieldwallgen
 	name = "Shield Generator"
 	desc = "A shield generator."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -25,7 +25,7 @@
 	var/max_stored_power = 50000 //50 kW
 	use_power = USE_POWER_OFF	//Draws directly from power net. Does not use APC power.
 
-/obj/machinery/shieldwallgen/attack_hand(mob/user, list/params)
+obj/machinery/shieldwallgen/attack_hand(mob/user, list/params)
 	if(state != 1)
 		to_chat(user, "<font color='red'>The shield generator needs to be firmly secured to the floor first.</font>")
 		return 1
@@ -52,7 +52,7 @@
 			"You hear heavy droning.")
 	src.add_fingerprint(user)
 
-/obj/machinery/shieldwallgen/proc/power()
+obj/machinery/shieldwallgen/proc/power()
 	if(!anchored)
 		power = 0
 		return 0
@@ -78,7 +78,7 @@
 	power = 1	// IVE GOT THE POWER!
 	return 1
 
-/obj/machinery/shieldwallgen/process(delta_time)
+obj/machinery/shieldwallgen/process(delta_time)
 	power()
 	if(power)
 		storedpower -= 2500 //the generator post itself uses some power
@@ -111,7 +111,7 @@
 			src.active = 0
 			for(var/dir in list(1,2,4,8)) src.cleanup(dir)
 
-/obj/machinery/shieldwallgen/proc/setup_field(var/NSEW = 0)
+obj/machinery/shieldwallgen/proc/setup_field(var/NSEW = 0)
 	var/turf/T = src.loc
 	var/turf/T2 = src.loc
 	var/obj/machinery/shieldwallgen/G
@@ -156,7 +156,7 @@
 		CF.setDir(field_dir)
 
 
-/obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
+obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
 	if(W.is_wrench())
 		if(active)
 			to_chat(user, "Turn off the field generator first.")
@@ -187,7 +187,7 @@
 		src.add_fingerprint(user)
 		visible_message("<font color='red'>The [src.name] has been hit with \the [W.name] by [user.name]!</font>")
 
-/obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
+obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
 	var/obj/machinery/shieldwall/F
 	var/obj/machinery/shieldwallgen/G
 	var/turf/T = src.loc
@@ -205,21 +205,21 @@
 			if(!G.active)
 				break
 
-/obj/machinery/shieldwallgen/Destroy()
+obj/machinery/shieldwallgen/Destroy()
 	src.cleanup(1)
 	src.cleanup(2)
 	src.cleanup(4)
 	src.cleanup(8)
 	..()
 
-/obj/machinery/shieldwallgen/bullet_act(var/obj/projectile/Proj)
+obj/machinery/shieldwallgen/bullet_act(var/obj/projectile/Proj)
 	storedpower -= 400 * Proj.get_structure_damage()
 	..()
 	return
 
 
 //////////////Containment Field START
-/obj/machinery/shieldwall
+obj/machinery/shieldwall
 		name = "Shield"
 		desc = "An energy shield."
 		icon = 'icons/effects/effects.dmi'
@@ -239,7 +239,7 @@
 		var/power_usage = 2500	//how much power it takes to sustain the shield
 		var/generate_power_usage = 7500	//how much power it takes to start up the shield
 
-/obj/machinery/shieldwall/Initialize(mapload, obj/machinery/shieldwallgen/A, obj/machinery/shieldwallgen/B)
+obj/machinery/shieldwall/Initialize(mapload, obj/machinery/shieldwallgen/A, obj/machinery/shieldwallgen/B)
 	. = ..()
 	update_nearby_tiles()
 	src.gen_primary = A
@@ -253,15 +253,15 @@
 	else
 		qdel(src) //need at least two generator posts
 
-/obj/machinery/shieldwall/Destroy()
+obj/machinery/shieldwall/Destroy()
 	update_nearby_tiles()
 	..()
 
-/obj/machinery/shieldwall/attack_hand(mob/user, list/params)
+obj/machinery/shieldwall/attack_hand(mob/user, list/params)
 	return
 
 
-/obj/machinery/shieldwall/process(delta_time)
+obj/machinery/shieldwall/process(delta_time)
 	if(needs_power)
 		if(isnull(gen_primary)||isnull(gen_secondary))
 			qdel(src)
@@ -277,7 +277,7 @@
 			gen_secondary.storedpower -= power_usage
 
 
-/obj/machinery/shieldwall/bullet_act(var/obj/projectile/Proj)
+obj/machinery/shieldwall/bullet_act(var/obj/projectile/Proj)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		if(prob(50))
@@ -289,7 +289,7 @@
 	return
 
 
-/obj/machinery/shieldwall/legacy_ex_act(severity)
+obj/machinery/shieldwall/legacy_ex_act(severity)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		switch(severity)
@@ -315,7 +315,7 @@
 				G.storedpower -= 12000
 	return
 
-/obj/machinery/shieldwall/CanAllowThrough(atom/movable/mover, turf/target)
+obj/machinery/shieldwall/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.)
 		return

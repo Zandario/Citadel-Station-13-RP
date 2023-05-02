@@ -1,4 +1,4 @@
-/datum/role/job/station/head_of_security
+datum/role/job/station/head_of_security
 	id = JOB_ID_HEAD_OF_SECURITY
 	economy_payscale = ECONOMY_PAYSCALE_JOB_COMMAND
 	title = "Head of Security"
@@ -58,16 +58,16 @@
 		"Defense Director" = /datum/prototype/alt_title/hos/director
 		)
 
-/datum/prototype/alt_title/hos/commander
+datum/prototype/alt_title/hos/commander
 	title = "Security Commander"
 
-/datum/prototype/alt_title/hos/chief
+datum/prototype/alt_title/hos/chief
 	title = "Chief of Security"
 
-/datum/prototype/alt_title/hos/director
+datum/prototype/alt_title/hos/director
 	title = "Defense Director"
 
-/datum/outfit/job/station/head_of_security
+datum/outfit/job/station/head_of_security
 	name = OUTFIT_JOB_NAME("Head of security")
 	l_ear = /obj/item/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/rank/head_of_security

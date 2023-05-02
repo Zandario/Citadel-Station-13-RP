@@ -1,4 +1,4 @@
-/obj/machinery/tele_pad
+obj/machinery/tele_pad
 	name = "teleporter pad"
 	desc = "The teleporter pad handles all of the impossibly complex busywork required in instant matter transmission."
 	icon = 'icons/obj/machines/teleporter.dmi'
@@ -12,15 +12,15 @@
 	light_color = LIGHT_COLOR_BLUEGREEN
 	var/obj/machinery/computer/teleporter/com
 
-/obj/machinery/tele_pad/Initialize(mapload)
+obj/machinery/tele_pad/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/tele_pad/LateInitialize()
+obj/machinery/tele_pad/LateInitialize()
 	. = ..()
 	update_icon()
 
-/obj/machinery/tele_pad/update_icon()
+obj/machinery/tele_pad/update_icon()
 	cut_overlays()
 	if(com?.projector?.engaged)
 		update_use_power(USE_POWER_ACTIVE)
@@ -38,12 +38,12 @@
 			I.layer = ABOVE_LIGHTING_LAYER
 			add_overlay(I)
 
-/obj/machinery/tele_pad/Bumped(M as mob|obj)
+obj/machinery/tele_pad/Bumped(M as mob|obj)
 	if(com?.projector?.engaged)
 		teleport(M)
 		use_power_oneoff(5000)
 
-/obj/machinery/tele_pad/proc/teleport(atom/movable/M as mob|obj)
+obj/machinery/tele_pad/proc/teleport(atom/movable/M as mob|obj)
 	if(!com)
 		return
 	if(!com.locked)
@@ -59,6 +59,6 @@
 		update_icon()
 	return
 
-/obj/machinery/tele_pad/Destroy()
+obj/machinery/tele_pad/Destroy()
 	com = null
 	return ..()

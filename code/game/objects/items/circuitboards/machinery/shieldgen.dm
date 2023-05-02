@@ -3,7 +3,7 @@
 #endif
 
 /// New shield generator
-/obj/item/circuitboard/shield_generator
+obj/item/circuitboard/shield_generator
 	name = T_BOARD("advanced shield generator")
 	board_type = new /datum/frame/frame_types/machine
 	build_path = /obj/machinery/power/shield_generator
@@ -17,7 +17,7 @@
 		/obj/item/stock_parts/subspace/amplifier = 1,
 	)
 
-/obj/item/circuitboard/shield_diffuser
+obj/item/circuitboard/shield_diffuser
 	name = T_BOARD("shield diffuser")
 	board_type =  new /datum/frame/frame_types/machine
 	build_path = /obj/machinery/shield_diffuser
@@ -29,7 +29,7 @@
 	)
 
 /// Legacy shield generators
-/obj/item/circuitboard/shield_gen_ex
+obj/item/circuitboard/shield_gen_ex
 	name = T_BOARD("hull shield generator")
 	board_type = new /datum/frame/frame_types/machine
 	build_path = /obj/machinery/shield_gen/external
@@ -43,7 +43,7 @@
 		/obj/item/stock_parts/subspace/transmitter = 1,
 	)
 
-/obj/item/circuitboard/shield_gen
+obj/item/circuitboard/shield_gen
 	name = T_BOARD("bubble shield generator")
 	board_type = new /datum/frame/frame_types/machine
 	build_path = /obj/machinery/shield_gen
@@ -57,7 +57,7 @@
 		/obj/item/stock_parts/subspace/transmitter = 1,
 	)
 
-/obj/item/circuitboard/shield_cap
+obj/item/circuitboard/shield_cap
 	name = T_BOARD("shield capacitor")
 	board_type = new /datum/frame/frame_types/machine
 	build_path = /obj/machinery/shield_capacitor

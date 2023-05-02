@@ -1,14 +1,14 @@
 // These pins can only contain a color (in the form of #FFFFFF) or null.
-/datum/integrated_io/color
+datum/integrated_io/color
 	name = "color pin"
 
-/datum/integrated_io/color/ask_for_pin_data(mob/user)
+datum/integrated_io/color/ask_for_pin_data(mob/user)
 	var/new_data = input(usr, "Please select a color.","[src] color writing", data ? data : "#000000") as null|color
 	if(holder.check_interactivity(user) )
 		to_chat(user, "<span class='notice'>You input a <font color='[new_data]'>new color</font> into the pin.</span>")
 		write_data_to_pin(new_data)
 
-/datum/integrated_io/color/write_data_to_pin(var/new_data)
+datum/integrated_io/color/write_data_to_pin(var/new_data)
 	// Since this is storing the color as a string hex color code, we need to make sure it's actually one.
 	if(isnull(new_data) || istext(new_data))
 		if(istext(new_data))
@@ -28,7 +28,7 @@
 		holder.on_data_written()
 
 // This randomizes the color.
-/datum/integrated_io/color/scramble()
+datum/integrated_io/color/scramble()
 	if(!is_valid())
 		return
 	var/new_data
@@ -40,10 +40,10 @@
 	data = new_data
 	push_data()
 
-/datum/integrated_io/color/display_pin_type()
+datum/integrated_io/color/display_pin_type()
 	return IC_FORMAT_COLOR
 
-/datum/integrated_io/color/display_data(var/input)
+datum/integrated_io/color/display_data(var/input)
 	if(!isnull(data))
 		return "(<font color='[data]'>[data]</font>)"
 	return ..()

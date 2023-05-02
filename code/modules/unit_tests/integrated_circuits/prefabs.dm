@@ -1,7 +1,7 @@
-/datum/unit_test/integrated_circuit_prefabs_shall_respect_complexity_and_size_contraints
+datum/unit_test/integrated_circuit_prefabs_shall_respect_complexity_and_size_contraints
 	name = "Integrated Circuit Prefabs Shall Respect Complexity and Size Constraints"
 
-/datum/unit_test/integrated_circuit_prefabs_shall_respect_complexity_and_size_contraints/start_test()
+datum/unit_test/integrated_circuit_prefabs_shall_respect_complexity_and_size_contraints/start_test()
 	var/list/failed_prefabs = list()
 	for(var/prefab_type in subtypesof(/singleton/prefab/ic_assembly))
 		var/singleton/prefab/ic_assembly/prefab = decls_repository.get_decl(prefab_type)
@@ -28,10 +28,10 @@
 
 	return 1
 
-/datum/unit_test/integrated_circuit_prefabs_shall_not_fail_to_create
+datum/unit_test/integrated_circuit_prefabs_shall_not_fail_to_create
 	name = "Integrated Circuit Prefabs Shall Not Fail To Create"
 
-/datum/unit_test/integrated_circuit_prefabs_shall_not_fail_to_create/start_test()
+datum/unit_test/integrated_circuit_prefabs_shall_not_fail_to_create/start_test()
 	var/list/failed_prefabs = list()
 	for(var/prefab_type in subtypesof(/singleton/prefab/ic_assembly))
 		var/singleton/prefab/ic_assembly/prefab = decls_repository.get_decl(prefab_type)

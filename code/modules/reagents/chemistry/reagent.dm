@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
-/proc/build_name2reagent()
+proc/build_name2reagent()
 	. = list()
 	for (var/t in subtypesof(/datum/reagent))
 		var/datum/reagent/R = t
@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 			.[ckey(initial(R.name))] = t
 
 
-/datum/reagent
+datum/reagent
 	abstract_type = /datum/reagent
 
 	//? core
@@ -79,24 +79,24 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	/// forced sort ordering in its category - falls back to name otherwise.
 	var/wiki_sort = 0
 
-/datum/reagent/proc/remove_self(var/amount) // Shortcut
+datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)
 		holder.remove_reagent(id, amount)
 
 /// This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays. The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
-/datum/reagent/proc/touch_mob(mob/M, amount)
+datum/reagent/proc/touch_mob(mob/M, amount)
 	return
 
 /// Acid melting, cleaner cleaning, etc
-/datum/reagent/proc/touch_obj(obj/O, amount)
+datum/reagent/proc/touch_obj(obj/O, amount)
 	return
 
 /// Cleaner cleaning, lube lubbing, etc, all go here
-/datum/reagent/proc/touch_turf(turf/T, amount)
+datum/reagent/proc/touch_turf(turf/T, amount)
 	return
 
 /// Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
-/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location, speed_mult = 1, force_allow_dead)
+datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location, speed_mult = 1, force_allow_dead)
 	if(!istype(M))
 		return
 	if(!affects_dead && M.stat == DEAD && !force_allow_dead)
@@ -212,14 +212,14 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	remove_self(removed)
 	return
 
-/datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, removed)
 	return
 
-/datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, removed)
+datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, removed)
 	M.bloodstr.add_reagent(id, removed)
 	return
 
-/datum/reagent/proc/handle_vampire(var/mob/living/carbon/M, var/alien, var/removed, var/is_vampire)
+datum/reagent/proc/handle_vampire(var/mob/living/carbon/M, var/alien, var/removed, var/is_vampire)
 	if(blood_content > 0 && is_vampire)
 		#define blud_warn_timer 3000
 		if(blood_content < 4) //Are we drinking real blood or something else?
@@ -230,10 +230,10 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 				return
 		M.nutrition += removed * blood_content //We should always be able to process real blood.
 
-/datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, removed)
 	return
 
-/datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.
+datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.
 	if(alien == IS_DIONA)
 		return
 	if(ishuman(M))
@@ -241,38 +241,38 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		overdose_mod *= H.species.chemOD_mod
 	M.adjustToxLoss(removed * overdose_mod)
 
-/datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.
+datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.
 	if(!isnull(newdata))
 		data = newdata
 	return
 
-/datum/reagent/proc/mix_data(var/newdata, var/newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
+datum/reagent/proc/mix_data(var/newdata, var/newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
 	return
 
-/datum/reagent/proc/get_data() // Just in case you have a reagent that handles data differently.
+datum/reagent/proc/get_data() // Just in case you have a reagent that handles data differently.
 	if(data && istype(data, /list))
 		return data.Copy()
 	else if(data)
 		return data
 	return null
 
-/datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
+datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	holder = null
 	. = ..()
 
 /* DEPRECATED - TODO: REMOVE EVERYWHERE */
 
-/datum/reagent/proc/reaction_turf(var/turf/target, amt)
+datum/reagent/proc/reaction_turf(var/turf/target, amt)
 	touch_turf(target, amt)
 
-/datum/reagent/proc/reaction_obj(var/obj/target, amt)
+datum/reagent/proc/reaction_obj(var/obj/target, amt)
 	touch_obj(target, amt)
 
-/datum/reagent/proc/reaction_mob(var/mob/target, amt)
+datum/reagent/proc/reaction_mob(var/mob/target, amt)
 	touch_mob(target, amt)
 
-/datum/reagent/proc/on_move(mob/M)
+datum/reagent/proc/on_move(mob/M)
 	return
 
-/datum/reagent/proc/on_update(atom/A)
+datum/reagent/proc/on_update(atom/A)
 	return

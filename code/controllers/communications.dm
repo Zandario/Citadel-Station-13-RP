@@ -158,7 +158,7 @@ var/list/ANTAG_FREQS = list(SYND_FREQ)
 //Department channels, arranged lexically
 var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ, TRADE_FREQ)
 
-/proc/frequency_span_class(var/frequency)
+proc/frequency_span_class(var/frequency)
 	// Antags!
 	if (frequency in ANTAG_FREQS)
 		return "syndradio"
@@ -215,19 +215,19 @@ var/const/RADIO_MAGNETS = "radio_magnet"
 
 var/global/datum/controller/radio/radio_controller
 
-/hook/startup/proc/createRadioController()
+hook/startup/proc/createRadioController()
 	radio_controller = new /datum/controller/radio()
 	return 1
 
 //callback used by objects to react to incoming radio signals
-/obj/proc/receive_signal(datum/signal/signal, receive_method, receive_param)
+obj/proc/receive_signal(datum/signal/signal, receive_method, receive_param)
 	return null
 
 //The global radio controller
-/datum/controller/radio
+datum/controller/radio
 	var/list/datum/radio_frequency/frequencies = list()
 
-/datum/controller/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/radio_filter = null as text|null)
+datum/controller/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/radio_filter = null as text|null)
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 
@@ -239,7 +239,7 @@ var/global/datum/controller/radio/radio_controller
 	frequency.add_listener(device, radio_filter)
 	return frequency
 
-/datum/controller/radio/proc/remove_object(obj/device, old_frequency)
+datum/controller/radio/proc/remove_object(obj/device, old_frequency)
 	var/f_text = num2text(old_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 
@@ -252,7 +252,7 @@ var/global/datum/controller/radio/radio_controller
 
 	return 1
 
-/datum/controller/radio/proc/return_frequency(var/new_frequency as num)
+datum/controller/radio/proc/return_frequency(var/new_frequency as num)
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 
@@ -263,11 +263,11 @@ var/global/datum/controller/radio/radio_controller
 
 	return frequency
 
-/datum/radio_frequency
+datum/radio_frequency
 	var/frequency as num
 	var/list/list/obj/devices = list()
 
-/datum/radio_frequency/proc/post_signal(obj/source as obj|null, datum/signal/signal, var/radio_filter = null as text|null, var/range = null as num|null)
+datum/radio_frequency/proc/post_signal(obj/source as obj|null, datum/signal/signal, var/radio_filter = null as text|null, var/range = null as num|null)
 	var/turf/start_point
 	if(range)
 		start_point = get_turf(source)
@@ -283,7 +283,7 @@ var/global/datum/controller/radio/radio_controller
 			send_to_filter(source, signal, next_filter, start_point, range)
 
 //Sends a signal to all machines belonging to a given filter. Should be called by post_signal()
-/datum/radio_frequency/proc/send_to_filter(obj/source, datum/signal/signal, var/radio_filter, var/turf/start_point = null, var/range = null)
+datum/radio_frequency/proc/send_to_filter(obj/source, datum/signal/signal, var/radio_filter, var/turf/start_point = null, var/range = null)
 	if (range && !start_point)
 		return
 
@@ -299,7 +299,7 @@ var/global/datum/controller/radio/radio_controller
 
 		device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 
-/datum/radio_frequency/proc/add_listener(obj/device as obj, var/radio_filter as text|null)
+datum/radio_frequency/proc/add_listener(obj/device as obj, var/radio_filter as text|null)
 	if (!radio_filter)
 		radio_filter = RADIO_DEFAULT
 	//log_admin("add_listener(device=[device],radio_filter=[radio_filter]) frequency=[frequency]")
@@ -313,7 +313,7 @@ var/global/datum/controller/radio/radio_controller
 	//log_admin("DEBUG: devices_line.len=[devices_line.len]")
 	//log_admin("DEBUG: devices(filter_str).len=[l]")
 
-/datum/radio_frequency/proc/remove_listener(obj/device)
+datum/radio_frequency/proc/remove_listener(obj/device)
 	for (var/devices_filter in devices)
 		var/list/devices_line = devices[devices_filter]
 		devices_line-=device
@@ -322,7 +322,7 @@ var/global/datum/controller/radio/radio_controller
 		if (devices_line.len==0)
 			devices -= devices_filter
 
-/datum/signal
+datum/signal
 	var/obj/source
 
 	var/transmission_method = 0 //unused at the moment
@@ -335,14 +335,14 @@ var/global/datum/controller/radio/radio_controller
 
 	var/frequency = 0
 
-/datum/signal/proc/copy_from(datum/signal/model)
+datum/signal/proc/copy_from(datum/signal/model)
 	source = model.source
 	transmission_method = model.transmission_method
 	data = model.data
 	encryption = model.encryption
 	frequency = model.frequency
 
-/datum/signal/proc/debug_print()
+datum/signal/proc/debug_print()
 	if (source)
 		. = "signal = {source = '[source]' ([source:x],[source:y],[source:z])\n"
 	else

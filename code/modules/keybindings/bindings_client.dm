@@ -1,4 +1,4 @@
-/client
+client
 
 	/// Amount of keydowns in the last keysend checking interval
 	var/client_keysend_amount = 0
@@ -13,7 +13,7 @@
 
 // Clients aren't datums so we have to define these procs indpendently.
 // These verbs are called for all key press and release events
-/client/verb/keyDown(_key as text)
+client/verb/keyDown(_key as text)
 	set instant = TRUE
 	set hidden = TRUE
 
@@ -83,7 +83,7 @@
 	mob.key_focus?.key_down(_key, src)
 
 /// Keyup's all keys held down.
-/client/proc/ForceAllKeysUp()
+client/proc/ForceAllKeysUp()
 	// simulate a user releasing all keys except for the mod keys. groan. i hate this. thanks, byond. why aren't keyups able to be forced to fire on macro change aoaoaoao.
 	// groan
 	for(var/key in keys_held)		// all of these won't be the 3 mod keys.
@@ -91,7 +91,7 @@
 			continue
 		keyUp("[key]")
 
-/client/verb/keyUp(_key as text)
+client/verb/keyUp(_key as text)
 	set instant = TRUE
 	set hidden = TRUE
 
@@ -144,12 +144,12 @@
 	mob.key_focus?.key_up(_key, src)
 
 // Called every game tick
-/client/keyLoop()
+client/keyLoop()
 	if(mob.key_intercept?.keyLoop(src))
 		return
 	mob.key_focus?.keyLoop(src)
 
-/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+client/proc/update_movement_keys(datum/preferences/direct_prefs)
 	var/datum/preferences/D = prefs || direct_prefs
 	if(!D?.key_bindings)
 		return

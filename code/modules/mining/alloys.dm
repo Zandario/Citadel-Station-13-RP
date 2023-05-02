@@ -2,13 +2,13 @@
 //eg. steel comes after plasteel because plasteel's ingredients contain the ingredients for steel and
 //it would be impossible to produce.
 
-/datum/alloy
+datum/alloy
 	var/list/requires
 	var/product_mod = 1
 	var/product
 	var/metaltag
 
-/datum/alloy/durasteel
+datum/alloy/durasteel
 	metaltag = "durasteel"
 	requires = list(
 		MAT_DIAMOND = 1,
@@ -19,7 +19,7 @@
 	product_mod = 0.3
 	product = /obj/item/stack/material/durasteel
 
-/datum/alloy/plasteel
+datum/alloy/plasteel
 	metaltag = "plasteel"
 	requires = list(
 		MAT_PLATINUM = 1,
@@ -29,7 +29,7 @@
 	product_mod = 0.3
 	product = /obj/item/stack/material/plasteel
 
-/datum/alloy/steel
+datum/alloy/steel
 	metaltag = MAT_STEEL
 	requires = list(
 		MAT_CARBON = 1,
@@ -37,7 +37,7 @@
 		)
 	product = /obj/item/stack/material/steel
 
-/datum/alloy/borosilicate
+datum/alloy/borosilicate
 	metaltag = "borosilicate glass"
 	requires = list(
 		MAT_PLATINUM = 1,
@@ -45,7 +45,7 @@
 		)
 	product = /obj/item/stack/material/glass/phoronglass
 
-/datum/alloy/brass
+datum/alloy/brass
 	metaltag = "brass"
 	requires = list(
 		MAT_COPPER = 1,

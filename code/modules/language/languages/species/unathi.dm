@@ -1,4 +1,4 @@
-/datum/language/unathi
+datum/language/unathi
 	id = LANGUAGE_ID_UNATHI
 	name = LANGUAGE_UNATHI
 	translation_class = TRANSLATION_CLASS_DEFAULT_CORE_RACE
@@ -20,10 +20,9 @@
 	)
 	shorthand = "ST"
 
-/datum/language/unathi/get_random_name()
+datum/language/unathi/get_random_name()
 
 	var/new_name = ..()
 	while(findtextEx(new_name,"sss",1,null))
 		new_name = replacetext(new_name, "sss", "ss")
 	return capitalize(new_name)
-

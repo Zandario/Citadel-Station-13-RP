@@ -2,7 +2,7 @@
  * This species exists for the use of the Alien Reality pod, though can be used for events or other things.
  */
 
-/datum/species/shapeshifter/replicant
+datum/species/shapeshifter/replicant
 	uid = SPECIES_ID_REPLICANT
 	name = SPECIES_REPLICANT
 	name_plural = "Replicants"
@@ -65,7 +65,7 @@
 		O_INTESTINE = /obj/item/organ/internal/intestine,
 	)
 
-/datum/species/shapeshifter/replicant/alpha
+datum/species/shapeshifter/replicant/alpha
 	name = SPECIES_REPLICANT_ALPHA
 	uid = SPECIES_ID_REPLICANT_ALPHA
 	blurb = "The remnants of some lost or dead race's research. These seem caustic."
@@ -104,7 +104,7 @@
 		O_INTESTINE = /obj/item/organ/internal/intestine
 		)
 
-/datum/species/shapeshifter/replicant/beta
+datum/species/shapeshifter/replicant/beta
 	name = SPECIES_REPLICANT_BETA
 	uid = SPECIES_ID_REPLICANT_BETA
 	blurb = "The remnants of some lost or dead race's research. These seem elastic."

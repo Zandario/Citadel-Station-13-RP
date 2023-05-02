@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated with a list of all the carp spawned by carp events
 
-/datum/event/carp_migration
+datum/event/carp_migration
 	var/no_show = FALSE // Carp are laggy, so if there is too much stuff going on we're going to dial it down.
 	var/spawned_carp	//for debugging purposes only?
 	var/carp_per_z = 8
@@ -8,11 +8,11 @@ GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated wi
 	has_skybox_image = FALSE
 	var/list/players = list()
 
-/datum/event/carp_migration/setup()
+datum/event/carp_migration/setup()
 	announceWhen = rand(5, 10)
 	endWhen += severity*25
 
-/datum/event/carp_migration/proc/count_carps()
+datum/event/carp_migration/proc/count_carps()
 	var/total_carps
 	var/local_carps
 	for(var/Z in GLOB.carp_count)
@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated wi
 	else
 		no_show = FALSE
 
-/datum/event/carp_migration/start()
+datum/event/carp_migration/start()
 	count_carps()
 	if(no_show && prob(95))
 		return
@@ -34,14 +34,14 @@ GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated wi
 		spawn_carp()
 
 
-/datum/event/carp_migration/announce()
+datum/event/carp_migration/announce()
 	if(severity > EVENT_LEVEL_MODERATE)
 		command_announcement.Announce("A massive migration of unknown biological entities has been detected in the vicinity of the [location_name()]. Exercise external operations with caution.")
 	else
 		command_announcement.Announce("A large migration of unknown biological entities has been detected in the vicinity of the [location_name()]. Caution is advised.")
 
 
-/datum/event/carp_migration/proc/spawn_carp(var/num_groups, var/group_size_min, var/group_size_max, var/dir, var/speed)
+datum/event/carp_migration/proc/spawn_carp(var/num_groups, var/group_size_min, var/group_size_max, var/dir, var/speed)
 	var/Z = pick(affecting_z)
 
 	if(!dir)
@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated wi
 		if(no_show)
 			break
 
-/proc/get_random_edge_turf(var/dir, var/clearance = TRANSITIONEDGE + 1, var/Z)
+proc/get_random_edge_turf(var/dir, var/clearance = TRANSITIONEDGE + 1, var/Z)
 	if(!dir)
 		return
 
@@ -84,21 +84,21 @@ GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated wi
 		if(WEST)
 			return locate(clearance, rand(clearance, world.maxy - clearance), Z)
 
-/datum/event/carp_migration/proc/check_gib(var/mob/living/simple_mob/hostile/carp/M)	//awesome road kills
+datum/event/carp_migration/proc/check_gib(var/mob/living/simple_mob/hostile/carp/M)	//awesome road kills
 	if(M.health <= 0 && prob(60))
 		M.gib()
 
-/datum/event/carp_migration/proc/reduce_carp_count(var/mob/M)
+datum/event/carp_migration/proc/reduce_carp_count(var/mob/M)
 	for(var/Z in affecting_z)
 		var/list/L = GLOB.carp_count["[Z]"]
 		if(M in L)
 			LAZYREMOVE(L,M)
 			break
 
-/datum/event/carp_migration/end()
+datum/event/carp_migration/end()
 	message_admins("Carp migration event spawned [spawned_carp] carp.")
 
 
 // Overmap version
-/datum/event/carp_migration/overmap/announce()
+datum/event/carp_migration/overmap/announce()
 	return

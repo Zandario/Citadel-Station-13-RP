@@ -1,7 +1,7 @@
-/datum/unit_test/emoting
+datum/unit_test/emoting
 	var/emotes_used = 0
 
-/datum/unit_test/emoting/Run()
+datum/unit_test/emoting/Run()
 	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
 	RegisterSignal(human, COMSIG_MOB_EMOTE, .proc/on_emote_used)
 
@@ -21,5 +21,5 @@
 	human.say("*deathgasp")
 	TEST_ASSERT_EQUAL(emotes_used, 2, "Human could not deathgasp while unconscious")
 
-/datum/unit_test/emoting/proc/on_emote_used()
+datum/unit_test/emoting/proc/on_emote_used()
 	emotes_used += 1

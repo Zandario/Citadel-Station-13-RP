@@ -1,21 +1,21 @@
 /****************
 * Announcements *
 *****************/
-/datum/uplink_item/abstract/announcements
+datum/uplink_item/abstract/announcements
 	category = /datum/uplink_category/services
 	blacklisted = 1
 
-/datum/uplink_item/abstract/announcements/buy(var/obj/item/uplink/U, var/mob/user)
+datum/uplink_item/abstract/announcements/buy(var/obj/item/uplink/U, var/mob/user)
 	. = ..()
 	if(.)
 		log_and_message_admins("has triggered a falsified [src]", user)
 
-/datum/uplink_item/abstract/announcements/fake_centcom
+datum/uplink_item/abstract/announcements/fake_centcom
 	name = "Command Update Announcement"
 	desc = "Causes a falsified Command Update. Triggers immediately after supplying additional data."
 	item_cost = 40
 
-/datum/uplink_item/abstract/announcements/fake_centcom/extra_args(mob/user)
+datum/uplink_item/abstract/announcements/fake_centcom/extra_args(mob/user)
 	var/title = sanitize(input("Enter your announcement title.", "Announcement Title") as null|text)
 	if(!title)
 		return
@@ -24,7 +24,7 @@
 		return
 	return list("title" = title, "message" = message)
 
-/datum/uplink_item/abstract/announcements/fake_centcom/get_goods(obj/item/uplink/U, loc, mob/user, list/args)
+datum/uplink_item/abstract/announcements/fake_centcom/get_goods(obj/item/uplink/U, loc, mob/user, list/args)
 	for (var/obj/machinery/computer/communications/C in GLOB.machines)
 		if(! (C.machine_stat & (BROKEN|NOPOWER)) )
 			var/obj/item/paper/P = new /obj/item/paper( C.loc )
@@ -38,12 +38,12 @@
 	command_announcement.Announce(args["message"], args["title"])
 	return 1
 
-/datum/uplink_item/abstract/announcements/fake_crew_arrival
+datum/uplink_item/abstract/announcements/fake_crew_arrival
 	name = "Crew Arrival Announcement/Records"
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
 	item_cost = 30
 
-/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user, var/list/args)
+datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user, var/list/args)
 	if(!user)
 		return 0
 
@@ -96,21 +96,21 @@
 	AnnounceArrivalSimple(general.fields["name"], general.fields["rank"])
 	return 1
 
-/datum/uplink_item/abstract/announcements/fake_ion_storm
+datum/uplink_item/abstract/announcements/fake_ion_storm
 	name = "Ion Storm Announcement"
 	desc = "Interferes with the station's ion sensors. Triggers immediately upon investment."
 	item_cost = 10
 
-/datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/uplink/U, var/loc)
+datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/uplink/U, var/loc)
 	ion_storm_announcement()
 	return 1
 
-/datum/uplink_item/abstract/announcements/fake_radiation
+datum/uplink_item/abstract/announcements/fake_radiation
 	name = "Radiation Storm Announcement"
 	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
 	item_cost = 15
 
-/datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/uplink/U, var/loc)
+datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/uplink/U, var/loc)
 	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
 	new/datum/event/radiation_storm/syndicate(EM)
 	return 1

@@ -1,4 +1,4 @@
-/datum/gm_action/ionstorm
+datum/gm_action/ionstorm
 	name = "ion storm"
 	departments = list(DEPARTMENT_SYNTHETIC)
 	var/botEmagChance = 0.5
@@ -6,7 +6,7 @@
 	var/active = FALSE
 	length = 1 MINUTE
 
-/datum/gm_action/ionstorm/set_up()
+datum/gm_action/ionstorm/set_up()
 	length = rand(length, length * 10)
 //		command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions", "Anomaly Alert")
 	for (var/mob/living/carbon/human/player in GLOB.player_list)
@@ -21,7 +21,7 @@
 		target.add_ion_law(law)
 		target.show_laws()
 
-/datum/gm_action/ionstorm/announce()
+datum/gm_action/ionstorm/announce()
 	if(message_servers)
 		for (var/obj/machinery/message_server/MS in message_servers)
 			MS.spamfilter.Cut()
@@ -31,7 +31,7 @@
 					"admin","ponies","heresy","meow","Pun Pun","monkey","Ian","moron","pizza","message","spam",\
 					"director", "Hello", "Hi!"," ","nuke","crate","dwarf","xeno")
 
-/datum/gm_action/ionstorm/start()
+datum/gm_action/ionstorm/start()
 	while(active)
 		sleep(1)
 		if(botEmagChance)
@@ -39,12 +39,12 @@
 				if(prob(botEmagChance))
 					bot.emag_act(1)
 
-/datum/gm_action/ionstorm/end()
+datum/gm_action/ionstorm/end()
 	spawn(rand(5000,8000))
 		if(prob(50))
 			ion_storm_announcement()
 
-/datum/gm_action/ionstorm/get_weight()
+datum/gm_action/ionstorm/get_weight()
 	var/bots = metric.count_people_in_department(DEPARTMENT_SYNTHETIC)
 	var/weight = 5 + (bots * 20)
 	return weight

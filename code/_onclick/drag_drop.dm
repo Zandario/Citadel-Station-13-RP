@@ -6,7 +6,7 @@
 	almost anything into a trash can.
 */
 
-/atom/proc/CanMouseDrop(atom/over, var/mob/user = usr)
+atom/proc/CanMouseDrop(atom/over, var/mob/user = usr)
 	if(!user || !over)
 		return FALSE
 	if(user.incapacitated())
@@ -15,7 +15,7 @@
 		return FALSE // should stop you from dragging through windows
 	return TRUE
 
-/atom/MouseDrop(atom/over_object, src_location, over_location, src_control, over_control, params)
+atom/MouseDrop(atom/over_object, src_location, over_location, src_control, over_control, params)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	// cache incase thsi somehow gets lost
 	var/user = usr
@@ -53,7 +53,7 @@
  * - proximity - can we reach the thing?
  * - params - click params
  */
-/atom/proc/OnMouseDrop(atom/over, mob/user, proximity, params)
+atom/proc/OnMouseDrop(atom/over, mob/user, proximity, params)
 	return NONE
 
 /**
@@ -62,7 +62,7 @@
  * base proc returns -1 to signal we should continue onto new procs
  * this is awful but whatever
  */
-/atom/proc/OnMouseDropLegacy(atom/over_object, src_location, over_location, src_control, over_control, params)
+atom/proc/OnMouseDropLegacy(atom/over_object, src_location, over_location, src_control, over_control, params)
 	return -1
 
 /**
@@ -74,7 +74,7 @@
  * - proximity - can we reach the thing?
  * - params - click params
  */
-/atom/proc/MouseDroppedOn(atom/dropping, mob/user, proximity, params)
+atom/proc/MouseDroppedOn(atom/dropping, mob/user, proximity, params)
 	return NONE
 
 /**
@@ -82,10 +82,10 @@
  * legacy because this doesn't have checks for proximity param
  * do not continue overriding this
  */
-/atom/proc/MouseDroppedOnLegacy(atom/dropping, mob/user, params)
+atom/proc/MouseDroppedOnLegacy(atom/dropping, mob/user, params)
 	return
 
-/client
+client
 	var/list/atom/selected_target[2]
 	var/obj/item/active_mousedown_item = null
 	var/mouseParams = ""
@@ -95,7 +95,7 @@
 	var/middragtime = 0
 	var/atom/middragatom
 
-/client/MouseDown(object, location, control, params)
+client/MouseDown(object, location, control, params)
 	/*
 	if (mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
@@ -111,7 +111,7 @@
 	if(active_mousedown_item)
 		active_mousedown_item.onMouseDown(object, location, params, mob)
 
-/client/MouseUp(object, location, control, params)
+client/MouseUp(object, location, control, params)
 	/*
 	if (mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
@@ -121,54 +121,54 @@
 		active_mousedown_item.onMouseUp(object, location, params, mob)
 		active_mousedown_item = null
 
-/mob/proc/CanMobAutoclick(object, location, params)
+mob/proc/CanMobAutoclick(object, location, params)
 
-/mob/living/carbon/CanMobAutoclick(atom/object, location, params)
+mob/living/carbon/CanMobAutoclick(atom/object, location, params)
 	if(!object.IsAutoclickable())
 		return
 	var/obj/item/h = get_active_held_item()
 	if(h)
 		. = h.CanItemAutoclick(object, location, params)
 
-/mob/proc/canMobMousedown(atom/object, location, params)
+mob/proc/canMobMousedown(atom/object, location, params)
 
-/mob/living/carbon/canMobMousedown(atom/object, location, params)
+mob/living/carbon/canMobMousedown(atom/object, location, params)
 	var/obj/item/H = get_active_held_item()
 	if(H)
 		. = H.canItemMouseDown(object, location, params)
 
-/obj/item/proc/CanItemAutoclick(object, location, params)
+obj/item/proc/CanItemAutoclick(object, location, params)
 
-/obj/item/proc/canItemMouseDown(object, location, params)
+obj/item/proc/canItemMouseDown(object, location, params)
 	if(canMouseDown)
 		return src
 
-/obj/item/proc/onMouseDown(object, location, params, mob)
+obj/item/proc/onMouseDown(object, location, params, mob)
 	return
 
-/obj/item/proc/onMouseUp(object, location, params, mob)
+obj/item/proc/onMouseUp(object, location, params, mob)
 	return
 
-/obj/item
+obj/item
 	var/canMouseDown = FALSE
 
-/obj/item/gun
+obj/item/gun
 	var/automatic = 0 //can gun use it, 0 is no, anything above 0 is the delay between clicks in ds
 
-/obj/item/gun/CanItemAutoclick(object, location, params)
+obj/item/gun/CanItemAutoclick(object, location, params)
 	. = automatic
 
-/atom/proc/IsAutoclickable()
+atom/proc/IsAutoclickable()
 	. = 1
 
-/atom/movable/screen/IsAutoclickable()
+atom/movable/screen/IsAutoclickable()
 	. = 0
 
-/atom/movable/screen/click_catcher/IsAutoclickable()
+atom/movable/screen/click_catcher/IsAutoclickable()
 	. = 1
 
 //Please don't roast me too hard
-/client/MouseMove(object,location,control,params)
+client/MouseMove(object,location,control,params)
 	mouseParams = params
 	mouseLocation = location
 	mouseObject = object
@@ -182,10 +182,10 @@
 		mob.onMouseMove(object, location, control, params)	//CIT CHANGE - ditto
 	..()
 
-/datum/proc/onMouseMove(object, location, control, params)
+datum/proc/onMouseMove(object, location, control, params)
 	return
 
-/client/MouseDrag(src_object,atom/over_object,src_location,over_location,src_control,over_control,params)
+client/MouseDrag(src_object,atom/over_object,src_location,over_location,src_control,over_control,params)
 	var/list/L = params2list(params)
 	if (L["middle"])
 		if (src_object && src_location != over_location)
@@ -205,10 +205,10 @@
 		active_mousedown_item.onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
 
 
-/obj/item/proc/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
+obj/item/proc/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
 	return
 
-/client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
+client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
 	if (middragatom == src_object)
 		middragtime = 0
 		middragatom = null

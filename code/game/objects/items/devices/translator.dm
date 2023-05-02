@@ -1,5 +1,5 @@
 //Universal translator
-/obj/item/universal_translator
+obj/item/universal_translator
 	name = "handheld translator"
 	desc = "This handy device appears to translate the languages it hears into onscreen text for a user."
 	icon = 'icons/obj/device.dmi'
@@ -19,17 +19,17 @@
 	/// allow knowledge transfering
 	var/allow_knowledge_transfer = TRUE
 
-/obj/item/universal_translator/Initialize(mapload)
+obj/item/universal_translator/Initialize(mapload)
 	. = ..()
 	if(ispath(context))
 		set_context(context)
 
-/obj/item/universal_translator/Destroy()
+obj/item/universal_translator/Destroy()
 	if(context)
 		QDEL_NULL(context)
 	return ..()
 
-/obj/item/universal_translator/proc/set_context(datum/translation_context/context_or_path)
+obj/item/universal_translator/proc/set_context(datum/translation_context/context_or_path)
 	if(istype(context, /datum/translation_context/variable/learning))
 		var/datum/translation_context/variable/learning/CTX = context
 		CTX.on_train = null
@@ -40,19 +40,19 @@
 		var/datum/translation_context/variable/learning/CTX = context
 		CTX.on_train = CALLBACK(src, .proc/on_learn)
 
-/obj/item/universal_translator/proc/on_learn(datum/translation_context/context, datum/language/L, old_efficiency)
+obj/item/universal_translator/proc/on_learn(datum/translation_context/context, datum/language/L, old_efficiency)
 	if(old_efficiency)
 		return
 	if(!ismob(loc))
 		return
 	to_chat(loc, SPAN_NOTICE("New language detected. Beginning translation network training."))
 
-/obj/item/universal_translator/examine(mob/user)
+obj/item/universal_translator/examine(mob/user)
 	. = ..()
 	if(cassette_translation)
 		. += SPAN_NOTICE("Use a cassette tape on this to translate the tape's contents where possible.")
 
-/obj/item/universal_translator/attackby(obj/item/I, mob/user)
+obj/item/universal_translator/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/cassette_tape))
 		if(TIMER_COOLDOWN_CHECK(src, CD_INDEX_TAPE_TRANSLATION))
 			user.action_feedback(SPAN_WARNING("[src] cannot translate tapes that fast."), src)
@@ -68,7 +68,7 @@
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return ..()
 
-/obj/item/universal_translator/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/universal_translator/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(!isrobot(target))
@@ -88,7 +88,7 @@
 	var/datum/translation_context/variable/ours = context
 	ours.copy_knowledge(theirs)
 
-/obj/item/universal_translator/attack_self(mob/user)
+obj/item/universal_translator/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -118,7 +118,7 @@
 		icon_state = "[initial(icon_state)]"
 		to_chat(user, "<span class='notice'>You disable \the [src].</span>")
 
-/obj/item/universal_translator/hear_talk(var/mob/speaker, var/message, var/vrb, var/datum/language/language)
+obj/item/universal_translator/hear_talk(var/mob/speaker, var/message, var/vrb, var/datum/language/language)
 	if(!listening || !istype(speaker))
 		return
 
@@ -154,7 +154,7 @@
 			to_chat(L, "<i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[context.attempt_translation(language, speaker, message)]</span>\"")
 
 //Let's try an ear-worn version
-/obj/item/universal_translator/ear
+obj/item/universal_translator/ear
 	name = "translator earpiece"
 	desc = "This handy device appears to translate the languages it hears into another language for a user."
 	icon_state = "earpiece"
@@ -164,21 +164,21 @@
 	audio = 1
 	context = /datum/translation_context/simple/universal_translator
 
-/obj/item/universal_translator/adaptive
+obj/item/universal_translator/adaptive
 	name = "handheld adaptive translator"
 	desc = "This handheld translator has been upgraded with a positronic accelerator, allowing it to \
 		slowly learn certain languages that wasn't originally included."
 	context = /datum/translation_context/variable/learning/universal_translator
 
-/obj/item/universal_translator/ear/adaptive
+obj/item/universal_translator/ear/adaptive
 	name = "omni-translator earpiece"
 	desc = "This earpiece translator has been upgraded with a positronic accelerator, allowing it to \
 		slowly learn certain languages that wasn't originally included."
 	context = /datum/translation_context/variable/learning/universal_translator
 
-/datum/translation_context/simple/universal_translator
+datum/translation_context/simple/universal_translator
 	translation_class = TRANSLATION_CLASSES_STANDARD_TRANSLATE
 
-/datum/translation_context/variable/learning/universal_translator
+datum/translation_context/variable/learning/universal_translator
 	translation_class = TRANSLATION_CLASSES_STANDARD_TRANSLATE
 	translation_class_learn = TRANSLATION_CLASSES_STANDARD_ADAPTIVE

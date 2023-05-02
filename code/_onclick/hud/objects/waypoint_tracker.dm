@@ -1,4 +1,4 @@
-/atom/movable/screen/waypoint_tracker
+atom/movable/screen/waypoint_tracker
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = "CENTER"
 	/// current visible?
@@ -10,7 +10,7 @@
 	/// last angle
 	var/last_angle
 
-/atom/movable/screen/waypoint_tracker/Initialize(mapload)
+atom/movable/screen/waypoint_tracker/Initialize(mapload)
 	. = ..()
 	reset_angle()
 
@@ -18,7 +18,7 @@
  * angle is natural math angle, as in deg clockwise of east
  * NOT "byond angle".
  */
-/atom/movable/screen/waypoint_tracker/proc/set_angle(angle)
+atom/movable/screen/waypoint_tracker/proc/set_angle(angle)
 	if(last_angle == angle)
 		return
 	var/matrix/M = transform
@@ -38,7 +38,7 @@
  * angle is natural math angle, as in deg clockwise of east
  * NOT "byond angle".
  */
-/atom/movable/screen/waypoint_tracker/proc/reset_angle()
+atom/movable/screen/waypoint_tracker/proc/reset_angle()
 	var/matrix/M = matrix()
 	// turn to math deg 0
 	M.Turn(90)
@@ -54,7 +54,7 @@
 /**
  * sets if we're invis/disabled
  */
-/atom/movable/screen/waypoint_tracker/proc/set_disabled(v)
+atom/movable/screen/waypoint_tracker/proc/set_disabled(v)
 	if((!v) == visible)
 		return
 	visible = !v
@@ -63,7 +63,7 @@
 	else
 		screen_loc = null
 
-/atom/movable/screen/waypoint_tracker/gps
+atom/movable/screen/waypoint_tracker/gps
 	icon = 'icons/screen/objects/arrows_32.dmi'
 	icon_state = "europa1"
 	icon_x_dimension = 48

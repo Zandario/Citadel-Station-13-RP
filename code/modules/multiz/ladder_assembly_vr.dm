@@ -2,7 +2,7 @@
 #define CONSTRUCTION_WRENCHED 1
 #define CONSTRUCTION_WELDED 2
 
-/obj/structure/ladder_assembly
+obj/structure/ladder_assembly
 	name = "ladder assembly"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder00"
@@ -14,7 +14,7 @@
 	var/state = 0
 	var/created_name = null
 
-/obj/structure/ladder_assembly/attackby(obj/item/W, mob/user)
+obj/structure/ladder_assembly/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(input(user, "Enter the name for the ladder.", "Ladder Name", src.created_name), MAX_NAME_LEN)
 		if(in_range(src, user))
@@ -77,7 +77,7 @@
 // It must have a matching ladder assembly above and/or below, and both must be welded in place
 // NOTE - Currently this design only supports three story tall ladders.  Its fine for our map tho.
 // A better way would search upwards until finding the top, then call a proc on that to build the string.
-/obj/structure/ladder_assembly/proc/try_construct(mob/user)
+obj/structure/ladder_assembly/proc/try_construct(mob/user)
 	var/obj/structure/ladder_assembly/below
 	var/obj/structure/ladder_assembly/above
 
@@ -125,7 +125,7 @@
 		qdel(above)
 
 // Make them constructable in hand
-/datum/material/steel/generate_recipes()
+datum/material/steel/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("ladder assembly", /obj/structure/ladder_assembly, 4, time = 50, one_per_turf = 1, on_floor = 1)
 

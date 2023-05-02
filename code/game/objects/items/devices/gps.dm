@@ -1,4 +1,4 @@
-/datum/gps_waypoint
+datum/gps_waypoint
 	/// name
 	var/name
 	/// x coord
@@ -8,16 +8,16 @@
 	/// virtual level id from ssmapping
 	var/level_id
 
-/datum/gps_waypoint/proc/locality_equivalent(datum/gps_waypoint/other)
+datum/gps_waypoint/proc/locality_equivalent(datum/gps_waypoint/other)
 	return x == other.x && y == other.y && level_id == other.level_id
 
-/datum/gps_waypoint/proc/same(datum/gps_waypoint/other)
+datum/gps_waypoint/proc/same(datum/gps_waypoint/other)
 	// same
 	// so true oomfie
 	// fr fr bestie
 	return locality_equivalent(other) && name == other.name
 
-/obj/item/gps
+obj/item/gps
 	name = "global positioning system"
 	desc = "Triangulates the approximate co-ordinates using a nearby satellite network."
 	icon = 'icons/obj/gps.dmi'
@@ -53,12 +53,12 @@
 	var/hide_signal = FALSE		// If true, signal is not visible to other GPS devices.
 	var/can_hide_signal = TRUE	// If it can toggle the above var.
 
-/obj/item/gps/Initialize(mapload)
+obj/item/gps/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/gps_signal, gps_tag)
 	toggle_power(on, force = TRUE)
 
-/obj/item/gps/Destroy()
+obj/item/gps/Destroy()
 	stop_tracking()
 	QDEL_NULL(hud_arrow)
 	QDEL_LIST(waypoints)
@@ -66,14 +66,14 @@
 	if(hud_bound)
 		stack_trace("failed to clear hud bound during gc")
 
-/obj/item/gps/update_icon()
+obj/item/gps/update_icon()
 	cut_overlays()
 	if(emped)
 		add_overlay("emp")
 	else if(on)
 		add_overlay("working")
 
-/obj/item/gps/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
+obj/item/gps/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
 	if(raw_edit)
 		return ..()
 	switch(var_name)
@@ -93,20 +93,20 @@
 
 //? we use very simple perspective hooks as mob perspectives shouldn't be deleting
 
-/obj/item/gps/pickup(mob/user, flags, atom/oldLoc)
+obj/item/gps/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	bind_perspective(user.get_perspective())
 
-/obj/item/gps/dropped(mob/user, flags, atom/newLoc)
+obj/item/gps/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	bind_perspective(null)
 
-/obj/item/gps/examine(mob/user)
+obj/item/gps/examine(mob/user)
 	. = ..()
 	. += SPAN_NOTICE("Alt-click to switch it [on? "off" : "on"].")
 
 // todo: better altclick system
-/obj/item/gps/AltClick(mob/user)
+obj/item/gps/AltClick(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -114,7 +114,7 @@
 		return
 	toggle_power(user = user)
 
-/obj/item/gps/attackby(obj/item/I, mob/user, clickchain_flags, list/params)
+obj/item/gps/attackby(obj/item/I, mob/user, clickchain_flags, list/params)
 	if(istype(I, /obj/item/gps))
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
 		var/obj/item/gps/transfer_to = I
@@ -143,7 +143,7 @@
 		transfer_to.push_waypoint_data()
 	return ..()
 
-/obj/item/gps/emp_act(severity)
+obj/item/gps/emp_act(severity)
 	emped = TRUE
 	update_emit()
 	update_icon()
@@ -153,7 +153,7 @@
 		visible_message(SPAN_WARNING("[src] overloads!"), range = MESSAGE_RANGE_COMBAT_SILENCED)
 	emp_timerid = addtimer(CALLBACK(src, /obj/item/gps/proc/reset_emped), 5 MINUTES / severity, TIMER_STOPPABLE)
 
-/obj/item/gps/proc/reset_emped()
+obj/item/gps/proc/reset_emped()
 	if(!emped)
 		return
 	emped = FALSE
@@ -161,14 +161,14 @@
 	update_icon()
 	visible_message(SPAN_WARNING("[src] clicks, resetting itself from the electromagnetic interference."))
 
-/obj/item/gps/attack_self(mob/user)
+obj/item/gps/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	// TODO: ATTACK_SELF REFACTOR
 	ui_interact(user)
 
-/obj/item/gps/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/item/gps/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	if(emped)
 		to_chat(user, SPAN_WARNING("[src] is still spitting out gibberish!"))
 		return
@@ -180,7 +180,7 @@
 /**
  * bind our hud rendering to a perspective
  */
-/obj/item/gps/proc/bind_perspective(datum/perspective/pers)
+obj/item/gps/proc/bind_perspective(datum/perspective/pers)
 	if(pers == hud_bound)
 		return
 	if(hud_bound)
@@ -196,7 +196,7 @@
 /**
  * start tracking a target - either a gps signal or a waypoint
  */
-/obj/item/gps/proc/start_tracking(datum/target)
+obj/item/gps/proc/start_tracking(datum/target)
 	if(!(istype(target, /datum/gps_waypoint) || istype(target, /datum/component/gps_signal)))
 		stop_tracking()
 		return FALSE
@@ -217,7 +217,7 @@
 /**
  * stop tracking a target
  */
-/obj/item/gps/proc/stop_tracking()
+obj/item/gps/proc/stop_tracking()
 	if(!tracking)
 		return FALSE
 	UnregisterSignal(tracking, COMSIG_PARENT_QDELETING)
@@ -227,13 +227,13 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return TRUE
 
-/obj/item/gps/process(delta_time)
+obj/item/gps/process(delta_time)
 	update_tracking()
 
 /**
  * updates tracking target
  */
-/obj/item/gps/proc/update_tracking()
+obj/item/gps/proc/update_tracking()
 	if(!hud_bound || !tracking)
 		return
 	var/angle
@@ -269,14 +269,14 @@
 /**
  * set our tag
  */
-/obj/item/gps/proc/set_tag(new_tag)
+obj/item/gps/proc/set_tag(new_tag)
 	gps_tag = new_tag
 	update_tag()
 
 /**
  * update our tag
  */
-/obj/item/gps/proc/update_tag()
+obj/item/gps/proc/update_tag()
 	var/datum/component/gps_signal/sig = GetComponent(/datum/component/gps_signal)
 	sig.set_gps_tag(gps_tag)
 	if(update_name_tag)
@@ -285,7 +285,7 @@
 /**
  * set power
  */
-/obj/item/gps/proc/toggle_power(new_state = !on, mob/user, force = FALSE)
+obj/item/gps/proc/toggle_power(new_state = !on, mob/user, force = FALSE)
 	if(new_state == on && !force)
 		return
 
@@ -309,27 +309,27 @@
 /**
  * sets if we should transmit
  */
-/obj/item/gps/proc/set_hidden(new_hidden)
+obj/item/gps/proc/set_hidden(new_hidden)
 	hide_signal = new_hidden
 	update_emit()
 
 /**
  * returns if we should transmit
  */
-/obj/item/gps/proc/should_emit()
+obj/item/gps/proc/should_emit()
 	return !hide_signal && on && !emped
 
 /**
  * updates our transmit mode
  */
-/obj/item/gps/proc/update_emit()
+obj/item/gps/proc/update_emit()
 	var/datum/component/gps_signal/sig = GetComponent(/datum/component/gps_signal)
 	sig.set_disabled(!should_emit())
 
 /**
  * encodes waypoint data
  */
-/obj/item/gps/proc/ui_waypoint_data()
+obj/item/gps/proc/ui_waypoint_data()
 	var/list/data = list()
 	for(var/datum/gps_waypoint/point as anything in waypoints)
 		data[++data.len] = list(
@@ -341,14 +341,14 @@
 		)
 	return data
 
-/obj/item/gps/proc/push_waypoint_data()
+obj/item/gps/proc/push_waypoint_data()
 	push_ui_data(data = list("waypoints" = ui_waypoint_data()))
 
-/obj/item/gps/ui_static_data(mob/user)
+obj/item/gps/ui_static_data(mob/user)
 	. = ..()
 	.["waypoints"] = ui_waypoint_data()
 
-/obj/item/gps/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/gps/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 
 	.["on"] = !!on
@@ -386,7 +386,7 @@
 				"name" = sig.gps_tag
 			))
 
-/obj/item/gps/ui_act(action, list/params, datum/tgui/ui)
+obj/item/gps/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -432,7 +432,7 @@
 				return stop_tracking()
 			return start_tracking(D)
 
-/obj/item/gps/proc/add_waypoint(name, x, y, level_id)
+obj/item/gps/proc/add_waypoint(name, x, y, level_id)
 	if(!x || !y || !level_id || !name)
 		return
 	var/datum/gps_waypoint/point = new
@@ -451,7 +451,7 @@
 	waypoints += point
 	push_waypoint_data()
 
-/obj/item/gps/proc/remove_waypoint(datum/gps_waypoint/point)
+obj/item/gps/proc/remove_waypoint(datum/gps_waypoint/point)
 	if(!(point in waypoints))
 		return
 	waypoints -= point
@@ -459,114 +459,114 @@
 		stop_tracking()
 	push_waypoint_data()
 
-/obj/item/gps/on // Defaults to off to avoid polluting the signal list with a bunch of GPSes without owners. If you need to spawn active ones, use these.
+obj/item/gps/on // Defaults to off to avoid polluting the signal list with a bunch of GPSes without owners. If you need to spawn active ones, use these.
 	on = TRUE
 
-/obj/item/gps/command
+obj/item/gps/command
 	icon_state = "gps-com"
 	gps_tag = "COM0"
 
-/obj/item/gps/command/on
+obj/item/gps/command/on
 	on = TRUE
 
-/obj/item/gps/command/blueshield
+obj/item/gps/command/blueshield
 	gps_tag = "BLU0"
 
 
-/obj/item/gps/security
+obj/item/gps/security
 	icon_state = "gps-sec"
 	gps_tag = "SEC0"
 
-/obj/item/gps/security/on
+obj/item/gps/security/on
 	on = TRUE
 
-/obj/item/gps/medical
+obj/item/gps/medical
 	icon_state = "gps-med"
 	gps_tag = "MED0"
 
-/obj/item/gps/medical/on
+obj/item/gps/medical/on
 	on = TRUE
 
-/obj/item/gps/science
+obj/item/gps/science
 	icon_state = "gps-sci"
 	gps_tag = "SCI0"
 
-/obj/item/gps/science/on
+obj/item/gps/science/on
 	on = TRUE
 
-/obj/item/gps/science/rd
+obj/item/gps/science/rd
 	icon_state = "gps-rd"
 	gps_tag = "RD0"
 
-/obj/item/gps/security
+obj/item/gps/security
 	icon_state = "gps-sec"
 	gps_tag = "SEC0"
 
-/obj/item/gps/security/on
+obj/item/gps/security/on
 	on = TRUE
 
-/obj/item/gps/security/hos
+obj/item/gps/security/hos
 	icon_state = "gps-hos"
 	gps_tag = "HOS0"
 
-/obj/item/gps/medical
+obj/item/gps/medical
 	icon_state = "gps-med"
 	gps_tag = "MED0"
 
-/obj/item/gps/medical/on
+obj/item/gps/medical/on
 	on = TRUE
 
-/obj/item/gps/medical/cmo
+obj/item/gps/medical/cmo
 	icon_state = "gps-cmo"
 	gps_tag = "CMO0"
 
-/obj/item/gps/engineering
+obj/item/gps/engineering
 	icon_state = "gps-eng"
 	gps_tag = "ENG0"
 
-/obj/item/gps/engineering/on
+obj/item/gps/engineering/on
 	on = TRUE
 
-/obj/item/gps/engineering/ce
+obj/item/gps/engineering/ce
 	icon_state = "gps-ce"
 	gps_tag = "CE0"
 
-/obj/item/gps/engineering/atmos
+obj/item/gps/engineering/atmos
 	icon_state = "gps-atm"
 	gps_tag = "ATM0"
 
-/obj/item/gps/mining
+obj/item/gps/mining
 	icon_state = "gps-mine"
 	gps_tag = "MINE0"
 	desc = "A positioning system helpful for rescuing trapped or injured miners, keeping one on you at all times while mining might just save your life."
 
-/obj/item/gps/mining/on
+obj/item/gps/mining/on
 	on = TRUE
 
-/obj/item/gps/explorer
+obj/item/gps/explorer
 	icon_state = "gps-exp"
 	gps_tag = "EXP0"
 	desc = "A positioning system helpful for rescuing trapped or injured explorers, keeping one on you at all times while exploring might just save your life."
 
-/obj/item/gps/explorer/on
+obj/item/gps/explorer/on
 	on = TRUE
 
-/obj/item/gps/survival
+obj/item/gps/survival
 	icon_state = "gps-exp"
 	gps_tag = "SOS0"
 	long_range = FALSE
 	local_mode = TRUE
 
-/obj/item/gps/survival/on
+obj/item/gps/survival/on
 	on = TRUE
 
-/obj/item/gps/robot
+obj/item/gps/robot
 	icon_state = "gps-borg"
 	gps_tag = "SYNTH0"
 	desc = "A synthetic internal positioning system. Used as a recovery beacon for damaged synthetic assets, or a collaboration tool for mining or exploration teams."
 	on = TRUE  // On by default.
 
-/obj/item/gps/internal // Base type for immobile/internal GPS units.
+obj/item/gps/internal // Base type for immobile/internal GPS units.
 	icon_state = "internal"
 	gps_tag = "Eerie Signal"
 	desc = "Report to a coder immediately."
@@ -574,15 +574,15 @@
 	on = TRUE  // Meant to point to a location, so it needs to be on.
 	anchored = TRUE
 
-/obj/item/gps/internal/base
+obj/item/gps/internal/base
 	gps_tag = "NT_BASE"
 	desc = "A homing signal from NanoTrasen's outpost."
 
-/obj/item/gps/internal/poi
+obj/item/gps/internal/poi
 	gps_tag = "Unidentified Signal"
 	desc = "A signal that seems forboding."
 
-/obj/item/gps/syndie
+obj/item/gps/syndie
 	icon_state = "gps-syndie"
 	gps_tag = "NULL"
 	desc = "A positioning system that has extended range and can detect other GPS device signals without revealing its own. How that works is best left a mystery."

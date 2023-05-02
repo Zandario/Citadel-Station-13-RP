@@ -1,4 +1,4 @@
-/obj/item/storage/lockbox
+obj/item/storage/lockbox
 	name = "lockbox"
 	desc = "A locked box."
 	icon_state = "lockbox+l"
@@ -15,7 +15,7 @@
 	var/icon_broken = "lockbox+b"
 
 
-/obj/item/storage/lockbox/attackby(obj/item/W, mob/user)
+obj/item/storage/lockbox/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/card/id))
 		if(src.broken)
 			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
@@ -47,14 +47,14 @@
 	return
 
 
-/obj/item/storage/lockbox/show_to(mob/user)
+obj/item/storage/lockbox/show_to(mob/user)
 	if(locked)
 		to_chat(user, "<span class='warning'>It's locked!</span>")
 	else
 		..()
 	return
 
-/obj/item/storage/lockbox/emag_act(remaining_charges, mob/user, emag_source, visual_feedback = "", audible_feedback = "")
+obj/item/storage/lockbox/emag_act(remaining_charges, mob/user, emag_source, visual_feedback = "", audible_feedback = "")
 	if(!broken)
 		if(visual_feedback)
 			visual_feedback = "<span class='warning'>[visual_feedback]</span>"
@@ -72,7 +72,7 @@
 		visible_message(visual_feedback, audible_feedback)
 		return 1
 
-/obj/item/storage/lockbox/loyalty
+obj/item/storage/lockbox/loyalty
 	name = "lockbox of loyalty implants"
 	req_access = list(ACCESS_SECURITY_EQUIPMENT)
 	starts_with = list(
@@ -80,13 +80,13 @@
 		/obj/item/implanter/loyalty,
 	)
 
-/obj/item/storage/lockbox/clusterbang
+obj/item/storage/lockbox/clusterbang
 	name = "lockbox of clusterbangs"
 	desc = "You have a bad feeling about opening this."
 	req_access = list(ACCESS_SECURITY_EQUIPMENT)
 	starts_with = list(/obj/item/grenade/flashbang/clusterbang)
 
-/obj/item/storage/lockbox/medal
+obj/item/storage/lockbox/medal
 	name = "lockbox of medals"
 	desc = "A lockbox filled with commemorative medals, it has the NanoTrasen logo stamped on it."
 	req_access = list(ACCESS_COMMAND_BRIDGE)
@@ -102,7 +102,7 @@
 	)
 
 //Exploration "Gimmick" Boxes
-/obj/item/storage/lockbox/colonial
+obj/item/storage/lockbox/colonial
 	name = "Colonial Equipment Pack"
 	req_access = list(ACCESS_GENERAL_PATHFINDER)
 	storage_slots = 34
@@ -118,7 +118,7 @@
 		/obj/item/reagent_containers/food/drinks/tea = 8,
 	)
 
-/obj/item/storage/lockbox/gateway
+obj/item/storage/lockbox/gateway
 	name = "Gateway Guardian Pack"
 	req_access = list(ACCESS_GENERAL_PATHFINDER)
 	storage_slots = 24
@@ -132,7 +132,7 @@
 		/obj/item/ammo_magazine/m9mm = 2,
 	)
 
-/obj/item/storage/lockbox/cowboy
+obj/item/storage/lockbox/cowboy
 	name = "Cyan Posse Pack"
 	req_access = list(ACCESS_GENERAL_PATHFINDER)
 	storage_slots = 33
@@ -151,7 +151,7 @@
 		/obj/item/reagent_containers/food/snacks/baschbeans = 4,
 	)
 
-/obj/item/storage/lockbox/russian
+obj/item/storage/lockbox/russian
 	name = "Conscript Pack"
 	req_access = list(ACCESS_GENERAL_PATHFINDER)
 	storage_slots = 17
@@ -166,7 +166,7 @@
 		/obj/item/reagent_containers/food/drinks/bottle/vodka = 1,
 	)
 
-/obj/item/storage/lockbox/crusade
+obj/item/storage/lockbox/crusade
 	name = "Holy Crusade Pack"
 	req_access = list(ACCESS_GENERAL_PATHFINDER)
 	storage_slots = 34
@@ -179,7 +179,7 @@
 		/obj/item/gun/launcher/crossbow = 1,
 	)
 
-/obj/item/storage/lockbox/maniple
+obj/item/storage/lockbox/maniple
 	name = "Maniple Pack"
 	req_access = list(ACCESS_GENERAL_PATHFINDER)
 	storage_slots = 16
@@ -191,7 +191,7 @@
 		/obj/item/shield/riot/roman = 4,
 	)
 
-/obj/item/storage/lockbox/away
+obj/item/storage/lockbox/away
 	name = "Away Team Pack"
 	req_access = list(ACCESS_GENERAL_PATHFINDER)
 	storage_slots = 17
@@ -205,7 +205,7 @@
 	)
 
 //Plate Harness Kits
-/obj/item/storage/lockbox/limb_plate
+obj/item/storage/lockbox/limb_plate
 	name = "Lightweight Plating Kit"
 	desc = "A lockbox filled with a plate harness and modular limb armor."
 	req_access = list(ACCESS_SECURITY_EQUIPMENT)
@@ -218,7 +218,7 @@
 		/obj/item/clothing/accessory/armor/limb_plate/leg_l,
 	)
 
-/obj/item/storage/lockbox/limb_plate/emt
+obj/item/storage/lockbox/limb_plate/emt
 	name = "Lightweight Plating Kit (Paramedic)"
 	req_access = list(ACCESS_MEDICAL_EQUIPMENT)
 	starts_with = list(

@@ -1,7 +1,7 @@
-/datum/lore/character_background/origin/hegemony/naramadi
+datum/lore/character_background/origin/hegemony/naramadi
  	abstract_type = /datum/lore/character_background/origin/hegemony/naramadi
 
-/datum/lore/character_background/origin/hegemony/naramadi/houses
+datum/lore/character_background/origin/hegemony/naramadi/houses
 	name = "Naramadi Houses"
 	id = "naramadihouses"
 	desc = "The upper class of the Naramadi Ascendancy, the Houses, are what is considered a 'citizen class' of their society. \
@@ -14,7 +14,7 @@
 	language_amount_mod = -1
 	economy_payscale = 1.2
 
-/datum/lore/character_background/origin/hegemony/naramadi/nameless
+datum/lore/character_background/origin/hegemony/naramadi/nameless
 	name = "Nameless"
 	id = "nameless"
 	desc = "While the Houses are the most well known part of the Naramadi Society, and the only ones considered true citizens, \
@@ -27,7 +27,7 @@
 	language_amount_mod = -1
 	economy_payscale = 1.05
 
-/datum/lore/character_background/origin/hegemony/naramadi/exiles
+datum/lore/character_background/origin/hegemony/naramadi/exiles
 	name = "Naramadi Exiles"
 	id = "naramadi_exiles"
 	desc = "Exile is considered the last course for punishments' within the isolationist Ascendancy. \

@@ -1,4 +1,4 @@
-/datum/species/human
+datum/species/human
 	id = SPECIES_ID_HUMAN
 	uid = SPECIES_ID_HUMAN
 	category = "Human"
@@ -64,7 +64,7 @@
 	base_color = "#EECEB3"
 	wikilink = "https://citadel-station.net/wikiRP/index.php?title=Race:_Humanity"
 
-/datum/category_item/catalogue/fauna/humans
+datum/category_item/catalogue/fauna/humans
 	name = "Sapients - Humans"
 	desc = {"
 		Humans are a space-faring species hailing originally from the planet Earth in the Sol system.

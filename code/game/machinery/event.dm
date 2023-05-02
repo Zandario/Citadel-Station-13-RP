@@ -12,7 +12,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 
 //Magma Pump Actual
 
-/obj/machinery/magma_pump
+obj/machinery/magma_pump
 	name = "magma pump"
 	desc = "This advanced pump draws magma from subterranean reservoirs and diverts it. Its extremely hardy materials make it difficult to disrupt, once in action."
 	icon = 'icons/obj/machines/event.dmi'
@@ -24,7 +24,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 	active_power_usage = 5
 	var/on = FALSE
 
-/obj/machinery/magma_pump/Initialize(mapload)
+obj/machinery/magma_pump/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/capacitor/hyper(src)
@@ -46,7 +46,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 
 	RefreshParts()
 
-/obj/machinery/magma_pump/legacy_ex_act(severity)
+obj/machinery/magma_pump/legacy_ex_act(severity)
 	switch(severity)
 		if(1)
 			//SN src = null
@@ -65,10 +65,10 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 		else
 	return
 
-/obj/machinery/magma_pump/attack_hand(mob/user, list/params)
+obj/machinery/magma_pump/attack_hand(mob/user, list/params)
 	interact(user)
 
-/obj/machinery/magma_pump/interact(mob/user)
+obj/machinery/magma_pump/interact(mob/user)
 	if(on)
 		visible_message("You start closing the valves on \the [src].", "[usr] starts closing the valves on \the [src].")
 		if(do_after(user, 15))
@@ -91,7 +91,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 			update_icon()
 	return
 
-/obj/machinery/magma_pump/update_icon()
+obj/machinery/magma_pump/update_icon()
 	cut_overlays()
 	if(on)
 		set_light(3, 3, "#FFCC00")
@@ -100,7 +100,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 		set_light(0)
 		icon_state = initial(icon_state)
 
-/obj/structure/broken_pump
+obj/structure/broken_pump
 	name = "broken pump"
 	desc = "This pump has been damaged by a devastating explosion. It is beyond salvaging, but it might be dismantled still."
 	icon = 'icons/obj/machines/event.dmi'
@@ -110,7 +110,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 	var/sliced = FALSE
 	var/gutted = FALSE
 
-/obj/structure/broken_pump/attackby(obj/item/I as obj, mob/user)
+obj/structure/broken_pump/attackby(obj/item/I as obj, mob/user)
 	if(istype(I, /obj/item/weldingtool) && !sliced)
 		var/obj/item/weldingtool/W = I
 		to_chat(user, SPAN_NOTICE("You begin cutting through the exterior plating of \the [src]."))
@@ -151,7 +151,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 		else
 			return
 
-/obj/structure/broken_pump/update_icon()
+obj/structure/broken_pump/update_icon()
 	if(sliced)
 		icon_state = "pump_sliced"
 	if(gutted)
@@ -161,7 +161,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 
 //Magma Reservoir Actual
 
-/obj/machinery/magma_reservoir
+obj/machinery/magma_reservoir
 	name = "magma pump"
 	desc = "A hardy backflow reservoir where the pumps store magma and magma until it can be diverted. Its extremely hardy materials make it difficult to disrupt, once in action."
 	icon = 'icons/obj/machines/event.dmi'
@@ -173,7 +173,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 	active_power_usage = 5
 	var/on = FALSE
 
-/obj/machinery/magma_reservoir/Initialize(mapload)
+obj/machinery/magma_reservoir/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/capacitor/hyper(src)
@@ -192,7 +192,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 
 	RefreshParts()
 
-/obj/machinery/magma_reservoir/legacy_ex_act(severity)
+obj/machinery/magma_reservoir/legacy_ex_act(severity)
 	switch(severity)
 		if(1)
 			//SN src = null
@@ -211,10 +211,10 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 		else
 	return
 
-/obj/machinery/magma_reservoir/attack_hand(mob/user, list/params)
+obj/machinery/magma_reservoir/attack_hand(mob/user, list/params)
 	interact(user)
 
-/obj/machinery/magma_reservoir/interact(mob/user)
+obj/machinery/magma_reservoir/interact(mob/user)
 	if(on)
 		visible_message( \
 			SPAN_NOTICE("You start the draining sequence for \the [src].", \
@@ -239,7 +239,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 			update_icon()
 	return
 
-/obj/machinery/magma_reservoir/update_icon()
+obj/machinery/magma_reservoir/update_icon()
 	cut_overlays()
 	if(on)
 		set_light(3, 3, "#FFCC00")
@@ -248,7 +248,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 		set_light(0)
 		icon_state = initial(icon_state)
 
-/obj/structure/broken_reservoir
+obj/structure/broken_reservoir
 	name = "broken reservoir"
 	desc = "This reservoir has been shattered by a devastating explosion. It is beyond salvaging, but it might be dismantled still."
 	icon = 'icons/obj/machines/event.dmi'
@@ -258,7 +258,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 	var/sliced = FALSE
 	var/gutted = FALSE
 
-/obj/structure/broken_reservoir/attackby(obj/item/I as obj, mob/user)
+obj/structure/broken_reservoir/attackby(obj/item/I as obj, mob/user)
 	if(istype(I, /obj/item/weldingtool) && !sliced)
 		var/obj/item/weldingtool/W = I
 		to_chat(user, SPAN_NOTICE("You begin cutting through the thick glass of the [src]."))
@@ -299,7 +299,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 		else
 			return
 
-/obj/structure/broken_reservoir/update_icon()
+obj/structure/broken_reservoir/update_icon()
 	if(sliced)
 		icon_state = "reservoir_sliced"
 	if(gutted)

@@ -38,7 +38,7 @@
 #define LIGHT_BURNED 3
 
 
-/obj/item/lightreplacer
+obj/item/lightreplacer
 
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs, broken lightbulbs, or sheets of glass."
@@ -60,15 +60,15 @@
 	var/shards_required = 4
 
 
-/obj/item/lightreplacer/Initialize(mapload)
+obj/item/lightreplacer/Initialize(mapload)
 	. = ..()
 	failmsg = "The [name]'s refill light blinks red."
 
-/obj/item/lightreplacer/examine(mob/user)
+obj/item/lightreplacer/examine(mob/user)
 	. = ..()
 	. += "It has [uses] lights remaining."
 
-/obj/item/lightreplacer/attackby(obj/item/W, mob/user)
+obj/item/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == "glass")
 		var/obj/item/stack/G = W
 		if(uses >= max_uses)
@@ -134,7 +134,7 @@
 			return
 
 
-/obj/item/lightreplacer/attack_self(mob/user)
+obj/item/lightreplacer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -148,7 +148,7 @@
 	*/
 	to_chat(usr, "It has [uses] lights remaining.")
 
-/obj/item/lightreplacer/proc/AddShards(amount = 1, user)
+obj/item/lightreplacer/proc/AddShards(amount = 1, user)
 	bulb_shards += amount
 	var/new_bulbs = round(bulb_shards / shards_required)
 	if(new_bulbs > 0)
@@ -159,27 +159,27 @@
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	return new_bulbs
 
-/obj/item/lightreplacer/update_icon()
+obj/item/lightreplacer/update_icon()
 	icon_state = "lightreplacer[emagged]"
 
 
-/obj/item/lightreplacer/proc/Use(var/mob/user)
+obj/item/lightreplacer/proc/Use(var/mob/user)
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 	add_uses(-1)
 	return 1
 
 // Negative numbers will subtract
-/obj/item/lightreplacer/proc/add_uses(var/amount = 1)
+obj/item/lightreplacer/proc/add_uses(var/amount = 1)
 	uses = min(max(uses + amount, 0), max_uses)
 
-/obj/item/lightreplacer/proc/Charge(var/mob/user, var/amount = 1)
+obj/item/lightreplacer/proc/Charge(var/mob/user, var/amount = 1)
 	charge += amount
 	if(charge > 6)
 		add_uses(1)
 		charge = 0
 
-/obj/item/lightreplacer/proc/ReplaceLight(var/obj/machinery/light/target, var/mob/living/U)
+obj/item/lightreplacer/proc/ReplaceLight(var/obj/machinery/light/target, var/mob/living/U)
 
 	if(target.status == LIGHT_OK)
 		to_chat(U, "There is a working [target.get_fitting_name()] already inserted.")
@@ -196,7 +196,7 @@
 		var/obj/item/light/L = new target.light_type()
 		target.insert_bulb(L)
 
-/obj/item/lightreplacer/emag_act(var/remaining_charges, var/mob/user)
+obj/item/lightreplacer/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
 	playsound(src.loc, "sparks", 100, 1)
 	update_icon()
@@ -204,7 +204,7 @@
 
 //Can you use it?
 
-/obj/item/lightreplacer/proc/CanUse(var/mob/living/user)
+obj/item/lightreplacer/proc/CanUse(var/mob/living/user)
 	src.add_fingerprint(user)
 	//Not sure what else to check for. Maybe if clumsy?
 	if(uses > 0)

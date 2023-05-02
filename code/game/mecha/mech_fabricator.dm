@@ -1,4 +1,4 @@
-/obj/machinery/mecha_part_fabricator
+obj/machinery/mecha_part_fabricator
 	icon = 'icons/obj/machines/fabricators/robotics.dmi'
 	icon_state = "mechfab"
 	base_icon_state = "mechfab"
@@ -90,7 +90,7 @@
 		"Augments"
 		)
 
-/obj/machinery/mecha_part_fabricator/Initialize(mapload)
+obj/machinery/mecha_part_fabricator/Initialize(mapload)
 	. = ..()
 
 	//Go through all materials, and add them to the possible storage, but hide them unless we contain them.
@@ -104,14 +104,14 @@
 
 	files = new /datum/research(src) //Setup the research data holder.
 
-/obj/machinery/mecha_part_fabricator/update_icon_state()
+obj/machinery/mecha_part_fabricator/update_icon_state()
 	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "[base_icon_state]-off"
 	else
 		icon_state = base_icon_state
 
-/obj/machinery/mecha_part_fabricator/update_overlays()
+obj/machinery/mecha_part_fabricator/update_overlays()
 	. = ..()
 	cut_overlays()
 	if(panel_open)
@@ -119,12 +119,12 @@
 	if(printing)
 		add_overlay("[base_icon_state]-active")
 
-/obj/machinery/mecha_part_fabricator/dismantle()
+obj/machinery/mecha_part_fabricator/dismantle()
 	for(var/f in materials)
 		eject_materials(f, -1)
 	..()
 
-/obj/machinery/mecha_part_fabricator/RefreshParts()
+obj/machinery/mecha_part_fabricator/RefreshParts()
 	res_max_amount = 0
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		res_max_amount += M.rating * 100000 //200k -> 600k
@@ -145,7 +145,7 @@
   * * D - Design datum to get information on.
   * * categories - Boolean, whether or not to parse snowflake categories into the part information list.
   */
-/obj/machinery/mecha_part_fabricator/proc/output_part_info(datum/design/D, var/categories = FALSE)
+obj/machinery/mecha_part_fabricator/proc/output_part_info(datum/design/D, var/categories = FALSE)
 	var/cost = list()
 	for(var/c in D.materials)
 		cost[c] = get_resource_cost_w_coeff(D, D.materials[c])
@@ -215,7 +215,7 @@
   * Returns null if there is no material container available.
   * List format is list(material_name = list(amount = ..., ref = ..., etc.))
   */
-/obj/machinery/mecha_part_fabricator/proc/output_available_resources()
+obj/machinery/mecha_part_fabricator/proc/output_available_resources()
 	var/list/material_data = list()
 
 	for(var/mat_id in materials)
@@ -236,7 +236,7 @@
   *
   * Adds the overlay to show the fab working and sets active power usage settings.
   */
-/obj/machinery/mecha_part_fabricator/proc/on_start_printing()
+obj/machinery/mecha_part_fabricator/proc/on_start_printing()
 	use_power = USE_POWER_ACTIVE
 	printing = TRUE
 	update_appearance()
@@ -246,7 +246,7 @@
   *
   * Removes the overlay to show the fab working and sets idle power usage settings. Additionally resets the description and turns off queue processing.
   */
-/obj/machinery/mecha_part_fabricator/proc/on_finish_printing()
+obj/machinery/mecha_part_fabricator/proc/on_finish_printing()
 	use_power = USE_POWER_IDLE
 	desc = initial(desc)
 	printing = FALSE
@@ -259,7 +259,7 @@
   * Returns a list of k,v resources with their amounts.
   * * D - Design datum to calculate the modified resource cost of.
   */
-/obj/machinery/mecha_part_fabricator/proc/get_resources_w_coeff(datum/design/D)
+obj/machinery/mecha_part_fabricator/proc/get_resources_w_coeff(datum/design/D)
 	var/list/resources = list()
 	for(var/mat_id in D.materials)
 		resources[mat_id] = get_resource_cost_w_coeff(D, D.materials[mat_id])
@@ -272,7 +272,7 @@
   * Returns TRUE if there are sufficient resources to print the item.
   * * D - Design datum to calculate the modified resource cost of.
   */
-/obj/machinery/mecha_part_fabricator/proc/check_resources(datum/design/D)
+obj/machinery/mecha_part_fabricator/proc/check_resources(datum/design/D)
 	if(length(D.chemicals)) // No reagents storage - no reagent designs.
 		return FALSE
 	. = TRUE
@@ -288,7 +288,7 @@
   * Returns TRUE if the next part has started building.
   * * verbose - Whether the machine should use say() procs. Set to FALSE to disable the machine saying reasons for failure to build.
   */
-/obj/machinery/mecha_part_fabricator/proc/build_next_in_queue(verbose = TRUE)
+obj/machinery/mecha_part_fabricator/proc/build_next_in_queue(verbose = TRUE)
 	if(!length(queue))
 		return FALSE
 
@@ -307,7 +307,7 @@
   * * D - Design datum to attempt to print.
   * * verbose - Whether the machine should use say() procs. Set to FALSE to disable the machine saying reasons for failure to build.
   */
-/obj/machinery/mecha_part_fabricator/proc/build_part(datum/design/D, verbose = TRUE)
+obj/machinery/mecha_part_fabricator/proc/build_part(datum/design/D, verbose = TRUE)
 	if(!D)
 		return FALSE
 
@@ -327,7 +327,7 @@
 
 	return TRUE
 
-/obj/machinery/mecha_part_fabricator/process(delta_time)
+obj/machinery/mecha_part_fabricator/process(delta_time)
 	..()
 	//If there's a stored part to dispense due to an obstruction, try to dispense it.
 	if(stored_part)
@@ -363,7 +363,7 @@
   * Return TRUE if the part was successfully dispensed.
   * * D - Design datum to attempt to dispense.
   */
-/obj/machinery/mecha_part_fabricator/proc/dispense_built_part(datum/design/D)
+obj/machinery/mecha_part_fabricator/proc/dispense_built_part(datum/design/D)
 	var/obj/item/I = D.Fabricate(src, src)
 	// I.material_flags |= MATERIAL_NO_EFFECTS //Find a better way to do this.
 	// I.set_custom_materials(build_materials)
@@ -388,7 +388,7 @@
   * Does final checks for datum IDs and makes sure this machine can build the designs.
   * * part_list - List of datum design ids for designs to add to the queue.
   */
-/obj/machinery/mecha_part_fabricator/proc/add_part_set_to_queue(list/part_list)
+obj/machinery/mecha_part_fabricator/proc/add_part_set_to_queue(list/part_list)
 	for(var/datum/design/D in files.known_designs)
 		if((D.build_type & valid_buildtype) && (D.id in part_list))
 			add_to_queue(D)
@@ -399,7 +399,7 @@
   * Returns TRUE if successful and FALSE if the design was not added to the queue.
   * * D - Datum design to add to the queue.
   */
-/obj/machinery/mecha_part_fabricator/proc/add_to_queue(datum/design/D)
+obj/machinery/mecha_part_fabricator/proc/add_to_queue(datum/design/D)
 	if(!istype(queue))
 		queue = list()
 	if(D)
@@ -413,7 +413,7 @@
   * Returns TRUE if successful and FALSE if a design was not removed from the queue.
   * * index - Index in the build queue of the element to remove.
   */
-/obj/machinery/mecha_part_fabricator/proc/remove_from_queue(index)
+obj/machinery/mecha_part_fabricator/proc/remove_from_queue(index)
 	if(!isnum(index) || !ISINTEGER(index) || !istype(queue) || (index<1 || index>length(queue)))
 		return FALSE
 	queue.Cut(index,++index)
@@ -424,7 +424,7 @@
   *
   * Returns a formatted list of lists containing formatted part information for every part in the build queue.
   */
-/obj/machinery/mecha_part_fabricator/proc/list_queue()
+obj/machinery/mecha_part_fabricator/proc/list_queue()
 	if(!istype(queue) || !length(queue))
 		return null
 
@@ -434,7 +434,7 @@
 		queued_parts += list(part)
 	return queued_parts
 
-/obj/machinery/mecha_part_fabricator/proc/sync()
+obj/machinery/mecha_part_fabricator/proc/sync()
 	for(var/obj/machinery/computer/rdconsole/RDC in get_area(src))
 		if(!RDC.sync)
 			continue
@@ -458,7 +458,7 @@
   * * resource - Material datum reference to the resource to calculate the cost of.
   * * roundto - Rounding value for round() proc
   */
-/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, var/amt, roundto = 1)
+obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, var/amt, roundto = 1)
 	return round(amt * component_coeff, roundto)
 
 /**
@@ -468,28 +468,28 @@
   * * D - Design datum to calculate the modified build time of.
   * * roundto - Rounding value for round() proc
   */
-/obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(construction_time, roundto = 1) //aran
+obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(construction_time, roundto = 1) //aran
 	return round(construction_time * time_coeff, roundto)
 
-/obj/machinery/mecha_part_fabricator/ui_assets(mob/user)
+obj/machinery/mecha_part_fabricator/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
 	)
 
-/obj/machinery/mecha_part_fabricator/attack_hand(mob/user, list/params)
+obj/machinery/mecha_part_fabricator/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(!allowed(user))
 		return
 	ui_interact(user)
 
-/obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExosuitFabricator", name)
 		ui.open()
 
-/obj/machinery/mecha_part_fabricator/ui_static_data(mob/user)
+obj/machinery/mecha_part_fabricator/ui_static_data(mob/user)
 	var/list/data = list()
 
 	var/list/final_sets = list()
@@ -526,7 +526,7 @@
 
 	return data
 
-/obj/machinery/mecha_part_fabricator/ui_data(mob/user)
+obj/machinery/mecha_part_fabricator/ui_data(mob/user)
 	var/list/data = list()
 
 	data["materials"] = output_available_resources()
@@ -552,7 +552,7 @@
 
 	return data
 
-/obj/machinery/mecha_part_fabricator/ui_act(action, var/list/params)
+obj/machinery/mecha_part_fabricator/ui_act(action, var/list/params)
 	if(..())
 		return TRUE
 
@@ -638,7 +638,7 @@
 
 	return FALSE
 
-/obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
 	if(being_built)
 		to_chat(user, SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation."))
 		return TRUE
@@ -677,7 +677,7 @@
 
 	..()
 
-/obj/machinery/mecha_part_fabricator/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/mecha_part_fabricator/emag_act(var/remaining_charges, var/mob/user)
 	switch(emagged)
 		if(0)
 			emagged = 0.5
@@ -696,7 +696,7 @@
 		if(1)
 			visible_message("[icon2html(src, world)] <b>[src]</b> beeps: \"No records in User DB\"")
 
-/obj/machinery/mecha_part_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
+obj/machinery/mecha_part_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 	var/recursive = amount == -1 ? 1 : 0
 	var/matstring = lowertext(material)
 	var/contains = materials[matstring]

@@ -1,4 +1,4 @@
-/obj/machinery/keycard_auth
+obj/machinery/keycard_auth
 	name = "Keycard Authentication Device"
 	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
 	icon = 'icons/obj/monitors.dmi'
@@ -21,11 +21,11 @@
 	active_power_usage = 6
 	power_channel = ENVIRON
 
-/obj/machinery/keycard_auth/attack_ai(mob/user as mob)
+obj/machinery/keycard_auth/attack_ai(mob/user as mob)
 	to_chat (user, "<span class='warning'>A firewall prevents you from interfacing with this device!</span>")
 	return
 
-/obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
@@ -63,12 +63,12 @@
 			qdel(src)
 			return
 
-/obj/machinery/keycard_auth/power_change()
+obj/machinery/keycard_auth/power_change()
 	..()
 	if(machine_stat & NOPOWER)
 		icon_state = "auth_off"
 
-/obj/machinery/keycard_auth/attack_hand(mob/user, list/params)
+obj/machinery/keycard_auth/attack_hand(mob/user, list/params)
 	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
@@ -102,7 +102,7 @@
 	return
 
 
-/obj/machinery/keycard_auth/Topic(href, href_list)
+obj/machinery/keycard_auth/Topic(href, href_list)
 	..()
 	if(busy)
 		to_chat(usr, "This device is busy.")
@@ -119,7 +119,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/keycard_auth/proc/reset()
+obj/machinery/keycard_auth/proc/reset()
 	active = 0
 	event = ""
 	screen = 1
@@ -129,7 +129,7 @@
 	event_triggered_by = null
 	event_confirmed_by = null
 
-/obj/machinery/keycard_auth/proc/broadcast_request()
+obj/machinery/keycard_auth/proc/broadcast_request()
 	icon_state = "auth_on"
 	for(var/obj/machinery/keycard_auth/KA in GLOB.machines)
 		if(KA == src) continue
@@ -145,7 +145,7 @@
 		message_admins("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event]", 1)
 	reset()
 
-/obj/machinery/keycard_auth/proc/receive_request(obj/machinery/keycard_auth/source)
+obj/machinery/keycard_auth/proc/receive_request(obj/machinery/keycard_auth/source)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	event_source = source
@@ -160,7 +160,7 @@
 	active = 0
 	busy = 0
 
-/obj/machinery/keycard_auth/proc/trigger_event()
+obj/machinery/keycard_auth/proc/trigger_event()
 	switch(event)
 		if("Red alert")
 			set_security_level(SEC_LEVEL_RED)
@@ -179,23 +179,23 @@
 			trigger_armed_response_team(1)
 			feedback_inc("alert_keycard_auth_ert",1)
 
-/obj/machinery/keycard_auth/proc/is_ert_blocked()
+obj/machinery/keycard_auth/proc/is_ert_blocked()
 	if(config_legacy.ert_admin_call_only) return 1
 	return SSticker.mode && SSticker.mode.ert_disabled
 
 var/global/maint_all_access = 0
 
-/proc/make_maint_all_access()
+proc/make_maint_all_access()
 	maint_all_access = 1
 	to_chat(world, "<font size=4 color='red'>Attention!</font>")
 	to_chat(world, "<font color='red'>The maintenance access requirement has been revoked on all airlocks.</font>")
 
-/proc/revoke_maint_all_access()
+proc/revoke_maint_all_access()
 	maint_all_access = 0
 	to_chat(world, "<font size=4 color='red'>Attention!</font>")
 	to_chat(world, "<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
 
-/obj/machinery/door/airlock/allowed(mob/M)
+obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(ACCESS_ENGINEERING_MAINT)))
 		return 1
 	return ..(M)

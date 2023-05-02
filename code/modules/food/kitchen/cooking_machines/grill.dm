@@ -1,4 +1,4 @@
-/obj/machinery/appliance/cooker/grill
+obj/machinery/appliance/cooker/grill
 	name = "grill"
 	desc = "Backyard grilling, IN SPACE."
 	icon_state = "grill_off"
@@ -23,15 +23,15 @@
 	max_contents = 3 // Arbitrary number, 3 grill 'racks'
 	container_type = /obj/item/reagent_containers/cooking_container/grill
 
-/obj/machinery/appliance/cooker/grill/Initialize(mapload)
+obj/machinery/appliance/cooker/grill/Initialize(mapload)
 	. = ..()
 	grill_loop = new(list(src), FALSE)
 
-/obj/machinery/appliance/cooker/grill/Destroy()
+obj/machinery/appliance/cooker/grill/Destroy()
 	QDEL_NULL(grill_loop)
 	return ..()
 
-/obj/machinery/appliance/cooker/grill/update_icon() // TODO: Cooking icon
+obj/machinery/appliance/cooker/grill/update_icon() // TODO: Cooking icon
 	if(!machine_stat)
 		icon_state = on_icon
 		if(cooking == TRUE)
@@ -45,7 +45,7 @@
 		if(grill_loop)
 			grill_loop.stop(src)
 
-/obj/machinery/appliance/cooker/grill/stand
+obj/machinery/appliance/cooker/grill/stand
 	desc = "These static grills are a mainstay of any open air get-together. Modern variants use heating elements instead of charcoal."
 	icon_state = "standgrill_off"
 	food_color = "#8b3b13"
@@ -55,7 +55,7 @@
 
 /* // Test Comment this out too, /cooker does this for us, and this path '/obj/machinery/appliance/grill' is invalid anyways, meaning it does jack shit. - Updated the paths, but I'm basically commenting all this shit out and if the grill works as-normal, none of this stuff is needed.
 
-/obj/machinery/appliance/grill/toggle_power()
+obj/machinery/appliance/grill/toggle_power()
 	set src in view()
 	set name = "Toggle Power"
 	set category = "Object"
@@ -73,11 +73,11 @@
 			usr.visible_message("[usr] turns \the [src] off", "You turn off \the [src].")
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
-/obj/machinery/appliance/cooker/grill/Initialize(mapload)
+obj/machinery/appliance/cooker/grill/Initialize(mapload)
 	. = ..()
 	// cooking_objs += new /datum/cooking_item(new /obj/item/reagent_containers/cooking_container(src))
 	cooking = FALSE
-/obj/machinery/appliance/cooker/grill/has_space(var/obj/item/I)
+obj/machinery/appliance/cooker/grill/has_space(var/obj/item/I)
 	var/datum/cooking_item/CI = cooking_objs[1]
 	if (!CI || !CI.container)
 		return 0
@@ -87,7 +87,7 @@
 */
 /* // Test comment this out, I don't think this is doing shit anyways.
 //Container is not removable
-/obj/machinery/appliance/grill/removal_menu(var/mob/user)
+obj/machinery/appliance/grill/removal_menu(var/mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
 		for (var/a in cooking_objs)
@@ -109,7 +109,7 @@
 */
 
 /* // Test remove this too.
-/obj/machinery/appliance/grill/process(delta_time)
+obj/machinery/appliance/grill/process(delta_time)
 	if (!stat)
 		for (var/i in cooking_objs)
 			do_cooking_tick(i)

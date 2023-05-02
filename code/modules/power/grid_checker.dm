@@ -1,4 +1,4 @@
-/obj/machinery/power/grid_checker
+obj/machinery/power/grid_checker
 	name = "grid checker"
 	desc = "A machine that reacts to unstable conditions in the powernet, by safely shutting everything down.  Probably better \
 	than the alternative."
@@ -15,7 +15,7 @@
 	var/wire_allow_manual_3 = FALSE
 	var/opened = FALSE
 
-/obj/machinery/power/grid_checker/Initialize(mapload, newdir)
+obj/machinery/power/grid_checker/Initialize(mapload, newdir)
 	. = ..()
 	connect_to_network()
 	update_icon()
@@ -27,12 +27,12 @@
 	component_parts += new /obj/item/stack/cable_coil(src, 10)
 	RefreshParts()
 
-/obj/machinery/power/grid_checker/Destroy()
+obj/machinery/power/grid_checker/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/machinery/power/grid_checker/update_icon()
+obj/machinery/power/grid_checker/update_icon()
 	if(power_failing)
 		icon_state = "gridchecker_off"
 		set_light(2, 2, "#F86060")
@@ -40,7 +40,7 @@
 		icon_state = "gridchecker_on"
 		set_light(2, 2, "#A8B0F8")
 
-/obj/machinery/power/grid_checker/attackby(obj/item/W, mob/user)
+obj/machinery/power/grid_checker/attackby(obj/item/W, mob/user)
 	if(!user)
 		return
 	if(W.is_screwdriver())
@@ -51,13 +51,13 @@
 	else if(istype(W, /obj/item/multitool) || W.is_wirecutter())
 		attack_hand(user)
 
-/obj/machinery/power/grid_checker/attack_hand(mob/user, list/params)
+obj/machinery/power/grid_checker/attack_hand(mob/user, list/params)
 	if(!user)
 		return
 	add_fingerprint(user)
 	interact(user)
 
-/obj/machinery/power/grid_checker/interact(mob/user)
+obj/machinery/power/grid_checker/interact(mob/user)
 	if(!user)
 		return
 
@@ -66,7 +66,7 @@
 
 	return nano_ui_interact(user)
 
-/obj/machinery/power/grid_checker/proc/power_failure(var/announce = TRUE)
+obj/machinery/power/grid_checker/proc/power_failure(var/announce = TRUE)
 	if(announce)
 		command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, \
 		the colony's power will be shut off for an indeterminate duration while the powernet monitor restarts automatically, or \
@@ -92,7 +92,7 @@
 		if(power_failing) // Check to see if engineering didn't beat us to it.
 			end_power_failure(TRUE)
 
-/obj/machinery/power/grid_checker/proc/end_power_failure(var/announce = TRUE)
+obj/machinery/power/grid_checker/proc/end_power_failure(var/announce = TRUE)
 	if(announce)
 		command_announcement.Announce("Power has been restored to [station_name()]. We apologize for the inconvenience.",
 		"Power Systems Nominal",

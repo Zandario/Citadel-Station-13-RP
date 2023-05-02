@@ -1,8 +1,8 @@
 
-/datum/hud/proc/unplayer_hud()
+datum/hud/proc/unplayer_hud()
 	return
 
-/datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
+datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
 	blobpwrdisplay = new /atom/movable/screen()
 	blobpwrdisplay.name = "blob power"
@@ -23,7 +23,7 @@
 	mymob.reload_rendering()
 
 /*
-/datum/hud/proc/slime_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
+datum/hud/proc/slime_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
 
 	src.adding = list()
 
@@ -95,7 +95,7 @@
 
 //	HUD.construct_hud() //Archaic.
 /*
-/datum/hud/proc/construct_hud()
+datum/hud/proc/construct_hud()
 	var/constructtype
 
 	if(istype(mymob,/mob/living/simple_mob/construct/armoured) || istype(mymob,/mob/living/simple_mob/construct/behemoth))

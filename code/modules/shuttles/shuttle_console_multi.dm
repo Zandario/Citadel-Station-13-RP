@@ -1,8 +1,8 @@
-/obj/machinery/computer/shuttle_control/multi
+obj/machinery/computer/shuttle_control/multi
 	circuit = /obj/item/circuitboard/shuttle_console/multi
 	tgui_subtemplate = "ShuttleControlConsoleMulti"
 
-/obj/machinery/computer/shuttle_control/multi/shuttlerich_ui_data(var/datum/shuttle/autodock/multi/shuttle)
+obj/machinery/computer/shuttle_control/multi/shuttlerich_ui_data(var/datum/shuttle/autodock/multi/shuttle)
 	. = ..()
 	if(istype(shuttle))
 		. += list(
@@ -14,7 +14,7 @@
 			// "engines_charging" = ((shuttle.last_move + (shuttle.cooldown SECONDS)) > world.time), // Replaced by longer warmup_time
 		)
 
-/obj/machinery/computer/shuttle_control/multi/ui_act(action, list/params)
+obj/machinery/computer/shuttle_control/multi/ui_act(action, list/params)
 	if(..())
 		return TRUE
 

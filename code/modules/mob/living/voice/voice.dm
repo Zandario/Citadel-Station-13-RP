@@ -1,5 +1,5 @@
 //A very, very simple mob that exists inside other objects to talk and has zero influence on the world.
-/mob/living/voice
+mob/living/voice
 	name = "unknown person"
 	desc = "How are you examining me?"
 	see_invisible = SEE_INVISIBLE_LIVING
@@ -7,7 +7,7 @@
 
 	emote_type = 2 //This lets them emote through containers.  The communicator has a image feed of the person calling them so...
 
-/mob/living/voice/Initialize(mapload)
+mob/living/voice/Initialize(mapload)
 	. = ..()
 	add_language(LANGUAGE_GALCOM)
 	set_default_language(SScharacters.resolve_language_name(LANGUAGE_GALCOM))
@@ -18,7 +18,7 @@
 // Proc: transfer_identity()
 // Parameters: 1 (speaker - the mob (usually an observer) to copy information from)
 // Description: Copies the mob's icons, overlays, TOD, gender, currently loaded character slot, and languages, to src.
-/mob/living/voice/proc/transfer_identity(mob/speaker)
+mob/living/voice/proc/transfer_identity(mob/speaker)
 	if(ismob(speaker))
 		icon = speaker.icon
 		icon_state = speaker.icon_state
@@ -38,7 +38,7 @@
 // Proc: Login()
 // Parameters: None
 // Description: Adds a static overlay to the client's screen.
-/mob/living/voice/Login()
+mob/living/voice/Login()
 	..()
 	client.screen |= GLOB.global_hud.whitense
 	client.screen |= GLOB.global_hud.darkMask
@@ -46,21 +46,21 @@
 // Proc: Destroy()
 // Parameters: None
 // Description: Removes reference to the communicator, so it can qdel() successfully.
-/mob/living/voice/Destroy()
+mob/living/voice/Destroy()
 	comm = null
 	return ..()
 
 // Proc: ghostize()
 // Parameters: None
 // Description: Sets a timeofdeath variable, to fix the free respawn bug.
-/mob/living/voice/ghostize()
+mob/living/voice/ghostize()
 	timeofdeath = world.time
 	. = ..()
 
 // Verb: hang_up()
 // Parameters: None
 // Description: Disconnects the voice mob from the communicator.
-/mob/living/voice/verb/hang_up()
+mob/living/voice/verb/hang_up()
 	set name = "Hang Up"
 	set category = "Communicator"
 	set desc = "Disconnects you from whoever you're talking to."
@@ -74,7 +74,7 @@
 // Verb: change_name()
 // Parameters: None
 // Description: Allows the voice mob to change their name, assuming it is valid.
-/mob/living/voice/verb/change_name()
+mob/living/voice/verb/change_name()
 	set name = "Change Name"
 	set category = "Communicator"
 	set desc = "Changes your name."
@@ -95,7 +95,7 @@
 // Proc: Life()
 // Parameters: None
 // Description: Checks the active variable on the Exonet node, and kills the mob if it goes down or stops existing.
-/mob/living/voice/Life(seconds, times_fired)
+mob/living/voice/Life(seconds, times_fired)
 	if(comm)
 		if(!comm.node || !comm.node.on || !comm.node.allow_external_communicators)
 			comm.close_connection(user = src, target = src, reason = "Connection to telecommunications array timed out")
@@ -105,7 +105,7 @@
 // Proc: say()
 // Parameters: 4 (generic say() arguments)
 // Description: Adds a speech bubble to the communicator device, then calls ..() to do the real work.
-/mob/living/voice/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering=0)
+mob/living/voice/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering=0)
 	//Speech bubbles.
 	if(comm)
 		var/speech_bubble_test = say_test(message)
@@ -123,10 +123,10 @@
 // Proc: speech_bubble_appearance()
 // Parameters: 0
 // Description: Gets the correct icon_state information for chat bubbles to work.
-/mob/living/voice/speech_bubble_appearance()
+mob/living/voice/speech_bubble_appearance()
 	return "comm"
 
-/mob/living/voice/say_understands(var/other,var/datum/language/speaking = null)
+mob/living/voice/say_understands(var/other,var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
 		if (istype(other, /mob/living/carbon))
@@ -137,6 +137,6 @@
 			return 1
 	return ..()
 
-/mob/living/voice/custom_emote(var/m_type=1,var/message = null,var/range=world.view)
+mob/living/voice/custom_emote(var/m_type=1,var/message = null,var/range=world.view)
 	if(!comm) return
 	..(m_type,message,comm.video_range)

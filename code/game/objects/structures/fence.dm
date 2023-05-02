@@ -12,7 +12,7 @@
 #define LARGE_HOLE 2
 #define MAX_HOLE_SIZE LARGE_HOLE
 
-/obj/structure/fence
+obj/structure/fence
 	name = "fence"
 	desc = "A chain link fence. Not as effective as a wall, but generally it keeps people out."
 	description_info = "Projectiles can freely pass fences."
@@ -26,11 +26,11 @@
 	var/hole_size= NO_HOLE
 	var/invulnerable = FALSE
 
-/obj/structure/fence/Initialize(mapload)
+obj/structure/fence/Initialize(mapload)
 	update_cut_status()
 	return ..()
 
-/obj/structure/fence/examine(mob/user)
+obj/structure/fence/examine(mob/user)
 	. = ..()
 
 	switch(hole_size)
@@ -39,39 +39,39 @@
 		if(LARGE_HOLE)
 			. += "\The [src] has been completely cut through."
 
-/obj/structure/fence/get_description_interaction(mob/user)
+obj/structure/fence/get_description_interaction(mob/user)
 	var/list/results = list()
 	if(cuttable && !invulnerable && hole_size < MAX_HOLE_SIZE)
 		results += "[desc_panel_image("wirecutters", user)]to [hole_size > NO_HOLE ? "expand the":"cut a"] hole into the fence, allowing passage."
 	return results
 
-/obj/structure/fence/end
+obj/structure/fence/end
 	icon_state = "end"
 	cuttable = FALSE
 
-/obj/structure/fence/corner
+obj/structure/fence/corner
 	icon_state = "corner"
 	cuttable = FALSE
 
-/obj/structure/fence/post
+obj/structure/fence/post
 	icon_state = "post"
 	cuttable = FALSE
 
-/obj/structure/fence/cut/medium
+obj/structure/fence/cut/medium
 	icon_state = "straight-cut2"
 	hole_size = MEDIUM_HOLE
 
-/obj/structure/fence/cut/large
+obj/structure/fence/cut/large
 	icon_state = "straight-cut3"
 	hole_size = LARGE_HOLE
 
 // Projectiles can pass through fences.
-/obj/structure/fence/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/fence/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/projectile))
 		return TRUE
 	return ..()
 
-/obj/structure/fence/attackby(obj/item/W, mob/user)
+obj/structure/fence/attackby(obj/item/W, mob/user)
 	if(W.is_wirecutter())
 		if(!cuttable)
 			to_chat(user, SPAN_WARNING( "This section of the fence can't be cut."))
@@ -102,7 +102,7 @@
 				update_cut_status()
 	return TRUE
 
-/obj/structure/fence/proc/update_cut_status()
+obj/structure/fence/proc/update_cut_status()
 	if(!cuttable)
 		return
 	density = TRUE
@@ -118,7 +118,7 @@
 
 //FENCE DOORS
 
-/obj/structure/fence/door
+obj/structure/fence/door
 	name = "fence door"
 	desc = "Not very useful without a real lock."
 	icon_state = "door-closed"
@@ -126,20 +126,20 @@
 	var/open = FALSE
 	var/locked = FALSE
 
-/obj/structure/fence/door/Initialize(mapload)
+obj/structure/fence/door/Initialize(mapload)
 	update_door_status()
 	return ..()
 
-/obj/structure/fence/door/opened
+obj/structure/fence/door/opened
 	icon_state = "door-opened"
 	open = TRUE
 	density = TRUE
 
-/obj/structure/fence/door/locked
+obj/structure/fence/door/locked
 	desc = "It looks like it has a strong padlock attached."
 	locked = TRUE
 
-/obj/structure/fence/door/attack_hand(mob/user, list/params)
+obj/structure/fence/door/attack_hand(mob/user, list/params)
 	if(can_open(user))
 		toggle(user)
 	else
@@ -147,7 +147,7 @@
 
 	return TRUE
 
-/obj/structure/fence/door/proc/toggle(mob/user)
+obj/structure/fence/door/proc/toggle(mob/user)
 	switch(open)
 		if(FALSE)
 			visible_message(SPAN_NOTICE("\The [user] opens \the [src]."))
@@ -159,7 +159,7 @@
 	update_door_status()
 	playsound(src, 'sound/machines/click.ogg', 100, 1)
 
-/obj/structure/fence/door/proc/update_door_status()
+obj/structure/fence/door/proc/update_door_status()
 	switch(open)
 		if(FALSE)
 			density = TRUE
@@ -168,49 +168,49 @@
 			density = FALSE
 			icon_state = "door-opened"
 
-/obj/structure/fence/door/proc/can_open(mob/user)
+obj/structure/fence/door/proc/can_open(mob/user)
 	if(locked)
 		return FALSE
 	return TRUE
 
 //Wooden Fence!
-/obj/structure/fence/wooden
+obj/structure/fence/wooden
 	name = "wooden fence"
 	desc = "A fence made out of roughly hewn logs. Not as effective as a wall, but generally it keeps people out."
 	icon_state = "straight_wood"
 	color = "#824B28"
 
-/obj/structure/fence/wooden/end
+obj/structure/fence/wooden/end
 	icon_state = "end_wood"
 	cuttable = FALSE
 
-/obj/structure/fence/wooden/corner
+obj/structure/fence/wooden/corner
 	icon_state = "corner_wood"
 	cuttable = FALSE
 
-/obj/structure/fence/wooden/post
+obj/structure/fence/wooden/post
 	icon_state = "post_wood"
 	cuttable = FALSE
 
-/obj/structure/fence/wooden/cut/medium
+obj/structure/fence/wooden/cut/medium
 	icon_state = "straight_wood-cut2"
 	hole_size = MEDIUM_HOLE
 
-/obj/structure/fence/wooden/cut/large
+obj/structure/fence/wooden/cut/large
 	icon_state = "straight_wood-cut3"
 	hole_size = LARGE_HOLE
 
-/obj/structure/fence/door/wooden
+obj/structure/fence/door/wooden
 	name = "wooden gate"
 	icon_state = "door_wood-closed"
 	color = "#824B28"
 
-/obj/structure/fence/door/wooden/opened
+obj/structure/fence/door/wooden/opened
 	icon_state = "door_wood-opened"
 	open = TRUE
 	density = TRUE
 
-/obj/structure/fence/door/wooden/update_door_status()
+obj/structure/fence/door/wooden/update_door_status()
 	switch(open)
 		if(FALSE)
 			density = TRUE
@@ -221,43 +221,43 @@
 
 
 //Bone Fence! (Icons Coming Shortly.)
-/obj/structure/fence/bone
+obj/structure/fence/bone
 	name = "bone fence"
 	desc = "A fence made from the carved bones of a giant creature. Not as effective as a wall, but generally it keeps people out."
 	icon_state = "straight_wood"
 	color = "#e6dfc8"
 
-/obj/structure/fence/bone/end
+obj/structure/fence/bone/end
 	icon_state = "end_wood"
 	cuttable = FALSE
 
-/obj/structure/fence/bone/corner
+obj/structure/fence/bone/corner
 	icon_state = "corner_wood"
 	cuttable = FALSE
 
-/obj/structure/fence/bone/post
+obj/structure/fence/bone/post
 	icon_state = "post_wood"
 	cuttable = FALSE
 
-/obj/structure/fence/bone/cut/medium
+obj/structure/fence/bone/cut/medium
 	icon_state = "straight_wood-cut2"
 	hole_size = MEDIUM_HOLE
 
-/obj/structure/fence/bone/cut/large
+obj/structure/fence/bone/cut/large
 	icon_state = "straight_wood-cut3"
 	hole_size = LARGE_HOLE
 
-/obj/structure/fence/door/bone
+obj/structure/fence/door/bone
 	name = "bone gate"
 	icon_state = "door_wood-closed"
 	color = "#e6dfc8"
 
-/obj/structure/fence/door/bone/opened
+obj/structure/fence/door/bone/opened
 	icon_state = "door_wood-opened"
 	open = TRUE
 	density = TRUE
 
-/obj/structure/fence/door/bone/update_door_status()
+obj/structure/fence/door/bone/update_door_status()
 	switch(open)
 		if(FALSE)
 			density = TRUE

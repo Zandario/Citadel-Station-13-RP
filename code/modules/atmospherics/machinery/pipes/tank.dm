@@ -1,7 +1,7 @@
 //
 // Tanks - These are implemented as pipes with large volume
 //
-/obj/machinery/atmospherics/pipe/tank
+obj/machinery/atmospherics/pipe/tank
 	icon = 'icons/atmos/tank_vr.dmi'
 	icon_state = "air_map"
 
@@ -19,24 +19,24 @@
 
 	var/start_pressure = 75*ONE_ATMOSPHERE
 
-/obj/machinery/atmospherics/pipe/tank/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/tank/Initialize(mapload, newdir)
 	. = ..()
 	icon_state = "air"
 
-/obj/machinery/atmospherics/pipe/tank/init_dir()
+obj/machinery/atmospherics/pipe/tank/init_dir()
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/pipe/tank/Destroy()
+obj/machinery/atmospherics/pipe/tank/Destroy()
 	if(node1)
 		node1.disconnect(src)
 		node1 = null
 
 	. = ..()
 
-/obj/machinery/atmospherics/pipe/tank/pipeline_expansion()
+obj/machinery/atmospherics/pipe/tank/pipeline_expansion()
 	return list(node1)
 
-/obj/machinery/atmospherics/pipe/tank/update_underlays()
+obj/machinery/atmospherics/pipe/tank/update_underlays()
 	if(..())
 		underlays.Cut()
 		var/turf/T = get_turf(src)
@@ -44,10 +44,10 @@
 			return
 		add_underlay(T, node1, dir)
 
-/obj/machinery/atmospherics/pipe/tank/hide()
+obj/machinery/atmospherics/pipe/tank/hide()
 	update_underlays()
 
-/obj/machinery/atmospherics/pipe/tank/atmos_init()
+obj/machinery/atmospherics/pipe/tank/atmos_init()
 	var/connect_direction = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
@@ -57,7 +57,7 @@
 
 	update_underlays()
 
-/obj/machinery/atmospherics/pipe/tank/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipe/tank/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
 			qdel(parent)
@@ -67,7 +67,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/pipe_painter))
 		return
 
@@ -75,11 +75,11 @@
 		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
 
-/obj/machinery/atmospherics/pipe/tank/air
+obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"
 	icon_state = "air_map"
 
-/obj/machinery/atmospherics/pipe/tank/air/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/tank/air/Initialize(mapload, newdir)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -90,11 +90,11 @@
 	. = ..()
 	icon_state = "air"
 
-/obj/machinery/atmospherics/pipe/tank/oxygen
+obj/machinery/atmospherics/pipe/tank/oxygen
 	name = "Pressure Tank (Oxygen)"
 	icon_state = "o2_map"
 
-/obj/machinery/atmospherics/pipe/tank/oxygen/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/tank/oxygen/Initialize(mapload, newdir)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -103,12 +103,12 @@
 	. = ..()
 	icon_state = "o2"
 
-/obj/machinery/atmospherics/pipe/tank/nitrogen
+obj/machinery/atmospherics/pipe/tank/nitrogen
 	name = "Pressure Tank (Nitrogen)"
 	icon_state = "n2_map"
 	volume = 40000
 
-/obj/machinery/atmospherics/pipe/tank/nitrogen/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/tank/nitrogen/Initialize(mapload, newdir)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -118,11 +118,11 @@
 	. = ..()
 	icon_state = "n2"
 
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide
+obj/machinery/atmospherics/pipe/tank/carbon_dioxide
 	name = "Pressure Tank (Carbon Dioxide)"
 	icon_state = "co2_map"
 
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/tank/carbon_dioxide/Initialize(mapload, newdir)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -132,12 +132,12 @@
 	. = ..()
 	icon_state = "co2"
 
-/obj/machinery/atmospherics/pipe/tank/phoron
+obj/machinery/atmospherics/pipe/tank/phoron
 	name = "Pressure Tank (Phoron)"
 	icon_state = "phoron_map"
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
-/obj/machinery/atmospherics/pipe/tank/phoron/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/tank/phoron/Initialize(mapload, newdir)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -147,11 +147,11 @@
 	. = ..()
 	icon_state = "phoron"
 
-/obj/machinery/atmospherics/pipe/tank/nitrous_oxide
+obj/machinery/atmospherics/pipe/tank/nitrous_oxide
 	name = "Pressure Tank (Nitrous Oxide)"
 	icon_state = "n2o_map"
 
-/obj/machinery/atmospherics/pipe/tank/nitrous_oxide/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/tank/nitrous_oxide/Initialize(mapload, newdir)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
@@ -162,11 +162,11 @@
 	icon_state = "n2o"
 
 //Big tanks of hazardous gases can be put here.
-/obj/machinery/atmospherics/pipe/tank/chlorine
+obj/machinery/atmospherics/pipe/tank/chlorine
 	name = "Pressure Tank (Chlorine)"
 	icon_state = "hazard_map"
 
-/obj/machinery/atmospherics/pipe/tank/chlorine/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/tank/chlorine/Initialize(mapload, newdir)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C

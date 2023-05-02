@@ -1,4 +1,4 @@
-/turf/simulated/wall/proc/set_materials(materialtype, rmaterialtype, girdertype)
+turf/simulated/wall/proc/set_materials(materialtype, rmaterialtype, girdertype)
 	// var/datum/material/plating_mat_ref
 	// if(materialtype)
 	// 	plating_mat_ref = SSmaterials.get_material(materialtype)

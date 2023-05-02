@@ -1,11 +1,11 @@
 // This folder contains code that was originally ported from Apollo Station and then refactored/optimized/changed.
 
 // Tracks precooked food to stop deep fried baked grilled grilled grilled diona nymph cereal.
-/obj/item/reagent_containers/food/snacks
+obj/item/reagent_containers/food/snacks
 	var/tmp/list/cooked
 
 // Root type for cooking machines. See following files for specific implementations.
-/obj/machinery/appliance
+obj/machinery/appliance
 	name = "cooker"
 	desc = "You shouldn't be seeing this!"
 	icon = 'icons/obj/cooking_machines.dmi'
@@ -42,7 +42,7 @@
 
 	var/combine_first = 0//If 1, this appliance will do combinaiton cooking before checking recipes
 
-/obj/machinery/appliance/Initialize(mapload, newdir)
+obj/machinery/appliance/Initialize(mapload, newdir)
 	. = ..()
 	component_parts = list()
 	component_parts += /obj/item/circuitboard/cooking
@@ -65,7 +65,7 @@
 		else
 			qdel(test)
 
-/obj/machinery/appliance/Destroy()
+obj/machinery/appliance/Destroy()
 	for (var/a in cooking_objs)
 		var/datum/cooking_item/CI = a
 		qdel(CI.container)//Food is fragile, it probably doesnt survive the destruction of the machine
@@ -73,12 +73,12 @@
 		qdel(CI)
 	return ..()
 
-/obj/machinery/appliance/examine(mob/user)
+obj/machinery/appliance/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		list_contents(user)
 
-/obj/machinery/appliance/proc/list_contents(var/mob/user)
+obj/machinery/appliance/proc/list_contents(var/mob/user)
 	if(cooking_objs.len)
 		var/string = "Contains..."
 		for (var/a in cooking_objs)
@@ -88,7 +88,7 @@
 	else
 		to_chat(user, "<span class='notice'>It is empty.</span>")
 
-/obj/machinery/appliance/proc/report_progress(var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/report_progress(var/datum/cooking_item/CI)
 	if (!CI || !CI.max_cookwork)
 		return null
 
@@ -111,20 +111,20 @@
 	else
 		return SPAN_DANGER("It is burning!!")
 
-/obj/machinery/appliance/update_icon()
+obj/machinery/appliance/update_icon()
 	if (!machine_stat && cooking_objs.len)
 		icon_state = on_icon
 	else
 		icon_state = off_icon
 
-/obj/machinery/appliance/verb/toggle_power()
+obj/machinery/appliance/verb/toggle_power()
 	set name = "Toggle Power"
 	set category  = "Object"
 	set src in view()
 
 	attempt_toggle_power(usr)
 
-/obj/machinery/appliance/proc/attempt_toggle_power(mob/user)
+obj/machinery/appliance/proc/attempt_toggle_power(mob/user)
 	if (!isliving(user))
 		return
 
@@ -152,10 +152,10 @@
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
-/obj/machinery/appliance/AICtrlClick(mob/user)
+obj/machinery/appliance/AICtrlClick(mob/user)
 	attempt_toggle_power(user)
 
-/obj/machinery/appliance/proc/choose_output()
+obj/machinery/appliance/proc/choose_output()
 	set src in view()
 	set name = "Choose output"
 	set category = "Object"
@@ -186,7 +186,7 @@
 			to_chat(usr, "<span class='notice'>You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!</span>")
 
 //Handles all validity checking and error messages for inserting things
-/obj/machinery/appliance/proc/can_insert(var/obj/item/I, var/mob/user)
+obj/machinery/appliance/proc/can_insert(var/obj/item/I, var/mob/user)
 	if (istype(I.loc, /mob/living/silicon))
 		return 0
 	else if (istype(I.loc, /obj/item/rig_module))
@@ -234,13 +234,13 @@
 
 
 //This function is overridden by cookers that do stuff with containers
-/obj/machinery/appliance/proc/has_space(var/obj/item/I)
+obj/machinery/appliance/proc/has_space(var/obj/item/I)
 	if (cooking_objs.len >= max_contents)
 		return 0
 
 	else return 1
 
-/obj/machinery/appliance/attackby(obj/item/I, mob/user)
+obj/machinery/appliance/attackby(obj/item/I, mob/user)
 	if(!cook_type || (machine_stat & (BROKEN)))
 		to_chat(user, "<span class='warning'>\The [src] is not working.</span>")
 		return
@@ -265,7 +265,7 @@
 	update_icon()
 
 //Override for container mechanics
-/obj/machinery/appliance/proc/add_content(var/obj/item/I, var/mob/user)
+obj/machinery/appliance/proc/add_content(var/obj/item/I, var/mob/user)
 	if(!user.attempt_insert_item_for_installation(I, src))
 		return
 
@@ -295,7 +295,7 @@
 	cooking = 1
 	return CI
 
-/obj/machinery/appliance/proc/get_cooking_work(var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/get_cooking_work(var/datum/cooking_item/CI)
 	for (var/obj/item/J in CI.container)
 		oilwork(J, CI)
 
@@ -324,7 +324,7 @@
 	CI.max_cookwork += buffer*multiplier
 
 //Just a helper to save code duplication in the above
-/obj/machinery/appliance/proc/oilwork(var/obj/item/I, var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/oilwork(var/obj/item/I, var/datum/cooking_item/CI)
 	var/obj/item/reagent_containers/food/snacks/S = I
 	var/work = 0
 	if (istype(S))
@@ -350,7 +350,7 @@
 	CI.max_cookwork += work
 
 //Called every tick while we're cooking something
-/obj/machinery/appliance/proc/do_cooking_tick(var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/do_cooking_tick(var/datum/cooking_item/CI)
 	if (!istype(CI) || !CI.max_cookwork)
 		return 0
 
@@ -375,13 +375,13 @@
 
 	return 1
 
-/obj/machinery/appliance/process(delta_time)
+obj/machinery/appliance/process(delta_time)
 	if (cooking_power > 0 && cooking)
 		for (var/i in cooking_objs)
 			do_cooking_tick(i)
 
 
-/obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
 
 	src.visible_message("<span class='notice'>\The [src] pings!</span>")
 	if(cooked_sound)
@@ -440,7 +440,7 @@
 
 //Combination cooking involves combining the names and reagents of ingredients into a predefined output object
 //The ingredients represent flavours or fillings. EG: donut pizza, cheese bread
-/obj/machinery/appliance/proc/combination_cook(var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/combination_cook(var/datum/cooking_item/CI)
 	var/cook_path = output_options[CI.combine_target]
 
 	var/list/words = list()
@@ -506,7 +506,7 @@
 	return result
 
 //Helper proc for standard modification cooking
-/obj/machinery/appliance/proc/modify_cook(var/obj/item/input, var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/modify_cook(var/obj/item/input, var/datum/cooking_item/CI)
 	var/obj/item/reagent_containers/food/snacks/result
 	if (istype(input, /obj/item/holder))
 		result = create_mob_food(input, CI)
@@ -529,7 +529,7 @@
 	// Update strings.
 	change_product_strings(result, CI)
 
-/obj/machinery/appliance/proc/burn_food(var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/burn_food(var/datum/cooking_item/CI)
 	// You dun goofed.
 	CI.burned = TRUE
 	CI.container.clear()
@@ -543,14 +543,14 @@
 	smoke.set_up(10, 0, get_turf(src), 300)
 	smoke.start()
 
-/obj/machinery/appliance/attack_hand(mob/user, list/params)
+obj/machinery/appliance/attack_hand(mob/user, list/params)
 	if (cooking_objs.len)
 		if (removal_menu(user))
 			return
 		else
 			..()
 
-/obj/machinery/appliance/proc/removal_menu(var/mob/user)
+obj/machinery/appliance/proc/removal_menu(var/mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
 		for (var/a in cooking_objs)
@@ -566,7 +566,7 @@
 		return 1
 	return 0
 
-/obj/machinery/appliance/proc/can_remove_items(var/mob/user)
+obj/machinery/appliance/proc/can_remove_items(var/mob/user)
 	if (!Adjacent(user))
 		return 0
 
@@ -575,7 +575,7 @@
 
 	return 1
 
-/obj/machinery/appliance/proc/eject(var/datum/cooking_item/CI, var/mob/user = null)
+obj/machinery/appliance/proc/eject(var/datum/cooking_item/CI, var/mob/user = null)
 	var/obj/item/thing
 	var/delete = 1
 	var/status = CI.container.check_contents()
@@ -593,20 +593,20 @@
 	else
 		CI.reset()//reset instead of deleting if the container is left inside
 
-/obj/machinery/appliance/proc/cook_mob(var/mob/living/victim, var/mob/user)
+obj/machinery/appliance/proc/cook_mob(var/mob/living/victim, var/mob/user)
 	return
 
-/obj/machinery/appliance/proc/change_product_strings(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/change_product_strings(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
 	product.name = "[cook_type] [product.name]"
 	product.desc = "[product.desc]\nIt has been [cook_type]."
 
 
-/obj/machinery/appliance/proc/change_product_appearance(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/change_product_appearance(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
 	if (!product.coating) //Coatings change colour through a new sprite
 		product.color = food_color
 	product.filling_color = food_color
 
-/mob/living/proc/calculate_composition() // moved from devour.dm on aurora's side
+mob/living/proc/calculate_composition() // moved from devour.dm on aurora's side
 	if (!composition_reagent)//if no reagent has been set, then we'll set one
 		if (isSynthetic())
 			src.composition_reagent = "iron"
@@ -633,7 +633,7 @@
 		src.composition_reagent_quantity = size_reagent
 
 //This function creates a food item which represents a dead mob
-/obj/machinery/appliance/proc/create_mob_food(var/obj/item/holder/H, var/datum/cooking_item/CI)
+obj/machinery/appliance/proc/create_mob_food(var/obj/item/holder/H, var/datum/cooking_item/CI)
 	if (!istype(H) || !H.held_mob)
 		qdel(H)
 		return null
@@ -670,7 +670,7 @@
 
 	return result
 
-/datum/cooking_item
+datum/cooking_item
 	var/max_cookwork
 	var/cookwork
 	var/overcook_mult = 5
@@ -690,11 +690,11 @@
 	var/oil = 0
 	var/max_oil = 0//Used for fryers.
 
-/datum/cooking_item/New(var/obj/item/I)
+datum/cooking_item/New(var/obj/item/I)
 	container = I
 
 //This is called for containers whose contents are ejected without removing the container
-/datum/cooking_item/proc/reset()
+datum/cooking_item/proc/reset()
 	max_cookwork = 0
 	cookwork = 0
 	result_type = 0
@@ -704,7 +704,7 @@
 	combine_target = null
 	//Container is not reset
 
-/obj/machinery/appliance/RefreshParts()
+obj/machinery/appliance/RefreshParts()
 	..()
 	var/scan_rating = 0
 	var/cap_rating = 0
@@ -718,7 +718,7 @@
 	active_power_usage = initial(active_power_usage) - scan_rating*10
 	cooking_power = initial(cooking_power) + (scan_rating+cap_rating)/10
 
-/obj/item/circuitboard/cooking
+obj/item/circuitboard/cooking
 	name = "kitchen appliance circuitry"
 	desc = "The circuitboard for many kitchen appliances. Not of much use."
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)

@@ -1,111 +1,111 @@
 
 
 // Map template for spawning the shuttle
-/datum/map_template/shuttle/overmap/generic/manta_ship
+datum/map_template/shuttle/overmap/generic/manta_ship
 	name = "OM Ship - Mercenary Cruiser Manta Class (New Z)"
 	desc = "Mercenary Manta Cruiser."
 	mappath = "maps/templates/admin/kk_mercship.dmm"
 
 // The ship's area(s)
-/area/ship/manta
+area/ship/manta
 	name = "\improper ERT Ship (Use a Subtype!)"
 	icon_state = "shuttle2"
 	requires_power = 1
 	dynamic_lighting = 1
 
-/area/ship/manta/engine
+area/ship/manta/engine
 	name = "\improper Mercenary Cruiser - Engine Bay"
 	icon_state = "engine"
 
-/area/ship/manta/engineering
+area/ship/manta/engineering
 	name = "\improper Mercenary Cruiser - Engineering Control Room"
 	icon_state = "engine_monitoring"
 
-/area/ship/manta/bridge
+area/ship/manta/bridge
 	name = "\improper Mercenary Cruiser - Bridge"
 	icon_state = "syndie-control"
 
-/area/ship/manta/atmos
+area/ship/manta/atmos
 	name = "\improper Mercenary Cruiser - Atmospherics"
 	icon_state = "atmos"
 
-/area/ship/manta/mech_bay
+area/ship/manta/mech_bay
 	name = "\improper Mercenary Cruiser - Mech Bay"
 	icon_state = "mechbay"
 
-/area/ship/manta/armoury_st
+area/ship/manta/armoury_st
 	name = "\improper Mercenary Cruiser - Standard Armoury"
 	icon_state = "armory"
 
-/area/ship/manta/armoury_as
+area/ship/manta/armoury_as
 	name = "\improper Mercenary Cruiser - Assault Armoury"
 	icon_state = "Tactical"
 
-/area/ship/manta/hangar
+area/ship/manta/hangar
 	name = "\improper Mercenary Cruiser - Hangar"
 	icon_state = "hangar"
 
-/area/ship/manta/barracks
+area/ship/manta/barracks
 	name = "\improper Mercenary Cruiser - Barracks"
 	icon_state = "syndie-elite"
 
-/area/ship/manta/barracks/bed_1
+area/ship/manta/barracks/bed_1
 	name = "\improper Mercenary Cruiser - Bunkroom 1"
 	icon_state = "syndie-elite"
 
-/area/ship/manta/barracks/bed_2
+area/ship/manta/barracks/bed_2
 	name = "\improper Mercenary Cruiser - Bunkroom 2"
 	icon_state = "syndie-elite"
 
-/area/ship/manta/med
+area/ship/manta/med
 	name = "\improper Mercenary Cruiser - Medical"
 	icon_state = "medbay"
 
-/area/ship/manta/hallways_star
+area/ship/manta/hallways_star
 	name = "\improper Mercenary Cruiser - Starboard Corridors"
 	icon_state = "smaint"
 
-/area/ship/manta/hallways_port
+area/ship/manta/hallways_port
 	name = "\improper Mercenary Cruiser - Port Corridors"
 	icon_state = "pmaint"
 
-/area/ship/manta/hallways_aft
+area/ship/manta/hallways_aft
 	name = "\improper Mercenary Cruiser - Aft Corridors"
 	icon_state = "green"
 
-/area/ship/manta/dock_star
+area/ship/manta/dock_star
 	name = "\improper Mercenary Cruiser - Starboard Airlock"
 	icon_state = "exit"
 
-/area/ship/manta/dock_port
+area/ship/manta/dock_port
 	name = "\improper Mercenary Cruiser - Port Airlock"
 	icon_state = "exit"
 
-/area/ship/manta/radiator_star
+area/ship/manta/radiator_star
 	name = "\improper Mercenary Cruiser - Starboard Radiator Array"
 	icon_state = "east"
 
-/area/ship/manta/radiator_port
+area/ship/manta/radiator_port
 	name = "\improper Mercenary Cruiser - Port Radiator Array"
 	icon_state = "west"
 
-/area/ship/manta/teleporter
+area/ship/manta/teleporter
 	name = "\improper Mercenary Cruiser - Teleporter"
 	icon_state = "teleporter"
 
-/area/ship/manta/commander
+area/ship/manta/commander
 	name = "\improper Mercenary Cruiser - Commander's Room"
 	icon_state = "head_quarters"
 
-/area/ship/manta/holding
+area/ship/manta/holding
 	name = "\improper Mercenary Cruiser - Holding Cells"
 	icon_state = "brig"
 
-/area/ship/manta/recreation
+area/ship/manta/recreation
 	name = "\improper Mercenary Cruiser - Recreation & Supplies"
 	icon_state = "recreation_area"
 
-/area/shuttle/manta_ship_boat
+area/shuttle/manta_ship_boat
 	name = "\improper SAARE Lander"
 	icon_state = "syndie-ship"
 	requires_power = 0
@@ -120,7 +120,7 @@
 //	fuel_consumption = 3
 
 // The 'ship'
-/obj/effect/overmap/visitable/ship/manta_ship
+obj/effect/overmap/visitable/ship/manta_ship
 	name = "SAARE Typhon Four-Niner"
 	desc = "Spacefaring vessel. Broadcasting Private Military Contractor IFF."
 	scanner_desc = @{"[i]Registration[/i]: SAARE Mercenary Cruiser Typhon Four-Niner
@@ -133,40 +133,40 @@
 	initial_generic_waypoints = list("manta_ship_near_fore", "manta_ship_near_aft", "manta_ship_near_port", "manta_ship_near_star", "manta_ship_port", "manta_ship_star", "manta_ship_base_dock", "omship_spawn_manta_lander")
 //	initial_restricted_waypoints = list("Mercenary Cruiser's Bay" = list("omship_spawn_manta_lander"))
 
-/obj/landmark/map_data/manta_ship
+obj/landmark/map_data/manta_ship
 	height = 1
 
-/obj/effect/shuttle_landmark/premade/manta_ship_port
+obj/effect/shuttle_landmark/premade/manta_ship_port
 	name = "SAARE Cruiser - Port Airlock"
 	landmark_tag = "manta_ship_port"
 
-/obj/effect/shuttle_landmark/premade/manta_ship_star
+obj/effect/shuttle_landmark/premade/manta_ship_star
 	name = "SAARE Cruiser - Starboard Airlock"
 	landmark_tag = "manta_ship_star"
 
-/obj/effect/shuttle_landmark/premade/manta_ship_near_fore
+obj/effect/shuttle_landmark/premade/manta_ship_near_fore
 	name = "Near SAARE Cruiser (Fore)"
 	landmark_tag = "manta_ship_near_fore"
 
-/obj/effect/shuttle_landmark/premade/manta_ship_near_aft
+obj/effect/shuttle_landmark/premade/manta_ship_near_aft
 	name = "Near SAARE Cruiser (Aft)"
 	landmark_tag = "manta_ship_near_aft"
 
-/obj/effect/shuttle_landmark/premade/manta_ship_near_port
+obj/effect/shuttle_landmark/premade/manta_ship_near_port
 	name = "Near SAARE Cruiser (Port)"
 	landmark_tag = "manta_ship_near_port"
 
-/obj/effect/shuttle_landmark/premade/manta_ship_near_star
+obj/effect/shuttle_landmark/premade/manta_ship_near_star
 	name = "Near SAARE Cruiser (Starboard)"
 	landmark_tag = "manta_ship_near_star"
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/manta_ship_boat
+obj/machinery/computer/shuttle_control/explore/manta_ship_boat
 	name = "boat control console"
 	shuttle_tag = "Boarding Craft"
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/manta_ship_boat
+obj/effect/shuttle_landmark/shuttle_initializer/manta_ship_boat
 	name = "Mercenary Cruiser's Bay"
 	base_area = /area/ship/manta/hangar
 	base_turf = /turf/simulated/floor/reinforced
@@ -175,12 +175,12 @@
 	shuttle_type = /datum/shuttle/autodock/overmap/manta_ship_boat
 
 // The 'shuttle'
-/obj/machinery/computer/shuttle_control/explore/manta_ship_boat
+obj/machinery/computer/shuttle_control/explore/manta_ship_boat
 	name = "LC control console"
 	shuttle_tag = "Boarding Craft"
 	req_one_access = list(150)
 
-/datum/shuttle/autodock/overmap/manta_ship_boat
+datum/shuttle/autodock/overmap/manta_ship_boat
 	name = "Boarding Craft"
 	current_location = "omship_spawn_manta_lander"
 	docking_controller_tag = "manta_boarding_shuttle"
@@ -188,7 +188,7 @@
 	fuel_consumption = 0 //this thing is too big already, let's just handwave everything
 	defer_initialisation = TRUE
 
-/obj/effect/overmap/visitable/ship/landable/manta_ship_boat
+obj/effect/overmap/visitable/ship/landable/manta_ship_boat
 	scanner_name = "SAARE Landing Craft"
 	desc = "Spacefaring vessel. Broadcasting Private Military Contractor IFF."
 	scanner_desc = @{"[i]Registration[/i]: SAARE Mercenary Cruiser Typhon Four-Niner's Lander
@@ -201,7 +201,7 @@
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Boarding Craft"
 
-/obj/machinery/cryopod/manta_ship
+obj/machinery/cryopod/manta_ship
 	announce_channel = "Mercenary"
 	on_store_message = "has entered cryogenic storage."
 	on_store_name = "Mercenary Cruiser Cryo"
@@ -211,7 +211,7 @@
 	on_store_visible_message_2 = "into cryogenic storage."
 
 //Misc Stuff
-/obj/item/paper/manta_shields
+obj/item/paper/manta_shields
 	name = "Shield Setup"
 	info = {"To All Personnel,<br>\
 The cruiser's shield generator is intended to keep asteroids and pesky railgun rounds off our ass, so make sure you use it if we get into a scuffle.<br>\
@@ -228,7 +228,7 @@ The shield generator's a hungry beast and will drain the cruiser's reserves fair
 <br>\
 <i>Capt. Thorne</i>"}
 
-/obj/item/paper/manta_new_personnel_brief
+obj/item/paper/manta_new_personnel_brief
 	name = "Fresh Personnel Primer"
 	info = {"To All <i>New</i> Personnel,<br>\
 Welcome to your new home, the SAARE Typhon Four-Niner. This Manta-class Cruiser is equipped with everything you should ever need to conduct operations against any target we may encounter during our contracts. If you're reading this, you're probably in the Barracks right now; at the outer edge of the starboard wing are the Holding Cells. To the fore of the barracks is the Medbay, pray you don't end up there.<br>\
@@ -243,7 +243,7 @@ You don't want to know how long it's going to take to pay off.<br>\
 <br>
 P.S. If you need to refuel the lander for some reason, there's a pair of spare fuel canisters in that closet space in the port fore wing edge, opposite the assault armory."}
 
-/obj/item/paper/manta_approach_tactics
+obj/item/paper/manta_approach_tactics
 	name = "Installation Approach"
 	info = {"To All Personnel,<br>\
 Word of advice: this ship isn't exactly sneaky, despite our best efforts. If we pull up around a major site <i>they're going to notice</i>. Now sure we have the whole transponder thing that should throw them off for a bit, but sooner or later they're gonna catch on, <i>especially</i> if you go in loud. Fortunately for you all, our handy-dandy little landing craft <i>is</i> stealthy, and can get you aboard most ships, stations, or outposts without too much fuss. Better yet it's an all-passive system, so you don't even need to turn it on or worry about some idiot accidentally turning it off.<br>\
@@ -252,7 +252,7 @@ We've also been supplied with a few packs of 'liberated' SAARE gear for use as d
 <br>\
 <i>Capt. Thorne</i>"}
 
-/obj/item/paper/manta_prisoners
+obj/item/paper/manta_prisoners
 	name = "Prisoner Management"
 	info = {"To All Personnel,<br>\
 I don't care if they're 'not being cooperative', for the love of fuck if another high-value prisoner 'disappears' under your watch <i>you are fucking next</i>, do I make myself clear? I don't care if it's some schmuck we picked up during a raid who happened to be in the wrong place at the wrong time, but if it's someone we're trying to extract information from or ransom or whatever then they better not vanish.<br>\
@@ -261,7 +261,7 @@ I don't care if they're 'not being cooperative', for the love of fuck if another
 <br>\
 P.S. If you gotta cut 'em up or whatever try not to make too much of a mess, and clean up when you're done. Don't trail blood all over my damn ship, and don't get them killed by infections either."}
 
-/obj/machinery/computer/cryopod/merc
+obj/machinery/computer/cryopod/merc
 	name = "mercenary oversight console"
 	desc = "An interface between mercenaries and the cryo oversight systems tasked with keeping track of all mercenaries who enter or exit cryostasis."
 	circuit = "/obj/item/circuitboard/robotstoragecontrol"

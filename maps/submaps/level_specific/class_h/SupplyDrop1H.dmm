@@ -1,56 +1,56 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "d" = (
-/turf/simulated/wall/titanium,
-/area/class_h/explored)
+turf/simulated/wall/titanium,
+area/class_h/explored)
 "e" = (
-/obj/structure/droppod_door{
+obj/structure/droppod_door{
 	dir = 1
 	},
-/turf/simulated/wall/titanium,
-/area/class_h/explored)
+turf/simulated/wall/titanium,
+area/class_h/explored)
 "f" = (
-/turf/simulated/floor/reinforced,
-/area/class_h/explored)
+turf/simulated/floor/reinforced,
+area/class_h/explored)
 "g" = (
-/obj/structure/droppod_door{
+obj/structure/droppod_door{
 	dir = 8
 	},
-/turf/simulated/wall/titanium,
-/area/class_h/explored)
+turf/simulated/wall/titanium,
+area/class_h/explored)
 "h" = (
-/obj/structure/closet/crate,
-/obj/item/gun/energy/stunrevolver,
-/obj/item/gun/energy/stunrevolver,
-/obj/item/storage/box/flare,
-/obj/item/stack/marker_beacon/ten,
-/obj/item/cell/device/weapon,
-/obj/item/cell/device/weapon,
-/obj/item/trash/tastybread,
-/obj/item/trash/tastybread,
-/obj/item/trash/sosjerky,
-/obj/item/trash/sosjerky,
-/obj/item/trash/liquidfood,
-/obj/item/trash/liquidfood,
-/obj/item/flame/lighter/random,
-/obj/item/gps,
-/turf/simulated/floor/reinforced,
-/area/class_h/explored)
+obj/structure/closet/crate,
+obj/item/gun/energy/stunrevolver,
+obj/item/gun/energy/stunrevolver,
+obj/item/storage/box/flare,
+obj/item/stack/marker_beacon/ten,
+obj/item/cell/device/weapon,
+obj/item/cell/device/weapon,
+obj/item/trash/tastybread,
+obj/item/trash/tastybread,
+obj/item/trash/sosjerky,
+obj/item/trash/sosjerky,
+obj/item/trash/liquidfood,
+obj/item/trash/liquidfood,
+obj/item/flame/lighter/random,
+obj/item/gps,
+turf/simulated/floor/reinforced,
+area/class_h/explored)
 "i" = (
-/obj/structure/droppod_door{
+obj/structure/droppod_door{
 	dir = 4
 	},
-/turf/simulated/wall/titanium,
-/area/class_h/explored)
+turf/simulated/wall/titanium,
+area/class_h/explored)
 "j" = (
-/obj/structure/droppod_door,
-/turf/simulated/wall/titanium,
-/area/class_h/explored)
+obj/structure/droppod_door,
+turf/simulated/wall/titanium,
+area/class_h/explored)
 "I" = (
-/turf/simulated/floor/outdoors/beach/sand/dirt/classh,
-/area/class_h/explored)
+turf/simulated/floor/outdoors/beach/sand/dirt/classh,
+area/class_h/explored)
 
 (1,1,1) = {"
 I

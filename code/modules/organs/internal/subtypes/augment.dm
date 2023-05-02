@@ -2,7 +2,7 @@
  * Augments. This file contains the base, and organic-targeting augments.
  */
 
-/obj/item/organ/internal/augment
+obj/item/organ/internal/augment
 	name = "augment"
 
 	icon_state = "cell_bay"
@@ -41,18 +41,18 @@
 	var/aug_cooldown = 0 SECONDS
 	var/last_activate = null
 
-/obj/item/organ/internal/augment/Initialize(mapload)
+obj/item/organ/internal/augment/Initialize(mapload)
 	. = ..()
 	setup_radial_icon()
 	if(integrated_object_type)
 		set_item(integrated_object_type)
 
-/obj/item/organ/internal/augment/proc/set_item(obj/item/item_or_type)
+obj/item/organ/internal/augment/proc/set_item(obj/item/item_or_type)
 	if(ispath(item_or_type))
 		item_or_type = new item_or_type
 	register_item(item_or_type)
 
-/obj/item/organ/internal/augment/proc/register_item(obj/item/I)
+obj/item/organ/internal/augment/proc/register_item(obj/item/I)
 	if(!I)
 		return
 	if(integrated_object)
@@ -63,7 +63,7 @@
 		I.forceMove(src)
 	integrated_object = I
 
-/obj/item/organ/internal/augment/proc/unregister_item(obj/item/I)
+obj/item/organ/internal/augment/proc/unregister_item(obj/item/I)
 	UnregisterSignal(I, list(
 		COMSIG_MOVABLE_MOVED,
 		COMSIG_ITEM_DROPPED
@@ -71,13 +71,13 @@
 	if(I == integrated_object)
 		integrated_object = null
 
-/obj/item/organ/internal/augment/proc/on_item_moved(datum/source, atom/old)
+obj/item/organ/internal/augment/proc/on_item_moved(datum/source, atom/old)
 	SIGNAL_HANDLER
 
 	// gives a chance for dropped to fire
 	addtimer(CALLBACK(src, .proc/check_item_yank, source), 0)
 
-/obj/item/organ/internal/augment/proc/on_item_dropped(datum/source)
+obj/item/organ/internal/augment/proc/on_item_dropped(datum/source)
 	SIGNAL_HANDLER
 
 	var/obj/item/I = source
@@ -85,13 +85,13 @@
 	I.forceMove(src)
 	. = COMPONENT_ITEM_DROPPED_RELOCATE | COMPONENT_ITEM_DROPPED_SUPPRESS_SOUND
 
-/obj/item/organ/internal/augment/proc/check_item_yank(obj/item/I)
+obj/item/organ/internal/augment/proc/check_item_yank(obj/item/I)
 	if(I.loc != src && I.loc != owner)
 		unregister_item(I)
 
 // todo: multi-item
 /*
-/obj/item/organ/cyberimp/arm/proc/add_item(obj/item/I)
+obj/item/organ/cyberimp/arm/proc/add_item(obj/item/I)
 	if(I in items_list)
 		return
 	I.forceMove(src)
@@ -100,7 +100,7 @@
 	// .. right??!
 	RegisterSignal(I, COMSIG_ITEM_DROPPED, .proc/magnetic_catch)
 
-/obj/item/organ/cyberimp/arm/proc/magnetic_catch(datum/source, mob/user)
+obj/item/organ/cyberimp/arm/proc/magnetic_catch(datum/source, mob/user)
 	. = COMPONENT_DROPPED_RELOCATION
 	var/obj/item/I = source			//if someone is misusing the signal, just runtime
 	if(I in items_list)
@@ -112,12 +112,12 @@
 			holder = nul
 */
 
-/obj/item/organ/internal/augment/Destroy()
+obj/item/organ/internal/augment/Destroy()
 	if(integrated_object)
 		QDEL_NULL(integrated_object)
 	return ..()
 
-/obj/item/organ/internal/augment/proc/setup_radial_icon()
+obj/item/organ/internal/augment/proc/setup_radial_icon()
 	if(!radial_icon)
 		radial_icon = icon
 	if(!radial_name)
@@ -126,12 +126,12 @@
 		radial_state = icon_state
 	my_radial_icon = image(icon = radial_icon, icon_state = radial_state)
 
-/obj/item/organ/internal/augment/handle_organ_mod_special(var/removed = FALSE)
+obj/item/organ/internal/augment/handle_organ_mod_special(var/removed = FALSE)
 	if(removed && integrated_object && integrated_object.loc != src)
 		integrated_object.forceMove(src)
 	..(removed)
 
-/obj/item/organ/internal/augment/proc/augment_action()
+obj/item/organ/internal/augment/proc/augment_action()
 	if(!owner)
 		return
 
@@ -165,14 +165,14 @@
 
 // The next two procs simply handle the radial menu for augment activation.
 
-/mob/living/carbon/human/proc/augment_menu()
+mob/living/carbon/human/proc/augment_menu()
 	set name = "Open Augment Menu"
 	set desc = "Toggle your augment menu."
 	set category = "Augments"
 
 	enable_augments(usr)
 
-/mob/living/carbon/human/proc/enable_augments(mob/living/L)
+mob/living/carbon/human/proc/enable_augments(mob/living/L)
 	var/list/options = list()
 
 	var/list/present_augs = list()
@@ -203,7 +203,7 @@
  * destroy_on_drop is the default value for the object to be deleted if it is removed from their person, if equipping is a path, however, this will be set to TRUE,
  * cling_to_organ is a reference to the organ object itself, so they can easily return to their organ when removed by any means.
  */
-/mob/living/carbon/human/proc/equip_augment_item(var/slot, var/obj/item/equipping = null, var/make_sound = TRUE, var/destroy_on_drop = FALSE, var/obj/item/organ/cling_to_organ = null)
+mob/living/carbon/human/proc/equip_augment_item(var/slot, var/obj/item/equipping = null, var/make_sound = TRUE, var/destroy_on_drop = FALSE, var/obj/item/organ/cling_to_organ = null)
 	if(!ishuman(src))
 		return FALSE
 

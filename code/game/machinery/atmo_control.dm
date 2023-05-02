@@ -1,4 +1,4 @@
-/obj/machinery/air_sensor
+obj/machinery/air_sensor
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "gsensor1"
 	name = "Gas Sensor"
@@ -20,10 +20,10 @@
 
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/air_sensor/update_icon()
+obj/machinery/air_sensor/update_icon()
 	icon_state = "gsensor[on]"
 
-/obj/machinery/air_sensor/process(delta_time)
+obj/machinery/air_sensor/process(delta_time)
 	if(on)
 		var/datum/signal/signal = new
 		signal.transmission_method = TRANSMISSION_RADIO //radio signal
@@ -56,22 +56,22 @@
 		signal.data["sigtype"]="status"
 		radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
-/obj/machinery/air_sensor/proc/set_frequency(new_frequency)
+obj/machinery/air_sensor/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/air_sensor/Initialize(mapload)
+obj/machinery/air_sensor/Initialize(mapload)
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 
-/obj/machinery/air_sensor/Destroy()
+obj/machinery/air_sensor/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
 	. = ..()
 
-/obj/machinery/computer/general_air_control
+obj/machinery/computer/general_air_control
 	icon_keyboard = "atmos_key"
 	icon_screen = "tank"
 	name = "Computer"
@@ -81,18 +81,18 @@
 	var/datum/radio_frequency/radio_connection
 	circuit = /obj/item/circuitboard/air_management
 
-/obj/machinery/computer/general_air_control/Destroy()
+obj/machinery/computer/general_air_control/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 	..()
 
-/obj/machinery/computer/general_air_control/attack_hand(mob/user, list/params)
+obj/machinery/computer/general_air_control/attack_hand(mob/user, list/params)
 	if(..(user))
 		return
 
 	ui_interact(user)
 
-/obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
+obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption)
 		return
 
@@ -102,13 +102,13 @@
 
 	sensor_information[id_tag] = signal.data
 
-/obj/machinery/computer/general_air_control/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/general_air_control/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "GeneralAtmoControl", name)
 		ui.open()
 
-/obj/machinery/computer/general_air_control/ui_data(mob/user)
+obj/machinery/computer/general_air_control/ui_data(mob/user)
 	var/list/data = list()
 	var/sensors_ui[0]
 	if(sensors.len)
@@ -123,17 +123,17 @@
 
 	return data
 
-/obj/machinery/computer/general_air_control/proc/set_frequency(new_frequency)
+obj/machinery/computer/general_air_control/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/Initialize(mapload)
+obj/machinery/computer/general_air_control/Initialize(mapload)
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 
-/obj/machinery/computer/general_air_control/large_tank_control
+obj/machinery/computer/general_air_control/large_tank_control
 	icon = 'icons/obj/computer.dmi'
 	frequency = 1441
 	var/input_tag
@@ -144,7 +144,7 @@
 	var/pressure_setting = ONE_ATMOSPHERE * 45
 	circuit = /obj/item/circuitboard/air_management/tank_control
 
-/obj/machinery/computer/general_air_control/large_tank_control/ui_data(mob/user)
+obj/machinery/computer/general_air_control/large_tank_control/ui_data(mob/user)
 	var/list/data = ..()
 
 	data["tanks"] = 1
@@ -166,7 +166,7 @@
 
 	return data
 
-/obj/machinery/computer/general_air_control/large_tank_control/receive_signal(datum/signal/signal)
+obj/machinery/computer/general_air_control/large_tank_control/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption) return
 
 	var/id_tag = signal.data["tag"]
@@ -178,7 +178,7 @@
 	else
 		..(signal)
 
-/obj/machinery/computer/general_air_control/large_tank_control/ui_act(action, params)
+obj/machinery/computer/general_air_control/large_tank_control/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -232,7 +232,7 @@
 	signal.data["sigtype"]="command"
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/supermatter_core
+obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/computer.dmi'
 	frequency = 1438
 	var/input_tag
@@ -243,7 +243,7 @@
 	var/pressure_setting = 100
 	circuit = /obj/item/circuitboard/air_management/supermatter_core
 
-/obj/machinery/computer/general_air_control/supermatter_core/ui_data(mob/user)
+obj/machinery/computer/general_air_control/supermatter_core/ui_data(mob/user)
 	var/list/data = ..()
 	data["core"] = 1
 
@@ -267,7 +267,7 @@
 
 	return data
 
-/obj/machinery/computer/general_air_control/supermatter_core/receive_signal(datum/signal/signal)
+obj/machinery/computer/general_air_control/supermatter_core/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption) return
 
 	var/id_tag = signal.data["tag"]
@@ -279,7 +279,7 @@
 	else
 		..(signal)
 
-/obj/machinery/computer/general_air_control/supermatter_core/ui_act(action, params)
+obj/machinery/computer/general_air_control/supermatter_core/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -333,7 +333,7 @@
 	signal.data["sigtype"]="command"
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/fuel_injection
+obj/machinery/computer/general_air_control/fuel_injection
 	icon = 'icons/obj/computer.dmi'
 	icon_screen = "alert:0"
 	var/device_tag
@@ -343,7 +343,7 @@
 	var/on_temperature = 1200
 	circuit = /obj/item/circuitboard/air_management/injector_control
 
-/obj/machinery/computer/general_air_control/fuel_injection/process(delta_time)
+obj/machinery/computer/general_air_control/fuel_injection/process(delta_time)
 	if(automation)
 		if(!radio_connection)
 			return FALSE
@@ -372,7 +372,7 @@
 
 	..()
 
-/obj/machinery/computer/general_air_control/fuel_injection/ui_data(mob/user)
+obj/machinery/computer/general_air_control/fuel_injection/ui_data(mob/user)
 	var/list/data = ..()
 	data["fuel"] = 1
 	data["automation"] = automation
@@ -384,7 +384,7 @@
 
 	return data
 
-/obj/machinery/computer/general_air_control/fuel_injection/receive_signal(datum/signal/signal)
+obj/machinery/computer/general_air_control/fuel_injection/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption) return
 
 	var/id_tag = signal.data["tag"]
@@ -394,7 +394,7 @@
 	else
 		..(signal)
 
-/obj/machinery/computer/general_air_control/fuel_injection/ui_act(action, params)
+obj/machinery/computer/general_air_control/fuel_injection/ui_act(action, params)
 	if(..())
 		return TRUE
 

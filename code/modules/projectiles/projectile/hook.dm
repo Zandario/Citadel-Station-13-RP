@@ -2,7 +2,7 @@
  * File containing special 'hook' projectiles. Function is dictated by the launcher's intent.
  */
 
-/obj/projectile/energy/hook
+obj/projectile/energy/hook
 	name = "graviton sphere"
 	icon_state = "bluespace"
 
@@ -27,7 +27,7 @@
 	var/list/help_messages = list("slaps", "pokes", "nudges", "bumps", "pinches")
 	var/done_mob_unique = FALSE	// Has the projectile already done something to a mob?
 
-/obj/projectile/energy/hook/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
+obj/projectile/energy/hook/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
 	var/expected_distance = get_dist(target, loc)
 	range = expected_distance // So the hook hits the ground if no mob is hit.
 	target_distance = expected_distance
@@ -58,14 +58,14 @@
 
 	..() // Does the regular launching stuff.
 
-/obj/projectile/energy/hook/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
+obj/projectile/energy/hook/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(..())
 		perform_intent_unique(target)
 
-/obj/projectile/energy/hook/on_impact(var/atom/A)
+obj/projectile/energy/hook/on_impact(var/atom/A)
 	perform_intent_unique(get_turf(A))
 
-/obj/projectile/energy/hook/proc/ranged_disarm(var/mob/living/carbon/human/H)
+obj/projectile/energy/hook/proc/ranged_disarm(var/mob/living/carbon/human/H)
 	if(istype(H))
 		var/list/holding = list(H.get_active_held_item() = 60, H.get_inactive_held_item() = 40)
 
@@ -99,7 +99,7 @@
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			return
 
-/obj/projectile/energy/hook/proc/perform_intent_unique(atom/target)
+obj/projectile/energy/hook/proc/perform_intent_unique(atom/target)
 	playsound(src, impact_sound, 40, 1)
 	var/success = FALSE
 	if(istype(target,/turf))
@@ -183,7 +183,7 @@
  * Hook subtypes.
  */
 
-/obj/projectile/energy/hook/ring
+obj/projectile/energy/hook/ring
 	name = "green orb"
 	icon_state = "green_laser"
 	beam_state = "n_beam"

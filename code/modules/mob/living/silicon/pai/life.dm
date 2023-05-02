@@ -1,4 +1,4 @@
-/mob/living/silicon/pai/Life(seconds, times_fired)
+mob/living/silicon/pai/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -28,7 +28,7 @@
 	if(health <= 0)
 		death(null,"gives one shrill beep before falling lifeless.")
 
-/mob/living/silicon/pai/update_health()
+mob/living/silicon/pai/update_health()
 	if(status_flags & STATUS_GODMODE)
 		health = 100
 		set_stat(CONSCIOUS)

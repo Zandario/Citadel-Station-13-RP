@@ -1,11 +1,11 @@
-/datum/fantasy_affix/cosmetic_suffixes
+datum/fantasy_affix/cosmetic_suffixes
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD | AFFIX_EVIL
 
 	var/list/goodSuffixes
 	var/list/badSuffixes
 
-/datum/fantasy_affix/cosmetic_suffixes/New()
+datum/fantasy_affix/cosmetic_suffixes/New()
 	goodSuffixes = list(
 		"dexterity",
 		"constitution",
@@ -39,18 +39,18 @@
 
 	weight = (length(goodSuffixes) + length(badSuffixes)) * 10
 
-/datum/fantasy_affix/cosmetic_suffixes/apply(datum/component/fantasy/comp, newName)
+datum/fantasy_affix/cosmetic_suffixes/apply(datum/component/fantasy/comp, newName)
 	if(comp.quality > 0 || (comp.quality == 0 && prob(50)))
 		return "[newName] of [pick(goodSuffixes)]"
 	else
 		return "[newName] of [pick(badSuffixes)]"
 
 //////////// Good suffixes
-/datum/fantasy_affix/bane
+datum/fantasy_affix/bane
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
-/datum/fantasy_affix/bane/apply(datum/component/fantasy/comp, newName)
+datum/fantasy_affix/bane/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	// This is set up to be easy to add to these lists as I expect it will need modifications
 	var/static/list/possible_mobtypes
@@ -77,12 +77,12 @@
 	comp.appliedComponents += master.AddComponent(/datum/component/bane, picked_mobtype)
 	return "[newName] of [initial(picked_mobtype.name)] slaying"
 
-/datum/fantasy_affix/summoning
+datum/fantasy_affix/summoning
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 	weight = 5
 
-/datum/fantasy_affix/summoning/apply(datum/component/fantasy/comp, newName)
+datum/fantasy_affix/summoning/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	// This is set up to be easy to add to these lists as I expect it will need modifications
 	var/static/list/possible_mobtypes
@@ -112,16 +112,16 @@
 	comp.appliedComponents += master.AddComponent(/datum/component/summoning, list(picked_mobtype), 100, max_mobs, spawn_delay)
 	return "[newName] of [initial(picked_mobtype.name)] summoning"
 
-/datum/fantasy_affix/shrapnel
+datum/fantasy_affix/shrapnel
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
-/datum/fantasy_affix/shrapnel/validate(datum/component/fantasy/comp)
+datum/fantasy_affix/shrapnel/validate(datum/component/fantasy/comp)
 	if(isgun(comp.parent))
 		return TRUE
 	return FALSE
 
-/datum/fantasy_affix/shrapnel/apply(datum/component/fantasy/comp, newName)
+datum/fantasy_affix/shrapnel/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	// higher means more likely
 	var/list/weighted_projectile_types = list(/obj/projectile/meteor = 1,
@@ -146,11 +146,11 @@
 	comp.appliedComponents += master.AddComponent(/datum/component/shrapnel, picked_projectiletype)
 	return "[newName] of [initial(picked_projectiletype.name)] shrapnel"
 
-/datum/fantasy_affix/strength
+datum/fantasy_affix/strength
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_GOOD
 
-/datum/fantasy_affix/strength/apply(datum/component/fantasy/comp, newName)
+datum/fantasy_affix/strength/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	var/obj/item/master = comp.parent
 	comp.appliedComponents += master.AddComponent(/datum/component/knockback, CEILING(comp.quality/2, 1), FLOOR(comp.quality/10, 1))
@@ -158,11 +158,11 @@
 
 //////////// Bad suffixes
 
-/datum/fantasy_affix/fool
+datum/fantasy_affix/fool
 	placement = AFFIX_SUFFIX
 	alignment = AFFIX_EVIL
 
-/datum/fantasy_affix/fool/apply(datum/component/fantasy/comp, newName)
+datum/fantasy_affix/fool/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	var/obj/item/master = comp.parent
 	comp.appliedComponents += master.AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)

@@ -1,6 +1,6 @@
 #define CAN_DEFAULT_RELEASE_PRESSURE (ONE_ATMOSPHERE)
 
-/obj/machinery/portable_atmospherics/canister
+obj/machinery/portable_atmospherics/canister
 	name = "canister"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
@@ -40,124 +40,124 @@
 	use_power = USE_POWER_OFF
 	var/update_flag = 0
 
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide
+obj/machinery/portable_atmospherics/canister/nitrous_oxide
 	name = "Canister: \[N2O\]"
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/nitrogen
+obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "Canister: \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/oxygen
+obj/machinery/portable_atmospherics/canister/oxygen
 	name = "Canister: \[O2\]"
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled
+obj/machinery/portable_atmospherics/canister/oxygen/prechilled
 	name = "Canister: \[O2 (Cryo)\]"
 
-/obj/machinery/portable_atmospherics/canister/phoron
+obj/machinery/portable_atmospherics/canister/phoron
 	name = "Canister \[Phoron\]"
 	icon_state = "orangeps"
 	canister_color = "orangeps"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide
+obj/machinery/portable_atmospherics/canister/carbon_dioxide
 	name = "Canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/air
+obj/machinery/portable_atmospherics/canister/air
 	name = "Canister \[Air\]"
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = 0
 
-/obj/machinery/portable_atmospherics/canister/air/airlock
+obj/machinery/portable_atmospherics/canister/air/airlock
 	start_pressure = 3 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/canister/empty/
+obj/machinery/portable_atmospherics/canister/empty/
 	start_pressure = 0
 	can_label = 1
 
-/obj/machinery/portable_atmospherics/canister/empty/oxygen
+obj/machinery/portable_atmospherics/canister/empty/oxygen
 	name = "Canister: \[O2\]"
 	icon_state = "blue"
 	canister_color = "blue"
-/obj/machinery/portable_atmospherics/canister/empty/phoron
+obj/machinery/portable_atmospherics/canister/empty/phoron
 	name = "Canister \[Phoron\]"
 	icon_state = "orangeps"
 	canister_color = "orangeps"
-/obj/machinery/portable_atmospherics/canister/empty/nitrogen
+obj/machinery/portable_atmospherics/canister/empty/nitrogen
 	name = "Canister \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
-/obj/machinery/portable_atmospherics/canister/empty/carbon_dioxide
+obj/machinery/portable_atmospherics/canister/empty/carbon_dioxide
 	name = "Canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
-/obj/machinery/portable_atmospherics/canister/empty/nitrous_oxide
+obj/machinery/portable_atmospherics/canister/empty/nitrous_oxide
 	name = "Canister \[N2O\]"
 	icon_state = "redws"
 	canister_color = "redws"
 
-/obj/machinery/portable_atmospherics/canister/helium
+obj/machinery/portable_atmospherics/canister/helium
 	name = "Canister \[Helium\]"
 
-/obj/machinery/portable_atmospherics/canister/carbon_monoxide
+obj/machinery/portable_atmospherics/canister/carbon_monoxide
 	name = "Canister \[Carbon Monoxide\]"
 
-/obj/machinery/portable_atmospherics/canister/methyl_bromide
+obj/machinery/portable_atmospherics/canister/methyl_bromide
 	name = "Canister \[Methyl Bromide\]"
 
-/obj/machinery/portable_atmospherics/canister/nitrodioxide
+obj/machinery/portable_atmospherics/canister/nitrodioxide
 	name = "Canister \[Nitrogen Dioxide\]"
 
-/obj/machinery/portable_atmospherics/canister/nitricoxide
+obj/machinery/portable_atmospherics/canister/nitricoxide
 	name = "Canister \[Nitric Oxide\]"
 
-/obj/machinery/portable_atmospherics/canister/methane
+obj/machinery/portable_atmospherics/canister/methane
 	name = "Canister \[Methane\]"
 
-/obj/machinery/portable_atmospherics/canister/argon
+obj/machinery/portable_atmospherics/canister/argon
 	name = "Canister \[Argon\]"
 
-/obj/machinery/portable_atmospherics/canister/krypton
+obj/machinery/portable_atmospherics/canister/krypton
 	name = "Canister \[Krypton\]"
 
-/obj/machinery/portable_atmospherics/canister/neon
+obj/machinery/portable_atmospherics/canister/neon
 	name = "Canister \[Neon\]"
 
-/obj/machinery/portable_atmospherics/canister/ammonia
+obj/machinery/portable_atmospherics/canister/ammonia
 	name = "Canister \[Ammonia\]"
 
-/obj/machinery/portable_atmospherics/canister/xenon
+obj/machinery/portable_atmospherics/canister/xenon
 	name = "Canister \[Xenon\]"
 
-/obj/machinery/portable_atmospherics/canister/chlorine
+obj/machinery/portable_atmospherics/canister/chlorine
 	name = "Canister \[Chlorine\]"
 
-/obj/machinery/portable_atmospherics/canister/sulfur_dioxide
+obj/machinery/portable_atmospherics/canister/sulfur_dioxide
 	name = "Canister \[Sulfur Dioxide\]"
 
-/obj/machinery/portable_atmospherics/canister/hydrogen
+obj/machinery/portable_atmospherics/canister/hydrogen
 	name = "Canister \[Hydrogen\]"
 
-/obj/machinery/portable_atmospherics/canister/tritium
+obj/machinery/portable_atmospherics/canister/tritium
 	name = "Canister \[Tritium\]"
 
-/obj/machinery/portable_atmospherics/canister/deuterium
+obj/machinery/portable_atmospherics/canister/deuterium
 	name = "Canister \[Deuterium\]"
 
 
 
-/obj/machinery/portable_atmospherics/canister/proc/check_change()
+obj/machinery/portable_atmospherics/canister/proc/check_change()
 	var/old_flag = update_flag
 	update_flag = 0
 	if(holding)
@@ -180,7 +180,7 @@
 	else
 		return 0
 
-/obj/machinery/portable_atmospherics/canister/update_icon()
+obj/machinery/portable_atmospherics/canister/update_icon()
 /*
 update_flag
 1 = holding
@@ -222,12 +222,12 @@ update_flag
 
 	return
 
-/obj/machinery/portable_atmospherics/canister/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/machinery/portable_atmospherics/canister/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
 		health -= 5
 		healthcheck()
 
-/obj/machinery/portable_atmospherics/canister/proc/healthcheck()
+obj/machinery/portable_atmospherics/canister/proc/healthcheck()
 	if(destroyed)
 		return 1
 
@@ -248,7 +248,7 @@ update_flag
 	else
 		return 1
 
-/obj/machinery/portable_atmospherics/canister/process(delta_time)
+obj/machinery/portable_atmospherics/canister/process(delta_time)
 	if (destroyed)
 		return
 
@@ -279,10 +279,10 @@ update_flag
 
 	air_contents.react() //cooking up air cans - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
 
-/obj/machinery/portable_atmospherics/canister/return_air()
+obj/machinery/portable_atmospherics/canister/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/projectile/Proj)
+obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/projectile/Proj)
 	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
 		return
 
@@ -291,7 +291,7 @@ update_flag
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(!W.is_wrench() && !istype(W, /obj/item/tank) && !istype(W, /obj/item/analyzer) && !istype(W, /obj/item/pda))
 		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [W]!"))
 		src.health -= W.damage_force
@@ -314,22 +314,22 @@ update_flag
 
 	SSnanoui.update_uis(src) // Update all NanoUIs attached to src
 
-/obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
+obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/canister/attack_hand(mob/user, list/params)
+obj/machinery/portable_atmospherics/canister/attack_hand(mob/user, list/params)
 	return src.ui_interact(user)
 
-/obj/machinery/portable_atmospherics/canister/ui_state(mob/user, datum/tgui_module/module)
+obj/machinery/portable_atmospherics/canister/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Canister", name)
 		ui.open()
 
-/obj/machinery/portable_atmospherics/canister/ui_static_data(mob/user)
+obj/machinery/portable_atmospherics/canister/ui_static_data(mob/user)
 	return list(
 		"defaultReleasePressure" = round(CAN_DEFAULT_RELEASE_PRESSURE),
 		"minReleasePressure" = round(can_min_release_pressure),
@@ -339,7 +339,7 @@ update_flag
 		"holdingTankFragPressure" = round(TANK_FRAGMENT_PRESSURE)
 	)
 
-/obj/machinery/portable_atmospherics/canister/ui_data()
+obj/machinery/portable_atmospherics/canister/ui_data()
 	. = list(
 		"portConnected" = !!connected_port,
 		"tankPressure" = round(air_contents.return_pressure()),
@@ -368,7 +368,7 @@ update_flag
 			)
 		)
 
-/obj/machinery/portable_atmospherics/canister/ui_act(action, params)
+obj/machinery/portable_atmospherics/canister/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -437,114 +437,114 @@ update_flag
 			. = TRUE
 	update_appearance()
 
-/obj/machinery/portable_atmospherics/canister/phoron/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/phoron/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/phoron, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/oxygen/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/oxygen/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/oxygen, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/oxygen, MolesForPressure())
 	src.air_contents.temperature = 80
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/nitrous_oxide/Initialize(mapload)
 	. = ..()
 	air_contents.adjust_gas(/datum/gas/nitrous_oxide, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/helium/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/helium/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/helium, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/carbon_monoxide/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/carbon_monoxide/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/carbon_monoxide, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/methyl_bromide/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/methyl_bromide/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/methyl_bromide, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/nitrodioxide/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/nitrodioxide/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/nitrodioxide, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/nitricoxide/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/nitricoxide/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/nitricoxide, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/methane/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/methane/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/methane, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/argon/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/argon/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/argon, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/krypton/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/krypton/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/krypton, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/neon/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/neon/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/neon, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/ammonia/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/ammonia/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/ammonia, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/xenon/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/xenon/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/xenon, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/chlorine/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/chlorine/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/chlorine, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/sulfur_dioxide/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/sulfur_dioxide/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/sulfur_dioxide, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/hydrogen/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/hydrogen/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/hydrogen, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/tritium/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/tritium/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/hydrogen/tritium, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/deuterium/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/deuterium/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/hydrogen/deuterium, MolesForPressure())
 	src.update_icon()
 
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide/roomfiller/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/nitrous_oxide/roomfiller/Initialize(mapload)
 	. = ..()
 	air_contents.gas[/datum/gas/nitrous_oxide] = 9*4000
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide/roomfiller/LateInitialize()
+obj/machinery/portable_atmospherics/canister/nitrous_oxide/roomfiller/LateInitialize()
 	. = ..()
 	var/turf/simulated/location = src.loc
 	if (istype(src.loc))
@@ -553,17 +553,17 @@ update_flag
 		location.assume_air(air_contents)
 		air_contents = new
 
-/obj/machinery/portable_atmospherics/canister/nitrogen/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/nitrogen/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/nitrogen, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/carbon_dioxide/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/carbon_dioxide, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/air/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/air/Initialize(mapload)
 	. = ..()
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi(/datum/gas/oxygen, air_mix[/datum/gas/oxygen], /datum/gas/nitrogen, air_mix[/datum/gas/nitrogen])
@@ -571,21 +571,21 @@ update_flag
 
 //R-UST port
 // Special types used for engine setup admin verb, they contain double amount of that of normal canister.
-/obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/nitrogen, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/carbon_dioxide, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup/Initialize(mapload)
+obj/machinery/portable_atmospherics/canister/phoron/engine_setup/Initialize(mapload)
 	. = ..()
 	src.air_contents.adjust_gas(/datum/gas/phoron, MolesForPressure())
 	src.update_icon()
 
-/obj/machinery/portable_atmospherics/canister/take_damage(var/damage)
+obj/machinery/portable_atmospherics/canister/take_damage(var/damage)
 	src.health -= damage
 	healthcheck()

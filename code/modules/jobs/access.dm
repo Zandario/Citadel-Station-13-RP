@@ -1,6 +1,6 @@
 
 /// Returns 1 if this mob has sufficient access to use this object
-/obj/proc/allowed(mob/M)
+obj/proc/allowed(mob/M)
 	if(IsAdminGhost(M))
 		return TRUE
 	//check if it doesn't require any access at all
@@ -15,24 +15,24 @@
 ///obj/item/proc/GetAccess()
 //	return list()
 
-/atom/movable/proc/GetAccess()
+atom/movable/proc/GetAccess()
 	var/obj/item/card/id/id = GetIdCard()
 	return id ? id.GetAccess() : list()
 
-/obj/proc/GetID()
+obj/proc/GetID()
 	return null
 
-/obj/proc/check_access(obj/item/I)
+obj/proc/check_access(obj/item/I)
 	return check_access_list(I ? I.GetAccess() : list())
 
-/obj/proc/check_access_list(var/list/L)
+obj/proc/check_access_list(var/list/L)
 	if(!L)
 		return 0
 	if(!istype(L, /list))
 		return 0
 	return has_access(req_access, req_one_access, L)
 
-/proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
+proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
 	var/has_RA = LAZYLEN(req_access)
 	var/has_ROA = LAZYLEN(req_one_access)
 	var/has_A = LAZYLEN(accesses)
@@ -46,7 +46,7 @@
 		return FALSE
 	return TRUE
 
-/proc/get_centcom_access(job)
+proc/get_centcom_access(job)
 	switch(job)
 		if("VIP Guest")
 			return list(ACCESS_CENTCOM_GENERAL)
@@ -67,42 +67,42 @@
 		if("Supreme Commander")
 			return get_all_centcom_access()
 
-/proc/get_access_ids(access_types = ACCESS_TYPE_ALL)
+proc/get_access_ids(access_types = ACCESS_TYPE_ALL)
 	// todo: remove this proc
 	RETURN_TYPE(/list)
 	return SSjob.access_ids_of_type(access_types)
 
-/proc/get_all_accesses()
+proc/get_all_accesses()
 	// todo: remove this proc
 	RETURN_TYPE(/list)
 	return SSjob.access_ids_of_type(ACCESS_TYPE_ALL)
 
-/proc/get_all_station_access()
+proc/get_all_station_access()
 	// todo: remove this proc
 	RETURN_TYPE(/list)
 	return SSjob.access_ids_of_type(ACCESS_TYPE_STATION)
 
-/proc/get_all_centcom_access()
+proc/get_all_centcom_access()
 	// todo: remove this proc
 	RETURN_TYPE(/list)
 	return SSjob.access_ids_of_type(ACCESS_TYPE_CENTCOM)
 
-/proc/get_all_syndicate_access()
+proc/get_all_syndicate_access()
 	// todo: remove this proc
 	RETURN_TYPE(/list)
 	return SSjob.access_ids_of_type(ACCESS_TYPE_SYNDICATE)
 
-/proc/get_all_private_access()
+proc/get_all_private_access()
 	// todo: remove this proc
 	RETURN_TYPE(/list)
 	return SSjob.access_ids_of_type(ACCESS_TYPE_PRIVATE)
 
-/proc/get_region_accesses(region)
+proc/get_region_accesses(region)
 	// todo: remove this proc
 	RETURN_TYPE(/list)
 	return SSjob.access_ids_of_region(region)
 
-/proc/get_region_accesses_name(var/code)
+proc/get_region_accesses_name(var/code)
 	// todo: remove this proc
 	switch(code)
 		if(ACCESS_REGION_ALL)
@@ -122,19 +122,19 @@
 		if(ACCESS_REGION_SUPPLY) //supply
 			return "Supply"
 
-/proc/get_access_desc(id)
+proc/get_access_desc(id)
 	// todo: remove this proc
 	return SSjob.access_lookup(id)?.access_name
 
-/proc/get_centcom_access_desc(A)
+proc/get_centcom_access_desc(A)
 	// todo: remove this proc
 	return get_access_desc(A)
 
-/proc/get_access_by_id(id)
+proc/get_access_by_id(id)
 	// todo: remove this proc
 	return SSjob.access_lookup(id)
 
-/proc/get_all_centcom_jobs()
+proc/get_all_centcom_jobs()
 	// todo: remove this proc
 	return list("VIP Guest",
 		"Custodian",
@@ -148,13 +148,13 @@
 		"Emergency Response Team",
 		"Emergency Response Team Leader")
 
-/atom/movable/proc/GetIdCard()
+atom/movable/proc/GetIdCard()
 	return null
 
-/mob/living/bot/GetIdCard()
+mob/living/bot/GetIdCard()
 	return botcard
 
-/mob/living/carbon/human/GetIdCard()
+mob/living/carbon/human/GetIdCard()
 	if(get_active_held_item())
 		var/obj/item/I = get_active_held_item()
 		var/id = I.GetID()
@@ -165,19 +165,19 @@
 		if(id)
 			return id
 
-/mob/living/silicon/GetIdCard()
+mob/living/silicon/GetIdCard()
 	return idcard
 
-/proc/FindNameFromID(var/mob/living/carbon/human/H)
+proc/FindNameFromID(var/mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/card/id/C = H.GetIdCard()
 	if(C)
 		return C.registered_name
 
-/proc/get_all_job_icons() //For all existing HUD icons
+proc/get_all_job_icons() //For all existing HUD icons
 	return SSjob.all_job_titles() + list("Prisoner")
 
-/obj/proc/GetJobName() //Used in secHUD icon generation
+obj/proc/GetJobName() //Used in secHUD icon generation
 	var/obj/item/card/id/I = GetID()
 
 	if(I)

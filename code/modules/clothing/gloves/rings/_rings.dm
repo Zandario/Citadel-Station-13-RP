@@ -1,6 +1,6 @@
 //Rings
 
-/obj/item/clothing/gloves/ring
+obj/item/clothing/gloves/ring
 	name = "ring"
 	w_class = ITEMSIZE_TINY
 	icon = 'icons/obj/clothing/rings.dmi'

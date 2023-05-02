@@ -1,4 +1,4 @@
-/obj/item/organ
+obj/item/organ
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
 	germ_level = 0
@@ -79,7 +79,7 @@
 	/// What does butchering, if possible, make?
 	var/meat_type
 
-/obj/item/organ/Initialize(mapload, internal)
+obj/item/organ/Initialize(mapload, internal)
 	. = ..(mapload)
 	create_reagents(5)
 
@@ -149,7 +149,7 @@
 
 	handle_organ_mod_special()
 
-/obj/item/organ/Destroy()
+obj/item/organ/Destroy()
 	handle_organ_mod_special(TRUE)
 	STOP_PROCESSING(SSobj, src)
 	if(owner)
@@ -164,12 +164,12 @@
 	species = null
 	return ..()
 
-/obj/item/organ/proc/update_health()
+obj/item/organ/proc/update_health()
 	// TODO: refactor, this should only be on internal!
 	if(damage >= max_damage)
 		die()
 
-/obj/item/organ/proc/set_dna(datum/dna/new_dna)
+obj/item/organ/proc/set_dna(datum/dna/new_dna)
 	if(new_dna)
 		dna = new_dna.Clone()
 		if(blood_DNA)
@@ -178,13 +178,13 @@
 
 	s_base = new_dna.s_base
 
-/obj/item/organ/proc/is_dead()
+obj/item/organ/proc/is_dead()
 	return (status & ORGAN_DEAD)
 
 /**
  * Checks if we can currently die.
  */
-/obj/item/organ/proc/can_die()
+obj/item/organ/proc/can_die()
 	return (robotic < ORGAN_ROBOT)
 
 /**
@@ -195,7 +195,7 @@
  *
  * @return TRUE / FALSE based on if this actually killed the organ. Returns TRUE if the organ was already dead.
  */
-/obj/item/organ/proc/die(force = FALSE)
+obj/item/organ/proc/die(force = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!can_die() && !force)
 		return FALSE
@@ -214,19 +214,19 @@
 /**
  * Called when we die (*not* our owner).
  */
-/obj/item/organ/proc/on_die()
+obj/item/organ/proc/on_die()
 	return
 
 /**
  * Checks if we're currently able to be revived.
  */
-/obj/item/organ/proc/can_revive()
+obj/item/organ/proc/can_revive()
 	return damage < max_damage
 
 /**
  * Called to heal all damages
  */
-/obj/item/organ/proc/rejuvenate()
+obj/item/organ/proc/rejuvenate()
 	damage = 0
 	germ_level = 0
 
@@ -239,7 +239,7 @@
  *
  * @return TRUE / FALSE based on if this actually ended up reviving the organ. Returns TRUE if organ was already alive.
  */
-/obj/item/organ/proc/revive(full_heal = FALSE, force = FALSE)
+obj/item/organ/proc/revive(full_heal = FALSE, force = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(full_heal)
 		rejuvenate()
@@ -257,24 +257,24 @@
 /**
  * Called when we're brought back to life.
  */
-/obj/item/organ/proc/on_revive()
+obj/item/organ/proc/on_revive()
 	return
 
-/obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
+obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
 	germ_level = clamp(germ_level + amount, 0, INFECTION_LEVEL_MAX)
 
-/obj/item/organ/examine(mob/user)
+obj/item/organ/examine(mob/user)
 	. = ..()
 	if(status & ORGAN_DEAD)
 		. += "<span class='notice'>The decay has set in.</span>"
 
-/obj/item/organ/proc/receive_chem(chemical as obj)
+obj/item/organ/proc/receive_chem(chemical as obj)
 	return 0
 
-/obj/item/organ/proc/remove_rejuv()
+obj/item/organ/proc/remove_rejuv()
 	qdel(src)
 
-/obj/item/organ/proc/rejuvenate_legacy(var/ignore_prosthetic_prefs)
+obj/item/organ/proc/rejuvenate_legacy(var/ignore_prosthetic_prefs)
 	damage = 0
 	status = 0
 	germ_level = 0
@@ -287,17 +287,17 @@
 		else if(status == "mechanical")
 			robotize()
 
-/obj/item/organ/proc/is_damaged()
+obj/item/organ/proc/is_damaged()
 	return damage > 0
 
-/obj/item/organ/proc/is_bruised()
+obj/item/organ/proc/is_bruised()
 	return damage >= min_bruised_damage
 
-/obj/item/organ/proc/is_broken()
+obj/item/organ/proc/is_broken()
 	return (damage >= min_broken_damage || (status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN))
 
 ///Adds autopsy data for used_weapon.
-/obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
+obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
 	var/datum/autopsy_data/W = autopsy_data[used_weapon]
 	if(!W)
 		W = new()
@@ -309,7 +309,7 @@
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
-/obj/item/organ/take_damage(amount, var/silent=0)
+obj/item/organ/take_damage(amount, var/silent=0)
 	ASSERT(amount >= 0)
 	if(src.robotic >= ORGAN_ROBOT)
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
@@ -322,18 +322,18 @@
 			if(parent && !silent)
 				owner.custom_pain("Something inside your [parent.name] hurts a lot.", amount)
 
-/obj/item/organ/proc/bruise()
+obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
 
 /// Being used to make robutt hearts, etc
-/obj/item/organ/proc/robotize()
+obj/item/organ/proc/robotize()
 	robotic = ORGAN_ROBOT
 	src.status &= ~ORGAN_BROKEN
 	src.status &= ~ORGAN_BLEEDING
 	src.status &= ~ORGAN_CUT_AWAY
 
 /// Used to add things like pacemakers, etc
-/obj/item/organ/proc/mechassist()
+obj/item/organ/proc/mechassist()
 	robotize()
 	robotic = ORGAN_ASSISTED
 	min_bruised_damage = 15
@@ -341,10 +341,10 @@
 	butcherable = FALSE
 
 ///Used to make the circuit-brain. On this level in the event more circuit-organs are added/tweaks are wanted.
-/obj/item/organ/proc/digitize()
+obj/item/organ/proc/digitize()
 	robotize()
 
-/obj/item/organ/emp_act(severity)
+obj/item/organ/emp_act(severity)
 	if(!(robotic >= ORGAN_ASSISTED))
 		return
 	for(var/i = 1; i <= robotic; i++)
@@ -358,7 +358,7 @@
 			if (4)
 				take_damage(rand(1,3))
 
-/obj/item/organ/proc/removed(var/mob/living/user)
+obj/item/organ/proc/removed(var/mob/living/user)
 	if(owner)
 		owner.internal_organs_by_name[organ_tag] = null
 		owner.internal_organs_by_name -= organ_tag
@@ -387,7 +387,7 @@
 	owner = null
 	reconsider_processing()
 
-/obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
 
 	if(!istype(target)) return
 
@@ -415,7 +415,7 @@
  *
  * preconditions: owner is a /mob
  */
-/obj/item/organ/proc/tick_life(dt)
+obj/item/organ/proc/tick_life(dt)
 	if(loc != owner)
 		stack_trace("organ outside of owner automatically yanked from owner. owner was [owner] ([REF(owner)]), src was [src] ([REF(src)])")
 		owner = null
@@ -439,7 +439,7 @@
  *
  * preconditions: owner is a /mob
  */
-/obj/item/organ/proc/tick_death(dt)
+obj/item/organ/proc/tick_death(dt)
 	if(loc != owner)
 		stack_trace("organ outside of owner automatically yanked from owner. owner was [owner] ([REF(owner)]), src was [src] ([REF(src)])")
 		owner = null
@@ -468,7 +468,7 @@
 /**
  * called while removed from a mob
  */
-/obj/item/organ/proc/tick_removed(dt)
+obj/item/organ/proc/tick_removed(dt)
 	handle_organ_proc_special()
 
 	if(can_decay())
@@ -489,7 +489,7 @@
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
 
-/obj/item/organ/proc/handle_decay(dt)
+obj/item/organ/proc/handle_decay(dt)
 	var/multiplier = CONFIG_GET(number/organ_decay_multiplier)
 	take_damage(dt * decay_rate * multiplier, TRUE)
 
@@ -504,7 +504,7 @@
  * @params
  * - locality - check [code/__DEFINES/mobs/organs.dm]
  */
-/obj/item/organ/proc/should_process(locality)
+obj/item/organ/proc/should_process(locality)
 	switch(locality)
 		if(ORGAN_LOCALITY_REMOVED)
 			return can_decay() && !is_dead()
@@ -516,7 +516,7 @@
 /**
  * reconsider if we need to process
  */
-/obj/item/organ/proc/reconsider_processing()
+obj/item/organ/proc/reconsider_processing()
 	if(owner)
 		// we're in someone we'll always tick from their handle_organs so don't process externally
 		STOP_PROCESSING(SSobj, src)
@@ -530,13 +530,13 @@
 /**
  * can we decay?
  */
-/obj/item/organ/proc/can_decay()
+obj/item/organ/proc/can_decay()
 	return CONFIG_GET(flag/organ_decay) && !HAS_TRAIT(src, TRAIT_ORGAN_PRESERVED) && (!loc || !HAS_TRAIT(loc, TRAIT_ORGAN_PRESERVED)) && (!owner || !HAS_TRAIT(owner, TRAIT_PRESERVE_ALL_ORGANS)) && decays
 
 /**
  * preserved trait wrapper
  */
-/obj/item/organ/proc/preserve(source)
+obj/item/organ/proc/preserve(source)
 	ASSERT(source)
 	ADD_TRAIT(src, TRAIT_ORGAN_PRESERVED, source)
 	reconsider_processing()
@@ -544,13 +544,13 @@
 /**
  * preserved trait wrapper
  */
-/obj/item/organ/proc/unpreserve(source)
+obj/item/organ/proc/unpreserve(source)
 	ASSERT(source)
 	REMOVE_TRAIT(src, TRAIT_ORGAN_PRESERVED, source)
 	reconsider_processing()
 
 //Germs
-/obj/item/organ/proc/handle_antibiotics()
+obj/item/organ/proc/handle_antibiotics()
 	if(istype(owner))
 		var/antibiotics = owner.chem_effects[CE_ANTIBIOTIC] || 0
 
@@ -574,7 +574,7 @@
 			adjust_germ_level(-antibiotics)
 
 ///A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
-/obj/item/organ/proc/handle_germ_effects()
+obj/item/organ/proc/handle_germ_effects()
 	//* Handle the effects of infections
 	if(robotic >= ORGAN_ROBOT) //Just in case!
 		germ_level = 0
@@ -630,7 +630,7 @@
 		. = 3 //Organ qualifies for effect-specific processing
 		adjust_germ_level(rand(5,10)) //Germ_level increases without overdose of antibiotics
 
-/obj/item/organ/proc/handle_rejection()
+obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
 	// immunosuppressant that changes transplant data to make it match.
 	if(dna && can_reject)
@@ -651,7 +651,7 @@
 						adjust_germ_level(rand(3,5))
 						owner.reagents.add_reagent("toxin", rand(1,2))
 
-/obj/item/organ/proc/bitten(mob/user)
+obj/item/organ/proc/bitten(mob/user)
 
 	if(robotic >= ORGAN_ROBOT)
 		return
@@ -680,7 +680,7 @@
 	user.put_in_active_hand(O)
 	qdel(src)
 
-/obj/item/organ/attack_self(mob/user)
+obj/item/organ/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -690,14 +690,14 @@
 		bitten(user)
 		return
 
-/obj/item/organ/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/organ/attackby(obj/item/W as obj, mob/user as mob)
 	if(can_butcher(W, user))
 		butcher(W, user)
 		return
 
 	return ..()
 
-/obj/item/organ/proc/can_butcher(var/obj/item/O, var/mob/living/user)
+obj/item/organ/proc/can_butcher(var/obj/item/O, var/mob/living/user)
 	if(butcherable && meat_type)
 
 		if(istype(O, /obj/machinery/gibber))	// The great equalizer.
@@ -713,7 +713,7 @@
 
 	return FALSE
 
-/obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
+obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
 	if(robotic >= ORGAN_ROBOT)
 		user?.visible_message(SPAN_NOTICE("[user] disassembles \the [src]."))
 
@@ -731,7 +731,7 @@
 	qdel(src)
 
 
-/obj/item/organ/proc/organ_can_feel_pain()
+obj/item/organ/proc/organ_can_feel_pain()
 	if(species.species_flags & NO_PAIN)
 		return FALSE
 	if(status & ORGAN_DESTROYED)
@@ -742,7 +742,7 @@
 		return FALSE
 	return 1
 
-/obj/item/organ/proc/handle_organ_mod_special(var/removed = FALSE)	// Called when created, transplanted, and removed.
+obj/item/organ/proc/handle_organ_mod_special(var/removed = FALSE)	// Called when created, transplanted, and removed.
 	// todo: better way
 	if(owner)
 		rad_flags |= RAD_NO_CONTAMINATE
@@ -775,11 +775,11 @@
 	return
 
 /// Called when processed.
-/obj/item/organ/proc/handle_organ_proc_special()
+obj/item/organ/proc/handle_organ_proc_special()
 	return
 
 /// Used for determining if an organ should give or remove its verbs. I.E., FBP part in a human, no verbs. If true, keep or add.
-/obj/item/organ/proc/check_verb_compatability()
+obj/item/organ/proc/check_verb_compatability()
 	if(owner)
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
@@ -808,12 +808,12 @@
 
 	return FALSE
 
-/obj/item/organ/proc/refresh_action_button()
+obj/item/organ/proc/refresh_action_button()
 	return action
 
 // todo: unified organ damage system
 // for now, this is how to heal internal organs
-/obj/item/organ/proc/heal_damage_i(amount, force, can_revive)
+obj/item/organ/proc/heal_damage_i(amount, force, can_revive)
 	ASSERT(amount > 0)
 	var/dead = !!(status & ORGAN_DEAD)
 	if(dead && !force && !can_revive)

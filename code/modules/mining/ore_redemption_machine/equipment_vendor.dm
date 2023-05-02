@@ -1,6 +1,6 @@
 /**********************Mining Equipment Locker**************************/
 
-/obj/machinery/mineral/equipment_vendor
+obj/machinery/mineral/equipment_vendor
 	name = "mining equipment vendor"
 	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
 	icon = 'icons/obj/machines/mining_machines.dmi'
@@ -90,17 +90,17 @@
 		new /datum/data/mining_equipment("Bar Shelter Capsule",		/obj/item/survivalcapsule/luxurybar,							10000)
 		)
 
-/datum/data/mining_equipment
+datum/data/mining_equipment
 	var/equipment_name = "generic"
 	var/equipment_path = null
 	var/cost = 0
 
-/datum/data/mining_equipment/New(name, path, cost)
+datum/data/mining_equipment/New(name, path, cost)
 	src.equipment_name = name
 	src.equipment_path = path
 	src.cost = cost
 
-/obj/machinery/mineral/equipment_vendor/power_change()
+obj/machinery/mineral/equipment_vendor/power_change()
 	var/old_stat = machine_stat
 	..()
 	if(old_stat != machine_stat)
@@ -109,7 +109,7 @@
 		visible_message("<span class='notice'>The ID slot indicator light flickers on \the [src] as it spits out a card before powering down.</span>")
 		inserted_id.forceMove(get_turf(src))
 
-/obj/machinery/mineral/equipment_vendor/update_icon()
+obj/machinery/mineral/equipment_vendor/update_icon()
 	if(panel_open)
 		icon_state = "[initial(icon_state)]-open"
 	else if(powered())
@@ -117,16 +117,16 @@
 	else
 		icon_state = "[initial(icon_state)]-off"
 
-/obj/machinery/mineral/equipment_vendor/attack_hand(mob/user, list/params)
+obj/machinery/mineral/equipment_vendor/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	interact(user)
 
-/obj/machinery/mineral/equipment_vendor/attack_ghost(mob/user)
+obj/machinery/mineral/equipment_vendor/attack_ghost(mob/user)
 	. = ..()
 	interact(user)
 
-/obj/machinery/mineral/equipment_vendor/interact(mob/user)
+obj/machinery/mineral/equipment_vendor/interact(mob/user)
 	user.set_machine(src)
 
 	var/dat
@@ -144,7 +144,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/mineral/equipment_vendor/Topic(href, href_list)
+obj/machinery/mineral/equipment_vendor/Topic(href, href_list)
 	if(..())
 		return 1
 	if(child)
@@ -190,7 +190,7 @@
 			flick(icon_deny, src)
 	updateUsrDialog()
 
-/obj/machinery/mineral/equipment_vendor/attackby(obj/item/I, mob/user, params)
+obj/machinery/mineral/equipment_vendor/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, I))
 		updateUsrDialog()
 		return CLICKCHAIN_DO_NOT_PROPAGATE
@@ -214,12 +214,12 @@
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	..()
 
-/obj/machinery/mineral/equipment_vendor/dismantle()
+obj/machinery/mineral/equipment_vendor/dismantle()
 	if(inserted_id)
 		inserted_id.forceMove(loc) //Prevents deconstructing the ORM from deleting whatever ID was inside it.
 	. = ..()
 
-/obj/machinery/mineral/equipment_vendor/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
+obj/machinery/mineral/equipment_vendor/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
 	var/selection = input(redeemer, "Pick your equipment", "Mining Voucher Redemption") as null|anything in list("Kinetic Accelerator", "Resonator", "Mining Drone", "Advanced Scanner", "Crusher")
 	if(!selection || !Adjacent(redeemer) || voucher.loc != redeemer)
 		return
@@ -231,7 +231,7 @@
 			new /obj/item/resonator(drop_location)
 	qdel(voucher)
 
-/obj/machinery/mineral/equipment_vendor/proc/new_prize(var/name, var/path, var/cost) // Generic proc for adding new entries. Good for abusing for FUN and PROFIT.
+obj/machinery/mineral/equipment_vendor/proc/new_prize(var/name, var/path, var/cost) // Generic proc for adding new entries. Good for abusing for FUN and PROFIT.
 	if(!cost)
 		cost = 100
 	if(!path)
@@ -240,7 +240,7 @@
 		name = "Generic Entry"
 	prize_list += new /datum/data/mining_equipment(name, path, cost)
 
-/obj/machinery/mineral/equipment_vendor/legacy_ex_act(severity, target)
+obj/machinery/mineral/equipment_vendor/legacy_ex_act(severity, target)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()

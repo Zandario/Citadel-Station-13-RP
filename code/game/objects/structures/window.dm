@@ -1,4 +1,4 @@
-/obj/structure/window
+obj/structure/window
 	abstract_type = /obj/structure/window
 
 	name = "window"
@@ -46,7 +46,7 @@
 	var/mutable_appearance/crack_overlay
 
 
-/obj/structure/window/Initialize(mapload, start_dir, constructed = FALSE)
+obj/structure/window/Initialize(mapload, start_dir, constructed = FALSE)
 	. = ..(mapload)
 	/// COMPATIBILITY PATCH - Replace this crap with a better solution (maybe copy /tg/'s ASAP!!)
 	// unfortunately no longer a compatibility patch ish due to clickcode...
@@ -62,21 +62,21 @@
 	AIR_UPDATE_ON_INITIALIZE_AUTO
 
 
-/obj/structure/window/Destroy()
+obj/structure/window/Destroy()
 	AIR_UPDATE_ON_DESTROY_AUTO
 	set_density(FALSE)
 	update_nearby_icons()
 	return ..()
 
 
-/obj/structure/window/Move()
+obj/structure/window/Move()
 	moving_right_now = dir
 	. = ..()
 	setDir(moving_right_now)
 	moving_right_now = null
 
 
-/obj/structure/window/Moved(atom/oldloc)
+obj/structure/window/Moved(atom/oldloc)
 	. = ..()
 	AIR_UPDATE_ON_MOVED_AUTO
 
@@ -85,12 +85,12 @@
 		update_nearby_icons()
 
 
-/obj/structure/window/setDir(newdir)
+obj/structure/window/setDir(newdir)
 	. = ..()
 	update_nearby_tiles()
 
 
-/obj/structure/window/set_anchored(anchorvalue)
+obj/structure/window/set_anchored(anchorvalue)
 	. = ..()
 	update_nearby_tiles() // Atmos update
 	if (anchorvalue)
@@ -100,7 +100,7 @@
 	update_nearby_icons() // Icon update
 
 
-/obj/structure/window/examine(mob/user)
+obj/structure/window/examine(mob/user)
 	. = ..()
 
 	if (health == maxhealth)
@@ -127,7 +127,7 @@
 				. += SPAN_NOTICE("There is a thick layer of silicate covering it.")
 
 
-/obj/structure/window/take_damage(damage, sound_effect = TRUE)
+obj/structure/window/take_damage(damage, sound_effect = TRUE)
 	. = ..()
 	if(.) //received damage
 		update_nearby_icons()
@@ -156,7 +156,7 @@
 	return
 
 
-/obj/structure/window/bullet_act(obj/projectile/Proj)
+obj/structure/window/bullet_act(obj/projectile/Proj)
 
 	var/proj_damage = Proj.get_structure_damage()
 	if (!proj_damage)
@@ -167,7 +167,7 @@
 	return ..()
 
 
-/obj/structure/window/legacy_ex_act(severity)
+obj/structure/window/legacy_ex_act(severity)
 	switch (severity)
 		if (1.0)
 			qdel(src)
@@ -179,11 +179,11 @@
 	return
 
 
-/obj/structure/window/blob_act()
+obj/structure/window/blob_act()
 	take_damage(50)
 
 
-/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.)
 		return
@@ -205,14 +205,14 @@
 	return TRUE
 
 
-/obj/structure/window/CanAtmosPass(turf/T, d)
+obj/structure/window/CanAtmosPass(turf/T, d)
 	if (fulltile || (d == dir))
 		return anchored? ATMOS_PASS_AIR_BLOCKED : ATMOS_PASS_NOT_BLOCKED
 	return ATMOS_PASS_NOT_BLOCKED
 
 
 //? Does this work? idk. Let's call it TBI.
-/obj/structure/window/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
+obj/structure/window/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
 	if (!density)
 		return TRUE
 
@@ -222,7 +222,7 @@
 	return TRUE
 
 
-/obj/structure/window/CheckExit(atom/movable/mover, turf/target)
+obj/structure/window/CheckExit(atom/movable/mover, turf/target)
 	if(istype(mover) && (check_standard_flag_pass(mover)))
 		return TRUE
 	if(!fulltile && get_dir(src, target) & dir)
@@ -230,7 +230,7 @@
 	return TRUE
 
 
-/obj/structure/window/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+obj/structure/window/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 
 	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
@@ -253,12 +253,12 @@
 	take_damage(tforce)
 
 
-/obj/structure/window/attack_tk(mob/user)
+obj/structure/window/attack_tk(mob/user)
 	user.visible_message(SPAN_NOTICE("Something knocks on [src]."))
 	playsound(loc, 'sound/effects/Glasshit.ogg', 50, TRUE)
 
 
-/obj/structure/window/attack_hand(mob/user, list/params)
+obj/structure/window/attack_hand(mob/user, list/params)
 	user.setClickCooldown(user.get_attack_speed())
 
 	if (MUTATION_HULK in user.mutations) // Do we really still need these?
@@ -297,7 +297,7 @@
 	return
 
 
-/obj/structure/window/attack_generic(mob/user, damage)
+obj/structure/window/attack_generic(mob/user, damage)
 	user.setClickCooldown(user.get_attack_speed())
 	if (!damage)
 		return
@@ -315,7 +315,7 @@
 	return TRUE
 
 
-/obj/structure/window/attackby(obj/item/object, mob/user)
+obj/structure/window/attackby(obj/item/object, mob/user)
 	if (!istype(object))
 		return // I really wish I did not need this.
 
@@ -403,7 +403,7 @@
 	return ..()
 
 
-/obj/structure/window/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+obj/structure/window/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch (passed_mode)
 		if (RCD_DECONSTRUCT)
 			return list(
@@ -413,7 +413,7 @@
 			)
 
 
-/obj/structure/window/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+obj/structure/window/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch (passed_mode)
 		if (RCD_DECONSTRUCT)
 			to_chat(user, SPAN_NOTICE("You deconstruct \the [src]."))
@@ -422,13 +422,13 @@
 	return FALSE
 
 
-/obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	. = ..()
 	if (exposed_temperature > maximal_heat)
 		take_damage(damage_per_fire_tick)
 
 
-/obj/structure/window/drop_products(method)
+obj/structure/window/drop_products(method)
 	if (method == ATOM_DECONSTRUCT_DISASSEMBLED)
 		if (glasstype)
 			new glasstype(drop_location(), fulltile? 2 : 1)
@@ -440,7 +440,7 @@
 			new shardtype(drop_location())
 
 
-/obj/structure/window/screwdriver_act(obj/item/I, mob/user, flags, hint)
+obj/structure/window/screwdriver_act(obj/item/I, mob/user, flags, hint)
 	. = TRUE
 
 	if (construction_state == WINDOW_STATE_UNSECURED || construction_state == WINDOW_STATE_SCREWED_TO_FLOOR || !considered_reinforced)
@@ -470,7 +470,7 @@
 	construction_state = unsecuring ? WINDOW_STATE_CROWBRARED_IN : WINDOW_STATE_SECURED_TO_FRAME
 
 
-/obj/structure/window/crowbar_act(obj/item/I, mob/user, flags, hint)
+obj/structure/window/crowbar_act(obj/item/I, mob/user, flags, hint)
 	. = TRUE
 	if (!considered_reinforced)
 		return
@@ -483,7 +483,7 @@
 	construction_state = unsecuring ? WINDOW_STATE_SCREWED_TO_FLOOR : WINDOW_STATE_CROWBRARED_IN
 
 
-/obj/structure/window/wrench_act(obj/item/I, mob/user, flags, hint)
+obj/structure/window/wrench_act(obj/item/I, mob/user, flags, hint)
 	. = TRUE
 	if (construction_state != WINDOW_STATE_UNSECURED)
 		user.action_feedback(SPAN_WARNING("[src] has to be entirely unfastened from the floor before you can disasemble it!"))
@@ -494,7 +494,7 @@
 	deconstruct(ATOM_DECONSTRUCT_DISASSEMBLED)
 
 
-/obj/structure/window/dynamic_tool_functions(obj/item/I, mob/user)
+obj/structure/window/dynamic_tool_functions(obj/item/I, mob/user)
 	if (construction_state == WINDOW_STATE_UNSECURED)
 		. = list(
 			TOOL_SCREWDRIVER = TOOL_HINT_SCREWING_WINDOW_FRAME,
@@ -523,7 +523,7 @@
 	return merge_double_lazy_assoc_list(., ..())
 
 
-/obj/structure/window/dynamic_tool_image(function, hint)
+obj/structure/window/dynamic_tool_image(function, hint)
 	switch (hint)
 		if (TOOL_HINT_CROWBAR_WINDOW_IN)
 			return dyntool_image_forward(TOOL_CROWBAR)
@@ -541,14 +541,14 @@
 
 
 //This proc is used to update the icons of nearby windows.
-/obj/structure/window/proc/update_nearby_icons()
+obj/structure/window/proc/update_nearby_icons()
 	update_appearance()
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
 
 //merges adjacent full-tile windows into one
-/obj/structure/window/update_overlays(updates=ALL)
+obj/structure/window/update_overlays(updates=ALL)
 	. = ..()
 	if(QDELETED(src) || !fulltile)
 		return
@@ -567,7 +567,7 @@
 	. += crack_overlay
 
 
-/obj/structure/window/proc/check_fullwindow()
+obj/structure/window/proc/check_fullwindow()
 	if (dir & (dir - 1)) // Diagonal!
 		fulltile = TRUE
 
@@ -578,7 +578,7 @@
 		CanAtmosPass = ATMOS_PASS_AIR_BLOCKED
 
 
-/obj/structure/window/proc/apply_silicate(amount)
+obj/structure/window/proc/apply_silicate(amount)
 	if (health < maxhealth) // Mend the damage
 		health = min(health + amount * 3, maxhealth)
 		if (health == maxhealth)
@@ -588,7 +588,7 @@
 		update_appearance()
 
 
-/obj/structure/window/proc/shatter(display_message = TRUE)
+obj/structure/window/proc/shatter(display_message = TRUE)
 	playsound(src, "shatter", 70, TRUE)
 	if (display_message)
 		visible_message("[src] shatters!")
@@ -603,7 +603,7 @@
 	return
 
 
-/obj/structure/window/proc/hit(damage, sound_effect = TRUE)
+obj/structure/window/proc/hit(damage, sound_effect = TRUE)
 	if (damage < force_threshold || force_threshold < 0)
 		return
 	if (considered_reinforced)
@@ -612,7 +612,7 @@
 	return
 
 
-/obj/structure/window/verb/rotate_counterclockwise()
+obj/structure/window/verb/rotate_counterclockwise()
 	set name = "Rotate Counterclockwise" // Temporary fix until someone more intelligent figures out how to add proper rotation verbs to the panels
 	set category = "Object"
 	set src in oview(1)
@@ -631,7 +631,7 @@
 	update_appearance()
 
 
-/obj/structure/window/verb/rotate_clockwise()
+obj/structure/window/verb/rotate_clockwise()
 	set name = "Rotate Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -651,7 +651,7 @@
 
 
 /// Updates the availabiliy of the rotation verbs
-/obj/structure/window/proc/update_verbs()
+obj/structure/window/proc/update_verbs()
 	if (anchored || fulltile)
 		remove_obj_verb(src, /obj/structure/window/verb/rotate_counterclockwise)
 		remove_obj_verb(src, /obj/structure/window/verb/rotate_clockwise)
@@ -660,7 +660,7 @@
 		add_obj_verb(src, /obj/structure/window/verb/rotate_clockwise)
 
 
-/obj/structure/window/basic
+obj/structure/window/basic
 	desc = "It looks thin and flimsy. A few knocks with... almost anything, really should shatter it."
 	icon_state = "window"
 
@@ -671,7 +671,7 @@
 	force_threshold = 3
 
 
-/obj/structure/window/basic/full
+obj/structure/window/basic/full
 	icon = 'icons/obj/structures/window_full.dmi'
 	icon_state = "window-0"
 	base_icon_state = "window"
@@ -685,7 +685,7 @@
 	fulltile = TRUE
 
 
-/obj/structure/window/phoronbasic
+obj/structure/window/phoronbasic
 	name = "phoron window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
 	icon_state = "phoronwindow"
@@ -698,7 +698,7 @@
 	force_threshold = 5
 
 
-/obj/structure/window/phoronbasic/full
+obj/structure/window/phoronbasic/full
 	icon = 'icons/obj/structures/window_full_phoron.dmi'
 	icon_state = "window-0"
 
@@ -712,7 +712,7 @@
 
 
 
-/obj/structure/window/phoronreinforced
+obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
 	icon_state = "phoronrwindow"
@@ -727,7 +727,7 @@
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
 
 
-/obj/structure/window/phoronreinforced/full
+obj/structure/window/phoronreinforced/full
 	icon = 'icons/obj/structures/window_full_reinforced_phoron.dmi'
 	icon_state = "window-0"
 
@@ -740,7 +740,7 @@
 	fulltile = TRUE
 
 
-/obj/structure/window/reinforced
+obj/structure/window/reinforced
 	name = "reinforced window"
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "rwindow"
@@ -754,7 +754,7 @@
 	damage_per_fire_tick = 2.0
 
 
-/obj/structure/window/reinforced/full
+obj/structure/window/reinforced/full
 	icon = 'icons/obj/structures/window_full_reinforced.dmi'
 	icon_state = "window-0"
 
@@ -767,7 +767,7 @@
 	fulltile = TRUE
 
 
-/obj/structure/window/reinforced/tinted
+obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."
 	icon_state = "twindow"
@@ -775,7 +775,7 @@
 	opacity = TRUE
 
 
-/obj/structure/window/reinforced/tinted/frosted
+obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
 	desc = "It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
 	icon_state = "fwindow"
@@ -785,7 +785,7 @@
 
 
 // TODO: Recreate this.
-/obj/structure/window/shuttle
+obj/structure/window/shuttle
 	name = "shuttle window"
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon = 'icons/obj/podwindows.dmi'
@@ -803,14 +803,14 @@
 
 
 
-/obj/structure/window/reinforced/polarized
+obj/structure/window/reinforced/polarized
 	name = "electrochromic window"
 	desc = "Adjusts its tint with voltage. Might take a few good hits to shatter it."
 
 	var/id
 
 
-/obj/structure/window/reinforced/polarized/full
+obj/structure/window/reinforced/polarized/full
 	icon = 'icons/obj/structures/window_full_reinforced.dmi'
 	icon_state = "window-0"
 
@@ -824,7 +824,7 @@
 	fulltile = TRUE
 
 
-/obj/structure/window/reinforced/polarized/attackby(obj/item/object, mob/user)
+obj/structure/window/reinforced/polarized/attackby(obj/item/object, mob/user)
 	if (istype(object, /obj/item/multitool) && !anchored) // Only allow programming if unanchored!
 
 		// First check if they have a windowtint button buffered.
@@ -849,7 +849,7 @@
 	. = ..()
 
 
-/obj/structure/window/reinforced/polarized/proc/toggle()
+obj/structure/window/reinforced/polarized/proc/toggle()
 	if (opacity)
 		animate(
 			src,
@@ -866,7 +866,7 @@
 		set_opacity(TRUE)
 
 
-/obj/machinery/button/windowtint
+obj/machinery/button/windowtint
 	name = "window tint control"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light0"
@@ -874,14 +874,14 @@
 	var/range = 7
 
 
-/obj/machinery/button/windowtint/attack_hand(mob/user, list/params)
+obj/machinery/button/windowtint/attack_hand(mob/user, list/params)
 	if (..())
 		return TRUE
 	else
 		toggle_tint()
 
 
-/obj/machinery/button/windowtint/proc/toggle_tint()
+obj/machinery/button/windowtint/proc/toggle_tint()
 	use_power(5)
 
 	active = !active
@@ -894,18 +894,18 @@
 	return
 
 
-/obj/machinery/button/windowtint/power_change()
+obj/machinery/button/windowtint/power_change()
 	..()
 	if (active && !powered(power_channel))
 		toggle_tint()
 
 
-/obj/machinery/button/windowtint/update_icon_state()
+obj/machinery/button/windowtint/update_icon_state()
 	. = ..()
 	icon_state = "light[active]"
 
 
-/obj/machinery/button/windowtint/attackby(obj/item/object, mob/user)
+obj/machinery/button/windowtint/attackby(obj/item/object, mob/user)
 	if (istype(object, /obj/item/multitool))
 		var/obj/item/multitool/MT = object
 		if (!id)
@@ -928,7 +928,7 @@
 	. = ..()
 
 
-/obj/structure/window/wooden
+obj/structure/window/wooden
 	name = "wooden panel"
 	desc = "A set of wooden panelling, designed to hide the drab grey walls."
 	icon_state = "woodpanel"
@@ -942,7 +942,7 @@
 	opacity = TRUE
 
 
-/obj/structure/window/wooden/take_damage(damage, sound_effect = TRUE)
+obj/structure/window/wooden/take_damage(damage, sound_effect = TRUE)
 	var/initialhealth = health
 
 	health = max(0, health - damage)
@@ -964,7 +964,7 @@
 	return
 
 
-/obj/structure/window/wooden/shatter(display_message = TRUE)
+obj/structure/window/wooden/shatter(display_message = TRUE)
 	playsound(loc, 'sound/effects/woodcutting.ogg', 100, TRUE)
 	if (display_message)
 		visible_message("[src] falls apart!")

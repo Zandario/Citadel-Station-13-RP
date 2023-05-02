@@ -87,16 +87,16 @@ DEFINE_BITFIELD(subsystem_flags, list(
 /// in the middle of pausing
 #define SS_PAUSING 5
 #define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
-/datum/controller/subsystem/##X/New(){\
+datum/controller/subsystem/##X/New(){\
     NEW_SS_GLOBAL(SS##X);\
 }\
-/datum/controller/subsystem/##X
+datum/controller/subsystem/##X
 
 #define PROCESSING_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/processing/##X);\
-/datum/controller/subsystem/processing/##X/New(){\
+datum/controller/subsystem/processing/##X/New(){\
     NEW_SS_GLOBAL(SS##X);\
 }\
-/datum/controller/subsystem/processing/##X
+datum/controller/subsystem/processing/##X
 
 // Boilerplate code for multi-step processors. See machines.dm for example use.
 #define INTERNAL_PROCESS_STEP(this_step, initial_step, proc_to_call, cost_var, next_step)\

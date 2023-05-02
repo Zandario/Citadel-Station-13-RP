@@ -1,6 +1,6 @@
 
 //Swarm Assimilator / Breacher
-/obj/item/matter_decompiler/swarm
+obj/item/matter_decompiler/swarm
 	name = "matter assimilator"
 	desc = "Used to eat some forms of simple machinery; and large, wall-shaped blocks of metal with energetic fields."
 	icon = 'icons/obj/device.dmi'
@@ -9,7 +9,7 @@
 	var/field_cooldown = 1 MINUTE
 	var/last_field = 0
 
-/obj/item/matter_decompiler/swarm/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity, params)
+obj/item/matter_decompiler/swarm/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity, params)
 
 	if(!proximity) return //Not adjacent.
 
@@ -112,7 +112,7 @@
 		to_chat(user, "<span class='danger'>Nothing on \the [T] is useful to you.</span>")
 	return
 
-/obj/effect/temporary_effect/pulse/disintegrate
+obj/effect/temporary_effect/pulse/disintegrate
 	name = "molecular debonding field"
 	desc = "This is something you do not want to near."
 	icon = 'icons/mob/swarmbot.dmi'
@@ -123,23 +123,23 @@
 	pulses_remaining = 5
 	pulse_delay = 2 SECONDS
 
-/obj/effect/temporary_effect/pulse/disintegrate/emp_act()
+obj/effect/temporary_effect/pulse/disintegrate/emp_act()
 	visible_message("<span class='warning'>\The [src] flickers, before dispersing energetically.</span>")
 	qdel(src)
 
-/obj/effect/temporary_effect/pulse/disintegrate/on_pulse()
+obj/effect/temporary_effect/pulse/disintegrate/on_pulse()
 	var/turf/T = get_turf(src)
 	if(istype(T,/turf/simulated/wall))
 		explosion(get_turf(src), -1, -1, 1, 3, adminlog = 0)
 	else
 		qdel(src)
 
-/obj/effect/temporary_effect/pulse/disintegrate/Destroy()
+obj/effect/temporary_effect/pulse/disintegrate/Destroy()
 	if(istype(get_turf(src), /turf/simulated/wall))
 		explosion(get_turf(src), -1, 1, 2, 5, adminlog = 1)
 	..()
 
-/obj/item/gun/energy/xray/swarm
+obj/item/gun/energy/xray/swarm
 	name = "spectral projector"
 	desc = "A high-power laser gun capable of expelling concentrated gamma blasts, which are able to penetrate matter easier than \
 	standard xray beams, resulting in an effective 'anti-everything' energy weapon."
@@ -157,6 +157,6 @@
 		list(mode_name="deter", projectile_type=/obj/projectile/beam/shock, charge_cost = 175),
 		)
 
-/obj/item/gun/energy/xray/swarm/Initialize(mapload)
+obj/item/gun/energy/xray/swarm/Initialize(mapload)
 	. = ..()
 	adjust_scale(-1, 1)

@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/scientist
+obj/structure/closet/secure_closet/scientist
 	name = "scientist's locker"
 	icon_state = "secureres1"
 	icon_closed = "secureres"
@@ -19,7 +19,7 @@
 		/obj/item/gps/science,
 		/obj/item/clothing/shoes/boots/winter/science)
 
-/obj/structure/closet/secure_closet/scientist/Initialize(mapload)
+obj/structure/closet/secure_closet/scientist/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/dufflebag/sci
 	else
@@ -27,7 +27,7 @@
 	return ..()
 
 
-/obj/structure/closet/secure_closet/RD
+obj/structure/closet/secure_closet/RD
 	name = "research director's locker"
 	icon_state = "rdsecure1"
 	icon_closed = "rdsecure"

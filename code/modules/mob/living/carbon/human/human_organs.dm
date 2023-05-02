@@ -1,11 +1,11 @@
 /**
  * returns if we semantically have a certain organ
  */
-/mob/living/carbon/human/proc/has_organ(name)
+mob/living/carbon/human/proc/has_organ(name)
 	var/obj/item/organ/external/O = organs_by_name[name]
 	return (O && !O.is_stump())
 
-/mob/living/carbon/human/proc/recheck_bad_external_organs()
+mob/living/carbon/human/proc/recheck_bad_external_organs()
 	var/damage_this_tick = getToxLoss()
 	for(var/obj/item/organ/external/O in organs)
 		damage_this_tick += O.burn_dam + O.brute_dam
@@ -17,7 +17,7 @@
 	last_dam = damage_this_tick
 
 // Takes care of organ related updates, such as broken and missing limbs
-/mob/living/carbon/human/proc/handle_organs(dt)
+mob/living/carbon/human/proc/handle_organs(dt)
 
 	var/force_process = recheck_bad_external_organs()
 
@@ -68,7 +68,7 @@
 						if (W.infection_check())
 							W.germ_level += 1
 
-/mob/living/carbon/human/proc/handle_stance()
+mob/living/carbon/human/proc/handle_stance()
 	// Don't need to process any of this if they aren't standing anyways
 	// unless their stance is damaged, and we want to check if they should stay down
 	if (!stance_damage && (lying || resting) && (life_tick % 4) != 0)
@@ -119,7 +119,7 @@
 			custom_emote(1, "collapses!")
 		afflict_paralyze(20 * 5) //can't emote while weakened, apparently.
 
-/mob/living/carbon/human/proc/handle_grasp()
+mob/living/carbon/human/proc/handle_grasp()
 	if(!l_hand && !r_hand)
 		return
 
@@ -183,13 +183,13 @@
 				qdel(spark_system)
 
 //Handles chem traces
-/mob/living/carbon/human/proc/handle_trace_chems()
+mob/living/carbon/human/proc/handle_trace_chems()
 	//New are added for reagents to random organs.
 	for(var/datum/reagent/A in reagents.reagent_list)
 		var/obj/item/organ/O = pick(organs)
 		O.trace_chemicals[A.name] = 100
 
-/mob/living/carbon/human/proc/sync_organ_dna()
+mob/living/carbon/human/proc/sync_organ_dna()
 	var/list/all_bits = internal_organs|organs
 	for(var/obj/item/organ/O in all_bits)
 		O.set_dna(dna)

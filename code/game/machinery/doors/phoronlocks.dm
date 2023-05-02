@@ -13,13 +13,13 @@
 // Pumps: (obj/machinery/atmospherics/component/unary/vent_pump/high_volume), frequency = 1379 id_tag = "[base]_pump"
 //
 
-/obj/machinery/airlock_sensor/phoron
+obj/machinery/airlock_sensor/phoron
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
 	name = "phoronlock sensor"
 	var/previousPhoron
 
-/obj/machinery/airlock_sensor/phoron/process()
+obj/machinery/airlock_sensor/phoron/process()
 	if(on)
 		var/datum/gas_mixture/air_sample = return_air()
 		var/pressure = round(air_sample.return_pressure(), 0.1)
@@ -38,30 +38,30 @@
 			alert = (pressure < ONE_ATMOSPHERE*0.8) || (phoron > 0.5)
 			update_icon()
 
-/obj/machinery/airlock_sensor/phoron/airlock_interior
+obj/machinery/airlock_sensor/phoron/airlock_interior
 	command = "cycle_interior"
 
-/obj/machinery/airlock_sensor/phoron/airlock_exterior
+obj/machinery/airlock_sensor/phoron/airlock_exterior
 	command = "cycle_exterior"
 
 
 // Radio remote control
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize(mapload)
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize(mapload)
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/proc/set_frequency(new_frequency)
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, radio_filter = RADIO_ATMOSIA)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/receive_signal(datum/signal/signal)
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != scrub_id) || (signal.data["sigtype"] != "command"))
 		return 0
 	if(signal.data["power"])
@@ -77,7 +77,7 @@
 	update_icon()
 	return
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/proc/broadcast_status()
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/proc/broadcast_status()
 	if(!radio_connection)
 		return 0
 	var/datum/signal/signal = new
@@ -91,17 +91,17 @@
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_AIRLOCK)
 	return 1
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock		//Special scrubber with bonus inbuilt heater
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock		//Special scrubber with bonus inbuilt heater
 	volume_rate = 40000
 	active_power_usage = 2000
 	var/target_temp = T20C
 	var/heating_power = 150000
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock/heater //Variant for use on rift
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock/heater //Variant for use on rift
 	name = "Stationary Air Heater"
 	active_power_usage = 1000
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock/process()
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock/process()
 	..()
 
 	if(on)
@@ -121,19 +121,19 @@
 //
 // PHORON LOCK CONTROLLER
 //
-/obj/machinery/embedded_controller/radio/airlock/phoron
+obj/machinery/embedded_controller/radio/airlock/phoron
 	var/tag_scrubber
 
-/obj/machinery/embedded_controller/radio/airlock/phoron/Initialize(mapload)
+obj/machinery/embedded_controller/radio/airlock/phoron/Initialize(mapload)
 	. = ..()
 	program = new/datum/computer/file/embedded_program/airlock/phoron(src)
 
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
-/obj/machinery/embedded_controller/radio/airlock/phoron
+obj/machinery/embedded_controller/radio/airlock/phoron
 	name = "Phoron Lock Controller"
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "secure")
 
-/obj/machinery/embedded_controller/radio/airlock/phoron/ui_data(mob/user)
+obj/machinery/embedded_controller/radio/airlock/phoron/ui_data(mob/user)
 	. = list(
 		"chamber_pressure" = program.memory["chamber_sensor_pressure"],
 		"chamber_phoron" = program.memory["chamber_sensor_phoron"],
@@ -158,10 +158,10 @@
 #define TARGET_INOPEN		-1
 #define TARGET_OUTOPEN		-2
 
-/datum/computer/file/embedded_program/airlock/phoron
+datum/computer/file/embedded_program/airlock/phoron
 	var/tag_scrubber
 
-/datum/computer/file/embedded_program/airlock/phoron/New(var/obj/machinery/embedded_controller/M)
+datum/computer/file/embedded_program/airlock/phoron/New(var/obj/machinery/embedded_controller/M)
 	..(M)
 	memory["chamber_sensor_phoron"] = 0
 	// warning: hardcode alert
@@ -177,7 +177,7 @@
 		var/obj/machinery/embedded_controller/radio/airlock/phoron/controller = M
 		tag_scrubber = controller.tag_scrubber ? controller.tag_scrubber : "[id_tag]_scrubber"
 
-/datum/computer/file/embedded_program/airlock/phoron/receive_signal(datum/signal/signal, receive_method, receive_param)
+datum/computer/file/embedded_program/airlock/phoron/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]
 	if(!receive_tag) return
 	if(..()) return 1
@@ -201,7 +201,7 @@
 // Note: This code doesn't wait for pumps and scrubbers to be offline like other code does
 // The idea is to make the doors open and close faster, since there isn't much harm really.
 // But lets evaluate how it actually works in the game.
-/datum/computer/file/embedded_program/airlock/phoron/process()
+datum/computer/file/embedded_program/airlock/phoron/process()
 	switch(state)
 		if(STATE_IDLE)
 			if(target_state == TARGET_INOPEN)
@@ -264,13 +264,13 @@
 	memory["processing"] = (state != target_state)
 	return 1
 
-/datum/computer/file/embedded_program/airlock/phoron/stop_cycling()
+datum/computer/file/embedded_program/airlock/phoron/stop_cycling()
 	state = STATE_IDLE
 	target_state = TARGET_NONE
 	signalPump(tag_airpump, 0)
 	signalScrubber(tag_scrubber, 0)
 
-/datum/computer/file/embedded_program/airlock/phoron/proc/signalScrubber(var/tag, var/power)
+datum/computer/file/embedded_program/airlock/phoron/proc/signalScrubber(var/tag, var/power)
 	var/datum/signal/signal = new
 	signal.data = list(
 		"tag" = tag,

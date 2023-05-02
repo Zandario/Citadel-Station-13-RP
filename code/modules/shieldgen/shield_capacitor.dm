@@ -2,7 +2,7 @@
 //---------- shield capacitor
 //pulls energy out of a power net and charges an adjacent generator
 
-/obj/machinery/shield_capacitor
+obj/machinery/shield_capacitor
 	name = "shield capacitor"
 	desc = "A machine that charges a shield generator."
 	icon = 'icons/obj/machines/shielding.dmi'
@@ -20,13 +20,13 @@
 	var/charge_rate = 100000	//100 kW
 	var/obj/machinery/shield_gen/owned_gen
 
-/obj/machinery/shield_capacitor/advanced
+obj/machinery/shield_capacitor/advanced
 	name = "advanced shield capacitor"
 	desc = "A machine that charges a shield generator.  This version can store, input, and output more electricity."
 	max_charge = 12e6
 	max_charge_rate = 600000
 
-/obj/machinery/shield_capacitor/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/shield_capacitor/emag_act(var/remaining_charges, var/mob/user)
 	if(prob(75))
 		src.locked = !src.locked
 		to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
@@ -36,7 +36,7 @@
 	s.set_up(5, 1, src)
 	s.start()
 
-/obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
+obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
@@ -67,12 +67,12 @@
 	else
 		..()
 
-/obj/machinery/shield_capacitor/attack_hand(mob/user, list/params)
+obj/machinery/shield_capacitor/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN))
 		return
 	interact(user)
 
-/obj/machinery/shield_capacitor/interact(mob/user)
+obj/machinery/shield_capacitor/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN)) )
 		if (!istype(user, /mob/living/silicon))
 			user.unset_machine()
@@ -101,7 +101,7 @@
 	user << browse(t, "window=shield_capacitor;size=500x400")
 	user.set_machine(src)
 
-/obj/machinery/shield_capacitor/process(delta_time)
+obj/machinery/shield_capacitor/process(delta_time)
 	if (!anchored)
 		active = 0
 
@@ -122,7 +122,7 @@
 		time_since_fail = 0 //losing charge faster than we can draw from PN
 	last_stored_charge = stored_charge
 
-/obj/machinery/shield_capacitor/Topic(href, href_list[])
+obj/machinery/shield_capacitor/Topic(href, href_list[])
 	..()
 	if( href_list["close"] )
 		usr << browse(null, "window=shield_capacitor")
@@ -138,13 +138,13 @@
 
 	updateDialog()
 
-/obj/machinery/shield_capacitor/power_change()
+obj/machinery/shield_capacitor/power_change()
 	if(machine_stat & BROKEN)
 		icon_state = "broke"
 	else
 		..()
 
-/obj/machinery/shield_capacitor/verb/rotate_clockwise()
+obj/machinery/shield_capacitor/verb/rotate_clockwise()
 	set name = "Rotate Capacitor Clockwise"
 	set category = "Object"
 	set src in oview(1)

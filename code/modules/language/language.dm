@@ -8,7 +8,7 @@
  *
  * singletons stored on SScharacters, only referenced by id most of the time.
  */
-/datum/language
+datum/language
 	/// Abstract type.
 	abstract_type = /datum/language
 
@@ -61,11 +61,11 @@
 	//list of symbols to replace with, formatted as "a" = "<symbol>"
 	var/list/replace_letters = list()
 
-/datum/language/New()
+datum/language/New()
 	if(isnull(id))
 		id = ckey(name)
 
-/datum/language/proc/get_random_name(gender, name_count=2, syllable_count=4, syllable_divisor=2)
+datum/language/proc/get_random_name(gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
 			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
@@ -83,7 +83,7 @@
 
 	return "[trim(full_name)]"
 
-/datum/language/proc/replacesymbols(input)
+datum/language/proc/replacesymbols(input)
 	var/list/transformed = splittext_char(input,"")
 	if(LAZYLEN(exclude_letters))
 		for(var/l in transformed)
@@ -94,7 +94,7 @@
 		transformed[i] = replace_letters[transformed[i]] || transformed[i]
 	return jointext(transformed, "")
 
-/datum/language/proc/scramble(input, list/known_languages)
+datum/language/proc/scramble(input, list/known_languages)
 	if(uses_replace)
 		var/text = replacesymbols(input)
 		return text
@@ -132,7 +132,7 @@
 
 	return scrambled_text
 
-/datum/language/proc/scramble_word(input)
+datum/language/proc/scramble_word(input)
 	if(!syllables || !syllables.len)
 		return stars(input)
 
@@ -167,20 +167,20 @@
 
 	return scrambled_text
 
-/datum/language/proc/format_message(message, verb)
+datum/language/proc/format_message(message, verb)
 	return "[verb], <span class='message'><span class='[colour]'>\"[capitalize(message)]\"</span></span>"
 
-/datum/language/proc/format_message_plain(message, verb)
+datum/language/proc/format_message_plain(message, verb)
 	return "[verb], \"[capitalize(message)]\""
 
-/datum/language/proc/format_message_radio(message, verb)
+datum/language/proc/format_message_radio(message, verb)
 	return "[verb], <span class='[colour]'>\"[capitalize(message)]\"</span>"
 
-/datum/language/proc/get_talkinto_msg_range(message)
+datum/language/proc/get_talkinto_msg_range(message)
 	// if you yell, you'll be heard from two tiles over instead of one
 	return (copytext_char(message, length_char(message)) == "!") ? 2 : 1
 
-/datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("(HIVE) [message]", speaker)
 
 	if(!speaker_mask) speaker_mask = speaker.name
@@ -189,24 +189,24 @@
 	for(var/mob/player in GLOB.player_list)
 		player.hear_broadcast(src, speaker, speaker_mask, message)
 
-/mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if((language in languages) && language.check_special_condition(src))
 		var/msg = "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
 		to_chat(src, msg)
 
-/mob/new_player/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+mob/new_player/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	return
 
-/mob/observer/dead/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+mob/observer/dead/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if(speaker.name == speaker_name || antagHUD)
 		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>")
 	else
 		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>")
 
-/datum/language/proc/check_special_condition(var/mob/other)
+datum/language/proc/check_special_condition(var/mob/other)
 	return 1
 
-/datum/language/proc/get_spoken_verb(var/msg_end)
+datum/language/proc/get_spoken_verb(var/msg_end)
 	switch(msg_end)
 		if("!")
 			return pick(exclaim_verb)
@@ -214,7 +214,7 @@
 			return pick(ask_verb)
 	return pick(speech_verb)
 
-/datum/language/proc/can_speak_special(var/mob/speaker)
+datum/language/proc/can_speak_special(var/mob/speaker)
 	. = TRUE
 	if(name != "Noise")	// Audible Emotes
 		if(ishuman(speaker))
@@ -232,7 +232,7 @@
 						. = TRUE
 
 // Language handling.
-/mob/proc/add_language(var/language)
+mob/proc/add_language(var/language)
 
 	var/datum/language/new_language = SScharacters.resolve_language(language)
 
@@ -242,19 +242,19 @@
 	languages.Add(new_language)
 	return 1
 
-/mob/proc/remove_language(var/rem_language)
+mob/proc/remove_language(var/rem_language)
 	var/datum/language/L = SScharacters.resolve_language(rem_language)
 	. = (L in languages)
 	languages.Remove(L)
 
-/mob/living/remove_language(rem_language)
+mob/living/remove_language(rem_language)
 	var/datum/language/L = SScharacters.resolve_language(rem_language)
 	if(default_language == L)
 		default_language = null
 	return ..()
 
 // Can we speak this language, as opposed to just understanding it?
-/mob/proc/can_speak(datum/language/speaking)
+mob/proc/can_speak(datum/language/speaking)
 //Prevents someone from speaking a null language.
 	if(!speaking)
 		log_debug(SPAN_DEBUG("[src] attempted to speak a null language."))
@@ -275,14 +275,14 @@
 			return 1
 	return 0
 
-/mob/proc/get_language_prefix()
+mob/proc/get_language_prefix()
 	return client?.prefs?.get_primary_language_prefix() || config_legacy.language_prefixes[1]
 
-/mob/proc/is_language_prefix(prefix)
+mob/proc/is_language_prefix(prefix)
 	return client?.prefs?.is_language_prefix(prefix) || (prefix in config_legacy.language_prefixes)
 
 //TBD
-/mob/verb/check_languages()
+mob/verb/check_languages()
 	set name = "Check Known Languages"
 	set category = "IC"
 	set src = usr
@@ -296,7 +296,7 @@
 	src << browse(dat, "window=checklanguage")
 	return
 
-/mob/living/check_languages()
+mob/living/check_languages()
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
 
 	if(default_language)
@@ -313,7 +313,7 @@
 
 	src << browse(dat, "window=checklanguage")
 
-/mob/living/Topic(href, href_list)
+mob/living/Topic(href, href_list)
 	if(href_list["default_lang"])
 		if(href_list["default_lang"] == "reset")
 			if (species_language)
@@ -329,7 +329,7 @@
 	else
 		return ..()
 
-/proc/transfer_languages(var/mob/source, var/mob/target, var/except_flags)
+proc/transfer_languages(var/mob/source, var/mob/target, var/except_flags)
 	for(var/datum/language/L in source.languages)
 		if(L.language_flags & except_flags)
 			continue

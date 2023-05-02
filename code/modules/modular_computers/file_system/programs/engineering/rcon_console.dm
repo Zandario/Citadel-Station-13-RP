@@ -1,4 +1,4 @@
-/datum/computer_file/program/rcon_console
+datum/computer_file/program/rcon_console
 	filename = "rconconsole"
 	filedesc = "RCON Remote Control"
 	nanomodule_path = /datum/nano_module/rcon
@@ -15,7 +15,7 @@
 
 GLOBAL_LIST_EMPTY(rcon_nano_modules)
 
-/datum/nano_module/rcon
+datum/nano_module/rcon
 	name = "Power RCON"
 	var/list/known_SMESs = null
 	var/list/known_breakers = null
@@ -24,15 +24,15 @@ GLOBAL_LIST_EMPTY(rcon_nano_modules)
 	var/hide_SMES_details = 0
 	var/hide_breakers = 0
 
-/datum/nano_module/rcon/New()
+datum/nano_module/rcon/New()
 	. = ..()
 	GLOB.rcon_nano_modules += src
 
-/datum/nano_module/rcon/Destroy()
+datum/nano_module/rcon/Destroy()
 	. = ..()
 	GLOB.rcon_nano_modules -= src
 
-/datum/nano_module/rcon/nano_ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=1, var/datum/topic_state/state = default_state)
+datum/nano_module/rcon/nano_ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=1, var/datum/topic_state/state = default_state)
 	FindDevices() // Update our devices list
 	var/list/data = host.initial_data()
 
@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(rcon_nano_modules)
 // Proc: Topic()
 // Parameters: 2 (href, href_list - allows us to process UI clicks)
 // Description: Allows us to process UI clicks, which are relayed in form of hrefs.
-/datum/nano_module/rcon/Topic(href, href_list)
+datum/nano_module/rcon/Topic(href, href_list)
 	if(..())
 		return
 
@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(rcon_nano_modules)
 // Proc: GetSMESByTag()
 // Parameters: 1 (tag - RCON tag of SMES we want to look up)
 // Description: Looks up and returns SMES which has matching RCON tag
-/datum/nano_module/rcon/proc/GetSMESByTag(var/tag)
+datum/nano_module/rcon/proc/GetSMESByTag(var/tag)
 	if(!tag)
 		return
 
@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(rcon_nano_modules)
 // Proc: FindDevices()
 // Parameters: None
 // Description: Refreshes local list of known devices.
-/datum/nano_module/rcon/proc/FindDevices()
+datum/nano_module/rcon/proc/FindDevices()
 	known_SMESs = new /list()
 	for(var/obj/machinery/power/smes/buildable/SMES in GLOB.smeses)
 		if(SMES.RCon_tag && (SMES.RCon_tag != "NO_TAG") && SMES.RCon)

@@ -1,7 +1,7 @@
-/datum/asset/spritesheet/sheetmaterials
+datum/asset/spritesheet/sheetmaterials
 	name = "sheetmaterials"
 
-/datum/asset/spritesheet/sheetmaterials/create_spritesheets()
+datum/asset/spritesheet/sheetmaterials/create_spritesheets()
 	InsertAll("", 'icons/obj/stacks.dmi')
 	//InsertAll("", 'icons/obj/stack_objects.dmi')
 

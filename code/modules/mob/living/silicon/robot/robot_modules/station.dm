@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	"ERT"			= /obj/item/robot_module/robot/quad/ert
 	))
 
-/obj/item/robot_module
+obj/item/robot_module
 	name = "robot module"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	var/list/original_languages = list()
 	var/list/added_networks = list()
 
-/obj/item/robot_module/Initialize(mapload)
+obj/item/robot_module/Initialize(mapload)
 	. = ..()
 	var/mob/living/silicon/robot/R = loc
 	R.module = src
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	for(var/obj/item/I in modules)
 		ADD_TRAIT(I, TRAIT_ITEM_NODROP, CYBORG_MODULE_TRAIT)
 
-/obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
 	remove_languages(R)
 	remove_subsystems(R)
@@ -117,23 +117,23 @@ GLOBAL_LIST_INIT(robot_modules, list(
 		R.radio.recalculateChannels()
 
 /// Get a list of all matter synths available to this module. Executes before handle_special_module_init.
-/obj/item/robot_module/proc/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/proc/get_synths(mob/living/silicon/robot/R)
 	. = list()
 
 /// Get a list of typepaths that should be put into the modules list.
-/obj/item/robot_module/proc/get_modules()
+obj/item/robot_module/proc/get_modules()
 	SHOULD_CALL_PARENT(TRUE)
 	return list()
 
 // This is for modules that need special handling, not just being added to the modules list.
-/obj/item/robot_module/proc/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/proc/handle_special_module_init(mob/living/silicon/robot/R)
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 
-/obj/item/robot_module/proc/handle_custom_item(mob/living/silicon/robot/R)
+obj/item/robot_module/proc/handle_custom_item(mob/living/silicon/robot/R)
 	return
 
-/obj/item/robot_module/Destroy()
+obj/item/robot_module/Destroy()
 	for(var/module in modules)
 		qdel(module)
 	for(var/synth in synths)
@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	jetpack = null
 	return ..()
 
-/obj/item/robot_module/emp_act(severity)
+obj/item/robot_module/emp_act(severity)
 	if(modules)
 		for(var/obj/O in modules)
 			O.emp_act(severity)
@@ -159,21 +159,21 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	..()
 	return
 
-/obj/item/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)
+obj/item/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)
 	if(!synths || !synths.len)
 		return
 
 	for(var/datum/matter_synth/T in synths)
 		T.add_charge(T.recharge_rate * rate)
 
-/obj/item/robot_module/proc/rebuild()//Rebuilds the list so it's possible to add/remove items from the module
+obj/item/robot_module/proc/rebuild()//Rebuilds the list so it's possible to add/remove items from the module
 	var/list/temp_list = modules
 	modules = list()
 	for(var/obj/O in temp_list)
 		if(O)
 			modules += O
 
-/obj/item/robot_module/proc/add_languages(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/add_languages(var/mob/living/silicon/robot/R)
 	// Stores the languages as they were before receiving the module, and whether they could be synthezized.
 	for(var/datum/language/language_datum in R.languages)
 		original_languages[language_datum] = (language_datum in R.speech_synthesizer_langs)
@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	for(var/language in languages)
 		R.add_language(language, languages[language])
 
-/obj/item/robot_module/proc/remove_languages(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/remove_languages(var/mob/living/silicon/robot/R)
 	// Clear all added languages, whether or not we originally had them.
 	for(var/language in languages)
 		R.remove_language(language)
@@ -191,37 +191,37 @@ GLOBAL_LIST_INIT(robot_modules, list(
 		R.add_language(original_language, original_languages[original_language])
 	original_languages.Cut()
 
-/obj/item/robot_module/proc/add_camera_networks(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/add_camera_networks(var/mob/living/silicon/robot/R)
 	if(R.camera && (NETWORK_ROBOTS in R.camera.network))
 		for(var/network in networks)
 			if(!(network in R.camera.network))
 				R.camera.add_network(network)
 				added_networks |= network
 
-/obj/item/robot_module/proc/remove_camera_networks(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/remove_camera_networks(var/mob/living/silicon/robot/R)
 	if(R.camera)
 		R.camera.remove_networks(added_networks)
 	added_networks.Cut()
 
-/obj/item/robot_module/proc/add_subsystems(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/add_subsystems(var/mob/living/silicon/robot/R)
 	add_verb(R, subsystems)
 
-/obj/item/robot_module/proc/remove_subsystems(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/remove_subsystems(var/mob/living/silicon/robot/R)
 	remove_verb(R, subsystems)
 
-/obj/item/robot_module/proc/apply_status_flags(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/apply_status_flags(var/mob/living/silicon/robot/R)
 	if(!can_be_pushed)
 		R.status_flags &= ~STATUS_CAN_PUSH
 
-/obj/item/robot_module/proc/remove_status_flags(var/mob/living/silicon/robot/R)
+obj/item/robot_module/proc/remove_status_flags(var/mob/living/silicon/robot/R)
 	if(!can_be_pushed)
 		R.status_flags |= STATUS_CAN_PUSH
 
 /// This is different from the dogborg or wideborg vars -- this is specifically if the module is a *dog* - if it should be able to do dog things like bark.
-/obj/item/robot_module/proc/is_dog()
+obj/item/robot_module/proc/is_dog()
 	return FALSE
 
-/obj/item/robot_module/robot/get_modules()
+obj/item/robot_module/robot/get_modules()
 	. = ..()
 	// Common items that all modules have.
 	. |= list(
@@ -231,9 +231,9 @@ GLOBAL_LIST_INIT(robot_modules, list(
 		/obj/item/gps/robot
 	)
 
-/obj/item/robot_module/robot/quad
+obj/item/robot_module/robot/quad
 
-/obj/item/robot_module/robot/quad/Initialize()
+obj/item/robot_module/robot/quad/Initialize()
 	. = ..()
 	var/mob/living/silicon/robot/R = loc
 	ASSERT(istype(R))
@@ -250,7 +250,7 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	if (can_shred)
 		add_verb(R, /mob/living/proc/shred_limb)
 
-/obj/item/robot_module/robot/quad/Reset(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/Reset(mob/living/silicon/robot/R)
 	. = ..()
 	// Reset a bunch of wideborg specific things.
 	R.pixel_x = initial(R.pixel_x)
@@ -266,13 +266,13 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	R.dogborg = FALSE
 	R.wideborg = FALSE
 
-/obj/item/robot_module/robot/quad/get_modules()
+obj/item/robot_module/robot/quad/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/dogborg/boop_module //Boop people on the nose.
 	)
 
-/obj/item/robot_module/robot/quad/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
 	water.name = "Water reserves"
@@ -280,14 +280,14 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	R.water_res = water
 	.[MATSYN_WATER] = water
 
-/obj/item/robot_module/robot/quad/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = synths_by_kind[MATSYN_WATER]
 	. += T
 
-/obj/item/robot_module/robot/quad/is_dog()
+obj/item/robot_module/robot/quad/is_dog()
 	var/mob/living/silicon/robot/R = loc
 	ASSERT(istype(R))
 	// This is the only non-canid dogborg type right now.
@@ -295,17 +295,17 @@ GLOBAL_LIST_INIT(robot_modules, list(
 
 // Custom sprite stuff. There's a dedicated system for this, not sure why this is done separately.
 
-/obj/item/robot_module/robot/quad/engi/handle_custom_item(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/engi/handle_custom_item(mob/living/silicon/robot/R)
 	. = ..()
 	if (R.client?.ckey == "nezuli")
 		sprites["Alina"] = "alina-eng"
 
-/obj/item/robot_module/robot/quad/medi/handle_custom_item(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/medi/handle_custom_item(mob/living/silicon/robot/R)
 	. = ..()
 	if (R.client?.ckey == "nezuli")
 		sprites["Alina"] = "alina-med"
 
-/obj/item/robot_module/robot/quad/sec/handle_custom_item(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/sec/handle_custom_item(mob/living/silicon/robot/R)
 	. = ..()
 	if (R.client?.ckey == "nezuli")
 		sprites["Alina"] = "alina-sec"

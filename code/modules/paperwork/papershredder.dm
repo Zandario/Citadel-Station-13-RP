@@ -1,7 +1,7 @@
 //
 // Paper Shredder Machine
 //
-/obj/machinery/papershredder
+obj/machinery/papershredder
 	name = "paper shredder"
 	desc = "For those documents you don't want seen."
 	icon = 'icons/obj/papershredder.dmi'
@@ -25,7 +25,7 @@
 		/obj/item/paper_bundle = 3,
 		)
 
-/obj/machinery/papershredder/Initialize(mapload, newdir)
+obj/machinery/papershredder/Initialize(mapload, newdir)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/motor(src)
@@ -35,7 +35,7 @@
 	RefreshParts()
 	update_icon()
 
-/obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
 
 	if(istype(W, /obj/item/storage))
 		empty_bin(user, W)
@@ -78,7 +78,7 @@
 			return
 	return ..()
 
-/obj/machinery/papershredder/verb/empty_contents()
+obj/machinery/papershredder/verb/empty_contents()
 	set name = "Empty bin"
 	set category = "Object"
 	set src in range(1)
@@ -92,7 +92,7 @@
 
 	empty_bin(usr)
 
-/obj/machinery/papershredder/proc/empty_bin(var/mob/living/user, var/obj/item/storage/empty_into)
+obj/machinery/papershredder/proc/empty_bin(var/mob/living/user, var/obj/item/storage/empty_into)
 
 	// Sanity.
 	if(empty_into && !istype(empty_into))
@@ -119,18 +119,18 @@
 		to_chat(user, "<span class='notice'>You empty \the [src].</span>")
 	update_icon()
 
-/obj/machinery/papershredder/proc/get_shredded_paper()
+obj/machinery/papershredder/proc/get_shredded_paper()
 	if(!paperamount)
 		return
 	paperamount--
 	return new /obj/item/shreddedp(get_turf(src))
 
-/obj/machinery/papershredder/power_change()
+obj/machinery/papershredder/power_change()
 	..()
 	spawn(rand(0,15))
 		update_icon()
 
-/obj/machinery/papershredder/update_icon()
+obj/machinery/papershredder/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -149,7 +149,7 @@
 // Shredded Paper Item
 //
 
-/obj/item/shreddedp
+obj/item/shreddedp
 	name = "shredded paper"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "shredp"
@@ -158,20 +158,20 @@
 	throw_range = 3
 	throw_speed = 1
 
-/obj/item/shreddedp/Initialize(mapload)
+obj/item/shreddedp/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 	if(prob(65))
 		color = pick("#BABABA","#7F7F7F")
 
-/obj/item/shreddedp/attackby(var/obj/item/W as obj, var/mob/user)
+obj/item/shreddedp/attackby(var/obj/item/W as obj, var/mob/user)
 	if(istype(W, /obj/item/flame/lighter))
 		burnpaper(W, user)
 	else
 		..()
 
-/obj/item/shreddedp/proc/burnpaper(var/obj/item/flame/lighter/P, var/mob/user)
+obj/item/shreddedp/proc/burnpaper(var/obj/item/flame/lighter/P, var/mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	if(user.restrained())
 		return
@@ -187,6 +187,6 @@
 		"<span class='danger'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 	FireBurn()
 
-/obj/item/shreddedp/proc/FireBurn()
+obj/item/shreddedp/proc/FireBurn()
 	new /obj/effect/debris/cleanable/ash(get_turf(src))
 	qdel(src)

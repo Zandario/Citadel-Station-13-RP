@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
+mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
 
 	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
 	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
@@ -25,7 +25,7 @@
 			return u_attack
 	return null
 
-/mob/living/carbon/human/attack_hand(mob/user, list/params)
+mob/living/carbon/human/attack_hand(mob/user, list/params)
 	var/datum/gender/TT = GLOB.gender_datums[user.get_visible_gender()]
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
@@ -296,10 +296,10 @@
 			visible_message("<font color='red'> <B>[L] attempted to disarm [src]!</B></font>")
 	return
 
-/mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
+mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
 
-/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/armor_type = "melee", var/armor_pen = 0, var/a_sharp = 0, var/a_edge = 0)
+mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/armor_type = "melee", var/armor_pen = 0, var/a_sharp = 0, var/a_edge = 0)
 
 	if(!damage)
 		return
@@ -317,7 +317,7 @@
 	return TRUE
 
 //Used to attack a joint through grabbing
-/mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
+mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
 	var/has_grab = 0
 	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
 		if(G.affecting == src && G.state == GRAB_NECK)
@@ -343,7 +343,7 @@
 	return FALSE
 
 //Breaks all grips and pulls that the mob currently has.
-/mob/living/carbon/human/proc/break_all_grabs(mob/living/carbon/user)
+mob/living/carbon/human/proc/break_all_grabs(mob/living/carbon/user)
 	var/success = FALSE
 	if(pulling)
 		visible_message("<span class='danger'>[user] has broken [src]'s grip on [pulling]!</span>")
@@ -373,7 +373,7 @@
 	If you are applying pressure to another and attempt to apply pressure to yourself, you'll have to switch to an empty hand which will also stop do_mob()
 	Changing targeted zones should also stop do_mob(), preventing you from applying pressure to more than one body part at once.
 */
-/mob/living/carbon/human/proc/apply_pressure(mob/living/user, var/target_zone)
+mob/living/carbon/human/proc/apply_pressure(mob/living/user, var/target_zone)
 	var/obj/item/organ/external/organ = get_organ(target_zone)
 	if(!organ || !(organ.status & ORGAN_BLEEDING) || (organ.robotic >= ORGAN_ROBOT))
 		return FALSE
@@ -403,10 +403,10 @@
 
 	return TRUE
 
-/mob/living/carbon/human
+mob/living/carbon/human
 	var/datum/unarmed_attack/default_attack
 
-/mob/living/carbon/human/verb/check_attacks()
+mob/living/carbon/human/verb/check_attacks()
 	set name = "Check Attacks"
 	set category = "IC"
 	set src = usr
@@ -419,7 +419,7 @@
 	src << browse(dat, "window=checkattack")
 	return
 
-/mob/living/carbon/human/check_attacks()
+mob/living/carbon/human/check_attacks()
 	var/dat = "<b><font size = 5>Known Attacks</font></b><br/><br/>"
 
 	if(default_attack)
@@ -433,7 +433,7 @@
 
 	src << browse(dat, "window=checkattack")
 
-/mob/living/carbon/human/Topic(href, href_list)
+mob/living/carbon/human/Topic(href, href_list)
 	if(href_list["default_attk"])
 		if(href_list["default_attk"] == "reset_attk")
 			set_default_attack(null)
@@ -446,36 +446,36 @@
 	else
 		return ..()
 
-/mob/living/carbon/human/proc/set_default_attack(var/datum/unarmed_attack/u_attack)
+mob/living/carbon/human/proc/set_default_attack(var/datum/unarmed_attack/u_attack)
 	default_attack = u_attack
 
-/datum/unarmed_attack
+datum/unarmed_attack
 	var/attack_name = "fist"
 
 
-/datum/unarmed_attack/bite
+datum/unarmed_attack/bite
 	attack_name = "bite"
-/datum/unarmed_attack/bite/sharp
+datum/unarmed_attack/bite/sharp
 	attack_name = "sharp bite"
-/datum/unarmed_attack/bite/strong
+datum/unarmed_attack/bite/strong
 	attack_name = "strong bite"
-/datum/unarmed_attack/punch
+datum/unarmed_attack/punch
 	attack_name = "punch"
-/datum/unarmed_attack/kick
+datum/unarmed_attack/kick
 	attack_name = "kick"
-/datum/unarmed_attack/stomp
+datum/unarmed_attack/stomp
 	attack_name = "stomp"
-/datum/unarmed_attack/stomp/weak
+datum/unarmed_attack/stomp/weak
 	attack_name = "weak stomp"
-/datum/unarmed_attack/light_strike
+datum/unarmed_attack/light_strike
 	attack_name = "light hit"
-/datum/unarmed_attack/diona
+datum/unarmed_attack/diona
 	attack_name = "tendrils"
-/datum/unarmed_attack/claws
+datum/unarmed_attack/claws
 	attack_name = "claws"
-/datum/unarmed_attack/claws/strong
+datum/unarmed_attack/claws/strong
 	attack_name = "strong claws"
-/datum/unarmed_attack/slime_glomp
+datum/unarmed_attack/slime_glomp
 	attack_name = "glomp"
-/datum/unarmed_attack/bite/sharp/numbing
+datum/unarmed_attack/bite/sharp/numbing
 	attack_name = "numbing bite"

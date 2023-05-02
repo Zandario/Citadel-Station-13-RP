@@ -2,7 +2,7 @@
 //I did not write this, I just copied it to this page to take it from suit_storage_unit.dm
 
 // TODO: UNIFY WITH SUIT STORAGE UNITS WHY ARE THESE SEPARATE
-/obj/machinery/suit_cycler
+obj/machinery/suit_cycler
 
 	name = "suit cycler"
 	desc = "An industrial machine for painting and refitting voidsuits."
@@ -37,7 +37,7 @@
 
 	var/datum/wires/suit_storage_unit/wires = null
 
-/obj/machinery/suit_cycler/Initialize(mapload)
+obj/machinery/suit_cycler/Initialize(mapload)
 	. = ..()
 	wires = new(src)
 	if(!length(departments) || !length(species))
@@ -45,108 +45,108 @@
 	target_department = departments[1]
 	target_species = species[1]
 
-/obj/machinery/suit_cycler/Destroy()
+obj/machinery/suit_cycler/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/machinery/suit_cycler/engineering
+obj/machinery/suit_cycler/engineering
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	req_access = list(ACCESS_ENGINEERING_CONSTRUCTION)
 	departments = list("Engineering","Atmos","HAZMAT","Construction", "No Change")
 
-/obj/machinery/suit_cycler/mining
+obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	req_access = list(ACCESS_SUPPLY_MINE)
 	departments = list("Mining", "No Change")
 
-/obj/machinery/suit_cycler/security
+obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(ACCESS_SECURITY_EQUIPMENT)
 	departments = list("Security","Crowd Control", "No Change")
 
-/obj/machinery/suit_cycler/medical
+obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	req_access = list(ACCESS_MEDICAL_MAIN)
 	departments = list("Medical","Biohazard","Emergency Medical Response", "No Change")
 
-/obj/machinery/suit_cycler/syndicate
+obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	req_access = list(ACCESS_FACTION_SYNDICATE)
 	departments = list("Mercenary", "Charring", "No Change")
 	can_repair = 1
 
-/obj/machinery/suit_cycler/exploration
+obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
 	model_text = "Exploration"
 	req_access = list(ACCESS_GENERAL_EXPLORER) //Old Exploration needs fixing up
 	departments = list("Exploration", "No Change")
 
-/obj/machinery/suit_cycler/pathfinder
+obj/machinery/suit_cycler/pathfinder
 	name = "Pathfinder suit cycler"
 	model_text = "Pathfinder"
 	req_access = list(ACCESS_GENERAL_PATHFINDER)
 	departments = list("Pathfinder", "No Change")
 
-/obj/machinery/suit_cycler/pilot
+obj/machinery/suit_cycler/pilot
 	name = "Pilot suit cycler"
 	model_text = "Pilot"
 	req_access = list(ACCESS_GENERAL_PILOT)
 	departments = list("Pilot", "No Change") //Pilot Blue needs fixing up
 
-/obj/machinery/suit_cycler/director
+obj/machinery/suit_cycler/director
 	name = "Director suit cycler"
 	model_text = "Director"
 	req_access = list(ACCESS_COMMAND_CAPTAIN)
 	departments = list("Director", "No Change")
 	species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_VULPKANIN)
 
-/obj/machinery/suit_cycler/headofsecurity
+obj/machinery/suit_cycler/headofsecurity
 	name = "Head of Security suit cycler"
 	model_text = "Head of Security"
 	req_access = list(ACCESS_SECURITY_HOS)
 	departments = list("Head of Security", "No Change")
 	species = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_VULPKANIN)
 
-/obj/machinery/suit_cycler/vintage
+obj/machinery/suit_cycler/vintage
 	name = "Vintage Crew suit cycler"
 	model_text = "Vintage"
 	departments = list("Vintage Crew","No Change")
 	req_access = null
 
-/obj/machinery/suit_cycler/vintage/pilot
+obj/machinery/suit_cycler/vintage/pilot
 	name = "Vintage Pilot suit cycler"
 	model_text = "Vintage Pilot"
 	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","No Change")
 
-/obj/machinery/suit_cycler/vintage/medsci
+obj/machinery/suit_cycler/vintage/medsci
 	name = "Vintage MedSci suit cycler"
 	model_text = "Vintage MedSci"
 	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","No Change")
 
-/obj/machinery/suit_cycler/vintage/rugged
+obj/machinery/suit_cycler/vintage/rugged
 	name = "Vintage Ruggedized suit cycler"
 	model_text = "Vintage Ruggedized"
 	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
 
-/obj/machinery/suit_cycler/vintage/omni
+obj/machinery/suit_cycler/vintage/omni
 	name = "Vintage Master suit cycler"
 	model_text = "Vintage Master"
 	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
 
-/obj/machinery/suit_cycler/vintage/Initialize(mapload)
+obj/machinery/suit_cycler/vintage/Initialize(mapload)
 	species -= SPECIES_TESHARI
 	return ..()
 
-/obj/machinery/suit_cycler/attack_ai(mob/user as mob)
+obj/machinery/suit_cycler/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/suit_cycler/attackby(obj/item/I as obj, mob/user as mob)
+obj/machinery/suit_cycler/attackby(obj/item/I as obj, mob/user as mob)
 
 	if(electrified != 0)
 		if(shock(user, 100))
@@ -244,7 +244,7 @@
 
 	..()
 
-/obj/machinery/suit_cycler/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/suit_cycler/emag_act(var/remaining_charges, var/mob/user)
 	if(emagged)
 		to_chat(user, "<span class='danger'>The cycler has already been subverted.</span>")
 		return
@@ -260,7 +260,7 @@
 	updateUsrDialog()
 	return 1
 
-/obj/machinery/suit_cycler/attack_hand(mob/user, list/params)
+obj/machinery/suit_cycler/attack_hand(mob/user, list/params)
 
 	add_fingerprint(user)
 
@@ -311,7 +311,7 @@
 	onclose(user, "suit_cycler")
 	return
 
-/obj/machinery/suit_cycler/Topic(href, href_list)
+obj/machinery/suit_cycler/Topic(href, href_list)
 	if(href_list["eject_suit"])
 		if(!suit) return
 		suit.loc = get_turf(src)
@@ -385,7 +385,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/suit_cycler/process(delta_time)
+obj/machinery/suit_cycler/process(delta_time)
 
 	if(electrified > 0)
 		electrified--
@@ -415,7 +415,7 @@
 			occupant.take_organ_damage(0,radiation_level + rand(1,3))
 		occupant.apply_effect(radiation_level * 200, IRRADIATE)
 
-/obj/machinery/suit_cycler/proc/finished_job()
+obj/machinery/suit_cycler/proc/finished_job()
 	var/turf/T = get_turf(src)
 	T.visible_message("[icon2html(thing = src, target = world)]<span class='notice'>The [src] pings loudly.</span>")
 	icon_state = initial(icon_state)
@@ -423,7 +423,7 @@
 	playsound(src, 'sound/machines/boobeebeep.ogg', 50)
 	updateUsrDialog()
 
-/obj/machinery/suit_cycler/proc/repair_suit()
+obj/machinery/suit_cycler/proc/repair_suit()
 	if(!suit || !suit.damage || !suit.can_breach)
 		return
 
@@ -432,7 +432,7 @@
 
 	return
 
-/obj/machinery/suit_cycler/verb/leave()
+obj/machinery/suit_cycler/verb/leave()
 	set name = "Eject Cycler"
 	set category = "Object"
 	set src in oview(1)
@@ -442,7 +442,7 @@
 
 	eject_occupant(usr)
 
-/obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
+obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
 
 	if(locked || active)
 		to_chat(user, "<span class='warning'>The cycler is locked.</span>")
@@ -462,7 +462,7 @@
 	return
 
 //There HAS to be a less bloated way to do this. TODO: some kind of table/icon name coding? ~Z
-/obj/machinery/suit_cycler/proc/apply_paintjob()
+obj/machinery/suit_cycler/proc/apply_paintjob()
 	var/obj/item/clothing/head/helmet/parent_helmet
 	var/obj/item/clothing/suit/space/parent_suit
 	if(!target_species || !target_department)
@@ -654,44 +654,44 @@
 			qdel(AH)
 
 //TALON
-/obj/machinery/suit_cycler/vintage/tcrew
+obj/machinery/suit_cycler/vintage/tcrew
 	name = "Talon crew suit cycler"
 	model_text = "Talon crew"
 	req_access = list(ACCESS_FACTION_TALON)
 	departments = list("Talon Crew","No Change")
 
-/obj/machinery/suit_cycler/vintage/tpilot
+obj/machinery/suit_cycler/vintage/tpilot
 	name = "Talon pilot suit cycler"
 	model_text = "Talon pilot"
 	req_access = list(ACCESS_FACTION_TALON)
 	departments = list("Talon Pilot (Bubble Helm)","Talon Pilot (Closed Helm)","No Change")
 
-/obj/machinery/suit_cycler/vintage/tengi
+obj/machinery/suit_cycler/vintage/tengi
 	name = "Talon engineer suit cycler"
 	model_text = "Talon engineer"
 	req_access = list(ACCESS_FACTION_TALON)
 	departments = list("Talon Engineering","No Change")
 
-/obj/machinery/suit_cycler/vintage/tguard
+obj/machinery/suit_cycler/vintage/tguard
 	name = "Talon guard suit cycler"
 	model_text = "Talon guard"
 	req_access = list(ACCESS_FACTION_TALON)
 	departments = list("Talon Marine","Talon Mercenary","No Change")
 
-/obj/machinery/suit_cycler/vintage/tmedic
+obj/machinery/suit_cycler/vintage/tmedic
 	name = "Talon doctor suit cycler"
 	model_text = "Talon doctor"
 	req_access = list(ACCESS_FACTION_TALON)
 	departments = list("Talon Medical (Bubble Helm)","Talon Medical (Closed Helm)","No Change")
 
-/obj/machinery/suit_cycler/vintage/tcaptain
+obj/machinery/suit_cycler/vintage/tcaptain
 	name = "Talon captain suit cycler"
 	model_text = "Talon captain"
 	req_access = list(ACCESS_FACTION_TALON)
 	departments = list("Talon Officer","No Change")
 
 //Pirate
-/obj/machinery/suit_cycler/pirate
+obj/machinery/suit_cycler/pirate
 	name = "Black Market suit cycler"
 	model_text = "Pirate"
 	req_access = list(ACCESS_FACTION_PIRATE)

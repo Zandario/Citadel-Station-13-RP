@@ -1,11 +1,11 @@
-/datum/technomancer/consumable/disposable_teleporter
+datum/technomancer/consumable/disposable_teleporter
 	name = "Disposable Teleporter"
 	desc = "An ultra-safe teleportation device that can directly teleport you to a number of locations at minimal risk, however \
 	it has a limited amount of charges."
 	cost = 50
 	obj_path = /obj/item/disposable_teleporter
 
-/obj/item/disposable_teleporter
+obj/item/disposable_teleporter
 	name = "disposable teleporter"
 	desc = "A very compact personal teleportation device.  It's very precise and safe, however it can only be used a few times."
 	icon = 'icons/obj/device.dmi'
@@ -16,17 +16,17 @@
 	origin_tech = list(TECH_BLUESPACE = 4, TECH_POWER = 3)
 
 //This one is what the wizard starts with.  The above is a better version that can be purchased.
-/obj/item/disposable_teleporter/free
+obj/item/disposable_teleporter/free
 	name = "complimentary disposable teleporter"
 	desc = "A very compact personal teleportation device.  It's very precise and safe, however it can only be used once.  This \
 	one has been provided to allow you to leave your hideout."
 	uses = 1
 
-/obj/item/disposable_teleporter/examine(mob/user)
+obj/item/disposable_teleporter/examine(mob/user)
 	. = ..()
 	. += "<span class = 'notice'>There are [uses] uses remaining.</span>"
 
-/obj/item/disposable_teleporter/attack_self(mob/user)
+obj/item/disposable_teleporter/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

@@ -1,7 +1,7 @@
 var/global/antag_add_failed // Used in antag type voting.
 var/global/list/additional_antag_types = list()
 
-/datum/game_mode
+datum/game_mode
 	var/name = "invalid"
 	var/round_description = "How did you even vote this in?"
 	var/extended_round_description = "This roundtype should not be spawned, let alone votable. Someone contact a developer and tell them the game's broken again."
@@ -57,7 +57,7 @@ var/global/list/additional_antag_types = list()
 	/// Modifies the timing of random events.
 	var/event_delay_mod_major
 
-/datum/game_mode/Topic(href, href_list[])
+datum/game_mode/Topic(href, href_list[])
 	if(..())
 		return
 	if(href_list["toggle"])
@@ -133,7 +133,7 @@ var/global/list/additional_antag_types = list()
 				admin.show_game_mode(usr)
 				return
 
-/datum/game_mode/proc/announce() //to be called when round starts
+datum/game_mode/proc/announce() //to be called when round starts
 	to_chat(world, "<B>The current game mode is [capitalize(name)]!</B>")
 	to_chat(world, "<B>The current engine is [GLOB.used_engine]!</B>")//Actually, why not expand this....
 	if(round_description) to_chat(world, "[round_description]")
@@ -157,7 +157,7 @@ var/global/list/additional_antag_types = list()
 
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
-/datum/game_mode/proc/can_start(var/do_not_spawn)
+datum/game_mode/proc/can_start(var/do_not_spawn)
 	var/playerC = 0
 	for(var/mob/new_player/player in GLOB.player_list)
 		if((player.client)&&(player.ready))
@@ -192,7 +192,7 @@ var/global/list/additional_antag_types = list()
 					return 1
 	return 0
 
-/datum/game_mode/proc/refresh_event_modifiers()
+datum/game_mode/proc/refresh_event_modifiers()
 	if(event_delay_mod_moderate || event_delay_mod_major)
 		SSevents.report_at_round_end = TRUE
 		if(event_delay_mod_moderate)
@@ -202,7 +202,7 @@ var/global/list/additional_antag_types = list()
 			var/datum/event_container/EMajor = SSevents.event_containers[EVENT_LEVEL_MAJOR]
 			EMajor.delay_modifier = event_delay_mod_major
 
-/datum/game_mode/proc/pre_setup()
+datum/game_mode/proc/pre_setup()
 	for(var/datum/antagonist/antag in antag_templates)
 		antag.build_candidate_list() //compile a list of all eligible candidates
 
@@ -211,7 +211,7 @@ var/global/list/additional_antag_types = list()
 			antag.attempt_spawn() //select antags to be spawned
 
 ///post_setup()
-/datum/game_mode/proc/post_setup()
+datum/game_mode/proc/post_setup()
 
 	refresh_event_modifiers()
 
@@ -239,11 +239,11 @@ var/global/list/additional_antag_types = list()
 	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
 	return 1
 
-/datum/game_mode/proc/fail_setup()
+datum/game_mode/proc/fail_setup()
 	for(var/datum/antagonist/antag in antag_templates)
 		antag.reset()
 
-/datum/game_mode/proc/announce_ert_disabled()
+datum/game_mode/proc/announce_ert_disabled()
 	if(!ert_disabled)
 		return
 
@@ -281,7 +281,7 @@ var/global/list/additional_antag_types = list()
 		)
 	command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
 
-/datum/game_mode/proc/check_finished(force_ending) // To be called by SSticker
+datum/game_mode/proc/check_finished(force_ending) // To be called by SSticker
 	if(!SSticker.setup_done)
 		return FALSE
 	if(SSemergencyshuttle.returned() || station_was_nuked)
@@ -301,10 +301,10 @@ var/global/list/additional_antag_types = list()
 	if(force_ending)
 		return TRUE
 
-/datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
+datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return
 
-/datum/game_mode/proc/declare_completion()
+datum/game_mode/proc/declare_completion()
 
 	var/is_antag_mode = (antag_templates && antag_templates.len)
 	check_victory()
@@ -376,10 +376,10 @@ var/global/list/additional_antag_types = list()
 
 	return 0
 
-/datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
+datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
 
-/datum/game_mode/proc/get_players_for_role(var/role, var/antag_id, var/ghosts_only)
+datum/game_mode/proc/get_players_for_role(var/role, var/antag_id, var/ghosts_only)
 	var/list/players = list()
 	var/list/candidates = list()
 
@@ -428,16 +428,16 @@ var/global/list/additional_antag_types = list()
 							//			required_enemies if the number of people with that role set to yes is less than recomended_enemies,
 							//			Less if there are not enough valid players in the game entirely to make required_enemies.
 
-/datum/game_mode/proc/num_players()
+datum/game_mode/proc/num_players()
 	. = 0
 	for(var/mob/new_player/P in GLOB.player_list)
 		if(P.client && P.ready)
 			. ++
 
-/datum/game_mode/proc/check_antagonists_topic(href, href_list[])
+datum/game_mode/proc/check_antagonists_topic(href, href_list[])
 	return 0
 
-/datum/game_mode/proc/create_antagonists()
+datum/game_mode/proc/create_antagonists()
 
 	if(!config_legacy.traitor_scaling)
 		antag_scaling_coeff = 0
@@ -459,13 +459,13 @@ var/global/list/additional_antag_types = list()
 
 	newscaster_announcements = pick(newscaster_standard_feeds)
 
-/datum/game_mode/proc/check_victory()
+datum/game_mode/proc/check_victory()
 	return
 
 //////////////////////////
 //Reports player logouts//
 //////////////////////////
-/proc/display_roundstart_logout_report()
+proc/display_roundstart_logout_report()
 	var/msg = "<span class='notice'><b>Roundstart logout report</b>\n\n"
 	for(var/mob/living/L in GLOB.mob_list)
 
@@ -517,7 +517,7 @@ var/global/list/additional_antag_types = list()
 		if(M.client && M.client.holder)
 			to_chat(M, msg)
 
-/proc/get_nt_opposed()
+proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in GLOB.player_list)
 		if(man.client)
@@ -528,7 +528,7 @@ var/global/list/additional_antag_types = list()
 	if(dudes.len == 0) return null
 	return pick(dudes)
 
-/proc/show_objectives(var/datum/mind/player)
+proc/show_objectives(var/datum/mind/player)
 
 	if(!player || !player.current) return
 
@@ -538,7 +538,7 @@ var/global/list/additional_antag_types = list()
 		to_chat(player.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 		obj_count++
 
-/mob/verb/check_round_info()
+mob/verb/check_round_info()
 	set name = "Check Round Info"
 	set category = "OOC"
 

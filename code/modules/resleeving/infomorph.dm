@@ -16,7 +16,7 @@ var/list/infomorph_emotions = list(
 		"Question Mark" =      "pai-question"
 	)
 
-/mob/living/silicon/infomorph
+mob/living/silicon/infomorph
 	name = "sleevecard" //Has the same name as the card for consistency, but this is the MOB in the card.
 	icon = 'icons/mob/pai.dmi'
 	icon_state = "repairbot"
@@ -83,7 +83,7 @@ var/list/infomorph_emotions = list(
 	var/datum/data/record/securityActive1		// Could probably just combine all these into one
 	var/datum/data/record/securityActive2
 
-/mob/living/silicon/infomorph/Initialize(mapload, obj/item/sleevecard/SC, name = "Unknown")
+mob/living/silicon/infomorph/Initialize(mapload, obj/item/sleevecard/SC, name = "Unknown")
 	ASSERT(SC)
 	name = "[initial(name)] ([name])"
 	src.forceMove(SC)
@@ -117,7 +117,7 @@ var/list/infomorph_emotions = list(
 	return ..()
 
 /////////// STAT PANEL
-/mob/living/silicon/infomorph/statpanel_data(client/C)
+mob/living/silicon/infomorph/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		STATPANEL_DATA_LINE("")
@@ -126,22 +126,22 @@ var/list/infomorph_emotions = list(
 			STATPANEL_DATA_LINE("Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
 /////////// CHECKERS
-/mob/living/silicon/infomorph/check_eye(var/mob/user as mob)
+mob/living/silicon/infomorph/check_eye(var/mob/user as mob)
 	if (!src.current)
 		return -1
 	return 0
 
-/mob/living/silicon/infomorph/restrained()
+mob/living/silicon/infomorph/restrained()
 	if(istype(src.loc,/obj/item/sleevecard))
 		return 0
 	..()
 
-/mob/living/silicon/infomorph/default_can_use_topic(var/src_object)
+mob/living/silicon/infomorph/default_can_use_topic(var/src_object)
 	if(src_object in src)
 		return shared_nano_interaction()
 
 /////////// DAMAGES
-/mob/living/silicon/infomorph/emp_act(severity)
+mob/living/silicon/infomorph/emp_act(severity)
 	// Silence for 2 minutes
 	// 20% chance to kill
 
@@ -153,7 +153,7 @@ var/list/infomorph_emotions = list(
 			M.show_message("<span class='warning'>A shower of sparks spray from \the [src]'s inner workings.</span>", 3, "<span class='warning'>You hear and smell the ozone hiss of electrical sparks being expelled violently.</span>", 2)
 		return src.death(0)
 
-/mob/living/silicon/infomorph/death(gibbed,var/message = "beeps once, then goes offline.")
+mob/living/silicon/infomorph/death(gibbed,var/message = "beeps once, then goes offline.")
 	if(card)
 		card.infomorph = null
 		card.turnOff()
@@ -169,7 +169,7 @@ var/list/infomorph_emotions = list(
 	qdel(src)
 
 ///////////// CAMERAS AND RECORDS
-/mob/living/silicon/infomorph/verb/reset_record_view()
+mob/living/silicon/infomorph/verb/reset_record_view()
 	set category = "Card Commands"
 	set name = "Reset Records Software"
 
@@ -183,7 +183,7 @@ var/list/infomorph_emotions = list(
 	to_chat(usr, "<span class='notice'>You reset your record-viewing software.</span>")
 
 /*
-/mob/living/silicon/infomorph/proc/switchCamera(var/obj/machinery/camera/C)
+mob/living/silicon/infomorph/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.unset_machine()
 		src.reset_view(null)
@@ -197,7 +197,7 @@ var/list/infomorph_emotions = list(
 	src.reset_view(C)
 	return 1
 
-/mob/living/silicon/infomorph/cancel_camera()
+mob/living/silicon/infomorph/cancel_camera()
 	set category = "Card Commands"
 	set name = "Cancel Camera View"
 	src.reset_view(null)
@@ -205,7 +205,7 @@ var/list/infomorph_emotions = list(
 	src.cameraFollow = null
 */
 ////////////// MOBILE CODE
-/mob/living/silicon/infomorph/proc/fold_out()
+mob/living/silicon/infomorph/proc/fold_out()
 	set category = "Card Commands"
 	set name = "Chassis Open"
 
@@ -247,7 +247,7 @@ var/list/infomorph_emotions = list(
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
 
-/mob/living/silicon/infomorph/proc/fold_in()
+mob/living/silicon/infomorph/proc/fold_in()
 	set category = "Card Commands"
 	set name = "Chassis Close"
 
@@ -262,7 +262,7 @@ var/list/infomorph_emotions = list(
 
 	close_up()
 
-/mob/living/silicon/infomorph/proc/close_up()
+mob/living/silicon/infomorph/proc/close_up()
 	last_special = world.time + 100
 
 	if(src.loc == card)
@@ -292,7 +292,7 @@ var/list/infomorph_emotions = list(
 	resting = 0
 	icon_state = "[chassis]"
 
-/mob/living/silicon/infomorph/proc/choose_chassis()
+mob/living/silicon/infomorph/proc/choose_chassis()
 	set category = "Card Commands"
 	set name = "Choose Chassis"
 
@@ -302,7 +302,7 @@ var/list/infomorph_emotions = list(
 	icon_state = possible_chassis[choice]
 	chassis = possible_chassis[choice]
 
-/mob/living/silicon/infomorph/proc/choose_verbs()
+mob/living/silicon/infomorph/proc/choose_verbs()
 	set category = "Card Commands"
 	set name = "Choose Speech Verbs"
 
@@ -316,7 +316,7 @@ var/list/infomorph_emotions = list(
 
 	remove_verb(src, /mob/living/silicon/infomorph/proc/choose_verbs)
 
-/mob/living/silicon/infomorph/lay_down()
+mob/living/silicon/infomorph/lay_down()
 	set name = "Rest"
 	set category = "IC"
 
@@ -325,7 +325,7 @@ var/list/infomorph_emotions = list(
 	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
 
 ////////////////// ATTACKBY, HAND, SELF etc
-/mob/living/silicon/infomorph/attackby(obj/item/W as obj, mob/user as mob)
+mob/living/silicon/infomorph/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.damage_force)
 		visible_message("<span class='danger'>[user.name] attacks [src] with [W]!</span>")
 		src.adjustBruteLoss(W.damage_force)
@@ -336,11 +336,11 @@ var/list/infomorph_emotions = list(
 		if(stat != 2) close_up()
 	return
 
-/mob/living/silicon/infomorph/attack_hand(mob/user, list/params)
+mob/living/silicon/infomorph/attack_hand(mob/user, list/params)
 	visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
 	close_up()
 
-/mob/living/silicon/infomorph/attackby(obj/item/W as obj, mob/user as mob)
+mob/living/silicon/infomorph/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/card/id/ID = W.GetID()
 	if(ID)
 		if (idaccessible == 1)
@@ -360,7 +360,7 @@ var/list/infomorph_emotions = list(
 			return
 
 //////////////////// MISC VERBS
-/mob/living/silicon/infomorph/verb/allowmodification()
+mob/living/silicon/infomorph/verb/allowmodification()
 	set name = "Allow ID Updates"
 	set category = "Card Commands"
 	desc = "Allows people to modify your access or block people from modifying your access."
@@ -373,7 +373,7 @@ var/list/infomorph_emotions = list(
 		idaccessible = 0
 		to_chat(src, "<span class='notice'>You block access modfications.</span>")
 
-/mob/living/silicon/infomorph/verb/wipe_software()
+mob/living/silicon/infomorph/verb/wipe_software()
 	set name = "Suspend Self"
 	set category = "OOC"
 	set desc = "Wipe yourself from your hardware. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
@@ -394,7 +394,7 @@ var/list/infomorph_emotions = list(
 	clear_client()
 
 //////////// COMMUNICATIONS
-/mob/living/silicon/infomorph/verb/radiosettings()
+mob/living/silicon/infomorph/verb/radiosettings()
 	set name = "Radio Settings"
 	set category = "Card Commands"
 	desc = "Modify the settings on your integrated radio."
@@ -404,13 +404,13 @@ var/list/infomorph_emotions = list(
 	else
 		to_chat(src,"<span class='warning'>You don't have a radio!</span>")
 
-/mob/living/silicon/infomorph/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
+mob/living/silicon/infomorph/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	if(silence_time)
 		to_chat(src, "<font color=green>Communication circuits remain uninitialized.</font>")
 	else
 		return ..()
 
-/mob/living/silicon/infomorph/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+mob/living/silicon/infomorph/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	switch(message_mode)
 		if("headset")
 			if(radio && istype(radio,/obj/item/radio))
@@ -419,13 +419,13 @@ var/list/infomorph_emotions = list(
 				used_radios += radio
 
 // No binary for pAIs.
-/mob/living/silicon/infomorph/binarycheck()
+mob/living/silicon/infomorph/binarycheck()
 	return 0
 
 /////////////// SOFTWARE DOWNLOADS
 var/global/list/infomorph_software_by_key = list()
 var/global/list/default_infomorph_software = list()
-/hook/startup/proc/populate_infomorph_software_list()
+hook/startup/proc/populate_infomorph_software_list()
 	var/r = 1 // I would use ., but it'd sacrifice runtime detection
 	for(var/type in typesof(/datum/infomorph_software) - /datum/infomorph_software)
 		var/datum/infomorph_software/P = new type()
@@ -439,13 +439,13 @@ var/global/list/default_infomorph_software = list()
 			default_infomorph_software[P.id] = P
 	return r
 
-/mob/living/silicon/infomorph/verb/paiInterface()
+mob/living/silicon/infomorph/verb/paiInterface()
 	set category = "Card Commands"
 	set name = "Software Interface"
 
 	nano_ui_interact(src)
 
-/mob/living/silicon/infomorph/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, key_state = self_state)
+mob/living/silicon/infomorph/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, key_state = self_state)
 	if(user != src)
 		if(ui) ui.set_status(UI_CLOSE, 0)
 		return
@@ -499,7 +499,7 @@ var/global/list/default_infomorph_software = list()
 		ui.open()
 		ui.set_auto_update(1)
 
-/mob/living/silicon/infomorph/Topic(href, href_list)
+mob/living/silicon/infomorph/Topic(href, href_list)
 	. = ..()
 	if(.) return
 
@@ -532,7 +532,7 @@ var/global/list/default_infomorph_software = list()
 			card.setEmotion(img)
 		return 1
 
-/mob/living/silicon/infomorph/examine(mob/user)
+mob/living/silicon/infomorph/examine(mob/user)
 	. = ..()
 	switch(src.stat)
 		if(CONSCIOUS)
@@ -549,7 +549,7 @@ var/global/list/default_infomorph_software = list()
 	if (pose)
 		. += "\nIt is [pose]"
 
-/mob/living/silicon/infomorph/Life(seconds, times_fired)
+mob/living/silicon/infomorph/Life(seconds, times_fired)
 	//Person was sleeved or otherwise moved away from us, become inert card.
 	if(!ckey || !key)
 		death()
@@ -583,7 +583,7 @@ var/global/list/default_infomorph_software = list()
 	if(health <= 0)
 		death(null,"gives one shrill beep before falling lifeless.")
 
-/mob/living/silicon/infomorph/update_health()
+mob/living/silicon/infomorph/update_health()
 	if(status_flags & STATUS_GODMODE)
 		health = 100
 		set_stat(CONSCIOUS)

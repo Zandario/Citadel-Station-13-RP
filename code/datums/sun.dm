@@ -1,11 +1,11 @@
-/datum/sun
+datum/sun
 	var/angle
 	var/dx
 	var/dy
 	var/rate
 	var/solar_next_update	// last time the sun position was checked and adjusted
 
-/datum/sun/New()
+datum/sun/New()
 	rate = rand(50,200)/100			// 50% - 200% of standard rotation
 	if(prob(50))					// same chance to rotate clockwise than counter-clockwise
 		rate = -rate
@@ -14,7 +14,7 @@
 // calculate the sun's position given the time of day
 // at the standard rate (100%) the angle is increase/decreased by 6 degrees every minute.
 // a full rotation thus take a game hour in that case
-/datum/sun/proc/calc_position()
+datum/sun/proc/calc_position()
 	angle = (360 + angle + rate * 6) % 360	 // increase/decrease the angle to the sun, adjusted by the rate
 	// now calculate and cache the (dx,dy) increments for line drawing
 

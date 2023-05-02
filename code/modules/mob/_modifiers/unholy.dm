@@ -4,7 +4,7 @@
 
 
 ////////// Self-Enhancing
-/datum/modifier/fortify
+datum/modifier/fortify
 	name = "fortified body"
 	desc = "You are taking less damage from outside sources."
 
@@ -21,7 +21,7 @@
 	slowdown = 2
 	evasion = -20
 
-/datum/modifier/ambush
+datum/modifier/ambush
 	name = "phased"
 	desc = "You are partially shifted from the material plane."
 
@@ -36,17 +36,17 @@
 
 	evasion = 50							//Luckily, not being all there means you're actually hard to hit with a gun.
 
-/datum/modifier/ambush/on_applied()
+datum/modifier/ambush/on_applied()
 	holder.alpha = 30
 	return
 
 // Override this for special effects when it gets removed.
-/datum/modifier/ambush/on_expire()
+datum/modifier/ambush/on_expire()
 	holder.alpha = 255
 	return
 
 ////////// On-hit
-/datum/modifier/deep_wounds
+datum/modifier/deep_wounds
 	name = "deep wounds"
 	desc = "Your wounds are mysteriously harder to mend."
 
@@ -60,7 +60,7 @@
 
 
 ////////// Auras
-/datum/modifier/repair_aura //This aura does not apply modifiers to individuals in the area.
+datum/modifier/repair_aura //This aura does not apply modifiers to individuals in the area.
 	name = "aura of repair (cult)"
 	desc = "You are emitting a field of strange energy, capable of repairing occult constructs."
 
@@ -70,13 +70,13 @@
 
 	mob_overlay_state = "cult_aura"
 
-/datum/modifier/repair_aura/tick()
+datum/modifier/repair_aura/tick()
 	spawn()
 		for(var/mob/living/simple_mob/construct/T in view(4,holder))
 			T.adjustBruteLoss(rand(-10,-15))
 			T.adjustFireLoss(rand(-10,-15))
 
-/datum/modifier/agonize //This modifier is used in an aura spell.
+datum/modifier/agonize //This modifier is used in an aura spell.
 	name = "agonize"
 	desc = "Your body is wracked with pain."
 
@@ -87,7 +87,7 @@
 
 	mob_overlay_state = "red_electricity_constant"
 
-/datum/modifier/agonize/tick()
+datum/modifier/agonize/tick()
 	spawn()
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder
@@ -96,7 +96,7 @@
 				to_chat(H, "<span class='warning'>Just make it stop!</span>")
 
 ////////// Target Modifier
-/datum/modifier/mend_occult
+datum/modifier/mend_occult
 	name = "occult mending"
 	desc = "Your body is mending, though at what cost?"
 
@@ -107,7 +107,7 @@
 
 	mob_overlay_state = "red_electricity_constant"
 
-/datum/modifier/mend_occult/tick()
+datum/modifier/mend_occult/tick()
 	spawn()
 		if(isliving(holder))
 			var/mob/living/L = holder
@@ -146,7 +146,7 @@
 					to_chat(H, "<span class='danger'>It feels as though your body is being torn apart!</span>")
 			L.update_health()
 
-/datum/modifier/gluttonyregeneration
+datum/modifier/gluttonyregeneration
 	name = "gluttonous regeneration"
 	desc = "You are filled with an overwhelming hunger."
 	mob_overlay_state = "electricity"
@@ -155,7 +155,7 @@
 	on_expired_text = "<span class='notice'>The blaze of hunger inside you has been snuffed.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/gluttonyregeneration/can_apply(var/mob/living/L)
+datum/modifier/gluttonyregeneration/can_apply(var/mob/living/L)
 	if(L.stat == DEAD)
 		to_chat(L, "<span class='warning'>You can't be dead to consume.</span>")
 		return FALSE
@@ -178,7 +178,7 @@
 
 	return ..()
 
-/datum/modifier/gluttonyregeneration/tick()
+datum/modifier/gluttonyregeneration/tick()
 	spawn()
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder

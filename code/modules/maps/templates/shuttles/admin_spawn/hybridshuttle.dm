@@ -1,26 +1,26 @@
 
 
 // Map template for spawning the shuttle
-/datum/map_template/shuttle/overmap/generic/hybrid
+datum/map_template/shuttle/overmap/generic/hybrid
 	name = "OM Ship - Hybrid Shuttle"
 	desc = "A prototype human/alien tech hybrid shuttle."
 	suffix = "hybridshuttle.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)
-/area/shuttle/blue_fo
+area/shuttle/blue_fo
 	name = "\improper Hybrid Shuttle"
 	icon_state = "shuttle2"
 	requires_power = 1
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/hybridshuttle
+obj/machinery/computer/shuttle_control/explore/hybridshuttle
 	name = "short jump console"
 	shuttle_tag = "XN-29 Prototype Shuttle"
 	req_one_access = list(ACCESS_GENERAL_PILOT)
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/hybridshuttle
+obj/effect/shuttle_landmark/shuttle_initializer/hybridshuttle
 	name = "Origin - Hybrid Shuttle"
 	base_area = /area/space
 	base_turf = /turf/space
@@ -28,7 +28,7 @@
 	shuttle_type = /datum/shuttle/autodock/overmap/hybridshuttle
 
 // The 'shuttle'
-/datum/shuttle/autodock/overmap/hybridshuttle
+datum/shuttle/autodock/overmap/hybridshuttle
 	name = "XN-29 Prototype Shuttle"
 	current_location = "omship_spawn_hybridshuttle"
 	docking_controller_tag = "hybrid_shuttle_docker"
@@ -37,7 +37,7 @@
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 
 // The 'ship'
-/obj/effect/overmap/visitable/ship/landable/hybridshuttle
+obj/effect/overmap/visitable/ship/landable/hybridshuttle
 	scanner_name = "XN-29 Prototype Shuttle"
 	scanner_desc = @{"[i]Registration[/i]: UNKNOWN
 [i]Class[/i]: Shuttle

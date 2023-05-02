@@ -1,4 +1,4 @@
-/obj/item
+obj/item
 	name = "item"
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEMSIZE_NORMAL
@@ -137,7 +137,7 @@
 	/// Used to avoid infinite cleaving.
 	var/cleaving = FALSE
 
-/obj/item/Initialize(mapload)
+obj/item/Initialize(mapload)
 	. = ..()
 	if(islist(origin_tech))
 		origin_tech = typelist(NAMEOF(src, origin_tech), origin_tech)
@@ -156,16 +156,16 @@
 			hitsound = "swing_hit"
 
 /// Check if target is reasonable for us to operate on.
-/obj/item/proc/check_allowed_items(atom/target, not_inside, target_self)
+obj/item/proc/check_allowed_items(atom/target, not_inside, target_self)
 	if(((src in target) && !target_self) || ((!istype(target.loc, /turf)) && (!istype(target, /turf)) && (not_inside)))
 		return FALSE
 	else
 		return TRUE
 
-/obj/item/proc/update_twohanding()
+obj/item/proc/update_twohanding()
 	update_held_icon()
 
-/obj/item/proc/is_held_twohanded(mob/living/M)
+obj/item/proc/is_held_twohanded(mob/living/M)
 	var/check_hand
 	if(M.l_hand == src && !M.r_hand)
 		check_hand = BP_R_HAND //item in left hand, check right hand
@@ -185,7 +185,7 @@
 
 
 ///Checks if the item is being held by a mob, and if so, updates the held icons
-/obj/item/proc/update_held_icon()
+obj/item/proc/update_held_icon()
 	if(isliving(src.loc))
 		var/mob/living/M = src.loc
 		if(M.l_hand == src)
@@ -193,7 +193,7 @@
 		else if(M.r_hand == src)
 			M.update_inv_r_hand()
 
-/obj/item/legacy_ex_act(severity)
+obj/item/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -216,10 +216,10 @@
 //TOXLOSS = 4
 //OXYLOSS = 8
 ///Output a creative message and then return the damagetype done
-/obj/item/proc/suicide_act(mob/user)
+obj/item/proc/suicide_act(mob/user)
 	return
 
-/obj/item/verb/move_to_top()
+obj/item/verb/move_to_top()
 	set name = "Move To Top"
 	set category = "Object"
 	set src in oview(1)
@@ -234,7 +234,7 @@
 	src.loc = T
 
 /// See inventory_sizes.dm for the defines.
-/obj/item/examine(mob/user)
+obj/item/examine(mob/user)
 	. = ..()
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weightclass2text(w_class)] item."
 
@@ -254,7 +254,7 @@
 	// 	var/datum/block_parry_data/data = return_block_parry_datum(block_parry_data)
 	// 	. += "[src] has the capacity to be used to block and/or parry. <a href='?src=[REF(data)];name=[name];block=[item_flags & ITEM_CAN_BLOCK];parry=[item_flags & ITEM_CAN_PARRY];render=1'>\[Show Stats\]</a>"
 
-/proc/weightclass2text(w_class)
+proc/weightclass2text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY, ITEMSIZE_TINY)
 			. = "tiny"
@@ -271,10 +271,10 @@
 		else
 			. = ""
 
-/obj/item/attack_hand(mob/user, list/params)
+obj/item/attack_hand(mob/user, list/params)
 	attempt_pickup(user)
 
-/obj/item/proc/attempt_pickup(mob/user)
+obj/item/proc/attempt_pickup(mob/user)
 	if (!user)
 		return
 
@@ -307,7 +307,7 @@
 			ghost.assumeform(src)
 			ghost.animate_towards(user)
 
-/obj/item/OnMouseDrop(atom/over, mob/user, proximity, params)
+obj/item/OnMouseDrop(atom/over, mob/user, proximity, params)
 	if(anchored)	// Don't.
 		return ..()
 	if(user.restrained())
@@ -358,16 +358,16 @@
 		return ..()
 
 // funny!
-/mob/proc/CanSlideItem(obj/item/I, turf/over)
+mob/proc/CanSlideItem(obj/item/I, turf/over)
 	return FALSE
 
-/mob/living/CanSlideItem(obj/item/I, turf/over)
+mob/living/CanSlideItem(obj/item/I, turf/over)
 	return Adjacent(I) && !incapacitated() && !stat && !restrained()
 
-/mob/observer/dead/CanSlideItem(obj/item/I, turf/over)
+mob/observer/dead/CanSlideItem(obj/item/I, turf/over)
 	return is_spooky
 
-/obj/item/attack_ai(mob/user as mob)
+obj/item/attack_ai(mob/user as mob)
 	if (istype(src.loc, /obj/item/robot_module))
 		//If the item is part of a cyborg module, equip it
 		if(!isrobot(user))
@@ -376,7 +376,7 @@
 		R.activate_module(src)
 		R.hud_used.update_robot_modules_display()
 
-/obj/item/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		if(S.use_to_pickup)
@@ -388,13 +388,13 @@
 				S.handle_item_insertion(src, user)
 	return
 
-/obj/item/proc/talk_into(mob/M as mob, text)
+obj/item/proc/talk_into(mob/M as mob, text)
 	return
 
-/obj/item/proc/moved(mob/user as mob, old_loc as turf)
+obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
 
-/obj/item/proc/get_volume_by_throwforce_and_or_w_class() // This is used for figuring out how loud our sounds are for throwing.
+obj/item/proc/get_volume_by_throwforce_and_or_w_class() // This is used for figuring out how loud our sounds are for throwing.
 	if(throw_force && w_class)
 		return clamp((throw_force + w_class) * 5, 30, 100)// Add the item's throw_force to its weight class and multiply by 5, then clamp the value between 30 and 100
 	else if(w_class)
@@ -403,7 +403,7 @@
 		return 0
 
 
-/obj/item/throw_impact(atom/A, datum/thrownthing/TT)
+obj/item/throw_impact(atom/A, datum/thrownthing/TT)
 	. = ..()
 	if(QDELETED(A))
 		return
@@ -426,7 +426,7 @@
 	else
 		playsound(src, drop_sound, 30, preference = /datum/client_preference/drop_sounds)
 
-/obj/item/throw_landed(atom/movable/AM, datum/thrownthing/TT)
+obj/item/throw_landed(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	if(TT.throw_flags & THROW_AT_IS_NEAT)
 		return
@@ -437,18 +437,18 @@
 	pixel_y = rand(-8, 8)
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
-/obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
+obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	SEND_SIGNAL(src, COMSIG_STORAGE_EXITED, S)
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
-/obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
+obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	SEND_SIGNAL(src, COMSIG_STORAGE_ENTERED, S)
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
-/obj/item/proc/on_found(mob/finder as mob)
+obj/item/proc/on_found(mob/finder as mob)
 	return
 
-/obj/item/verb/verb_pickup()
+obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Pick up"
@@ -480,7 +480,7 @@
  *This proc is executed when someone clicks the on-screen UI button.
  *The default action is attack_self().
  */
-/obj/item/ui_action_click(datum/action/action, mob/user)
+obj/item/ui_action_click(datum/action/action, mob/user)
 	attack_self(usr)
 
 //RETURN VALUES
@@ -488,16 +488,16 @@
 //If a negative value is returned, it should be treated as a special return value for bullet_act() and handled appropriately.
 //For non-projectile attacks this usually means the attack is blocked.
 //Otherwise should return 0 to indicate that the attack is not affected in any way.
-/obj/item/proc/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/proc/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	return 0
 
-/obj/item/proc/get_loc_turf()
+obj/item/proc/get_loc_turf()
 	var/atom/L = loc
 	while(L && !istype(L, /turf/))
 		L = L.loc
 	return loc
 
-/obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 
 	var/mob/living/carbon/human/H = M
 	var/mob/living/carbon/human/U = user
@@ -575,7 +575,7 @@
 	M.eye_blurry += rand(3,4)
 	return
 
-/obj/item/clean_blood()
+obj/item/clean_blood()
 	. = ..()
 	if(blood_overlay)
 		cut_overlay(blood_overlay)
@@ -583,14 +583,14 @@
 		var/obj/item/clothing/gloves/G = src
 		G.transfer_blood = 0
 
-/obj/item/reveal_blood()
+obj/item/reveal_blood()
 	if(was_bloodied && !fluorescent)
 		fluorescent = 1
 		blood_color = COLOR_LUMINOL
 		blood_overlay.color = COLOR_LUMINOL
 		update_icon()
 
-/obj/item/add_blood(mob/living/carbon/human/M as mob)
+obj/item/add_blood(mob/living/carbon/human/M as mob)
 	if (!..())
 		return 0
 
@@ -615,7 +615,7 @@
 // Protip: don't use world scans to implement caching. Yes, that is how this used to work.
 GLOBAL_LIST_EMPTY(blood_overlay_cache)
 
-/obj/item/proc/generate_blood_overlay()
+obj/item/proc/generate_blood_overlay()
 	if(blood_overlay)
 		return
 
@@ -629,11 +629,11 @@ GLOBAL_LIST_EMPTY(blood_overlay_cache)
 
 	blood_overlay = GLOB.blood_overlay_cache[type] = image(I)
 
-/obj/item/proc/showoff(mob/user)
+obj/item/proc/showoff(mob/user)
 	for (var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
 
-/mob/living/carbon/verb/showoff()
+mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
 	set category = "Object"
 
@@ -649,7 +649,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
 
 // this is shitcode holy crap
-/obj/item/proc/zoom(tileoffset = 14, viewsize = 9, mob/user = usr, wornslot = FALSE) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view. slot determines whether the item needs to be held in-hand (by being set to FALSE) OR worn on a specific slot to look through
+obj/item/proc/zoom(tileoffset = 14, viewsize = 9, mob/user = usr, wornslot = FALSE) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view. slot determines whether the item needs to be held in-hand (by being set to FALSE) OR worn on a specific slot to look through
 
 	var/devicename
 
@@ -713,24 +713,24 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	return
 
-/obj/item/proc/pwr_drain()
+obj/item/proc/pwr_drain()
 	return 0 // Process Kill
 
 /// Check if an object should ignite others, like a lit lighter or candle.
-/obj/item/proc/is_hot()
+obj/item/proc/is_hot()
 	return FALSE
 
 /// These procs are for RPEDs and part ratings. The concept for this was borrowed from /vg/station.
 /// Gets the rating of the item, used in stuff like machine construction.
-/obj/item/proc/get_rating()
+obj/item/proc/get_rating()
 	return FALSE
 
 /// These procs are for RPEDs and part ratings, but used for RPED sorting of parts.
-/obj/item/proc/rped_rating()
+obj/item/proc/rped_rating()
 	return get_rating()
 
 // todo: WHAT?
-/obj/item/interact(mob/user)
+obj/item/interact(mob/user)
 	add_fingerprint(user)
 	ui_interact(user)
 
@@ -747,7 +747,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
  *
  * @return attack verb
  */
-/obj/item/proc/get_attack_verb(atom/target, mob/user)
+obj/item/proc/get_attack_verb(atom/target, mob/user)
 	return length(attack_verb)? pick(attack_verb) : attack_verb
 
 //? Interaction
@@ -762,7 +762,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
  *
  * @return TRUE to signal to overrides to stop the chain and do nothing.
  */
-/obj/item/proc/attack_self(mob/user)
+obj/item/proc/attack_self(mob/user)
 	// SHOULD_CALL_PARENT(TRUE)
 	// attack_self isn't really part of the item attack chain.
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
@@ -775,7 +775,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
  * Used to allow for attack_self to be interrupted by signals in nearly all cases.
  * You should usually override this instead of attack_self.
  */
-/obj/item/proc/on_attack_self(mob/user)
+obj/item/proc/on_attack_self(mob/user)
 	return
 
 //? Mob Armor
@@ -785,7 +785,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
  *
  * @returns copy of args with modified values
  */
-/obj/item/proc/checking_mob_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
+obj/item/proc/checking_mob_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
 	damage = fetch_armor().resultant_damage(damage, tier, flag)
 	return args.Copy()
 
@@ -795,6 +795,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
  *
  * @returns copy of args with modified values
  */
-/obj/item/proc/running_mob_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
+obj/item/proc/running_mob_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
 	damage = fetch_armor().resultant_damage(damage, tier, flag)
 	return args.Copy()

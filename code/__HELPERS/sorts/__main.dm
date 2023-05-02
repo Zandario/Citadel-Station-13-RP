@@ -18,7 +18,7 @@
  * This is a global instance to allow much of this code to be reused. The interfaces are kept separately.
  */
 GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
-/datum/sort_instance
+datum/sort_instance
 	/// The array being sorted.
 	var/list/L
 
@@ -43,7 +43,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
 	var/list/run_lens = list()
 
 
-/datum/sort_instance/proc/tim_sort(start, end)
+datum/sort_instance/proc/tim_sort(start, end)
 	run_bases.Cut()
 	run_lens.Cut()
 
@@ -108,7 +108,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  * hi		the index after the last element in the range to be sorted
  * start	the index of the first element in the range that is	not already known to be sorted
  */
-/datum/sort_instance/proc/binary_sort(lo, hi, start)
+datum/sort_instance/proc/binary_sort(lo, hi, start)
 	//ASSERT(lo <= start && start <= hi)
 	if(start <= lo)
 		start = lo + 1
@@ -146,7 +146,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  * definition of "descending" is needed so that the call can safely
  * reverse a descending sequence without violating stability.
  */
-/datum/sort_instance/proc/count_run_and_make_ascending(lo, hi)
+datum/sort_instance/proc/count_run_and_make_ascending(lo, hi)
 	// ASSERT(lo < hi)
 
 	var/run_hi = lo + 1
@@ -178,7 +178,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  * Returns the minimum acceptable run length for an array of the specified length.
  * Natural runs shorter than this will be extended with binary_sort
  */
-/datum/sort_instance/proc/min_run_length(n)
+datum/sort_instance/proc/min_run_length(n)
 	// ASSERT(n >= 0)
 	// Becomes 1 if any bits are shifted off.
 	var/r = 0
@@ -195,7 +195,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  * This method is called each time a new run is pushed onto the stack.
  * So the invariants are guaranteed to hold for i<stackSize upon entry to the method.
  */
-/datum/sort_instance/proc/merge_collapse()
+datum/sort_instance/proc/merge_collapse()
 	while(run_bases.len >= 2)
 		var/n = run_bases.len - 1
 		if(n > 1 && run_lens[n - 1] <= run_lens[n] + run_lens[n + 1])
@@ -212,7 +212,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  * Merges all runs on the stack until only one remains.
  * Called only once, to finalise the sort
  */
-/datum/sort_instance/proc/merge_force_collapse()
+datum/sort_instance/proc/merge_force_collapse()
 	while(run_bases.len >= 2)
 		var/n = run_bases.len - 1
 		if(n > 1 && run_lens[n - 1] < run_lens[n + 1])
@@ -224,7 +224,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  * Run i must be the penultimate or antepenultimate run on the stack.
  * In other words, i must be equal to stackSize-2 or stackSize-3.
  */
-/datum/sort_instance/proc/merge_at(i)
+datum/sort_instance/proc/merge_at(i)
 	// ASSERT(run_bases.len >= 2)
 	// ASSERT(i >= 1)
 	// ASSERT(i == run_bases.len - 1 || i == run_bases.len - 2)
@@ -283,7 +283,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  *
  * Returns the index at which to insert element 'key'
  */
-/datum/sort_instance/proc/gallop_left(key, base, len, hint)
+datum/sort_instance/proc/gallop_left(key, base, len, hint)
 	// ASSERT(len > 0 && hint >= 0 && hint < len)
 
 	var/last_offset = 0
@@ -344,7 +344,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  * @param c the comparator used to order the range, and to search
  * @return the int k,  0 <= k <= n such that a[b + k - 1] <= key < a[b + k]
  */
-/datum/sort_instance/proc/gallop_right(key, base, len, hint)
+datum/sort_instance/proc/gallop_right(key, base, len, hint)
 	// ASSERT(len > 0 && hint >= 0 && hint < len)
 
 	var/offset = 1
@@ -402,7 +402,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
  * Merges two adjacent runs in-place in a stable fashion.
  * For performance this method should only be called when len1 <= len2!
  */
-/datum/sort_instance/proc/merge_low(base1, len1, base2, len2)
+datum/sort_instance/proc/merge_low(base1, len1, base2, len2)
 	// ASSERT(len1 > 0 && len2 > 0 && base1 + len1 == base2)
 
 	var/cursor1 = base1
@@ -507,7 +507,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
 	// 	ASSERT(len1 > 1)
 
 
-/datum/sort_instance/proc/merge_high(base1, len1, base2, len2)
+datum/sort_instance/proc/merge_high(base1, len1, base2, len2)
 	// ASSERT(len1 > 0 && len2 > 0 && base1 + len1 == base2)
 
 	// Start at end of sublists.
@@ -614,7 +614,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
 	// 	ASSERT(len2 > 0)
 
 
-/datum/sort_instance/proc/sort_merge(start, end)
+datum/sort_instance/proc/sort_merge(start, end)
 	var/remaining = end - start
 
 	// If array is small, do an insertion sort.
@@ -659,7 +659,7 @@ GLOBAL_DATUM_INIT(sort_instance, /datum/sort_instance, new())
 
 	return L
 
-/datum/sort_instance/proc/merge_at_2(i)
+datum/sort_instance/proc/merge_at_2(i)
 	var/cursor1 = run_bases[i]
 	var/cursor2 = run_bases[i + 1]
 

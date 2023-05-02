@@ -2,12 +2,12 @@
 var/eventchance = 10 // Percent chance per 5 minutes.
 var/hadevent    = 0
 
-/proc/appendicitis()
+proc/appendicitis()
 	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
 		if(H.client && H.appendicitis())
 			break
 
-/proc/alien_infestation(var/spawncount = 1) // -- TLE
+proc/alien_infestation(var/spawncount = 1) // -- TLE
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/component/unary/vent_pump/temp_vent in GLOB.machines)
 		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in GLOB.using_map.station_levels))
@@ -32,7 +32,7 @@ var/hadevent    = 0
 	spawn(rand(5000, 6000)) //Delayed announcements to keep the crew on their toes.
 		command_announcement.Announce("Unidentified lifesigns detected coming aboard \the [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 
-/proc/high_radiation_event()
+proc/high_radiation_event()
 
 /* // Haha, this is way too laggy. I'll keep the prison break though.
 	for(var/obj/machinery/light/L in GLOB.machines)
@@ -64,7 +64,7 @@ var/hadevent    = 0
 
 
 //Changing this to affect the main station. Blame Urist. --Pete
-/proc/prison_break() // -- Callagan
+proc/prison_break() // -- Callagan
 
 
 	var/list/area/areas = list()
@@ -102,7 +102,7 @@ var/hadevent    = 0
 	else
 		log_world("ERROR: Could not initate grey-tide. Unable find prison or brig area.")
 
-/proc/carp_migration() // -- Darem
+proc/carp_migration() // -- Darem
 	for(var/obj/landmark/C in GLOB.landmarks_list)
 		if(C.name == "carpspawn")
 			new /mob/living/simple_mob/animal/space/carp(C.loc)
@@ -110,7 +110,7 @@ var/hadevent    = 0
 	spawn(rand(300, 600)) //Delayed announcements to keep the crew on their toes.
 		command_announcement.Announce("Unknown biological entities have been detected near \the [station_name()], please stand-by.", "Lifesign Alert", new_sound = 'sound/AI/commandreport.ogg')
 
-/proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 25) //leave lightsoutAmount as 0 to break ALL lights
+proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 25) //leave lightsoutAmount as 0 to break ALL lights
 	if(isEvent)
 		command_announcement.Announce("An Electrical storm has been detected in your area, please repair potential electronic overloads.","Electrical Storm Alert")
 
@@ -140,7 +140,7 @@ var/hadevent    = 0
 
 	return
 
-/proc/IonStorm(botEmagChance = 10)
+proc/IonStorm(botEmagChance = 10)
 
 /*Deuryn's current project, notes here for those who care.
 Revamping the random laws so they don't suck.

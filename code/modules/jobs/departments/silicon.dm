@@ -1,4 +1,4 @@
-/datum/department/synthetic
+datum/department/synthetic
 	name = DEPARTMENT_SYNTHETIC
 	short_name = "Bot"
 	color = "#222222"

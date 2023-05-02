@@ -2,13 +2,13 @@ GLOBAL_LIST_EMPTY(typelists)
 
 #ifndef TESTING
 
-/datum/proc/typelist(key, list/values = list())
+datum/proc/typelist(key, list/values = list())
 	var/list/mytypelist = GLOB.typelists[type] || (GLOB.typelists[type] = list())
 	return mytypelist[key] || (mytypelist[key] = values.Copy())
 
 #else
 // mostly the same code as above, just more verbose, slower and has tallying for saved lists
-/datum/proc/typelist(key, list/values)
+datum/proc/typelist(key, list/values)
 	if (!values)
 		values = list()
 	GLOB.typelistkeys |= key
@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(typelists)
 
 GLOBAL_LIST_EMPTY(typelistkeys)
 
-/proc/tallytypelistsavings()
+proc/tallytypelistsavings()
 	var/savings = list()
 	var/saveditems = list()
 	for (var/key in GLOB.typelistkeys)
@@ -42,13 +42,13 @@ GLOBAL_LIST_EMPTY(typelistkeys)
 		to_chat(world, "Savings for [saving]: [savings[saving]] lists, [saveditems[saving]] items")
 #endif
 
-/datum/proc/has_typelist(key)
+datum/proc/has_typelist(key)
 	var/list/dlist = GLOB.typelists[type]
 	if(!dlist)
 		return FALSE
 	return !!dlist[key]
 
-/datum/proc/get_typelist(key)
+datum/proc/get_typelist(key)
 	var/list/dlist = GLOB.typelists[type]
 	if(!dlist)
 		return

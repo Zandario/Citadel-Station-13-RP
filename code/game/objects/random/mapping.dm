@@ -4,22 +4,22 @@
 //	Barricades, mines, etc.
 */
 
-/obj/random/junk //Broken items, or stuff that could be picked up
+obj/random/junk //Broken items, or stuff that could be picked up
 	name = "random junk"
 	desc = "This is some random junk."
 	icon = 'icons/obj/trash.dmi'
 	icon_state = "trashbag3"
 
-/obj/random/junk/item_to_spawn()
+obj/random/junk/item_to_spawn()
 	return get_random_junk_type()
 
-/obj/random/trash //Mostly remains and cleanable decals. Stuff a janitor could clean up
+obj/random/trash //Mostly remains and cleanable decals. Stuff a janitor could clean up
 	name = "random trash"
 	desc = "This is some random trash."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
 
-/obj/random/trash/item_to_spawn()
+obj/random/trash/item_to_spawn()
 	return pick(/obj/effect/decal/remains/lizard,
 				/obj/effect/debris/cleanable/blood/gibs/robot,
 				/obj/effect/debris/cleanable/blood/oil,
@@ -34,13 +34,13 @@
 				/obj/effect/debris/cleanable/dirt,
 				/obj/effect/decal/remains/robot)
 
-/obj/random/crate //Random 'standard' crates for variety in maintenance spawns.
+obj/random/crate //Random 'standard' crates for variety in maintenance spawns.
 	name = "random crate"
 	desc = "This is a random crate"
 	icon = 'icons/obj/closets/bases/crate.dmi'
 	icon_state = "base"
 
-/obj/random/crate/item_to_spawn() //General crates, excludes some more high-grade and medical brands
+obj/random/crate/item_to_spawn() //General crates, excludes some more high-grade and medical brands
 	return pick (/obj/structure/closet/crate/plastic,
 				/obj/structure/closet/crate/aether,
 				/obj/structure/closet/crate/centauri,
@@ -64,13 +64,13 @@
 				/obj/structure/closet/crate/engineering,
 				/obj/structure/closet/crate)
 
-/obj/random/obstruction //Large objects to block things off in maintenance
+obj/random/obstruction //Large objects to block things off in maintenance
 	name = "random obstruction"
 	desc = "This is a random obstruction."
 	icon = 'icons/obj/cult.dmi'
 	icon_state = "cultgirder"
 
-/obj/random/obstruction/item_to_spawn()
+obj/random/obstruction/item_to_spawn()
 	return pick(/obj/structure/barricade,
 				/obj/structure/girder,
 				/obj/structure/girder/displaced,
@@ -81,28 +81,28 @@
 				/obj/structure/inflatable,
 				/obj/structure/inflatable/door)
 
-/obj/random/landmine
+obj/random/landmine
 	name = "Random Land Mine"
 	desc = "This is a random land mine."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "uglymine"
 	spawn_nothing_percentage = 25
 
-/obj/random/landmine/item_to_spawn()
+obj/random/landmine/item_to_spawn()
 	return pick(prob(30);/obj/effect/mine,
 				prob(25);/obj/effect/mine/frag,
 				prob(25);/obj/effect/mine/emp,
 				prob(10);/obj/effect/mine/stun,
 				prob(10);/obj/effect/mine/incendiary,)
 
-/obj/random/humanoidremains
+obj/random/humanoidremains
 	name = "Random Humanoid Remains"
 	desc = "This is a random pile of remains."
 	spawn_nothing_percentage = 15
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remains"
 
-/obj/random/humanoidremains/item_to_spawn()
+obj/random/humanoidremains/item_to_spawn()
 	return pick(prob(30);/obj/effect/decal/remains/human,
 				prob(25);/obj/effect/decal/remains/ribcage,
 				prob(25);/obj/effect/decal/remains/tajaran,
@@ -110,42 +110,42 @@
 				prob(10);/obj/effect/decal/remains/posi
 				)
 
-/obj/random_multi/single_item/captains_spare_id
+obj/random_multi/single_item/captains_spare_id
 	name = "Multi Point - Captain's Spare"
 	id = "Captain's spare id"
 	item_path = /obj/item/card/id/gold/captain/spare
 
-/obj/random_multi/single_item/hand_tele
+obj/random_multi/single_item/hand_tele
 	name = "Multi Point - Hand Teleporter"
 	id = "hand tele"
 	item_path = /obj/item/hand_tele
 
-/obj/random_multi/single_item/sfr_headset
+obj/random_multi/single_item/sfr_headset
 	name = "Multi Point - headset"
 	id = "SFR headset"
 	item_path = /obj/random/sfr
 
 // This is in here because it's spawned by the SFR Headset randomizer
-/obj/random/sfr
+obj/random/sfr
 	name = "random SFR headset"
 	desc = "This is a headset spawn."
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "rup"
 
-/obj/random/sfr/item_to_spawn()
+obj/random/sfr/item_to_spawn()
 	return pick(prob(25);/obj/item/radio/headset/heads/captain/sfr,
 				prob(25);/obj/item/radio/headset/headset_cargo/alt,
 				prob(25);/obj/item/radio/headset/headset_com/alt,
 				prob(25);/obj/item/radio/headset)
 
 // Mining Goodies
-/obj/random/multiple/minevault
+obj/random/multiple/minevault
 	name = "random vault loot"
 	desc = "Loot for mine vaults."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "crate"
 
-/obj/random/multiple/minevault/item_to_spawn()
+obj/random/multiple/minevault/item_to_spawn()
 	return pick(
 			prob(5);list(
 				/obj/item/clothing/mask/smokable/pipe,
@@ -457,7 +457,7 @@
  * Turf swappers.
  */
 
-/obj/random/turf
+obj/random/turf
 	name = "random Sif turf"
 	desc = "This is a random Sif turf."
 
@@ -466,7 +466,7 @@
 	var/override_outdoors = FALSE	// Do we override our chosen turf's outdoors?
 	var/turf_outdoors = TRUE	// Will our turf be outdoors?
 
-/obj/random/turf/spawn_item()
+obj/random/turf/spawn_item()
 	var/build_path = item_to_spawn()
 
 	var/turf/T1 = get_turf(src)
@@ -475,41 +475,41 @@
 	if(override_outdoors)
 		T1.outdoors = turf_outdoors
 
-/obj/random/turf/item_to_spawn()
+obj/random/turf/item_to_spawn()
 	return pick(prob(25);/turf/simulated/floor/outdoors/grass/sif,
 				prob(25);/turf/simulated/floor/outdoors/dirt,
 				prob(25);/turf/simulated/floor/outdoors/grass/sif/forest,
 				prob(25);/turf/simulated/floor/outdoors/rocks)
 
-/obj/random/turf/lava
+obj/random/turf/lava
 	name = "random Lava spawn"
 	desc = "This is a random lava spawn."
 
 	override_outdoors = TRUE
 	turf_outdoors = FALSE
 
-/obj/random/turf/lava/item_to_spawn()
+obj/random/turf/lava/item_to_spawn()
 	return pick(prob(5);/turf/simulated/floor/outdoors/lava,
 				prob(3);/turf/simulated/floor/outdoors/rocks/caves,
 				prob(1);/turf/simulated/mineral)
 
-/obj/random/trash_pile
+obj/random/trash_pile
 	name = "Random Trash Pile"
 	desc = "Hot Garbage."
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
 	spawn_nothing_percentage = 0
 
-/obj/random/trash_pile/item_to_spawn()
+obj/random/trash_pile/item_to_spawn()
 	return	/obj/structure/trash_pile
 
-/obj/random/multiple/corp_crate/no_weapons
+obj/random/multiple/corp_crate/no_weapons
 	name = "random corporate crate (no weapons)"
 	desc = "A random corporate crate with thematic contents. No weapons."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "crate"
 
-/obj/random/multiple/corp_crate/no_weapons/item_to_spawn()
+obj/random/multiple/corp_crate/no_weapons/item_to_spawn()
 	return pick(
 			prob(10);list(
 				/obj/random/tank,
@@ -756,13 +756,13 @@
 		)
 
 //Large Corporate Crates
-/obj/random/multiple/large_corp_crate
+obj/random/multiple/large_corp_crate
 	name = "random large corporate crate"
 	desc = "A random large corporate crate with thematic contents."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "largermetal"
 
-/obj/random/multiple/large_corp_crate/item_to_spawn()
+obj/random/multiple/large_corp_crate/item_to_spawn()
 	return pick(
 			prob(30);list(
 				/obj/random/multiple/voidsuit/vintage,
@@ -855,13 +855,13 @@
 			)
 		)
 
-/obj/random/multiple/large_corp_crate/no_weapons
+obj/random/multiple/large_corp_crate/no_weapons
 	name = "random large corporate crate (no weapons)"
 	desc = "A random large corporate crate with thematic contents. No weapons."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "largermetal"
 
-/obj/random/multiple/large_corp_crate/no_weapons/item_to_spawn()
+obj/random/multiple/large_corp_crate/no_weapons/item_to_spawn()
 	return pick(
 			prob(30);list(
 				/obj/random/multiple/voidsuit/vintage,
@@ -931,55 +931,55 @@
 				/obj/structure/closet/crate/large/secure/xion //XION TECH COMPS
 			)
 		)
-/obj/random/empty_or_lootable_crate
+obj/random/empty_or_lootable_crate
 	name = "random crate"
 	desc = "Spawns a random crate which may or may not have contents. Sometimes spawns nothing."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "moneybag"
 	spawn_nothing_percentage = 20
 
-/obj/random/empty_or_lootable_crate/item_to_spawn()
+obj/random/empty_or_lootable_crate/item_to_spawn()
 	return pick(/obj/random/crate,
 			/obj/random/multiple/corp_crate)
 
-/obj/random/crystal
+obj/random/crystal
 	name = "random crystal"
 	desc = "Sometimes spawns a crystal, sometimes spawns nothing 40% of the time"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crystal"
 	spawn_nothing_percentage = 40
 
-/obj/random/crystal/item_to_spawn()
+obj/random/crystal/item_to_spawn()
 	return	/obj/machinery/crystal
 
-/obj/random/crystal/ice
+obj/random/crystal/ice
 	name = "random ice crystal"
 	desc = "Sometimes spawns a crystal, sometimes spawns nothing 40% of the time. This time its an ice crystal"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "icecrystal2"
 	spawn_nothing_percentage = 40
 
-/obj/random/crystal/ice/item_to_spawn()
+obj/random/crystal/ice/item_to_spawn()
 	return	/obj/machinery/crystal/ice
 
-/obj/random/crystal/normal_ice
+obj/random/crystal/normal_ice
 	name = "random crystal, ice/normal"
 	desc = "Sometimes spawns a crystal, sometimes spawns nothing 40% of the time. 50/50 between ice and normal crystal spawning"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crystal"
 	spawn_nothing_percentage = 40
 
-/obj/random/crystal/normal_ice/item_to_spawn()
+obj/random/crystal/normal_ice/item_to_spawn()
 	return pick(/obj/machinery/crystal/ice,
 				/obj/machinery/crystal)
 
-/obj/random/snow_debris
+obj/random/snow_debris
 	name = "random snow and ice debri"
 	desc = "for all your cold needs and fun :)"
 	icon = 'icons/obj/snowman.dmi'
 	icon_state = "snowman"
 
-/obj/random/snow_debris/item_to_spawn()
+obj/random/snow_debris/item_to_spawn()
 	return pick(prob(100);/obj/structure/flora/rock/ice,
 				prob(100);/obj/structure/flora/rock/ice/alternative_1,
 				prob(100);/obj/structure/flora/rock/ice/alternative_2,

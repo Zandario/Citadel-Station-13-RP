@@ -1,6 +1,6 @@
 
 
-/obj/mecha/micro/utility/gopher //small digging creature, to keep the theme
+obj/mecha/micro/utility/gopher //small digging creature, to keep the theme
 	desc = "A tough little utility mech for micro crewmembers, based on a miner borg chassis."
 	name = "Gopher"
 	icon_state = "gopher"
@@ -18,7 +18,6 @@
 	max_micro_weapon_equip = 0
 	max_equip = 2
 
-/obj/effect/decal/mecha_wreckage/micro/utility/gopher
+obj/effect/decal/mecha_wreckage/micro/utility/gopher
 	name = "Gopher wreckage"
 	icon_state = "gopher-broken"
-

@@ -2,12 +2,12 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/comm_monitor
+obj/item/circuitboard/comm_monitor
 	name = T_BOARD("telecommunications monitor console")
 	build_path = /obj/machinery/computer/telecomms/monitor
 	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/circuitboard/comm_server
+obj/item/circuitboard/comm_server
 	name = T_BOARD("telecommunications server monitor console")
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = list(TECH_DATA = 3)

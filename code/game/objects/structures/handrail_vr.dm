@@ -1,4 +1,4 @@
-/obj/structure/handrail
+obj/structure/handrail
 	name = "handrail"
 	icon = 'icons/obj/handrail_vr.dmi'
 	icon_state = "handrail"

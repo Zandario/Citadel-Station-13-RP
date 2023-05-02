@@ -1,4 +1,4 @@
-/obj/item/implant/reagent_generator
+obj/item/implant/reagent_generator
 	name = "reagent generator implant"
 	desc = "This is an implant that has attached storage and generates a reagent."
 	implant_color = "r"
@@ -17,25 +17,25 @@
 	var/verb_name = "Transfer From Reagent Implant"
 	var/verb_desc = "Remove reagents from an internal reagent into a container"
 
-/obj/item/implant/reagent_generator/Initialize(mapload)
+obj/item/implant/reagent_generator/Initialize(mapload)
 	. = ..()
 	create_reagents(usable_volume)
 
-/obj/item/implanter/reagent_generator
+obj/item/implanter/reagent_generator
 	var/implant_type = /obj/item/implant/reagent_generator
 
-/obj/item/implanter/reagent_generator/Initialize(mapload)
+obj/item/implanter/reagent_generator/Initialize(mapload)
 	. = ..()
 	imp = new implant_type(src)
 	update()
 
-/obj/item/implant/reagent_generator/post_implant(mob/living/carbon/source)
+obj/item/implant/reagent_generator/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	assigned_proc = new assigned_proc(source, verb_name, verb_desc)
 	return 1
 
-/obj/item/implant/reagent_generator/process(delta_time)
+obj/item/implant/reagent_generator/process(delta_time)
 	var/before_gen
 	if(imp_in && generated_reagents)
 		before_gen = reagents.total_volume
@@ -54,12 +54,12 @@
 		else if(reagents.total_volume == reagents.maximum_volume && before_gen < reagents.maximum_volume)
 			to_chat(imp_in, "<span class='warning'>[pick(full_message)]</span>")
 
-/obj/item/implant/reagent_generator/proc/do_generation()
+obj/item/implant/reagent_generator/proc/do_generation()
 	imp_in.nutrition -= gen_cost
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])
 
-/mob/living/carbon/human/proc/use_reagent_implant()
+mob/living/carbon/human/proc/use_reagent_implant()
 	set name = "Transfer From Reagent Implant"
 	set desc = "Remove reagents from am internal reagent into a container."
 	set category = "Object"
@@ -67,7 +67,7 @@
 
 	do_reagent_implant(usr)
 
-/mob/living/carbon/human/proc/do_reagent_implant(var/mob/living/carbon/human/user = usr)
+mob/living/carbon/human/proc/do_reagent_implant(var/mob/living/carbon/human/user = usr)
 	if(!isliving(user) || !user.canClick())
 		return
 
@@ -96,4 +96,3 @@
 					src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
 			if(rimplant.reagents.total_volume == rimplant.reagents.maximum_volume * 0.05)
 				to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
-

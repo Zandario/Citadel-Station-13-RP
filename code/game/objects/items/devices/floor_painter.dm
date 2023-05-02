@@ -1,4 +1,4 @@
-/obj/item/floor_painter
+obj/item/floor_painter
 	name = "floor painter"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
@@ -39,7 +39,7 @@
 		"precise" = 0
 		)
 
-/obj/item/floor_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
+obj/item/floor_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
 	if(!proximity)
 		return
 
@@ -100,7 +100,7 @@
 
 	new painting_decal(F, painting_dir, painting_colour)
 
-/obj/item/floor_painter/attack_self(mob/user)
+obj/item/floor_painter/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -112,11 +112,11 @@
 	else if(choice == "Colour")
 		choose_colour()
 
-/obj/item/floor_painter/examine(mob/user)
+obj/item/floor_painter/examine(mob/user)
 	. = ..()
 	. += "<span class = 'notice'>It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint.</span>"
 
-/obj/item/floor_painter/verb/choose_colour()
+obj/item/floor_painter/verb/choose_colour()
 	set name = "Choose Colour"
 	set desc = "Choose a floor painter colour."
 	set category = "Object"
@@ -129,7 +129,7 @@
 		paint_colour = new_colour
 		to_chat(usr, "<span class='notice'>You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>.</span>")
 
-/obj/item/floor_painter/verb/choose_decal()
+obj/item/floor_painter/verb/choose_decal()
 	set name = "Choose Decal"
 	set desc = "Choose a floor painter decal."
 	set category = "Object"
@@ -143,7 +143,7 @@
 		decal = new_decal
 		to_chat(usr, "<span class='notice'>You set \the [src] decal to '[decal]'.</span>")
 
-/obj/item/floor_painter/verb/choose_direction()
+obj/item/floor_painter/verb/choose_direction()
 	set name = "Choose Direction"
 	set desc = "Choose a floor painter direction."
 	set category = "Object"

@@ -3,7 +3,7 @@
 #define AQUARIUM_MIN_OFFSET 0.01
 #define AQUARIUM_MAX_OFFSET 1
 
-/obj/structure/aquarium
+obj/structure/aquarium
 	name = "aquarium"
 	density = TRUE
 	anchored = TRUE
@@ -49,20 +49,20 @@
 	/// /obj/item/fish in the aquarium - does not include things with aquarium visuals that are not fish
 	var/list/tracked_fish = list()
 
-/obj/structure/aquarium/Initialize(mapload)
+obj/structure/aquarium/Initialize(mapload)
 	. = ..()
 	update_appearance()
 
-/obj/structure/aquarium/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+obj/structure/aquarium/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(istype(arrived,/obj/item/fish))
 		tracked_fish += arrived
 
-/obj/structure/aquarium/Exited(atom/movable/gone, direction)
+obj/structure/aquarium/Exited(atom/movable/gone, direction)
 	. = ..()
 	tracked_fish -= gone
 
-/obj/structure/aquarium/proc/request_layer(layer_type)
+obj/structure/aquarium/proc/request_layer(layer_type)
 	/**
 	 * base aq layer
 	 * min_offset = this value is returned on bottom layer mode
@@ -85,17 +85,17 @@
 			used_layers += chosen_layer
 			return chosen_layer
 
-/obj/structure/aquarium/proc/free_layer(value)
+obj/structure/aquarium/proc/free_layer(value)
 	used_layers -= value
 
-/obj/structure/aquarium/proc/get_surface_properties()
+obj/structure/aquarium/proc/get_surface_properties()
 	. = list()
 	.[AQUARIUM_PROPERTIES_PX_MIN] = aquarium_zone_min_px
 	.[AQUARIUM_PROPERTIES_PX_MAX] = aquarium_zone_max_px
 	.[AQUARIUM_PROPERTIES_PY_MIN] = aquarium_zone_min_py
 	.[AQUARIUM_PROPERTIES_PY_MAX] = aquarium_zone_max_py
 
-/obj/structure/aquarium/update_overlays()
+obj/structure/aquarium/update_overlays()
 	. = ..()
 	if(panel_open)
 		. += "panel"
@@ -104,11 +104,11 @@
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon,broken ? broken_glass_icon_state : glass_icon_state,layer=AQUARIUM_MAX_OFFSET-1)
 	. += glass_overlay
 
-/obj/structure/aquarium/examine(mob/user)
+obj/structure/aquarium/examine(mob/user)
 	. = ..()
 	. += SPAN_NOTICE("Alt-click to [panel_open ? "close" : "open"] the control panel.")
 
-/obj/structure/aquarium/AltClick(mob/user)
+obj/structure/aquarium/AltClick(mob/user)
 	if(!user.Reachability(src))
 		return ..()
 	if(user.incapacitated(INCAPACITATION_KNOCKDOWN))
@@ -118,18 +118,18 @@
 	update_appearance()
 	return TRUE
 
-/obj/structure/aquarium/dynamic_tool_functions(obj/item/I, mob/user)
+obj/structure/aquarium/dynamic_tool_functions(obj/item/I, mob/user)
 	. = ..()
 	if(allow_unanchor)
 		.[TOOL_WRENCH] = anchored? "anchor" : "unanchor"
 
-/obj/structure/aquarium/dynamic_tool_image(function, hint)
+obj/structure/aquarium/dynamic_tool_image(function, hint)
 	switch(function)
 		if(TOOL_WRENCH)
 			return anchored? dyntool_image_backward(TOOL_WRENCH) : dyntool_image_forward(TOOL_WRENCH)
 	return ..()
 
-/obj/structure/aquarium/wrench_act(obj/item/I, mob/user, flags, hint)
+obj/structure/aquarium/wrench_act(obj/item/I, mob/user, flags, hint)
 	if(!allow_unanchor)
 		return ..()
 	if(use_wrench(I, user, delay = 4 SECONDS))
@@ -137,7 +137,7 @@
 		return TRUE
 	return ..()
 
-/obj/structure/aquarium/attackby(obj/item/I, mob/living/user, params)
+obj/structure/aquarium/attackby(obj/item/I, mob/living/user, params)
 	SEND_SIGNAL(src, COMSIG_AQUARIUM_DISTURB_FISH)
 	if(broken)
 		var/obj/item/stack/material/glass/glass = I
@@ -165,7 +165,7 @@
 				return CLICKCHAIN_DID_SOMETHING
 	return ..()
 
-/obj/structure/aquarium/interact(mob/user)
+obj/structure/aquarium/interact(mob/user)
 	if(!broken && user.pulling && isliving(user.pulling))
 		var/mob/living/living_pulled = user.pulling
 		var/datum/component/aquarium_content/content_component = living_pulled.GetComponent(/datum/component/aquarium_content)
@@ -177,7 +177,7 @@
 		admire(user)
 
 /// Tries to put mob pulled by the user in the aquarium after a delay
-/obj/structure/aquarium/proc/try_to_put_mob_in(mob/user)
+obj/structure/aquarium/proc/try_to_put_mob_in(mob/user)
 	if(!isliving(user.pulling))
 		return
 	var/mob/living/living_pulled = user.pulling
@@ -197,7 +197,7 @@
 	update_appearance()
 
 ///Apply mood bonus depending on aquarium status
-/obj/structure/aquarium/proc/admire(mob/living/user)
+obj/structure/aquarium/proc/admire(mob/living/user)
 	to_chat(user, SPAN_NOTICE("You take a moment to watch [src]."))
 	if(do_after(user, 2 SECONDS, target = src))
 		var/alive_fish = 0
@@ -212,7 +212,7 @@
 		else if(dead_fish > 0)
 			to_chat(user, SPAN_WARNING("The fish are all dead!"))
 
-/obj/structure/aquarium/ui_data(mob/user)
+obj/structure/aquarium/ui_data(mob/user)
 	. = ..()
 	.["fluid_type"] = fluid_type
 	.["temperature"] = fluid_temp
@@ -222,14 +222,14 @@
 		content_data += list(list("name"=fish.name,"ref"=ref(fish)))
 	.["contents"] = content_data
 
-/obj/structure/aquarium/ui_static_data(mob/user)
+obj/structure/aquarium/ui_static_data(mob/user)
 	. = ..()
 	//I guess these should depend on the fluid so lava critters can get high or stuff below water freezing point but let's keep it simple for now.
 	.["minTemperature"] = min_fluid_temp
 	.["maxTemperature"] = max_fluid_temp
 	.["fluidTypes"] = fluid_types
 
-/obj/structure/aquarium/ui_act(action, list/params, datum/tgui/ui)
+obj/structure/aquarium/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -257,7 +257,7 @@
 					inside.forceMove(get_turf(src))
 				user.action_feedback(SPAN_NOTICE("You take out [inside] from [src]."), src)
 
-/obj/structure/aquarium/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/structure/aquarium/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -265,12 +265,12 @@
 		ui.open()
 
 // todo: refactor on atom damage!!
-/obj/structure/aquarium/proc/atom_break(damage_flag)
+obj/structure/aquarium/proc/atom_break(damage_flag)
 	// . = ..()
 	if(!broken)
 		aquarium_smash()
 
-/obj/structure/aquarium/proc/aquarium_smash()
+obj/structure/aquarium/proc/aquarium_smash()
 	broken = TRUE
 	var/possible_destinations_for_fish = list()
 	var/droploc = drop_location()
@@ -293,7 +293,7 @@
 #undef AQUARIUM_MIN_OFFSET
 #undef AQUARIUM_MAX_OFFSET
 
-/obj/structure/aquarium/prefilled/Initialize(mapload)
+obj/structure/aquarium/prefilled/Initialize(mapload)
 	. = ..()
 
 	new /obj/item/aquarium_prop/rocks(src)

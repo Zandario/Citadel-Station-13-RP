@@ -1,4 +1,4 @@
-/proc/createRandomZlevel()
+proc/createRandomZlevel()
 	if(awaydestinations.len) //crude, but it saves another var!
 		return
 #ifdef UNIT_TESTS
@@ -54,14 +54,14 @@
 		return
 
 // This landmark type so it's not so ghetto.
-/obj/landmark/gateway_scatter
+obj/landmark/gateway_scatter
 	name = "uncalibrated gateway destination"
-/obj/landmark/gateway_scatter/Initialize(mapload)
+obj/landmark/gateway_scatter/Initialize(mapload)
 	. = ..()
 	awaydestinations += src
 
-/obj/landmark/event_scatter
+obj/landmark/event_scatter
 	name = "uncalibrated gateway destination"
-/obj/landmark/event_scatter/Initialize(mapload)
+obj/landmark/event_scatter/Initialize(mapload)
 	. = ..()
 	eventdestinations += src

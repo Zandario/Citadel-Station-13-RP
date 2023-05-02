@@ -1,10 +1,10 @@
-/atom/movable
+atom/movable
 	/// The mimic (if any) that's *directly* copying us.
 	var/tmp/atom/movable/openspace/mimic/bound_overlay
 	/// Movable-level Z-Mimic flags. This uses ZMM_* flags, not ZM_* flags.
 	var/zmm_flags = NONE
 
-/atom/movable/forceMove(atom/dest)
+atom/movable/forceMove(atom/dest)
 	. = ..(dest)
 	if (. && bound_overlay)
 		// The overlay will handle cleaning itself up on non-openspace turfs.
@@ -15,7 +15,7 @@
 		else	// Not a turf, so we need to destroy immediately instead of waiting for the destruction timer to proc.
 			qdel(bound_overlay)
 
-/atom/movable/Move(...)
+atom/movable/Move(...)
 	. = ..()
 	if (!.)
 		return
@@ -35,12 +35,12 @@
 			L = thing
 			L.source_atom.update_light()
 
-/atom/movable/setDir(ndir)
+atom/movable/setDir(ndir)
 	. = ..()
 	if (. && bound_overlay)
 		bound_overlay.setDir(ndir)
 
-/atom/movable/update_above()
+atom/movable/update_above()
 	if (!bound_overlay || !isturf(loc))
 		return
 
@@ -51,7 +51,7 @@
 		bound_overlay.destruction_timer = addtimer(CALLBACK(bound_overlay, /datum/.proc/qdel_self), 10 SECONDS, TIMER_STOPPABLE)
 
 // Grabs a list of every openspace object that's directly or indirectly mimicking this object. Returns an empty list if none found.
-/atom/movable/proc/get_above_oo()
+atom/movable/proc/get_above_oo()
 	. = list()
 	var/atom/movable/curr = src
 	while (curr.bound_overlay)
@@ -60,22 +60,22 @@
 
 // -- Openspace movables --
 
-/atom/movable/openspace
+atom/movable/openspace
 	name = ""
 	// simulated = FALSE
 	anchored = TRUE
 	mouse_opacity = FALSE
 	abstract_type = /atom/movable/openspace // unsure if this is valid, check with Lohi
 
-/atom/movable/openspace/can_fall()
+atom/movable/openspace/can_fall()
 	return FALSE
 
 // No.
-/atom/movable/openspace/set_glide_size(new_glide_size, recursive)
+atom/movable/openspace/set_glide_size(new_glide_size, recursive)
 	return
 
 // This is an abstract object, we don't care about the move stack or throwing events.
-/atom/movable/openspace/Move()
+atom/movable/openspace/Move()
 	if (bound_overlay)
 		bound_overlay.forceMove(get_step(src, UP))
 		// forceMove could've deleted our overlay
@@ -84,23 +84,23 @@
 	return TRUE
 
 // No blowing up abstract objects.
-/atom/movable/openspace/ex_act(ex_sev)
+atom/movable/openspace/ex_act(ex_sev)
 	SHOULD_CALL_PARENT(FALSE)
 	return
 
-/atom/movable/openspace/singularity_act()
+atom/movable/openspace/singularity_act()
 	return
 
-/atom/movable/openspace/singularity_pull()
+atom/movable/openspace/singularity_pull()
 	return
 
-/atom/movable/openspace/singuloCanEat()
+atom/movable/openspace/singuloCanEat()
 	return
 
 // -- MULTIPLIER / SHADOWER --
 
 // Holder object used for dimming openspaces & copying lighting of below turf.
-/atom/movable/openspace/multiplier
+atom/movable/openspace/multiplier
 	name = "openspace multiplier"
 	desc = "You shouldn't see this."
 	icon = LIGHTING_ICON
@@ -110,7 +110,7 @@
 	blend_mode = BLEND_MULTIPLY
 	color = SHADOWER_DARKENING_COLOR
 
-/atom/movable/openspace/multiplier/Destroy(force)
+atom/movable/openspace/multiplier/Destroy(force)
 	if(!force)
 		stack_trace("Turf shadower improperly qdel'd.")
 		return QDEL_HINT_LETMELIVE
@@ -119,7 +119,7 @@
 		myturf.shadower = null
 	return ..()
 
-/atom/movable/openspace/multiplier/proc/copy_lighting(atom/movable/lighting_overlay/LO)
+atom/movable/openspace/multiplier/proc/copy_lighting(atom/movable/lighting_overlay/LO)
 	appearance = LO
 	layer = MIMICED_LIGHTING_LAYER
 	plane = OPENTURF_MAX_PLANE
@@ -155,7 +155,7 @@
 //! -- OPENSPACE MIMIC --
 
 /// Object used to hold a mimiced atom's appearance.
-/atom/movable/openspace/mimic
+atom/movable/openspace/mimic
 	plane = OPENTURF_MAX_PLANE
 	var/atom/movable/associated_atom
 	var/depth
@@ -166,11 +166,11 @@
 	var/override_depth
 	var/have_performed_fixup = FALSE
 
-/atom/movable/openspace/mimic/New()
+atom/movable/openspace/mimic/New()
 	atom_flags |= ATOM_INITIALIZED
 	SSzmimic.openspace_overlays += 1
 
-/atom/movable/openspace/mimic/Destroy()
+atom/movable/openspace/mimic/Destroy()
 	SSzmimic.openspace_overlays -= 1
 	queued = 0
 
@@ -183,17 +183,17 @@
 
 	return ..()
 
-/atom/movable/openspace/mimic/attackby(obj/item/W, mob/user)
+atom/movable/openspace/mimic/attackby(obj/item/W, mob/user)
 	to_chat(user, SPAN_NOTICE("\The [src] is too far away."))
 
-/atom/movable/openspace/mimic/attack_hand(mob/user, list/params)
+atom/movable/openspace/mimic/attack_hand(mob/user, list/params)
 	to_chat(user, SPAN_NOTICE("You cannot reach \the [src] from here."))
 
-/atom/movable/openspace/mimic/examine(...)
+atom/movable/openspace/mimic/examine(...)
 	SHOULD_CALL_PARENT(FALSE)
 	. = associated_atom.examine(arglist(args))	// just pass all the args to the copied atom
 
-/atom/movable/openspace/mimic/forceMove(turf/dest)
+atom/movable/openspace/mimic/forceMove(turf/dest)
 	. = ..()
 	if (MOVABLE_IS_BELOW_ZTURF(associated_atom))
 		if (destruction_timer)
@@ -203,28 +203,28 @@
 		destruction_timer = addtimer(CALLBACK(src, /datum/.proc/qdel_self), 10 SECONDS, TIMER_STOPPABLE)
 
 // Called when the turf we're on is deleted/changed.
-/atom/movable/openspace/mimic/proc/owning_turf_changed()
+atom/movable/openspace/mimic/proc/owning_turf_changed()
 	if (!destruction_timer)
 		destruction_timer = addtimer(CALLBACK(src, /datum/.proc/qdel_self), 10 SECONDS, TIMER_STOPPABLE)
 
 // -- TURF PROXY --
 
 // This thing holds the mimic appearance for non-OVERWRITE turfs.
-/atom/movable/openspace/turf_proxy
+atom/movable/openspace/turf_proxy
 	plane = OPENTURF_MAX_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	zmm_flags = ZMM_IGNORE  // Only one of these should ever be visible at a time, the mimic logic will handle that.
 
-/atom/movable/openspace/turf_proxy/attackby(obj/item/W, mob/user)
+atom/movable/openspace/turf_proxy/attackby(obj/item/W, mob/user)
 	loc.attackby(W, user)
 
-/atom/movable/openspace/turf_proxy/attack_hand(mob/user, list/params)
+atom/movable/openspace/turf_proxy/attack_hand(mob/user, list/params)
 	loc.attack_hand(user)
 
-/atom/movable/openspace/turf_proxy/attack_generic(mob/user as mob)
+atom/movable/openspace/turf_proxy/attack_generic(mob/user as mob)
 	loc.attack_generic(user)
 
-/atom/movable/openspace/turf_proxy/examine(mob/examiner)
+atom/movable/openspace/turf_proxy/examine(mob/examiner)
 	SHOULD_CALL_PARENT(FALSE)
 	. = loc.examine(examiner)
 
@@ -232,25 +232,25 @@
 // -- TURF MIMIC --
 
 // A type for copying non-overwrite turfs' self-appearance.
-/atom/movable/openspace/turf_mimic
+atom/movable/openspace/turf_mimic
 	plane = OPENTURF_MAX_PLANE	// These *should* only ever be at the top?
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/turf/delegate
 
-/atom/movable/openspace/turf_mimic/Initialize(mapload, ...)
+atom/movable/openspace/turf_mimic/Initialize(mapload, ...)
 	. = ..()
 	ASSERT(isturf(loc))
 	delegate = loc:below
 
-/atom/movable/openspace/turf_mimic/attackby(obj/item/W, mob/user)
+atom/movable/openspace/turf_mimic/attackby(obj/item/W, mob/user)
 	loc.attackby(W, user)
 
-/atom/movable/openspace/turf_mimic/attack_hand(mob/user, list/params)
+atom/movable/openspace/turf_mimic/attack_hand(mob/user, list/params)
 	to_chat(user, SPAN_NOTICE("You cannot reach \the [src] from here."))
 
-/atom/movable/openspace/turf_mimic/attack_generic(mob/user as mob)
+atom/movable/openspace/turf_mimic/attack_generic(mob/user as mob)
 	to_chat(user, SPAN_NOTICE("You cannot reach \the [src] from here."))
 
-/atom/movable/openspace/turf_mimic/examine(mob/examiner)
+atom/movable/openspace/turf_mimic/examine(mob/examiner)
 	SHOULD_CALL_PARENT(FALSE)
 	. = delegate.examine(examiner)

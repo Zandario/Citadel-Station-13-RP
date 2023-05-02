@@ -1,4 +1,4 @@
-/datum/gm_action/electrified_door
+datum/gm_action/electrified_door
 	name = "airlock short-circuit"
 	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL)
 	chaotic = 10
@@ -10,7 +10,7 @@
 		/area/crew_quarters
 	)
 
-/datum/gm_action/electrified_door/set_up()
+datum/gm_action/electrified_door/set_up()
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)
 
 	severity = pickweight(EVENT_LEVEL_MUNDANE = 10,
@@ -31,7 +31,7 @@
 				chosen_door = target_door
 				return
 
-/datum/gm_action/electrified_door/start()
+datum/gm_action/electrified_door/start()
 	..()
 	if(!chosen_door)
 		return
@@ -71,5 +71,5 @@
 	chosen_door.aiControlDisabled = 1
 	chosen_door.update_icon()
 
-/datum/gm_action/electrified_door/get_weight()
+datum/gm_action/electrified_door/get_weight()
 	return 10 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 5 + metric.count_people_in_department(DEPARTMENT_MEDICAL) * 10)

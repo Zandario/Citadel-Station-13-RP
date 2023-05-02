@@ -1,9 +1,9 @@
-/datum/wires/rig
+datum/wires/rig
 	randomize = TRUE
 	holder_type = /obj/item/rig
 	wire_count = 5
 
-/datum/wires/rig/New(atom/_holder)
+datum/wires/rig/New(atom/_holder)
 	wires = list(WIRE_RIG_SECURITY, WIRE_RIG_AI_OVERRIDE, WIRE_RIG_SYSTEM_CONTROL, WIRE_RIG_INTERFACE_LOCK, WIRE_RIG_INTERFACE_SHOCK)
 	return ..()
 /*
@@ -13,7 +13,7 @@
  * Interface lock can be pulsed to toggle whether or not the interface can be accessed.
  */
 
-/datum/wires/rig/on_cut(wire, mend)
+datum/wires/rig/on_cut(wire, mend)
 	var/obj/item/rig/rig = holder
 	switch(wire)
 		if(WIRE_RIG_SECURITY)
@@ -30,7 +30,7 @@
 			rig.electrified = mend ? 0 : -1
 			rig.shock(usr,100)
 
-/datum/wires/rig/on_pulse(wire)
+datum/wires/rig/on_pulse(wire)
 	var/obj/item/rig/rig = holder
 	switch(wire)
 		if(WIRE_RIG_SECURITY)
@@ -53,7 +53,7 @@
 				rig.electrified = 30
 			rig.shock(usr,100)
 
-/datum/wires/rig/interactable(mob/user)
+datum/wires/rig/interactable(mob/user)
 	var/obj/item/rig/rig = holder
 	if(rig.open)
 		return TRUE

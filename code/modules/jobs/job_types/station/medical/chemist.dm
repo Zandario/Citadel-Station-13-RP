@@ -1,4 +1,4 @@
-/datum/role/job/station/chemist
+datum/role/job/station/chemist
 	id = JOB_ID_CHEMIST
 	title = "Chemist"
 	flag = CHEMIST
@@ -23,22 +23,22 @@
 		"Biochemist" = /datum/prototype/alt_title/biochemist
 		)
 
-/datum/prototype/alt_title/biochemist
+datum/prototype/alt_title/biochemist
 	title = "Biochemist"
 	background_allow = list(
 		/datum/lore/character_background/faction/onkhera_necropolis
 	)
 	background_enforce = TRUE
 
-/datum/prototype/alt_title/pharmacist
+datum/prototype/alt_title/pharmacist
 	title = "Pharmacist"
 	title_blurb = "A Pharmacist focuses on the chemical needs of the Medical Department, and often offers to fill crew prescriptions at their discretion."
 
-/datum/prototype/alt_title/pharmacologist
+datum/prototype/alt_title/pharmacologist
 	title = "Pharmacologist"
 	title_blurb = "A Pharmacologist focuses on the chemical needs of the Medical Department, primarily specializing in producing more advanced forms of medicine."
 
-/datum/outfit/job/station/chemist
+datum/outfit/job/station/chemist
 	name = OUTFIT_JOB_NAME("Chemist")
 	uniform = /obj/item/clothing/under/rank/chemist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist

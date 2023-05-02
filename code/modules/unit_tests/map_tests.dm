@@ -1,7 +1,7 @@
-/datum/unit_test/apc_area_test
+datum/unit_test/apc_area_test
 	name = "MAP: Area Test APC / Scrubbers / Vents Z level 1"
 
-/datum/unit_test/apc_area_test/Run()
+datum/unit_test/apc_area_test/Run()
 	var/list/bad_areas = list()
 	var/area_test_count = 0
 	var/list/exempt_areas = typesof(/area/space,
@@ -57,10 +57,10 @@
 			if(!A.air_vent_info.len && !(A.type in exempt_from_atmos))
 				Fail("[bad_msg] lacks an Air vent.")
 
-/datum/unit_test/wire_test
+datum/unit_test/wire_test
 	name = "MAP: Cable Test Z level 1"
 
-/datum/unit_test/wire_test/Run()
+datum/unit_test/wire_test/Run()
 	var/wire_test_count = 0
 	var/bad_tests = 0
 	var/turf/T = null
@@ -85,10 +85,10 @@
 				Fail("[bad_msg] Contains multiple wires with same direction on top of each other.")
 			dirs_checked.Add(combined_dir)
 
-/datum/unit_test/active_edges
+datum/unit_test/active_edges
 	name = "MAP: Active edges (all maps)"
 
-/datum/unit_test/active_edges/Run()
+datum/unit_test/active_edges/Run()
 
 	var/active_edges = air_master.active_edges.len
 	var/list/edge_log = list()

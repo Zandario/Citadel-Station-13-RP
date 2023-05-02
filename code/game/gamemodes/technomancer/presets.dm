@@ -1,10 +1,10 @@
-/datum/technomancer/presets
+datum/technomancer/presets
 	name = "Preset Template"
 	desc = "If you see me, I'm broken."
 	obj_path = null
 	var/list/bundled = list()
 
-/datum/technomancer/presets/basic
+datum/technomancer/presets/basic
 	name = "Basic"
 	desc = "This preset is created to be simple to understand and use, yet sufficent to face a wide range of hazards that may lay \
 	ahead.  It includes Force Missile, Beam, Passwall, Repel Missiles, Pulsar, and Discharge.  Force Missile and Beam will be your \
@@ -14,7 +14,7 @@
 	if you are fighting synthetics."
 	cost = 600
 
-/datum/technomancer/presets/summoner
+datum/technomancer/presets/summoner
 	name = "Summoner"
 	desc = "This preset is dedicated to amassing a large army of entities to do your bidding.  It includes the Summoner Core, to allow \
 	for more efficency, as well as Summon Creature and Summon Automatron, for obvious reasons.  The functions Aspect Aura and \
@@ -23,7 +23,7 @@
 	need for the Control function.  The Control function can be obtained if one wishes to micromanage their summon army, however."
 	cost = 600
 
-/datum/technomancer/presets/illusionist
+datum/technomancer/presets/illusionist
 	name = "Illusionist"
 	desc = "This preset is designed to facilitate the screwing of the opposing forces' minds, as all of the functions included \
 	lend themselves to trickery.  Illusion, Audible Deception, Chroma, and Darkness will allow you to make the crew question \
@@ -32,21 +32,21 @@
 	that can do harm, in case they wise up."
 	cost = 400
 
-/datum/technomancer/presets/healer
+datum/technomancer/presets/healer
 	name = "Healer"
 	desc = "This preset is recommended for apprentices who wish to support their master.  It contains many healing and support \
 	functions, such as Mend Wounds, Mend Burns, Purify, Oxygenate, Aspect Aura, Shared Burden, Link, Resurrect, and Great Mend Wounds.  \
 	Be aware that a lot of these functions create a lot of instability, so prepare for that if you can."
 	cost = 600
 
-/datum/technomancer/presets/support
+datum/technomancer/presets/support
 	name = "Support"
 	desc = "This preset is recommended for apprentices who wish to support their master.  It contains many functions focused on \
 	augmenting you and your master's survival and capabilities, with functions such as Repel Missiles, Shared Burden, Link, Summon \
 	Ward, Dispel, Corona, and Steal Food."
 	cost = 600
 
-/datum/technomancer/presets/rainbow
+datum/technomancer/presets/rainbow
 	name = "Rainbow Mage"
 	desc = "This preset includes many Aspect functions, such as Aspect Aura, Aspect Bolt, Aspect Cloud, Aspect Weapon, etc, as well as \
 	cheap functions beloning to each aspect, for the purposes of combining with an aspect function.  This allows you to be \

@@ -9,7 +9,7 @@
 // Use to show shuttle ETA/ETD times
 // Alert status
 // And arbitrary messages set by comms computer
-/obj/machinery/status_display
+obj/machinery/status_display
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
 	plane = TURF_PLANE
@@ -52,12 +52,12 @@
 
 	var/seclevel = "green"
 
-/obj/machinery/status_display/Destroy()
+obj/machinery/status_display/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
 	return ..()
 
-/obj/machinery/status_display/attackby(I as obj, user as mob)
+obj/machinery/status_display/attackby(I as obj, user as mob)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	else
@@ -65,19 +65,19 @@
 	return
 
 // Register for radio system
-/obj/machinery/status_display/Initialize(mapload)
+obj/machinery/status_display/Initialize(mapload)
 	. = ..()
 	if(radio_controller)
 		radio_controller.add_object(src, frequency)
 
 // Timed process
-/obj/machinery/status_display/process(delta_time)
+obj/machinery/status_display/process(delta_time)
 	if(machine_stat & NOPOWER)
 		remove_display()
 		return
 	update()
 
-/obj/machinery/status_display/emp_act(severity)
+obj/machinery/status_display/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -85,7 +85,7 @@
 	..(severity)
 
 // Set what is displayed
-/obj/machinery/status_display/proc/update()
+obj/machinery/status_display/proc/update()
 	remove_display()
 	if(friendc && !ignore_friendc)
 		set_picture("ai_friend")
@@ -148,12 +148,12 @@
 			return 1
 	return 0
 
-/obj/machinery/status_display/examine(mob/user)
+obj/machinery/status_display/examine(mob/user)
 	. = ..(user)
 	if(mode != STATUS_DISPLAY_BLANK && mode != STATUS_DISPLAY_ALERT)
 		to_chat(user, "The display says:<br>\t[sanitize(message1)]<br>\t[sanitize(message2)]")
 
-/obj/machinery/status_display/proc/set_message(m1, m2)
+obj/machinery/status_display/proc/set_message(m1, m2)
 	if(m1)
 		index1 = (length(m1) > CHARS_PER_LINE)
 		message1 = m1
@@ -168,7 +168,7 @@
 		message2 = ""
 		index2 = 0
 
-/obj/machinery/status_display/proc/display_alert(newlevel)
+obj/machinery/status_display/proc/display_alert(newlevel)
 	remove_display()
 	if(seclevel != newlevel)
 		seclevel = newlevel
@@ -182,21 +182,21 @@
 		if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
 	set_picture("status_display_[seclevel]")
 
-/obj/machinery/status_display/proc/set_picture(state)
+obj/machinery/status_display/proc/set_picture(state)
 	remove_display()
 	if(!picture || picture_state != state)
 		picture_state = state
 		picture = image('icons/obj/status_display.dmi', icon_state=picture_state)
 	add_overlay(picture)
 
-/obj/machinery/status_display/proc/update_display(line1, line2)
+obj/machinery/status_display/proc/update_display(line1, line2)
 	line1 = uppertext(line1)
 	line2 = uppertext(line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
 	if(maptext != new_text)
 		maptext = new_text
 
-/obj/machinery/status_display/proc/get_shuttle_timer_arrival()
+obj/machinery/status_display/proc/get_shuttle_timer_arrival()
 	if(!SSemergencyshuttle)
 		return "Error"
 	var/timeleft = SSemergencyshuttle.estimate_arrival_time()
@@ -204,7 +204,7 @@
 		return ""
 	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 
-/obj/machinery/status_display/proc/get_shuttle_timer_departure()
+obj/machinery/status_display/proc/get_shuttle_timer_departure()
 	if(!SSemergencyshuttle)
 		return "Error"
 	var/timeleft = SSemergencyshuttle.estimate_launch_time()
@@ -212,7 +212,7 @@
 		return ""
 	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 
-/obj/machinery/status_display/proc/get_supply_shuttle_timer()
+obj/machinery/status_display/proc/get_supply_shuttle_timer()
 	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if(!shuttle)
 		return "Error"
@@ -224,13 +224,13 @@
 		return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 	return ""
 
-/obj/machinery/status_display/proc/remove_display()
+obj/machinery/status_display/proc/remove_display()
 	if(overlays.len)
 		cut_overlays()
 	if(maptext)
 		maptext = ""
 
-/obj/machinery/status_display/receive_signal(datum/signal/signal)
+obj/machinery/status_display/receive_signal(datum/signal/signal)
 	switch(signal.data["command"])
 		if("blank")
 			mode = STATUS_DISPLAY_BLANK

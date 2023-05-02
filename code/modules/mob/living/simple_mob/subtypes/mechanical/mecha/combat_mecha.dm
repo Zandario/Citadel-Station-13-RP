@@ -1,7 +1,7 @@
 // Base type for the 'combat' mechas like gygax/durand/maulers/etc.
 // They generally are walking tanks, and their melee attack knocks back and stuns, like the real deal.
 
-/mob/living/simple_mob/mechanical/mecha/combat
+mob/living/simple_mob/mechanical/mecha/combat
 	name = "combat mecha"
 	desc = "An even bigger stompy mech!!"
 
@@ -24,7 +24,7 @@
 	var/weaken_amount = 2 // Be careful with this number. High values can equal a permastun.
 
 // Melee hits knock back by one tile (or more if already stunned to help prevent permastuns).
-/mob/living/simple_mob/mechanical/mecha/combat/apply_melee_effects(atom/A)
+mob/living/simple_mob/mechanical/mecha/combat/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.mob_size <= MOB_MEDIUM)

@@ -1,40 +1,40 @@
-/datum/ship_engine/ion
+datum/ship_engine/ion
 	name = "ion thruster"
 	var/obj/machinery/ion_engine/thruster
 
-/datum/ship_engine/ion/New(var/obj/machinery/_holder)
+datum/ship_engine/ion/New(var/obj/machinery/_holder)
 	..()
 	thruster = _holder
 
-/datum/ship_engine/ion/Destroy()
+datum/ship_engine/ion/Destroy()
 	thruster = null
 	. = ..()
 
-/datum/ship_engine/ion/get_status()
+datum/ship_engine/ion/get_status()
 	return thruster.get_status()
 
-/datum/ship_engine/ion/get_thrust()
+datum/ship_engine/ion/get_thrust()
 	return thruster.get_thrust()
 
-/datum/ship_engine/ion/burn()
+datum/ship_engine/ion/burn()
 	return thruster.burn()
 
-/datum/ship_engine/ion/set_thrust_limit(var/new_limit)
+datum/ship_engine/ion/set_thrust_limit(var/new_limit)
 	thruster.thrust_limit = new_limit
 
-/datum/ship_engine/ion/get_thrust_limit()
+datum/ship_engine/ion/get_thrust_limit()
 	return thruster.thrust_limit
 
-/datum/ship_engine/ion/is_on()
+datum/ship_engine/ion/is_on()
 	return thruster.on && thruster.powered()
 
-/datum/ship_engine/ion/toggle()
+datum/ship_engine/ion/toggle()
 	thruster.on = !thruster.on
 
-/datum/ship_engine/ion/can_burn()
+datum/ship_engine/ion/can_burn()
 	return thruster.on && thruster.powered()
 
-/obj/machinery/ion_engine
+obj/machinery/ion_engine
 	name = "ion propulsion device"
 	desc = "An advanced ion propulsion device, using energy and minutes amount of gas to generate thrust."
 	icon = 'icons/turf/shuttle_parts.dmi'
@@ -51,41 +51,41 @@
 	var/generated_thrust = 2.5
 	var/linked = FALSE
 
-/obj/machinery/ion_engine/Initialize(mapload)
+obj/machinery/ion_engine/Initialize(mapload)
 	. = ..()
 	controller = new(src)
 	SSshuttle.ion_engines += src
 	if(SSshuttle.initialized)
 		link_to_ship()
 
-/obj/machinery/ion_engine/Destroy()
+obj/machinery/ion_engine/Destroy()
 	QDEL_NULL(controller)
 	SSshuttle.ion_engines -= src
 	. = ..()
 
-/obj/machinery/ion_engine/proc/link_to_ship()
+obj/machinery/ion_engine/proc/link_to_ship()
 	for(var/ship in SSshuttle.ships)
 		var/obj/effect/overmap/visitable/ship/S = ship
 		if(S.check_ownership(src))
 			S.engines |= controller
 			linked = TRUE
 
-/obj/machinery/ion_engine/proc/get_status()
+obj/machinery/ion_engine/proc/get_status()
 	. = list()
 	.+= "Location: [get_area(src)]."
 	if(!powered())
 		.+= list(list("Insufficient power to operate.", "bad"))
 
-/obj/machinery/ion_engine/proc/burn()
+obj/machinery/ion_engine/proc/burn()
 	if(!on && !powered())
 		return 0
 	use_power_oneoff(burn_cost)
 	. = thrust_limit * generated_thrust
 
-/obj/machinery/ion_engine/proc/get_thrust()
+obj/machinery/ion_engine/proc/get_thrust()
 	return thrust_limit * generated_thrust * on
 
-/obj/item/circuitboard/engine/ion
+obj/item/circuitboard/engine/ion
 	name = T_BOARD("ion propulsion device")
 	board_type = "machine"
 	icon_state = "mcontroller"

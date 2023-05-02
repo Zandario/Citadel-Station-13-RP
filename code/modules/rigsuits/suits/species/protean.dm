@@ -1,4 +1,4 @@
-/obj/item/rig/protean
+obj/item/rig/protean
 	name = "nanosuit control cluster"
 	suit_type = "nanomachine"
 	icon_state = "nanomachine_rig"
@@ -19,38 +19,38 @@
 	chest_type = /obj/item/clothing/suit/space/rig/protean
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/protean
 
-/datum/armor/rig/protean
+datum/armor/rig/protean
 	bio = 1.0
 	rad = 1.0
 
-/obj/item/rig/protean/relaymove(mob/user, var/direction)
+obj/item/rig/protean/relaymove(mob/user, var/direction)
 	if(!CHECK_MOBILITY(user, MOBILITY_CAN_MOVE))
 		return
 	forced_move(direction, user, FALSE, TRUE)
 
-/obj/item/rig/protean/check_suit_access(mob/living/carbon/human/user)
+obj/item/rig/protean/check_suit_access(mob/living/carbon/human/user)
 	if(user == myprotean)
 		return TRUE
 	return ..()
 
-/obj/item/clothing/head/helmet/space/rig/protean
+obj/item/clothing/head/helmet/space/rig/protean
 	name = "mass"
 	desc = "A helmet-shaped clump of nanomachines."
 	light_overlay = "should not use a light overlay"
 	species_restricted = list(SPECIES_HUMAN, SPECIES_PROMETHEAN, SPECIES_VASILISSAN, SPECIES_ALRAUNE) //anything that's roughly humanoid ie uses human spritesheets
 
-/obj/item/clothing/gloves/gauntlets/rig/protean
+obj/item/clothing/gloves/gauntlets/rig/protean
 	name = "mass"
 	desc = "Glove-shaped clusters of nanomachines."
 	siemens_coefficient = 0
 	species_restricted = list(SPECIES_HUMAN, SPECIES_PROMETHEAN, SPECIES_VASILISSAN, SPECIES_ALRAUNE) //anything that's roughly humanoid.
 
-/obj/item/clothing/shoes/magboots/rig/protean
+obj/item/clothing/shoes/magboots/rig/protean
 	name = "mass"
 	desc = "Boot-shaped clusters of nanomachines."
 	species_restricted = list(SPECIES_HUMAN, SPECIES_PROMETHEAN, SPECIES_VASILISSAN, SPECIES_ALRAUNE) //anything that's roughly humanoid.
 
-/obj/item/clothing/suit/space/rig/protean
+obj/item/clothing/suit/space/rig/protean
 	name = "mass"
 	desc = "A body-hugging mass of nanomachines."
 	can_breach = 0

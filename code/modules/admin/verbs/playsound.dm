@@ -1,4 +1,4 @@
-/client/proc/play_sound(S as sound)
+client/proc/play_sound(S as sound)
 	set category = "Fun"
 	set name = "Play Global Sound"
 	if(!check_rights(R_SOUNDS))
@@ -40,7 +40,7 @@
 
 	feedback_add_details("admin_verb","PGS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/play_local_sound(S as sound)
+client/proc/play_local_sound(S as sound)
 	set category = "Fun"
 	set name = "Play Local Sound"
 	if(!check_rights(R_SOUNDS))
@@ -51,7 +51,7 @@
 	playsound(get_turf(src.mob), S, 50, 0, 0)
 	feedback_add_details("admin_verb","PLS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/play_web_sound()
+client/proc/play_web_sound()
 	set category = "Fun"
 	set name = "Play Internet Sound"
 	if(!check_rights(R_SOUNDS))
@@ -135,7 +135,7 @@
 	// SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Internet Sound")
 	feedback_add_details("admin_verb","PIS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/manual_play_web_sound()
+client/proc/manual_play_web_sound()
 	set category = "Fun"
 	set name = "Manual Play Internet Sound"
 	if(!check_rights(R_SOUNDS))
@@ -182,7 +182,7 @@
 	//SSblackbox.record_feedback("tally", "admin_verb", 1, "Manual Play Internet Sound")
 	feedback_add_details("admin_verb","MPIS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /*
-/client/proc/set_round_end_sound(S as sound)
+client/proc/set_round_end_sound(S as sound)
 	set category = "Fun"
 	set name = "Set Round End Sound"
 	if(!check_rights(R_SOUNDS))
@@ -194,7 +194,7 @@
 	message_admins("[key_name_admin(src)] set the round end sound to [S]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 */
-/client/proc/stop_sounds()
+client/proc/stop_sounds()
 	set category = "Debug"
 	set name = "Stop All Playing Sounds"
 	if(!src.holder)

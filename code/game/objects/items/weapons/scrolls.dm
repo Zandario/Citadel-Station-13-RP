@@ -1,4 +1,4 @@
-/obj/item/teleportation_scroll
+obj/item/teleportation_scroll
 	name = "scroll of teleportation"
 	desc = "A scroll for moving around."
 	icon = 'icons/obj/wizard.dmi'
@@ -10,7 +10,7 @@
 	throw_range = 20
 	origin_tech = list(TECH_BLUESPACE = 4)
 
-/obj/item/teleportation_scroll/attack_self(mob/user)
+obj/item/teleportation_scroll/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -29,7 +29,7 @@
 	onclose(user, "scroll")
 	return
 
-/obj/item/teleportation_scroll/Topic(href, href_list)
+obj/item/teleportation_scroll/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained() || src.loc != usr)
 		return
@@ -44,7 +44,7 @@
 	attack_self(H)
 	return
 
-/obj/item/teleportation_scroll/proc/teleportscroll(var/mob/user)
+obj/item/teleportation_scroll/proc/teleportscroll(var/mob/user)
 
 	var/A
 

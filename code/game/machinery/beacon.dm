@@ -1,4 +1,4 @@
-/obj/machinery/bluespace_beacon
+obj/machinery/bluespace_beacon
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "floor_beaconf"
 	name = "Bluespace Gigabeacon"
@@ -10,7 +10,7 @@
 	idle_power_usage = 0
 	var/obj/item/radio/beacon/Beacon
 
-/obj/machinery/bluespace_beacon/Initialize(mapload, newdir)
+obj/machinery/bluespace_beacon/Initialize(mapload, newdir)
 	. = ..()
 	var/turf/T = src.loc
 	Beacon = new /obj/item/radio/beacon
@@ -19,18 +19,18 @@
 
 	hide(!T.is_plating())
 
-/obj/machinery/bluespace_beacon/Destroy()
+obj/machinery/bluespace_beacon/Destroy()
 	if(Beacon)
 		qdel(Beacon)
 	..()
 
 // update the invisibility and icon
-/obj/machinery/bluespace_beacon/hide(intact)
+obj/machinery/bluespace_beacon/hide(intact)
 	invisibility = intact ? 101 : 0
 	update_icon()
 
 // update the icon_state
-/obj/machinery/bluespace_beacon/update_icon()
+obj/machinery/bluespace_beacon/update_icon()
 	var/state = "floor_beacon"
 
 	if(invisibility)
@@ -38,7 +38,7 @@
 	else
 		icon_state = "[state]"
 
-/obj/machinery/bluespace_beacon/process(delta_time)
+obj/machinery/bluespace_beacon/process(delta_time)
 	if(!Beacon)
 		var/turf/T = src.loc
 		Beacon = new /obj/item/radio/beacon

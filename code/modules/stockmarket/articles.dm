@@ -1,13 +1,13 @@
-/proc/consonant()
+proc/consonant()
 	return pick("B","C","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","W","X","Y","Z")
 
-/proc/vowel()
+proc/vowel()
 	return pick("A", "E", "I", "O", "U")
 
-/proc/ucfirst(var/S)
+proc/ucfirst(var/S)
 	return "[uppertext(ascii2text(text2ascii(S, 1)))][copytext(S, 2)]"
 
-/proc/ucfirsts(var/S)
+proc/ucfirsts(var/S)
 	var/list/L = splittext(S, " ")
 	var/list/M = list()
 	for (var/P in L)
@@ -16,11 +16,11 @@
 
 GLOBAL_LIST_EMPTY(FrozenAccounts)
 
-/proc/list_frozen()
+proc/list_frozen()
 	for (var/A in GLOB.FrozenAccounts)
 		to_chat(usr, "[A]: [length(GLOB.FrozenAccounts[A])] borrows")
 
-/datum/article
+datum/article
 	var/headline = "Something big is happening"
 	var/subtitle = "Investors panic as stock market collapses"
 	var/article = "God, it's going to be fun to randomly generate this."
@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 		"this_time" = list("this week", "last week", "this month", "yesterday", "today", "a few days ago") \
 	)
 
-/datum/article/New()
+datum/article/New()
 	..()
 	if ((outlets.len && !prob(100 / (outlets.len + 1))) || !outlets.len)
 		var/ON = generateOutletName()
@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 
 	ticks = world.time
 
-/datum/article/proc/generateOutletName()
+datum/article/proc/generateOutletName()
 	var/list/locations = list("Earth", "Luna", "Mars", "Saturn", "Jupiter", "Uranus", "Pluto", "Europa", "Io", "Phobos", "Deimos", "Space", "Venus", "Neptune", "Mercury", "Kalliope", "Ganymede", "Callisto", "Amalthea", "Himalia", "Orion", "Sybil", "Basil", "Badger", "Terry", "Artyom")
 	var/list/nouns = list("Post", "Herald", "Sun", "Tribune", "Mail", "Times", "Journal", "Report")
 	var/list/timely = list("Daily", "Hourly", "Weekly", "Biweekly", "Monthly", "Yearly")
@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 		if (2)
 			return "The [pick(timely)] [pick(nouns)]"
 
-/datum/article/proc/generateAuthorName()
+datum/article/proc/generateAuthorName()
 	switch(rand(1,3))
 		if (1)
 			return "[consonant()]. [pick(GLOB.last_names)]"
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 		if (3)
 			return "[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)] \"[prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)]\" [pick(GLOB.last_names)]"
 
-/datum/article/proc/formatSpacetime()
+datum/article/proc/formatSpacetime()
 	var/ticksc = round(ticks/100)
 	ticksc = ticksc % 100000
 	var/ticksp = "[ticksc]"
@@ -108,13 +108,13 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 		ticksp = "0[ticksp]"
 	spacetime = "[ticksp][time2text(world.realtime, "MM")][time2text(world.realtime, "DD")][text2num(time2text(world.realtime, "YYYY"))+540]"
 
-/datum/article/proc/formatArticle()
+datum/article/proc/formatArticle()
 	if (spacetime == "")
 		formatSpacetime()
 	var/output = "<div class='article'><div class='headline'>[headline]</div><div class='subtitle'>[subtitle]</div><div class='article-body'>[article]</div><div class='author'>[author]</div><div class='timestamp'>[spacetime]</div></div>"
 	return output
 
-/datum/article/proc/detokenize(var/token_string, var/list/industry_tokens, var/list/product_tokens = list())
+datum/article/proc/detokenize(var/token_string, var/list/industry_tokens, var/list/product_tokens = list())
 	var/list/T_list = default_tokens.Copy()
 	for (var/I in industry_tokens)
 		T_list[I] = industry_tokens[I]

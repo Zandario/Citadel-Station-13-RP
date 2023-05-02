@@ -1,4 +1,4 @@
-/obj/item/organ/internal/cell
+obj/item/organ/internal/cell
 	name = "microbattery"
 	desc = "A small, powerful cell for use in fully prosthetic bodies."
 	icon_state = "scell"
@@ -6,21 +6,21 @@
 	parent_organ = BP_TORSO
 	vital = 1
 
-/obj/item/organ/internal/cell/Initialize(mapload)
+obj/item/organ/internal/cell/Initialize(mapload)
 	. = ..()
 	robotize()
 
-/obj/item/organ/internal/cell/replaced()
+obj/item/organ/internal/cell/replaced()
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner && owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
-/obj/item/organ/internal/cell/emp_act(severity)
+obj/item/organ/internal/cell/emp_act(severity)
 	owner.nutrition = max(0, owner.nutrition - rand(10/severity, 50/severity))
 
-/obj/item/organ/internal/cell/machine/handle_organ_proc_special()
+obj/item/organ/internal/cell/machine/handle_organ_proc_special()
 	..()
 	if(owner && owner.stat != DEAD)
 		owner.bodytemperature += round(owner.robobody_count * 0.5, 0.1)
@@ -28,7 +28,7 @@
 	return
 
 // Used for an MMI or posibrain being installed into a human.
-/obj/item/organ/internal/mmi_holder
+obj/item/organ/internal/mmi_holder
 	name = "brain interface"
 	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
@@ -38,13 +38,13 @@
 	robotic = ORGAN_ASSISTED
 	butcherable = FALSE
 
-/obj/item/organ/internal/mmi_holder/Destroy()
+obj/item/organ/internal/mmi_holder/Destroy()
 	if(stored_mmi && (stored_mmi.loc == src))
 		qdel(stored_mmi)
 		stored_mmi = null
 	return ..()
 
-/obj/item/organ/internal/mmi_holder/Initialize(mapload, internal)
+obj/item/organ/internal/mmi_holder/Initialize(mapload, internal)
 	. = ..()
 	var/mob/living/carbon/human/dummy/mannequin/M = loc
 	if(istype(M))
@@ -52,11 +52,11 @@
 	stored_mmi = new brain_type(src)
 	addtimer(CALLBACK(src, .proc/update_from_mmi), 0)
 
-/obj/item/organ/internal/mmi_holder/proc/get_control_efficiency()
+obj/item/organ/internal/mmi_holder/proc/get_control_efficiency()
 	. = max(0, 1 - round(damage / max_damage, 0.1))
 	return .
 
-/obj/item/organ/internal/mmi_holder/proc/update_from_mmi()
+obj/item/organ/internal/mmi_holder/proc/update_from_mmi()
 
 	if(!stored_mmi.brainmob)
 		stored_mmi.brainmob = new(stored_mmi)
@@ -83,7 +83,7 @@
 		living_mob_list |= owner
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
-/obj/item/organ/internal/mmi_holder/removed(var/mob/living/user)
+obj/item/organ/internal/mmi_holder/removed(var/mob/living/user)
 
 	if(stored_mmi)
 		. = stored_mmi
@@ -94,27 +94,27 @@
 
 	qdel(src)
 
-/obj/item/organ/internal/mmi_holder/emp_act(severity)
+obj/item/organ/internal/mmi_holder/emp_act(severity)
 	owner.adjustToxLoss(rand(6/severity, 12/severity))
 
-/obj/item/organ/internal/mmi_holder/posibrain
+obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
 	brain_type = /obj/item/mmi/digital/posibrain
 	robotic = ORGAN_ROBOT
 
-/obj/item/organ/internal/mmi_holder/posibrain/update_from_mmi()
+obj/item/organ/internal/mmi_holder/posibrain/update_from_mmi()
 	..()
 	stored_mmi.icon_state = "posibrain-occupied"
 	icon_state = stored_mmi.icon_state
 
 	stored_mmi.brainmob.languages = owner.languages
 
-/obj/item/organ/internal/mmi_holder/robot
+obj/item/organ/internal/mmi_holder/robot
 	name = "digital brain interface"
 	brain_type = /obj/item/mmi/digital/robot
 	robotic = ORGAN_ROBOT
 
-/obj/item/organ/internal/mmi_holder/robot/update_from_mmi()
+obj/item/organ/internal/mmi_holder/robot/update_from_mmi()
 	..()
 	stored_mmi.icon_state = "mainboard"
 	icon_state = stored_mmi.icon_state

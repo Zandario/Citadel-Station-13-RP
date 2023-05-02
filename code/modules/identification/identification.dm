@@ -3,7 +3,7 @@
 // This is very similar to a traditional roguelike's identification system, and as such will use certain terms from those to describe them.
 // Despite this, unlike a roguelike, objects that do the same thing DO NOT have the same name/appearance/etc.
 
-/datum/identification
+datum/identification
 	var/obj/holder = null				// The thing the datum is 'attached' to.
 	// Holds the true information.
 	var/true_name = null				// The real name of the object. It is copied automatically from holder, on the datum being instantiated.
@@ -24,18 +24,18 @@
 	// What 'identification type' is needed to identify this.
 	var/identification_type = IDENTITY_TYPE_NONE
 
-/datum/identification/New(obj/new_holder)
+datum/identification/New(obj/new_holder)
 	ASSERT(new_holder)
 	holder = new_holder
 	record_true_identity() // Get all the identifying features from the holder.
 	update_name() // Then hide them for awhile if needed.
 
-/datum/identification/Destroy()
+datum/identification/Destroy()
 	holder = null
 	return ..()
 
 // Records the object's inital identifiying features to the datum for future safekeeping.
-/datum/identification/proc/record_true_identity()
+datum/identification/proc/record_true_identity()
 	true_name = holder.name
 	true_desc = holder.desc
 	true_description_info = holder.description_info
@@ -43,7 +43,7 @@
 	true_description_antag = holder.description_antag
 
 // Formally identifies the holder.
-/datum/identification/proc/identify(new_identity = IDENTITY_FULL, mob/user)
+datum/identification/proc/identify(new_identity = IDENTITY_FULL, mob/user)
 	if(new_identity & identified) // Already done.
 		return
 	identified |= new_identity // Set the bitflag.
@@ -59,7 +59,7 @@
 		holder.update_icon()
 
 // Reverses identification for whatever reason.
-/datum/identification/proc/unidentify(new_identity = IDENTITY_UNKNOWN, mob/user)
+datum/identification/proc/unidentify(new_identity = IDENTITY_UNKNOWN, mob/user)
 	identified &= ~new_identity // Unset the bitflag.
 	update_name()
 	holder.update_icon()
@@ -73,7 +73,7 @@
 				to_chat(user, SPAN_WARNING( "You forgot everything about \the [holder]."))
 
 // Sets the holder's name to the real name if its properties are identified, or obscures it otherwise.
-/datum/identification/proc/update_name()
+datum/identification/proc/update_name()
 	if(identified & IDENTITY_PROPERTIES)
 		holder.name = true_name
 		holder.desc = true_desc
@@ -92,7 +92,7 @@
 	holder.description_antag = null
 
 // Makes a name for an object that is not identified. It picks one string out of each list inside naming_list.
-/datum/identification/proc/generate_unidentified_name()
+datum/identification/proc/generate_unidentified_name()
 	if(!LAZYLEN(naming_lists))
 		return "unidentified object"
 
@@ -104,7 +104,7 @@
 
 // Used for tech-based objects.
 // Unused for now pending Future Stuff(tm).
-/datum/identification/mechanical
+datum/identification/mechanical
 	naming_lists = list(
 		list("unidentified", "unknown", "strange", "weird", "unfamiliar", "peculiar", "mysterious", "bizarre", "odd"),
 		list("device", "apparatus", "gadget", "mechanism", "appliance", "machine", "equipment", "invention", "contraption")
@@ -114,7 +114,7 @@
 // Used for unidentified hypos.
 // Their contents can range from genuine medication, expired medicine, illicit drugs, toxins and poisons, and more.
 // They are the analog for potions in a traditional roguelike.
-/datum/identification/hypo
+datum/identification/hypo
 	naming_lists = list(
 		list("unidentified", "unknown", "unmarked", "blank", "refilled", "custom", "modified", "questionable", "suspicious"),
 		list("hypospray", "autoinjector")

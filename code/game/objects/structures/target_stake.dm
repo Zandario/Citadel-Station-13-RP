@@ -1,5 +1,5 @@
 // Basically they are for the firing range
-/obj/structure/target_stake
+obj/structure/target_stake
 	name = "target stake"
 	desc = "A thin platform with negatively-magnetized wheels."
 	icon = 'icons/obj/objects.dmi'
@@ -8,13 +8,13 @@
 	w_class = ITEMSIZE_HUGE
 	var/obj/item/target/pinned_target // the current pinned target
 
-/obj/structure/target_stake/Moved()
+obj/structure/target_stake/Moved()
 	. = ..()
 	if(pinned_target && (pinned_target.loc != loc))
 		// Move the pinned target along with the stake
 		pinned_target.forceMove(loc)
 
-/obj/structure/target_stake/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/target_stake/attackby(obj/item/W as obj, mob/user as mob)
 	// Putting objects on the stake. Most importantly, targets
 	if(pinned_target)
 		return ..() // get rid of that pinned target first!
@@ -29,7 +29,7 @@
 	else
 		return ..()
 
-/obj/structure/target_stake/attack_hand(mob/user, list/params)
+obj/structure/target_stake/attack_hand(mob/user, list/params)
 	// taking pinned targets off!
 	if(pinned_target)
 		pinned_target.layer = OBJ_LAYER
@@ -47,7 +47,7 @@
 	else
 		return ..()
 
-/obj/structure/target_stake/bullet_act(obj/projectile/P, def_zone)
+obj/structure/target_stake/bullet_act(obj/projectile/P, def_zone)
 	if(pinned_target)
 		return pinned_target.bullet_act(P, def_zone)
 	else

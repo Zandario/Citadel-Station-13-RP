@@ -1,6 +1,6 @@
 var/bomb_set
 
-/obj/machinery/nuclearbomb
+obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
 	desc = "Uh oh. RUN!!!!"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -25,7 +25,7 @@ var/bomb_set
 	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = USE_POWER_OFF
 
-/obj/machinery/nuclearbomb/Initialize(mapload)
+obj/machinery/nuclearbomb/Initialize(mapload)
 	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
 	wires["Red"] = 0
@@ -43,7 +43,7 @@ var/bomb_set
 	safety_wire = pick(w)
 	w -= safety_wire
 
-/obj/machinery/nuclearbomb/process(delta_time)
+obj/machinery/nuclearbomb/process(delta_time)
 	if(timing)
 		bomb_set = 1 //So long as there is one nuke timing, it means one nuke is armed.
 		timeleft--
@@ -54,7 +54,7 @@ var/bomb_set
 				attack_hand(M)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/O, mob/user)
+obj/machinery/nuclearbomb/attackby(obj/item/O, mob/user)
 	if(O.is_screwdriver())
 		playsound(src, O.tool_sound, 50, TRUE)
 		add_fingerprint(user)
@@ -162,7 +162,7 @@ var/bomb_set
 				return
 	..()
 
-/obj/machinery/nuclearbomb/attack_hand(mob/user, list/params)
+obj/machinery/nuclearbomb/attack_hand(mob/user, list/params)
 	if(extended)
 		if(!ishuman(user))
 			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
@@ -200,7 +200,7 @@ var/bomb_set
 		extended = 1
 	return
 
-/obj/machinery/nuclearbomb/proc/nukehack_win(mob/user)
+obj/machinery/nuclearbomb/proc/nukehack_win(mob/user)
 	var/dat
 	dat += "<TT><B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
 	for(var/wire in wires)
@@ -211,7 +211,7 @@ var/bomb_set
 	user << browse("<HTML><HEAD><TITLE>Bomb Defusion</TITLE></HEAD><BODY>[dat]</BODY></HTML>","window=nukebomb_hack")
 	onclose(user, "nukebomb_hack")
 
-/obj/machinery/nuclearbomb/verb/make_deployable()
+obj/machinery/nuclearbomb/verb/make_deployable()
 	set category = "Object"
 	set name = "Make Deployable"
 	set src in oview(1)
@@ -230,7 +230,7 @@ var/bomb_set
 		deployable = 1
 	return
 
-/obj/machinery/nuclearbomb/Topic(href, href_list)
+obj/machinery/nuclearbomb/Topic(href, href_list)
 	..()
 	if(!CHECK_MOBILITY(usr, MOBILITY_CAN_USE))
 		return
@@ -357,12 +357,12 @@ var/bomb_set
 	return
 
 
-/obj/machinery/nuclearbomb/legacy_ex_act(severity)
+obj/machinery/nuclearbomb/legacy_ex_act(severity)
 	return
 
 
 #define NUKERANGE 80
-/obj/machinery/nuclearbomb/proc/explode()
+obj/machinery/nuclearbomb/proc/explode()
 	if(safety)
 		timing = 0
 		return
@@ -411,11 +411,11 @@ var/bomb_set
 				return
 	return
 
-/obj/item/disk/nuclear/Initialize(mapload)
+obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
 	nuke_disks |= src
 
-/obj/item/disk/nuclear/Destroy()
+obj/item/disk/nuclear/Destroy()
 	if(!nuke_disks.len && blobstart.len > 0)
 		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
 		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
@@ -423,5 +423,5 @@ var/bomb_set
 	nuke_disks -= src
 	return ..()
 
-/obj/item/disk/nuclear/touch_map_edge()
+obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

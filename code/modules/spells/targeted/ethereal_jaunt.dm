@@ -1,4 +1,4 @@
-/spell/targeted/ethereal_jaunt
+spell/targeted/ethereal_jaunt
 	name = "Ethereal Jaunt"
 	desc = "This spell creates your ethereal form, temporarily making you invisible and able to pass through walls."
 
@@ -14,7 +14,7 @@
 
 	hud_state = "wiz_jaunt"
 
-/spell/targeted/ethereal_jaunt/cast(list/targets) //magnets, so mostly hardcoded
+spell/targeted/ethereal_jaunt/cast(list/targets) //magnets, so mostly hardcoded
 	for(var/mob/living/target in targets)
 		target.transforming = 1 //protects the mob from being transformed (replaced) midjaunt and getting stuck in bluespace
 		if(target.buckled) target.buckled = null
@@ -58,19 +58,19 @@
 			qdel(animation)
 			qdel(holder)
 
-/spell/targeted/ethereal_jaunt/proc/jaunt_disappear(var/atom/movable/overlay/animation, var/mob/living/target)
+spell/targeted/ethereal_jaunt/proc/jaunt_disappear(var/atom/movable/overlay/animation, var/mob/living/target)
 	animation.icon_state = "liquify"
 	flick("liquify",animation)
 
-/spell/targeted/ethereal_jaunt/proc/jaunt_reappear(var/atom/movable/overlay/animation, var/mob/living/target)
+spell/targeted/ethereal_jaunt/proc/jaunt_reappear(var/atom/movable/overlay/animation, var/mob/living/target)
 	flick("reappear",animation)
 
-/spell/targeted/ethereal_jaunt/proc/jaunt_steam(var/mobloc)
+spell/targeted/ethereal_jaunt/proc/jaunt_steam(var/mobloc)
 	var/datum/effect_system/steam_spread/steam = new /datum/effect_system/steam_spread()
 	steam.set_up(10, 0, mobloc)
 	steam.start()
 
-/obj/effect/dummy/spell_jaunt
+obj/effect/dummy/spell_jaunt
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
@@ -80,17 +80,17 @@
 	anchored = 1
 	var/turf/last_valid_turf
 
-/obj/effect/dummy/spell_jaunt/Initialize(mapload)
+obj/effect/dummy/spell_jaunt/Initialize(mapload)
 	. = ..()
 	last_valid_turf = get_turf(src)
 
-/obj/effect/dummy/spell_jaunt/Destroy()
+obj/effect/dummy/spell_jaunt/Destroy()
 	// Eject contents if deleted somehow
 	for(var/atom/movable/AM in src)
 		AM.loc = get_turf(src)
 	return ..()
 
-/obj/effect/dummy/spell_jaunt/relaymove(var/mob/user, direction)
+obj/effect/dummy/spell_jaunt/relaymove(var/mob/user, direction)
 	if (!src.canmove || reappearing) return
 	var/turf/newLoc = get_step(src,direction)
 	if(!(newLoc.turf_flags & NO_JAUNT))
@@ -103,7 +103,7 @@
 	src.canmove = 0
 	spawn(2) src.canmove = 1
 
-/obj/effect/dummy/spell_jaunt/legacy_ex_act(blah)
+obj/effect/dummy/spell_jaunt/legacy_ex_act(blah)
 	return
-/obj/effect/dummy/spell_jaunt/bullet_act(blah)
+obj/effect/dummy/spell_jaunt/bullet_act(blah)
 	return

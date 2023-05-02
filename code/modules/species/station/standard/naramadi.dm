@@ -1,4 +1,4 @@
-/datum/species/naramadi
+datum/species/naramadi
 	uid = SPECIES_ID_NARAMADI
 	id = SPECIES_ID_NARAMADI
 	name = SPECIES_SERGAL

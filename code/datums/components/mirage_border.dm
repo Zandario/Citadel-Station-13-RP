@@ -1,8 +1,8 @@
-/datum/component/mirage_border
+datum/component/mirage_border
 	can_transfer = TRUE
 	var/obj/effect/abstract/mirage_holder/holder
 
-/datum/component/mirage_border/Initialize(turf/target, direction, range=world.view)
+datum/component/mirage_border/Initialize(turf/target, direction, range=world.view)
 	if(!isturf(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(!target || !istype(target) || !direction)
@@ -24,19 +24,19 @@
 	if(direction & WEST)
 		holder.pixel_x -= world.icon_size * range
 
-/datum/component/mirage_border/Destroy()
+datum/component/mirage_border/Destroy()
 	QDEL_NULL(holder)
 	return ..()
 
-/datum/component/mirage_border/PreTransfer()
+datum/component/mirage_border/PreTransfer()
 	holder.moveToNullspace()
 
-/datum/component/mirage_border/PostTransfer()
+datum/component/mirage_border/PostTransfer()
 	if(!isturf(parent))
 		return COMPONENT_INCOMPATIBLE
 	holder.forceMove(parent)
 
-/obj/effect/abstract/mirage_holder
+obj/effect/abstract/mirage_holder
 	name = "Mirage holder"
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

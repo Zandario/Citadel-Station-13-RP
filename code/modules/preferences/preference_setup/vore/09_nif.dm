@@ -1,27 +1,27 @@
 //Pretty small file, mostly just for storage.
-/datum/preferences
+datum/preferences
 	var/nif_id
 	var/nif_durability
 	var/list/nif_savedata
 
 // Definition of the stuff for NIFs
-/datum/category_item/player_setup_item/vore/nif
+datum/category_item/player_setup_item/vore/nif
 	name = "NIF Data"
 	sort_order = 9
 
-/datum/category_item/player_setup_item/vore/nif/load_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/nif/load_character(var/savefile/S)
 	var/path
 	S["nif_path"]		>> path
 	S["nif_id"]			>> pref.nif_id
 	S["nif_durability"]	>> pref.nif_durability
 	S["nif_savedata"]	>> pref.nif_savedata
 
-/datum/category_item/player_setup_item/vore/nif/save_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/nif/save_character(var/savefile/S)
 	S["nif_id"]			<< pref.nif_id
 	S["nif_durability"]	<< pref.nif_durability
 	S["nif_savedata"]	<< pref.nif_savedata
 
-/datum/category_item/player_setup_item/vore/nif/sanitize_character()
+datum/category_item/player_setup_item/vore/nif/sanitize_character()
 	if(pref.nif_id)
 		var/obj/item/nif/N = GLOB.nif_id_lookup[pref.nif_id]
 		if(isnull(N))
@@ -34,7 +34,7 @@
 	if(!islist(pref.nif_savedata))
 		pref.nif_savedata = list()
 
-/datum/category_item/player_setup_item/vore/nif/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/vore/nif/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -45,5 +45,5 @@
 		new nif_path(character,pref.nif_durability,pref.nif_savedata)
 	return TRUE
 
-/datum/category_item/player_setup_item/vore/nif/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/vore/nif/content(datum/preferences/prefs, mob/user, data)
 	. += "<b>NIF:</b> [pref.nif_id ? "Present" : "None"]"

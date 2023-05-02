@@ -6,7 +6,7 @@
 // so that people can load save files from prior times, and the Copy() proc can
 // convert their belly to a new object-based one.
 
-/datum/belly
+datum/belly
 	var/name								// Name of this location
 	var/inside_flavor						// Flavor text description of inside sight/sound/smells/feels.
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
@@ -94,7 +94,7 @@
 
 //OLD: This only exists for legacy conversion purposes
 //It's called whenever an old datum-style belly is loaded
-/datum/belly/proc/copy(obj/belly/new_belly)
+datum/belly/proc/copy(obj/belly/new_belly)
 
 	//// Non-object variables
 	new_belly.name = name

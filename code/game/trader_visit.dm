@@ -3,7 +3,7 @@
 var/global/hire_nebula = 0
 var/can_call_traders = 1
 
-/client/proc/trader_ship()
+client/proc/trader_ship()
 	set name = "Hire Nebula Gas Employees"
 	set category = "Special Verbs"
 	set desc = "Invite players to work at the local Nebula Gas station."
@@ -28,7 +28,7 @@ var/can_call_traders = 1
 	log_admin("[key_name(usr)] used Hire Nebula Gas Employees.")
 	trigger_trader_visit()
 
-/client/verb/JoinTraders()
+client/verb/JoinTraders()
 
 	set name = "Join as Nebula Gas Employee"
 	set category = "IC"
@@ -45,7 +45,7 @@ var/can_call_traders = 1
 	else
 		to_chat(usr, "You need to be an observer or new player to use this.")
 
-/proc/trigger_trader_visit()
+proc/trigger_trader_visit()
 	if(!can_call_traders)
 		return
 	if(hire_nebula)

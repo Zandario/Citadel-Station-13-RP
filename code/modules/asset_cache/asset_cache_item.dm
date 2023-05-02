@@ -3,7 +3,7 @@
  *
  * An internal datum containing info on items in the asset cache. Mainly used to cache md5 info for speed.
  */
-/datum/asset_cache_item
+datum/asset_cache_item
 	var/name
 	var/hash
 	var/resource
@@ -21,7 +21,7 @@
 	/// TRUE for keeping local asset names when browse_rsc backend is used
 	var/keep_local_name = FALSE
 
-/datum/asset_cache_item/New(name, file)
+datum/asset_cache_item/New(name, file)
 	if (!isfile(file))
 		file = fcopy_rsc(file)
 
@@ -34,8 +34,8 @@
 		ext = ".[copytext(name, extstart+1)]"
 	resource = file
 
-/datum/asset_cache_item/vv_edit_var(var_name, var_value)
+datum/asset_cache_item/vv_edit_var(var_name, var_value)
 	return FALSE
 
-/datum/asset_cache_item/CanProcCall(procname)
+datum/asset_cache_item/CanProcCall(procname)
 	return FALSE

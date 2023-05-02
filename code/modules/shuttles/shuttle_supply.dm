@@ -1,12 +1,12 @@
 // Formerly /datum/shuttle/autodock/ferry/supply
-/datum/shuttle/autodock/ferry/supply
+datum/shuttle/autodock/ferry/supply
 	var/away_location = FERRY_LOCATION_OFFSITE	// The location to hide at while pretending to be in-transit
 	var/late_chance = 80
 	var/max_late_time = 300
 	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
 	category = /datum/shuttle/autodock/ferry/supply
 
-/datum/shuttle/autodock/ferry/supply/short_jump(var/obj/effect/shuttle_landmark/destination)
+datum/shuttle/autodock/ferry/supply/short_jump(var/obj/effect/shuttle_landmark/destination)
 	if(moving_status != SHUTTLE_IDLE)
 		return
 
@@ -67,7 +67,7 @@
 			SSsupply.sell()
 
 // Returns 1 if the supply shuttle should be prevented from moving because it contains forbidden atoms
-/datum/shuttle/autodock/ferry/supply/proc/forbidden_atoms_check()
+datum/shuttle/autodock/ferry/supply/proc/forbidden_atoms_check()
 	if (!at_station())
 		return 0	// If badmins want to send mobs or a nuke on the supply shuttle from centcom we don't care
 
@@ -75,17 +75,17 @@
 		if(SSsupply.forbidden_atoms_check(A))
 			return 1
 
-/datum/shuttle/autodock/ferry/supply/proc/at_station()
+datum/shuttle/autodock/ferry/supply/proc/at_station()
 	return (!location)
 
 // Returns 1 if the shuttle is idle and we can still mess with the cargo shopping list
-/datum/shuttle/autodock/ferry/supply/proc/idle()
+datum/shuttle/autodock/ferry/supply/proc/idle()
 	return (moving_status == SHUTTLE_IDLE)
 
 // Returns the ETA in minutes
-/datum/shuttle/autodock/ferry/supply/proc/eta_minutes()
+datum/shuttle/autodock/ferry/supply/proc/eta_minutes()
 	return round((arrive_time - world.time) / (1 MINUTE), 1) // Floor, so it's an actual timer
 
 // returns the ETA in seconds
-/datum/shuttle/autodock/ferry/supply/proc/eta_seconds()
+datum/shuttle/autodock/ferry/supply/proc/eta_seconds()
 	return round((arrive_time - world.time) / (1 SECOND)) // Floor, so it's an actual timer

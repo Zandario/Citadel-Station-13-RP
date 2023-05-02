@@ -1,7 +1,7 @@
 /**
  * automata datums for propagating turf effects
  */
-/datum/automata
+datum/automata
 	/// automata flags
 	var/automata_flags = NONE
 	/// are we ticking?
@@ -21,10 +21,10 @@
 	/// callback to call when done
 	var/datum/callback/on_finish
 
-/datum/automata/New()
+datum/automata/New()
 	SSautomata.automatons += src
 
-/datum/automata/Destroy()
+datum/automata/Destroy()
 	if(ticking)
 		stop()
 	cleanup()
@@ -35,12 +35,12 @@
  * sets up with a single turf and data
  * you usually want to use this
  */
-/datum/automata/proc/setup_auto(...)
+datum/automata/proc/setup_auto(...)
 
 /**
  * start ticking
  */
-/datum/automata/proc/start(quickstart)
+datum/automata/proc/start(quickstart)
 	SHOULD_CALL_PARENT(TRUE)
 	ticking = TRUE
 	SSautomata.ticking += src
@@ -52,7 +52,7 @@
 /**
  * stop ticking
  */
-/datum/automata/proc/stop(done)
+datum/automata/proc/stop(done)
 	SHOULD_CALL_PARENT(TRUE)
 	ticking = FALSE
 	SSautomata.ticking -= src
@@ -64,14 +64,14 @@
 /**
  * cleans up vars
  */
-/datum/automata/proc/cleanup()
+datum/automata/proc/cleanup()
 	SHOULD_CALL_PARENT(TRUE)
 	cleanup_turfs_acting()
 
 /**
  * cleans up turfs acting
  */
-/datum/automata/proc/cleanup_turfs_acting()
+datum/automata/proc/cleanup_turfs_acting()
 	SHOULD_CALL_PARENT(TRUE)
 	if(turfs_acting.len)
 		for(var/turf/T in turfs_acting)
@@ -81,20 +81,20 @@
 /**
  * adds us to a turf's acting_automata
  */
-/datum/automata/proc/add_turf_acting(turf/T, power)
+datum/automata/proc/add_turf_acting(turf/T, power)
 	LAZYSET(T.acting_automata, src, power)
 	turfs_acting += T
 
 /**
  * act on crossed atom
  */
-/datum/automata/proc/act_cross(atom/movable/AM, power)
+datum/automata/proc/act_cross(atom/movable/AM, power)
 
 /**
  * ticks
  * call parent at the END of your proc.
  */
-/datum/automata/proc/tick()
+datum/automata/proc/tick()
 	SHOULD_CALL_PARENT(TRUE)
 	next_tick = world.time + delay
 	++iteration

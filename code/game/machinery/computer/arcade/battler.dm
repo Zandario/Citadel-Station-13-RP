@@ -1,5 +1,5 @@
 // ** BATTLE ** //
-/obj/machinery/computer/arcade/battle
+obj/machinery/computer/arcade/battle
 	name = "arcade machine"
 	desc = "Does not support Pinball."
 	icon_state = "arcade2"
@@ -42,7 +42,7 @@
 
 
 ///creates the enemy base stats for a new round along with the enemy passives
-/obj/machinery/computer/arcade/battle/proc/enemy_setup(player_skill)
+obj/machinery/computer/arcade/battle/proc/enemy_setup(player_skill)
 	player_hp = 85
 	player_mp = 20
 	enemy_hp = 100
@@ -72,7 +72,7 @@
 		player_hp += player_skill * 2
 
 
-/obj/machinery/computer/arcade/battle/Reset()
+obj/machinery/computer/arcade/battle/Reset()
 	max_passive = 3
 	var/name_action
 	var/name_part1
@@ -106,13 +106,13 @@
 	enemy_setup(0) //in the case it's reset we assume the player skill is 0 because the VOID isn't a gamer
 
 
-/obj/machinery/computer/arcade/battle/ui_interact(mob/user)
+obj/machinery/computer/arcade/battle/ui_interact(mob/user)
 	. = ..()
 	screen_setup(user)
 
 
 ///sets up the main screen for the user
-/obj/machinery/computer/arcade/battle/proc/screen_setup(mob/user)
+obj/machinery/computer/arcade/battle/proc/screen_setup(mob/user)
 	var/dat = "<a href='byond://?src=[REF(src)];close=1'>Close</a>"
 	dat += "<center><h4>[enemy_name]</h4></center>"
 
@@ -134,7 +134,7 @@
 		popup.open()
 
 
-/obj/machinery/computer/arcade/battle/Topic(href, href_list)
+obj/machinery/computer/arcade/battle/Topic(href, href_list)
 	if(..())
 		return
 	var/gamerSkill = 0
@@ -205,7 +205,7 @@
 
 
 ///happens after a player action and before the enemy turn. the enemy turn will be cancelled if there's a gameover.
-/obj/machinery/computer/arcade/battle/proc/arcade_action(mob/user,player_stance,attackamt)
+obj/machinery/computer/arcade/battle/proc/arcade_action(mob/user,player_stance,attackamt)
 	screen_setup(user)
 	blocked = TRUE
 	if(player_stance == "attack" || player_stance == "power_attack")
@@ -219,7 +219,7 @@
 
 
 ///the enemy turn, the enemy's action entirely depend on their current passive and a teensy tiny bit of randomness
-/obj/machinery/computer/arcade/battle/proc/enemy_action(player_stance,mob/user)
+obj/machinery/computer/arcade/battle/proc/enemy_action(player_stance,mob/user)
 	var/list/list_temp = list()
 
 	switch(LAZYLEN(last_three_move)) //we keep the last three action of the player in a list here
@@ -389,7 +389,7 @@
 	blocked = FALSE
 
 
-/obj/machinery/computer/arcade/battle/proc/gameover_check(mob/user)
+obj/machinery/computer/arcade/battle/proc/gameover_check(mob/user)
 	var/xp_gained = 0
 	if(enemy_hp <= 0)
 		if(!gameover)
@@ -435,7 +435,7 @@
 
 
 ///used to check if the last three move of the player are the one we want in the right order and if the passive's weakpoint has been triggered yet
-/obj/machinery/computer/arcade/battle/proc/weakpoint_check(passive,first_move,second_move,third_move)
+obj/machinery/computer/arcade/battle/proc/weakpoint_check(passive,first_move,second_move,third_move)
 	if(LAZYLEN(last_three_move) < 3)
 		return FALSE
 
@@ -447,13 +447,13 @@
 		return FALSE
 
 
-/obj/machinery/computer/arcade/battle/Destroy()
+obj/machinery/computer/arcade/battle/Destroy()
 	enemy_passive = null
 	weapons = null
 	last_three_move = null
 	return ..() //well boys we did it, lists are no more
 
-/obj/machinery/computer/arcade/battle/examine_more(mob/user)
+obj/machinery/computer/arcade/battle/examine_more(mob/user)
 	. = ..()
 	. += SPAN_NOTICE("<i>You notice some writing scribbled on the side of [src]...</i>")
 	. += "\t[SPAN_INFO("smart -> defend, defend, light attack")]"
@@ -464,7 +464,7 @@
 	. += "\t[SPAN_INFO("magical -> defend until outmagiced")]"
 	return .
 
-/obj/machinery/computer/arcade/battle/emag_act(mob/user)
+obj/machinery/computer/arcade/battle/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 

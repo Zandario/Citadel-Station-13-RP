@@ -1,7 +1,7 @@
 // Nurses, they create webs and eggs.
 // They're fragile but their attacks can cause horrifying consequences.
 
-/datum/category_item/catalogue/fauna/giant_spider/nurse_spider
+datum/category_item/catalogue/fauna/giant_spider/nurse_spider
 	name = "Giant Spider - Nurse"
 	desc = "This specific spider has been catalogued as 'Nurse', \
 	and it belongs to the 'Nurse' caste. \
@@ -22,7 +22,7 @@
 	those it bites, which can later hatch spiderlings, causing considerably physical and psychological trauma."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/giant_spider/nurse
+mob/living/simple_mob/animal/giant_spider/nurse
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/nurse_spider)
 
@@ -51,11 +51,11 @@
 	var/egg_type = /obj/effect/spider/eggcluster/small
 	var/web_type = /obj/effect/spider/stickyweb/dark
 
-/datum/ai_holder/simple_mob/melee/nurse_spider
+datum/ai_holder/simple_mob/melee/nurse_spider
 	mauling = TRUE		// The nurse puts mobs into webs by attacking, so it needs to attack in crit
 	handle_corpse = TRUE	// Lets the nurse wrap dead things
 
-/mob/living/simple_mob/animal/giant_spider/nurse/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/animal/giant_spider/nurse/inject_poison(mob/living/L, target_zone)
 	..() // Inject the stoxin here.
 	if(ishuman(L) && prob(egg_inject_chance))
 		var/mob/living/carbon/human/H = L
@@ -70,7 +70,7 @@
 				to_chat(H, SPAN_CRITICAL("\The [src] injects something into your [O.name]!") ) // Oh god its laying eggs in me!
 
 // Webs target in a web if able to.
-/mob/living/simple_mob/animal/giant_spider/nurse/attack_target(atom/A)
+mob/living/simple_mob/animal/giant_spider/nurse/attack_target(atom/A)
 	if(isturf(A))
 		if(fed)
 			if(!laying_eggs)
@@ -91,7 +91,7 @@
 
 	return spin_cocoon(AM)
 
-/mob/living/simple_mob/animal/giant_spider/nurse/proc/spin_cocoon(atom/movable/AM)
+mob/living/simple_mob/animal/giant_spider/nurse/proc/spin_cocoon(atom/movable/AM)
 	if(!istype(AM))
 		return FALSE // We can't cocoon walls sadly.
 	visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance around \the [AM].") )
@@ -144,7 +144,7 @@
 
 	return TRUE
 
-/mob/living/simple_mob/animal/giant_spider/nurse/handle_special()
+mob/living/simple_mob/animal/giant_spider/nurse/handle_special()
 	set waitfor = FALSE
 	if(get_AI_stance() == STANCE_IDLE && !is_AI_busy() && isturf(loc))
 		if(fed)
@@ -152,7 +152,7 @@
 		else
 			web_tile(loc)
 
-/mob/living/simple_mob/animal/giant_spider/nurse/proc/web_tile(turf/T)
+mob/living/simple_mob/animal/giant_spider/nurse/proc/web_tile(turf/T)
 	if(!istype(T))
 		return FALSE
 
@@ -178,7 +178,7 @@
 	return TRUE
 
 
-/mob/living/simple_mob/animal/giant_spider/nurse/proc/lay_eggs(turf/T)
+mob/living/simple_mob/animal/giant_spider/nurse/proc/lay_eggs(turf/T)
 	if(!istype(T))
 		return FALSE
 
@@ -213,7 +213,7 @@
 
 // Variant that 'blocks' light (by being a negative light source).
 // This is done to make webbed rooms scary and allow for spiders on the other side of webs to see prey.
-/obj/effect/spider/stickyweb/dark
+obj/effect/spider/stickyweb/dark
 	name = "dense web"
 	desc = "It's sticky, and blocks a lot of light."
 	light_color = "#FFFFFF"
@@ -221,7 +221,7 @@
 	light_power = -1
 
 // This is still stupid, but whatever.
-/mob/living/simple_mob/animal/giant_spider/nurse/hat
+mob/living/simple_mob/animal/giant_spider/nurse/hat
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes and a tiny nurse hat."
 	icon_state = "nursemed"
 	icon_living = "nursemed"
@@ -229,13 +229,13 @@
 
 
 // The AI for nurse spiders. Wraps things in webs by 'attacking' them.
-/datum/ai_holder/simple_mob/melee/nurse_spider
+datum/ai_holder/simple_mob/melee/nurse_spider
 	wander = TRUE
 	base_wander_delay = 8
 	cooperative = FALSE // So we don't ask our spider friends to attack things we're webbing. This might also make them stay at the base if their friends find tasty explorers.
 
 // Get us unachored objects as an option as well.
-/datum/ai_holder/simple_mob/melee/nurse_spider/list_targets()
+datum/ai_holder/simple_mob/melee/nurse_spider/list_targets()
 	. = ..()
 
 	var/static/alternative_targets = typecacheof(list(/obj/item, /obj/structure))
@@ -246,7 +246,7 @@
 			. += O
 
 // Select an obj if no mobs are around.
-/datum/ai_holder/simple_mob/melee/nurse_spider/pick_target(list/targets)
+datum/ai_holder/simple_mob/melee/nurse_spider/pick_target(list/targets)
 	var/mobs_only = locate(/mob/living) in targets // If a mob is in the list of targets, then ignore objects.
 	if(mobs_only)
 		for(var/A in targets)
@@ -255,7 +255,7 @@
 
 	return ..(targets)
 
-/datum/ai_holder/simple_mob/melee/nurse_spider/can_attack(atom/movable/the_target)
+datum/ai_holder/simple_mob/melee/nurse_spider/can_attack(atom/movable/the_target)
 	. = ..()
 	if(!.) // Parent returned FALSE.
 		if(istype(the_target, /obj))
@@ -264,7 +264,7 @@
 				return TRUE
 
 //The Queen Spider
-/mob/living/simple_mob/animal/giant_spider/nurse/queen
+mob/living/simple_mob/animal/giant_spider/nurse/queen
 	name = "giant spider queen"
 	desc = "Absolutely gigantic, this creature is horror itself."
 	tt_desc = "X Brachypelma phorus tyrannus"

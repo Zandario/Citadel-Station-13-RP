@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(vote)
 	var/list/current_votes = list()
 	var/list/additional_text = list()
 
-/datum/controller/subsystem/vote/fire(resumed)
+datum/controller/subsystem/vote/fire(resumed)
 	if(mode)
 		time_remaining = round((started_time + duration - world.time)/10)
 		if(mode == VOTE_GAMEMODE && SSticker.current_state >= GAME_STATE_SETTING_UP)
@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(vote)
 			result()
 			reset()
 
-/datum/controller/subsystem/vote/proc/autotransfer()
+datum/controller/subsystem/vote/proc/autotransfer()
 	// Before doing the vote, see if anyone is playing.
 	// If not, just do the transfer.
 	var/players_are_in_round = FALSE
@@ -52,11 +52,11 @@ SUBSYSTEM_DEF(vote)
 	initiate_vote(VOTE_CREW_TRANSFER, "the server", 1)
 	subsystem_log("The server has called a crew transfer vote.")
 
-/datum/controller/subsystem/vote/proc/autogamemode()
+datum/controller/subsystem/vote/proc/autogamemode()
 	initiate_vote(VOTE_GAMEMODE, "the server", 1)
 	subsystem_log("The server has called a gamemode vote.")
 
-/datum/controller/subsystem/vote/proc/reset()
+datum/controller/subsystem/vote/proc/reset()
 	initiator = null
 	started_time = null
 	duration = null
@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(vote)
 	current_votes.Cut()
 	additional_text.Cut()
 
-/datum/controller/subsystem/vote/proc/get_result() // Get the highest number of votes
+datum/controller/subsystem/vote/proc/get_result() // Get the highest number of votes
 	var/greatest_votes = 0
 	var/total_votes = 0
 
@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(vote)
 			if(choices[option] == greatest_votes)
 				. += option
 
-/datum/controller/subsystem/vote/proc/announce_result()
+datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
 	if(winners.len > 0)
@@ -138,7 +138,7 @@ SUBSYSTEM_DEF(vote)
 	log_vote(text)
 	to_chat(world, "<font color='purple'>[text]</font>")
 
-/datum/controller/subsystem/vote/proc/result()
+datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
 	var/restart = 0
 	if(.)
@@ -171,7 +171,7 @@ SUBSYSTEM_DEF(vote)
 		log_game("Rebooting due to restart vote")
 		world.Reboot()
 
-/datum/controller/subsystem/vote/proc/submit_vote(ckey, newVote)
+datum/controller/subsystem/vote/proc/submit_vote(ckey, newVote)
 	if(mode)
 		if(config_legacy.vote_no_dead && usr.stat == DEAD && !usr.client.holder)
 			return
@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(vote)
 		else
 			current_votes[ckey] = null
 
-/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, automatic = FALSE, time = config_legacy.vote_period)
+datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, automatic = FALSE, time = config_legacy.vote_period)
 	if(!mode)
 		if(started_time != null && !(check_rights(R_ADMIN) || automatic))
 			var/next_allowed_time = (started_time + config_legacy.vote_delay)
@@ -254,7 +254,7 @@ SUBSYSTEM_DEF(vote)
 		return 1
 	return 0
 
-/datum/controller/subsystem/vote/proc/interface(var/client/C)
+datum/controller/subsystem/vote/proc/interface(var/client/C)
 	if(!istype(C))
 		return
 	var/admin = FALSE
@@ -330,7 +330,7 @@ SUBSYSTEM_DEF(vote)
 
 	. += "<a href='?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
 
-/datum/controller/subsystem/vote/Topic(href, href_list[])
+datum/controller/subsystem/vote/Topic(href, href_list[])
 	if(!usr || !usr.client)
 		return
 	switch(href_list["vote"])
@@ -373,7 +373,7 @@ SUBSYSTEM_DEF(vote)
 				submit_vote(usr.ckey, t)
 	usr.client.vote()
 
-/client/verb/vote()
+client/verb/vote()
 	set category = "OOC"
 	set name = "Vote"
 

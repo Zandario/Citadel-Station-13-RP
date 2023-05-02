@@ -1,4 +1,4 @@
-/datum/species/monkey
+datum/species/monkey
 	uid = SPECIES_ID_MONKEY
 	id = SPECIES_ID_MONKEY
 	name = SPECIES_MONKEY
@@ -58,7 +58,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right),
 	)
 
-/datum/species/monkey/handle_npc(mob/living/carbon/human/H)
+datum/species/monkey/handle_npc(mob/living/carbon/human/H)
 	if(H.stat != CONSCIOUS)
 		return
 	if(prob(33) && CHECK_MOBILITY(H, MOBILITY_CAN_MOVE) && isturf(H.loc) && !H.pulledby) //won't move if being pulled
@@ -68,10 +68,10 @@
 
 	..()
 
-/datum/species/monkey/get_random_name()
+datum/species/monkey/get_random_name()
 	return "[lowertext(name)] ([rand(100,999)])"
 
-/datum/species/monkey/tajaran
+datum/species/monkey/tajaran
 	name = SPECIES_MONKEY_TAJ
 	name_plural = SPECIES_MONKEY_TAJ
 	uid = SPECIES_ID_FARWA
@@ -86,7 +86,7 @@
 	base_color  = "#333333"
 	tail = "farwatail"
 
-/datum/species/monkey/skrell
+datum/species/monkey/skrell
 	name = SPECIES_MONKEY_SKRELL
 	name_plural = SPECIES_MONKEY_SKRELL
 	uid = SPECIES_ID_NEAERA
@@ -102,7 +102,7 @@
 	reagent_tag = IS_SKRELL
 	tail = null
 
-/datum/species/monkey/unathi
+datum/species/monkey/unathi
 	name = SPECIES_MONKEY_UNATHI
 	name_plural = SPECIES_MONKEY_UNATHI
 	uid = SPECIES_ID_STOK
@@ -118,7 +118,7 @@
 	base_color  = "#066000"
 	reagent_tag = IS_UNATHI
 
-/datum/species/monkey/shark
+datum/species/monkey/shark
 	name = SPECIES_MONKEY_AKULA
 	name_plural = SPECIES_MONKEY_AKULA
 	uid = SPECIES_ID_SOBAKA
@@ -130,7 +130,7 @@
 	default_language = LANGUAGE_ID_SKRELL //Closest we have.
 	intrinsic_languages = LANGUAGE_ID_SKRELL
 
-/datum/species/monkey/sergal
+datum/species/monkey/sergal
 	name = SPECIES_MONKEY_SERGAL
 	greater_form = SPECIES_SERGAL
 	uid = SPECIES_ID_SERGLING
@@ -141,7 +141,7 @@
 	default_language = LANGUAGE_ID_NARAMADI
 	intrinsic_languages = LANGUAGE_ID_NARAMADI
 
-/datum/species/monkey/sparra
+datum/species/monkey/sparra
 	name = SPECIES_MONKEY_NEVREAN
 	name_plural = SPECIES_MONKEY_NEVREAN
 	uid = SPECIES_ID_SPARRA
@@ -154,7 +154,7 @@
 
 
 /* Example
-/datum/species/monkey/tajaran
+datum/species/monkey/tajaran
 	name = SPECIES_MONKEY_TAJ
 	name_plural = SPECIES_MONKEY_TAJ
 
@@ -168,7 +168,7 @@
 	tail = "farwatail"
 */
 
-/datum/species/monkey/vulpkanin
+datum/species/monkey/vulpkanin
 	name = SPECIES_MONKEY_VULPKANIN
 	name_plural = SPECIES_MONKEY_VULPKANIN
 	uid = SPECIES_ID_WOLPIN
@@ -186,14 +186,14 @@
 //INSERT CODE HERE SO MONKEYS CAN BE SPAWNED.
 //Also, M was added to the end of the spawn names to signify that it's a monkey, since some names were conflicting.
 
-/mob/living/carbon/human/sharkm/Initialize(mapload)
+mob/living/carbon/human/sharkm/Initialize(mapload)
 	..(mapload, SPECIES_MONKEY_AKULA)
 
-/mob/living/carbon/human/sergallingm/Initialize(mapload)
+mob/living/carbon/human/sergallingm/Initialize(mapload)
 	..(mapload, SPECIES_MONKEY_SERGAL)
 
-/mob/living/carbon/human/sparram/Initialize(mapload)
+mob/living/carbon/human/sparram/Initialize(mapload)
 	..(mapload, SPECIES_MONKEY_NEVREAN)
 
-/mob/living/carbon/human/wolpin/Initialize(mapload)
+mob/living/carbon/human/wolpin/Initialize(mapload)
 	..(mapload, SPECIES_MONKEY_VULPKANIN)

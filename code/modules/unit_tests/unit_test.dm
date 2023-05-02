@@ -21,13 +21,13 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 /// Use the PERFORM_ALL_TESTS macro instead.
 GLOBAL_VAR_INIT(focused_test, focused_test())
 
-/proc/focused_test()
+proc/focused_test()
 	for (var/datum/unit_test/unit_test as anything in subtypesof(/datum/unit_test))
 		if (initial(unit_test.focus))
 			return unit_test
 	return null
 
-/datum/unit_test
+datum/unit_test
 	/// Abstract type of the test
 	abstract_type = /datum/unit_test
 
@@ -49,10 +49,10 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 
 	var/static/datum/space_level/reservation
 
-/proc/cmp_unit_test_priority(datum/unit_test/a, datum/unit_test/b)
+proc/cmp_unit_test_priority(datum/unit_test/a, datum/unit_test/b)
 	return initial(a.priority) - initial(b.priority)
 
-/datum/unit_test/New()
+datum/unit_test/New()
 	if (isnull(reservation))
 		var/datum/map_template/unit_tests/template = new
 		reservation = template.load_new_z()
@@ -64,7 +64,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 	TEST_ASSERT(isfloorturf(run_loc_floor_bottom_left), "run_loc_floor_bottom_left was not a floor ([run_loc_floor_bottom_left])")
 	TEST_ASSERT(isfloorturf(run_loc_floor_top_right), "run_loc_floor_top_right was not a floor ([run_loc_floor_top_right])")
 
-/datum/unit_test/Destroy()
+datum/unit_test/Destroy()
 	QDEL_LIST(allocated)
 	// clear the test area
 	for (var/turf/turf in block(locate(1, 1, run_loc_floor_bottom_left.z), locate(world.maxx, world.maxy, run_loc_floor_bottom_left.z)))
@@ -74,10 +74,10 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 			qdel(content)
 	return ..()
 
-/datum/unit_test/proc/Run()
+datum/unit_test/proc/Run()
 	TEST_FAIL("Run() called parent or not implemented")
 
-/datum/unit_test/proc/Fail(reason = "No reason", file = "OUTDATED_TEST", line = 1)
+datum/unit_test/proc/Fail(reason = "No reason", file = "OUTDATED_TEST", line = 1)
 	succeeded = FALSE
 
 	if(!istext(reason))
@@ -87,7 +87,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 
 /// Allocates an instance of the provided type, and places it somewhere in an available loc
 /// Instances allocated through this proc will be destroyed when the test is over
-/datum/unit_test/proc/allocate(type, ...)
+datum/unit_test/proc/allocate(type, ...)
 	var/list/arguments = args.Copy(2)
 	if(ispath(type, /atom))
 		if (!arguments.len)
@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 	allocated += instance
 	return instance
 
-/datum/unit_test/proc/test_screenshot(name, icon/icon)
+datum/unit_test/proc/test_screenshot(name, icon/icon)
 	if (!istype(icon))
 		TEST_FAIL("[icon] is not an icon.")
 		return
@@ -128,7 +128,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 		log_test("\t[path_prefix]_[name] was put in data/screenshots_new")
 
 /// Logs a test message. Will use GitHub action syntax found at https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
-/datum/unit_test/proc/log_for_test(text, priority, file, line)
+datum/unit_test/proc/log_for_test(text, priority, file, line)
 	var/map_name = SSmapping.config.map_name
 
 	// Need to escape the text to properly support newlines.
@@ -137,7 +137,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 
 	log_world("::[priority] file=[file],line=[line],title=[map_name]: [type]::[annotation_text]")
 
-/proc/RunUnitTest(test_path, list/test_results)
+proc/RunUnitTest(test_path, list/test_results)
 	if (ispath(test_path, /datum/unit_test/focus_only))
 		return
 
@@ -182,7 +182,7 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 
 	qdel(test)
 
-/proc/RunUnitTests()
+proc/RunUnitTests()
 	CHECK_TICK
 
 	var/list/tests_to_run = subtypesof(/datum/unit_test)
@@ -211,6 +211,6 @@ GLOBAL_VAR_INIT(focused_test, focused_test())
 	//We have to call this manually because del_text can preceed us, and SSticker doesn't fire in the post game
 	SSticker.standard_reboot()
 
-/datum/map_template/unit_tests
+datum/map_template/unit_tests
 	name = "Unit Tests Zone"
 	mappath = "maps/templates/unit_tests.dmm"

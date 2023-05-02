@@ -1,4 +1,4 @@
-/obj/machinery/shield
+obj/machinery/shield
 	name = "Emergency energy shield"
 	desc = "An energy shield used to contain hull breaches."
 	icon = 'icons/effects/effects.dmi'
@@ -13,33 +13,33 @@
 	var/shield_generate_power = 7500	//how much power we use when regenerating
 	var/shield_idle_power = 1500		//how much power we use when just being sustained.
 
-/obj/machinery/shield/malfai
+obj/machinery/shield/malfai
 	name = "emergency forcefield"
 	desc = "A weak forcefield which seems to be projected by the station's emergency atmosphere containment field"
 	health = max_health/2 // Half health, it's not suposed to resist much.
 
-/obj/machinery/shield/malfai/process(delta_time)
+obj/machinery/shield/malfai/process(delta_time)
 	health -= 0.5 // Slowly lose integrity over time
 	check_failure()
 
-/obj/machinery/shield/proc/check_failure()
+obj/machinery/shield/proc/check_failure()
 	if (src.health <= 0)
 		visible_message("<span class='notice'>\The [src] dissipates!</span>")
 		qdel(src)
 		return
 
-/obj/machinery/shield/Initialize(mapload)
+obj/machinery/shield/Initialize(mapload)
 	. = ..()
 	setDir(pick(1,2,3,4))
 	update_nearby_tiles()
 
-/obj/machinery/shield/Destroy()
+obj/machinery/shield/Destroy()
 	opacity = 0
 	density = 0
 	update_nearby_tiles()
 	..()
 
-/obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return
 
 	//Calculate damage
@@ -56,14 +56,14 @@
 
 	..()
 
-/obj/machinery/shield/bullet_act(var/obj/projectile/Proj)
+obj/machinery/shield/bullet_act(var/obj/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
 	check_failure()
 	set_opacity(1)
 	spawn(20) if(!QDELETED(src)) set_opacity(0)
 
-/obj/machinery/shield/legacy_ex_act(severity)
+obj/machinery/shield/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			if (prob(75))
@@ -76,7 +76,7 @@
 				qdel(src)
 	return
 
-/obj/machinery/shield/emp_act(severity)
+obj/machinery/shield/emp_act(severity)
 	switch(severity)
 		if(1)
 			qdel(src)
@@ -91,7 +91,7 @@
 				qdel(src)
 
 
-/obj/machinery/shield/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+obj/machinery/shield/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	//Let everyone know we've been hit!
 	visible_message("<span class='notice'><B>\[src] was hit by [AM].</B></span>")
@@ -116,7 +116,7 @@
 		if(!QDELETED(src))
 			set_opacity(0)
 
-/obj/machinery/shieldgen
+obj/machinery/shieldgen
 	name = "Emergency shield projector"
 	desc = "Used to seal minor hull breaches."
 	icon = 'icons/obj/objects.dmi'
@@ -142,11 +142,11 @@
 		/turf/simulated/floor/outdoors,
 	)		//For Future additions to exterior tiles, add them on this list.
 
-/obj/machinery/shieldgen/Destroy()
+obj/machinery/shieldgen/Destroy()
 	collapse_shields()
 	..()
 
-/obj/machinery/shieldgen/proc/shields_up()
+obj/machinery/shieldgen/proc/shields_up()
 	if(active) return 0 //If it's already turned on, how did this get called?
 
 	src.active = 1
@@ -159,7 +159,7 @@
 		idle_power_usage += shield_tile.shield_idle_power
 	update_use_power(USE_POWER_IDLE)
 
-/obj/machinery/shieldgen/proc/shields_down()
+obj/machinery/shieldgen/proc/shields_down()
 	if(!active) return 0 //If it's already off, how did this get called?
 
 	src.active = 0
@@ -169,7 +169,7 @@
 
 	update_use_power(USE_POWER_OFF)
 
-/obj/machinery/shieldgen/proc/create_shields()
+obj/machinery/shieldgen/proc/create_shields()
 	for(var/turf/target_tile in range(2, src))
 		if (is_type_in_list(target_tile,blockedturfs) && !(locate(/obj/machinery/shield) in target_tile))
 			if (malfunction && prob(33) || !malfunction)
@@ -177,11 +177,11 @@
 				deployed_shields += S
 				use_power(S.shield_generate_power)
 
-/obj/machinery/shieldgen/proc/collapse_shields()
+obj/machinery/shieldgen/proc/collapse_shields()
 	for(var/obj/machinery/shield/shield_tile in deployed_shields)
 		qdel(shield_tile)
 
-/obj/machinery/shieldgen/power_change()
+obj/machinery/shieldgen/power_change()
 	..()
 	if(!active) return
 	if(machine_stat & NOPOWER)
@@ -190,7 +190,7 @@
 		create_shields()
 	update_icon()
 
-/obj/machinery/shieldgen/process(delta_time)
+obj/machinery/shieldgen/process(delta_time)
 	if(!active || (machine_stat & NOPOWER))
 		return
 
@@ -213,7 +213,7 @@
 		else
 			check_delay--
 
-/obj/machinery/shieldgen/proc/checkhp()
+obj/machinery/shieldgen/proc/checkhp()
 	if(health <= 30)
 		src.malfunction = 1
 	if(health <= 0)
@@ -223,7 +223,7 @@
 	update_icon()
 	return
 
-/obj/machinery/shieldgen/legacy_ex_act(severity)
+obj/machinery/shieldgen/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			src.health -= 75
@@ -238,7 +238,7 @@
 			src.checkhp()
 	return
 
-/obj/machinery/shieldgen/emp_act(severity)
+obj/machinery/shieldgen/emp_act(severity)
 	switch(severity)
 		if(1)
 			src.health /= 2 //cut health in half
@@ -250,7 +250,7 @@
 				malfunction = 1
 	checkhp()
 
-/obj/machinery/shieldgen/attack_hand(mob/user, list/params)
+obj/machinery/shieldgen/attack_hand(mob/user, list/params)
 	if(locked)
 		to_chat(user, "The machine is locked, you are unable to use it.")
 		return
@@ -273,13 +273,13 @@
 			to_chat(user, "The device must first be secured to the floor.")
 	return
 
-/obj/machinery/shieldgen/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/shieldgen/emag_act(var/remaining_charges, var/mob/user)
 	if(!malfunction)
 		malfunction = 1
 		update_icon()
 		return 1
 
-/obj/machinery/shieldgen/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/shieldgen/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_screwdriver())
 		playsound(src, W.tool_sound, 100, 1)
 		if(is_open)
@@ -329,7 +329,7 @@
 		..()
 
 
-/obj/machinery/shieldgen/update_icon()
+obj/machinery/shieldgen/update_icon()
 	if(active && !(machine_stat & NOPOWER))
 		src.icon_state = malfunction ? "shieldonbr":"shieldon"
 	else

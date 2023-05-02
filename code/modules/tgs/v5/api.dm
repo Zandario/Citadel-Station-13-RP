@@ -1,4 +1,4 @@
-/datum/tgs_api/v5
+datum/tgs_api/v5
 	var/server_port
 	var/access_identifier
 
@@ -22,12 +22,12 @@
 
 	var/detached = FALSE
 
-/datum/tgs_api/v5/ApiVersion()
+datum/tgs_api/v5/ApiVersion()
 	return new /datum/tgs_version(
 		#include "__interop_version.dm"
 	)
 
-/datum/tgs_api/v5/OnWorldNew(minimum_required_security_level)
+datum/tgs_api/v5/OnWorldNew(minimum_required_security_level)
 	server_port = world.params[DMAPI5_PARAM_SERVER_PORT]
 	access_identifier = world.params[DMAPI5_PARAM_ACCESS_IDENTIFIER]
 
@@ -95,14 +95,14 @@
 	initialized = TRUE
 	return TRUE
 
-/datum/tgs_api/v5/proc/RequireInitialBridgeResponse()
+datum/tgs_api/v5/proc/RequireInitialBridgeResponse()
 	while(!version)
 		sleep(1)
 
-/datum/tgs_api/v5/OnInitializationComplete()
+datum/tgs_api/v5/OnInitializationComplete()
 	Bridge(DMAPI5_BRIDGE_COMMAND_PRIME)
 
-/datum/tgs_api/v5/OnTopic(T)
+datum/tgs_api/v5/OnTopic(T)
 	RequireInitialBridgeResponse()
 	var/list/params = params2list(T)
 	var/json = params[DMAPI5_TOPIC_DATA]
@@ -115,7 +115,7 @@
 
 	return ProcessTopicJson(json, TRUE)
 
-/datum/tgs_api/v5/OnReboot()
+datum/tgs_api/v5/OnReboot()
 	var/list/result = Bridge(DMAPI5_BRIDGE_COMMAND_REBOOT)
 	if(!result)
 		return
@@ -133,30 +133,30 @@
 	if(!world.OpenPort(port))
 		TGS_ERROR_LOG("Unable to set port to [port]!")
 
-/datum/tgs_api/v5/InstanceName()
+datum/tgs_api/v5/InstanceName()
 	RequireInitialBridgeResponse()
 	return instance_name
 
-/datum/tgs_api/v5/TestMerges()
+datum/tgs_api/v5/TestMerges()
 	RequireInitialBridgeResponse()
 	return test_merges.Copy()
 
-/datum/tgs_api/v5/EndProcess()
+datum/tgs_api/v5/EndProcess()
 	Bridge(DMAPI5_BRIDGE_COMMAND_KILL)
 
-/datum/tgs_api/v5/Revision()
+datum/tgs_api/v5/Revision()
 	RequireInitialBridgeResponse()
 	return revision
 
 // Common proc b/c it's used by the V3/V4 APIs
-/datum/tgs_api/proc/UpgradeDeprecatedChatMessage(datum/tgs_message_content/message)
+datum/tgs_api/proc/UpgradeDeprecatedChatMessage(datum/tgs_message_content/message)
 	if(!istext(message))
 		return message
 
 	TGS_WARNING_LOG("Received legacy string when a [/datum/tgs_message_content] was expected. Please audit all calls to TgsChatBroadcast, TgsChatTargetedBroadcast, and TgsChatPrivateMessage to ensure they use the new /datum.")
 	return new /datum/tgs_message_content(message)
 
-/datum/tgs_api/v5/ChatBroadcast(datum/tgs_message_content/message, list/channels)
+datum/tgs_api/v5/ChatBroadcast(datum/tgs_message_content/message, list/channels)
 	if(!length(channels))
 		channels = ChatChannelInfo()
 
@@ -173,7 +173,7 @@
 	else
 		Bridge(DMAPI5_BRIDGE_COMMAND_CHAT_SEND, list(DMAPI5_BRIDGE_PARAMETER_CHAT_MESSAGE = message))
 
-/datum/tgs_api/v5/ChatTargetedBroadcast(datum/tgs_message_content/message, admin_only)
+datum/tgs_api/v5/ChatTargetedBroadcast(datum/tgs_message_content/message, admin_only)
 	var/list/channels = list()
 	for(var/I in ChatChannelInfo())
 		var/datum/tgs_chat_channel/channel = I
@@ -188,7 +188,7 @@
 	else
 		Bridge(DMAPI5_BRIDGE_COMMAND_CHAT_SEND, list(DMAPI5_BRIDGE_PARAMETER_CHAT_MESSAGE = message))
 
-/datum/tgs_api/v5/ChatPrivateMessage(datum/tgs_message_content/message, datum/tgs_chat_user/user)
+datum/tgs_api/v5/ChatPrivateMessage(datum/tgs_message_content/message, datum/tgs_chat_user/user)
 	message = UpgradeDeprecatedChatMessage(message)
 	message = message._interop_serialize()
 	message[DMAPI5_CHAT_MESSAGE_CHANNEL_IDS] = list(user.channel.id)
@@ -197,11 +197,11 @@
 	else
 		Bridge(DMAPI5_BRIDGE_COMMAND_CHAT_SEND, list(DMAPI5_BRIDGE_PARAMETER_CHAT_MESSAGE = message))
 
-/datum/tgs_api/v5/ChatChannelInfo()
+datum/tgs_api/v5/ChatChannelInfo()
 	RequireInitialBridgeResponse()
 	return chat_channels.Copy()
 
-/datum/tgs_api/v5/proc/DecodeChannels(chat_update_json)
+datum/tgs_api/v5/proc/DecodeChannels(chat_update_json)
 	var/list/chat_channels_json = chat_update_json[DMAPI5_CHAT_UPDATE_CHANNELS]
 	if(istype(chat_channels_json))
 		chat_channels.Cut()
@@ -212,7 +212,7 @@
 	else
 		TGS_WARNING_LOG("Failed to decode [DMAPI5_CHAT_UPDATE_CHANNELS] from channel update!")
 
-/datum/tgs_api/v5/proc/DecodeChannel(channel_json)
+datum/tgs_api/v5/proc/DecodeChannel(channel_json)
 	var/datum/tgs_chat_channel/channel = new
 	channel.id = channel_json[DMAPI5_CHAT_CHANNEL_ID]
 	channel.friendly_name = channel_json[DMAPI5_CHAT_CHANNEL_FRIENDLY_NAME]
@@ -223,6 +223,6 @@
 	channel.embeds_supported = channel_json[DMAPI5_CHAT_CHANNEL_EMBEDS_SUPPORTED]
 	return channel
 
-/datum/tgs_api/v5/SecurityLevel()
+datum/tgs_api/v5/SecurityLevel()
 	RequireInitialBridgeResponse()
 	return security_level

@@ -1,4 +1,4 @@
-/datum/technomancer/spell/unstable_aura
+datum/technomancer/spell/unstable_aura
 	name = "Degen Aura"
 	desc = "Destabalizes your enemies, breaking their elements down to their basic levels, slowly killing them from the inside.  \
 	For each person within <b>fourteen meters</b> of you, they suffer 1% of their current health every second.  Your allies are \
@@ -9,7 +9,7 @@
 	ability_icon_state = "tech_unstableaura"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/aura/unstable
+obj/item/spell/aura/unstable
 	name = "degen aura"
 	desc = "Breaks down your entities from the inside."
 	icon_state = "generic"
@@ -17,7 +17,7 @@
 	aspect = ASPECT_UNSTABLE
 	glow_color = "#CC00CC"
 
-/obj/item/spell/aura/unstable/process(delta_time)
+obj/item/spell/aura/unstable/process(delta_time)
 	if(!pay_energy(200))
 		qdel(src)
 	var/list/nearby_mobs = range(calculate_spell_power(14),owner)

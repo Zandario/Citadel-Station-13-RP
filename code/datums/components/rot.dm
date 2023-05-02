@@ -1,7 +1,7 @@
-/datum/component/rot
+datum/component/rot
 	var/amount = 1
 
-/datum/component/rot/Initialize(new_amount)
+datum/component/rot/Initialize(new_amount)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -10,7 +10,7 @@
 
 	START_PROCESSING(SSprocessing, src)
 
-/datum/component/rot/process(delta_time)
+datum/component/rot/process(delta_time)
 	var/atom/A = parent
 
 	var/turf/open/T = get_turf(A)
@@ -24,15 +24,15 @@
 	T.assume_air(stank)
 	T.air_update_turf()
 
-/datum/component/rot/corpse
+datum/component/rot/corpse
 	amount = MIASMA_CORPSE_MOLES
 
-/datum/component/rot/corpse/Initialize()
+datum/component/rot/corpse/Initialize()
 	if(!iscarbon(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 
-/datum/component/rot/corpse/process(delta_time)
+datum/component/rot/corpse/process(delta_time)
 	var/mob/living/carbon/C = parent
 	if(C.stat != DEAD)
 		qdel(src)
@@ -56,5 +56,5 @@
 
 	..()
 
-/datum/component/rot/gibs
+datum/component/rot/gibs
 	amount = MIASMA_GIBS_MOLES

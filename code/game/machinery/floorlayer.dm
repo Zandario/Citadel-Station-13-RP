@@ -1,5 +1,5 @@
 // TODO: allow different tile types in storage??
-/obj/machinery/floorlayer
+obj/machinery/floorlayer
 	name = "automatic floor layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
@@ -14,11 +14,11 @@
 		"collect" = FALSE
 		)
 
-/obj/machinery/floorlayer/Initialize(mapload, newdir)
+obj/machinery/floorlayer/Initialize(mapload, newdir)
 	. = ..()
 	T = new /obj/item/stack/tile/floor(src)
 
-/obj/machinery/floorlayer/Moved(atom/oldloc)
+obj/machinery/floorlayer/Moved(atom/oldloc)
 	. = ..()
 	if(on)
 		if(mode["dismantle"])
@@ -32,14 +32,14 @@
 
 	old_turf = isturf(loc)? loc : null
 
-/obj/machinery/floorlayer/attack_hand(mob/user, list/params)
+obj/machinery/floorlayer/attack_hand(mob/user, list/params)
 	on=!on
 	user.visible_message( \
 		SPAN_NOTICE("[user] has [!on?"de":""]activated \the [src]."), \
 		SPAN_NOTICE("You [!on?"de":""]activate \the [src]."))
 	return
 
-/obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.is_wrench())
 		var/m = tgui_input_list(usr, "Choose work mode", "Mode", mode)
 		mode[m] = !mode[m]
@@ -70,44 +70,44 @@
 		return
 	..()
 
-/obj/machinery/floorlayer/examine(mob/user)
+obj/machinery/floorlayer/examine(mob/user)
 	. = ..()
 	var/dismantle = mode["dismantle"]
 	var/laying = mode["laying"]
 	var/collect = mode["collect"]
 	. += SPAN_NOTICE("\The [src] [!T?"don't ":""]has [!T?"":"[T.get_amount()] [T] "]tile\s, dismantle is [dismantle?"on":"off"], laying is [laying?"on":"off"], collect is [collect?"on":"off"].")
 
-/obj/machinery/floorlayer/proc/reset()
+obj/machinery/floorlayer/proc/reset()
 	on=0
 	return
 
-/obj/machinery/floorlayer/proc/dismantleFloor(turf/new_turf)
+obj/machinery/floorlayer/proc/dismantleFloor(turf/new_turf)
 	if(istype(new_turf, /turf/simulated/floor))
 		var/turf/simulated/floor/T = new_turf
 		if(!T.is_plating())
 			T.make_plating(!(T.broken || T.burnt))
 	return new_turf.is_plating()
 
-/obj/machinery/floorlayer/proc/TakeNewStack()
+obj/machinery/floorlayer/proc/TakeNewStack()
 	for(var/obj/item/stack/tile/tile in contents)
 		T = tile
 		return TRUE
 	return FALSE
 
-/obj/machinery/floorlayer/proc/layFloor(turf/w_turf)
+obj/machinery/floorlayer/proc/layFloor(turf/w_turf)
 	if(!T)
 		if(!TakeNewStack())
 			return FALSE
 	w_turf.attackby(T , src)
 	return TRUE
 
-/obj/machinery/floorlayer/proc/TakeTile(obj/item/stack/tile/tile)
+obj/machinery/floorlayer/proc/TakeTile(obj/item/stack/tile/tile)
 	if(!T)
 		T = tile
 		tile.forceMove(src)
 	else
 		tile.merge(T)
 
-/obj/machinery/floorlayer/proc/CollectTiles(turf/w_turf)
+obj/machinery/floorlayer/proc/CollectTiles(turf/w_turf)
 	for(var/obj/item/stack/tile/tile in w_turf)
 		TakeTile(tile)

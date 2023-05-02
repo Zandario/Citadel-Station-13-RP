@@ -396,7 +396,7 @@
  * - volume - volume of target mixture
  * - target - how much to pump to
  */
-/proc/xgm_static_cheap_transfer_moles(pressure, temperature, volume, target)
+proc/xgm_static_cheap_transfer_moles(pressure, temperature, volume, target)
 	return ((target - pressure) * volume) / (R_IDEAL_GAS_EQUATION * temperature)
 
 /**
@@ -409,7 +409,7 @@
  * - sink - pumping to
  * - target_pressure - how much to pump to
  */
-/proc/xgm_cheap_transfer_moles_single(datum/gas_mixture/sink, target_pressure)
+proc/xgm_cheap_transfer_moles_single(datum/gas_mixture/sink, target_pressure)
 	var/sink_pressure = GAS_MIXTURE_PRESSURE(sink)
 	var/sink_temperature = GAS_MIXTURE_TEMPERATURE(sink)
 	if(!sink_pressure)
@@ -428,7 +428,7 @@
  * - extra_volume - treat sink as having extra volume for when you pump into pipe networks
  * - speedy - at risk of overshooting, make sure our calculations pump atleast 75% or 5 mol of the naive moles-required calc, whichever is bigger.
  */
-/proc/xgm_cheap_transfer_moles(datum/gas_mixture/source, datum/gas_mixture/sink, target_pressure, extra_volume, speedy)
+proc/xgm_cheap_transfer_moles(datum/gas_mixture/source, datum/gas_mixture/sink, target_pressure, extra_volume, speedy)
 	//! LEGACY CODE; this is not mine.
 	var/source_moles = GAS_MIXTURE_TOTAL_MOLES(source)
 	if(!source_moles)

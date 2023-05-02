@@ -1,9 +1,9 @@
-/datum/component/shrapnel
+datum/component/shrapnel
 	var/projectile_type
 	var/radius // shoots a projectile for every turf on this radius from the hit target
 	var/override_projectile_range
 
-/datum/component/shrapnel/Initialize(projectile_type, radius=1, override_projectile_range)
+datum/component/shrapnel/Initialize(projectile_type, radius=1, override_projectile_range)
 	if(!isgun(parent) && !ismachinery(parent) && !isstructure(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -11,17 +11,17 @@
 	src.radius = radius
 	src.override_projectile_range = override_projectile_range
 
-/datum/component/shrapnel/RegisterWithParent()
+datum/component/shrapnel/RegisterWithParent()
 	if(ismachinery(parent) || isstructure(parent) || isgun(parent)) // turrets, etc
 		RegisterSignal(parent, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 
-/datum/component/shrapnel/UnregisterFromParent()
+datum/component/shrapnel/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_PROJECTILE_ON_HIT))
 
-/datum/component/shrapnel/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+datum/component/shrapnel/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	do_shrapnel(firer, target)
 
-/datum/component/shrapnel/proc/do_shrapnel(mob/firer, atom/target)
+datum/component/shrapnel/proc/do_shrapnel(mob/firer, atom/target)
 	if(radius < 1)
 		return
 	var/turf/target_turf = get_turf(target)

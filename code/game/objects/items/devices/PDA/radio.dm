@@ -1,4 +1,4 @@
-/obj/item/integated_radio
+obj/item/integated_radio
 	name = "\improper PDA radio module"
 	desc = "An electronic radio system."
 	icon = 'icons/obj/module.dmi'
@@ -8,12 +8,12 @@
 	var/on = 0 //Are we currently active??
 	var/menu_message = ""
 
-/obj/item/integated_radio/New()
+obj/item/integated_radio/New()
 	..()
 	if (istype(loc.loc, /obj/item/pda))
 		hostpda = loc.loc
 
-/obj/item/integated_radio/proc/post_signal(freq, key, value, key2, value2, key3, value3, s_filter)
+obj/item/integated_radio/proc/post_signal(freq, key, value, key2, value2, key3, value3, s_filter)
 
 	//to_chat(world, "Post: [freq]: [key]=[value], [key2]=[value2]")
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
@@ -33,9 +33,9 @@
 
 	return
 
-/obj/item/integated_radio/proc/generate_menu()
+obj/item/integated_radio/proc/generate_menu()
 
-/obj/item/integated_radio/beepsky
+obj/item/integated_radio/beepsky
 	/// List of bots.
 	var/list/botlist = null
 	/// The active bot; if null, show bot list.
@@ -46,7 +46,7 @@
 	var/control_freq = BOT_FREQ
 
 /// Create a new QM cartridge, and register to receive bot control & beacon message.
-/obj/item/integated_radio/beepsky/New()
+obj/item/integated_radio/beepsky/New()
 	..()
 	spawn(5)
 		if(radio_controller)
@@ -57,7 +57,7 @@
  * Can detect bot status signals.
  * Create/populate list as they are recieved.
  */
-/obj/item/integated_radio/beepsky/receive_signal(datum/signal/signal)
+obj/item/integated_radio/beepsky/receive_signal(datum/signal/signal)
 	// var/obj/item/pda/P = src.loc
 
 	// to_chat(world, "recvd:[P] : [signal.source]")
@@ -77,7 +77,7 @@
 
 	// if (istype(P)) P.updateSelfDialog()
 
-/obj/item/integated_radio/beepsky/Topic(href, href_list)
+obj/item/integated_radio/beepsky/Topic(href, href_list)
 	..()
 	var/obj/item/pda/PDA = src.hostpda
 
@@ -103,7 +103,7 @@
 			post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
 
 
-/obj/item/integated_radio/beepsky/Destroy()
+obj/item/integated_radio/beepsky/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, control_freq)
 	return ..()
@@ -113,13 +113,13 @@
  */
 
 
-/obj/item/integated_radio/signal
+obj/item/integated_radio/signal
 	var/frequency = 1457
 	var/code = 30.0
 	var/last_transmission
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/integated_radio/signal/Initialize(mapload)
+obj/item/integated_radio/signal/Initialize(mapload)
 	. = ..()
 	if(!radio_controller)
 		return
@@ -129,12 +129,12 @@
 
 	set_frequency(frequency)
 
-/obj/item/integated_radio/signal/proc/set_frequency(new_frequency)
+obj/item/integated_radio/signal/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency)
 
-/obj/item/integated_radio/signal/proc/send_signal(message="ACTIVATE")
+obj/item/integated_radio/signal/proc/send_signal(message="ACTIVATE")
 
 	if(last_transmission && world.time < (last_transmission + 5))
 		return
@@ -152,7 +152,7 @@
 	radio_connection.post_signal(src, signal)
 
 
-/obj/item/integated_radio/signal/Destroy()
+obj/item/integated_radio/signal/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 	return ..()

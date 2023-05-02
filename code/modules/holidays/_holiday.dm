@@ -1,4 +1,4 @@
-/datum/holiday
+datum/holiday
 	var/name = "Bugsgiving"
 	var/desc = "This holiday is bugged! Report it to a coder."
 	/// higher priorities override low priorities. lower is higher. all holidays active will still be active, but stuff like station names should use sorted list
@@ -18,11 +18,11 @@
 	var/loadout_spam = FALSE
 
 /// Run during SSevents init
-/datum/holiday/proc/OnInit()
+datum/holiday/proc/OnInit()
 	return
 
 /// Run on roundstart
-/datum/holiday/proc/OnRoundstart()
+datum/holiday/proc/OnRoundstart()
 
 // When the round starts, this proc is ran to get a text message to display to everyone to wish them a happy holiday
 // /datum/holiday/proc/greet()
@@ -35,7 +35,7 @@
 // 	return copytext(name, 1, i)
 
 // Return 1 if this holidy should be celebrated today
-/datum/holiday/proc/ShouldCelebrate(dd, mm, yy, ww, ddd)
+datum/holiday/proc/ShouldCelebrate(dd, mm, yy, ww, ddd)
 	if(always_celebrate)
 		return TRUE
 

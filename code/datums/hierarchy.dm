@@ -1,10 +1,10 @@
-/singleton/hierarchy
+singleton/hierarchy
 	var/name = "Hierarchy"
 	var/hierarchy_type
 	var/singleton/hierarchy/parent
 	var/list/singleton/hierarchy/children
 
-/singleton/hierarchy/New(var/full_init = TRUE)
+singleton/hierarchy/New(var/full_init = TRUE)
 	children = list()
 	if(!full_init)
 		return
@@ -21,11 +21,11 @@
 
 		dd_insertObjectList(subtype_parent.children, subtype_instance)
 
-/singleton/hierarchy/proc/is_category()
+singleton/hierarchy/proc/is_category()
 	return hierarchy_type == type || children.len
 
-/singleton/hierarchy/proc/is_hidden_category()
+singleton/hierarchy/proc/is_hidden_category()
 	return hierarchy_type == type
 
-/singleton/hierarchy/dd_SortValue()
+singleton/hierarchy/dd_SortValue()
 	return name

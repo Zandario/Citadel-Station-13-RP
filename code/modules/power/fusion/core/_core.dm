@@ -7,7 +7,7 @@ var/list/fusion_cores = list()
 #define MAX_FIELD_STR 1000
 #define MIN_FIELD_STR 1
 
-/obj/machinery/power/fusion_core
+obj/machinery/power/fusion_core
 	name = "\improper R-UST Mk. 8 Tokamak core"
 	desc = "An enormous solenoid for generating extremely high power electromagnetic fields. It includes a kinetic energy harvester."
 	icon = 'icons/obj/machines/power/fusion_core.dmi'
@@ -25,16 +25,16 @@ var/list/fusion_cores = list()
 	var/field_strength = 1//0.01
 	var/id_tag
 
-/obj/machinery/power/fusion_core/mapped
+obj/machinery/power/fusion_core/mapped
 	anchored = 1
 
-/obj/machinery/power/fusion_core/Initialize(mapload)
+obj/machinery/power/fusion_core/Initialize(mapload)
 	. = ..()
 	fusion_cores += src
 	if(anchored)
 		connect_to_network()
 
-/obj/machinery/power/fusion_core/Destroy()
+obj/machinery/power/fusion_core/Destroy()
 	for(var/obj/machinery/computer/fusion_core_control/FCC in GLOB.machines)
 		FCC.connected_devices -= src
 		if(FCC.cur_viewed_device == src)
@@ -42,7 +42,7 @@ var/list/fusion_cores = list()
 	fusion_cores -= src
 	return ..()
 
-/obj/machinery/power/fusion_core/process(delta_time)
+obj/machinery/power/fusion_core/process(delta_time)
 	if((machine_stat & BROKEN) || !powernet || !owned_field)
 		Shutdown()
 	if(owned_field)
@@ -52,7 +52,7 @@ var/list/fusion_cores = list()
 			owned_field.temp_dump()
 			owned_field.temp_color()
 
-/obj/machinery/power/fusion_core/Topic(href, href_list)
+obj/machinery/power/fusion_core/Topic(href, href_list)
 	if(..())
 		return 1
 	if(href_list["str"])
@@ -62,7 +62,7 @@ var/list/fusion_cores = list()
 		if(owned_field)
 			owned_field.ChangeFieldStrength(field_strength)
 
-/obj/machinery/power/fusion_core/proc/Startup()
+obj/machinery/power/fusion_core/proc/Startup()
 	if(owned_field)
 		return
 	owned_field = new(loc, src)
@@ -71,7 +71,7 @@ var/list/fusion_cores = list()
 	update_use_power(USE_POWER_ACTIVE)
 	. = 1
 
-/obj/machinery/power/fusion_core/proc/Shutdown(var/force_rupture)
+obj/machinery/power/fusion_core/proc/Shutdown(var/force_rupture)
 	if(owned_field)
 		icon_state = "core0"
 		if(force_rupture || owned_field.plasma_temperature > 1000)
@@ -82,30 +82,30 @@ var/list/fusion_cores = list()
 		owned_field = null
 	update_use_power(USE_POWER_IDLE)
 
-/obj/machinery/power/fusion_core/proc/AddParticles(var/name, var/quantity = 1)
+obj/machinery/power/fusion_core/proc/AddParticles(var/name, var/quantity = 1)
 	if(owned_field)
 		owned_field.AddParticles(name, quantity)
 		. = 1
 
-/obj/machinery/power/fusion_core/bullet_act(var/obj/projectile/Proj)
+obj/machinery/power/fusion_core/bullet_act(var/obj/projectile/Proj)
 	if(owned_field)
 		. = owned_field.bullet_act(Proj)
 
-/obj/machinery/power/fusion_core/proc/set_strength(var/value)
+obj/machinery/power/fusion_core/proc/set_strength(var/value)
 	value = clamp(value, MIN_FIELD_STR, MAX_FIELD_STR)
 	field_strength = value
 	active_power_usage = 5 * value
 	if(owned_field)
 		owned_field.ChangeFieldStrength(value)
 
-/obj/machinery/power/fusion_core/attack_hand(mob/user, list/params)
+obj/machinery/power/fusion_core/attack_hand(mob/user, list/params)
 	if(!Adjacent(user)) // As funny as it was for the AI to hug-kill the tokamak field from a distance...
 		return
 	visible_message("<span class='notice'>\The [user] hugs \the [src] to make it feel better!</span>")
 	if(owned_field)
 		Shutdown()
 
-/obj/machinery/power/fusion_core/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/power/fusion_core/attackby(var/obj/item/W, var/mob/user)
 
 	if(owned_field)
 		to_chat(user,"<span class='warning'>Shut \the [src] off first!</span>")
@@ -129,7 +129,7 @@ var/list/fusion_cores = list()
 
 	return ..()
 
-/obj/machinery/power/fusion_core/proc/jumpstart(var/field_temperature)
+obj/machinery/power/fusion_core/proc/jumpstart(var/field_temperature)
 	field_strength = 501 // Generally a good size.
 	Startup()
 	if(!owned_field)

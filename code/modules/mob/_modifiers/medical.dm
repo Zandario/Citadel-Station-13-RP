@@ -3,7 +3,7 @@
  * Modifiers applied by Medical sources.
  */
 
-/datum/modifier/bloodpump
+datum/modifier/bloodpump
 	name = "external blood pumping"
 	desc = "Your blood flows thanks to the wonderful power of science."
 
@@ -13,12 +13,12 @@
 
 	pulse_set_level = PULSE_NORM
 
-/datum/modifier/bloodpump/check_if_valid()
+datum/modifier/bloodpump/check_if_valid()
 	..()
 	if(holder.stat == DEAD)
 		src.expire()
 
-/datum/modifier/bloodpump_corpse
+datum/modifier/bloodpump_corpse
 	name = "forced blood pumping"
 	desc = "Your blood flows thanks to the wonderful power of science."
 
@@ -28,7 +28,7 @@
 
 	pulse_set_level = PULSE_SLOW
 
-/datum/modifier/bloodpump/corpse/check_if_valid()
+datum/modifier/bloodpump/corpse/check_if_valid()
 	..()
 	if(holder.stat != DEAD)
 		src.expire()
@@ -37,7 +37,7 @@
  * Modifiers caused by chemicals or organs specifically.
  */
 
-/datum/modifier/cryogelled
+datum/modifier/cryogelled
 	name = "cryogelled"
 	desc = "Your body begins to freeze."
 	mob_overlay_state = "chilled"

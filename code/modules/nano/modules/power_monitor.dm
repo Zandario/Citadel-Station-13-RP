@@ -1,13 +1,13 @@
-/datum/nano_module/power_monitor
+datum/nano_module/power_monitor
 	name = "Power monitor"
 	var/list/grid_sensors
 	var/active_sensor = null	//name_tag of the currently selected sensor
 
-/datum/nano_module/power_monitor/New()
+datum/nano_module/power_monitor/New()
 	..()
 	refresh_sensors()
 
-/datum/nano_module/power_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/power_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = list()
 	var/list/sensors = list()
 	// Focus: If it remains null if no sensor is selected and UI will display sensor list, otherwise it will display sensor reading.
@@ -40,7 +40,7 @@
 		ui.set_auto_update(1)
 
 // Refreshes list of active sensors kept on this computer.
-/datum/nano_module/power_monitor/proc/refresh_sensors()
+datum/nano_module/power_monitor/proc/refresh_sensors()
 	grid_sensors = list()
 	var/turf/T = get_turf(nano_host())
 	var/list/levels = list()
@@ -54,7 +54,7 @@
 				grid_sensors += S
 
 // Allows us to process UI clicks, which are relayed in form of hrefs.
-/datum/nano_module/power_monitor/Topic(href, href_list)
+datum/nano_module/power_monitor/Topic(href, href_list)
 	if(..())
 		return TRUE
 	if(href_list["clear"] )

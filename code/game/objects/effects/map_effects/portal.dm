@@ -44,7 +44,7 @@ A lot of those limitations can potentially be solved with some more work. Otherw
 when portals are shortly lived, or when portals are made to be obvious with special effects.
 */
 
-/obj/effect/map_effect/portal
+obj/effect/map_effect/portal
 	name = "portal subtype"
 	invisibility = 0
 	opacity = TRUE
@@ -63,7 +63,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	var/portal_distance_x = 0 // How far the portal is from the left edge, in tiles.
 	var/portal_distance_y = 0 // How far the portal is from the top edge.
 
-/obj/effect/map_effect/portal/Destroy()
+obj/effect/map_effect/portal/Destroy()
 	vis_contents = null
 	if(counterpart)
 		counterpart.counterpart = null // Disconnect our counterpart from us
@@ -71,7 +71,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	return ..()
 
 // Called when something touches the portal, and usually teleports them to the other side.
-/obj/effect/map_effect/portal/Crossed(atom/movable/AM)
+obj/effect/map_effect/portal/Crossed(atom/movable/AM)
 	if(AM.is_incorporeal())
 		return
 	..()
@@ -85,18 +85,18 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 		if(AM.loc == loc)
 			go_through_portal(AM)
 
-/obj/effect/map_effect/portal/proc/go_through_portal(atom/movable/AM, check)
+obj/effect/map_effect/portal/proc/go_through_portal(atom/movable/AM, check)
 	if(AM.loc != loc && check)
 		return
 	AM.locationTransitForceMove(counterpart.get_focused_turf())
 
 // 'Focused turf' is the turf directly in front of a portal,
 // and it is used both as the destination when crossing, as well as the PoV for visuals.
-/obj/effect/map_effect/portal/proc/get_focused_turf()
+obj/effect/map_effect/portal/proc/get_focused_turf()
 	return get_step(get_turf(src), dir)
 
 // Determines the size of the block of turfs inside `vis_contents`, and where the portal is in relation to that.
-/obj/effect/map_effect/portal/proc/calculate_dimensions()
+obj/effect/map_effect/portal/proc/calculate_dimensions()
 	var/highest_x = 0
 	var/lowest_x = 0
 
@@ -134,30 +134,30 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 // Portal masters manage everything else involving portals.
 // This is the base type. Use `/side_a` or `/side_b` with matching IDs for actual portals.
-/obj/effect/map_effect/portal/master
+obj/effect/map_effect/portal/master
 	name = "portal master"
 	show_messages = TRUE // So portals can hear and see, and relay to the other side.
 	var/portal_id = "test" // For a portal to be made, both the A and B sides need to share the same ID value.
 	var/list/portal_lines = list()
 
-/obj/effect/map_effect/portal/master/Initialize(mapload)
+obj/effect/map_effect/portal/master/Initialize(mapload)
 	GLOB.all_portal_masters += src
 	find_lines()
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/map_effect/portal/master/LateInitialize()
+obj/effect/map_effect/portal/master/LateInitialize()
 	find_counterparts()
 	make_visuals()
 	apply_offset()
 
-/obj/effect/map_effect/portal/master/Destroy()
+obj/effect/map_effect/portal/master/Destroy()
 	GLOB.all_portal_masters -= src
 	for(var/thing in portal_lines)
 		qdel(thing)
 	return ..()
 
-/obj/effect/map_effect/portal/master/proc/find_lines()
+obj/effect/map_effect/portal/master/proc/find_lines()
 	var/list/dirs_to_search = list( turn(dir, 90), turn(dir, -90) )
 
 	for(var/dir_to_search in dirs_to_search)
@@ -172,7 +172,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 				break
 
 // Connects both sides of a portal together.
-/obj/effect/map_effect/portal/master/proc/find_counterparts()
+obj/effect/map_effect/portal/master/proc/find_counterparts()
 	for(var/thing in GLOB.all_portal_masters)
 		var/obj/effect/map_effect/portal/master/M = thing
 		if(M == src)
@@ -194,7 +194,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	if(!counterpart)
 		crash_with("Portal master [type] ([x],[y],[z]) could not find another portal master with a matching portal_id ([portal_id]).")
 
-/obj/effect/map_effect/portal/master/proc/make_visuals()
+obj/effect/map_effect/portal/master/proc/make_visuals()
 	var/list/observed_turfs = list()
 	for(var/thing in portal_lines + src)
 		var/obj/effect/map_effect/portal/P = thing
@@ -220,7 +220,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 // Shifts the portal's pixels in order to line up properly, as BYOND offsets the sprite when it holds multiple turfs inside `vis_contents`.
 // This undos the shift that BYOND did.
-/obj/effect/map_effect/portal/master/proc/apply_offset()
+obj/effect/map_effect/portal/master/proc/apply_offset()
 	for(var/thing in portal_lines + src)
 		var/obj/effect/map_effect/portal/P = thing
 
@@ -229,7 +229,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 // Allows portals to transfer emotes.
 // Only portal masters do this to avoid flooding the other side with duplicate messages.
-/obj/effect/map_effect/portal/master/see_emote(mob/M, text)
+obj/effect/map_effect/portal/master/see_emote(mob/M, text)
 	if(!counterpart)
 		return
 	var/turf/T = counterpart.get_focused_turf()
@@ -244,7 +244,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	..()
 
 // Allows portals to transfer visible messages.
-/obj/effect/map_effect/portal/master/show_message(msg, type, alt, alt_type)
+obj/effect/map_effect/portal/master/show_message(msg, type, alt, alt_type)
 	if(!counterpart)
 		return
 	var/rendered = "<span class='message'>[msg]</span>"
@@ -259,7 +259,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	..()
 
 // Allows portals to transfer speech.
-/obj/effect/map_effect/portal/master/hear_talk(mob/living/M, message, verb)
+obj/effect/map_effect/portal/master/hear_talk(mob/living/M, message, verb)
 	if(!counterpart)
 		return
 	var/turf/T = counterpart.get_focused_turf()
@@ -277,7 +277,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 // Returns the position that an atom that's hopefully on the other side of the portal would be if it were really there.
 // Z levels not taken into account.
-/obj/effect/map_effect/portal/master/proc/get_apparent_position(atom/A)
+obj/effect/map_effect/portal/master/proc/get_apparent_position(atom/A)
 	if(!counterpart)
 		return null
 
@@ -305,12 +305,12 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	return new /datum/position(their_focus.x + relative_x, their_focus.y + relative_y, our_focus.z)
 
 
-/obj/effect/map_effect/portal/master/side_a
+obj/effect/map_effect/portal/master/side_a
 	name = "portal master A"
 	icon_state = "portal_side_a"
 //	color = "#00FF00"
 
-/obj/effect/map_effect/portal/master/side_b
+obj/effect/map_effect/portal/master/side_b
 	name = "portal master B"
 	icon_state = "portal_side_b"
 //	color = "#FF0000"
@@ -320,20 +320,20 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 // Portal lines extend out from the sides of portal masters,
 // They let portals be longer than 1x1.
 // Both sides MUST be the same length, meaning if side A is 1x3, side B must also be 1x3.
-/obj/effect/map_effect/portal/line
+obj/effect/map_effect/portal/line
 	name = "portal line"
 	var/obj/effect/map_effect/portal/master/my_master = null
 
-/obj/effect/map_effect/portal/line/Destroy()
+obj/effect/map_effect/portal/line/Destroy()
 	if(my_master)
 		my_master.portal_lines -= src
 		my_master = null
 	return ..()
 
-/obj/effect/map_effect/portal/line/side_a
+obj/effect/map_effect/portal/line/side_a
 	name = "portal line A"
 	icon_state = "portal_line_side_a"
 
-/obj/effect/map_effect/portal/line/side_b
+obj/effect/map_effect/portal/line/side_b
 	name = "portal line B"
 	icon_state = "portal_line_side_b"

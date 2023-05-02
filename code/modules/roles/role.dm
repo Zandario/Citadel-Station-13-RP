@@ -2,5 +2,5 @@
  * WIP
  * TODO: unified role system
  */
-/datum/role
+datum/role
 	abstract_type = /datum/role

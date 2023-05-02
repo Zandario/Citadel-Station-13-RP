@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 // Abstract Generator
 //
 
-/obj/machinery/gravity_generator
+obj/machinery/gravity_generator
 	name = "gravitational generator"
 	desc = "A device which produces a graviton field when set up."
 	icon = 'icons/obj/machines/gravity_generator.dmi'
@@ -29,36 +29,36 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 	pixel_y = 16
 
-/obj/machinery/gravity_generator/legacy_ex_act(severity, target)
+obj/machinery/gravity_generator/legacy_ex_act(severity, target)
 	if(severity == 1) // Very sturdy.
 		set_broken()
 
-/obj/machinery/gravity_generator/blob_act(obj/structure/blob/B)
+obj/machinery/gravity_generator/blob_act(obj/structure/blob/B)
 	if(prob(20))
 		set_broken()
 
-/obj/machinery/gravity_generator/tesla_act(power, tesla_flags)
+obj/machinery/gravity_generator/tesla_act(power, tesla_flags)
 	..()
 	qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over
 
-/obj/machinery/gravity_generator/update_icon()
+obj/machinery/gravity_generator/update_icon()
 	icon_state = "[get_status()]_[sprite_number]"
 
-/obj/machinery/gravity_generator/proc/get_status()
+obj/machinery/gravity_generator/proc/get_status()
 	return "off"
 
 // You aren't allowed to move.
-/obj/machinery/gravity_generator/Moved(atom/old_loc, direction, forced = FALSE)
+obj/machinery/gravity_generator/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	qdel(src)
 
-/obj/machinery/gravity_generator/proc/set_broken()
+obj/machinery/gravity_generator/proc/set_broken()
 	machine_stat |= BROKEN
 
-/obj/machinery/gravity_generator/proc/set_fix()
+obj/machinery/gravity_generator/proc/set_fix()
 	machine_stat &= ~BROKEN
 
-/obj/machinery/gravity_generator/part/Destroy()
+obj/machinery/gravity_generator/part/Destroy()
 	if(main_part)
 		qdel(main_part)
 	set_broken()
@@ -68,19 +68,19 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 // Part generator which is mostly there for looks
 //
 
-/obj/machinery/gravity_generator/part
+obj/machinery/gravity_generator/part
 	var/obj/machinery/gravity_generator/main/main_part = null
 
-/obj/machinery/gravity_generator/part/attackby(obj/item/I, mob/user, params)
+obj/machinery/gravity_generator/part/attackby(obj/item/I, mob/user, params)
 	return main_part.attackby(I, user)
 
-/obj/machinery/gravity_generator/part/get_status()
+obj/machinery/gravity_generator/part/get_status()
 	return main_part?.get_status()
 
-/obj/machinery/gravity_generator/part/attack_hand(mob/user, list/params)
+obj/machinery/gravity_generator/part/attack_hand(mob/user, list/params)
 	return main_part.attack_hand(user)
 
-/obj/machinery/gravity_generator/part/set_broken()
+obj/machinery/gravity_generator/part/set_broken()
 	..()
 	if(main_part && !(main_part.machine_stat & BROKEN))
 		main_part.set_broken()
@@ -88,11 +88,11 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 //
 // Generator which spawns with the station.
 //
-/obj/machinery/gravity_generator/main/station
+obj/machinery/gravity_generator/main/station
 	icon_state = "on_8"
 	use_power = USE_POWER_ACTIVE
 
-/obj/machinery/gravity_generator/main/station/Initialize(mapload)
+obj/machinery/gravity_generator/main/station/Initialize(mapload)
 	. = ..()
 	setup_parts()
 	middle.add_overlay("activated")
@@ -100,14 +100,14 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 //
 // Generator an admin can spawn
 //
-/obj/machinery/gravity_generator/main/station/admin
+obj/machinery/gravity_generator/main/station/admin
 	use_power = USE_POWER_OFF
 
 //
 // Main Generator with the main code
 //
 
-/obj/machinery/gravity_generator/main
+obj/machinery/gravity_generator/main
 	icon_state = "on_8"
 	idle_power_usage = 0
 	active_power_usage = 3000
@@ -126,21 +126,21 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	var/list/levels = list()
 	var/list/areas = list()
 
-/obj/machinery/gravity_generator/main/Initialize(mapload)
+obj/machinery/gravity_generator/main/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/gravity_generator/main/LateInitialize() //Needs to happen after overmap sectors are initialized so we can figure out where we are
+obj/machinery/gravity_generator/main/LateInitialize() //Needs to happen after overmap sectors are initialized so we can figure out where we are
 	update_list()
 	update_areas()
 	return ..()
 
-/obj/machinery/gravity_generator/main/set_fix()
+obj/machinery/gravity_generator/main/set_fix()
 	. = ..()
 	update_list()
 	update_areas()
 
-/obj/machinery/gravity_generator/main/Destroy() // If we somehow get deleted, remove all of our other parts.
+obj/machinery/gravity_generator/main/Destroy() // If we somehow get deleted, remove all of our other parts.
 	investigate_log("was destroyed!", "gravity")
 	on = FALSE
 	update_list()
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 			qdel(O)
 	return ..()
 
-/obj/machinery/gravity_generator/main/proc/setup_parts()
+obj/machinery/gravity_generator/main/proc/setup_parts()
 	var/turf/our_turf = get_turf(src)
 	// 9x9 block obtained from the bottom middle of the block
 	var/list/spawn_turfs = block(locate(our_turf.x - 1, our_turf.y + 2, our_turf.z), locate(our_turf.x + 1, our_turf.y, our_turf.z))
@@ -173,10 +173,10 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		parts += part
 		part.update_icon()
 
-/obj/machinery/gravity_generator/main/proc/connected_parts()
+obj/machinery/gravity_generator/main/proc/connected_parts()
 	return parts.len == 8
 
-/obj/machinery/gravity_generator/main/set_broken()
+obj/machinery/gravity_generator/main/set_broken()
 	..()
 	for(var/obj/machinery/gravity_generator/M in parts)
 		if(!(M.machine_stat & BROKEN))
@@ -188,7 +188,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	set_state(0)
 	investigate_log("has broken down.", "gravity")
 
-/obj/machinery/gravity_generator/main/set_fix()
+obj/machinery/gravity_generator/main/set_fix()
 	..()
 	for(var/obj/machinery/gravity_generator/M in parts)
 		if(M.machine_stat & BROKEN)
@@ -200,7 +200,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 // Interaction
 
 // Fixing the gravity generator.
-/obj/machinery/gravity_generator/main/attackby(obj/item/I, obj/item/W, mob/user, params)
+obj/machinery/gravity_generator/main/attackby(obj/item/I, obj/item/W, mob/user, params)
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
 			if(I.is_screwdriver())
@@ -237,19 +237,19 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				return
 	return ..()
 
-/obj/machinery/gravity_generator/main/attack_hand(mob/user, list/params)
+obj/machinery/gravity_generator/main/attack_hand(mob/user, list/params)
 	if((. = ..()))
 		return
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/gravity_generator/main/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/gravity_generator/main/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "GravityGenerator", name)
 		ui.open()
 
-/obj/machinery/gravity_generator/main/ui_data(mob/user)
+obj/machinery/gravity_generator/main/ui_data(mob/user)
 	var/data[0]
 
 	data["breaker"] = breaker
@@ -260,7 +260,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 	return data
 
-/obj/machinery/gravity_generator/main/ui_act(action, params)
+obj/machinery/gravity_generator/main/ui_act(action, params)
 	if((..()))
 		return TRUE
 
@@ -273,18 +273,18 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 // Power and Icon States
 
-/obj/machinery/gravity_generator/main/power_change()
+obj/machinery/gravity_generator/main/power_change()
 	..()
 	investigate_log("has [machine_stat & NOPOWER ? "lost" : "regained"] power.", "gravity")
 	set_power()
 
-/obj/machinery/gravity_generator/main/get_status()
+obj/machinery/gravity_generator/main/get_status()
 	if(machine_stat & BROKEN)
 		return "fix[min(broken_state, 3)]"
 	return on || charging_state != POWER_IDLE ? "on" : "off"
 
 // Set the charging state based on power/breaker.
-/obj/machinery/gravity_generator/main/proc/set_power()
+obj/machinery/gravity_generator/main/proc/set_power()
 	var/new_state = FALSE
 	if(machine_stat & (NOPOWER|BROKEN) || !breaker)
 		new_state = FALSE
@@ -309,7 +309,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	update_icon()
 
 // Set the state of the gravity.
-/obj/machinery/gravity_generator/main/proc/set_state(new_state)
+obj/machinery/gravity_generator/main/proc/set_state(new_state)
 	charging_state = POWER_IDLE
 	update_use_power(new_state ? USE_POWER_ACTIVE : USE_POWER_IDLE)
 
@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 // Charge/Discharge and turn on/off gravity when you reach 0/100 percent.
 // Also emit radiation and handle the overlays.
-/obj/machinery/gravity_generator/main/process()
+obj/machinery/gravity_generator/main/process()
 	if(machine_stat & BROKEN)
 		return
 	if(charging_state != POWER_IDLE)
@@ -379,15 +379,15 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 					current_overlay = overlay_state
 
 
-/obj/machinery/gravity_generator/main/proc/pulse_radiation()
+obj/machinery/gravity_generator/main/proc/pulse_radiation()
 	radiation_pulse(src, RAD_INTENSITY_GRAVGEN_OPERATING_TICK)
 
-/obj/machinery/gravity_generator/main/proc/update_gravity(var/on)
+obj/machinery/gravity_generator/main/proc/update_gravity(var/on)
 	for(var/area/A in src.areas)
 		A.gravitychange(on)
 
 // Shake everyone on the z level to let them know that gravity was enagaged/disenagaged.
-/obj/machinery/gravity_generator/main/proc/shake_everyone()
+obj/machinery/gravity_generator/main/proc/shake_everyone()
 	var/sound/alert_sound = sound('sound/effects/alert.ogg')
 	for(var/mob/M as anything in GLOB.player_list)
 		if(!(M.z in levels))
@@ -396,7 +396,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		shake_camera(M, 15, 1)
 		M.playsound_local(src, null, 50, 1, 0.5, S = alert_sound)
 
-/obj/machinery/gravity_generator/main/proc/gravity_in_level()
+obj/machinery/gravity_generator/main/proc/gravity_in_level()
 	var/my_z = get_z(src)
 	if(!my_z)
 		return FALSE
@@ -404,7 +404,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		return length(GLOB.gravity_generators["[my_z]"])
 	return FALSE
 
-/obj/machinery/gravity_generator/main/proc/update_list()
+obj/machinery/gravity_generator/main/proc/update_list()
 	levels.Cut()
 	var/my_z = get_z(src)
 
@@ -426,7 +426,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		else
 			GLOB.gravity_generators["[z]"] -= src
 
-/obj/machinery/gravity_generator/main/proc/update_areas()
+obj/machinery/gravity_generator/main/proc/update_areas()
 	areas.Cut()
 	for(var/area/A)
 		if(istype(A, /area/shuttle))
@@ -436,7 +436,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 // Misc
 /*
-/obj/item/paper/guides/jobs/engi/gravity_gen
+obj/item/paper/guides/jobs/engi/gravity_gen
 	name = "paper- 'Generate your own gravity!'"
 	info = {"<h1>Gravity Generator Instructions For Dummies</h1>
 	<p>Surprisingly, gravity isn't that hard to make! All you have to do is inject deadly radioactive minerals into a ball of

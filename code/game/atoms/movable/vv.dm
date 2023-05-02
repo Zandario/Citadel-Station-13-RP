@@ -1,4 +1,4 @@
-/atom/movable/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
+atom/movable/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
 	var/static/list/banned_edits = list("step_x", "step_y", "step_size", "bounds")
 	var/static/list/careful_edits = list("bound_x", "bound_y", "bound_width", "bound_height")
 	if(var_name in banned_edits)
@@ -43,7 +43,7 @@
 					return
 				ST.update_rad_insulation()
 
-/atom/movable/vv_get_dropdown()
+atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
 	. += "<option value='?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"

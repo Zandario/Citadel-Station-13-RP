@@ -1,4 +1,4 @@
-/mob/living/simple_mob/animal/sif/fluffy
+mob/living/simple_mob/animal/sif/fluffy
 	name = "Fluffy"
 	desc = "It's a pink Diyaab! It seems to be very tame and quiet."
 	tt_desc = "S Choeros hirtus"
@@ -36,12 +36,12 @@
 	say_list_type = /datum/say_list/fluffy_vr
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
-/datum/say_list/fluffy_vr
+datum/say_list/fluffy_vr
 	speak = list("Squee","Arf arf","Awoo","Squeak")
 	emote_hear = list("howls","squeals","squeaks", "barks")
 	emote_see = list("puffs its fur out", "shakes its fur", "stares directly at you")
 
-/mob/living/simple_mob/animal/sif/fluffy/silky
+mob/living/simple_mob/animal/sif/fluffy/silky
 	name = "Silky"
 	desc = "It's a blue Diyaab! It seems to be very tame and quiet."
 

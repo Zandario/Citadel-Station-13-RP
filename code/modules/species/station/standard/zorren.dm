@@ -1,4 +1,4 @@
-/datum/species/hi_zoxxen
+datum/species/hi_zoxxen
 	uid = SPECIES_ID_ZORREN_HIGH
 	id = SPECIES_ID_ZORREN_HIGH
 	id = SPECIES_ID_ZORREN
@@ -62,7 +62,7 @@
 		/datum/unarmed_attack/bite/sharp,
 	)
 
-/datum/species/fl_zorren
+datum/species/fl_zorren
 	uid = SPECIES_ID_ZORREN_FLAT
 	id = SPECIES_ID_ZORREN
 	name = SPECIES_ZORREN_FLAT

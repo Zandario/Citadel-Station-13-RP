@@ -1,5 +1,5 @@
 /// Attempts to install the hardware into apropriate slot.
-/obj/item/modular_computer/proc/try_install_component(mob/living/user, obj/item/computer_hardware/H, found = FALSE)
+obj/item/modular_computer/proc/try_install_component(mob/living/user, obj/item/computer_hardware/H, found = FALSE)
 	// "USB" flash drive.
 	if(istype(H, /obj/item/computer_hardware/hard_drive/portable))
 		if(portable_drive)
@@ -57,7 +57,7 @@
 		update_verbs()
 
 /// Uninstalls component. Found and Critical vars may be passed by parent types, if they have additional hardware.
-/obj/item/modular_computer/proc/uninstall_component(mob/living/user, obj/item/computer_hardware/H, found = FALSE, critical = FALSE)
+obj/item/modular_computer/proc/uninstall_component(mob/living/user, obj/item/computer_hardware/H, found = FALSE, critical = FALSE)
 	if(portable_drive == H)
 		portable_drive = null
 		found = TRUE
@@ -98,7 +98,7 @@
 
 
 /// Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null.
-/obj/item/modular_computer/proc/find_hardware_by_name(name)
+obj/item/modular_computer/proc/find_hardware_by_name(name)
 	if(portable_drive && (portable_drive.name == name))
 		return portable_drive
 	if(hard_drive && (hard_drive.name == name))
@@ -118,7 +118,7 @@
 	return null
 
 /// Returns list of all components.
-/obj/item/modular_computer/proc/get_all_components()
+obj/item/modular_computer/proc/get_all_components()
 	var/list/all_components = list()
 	if(hard_drive)
 		all_components.Add(hard_drive)

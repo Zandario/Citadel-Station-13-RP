@@ -3,7 +3,7 @@
  */
 
 
-/obj/machinery/vr_sleeper/alien
+obj/machinery/vr_sleeper/alien
 	name = "strange pod"
 	desc = "A strange machine with what appears to be a comfortable, if quite vertical, bed. Numerous mechanical cylinders dot the ceiling, their purpose uncertain."
 	icon = 'icons/obj/medical/cryogenic2.dmi'
@@ -16,12 +16,12 @@
 	var/randomize_species = FALSE
 	var/list/possible_species	// Do we make the newly produced body a random species?
 
-/obj/machinery/vr_sleeper/alien/Initialize(mapload)
+obj/machinery/vr_sleeper/alien/Initialize(mapload)
 	. = ..()
 	if(possible_species && possible_species.len)
 		produce_species = pick(possible_species)
 
-/obj/machinery/vr_sleeper/alien/process(delta_time)
+obj/machinery/vr_sleeper/alien/process(delta_time)
 	if(machine_stat & (BROKEN))
 		if(occupant)
 			go_out()
@@ -31,14 +31,14 @@
 		visible_message("<span class='warning'>\The [src] sounds an alarm, swinging its hatch open.</span>")
 		go_out()
 
-/obj/machinery/vr_sleeper/alien/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/vr_sleeper/alien/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
 
 	if(occupant && (istype(I, /obj/item/healthanalyzer) || istype(I, /obj/item/robotanalyzer)))
 		I.melee_attack_chain(occupant, user)
 	return
 
-/obj/machinery/vr_sleeper/alien/eject()
+obj/machinery/vr_sleeper/alien/eject()
 	set src in view(1)
 	set category = "Object"
 
@@ -53,7 +53,7 @@
 	go_out(forced)
 	add_fingerprint(usr)
 
-/obj/machinery/vr_sleeper/alien/go_out(var/forced = TRUE)
+obj/machinery/vr_sleeper/alien/go_out(var/forced = TRUE)
 	if(!occupant)
 		return
 
@@ -74,7 +74,7 @@
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 
-/obj/machinery/vr_sleeper/alien/enter_vr()
+obj/machinery/vr_sleeper/alien/enter_vr()
 
 	if(!occupant)
 		return
@@ -122,11 +122,11 @@
  * Subtypes
  */
 
-/obj/machinery/vr_sleeper/alien/random_replicant
+obj/machinery/vr_sleeper/alien/random_replicant
 	possible_species = list(SPECIES_REPLICANT, SPECIES_REPLICANT_ALPHA, SPECIES_REPLICANT_BETA)
 
-/obj/machinery/vr_sleeper/alien/alpha_replicant
+obj/machinery/vr_sleeper/alien/alpha_replicant
 	produce_species = SPECIES_REPLICANT_ALPHA
 
-/obj/machinery/vr_sleeper/alien/beta_replicant
+obj/machinery/vr_sleeper/alien/beta_replicant
 	produce_species = SPECIES_REPLICANT_BETA

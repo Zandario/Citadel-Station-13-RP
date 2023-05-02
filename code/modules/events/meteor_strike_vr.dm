@@ -1,8 +1,8 @@
-/datum/event/meteor_strike
+datum/event/meteor_strike
 	announceWhen = 1
 	var/turf/strike_target
 
-/datum/event/meteor_strike/setup()
+datum/event/meteor_strike/setup()
 	startWhen = rand(8,15)
 	if(LAZYLEN(GLOB.using_map.meteor_strike_areas))
 		strike_target = pick(get_area_turfs(pick(GLOB.using_map.meteor_strike_areas)))
@@ -10,25 +10,25 @@
 	if(!strike_target)
 		kill()
 
-/datum/event/meteor_strike/announce()
+datum/event/meteor_strike/announce()
 	command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "NanoTrasen Orbital Monitoring", new_sound = 'sound/effects/meteor_strike.ogg')
 
-/datum/event/meteor_strike/start()
+datum/event/meteor_strike/start()
 	new /obj/effect/meteor_falling(strike_target)
 
-/obj/effect/meteor_falling
+obj/effect/meteor_falling
 	name = "meteor"
 	desc = "The sky is falling!"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "large"
 	anchored = 1
 
-/obj/effect/meteor_falling/Initialize(mapload)
+obj/effect/meteor_falling/Initialize(mapload)
 	. = ..()
 	SpinAnimation()
 	INVOKE_ASYNC(src, .proc/meteor_fall)
 
-/obj/effect/meteor_falling/proc/meteor_fall()
+obj/effect/meteor_falling/proc/meteor_fall()
 	var/turf/current = get_turf(src)
 	if(istype(current, /turf/simulated/open) || istype(current, /turf/space))
 		var/turf/below = GetBelow(src)
@@ -42,7 +42,7 @@
 		return
 	meteor_impact()
 
-/obj/effect/meteor_falling/proc/meteor_impact()
+obj/effect/meteor_falling/proc/meteor_impact()
 	var/turf/current = get_turf(src)
 	spawn()
 		explosion(current, 1, 2, 4, 8, 0) //Was previously 2,4,6,10. Way too big.
@@ -72,7 +72,7 @@
 					SEND_SOUND(L, sound('sound/soundbytes/effects/explosion/explosionfar.ogg'))
 	qdel(src)
 
-/obj/structure/meteorite
+obj/structure/meteorite
 	name = "meteorite"
 	desc = "A big hunk of star-stuff."
 	icon = 'icons/obj/meteor.dmi'
@@ -80,7 +80,7 @@
 	density = 1
 	climbable = 1
 
-/obj/structure/meteorite/Initialize(mapload)
+obj/structure/meteorite/Initialize(mapload)
 	. = ..()
 	icon = turn(icon, 90)
 	switch(rand(1,100))
@@ -96,10 +96,10 @@
 		if(91 to 100)
 			new /obj/machinery/artifact(src)
 
-/obj/structure/meteorite/legacy_ex_act()
+obj/structure/meteorite/legacy_ex_act()
 	return
 
-/obj/structure/meteorite/attackby(var/obj/item/I, var/mob/M)
+obj/structure/meteorite/attackby(var/obj/item/I, var/mob/M)
 	if(istype(I, /obj/item/pickaxe))
 		var/obj/item/pickaxe/P = I
 		M.visible_message("<span class='warning'>[M] starts [P.drill_verb] \the [src].</span>", "<span class='warning'>You start [P.drill_verb] \the [src].</span>")

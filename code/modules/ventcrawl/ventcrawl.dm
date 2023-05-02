@@ -4,7 +4,7 @@ var/list/ventcrawl_machinery = list(
 	)
 
 // Vent crawling whitelisted items, whoo
-/mob/living/var/list/can_enter_vent_with = list(
+mob/living/var/list/can_enter_vent_with = list(
 	/obj/item/implant,
 	/obj/item/radio/borg,
 	/obj/item/holder,
@@ -12,13 +12,13 @@ var/list/ventcrawl_machinery = list(
 	/obj/belly,
 	/atom/movable/screen
 	)
-/mob/living/var/list/icon/pipes_shown = list()
-/mob/living/var/last_played_vent
-/mob/living/var/is_ventcrawling = 0
-/mob/living/var/prepping_to_ventcrawl = 0
-/mob/var/next_play_vent = 0
+mob/living/var/list/icon/pipes_shown = list()
+mob/living/var/last_played_vent
+mob/living/var/is_ventcrawling = 0
+mob/living/var/prepping_to_ventcrawl = 0
+mob/var/next_play_vent = 0
 
-/mob/living/proc/can_ventcrawl()
+mob/living/proc/can_ventcrawl()
 	if(!client)
 		return FALSE
 	if(!(/mob/living/proc/ventcrawl in verbs))
@@ -29,7 +29,7 @@ var/list/ventcrawl_machinery = list(
 		return FALSE
 	return ventcrawl_carry()
 
-/mob/living/Login()
+mob/living/Login()
 	. = ..()
 	//login during ventcrawl
 	if(is_ventcrawling && istype(loc, /obj/machinery/atmospherics)) //attach us back into the pipes
@@ -38,13 +38,13 @@ var/list/ventcrawl_machinery = list(
 		update_perspective()
 		client.screen += GLOB.global_hud.centermarker
 
-/mob/living/simple_mob/slime/xenobio/can_ventcrawl()
+mob/living/simple_mob/slime/xenobio/can_ventcrawl()
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot ventcrawl while feeding.</span>")
 		return FALSE
 	. = ..()
 
-/mob/living/proc/is_allowed_vent_crawl_item(var/obj/carried_item)
+mob/living/proc/is_allowed_vent_crawl_item(var/obj/carried_item)
 	//Ability master easy test for allowed (cheaper than istype)
 	if(carried_item == ability_master)
 		return 1
@@ -60,30 +60,30 @@ var/list/ventcrawl_machinery = list(
 	if((listed && !is_holding(carried_item)) || !is_in_inventory(carried_item))
 		return 1
 
-/mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in internal_organs)
 		return 1
 	return ..()
 
-/mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in organs)
 		return 1
 	return ..()
 
-/mob/living/proc/ventcrawl_carry()
+mob/living/proc/ventcrawl_carry()
 	for(var/atom/A in contents)
 		if(!is_allowed_vent_crawl_item(A))
 			to_chat(src, "<span class='warning'>You can't carry \the [A] while ventcrawling!</span>")
 			return FALSE
 	return TRUE
 
-/mob/living/AltClickOn(var/atom/A)
+mob/living/AltClickOn(var/atom/A)
 	if(is_type_in_list(A,ventcrawl_machinery))
 		handle_ventcrawl(A)
 		return 1
 	return ..()
 
-/mob/proc/start_ventcrawl()
+mob/proc/start_ventcrawl()
 	var/atom/pipe
 	var/list/pipes = list()
 	for(var/obj/machinery/atmospherics/component/unary/U in range(1))
@@ -99,12 +99,12 @@ var/list/ventcrawl_machinery = list(
 	if(CHECK_MOBILITY(src, MOBILITY_CAN_MOVE) && pipe)
 		return pipe
 
-/mob/living/carbon/alien/ventcrawl_carry()
+mob/living/carbon/alien/ventcrawl_carry()
 	return 1
 
-/mob/living/var/ventcrawl_layer = 3
+mob/living/var/ventcrawl_layer = 3
 
-/mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
+mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
 	if(!can_ventcrawl() || prepping_to_ventcrawl)
 		return
 
@@ -172,7 +172,7 @@ var/list/ventcrawl_machinery = list(
 	else
 		to_chat(src, "You must be standing on or beside an air vent to enter it.")
 
-/mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
+mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	is_ventcrawling = 1
 	//candrop = 0
 	var/datum/pipe_network/network = starting_machine.return_network(starting_machine)
@@ -188,7 +188,7 @@ var/list/ventcrawl_machinery = list(
 	if(client)
 		client.screen += GLOB.global_hud.centermarker
 
-/mob/living/proc/remove_ventcrawl()
+mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = 0
 	//candrop = 1
 	if(client)

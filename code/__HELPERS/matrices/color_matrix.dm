@@ -14,21 +14,21 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 */
 
 /// Does nothing.
-/proc/color_matrix_identity()
+proc/color_matrix_identity()
 	return list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, 0,0,0,0)
 
 /**
  * Adds/subtracts overall lightness.
  * 0 is identity, 1 makes everything white, -1 makes everything black.
  */
-/proc/color_matrix_lightness(power)
+proc/color_matrix_lightness(power)
 	return list(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1, power,power,power,0)
 
 /**
  * Changes distance hues have from grey while maintaining the overall lightness. Greys are unaffected.
  * 1 is identity, 0 is greyscale, >1 oversaturates colors.
  */
-/proc/color_matrix_saturation(value)
+proc/color_matrix_saturation(value)
 	var/inv = 1 - value
 	var/R = round(LUMA_R * inv, 0.001)
 	var/G = round(LUMA_G * inv, 0.001)
@@ -39,7 +39,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 /**
  * Exxagerates or removes colors.
  */
-/proc/color_matrix_saturation_percent(percent)
+proc/color_matrix_saturation_percent(percent)
 	if(percent == 0)
 		return color_matrix_identity()
 	percent = clamp(percent, -100, 100)
@@ -56,21 +56,21 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 /**
  * Greyscale matrix.
  */
-/proc/color_matrix_greyscale()
+proc/color_matrix_greyscale()
 	return list(LUMA_R, LUMA_R, LUMA_R, LUMA_G, LUMA_G, LUMA_G, LUMA_B, LUMA_B, LUMA_B)
 
 /**
  * Changes distance colors have from rgb(127,127,127) grey.
  * 1 is identity. 0 makes everything grey >1 blows out colors and greys.
  */
-/proc/color_matrix_contrast(value)
+proc/color_matrix_contrast(value)
 	var/add = (1 - value) / 2
 	return list(value,0,0,0, 0,value,0,0, 0,0,value,0, 0,0,0,1, add,add,add,0)
 
 /**
  * Exxagerates or removes brightness.
  */
-/proc/color_matrix_contrast_percent(percent)
+proc/color_matrix_contrast_percent(percent)
 	var/static/list/delta_index = list(
 		0,    0.01, 0.02, 0.04, 0.05, 0.06, 0.07, 0.08, 0.1,  0.11,
 		0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.20, 0.21, 0.22, 0.24,
@@ -108,7 +108,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
  */
 //
 //
-/proc/color_matrix_rotate_hue(angle)
+proc/color_matrix_rotate_hue(angle)
 	var/sin = sin(angle)
 	var/cos = cos(angle)
 	var/cos_inv_third = 0.333*(1-cos)
@@ -125,7 +125,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
  * Moves all colors angle degrees around the color wheel while maintaining intensity of the color and not affecting whites.
  * TODO: Need a version that only affects one color (ie shift red to blue but leave greens and blues alone)
  */
-/proc/color_matrix_rotation(angle)
+proc/color_matrix_rotation(angle)
 	if(angle == 0)
 		return color_matrix_identity()
 	angle = clamp(angle, -180, 180)
@@ -145,17 +145,17 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
  * These next three rotate values about one axis only.
  * x is the red axis, y is the green axis, z is the blue axis.
  */
-/proc/color_matrix_rotate_x(angle)
+proc/color_matrix_rotate_x(angle)
 	var/sinval = round(sin(angle), 0.001)
 	var/cosval = round(cos(angle), 0.001)
 	return list(1,0,0,0, 0,cosval,sinval,0, 0,-sinval,cosval,0, 0,0,0,1, 0,0,0,0)
 
-/proc/color_matrix_rotate_y(angle)
+proc/color_matrix_rotate_y(angle)
 	var/sinval = round(sin(angle), 0.001)
 	var/cosval = round(cos(angle), 0.001)
 	return list(cosval,0,-sinval,0, 0,1,0,0, sinval,0,cosval,0, 0,0,0,1, 0,0,0,0)
 
-/proc/color_matrix_rotate_z(angle)
+proc/color_matrix_rotate_z(angle)
 	var/sinval = round(sin(angle), 0.001)
 	var/cosval = round(cos(angle), 0.001)
 	return list(cosval,sinval,0,0, -sinval,cosval,0,0, 0,0,1,0, 0,0,0,1, 0,0,0,0)
@@ -163,7 +163,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 /**
  * Builds a color matrix that transforms the hue, saturation, and value, all in one operation.
  */
-/proc/color_matrix_hsv(hue, saturation, value)
+proc/color_matrix_hsv(hue, saturation, value)
 	hue = clamp(360 - hue, 0, 360)
 
 	// This is very much a rough approximation of hueshifting. This carries some artifacting, such as negative values that simply shouldn't exist, but it does get the job done, and that's what matters.
@@ -183,7 +183,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 /**
  * Returns a matrix addition of A with B.
  */
-/proc/color_matrix_add(list/A, list/B)
+proc/color_matrix_add(list/A, list/B)
 	if(!istype(A) || !istype(B))
 		return color_matrix_identity()
 	if(A.len != 20 || B.len != 20)
@@ -197,7 +197,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 /**
  * Force a matrix to be a full 20 value rgba matrix.
  */
-/proc/color_matrix_expand(list/M)
+proc/color_matrix_expand(list/M)
 	var/list/expanding = M.Copy()
 	. = expanding
 	switch(length(M))
@@ -225,7 +225,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
  *
  * todo: support rgb instead of rgba.
  */
-/proc/color_matrix_multiply(list/A, list/B)
+proc/color_matrix_multiply(list/A, list/B)
 	if(!istype(A) || !istype(B))
 		return color_matrix_identity()
 	if(A.len < 20)
@@ -246,19 +246,19 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
 /**
  * Assembles a color matrix, defaulting to identity.
  */
-/proc/construct_rgb_color_matrix(rr = 1, rg, rb, gr, gg = 1, gb, br, bg, bb = 1, cr, cg, cb)
+proc/construct_rgb_color_matrix(rr = 1, rg, rb, gr, gg = 1, gb, br, bg, bb = 1, cr, cg, cb)
 	return list(rr, rg, rb, gr, gg, gb, br, bg, bb, cr, cg, cb)
 
 /**
  * Assembles a color matrix, defaulting to identity.
  */
-/proc/construct_rgba_color_matrix(rr = 1, rg, rb, ra, gr, gg = 1, gb, ga, br, bg, bb = 1, ba, ar, ag, ab, aa = 1, cr, cg, cb, ca)
+proc/construct_rgba_color_matrix(rr = 1, rg, rb, ra, gr, gg = 1, gb, ga, br, bg, bb = 1, ba, ar, ag, ab, aa = 1, cr, cg, cb, ca)
 	return list(rr, rg, rb, ra, gr, gg, gb, ga, br, bg, bb, ba, ar, ag, ab, aa, cr, cg, cb, ca)
 
 /**
  * Assemble a color matrix from a rgb(a) string.
  */
-/proc/color_matrix_from_rgb(color)
+proc/color_matrix_from_rgb(color)
 	var/list/L1 = ReadRGB(color)
 	if(length(L1) == 3) // rgb
 		return construct_rgb_color_matrix(
@@ -278,7 +278,7 @@ list(0.393,0.349,0.272,0, 0.769,0.686,0.534,0, 0.189,0.168,0.131,0, 0,0,0,1, 0,0
  * Constructs a colored greyscale matrix.
  * WARNING: Bad math up ahead. please redo this proc.
  */
-/proc/rgba_auto_greyscale_matrix(rgba_string)
+proc/rgba_auto_greyscale_matrix(rgba_string)
 	return color_matrix_multiply(
 		color_matrix_greyscale(),
 		color_matrix_from_rgb(rgba_string)

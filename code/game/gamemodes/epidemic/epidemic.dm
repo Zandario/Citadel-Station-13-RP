@@ -1,4 +1,4 @@
-/datum/game_mode/epidemic
+datum/game_mode/epidemic
 	name = "Epidemic"
 	config_tag = "epidemic"
 	required_players = 1
@@ -14,7 +14,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
-/datum/game_mode/epidemic/pre_setup()
+datum/game_mode/epidemic/pre_setup()
 	doctors = 0
 	for(var/mob/new_player/player in world)
 		if(player.mind.assigned_role in list("Chief Medical Officer","Medical Doctor"))
@@ -26,14 +26,14 @@
 
 	return 1
 
-/datum/game_mode/epidemic/proc/cruiser_seconds()
+datum/game_mode/epidemic/proc/cruiser_seconds()
 	return (cruiser_arrival - world.time) / 10
 
 ////////////////////// INTERCEPT ////////////////////////
 /// OVERWRITE THE INTERCEPT WITH A QUARANTINE WARNING ///
 /////////////////////////////////////////////////////////
 
-/datum/game_mode/epidemic/send_intercept()
+datum/game_mode/epidemic/send_intercept()
 	var/intercepttext = "<FONT size = 3 color='red'><B>CONFIDENTIAL REPORT</B></FONT><HR>"
 	virus_name = "X-[rand(1,99)]&trade;"
 	intercepttext += "<B>Warning: Pathogen [virus_name] has been detected on [station_name()].</B><BR><BR>"
@@ -57,7 +57,7 @@
 		M.add_ion_law(extra_law)
 		to_chat(M, "<span class='danger'>[extra_law]</span>")
 
-/datum/game_mode/epidemic/proc/announce_to_kill_crew()
+datum/game_mode/epidemic/proc/announce_to_kill_crew()
 	var/intercepttext = "<FONT size = 3 color='red'><B>CONFIDENTIAL REPORT</B></FONT><HR>"
 	intercepttext += "<FONT size = 2;color='red'><B>PATHOGEN [virus_name] IS STILL PRESENT ON [station_name()]. IN COMPLIANCE WITH NANOTRASEN LAWS FOR INTERSTELLAR SAFETY, EMERGENCY SAFETY MEASURES HAVE BEEN AUTHORIZED. ALL INFECTED CREW MEMBERS ON [station_name()] ARE TO BE NEUTRALIZED AND DISPOSED OF IN A MANNER THAT WILL DESTROY ALL TRACES OF THE PATHOGEN. FAILURE TO COMPLY WILL RESULT IN IMMEDIATE DESTRUCTION OF [station_name].</B></FONT><BR>"
 	intercepttext += "<B>CRUISER WILL ARRIVE IN [round(cruiser_seconds()/60)] MINUTES</B><BR>"
@@ -66,7 +66,7 @@
 	SEND_SOUND(world, sound('sound/AI/commandreport.ogg'))
 
 
-/datum/game_mode/epidemic/post_setup()
+datum/game_mode/epidemic/post_setup()
 	// make sure viral outbreak events don't happen on this mode
 	EventTypes.Remove(/datum/event/viralinfection)
 
@@ -118,7 +118,7 @@
 	..()
 
 
-/datum/game_mode/epidemic/process(delta_time)
+datum/game_mode/epidemic/process(delta_time)
 	if(stage == 1 && cruiser_seconds() < 60 * 30)
 		announce_to_kill_crew()
 		stage = 2
@@ -139,7 +139,7 @@
 //////////////////////////////////////
 //Checks if the revs have won or not//
 //////////////////////////////////////
-/datum/game_mode/epidemic/check_win()
+datum/game_mode/epidemic/check_win()
 	var/alive = 0
 	var/sick = 0
 	for(var/mob/living/carbon/human/H in world)
@@ -155,7 +155,7 @@
 ///////////////////////////////
 //Checks if the round is over//
 ///////////////////////////////
-/datum/game_mode/epidemic/check_finished()
+datum/game_mode/epidemic/check_finished()
 	if(finished != 0)
 		return 1
 	else
@@ -164,7 +164,7 @@
 ///////////////////////////////////////////
 ///Handle crew failure(station explodes)///
 ///////////////////////////////////////////
-/datum/game_mode/epidemic/proc/crew_lose()
+datum/game_mode/epidemic/proc/crew_lose()
 	SSticker.mode:explosion_in_progress = 1
 	for(var/mob/M in world)
 		if(M.client)
@@ -187,7 +187,7 @@
 //////////////////////////////////////////////////////////////////////
 //Announces the end of the game with all relavent information stated//
 //////////////////////////////////////////////////////////////////////
-/datum/game_mode/epidemic/declare_completion()
+datum/game_mode/epidemic/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","win - epidemic cured")
 		to_chat(world, "<font size = 3><span class='danger'> The virus outbreak was contained! The crew wins!</span></font>")

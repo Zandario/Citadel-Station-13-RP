@@ -2,7 +2,7 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/biogenerator
+obj/item/circuitboard/biogenerator
 	name = T_BOARD("biogenerator")
 	build_path = /obj/machinery/biogenerator
 	board_type = new /datum/frame/frame_types/machine

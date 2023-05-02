@@ -5,7 +5,7 @@
  * used in frames to construct arbitrary objects with arbitrary components.
  * this will usually be /obj/machinery, but other things are possible.
  */
-/obj/item/circuitboard
+obj/item/circuitboard
 	name = "circuit board"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
@@ -38,7 +38,7 @@
  *
  * put your synchronization code in here.
  */
-/obj/item/circuitboard/proc/after_construct(atom/A)
+obj/item/circuitboard/proc/after_construct(atom/A)
 	return
 
 /**
@@ -47,11 +47,11 @@
  * put your synchronization code in here.
  *
  */
-/obj/item/circuitboard/proc/after_deconstruct(atom/A)
+obj/item/circuitboard/proc/after_deconstruct(atom/A)
 	return
 
 /// Should be called from the constructor of any machine to automatically populate the default parts.
-/obj/item/circuitboard/proc/apply_default_parts(obj/machinery/M)
+obj/item/circuitboard/proc/apply_default_parts(obj/machinery/M)
 	if(LAZYLEN(M.component_parts))
 		// This really shouldn't happen. If it somehow does, print out a stack trace and gracefully handle it.
 		stack_trace("apply_defauly_parts called on machine that already had component_parts: [M]")
@@ -94,7 +94,7 @@
 
 	M.RefreshParts()
 
-/obj/item/circuitboard/examine(mob/user)
+obj/item/circuitboard/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(req_components))
 		var/list/nice_list = list()

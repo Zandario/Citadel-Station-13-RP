@@ -6,10 +6,10 @@
  * For example, change /datum/unit_test/focus_only/invalid_overlays to TEST_FOCUS(/datum/unit_test/focus_only/invalid_overlays),
  * and you will only test the check for invalid overlays in appearance building.
  */
-/datum/unit_test/focus_only
+datum/unit_test/focus_only
 
 /// Checks that every overlay passed into build_appearance_list exists in the icon.
-/datum/unit_test/focus_only/invalid_overlays
+datum/unit_test/focus_only/invalid_overlays
 
 /// Checks that every icon sent to the research_designs spritesheet is valid.
 // /datum/unit_test/focus_only/invalid_research_designs
@@ -18,4 +18,4 @@
 // /datum/unit_test/focus_only/invalid_vending_machine_icon_states
 
 /// Checks that smoothing_groups and canSmoothWith are properly sorted in /atom/Initialize.
-/datum/unit_test/focus_only/sorted_smoothing_groups
+datum/unit_test/focus_only/sorted_smoothing_groups

@@ -1,4 +1,4 @@
-/obj/machinery/button
+obj/machinery/button
 	name = "button"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
@@ -10,22 +10,22 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/button/attack_ai(mob/user)
+obj/machinery/button/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/button/attackby(obj/item/W, mob/user)
+obj/machinery/button/attackby(obj/item/W, mob/user)
 	return attack_hand(user)
 
-/obj/machinery/button/attack_hand(obj/item/W, mob/user)
+obj/machinery/button/attack_hand(obj/item/W, mob/user)
 	if(..())
 		return TRUE
 	playsound(src, 'sound/machines/button.ogg', 100, TRUE)
 
-/obj/machinery/button/windowtint/multitint
+obj/machinery/button/windowtint/multitint
 	name = "tint control"
 	desc = "A remote control switch for polarized windows and doors."
 
-/obj/machinery/button/windowtint/multitint/toggle_tint()
+obj/machinery/button/windowtint/multitint/toggle_tint()
 	use_power(5)
 	active = !active
 	update_icon()

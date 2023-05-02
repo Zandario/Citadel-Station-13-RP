@@ -1,4 +1,4 @@
-/obj/machinery/computer/shuttle
+obj/machinery/computer/shuttle
 	name = "Shuttle"
 	desc = "For shuttle control."
 	icon_keyboard = "tech_key"
@@ -8,7 +8,7 @@
 	var/list/authorized = list(  )
 
 
-/obj/machinery/computer/shuttle/attackby(obj/item/card/W, mob/user)
+obj/machinery/computer/shuttle/attackby(obj/item/card/W, mob/user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if((!( istype(W, /obj/item/card) ) || !( SSticker ) || SSemergencyshuttle.location() || !( user )))

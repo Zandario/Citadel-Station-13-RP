@@ -1,4 +1,4 @@
-/obj/item/chainsaw
+obj/item/chainsaw
 	name = "chainsaw"
 	desc = "A motorized belt assembly that pulls a specialized chain at high speeds to create an effective cutting implement. Vroom vroom."
 	icon = 'icons/obj/weapons.dmi'
@@ -13,7 +13,7 @@
 	var/active_force = 55
 	var/inactive_force = 10
 
-/obj/item/chainsaw/Initialize(mapload)
+obj/item/chainsaw/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
@@ -21,11 +21,11 @@
 	R.add_reagent("fuel", max_fuel)
 	START_PROCESSING(SSobj, src)
 
-/obj/item/chainsaw/Destroy()
+obj/item/chainsaw/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/chainsaw/proc/turnOn(mob/user as mob)
+obj/item/chainsaw/proc/turnOn(mob/user as mob)
 	to_chat(user, "You start pulling the string on \the [src].")
 	//visible_message("[usr] starts pulling the string on the [src].")
 
@@ -48,7 +48,7 @@
 		else
 			to_chat(user, "You fumble with the string.")
 
-/obj/item/chainsaw/proc/turnOff(mob/user as mob)
+obj/item/chainsaw/proc/turnOff(mob/user as mob)
 	to_chat(user, "You switch the gas nozzle on the chainsaw, turning it off.")
 	attack_verb = list("bluntly hit", "beat", "knocked")
 	playsound(user, 'sound/weapons/chainsaw_turnoff.ogg',40,1)
@@ -58,7 +58,7 @@
 	on = 0
 	update_icon()
 
-/obj/item/chainsaw/attack_self(mob/user)
+obj/item/chainsaw/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -67,7 +67,7 @@
 	else
 		turnOff(user)
 
-/obj/item/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+obj/item/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
 	if(on)
@@ -94,7 +94,7 @@
 		else
 			to_chat(usr, "<span class='notice'>Don't move while you're refilling the [src].</span>")
 
-/obj/item/chainsaw/process(delta_time)
+obj/item/chainsaw/process(delta_time)
 	if(!on)
 		return
 
@@ -105,20 +105,20 @@
 		to_chat(usr, "\The [src] sputters to a stop!")
 		turnOff()
 
-/obj/item/chainsaw/proc/get_fuel()
+obj/item/chainsaw/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
-/obj/item/chainsaw/examine(mob/user)
+obj/item/chainsaw/examine(mob/user)
 	. = ..()
 	if(max_fuel)
 		. += "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>"
 
-/obj/item/chainsaw/suicide_act(mob/user)
+obj/item/chainsaw/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	to_chat(viewers(user), "<span class='danger'>[user] is lying down and pulling the chainsaw into [TU.him], it looks like [TU.he] [TU.is] trying to commit suicide!</span>")
 	return(BRUTELOSS)
 
-/obj/item/chainsaw/update_icon()
+obj/item/chainsaw/update_icon()
 	if(on)
 		icon_state = "chainsaw1"
 		item_state = "chainsaw1"
@@ -126,7 +126,7 @@
 		icon_state = "chainsaw0"
 		item_state = "chainsaw0"
 
-/obj/item/chainsaw/chainsword
+obj/item/chainsaw/chainsword
 	name = "chainsaw sword"
 	desc = "The whirring assembly normally found in a chainsaw, now affixed to a sword-hilt. This weapon requires extensive training to wield effectively."
 	icon_state = "chainsword0"
@@ -141,7 +141,7 @@
 	hitsound = 'sound/weapons/chainsaw_attack.ogg'
 	armor_penetration = 30
 
-/obj/item/chainsaw/chainsword/turnOn(mob/user as mob)
+obj/item/chainsaw/chainsword/turnOn(mob/user as mob)
 	to_chat(user, "You begin pulling the throttle on \the [src].")
 	//visible_message("[usr] starts pulling the throttle on the [src].")
 
@@ -164,7 +164,7 @@
 		else
 			to_chat(user, "Your finger slips off of the throttle.")
 
-/obj/item/chainsaw/chainsword/turnOff(mob/user as mob)
+obj/item/chainsaw/chainsword/turnOff(mob/user as mob)
 	to_chat(user, "You release the trigger on the chainsword, turning it off.")
 	attack_verb = list("bluntly hit", "beat", "knocked")
 	playsound(user, 'sound/weapons/chainsaw_turnoff.ogg',40,1)
@@ -174,7 +174,7 @@
 	on = 0
 	update_icon()
 
-/obj/item/chainsaw/chainsword/update_icon()
+obj/item/chainsaw/chainsword/update_icon()
 	if(on)
 		icon_state = "chainsword1"
 		item_state = "chainsword1"

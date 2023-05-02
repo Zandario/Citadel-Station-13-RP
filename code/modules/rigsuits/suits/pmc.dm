@@ -1,7 +1,7 @@
-/obj/item/clothing/head/helmet/space/rig/pmc
+obj/item/clothing/head/helmet/space/rig/pmc
 	light_overlay = "helmet_light_dual"
 
-/datum/armor/rig/pmc
+datum/armor/rig/pmc
 	melee = 0.6
 	bullet = 0.5
 	laser = 0.35
@@ -10,7 +10,7 @@
 	bio = 1.0
 	rad = 0.95
 
-/obj/item/rig/pmc
+obj/item/rig/pmc
 	name = "PMC hardsuit control module"
 	desc = "A suit worn by private military contractors. Armoured and space ready."
 	suit_type = "PMC"
@@ -44,13 +44,13 @@
 		/obj/item/bluespace_radio,
 	)
 
-/obj/item/rig/pmc/commander
+obj/item/rig/pmc/commander
 	name = "PMC-C hardsuit control module"
 	desc = "A suit worn by private military contractors. Armoured and space ready."
 	suit_type = "PMC commander"
 	icon_state = "pmc_commandergrey_rig"
 
-/obj/item/rig/pmc/commander/grey/equipped
+obj/item/rig/pmc/commander/grey/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
@@ -58,10 +58,10 @@
 		/obj/item/rig_module/datajack,
 		)
 
-/obj/item/rig/pmc/commander/green
+obj/item/rig/pmc/commander/green
 	icon_state = "pmc_commandergreen_rig"
 
-/obj/item/rig/pmc/commander/green/equipped
+obj/item/rig/pmc/commander/green/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
@@ -69,10 +69,10 @@
 		/obj/item/rig_module/datajack,
 		)
 
-/datum/armor/rig/pmc/engineer
+datum/armor/rig/pmc/engineer
 	rad = 1.0
 
-/obj/item/rig/pmc/engineer
+obj/item/rig/pmc/engineer
 	name = "PMC-E suit control module"
 	desc = "A suit worn by private military contractors. This one is setup for engineering. Armoured and space ready."
 	suit_type = "PMC engineer"
@@ -80,7 +80,7 @@
 	armor_type = /datum/armor/rig/pmc/engineer
 	siemens_coefficient = 0
 
-/obj/item/rig/pmc/engineer/grey/equipped
+obj/item/rig/pmc/engineer/grey/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
@@ -89,10 +89,10 @@
 		/obj/item/rig_module/device/rcd
 		)
 
-/obj/item/rig/pmc/engineer/green
+obj/item/rig/pmc/engineer/green
 	icon_state = "pmc_engineergreen_rig"
 
-/obj/item/rig/pmc/engineer/green/equipped
+obj/item/rig/pmc/engineer/green/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
@@ -101,13 +101,13 @@
 		/obj/item/rig_module/device/rcd
 		)
 
-/obj/item/rig/pmc/medical
+obj/item/rig/pmc/medical
 	name = "PMC-M suit control module"
 	desc = "A suit worn by private military contractors. This one is setup for medical. Armoured and space ready."
 	suit_type = "PMC medic"
 	icon_state = "pmc_medicalgrey_rig"
 
-/obj/item/rig/pmc/medical/grey/equipped
+obj/item/rig/pmc/medical/grey/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
@@ -116,10 +116,10 @@
 		/obj/item/rig_module/chem_dispenser/injector/advanced
 		)
 
-/obj/item/rig/pmc/medical/green
+obj/item/rig/pmc/medical/green
 	icon_state = "pmc_medicalgreen_rig"
 
-/obj/item/rig/pmc/medical/green/equipped
+obj/item/rig/pmc/medical/green/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
@@ -128,13 +128,13 @@
 		/obj/item/rig_module/chem_dispenser/injector/advanced
 		)
 
-/obj/item/rig/pmc/security
+obj/item/rig/pmc/security
 	name = "PMC-S suit control module"
 	desc = "A suit worn by private military contractors. This one is setup for security. Armoured and space ready."
 	suit_type = "PMC security"
 	icon_state = "pmc_securitygrey_rig"
 
-/obj/item/rig/pmc/security/grey/equipped
+obj/item/rig/pmc/security/grey/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
@@ -142,10 +142,10 @@
 		/obj/item/rig_module/mounted/egun,
 		)
 
-/obj/item/rig/pmc/security/green
+obj/item/rig/pmc/security/green
 	icon_state = "pmc_securitygreen_rig"
 
-/obj/item/rig/pmc/security/green/equipped
+obj/item/rig/pmc/security/green/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,

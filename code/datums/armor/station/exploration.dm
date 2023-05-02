@@ -1,4 +1,4 @@
-/datum/armor/exploration/soft
+datum/armor/exploration/soft
 	melee = 0.35
 	bullet = 0.2
 	laser = 0.25
@@ -7,7 +7,7 @@
 	bio = 0.5
 	rad = 0.45
 
-/datum/armor/exploration/space
+datum/armor/exploration/space
 	melee = 0.4
 	bullet = 0.2
 	laser = 0.25
@@ -16,7 +16,7 @@
 	bio = 0.7
 	rad = 0.7
 
-/datum/armor/exploration/space/pilot
+datum/armor/exploration/space/pilot
 	melee = 0.3
 	bullet = 0.1
 	laser = 0.25
@@ -25,7 +25,7 @@
 	bio = 1.0
 	rad = 1.0
 
-/datum/armor/exploration/space/pathfinder
+datum/armor/exploration/space/pathfinder
 	melee = 0.5
 	bullet = 0.4
 	laser = 0.4

@@ -1,5 +1,5 @@
 // TODO: port to modern vehicles. If you're in this file, STOP FUCKING WITH IT AND PORT IT OVER.
-/obj/vehicle_old/train/engine/quadbike //It's a train engine, so it can tow trailers.
+obj/vehicle_old/train/engine/quadbike //It's a train engine, so it can tow trailers.
 	name = "electric all terrain vehicle"
 	desc = "A ridable electric ATV designed for all terrain. Except space."
 	icon = 'icons/obj/vehicles_64x64.dmi'
@@ -26,22 +26,22 @@
 
 	var/outdoors_speed_mod = 0.7 //The general 'outdoors' speed. I.E., the general difference you'll be at when driving outside.
 
-/obj/vehicle_old/train/engine/quadbike/built
+obj/vehicle_old/train/engine/quadbike/built
 	cell = null
 
-/obj/vehicle_old/train/engine/quadbike/random/Initialize(mapload)
+obj/vehicle_old/train/engine/quadbike/random/Initialize(mapload)
 	. = ..()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 	update_icon()
 
-/obj/item/key/quadbike
+obj/item/key/quadbike
 	name = "key"
 	desc = "A keyring with a small steel key, and a blue fob reading \"ZOOM!\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "quad_keys"
 	w_class = ITEMSIZE_TINY
 
-/obj/vehicle_old/train/engine/quadbike/Move(var/turf/destination)
+obj/vehicle_old/train/engine/quadbike/Move(var/turf/destination)
 	var/turf/T = get_turf(src)
 	..() //Move it move it, so we can test it test it.
 	if(T != get_turf(src) && !istype(destination, T.type))	//Did we move at all, and are we changing turf types?
@@ -69,7 +69,7 @@
 			pixel_y = 0
 
 
-/obj/vehicle_old/train/engine/quadbike/attackby(obj/item/W as obj, mob/user as mob)
+obj/vehicle_old/train/engine/quadbike/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool) && open)
 		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
 		if(new_paint)
@@ -78,7 +78,7 @@
 			return
 	..()
 
-/obj/vehicle_old/train/engine/quadbike/update_icon()
+obj/vehicle_old/train/engine/quadbike/update_icon()
 	..()
 	cut_overlays()
 	var/list/overlays_to_add = list()
@@ -114,7 +114,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/vehicle_old/train/engine/quadbike/Bump(atom/Obstacle)
+obj/vehicle_old/train/engine/quadbike/Bump(atom/Obstacle)
 	if(!istype(Obstacle, /atom/movable))
 		return
 	var/atom/movable/A = Obstacle
@@ -144,7 +144,7 @@
 			add_attack_logs(D,M,"Ran over with [src.name]")
 
 
-/obj/vehicle_old/train/engine/quadbike/RunOver(var/mob/living/M)
+obj/vehicle_old/train/engine/quadbike/RunOver(var/mob/living/M)
 	..()
 	var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 	if(!emagged)
@@ -158,7 +158,7 @@
  * Trailer bits and bobs.
  */
 
-/obj/vehicle_old/train/trolley/trailer
+obj/vehicle_old/train/trolley/trailer
 	name = "all terrain trailer"
 	icon = 'icons/obj/vehicles_64x64.dmi'
 	icon_state = "quadtrailer"
@@ -176,11 +176,11 @@
 
 	paint_color = "#ffffff"
 
-/obj/vehicle_old/train/trolley/trailer/random/Initialize(mapload)
+obj/vehicle_old/train/trolley/trailer/random/Initialize(mapload)
 	. = ..()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 
-/obj/vehicle_old/train/trolley/trailer/proc/update_load()
+obj/vehicle_old/train/trolley/trailer/proc/update_load()
 	if(load)
 		var/y_offset = load_offset_y
 		if(istype(load, /mob/living))
@@ -190,11 +190,11 @@
 		return 1
 	return 0
 
-/obj/vehicle_old/train/trolley/trailer/Initialize(mapload)
+obj/vehicle_old/train/trolley/trailer/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/vehicle_old/train/trolley/trailer/Move()
+obj/vehicle_old/train/trolley/trailer/Move()
 	..()
 	if(lead)
 		switch(dir) //Due to being a Big Boy sprite, it has to have special pixel shifting to look 'normal'.
@@ -215,7 +215,7 @@
 		pixel_y = initial(pixel_y)
 	update_load()
 
-/obj/vehicle_old/train/trolley/trailer/Bump(atom/Obstacle)
+obj/vehicle_old/train/trolley/trailer/Bump(atom/Obstacle)
 	if(!istype(Obstacle, /atom/movable))
 		return
 	var/atom/movable/A = Obstacle
@@ -242,7 +242,7 @@
 			to_chat(D, "<span class='danger'>You hit [M]!</span>")
 			add_attack_logs(D,M,"Ran over with [src.name]")
 
-/obj/vehicle_old/train/trolley/trailer/update_icon()
+obj/vehicle_old/train/trolley/trailer/update_icon()
 	..()
 	cut_overlay()
 
@@ -250,7 +250,7 @@
 	Bodypaint.color = paint_color
 	add_overlay(Bodypaint)
 
-/obj/vehicle_old/train/trolley/trailer/attackby(obj/item/W as obj, mob/user as mob)
+obj/vehicle_old/train/trolley/trailer/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool) && open)
 		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
 		if(new_paint)

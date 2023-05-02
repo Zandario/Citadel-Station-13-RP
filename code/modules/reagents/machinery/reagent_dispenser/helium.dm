@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers/he3
+obj/structure/reagent_dispensers/he3
 	name = "helium tank"
 	desc = "A tank of helium-3. Wait, WHAT?"
 	icon = 'icons/obj/objects.dmi'

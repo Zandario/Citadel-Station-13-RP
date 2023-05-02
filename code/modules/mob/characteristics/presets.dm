@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(characteristics_presets)
  *
  * use typepaths whenever possible for compile time!
  */
-/proc/resolve_characteristics_preset(datum/characteristic_preset/typepath_or_instance)
+proc/resolve_characteristics_preset(datum/characteristic_preset/typepath_or_instance)
 	RETURN_TYPE(/datum/characteristic_preset)
 	if(istype(typepath_or_instance))
 		return typepath_or_instance
@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(characteristics_presets)
 /**
  * holds presets for skills/whatont
  */
-/datum/characteristic_preset
+datum/characteristic_preset
 	/// name for debugging ; optional
 	var/name
 
@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(characteristics_presets)
 	/// talent typepaths or ids associated to lists (or null) of what to pass in for arglist in talent add.
 	var/list/talents
 
-/datum/characteristic_preset/New(list/skills = list(), list/stats = list(), list/talents = list())
+datum/characteristic_preset/New(list/skills = list(), list/stats = list(), list/talents = list())
 	src.skills = skills.Copy()
 	src.stats = stats.Copy()
 	src.talents = talents.Copy()
@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(characteristics_presets)
 /**
  * flatten everything into ids
  */
-/datum/characteristic_preset/proc/transform()
+datum/characteristic_preset/proc/transform()
 	var/datum/characteristic_skill/skillpath_or_id
 	var/datum/characteristic_stat/statpath_or_id
 	var/datum/characteristic_talent/talentpath_or_id
@@ -52,4 +52,3 @@ GLOBAL_LIST_EMPTY(characteristics_presets)
 		talentpath_or_id = talents[i]
 		if(ispath(talentpath_or_id))
 			talents[i] = initial(talentpath_or_id.id)
-

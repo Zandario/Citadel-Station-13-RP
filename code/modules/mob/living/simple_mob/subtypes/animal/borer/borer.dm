@@ -2,7 +2,7 @@
 // IMO they're a relic of several ages we're long past, their code and their design showing this plainly, but removing them would
 // make certain people Unhappy so here we are. They need a complete redesign but thats beyond the scope of the rewrite.
 
-/datum/category_item/catalogue/fauna/borer
+datum/category_item/catalogue/fauna/borer
 	name = "Cortical Borer"
 	desc = "Cortical Borers are one of the many parasitic life forms \
 	encountered on the Frontier. Often treated - justifiably - with disgust \
@@ -15,7 +15,7 @@
 	screening for infested hosts."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/borer
+mob/living/simple_mob/animal/borer
 	name = "cortical borer"
 	desc = "A small, quivering sluglike creature."
 	icon_state = "brainslug"
@@ -52,15 +52,15 @@
 	var/used_dominate							// world.time when the dominate power was last used.
 
 
-/mob/living/simple_mob/animal/borer/roundstart
+mob/living/simple_mob/animal/borer/roundstart
 	roundstart = TRUE
 
-/mob/living/simple_mob/animal/borer/Login()
+mob/living/simple_mob/animal/borer/Login()
 	..()
 	if(mind)
 		borers.add_antagonist(mind)
 
-/mob/living/simple_mob/animal/borer/Initialize(mapload)
+mob/living/simple_mob/animal/borer/Initialize(mapload)
 	add_language("Cortical Link")
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -73,7 +73,7 @@
 
 	return ..()
 
-/mob/living/simple_mob/animal/borer/handle_special()
+mob/living/simple_mob/animal/borer/handle_special()
 	if(host && !stat && !host.stat)
 		// Handle docility.
 		if(host.reagents.has_reagent("sugar") && !docile)
@@ -105,12 +105,12 @@
 			if(prob(host.brainloss/20))
 				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
 
-/mob/living/simple_mob/animal/borer/statpanel_data(client/C)
+mob/living/simple_mob/animal/borer/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		STATPANEL_DATA_ENTRY("Chemicals", "[chemicals]")
 
-/mob/living/simple_mob/animal/borer/proc/detatch()
+mob/living/simple_mob/animal/borer/proc/detatch()
 	if(!host || !controlling)
 		return
 
@@ -164,7 +164,7 @@
 	qdel(host_brain)
 
 
-/mob/living/simple_mob/animal/borer/proc/leave_host()
+mob/living/simple_mob/animal/borer/proc/leave_host()
 	if(!host)
 		return
 
@@ -185,14 +185,14 @@
 	host.machine = null
 	host = null
 
-/mob/living/simple_mob/animal/borer/proc/request_player()
+mob/living/simple_mob/animal/borer/proc/request_player()
 	var/datum/ghost_query/Q = new /datum/ghost_query/borer()
 	var/list/winner = Q.query() // This will sleep the proc for awhile.
 	if(winner.len)
 		var/mob/observer/dead/D = winner[1]
 		transfer_personality(D)
 
-/mob/living/simple_mob/animal/borer/proc/transfer_personality(mob/candidate)
+mob/living/simple_mob/animal/borer/proc/transfer_personality(mob/candidate)
 	if(!candidate || !candidate.mind)
 		return
 
@@ -209,11 +209,11 @@
 	your host and your eventual spawn safe and warm."))
 	to_chat(src, "You can speak to your victim with <b>say</b>, to other borers with <b>say :x</b>, and use your Abilities tab to access powers.")
 
-/mob/living/simple_mob/animal/borer/cannot_use_vents()
+mob/living/simple_mob/animal/borer/cannot_use_vents()
 	return
 
 // This is awful but its literally say code.
-/mob/living/simple_mob/animal/borer/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
+mob/living/simple_mob/animal/borer/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	message = sanitize(message)
 	message = capitalize(message)
 

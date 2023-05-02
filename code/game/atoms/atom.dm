@@ -4,7 +4,7 @@
  * Lots and lots of functionality lives here, although in general we are striving to move
  * as much as possible to the components/elements system
  */
-/atom
+atom
 	layer = TURF_LAYER
 
 	//? Core
@@ -181,7 +181,7 @@
  *
  * We also generate a tag here if the DF_USE_TAG flag is set on the atom
  */
-/atom/New(loc, ...)
+atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
 		world.preloader_load(src)
@@ -234,7 +234,7 @@
  * !Note: the following functions don't call the base for optimization and must copypasta handling:
  * * [/turf/proc/Initialize]
  */
-/atom/proc/Initialize(mapload, ...)
+atom/proc/Initialize(mapload, ...)
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	if(atom_flags & ATOM_INITIALIZED)
@@ -270,7 +270,7 @@
  * that all atoms will actually exist in the "WORLD" at this time and that all their Intialization
  * code has been run
  */
-/atom/proc/LateInitialize()
+atom/proc/LateInitialize()
 	set waitfor = FALSE
 
 /**
@@ -283,7 +283,7 @@
  * * clears overlays and priority overlays
  * * clears the light object
  */
-/atom/Destroy(force)
+atom/Destroy(force)
 	if(alternate_appearances)
 		for(var/current_alternate_appearance in alternate_appearances)
 			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = alternate_appearances[current_alternate_appearance]
@@ -305,39 +305,39 @@
 
 	return ..()
 
-/atom/proc/reveal_blood()
+atom/proc/reveal_blood()
 	return
 
 /// Return flags that should be added to the viewer's sight var.
 // Otherwise return a negative number to indicate that the view should be cancelled.
-/atom/proc/check_eye(user as mob)
+atom/proc/check_eye(user as mob)
 	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
 		return 0
 	return -1
 
 /// Convenience proc to see if a container is open for chemistry handling.
-/atom/proc/is_open_container()
+atom/proc/is_open_container()
 	return atom_flags & OPENCONTAINER
 
 ///Is this atom within 1 tile of another atom
-/atom/proc/HasProximity(atom/movable/proximity_check_mob as mob|obj)
+atom/proc/HasProximity(atom/movable/proximity_check_mob as mob|obj)
 	return
 
-/atom/proc/emp_act(var/severity)
+atom/proc/emp_act(var/severity)
 	// todo: SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
 
 
-/atom/proc/bullet_act(obj/projectile/P, def_zone)
+atom/proc/bullet_act(obj/projectile/P, def_zone)
 	P.on_hit(src, 0, def_zone)
 	. = 0
 
 // Called when a blob expands onto the tile the atom occupies.
-/atom/proc/blob_act()
+atom/proc/blob_act()
 	return
 
 ///Return true if we're inside the passed in atom
-/atom/proc/in_contents_of(container)//can take class or object instance as argument
+atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
 		if(istype(src.loc, container))
 			return TRUE
@@ -354,7 +354,7 @@
  *
  * RETURNS: list of found atoms
  */
-/atom/proc/search_contents_for(path,list/filter_path=null)
+atom/proc/search_contents_for(path,list/filter_path=null)
 	var/list/found = list()
 	for(var/atom/A in src)
 		if(istype(A, path))
@@ -369,7 +369,7 @@
 			found += A.search_contents_for(path,filter_path)
 	return found
 
-/atom/proc/get_examine_name(mob/user)
+atom/proc/get_examine_name(mob/user)
 	. = "\a <b>[src]</b>"
 	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
 
@@ -387,7 +387,7 @@
 		. = override.Join("")
 
 /// Generate the full examine string of this atom (including icon for goonchat)
-/atom/proc/get_examine_string(mob/user, thats = FALSE)
+atom/proc/get_examine_string(mob/user, thats = FALSE)
 	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
 
 /**
@@ -396,12 +396,12 @@
  * Arguments:
  * * user - The user who is doing the examining.
  */
-/atom/proc/get_id_examine_strings(mob/user)
+atom/proc/get_id_examine_strings(mob/user)
 	. = list()
 	return
 
 /// Used to insert text after the name but before the description in examine()
-/atom/proc/get_name_chaser(mob/user, list/name_chaser = list())
+atom/proc/get_name_chaser(mob/user, list/name_chaser = list())
 	return name_chaser
 
 /**
@@ -412,7 +412,7 @@
  *
  * Produces a signal [COMSIG_PARENT_EXAMINE]
  */
-/atom/proc/examine(mob/user)
+atom/proc/examine(mob/user)
 	var/examine_string = get_examine_string(user, thats = TRUE)
 	if(examine_string)
 		. = list("[examine_string].")
@@ -459,7 +459,7 @@
  *
  * Produces a signal [COMSIG_PARENT_EXAMINE_MORE]
  */
-/atom/proc/examine_more(mob/user)
+atom/proc/examine_more(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	RETURN_TYPE(/list)
 
@@ -469,21 +469,21 @@
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
-/atom/proc/relaymove()
+atom/proc/relaymove()
 	return
 
-/atom/proc/relaymove_from_contents(mob/user, direction)
+atom/proc/relaymove_from_contents(mob/user, direction)
 	return relaymove(user, direction)
 
 // Called to set the atom's density and used to add behavior to density changes.
-/atom/proc/set_density(var/new_density)
+atom/proc/set_density(var/new_density)
 	if(density == new_density)
 		return FALSE
 	density = !!new_density // Sanitize to be strictly 0 or 1
 	return TRUE
 
 // Called to set the atom's invisibility and usd to add behavior to invisibility changes.
-/atom/proc/set_invisibility(var/new_invisibility)
+atom/proc/set_invisibility(var/new_invisibility)
 	if(invisibility == new_invisibility)
 		return FALSE
 	invisibility = new_invisibility
@@ -496,7 +496,7 @@
  * The wrapper takes care of the [COMSIG_ATOM_EX_ACT] signal.
  * as well as calling [/atom/proc/contents_explosion].
  */
-/atom/proc/legacy_ex_act(severity, target)
+atom/proc/legacy_ex_act(severity, target)
 	set waitfor = FALSE
 
 /**
@@ -515,31 +515,31 @@
  *
  * @return power after falloff (e.g. hit with 30 power, return 20 to apply 10 falloff)
  */
-/atom/proc/ex_act(power, dir, datum/automata/wave/explosion/E)
+atom/proc/ex_act(power, dir, datum/automata/wave/explosion/E)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, power, dir, E)
 	return power
 
 // todo: this really needs to be refactored
-/atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
+atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return -1
 
-/atom/proc/fire_act()
+atom/proc/fire_act()
 	return
 
 // Returns an assoc list of RCD information.
 // Example would be: list(RCD_VALUE_MODE = RCD_DECONSTRUCT, RCD_VALUE_DELAY = 50, RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 4)
 // This occurs before rcd_act() is called, and it won't be called if it returns FALSE.
-/atom/proc/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+atom/proc/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	return FALSE
 
-/atom/proc/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+atom/proc/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	return
 
-/atom/proc/melt()
+atom/proc/melt()
 	return
 
-/atom/proc/add_hiddenprint(mob/living/M as mob)
+atom/proc/add_hiddenprint(mob/living/M as mob)
 	if(isnull(M)) return
 	if(isnull(M.key)) return
 	if (ishuman(M))
@@ -562,7 +562,7 @@
 			src.fingerprintslast = M.key
 	return
 
-/atom/proc/add_fingerprint(mob/M, ignoregloves, obj/item/tool)
+atom/proc/add_fingerprint(mob/M, ignoregloves, obj/item/tool)
 	if(isnull(M))
 		return
 	if(isAI(M))
@@ -672,7 +672,7 @@
 	return
 
 
-/atom/proc/transfer_fingerprints_to(var/atom/A)
+atom/proc/transfer_fingerprints_to(var/atom/A)
 
 	if(!istype(A.fingerprints,/list))
 		A.fingerprints = list()
@@ -693,7 +693,7 @@
 
 
 /// Returns 1 if made bloody, returns 0 otherwise
-/atom/proc/add_blood(mob/living/carbon/human/M as mob)
+atom/proc/add_blood(mob/living/carbon/human/M as mob)
 
 	if(atom_flags & NOBLOODY)
 		return 0
@@ -713,7 +713,7 @@
 	. = 1
 	return 1
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
+atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
 	if( istype(src, /turf/simulated) )
 		var/obj/effect/debris/cleanable/vomit/this = new /obj/effect/debris/cleanable/vomit(src)
 		this.virus2 = virus_copylist(M.virus2)
@@ -722,7 +722,7 @@
 		if(toxvomit)
 			this.icon_state = "vomittox_[pick(1,4)]"
 
-/atom/proc/clean_blood()
+atom/proc/clean_blood()
 	if(atom_flags & ATOM_ABSTRACT)
 		return
 	fluorescent = 0
@@ -731,7 +731,7 @@
 		blood_DNA = null
 		return 1
 
-/atom/proc/isinspace()
+atom/proc/isinspace()
 	if(istype(get_turf(src), /turf/space))
 		return 1
 	else
@@ -742,7 +742,7 @@
 /// message is output to anyone who can see, e.g. "The [src] does something!"
 /// blind_message (optional) is what blind people will hear e.g. "You hear something!"
 // todo: refactor
-/atom/proc/visible_message(message, self_message, blind_message, range = world.view)
+atom/proc/visible_message(message, self_message, blind_message, range = world.view)
 	var/list/see
 	if(isbelly(loc))
 		var/obj/belly/B = loc
@@ -762,7 +762,7 @@
 			AM.show_message(message, 1, blind_message, 2)
 
 // todo: refactor
-/atom/movable/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+atom/movable/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	return
 
 /// Show a message to all mobs and objects in earshot of this atom
@@ -770,7 +770,7 @@
 /// message is the message output to anyone who can hear.
 /// deaf_message (optional) is what deaf people will see.
 /// hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(var/message, var/deaf_message, var/hearing_distance, datum/language/lang)
+atom/proc/audible_message(var/message, var/deaf_message, var/hearing_distance, datum/language/lang)
 
 	var/range = hearing_distance || world.view
 	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src),range,remote_ghosts = FALSE)
@@ -793,7 +793,7 @@
 	if(!no_runechat)
 		INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, (message ? message : deaf_message), null, FALSE, heard_to_floating_message, 30)
 
-/atom/movable/proc/dropInto(var/atom/destination)
+atom/movable/proc/dropInto(var/atom/destination)
 	while(istype(destination))
 		var/atom/drop_destination = destination.onDropInto(src)
 		if(!istype(drop_destination) || drop_destination == destination)
@@ -801,32 +801,32 @@
 		destination = drop_destination
 	return moveToNullspace()
 
-/atom/proc/onDropInto(var/atom/movable/AM)
+atom/proc/onDropInto(var/atom/movable/AM)
 	return // If onDropInto returns null, then dropInto will forceMove AM into us.
 
-/atom/movable/onDropInto(var/atom/movable/AM)
+atom/movable/onDropInto(var/atom/movable/AM)
 	return loc // If onDropInto returns something, then dropInto will attempt to drop AM there.
 
-/atom/proc/InsertedContents()
+atom/proc/InsertedContents()
 	return contents
 
 /// Where atoms should drop if taken from this atom.
-/atom/proc/drop_location()
+atom/proc/drop_location()
 	var/atom/location = loc
 	if(!location)
 		return null
 	return location.AllowDrop() ? location : location.drop_location()
 
-/atom/proc/AllowDrop()
+atom/proc/AllowDrop()
 	return FALSE
 
-/atom/proc/get_nametag_name(mob/user)
+atom/proc/get_nametag_name(mob/user)
 	return name
 
-/atom/proc/get_nametag_desc(mob/user)
+atom/proc/get_nametag_desc(mob/user)
 	return "" //Desc itself is often too long to use
 
-/atom/proc/GenerateTag()
+atom/proc/GenerateTag()
 	return
 
 /**
@@ -840,16 +840,16 @@
  * * Gravity if the Z level has an SSMappingTrait for ZTRAIT_GRAVITY
  * * otherwise no gravity
  */
-/atom/proc/has_gravity(turf/T = get_turf(src))
+atom/proc/has_gravity(turf/T = get_turf(src))
 	if(!T)
 		return FALSE
 
 	return T.has_gravity()
 
-/atom/proc/is_incorporeal()
+atom/proc/is_incorporeal()
 	return FALSE
 
-/atom/proc/CheckParts(list/parts_list)
+atom/proc/CheckParts(list/parts_list)
 	for(var/A in parts_list)
 		if(istype(A, /datum/reagent))
 			if(!reagents)
@@ -860,11 +860,11 @@
 			var/atom/movable/M = A
 			M.forceMove(src)
 
-/atom/proc/is_drainable()
+atom/proc/is_drainable()
 	return reagents && (reagents.reagents_holder_flags & DRAINABLE)
 
 
-/atom/proc/get_cell()
+atom/proc/get_cell()
 	return
 
 //? Radiation
@@ -875,27 +875,27 @@
  * this is only called on the top level atoms directly on a turf
  * for nested atoms, you need /datum/component/radiation_listener
  */
-/atom/proc/rad_act(strength, datum/radiation_wave/wave)
+atom/proc/rad_act(strength, datum/radiation_wave/wave)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength)
 
 /**
  * called when we're hit by z radiation
  */
-/atom/proc/z_rad_act(strength)
+atom/proc/z_rad_act(strength)
 	SHOULD_CALL_PARENT(TRUE)
 	rad_act(strength)
 
-/atom/proc/add_rad_block_contents(source)
+atom/proc/add_rad_block_contents(source)
 	ADD_TRAIT(src, TRAIT_ATOM_RAD_BLOCK_CONTENTS, source)
 	rad_flags |= RAD_BLOCK_CONTENTS
 
-/atom/proc/remove_rad_block_contents(source)
+atom/proc/remove_rad_block_contents(source)
 	REMOVE_TRAIT(src, TRAIT_ATOM_RAD_BLOCK_CONTENTS, source)
 	if(!HAS_TRAIT(src, TRAIT_ATOM_RAD_BLOCK_CONTENTS))
 		rad_flags &= ~RAD_BLOCK_CONTENTS
 
-/atom/proc/clean_radiation(str, mul, cheap)
+atom/proc/clean_radiation(str, mul, cheap)
 	var/datum/component/radioactive/RA = GetComponent(/datum/component/radioactive)
 	RA?.clean(str, mul)
 
@@ -909,30 +909,30 @@
 /**
  * getter for current color
  */
-/atom/proc/get_atom_colour()
+atom/proc/get_atom_colour()
 	CRASH("base proc hit")
 
 /**
  * copies from other
  */
-/atom/proc/copy_atom_colour(atom/other, colour_priority)
+atom/proc/copy_atom_colour(atom/other, colour_priority)
 	CRASH("base proc hit")
 
 /// Adds an instance of colour_type to the atom's atom_colours list
-/atom/proc/add_atom_colour(coloration, colour_priority)
+atom/proc/add_atom_colour(coloration, colour_priority)
 	CRASH("base proc hit")
 
 /// Removes an instance of colour_type from the atom's atom_colours list
-/atom/proc/remove_atom_colour(colour_priority, coloration)
+atom/proc/remove_atom_colour(colour_priority, coloration)
 	CRASH("base proc hit")
 
 /// Resets the atom's color to null, and then sets it to the highest priority colour available
-/atom/proc/update_atom_colour()
+atom/proc/update_atom_colour()
 	CRASH("base proc hit")
 
 //? Filters
 
-/atom/proc/add_filter(name, priority, list/params, update = TRUE)
+atom/proc/add_filter(name, priority, list/params, update = TRUE)
 	LAZYINITLIST(filter_data)
 	var/list/copied_parameters = params.Copy()
 	copied_parameters["priority"] = priority
@@ -940,7 +940,7 @@
 	if(update)
 		update_filters()
 
-/atom/proc/update_filters()
+atom/proc/update_filters()
 	filters = null
 	filter_data = tim_sort(filter_data, /proc/cmp_filter_data_priority, TRUE)
 	for(var/f in filter_data)
@@ -950,7 +950,7 @@
 		filters += filter(arglist(arguments))
 	UNSETEMPTY(filter_data)
 
-/atom/proc/transition_filter(name, time, list/new_params, easing, loop)
+atom/proc/transition_filter(name, time, list/new_params, easing, loop)
 	var/filter = get_filter(name)
 	if(!filter)
 		return
@@ -965,18 +965,18 @@
 	for(var/param in params)
 		filter_data[name][param] = params[param]
 
-/atom/proc/change_filter_priority(name, new_priority)
+atom/proc/change_filter_priority(name, new_priority)
 	if(!filter_data || !filter_data[name])
 		return
 
 	filter_data[name]["priority"] = new_priority
 	update_filters()
 
-/atom/proc/get_filter(name)
+atom/proc/get_filter(name)
 	if(filter_data && filter_data[name])
 		return filters[filter_data.Find(name)]
 
-/atom/proc/remove_filter(name_or_names, update = TRUE)
+atom/proc/remove_filter(name_or_names, update = TRUE)
 	if(!filter_data)
 		return
 
@@ -988,26 +988,26 @@
 	if(update)
 		update_filters()
 
-/atom/proc/clear_filters()
+atom/proc/clear_filters()
 	filter_data = null
 	filters = null
 
 //? Layers
 
 /// Sets our plane
-/atom/proc/set_plane(new_plane)
+atom/proc/set_plane(new_plane)
 	ASSERT(isnum(new_plane))
 	plane = new_plane
 
 /// Sets the new base layer we should be on.
-/atom/proc/set_base_layer(new_layer)
+atom/proc/set_base_layer(new_layer)
 	ASSERT(isnum(new_layer))
 	base_layer = new_layer
 	// rel layer being null is fine
 	layer = base_layer + 0.001 * relative_layer
 
 /// Set the relative layer within our layer we should be on.
-/atom/proc/set_relative_layer(new_layer)
+atom/proc/set_relative_layer(new_layer)
 	ASSERT(isnum(new_layer))
 	if(isnull(base_layer))
 		base_layer = layer
@@ -1015,31 +1015,31 @@
 	// base layer being null isn't
 	layer = base_layer + 0.001 * relative_layer
 
-/atom/proc/hud_layerise()
+atom/proc/hud_layerise()
 	plane = PLANE_PLAYER_HUD_ITEMS
 	set_base_layer(LAYER_HUD_ITEM)
 	// appearance_flags |= NO_CLIENT_COLOR
 
-/atom/proc/hud_unlayerise()
+atom/proc/hud_unlayerise()
 	plane = initial(plane)
 	set_base_layer(initial(layer))
 	// appearance_flags &= ~(NO_CLIENT_COLOR)
 
-/atom/proc/reset_plane_and_layer()
+atom/proc/reset_plane_and_layer()
 	plane = initial(plane)
 	set_base_layer(initial(layer))
 
 //? Pixel Offsets
 
-/atom/proc/set_pixel_x(val)
+atom/proc/set_pixel_x(val)
 	pixel_x = val + get_managed_pixel_x()
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PIXEL_OFFSET_CHANGED)
 
-/atom/proc/set_pixel_y(val)
+atom/proc/set_pixel_y(val)
 	pixel_y = val + get_managed_pixel_y()
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PIXEL_OFFSET_CHANGED)
 
-/atom/proc/reset_pixel_offsets()
+atom/proc/reset_pixel_offsets()
 	pixel_x = get_managed_pixel_x()
 	pixel_y = get_managed_pixel_y()
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PIXEL_OFFSET_CHANGED)
@@ -1047,25 +1047,25 @@
 /**
  * get our pixel_x to reset to
  */
-/atom/proc/get_managed_pixel_x()
+atom/proc/get_managed_pixel_x()
 	return get_standard_pixel_x_offset()
 
 /**
  * get our pixel_y to reset to
  */
-/atom/proc/get_managed_pixel_y()
+atom/proc/get_managed_pixel_y()
 	return get_standard_pixel_y_offset()
 
 /**
  * get the pixel_x needed to center our sprite visually with our current bounds
  */
-/atom/proc/get_standard_pixel_x_offset()
+atom/proc/get_standard_pixel_x_offset()
 	return base_pixel_x
 
 /**
  * get the pixel_y needed to center our sprite visually with our current bounds
  */
-/atom/proc/get_standard_pixel_y_offset()
+atom/proc/get_standard_pixel_y_offset()
 	return base_pixel_y
 
 /**
@@ -1074,7 +1074,7 @@
  * e.g. even if we are a 3x3 sprite with -32 x/y offsets, this would be 0
  * if we were, for some reason, a 4x4 with -32 x/y, this would probably be 16/16 x/y.
  */
-/atom/proc/get_centering_pixel_x_offset(dir, atom/aligning)
+atom/proc/get_centering_pixel_x_offset(dir, atom/aligning)
 	return base_pixel_x + (icon_x_dimension - WORLD_ICON_SIZE) / 2
 
 /**
@@ -1083,11 +1083,11 @@
  * e.g. even if we are a 3x3 sprite with -32 x/y offsets, this would be 0
  * if we were, for some reason, a 4x4 with -32 x/y, this would probably be 16/16 x/y.
  */
-/atom/proc/get_centering_pixel_y_offset(dir, atom/aligning)
+atom/proc/get_centering_pixel_y_offset(dir, atom/aligning)
 	return base_pixel_y + (icon_y_dimension - WORLD_ICON_SIZE) / 2
 
 /// Setter for the `base_pixel_x` variable to append behavior related to its changing.
-/atom/proc/set_base_pixel_x(new_value)
+atom/proc/set_base_pixel_x(new_value)
 	if(base_pixel_x == new_value)
 		return
 	. = base_pixel_x
@@ -1096,7 +1096,7 @@
 	pixel_x = pixel_x + base_pixel_x - .
 
 /// Setter for the `base_pixel_y` variable to append behavior related to its changing.
-/atom/proc/set_base_pixel_y(new_value)
+atom/proc/set_base_pixel_y(new_value)
 	if(base_pixel_y == new_value)
 		return
 	. = base_pixel_y
@@ -1105,6 +1105,6 @@
 	pixel_y = pixel_y + base_pixel_y - .
 
 /// forcefully center us
-/atom/proc/auto_pixel_offset_to_center()
+atom/proc/auto_pixel_offset_to_center()
 	set_base_pixel_y(get_centering_pixel_y_offset())
 	set_base_pixel_x(get_centering_pixel_x_offset())

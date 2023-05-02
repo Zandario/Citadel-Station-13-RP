@@ -1,4 +1,4 @@
-/obj/item/pickaxe/brush
+obj/item/pickaxe/brush
 	name = "brush"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick_brush"
@@ -13,7 +13,7 @@
 	drill_verb = "brushing"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/pickaxe/one_pick
+obj/item/pickaxe/one_pick
 	name = "2cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick1"
@@ -26,7 +26,7 @@
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/pickaxe/two_pick
+obj/item/pickaxe/two_pick
 	name = "4cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick2"
@@ -39,7 +39,7 @@
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/pickaxe/three_pick
+obj/item/pickaxe/three_pick
 	name = "6cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick3"
@@ -52,7 +52,7 @@
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/pickaxe/four_pick
+obj/item/pickaxe/four_pick
 	name = "8cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick4"
@@ -65,7 +65,7 @@
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/pickaxe/five_pick
+obj/item/pickaxe/five_pick
 	name = "10cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick5"
@@ -78,7 +78,7 @@
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/pickaxe/six_pick
+obj/item/pickaxe/six_pick
 	name = "12cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick6"
@@ -91,7 +91,7 @@
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/pickaxe/hand
+obj/item/pickaxe/hand
 	name = "hand pickaxe"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick_hand"
@@ -107,7 +107,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Pack for holding pickaxes
 
-/obj/item/storage/excavation
+obj/item/storage/excavation
 	name = "excavation pick set"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "excavation"
@@ -127,7 +127,7 @@
 	max_w_class = ITEMSIZE_SMALL
 	use_to_pickup = 1
 
-/obj/item/storage/excavation/PopulateContents()
+obj/item/storage/excavation/PopulateContents()
 	. = ..()
 	new /obj/item/pickaxe/brush(src)
 	new /obj/item/pickaxe/one_pick(src)
@@ -137,11 +137,11 @@
 	new /obj/item/pickaxe/five_pick(src)
 	new /obj/item/pickaxe/six_pick(src)
 
-/obj/item/storage/excavation/handle_item_insertion()
+obj/item/storage/excavation/handle_item_insertion()
 	..()
 	sort_picks()
 
-/obj/item/storage/excavation/proc/sort_picks()
+obj/item/storage/excavation/proc/sort_picks()
 	var/list/obj/item/pickaxe/picksToSort = list()
 	for(var/obj/item/pickaxe/P in src)
 		picksToSort += P
@@ -159,7 +159,7 @@
 		picksToSort -= smallest
 	orient2hud()
 
-/obj/item/pickaxe/excavationdrill
+obj/item/pickaxe/excavationdrill
 	name = "excavation drill"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "excavationdrill2"
@@ -173,7 +173,7 @@
 	w_class = 2
 	attack_verb = list("drilled")
 
-/obj/item/pickaxe/excavationdrill/attack_self(mob/user)
+obj/item/pickaxe/excavationdrill/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -197,6 +197,6 @@
 		if(25 to 30)
 			icon_state = "excavationdrill5" //The other 2 sprites are comically long. Let's just cut it at 5.
 
-/obj/item/pickaxe/excavationdrill/examine(mob/user)
+obj/item/pickaxe/excavationdrill/examine(mob/user)
 	. = ..()
 	. += "<span class='info'>It is currently set at [excavation_amount]cms.</span>"

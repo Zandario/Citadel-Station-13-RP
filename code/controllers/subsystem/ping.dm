@@ -12,10 +12,10 @@ SUBSYSTEM_DEF(ping)
 
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/ping/stat_entry()
+datum/controller/subsystem/ping/stat_entry()
 	return ..() + " P:[GLOB.clients.len]"
 
-/datum/controller/subsystem/ping/fire(resumed = FALSE)
+datum/controller/subsystem/ping/fire(resumed = FALSE)
 	// Prepare the new batch of clients
 	if (!resumed)
 		src.currentrun = GLOB.clients.Copy()

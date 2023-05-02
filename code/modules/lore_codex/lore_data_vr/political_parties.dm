@@ -1,4 +1,4 @@
-/datum/lore/codex/category/political_factions
+datum/lore/codex/category/political_factions
 	name = "Political Factions"
 	data = "<i>For some weird reason, this section is blank. This looks like a publishing error.</i>"
 	/*data = "Those wishing to immigrate to somewhere in Virgo-Erigone, or otherwise plan to stay for a long time should get to know human politics.  \
@@ -9,7 +9,7 @@
 		/datum/lore/codex/page/blank
 		)
 
-/datum/lore/codex/page/blank/add_content()
+datum/lore/codex/page/blank/add_content()
 	name = "Blank Page"
 	keywords += list("Blank")
 	data = "<i>For some weird reason, this section is blank. This looks like a publishing error.</i>" // ToDo: A lot.

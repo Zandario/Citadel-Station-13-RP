@@ -1,4 +1,4 @@
-/datum/species/vulpkanin
+datum/species/vulpkanin
 	uid = SPECIES_ID_VULPKANIN
 	id = SPECIES_ID_VULPKANIN
 	name = SPECIES_VULPKANIN

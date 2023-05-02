@@ -1,6 +1,6 @@
 //Used to create the gene mask. Shamelessly stolen from the plant controller and cut down.
 
-/client/proc/show_xenobio_genes()
+client/proc/show_xenobio_genes()
 	set category = "Debug"
 	set name = "Show Xenobio Genes"
 	set desc = "Prints the round's plant xenobio masks."
@@ -16,11 +16,11 @@
 
 var/global/datum/controller/xenobio/xenobio_controller // Set in New().
 
-/datum/controller/xenobio
+datum/controller/xenobio
 
 	var/list/gene_tag_masks = list()        // Gene obfuscation for delicious trial and error goodness.
 
-/datum/controller/xenobio/New()
+datum/controller/xenobio/New()
 	if(xenobio_controller && xenobio_controller != src)
 		log_debug(SPAN_DEBUG("Rebuilding xenobio controller."))
 		qdel(xenobio_controller)
@@ -28,7 +28,7 @@ var/global/datum/controller/xenobio/xenobio_controller // Set in New().
 	setup()
 
 
-/datum/controller/xenobio/proc/setup()
+datum/controller/xenobio/proc/setup()
 
 	var/list/used_masks = list()
 	var/list/xenobio_traits = ALL_XENO_GENES

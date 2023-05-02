@@ -1,4 +1,4 @@
-/obj/mecha/combat/gygax
+obj/mecha/combat/gygax
 	desc = "A lightweight, security exosuit. Popular among private and corporate security."
 	name = "Gygax"
 	icon_state = "gygax_adv"
@@ -35,7 +35,7 @@
 	icon_scale_y = 1.35
 
 //Not quite sure how to move those yet.
-/obj/mecha/combat/gygax/get_commands()
+obj/mecha/combat/gygax/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
@@ -47,7 +47,7 @@
 	return output
 
 
-/obj/mecha/combat/gygax/dark
+obj/mecha/combat/gygax/dark
 	desc = "A lightweight exosuit used by Heavy Asset Protection. A significantly upgraded Gygax security mech."
 	name = "Dark Gygax"
 	icon_state = "darkgygax_adv"
@@ -76,7 +76,7 @@
 		/obj/item/mecha_parts/mecha_equipment/teleporter
 		)
 
-/obj/mecha/combat/gygax/dark/add_cell(var/obj/item/cell/C=null)
+obj/mecha/combat/gygax/dark/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
@@ -85,7 +85,7 @@
 	cell.charge = 30000
 	cell.maxcharge = 30000
 
-/obj/mecha/combat/gygax/serenity
+obj/mecha/combat/gygax/serenity
 	desc = "A lightweight exosuit made from a modified Gygax chassis combined with proprietary VeyMed medical tech. It's faster and sturdier than most medical mechs, but much of the armor plating has been stripped out, leaving it more vulnerable than a regular Gygax."
 	name = "Serenity"
 	icon_state = "medgax"
@@ -117,11 +117,11 @@
 
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 
-/obj/mecha/combat/gygax/serenity/Initialize(mapload)
+obj/mecha/combat/gygax/serenity/Initialize(mapload)
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 
-/obj/mecha/combat/gygax/serenity/moved_inside(var/mob/living/carbon/human/H as mob)
+obj/mecha/combat/gygax/serenity/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())
 		if(H.glasses)
 			occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
@@ -132,7 +132,7 @@
 	else
 		return 0
 
-/obj/mecha/combat/gygax/serenity/go_out()
+obj/mecha/combat/gygax/serenity/go_out()
 	if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 		if(H.glasses == hud)
@@ -142,10 +142,10 @@
 	return
 
 //Meant for random spawns.
-/obj/mecha/combat/gygax/old
+obj/mecha/combat/gygax/old
 	desc = "A lightweight, security exosuit. Popular among private and corporate security. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/combat/gygax/old/Initialize(mapload)
+obj/mecha/combat/gygax/old/Initialize(mapload)
 	. = ..()
 	health = 25
 	maxhealth = 250	//Just slightly worse.

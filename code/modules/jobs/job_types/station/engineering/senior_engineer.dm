@@ -1,4 +1,4 @@
-/datum/role/job/station/senior_engineer
+datum/role/job/station/senior_engineer
 	title = "Senior Engineer"
 	id = JOB_ID_SENIOR_ENGINEER
 	economy_payscale = ECONOMY_PAYSCALE_JOB_SENIOR
@@ -28,14 +28,14 @@
 		"Artificer-Adept" = /datum/prototype/alt_title/artificer_adept
 		)
 
-/datum/prototype/alt_title/artificer_adept
+datum/prototype/alt_title/artificer_adept
 	title = "Artificer-Adept"
 	background_allow = list(
 		/datum/lore/character_background/faction/naramadiguilds
 	)
 	background_enforce = TRUE
 
-/datum/outfit/job/station/station_engineer/senior
+datum/outfit/job/station/station_engineer/senior
 	name = OUTFIT_JOB_NAME("Senior Engineer")
 	head = /obj/item/clothing/head/hardhat/white
 	uniform = /obj/item/clothing/under/rank/engineer

@@ -1,23 +1,23 @@
 //Analyzer, pestkillers, weedkillers, nutrients, hatchets, cutters.
 
-/obj/item/tool/wirecutters/clippers
+obj/item/tool/wirecutters/clippers
 	name = "plant clippers"
 	desc = "A tool used to take samples from plants."
 	random_color = FALSE
 
-/obj/item/tool/wirecutters/clippers/bone
+obj/item/tool/wirecutters/clippers/bone
 	name = "bone plant clippers"
 	desc = "A tool used to take samples from plants."
 	icon_state = "clippers_bone"
 
-/obj/item/tool/wirecutters/clippers/trimmers
+obj/item/tool/wirecutters/clippers/trimmers
 	name = "hedgetrimmers"
 	desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
 	icon_state = "hedget"
 	item_state = "hedget"
 	damage_force = 7 //One point extra than standard wire cutters.
 
-/obj/item/analyzer/plant_analyzer
+obj/item/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
@@ -25,22 +25,22 @@
 	var/datum/seed/last_seed
 	var/list/last_reagents
 
-/obj/item/analyzer/plant_analyzer/attack_self(mob/user)
+obj/item/analyzer/plant_analyzer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/obj/item/analyzer/plant_analyzer/ui_interact(mob/user, datum/tgui/ui)
+obj/item/analyzer/plant_analyzer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PlantAnalyzer", name)
 		ui.open()
 
-/obj/item/analyzer/plant_analyzer/ui_state(mob/user, datum/tgui_module/module)
+obj/item/analyzer/plant_analyzer/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/analyzer/plant_analyzer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/analyzer/plant_analyzer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	var/datum/seed/grown_seed = locate(last_seed)
@@ -53,7 +53,7 @@
 
 	return data
 
-/obj/item/analyzer/plant_analyzer/ui_act(action, list/params, datum/tgui/ui)
+obj/item/analyzer/plant_analyzer/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -66,7 +66,7 @@
 			last_reagents = null
 			return TRUE
 
-/obj/item/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
+obj/item/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 
@@ -118,7 +118,7 @@
 
 	ui_interact(user)
 
-/obj/item/analyzer/plant_analyzer/proc/print_report_verb()
+obj/item/analyzer/plant_analyzer/proc/print_report_verb()
 	set name = "Print Plant Report"
 	set category = "Object"
 	set src = usr
@@ -127,7 +127,7 @@
 		return
 	print_report(usr)
 
-/obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
+obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
 	var/datum/seed/grown_seed = locate(last_seed)
 	if(!istype(grown_seed))
 		to_chat(user, SPAN_WARNING("There is no scan data to print."))
@@ -164,7 +164,7 @@
 	user.visible_message("\The [src] spits out a piece of paper.")
 	return
 
-/datum/seed/proc/get_tgui_analyzer_data(mob/user)
+datum/seed/proc/get_tgui_analyzer_data(mob/user)
 	var/list/data = list()
 
 	data["name"] = seed_name

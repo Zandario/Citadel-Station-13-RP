@@ -13,7 +13,7 @@
 #define VERM_SPIDERS 3
 #define VERM_ROACHES 4
 
-/datum/event/infestation
+datum/event/infestation
 	var/location
 	var/locstring
 	var/spawn_area_type
@@ -25,7 +25,7 @@
 	var/list/players = list()
 	has_skybox_image = TRUE
 
-/datum/event/infestation/get_skybox_image()
+datum/event/infestation/get_skybox_image()
 	var/color1 = color_matrix_multiply(color_matrix_rotate_hue(rand(-3, 3) * 15), rgba_auto_greyscale_matrix("#8888ff"))
 	var/color2 = color_matrix_multiply(color_matrix_rotate_hue(rand(-3, 3) * 15), rgba_auto_greyscale_matrix("#88ff88"))
 	var/image/res = image('icons/skybox/caelus.dmi', "aurora")
@@ -34,16 +34,16 @@
 	animate_color_shift(res, color1, color2, 1080 * 0.5, 1080 * 0.5)
 	return res
 
-/datum/event/infestation/setup()
+datum/event/infestation/setup()
 	// make sure startWhen doesn't go to 0 or below!
 	announceWhen = rand(2, 5)
 	startWhen = announceWhen - 1
 	endWhen = 30
 
-/datum/event/infestation/announce()
+datum/event/infestation/announce()
 	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
 
-/datum/event/infestation/start()
+datum/event/infestation/start()
 	location = rand(1,9)
 	switch(location)
 		if(LOC_KITCHEN)
@@ -102,7 +102,7 @@
 			spawn_types = list(/mob/living/simple_mob/animal/roach/roachling)
 			vermstring = "giant roaches"
 
-/datum/event/infestation/end()
+datum/event/infestation/end()
 	var/list/vents = list()
 	for(var/areapath in typesof(spawn_area_type))
 		var/area/A = locate(areapath)
@@ -129,12 +129,12 @@
 			*/
 
 // Overmap version
-/datum/event/infestation/overmap/announce()
+datum/event/infestation/overmap/announce()
 	command_announcement.Announce("Unidentified hostile lifesigns detected migrating towards [station_name()]'s [locstring] through the exterior pipes. Secure any exterior access, including ducting and ventilation.", "Hostile Vermin Boarding Alert", new_sound = 'sound/AI/aliens.ogg')
 	return
 
 // override: cancel if not main ship as this is too dumb to target the actual ship crossing it.
-/datum/event/infestation/overmap/start()
+datum/event/infestation/overmap/start()
 	if(istype(victim, /obj/effect/overmap/visitable/ship/landable))
 		kill()
 		return

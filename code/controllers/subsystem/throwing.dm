@@ -8,10 +8,10 @@ SUBSYSTEM_DEF(throwing)
 	var/list/currentrun
 	var/list/processing = list()
 
-/datum/controller/subsystem/throwing/stat_entry()
+datum/controller/subsystem/throwing/stat_entry()
 	return ..() + " P:[processing.len]"
 
-/datum/controller/subsystem/throwing/fire(resumed = 0)
+datum/controller/subsystem/throwing/fire(resumed = 0)
 	if (!resumed)
 		src.currentrun = processing.Copy()
 
@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(throwing)
 
 	currentrun = null
 
-/datum/thrownthing
+datum/thrownthing
 	//! important stuff
 	/// thing we threw
 	var/atom/movable/thrownthing
@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(throwing)
 	/// damage multiplier
 	var/damage_multiplier = 1
 
-/datum/thrownthing/New(atom/movable/AM, atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force)
+datum/thrownthing/New(atom/movable/AM, atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force)
 	src.thrownthing = AM
 	if(!target_atom(target))
 		qdel(src)
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(throwing)
 	src.resist = AM.throw_resist
 	impacted = list()
 
-/datum/thrownthing/proc/target_atom(atom/target)
+datum/thrownthing/proc/target_atom(atom/target)
 	src.target = target
 	var/turf/T = get_turf(target)
 	var/atom/movable/AM = thrownthing
@@ -148,7 +148,7 @@ SUBSYSTEM_DEF(throwing)
 	diagonal_error = dist_x / 2 - dist_y
 	return TRUE
 
-/datum/thrownthing/Destroy()
+datum/thrownthing/Destroy()
 	if(!finished)
 		terminate(TRUE)
 	if(thrownthing)
@@ -164,7 +164,7 @@ SUBSYSTEM_DEF(throwing)
 	impacted = null
 	return ..()
 
-/datum/thrownthing/proc/tick()
+datum/thrownthing/proc/tick()
 	SHOULD_NOT_SLEEP(TRUE)
 	var/atom/movable/AM = thrownthing
 	// if throwing got cancelled maybe like, don't
@@ -250,7 +250,7 @@ SUBSYSTEM_DEF(throwing)
 /**
  * hook for making us impact things on bump (we cross them)
  */
-/datum/thrownthing/proc/bump_into(atom/A)
+datum/thrownthing/proc/bump_into(atom/A)
 	// if you sleep, eat shit
 	set waitfor = FALSE
 	if(!can_hit(A, TRUE))
@@ -260,14 +260,14 @@ SUBSYSTEM_DEF(throwing)
 /**
  * hook for making us impact thing on cross (they cross us)
  */
-/datum/thrownthing/proc/crossed_by(atom/movable/AM)
+datum/thrownthing/proc/crossed_by(atom/movable/AM)
 	// if you sleep, eat shit
 	set waitfor = FALSE
 	if(!can_hit(AM))
 		return
 	impact(AM)
 
-/datum/thrownthing/proc/scan_for_impact(turf/T)
+datum/thrownthing/proc/scan_for_impact(turf/T)
 	RETURN_TYPE(/atom)
 	var/atom/highest
 	for(var/atom/thing as anything in T)
@@ -277,7 +277,7 @@ SUBSYSTEM_DEF(throwing)
 			highest = thing
 	return highest
 
-/datum/thrownthing/proc/can_hit(atom/A, bumping)
+datum/thrownthing/proc/can_hit(atom/A, bumping)
 	if((throw_flags & THROW_AT_OVERHAND) && (A != target) && A.check_pass_flags_self(ATOM_PASS_OVERHEAD_THROW))
 		return FALSE
 	if(A == thrownthing)
@@ -293,7 +293,7 @@ SUBSYSTEM_DEF(throwing)
 /**
  * quickstart - immediately tick the first tick
  */
-/datum/thrownthing/proc/quickstart()
+datum/thrownthing/proc/quickstart()
 	if(throw_flags & THROW_AT_QUICKSTARTED)
 		return
 	throw_flags |= THROW_AT_QUICKSTARTED
@@ -302,7 +302,7 @@ SUBSYSTEM_DEF(throwing)
 /**
  * start - register to subsystem
  */
-/datum/thrownthing/proc/start()
+datum/thrownthing/proc/start()
 	if(started)
 		CRASH("double start")
 	start_time = world.time
@@ -319,7 +319,7 @@ SUBSYSTEM_DEF(throwing)
  * handle impacting an atom
  * return TRUE if we should end the throw, FALSE to pierce
  */
-/datum/thrownthing/proc/impact(atom/A, in_land)
+datum/thrownthing/proc/impact(atom/A, in_land)
 	impacted[A] = TRUE
 
 	var/op_return = thrownthing._throw_do_hit(A, src)
@@ -339,7 +339,7 @@ SUBSYSTEM_DEF(throwing)
 /**
  * land on something and terminate the throw
  */
-/datum/thrownthing/proc/land(atom/A = get_turf(thrownthing))
+datum/thrownthing/proc/land(atom/A = get_turf(thrownthing))
 	// nothing to land on
 	if(!A)
 		terminate()
@@ -360,7 +360,7 @@ SUBSYSTEM_DEF(throwing)
  * terminate the throw.
  * when called, immediately erases the throw from the atom and stops it.
  */
-/datum/thrownthing/proc/terminate(in_qdel)
+datum/thrownthing/proc/terminate(in_qdel)
 	finished = TRUE
 	thrownthing.throwing = null
 	if(!QDELETED(thrownthing))
@@ -375,13 +375,13 @@ SUBSYSTEM_DEF(throwing)
 /**
  * should we skip damage entirely?
  */
-/datum/thrownthing/proc/is_pacifistic()
+datum/thrownthing/proc/is_pacifistic()
 	return throw_flags & THROW_AT_IS_GENTLE
 
 /**
  * get damage scaling - default handling
  */
-/datum/thrownthing/proc/get_damage_multiplier()
+datum/thrownthing/proc/get_damage_multiplier()
 	if(!resist)
 		return MAX_THROWING_DAMAGE_MULTIPLIER
 	. = damage_multiplier
@@ -399,18 +399,18 @@ SUBSYSTEM_DEF(throwing)
  * doesn't register to subsystem
  * immediately hits and deletes on start
  */
-/datum/thrownthing/emulated
+datum/thrownthing/emulated
 
-/datum/thrownthing/emulated/start()
+datum/thrownthing/emulated/start()
 	return		// you must manually quickstart
 
-/datum/thrownthing/emulated/quickstart()
+datum/thrownthing/emulated/quickstart()
 	if(throw_flags & THROW_AT_QUICKSTARTED)
 		return
 	throw_flags |= THROW_AT_QUICKSTARTED
 	process_hit()
 
-/datum/thrownthing/emulated/proc/process_hit()
+datum/thrownthing/emulated/proc/process_hit()
 	// hit without landing
 	impact(target, TRUE)
 	// gtfo

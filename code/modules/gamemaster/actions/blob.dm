@@ -1,4 +1,4 @@
-/datum/gm_action/blob
+datum/gm_action/blob
 	name = "blob infestation"
 	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_SECURITY, DEPARTMENT_MEDICAL)
 	chaotic = 25
@@ -17,7 +17,7 @@
 	var/obj/structure/blob/core/Blob
 	var/spawn_blob_type = /obj/structure/blob/core/random_medium
 
-/datum/gm_action/blob/set_up()
+datum/gm_action/blob/set_up()
 	severity = pickweight(EVENT_LEVEL_MUNDANE = 4,
 		EVENT_LEVEL_MODERATE = 2,
 		EVENT_LEVEL_MAJOR = 1
@@ -43,7 +43,7 @@
 	if(!target_area)
 		log_debug(SPAN_DEBUGWARNING("Blob infestation event: Giving up after too many failures to pick target area"))
 
-/datum/gm_action/blob/start()
+datum/gm_action/blob/start()
 	..()
 	var/turf/T
 
@@ -57,11 +57,11 @@
 
 	Blob = new spawn_blob_type(T)
 
-/datum/gm_action/blob/announce()
+datum/gm_action/blob/announce()
 	spawn(rand(600, 3000))	// 1-5 minute leeway for the blob to go un-detected.
 		command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
-/datum/gm_action/blob/get_weight()
+datum/gm_action/blob/get_weight()
 	var/engineers = metric.count_people_in_department(DEPARTMENT_ENGINEERING)
 	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
 	var/medical = metric.count_people_in_department(DEPARTMENT_MEDICAL)

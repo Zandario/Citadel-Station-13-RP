@@ -3,7 +3,7 @@
 // all conduit connects go to this object instead of the APC
 // using this solves the problem of having the APC in a wall yet also inside an area
 
-/obj/machinery/power/terminal
+obj/machinery/power/terminal
 	name = "terminal"
 	icon_state = "term"
 	desc = "It's an underfloor wiring terminal for power equipment."
@@ -14,30 +14,30 @@
 	layer = EXPOSED_WIRE_TERMINAL_LAYER
 
 
-/obj/machinery/power/terminal/Initialize(mapload, newdir)
+obj/machinery/power/terminal/Initialize(mapload, newdir)
 	. = ..()
 	var/turf/T = src.loc
 	if(level==1)
 		hide(!T.is_plating())
 
-/obj/machinery/power/terminal/Destroy()
+obj/machinery/power/terminal/Destroy()
 	if(master)
 		master.disconnect_terminal()
 		master = null
 	return ..()
 
-/obj/machinery/power/terminal/hide(var/i)
+obj/machinery/power/terminal/hide(var/i)
 	invisibility = i ? 101 : 0
 	icon_state = i ? "term-f" : "term"
 
-/obj/machinery/power/terminal/hides_under_flooring()
+obj/machinery/power/terminal/hides_under_flooring()
 	return 1
 
 // Needed so terminals are not removed from machines list.
 // Powernet rebuilds need this to work properly.
-/obj/machinery/power/terminal/process(delta_time)
+obj/machinery/power/terminal/process(delta_time)
 	return 1
 
-/obj/machinery/power/terminal/overload(var/obj/machinery/power/source)
+obj/machinery/power/terminal/overload(var/obj/machinery/power/source)
 	if(master)
 		master.overload(source)

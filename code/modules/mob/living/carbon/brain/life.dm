@@ -1,7 +1,7 @@
-/mob/living/carbon/brain/handle_breathing()
+mob/living/carbon/brain/handle_breathing()
 	return
 
-/mob/living/carbon/brain/handle_mutations_and_radiation(seconds)
+mob/living/carbon/brain/handle_mutations_and_radiation(seconds)
 	// todo; deal with this
 	// removed for now because why do we even tick brains this way??
 
@@ -37,7 +37,7 @@
 	// 			update_health()
 
 
-/mob/living/carbon/brain/handle_environment(datum/gas_mixture/environment)
+mob/living/carbon/brain/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
 		return
 	var/environment_heat_capacity = environment.heat_capacity()
@@ -57,7 +57,7 @@
 
 	return //TODO: DEFERRED
 
-/mob/living/carbon/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
+mob/living/carbon/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(status_flags & STATUS_GODMODE) return
 
 	if(exposed_temperature > bodytemperature)
@@ -72,7 +72,7 @@
 		adjustFireLoss(5.0*discomfort)
 
 
-/mob/living/carbon/brain/handle_chemicals_in_body()
+mob/living/carbon/brain/handle_chemicals_in_body()
 	chem_effects.Cut()
 
 	if(touching) touching.metabolize()
@@ -89,7 +89,7 @@
 
 	return //TODO: DEFERRED
 
-/mob/living/carbon/brain/handle_regular_UI_updates()	//TODO: comment out the unused bits >_>
+mob/living/carbon/brain/handle_regular_UI_updates()	//TODO: comment out the unused bits >_>
 	update_health()
 
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
@@ -157,7 +157,7 @@
 
 	return 1
 
-/mob/living/carbon/brain/handle_regular_hud_updates()
+mob/living/carbon/brain/handle_regular_hud_updates()
 	if (healths)
 		if (stat != 2)
 			switch(health)

@@ -1,56 +1,56 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/turf/unsimulated/wall/planetary/virgo2,
-/area/tether_away/aerostat/surface)
+turf/unsimulated/wall/planetary/virgo2,
+area/tether_away/aerostat/surface)
 "e" = (
-/obj/tether_away_spawner/aerostat_surface,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+obj/tether_away_spawner/aerostat_surface,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/tether_away/aerostat/surface/explored)
 "i" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/tether_away/aerostat/surface/explored)
 "n" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 1
 	},
-/obj/structure/metal_edge,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+obj/structure/metal_edge,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/tether_away/aerostat/surface/explored)
 "q" = (
-/obj/structure/salvageable/personal,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+obj/structure/salvageable/personal,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/tether_away/aerostat/surface/explored)
 "A" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/tether_away/aerostat/surface/explored)
 "E" = (
-/turf/simulated/mineral/virgo2,
-/area/tether_away/aerostat/surface/explored)
+turf/simulated/mineral/virgo2,
+area/tether_away/aerostat/surface/explored)
 "F" = (
-/turf/simulated/mineral/virgo2,
-/area/tether_away/aerostat/surface/unexplored)
+turf/simulated/mineral/virgo2,
+area/tether_away/aerostat/surface/unexplored)
 "I" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/tether_away/aerostat/surface/explored)
+obj/effect/floor_decal/rust,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/tether_away/aerostat/surface/explored)
 "Q" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/shuttle_landmark/premade/virgo2_surface,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/tether_away/aerostat/surface/explored)
+obj/effect/floor_decal/rust,
+obj/effect/shuttle_landmark/premade/virgo2_surface,
+turf/simulated/floor/tiled/techfloor/virgo2,
+area/tether_away/aerostat/surface/explored)
 "V" = (
-/obj/structure/railing,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+obj/structure/railing,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/tether_away/aerostat/surface/explored)
 "X" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/tether_away/aerostat/surface/explored)
 
 (1,1,1) = {"
 b

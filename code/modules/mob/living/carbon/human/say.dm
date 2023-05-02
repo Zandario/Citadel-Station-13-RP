@@ -1,4 +1,4 @@
-/mob/living/carbon/human/say(var/message,var/whispering=0)
+mob/living/carbon/human/say(var/message,var/whispering=0)
 	var/alt_name = ""
 	if(name != GetVoice())
 		alt_name = "(as [get_id_name("Unknown")])"
@@ -6,7 +6,7 @@
 	message = sanitize_or_reflect(message,src) // Reflect too-long messages, within reason
 	..(message, alt_name = alt_name, whispering = whispering)
 
-/mob/living/carbon/human/proc/forcesay(list/append)
+mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
 		if(client)
 			var/virgin = 1	//has the text been modified yet?
@@ -38,7 +38,7 @@
 					say(temp)
 				winset(client, "input", "text=[null]")
 
-/mob/living/carbon/human/speech_bubble_appearance()
+mob/living/carbon/human/speech_bubble_appearance()
 	if(isSynthetic())
 		var/datum/robolimb/robo = isSynthetic()
 		return robo.speech_bubble_appearance
@@ -47,7 +47,7 @@
 			return species.speech_bubble_appearance
 	return "normal"
 
-/mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
+mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
 
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
 		return 1
@@ -75,7 +75,7 @@
 
 	return ..()
 
-/mob/living/carbon/human/GetVoice()
+mob/living/carbon/human/GetVoice()
 
 	var/voice_sub
 	if(istype(back,/obj/item/rig))
@@ -101,16 +101,16 @@
 		return GetSpecialVoice()
 	return real_name
 
-/mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
+mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
 	if(new_voice)
 		special_voice = new_voice
 	return
 
-/mob/living/carbon/human/proc/UnsetSpecialVoice()
+mob/living/carbon/human/proc/UnsetSpecialVoice()
 	special_voice = ""
 	return
 
-/mob/living/carbon/human/proc/GetSpecialVoice()
+mob/living/carbon/human/proc/GetSpecialVoice()
 	return special_voice
 
 
@@ -123,7 +123,7 @@
    for it but just ignore it.
 */
 
-/mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)
+mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)
 	var/verb = "says"
 	var/ending = copytext_char(message, length(message))
 
@@ -137,7 +137,7 @@
 
 	return verb
 
-/mob/living/carbon/human/handle_speech_problems(var/list/message_data)
+mob/living/carbon/human/handle_speech_problems(var/list/message_data)
 	if(sdisabilities & SDISABILITY_MUTE)
 		message_data[1] = ""
 		. = 1
@@ -152,7 +152,7 @@
 	else
 		. = ..(message_data)
 
-/mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	switch(message_mode)
 		if("intercom")
 			if(!src.restrained())
@@ -202,7 +202,7 @@
 					r_ear.talk_into(src,message, message_mode, verb, speaking)
 					used_radios += r_ear
 
-/mob/living/carbon/human/handle_speech_sound()
+mob/living/carbon/human/handle_speech_sound()
 	if(species.speech_sounds && prob(species.speech_chance))
 		var/list/returns[2]
 		returns[1] = sound(pick(species.speech_sounds))

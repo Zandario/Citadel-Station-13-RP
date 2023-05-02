@@ -1,12 +1,12 @@
 /* this is a playing card deck based off of the Rider-Waite Tarot Deck.
 */
 
-/obj/item/deck/tarot
+obj/item/deck/tarot
 	name = "deck of tarot cards"
 	desc = "For all your occult needs!"
 	icon_state = "deck_tarot"
 
-/obj/item/deck/tarot/Initialize(mapload)
+obj/item/deck/tarot/Initialize(mapload)
 	. = ..()
 
 	var/datum/playingcard/P
@@ -24,7 +24,7 @@
 			P.back_icon = "card_back_tarot"
 			cards += P
 
-/obj/item/deck/tarot/shuffle()
+obj/item/deck/tarot/shuffle()
 	var/mob/living/user = usr
 	if (cooldown < world.time - 10)
 		var/list/newcards = list()

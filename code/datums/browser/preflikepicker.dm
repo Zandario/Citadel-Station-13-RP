@@ -1,9 +1,9 @@
-/datum/browser/modal/preflikepicker
+datum/browser/modal/preflikepicker
 	var/settings = list()
 	var/icon/preview_icon = null
 	var/datum/callback/preview_update
 
-/datum/browser/modal/preflikepicker/New(User,Message,Title,Button1="Ok",Button2,Button3,StealFocus = 1, Timeout = FALSE,list/settings,inputtype="checkbox", width = 600, height, slidecolor)
+datum/browser/modal/preflikepicker/New(User,Message,Title,Button1="Ok",Button2,Button3,StealFocus = 1, Timeout = FALSE,list/settings,inputtype="checkbox", width = 600, height, slidecolor)
 	if (!User)
 		return
 	src.settings = settings
@@ -11,7 +11,7 @@
 	..(User, ckey("[User]-[Message]-[Title]-[world.time]-[rand(1,10000)]"), Title, width, height, src, StealFocus, Timeout)
 	set_content(ShowChoices(User))
 
-/datum/browser/modal/preflikepicker/proc/ShowChoices(mob/user)
+datum/browser/modal/preflikepicker/proc/ShowChoices(mob/user)
 	if (settings["preview_callback"])
 		var/datum/callback/callback = settings["preview_callback"]
 		preview_icon = callback.Invoke(settings)
@@ -44,7 +44,7 @@
 
 	return dat
 
-/datum/browser/modal/preflikepicker/Topic(href,href_list)
+datum/browser/modal/preflikepicker/Topic(href,href_list)
 	if (href_list["close"] || !user || !user.client)
 		opentime = 0
 		return
@@ -87,7 +87,7 @@
 	opentime = 0
 	close()
 
-/proc/presentpreflikepicker(mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1,Timeout = 6000,list/settings, width, height, slidecolor)
+proc/presentpreflikepicker(mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1,Timeout = 6000,list/settings, width, height, slidecolor)
 	if (!istype(User))
 		if (istype(User, /client/))
 			var/client/C = User

@@ -1,6 +1,6 @@
 // This datum allows one to add and subtract various lengths of time.  It really shines when using an alternate time system.
 
-/datum/time
+datum/time
 	// Note that the following is actually measured in 10ths of a second.
 	var/seconds_in_day = 60 * 60 * 24 * 10 	// 86,400 seconds
 	var/seconds_in_hour = 60 * 60 * 10 		// 3,600 seconds
@@ -9,43 +9,43 @@
 	// This holds the amount of seconds.
 	var/seconds_stored = 0
 
-/datum/time/New(new_time)
+datum/time/New(new_time)
 	if(new_time)
 		if(new_time >= seconds_in_day)
 			new_time = rollover(new_time)
 		seconds_stored = new_time
 	..()
 
-/datum/time/proc/add_seconds(amount)
+datum/time/proc/add_seconds(amount)
 	var/answer = seconds_stored + amount * 10
 	if(answer >= seconds_in_day)
 		answer = rollover(answer)
 	return new type(answer)
 
-/datum/time/proc/add_minutes(amount)
+datum/time/proc/add_minutes(amount)
 	var/real_amount = amount * seconds_in_minute
 	var/answer = real_amount + seconds_stored
 	if(answer >= seconds_in_day)
 		answer = rollover(answer)
 	return new type(answer)
 
-/datum/time/proc/add_hours(amount)
+datum/time/proc/add_hours(amount)
 	var/real_amount = amount * seconds_in_hour
 	var/answer = real_amount + seconds_stored
 	if(answer >= seconds_in_day)
 		answer = rollover(answer)
 	return new type(answer)
 
-/datum/time/proc/rollover(time)
+datum/time/proc/rollover(time)
 	return max(time - seconds_in_day, 0)
 
-/datum/time/proc/make_random_time()
+datum/time/proc/make_random_time()
 	return new type(rand(0, seconds_in_day - 1))
 
 // This works almost exactly like time2text.
 // The advantage of this is that it can handle time systems beyond 24h.
 // The downside is a lack of date capability.
-/datum/time/proc/show_time(format)
+datum/time/proc/show_time(format)
 	var/time = seconds_stored
 	while(time >= seconds_in_day) // First, get rid of extra days.
 		time = rollover(time)

@@ -1,4 +1,4 @@
-/obj/mecha/working/hoverpod
+obj/mecha/working/hoverpod
 	desc = "Stubby and round, this space-capable craft is an ancient favorite."
 	name = "Hover Pod"
 	catalogue_data = list(/datum/category_item/catalogue/technology/hoverpod)
@@ -26,23 +26,23 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
-/obj/mecha/working/hoverpod/Initialize(mapload)
+obj/mecha/working/hoverpod/Initialize(mapload)
 	. = ..()
 	ion_trail = new /datum/effect_system/ion_trail_follow()
 	ion_trail.set_up(src)
 
-/obj/mecha/working/hoverpod/moved_inside(var/mob/living/carbon/human/H as mob)
+obj/mecha/working/hoverpod/moved_inside(var/mob/living/carbon/human/H as mob)
 	. = ..(H)
 	if(.)
 		ion_trail.start()
 
-/obj/mecha/working/hoverpod/go_out()
+obj/mecha/working/hoverpod/go_out()
 	. = ..()
 	if(!occupant)
 		ion_trail.stop()
 
 //Modified phazon code
-/obj/mecha/working/hoverpod/Topic(href, href_list)
+obj/mecha/working/hoverpod/Topic(href, href_list)
 	..()
 	if (href_list["toggle_stabilization"])
 		stabilization_enabled = !stabilization_enabled
@@ -50,7 +50,7 @@
 		src.occupant_message("<span class='notice'>Thruster stabilization [stabilization_enabled? "enabled" : "disabled"].</span>")
 		return
 
-/obj/mecha/working/hoverpod/get_commands()
+obj/mecha/working/hoverpod/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
@@ -61,11 +61,11 @@
 	output += ..()
 	return output
 
-/obj/mecha/working/hoverpod/can_ztravel()
+obj/mecha/working/hoverpod/can_ztravel()
 	return (stabilization_enabled && has_charge(step_energy_drain))
 
 // No space drifting
-/obj/mecha/working/hoverpod/check_for_support()
+obj/mecha/working/hoverpod/check_for_support()
 	//does the hoverpod have enough charge left to stabilize itself?
 	if (!has_charge(step_energy_drain))
 		ion_trail.stop()
@@ -78,7 +78,7 @@
 	return ..()
 
 // No falling if we've got our boosters on
-/obj/mecha/working/hoverpod/can_fall()
+obj/mecha/working/hoverpod/can_fall()
 	if(stabilization_enabled && has_charge(step_energy_drain))
 		return FALSE
 	else
@@ -86,19 +86,19 @@
 
 /*	// One horrific bastardization of glorious inheritence dead. A billion to go. ~Mech
 //these three procs overriden to play different sounds
-/obj/mecha/working/hoverpod/mechturn(direction)
+obj/mecha/working/hoverpod/mechturn(direction)
 	setDir(direction)
 	//playsound(src,'sound/machines/hiss.ogg',40,1)
 	return 1
 
-/obj/mecha/working/hoverpod/mechstep(direction)
+obj/mecha/working/hoverpod/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
 		playsound(src,'sound/machines/hiss.ogg',40,1)
 	return result
 
 
-/obj/mecha/working/hoverpod/mechsteprand()
+obj/mecha/working/hoverpod/mechsteprand()
 	var/result = step_rand(src)
 	if(result)
 		playsound(src,'sound/machines/hiss.ogg',40,1)
@@ -106,7 +106,7 @@
 */
 
 //Hoverpod variants
-/obj/mecha/working/hoverpod/combatpod
+obj/mecha/working/hoverpod/combatpod
 	desc = "An ancient, run-down combat spacecraft." // Ideally would have a seperate icon.
 	name = "Combat Hoverpod"
 	health = 200
@@ -120,7 +120,7 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
-/obj/mecha/working/hoverpod/combatpod/Initialize(mapload)
+obj/mecha/working/hoverpod/combatpod/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
@@ -128,10 +128,10 @@
 	ME.attach(src)
 
 
-/obj/mecha/working/hoverpod/shuttlepod
+obj/mecha/working/hoverpod/shuttlepod
 	desc = "Who knew a tiny ball could fit three people?"
 
-/obj/mecha/working/hoverpod/shuttlepod/Initialize(mapload)
+obj/mecha/working/hoverpod/shuttlepod/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 	ME.attach(src)

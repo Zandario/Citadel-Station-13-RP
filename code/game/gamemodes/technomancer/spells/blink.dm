@@ -1,4 +1,4 @@
-/datum/technomancer/spell/blink
+datum/technomancer/spell/blink
 	name = "Blink"
 	desc = "Force the target to teleport a short distance away.  This target could be anything from something lying on the ground, \
 	to someone trying to fight you, or even yourself.  Using this on someone next to you makes their potential distance after \
@@ -10,14 +10,14 @@
 	ability_icon_state = "tech_blink"
 	category = UTILITY_SPELLS
 
-/obj/item/spell/blink
+obj/item/spell/blink
 	name = "blink"
 	desc = "Teleports you or someone else a short distance away."
 	icon_state = "blink"
 	cast_methods = CAST_RANGED | CAST_MELEE | CAST_USE
 	aspect = ASPECT_TELE
 
-/proc/safe_blink(atom/movable/AM, var/range = 3)
+proc/safe_blink(atom/movable/AM, var/range = 3)
 	if(AM.anchored || !AM.loc)
 		return
 	var/turf/starting = get_turf(AM)
@@ -53,7 +53,7 @@
 		new /obj/effect/particle_effect/sparks(starting)
 	return
 
-/obj/item/spell/blink/on_ranged_cast(atom/hit_atom, mob/user)
+obj/item/spell/blink/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		if(!within_range(AM))
@@ -72,7 +72,7 @@
 		else
 			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")
 
-/obj/item/spell/blink/on_use_cast(mob/user)
+obj/item/spell/blink/on_use_cast(mob/user)
 	if(!allowed_to_teleport())
 		to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
 		return
@@ -86,7 +86,7 @@
 	else
 		to_chat(user, "<span class='warning'>You need more energy to blink yourself away!</span>")
 
-/obj/item/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
+obj/item/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		if(!allowed_to_teleport())

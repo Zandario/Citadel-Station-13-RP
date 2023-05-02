@@ -1,7 +1,7 @@
 var/datum/species/shapeshifter/promethean/prometheans
 
 // Species definition follows.
-/datum/species/shapeshifter/promethean
+datum/species/shapeshifter/promethean
 	name = SPECIES_PROMETHEAN
 	uid = SPECIES_ID_PROMETHEAN
 	name_plural = "Prometheans"
@@ -149,11 +149,11 @@ var/datum/species/shapeshifter/promethean/prometheans
 	heal_rate = 0.35
 	trashcan = TRUE //They have goopy bodies. They can just dissolve things within them.
 
-/datum/species/shapeshifter/promethean/New()
+datum/species/shapeshifter/promethean/New()
 	..()
 	prometheans = src
 
-/datum/species/shapeshifter/promethean/equip_survival_gear(mob/living/carbon/human/H)
+datum/species/shapeshifter/promethean/equip_survival_gear(mob/living/carbon/human/H)
 	var/boxtype = pick(list(
 		/obj/item/storage/toolbox/lunchbox,
 		/obj/item/storage/toolbox/lunchbox/heart,
@@ -172,7 +172,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	else
 		H.equip_to_slot_or_del(L, /datum/inventory_slot_meta/abstract/put_in_backpack)
 
-/datum/species/shapeshifter/promethean/hug(mob/living/carbon/human/H, mob/living/target)
+datum/species/shapeshifter/promethean/hug(mob/living/carbon/human/H, mob/living/target)
 
 	if(H.zone_sel.selecting == "head" || H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
 		return ..()
@@ -198,18 +198,18 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	H.apply_stored_shock_to(target)
 
-/datum/species/shapeshifter/promethean/handle_death(mob/living/carbon/human/H)
+datum/species/shapeshifter/promethean/handle_death(mob/living/carbon/human/H)
 	spawn(1)
 		if(H)
 			H.gib()
 
-/datum/species/shapeshifter/promethean/get_blood_colour(mob/living/carbon/human/H)
+datum/species/shapeshifter/promethean/get_blood_colour(mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 
-/datum/species/shapeshifter/promethean/get_flesh_colour(mob/living/carbon/human/H)
+datum/species/shapeshifter/promethean/get_flesh_colour(mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 
-/datum/species/shapeshifter/promethean/get_additional_examine_text(mob/living/carbon/human/H)
+datum/species/shapeshifter/promethean/get_additional_examine_text(mob/living/carbon/human/H)
 
 	if(!stored_shock_by_ref["\ref[H]"])
 		return
@@ -234,7 +234,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 		if(35 to INFINITY)
 			return SPAN_DANGER("[t_she] radiating massive levels of electrical activity!")
 
-/mob/living/carbon/human/proc/prommie_blobform()
+mob/living/carbon/human/proc/prommie_blobform()
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
 	set category = "Abilities"

@@ -34,10 +34,10 @@ Macros:
 // macro-ized to cut down on proc calls
 #define check(c) (c && c.valid())
 
-/turf
+turf
 	var/tmp/datum/connection_manager/connections
 
-/datum/connection_manager
+datum/connection_manager
 	var/datum/zas_connection/N
 	var/datum/zas_connection/S
 	var/datum/zas_connection/E
@@ -47,7 +47,7 @@ Macros:
 	var/datum/zas_connection/D
 #endif
 
-/datum/connection_manager/proc/get(d)
+datum/connection_manager/proc/get(d)
 	switch(d)
 		if(NORTH)
 			if(check(N)) return N
@@ -71,7 +71,7 @@ Macros:
 			else return null
 		#endif
 
-/datum/connection_manager/proc/place(datum/zas_connection/c, d)
+datum/connection_manager/proc/place(datum/zas_connection/c, d)
 	switch(d)
 		if(NORTH) N = c
 		if(SOUTH) S = c
@@ -83,7 +83,7 @@ Macros:
 		if(DOWN) D = c
 		#endif
 
-/datum/connection_manager/proc/update_all()
+datum/connection_manager/proc/update_all()
 	if(check(N)) N.update()
 	if(check(S)) S.update()
 	if(check(E)) E.update()
@@ -93,7 +93,7 @@ Macros:
 	if(check(D)) D.update()
 	#endif
 
-/datum/connection_manager/proc/erase_all()
+datum/connection_manager/proc/erase_all()
 	if(check(N)) N.erase()
 	if(check(S)) S.erase()
 	if(check(E)) E.erase()

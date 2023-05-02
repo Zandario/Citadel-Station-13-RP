@@ -10,10 +10,10 @@
  * - AM - thrown atom that hit us
  * - TT - thrownthing datum.
  */
-/atom/proc/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+atom/proc/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	return NONE
 
-/atom/movable/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+atom/movable/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	if(!anchored && (TT?.force >= (move_resist * MOVE_FORCE_PUSH_RATIO)) && !(TT.throw_flags & THROW_AT_OVERHAND))
 		step(src, AM.dir)
 	return ..()
@@ -28,7 +28,7 @@
  * - A - atom we hit
  * - TT - thrownthing datum
  */
-/atom/movable/proc/throw_impact(atom/A, datum/thrownthing/TT)
+atom/movable/proc/throw_impact(atom/A, datum/thrownthing/TT)
 	return NONE
 
 /**
@@ -41,7 +41,7 @@
  * - AM - atom that landed on us
  * - TT - thrownthing datum
  */
-/atom/proc/throw_landed(atom/movable/AM, datum/thrownthing/TT)
+atom/proc/throw_landed(atom/movable/AM, datum/thrownthing/TT)
 	return NONE
 
 /**
@@ -54,7 +54,7 @@
  * - A - atom that we landed on
  * - TT - thrownthing datum
  */
-/atom/proc/throw_land(atom/A, datum/thrownthing/TT)
+atom/proc/throw_land(atom/A, datum/thrownthing/TT)
 	return NONE
 
 /**
@@ -62,7 +62,7 @@
  *
  * returns FALSE to signify not ending the throw.
  */
-/atom/movable/proc/_throw_do_hit(atom/A, datum/thrownthing/TT)
+atom/movable/proc/_throw_do_hit(atom/A, datum/thrownthing/TT)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	set waitfor = FALSE
 
@@ -82,7 +82,7 @@
 /**
  * called on throw finalization
  */
-/atom/movable/proc/_throw_finalize(atom/landed_on, datum/thrownthing/TT)
+atom/movable/proc/_throw_finalize(atom/landed_on, datum/thrownthing/TT)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	set waitfor = FALSE
 	// their opinion is checked first
@@ -106,7 +106,7 @@
  *
  * @return a datum on success, null on failure.
  */
-/atom/movable/proc/subsystem_throw(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force = THROW_FORCE_DEFAULT)
+atom/movable/proc/subsystem_throw(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force = THROW_FORCE_DEFAULT)
 	SHOULD_CALL_PARENT(TRUE)
 	RETURN_TYPE(/datum/thrownthing)
 
@@ -140,7 +140,7 @@
  *
  * @return a datum on success, null on failure.
  */
-/atom/movable/proc/emulated_throw(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force = THROW_FORCE_DEFAULT)
+atom/movable/proc/emulated_throw(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force = THROW_FORCE_DEFAULT)
 	SHOULD_CALL_PARENT(TRUE)
 	RETURN_TYPE(/datum/thrownthing)
 
@@ -161,7 +161,7 @@
 
 	return TRUE
 
-/atom/movable/proc/_init_throw_datum(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force, emulated)
+atom/movable/proc/_init_throw_datum(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force, emulated)
 	if(throwing)
 		CRASH("already throwing")
 	var/calculated_speed = isnull(speed)? ((movable_flags & MOVABLE_NO_THROW_SPEED_SCALING)? (throw_speed) : (throw_speed * (force > throw_resist? (force / throw_resist) ** (throw_speed_scaling_exponential * 0.1) : 1 / (throw_resist / force) ** (throw_speed_scaling_exponential * 0.1)))) : speed
@@ -223,7 +223,7 @@
  * - on_land - callback to call on land. doesn't go off if we don't land.
  * - force - throw movement force, scales speed to this if not overridden
  */
-/atom/movable/proc/throw_at(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force = THROW_FORCE_DEFAULT)
+atom/movable/proc/throw_at(atom/target, range, speed, flags, atom/thrower, datum/callback/on_hit, datum/callback/on_land, force = THROW_FORCE_DEFAULT)
 	if(!isturf(loc))
 		return FALSE
 
@@ -239,7 +239,7 @@
 
 	return subsystem_throw(target, range, speed, flags, thrower, on_hit, on_land, force)
 
-/atom/movable/proc/can_throw_at(atom/target, range, speed, flags, atom/thrower, force = THROW_FORCE_DEFAULT)
+atom/movable/proc/can_throw_at(atom/target, range, speed, flags, atom/thrower, force = THROW_FORCE_DEFAULT)
 	if(throw_resist >= MOVE_RESIST_ABSOLUTE)
 		return FALSE
 	var/effective_force = force
@@ -250,8 +250,8 @@
 	return TRUE
 
 // wrapper to be replaced
-/atom/movable/proc/throw_at_old(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback)
+atom/movable/proc/throw_at_old(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback)
 	return throw_at(target, range, speed, NONE, thrower, callback, null, null)
 
-/atom/movable/proc/overhand_throw_delay(mob/user)
+atom/movable/proc/overhand_throw_delay(mob/user)
 	return 1 SECONDS

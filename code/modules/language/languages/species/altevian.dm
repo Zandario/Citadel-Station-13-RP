@@ -1,4 +1,4 @@
-/datum/language/squeakish
+datum/language/squeakish
 	id = LANGUAGE_ID_ALTEVIAN
 	name = LANGUAGE_SQUEAKISH
 	translation_class = TRANSLATION_CLASS_DEFAULT_STANDARD_RACE

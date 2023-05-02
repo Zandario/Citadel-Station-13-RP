@@ -25,7 +25,7 @@
  * 	yourself.
  */
 
-/datum/mind
+datum/mind
 	/// ckey of mind
 	var/ckey
 	/// Replaces mob/var/original_name
@@ -101,10 +101,10 @@
 	/// Used to store what traits the player had picked out in their preferences before joining, in text form.
 	var/list/traits = list()
 
-/datum/mind/New(ckey)
+datum/mind/New(ckey)
 	src.ckey = ckey
 
-/datum/mind/Destroy()
+datum/mind/Destroy()
 	QDEL_NULL(characteristics)
 	QDEL_LIST_NULL(abilities)
 	return ..()
@@ -114,7 +114,7 @@
 /**
  * make sure we have a characteristics holder
  */
-/datum/mind/proc/characteristics_holder()
+datum/mind/proc/characteristics_holder()
 	if(!characteristics)
 		characteristics = new
 		characteristics.associate_with_mind(src)
@@ -122,7 +122,7 @@
 
 //? Transfer
 
-/datum/mind/proc/disassociate()
+datum/mind/proc/disassociate()
 	ASSERT(!isnull(current))
 
 	// LEGACY: remove changeling
@@ -140,7 +140,7 @@
 	// done
 	current = null
 
-/datum/mind/proc/associate(mob/new_character)
+datum/mind/proc/associate(mob/new_character)
 	ASSERT(isnull(current))
 	ASSERT(isnull(new_character.mind))
 
@@ -162,7 +162,7 @@
 	if(active)
 		new_character.ckey = ckey //now transfer the ckey to link the client to our new body
 
-/datum/mind/proc/transfer(mob/new_character)
+datum/mind/proc/transfer(mob/new_character)
 	if(isnull(current))
 		associate(new_character)
 		return
@@ -179,11 +179,11 @@
 
 	associate(new_character)
 
-/datum/mind/proc/store_memory(new_text)
+datum/mind/proc/store_memory(new_text)
 	if((length(memory) + length(new_text)) <= MAX_MESSAGE_LEN)
 		memory += "[new_text]<BR>"
 
-/datum/mind/proc/show_memory(mob/recipient)
+datum/mind/proc/show_memory(mob/recipient)
 	var/output = "<B>[current.real_name]'s Memory</B><HR>"
 	output += memory
 
@@ -199,7 +199,7 @@
 		output += "<HR><B>Ambitions:</B> [ambitions]<br>"
 	recipient << browse(output,"window=memory")
 
-/datum/mind/proc/edit_memory()
+datum/mind/proc/edit_memory()
 	if(!SSticker || !SSticker.mode)
 		alert("Not before round-start!", "Alert")
 		return
@@ -234,7 +234,7 @@
 	out += "<b>Ambitions:</b> [ambitions ? ambitions : "None"] <a href='?src=\ref[src];amb_edit=\ref[src]'>\[edit\]</a></br>"
 	usr << browse(out, "window=edit_memory[src]")
 
-/datum/mind/Topic(href, href_list)
+datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))	return
 
 	if(href_list["add_antagonist"])
@@ -495,14 +495,14 @@
 			obj_count++
 	edit_memory()
 
-/datum/mind/proc/find_syndicate_uplink()
+datum/mind/proc/find_syndicate_uplink()
 	var/list/L = current.get_contents()
 	for (var/obj/item/I in L)
 		if (I.hidden_uplink)
 			return I.hidden_uplink
 	return null
 
-/datum/mind/proc/take_uplink()
+datum/mind/proc/take_uplink()
 	var/obj/item/uplink/hidden/H = find_syndicate_uplink()
 	if(H)
 		qdel(H)
@@ -510,7 +510,7 @@
 
 // check whether this mind's mob has been brigged for the given duration
 // have to call this periodically for the duration to work properly
-/datum/mind/proc/is_brigged(duration)
+datum/mind/proc/is_brigged(duration)
 	var/turf/T = current.loc
 	if(!istype(T))
 		brigged_since = -1
@@ -535,7 +535,7 @@
 
 	return (duration <= world.time - brigged_since)
 
-/datum/mind/proc/reset()
+datum/mind/proc/reset()
 	assigned_role =   null
 	special_role =    null
 	role_alt_title =  null
@@ -550,7 +550,7 @@
 	brigged_since =   -1
 
 //Antagonist role check
-/mob/living/proc/check_special_role(role)
+mob/living/proc/check_special_role(role)
 	if(mind)
 		if(!role)
 			return mind.special_role
@@ -560,7 +560,7 @@
 		return 0
 
 //Initialisation procs
-/mob/proc/mind_initialize()
+mob/proc/mind_initialize()
 	if(mind)
 		mind.ckey = ckey
 	else
@@ -577,103 +577,103 @@
 		add_verb(client, /client/proc/aooc)
 
 //HUMAN
-/mob/living/carbon/human/mind_initialize()
+mob/living/carbon/human/mind_initialize()
 	..()
 	if(!mind.assigned_role)
 		mind.assigned_role = USELESS_JOB
 
 //slime
-/mob/living/simple_mob/slime/mind_initialize()
+mob/living/simple_mob/slime/mind_initialize()
 	. = ..()
 	mind.assigned_role = "slime"
 
-/mob/living/carbon/alien/larva/mind_initialize()
+mob/living/carbon/alien/larva/mind_initialize()
 	. = ..()
 	mind.special_role = "Larva"
 
 //AI
-/mob/living/silicon/ai/mind_initialize()
+mob/living/silicon/ai/mind_initialize()
 	. = ..()
 	mind.assigned_role = "AI"
 
 //BORG
-/mob/living/silicon/robot/mind_initialize()
+mob/living/silicon/robot/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Cyborg"
 
 //PAI
-/mob/living/silicon/pai/mind_initialize()
+mob/living/silicon/pai/mind_initialize()
 	. = ..()
 	mind.assigned_role = "pAI"
 	mind.special_role = ""
 
 //Animals
-/mob/living/simple_mob/mind_initialize()
+mob/living/simple_mob/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Simple Mob"
 
-/mob/living/simple_mob/animal/passive/dog/corgi/mind_initialize()
+mob/living/simple_mob/animal/passive/dog/corgi/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Corgi"
 
-/mob/living/simple_mob/construct/shade/mind_initialize()
+mob/living/simple_mob/construct/shade/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Shade"
 	mind.special_role = "Cultist"
 
-/mob/living/simple_mob/construct/artificer/mind_initialize()
+mob/living/simple_mob/construct/artificer/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Artificer"
 	mind.special_role = "Cultist"
 
-/mob/living/simple_mob/construct/wraith/mind_initialize()
+mob/living/simple_mob/construct/wraith/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Wraith"
 	mind.special_role = "Cultist"
 
-/mob/living/simple_mob/construct/juggernaut/mind_initialize()
+mob/living/simple_mob/construct/juggernaut/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Juggernaut"
 	mind.special_role = "Cultist"
 
 //? Preferences Checks
 
-/datum/mind/proc/original_background_religion()
+datum/mind/proc/original_background_religion()
 	RETURN_TYPE(/datum/lore/character_background/religion)
 	var/id = original_save_data?[CHARACTER_DATA_RELIGION]
 	if(isnull(id))
 		return
 	return SScharacters.resolve_religion(id)
 
-/datum/mind/proc/original_background_citizenship()
+datum/mind/proc/original_background_citizenship()
 	RETURN_TYPE(/datum/lore/character_background/citizenship)
 	var/id = original_save_data?[CHARACTER_DATA_CITIZENSHIP]
 	if(isnull(id))
 		return
 	return SScharacters.resolve_citizenship(id)
 
-/datum/mind/proc/original_background_origin()
+datum/mind/proc/original_background_origin()
 	RETURN_TYPE(/datum/lore/character_background/origin)
 	var/id = original_save_data?[CHARACTER_DATA_ORIGIN]
 	if(isnull(id))
 		return
 	return SScharacters.resolve_origin(id)
 
-/datum/mind/proc/original_background_faction()
+datum/mind/proc/original_background_faction()
 	RETURN_TYPE(/datum/lore/character_background/faction)
 	var/id = original_save_data?[CHARACTER_DATA_FACTION]
 	if(isnull(id))
 		return
 	return SScharacters.resolve_faction(id)
 
-/datum/mind/proc/original_background_culture()
+datum/mind/proc/original_background_culture()
 	RETURN_TYPE(/datum/lore/character_background/culture)
 	var/id = original_save_data?[CHARACTER_DATA_CULTURE]
 	if(isnull(id))
 		return
 	return SScharacters.resolve_culture(id)
 
-/datum/mind/proc/original_background_datums()
+datum/mind/proc/original_background_datums()
 	if(isnull(original_save_data))
 		return list()
 	. = list(
@@ -685,7 +685,7 @@
 	)
 	listclearnulls(.)
 
-/datum/mind/proc/original_background_ids()
+datum/mind/proc/original_background_ids()
 	if(isnull(original_save_data))
 		return list()
 	. = list(
@@ -707,7 +707,7 @@
  *
  * @return TRUE / FALSE success or failure
  */
-/datum/mind/proc/add_ability(datum/ability/ability)
+datum/mind/proc/add_ability(datum/ability/ability)
 	if(ispath(ability))
 		. = FALSE
 		ASSERT(!(locate(ability) in abilities))
@@ -725,7 +725,7 @@
  *
  * @return TRUE / FALSE success or failure
  */
-/datum/mind/proc/remove_ability(datum/ability/ability)
+datum/mind/proc/remove_ability(datum/ability/ability)
 	if(ispath(ability))
 		ability = locate(ability) in abilities
 	if(isnull(ability))

@@ -6,7 +6,7 @@
 #define SEC_DATA_RECORD	4
 #define FIELD(N, V, E) list(field = N, value = V, edit = E)
 
-/obj/machinery/computer/secure_data//TODO:SANITY
+obj/machinery/computer/secure_data//TODO:SANITY
 	name = "security records console"
 	desc = "Used to view, edit and maintain security records"
 	icon_keyboard = "security_key"
@@ -26,7 +26,7 @@
 	var/static/list/field_edit_questions
 	var/static/list/field_edit_choices
 
-/obj/machinery/computer/secure_data/Initialize(mapload)
+obj/machinery/computer/secure_data/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		// General
@@ -52,12 +52,12 @@
 		"criminal" = list("*Arrest*", "Incarcerated", "Parolled", "Released", "None"),
 	)
 
-/obj/machinery/computer/secure_data/Destroy()
+obj/machinery/computer/secure_data/Destroy()
 	active1 = null
 	active2 = null
 	return ..()
 
-/obj/machinery/computer/secure_data/verb/eject_id()
+obj/machinery/computer/secure_data/verb/eject_id()
 	set category = "Object"
 	set name = "Eject ID Card"
 	set src in oview(1)
@@ -74,7 +74,7 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/secure_data/attackby(var/obj/item/O, var/mob/user)
+obj/machinery/computer/secure_data/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/card/id) && !scan)
 		if(!user.attempt_insert_item_for_installation(O, src))
 			return
@@ -84,16 +84,16 @@
 	else
 		..()
 
-/obj/machinery/computer/secure_data/attack_ai(mob/user as mob)
+obj/machinery/computer/secure_data/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/secure_data/attack_hand(mob/user, list/params)
+obj/machinery/computer/secure_data/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/computer/secure_data/ui_interact(mob/user, datum/tgui/ui = null)
+obj/machinery/computer/secure_data/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SecurityRecords", "Security Records") // 800, 380
@@ -101,7 +101,7 @@
 		ui.set_autoupdate(FALSE)
 
 
-/obj/machinery/computer/secure_data/ui_data(mob/user)
+obj/machinery/computer/secure_data/ui_data(mob/user)
 	var/data[0]
 	data["temp"] = temp
 	data["scan"] = scan ? scan.name : null
@@ -185,7 +185,7 @@
 	data["modal"] = ui_modal_data(src)
 	return data
 
-/obj/machinery/computer/secure_data/ui_act(action, params)
+obj/machinery/computer/secure_data/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -355,7 +355,7 @@
   * * action - The action passed by tgui
   * * params - The params passed by tgui
   */
-/obj/machinery/computer/secure_data/proc/ui_act_modal(action, params)
+obj/machinery/computer/secure_data/proc/ui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
 	var/list/arguments = istext(params["arguments"]) ? json_decode(params["arguments"]) : params["arguments"]
@@ -418,7 +418,7 @@
 /**
   * Called when the print timer finishes
   */
-/obj/machinery/computer/secure_data/proc/print_finish()
+obj/machinery/computer/secure_data/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center><b>Security Record</b></center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
@@ -458,17 +458,17 @@
   * * text - Text to display, null/empty to clear the message from the UI
   * * style - The style of the message: (color name), info, success, warning, danger, virus
   */
-/obj/machinery/computer/secure_data/proc/set_temp(text = "", style = "info", update_now = FALSE)
+obj/machinery/computer/secure_data/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
 		SStgui.update_uis(src)
 
-/obj/machinery/computer/secure_data/proc/is_not_allowed(var/mob/user)
+obj/machinery/computer/secure_data/proc/is_not_allowed(var/mob/user)
 	if(IsAdminGhost(user))
 		return FALSE
 	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!istype(user, /mob/living/silicon)))
 
-/obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
+obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
 	if(istype(user.get_active_held_item(), /obj/item/photo))
 		var/obj/item/photo/photo = user.get_active_held_item()
 		return photo.img
@@ -478,7 +478,7 @@
 		if (selection)
 			return selection.img
 
-/obj/machinery/computer/secure_data/emp_act(severity)
+obj/machinery/computer/secure_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -508,7 +508,7 @@
 
 	..(severity)
 
-/obj/machinery/computer/secure_data/detective_computer
+obj/machinery/computer/secure_data/detective_computer
 	icon_state = "messyfiles"
 
 #undef FIELD

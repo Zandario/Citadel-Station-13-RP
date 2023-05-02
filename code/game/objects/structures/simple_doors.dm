@@ -1,4 +1,4 @@
-/obj/structure/simple_door
+obj/structure/simple_door
 	name = "door"
 	density = 1
 	anchored = 1
@@ -13,14 +13,14 @@
 	var/hardness = 1
 	var/oreAmount = 7
 
-/obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
 
-/obj/structure/simple_door/proc/TemperatureAct(temperature)
+obj/structure/simple_door/proc/TemperatureAct(temperature)
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
-/obj/structure/simple_door/Initialize(mapload, material_name)
+obj/structure/simple_door/Initialize(mapload, material_name)
 	. = ..(mapload)
 	if(!material_name)
 		material_name = MAT_STEEL
@@ -40,37 +40,37 @@
 		START_PROCESSING(SSobj, src)
 	update_nearby_tiles()
 
-/obj/structure/simple_door/Destroy()
+obj/structure/simple_door/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	update_nearby_tiles()
 	return ..()
 
-/obj/structure/simple_door/get_material()
+obj/structure/simple_door/get_material()
 	return material
 
-/obj/structure/simple_door/Bumped(atom/user)
+obj/structure/simple_door/Bumped(atom/user)
 	..()
 	if(!state)
 		return TryToSwitchState(user)
 	return
 
-/obj/structure/simple_door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
+obj/structure/simple_door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
 	if(isAI(user)) //so the AI can't open it
 		return
 	else if(isrobot(user)) //but cyborgs can
 		if(get_dist(user,src) <= 1) //not remotely though
 			return TryToSwitchState(user)
 
-/obj/structure/simple_door/attack_hand(mob/user, list/params)
+obj/structure/simple_door/attack_hand(mob/user, list/params)
 	return TryToSwitchState(user)
 
-/obj/structure/simple_door/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/simple_door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 	return !density
 
-/obj/structure/simple_door/proc/TryToSwitchState(atom/user)
+obj/structure/simple_door/proc/TryToSwitchState(atom/user)
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
@@ -88,13 +88,13 @@
 	else if(istype(user, /obj/mecha))
 		SwitchState()
 
-/obj/structure/simple_door/proc/SwitchState()
+obj/structure/simple_door/proc/SwitchState()
 	if(state)
 		Close()
 	else
 		Open()
 
-/obj/structure/simple_door/proc/Open()
+obj/structure/simple_door/proc/Open()
 	isSwitchingStates = 1
 	playsound(loc, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]opening",src)
@@ -106,7 +106,7 @@
 	isSwitchingStates = 0
 	update_nearby_tiles()
 
-/obj/structure/simple_door/proc/Close()
+obj/structure/simple_door/proc/Close()
 	isSwitchingStates = 1
 	playsound(loc, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]closing",src)
@@ -118,13 +118,13 @@
 	isSwitchingStates = 0
 	update_nearby_tiles()
 
-/obj/structure/simple_door/update_icon()
+obj/structure/simple_door/update_icon()
 	if(state)
 		icon_state = "[material.door_icon_base]open"
 	else
 		icon_state = material.door_icon_base
 
-/obj/structure/simple_door/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/simple_door/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(istype(W,/obj/item/pickaxe))
 		var/obj/item/pickaxe/digTool = W
@@ -150,15 +150,15 @@
 		attack_hand(user)
 	return
 
-/obj/structure/simple_door/bullet_act(var/obj/projectile/Proj)
+obj/structure/simple_door/bullet_act(var/obj/projectile/Proj)
 	hardness -= Proj.damage/10
 	CheckHardness()
 
-/obj/structure/simple_door/take_damage(var/damage)
+obj/structure/simple_door/take_damage(var/damage)
 	hardness -= damage/10
 	CheckHardness()
 
-/obj/structure/simple_door/attack_generic(var/mob/user, var/damage, var/attack_verb)
+obj/structure/simple_door/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
 	if(material == get_material_by_name("resin"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
@@ -170,16 +170,16 @@
 	hardness -= damage/10
 	CheckHardness()
 
-/obj/structure/simple_door/proc/CheckHardness()
+obj/structure/simple_door/proc/CheckHardness()
 	if(hardness <= 0)
 		Dismantle(1)
 
-/obj/structure/simple_door/proc/Dismantle(devastated = 0)
+obj/structure/simple_door/proc/Dismantle(devastated = 0)
 	material.place_dismantled_product(get_turf(src))
 	visible_message("<span class='danger'>The [src] is destroyed!</span>")
 	qdel(src)
 
-/obj/structure/simple_door/legacy_ex_act(severity = 1)
+obj/structure/simple_door/legacy_ex_act(severity = 1)
 	switch(severity)
 		if(1)
 			Dismantle(1)
@@ -194,48 +194,48 @@
 			CheckHardness()
 	return
 
-/obj/structure/simple_door/process(delta_time)
+obj/structure/simple_door/process(delta_time)
 	if(!material.radioactivity)
 		return
 	radiation_pulse(src, round(material.radioactivity / RAD_INTENSITY_DIVISOR_SIMPLE_DOOR))
 
-/obj/structure/simple_door/iron/Initialize(mapload, material_name)
+obj/structure/simple_door/iron/Initialize(mapload, material_name)
 	return ..(mapload, "iron")
 
-/obj/structure/simple_door/silver/Initialize(mapload, material_name)
+obj/structure/simple_door/silver/Initialize(mapload, material_name)
 	return ..(mapload, "silver")
 
-/obj/structure/simple_door/gold/Initialize(mapload, material_name)
+obj/structure/simple_door/gold/Initialize(mapload, material_name)
 	return ..(mapload, "gold")
 
-/obj/structure/simple_door/uranium/Initialize(mapload, material_name)
+obj/structure/simple_door/uranium/Initialize(mapload, material_name)
 	return ..(mapload, "uranium")
 
-/obj/structure/simple_door/sandstone/Initialize(mapload, material_name)
+obj/structure/simple_door/sandstone/Initialize(mapload, material_name)
 	return ..(mapload, "sandstone")
 
-/obj/structure/simple_door/phoron/Initialize(mapload, material_name)
+obj/structure/simple_door/phoron/Initialize(mapload, material_name)
 	return ..(mapload, "phoron")
 
-/obj/structure/simple_door/diamond/Initialize(mapload, material_name)
+obj/structure/simple_door/diamond/Initialize(mapload, material_name)
 	return ..(mapload, "diamond")
 
-/obj/structure/simple_door/wood/Initialize(mapload, material_name)
+obj/structure/simple_door/wood/Initialize(mapload, material_name)
 	return ..(mapload, MAT_WOOD)
 
-/obj/structure/simple_door/sifwood/Initialize(mapload, material_name)
+obj/structure/simple_door/sifwood/Initialize(mapload, material_name)
 	return ..(mapload, MAT_SIFWOOD)
 
-/obj/structure/simple_door/hardwood/Initialize(mapload, material_name)
+obj/structure/simple_door/hardwood/Initialize(mapload, material_name)
 	return ..(mapload, MAT_HARDWOOD)
 
-/obj/structure/simple_door/resin/Initialize(mapload, material_name)
+obj/structure/simple_door/resin/Initialize(mapload, material_name)
 	return ..(mapload, "resin")
 
-/obj/structure/simple_door/cult/Initialize(mapload, material_name)
+obj/structure/simple_door/cult/Initialize(mapload, material_name)
 	return ..(mapload, "cult")
 
-/obj/structure/simple_door/cult/TryToSwitchState(atom/user)
+obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!iscultist(L) && !istype(L, /mob/living/simple_mob/construct))

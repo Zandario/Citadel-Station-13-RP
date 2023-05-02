@@ -32,7 +32,7 @@
 /// exotic tech / goods
 #define ECONOMIC_CATEGORY_OBJ_EXOTIC (1<<3)
 
-/proc/economic_category_obj_name(cat)
+proc/economic_category_obj_name(cat)
 	switch(cat)
 		if(ECONOMIC_CATEGORY_OBJ_HAZARD)
 			return "Hazardous Materials"
@@ -83,7 +83,7 @@ DEFINE_BITFIELD(economic_category_obj, list(
 /// advanced electronics like pda, tablets, computers, etc
 #define ECONOMIC_CATEGORY_ITEM_ELECTRONICS (1<<12)
 
-/proc/economic_category_item_name(cat)
+proc/economic_category_item_name(cat)
 	switch(cat)
 		if(ECONOMIC_CATEGORY_ITEM_CLOTHING)
 			return "Clothing"
@@ -137,7 +137,7 @@ DEFINE_BITFIELD(economic_category_item, list(
 /// "normal" livestock
 #define ECONOMIC_CATEGORY_MOB_LIVESTOCK (1<<0)
 
-/proc/economic_category_mob_name(cat)
+proc/economic_category_mob_name(cat)
 	switch(cat)
 		if(ECONOMIC_CATEGORY_MOB_LIVESTOCK)
 			return "Livestock"
@@ -165,7 +165,7 @@ DEFINE_BITFIELD(economic_category_mob, list(
 /// biological like wood or whatever
 #define ECONOMIC_CATEGORY_MATERIAL_ORGANIC (1<<5)
 
-/proc/economic_category_material_name(cat)
+proc/economic_category_material_name(cat)
 	switch(cat)
 		if(ECONOMIC_CATEGORY_MATERIAL_CONSTRUCTION)
 			return "Bulk Construction"
@@ -224,7 +224,7 @@ DEFINE_BITFIELD(economic_category_reagent, list(
 	BITFIELD(ECONOMIC_CATEGORY_REAGENT_TOYS),
 ))
 
-/proc/economic_category_reagent_name(cat)
+proc/economic_category_reagent_name(cat)
 	switch(cat)
 		if(ECONOMIC_CATEGORY_REAGENT_MEDICINE)
 			return "Medicine"

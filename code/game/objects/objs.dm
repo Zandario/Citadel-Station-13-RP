@@ -1,4 +1,4 @@
-/obj
+obj
 
 	layer = OBJ_LAYER
 	plane = OBJ_PLANE
@@ -51,7 +51,7 @@
 	/// Set when a player renames a renamable object.
 	var/renamed_by_player = FALSE
 
-/obj/Initialize(mapload)
+obj/Initialize(mapload)
 	if(register_as_dangerous_object)
 		register_dangerous_to_step()
 	. = ..()
@@ -65,7 +65,7 @@
 			else
 				obj_flags |= string_to_objflag[flag]
 
-/obj/Destroy()
+obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(register_as_dangerous_object)
 		unregister_dangerous_to_step()
@@ -73,7 +73,7 @@
 	SSnanoui.close_uis(src)
 	return ..()
 
-/obj/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+obj/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	if(register_as_dangerous_object)
 		var/turf/old_turf = get_turf(old_loc)
@@ -83,9 +83,9 @@
 			old_turf.unregister_dangerous_object(src)
 			new_turf.register_dangerous_object(src)
 
-/obj/item/proc/is_used_on(obj/O, mob/user)
+obj/item/proc/is_used_on(obj/O, mob/user)
 
-/obj/proc/updateUsrDialog()
+obj/proc/updateUsrDialog()
 	if(in_use)
 		var/is_in_use = 0
 		var/list/nearby = viewers(1, src)
@@ -110,7 +110,7 @@
 						src.attack_hand(H)
 		in_use = is_in_use
 
-/obj/proc/updateDialog()
+obj/proc/updateDialog()
 	// Check that people are actually using the machine. If not, don't update anymore.
 	if(in_use)
 		var/list/nearby = viewers(1, src)
@@ -124,29 +124,29 @@
 		if(!ai_in_use && !is_in_use)
 			in_use = 0
 
-/obj/attack_ghost(mob/user)
+obj/attack_ghost(mob/user)
 	nano_ui_interact(user)
 	..()
 
-/mob/proc/unset_machine()
+mob/proc/unset_machine()
 	machine = null
 
-/mob/proc/set_machine(var/obj/O)
+mob/proc/set_machine(var/obj/O)
 	if(src.machine)
 		unset_machine()
 	src.machine = O
 	if(istype(O))
 		O.in_use = 1
 
-/obj/item/proc/updateSelfDialog()
+obj/item/proc/updateSelfDialog()
 	var/mob/M = src.loc
 	if(istype(M) && M.client && M.machine == src)
 		src.attack_self(M)
 
-/obj/proc/hide(h)
+obj/proc/hide(h)
 	return
 
-/obj/proc/hides_under_flooring()
+obj/proc/hides_under_flooring()
 	return 0
 
 	/**
@@ -160,14 +160,14 @@
  * * to_dir- What direction we're trying to move in, relevant for things like directional windows that only block movement in certain directions
  * * caller- The movable we're checking pass flags for, if we're making any such checks
  **/
-/obj/proc/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
+obj/proc/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
 	if(ismovable(caller))
 		var/atom/movable/AM = caller
 		if(AM.pass_flags & pass_flags_self)
 			return TRUE
 	. = !density
 
-/obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking)
+obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking)
 	if(talking_atom)
 		talking_atom.catchMessage(text, M)
 /*
@@ -178,28 +178,28 @@
 		*/
 	return
 
-/obj/proc/hear_signlang(mob/M as mob, text, verb, datum/language/speaking) // Saycode gets worse every day.
+obj/proc/hear_signlang(mob/M as mob, text, verb, datum/language/speaking) // Saycode gets worse every day.
 	return FALSE
 
-/obj/proc/see_emote(mob/M as mob, text, var/emote_type)
+obj/proc/see_emote(mob/M as mob, text, var/emote_type)
 	return
 
 // Used to mark a turf as containing objects that are dangerous to step onto.
-/obj/proc/register_dangerous_to_step()
+obj/proc/register_dangerous_to_step()
 	var/turf/T = get_turf(src)
 	if(T)
 		T.register_dangerous_object(src)
 
-/obj/proc/unregister_dangerous_to_step()
+obj/proc/unregister_dangerous_to_step()
 	var/turf/T = get_turf(src)
 	if(T)
 		T.unregister_dangerous_object(src)
 
 // Test for if stepping on a tile containing this obj is safe to do, used for things like landmines and cliffs.
-/obj/proc/is_safe_to_step(mob/living/L)
+obj/proc/is_safe_to_step(mob/living/L)
 	return TRUE
 
-/obj/examine(mob/user)
+obj/examine(mob/user)
 	. = ..()
 	if(matter)
 		if(!matter.len)
@@ -214,10 +214,10 @@
 		. += "<u>It is made out of [materials_list]</u>."
 	return
 
-/obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
+obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
 	return
 
-/obj/attack_hand(mob/user, list/params)
+obj/attack_hand(mob/user, list/params)
 	if(Adjacent(user))
 		add_fingerprint(user)
 	..()
@@ -229,7 +229,7 @@
  *
  * @return TRUE if something was done to start to resist / as a resist actino, FALSE if something trivial was done / nothing was done.
  */
-/obj/proc/contents_resist(mob/escapee)
+obj/proc/contents_resist(mob/escapee)
 	SHOULD_NOT_SLEEP(TRUE)
 	return FALSE
 
@@ -238,14 +238,14 @@
  *
  * @return TRUE / FALSE based on if they started an action.
  */
-/obj/proc/contents_resist_sequence(mob/escapee, time = 2 MINUTES, interval = 5 SECONDS)
+obj/proc/contents_resist_sequence(mob/escapee, time = 2 MINUTES, interval = 5 SECONDS)
 	set waitfor = FALSE
 	if(INTERACTING_WITH_FOR(escapee, src, INTERACTING_FOR_RESIST))
 		return FALSE
 	. = TRUE
 	_contents_resist_sequence(arglist(args))
 
-/obj/proc/_contents_resist_sequence(mob/escapee, time, interval)
+obj/proc/_contents_resist_sequence(mob/escapee, time, interval)
 	START_INTERACTING_WITH(escapee, src, INTERACTING_FOR_RESIST)
 	if(!contents_resist_step(escapee, 0))
 		return FALSE
@@ -276,20 +276,20 @@
  *
  * @return TRUE / FALSE to keep resisting or not
  */
-/obj/proc/contents_resist_step(mob/escapee, iteration, finishing)
+obj/proc/contents_resist_step(mob/escapee, iteration, finishing)
 	contents_resist_shake()
 	return TRUE
 
 /**
  * Called when contents_resist_sequence finishes successfully.
  */
-/obj/proc/contents_resist_finish(mob/escapee)
+obj/proc/contents_resist_finish(mob/escapee)
 	return
 
 /**
  * called to shake during contents resist
  */
-/obj/proc/contents_resist_shake()
+obj/proc/contents_resist_shake()
 	var/init_px = pixel_x
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)

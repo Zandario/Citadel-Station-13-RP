@@ -3,7 +3,7 @@
 /**
  * Pads 0s to t until length == u
  */
-/proc/add_zero2(t, u)
+proc/add_zero2(t, u)
 	var/temp1
 	while (length(t) < u)
 		t = "0[t]"
@@ -17,7 +17,7 @@
  * DNA Gene activation boundaries, see dna2.dm.
  * Returns a list object with 4 numbers.
  */
-/proc/GetDNABounds(block)
+proc/GetDNABounds(block)
 	var/list/BOUNDS=dna_activity_bounds[block]
 	if(!istype(BOUNDS))
 		return DNA_DEFAULT_BOUNDS
@@ -27,7 +27,7 @@
 /**
  * Give Random Bad Mutation to M
  */
-/proc/randmutb(mob/living/M)
+proc/randmutb(mob/living/M)
 	if(!M)
 		return
 	M.dna.check_integrity()
@@ -39,7 +39,7 @@
  * Give Random Good Mutation to M
  */
 //
-/proc/randmutg(var/mob/living/M)
+proc/randmutg(var/mob/living/M)
 	if(!M)
 		return
 	M.dna.check_integrity()
@@ -50,7 +50,7 @@
 /**
  * Random Appearance Mutation
  */
-/proc/randmuti(mob/living/M)
+proc/randmuti(mob/living/M)
 	if(!M)
 		return
 	M.dna.check_integrity()
@@ -60,7 +60,7 @@
 /**
  * Scramble UI or SE.
  */
-/proc/scramble(UI, mob/M, prob)
+proc/scramble(UI, mob/M, prob)
 	if(!M)
 		return
 	M.dna.check_integrity()
@@ -81,7 +81,7 @@
 
 
 // I haven't yet figured out what the fuck this is supposed to do.
-/proc/miniscramble(input,rs,rd)
+proc/miniscramble(input,rs,rd)
 	var/output
 	output = null
 	if (input == "C" || input == "D" || input == "E" || input == "F")
@@ -103,7 +103,7 @@
  * rs: RAD STRENGTH
  * rd: DURATION
  */
-/proc/miniscrambletarget(input, rs, rd)
+proc/miniscrambletarget(input, rs, rd)
 	var/output = null
 	switch(input)
 		if("0")
@@ -150,7 +150,7 @@
 /**
  * Simpler. Don't specify UI in order for the mob to use its own.
  */
-/mob/proc/UpdateAppearance(list/UI=null)
+mob/proc/UpdateAppearance(list/UI=null)
 	if(istype(src, /mob/living/carbon/human))
 		if(UI!=null)
 			src.dna.UI=UI
@@ -279,17 +279,17 @@
 		return FALSE
 
 
-/mob/living/carbon/human/proc/force_update_organs()
+mob/living/carbon/human/proc/force_update_organs()
 	for(var/obj/item/organ/O as anything in organs + internal_organs)
 		O.species = species
 
 
 /// Used below, simple injection modifier.
-/proc/probinj(pr, inj)
+proc/probinj(pr, inj)
 	return prob(pr+inj*pr)
 
-/mob/proc/has_dna()
+mob/proc/has_dna()
 	return
 
-/mob/living/carbon/has_dna()
+mob/living/carbon/has_dna()
 	return dna

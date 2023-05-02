@@ -1,4 +1,4 @@
-/datum/technomancer/spell/oxygenate
+datum/technomancer/spell/oxygenate
 	name = "Oxygenate"
 	desc = "This function creates oxygen at a location of your chosing.  If used on a humanoid entity, it heals oxygen deprivation.  \
 	If casted on the envirnment, air (oxygen and nitrogen) is moved from a distant location to your target."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_oxygenate"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/oxygenate
+obj/item/spell/oxygenate
 	name = "oxygenate"
 	desc = "Atmospherics is obsolete."
 	icon_state = "darkness" //wip
@@ -15,7 +15,7 @@
 	aspect = ASPECT_AIR
 	cooldown = 30
 
-/obj/item/spell/oxygenate/on_ranged_cast(atom/hit_atom, mob/user)
+obj/item/spell/oxygenate/on_ranged_cast(atom/hit_atom, mob/user)
 	if(!within_range(hit_atom))
 		return
 	if(ishuman(hit_atom))

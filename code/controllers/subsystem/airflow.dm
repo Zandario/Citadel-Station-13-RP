@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(airflow)
 	var/list/processing = list()
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/airflow/fire(resumed = FALSE)
+datum/controller/subsystem/airflow/fire(resumed = FALSE)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/airflow/speed_decay, speed_decay)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/airflow/mob_slowdown, mob_slowdown)
 	if (!resumed)
@@ -102,14 +102,14 @@ SUBSYSTEM_DEF(airflow)
 
 #undef CLEAR_OBJECT
 
-/atom/movable
+atom/movable
 	var/tmp/airflow_xo
 	var/tmp/airflow_yo
 	var/tmp/airflow_od
 	var/tmp/airflow_process_delay
 	var/tmp/airflow_skip_speedcheck
 
-/atom/movable/proc/prepare_airflow(n)
+atom/movable/proc/prepare_airflow(n)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/airflow/retrigger_delay, retrigger_delay)
 	if (!airflow_dest || airflow_speed < 0 || last_airflow > world.time - retrigger_delay)
 		return FALSE
@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(airflow)
 
 	return TRUE
 
-/atom/movable/proc/GotoAirflowDest(n)
+atom/movable/proc/GotoAirflowDest(n)
 	if (!prepare_airflow(n))
 		return
 
@@ -154,7 +154,7 @@ SUBSYSTEM_DEF(airflow)
 
 	SSairflow.processing += src
 
-/atom/movable/proc/RepelAirflowDest(n)
+atom/movable/proc/RepelAirflowDest(n)
 	if (!prepare_airflow(n))
 		return
 

@@ -1,4 +1,4 @@
-/datum/technomancer/spell/reflect
+datum/technomancer/spell/reflect
 	name = "Reflect"
 	desc = "Emits a protective shield fron your hand in front of you, which will reflect one attack back at the attacker."
 	cost = 100
@@ -6,7 +6,7 @@
 	ability_icon_state = "tech_reflect"
 	category = DEFENSIVE_SPELLS
 
-/obj/item/spell/reflect
+obj/item/spell/reflect
 	name = "reflection shield"
 	icon_state = "reflect"
 	desc = "A very protective combat shield that'll reflect the next attack at the unfortunate person who tried to shoot you."
@@ -16,7 +16,7 @@
 	var/damage_to_energy_multiplier = 60.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 1200 energy cost
 	var/datum/effect_system/spark_spread/spark_system = null
 
-/obj/item/spell/reflect/Initialize(mapload)
+obj/item/spell/reflect/Initialize(mapload)
 	. = ..()
 	set_light(3, 2, l_color = "#006AFF")
 	spark_system = new /datum/effect_system/spark_spread()
@@ -24,13 +24,13 @@
 	to_chat(owner, "<span class='notice'>Your shield will expire in 3 seconds!</span>")
 	QDEL_IN(src, 5 SECONDS)
 
-/obj/item/spell/reflect/Destroy()
+obj/item/spell/reflect/Destroy()
 	if(ismob(loc))
 		to_chat(loc, "<span class='danger'>Your shield expires!</span>")
 	spark_system = null
 	return ..()
 
-/obj/item/spell/reflect/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/spell/reflect/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 

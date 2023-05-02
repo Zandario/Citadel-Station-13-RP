@@ -3,7 +3,7 @@
  *
  * todo: better documentation
  */
-/obj/item/organ/external/proc/create_wound(var/type = CUT, var/damage)
+obj/item/organ/external/proc/create_wound(var/type = CUT, var/damage)
 	if(damage == 0)
 		return
 
@@ -75,7 +75,7 @@
  *
  * @return the /datum/wound created, *or* the /datum/wound merged, *or* null if it was rejected.
  */
-/obj/item/organ/external/proc/create_specific_wound(path, damage, updating = TRUE)
+obj/item/organ/external/proc/create_specific_wound(path, damage, updating = TRUE)
 	ASSERT(ispath(path, /datum/wound))
 
 	var/datum/wound/creating = new path(damage)
@@ -110,7 +110,7 @@
  *
  * @return TRUE / FALSE based on if anything was removed.
  */
-/obj/item/organ/external/proc/cure_specific_wound(datum/wound/path_or_instance, all = FALSE, updating = TRUE)
+obj/item/organ/external/proc/cure_specific_wound(datum/wound/path_or_instance, all = FALSE, updating = TRUE)
 	. = FALSE
 	// todo: remove the assert / is in check, free performance, only here to prevent accidental misuse for now.
 	ASSERT(ispath(path_or_instance, /datum/wound))
@@ -138,7 +138,7 @@
  * * wound - the wound to cure
  * * updating - update damages?
  */
-/obj/item/organ/external/proc/cure_exact_wound(datum/wound/wound, updating = TRUE)
+obj/item/organ/external/proc/cure_exact_wound(datum/wound/wound, updating = TRUE)
 	wounds -= wound
 
 	if(updating)
@@ -150,7 +150,7 @@
  * Does as its name implies - tracks a wound, or a group of similar wounds,
  * on an /obj/item/organ/external.
  */
-/datum/wound
+datum/wound
 	// number representing the current stage
 	var/current_stage = 0
 
@@ -202,7 +202,7 @@
 	var/tmp/list/desc_list = list()
 	var/tmp/list/damage_list = list()
 
-/datum/wound/New(damage)
+datum/wound/New(damage)
 
 	created = world.time
 
@@ -220,7 +220,7 @@
 	bleed_timer += damage
 
 // returns 1 if there's a next stage, 0 otherwise
-/datum/wound/proc/init_stage(initial_damage)
+datum/wound/proc/init_stage(initial_damage)
 	current_stage = stages.len
 
 	while(src.current_stage > 1 && src.damage_list[current_stage-1] <= initial_damage / src.amount)
@@ -230,10 +230,10 @@
 	src.desc = desc_list[current_stage]
 
 // the amount of damage per wound
-/datum/wound/proc/wound_damage()
+datum/wound/proc/wound_damage()
 	return src.damage / src.amount
 
-/datum/wound/proc/can_autoheal()
+datum/wound/proc/can_autoheal()
 	if(is_treated())
 		return TRUE
 	if(src.wound_damage() <= autoheal_cutoff)
@@ -242,14 +242,14 @@
 		return TRUE
 
 // checks whether the wound has been appropriately treated
-/datum/wound/proc/is_treated()
+datum/wound/proc/is_treated()
 	if(damage_type == BRUISE || damage_type == CUT || damage_type == PIERCE)
 		return bandaged
 	else if(damage_type == BURN)
 		return salved
 
 // Checks whether other other can be merged into src.
-/datum/wound/proc/can_merge(var/datum/wound/other)
+datum/wound/proc/can_merge(var/datum/wound/other)
 	if (other.type != src.type)
 		return 0
 	if (other.current_stage != src.current_stage)
@@ -270,7 +270,7 @@
 	// 	return 0
 	return 1
 
-/datum/wound/proc/merge_wound(datum/wound/other)
+datum/wound/proc/merge_wound(datum/wound/other)
 	src.damage += other.damage
 	src.amount += other.amount
 	src.bleed_timer += other.bleed_timer
@@ -278,14 +278,14 @@
 	src.created = max(src.created, other.created) // Take the newer created time.
 
 /// Forces an infection, and bleeding regardless of damage or stage.
-/datum/wound/proc/force_infect()
+datum/wound/proc/force_infect()
 	bleed_threshold = 4 	//Will always start bleeding, making the infection worse if untreated
 	forced_infected = TRUE
 	germ_level = INFECTION_LEVEL_ONE + 1
 
 // checks if wound is considered open for external infections
 // untreated cuts (and bleeding bruises) and burns are possibly infectable, chance higher if wound is bigger
-/datum/wound/proc/infection_check()
+datum/wound/proc/infection_check()
 	if (disinfected)
 		if(germ_level > INFECTION_LEVEL_ONE)
 			germ_level = 0	//reset this, just in case
@@ -313,19 +313,19 @@
 
 	return FALSE
 
-/datum/wound/proc/bandage()
+datum/wound/proc/bandage()
 	bandaged = 1
 
-/datum/wound/proc/salve()
+datum/wound/proc/salve()
 	salved = 1
 
-/datum/wound/proc/disinfect()
+datum/wound/proc/disinfect()
 	disinfected = 1
 
 // heal the given amount of damage, and if the given amount of damage was more
 // than what needed to be healed, return how much heal was left
 // set @heals_internal to also heal internal organ damage
-/datum/wound/proc/heal_damage(amount, heals_internal = 0)
+datum/wound/proc/heal_damage(amount, heals_internal = 0)
 	if(src.internal && !heals_internal)
 		// heal nothing
 		return amount
@@ -343,7 +343,7 @@
 	return amount
 
 // opens the wound again
-/datum/wound/proc/open_wound(damage)
+datum/wound/proc/open_wound(damage)
 	src.damage += damage
 	bleed_timer += damage
 
@@ -355,7 +355,7 @@
 
 // returns whether this wound can absorb the given amount of damage.
 // this will prevent large amounts of damage being trapped in less severe wound types
-/datum/wound/proc/can_worsen(damage_type, damage)
+datum/wound/proc/can_worsen(damage_type, damage)
 	if (src.damage_type != damage_type)
 		return 0	//incompatible damage types
 
@@ -371,7 +371,7 @@
 
 	return 1
 
-/datum/wound/proc/bleeding()
+datum/wound/proc/bleeding()
 	if (src.internal)
 		return 0	// internal wounds don't bleed in the sense of this function
 
@@ -392,7 +392,7 @@
 //the damage amount for the stage with the same name as the wound.
 //e.g. /datum/wound/cut/deep should only be applied for 15 damage and up,
 //because in it's stages list, "deep cut" = 15.
-/proc/get_wound_type(type = CUT, damage)
+proc/get_wound_type(type = CUT, damage)
 	switch(type)
 		if(CUT)
 			switch(damage)

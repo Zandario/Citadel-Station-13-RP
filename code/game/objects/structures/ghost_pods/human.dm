@@ -1,6 +1,6 @@
 // Ghost variant.
 
-/obj/structure/ghost_pod/ghost_activated/human
+obj/structure/ghost_pod/ghost_activated/human
 	name = "mysterious cryopod"
 	desc = "This is a pod which appears to contain a body."
 	description_info = "This contains a body, which may wake at any time. The external controls\
@@ -23,12 +23,12 @@
 
 	var/list/clothing_possibilities
 
-/obj/structure/ghost_pod/ghost_activated/human/Initialize(mapload)
+obj/structure/ghost_pod/ghost_activated/human/Initialize(mapload)
 	. = ..()
 
 	handle_clothing_setup()
 
-/obj/structure/ghost_pod/ghost_activated/human/proc/handle_clothing_setup()
+obj/structure/ghost_pod/ghost_activated/human/proc/handle_clothing_setup()
 	clothing_possibilities = list()
 
 	clothing_possibilities |= subtypesof(/obj/item/clothing/under/color)
@@ -36,7 +36,7 @@
 	clothing_possibilities |= /obj/item/clothing/shoes/black
 	clothing_possibilities |= /obj/item/radio/headset
 
-/obj/structure/ghost_pod/ghost_activated/human/create_occupant(var/mob/M)
+obj/structure/ghost_pod/ghost_activated/human/create_occupant(var/mob/M)
 	..()
 	var/turf/T = get_turf(src)
 	var/mob/living/carbon/human/H = new(src)
@@ -127,7 +127,7 @@
 
 // Manual Variant
 // This one lacks the emag option due to the fact someone has to activate it, and they will probably help the person.
-/obj/structure/ghost_pod/manual/human
+obj/structure/ghost_pod/manual/human
 	name = "mysterious cryopod"
 	desc = "This is a pod which appears to contain a body."
 	description_info = "This contains a body, which may wake at any time. The external controls\
@@ -149,12 +149,12 @@
 
 	var/list/clothing_possibilities
 
-/obj/structure/ghost_pod/manual/human/Initialize(mapload)
+obj/structure/ghost_pod/manual/human/Initialize(mapload)
 	. = ..()
 
 	handle_clothing_setup()
 
-/obj/structure/ghost_pod/manual/human/proc/handle_clothing_setup()
+obj/structure/ghost_pod/manual/human/proc/handle_clothing_setup()
 	clothing_possibilities = list()
 
 	clothing_possibilities |= subtypesof(/obj/item/clothing/under/utility)
@@ -162,7 +162,7 @@
 	clothing_possibilities |= /obj/item/clothing/shoes/black
 	clothing_possibilities |= /obj/item/radio/headset
 
-/obj/structure/ghost_pod/manual/human/create_occupant(var/mob/M)
+obj/structure/ghost_pod/manual/human/create_occupant(var/mob/M)
 	..()
 	var/turf/T = get_turf(src)
 	var/mob/living/carbon/human/H = new(src)

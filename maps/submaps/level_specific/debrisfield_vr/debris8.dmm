@@ -1,21 +1,21 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/space)
+turf/template_noop,
+area/space)
 "b" = (
-/turf/template_noop,
-/area/tether_away/debrisfield_vr/shuttle_buffer)
+turf/template_noop,
+area/tether_away/debrisfield_vr/shuttle_buffer)
 "c" = (
-/turf/simulated/floor/hull/airless,
-/area/tether_away/debrisfield_vr/shuttle_buffer)
+turf/simulated/floor/hull/airless,
+area/tether_away/debrisfield_vr/shuttle_buffer)
 "e" = (
-/obj/structure/lattice,
-/turf/space,
-/area/space)
+obj/structure/lattice,
+turf/space,
+area/space)
 "f" = (
-/obj/structure/lattice,
-/turf/space,
-/area/tether_away/debrisfield_vr/shuttle_buffer)
+obj/structure/lattice,
+turf/space,
+area/tether_away/debrisfield_vr/shuttle_buffer)
 
 (1,1,1) = {"
 a

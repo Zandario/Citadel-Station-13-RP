@@ -1,4 +1,4 @@
-/datum/power/changeling/electric_lockpick
+datum/power/changeling/electric_lockpick
 	name = "Electric Lockpick"
 	desc = "We discreetly evolve a finger to be able to send a small electric charge.  \
 	We can open most electrical locks, but it will be obvious when we do so."
@@ -8,7 +8,7 @@
 	verbpath = /mob/proc/changeling_electric_lockpick
 
 //Emag-lite
-/mob/proc/changeling_electric_lockpick()
+mob/proc/changeling_electric_lockpick()
 	set category = "Changeling"
 	set name = "Electric Lockpick (5 + 10/use)"
 	set desc = "Bruteforces open most electrical locking systems, at 10 chemicals per use."
@@ -25,24 +25,24 @@
 			return 1
 		return 0
 
-/obj/item/finger_lockpick
+obj/item/finger_lockpick
 	name = "finger lockpick"
 	desc = "This finger appears to be an organic datajack."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "electric_hand"
 	show_examine = FALSE
 
-/obj/item/finger_lockpick/Initialize(mapload)
+obj/item/finger_lockpick/Initialize(mapload)
 	. = ..()
 	if(ismob(loc))
 		to_chat(loc, "<span class='notice'>We shape our finger to fit inside electronics, and are ready to force them open.</span>")
 
-/obj/item/finger_lockpick/dropped(mob/user, flags, atom/newLoc)
+obj/item/finger_lockpick/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	to_chat(user, "<span class='notice'>We discreetly shape our finger back to a less suspicious form.</span>")
 	qdel(src)
 
-/obj/item/finger_lockpick/afterattack(var/atom/target, var/mob/living/user, proximity)
+obj/item/finger_lockpick/afterattack(var/atom/target, var/mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)

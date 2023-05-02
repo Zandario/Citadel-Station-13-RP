@@ -1,4 +1,4 @@
-/obj/item/tvcamera
+obj/item/tvcamera
 	name = "press camera drone"
 	desc = "A Ward-Takahashi EyeBuddy media streaming hovercam. Weapon of choice for war correspondents and reality show cameramen."
 	icon = 'icons/obj/device.dmi'
@@ -10,11 +10,11 @@
 	var/obj/machinery/camera/network/thunder/camera
 	var/obj/item/radio/radio
 
-/obj/item/tvcamera/Initialize(mapload)
+obj/item/tvcamera/Initialize(mapload)
 	. = ..()
 	listening_objects += src
 
-/obj/item/tvcamera/Destroy()
+obj/item/tvcamera/Destroy()
 	listening_objects -= src
 	qdel(camera)
 	qdel(radio)
@@ -22,12 +22,12 @@
 	radio = null
 	..()
 
-/obj/item/tvcamera/examine()
+obj/item/tvcamera/examine()
 	. = ..()
 	. += "Video feed is [camera.status ? "on" : "off"]."
 	. += "Audio feed is [radio.broadcasting ? "on" : "off"]."
 
-/obj/item/tvcamera/Initialize(mapload)
+obj/item/tvcamera/Initialize(mapload)
 	. = ..()
 	camera = new(src)
 	camera.c_tag = channel
@@ -39,11 +39,11 @@
 	radio.icon_state = src.icon_state
 	update_icon()
 
-/obj/item/tvcamera/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
+obj/item/tvcamera/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
 	radio.hear_talk(M,msg,verb,speaking)
 	..()
 
-/obj/item/tvcamera/attack_self(mob/user)
+obj/item/tvcamera/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -58,7 +58,7 @@
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
-/obj/item/tvcamera/Topic(bred, href_list, state = GLOB.physical_state)
+obj/item/tvcamera/Topic(bred, href_list, state = GLOB.physical_state)
 	if(..())
 		return 1
 	if(href_list["channel"])
@@ -83,7 +83,7 @@
 	if(!href_list["close"])
 		attack_self(usr)
 
-/obj/item/tvcamera/update_icon()
+obj/item/tvcamera/update_icon()
 	..()
 	if(camera.status)
 		icon_state = "camcorder_on"

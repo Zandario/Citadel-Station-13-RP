@@ -1,21 +1,21 @@
-/obj/vehicle/sealed
+obj/vehicle/sealed
 	enclosed = TRUE // you're in a sealed vehicle dont get dinked idiot
 	var/enter_delay = 20
 	var/explode_on_death = TRUE
 	//? ??? what was this for ???
 	// flags = BLOCK_FACE_ATOM
 
-/obj/vehicle/sealed/generate_actions()
+obj/vehicle/sealed/generate_actions()
 	. = ..()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/climb_out)
 
-/obj/vehicle/sealed/generate_action_type()
+obj/vehicle/sealed/generate_action_type()
 	var/datum/action/vehicle/sealed/E = ..()
 	. = E
 	if(istype(E))
 		E.vehicle_entered_target = src
 
-/obj/vehicle/sealed/MouseDroppedOn(atom/dropping, mob/user, proximity, params)
+obj/vehicle/sealed/MouseDroppedOn(atom/dropping, mob/user, proximity, params)
 	if(!istype(dropping) || !isliving(user))
 		return ..()
 	if(user == dropping)
@@ -23,7 +23,7 @@
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return ..()
 
-/obj/vehicle/sealed/proc/mob_try_enter(mob/M)
+obj/vehicle/sealed/proc/mob_try_enter(mob/M)
 	if(!istype(M))
 		return FALSE
 	if(occupant_amount() >= max_occupants)
@@ -33,10 +33,10 @@
 		return TRUE
 	return FALSE
 
-/obj/vehicle/sealed/proc/get_enter_delay(mob/M)
+obj/vehicle/sealed/proc/get_enter_delay(mob/M)
 	return enter_delay
 
-/obj/vehicle/sealed/proc/mob_enter(mob/M, silent = FALSE)
+obj/vehicle/sealed/proc/mob_enter(mob/M, silent = FALSE)
 	if(!istype(M))
 		return FALSE
 	if(!silent)
@@ -45,10 +45,10 @@
 	add_occupant(M)
 	return TRUE
 
-/obj/vehicle/sealed/proc/mob_try_exit(mob/M, mob/user, silent = FALSE, randomstep = FALSE)
+obj/vehicle/sealed/proc/mob_try_exit(mob/M, mob/user, silent = FALSE, randomstep = FALSE)
 	mob_exit(M, silent, randomstep)
 
-/obj/vehicle/sealed/proc/mob_exit(mob/M, silent = FALSE, randomstep = FALSE)
+obj/vehicle/sealed/proc/mob_exit(mob/M, silent = FALSE, randomstep = FALSE)
 	SIGNAL_HANDLER
 	if(!istype(M))
 		return FALSE
@@ -63,10 +63,10 @@
 		M.visible_message("<span class='notice'>[M] drops out of \the [src]!</span>")
 	return TRUE
 
-/obj/vehicle/sealed/proc/exit_location(M)
+obj/vehicle/sealed/proc/exit_location(M)
 	return drop_location()
 
-/obj/vehicle/sealed/attackby(obj/item/I, mob/user, params)
+obj/vehicle/sealed/attackby(obj/item/I, mob/user, params)
 	if(key_type && !is_key(inserted_key) && is_key(I))
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
 		if(!user.attempt_insert_item_for_installation(I, src))
@@ -78,7 +78,7 @@
 		return
 	return ..()
 
-/obj/vehicle/sealed/proc/remove_key(mob/user)
+obj/vehicle/sealed/proc/remove_key(mob/user)
 	if(!inserted_key)
 		to_chat(user, "<span class='notice'>There is no key in [src]!</span>")
 		return
@@ -90,20 +90,20 @@
 	user.put_in_hands(inserted_key)
 	inserted_key = null
 
-/obj/vehicle/sealed/Destroy()
+obj/vehicle/sealed/Destroy()
 	DumpMobs()
 	if(explode_on_death)
 		explosion(loc, 0, 1, 2, 3, 0)
 	return ..()
 
-/obj/vehicle/sealed/proc/DumpMobs(randomstep = TRUE)
+obj/vehicle/sealed/proc/DumpMobs(randomstep = TRUE)
 	for(var/i in occupants)
 		mob_exit(i, null, randomstep)
 		if(iscarbon(i))
 			var/mob/living/carbon/Carbon = i
 			Carbon.default_combat_knockdown(40)
 
-/obj/vehicle/sealed/proc/DumpSpecificMobs(flag, randomstep = TRUE)
+obj/vehicle/sealed/proc/DumpSpecificMobs(flag, randomstep = TRUE)
 	for(var/i in occupants)
 		if((occupants[i] & flag))
 			mob_exit(i, null, randomstep)
@@ -111,10 +111,10 @@
 				var/mob/living/carbon/C = i
 				C.default_combat_knockdown(40)
 
-/obj/vehicle/sealed/AllowDrop()
+obj/vehicle/sealed/AllowDrop()
 	return FALSE
 
-/obj/vehicle/sealed/setDir(newdir)
+obj/vehicle/sealed/setDir(newdir)
 	. = ..()
 	for(var/k in occupants)
 		var/mob/M = k

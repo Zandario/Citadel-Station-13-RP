@@ -1,5 +1,5 @@
 
-/datum/department/trade_station
+datum/department/trade_station
 	name = DEPARTMENT_TRADE
 	short_name = "Beruang"
 	color = "#afccb8"
@@ -7,7 +7,7 @@
 	assignable = FALSE
 	visible = FALSE
 
-/datum/role/job/trader
+datum/role/job/trader
 	title = "Trader"
 	flag = TRADER
 	id = JOB_ID_TRADER
@@ -39,14 +39,14 @@
 		"Merchant" = /datum/prototype/alt_title/merchant
 		)
 
-/datum/prototype/alt_title/trade_manager
+datum/prototype/alt_title/trade_manager
 	title = "Trade Manager"
 //	title_blurb = "A Drill Technician specializes in operating and maintaining the machinery needed to extract ore from veins deep below the surface."
 
-/datum/prototype/alt_title/merchant
+datum/prototype/alt_title/merchant
 	title = "Merchant"
 
-/datum/outfit/trade
+datum/outfit/trade
 	name = OUTFIT_JOB_NAME("Trader")
 	shoes = /obj/item/clothing/shoes/black
 	gloves = /obj/item/clothing/gloves/brown

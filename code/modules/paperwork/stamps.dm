@@ -1,4 +1,4 @@
-/obj/item/stamp
+obj/item/stamp
 	name = "rubber stamp"
 	desc = "A rubber stamp for stamping important documents."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -19,69 +19,69 @@
 		'sound/items/stamp3.ogg'
 		)
 
-/obj/item/stamp/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/stamp/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 	playsound(target, pick(stamp_sounds), 30, 1, -1)
 
-/obj/item/stamp/captain
+obj/item/stamp/captain
 	name = "Facility Director's rubber stamp"
 	icon_state = "stamp-cap"
 
-/obj/item/stamp/hop
+obj/item/stamp/hop
 	name = "head of personnel's rubber stamp"
 	icon_state = "stamp-hop"
 
-/obj/item/stamp/hos
+obj/item/stamp/hos
 	name = "head of security's rubber stamp"
 	icon_state = "stamp-hos"
 
-/obj/item/stamp/ward
+obj/item/stamp/ward
 	name = "warden's rubber stamp"
 	icon_state = "stamp-ward"
 
-/obj/item/stamp/ce
+obj/item/stamp/ce
 	name = "chief engineer's rubber stamp"
 	icon_state = "stamp-ce"
 
-/obj/item/stamp/rd
+obj/item/stamp/rd
 	name = "research director's rubber stamp"
 	icon_state = "stamp-rd"
 
-/obj/item/stamp/cmo
+obj/item/stamp/cmo
 	name = "chief medical officer's rubber stamp"
 	icon_state = "stamp-cmo"
 
-/obj/item/stamp/denied
+obj/item/stamp/denied
 	name = "\improper DENIED rubber stamp"
 	icon_state = "stamp-deny"
 
-/obj/item/stamp/clown
+obj/item/stamp/clown
 	name = "clown's rubber stamp"
 	icon_state = "stamp-clown"
 
-/obj/item/stamp/internalaffairs
+obj/item/stamp/internalaffairs
 	name = "internal affairs rubber stamp"
 	icon_state = "stamp-intaff"
 
-/obj/item/stamp/centcomm
+obj/item/stamp/centcomm
 	name = "\improper CentCom rubber stamp"
 	icon_state = "stamp-cent"
 
-/obj/item/stamp/qm
+obj/item/stamp/qm
 	name = "quartermaster's rubber stamp"
 	icon_state = "stamp-qm"
 
-/obj/item/stamp/cargo
+obj/item/stamp/cargo
 	name = "cargo rubber stamp"
 	icon_state = "stamp-cargo"
 
-/obj/item/stamp/oricon
+obj/item/stamp/oricon
 	name = "\improper Orion Confederation rubber stamp"
 	icon_state = "stamp-sg"
 
 
 // Syndicate stamp to forge documents.
-/obj/item/stamp/chameleon/attack_self(mob/user)
+obj/item/stamp/chameleon/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

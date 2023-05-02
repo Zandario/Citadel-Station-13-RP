@@ -1,4 +1,4 @@
-/obj/item/transfer_valve
+obj/item/transfer_valve
 	name = "tank transfer valve"
 	desc = "Regulates the transfer of air between two tanks."
 	icon = 'icons/obj/assemblies.dmi'
@@ -16,11 +16,11 @@
 	var/valve_open = FALSE
 	var/toggle = TRUE
 
-/obj/item/transfer_valve/Destroy()
+obj/item/transfer_valve/Destroy()
 	attached_device = null
 	return ..()
 
-/obj/item/transfer_valve/attackby(obj/item/item, mob/user, params)
+obj/item/transfer_valve/attackby(obj/item/item, mob/user, params)
 	var/turf/location = get_turf(src) // For admin logs
 	if(istype(item, /obj/item/tank))
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -70,22 +70,22 @@
 		SStgui.update_uis(src) //Update all UIs attached to src
 	return ..()
 
-/obj/item/transfer_valve/attack_self(mob/user)
+obj/item/transfer_valve/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/obj/item/transfer_valve/ui_state(mob/user, datum/tgui_module/module)
+obj/item/transfer_valve/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/transfer_valve/ui_interact(mob/user, datum/tgui/ui = null)
+obj/item/transfer_valve/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TransferValve", name) // 460, 320
 		ui.open()
 
-/obj/item/transfer_valve/ui_data(mob/user)
+obj/item/transfer_valve/ui_data(mob/user)
 	var/list/data = list()
 	data["tank_one"] = tank_one ? tank_one.name : null
 	data["tank_two"] = tank_two ? tank_two.name : null
@@ -93,7 +93,7 @@
 	data["valve"] = valve_open
 	return data
 
-/obj/item/transfer_valve/ui_act(action, params)
+obj/item/transfer_valve/ui_act(action, params)
 	if(..())
 		return
 	. = TRUE
@@ -119,7 +119,7 @@
 		update_appearance()
 		add_fingerprint(usr)
 
-/obj/item/transfer_valve/proc/process_activation(var/obj/item/D)
+obj/item/transfer_valve/proc/process_activation(var/obj/item/D)
 	if(toggle)
 		toggle = FALSE
 		toggle_valve()
@@ -128,11 +128,11 @@
 ///obj/item/transfer_valve/proc/toggle_off()
 //	toggle = TRUE
 
-/obj/item/transfer_valve/update_icon_state()
+obj/item/transfer_valve/update_icon_state()
 	icon_state = "[base_icon_state][(!tank_one && !tank_two && !attached_device) ? "_1" : null]"
 	return ..()
 
-/obj/item/transfer_valve/update_overlays()
+obj/item/transfer_valve/update_overlays()
 	. = ..()
 	if(tank_one)
 		. += "[tank_one.icon_state]"
@@ -156,7 +156,7 @@
 	if(sensor.on && sensor.visible)
 		. += "proxy_beam"
 
-/obj/item/transfer_valve/proc/remove_tank(obj/item/tank/T)
+obj/item/transfer_valve/proc/remove_tank(obj/item/tank/T)
 	if(tank_one == T)
 		split_gases()
 		tank_one = null
@@ -169,7 +169,7 @@
 	T.loc = get_turf(src)
 	update_appearance()
 
-/obj/item/transfer_valve/proc/merge_gases()
+obj/item/transfer_valve/proc/merge_gases()
 	if(valve_open)
 		return
 	tank_two.air_contents.volume += tank_one.air_contents.volume
@@ -178,7 +178,7 @@
 	tank_two.air_contents.merge(temp)
 	valve_open = 1
 
-/obj/item/transfer_valve/proc/split_gases()
+obj/item/transfer_valve/proc/split_gases()
 	if(!valve_open)
 		return
 
@@ -199,7 +199,7 @@
 	it explodes properly when it gets a signal (and it does).
 	*/
 
-/obj/item/transfer_valve/proc/toggle_valve()
+obj/item/transfer_valve/proc/toggle_valve()
 	if(!valve_open && (tank_one && tank_two))
 		var/turf/bombturf = get_turf(src)
 		var/area/A = get_area(bombturf)
@@ -234,5 +234,5 @@
 
 // this doesn't do anything but the timer etc. expects it to be here
 // eventually maybe have it update icon to show state (timer, prox etc.) like old bombs
-/obj/item/transfer_valve/proc/c_state()
+obj/item/transfer_valve/proc/c_state()
 	return

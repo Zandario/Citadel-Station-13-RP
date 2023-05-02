@@ -10,7 +10,7 @@
 /// typing for procpaths. Previously, types like `/atom/verb` were used, with
 /// the `name` and `desc` vars of `/atom` thus being accessible. Proc and verb
 /// paths will fail `istype` and `ispath` checks against `/procpath`.
-/procpath
+procpath
 	// Although these variables are effectively const, if they are marked const
 	// below, their accesses are optimized away.
 

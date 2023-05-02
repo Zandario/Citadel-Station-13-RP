@@ -47,7 +47,7 @@
  * because there's no better way to do it (because those vars are, semantically, only relevant to our perspective),
  * while screen/images can be used for embedded maps/hud/etc.
  */
-/datum/perspective
+datum/perspective
 	/// eye - where visual calcs go from
 	var/atom/movable/eye
 	/// virtual eye - the center of the map display
@@ -87,7 +87,7 @@
 	/// view cache needs recompute
 	var/view_dirty = TRUE
 
-/datum/perspective/Destroy()
+datum/perspective/Destroy()
 	KickAll()
 	ClearMobs()
 	images = null
@@ -99,7 +99,7 @@
 
 /// ONLY CALL FROM CLIENT.SET_PERSPECTIVE
 /// I DO NOT TRUST PEOPLE TO NOT SCREW THIS UP
-/datum/perspective/proc/AddClient(client/C)
+datum/perspective/proc/AddClient(client/C)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	if(C in clients)
@@ -113,7 +113,7 @@
 
 /// ONLY CALL FROM CLIENT.SET_PERSPECTIVE
 /// I DO NOT TRUST PEOPLE TO NOT SCREW THIS UP
-/datum/perspective/proc/RemoveClient(client/C, switching = FALSE)
+datum/perspective/proc/RemoveClient(client/C, switching = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!(C in clients))
@@ -132,20 +132,20 @@
 /**
  * gets all clients viewing us
  */
-/datum/perspective/proc/GetClients()
+datum/perspective/proc/GetClients()
 	return isnull(clients)? list() : clients.Copy()
 
 /**
  * kicks all clients off us
  */
-/datum/perspective/proc/KickAll()
+datum/perspective/proc/KickAll()
 	for(var/client/C as anything in clients)
 		RemoveClient(C)
 
 /**
  * kicks all obs off of us
  */
-/datum/perspective/proc/ClearMobs()
+datum/perspective/proc/ClearMobs()
 	for(var/mob/M as anything in mobs)
 		RemoveMob(M)
 
@@ -153,7 +153,7 @@
  * registers as a mob's current perspective
  * sets mob vars as necessary
  */
-/datum/perspective/proc/AddMob(mob/M)
+datum/perspective/proc/AddMob(mob/M)
 	SHOULD_CALL_PARENT(TRUE)
 	if(M.using_perspective)
 		CRASH("mob already had perspective")
@@ -170,7 +170,7 @@
  * unregisters as a mob's current perspective
  * resets mob vars to initial() values
  */
-/datum/perspective/proc/RemoveMob(mob/M, switching = FALSE)
+datum/perspective/proc/RemoveMob(mob/M, switching = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	M.sight = initial(M.sight)
 	M.see_in_dark = initial(M.see_in_dark)
@@ -187,23 +187,23 @@
 /**
  * applys screen objs, etc, stuff that shouldn't be updated regularly
  */
-/datum/perspective/proc/Apply(client/C)
+datum/perspective/proc/Apply(client/C)
 	SHOULD_CALL_PARENT(TRUE)
 	C.screen += screens
 	C.images += images
 	Update(C)
 
-/datum/perspective/proc/Remove(client/C)
+datum/perspective/proc/Remove(client/C)
 	C.screen -= screens
 	C.images -= images
 
-/datum/perspective/proc/GetEye(client/C)
+datum/perspective/proc/GetEye(client/C)
 	return eye
 
 /**
  * get perspective var for a client
  */
-/datum/perspective/proc/GetEyeMode(client/C)
+datum/perspective/proc/GetEyeMode(client/C)
 	// necessary for smooth transitions when calling update_perspective
 	// we default to eye perspectivie
 	// also this is honestly pointless but theoretically mob perspective should always be used while on mob
@@ -213,7 +213,7 @@
 /**
  * updates eye, perspective var, virtual eye, lazy eye, sight, see in dark, see invis
  */
-/datum/perspective/proc/Update(client/C)
+datum/perspective/proc/Update(client/C)
 	SEND_SIGNAL(src, COMSIG_PERSPECTIVE_CLIENT_UPDATE, C)
 	var/changed = C.eye
 	var/new_eye = GetEye(C)
@@ -230,14 +230,14 @@
 /**
  * update all viewers
  */
-/datum/perspective/proc/UpdateAll()
+datum/perspective/proc/UpdateAll()
 	for(var/client/C as anything in clients)
 		Update(C)
 
 /**
  * works with lists too
  */
-/datum/perspective/proc/AddImage(image/I)
+datum/perspective/proc/AddImage(image/I)
 	var/change = images.len
 	images |= I
 	change = images.len - change
@@ -248,7 +248,7 @@
 /**
  * works with lists too
  */
-/datum/perspective/proc/RemoveImage(image/I)
+datum/perspective/proc/RemoveImage(image/I)
 	var/change = images.len
 	images -= I
 	if(images.len != change)
@@ -258,7 +258,7 @@
 /**
  * works with lists too
  */
-/datum/perspective/proc/AddScreen(atom/movable/AM)
+datum/perspective/proc/AddScreen(atom/movable/AM)
 	var/change = screens.len
 	screens |= AM
 	if(screens.len != change)
@@ -269,14 +269,14 @@
 /**
  * works with lists too
  */
-/datum/perspective/proc/RemoveScreen(atom/movable/AM)
+datum/perspective/proc/RemoveScreen(atom/movable/AM)
 	var/change = screens.len
 	screens -= AM
 	if(change != screens.len)
 		for(var/client/C as anything in clients)
 			C.screen -= AM
 
-/datum/perspective/proc/SetEyeMode(perspective)
+datum/perspective/proc/SetEyeMode(perspective)
 	var/change = src.perspective != perspective
 	if(!change)
 		return
@@ -284,7 +284,7 @@
 	for(var/client/C as anything in clients)
 		C.perspective = GetEyeMode()
 
-/datum/perspective/proc/SetEye(atom/movable/AM)
+datum/perspective/proc/SetEye(atom/movable/AM)
 	var/change = src.eye != AM
 	if(!change)
 		return
@@ -296,35 +296,35 @@
 			C.parallax_holder?.Reset(force = TRUE)
 		C.perspective = GetEyeMode()
 
-/datum/perspective/proc/SetSight(flags)
+datum/perspective/proc/SetSight(flags)
 	var/change = sight ^ flags
 	sight = flags
 	if(change)
 		for(var/client/C as anything in clients)
 			C.mob.sight = sight
 
-/datum/perspective/proc/AddSight(flags)
+datum/perspective/proc/AddSight(flags)
 	var/change = sight ^ flags
 	sight |= flags
 	if(change)
 		for(var/client/C as anything in clients)
 			C.mob.sight = sight
 
-/datum/perspective/proc/RemoveSight(flags)
+datum/perspective/proc/RemoveSight(flags)
 	var/change = sight ^ flags
 	sight |= ~(flags)
 	if(change)
 		for(var/client/C as anything in clients)
 			C.mob.sight = sight
 
-/datum/perspective/proc/SetDarksight(see_in_dark)
+datum/perspective/proc/SetDarksight(see_in_dark)
 	var/change = src.see_in_dark != see_in_dark
 	src.see_in_dark = see_in_dark
 	if(change)
 		for(var/client/C as anything in clients)
 			C.mob.see_in_dark = see_in_dark
 
-/datum/perspective/proc/SetSeeInvis(see_invisible)
+datum/perspective/proc/SetSeeInvis(see_invisible)
 	var/change = src.see_invisible != see_invisible
 	src.see_invisible = see_invisible
 	if(change)
@@ -340,7 +340,7 @@
  *
  * Ideally this shouldn't be used at all.
  */
-/datum/perspective/proc/set_default_view(size)
+datum/perspective/proc/set_default_view(size)
 	if(size == default_view_size)
 		return
 	// assert it y'know, works
@@ -364,7 +364,7 @@
  * Currently only supports positive numbers. Numbers apply equally
  * to both directions of a dimension.
  */
-/datum/perspective/proc/set_augmented_view(width, height)
+datum/perspective/proc/set_augmented_view(width, height)
 	if(!isnum(height) || !isnum(width))
 		CRASH("invalid")
 	// no negative augment values for now
@@ -373,7 +373,7 @@
 	view_dirty = TRUE
 	update_view_size()
 
-/datum/perspective/proc/update_view_size(client/C)
+datum/perspective/proc/update_view_size(client/C)
 	if(view_dirty)
 		recompute_view_size()
 	if(C)
@@ -382,7 +382,7 @@
 		for(var/client/_C as anything in clients)
 			update_view_size(_C)
 
-/datum/perspective/proc/recompute_view_size()
+datum/perspective/proc/recompute_view_size()
 	view_dirty = FALSE
 	if(isnum(default_view_size))
 		cached_view_height = default_view_size + augment_view_width
@@ -400,37 +400,37 @@
 	cached_view_width = parsed[1] + augment_view_width
 	cached_view_height = parsed[2] + augment_view_height
 
-/datum/perspective/proc/suppress_view(source)
+datum/perspective/proc/suppress_view(source)
 	var/was = LAZYLEN(view_suppression)
 	LAZYDISTINCTADD(view_suppression, source)
 	if(!was && LAZYLEN(view_suppression))
 		view_dirty = TRUE
 		update_view_size()
 
-/datum/perspective/proc/unsuppress_view(source)
+datum/perspective/proc/unsuppress_view(source)
 	var/was = LAZYLEN(view_suppression)
 	LAZYREMOVE(view_suppression, source)
 	if(was && !LAZYLEN(view_suppression))
 		view_dirty = TRUE
 		update_view_size()
 
-/datum/perspective/proc/ensure_view_cached()
+datum/perspective/proc/ensure_view_cached()
 	if(view_dirty)
 		recompute_view_size()
 
 //! remotes
-/datum/perspective/proc/considered_remote(mob/M)
+datum/perspective/proc/considered_remote(mob/M)
 	return eye == M
 
 /**
  * used for self-perspectives - eye should always be the owner
  */
-/datum/perspective/self
+datum/perspective/self
 
-/datum/perspective/self/GetEye(client/C)
+datum/perspective/self/GetEye(client/C)
 	return get_top_atom(eye)
 
-/datum/perspective/self/proc/get_top_atom(atom/movable/where)
+datum/perspective/self/proc/get_top_atom(atom/movable/where)
 	if(isturf(where))
 		return where		// already on turf
 	var/turf/T = get_turf(where)
@@ -444,9 +444,9 @@
 /**
  * temporary perspectives generated - automatically deletes when last mob is gone
  */
-/datum/perspective/self/temporary
+datum/perspective/self/temporary
 
-/datum/perspective/self/temporary/RemoveMob(mob/M, switching)
+datum/perspective/self/temporary/RemoveMob(mob/M, switching)
 	. = ..()
 	if(!mobs.len)
 		qdel(src)
@@ -454,7 +454,7 @@
 /**
  * always remote - you usually want to override this
  */
-/datum/perspective/remote
+datum/perspective/remote
 
-/datum/perspective/remote/considered_remote(mob/M)
+datum/perspective/remote/considered_remote(mob/M)
 	return TRUE

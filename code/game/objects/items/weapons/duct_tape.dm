@@ -1,4 +1,4 @@
-/obj/item/duct_tape_roll
+obj/item/duct_tape_roll
 	name = "tape roll"
 	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -11,7 +11,7 @@
 
 	tool_speed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
 
-/obj/item/duct_tape_roll/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/duct_tape_roll/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
 		if(user.a_intent == INTENT_HELP)
@@ -129,7 +129,7 @@
 				return
 	return ..()
 
-/obj/item/duct_tape_roll/attack_self(mob/user)
+obj/item/duct_tape_roll/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -138,13 +138,13 @@
 	user.put_in_hands(tape)
 	use(1)
 
-/obj/item/duct_tape_roll/proc/use(var/used)
+obj/item/duct_tape_roll/proc/use(var/used)
 	amount -= used
 	if (amount <= 0)
 		qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
 	return 1
 
-/obj/item/duct_tape_roll/proc/stick(var/obj/item/W, mob/user)
+obj/item/duct_tape_roll/proc/stick(var/obj/item/W, mob/user)
 	if(!istype(W, /obj/item/paper))
 		return
 	if(W.loc == user)
@@ -155,7 +155,7 @@
 	user.put_in_hands(tape)
 	playsound(src, 'sound/effects/tape.ogg',25)
 
-/obj/item/duct_tape_piece
+obj/item/duct_tape_piece
 	name = "tape"
 	desc = "A piece of sticky tape."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -167,20 +167,20 @@
 
 	var/obj/item/stuck = null
 
-/obj/item/duct_tape_piece/examine(mob/user)
+obj/item/duct_tape_piece/examine(mob/user)
 	if(stuck)
 		return stuck.examine(user)
 	else
 		return ..()
 
-/obj/item/duct_tape_piece/proc/attach(obj/item/W)
+obj/item/duct_tape_piece/proc/attach(obj/item/W)
 	stuck = W
 	W.forceMove(src)
 	icon_state = W.icon_state + "_taped"
 	name = W.name + " (taped)"
 	copy_overlays(W)
 
-/obj/item/duct_tape_piece/attack_self(mob/user)
+obj/item/duct_tape_piece/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -195,18 +195,18 @@
 	cut_overlays()
 	qdel(src)
 
-/obj/item/duct_tape_piece/attackby(var/obj/item/I, var/mob/user)
+obj/item/duct_tape_piece/attackby(var/obj/item/I, var/mob/user)
 	if(!(istype(src, /obj/item/handcuffs/cable/tape) || istype(src, /obj/item/clothing/mask/muzzle/tape)))
 		return ..()
 	else
 		qdel(I)
 		to_chat(user, "<span-class='notice'>You place \the [I] back into \the [src].</span>")
 
-/obj/item/duct_tape_piece/attack_hand(mob/user, list/params)
+obj/item/duct_tape_piece/attack_hand(mob/user, list/params)
 	anchored = FALSE
 	return ..() // Pick it up now that it's unanchored.
 
-/obj/item/duct_tape_piece/afterattack(var/A, mob/user, flag, params)
+obj/item/duct_tape_piece/afterattack(var/A, mob/user, flag, params)
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
 		return
 

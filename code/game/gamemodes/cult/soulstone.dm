@@ -2,7 +2,7 @@
 //		Soulstone
 /////////////////////////
 
-/obj/item/soulstone
+obj/item/soulstone
 	name = "Soul Stone Shard"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "soulstone"
@@ -14,12 +14,12 @@
 	var/imprinted = "empty"
 	var/possible_constructs = list("Juggernaut","Wraith","Artificer","Harvester")
 
-/obj/item/soulstone/cultify()
+obj/item/soulstone/cultify()
 	return
 
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
-/obj/item/soulstone/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/soulstone/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!istype(target, /mob/living/carbon/human))//If target is not a human.
 		return ..()
 	if(istype(target, /mob/living/carbon/human/dummy))
@@ -36,7 +36,7 @@
 
 ///////////////////Options for using captured souls///////////////////////////////////////
 
-/obj/item/soulstone/attack_self(mob/user)
+obj/item/soulstone/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -56,7 +56,7 @@
 
 
 
-/obj/item/soulstone/Topic(href, href_list)
+obj/item/soulstone/Topic(href, href_list)
 	var/mob/U = usr
 	if (!in_range(src, U)||U.machine!=src)
 		U << browse(null, "window=aicard")
@@ -82,27 +82,27 @@
 	attack_self(U)
 
 ///////////////////////////Transferring to constructs/////////////////////////////////////////////////////
-/obj/structure/constructshell
+obj/structure/constructshell
 	name = "empty shell"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "construct"
 	desc = "A wicked machine used by those skilled in magical arts. It is inactive."
 
-/obj/structure/constructshell/cultify()
+obj/structure/constructshell/cultify()
 	return
 
-/obj/structure/constructshell/cult
+obj/structure/constructshell/cult
 	icon_state = "construct-cult"
 	desc = "This eerie contraption looks like it would come alive if supplied with a missing ingredient."
 
-/obj/structure/constructshell/attackby(obj/item/O as obj, mob/user as mob)
+obj/structure/constructshell/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/soulstone))
 		var/obj/item/soulstone/S = O;
 		S.transfer_soul("CONSTRUCT",src,user)
 
 
 ////////////////////////////Proc for moving soul in and out off stone//////////////////////////////////////
-/obj/item/soulstone/proc/transfer_human(var/mob/living/carbon/human/T,var/mob/U)
+obj/item/soulstone/proc/transfer_human(var/mob/living/carbon/human/T,var/mob/U)
 	if(!istype(T))
 		return;
 	if(src.imprinted != "empty")
@@ -153,7 +153,7 @@
 	src.imprinted = "[S.name]"
 	qdel(T)
 
-/obj/item/soulstone/proc/transfer_shade(var/mob/living/simple_mob/construct/shade/T,var/mob/U)
+obj/item/soulstone/proc/transfer_shade(var/mob/living/simple_mob/construct/shade/T,var/mob/U)
 	if(!istype(T))
 		return;
 	if (T.stat == DEAD)
@@ -174,7 +174,7 @@
 	to_chat(T, "Your soul has been recaptured by the soul stone, its arcane energies are reknitting your ethereal form")
 	to_chat(U, "<span class='notice'>Capture successful!</span> : [T.name]'s has been recaptured and stored within the soul stone.")
 
-/obj/item/soulstone/proc/transfer_construct(var/obj/structure/constructshell/T,var/mob/U)
+obj/item/soulstone/proc/transfer_construct(var/obj/structure/constructshell/T,var/mob/U)
 	var/mob/living/simple_mob/construct/shade/A = locate() in src
 	if(!A)
 		to_chat(U,"<span class='danger'>Capture failed!</span>: The soul stone is empty! Go kill someone!")
@@ -232,7 +232,7 @@
 			Z.cancel_camera()
 			qdel(src)
 
-/obj/item/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U as mob)
+obj/item/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U as mob)
 	switch(choice)
 		if("VICTIM")
 			transfer_human(target,U)

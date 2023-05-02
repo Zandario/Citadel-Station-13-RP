@@ -1,4 +1,4 @@
-/obj/machinery/autolathe
+obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/fabricators/autolathe.dmi'
@@ -32,28 +32,28 @@
 
 	var/filtertext
 
-/obj/machinery/autolathe/Initialize(mapload)
+obj/machinery/autolathe/Initialize(mapload)
 	. = ..()
 	if(!autolathe_recipes)
 		autolathe_recipes = new()
 	wires = new(src)
 
-/obj/machinery/autolathe/Destroy()
+obj/machinery/autolathe/Destroy()
 	QDEL_NULL(wires)
 	return ..()
 
-/obj/machinery/autolathe/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/autolathe/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Autolathe", name)
 		ui.open()
 
-/obj/machinery/autolathe/ui_status(mob/user)
+obj/machinery/autolathe/ui_status(mob/user)
 	if(disabled)
 		return UI_CLOSE
 	return ..()
 
-/obj/machinery/autolathe/ui_static_data(mob/user)
+obj/machinery/autolathe/ui_static_data(mob/user)
 	var/list/data = ..()
 
 	var/list/categories = list()
@@ -78,12 +78,12 @@
 
 	return data
 
-/obj/machinery/autolathe/ui_assets(mob/user)
+obj/machinery/autolathe/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
 	)
 
-/obj/machinery/autolathe/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/autolathe/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	var/list/material_data = list()
@@ -101,7 +101,7 @@
 	data["mat_efficiency"] = mat_efficiency
 	return data
 
-/obj/machinery/autolathe/interact(mob/user)
+obj/machinery/autolathe/interact(mob/user)
 	if(panel_open)
 		return wires.Interact(user)
 
@@ -114,7 +114,7 @@
 
 	ui_interact(user)
 
-/obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
 		to_chat(user, SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation."))
 		return
@@ -203,11 +203,11 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/autolathe/attack_hand(mob/user, list/params)
+obj/machinery/autolathe/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/autolathe/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/autolathe/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -281,7 +281,7 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/autolathe/update_icon()
+obj/machinery/autolathe/update_icon()
 	cut_overlays()
 
 	icon_state = initial(icon_state)
@@ -296,7 +296,7 @@
 		icon_state = "autolathe"
 
 //Updates overall lathe storage size.
-/obj/machinery/autolathe/RefreshParts()
+obj/machinery/autolathe/RefreshParts()
 	..()
 	var/mb_rating = 0
 	var/man_rating = 0
@@ -311,7 +311,7 @@
 	mat_efficiency = 1.1 - man_rating * 0.1 //Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.6. Maximum rating of parts is 5
 	update_static_data(usr)
 
-/obj/machinery/autolathe/dismantle()
+obj/machinery/autolathe/dismantle()
 	for(var/mat in stored_material)
 		var/datum/material/M = get_material_by_name(mat)
 		if(!istype(M))
@@ -324,26 +324,26 @@
 	..()
 	return 1
 
-/datum/category_item/autolathe/arms/classic_smg_9mm
+datum/category_item/autolathe/arms/classic_smg_9mm
 	name = "SMG magazine (9mm)"
 	path = /obj/item/ammo_magazine/m9mml
 	hidden = 1
 /* De-coded?
-/datum/category_item/autolathe/arms/classic_smg_9mmr
+datum/category_item/autolathe/arms/classic_smg_9mmr
 	name = "SMG magazine (9mm rubber)"
 	path = /obj/item/ammo_magazine/m9mml/rubber
 
-/datum/category_item/autolathe/arms/classic_smg_9mmp
+datum/category_item/autolathe/arms/classic_smg_9mmp
 	name = "SMG magazine (9mm practice)"
 	path = /obj/item/ammo_magazine/m9mml/practice
 
-/datum/category_item/autolathe/arms/classic_smg_9mmf
+datum/category_item/autolathe/arms/classic_smg_9mmf
 	name = "SMG magazine (9mm flash)"
 	path = /obj/item/ammo_magazine/m9mml/flash
 */
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-/obj/machinery/partslathe/proc/eject_materials(var/material, var/amount)
+obj/machinery/partslathe/proc/eject_materials(var/material, var/amount)
 	var/recursive = amount == -1 ? TRUE : FALSE
 	material = lowertext(material)
 	var/mattype

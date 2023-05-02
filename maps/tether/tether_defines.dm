@@ -32,7 +32,7 @@
 #define NETWORK_EXPLORATION "Exploration"
 #define NETWORK_XENOBIO "Xenobiology"
 
-/datum/map/tether/New()
+datum/map/tether/New()
 	..()
 	var/choice = pickweight(list(
 		"title1" = 50,
@@ -48,7 +48,7 @@
 	if(choice)
 		lobby_screens = list(choice)
 
-/datum/map/tether
+datum/map/tether
 	name = "Virgo"
 	full_name = "NSB Adephagia"
 	path = "tether"
@@ -208,7 +208,7 @@
 // 	. +=  "As an employee or contractor of NanoTrasen, operators of the Adephagia and one of the galaxy's largest corporations, you're probably just here to do a job."
 // 	return jointext(., "<br>")
 
-/datum/map/tether/perform_map_generation()
+datum/map/tether/perform_map_generation()
 
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
@@ -218,13 +218,13 @@
 
 	return 1
 
-/datum/skybox_settings/tether
+datum/skybox_settings/tether
 	icon_state = "space5"
 	use_stars = FALSE
 
 // Overmap stuff. Main file is under code/modules/maps/overmap/_virgo3b.dm
 // Todo, find a way to populate this list automatically without having to do this
-/obj/effect/overmap/visitable/sector/virgo3b
+obj/effect/overmap/visitable/sector/virgo3b
 
 	extra_z_levels = list(
 		Z_LEVEL_SURFACE_MINE,
@@ -242,7 +242,7 @@
 		Z_LEVEL_CLASS_D
 		)
 
-/obj/effect/overmap/visitable/sector/class_h
+obj/effect/overmap/visitable/sector/class_h
 	name = "Desert Planet"
 	desc = "Planet readings indicate light atmosphere and high heat."
 	scanner_desc = @{"[i]Information[/i]
@@ -255,7 +255,7 @@ Lifesign: Multiple Fauna and humanoid life-signs detected."}
 	color = "#BA9066"
 
 
-/obj/effect/overmap/visitable/sector/pirate_base
+obj/effect/overmap/visitable/sector/pirate_base
 	name = "Pirate Base"
 	desc = "A nest of hostiles to the company. Caution is advised."
 	scanner_desc = @{"[i]Information[/i]
@@ -266,7 +266,7 @@ Warning, unable to scan through sensor shielding systems at location. Possible h
 	color = "#FF3333"
 	initial_generic_waypoints = list("pirate_docking_arm")
 
-/obj/effect/overmap/visitable/sector/mining_planet
+obj/effect/overmap/visitable/sector/mining_planet
 	name = "Mineral Rich Planet"
 	desc = "A planet filled with valuable minerals. No life signs currently detected on the surface."
 	scanner_desc = @{"[i]Information[/i]
@@ -277,7 +277,7 @@ Lifesigns: No immediate life-signs detected."}
 	color = "#8F6E4C"
 	initial_generic_waypoints = list("mining_outpost")
 
-/obj/effect/overmap/visitable/sector/gaia_planet
+obj/effect/overmap/visitable/sector/gaia_planet
 	name = "Gaia Planet"
 	desc = "A planet with peaceful life, and ample flora."
 	scanner_desc = @{"[i]Incoming Message[/i]: Hello travler! Looking to enjoy the shine of the star on land?
@@ -297,7 +297,7 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	known = FALSE
 	color = "#33BB33"
 
-/obj/effect/overmap/visitable/sector/class_p
+obj/effect/overmap/visitable/sector/class_p
 	name = "Frozen Planet"
 	desc = "A world shrouded in cold and snow that seems to never let up."
 	scanner_desc = @{"[i]Information[/i]: A planet with a very cold atmosphere. Possible life signs detected."}
@@ -307,18 +307,18 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	in_space = 0
 
 
-/obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
+obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
 	announce_atc(AM,going = FALSE)
 
-/obj/effect/overmap/visitable/sector/virgo3b/Uncrossed(var/atom/movable/AM)
+obj/effect/overmap/visitable/sector/virgo3b/Uncrossed(var/atom/movable/AM)
 	. = ..()
 	announce_atc(AM,going = TRUE)
 
-/obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
+obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
 	return list(Z_LEVEL_SPACE_LOW, Z_LEVEL_SPACE_HIGH)
 
-/obj/effect/overmap/visitable/sector/virgo3b/proc/announce_atc(var/atom/movable/AM, var/going = FALSE)
+obj/effect/overmap/visitable/sector/virgo3b/proc/announce_atc(var/atom/movable/AM, var/going = FALSE)
 	var/message = "Sensor contact for vessel '[AM.name]' has [going ? "left" : "entered"] ATC control area."
 	//For landables, we need to see if their shuttle is cloaked
 	if(istype(AM, /obj/effect/overmap/visitable/ship/landable))
@@ -341,15 +341,15 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 /// 30
 #define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TETHER_MAP_SIZE)) / 2)
 // We have a bunch of stuff common to the station z levels
-/datum/map_z_level/tether
+datum/map_z_level/tether
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 
-/datum/map_z_level/tether/station
+datum/map_z_level/tether/station
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
 	holomap_legend_x = 220
 	holomap_legend_y = 160
 
-/datum/map_z_level/tether/station/surface_low
+datum/map_z_level/tether/station/surface_low
 	z = Z_LEVEL_SURFACE_LOW
 	name = "Surface 1"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
@@ -357,7 +357,7 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
 
-/datum/map_z_level/tether/station/surface_mid
+datum/map_z_level/tether/station/surface_mid
 	z = Z_LEVEL_SURFACE_MID
 	name = "Surface 2"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
@@ -365,7 +365,7 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
 
-/datum/map_z_level/tether/station/surface_high
+datum/map_z_level/tether/station/surface_high
 	z = Z_LEVEL_SURFACE_HIGH
 	name = "Surface 3"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
@@ -373,12 +373,12 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
 
-/datum/map_z_level/tether/transit
+datum/map_z_level/tether/transit
 	z = Z_LEVEL_TRANSIT
 	name = "Transit"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
-/datum/map_z_level/tether/station/space_low
+datum/map_z_level/tether/station/space_low
 	z = Z_LEVEL_SPACE_LOW
 	name = "Asteroid 1"
 	base_turf = /turf/space
@@ -386,7 +386,7 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
 
-/datum/map_z_level/tether/station/space_high
+datum/map_z_level/tether/station/space_high
 	z = Z_LEVEL_SPACE_HIGH
 	name = "Asteroid 2"
 	base_turf = /turf/simulated/open
@@ -394,13 +394,13 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
 
-/datum/map_z_level/tether/mine
+datum/map_z_level/tether/mine
 	z = Z_LEVEL_SURFACE_MINE
 	name = "Mining Outpost"
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 
-/datum/map_z_level/tether/solars
+datum/map_z_level/tether/solars
 	z = Z_LEVEL_SOLARS
 	name = "Solar Field"
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
@@ -411,31 +411,31 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 /// Step Triggers ///
 /////////////////////
 
-/obj/effect/step_trigger/teleporter/to_mining/Initialize(mapload)
+obj/effect/step_trigger/teleporter/to_mining/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_MINE
 
-/obj/effect/step_trigger/teleporter/from_mining/Initialize(mapload)
+obj/effect/step_trigger/teleporter/from_mining/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
-/obj/effect/step_trigger/teleporter/to_solars/Initialize(mapload)
+obj/effect/step_trigger/teleporter/to_solars/Initialize(mapload)
 	. = ..()
 	teleport_x = world.maxx - 1
 	teleport_y = src.y
 	teleport_z = Z_LEVEL_SOLARS
 
-/obj/effect/step_trigger/teleporter/from_solars/Initialize(mapload)
+obj/effect/step_trigger/teleporter/from_solars/Initialize(mapload)
 	. = ..()
 	teleport_x = 2
 	teleport_y = src.y
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
-/obj/effect/step_trigger/teleporter/wild/Initialize(mapload)
+obj/effect/step_trigger/teleporter/wild/Initialize(mapload)
 	. = ..()
 
 	//If starting on east/west edges.
@@ -453,11 +453,11 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	else
 		teleport_y = src.y
 
-/obj/effect/step_trigger/teleporter/to_underdark
+obj/effect/step_trigger/teleporter/to_underdark
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/to_underdark/Initialize(mapload)
+obj/effect/step_trigger/teleporter/to_underdark/Initialize(mapload)
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -466,11 +466,11 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 		if(Z.name == "Underdark")
 			teleport_z = Z.z
 
-/obj/effect/step_trigger/teleporter/from_underdark
+obj/effect/step_trigger/teleporter/from_underdark
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/from_underdark/Initialize(mapload)
+obj/effect/step_trigger/teleporter/from_underdark/Initialize(mapload)
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -479,24 +479,24 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 		if(Z.name == "Mining Outpost")
 			teleport_z = Z.z
 
-/obj/effect/step_trigger/teleporter/to_plains/Initialize(mapload)
+obj/effect/step_trigger/teleporter/to_plains/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_PLAINS
 
-/obj/effect/step_trigger/teleporter/from_plains/Initialize(mapload)
+obj/effect/step_trigger/teleporter/from_plains/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/find_planet()
+obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/find_planet()
 	planet = planet_virgo3b
 
 
 // Our map is small, if the supermatter is ejected lets not have it just blow up somewhere else
-/obj/machinery/power/supermatter/touch_map_edge()
+obj/machinery/power/supermatter/touch_map_edge()
 	qdel(src)
 
 
@@ -505,17 +505,17 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 
 /// Z level dropper. Todo, make something generic so we dont have to copy pasta this
 
-/obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
+obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
 
-/obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
+obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
 	. = ..()
 
 	if(istype(get_turf(src), /turf/simulated/floor))
 		src:target_z = z
 		return INITIALIZE_HINT_QDEL
 
-/obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
+obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
 	if(!src:target_z)
 		return
 

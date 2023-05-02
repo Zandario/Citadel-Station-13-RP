@@ -1,6 +1,6 @@
 //Pilot
 
-/obj/item/clothing/head/pilot
+obj/item/clothing/head/pilot
 	name = "pilot helmet"
 	desc = "Standard pilot gear. Protects the head from impacts."
 	icon_state = "pilot_helmet1"
@@ -20,7 +20,7 @@
 	var/list/raw_images
 	var/last_status
 
-/obj/item/clothing/head/pilot/Initialize(mapload)
+obj/item/clothing/head/pilot/Initialize(mapload)
 	. = ..()
 
 	images = list()
@@ -84,7 +84,7 @@
 	images["horizon"] = I
 	raw_images += I
 
-/obj/item/clothing/head/pilot/proc/update_hud(var/status)
+obj/item/clothing/head/pilot/proc/update_hud(var/status)
 	if(last_status == status)
 		return
 
@@ -150,7 +150,7 @@
 		I.icon_state = ""
 		animate(pilot_hud,alpha=0,time=3 SECONDS)
 
-/obj/item/clothing/head/pilot/verb/hud_colors()
+obj/item/clothing/head/pilot/verb/hud_colors()
 	set name = "Alter HUD color"
 	set desc = "Change the color of the piloting HUD."
 	set category = "Object"
@@ -162,7 +162,7 @@
 			var/image/I = images[img]
 			I.color = newcolor
 
-/obj/item/clothing/head/pilot/Destroy()
+obj/item/clothing/head/pilot/Destroy()
 	for(var/img in raw_images)
 		var/image/I = img
 		I.loc = null
@@ -170,25 +170,25 @@
 	qdel(pilot_hud)
 	return ..()
 
-/obj/item/clothing/head/pilot/equipped(var/mob/user,var/slot)
+obj/item/clothing/head/pilot/equipped(var/mob/user,var/slot)
 	. = ..()
 	if(slot == SLOT_ID_HEAD && user.client)
 		user.client.screen |= pilot_hud
 		user.client.images |= raw_images
 
-/obj/item/clothing/head/pilot/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/head/pilot/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(user.client)
 		user.client.screen -= pilot_hud
 		user.client.images -= raw_images
 
-/obj/item/clothing/head/pilot/alt
+obj/item/clothing/head/pilot/alt
 	name = "pilot helmet"
 	desc = "Standard pilot gear. Protects the head from impacts. This one has a retractable visor"
 	icon_state = "pilot_helmet2"
 	action_button_name = "Toggle Visor"
 
-/obj/item/clothing/head/pilot/alt/attack_self(mob/user)
+obj/item/clothing/head/pilot/alt/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

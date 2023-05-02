@@ -1,4 +1,4 @@
-/obj/item/robot_module/robot/miner
+obj/item/robot_module/robot/miner
 	name = "miner robot module"
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
@@ -26,7 +26,7 @@
 		"W02M" = "worm-miner"
 	)
 
-/obj/item/robot_module/robot/miner/get_modules()
+obj/item/robot_module/robot/miner/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/borg/sight/material,
@@ -40,7 +40,7 @@
 		/obj/item/mining_scanner
 	)
 
-/obj/item/robot_module/robot/miner/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/miner/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	// TODO: Only one emag module is supported right now.
@@ -48,7 +48,7 @@
 	// src.emag = new /obj/item/pickaxe/diamonddrill(src)
 	// src.emag = new /obj/item/melee/disruptor/borg(src)
 
-/obj/item/robot_module/robot/quad/miner
+obj/item/robot_module/robot/quad/miner
 	name = "Mining Quadruped module"
 	sprites = list(
 		"F3-LINE" = "FELI-Mining",
@@ -61,7 +61,7 @@
 	channels = list("Supply" = 1)
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/quad/miner/get_modules()
+obj/item/robot_module/robot/quad/miner/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/borg/sight/material,
@@ -77,7 +77,7 @@
 	)
 
 // In a nutshell, basically service/butler robot but in dog form.
-/obj/item/robot_module/robot/quad/miner/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/miner/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	// TODO: Only one emag module is supported right now.
@@ -85,7 +85,7 @@
 	// src.emag = new /obj/item/pickaxe/diamonddrill(src)
 	// src.emag = new /obj/item/melee/disruptor/borg(src)
 
-/obj/item/robot_module/robot/quad/miner/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/miner/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	// These get a larger water synth.
 	synths_by_kind[MATSYN_WATER]:max_energy = 1000

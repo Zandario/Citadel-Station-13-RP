@@ -1,4 +1,4 @@
-/obj/machinery/appliance/mixer/cereal
+obj/machinery/appliance/mixer/cereal
 	name = "cereal maker"
 	desc = "Now with Dann O's available!"
 	icon = 'icons/obj/cooking_machines.dmi'
@@ -13,22 +13,22 @@
 		"Cereal" = /obj/item/reagent_containers/food/snacks/variable/cereal
 	)
 
-/obj/machinery/appliance/mixer/cereal/Initialize(mapload)
+obj/machinery/appliance/mixer/cereal/Initialize(mapload)
 	. = ..()
 
 	cerealmaker_loop = new(list(src), FALSE)
 
-/obj/machinery/appliance/mixer/cereal/Destroy()
+obj/machinery/appliance/mixer/cereal/Destroy()
 	. = ..()
 
 	QDEL_NULL(cerealmaker_loop)
 
 /*
-/obj/machinery/appliance/cereal/change_product_strings(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+obj/machinery/appliance/cereal/change_product_strings(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
 	. = ..()
 	product.name = "box of [CI.object.name] cereal"
 
-/obj/machinery/appliance/cereal/change_product_appearance(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+obj/machinery/appliance/cereal/change_product_appearance(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
 	product.icon = 'icons/obj/food.dmi'
 	product.icon_state = "cereal_box"
 	product.filling_color = CI.object.color
@@ -41,7 +41,7 @@
 	product.add_overlay(food_image)
 */
 
-/obj/machinery/appliance/mixer/cereal/update_icon()
+obj/machinery/appliance/mixer/cereal/update_icon()
 	. = ..()
 
 	if(!machine_stat)
@@ -53,7 +53,7 @@
 		if(cerealmaker_loop)
 			cerealmaker_loop.stop(src)
 
-/obj/machinery/appliance/mixer/cereal/combination_cook(var/datum/cooking_item/CI)
+obj/machinery/appliance/mixer/cereal/combination_cook(var/datum/cooking_item/CI)
 
 	var/list/images = list()
 	var/num = 0

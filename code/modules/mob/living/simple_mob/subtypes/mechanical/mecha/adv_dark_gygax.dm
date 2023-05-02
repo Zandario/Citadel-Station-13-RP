@@ -4,7 +4,7 @@
 // Third special attack creates a dangerous electric field that causes escalating electric damage, before emitting a tesla shock and blinding anyone looking at the mecha.
 // The AI will choose one every ten seconds.
 
-/datum/category_item/catalogue/technology/adv_dark_gygax
+datum/category_item/catalogue/technology/adv_dark_gygax
 	name = "Exosuit - Advanced Dark Gygax"
 	desc = "This exosuit is an experimental prototype, descended from the Dark Gygax. It retains the \
 	speed that is characteristic of the other models, yet outclasses all of them in durability, \
@@ -70,7 +70,7 @@
 	value = CATALOGUER_REWARD_SUPERHARD
 
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced
+mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced
 	name = "advanced dark gygax"
 	desc = "An experimental exosuit that utilizes advanced materials to allow for greater protection while still being lightweight and fast. \
 	It also is armed with an array of next-generation weaponry."
@@ -102,13 +102,13 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/adv_dark_gygax
 	var/obj/effect/overlay/energy_ball/energy_ball = null
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/Destroy()
+mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/Destroy()
 	if(energy_ball)
 		energy_ball.stop_orbit()
 		qdel(energy_ball)
 	return ..()
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/do_special_attack(atom/A)
+mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/do_special_attack(atom/A)
 	. = TRUE // So we don't fire a bolt as well.
 	switch(a_intent)
 		if(INTENT_DISARM) // Side gun
@@ -118,19 +118,19 @@
 		if(INTENT_GRAB) // Micro-singulo
 			launch_microsingularity(A)
 
-/obj/projectile/energy/homing_bolt
+obj/projectile/energy/homing_bolt
 	name = "homing bolt"
 	icon_state = "force_missile"
 	damage = 20
 	damage_type = BURN
 	damage_flag = ARMOR_LASER
 
-/obj/projectile/energy/homing_bolt/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
+obj/projectile/energy/homing_bolt/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
 	..()
 	if(target)
 		set_homing_target(target)
 
-/obj/projectile/energy/homing_bolt/fire(angle, atom/direct_target)
+obj/projectile/energy/homing_bolt/fire(angle, atom/direct_target)
 	..()
 	set_pixel_speed(0.5)
 
@@ -138,7 +138,7 @@
 
 // Charges a tesla shot, while emitting a dangerous electric field. The exosuit is immune to electric damage while this is ongoing.
 // It also briefly blinds anyone looking directly at the mech without flash protection.
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/electric_defense(atom/target)
+mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/electric_defense(atom/target)
 	set waitfor = FALSE
 
 	// Temporary immunity to shock to avoid killing themselves with their own attack.
@@ -199,7 +199,7 @@
 
 #undef ELECTRIC_ZAP_POWER
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_rockets(atom/target)
+mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_rockets(atom/target)
 	set waitfor = FALSE
 
 	// Telegraph our next move.
@@ -225,15 +225,15 @@
 
 // Arcing rocket projectile that produces a weak explosion when it lands.
 // Shouldn't punch holes in the floor, but will still hurt.
-/obj/projectile/arc/explosive_rocket
+obj/projectile/arc/explosive_rocket
 	name = "rocket"
 	icon_state = "mortar"
 
-/obj/projectile/arc/explosive_rocket/on_impact(turf/T)
+obj/projectile/arc/explosive_rocket/on_impact(turf/T)
 	new /obj/effect/explosion(T) // Weak explosions don't produce this on their own, apparently.
 	explosion(T, 0, 0, 2, adminlog = FALSE)
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_microsingularity(atom/target)
+mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_microsingularity(atom/target)
 	var/turf/T = get_turf(target)
 	visible_message(SPAN_WARNING( "\The [src] fires an energetic sphere into the air!"))
 	playsound(src, 'sound/weapons/Laser.ogg', 50, 1)
@@ -242,15 +242,15 @@
 	sphere.old_style_target(T, src)
 	sphere.fire()
 
-/obj/projectile/arc/microsingulo
+obj/projectile/arc/microsingulo
 	name = "micro singularity"
 	icon_state = "bluespace"
 
-/obj/projectile/arc/microsingulo/on_impact(turf/T)
+obj/projectile/arc/microsingulo/on_impact(turf/T)
 	new /obj/effect/temporary_effect/pulse/microsingulo(T)
 
 
-/obj/effect/temporary_effect/pulse/microsingulo
+obj/effect/temporary_effect/pulse/microsingulo
 	name = "micro singularity"
 	desc = "It's sucking everything in!"
 	icon = 'icons/obj/objects.dmi'
@@ -263,7 +263,7 @@
 	var/pull_radius = 3
 	var/pull_strength = STAGE_THREE
 
-/obj/effect/temporary_effect/pulse/microsingulo/on_pulse()
+obj/effect/temporary_effect/pulse/microsingulo/on_pulse()
 	for(var/atom/A in range(pull_radius, src))
 		A.singularity_pull(src, pull_strength)
 
@@ -271,7 +271,7 @@
 // The Advanced Dark Gygax's AI.
 // The mob has three special attacks, based on the current intent.
 // This AI choose the appropiate intent for the situation, and tries to ensure it doesn't kill itself by firing missiles at its feet.
-/datum/ai_holder/simple_mob/intentional/adv_dark_gygax
+datum/ai_holder/simple_mob/intentional/adv_dark_gygax
 	conserve_ammo = TRUE					// Might help avoid 'I shoot the wall forever' cheese.
 	var/closest_desired_distance = 1		// Otherwise run up to them to be able to potentially shock or punch them.
 
@@ -284,7 +284,7 @@
 
 // Used to control the mob's positioning based on which special attack it has done.
 // Note that the intent will not change again until the next special attack is about to happen.
-/datum/ai_holder/simple_mob/intentional/adv_dark_gygax/on_engagement(atom/A)
+datum/ai_holder/simple_mob/intentional/adv_dark_gygax/on_engagement(atom/A)
 	// Make the AI backpeddle if using an AoE special attack.
 	var/list/risky_intents = list(INTENT_GRAB, INTENT_HARM) // Mini-singulo and missiles.
 	if(holder.a_intent in risky_intents)
@@ -304,7 +304,7 @@
 
 // Changes the mob's intent, which controls which special attack is used.
 // INTENT_DISARM causes Electric Defense, INTENT_GRAB causes Micro-Singularity, and INTENT_HARM causes Missile Barrage.
-/datum/ai_holder/simple_mob/intentional/adv_dark_gygax/pre_special_attack(atom/A)
+datum/ai_holder/simple_mob/intentional/adv_dark_gygax/pre_special_attack(atom/A)
 	if(isliving(A))
 		var/mob/living/target = A
 

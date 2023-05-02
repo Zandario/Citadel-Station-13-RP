@@ -1,4 +1,4 @@
-/datum/component/forensics
+datum/component/forensics
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	can_transfer = TRUE
 	var/list/fingerprints		//assoc print = print
@@ -6,7 +6,7 @@
 	var/list/blood_DNA			//assoc dna = bloodtype
 	var/list/fibers				//assoc print = print
 
-/datum/component/forensics/InheritComponent(datum/component/forensics/F, original)		//Use of | and |= being different here is INTENTIONAL.
+datum/component/forensics/InheritComponent(datum/component/forensics/F, original)		//Use of | and |= being different here is INTENTIONAL.
 	fingerprints = fingerprints | F.fingerprints
 	hiddenprints = hiddenprints | F.hiddenprints
 	blood_DNA = blood_DNA | F.blood_DNA
@@ -14,7 +14,7 @@
 	check_blood()
 	return ..()
 
-/datum/component/forensics/Initialize(new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers)
+datum/component/forensics/Initialize(new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	fingerprints = new_fingerprints
@@ -23,35 +23,35 @@
 	fibers = new_fibers
 	check_blood()
 
-/datum/component/forensics/RegisterWithParent()
+datum/component/forensics/RegisterWithParent()
 	check_blood()
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_act)
 
-/datum/component/forensics/UnregisterFromParent()
+datum/component/forensics/UnregisterFromParent()
     UnregisterSignal(parent, list(COMSIG_COMPONENT_CLEAN_ACT))
 
-/datum/component/forensics/PostTransfer()
+datum/component/forensics/PostTransfer()
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
-/datum/component/forensics/proc/wipe_fingerprints()
+datum/component/forensics/proc/wipe_fingerprints()
 	fingerprints = null
 	return TRUE
 
-/datum/component/forensics/proc/wipe_hiddenprints()
+datum/component/forensics/proc/wipe_hiddenprints()
 	return	//no.
 
-/datum/component/forensics/proc/wipe_blood_DNA()
+datum/component/forensics/proc/wipe_blood_DNA()
 	blood_DNA = null
 	if(isitem(parent))
 		qdel(parent.GetComponent(/datum/component/decal/blood))
 	return TRUE
 
-/datum/component/forensics/proc/wipe_fibers()
+datum/component/forensics/proc/wipe_fibers()
 	fibers = null
 	return TRUE
 
-/datum/component/forensics/proc/clean_act(datum/source, strength)
+datum/component/forensics/proc/clean_act(datum/source, strength)
 	if(strength >= CLEAN_STRENGTH_FINGERPRINTS)
 		wipe_fingerprints()
 	if(strength >= CLEAN_STRENGTH_BLOOD)
@@ -59,7 +59,7 @@
 	if(strength >= CLEAN_STRENGTH_FIBERS)
 		wipe_fibers()
 
-/datum/component/forensics/proc/add_fingerprint_list(list/_fingerprints)	//list(text)
+datum/component/forensics/proc/add_fingerprint_list(list/_fingerprints)	//list(text)
 	if(!length(_fingerprints))
 		return
 	LAZYINITLIST(fingerprints)
@@ -67,7 +67,7 @@
 		fingerprints[i] = i
 	return TRUE
 
-/datum/component/forensics/proc/add_fingerprint(mob/living/M, ignoregloves = FALSE)
+datum/component/forensics/proc/add_fingerprint(mob/living/M, ignoregloves = FALSE)
 	if(!isliving(M))
 		if(!iscameramob(M))
 			return
@@ -91,7 +91,7 @@
 		LAZYSET(fingerprints, full_print, full_print)
 	return TRUE
 
-/datum/component/forensics/proc/add_fiber_list(list/_fibertext)		//list(text)
+datum/component/forensics/proc/add_fiber_list(list/_fibertext)		//list(text)
 	if(!length(_fibertext))
 		return
 	LAZYINITLIST(fibers)
@@ -99,7 +99,7 @@
 		fibers[i] = i
 	return TRUE
 
-/datum/component/forensics/proc/add_fibers(mob/living/carbon/human/M)
+datum/component/forensics/proc/add_fibers(mob/living/carbon/human/M)
 	var/fibertext
 	var/item_multiplier = isitem(src)?1.2:1
 	if(M.wear_suit)
@@ -131,7 +131,7 @@
 			LAZYSET(fibers, fibertext, fibertext)
 	return TRUE
 
-/datum/component/forensics/proc/add_hiddenprint_list(list/_hiddenprints)	//list(ckey = text)
+datum/component/forensics/proc/add_hiddenprint_list(list/_hiddenprints)	//list(ckey = text)
 	if(!length(_hiddenprints))
 		return
 	LAZYINITLIST(hiddenprints)
@@ -139,7 +139,7 @@
 		hiddenprints[i] = _hiddenprints[i]
 	return TRUE
 
-/datum/component/forensics/proc/add_hiddenprint(mob/M)
+datum/component/forensics/proc/add_hiddenprint(mob/M)
 	if(!isliving(M))
 		if(!iscameramob(M))
 			return
@@ -167,7 +167,7 @@
 	A.fingerprintslast = M.ckey
 	return TRUE
 
-/datum/component/forensics/proc/add_blood_DNA(list/dna)		//list(dna_enzymes = type)
+datum/component/forensics/proc/add_blood_DNA(list/dna)		//list(dna_enzymes = type)
 	if(!length(dna))
 		return
 	LAZYINITLIST(blood_DNA)
@@ -176,7 +176,7 @@
 	check_blood()
 	return TRUE
 
-/datum/component/forensics/proc/check_blood()
+datum/component/forensics/proc/check_blood()
 	if(!isitem(parent))
 		return
 	if(!length(blood_DNA))

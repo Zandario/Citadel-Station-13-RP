@@ -10,7 +10,7 @@
  * - sound_preamble - preamble sound, if any - either a sound datum, soundbyte, or soundbyte alias
  * - sound_main - ditto
  */
-/proc/simple_announcement(datum/announcer/announcer, source = "Installation Annoucement", name = "General Alert", message = "Test message, please ignore.", sound_preamble = /datum/soundbyte/announcer/preamble, sound_main = /datum/soundbyte/announcer/notice)
+proc/simple_announcement(datum/announcer/announcer, source = "Installation Annoucement", name = "General Alert", message = "Test message, please ignore.", sound_preamble = /datum/soundbyte/announcer/preamble, sound_main = /datum/soundbyte/announcer/notice)
 	var/datum/announcement/simple/A = new(source, name, message, sound_preamble, sound_main)
 	A.Announce(announcer)
 	qdel(A)
@@ -24,7 +24,7 @@
  * - preamble soundbyte
  * - announcement sonud
  */
-/datum/announcement/simple
+datum/announcement/simple
 	/// announcer source - e.g. "Central Command Update", "Facility Update", "Facility PA", etc
 	var/source
 	/// announcer topic - e.g. "Research Director's Desk", "Bridge Announcement", "ATC Proximity Alert"
@@ -40,7 +40,7 @@
 	/// enable sound environments?
 	var/sound_allow_environment = TRUE
 
-/datum/announcement/simple/New(source, name, message, preamble, main)
+datum/announcement/simple/New(source, name, message, preamble, main)
 	. = ..()
 	src.source = source
 	src.name = name
@@ -48,12 +48,12 @@
 	src.sound_preamble = SSsounds.fetch_soundbyte(preamble)
 	src.sound_main = SSsounds.fetch_soundbyte(main)
 
-/datum/announcement/simple/Destroy()
+datum/announcement/simple/Destroy()
 	sound_preamble = null
 	sound_main = null
 	return ..()
 
-/datum/announcement/simple/Run(datum/announcer/announcer)
+datum/announcement/simple/Run(datum/announcer/announcer)
 	var/delay = (istype(sound_preamble) && sound_preamble.length) || 0
 	// if we aren't using soundbytes, reserve a channel for 15 seconds
 	var/channel = ReserveSoundChannelFor(delay || (15 SECONDS))

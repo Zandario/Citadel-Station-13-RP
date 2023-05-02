@@ -1,4 +1,4 @@
-/obj/machinery/optable
+obj/machinery/optable
 	name = "the operating table"
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
@@ -15,7 +15,7 @@
 	var/strapped = FALSE
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/optable/Initialize(mapload)
+obj/machinery/optable/Initialize(mapload)
 	. = ..()
 	for(var/direction in list(NORTH,EAST,SOUTH,WEST))
 		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
@@ -26,7 +26,7 @@
 //	spawn(100) //Wont the MC just call this process() before and at the 10 second mark anyway?
 //		process()
 
-/obj/machinery/optable/legacy_ex_act(severity)
+obj/machinery/optable/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			//SN src = null
@@ -41,13 +41,13 @@
 			if(prob(25))
 				density = 0
 
-/obj/machinery/optable/attack_hand(mob/user, list/params)
+obj/machinery/optable/attack_hand(mob/user, list/params)
 	if(MUTATION_HULK in usr.mutations)
 		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
 		density = FALSE
 		qdel(src)
 
-/obj/machinery/optable/proc/check_victim()
+obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, src.loc))
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
 		if(M.lying)
@@ -58,10 +58,10 @@
 	icon_state = "table2-idle"
 	return FALSE
 
-/obj/machinery/optable/process(delta_time)
+obj/machinery/optable/process(delta_time)
 	check_victim()
 
-/obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user)
+obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user)
 	if(C == user)
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
@@ -80,7 +80,7 @@
 	else
 		icon_state = "table2-idle"
 
-/obj/machinery/optable/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/machinery/optable/MouseDroppedOnLegacy(mob/target, mob/user)
 
 	var/mob/living/M = user
 	if(user.stat || user.restrained() || !check_table(user) || !iscarbon(target))
@@ -90,7 +90,7 @@
 	else
 		return ..()
 
-/obj/machinery/optable/verb/climb_on()
+obj/machinery/optable/verb/climb_on()
 	set name = "Climb On Table"
 	set category = "Object"
 	set src in oview(1)
@@ -100,7 +100,7 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/W, obj/item/I, mob/living/carbon/user)
+obj/machinery/optable/attackby(obj/item/W, obj/item/I, mob/living/carbon/user)
 	if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
 		if(iscarbon(G.affecting) && check_table(G.affecting))
@@ -108,7 +108,7 @@
 			qdel(W)
 			return
 
-/obj/machinery/optable/proc/check_table(mob/living/carbon/patient)
+obj/machinery/optable/proc/check_table(mob/living/carbon/patient)
 	check_victim()
 	if(victim && get_turf(victim) == get_turf(src) && victim.lying)
 		to_chat(usr, SPAN_WARNING("\The [src] is already occupied!"))
@@ -118,7 +118,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/sleeper/RefreshParts()
+obj/machinery/sleeper/RefreshParts()
 	var/cap_rating = 0
 
 	idle_power_usage = initial(idle_power_usage)

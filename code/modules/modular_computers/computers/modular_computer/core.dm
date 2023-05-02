@@ -1,4 +1,4 @@
-/obj/item/modular_computer/process(delta_time)
+obj/item/modular_computer/process(delta_time)
 	if(!enabled) // The computer is turned off
 		last_power_usage = 0
 		return FALSE
@@ -35,14 +35,14 @@
 	check_update_ui_need()
 
 /// Used to perform preset-specific hardware changes.
-/obj/item/modular_computer/proc/install_default_hardware()
+obj/item/modular_computer/proc/install_default_hardware()
 	return TRUE
 
 /// Used to install preset-specific programs
-/obj/item/modular_computer/proc/install_default_programs()
+obj/item/modular_computer/proc/install_default_programs()
 	return TRUE
 
-/obj/item/modular_computer/Initialize(mapload)
+obj/item/modular_computer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	install_default_hardware()
@@ -51,7 +51,7 @@
 	update_icon()
 	update_verbs()
 
-/obj/item/modular_computer/Destroy()
+obj/item/modular_computer/Destroy()
 	kill_program(1)
 	STOP_PROCESSING(SSobj, src)
 	for(var/obj/item/computer_hardware/CH in src.get_all_components())
@@ -59,7 +59,7 @@
 		qdel(CH)
 	return ..()
 
-/obj/item/modular_computer/emag_act(var/remaining_charges, var/mob/user)
+obj/item/modular_computer/emag_act(var/remaining_charges, var/mob/user)
 	if(computer_emagged)
 		to_chat(user, "\The [src] was already emagged.")
 		return //NO_EMAG_ACT
@@ -68,7 +68,7 @@
 		to_chat(user, "You emag \the [src]. It's screen briefly shows a \"OVERRIDE ACCEPTED: New software downloads available.\" message.")
 		return TRUE
 
-/obj/item/modular_computer/update_icon()
+obj/item/modular_computer/update_icon()
 	icon_state = icon_state_unpowered
 
 	cut_overlays()
@@ -91,7 +91,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/item/modular_computer/proc/turn_on(mob/user)
+obj/item/modular_computer/proc/turn_on(mob/user)
 	if(bsod)
 		return
 	if(tesla_link)
@@ -117,7 +117,7 @@
 			to_chat(user, "You press the power button but \the [src] does not respond")
 
 /// Relays kill program request to currently active program. Use this to quit current program.
-/obj/item/modular_computer/proc/kill_program(forced = FALSE)
+obj/item/modular_computer/proc/kill_program(forced = FALSE)
 	if(active_program)
 		active_program.kill_program(forced)
 		active_program = null
@@ -127,18 +127,18 @@
 	update_icon()
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
-/obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
+obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
 	if(network_card)
 		return network_card.get_signal(specific_action)
 	else
 		return FALSE
 
-/obj/item/modular_computer/proc/add_log(text)
+obj/item/modular_computer/proc/add_log(text)
 	if(!get_ntnet_status())
 		return FALSE
 	return ntnet_global.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
+obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	kill_program(1)
 	for(var/datum/computer_file/program/P in idle_threads)
 		P.kill_program(1)
@@ -148,7 +148,7 @@
 	enabled = FALSE
 	update_icon()
 
-/obj/item/modular_computer/proc/enable_computer(mob/user = null)
+obj/item/modular_computer/proc/enable_computer(mob/user = null)
 	enabled = 1
 	update_icon()
 
@@ -160,7 +160,7 @@
 	if(user)
 		nano_ui_interact(user)
 
-/obj/item/modular_computer/proc/minimize_program(mob/user)
+obj/item/modular_computer/proc/minimize_program(mob/user)
 	if(!active_program || !processor_unit)
 		return
 
@@ -173,7 +173,7 @@
 	if(istype(user))
 		nano_ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
 
-/obj/item/modular_computer/proc/run_program(prog)
+obj/item/modular_computer/proc/run_program(prog)
 	var/datum/computer_file/program/P = null
 	var/mob/user = usr
 	if(hard_drive)
@@ -209,7 +209,7 @@
 		update_icon()
 	return TRUE
 
-/obj/item/modular_computer/proc/update_uis()
+obj/item/modular_computer/proc/update_uis()
 	if(active_program) //Should we update program ui or computer ui?
 		SSnanoui.update_uis(active_program)
 		if(active_program.NM)
@@ -217,7 +217,7 @@
 	else
 		SSnanoui.update_uis(src)
 
-/obj/item/modular_computer/proc/check_update_ui_need()
+obj/item/modular_computer/proc/check_update_ui_need()
 	var/ui_update_needed = FALSE
 	if(battery_module)
 		var/batery_percent = battery_module.battery.percent()
@@ -252,13 +252,13 @@
 		update_uis()
 
 // Used by camera monitor program
-/obj/item/modular_computer/check_eye(mob/user)
+obj/item/modular_computer/check_eye(mob/user)
 	if(active_program)
 		return active_program.check_eye(user)
 	else
 		return ..()
 
-/obj/item/modular_computer/proc/set_autorun(program)
+obj/item/modular_computer/proc/set_autorun(program)
 	if(!hard_drive)
 		return
 	var/datum/computer_file/data/autorun = hard_drive.find_file_by_name("autorun")

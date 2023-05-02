@@ -1,4 +1,4 @@
-/turf/simulated/wall/r_wall
+turf/simulated/wall/r_wall
 	icon = 'icons/turf/walls/_previews.dmi'
 	icon_state = "rgeneric"
 	color = null
@@ -8,56 +8,56 @@
 	reinf_material  = /datum/material/plasteel
 	girder_material = null
 
-/turf/simulated/wall/shull
+turf/simulated/wall/shull
 	icon = 'icons/turf/walls/hull.dmi'
 	color = "#666677"
 	material        = /datum/material/steel/hull
 	reinf_material  = null
 	girder_material = /datum/material/steel/hull
 
-/turf/simulated/wall/rshull
+turf/simulated/wall/rshull
 	icon = 'icons/turf/walls/hull.dmi'
 	color = "#666677"
 	material        = /datum/material/steel/hull
 	reinf_material  = /datum/material/steel/hull
 	girder_material = /datum/material/steel/hull
 
-/turf/simulated/wall/pshull
+turf/simulated/wall/pshull
 	icon = 'icons/turf/walls/hull.dmi'
 	color = "#777788"
 	material        = /datum/material/plasteel/hull
 	reinf_material  = null
 	girder_material = /datum/material/plasteel/hull
 
-/turf/simulated/wall/rpshull
+turf/simulated/wall/rpshull
 	icon = 'icons/turf/walls/hull.dmi'
 	color = "#777788"
 	material        = /datum/material/plasteel/hull
 	reinf_material  = /datum/material/plasteel/hull
 	girder_material = /datum/material/plasteel/hull
 
-/turf/simulated/wall/dshull
+turf/simulated/wall/dshull
 	icon = 'icons/turf/walls/hull.dmi'
 	color = "#45829a"
 	material        = /datum/material/durasteel/hull
 	reinf_material  = null
 	girder_material = /datum/material/durasteel/hull
 
-/turf/simulated/wall/rdshull
+turf/simulated/wall/rdshull
 	icon = 'icons/turf/walls/hull.dmi'
 	color = "#45829a"
 	material        = /datum/material/durasteel/hull
 	reinf_material  = /datum/material/durasteel/hull
 	girder_material = /datum/material/durasteel/hull
 
-/turf/simulated/wall/thull
+turf/simulated/wall/thull
 	icon = 'icons/turf/walls/hull.dmi'
 	color = "#D1E6E3"
 	material        = /datum/material/plasteel/titanium/hull
 	reinf_material  = null
 	girder_material = /datum/material/plasteel/titanium/hull
 
-/turf/simulated/wall/rthull
+turf/simulated/wall/rthull
 	icon = 'icons/turf/walls/hull.dmi'
 	color = "#D1E6E3"
 	material        = /datum/material/plasteel/titanium/hull
@@ -65,7 +65,7 @@
 	girder_material = /datum/material/plasteel/titanium/hull
 
 
-/turf/simulated/wall/cult
+turf/simulated/wall/cult
 	icon = 'icons/turf/walls/cult.dmi'
 	color = "#402821"
 
@@ -73,7 +73,7 @@
 	reinf_material  = /datum/material/cult/reinf
 	girder_material = /datum/material/cult
 
-/turf/unsimulated/wall/cult
+turf/unsimulated/wall/cult
 	name = "cult wall"
 	desc = "Hideous images dance beneath the surface."
 	icon = 'icons/turf/walls/cult.dmi'
@@ -81,7 +81,7 @@
 	base_icon_state = "wall"
 	color = "#402821"
 
-/turf/simulated/wall/iron
+turf/simulated/wall/iron
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#5C5454"
 
@@ -89,7 +89,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/uranium
+turf/simulated/wall/uranium
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#007A00"
 
@@ -97,7 +97,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/diamond
+turf/simulated/wall/diamond
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#00FFE1"
 
@@ -105,7 +105,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/gold
+turf/simulated/wall/gold
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#EDD12F"
 
@@ -113,7 +113,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/silver
+turf/simulated/wall/silver
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#D1E6E3"
 
@@ -121,7 +121,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/lead
+turf/simulated/wall/lead
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#273956"
 
@@ -129,7 +129,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/r_lead
+turf/simulated/wall/r_lead
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#273956"
 
@@ -137,7 +137,7 @@
 	reinf_material  = /datum/material/lead
 	girder_material = null
 
-/turf/simulated/wall/phoron
+turf/simulated/wall/phoron
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#FC2BC5"
 
@@ -145,7 +145,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/sandstone
+turf/simulated/wall/sandstone
 	icon = 'icons/turf/walls/stone.dmi'
 	color = "#D9C179"
 
@@ -153,7 +153,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/bone
+turf/simulated/wall/bone
 	icon = 'icons/turf/walls/stone.dmi'
 	color = "#e6dfc8"
 
@@ -161,7 +161,7 @@
 	reinf_material  = null
 	girder_material = /datum/material/bone
 
-/turf/simulated/wall/ironphoron
+turf/simulated/wall/ironphoron
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#5C5454"
 
@@ -169,7 +169,7 @@
 	reinf_material  = /datum/material/phoron
 	girder_material = null
 
-/turf/simulated/wall/golddiamond
+turf/simulated/wall/golddiamond
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#EDD12F"
 
@@ -177,7 +177,7 @@
 	reinf_material  = /datum/material/diamond
 	girder_material = null
 
-/turf/simulated/wall/silvergold
+turf/simulated/wall/silvergold
 	icon = 'icons/turf/walls/metal.dmi'
 	color = "#D1E6E3"
 
@@ -185,7 +185,7 @@
 	reinf_material  = /datum/material/gold
 	girder_material = null
 
-/turf/simulated/wall/sandstonediamond
+turf/simulated/wall/sandstonediamond
 	icon = 'icons/turf/walls/stone.dmi'
 	color = "#D9C179"
 
@@ -193,7 +193,7 @@
 	reinf_material  = /datum/material/diamond
 	girder_material = null
 
-/turf/simulated/wall/snowbrick
+turf/simulated/wall/snowbrick
 	icon = 'icons/turf/walls/stone.dmi'
 	color = "#D8FDFF"
 
@@ -201,7 +201,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/resin
+turf/simulated/wall/resin
 	icon = 'icons/turf/walls/resin.dmi'
 	color = "#261438"
 
@@ -210,25 +210,25 @@
 	girder_material = /datum/material/resin
 
 // Kind of wondering if this is going to bite me in the butt.
-/turf/simulated/wall/skipjack
+turf/simulated/wall/skipjack
 	material        = /datum/material/alienalloy
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/skipjack/attackby()
+turf/simulated/wall/skipjack/attackby()
 	return
 
-/turf/simulated/wall/titanium
+turf/simulated/wall/titanium
 	material        = /datum/material/plasteel/titanium
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/durasteel
+turf/simulated/wall/durasteel
 	material        = /datum/material/durasteel
 	reinf_material  = /datum/material/durasteel
 	girder_material = null
 
-/turf/simulated/wall/wood
+turf/simulated/wall/wood
 	icon = 'icons/turf/walls/wood.dmi'
 	color = "#9c5930"
 
@@ -236,7 +236,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/sifwood
+turf/simulated/wall/sifwood
 	icon = 'icons/turf/walls/wood.dmi'
 	color = "#0099cc"
 
@@ -244,7 +244,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/hardwood
+turf/simulated/wall/hardwood
 	icon = 'icons/turf/walls/wood.dmi'
 	color = "#42291a"
 
@@ -252,7 +252,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/log
+turf/simulated/wall/log
 	icon = 'icons/turf/walls/log.dmi'
 	color = "#9c5930"
 
@@ -260,7 +260,7 @@
 	reinf_material  = null
 	girder_material = null
 
-/turf/simulated/wall/log_sif
+turf/simulated/wall/log_sif
 	icon = 'icons/turf/walls/log.dmi'
 	color = "#0099cc"
 
@@ -270,7 +270,7 @@
 
 // TODO: Nuke. @Zandario
 // Shuttle Walls
-/turf/simulated/shuttle/wall
+turf/simulated/shuttle/wall
 	name = "autojoin wall"
 	icon_state = "light"
 	opacity = TRUE
@@ -297,31 +297,31 @@
 		/obj/structure/shuttle/window,
 	)
 
-/turf/simulated/shuttle/wall/hard_corner
+turf/simulated/shuttle/wall/hard_corner
 	name = "hardcorner wall"
 	icon_state = "light-hc"
 	hard_corner = 1
 
-/turf/simulated/shuttle/wall/no_join
+turf/simulated/shuttle/wall/no_join
 	icon_state = "light-nj"
 	join_group = null
 
-/turf/simulated/shuttle/wall/dark
+turf/simulated/shuttle/wall/dark
 	icon = 'icons/turf/shuttle_dark.dmi'
 	icon_state = "dark"
 	base_state = "dark"
 
-/turf/simulated/shuttle/wall/dark/hard_corner
+turf/simulated/shuttle/wall/dark/hard_corner
 	name = "hardcorner wall"
 	icon_state = "dark-hc"
 	hard_corner = 1
 
-/turf/simulated/shuttle/wall/dark/no_join
+turf/simulated/shuttle/wall/dark/no_join
 	name = "nojoin wall"
 	icon_state = "dark-nj"
 	join_group = null
 
-/turf/simulated/shuttle/wall/alien
+turf/simulated/shuttle/wall/alien
 	icon = 'icons/turf/shuttle_alien.dmi'
 	icon_state = "alien"
 	base_state = "alien"
@@ -330,22 +330,22 @@
 	light_color = "#ff0066" // Pink-ish
 	block_tele = TRUE // Will be used for dungeons so this is needed to stop cheesing with handteles.
 
-/turf/simulated/shuttle/wall/alien/hard_corner
+turf/simulated/shuttle/wall/alien/hard_corner
 	name = "hardcorner wall"
 	icon_state = "alien-hc"
 	hard_corner = 1
 
-/turf/simulated/shuttle/wall/alien/no_join
+turf/simulated/shuttle/wall/alien/no_join
 	name = "nojoin wall"
 	icon_state = "alien-nj"
 	join_group = null
 
-/turf/simulated/shuttle/wall/Initialize(mapload)
+turf/simulated/shuttle/wall/Initialize(mapload)
 	. = ..()
 	//To allow mappers to rename shuttle walls to like "redfloor interior" or whatever for ease of use.
 	name = true_name
 
-/turf/simulated/shuttle/wall/Initialize(mapload)
+turf/simulated/shuttle/wall/Initialize(mapload)
 	. = ..()
 
 	if(join_group)
@@ -356,7 +356,7 @@
 	if(takes_underlays)
 		underlay_update()
 
-/turf/simulated/shuttle/wall/proc/auto_join()
+turf/simulated/shuttle/wall/proc/auto_join()
 	match_turf(NORTH, NORTH)
 	match_turf(EAST, EAST)
 	match_turf(SOUTH, SOUTH)
@@ -373,7 +373,7 @@
 
 	return join_flags
 
-/turf/simulated/shuttle/wall/proc/match_turf(direction, flag, mask=0)
+turf/simulated/shuttle/wall/proc/match_turf(direction, flag, mask=0)
 	if((join_flags & mask) == mask)
 		var/turf/simulated/shuttle/wall/adj = get_step(src, direction)
 		if(istype(adj, /turf/simulated/shuttle/wall) && adj.join_group == src.join_group)
@@ -400,37 +400,37 @@
 		else
 			join_flags &= ~flag     // turn off the bit flag
 
-/turf/simulated/shuttle/wall/voidcraft
+turf/simulated/shuttle/wall/voidcraft
 	name = "voidcraft wall"
 	icon = 'icons/turf/shuttle_void.dmi'
 	icon_state = "void"
 	base_state = "void"
 	var/stripe_color = null // If set, generates a colored stripe overlay.  Accepts #XXXXXX as input.
 
-/turf/simulated/shuttle/wall/voidcraft/hard_corner
+turf/simulated/shuttle/wall/voidcraft/hard_corner
 	name = "hardcorner wall"
 	icon_state = "void-hc"
 	hard_corner = 1
 
-/turf/simulated/shuttle/wall/voidcraft/no_join
+turf/simulated/shuttle/wall/voidcraft/no_join
 	name = "nojoin wall"
 	icon_state = "void-nj"
 	join_group = null
 
-/turf/simulated/shuttle/wall/voidcraft/red
+turf/simulated/shuttle/wall/voidcraft/red
 	stripe_color = "#FF0000"
 
-/turf/simulated/shuttle/wall/voidcraft/blue
+turf/simulated/shuttle/wall/voidcraft/blue
 	stripe_color = "#0000FF"
 
-/turf/simulated/shuttle/wall/voidcraft/green
+turf/simulated/shuttle/wall/voidcraft/green
 	stripe_color = "#00FF00"
 
-/turf/simulated/shuttle/wall/voidcraft/Initialize(mapload)
+turf/simulated/shuttle/wall/voidcraft/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/turf/simulated/shuttle/wall/voidcraft/update_icon()
+turf/simulated/shuttle/wall/voidcraft/update_icon()
 	if(stripe_color)
 		cut_overlays()
 		var/image/I = image(icon = src.icon, icon_state = "o_[icon_state]")

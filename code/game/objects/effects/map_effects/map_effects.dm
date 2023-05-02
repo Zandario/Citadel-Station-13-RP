@@ -1,6 +1,6 @@
 // These are objects you can use inside special maps (like PoIs), or for adminbuse.
 // Players cannot see or interact with these.
-/obj/effect/map_effect
+obj/effect/map_effect
 	anchored = TRUE
 	invisibility = 99 // So a badmin can go view these by changing their see_invisible.
 	icon = 'icons/effects/map_effects.dmi'
@@ -12,35 +12,35 @@
 	var/ignore_afk = TRUE				// If true, AFK people (5 minutes) won't satisfy it as well.
 	var/retry_delay = 3 SECONDS			// How long until we check for players again.
 
-/obj/effect/map_effect/legacy_ex_act()
+obj/effect/map_effect/legacy_ex_act()
 	return
 
-/obj/effect/map_effect/singularity_pull()
+obj/effect/map_effect/singularity_pull()
 	return
 
-/obj/effect/map_effect/singularity_act()
+obj/effect/map_effect/singularity_act()
 	return
 
 // Base type for effects that run on variable intervals.
-/obj/effect/map_effect/interval
+obj/effect/map_effect/interval
 	var/interval_lower_bound = 5 SECONDS // Lower number for how often the map_effect will trigger.
 	var/interval_upper_bound = 5 SECONDS // Higher number for above.
 	var/halt = FALSE // Set to true to stop the loop when it reaches the next iteration.
 
-/obj/effect/map_effect/interval/Initialize(mapload)
+obj/effect/map_effect/interval/Initialize(mapload)
 	handle_interval_delay()
 	return ..()
 
-/obj/effect/map_effect/interval/Destroy()
+obj/effect/map_effect/interval/Destroy()
 	halt = TRUE // Shouldn't need it to GC but just in case.
 	return ..()
 
 // Override this for the specific thing to do. Be sure to call parent to keep looping.
-/obj/effect/map_effect/interval/proc/trigger()
+obj/effect/map_effect/interval/proc/trigger()
 	handle_interval_delay()
 
 // Handles the delay and making sure it doesn't run when it would be bad.
-/obj/effect/map_effect/interval/proc/handle_interval_delay()
+obj/effect/map_effect/interval/proc/handle_interval_delay()
 	// Check to see if we're useful first.
 	if(halt)
 		return // Do not pass .(), do not recursively collect 200 thaler.
@@ -57,7 +57,7 @@
 			trigger()
 
 // Helper proc to optimize the use of effects by making sure they do not run if nobody is around to perceive it.
-/proc/check_for_player_proximity(var/atom/proximity_to, var/radius = 12, var/ignore_ghosts = FALSE, var/ignore_afk = TRUE)
+proc/check_for_player_proximity(var/atom/proximity_to, var/radius = 12, var/ignore_ghosts = FALSE, var/ignore_afk = TRUE)
 	if(!proximity_to)
 		return FALSE
 

@@ -1,4 +1,4 @@
-/mob/living/movement_delay()
+mob/living/movement_delay()
 	. = ..()
 	switch(m_intent)
 		if(MOVE_INTENT_RUN)
@@ -8,23 +8,23 @@
 		if(MOVE_INTENT_WALK)
 			. += config_legacy.walk_speed
 
-/mob/living/Move(atom/newloc, direct, glide_size_override)
+mob/living/Move(atom/newloc, direct, glide_size_override)
 	if(buckled && buckled.loc != newloc)
 		return FALSE
 	return ..()
 
-/mob/living/Moved()
+mob/living/Moved()
 	. = ..()
 	if(s_active && !CheapReachability(s_active))
 		s_active.close(src)
 
-/mob/living/forceMove(atom/destination)
+mob/living/forceMove(atom/destination)
 	if(buckled && (buckled.loc != destination))
 		unbuckle(BUCKLE_OP_FORCE | BUCKLE_OP_SILENT)
 	return ..()
 
 ///Checks mobility move as well as parent checks
-/mob/living/canface()
+mob/living/canface()
 /*
 	if(!(mobility_flags & MOBILITY_CAN_MOVE))
 		return FALSE
@@ -33,7 +33,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/CanAllowThrough(atom/movable/mover, turf/target)
+mob/living/CanAllowThrough(atom/movable/mover, turf/target)
 	if(ismob(mover))
 		var/mob/M = mover
 		if(buckled && M.buckled == buckled)
@@ -44,7 +44,7 @@
 		return TRUE
 	return ..()
 
-/mob/living/can_cross_under(atom/movable/mover)
+mob/living/can_cross_under(atom/movable/mover)
 	if(isliving(mover))
 		var/mob/living/L = mover
 		if(IS_PRONE(L) && IS_STANDING(src))
@@ -52,7 +52,7 @@
 	return ..()
 
 //Called when something steps onto us. This allows for mulebots and vehicles to run things over. <3
-/mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
+mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 
@@ -65,13 +65,13 @@
 		V.RunOver(src)
 	return ..()
 
-/mob/living/proc/handle_stumbling(obj/O)
+mob/living/proc/handle_stumbling(obj/O)
 	if(!can_stumble_into(O))
 		return FALSE
 	O.stumble_into(src)
 	return TRUE
 
-/mob/living/proc/can_stumble_into(obj/O)
+mob/living/proc/can_stumble_into(obj/O)
 	if(!O.anchored)
 		return FALSE
 	if(!(confused || is_blind()))
@@ -84,7 +84,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/Bump(atom/A)
+mob/living/Bump(atom/A)
 	var/skip_atom_bump_handling
 	if(throwing)
 		skip_atom_bump_handling = TRUE
@@ -92,7 +92,7 @@
 	if(!skip_atom_bump_handling)
 		_handle_atom_bumping(A)
 
-/mob/living/proc/_handle_atom_bumping(atom/A)
+mob/living/proc/_handle_atom_bumping(atom/A)
 	set waitfor = FALSE
 	if(pushing_bumped_atom)
 		return
@@ -113,7 +113,7 @@
 /**
  * handles mob bumping/fire spread/pushing/etc
  */
-/mob/living/proc/handle_living_bump(mob/living/L)
+mob/living/proc/handle_living_bump(mob/living/L)
 	// first of all spread the love of FIRE
 	spread_fire(L)
 
@@ -170,7 +170,7 @@
  * second arg lets us move onto them instead of swap past, used for size fetish shitcode
  * apologies.
  */
-/mob/living/proc/bump_position_swap(mob/living/them, move_onto)
+mob/living/proc/bump_position_swap(mob/living/them, move_onto)
 	// if we aren't on them for some reason maybe like
 	if(!loc?.Adjacent(them))
 		// don't
@@ -211,7 +211,7 @@
 /**
  * checks if we can swap with another mob
  */
-/mob/living/proc/can_bump_position_swap(mob/living/them)
+mob/living/proc/can_bump_position_swap(mob/living/them)
 	// we must both be on help (or restrained) (or be pulling them)
 	// todo: only grabs should work for this..
 	var/we_are_grabbing_them = them == pulling
@@ -238,7 +238,7 @@
 /**
  * checks if we can push another mob
  */
-/mob/living/proc/can_bump_push_mob(mob/living/them)
+mob/living/proc/can_bump_push_mob(mob/living/them)
 	// check status flags
 	if(!(them.status_flags & STATUS_CAN_PUSH))
 		return FALSE
@@ -261,19 +261,19 @@
 /**
  * can try to crawl under; mostly for subtypes
  */
-/mob/living/proc/should_crawl_under(mob/living/other)
+mob/living/proc/should_crawl_under(mob/living/other)
 	return FALSE
 
 /**
  * try to crawl under
  */
-/mob/living/proc/try_crawl_under(mob/living/other)
+mob/living/proc/try_crawl_under(mob/living/other)
 	return FALSE
 
 /**
  * handles obj bumping/fire spread/pushing/etc
  */
-/mob/living/proc/handle_obj_bump(obj/O)
+mob/living/proc/handle_obj_bump(obj/O)
 	// this proc is there for people to hook but we don't care in general
 	// signal sent regardless of success
 	// SEND_SIGNAL(src, COMSIG_LIVING_PUSHING_OBJ, O)
@@ -286,10 +286,10 @@
 /**
  * handles generic movable bumping/fire spread/pushing/etc
  */
-/mob/living/proc/handle_movable_bump(atom/movable/AM)
+mob/living/proc/handle_movable_bump(atom/movable/AM)
 	return push_movable(AM)
 
-/mob/living/proc/push_movable(atom/movable/AM, force = move_force)
+mob/living/proc/push_movable(atom/movable/AM, force = move_force)
 	// no crushing during diagonal moves
 	if(IS_MOVABLE_IN_DIAG_MOVE(src))
 		return

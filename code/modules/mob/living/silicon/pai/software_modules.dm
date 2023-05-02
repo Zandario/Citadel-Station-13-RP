@@ -1,4 +1,4 @@
-/datum/pai_software
+datum/pai_software
 	// Name for the software. This is used as the button text when buying or opening/toggling the software
 	var/name = "pAI software module"
 	// RAM cost; pAIs start with 100 RAM, spending it on programs
@@ -12,23 +12,23 @@
 	// Whether pAIs should automatically receive this module at no cost
 	var/default = 0
 
-/datum/pai_software/proc/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/proc/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	return
 
-/datum/pai_software/proc/toggle(mob/living/silicon/pai/user)
+datum/pai_software/proc/toggle(mob/living/silicon/pai/user)
 	return
 
-/datum/pai_software/proc/is_active(mob/living/silicon/pai/user)
+datum/pai_software/proc/is_active(mob/living/silicon/pai/user)
 	return 0
 
-/datum/pai_software/directives
+datum/pai_software/directives
 	name = "Directives"
 	ram_cost = 0
 	id = "directives"
 	toggle = 0
 	default = 1
 
-/datum/pai_software/directives/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/directives/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	data["master"] = user.master
@@ -44,7 +44,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/pai_software/directives/Topic(href, href_list)
+datum/pai_software/directives/Topic(href, href_list)
 	var/mob/living/silicon/pai/P = usr
 	if(!istype(P))
 		return
@@ -79,14 +79,14 @@
 			to_chat(P, "[M] does not seem like [TM.he] is going to provide a DNA sample willingly.")
 		return 1
 
-/datum/pai_software/radio_config
+datum/pai_software/radio_config
 	name = "Radio Configuration"
 	ram_cost = 0
 	id = "radio"
 	toggle = 0
 	default = 1
 
-/datum/pai_software/radio_config/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui = null, force_open = 1)
+datum/pai_software/radio_config/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui = null, force_open = 1)
 	var/data[0]
 
 	data["listening"] = user.radio.broadcasting
@@ -109,7 +109,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/pai_software/radio_config/Topic(href, href_list)
+datum/pai_software/radio_config/Topic(href, href_list)
 	var/mob/living/silicon/pai/P = usr
 	if(!istype(P))
 		return
@@ -117,13 +117,13 @@
 	P.radio.Topic(href, href_list)
 	return 1
 
-/datum/pai_software/crew_manifest
+datum/pai_software/crew_manifest
 	name = "Crew Manifest"
 	ram_cost = 5
 	id = "manifest"
 	toggle = 0
 
-/datum/pai_software/crew_manifest/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/crew_manifest/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	data_core.get_manifest_list()
 
 	var/data[0]
@@ -138,13 +138,13 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/pai_software/messenger
+datum/pai_software/messenger
 	name = "Digital Messenger"
 	ram_cost = 5
 	id = "messenger"
 	toggle = 0
 
-/datum/pai_software/messenger/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/messenger/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	data["receiver_off"] = user.pda.toff
@@ -188,7 +188,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/pai_software/messenger/Topic(href, href_list)
+datum/pai_software/messenger/Topic(href, href_list)
 	var/mob/living/silicon/pai/P = usr
 	if(!istype(P)) return
 
@@ -214,13 +214,13 @@
 			P.pda.create_message(P, target, 1)
 			return 1
 
-/datum/pai_software/med_records
+datum/pai_software/med_records
 	name = "Medical Records"
 	ram_cost = 15
 	id = "med_records"
 	toggle = 0
 
-/datum/pai_software/med_records/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/med_records/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	var/records[0]
@@ -246,7 +246,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/pai_software/med_records/Topic(href, href_list)
+datum/pai_software/med_records/Topic(href, href_list)
 	var/mob/living/silicon/pai/P = usr
 	if(!istype(P)) return
 
@@ -268,13 +268,13 @@
 			P.medical_cannotfind = 1
 		return 1
 
-/datum/pai_software/sec_records
+datum/pai_software/sec_records
 	name = "Security Records"
 	ram_cost = 15
 	id = "sec_records"
 	toggle = 0
 
-/datum/pai_software/sec_records/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/sec_records/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	var/records[0]
@@ -300,7 +300,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/pai_software/sec_records/Topic(href, href_list)
+datum/pai_software/sec_records/Topic(href, href_list)
 	var/mob/living/silicon/pai/P = usr
 	if(!istype(P))
 		return
@@ -327,13 +327,13 @@
 			P.security_cannotfind = 1
 		return 1
 
-/datum/pai_software/door_jack
+datum/pai_software/door_jack
 	name = "Door Jack"
 	ram_cost = 30
 	id = "door_jack"
 	toggle = 0
 
-/datum/pai_software/door_jack/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/door_jack/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	data["cable"] = user.cable != null
@@ -351,7 +351,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/pai_software/door_jack/Topic(href, href_list)
+datum/pai_software/door_jack/Topic(href, href_list)
 	var/mob/living/silicon/pai/P = usr
 	if(!istype(P))
 		return
@@ -373,7 +373,7 @@
 							"<span class='warning'>You hear the soft click of something light and hard falling to the ground.</span>", 2)
 		return 1
 
-/mob/living/silicon/pai/proc/hackloop()
+mob/living/silicon/pai/proc/hackloop()
 	var/turf/T = get_turf_or_move(src.loc)
 	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		if(T.loc)
@@ -402,13 +402,13 @@
 			return
 		sleep(10)			// Update every second
 
-/datum/pai_software/atmosphere_sensor
+datum/pai_software/atmosphere_sensor
 	name = "Atmosphere Sensor"
 	ram_cost = 5
 	id = "atmos_sense"
 	toggle = 0
 
-/datum/pai_software/atmosphere_sensor/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/atmosphere_sensor/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	var/turf/T = get_turf_or_move(user.loc)
@@ -442,33 +442,33 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/pai_software/sec_hud
+datum/pai_software/sec_hud
 	name = "Security HUD"
 	ram_cost = 20
 	id = "sec_hud"
 
-/datum/pai_software/sec_hud/toggle(mob/living/silicon/pai/user)
+datum/pai_software/sec_hud/toggle(mob/living/silicon/pai/user)
 	user.secHUD = !user.secHUD
 	if(user.secHUD)
 		get_atom_hud(DATA_HUD_SECURITY_ADVANCED).add_hud_to(user)
 	else
 		get_atom_hud(DATA_HUD_SECURITY_ADVANCED).remove_hud_from(user)
 
-/datum/pai_software/sec_hud/is_active(mob/living/silicon/pai/user)
+datum/pai_software/sec_hud/is_active(mob/living/silicon/pai/user)
 	return user.secHUD
 
-/datum/pai_software/med_hud
+datum/pai_software/med_hud
 	name = "Medical HUD"
 	ram_cost = 20
 	id = "med_hud"
 
-/datum/pai_software/med_hud/toggle(mob/living/silicon/pai/user)
+datum/pai_software/med_hud/toggle(mob/living/silicon/pai/user)
 	if((user.medHUD = !user.medHUD))
 		get_atom_hud(DATA_HUD_MEDICAL).add_hud_to(user)
 	else
 		get_atom_hud(DATA_HUD_MEDICAL).remove_hud_from(user)
 
-/datum/pai_software/med_hud/is_active(mob/living/silicon/pai/user)
+datum/pai_software/med_hud/is_active(mob/living/silicon/pai/user)
 	return user.medHUD
 
 // todo: translation context
@@ -500,13 +500,13 @@
 // /datum/pai_software/translator/is_active(mob/living/silicon/pai/user)
 // 	return user.translator_on
 
-/datum/pai_software/signaller
+datum/pai_software/signaller
 	name = "Remote Signaller"
 	ram_cost = 5
 	id = "signaller"
 	toggle = 0
 
-/datum/pai_software/signaller/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
+datum/pai_software/signaller/on_nano_ui_interact(mob/living/silicon/pai/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	data["frequency"] = format_frequency(user.sradio.frequency)
@@ -519,7 +519,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/pai_software/signaller/Topic(href, href_list)
+datum/pai_software/signaller/Topic(href, href_list)
 	var/mob/living/silicon/pai/P = usr
 	if(!istype(P))
 		return

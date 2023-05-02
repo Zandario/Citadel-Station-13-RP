@@ -1,10 +1,10 @@
 //todo
-/datum/artifact_effect/celldrain
+datum/artifact_effect/celldrain
 	name = "cell drain"
 	effect_type = EFFECT_ELECTRO
 	var/last_message
 
-/datum/artifact_effect/celldrain/DoEffectTouch(var/mob/user)
+datum/artifact_effect/celldrain/DoEffectTouch(var/mob/user)
 	if(user)
 		if(istype(user, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/R = user
@@ -15,7 +15,7 @@
 
 		return 1
 
-/datum/artifact_effect/celldrain/DoEffectAura()
+datum/artifact_effect/celldrain/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)
@@ -43,7 +43,7 @@
 					last_message = world.time
 	return 1
 
-/datum/artifact_effect/celldrain/DoEffectPulse()
+datum/artifact_effect/celldrain/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)

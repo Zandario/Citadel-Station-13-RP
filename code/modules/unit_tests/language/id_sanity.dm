@@ -1,4 +1,4 @@
-/datum/unit_test/languages_shall_not_collide/Run()
+datum/unit_test/languages_shall_not_collide/Run()
 	var/list/ids = list()
 	var/list/names = list()
 	var/list/keys = list()
@@ -26,4 +26,3 @@
 			Fail("collision on key [L.key] between [path] and [keys[L.key]]")
 		else
 			keys[L.key] = path
-			

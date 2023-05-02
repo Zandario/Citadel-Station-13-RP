@@ -3,7 +3,7 @@
 #define SA_ICON_DEAD	0x02
 #define SA_ICON_REST	0x04
 
-/mob/living/simple_mob
+mob/living/simple_mob
 	base_attack_cooldown = 15
 
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
@@ -45,18 +45,18 @@
 	var/obj/item/radio/headset/mob_headset/mob_radio		//Adminbus headset for simplemob shenanigans.
 
 // Release belly contents before being gc'd!
-/mob/living/simple_mob/Destroy()
+mob/living/simple_mob/Destroy()
 	release_vore_contents()
 	prey_excludes.Cut()
 	. = ..()
 
 //For all those ID-having mobs
-/mob/living/simple_mob/GetIdCard()
+mob/living/simple_mob/GetIdCard()
 	if(access_card)
 		return access_card
 
 // Update fullness based on size & quantity of belly contents
-/mob/living/simple_mob/proc/update_fullness()
+mob/living/simple_mob/proc/update_fullness()
 	var/new_fullness = 0
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
@@ -65,7 +65,7 @@
 	new_fullness = round(new_fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
 	vore_fullness = min(vore_capacity, new_fullness)
 
-/mob/living/simple_mob/update_icon()
+mob/living/simple_mob/update_icon()
 	. = ..()
 	if(vore_active)
 		update_fullness()
@@ -78,12 +78,12 @@
 		else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
 			icon_state = "[icon_rest]-[vore_fullness]"
 
-/mob/living/simple_mob/proc/will_eat(var/mob/living/M)
+mob/living/simple_mob/proc/will_eat(var/mob/living/M)
 	return FALSE // no more mobvore
 
 // Attempt to eat target
 // TODO - Review this.  Could be some issues here
-/mob/living/simple_mob/proc/EatTarget(var/mob/living/M)
+mob/living/simple_mob/proc/EatTarget(var/mob/living/M)
 	var/old_target = M
 	set_AI_busy(1)
 	. = animal_nom(M)
@@ -100,12 +100,12 @@
 		// Otherwise we'll be in a possibly infinate loop
 		set_AI_busy(0)
 
-/mob/living/simple_mob/death()
+mob/living/simple_mob/death()
 	release_vore_contents()
 	. = ..()
 
 // Make sure you don't call ..() on this one, otherwise you duplicate work.
-/mob/living/simple_mob/init_vore()
+mob/living/simple_mob/init_vore()
 	if(!vore_active || no_vore)
 		return
 
@@ -161,19 +161,19 @@
 		"The stomach glorps and gurgles as it tries to work you into slop.")
 
 // Checks to see if mob doesn't like this kind of turf
-/mob/living/simple_mob/IMove(turf/newloc, safety = TRUE)
+mob/living/simple_mob/IMove(turf/newloc, safety = TRUE)
 	if(istype(newloc,/turf/simulated/floor/sky))
 		return MOVEMENT_FAILED //Mobs aren't that stupid, probably
 	return ..() // Procede as normal.
 
 //Grab = Nomf
-/mob/living/simple_mob/UnarmedAttack(var/atom/A, var/proximity)
+mob/living/simple_mob/UnarmedAttack(var/atom/A, var/proximity)
 	. = ..()
 
 	if(a_intent == INTENT_GRAB && isliving(A) && !has_hands)
 		animal_nom(A)
 
-/mob/living/simple_mob/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+mob/living/simple_mob/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	if(mob_radio)
 		switch(message_mode)
 			if("intercom")
@@ -192,7 +192,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/proc/leap()
+mob/living/simple_mob/proc/leap()
 	set name = "Pounce Target"
 	set category = "Abilities"
 	set desc = "Select a target to pounce at."

@@ -1,633 +1,633 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
-/area)
+turf/space,
+area)
 "ab" = (
-/turf/simulated/wall,
-/area/awaymission/example)
+turf/simulated/wall,
+area/awaymission/example)
 "ac" = (
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ad" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ae" = (
-/obj/machinery/power/smes{
+obj/machinery/power/smes{
 	charge = 5000
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "af" = (
-/obj/machinery/power/terminal{
+obj/machinery/power/terminal{
 	dir = 8
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ag" = (
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 1;
 	pixel_y = 24
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ah" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 9
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ai" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 1
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "aj" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 5
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ak" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "al" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "am" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "an" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ao" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/gateway/centeraway,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/gateway/centeraway,
+turf/simulated/floor,
+area/awaymission/example)
 "ap" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "aq" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ar" = (
-/obj/item/cigbutt,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/item/cigbutt,
+turf/simulated/floor,
+area/awaymission/example)
 "as" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 10
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "at" = (
-/obj/machinery/gateway,
-/obj/structure/cable{
+obj/machinery/gateway,
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "au" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 6
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "av" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+turf/simulated/floor/plating,
+area/awaymission/example)
 "aw" = (
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+turf/simulated/floor/plating,
+area/awaymission/example)
 "ax" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+turf/simulated/floor/plating,
+area/awaymission/example)
 "ay" = (
-/obj/machinery/light/small,
-/obj/structure/cable{
+obj/machinery/light/small,
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+turf/simulated/floor/plating,
+area/awaymission/example)
 "az" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "aB" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/table/standard,
-/obj/item/paper/pamphlet,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/paper/pamphlet,
+turf/simulated/floor,
+area/awaymission/example)
 "aC" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "aD" = (
-/obj/machinery/light,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/light,
+turf/simulated/floor,
+area/awaymission/example)
 "aE" = (
-/obj/structure/table/standard,
-/obj/item/flashlight,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/flashlight,
+turf/simulated/floor,
+area/awaymission/example)
 "aF" = (
-/obj/structure/table/standard,
-/obj/item/tool/crowbar,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/tool/crowbar,
+turf/simulated/floor,
+area/awaymission/example)
 "aG" = (
-/obj/effect/debris/cleanable/vomit,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/effect/debris/cleanable/vomit,
+turf/simulated/floor,
+area/awaymission/example)
 "aH" = (
-/obj/structure/ladder,
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+obj/structure/ladder,
+turf/simulated/floor/plating,
+area/awaymission/example)
 "aI" = (
-/obj/structure/table/standard,
-/obj/effect/spawner/lootdrop{
+obj/structure/table/standard,
+obj/effect/spawner/lootdrop{
 	loot = "/obj/item/tool/wrench;/obj/item/tool/screwdriver;/obj/item/cigpacket/dromedaryco";
 	lootcount = 2
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "aJ" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+turf/simulated/floor/plating,
+area/awaymission/example)
 "aK" = (
-/obj/machinery/door/airlock/command,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/door/airlock/command,
+turf/simulated/floor,
+area/awaymission/example)
 "aL" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "aM" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+obj/machinery/door/airlock/maintenance_hatch,
+turf/simulated/floor/plating,
+area/awaymission/example)
 "aN" = (
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "aQ" = (
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 8
 	},
-/area/awaymission/example)
+area/awaymission/example)
 "aU" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "aV" = (
-/obj/machinery/vending/cola,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/machinery/vending/cola,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "aW" = (
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/machinery/vending/coffee,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "aX" = (
-/obj/machinery/door/airlock/medical,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/machinery/door/airlock/medical,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bb" = (
-/obj/structure/table/standard,
-/obj/item/healthanalyzer,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/healthanalyzer,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "be" = (
-/obj/structure/table/standard,
-/obj/item/mass_spectrometer/adv,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/mass_spectrometer/adv,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bf" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/glass/beaker,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/reagent_containers/glass/beaker,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bg" = (
-/obj/structure/table/standard,
-/obj/item/folder/white,
-/obj/item/pen/red,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/folder/white,
+obj/item/pen/red,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bh" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/machinery/light,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bi" = (
-/obj/structure/table/standard,
-/obj/item/clipboard,
-/obj/item/reagent_containers/syringe/antiviral,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/clipboard,
+obj/item/reagent_containers/syringe/antiviral,
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bj" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "bk" = (
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bn" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+obj/structure/grille,
+turf/simulated/floor/plating,
+area/awaymission/example)
 "bp" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+obj/structure/grille,
+turf/simulated/floor/plating,
+area/awaymission/example)
 "bq" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+obj/structure/grille,
+turf/simulated/floor/plating,
+area/awaymission/example)
 "br" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/awaymission/example)
+obj/structure/grille,
+turf/simulated/floor/plating,
+area/awaymission/example)
 "bs" = (
-/obj/structure/toilet{
+obj/structure/toilet{
 	pixel_y = 12
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bu" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bv" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/turf/space,
-/area)
+turf/space,
+area)
 "bw" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	name = "Unit 1"
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bx" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	name = "Unit 2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "by" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/structure/table/standard,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bA" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bB" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bC" = (
-/obj/structure/bed/chair/wood,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/structure/bed/chair/wood,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bD" = (
-/obj/structure/sink{
+obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bG" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	name = "Unisex Restrooms";
 
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/example)
+turf/simulated/floor/tiled/white,
+area/awaymission/example)
 "bH" = (
-/obj/machinery/vending/boozeomat{
+obj/machinery/vending/boozeomat{
 	density = 0;
 	pixel_x = -32
 	},
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bI" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/cans/cola,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/reagent_containers/food/drinks/cans/cola,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bJ" = (
-/obj/structure/bookcase{
+obj/structure/bookcase{
 	density = 0;
 	pixel_y = 32
 	},
-/obj/item/book/manual/barman_recipes,
-/obj/item/book/manual/chef_recipes,
-/obj/item/book/manual/ripley_build_and_repair,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/item/book/manual/barman_recipes,
+obj/item/book/manual/chef_recipes,
+obj/item/book/manual/ripley_build_and_repair,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bL" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/structure/table/woodentable,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bN" = (
-/obj/structure/bookcase{
+obj/structure/bookcase{
 	density = 0;
 	pixel_y = 32
 	},
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/item/book/manual/security_space_law,
+obj/item/book/manual/security_space_law,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bO" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/structure/table/woodentable,
+obj/item/reagent_containers/food/drinks/bottle/wine,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bQ" = (
-/obj/machinery/vending/snack,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/vending/snack,
+turf/simulated/floor,
+area/awaymission/example)
 "bR" = (
-/obj/structure/table/standard,
-/obj/machinery/light/small,
-/obj/item/paper{
+obj/structure/table/standard,
+obj/machinery/light/small,
+obj/item/paper{
 	info = "X X O<br>X O X<br>O X"
 	},
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bS" = (
-/obj/structure/musician/piano,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/structure/musician/piano,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bT" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/machinery/light/small,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bU" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/validsalad,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/structure/table/woodentable,
+obj/item/reagent_containers/food/snacks/validsalad,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "bV" = (
-/obj/machinery/vending/cigarette,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/vending/cigarette,
+turf/simulated/floor,
+area/awaymission/example)
 "bW" = (
-/obj/structure/table/standard,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+turf/simulated/floor,
+area/awaymission/example)
 "bX" = (
-/obj/structure/table/standard,
-/obj/item/analyzer,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/analyzer,
+turf/simulated/floor,
+area/awaymission/example)
 "bY" = (
-/obj/structure/table/standard,
-/obj/structure/table/rack,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/structure/table/rack,
+turf/simulated/floor,
+area/awaymission/example)
 "bZ" = (
-/obj/structure/table/standard,
-/obj/item/toner,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/toner,
+turf/simulated/floor,
+area/awaymission/example)
 "ca" = (
-/obj/structure/table/standard,
-/obj/item/tool/wirecutters,
-/obj/item/stack/cable_coil/yellow,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/tool/wirecutters,
+obj/item/stack/cable_coil/yellow,
+turf/simulated/floor,
+area/awaymission/example)
 "cb" = (
-/obj/structure/table/standard,
-/obj/item/tool/wrench,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/tool/wrench,
+turf/simulated/floor,
+area/awaymission/example)
 "cc" = (
-/obj/machinery/vending/assist,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/vending/assist,
+turf/simulated/floor,
+area/awaymission/example)
 "ce" = (
-/obj/structure/filingcabinet,
-/obj/item/paper{
+obj/structure/filingcabinet,
+obj/item/paper{
 	info = "Todo: write up a lawsuit for Ted, fuck what the pamphlets say, nothing good is gonna come out of that gate. Ted'll thank me later, I'll bet.";
 	name = "documents"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "cf" = (
-/obj/structure/table/standard,
-/obj/item/paper_bin,
-/obj/item/pen/blue,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/paper_bin,
+obj/item/pen/blue,
+turf/simulated/floor,
+area/awaymission/example)
 "cg" = (
-/obj/machinery/photocopier,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/photocopier,
+turf/simulated/floor,
+area/awaymission/example)
 "ch" = (
-/obj/structure/table/standard,
-/obj/item/tool/screwdriver,
-/obj/item/hand_labeler,
-/obj/machinery/light{
+obj/structure/table/standard,
+obj/item/tool/screwdriver,
+obj/item/hand_labeler,
+obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "ci" = (
-/obj/structure/bed/chair/office/dark{
+obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "cj" = (
-/obj/structure/table/standard,
-/obj/item/paper/pamphlet,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/paper/pamphlet,
+turf/simulated/floor,
+area/awaymission/example)
 "ck" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/door/airlock,
+turf/simulated/floor,
+area/awaymission/example)
 "cm" = (
-/obj/item/paper{
+obj/item/paper{
 	info = "Hey Ted, remind me to take Angeline out some time before I ship out. You know how bad my memory is, so don't get all high and mighty with me. READ THIS.";
 	name = "note"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "cn" = (
-/obj/machinery/door/airlock/glass,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/machinery/door/airlock/glass,
+turf/simulated/floor,
+area/awaymission/example)
 "co" = (
-/obj/structure/noticeboard{
+obj/structure/noticeboard{
 	pixel_y = 32
 	},
-/obj/item/paper{
+obj/item/paper{
 	info = "Remember, friday is David Bowie night! You guys had better fucking <i>be there!</i>";
 	name = "friday night"
 	},
-/obj/item/cigbutt,
-/turf/simulated/floor/wood,
-/area/awaymission/example)
+obj/item/cigbutt,
+turf/simulated/floor/wood,
+area/awaymission/example)
 "cp" = (
-/obj/item/trash/pistachios,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/item/trash/pistachios,
+turf/simulated/floor,
+area/awaymission/example)
 "cq" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "cr" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/obj/item/assembly/mousetrap/armed,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/item/assembly/mousetrap/armed,
+turf/simulated/floor,
+area/awaymission/example)
 "cs" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/reagent_dispensers/watertank,
+turf/simulated/floor,
+area/awaymission/example)
 "ct" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/obj/machinery/light_construct/small{
+obj/machinery/light_construct/small{
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 "cu" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/obj/item/mop,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/item/mop,
+turf/simulated/floor,
+area/awaymission/example)
 "cv" = (
-/obj/structure/closet,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/closet,
+turf/simulated/floor,
+area/awaymission/example)
 "cw" = (
-/obj/structure/table/standard,
-/obj/item/cell/high,
-/turf/simulated/floor,
-/area/awaymission/example)
+obj/structure/table/standard,
+obj/item/cell/high,
+turf/simulated/floor,
+area/awaymission/example)
 "cy" = (
-/obj/structure/mopbucket,
-/obj/machinery/light_construct/small{
+obj/structure/mopbucket,
+obj/machinery/light_construct/small{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/example)
+turf/simulated/floor,
+area/awaymission/example)
 
 (1,1,1) = {"
 aa

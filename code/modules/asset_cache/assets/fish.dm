@@ -1,6 +1,6 @@
-/datum/asset/spritesheet/fish
+datum/asset/spritesheet/fish
 	name = "fish"
-/datum/asset/spritesheet/fish/create_spritesheets()
+datum/asset/spritesheet/fish/create_spritesheets()
 	for (var/path in subtypesof(/obj/item/fish))
 		var/obj/item/fish/fish_type = path
 		var/fish_icon = initial(fish_type.icon)
@@ -11,7 +11,7 @@
 		Insert(id, fish_icon, fish_icon_state)
 
 
-/datum/asset/simple/fishing_minigame
+datum/asset/simple/fishing_minigame
 	assets = list(
 		"fishing_background_default" = 'icons/interface/fishing/default.png',
 		"fishing_background_lavaland" = 'icons/interface/fishing/lavaland.png'

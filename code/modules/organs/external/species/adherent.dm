@@ -1,4 +1,4 @@
-/obj/item/organ/external/chest/crystal
+obj/item/organ/external/chest/crystal
 	name = "tendril junction"
 	amputation_point = "axis"
 	joint = "central axis"
@@ -13,7 +13,7 @@
 	robotic = ORGAN_CRYSTAL
 //	limb_flags = ORGAN_FLAG_CAN_BREAK | ORGAN_FLAG_HEALS_OVERKILL
 
-/obj/item/organ/external/groin/crystal
+obj/item/organ/external/groin/crystal
 	name = "trailing tendrils"
 	joint = "base"
 //	arterial_bleed_severity = 0
@@ -25,7 +25,7 @@
 	robotic = ORGAN_CRYSTAL
 //	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_CAN_BREAK
 
-/obj/item/organ/external/head/crystal
+obj/item/organ/external/head/crystal
 	name = "chassis core"
 	amputation_point = "connector socket"
 	joint = "connector socket"
@@ -41,7 +41,7 @@
 //	can_intake_reagents = FALSE //! DO NOT UNCOMMENT THIS LINE UNTIL ADHERENTS CAN PASS IsSynthetic()
 //	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_HEALS_OVERKILL | ORGAN_FLAG_CAN_BREAK
 
-/obj/item/organ/external/arm/crystal
+obj/item/organ/external/arm/crystal
 	name = "left grasping tendril"
 	amputation_point = "midpoint"
 	joint = "base"
@@ -53,7 +53,7 @@
 	robotic = ORGAN_CRYSTAL
 //	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_GRASP | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_CAN_BREAK
 
-/obj/item/organ/external/arm/right/crystal
+obj/item/organ/external/arm/right/crystal
 	name = "right grasping tendril"
 	amputation_point = "midpoint"
 	joint = "base"
@@ -65,7 +65,7 @@
 	robotic = ORGAN_CRYSTAL
 //	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_GRASP | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_CAN_BREAK
 
-/obj/item/organ/external/hand/crystal
+obj/item/organ/external/hand/crystal
 	name = "left maniple tendril"
 	amputation_point = "midpoint"
 	joint = "base"
@@ -77,7 +77,7 @@
 	robotic = ORGAN_CRYSTAL
 //	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_GRASP | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_CAN_BREAK
 
-/obj/item/organ/external/hand/right/crystal
+obj/item/organ/external/hand/right/crystal
 	name = "right maniple tendril"
 	amputation_point = "midpoint"
 	joint = "base"
@@ -90,7 +90,7 @@
 
 //	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_GRASP | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_CAN_BREAK
 
-/obj/item/organ/external/leg/tendril
+obj/item/organ/external/leg/tendril
 	name = "first tendril"
 	amputation_point = "midpoint"
 	joint = "base"
@@ -104,14 +104,14 @@
 	robotic = ORGAN_CRYSTAL
 //	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_GRASP | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_CAN_BREAK
 
-/obj/item/organ/external/leg/right/tendril
+obj/item/organ/external/leg/right/tendril
 	name = "second tendril"
 	robotic = ORGAN_CRYSTAL
 
-/obj/item/organ/external/foot/tendril
+obj/item/organ/external/foot/tendril
 	name = "third tendril"
 	robotic = ORGAN_CRYSTAL
 
-/obj/item/organ/external/foot/right/tendril
+obj/item/organ/external/foot/right/tendril
 	name = "fourth tendril"
 	robotic = ORGAN_CRYSTAL

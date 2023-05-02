@@ -29,7 +29,7 @@
 
 */
 
-/datum/shuttle/autodock/overmap/ninja
+datum/shuttle/autodock/overmap/ninja
 	name = "Ninja Shuttle"
 	warmup_time = 0
 	current_location = "dojo_dock"
@@ -39,13 +39,13 @@
 	defer_initialisation = TRUE
 
 // The 'ship' of the shuttle
-/obj/effect/overmap/visitable/ship/landable/ninja
+obj/effect/overmap/visitable/ship/landable/ninja
 	name = "Unknown Vessel"
 	desc = "Scans inconclusive."
 	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Ninja Shuttle"
 
-/obj/machinery/computer/shuttle_control/explore/ninja
+obj/machinery/computer/shuttle_control/explore/ninja
 	name = "short jump console"
 	shuttle_tag = "Ninja Shuttle"

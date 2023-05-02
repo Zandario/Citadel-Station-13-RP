@@ -1,4 +1,4 @@
-/datum/technomancer/spell/mend_metal
+datum/technomancer/spell/mend_metal
 	name = "Mend Metal"
 	desc = "Restores integrity to external robotic components."
 	spell_power_desc = "Healing amount increased."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/insert/mend_metal
+obj/item/spell/insert/mend_metal
 	name = "mend metal"
 	desc = "A roboticist is now obsolete."
 	icon_state = "mend_wounds"
@@ -16,7 +16,7 @@
 	light_color = "#FF5C5C"
 	inserting = /obj/item/inserted_spell/mend_metal
 
-/obj/item/inserted_spell/mend_metal/on_insert()
+obj/item/inserted_spell/mend_metal/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host

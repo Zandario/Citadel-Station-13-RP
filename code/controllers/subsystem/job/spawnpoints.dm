@@ -1,4 +1,4 @@
-/datum/controller/subsystem/job
+datum/controller/subsystem/job
 	/// All spawnpoints
 	var/static/list/spawnpoints = list()
 	/// Job spawnpoints keyed to job id/typepath
@@ -13,7 +13,7 @@
 /**
  * Fully resets spawnpoints list and ensures validity
  */
-/datum/controller/subsystem/job/proc/reconstruct_spawnpoints()
+datum/controller/subsystem/job/proc/reconstruct_spawnpoints()
 	spawnpoints = list()
 	job_spawnpoints = list()
 	latejoin_spawnpoints = list()
@@ -51,7 +51,7 @@
  * - harder - used when the first iteration failed, tells spawnpoints to skip certain checks
  *
  */
-/datum/controller/subsystem/job/proc/get_roundstart_spawnpoint(mob/M, client/C, job_path, faction, random = TRUE, harder = FALSE)
+datum/controller/subsystem/job/proc/get_roundstart_spawnpoint(mob/M, client/C, job_path, faction, random = TRUE, harder = FALSE)
 	RETURN_TYPE(/obj/landmark/spawnpoint)
 	if(random)
 		. = list()
@@ -99,7 +99,7 @@
  * - random - deterministic first pick or random?
  * - harder - used when the first iteration failed, tells spawnpoints to skip certain checks
  */
-/datum/controller/subsystem/job/proc/get_latejoin_spawnpoint(client/C, job_path, faction = JOB_FACTION_STATION, method, random = TRUE, harder = FALSE)
+datum/controller/subsystem/job/proc/get_latejoin_spawnpoint(client/C, job_path, faction = JOB_FACTION_STATION, method, random = TRUE, harder = FALSE)
 	RETURN_TYPE(/obj/landmark/spawnpoint)
 	if(random)
 		. = list()	// Priority 1: Job specific spawnpoints
@@ -162,7 +162,7 @@
  * - job_path - (optional) path to job
  * - faction - what faction the player is in terms of job factions
  */
-/datum/controller/subsystem/job/proc/possible_latejoin_spawnpoints(client/C, job_path, faction)
+datum/controller/subsystem/job/proc/possible_latejoin_spawnpoints(client/C, job_path, faction)
 	. = list()
 	// Get all job specific methods, and allow for override if needed
 	if(job_path && length(job_spawnpoints[job_path]))
@@ -194,7 +194,7 @@
  * - C - (optional) client of player
  * - key - spawnpoint key to look for
  */
-/datum/controller/subsystem/job/proc/get_custom_spawnpoint(mob/M, client/C, key)
+datum/controller/subsystem/job/proc/get_custom_spawnpoint(mob/M, client/C, key)
 	if(!length(custom_spawnpoints[key]))
 		return
 	for(var/obj/landmark/spawnpoint/S as anything in custom_spawnpoints[key])
@@ -205,5 +205,5 @@
 /**
  * Get all spawnpoint landmarks
  */
-/datum/controller/subsystem/job/proc/get_all_spawnpoints()
+datum/controller/subsystem/job/proc/get_all_spawnpoints()
 	return spawnpoints

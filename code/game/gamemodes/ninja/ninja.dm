@@ -1,4 +1,4 @@
-/datum/game_mode/ninja
+datum/game_mode/ninja
 	name = "Ninja"
 	round_description = "An agent of the Spider Clan is onboard the station!"
 	extended_round_description = "What was that?! Was that a person or did your eyes just play tricks on you? \

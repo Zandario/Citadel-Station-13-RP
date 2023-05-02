@@ -11,13 +11,13 @@ much more likely to show up. This is done for several purposes;
 
 // This one makes a purely random hypo. Not recommended for PoIs since it will produce nonsensical results for a PoI's theme.
 // It's more of a thing to help pick specific hypos for the other lists.
-/obj/random/unidentified_medicine
+obj/random/unidentified_medicine
 	name = "unidentified medicine"
 	desc = "This will make a random hypo."
 	icon = 'icons/obj/medical/syringe.dmi'
 	icon_state = "autoinjector1"
 
-/obj/random/unidentified_medicine/item_to_spawn()
+obj/random/unidentified_medicine/item_to_spawn()
 	return pick(
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/brute/unidentified,
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/burn/unidentified,
@@ -46,7 +46,7 @@ much more likely to show up. This is done for several purposes;
 
 // Produces things you might find in an old medicine cabinet in a PoI.
 // Old cabinets are typical of ruins and abandoned buildings in the plains, meaning they're usually easier to reach, and as such, inferior loot.
-/obj/random/unidentified_medicine/old_medicine/item_to_spawn()
+obj/random/unidentified_medicine/old_medicine/item_to_spawn()
 	// 30 Good, 70 Bad. 30% to get something good.
 	// Poor odds, but these are fairly easy to reach as they're in abandoned areas.
 	return pick(
@@ -60,7 +60,7 @@ much more likely to show up. This is done for several purposes;
 		prob(5);/obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated/unidentified)
 
 // Medicine belonging to a place still being occupied (or was recently), meaning the goods might still be fresh, and better.
-/obj/random/unidentified_medicine/fresh_medicine/item_to_spawn()
+obj/random/unidentified_medicine/fresh_medicine/item_to_spawn()
 	// More likely to get something good, and a chance to get rare medicines.
 	// 75 Good, 25 Bad. 75% chance of getting something good.
 	// Good odds, but the contents aren't super great unless someone gets lucky.
@@ -77,7 +77,7 @@ much more likely to show up. This is done for several purposes;
 		prob(25);/obj/item/reagent_containers/hypospray/autoinjector/biginjector/expired/unidentified)
 
 // For military PoIs like BSD. High odds of good loot since those PoIs are really hard.
-/obj/random/unidentified_medicine/combat_medicine/item_to_spawn()
+obj/random/unidentified_medicine/combat_medicine/item_to_spawn()
 	// More likely to get something good, and a chance to get rare medicines.
 	// 75 Good, 30 Bad, roughly 71.4% chance to get something good.
 	// Very high but very hard to reach and still has a chance of ending poorly if injecting blind.
@@ -93,7 +93,7 @@ much more likely to show up. This is done for several purposes;
 		prob(30);/obj/item/reagent_containers/hypospray/autoinjector/biginjector/cyanide/unidentified)
 
 // Hyposprays found inside various illicit places.
-/obj/random/unidentified_medicine/drug_den/item_to_spawn()
+obj/random/unidentified_medicine/drug_den/item_to_spawn()
 	// Combat stims are common, but so are nasty drugs.
 	// 65 Good, 160 Bad, roughly 28.8% to get something good.
 	// Poor odds, but there are a lot of these scattered in the drug dens and illegal chem labs.
@@ -115,7 +115,7 @@ much more likely to show up. This is done for several purposes;
 		prob(5);/obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated/unidentified)
 
 // Medicine made FOR SCIENCE.
-/obj/random/unidentified_medicine/scientific/item_to_spawn()
+obj/random/unidentified_medicine/scientific/item_to_spawn()
 	// Potential for amazing loot, also potential for very nasty consequences if injecting blind.
 	// 45 Good, 45 Bad, 50% chance to get something good.
 	// Do you feel lucky?
@@ -131,7 +131,7 @@ much more likely to show up. This is done for several purposes;
 		prob(5);/obj/item/reagent_containers/hypospray/autoinjector/biginjector/defective_nanites/unidentified)
 
 // Nanomachines, son. Found in very advanced places such as the Crashed UFO.
-/obj/random/unidentified_medicine/nanites/item_to_spawn()
+obj/random/unidentified_medicine/nanites/item_to_spawn()
 	// You better identify this if you value your life.
 	// 30 Good, 70 Bad. 30% of getting a good outcome.
 	return pick(
@@ -139,7 +139,7 @@ much more likely to show up. This is done for several purposes;
 		prob(70);/obj/item/reagent_containers/hypospray/autoinjector/biginjector/defective_nanites/unidentified)
 
 // Found in virus-related areas like the Quarantined Shuttle.
-/obj/random/unidentified_medicine/viral/item_to_spawn()
+obj/random/unidentified_medicine/viral/item_to_spawn()
 	// Another one where's its important to identify the hypo.
 	// 30 Good, 70 Bad. 30% of getting a good outcome.
 	return pick(

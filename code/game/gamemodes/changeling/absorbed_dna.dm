@@ -1,4 +1,4 @@
-/datum/absorbed_dna
+datum/absorbed_dna
 	var/name
 	var/datum/dna/dna
 	var/speciesName
@@ -7,7 +7,7 @@
 	var/list/flavour_texts
 	var/list/genMods
 
-/datum/absorbed_dna/New(newName, newDNA, newSpecies, newLanguages, newIdentifying_Gender, list/newFlavour, list/newGenMods)
+datum/absorbed_dna/New(newName, newDNA, newSpecies, newLanguages, newIdentifying_Gender, list/newFlavour, list/newGenMods)
 	..()
 	name = newName
 	dna = newDNA

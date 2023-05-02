@@ -1,2 +1,2 @@
-/datum/movespeed_modifier/admin_varedit
+datum/movespeed_modifier/admin_varedit
 	variable = TRUE

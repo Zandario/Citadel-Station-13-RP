@@ -1,10 +1,10 @@
 // Generic damage proc (slimes and monkeys).
-/atom/proc/attack_generic(mob/user as mob)
+atom/proc/attack_generic(mob/user as mob)
 	return 0
 
-/atom/proc/attack_alien(mob/user)
+atom/proc/attack_alien(mob/user)
 
-/atom/proc/take_damage(var/damage)
+atom/proc/take_damage(var/damage)
 	return 0
 
 /*
@@ -13,7 +13,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
+mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
 	// if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 	// 	if(src == A)
 	// 		check_self_for_injuries()
@@ -31,18 +31,18 @@
 	A.attack_hand(src)
 
 /// Return TRUE to cancel other attack hand effects that respect it.
-/atom/proc/attack_hand(mob/user, list/params)
+atom/proc/attack_hand(mob/user, list/params)
 	. = _try_interact(user)
 
 //Return a non FALSE value to cancel whatever called this from propagating, if it respects it.
-/atom/proc/_try_interact(mob/user)
+atom/proc/_try_interact(mob/user)
 	// if(isAdminGhostAI(user))		//admin abuse
 	// 	return interact(user)
 	if(can_interact(user))
 		return interact(user)
 	return FALSE
 
-/atom/proc/can_interact(mob/user)
+atom/proc/can_interact(mob/user)
 	// if(!user.can_interact_with(src))
 	// 	return FALSE
 	// if((interaction_flags_atom & INTERACT_ATOM_REQUIRES_DEXTERITY) && !user.IsAdvancedToolUser())
@@ -52,19 +52,19 @@
 	// 	return FALSE
 	return TRUE
 
-/atom/ui_status(mob/user)
+atom/ui_status(mob/user)
 	. = ..()
 	if(!can_interact(user) && !IsAdminGhost(user))
 		. = min(., UI_UPDATE)
 
-/atom/movable/can_interact(mob/user)
+atom/movable/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return
 	if(!anchored && (interaction_flags_atom & INTERACT_ATOM_REQUIRES_ANCHORED))
 		return FALSE
 
-/atom/proc/interact(mob/user)
+atom/proc/interact(mob/user)
 	if(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_INTERACT)
 		add_hiddenprint(user)
 	else
@@ -73,10 +73,10 @@
 	return (ui_interact(user) || nano_ui_interact(user))
 	// return FALSE
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/human/RangedAttack(atom/A)
+mob/living/carbon/human/RangedAttack(atom/A)
 	. = ..()
 	if(.)
 		return
@@ -98,7 +98,7 @@
 	else if(spitting) //Only used by xenos right now, can be expanded.
 		Spit(A)
 
-/mob/living/RestrainedClickOn(var/atom/A)
+mob/living/RestrainedClickOn(var/atom/A)
 	return
 
 /*
@@ -114,10 +114,10 @@
 	Aliens
 */
 
-/mob/living/carbon/alien/RestrainedClickOn(var/atom/A)
+mob/living/carbon/alien/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/alien/UnarmedAttack(atom/A)
+mob/living/carbon/alien/UnarmedAttack(atom/A)
 	if(!..())
 		return FALSE
 
@@ -128,12 +128,12 @@
 	pAI
 */
 
-/mob/living/silicon/pai/UnarmedAttack(atom/A)//Stops runtimes due to attack_animal being the default
+mob/living/silicon/pai/UnarmedAttack(atom/A)//Stops runtimes due to attack_animal being the default
 	return
 
 /*
 	New Players:
 	Have no reason to click on anything at all.
 */
-/mob/new_player/ClickOn()
+mob/new_player/ClickOn()
 	return

@@ -5,7 +5,7 @@
  * so use /datum/component/radiation_listener if you need it to
  * receive rad_act inside of something.
  */
-/datum/component/latently_radioactive
+datum/component/latently_radioactive
 	/// strength left
 	var/strength_left = 1000
 	/// multiplier for catalyzing our latent radioactivity
@@ -15,22 +15,22 @@
 	/// half life for component
 	var/half_life = RAD_HALF_LIFE_DEFAULT
 
-/datum/component/latently_radioactive/Initialize(strength_left)
+datum/component/latently_radioactive/Initialize(strength_left)
 	if(!isnull(strength_left))
 		src.strength_left = strength_left
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	return ..()
 
-/datum/component/latently_radioactive/RegisterWithParent()
+datum/component/latently_radioactive/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_RAD_ACT, .proc/on_radiated)
 
-/datum/component/latently_radioactive/UnregisterFromParent()
+datum/component/latently_radioactive/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, COMSIG_ATOM_RAD_ACT)
 
-/datum/component/latently_radioactive/proc/on_radiated(atom/source, strength, datum/radiation_wave/wave)
+datum/component/latently_radioactive/proc/on_radiated(atom/source, strength, datum/radiation_wave/wave)
 	if(wave.source == get_turf(parent))
 		return // very shitty self-catalyzing check. yes, this will fail. yes, that's intended.
 	parent.AddComponent(/datum/component/radioactive, strength, half_life, null, falloff)

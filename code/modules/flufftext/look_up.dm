@@ -1,6 +1,6 @@
 // Implements a verb to make your character look upward, mostly intended for the surface.
 
-/mob/living/verb/look_up()
+mob/living/verb/look_up()
 	set name = "Look Up"
 	set category = "IC"
 	set desc = "Look above you, and hope there's no ceiling spiders."

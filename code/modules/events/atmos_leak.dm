@@ -4,7 +4,7 @@
 // more "explainable" then check out the canister_leak event instead.
 //
 
-/datum/event/atmos_leak
+datum/event/atmos_leak
 	startWhen = 5			// Nobody will actually be in the room, but still give a bit of warning.
 	var/area/target_area	// Chosen target area
 	var/area/target_turf	// Chosen target turf in target_area
@@ -20,7 +20,7 @@
 	)
 
 // Decide which area will be targeted!
-/datum/event/atmos_leak/setup()
+datum/event/atmos_leak/setup()
 	var/gas_choices = list(/datum/gas/carbon_dioxide, /datum/gas/nitrous_oxide) // Annoying
 	if(severity >= EVENT_LEVEL_MODERATE)
 		gas_choices += /datum/gas/phoron // Dangerous
@@ -53,10 +53,10 @@
 		kill()
 		return
 
-/datum/event/atmos_leak/announce()
+datum/event/atmos_leak/announce()
 	command_announcement.Announce("Warning, hazardous [GLOB.meta_gas_names[gas_type]] gas leak detected in \the [target_area], evacuate the area and contain the damage!", "Hazard Alert")
 
-/datum/event/atmos_leak/start()
+datum/event/atmos_leak/start()
 	// Okay, time to actually put the gas in the room!
 	// TODO - Would be nice to break a waste pipe perhaps?
 	// TODO - Maybe having it released from a single point and thus causing airflow to blow stuff around

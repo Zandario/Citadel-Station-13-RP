@@ -1,4 +1,4 @@
-/mob/living/death(gibbed)
+mob/living/death(gibbed)
 	wipe_fullscreens()
 	if(ai_holder)
 		ai_holder.go_sleep()

@@ -6,7 +6,7 @@
  * This component takes over **after** something is buckled to the atom.
  * Before that, riding_filter handles it.
  */
-/datum/component/riding_handler
+datum/component/riding_handler
 	//? disabled as we don't have dupe handling
 	can_transfer = FALSE
 	dupe_mode = COMPONENT_DUPE_UNIQUE
@@ -75,7 +75,7 @@
 	/// last turf we were on
 	var/turf/last_turf
 
-/datum/component/riding_handler/Initialize()
+datum/component/riding_handler/Initialize()
 	. = ..()
 	if(. & COMPONENT_INCOMPATIBLE)
 		return
@@ -83,7 +83,7 @@
 		return COMPONENT_INCOMPATIBLE
 	build_turf_typecaches()
 
-/datum/component/riding_handler/RegisterWithParent()
+datum/component/riding_handler/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOB_BUCKLED, .proc/signal_hook_mob_buckled)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOB_UNBUCKLED, .proc/signal_hook_mob_unbuckled)
@@ -93,7 +93,7 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_BUCKLE_MOB, .proc/signal_hook_pre_buckle_mob)
 	RegisterSignal(parent, COMSIG_MOVABLE_PIXEL_OFFSET_CHANGED, .proc/signal_hook_pixel_offset_changed)
 
-/datum/component/riding_handler/UnregisterFromParent()
+datum/component/riding_handler/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
 		COMSIG_MOVABLE_MOB_BUCKLED,
@@ -104,35 +104,35 @@
 		COMSIG_MOVABLE_PRE_BUCKLE_MOB
 	))
 
-/datum/component/riding_handler/proc/signal_hook_mob_buckled(atom/movable/source, mob/M, buckle_flags, mob/user, semantic)
+datum/component/riding_handler/proc/signal_hook_mob_buckled(atom/movable/source, mob/M, buckle_flags, mob/user, semantic)
 	SIGNAL_HANDLER
 	on_rider_buckled(M, semantic)
 
-/datum/component/riding_handler/proc/signal_hook_mob_unbuckled(atom/movable/source, mob/M, buckle_flags, mob/user, semantic)
+datum/component/riding_handler/proc/signal_hook_mob_unbuckled(atom/movable/source, mob/M, buckle_flags, mob/user, semantic)
 	SIGNAL_HANDLER
 	on_rider_unbuckled(M, semantic)
 	if(!source.has_buckled_mobs() && (riding_handler_flags & CF_RIDING_HANDLER_EPHEMERAL))
 		qdel(src)
 
-/datum/component/riding_handler/proc/signal_hook_handle_move(atom/movable/source, atom/old_loc, dir)
+datum/component/riding_handler/proc/signal_hook_handle_move(atom/movable/source, atom/old_loc, dir)
 	SIGNAL_HANDLER
 	update_riders_on_move(old_loc, dir)
 	last_turf = isturf(old_loc)? old_loc : null
 
-/datum/component/riding_handler/proc/signal_hook_handle_turn(atom/movable/source, old_dir, new_dir)
+datum/component/riding_handler/proc/signal_hook_handle_turn(atom/movable/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 	update_vehicle_on_turn(new_dir)
 	full_update_riders(new_dir)
 
-/datum/component/riding_handler/proc/signal_hook_pre_buckle_mob(atom/movable/source, mob/M, flags, mob/user, semantic)
+datum/component/riding_handler/proc/signal_hook_pre_buckle_mob(atom/movable/source, mob/M, flags, mob/user, semantic)
 	SIGNAL_HANDLER_DOES_SLEEP
 	if(!check_rider(M, semantic, TRUE, user = user))
 		return COMPONENT_BLOCK_BUCKLE_OPERATION
 
-/datum/component/riding_handler/proc/signal_hook_pixel_offset_changed(atom/movable/source)
+datum/component/riding_handler/proc/signal_hook_pixel_offset_changed(atom/movable/source)
 	full_update_riders(null, TRUE)
 
-/datum/component/riding_handler/proc/update_vehicle_on_turn(dir)
+datum/component/riding_handler/proc/update_vehicle_on_turn(dir)
 	if(!vehicle_offsets)
 		return
 	var/atom/movable/AM = parent
@@ -157,28 +157,28 @@
 		AM.pixel_x = vehicle_offsets[1] + opx
 		AM.pixel_y = vehicle_offsets[2] + opy
 
-/datum/component/riding_handler/proc/on_rider_buckled(mob/rider, semantic)
+datum/component/riding_handler/proc/on_rider_buckled(mob/rider, semantic)
 	full_update_riders(force = TRUE)
 	if(isliving(parent))
 		var/mob/living/L = parent
 		L.ai_holder?.pause_automated_movement()
 
-/datum/component/riding_handler/proc/on_rider_unbuckled(mob/rider, semantic)
+datum/component/riding_handler/proc/on_rider_unbuckled(mob/rider, semantic)
 	reset_rider(rider, semantic)
 	full_update_riders(force = TRUE)
 	if(isliving(parent))
 		var/mob/living/L = parent
 		L.ai_holder?.resume_automated_movement()
 
-/datum/component/riding_handler/proc/reset_rider(mob/rider, semantic)
+datum/component/riding_handler/proc/reset_rider(mob/rider, semantic)
 	rider.reset_plane_and_layer()
 	rider.reset_pixel_shifting()
 	rider.reset_pixel_offsets()
 
-/datum/component/riding_handler/proc/update_riders_on_turn(dir)
+datum/component/riding_handler/proc/update_riders_on_turn(dir)
 	full_update_riders()
 
-/datum/component/riding_handler/proc/full_update_riders(dir, force)
+datum/component/riding_handler/proc/full_update_riders(dir, force)
 	var/atom/movable/AM = parent
 	if(!dir)
 		dir = AM.dir
@@ -258,23 +258,23 @@
  *
  * DO NOT CHANGE DEFAULT FOR THE LOVE OF GOD, COPY IT IF YOU ARE CHANGING IT!!
  */
-/datum/component/riding_handler/proc/rider_offsets(mob/rider, pos, semantic, list/default, dir)
+datum/component/riding_handler/proc/rider_offsets(mob/rider, pos, semantic, list/default, dir)
 	return default
 
-/datum/component/riding_handler/proc/signal_hook_handle_relaymove(datum/source, mob/M, dir)
+datum/component/riding_handler/proc/signal_hook_handle_relaymove(datum/source, mob/M, dir)
 	attempt_drive(M, dir)
 	return COMPONENT_RELAYMOVE_HANDLED
 
 /**
  * called to check if a mob has keys to us
  */
-/datum/component/riding_handler/proc/keycheck(mob/M)
+datum/component/riding_handler/proc/keycheck(mob/M)
 	return !keytype || M.get_held_item_of_type(keytype)
 
 /**
  * handles building our typecaches
  */
-/datum/component/riding_handler/proc/build_turf_typecaches()
+datum/component/riding_handler/proc/build_turf_typecaches()
 	allowed_turf_types = typelist(NAMEOF(src, allowed_turf_types), allowed_turf_types)
 	forbid_turf_types = typelist(NAMEOF(src, forbid_turf_types), forbid_turf_types)
 	if(!default_turf_checks)
@@ -293,7 +293,7 @@
 /**
  * checks if we can move onto a turf
  */
-/datum/component/riding_handler/proc/turfcheck(turf/next)
+datum/component/riding_handler/proc/turfcheck(turf/next)
 	if(!default_turf_checks)
 		stack_trace("default turf checks was off even though we use them")
 		default_turf_checks = TRUE
@@ -303,7 +303,7 @@
  * handles checking if we can go on a turf
  * don't override this, override turfcheck().
  */
-/datum/component/riding_handler/proc/_check_turf(turf/next)
+datum/component/riding_handler/proc/_check_turf(turf/next)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(riding_handler_flags & CF_RIDING_HANDLER_ALLOW_BORDER)
 		// allow one off
@@ -322,7 +322,7 @@
 /**
  * called when a mob wants to drive us
  */
-/datum/component/riding_handler/proc/attempt_drive(mob/M, dir)
+datum/component/riding_handler/proc/attempt_drive(mob/M, dir)
 	if(!(riding_handler_flags & CF_RIDING_HANDLER_IS_CONTROLLABLE))
 		return FALSE
 	var/atom/movable/AM = parent
@@ -355,13 +355,13 @@
 /**
  * arbitrary driver check for a mob
  */
-/datum/component/riding_handler/proc/driver_check(mob/M)
+datum/component/riding_handler/proc/driver_check(mob/M)
 	return TRUE
 
 /**
  * handles checks/updates when we move
  */
-/datum/component/riding_handler/proc/update_riders_on_move(atom/old_loc, dir)
+datum/component/riding_handler/proc/update_riders_on_move(atom/old_loc, dir)
 	var/atom/movable/AM = parent
 	// first check ridden mob
 	if(!check_ridden(parent, TRUE))
@@ -377,20 +377,20 @@
 /**
  * checks if a person can stay on us. if not, they'll be kicked off by ride_check()
  */
-/datum/component/riding_handler/proc/check_rider(mob/M, semantic, notify, mob/user)
+datum/component/riding_handler/proc/check_rider(mob/M, semantic, notify, mob/user)
 	return check_entity(M, rider_check_flags, semantic, notify, user)
 
 /**
  * checks if the vehicle is usable right now.
  * if not, kicks everyone off.
  */
-/datum/component/riding_handler/proc/check_ridden(atom/movable/AM, notify, mob/user)
+datum/component/riding_handler/proc/check_ridden(atom/movable/AM, notify, mob/user)
 	return check_entity(AM, ridden_check_flags, BUCKLE_SEMANTIC_WE_ARE_THE_VEHICLE, notify, user)
 
 /**
  * checks an atom of riding flags
  */
-/datum/component/riding_handler/proc/check_entity(atom/movable/AM, flags, semantic, notify, mob/user)
+datum/component/riding_handler/proc/check_entity(atom/movable/AM, flags, semantic, notify, mob/user)
 	var/mob/M = ismob(AM)? AM : null
 	if(!user)
 		user = M
@@ -451,7 +451,7 @@
 /**
  * checks if someone can stay on. if they can't, kick them off.
  */
-/datum/component/riding_handler/proc/ride_check(mob/M)
+datum/component/riding_handler/proc/ride_check(mob/M)
 	var/atom/movable/AM = parent
 	if(!check_rider(M, AM.buckled_mobs[M]))
 		force_dismount(M, AM.buckled_mobs[M])
@@ -461,7 +461,7 @@
 /**
  * kicks off a rider
  */
-/datum/component/riding_handler/proc/force_dismount(mob/M, semantic)
+datum/component/riding_handler/proc/force_dismount(mob/M, semantic)
 	var/atom/movable/AM = parent
 	AM.visible_message(
 		SPAN_WARNING("[M] falls off of [AM]!"),
@@ -469,7 +469,7 @@
 	)
 	AM.unbuckle_mob(M, BUCKLE_OP_FORCE)
 
-/datum/component/riding_handler/proc/process_spacemove()
+datum/component/riding_handler/proc/process_spacemove()
 	var/atom/movable/AM = parent
 	// todo: process_spacemove() on atom movable instead of hasgrav.
 	return (riding_handler_flags & CF_RIDING_HANDLER_FORCED_SPACEMOVE) || AM.has_gravity()

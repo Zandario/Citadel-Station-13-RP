@@ -1,6 +1,6 @@
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
-/mob/proc/gib(anim="gibbed-m", do_gibs, gib_file = 'icons/mob/mob.dmi')
+mob/proc/gib(anim="gibbed-m", do_gibs, gib_file = 'icons/mob/mob.dmi')
 	death(1)
 	transforming = TRUE
 	mobility_flags = NONE
@@ -24,7 +24,7 @@
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).
 //Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.
 //Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
-/mob/proc/dust(anim="dust-m",remains=/obj/effect/debris/cleanable/ash)
+mob/proc/dust(anim="dust-m",remains=/obj/effect/debris/cleanable/ash)
 	death(1)
 	var/atom/movable/overlay/animation = null
 	transforming = TRUE
@@ -45,7 +45,7 @@
 		if(animation)	qdel(animation)
 		if(src)			qdel(src)
 
-/mob/proc/ash(anim = "dust-m")
+mob/proc/ash(anim = "dust-m")
 	death(TRUE)
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
@@ -56,7 +56,7 @@
 	QDEL_IN(animation, 15)
 	qdel(src)
 
-/mob/proc/death(gibbed, deathmessage = "seizes up and falls limp...")
+mob/proc/death(gibbed, deathmessage = "seizes up and falls limp...")
 	if(stat == DEAD)
 		return 0
 	if(istype(loc, /obj/belly) || istype(loc, /obj/item/dogborg/sleeper))

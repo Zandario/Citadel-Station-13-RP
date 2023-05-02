@@ -1,8 +1,8 @@
 // This is just a bit of fun while making an example for global signal
-/datum/component/edit_complainer
+datum/component/edit_complainer
 	var/list/say_lines
 
-/datum/component/edit_complainer/Initialize(list/text)
+datum/component/edit_complainer/Initialize(list/text)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -18,6 +18,6 @@
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_VAR_EDIT, .proc/var_edit_react)
 
-/datum/component/edit_complainer/proc/var_edit_react(datum/source, list/arguments)
+datum/component/edit_complainer/proc/var_edit_react(datum/source, list/arguments)
 	var/atom/movable/master = parent
 	master.say(pick(say_lines))

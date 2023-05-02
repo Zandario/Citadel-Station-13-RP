@@ -1,11 +1,11 @@
-/obj/item/paper/talisman
+obj/item/paper/talisman
 	icon_state = "paper_talisman"
 	origin_tech = list(TECH_ARCANE = 4)
 	var/imbue = null
 	var/uses = 0
 	info = "<center><img src='talisman.png'></center><br/><br/>"
 
-/obj/item/paper/talisman/attack_self(mob/user)
+obj/item/paper/talisman/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -46,7 +46,7 @@
 	else
 		to_chat(user, "You see strange symbols on the paper. Are they supposed to mean something?")
 
-/obj/item/paper/talisman/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/paper/talisman/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(isliving(user) && iscultist(user))
 		var/mob/living/L = user
 		if(imbue == "runestun")
@@ -57,7 +57,7 @@
 	return ..()
 
 
-/obj/item/paper/talisman/proc/supply(key)
+obj/item/paper/talisman/proc/supply(key)
 	if (!src.uses)
 		qdel(src)
 		return
@@ -78,7 +78,7 @@
 	return
 
 
-/obj/item/paper/talisman/Topic(href, href_list)
+obj/item/paper/talisman/Topic(href, href_list)
 	if(!src)
 		return
 	if (usr.stat || usr.restrained() || !in_range(src, usr))
@@ -117,6 +117,6 @@
 	return
 
 
-/obj/item/paper/talisman/supply
+obj/item/paper/talisman/supply
 	imbue = "supply"
 	uses = 5

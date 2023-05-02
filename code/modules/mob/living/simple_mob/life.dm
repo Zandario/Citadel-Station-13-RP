@@ -1,11 +1,11 @@
-/mob/living/simple_mob/Life(seconds, times_fired)
+mob/living/simple_mob/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 
 	//Health
 	update_health()
 
-/mob/living/simple_mob/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -19,7 +19,7 @@
 	handle_guts(seconds)
 
 //Should we be dead?
-/mob/living/simple_mob/update_health()
+mob/living/simple_mob/update_health()
 	health = getMaxHealth() - getFireLoss() - getBruteLoss() - getToxLoss() - getOxyLoss() - getCloneLoss()
 
 	//Alive, becoming dead
@@ -68,13 +68,13 @@
 				nutrition_icon.icon_state = "nutrition4"
 
 // Override for special bullshit.
-/mob/living/simple_mob/proc/handle_special()
+mob/living/simple_mob/proc/handle_special()
 	return
 
 
 // Handle interacting with and taking damage from atmos
 // TODO - Refactor this to use handle_environment() like a good /mob/living
-/mob/living/simple_mob/proc/handle_atmos()
+mob/living/simple_mob/proc/handle_atmos()
 	var/atmos_unsuitable = 0
 
 	if(in_stasis)
@@ -142,7 +142,7 @@
 			oxygen.icon_state = "oxy0"
 		adjustOxyLoss(-unsuitable_atoms_damage)
 
-/mob/living/simple_mob/proc/handle_guts(dt)
+mob/living/simple_mob/proc/handle_guts(dt)
 	switch(stat)
 		if(DEAD)
 			for(var/obj/item/organ/O in organs)
@@ -151,11 +151,11 @@
 			for(var/obj/item/organ/O in organs)
 				O.tick_life(dt)
 
-/mob/living/simple_mob/proc/handle_supernatural()
+mob/living/simple_mob/proc/handle_supernatural()
 	if(purge)
 		purge -= 1
 
-/mob/living/simple_mob/death(gibbed, deathmessage = "dies!")
+mob/living/simple_mob/death(gibbed, deathmessage = "dies!")
 	density = 0 //We don't block even if we did before
 
 	if(has_eye_glow)

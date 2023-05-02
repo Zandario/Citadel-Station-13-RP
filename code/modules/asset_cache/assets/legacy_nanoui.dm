@@ -1,7 +1,7 @@
-/datum/asset/simple/namespaced/nanoui
+datum/asset/simple/namespaced/nanoui
 	keep_local_name = TRUE
 
-/datum/asset/simple/namespaced/nanoui/register()
+datum/asset/simple/namespaced/nanoui/register()
 	var/list/dirs = list(
 		"nano/css/",
 		"nano/images/",

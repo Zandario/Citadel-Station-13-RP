@@ -1,5 +1,5 @@
 //microscope code itself
-/obj/machinery/microscope
+obj/machinery/microscope
 	name = "high powered electron microscope"
 	desc = "A highly advanced microscope capable of zooming up to 3000x."
 	icon = 'icons/obj/forensics.dmi'
@@ -10,7 +10,7 @@
 	var/obj/item/sample = null
 	var/report_num = 0
 
-/obj/machinery/microscope/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/microscope/attackby(obj/item/W as obj, mob/user as mob)
 	if(sample)
 		to_chat(user, "<span class='warning'>There is already a slide in the microscope.</span>")
 		return ..()
@@ -25,7 +25,7 @@
 		return
 	return ..()
 
-/obj/machinery/microscope/attack_hand(mob/user, list/params)
+obj/machinery/microscope/attack_hand(mob/user, list/params)
 
 	if(!sample)
 		to_chat(user, "<span class='warning'>The microscope has no sample to examine.</span>")
@@ -87,7 +87,7 @@
 			to_chat(user, report.info)
 	return
 
-/obj/machinery/microscope/proc/remove_sample(var/mob/living/remover)
+obj/machinery/microscope/proc/remove_sample(var/mob/living/remover)
 	if(!istype(remover) || remover.incapacitated() || !Adjacent(remover))
 		return
 	if(!sample)
@@ -99,16 +99,16 @@
 	sample = null
 	update_icon()
 
-/obj/machinery/microscope/AltClick()
+obj/machinery/microscope/AltClick()
 	remove_sample(usr)
 
-/obj/machinery/microscope/OnMouseDropLegacy(var/atom/other)
+obj/machinery/microscope/OnMouseDropLegacy(var/atom/other)
 	if(usr == other)
 		remove_sample(usr)
 	else
 		return ..()
 
-/obj/machinery/microscope/update_icon()
+obj/machinery/microscope/update_icon()
 	icon_state = "microscope"
 	if(sample)
 		icon_state += "slide"

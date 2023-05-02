@@ -2,7 +2,7 @@
 
 GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
-/obj/singularity/
+obj/singularity/
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
 	icon = 'icons/obj/singularity.dmi'
@@ -31,7 +31,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 	var/chained = 0//Adminbus chain-grab
 
-/obj/singularity/Initialize(mapload, starting_energy = 50)
+obj/singularity/Initialize(mapload, starting_energy = 50)
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
 	energy = starting_energy
@@ -42,15 +42,15 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			target = singubeacon
 			break
 
-/obj/singularity/Destroy()
+obj/singularity/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/singularity/attack_hand(mob/user, list/params)
+obj/singularity/attack_hand(mob/user, list/params)
 	consume(user)
 	return 1
 
-/obj/singularity/legacy_ex_act(severity, target)
+obj/singularity/legacy_ex_act(severity, target)
 	switch(severity)
 		if(1)
 			if(current_size <= STAGE_TWO)
@@ -64,16 +64,16 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		if(3)
 			energy -= round(((energy+1)/4),1)
 
-/obj/singularity/bullet_act(obj/projectile/P)
+obj/singularity/bullet_act(obj/projectile/P)
 	return 0 //Will there be an impact? Who knows. Will we see it? No.
 
-/obj/singularity/Bump(atom/A)
+obj/singularity/Bump(atom/A)
 	consume(A)
 
-/obj/singularity/Bumped(atom/A)
+obj/singularity/Bumped(atom/A)
 	consume(A)
 
-/obj/singularity/process(delta_time)
+obj/singularity/process(delta_time)
 	eat()
 	dissipate()
 	check_energy()
@@ -85,10 +85,10 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		if (prob(event_chance)) //Chance for it to run a special event TODO: Come up with one or two more that fit.
 			event()
 
-/obj/singularity/attack_ai() //To prevent ais from gibbing themselves when they click on one.
+obj/singularity/attack_ai() //To prevent ais from gibbing themselves when they click on one.
 	return
 
-/obj/singularity/proc/admin_investigate_setup()
+obj/singularity/proc/admin_investigate_setup()
 	last_warning = world.time
 	var/count = locate(/obj/machinery/containment_field) in orange(30, src)
 
@@ -97,7 +97,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 	investigate_log("was created. [count ? "" : "<font color='red'>No containment fields were active.</font>"]", INVESTIGATE_SINGULO)
 
-/obj/singularity/proc/dissipate()
+obj/singularity/proc/dissipate()
 	if (!dissipate)
 		return
 
@@ -107,7 +107,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	else
 		dissipate_track++
 
-/obj/singularity/proc/expand(var/force_size = 0, var/growing = 1)
+obj/singularity/proc/expand(var/force_size = 0, var/growing = 1)
 	if(current_size == STAGE_SUPER)//if this is happening, this is an error
 		message_admins("expand() was called on a super singulo. This should not happen. Contact a coder immediately!")
 		return
@@ -235,7 +235,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	else
 		return 0
 
-/obj/singularity/proc/check_energy()
+obj/singularity/proc/check_energy()
 	if (energy <= 0)
 		investigate_log("collapsed.", INVESTIGATE_SINGULO)
 		qdel(src)
@@ -259,7 +259,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		expand(null, current_size > allowed_size)
 	return 1
 
-/obj/singularity/proc/eat()
+obj/singularity/proc/eat()
 	set waitfor = FALSE
 	for(var/tile in spiral_range_turfs(grav_pull, src))
 		var/turf/T = tile
@@ -278,11 +278,11 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 					consume(X)
 			CHECK_TICK
 
-/obj/singularity/proc/consume(const/atom/A)
+obj/singularity/proc/consume(const/atom/A)
 	src.energy += A.singularity_act(src, current_size)
 	return
 
-/obj/singularity/Move(atom/newloc, direct)
+obj/singularity/Move(atom/newloc, direct)
 	if(current_size >= STAGE_FIVE || check_turfs_in(direct))
 		last_failed_movement = 0//Reset this because we moved
 		return ..()
@@ -290,7 +290,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		last_failed_movement = direct
 		return 0
 
-/obj/singularity/proc/move(force_move = 0)
+obj/singularity/proc/move(force_move = 0)
 	if(!move_self)
 		return 0
 
@@ -304,7 +304,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 	step(src, movement_dir)
 
-/obj/singularity/proc/check_cardinals_range(steps, retry_with_move = FALSE)
+obj/singularity/proc/check_cardinals_range(steps, retry_with_move = FALSE)
 	. = length(GLOB.cardinal)			//Should be 4.
 	for(var/i in GLOB.cardinal)
 		. -= check_turfs_in(i, steps)	//-1 for each working direction
@@ -315,7 +315,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 					return TRUE
 	. = !.
 
-/obj/singularity/proc/check_turfs_in(direction = 0, step = 0)
+obj/singularity/proc/check_turfs_in(direction = 0, step = 0)
 	if(!direction)
 		return 0
 	var/steps = 0
@@ -368,7 +368,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	return 1
 
 
-/obj/singularity/proc/can_move(turf/T)
+obj/singularity/proc/can_move(turf/T)
 	if(!T)
 		return 0
 	if((locate(/obj/machinery/containment_field) in T)||(locate(/obj/machinery/shieldwall) in T))
@@ -383,7 +383,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			return 0
 	return 1
 
-/obj/singularity/proc/event()
+obj/singularity/proc/event()
 	var/numb = pick(1, 2, 3, 4, 5, 6)
 
 	switch (numb)
@@ -397,7 +397,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		smwave()
 	return 1
 
-/obj/singularity/proc/mezzer()
+obj/singularity/proc/mezzer()
 	for(var/mob/living/carbon/M in oviewers(8, src))
 		if(istype(M, /mob/living/carbon/brain)) //Ignore brains
 			continue
@@ -416,13 +416,13 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("<span class='danger'>[] stares blankly at The []!</span>", M, src), 1)
 
-/obj/singularity/proc/emp_area()
+obj/singularity/proc/emp_area()
 	if(current_size != STAGE_SUPER)
 		empulse(src, 4, 6, 8, 10)
 	else
 		empulse(src, 12, 14, 16, 18)
 
-/obj/singularity/proc/smwave()
+obj/singularity/proc/smwave()
 	for(var/mob/living/M in view(10, src.loc))
 		if(prob(67))
 			to_chat(M, "<span class=\"warning\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
@@ -433,11 +433,11 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			M.dust()
 	radiation_pulse(src, energy, RAD_FALLOFF_ENGINE_SINGULARITY)
 
-/obj/singularity/proc/pulse()
+obj/singularity/proc/pulse()
 	//! if you hit super you eat shit from 50k :^)
 	radiation_pulse(src, clamp(energy, 0, 50000))
 
-/obj/singularity/proc/on_capture()
+obj/singularity/proc/on_capture()
 	chained = 1
 	cut_overlays()
 	move_self = 0
@@ -453,12 +453,12 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		if(STAGE_FIVE)
 			add_overlay(image('icons/effects/288x288.dmi',"chain_s9"))
 
-/obj/singularity/proc/on_release()
+obj/singularity/proc/on_release()
 	chained = 0
 	cut_overlays()
 	move_self = 1
 
-/obj/singularity/singularity_act(S, size)
+obj/singularity/singularity_act(S, size)
 	if(current_size <= size)
 		var/gain = (energy/2)
 		var/dist = max((current_size - 2), 1)

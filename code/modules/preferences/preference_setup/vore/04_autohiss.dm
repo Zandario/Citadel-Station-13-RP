@@ -1,27 +1,27 @@
 // Define a place to save in character setup
-/datum/preferences
+datum/preferences
 	var/autohiss = AUTOHISS_OFF
 	var/autohiss_type = AUTOHISS_TYPE_NONE
 
 // Definition of the stuff for autohiss
-/datum/category_item/player_setup_item/vore/autohiss
+datum/category_item/player_setup_item/vore/autohiss
 	name = "Autohiss"
 	sort_order = 4
 
-/datum/category_item/player_setup_item/vore/autohiss/load_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/autohiss/load_character(var/savefile/S)
 	S["autohiss"] >> pref.autohiss
 	S["autohiss_type"] >> pref.autohiss_type
 
 
-/datum/category_item/player_setup_item/vore/autohiss/save_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/autohiss/save_character(var/savefile/S)
 	S["autohiss"] << pref.autohiss
 	S["autohiss_type"] << pref.autohiss_type
 
-/datum/category_item/player_setup_item/vore/autohiss/sanitize_character()
+datum/category_item/player_setup_item/vore/autohiss/sanitize_character()
 	pref.autohiss = sanitize_integer(pref.autohiss, AUTOHISS_OFF, AUTOHISS_NUM, AUTOHISS_OFF)
 	pref.autohiss_type = sanitize_integer(pref.autohiss_type, AUTOHISS_TYPE_NONE, AUTOHISS_TYPE_NUM, AUTOHISS_TYPE_NONE)
 
-/datum/category_item/player_setup_item/vore/autohiss/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/vore/autohiss/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -30,7 +30,7 @@
 	character.autohiss_type = pref.autohiss_type
 	return TRUE
 
-/datum/category_item/player_setup_item/vore/autohiss/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/vore/autohiss/content(datum/preferences/prefs, mob/user, data)
 	. += "<br>"
 	. += "<b>Autohiss Type:</b> "
 
@@ -61,7 +61,7 @@
 		else
 			CRASH("Invalid autohiss preference! '[pref.autohiss]'")
 
-/datum/category_item/player_setup_item/vore/autohiss/OnTopic(var/href, var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/vore/autohiss/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_off"])
 		pref.autohiss = AUTOHISS_OFF
 		return PREFERENCES_REFRESH

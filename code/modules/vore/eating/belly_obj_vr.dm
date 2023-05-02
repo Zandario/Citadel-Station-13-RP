@@ -11,7 +11,7 @@
 //
 // Parent type of all the various "belly" varieties.
 //
-/obj/belly
+obj/belly
 	name = "belly"							// Name of this location
 	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
 	rad_flags = RAD_NO_CONTAMINATE | RAD_BLOCK_CONTENTS
@@ -121,7 +121,7 @@
 	var/tmp/list/emote_lists = list()
 
 //For serialization, keep this updated, required for bellies to save correctly.
-/obj/belly/vars_to_save()
+obj/belly/vars_to_save()
 	return ..() + list(
 		"name",
 		"desc",
@@ -160,7 +160,7 @@
 		"wet_loop"
 		)
 
-/obj/belly/Initialize(mapload)
+obj/belly/Initialize(mapload)
 	. = ..()
 	//If not, we're probably just in a prefs list or something.
 	if(isliving(loc))
@@ -168,7 +168,7 @@
 		owner.vore_organs |= src
 		SSbellies.belly_list += src
 
-/obj/belly/Destroy()
+obj/belly/Destroy()
 	SSbellies.belly_list -= src
 	if(owner?.vore_organs)
 		owner.vore_organs -= src
@@ -176,7 +176,7 @@
 	. = ..()
 
 // Called whenever an atom enters this belly
-/obj/belly/Entered(var/atom/movable/thing,var/atom/OldLoc)
+obj/belly/Entered(var/atom/movable/thing,var/atom/OldLoc)
 	..()
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
@@ -207,7 +207,7 @@
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
-/obj/belly/proc/release_all_contents(var/include_absorbed = FALSE, var/silent = FALSE)
+obj/belly/proc/release_all_contents(var/include_absorbed = FALSE, var/silent = FALSE)
 
 	//Don't bother if we don't have contents
 	if(!contents.len)
@@ -246,7 +246,7 @@
 // Release a specific atom from the contents of this belly into the owning mob's location.
 // If that location is another mob, the atom is transferred into whichever of its bellies the owning mob is in.
 // Returns the number of atoms so released.
-/obj/belly/proc/release_specific_contents(var/atom/movable/M, var/silent = FALSE)
+obj/belly/proc/release_specific_contents(var/atom/movable/M, var/silent = FALSE)
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
@@ -294,7 +294,7 @@
 // Actually perform the mechanics of devouring the tasty prey.
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
-/obj/belly/proc/nom_mob(var/mob/prey, var/mob/user)
+obj/belly/proc/nom_mob(var/mob/prey, var/mob/user)
 	if(owner.stat == DEAD)
 		return
 	if (prey.buckled)
@@ -310,7 +310,7 @@
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
 // but can easily make the message vary based on how many people are inside, etc.
 // Returns a string which shoul be appended to the Examine output.
-/obj/belly/proc/get_examine_msg()
+obj/belly/proc/get_examine_msg()
 	if(contents.len && examine_messages.len)
 		var/formatted_message
 		var/raw_message = pick(examine_messages)
@@ -330,7 +330,7 @@
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
-/obj/belly/proc/get_messages(var/type, var/delim = "\n\n")
+obj/belly/proc/get_messages(var/type, var/delim = "\n\n")
 	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
 	var/list/raw_messages
 
@@ -352,7 +352,7 @@
 // The next function sets the messages on the belly, from human-readable var
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
-/obj/belly/proc/set_messages(var/raw_text, var/type, var/delim = "\n\n")
+obj/belly/proc/set_messages(var/raw_text, var/type, var/delim = "\n\n")
 	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
 
 	var/list/raw_list = text2list(html_encode(raw_text),delim)
@@ -389,7 +389,7 @@
 // Called from the process_Life() methods of bellies that digest prey.
 // Default implementation calls M.death() and removes from internal contents.
 // Indigestable items are removed, and M is deleted.
-/obj/belly/proc/digestion_death(var/mob/living/M)
+obj/belly/proc/digestion_death(var/mob/living/M)
 	//M.death(1) // "Stop it he's already dead..." Basically redundant and the reason behind screaming mouse carcasses.
 	if(M.ckey)
 		message_admins("[key_name(owner)] has digested [key_name(M)] in their [lowertext(name)] ([owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[owner.x];Y=[owner.y];Z=[owner.z]'>JMP</a>" : "null"])")
@@ -450,7 +450,7 @@
 	qdel(M)
 
 // Handle a mob being absorbed
-/obj/belly/proc/absorb_living(var/mob/living/M)
+obj/belly/proc/absorb_living(var/mob/living/M)
 	M.absorbed = 1
 	to_chat(M,"<span class='notice'>[owner]'s [lowertext(name)] absorbs your body, making you part of them.</span>")
 	to_chat(owner,"<span class='notice'>Your [lowertext(name)] absorbs [M]'s body, making them part of you.</span>")
@@ -488,7 +488,7 @@
 //Digest a single item
 //Receives a return value from digest_act that's how much nutrition
 //the item should be worth
-/obj/belly/proc/digest_item(var/obj/item/item)
+obj/belly/proc/digest_item(var/obj/item/item)
 	var/digested = item.digest_act(src, owner)
 	if(!digested)
 		items_preserved |= item
@@ -500,7 +500,7 @@
 
 //Determine where items should fall out of us into.
 //Typically just to the owner's location.
-/obj/belly/drop_location()
+obj/belly/drop_location()
 	//Should be the case 99.99% of the time
 	if(owner)
 		return owner.drop_location()
@@ -511,15 +511,15 @@
 		return get_turf(fallback)
 
 //Yes, it's ""safe"" to drop items here
-/obj/belly/AllowDrop()
+obj/belly/AllowDrop()
 	return TRUE
 
-/obj/belly/onDropInto(var/atom/movable/AM)
+obj/belly/onDropInto(var/atom/movable/AM)
 	return null
 
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
-/obj/belly/proc/relay_resist(var/mob/living/R)
+obj/belly/proc/relay_resist(var/mob/living/R)
 	if (!(R in contents))
 		return  // User is not in this belly
 
@@ -624,14 +624,14 @@
 			to_chat(owner,"<span class='warning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
 			return
 
-/obj/belly/proc/effective_emote_hearers()
+obj/belly/proc/effective_emote_hearers()
 	. = list(loc)
 	for(var/atom/movable/AM as anything in contents)
 		if(AM.atom_flags & ATOM_HEAR)
 			. += AM
 
 //Transfers contents from one belly to another
-/obj/belly/proc/transfer_contents(var/atom/movable/content, var/obj/belly/target, silent = 0)
+obj/belly/proc/transfer_contents(var/atom/movable/content, var/obj/belly/target, silent = 0)
 	if(!(content in src) || !istype(target))
 		return
 	content.forceMove(target)
@@ -657,7 +657,7 @@
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes
-/obj/belly/proc/copy(mob/new_owner)
+obj/belly/proc/copy(mob/new_owner)
 	var/obj/belly/dupe = new /obj/belly(new_owner)
 
 	//// Non-object variables

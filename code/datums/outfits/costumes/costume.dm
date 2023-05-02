@@ -1,2 +1,2 @@
-/datum/outfit/costume
+datum/outfit/costume
 	undress = 0

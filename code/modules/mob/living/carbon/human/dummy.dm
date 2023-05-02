@@ -1,4 +1,4 @@
-/mob/living/carbon/human/dummy
+mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
 	status_flags = STATUS_GODMODE | STATUS_CAN_PUSH
 	ssd_visible = FALSE
@@ -8,22 +8,22 @@
 // MAKE SOMETHING THAT ISN'T /HUMAN IF YOU JUST WANT A MANNEQUIN THIS IS NOT HARD TO FIGURE OUT
 // DONT USE THE SUPER COMPLICATED PLAYER MOB WITH ORGANS FOR A *MANNEQUIN*, WHY??
 INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy/mannequin)
-/mob/living/carbon/human/dummy/mannequin
+mob/living/carbon/human/dummy/mannequin
 	/// currently locked for usage
 	var/in_use = FALSE
 
-/mob/living/carbon/human/dummy/mannequin/Initialize(mapload)
+mob/living/carbon/human/dummy/mannequin/Initialize(mapload)
 	. = ..()
 	GLOB.mob_list -= src
 	living_mob_list -= src
 	dead_mob_list -= src
 	delete_inventory()
 
-/mob/living/carbon/human/dummy/mannequin/proc/wipe_state()
+mob/living/carbon/human/dummy/mannequin/proc/wipe_state()
 	delete_inventory(TRUE, TRUE)
 	set_species(/datum/species/human, TRUE, TRUE)
 
-/mob/living/carbon/human/dummy/mannequin/proc/unset_busy()
+mob/living/carbon/human/dummy/mannequin/proc/unset_busy()
 	wipe_state()
 	in_use = FALSE
 
@@ -31,7 +31,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy/mannequin)
 GLOBAL_LIST_EMPTY(human_dummy_list)
 GLOBAL_LIST_EMPTY(dummy_mob_list)
 
-/proc/generate_or_wait_for_human_dummy(slotkey)
+proc/generate_or_wait_for_human_dummy(slotkey)
 	if(!slotkey)
 		return new /mob/living/carbon/human/dummy/mannequin
 	var/mob/living/carbon/human/dummy/mannequin/D = GLOB.human_dummy_list[slotkey]
@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 	return D
 
 /*
-/proc/generate_dummy_lookalike(slotkey, mob/target)
+proc/generate_dummy_lookalike(slotkey, mob/target)
 	if(!istype(target))
 		return generate_or_wait_for_human_dummy(slotkey)
 
@@ -72,14 +72,14 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 	return copycat
 */
 
-/proc/unset_busy_human_dummy(slotkey)
+proc/unset_busy_human_dummy(slotkey)
 	if(!slotkey)
 		return
 	var/mob/living/carbon/human/dummy/mannequin/D = GLOB.human_dummy_list[slotkey]
 	if(istype(D))
 		D.unset_busy()
 
-/proc/clear_human_dummy(slotkey)
+proc/clear_human_dummy(slotkey)
 	if(!slotkey)
 		return
 
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 
 //? old/legacy stuff below, do not use
 
-/mob/living/carbon/human/dummy/mannequin/default/Initialize(mapload)
+mob/living/carbon/human/dummy/mannequin/default/Initialize(mapload)
 	. = ..()
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 				H.equip_to_slot_or_del(new PICK(H), SLOT_ID_SHOES)
 				H.update_inv_shoes()
 
-/mob/living/carbon/human/dummy/mannequin/plastic/Initialize(mapload)
+mob/living/carbon/human/dummy/mannequin/plastic/Initialize(mapload)
 	. = ..()
 	name = "Plastic Mannequin"
 	real_name = "Plastic Mannequin"
@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 				H.equip_to_slot_or_del(new PICK(H), SLOT_ID_SHOES)
 				H.update_inv_shoes()
 
-/mob/living/carbon/human/dummy/mannequin/samurai/Initialize(mapload)
+mob/living/carbon/human/dummy/mannequin/samurai/Initialize(mapload)
 	. = ..()
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/samurai, SLOT_ID_SUIT)
 				H.update_inv_wear_suit()
 
-/mob/living/carbon/human/dummy/mannequin/animegirl/Initialize(mapload)
+mob/living/carbon/human/dummy/mannequin/animegirl/Initialize(mapload)
 	. = ..()
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
@@ -210,7 +210,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/plain/eyepatch, SLOT_ID_SUIT)
 				H.update_inv_glasses()
 
-/mob/living/carbon/human/dummy/mannequin/mummy/Initialize(mapload)
+mob/living/carbon/human/dummy/mannequin/mummy/Initialize(mapload)
 	. = ..()
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/pharaoh, SLOT_ID_SUIT)
 				H.update_inv_wear_suit()
 
-/mob/living/carbon/human/dummy/mannequin/scarecrow/Initialize(mapload)
+mob/living/carbon/human/dummy/mannequin/scarecrow/Initialize(mapload)
 	. = ..()
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"

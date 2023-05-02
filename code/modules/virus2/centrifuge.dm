@@ -1,4 +1,4 @@
-/obj/machinery/computer/centrifuge
+obj/machinery/computer/centrifuge
 	name = "isolation centrifuge"
 	desc = "Used to separate things with different weight. Spin 'em round, round, right round."
 	icon = 'icons/obj/virology.dmi'
@@ -9,7 +9,7 @@
 	var/obj/item/reagent_containers/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 
-/obj/machinery/computer/centrifuge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/computer/centrifuge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.is_screwdriver())
 		return ..()
 
@@ -30,19 +30,19 @@
 
 	return ..()
 
-/obj/machinery/computer/centrifuge/update_icon_state()
+obj/machinery/computer/centrifuge/update_icon_state()
 	. = ..()
 	if(! (machine_stat & (BROKEN|NOPOWER)) && (isolating || curing))
 		icon_state = "centrifuge_moving"
 
 
-/obj/machinery/computer/centrifuge/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/centrifuge/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "IsolationCentrifuge", name)
 		ui.open()
 
-/obj/machinery/computer/centrifuge/ui_data(mob/user)
+obj/machinery/computer/centrifuge/ui_data(mob/user)
 	var/list/data = list()
 	data["antibodies"] = null
 	data["pathogens"] = list()
@@ -76,7 +76,7 @@
 
 	return data
 
-/obj/machinery/computer/centrifuge/process(delta_time)
+obj/machinery/computer/centrifuge/process(delta_time)
 	..()
 	if(machine_stat & (NOPOWER|BROKEN)) return
 
@@ -90,7 +90,7 @@
 		if(isolating == 0)
 			isolate()
 
-/obj/machinery/computer/centrifuge/ui_act(action, params)
+obj/machinery/computer/centrifuge/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -135,7 +135,7 @@
 				sample = null
 			. = TRUE
 
-/obj/machinery/computer/centrifuge/proc/cure()
+obj/machinery/computer/centrifuge/proc/cure()
 	if(!sample) return
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
 	if(!B) return
@@ -149,7 +149,7 @@
 	update_icon()
 	ping("\The [src] pings, \"Antibody isolated.\"")
 
-/obj/machinery/computer/centrifuge/proc/isolate()
+obj/machinery/computer/centrifuge/proc/isolate()
 	if(!sample) return
 	var/obj/item/virusdish/dish = new/obj/item/virusdish(loc)
 	dish.virus2 = virus2
@@ -159,7 +159,7 @@
 	update_icon()
 	ping("\The [src] pings, \"Pathogen isolated.\"")
 
-/obj/machinery/computer/centrifuge/proc/print(var/mob/user)
+obj/machinery/computer/centrifuge/proc/print(var/mob/user)
 	var/obj/item/paper/P = new /obj/item/paper(loc)
 	P.name = "paper - Pathology Report"
 	P.info = {"

@@ -3,7 +3,7 @@
 //
 
 // Music track available for playing in a media machine.
-/datum/track
+datum/track
 	var/url			// URL to load song from
 	var/title		// Song title
 	var/artist		// Song's creator
@@ -14,7 +14,7 @@
 	var/jukebox		// Does it even show up in the jukebox?
 	var/genre		// What is the genre of the song?
 
-/datum/track/New(var/url, var/title, var/duration, var/artist = "", var/secret = 0, var/emag = 0, var/lobby = 0, var/jukebox = 0, var/genre = "")
+datum/track/New(var/url, var/title, var/duration, var/artist = "", var/secret = 0, var/emag = 0, var/lobby = 0, var/jukebox = 0, var/genre = "")
 	src.url = url
 	src.title = title
 	src.artist = artist
@@ -25,13 +25,13 @@
 	src.jukebox = jukebox
 	src.genre = genre
 
-/datum/track/proc/display()
+datum/track/proc/display()
 	var str = "\"[title]\""
 	if(artist)
 		str += " by [artist]"
 	return str
 
-/datum/track/proc/toNanoList()
+datum/track/proc/toNanoList()
 	return list("ref" = "\ref[src]", "title" = title, "artist" = artist, "duration" = duration)
 
 
@@ -40,7 +40,7 @@ var/global/list/all_jukebox_tracks = list()
 var/global/list/all_lobby_tracks = list()
 
 // Read the jukebox configuration file on system startup.
-/hook/startup/proc/load_jukebox_tracks()
+hook/startup/proc/load_jukebox_tracks()
 	var/jukebox_track_file = "config_static/jukebox.json"
 	if(!fexists(jukebox_track_file))
 		warning("File not found: [jukebox_track_file]")

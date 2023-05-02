@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Droppers.
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/reagent_containers/dropper
+obj/item/reagent_containers/dropper
 	name = "dropper"
 	desc = "A dropper. Transfers up to 5 units at a time."
 	icon = 'icons/obj/medical/chemical.dmi'
@@ -15,14 +15,14 @@
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 
-/obj/item/reagent_containers/dropper/examine(mob/user)
+obj/item/reagent_containers/dropper/examine(mob/user)
 	. = ..()
 	if(reagents && reagents.reagent_list.len)
 		. += "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>"
 	else
 		. += "<span class='notice'>It is empty.</span>"
 
-/obj/item/reagent_containers/dropper/afterattack(var/obj/target, var/mob/user, var/proximity)
+obj/item/reagent_containers/dropper/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!target.reagents || !proximity) return
 
 	if(reagents.total_volume)
@@ -93,30 +93,30 @@
 
 	return
 
-/obj/item/reagent_containers/dropper/on_reagent_change()
+obj/item/reagent_containers/dropper/on_reagent_change()
 	update_icon()
 
-/obj/item/reagent_containers/dropper/update_icon()
+obj/item/reagent_containers/dropper/update_icon()
 	if(reagents.total_volume)
 		icon_state = "dropper1"
 	else
 		icon_state = "dropper0"
 
-/obj/item/reagent_containers/dropper/industrial
+obj/item/reagent_containers/dropper/industrial
 	name = "Industrial Dropper"
 	desc = "A larger dropper. Transfers up to 10 units at a time."
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,3,4,5,6,7,8,9,10)
 	volume = 10
 
-/obj/item/reagent_containers/dropper/ashlander
+obj/item/reagent_containers/dropper/ashlander
 	name = "stone dropper"
 	desc = "A hand-carved dropper. Roughly hewn out of softened volcanic stone, it still allows for precise measurement of fluids."
 	icon = 'icons/obj/lavaland.dmi'
 	icon_state = "ashdropper0"
 	unacidable = 1
 
-/obj/item/reagent_containers/dropper/ashlander/update_icon()
+obj/item/reagent_containers/dropper/ashlander/update_icon()
 	if(reagents.total_volume)
 		icon_state = "ashdropper1"
 	else

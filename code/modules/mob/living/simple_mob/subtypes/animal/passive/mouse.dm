@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/mouse
+datum/category_item/catalogue/fauna/mouse
 	name = "Mouse"
 	desc = "An ancient Old Earth rodent, mice have served as both pest and pet \
 	to Humanity for millenia. Originally brought into space for scientific testing \
@@ -6,7 +6,7 @@
 	to pest status, and spread freely across the Frontier."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/mouse
+mob/living/simple_mob/animal/passive/mouse
 	name = "mouse"
 	real_name = "mouse"
 	desc = "A small rodent, often seen hiding in maintenance areas and making a nuisance of itself. And stealing cheese, or annoying the chef. SQUEAK! <3"
@@ -53,7 +53,7 @@
 	no_vore = 1 //Mice can't eat others due to the amount of bugs caused by it.
 	vore_taste = "cheese"
 
-/mob/living/simple_mob/animal/passive/mouse/Initialize(mapload)
+mob/living/simple_mob/animal/passive/mouse/Initialize(mapload)
 	. = ..()
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -72,7 +72,7 @@
 	icon_rest = "mouse_[body_color]_sleep"
 	desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 
-/mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
+mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
 	if( ishuman(AM) )
@@ -82,17 +82,17 @@
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 
-/mob/living/simple_mob/animal/passive/mouse/death()
+mob/living/simple_mob/animal/passive/mouse/death()
 	layer = MOB_LAYER
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 35, 1)
 	if(client)
 		client.time_died_as_mouse = world.time
 	..()
 
-/mob/living/simple_mob/animal/passive/mouse/cannot_use_vents()
+mob/living/simple_mob/animal/passive/mouse/cannot_use_vents()
 	return
 
-/mob/living/simple_mob/animal/passive/mouse/proc/splat()
+mob/living/simple_mob/animal/passive/mouse/proc/splat()
 	src.health = 0
 	src.set_stat(DEAD)
 	src.icon_dead = "mouse_[body_color]_splat"
@@ -105,19 +105,19 @@
  * Mouse types
  */
 
-/mob/living/simple_mob/animal/passive/mouse/white
+mob/living/simple_mob/animal/passive/mouse/white
 	body_color = "white"
 	icon_state = "mouse_white"
 
-/mob/living/simple_mob/animal/passive/mouse/gray
+mob/living/simple_mob/animal/passive/mouse/gray
 	body_color = "gray"
 	icon_state = "mouse_gray"
 
-/mob/living/simple_mob/animal/passive/mouse/brown
+mob/living/simple_mob/animal/passive/mouse/brown
 	body_color = "brown"
 	icon_state = "mouse_brown"
 
-/mob/living/simple_mob/animal/passive/mouse/rat
+mob/living/simple_mob/animal/passive/mouse/rat
 	name = "rat"
 	maxHealth = 20
 	health = 20
@@ -128,24 +128,24 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom
+mob/living/simple_mob/animal/passive/mouse/brown/Tom
 	name = "Tom"
 	desc = "Jerry the cat is not amused."
 	randomized = FALSE
 
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom/Initialize(mapload)
+mob/living/simple_mob/animal/passive/mouse/brown/Tom/Initialize(mapload)
 	. = ..()
 	// Change my name back, don't want to be named Tom (666)
 	name = initial(name)
 
 
 // Mouse noises
-/datum/say_list/mouse
+datum/say_list/mouse
 	speak = list("Squeek!","SQUEEK!","Squeek?")
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 
-/mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/user, list/params)
+mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/user, list/params)
 	var/mob/living/hander = user
 	if(!istype(hander))
 		return
@@ -154,7 +154,7 @@
 	else
 		..()
 
-/obj/item/holder/mouse/attack_self(mob/user)
+obj/item/holder/mouse/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

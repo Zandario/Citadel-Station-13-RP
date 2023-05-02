@@ -1,6 +1,6 @@
 var/list/floor_light_cache = list()
 
-/obj/machinery/floor_light
+obj/machinery/floor_light
 	name = "floor light"
 	icon = 'icons/obj/machines/floor_light.dmi'
 	icon_state = "base"
@@ -20,12 +20,12 @@ var/list/floor_light_cache = list()
 	var/default_light_colour = LIGHT_COLOR_INCANDESCENT_BULB
 	var/newcolor
 
-/obj/machinery/floor_light/prebuilt
+obj/machinery/floor_light/prebuilt
 	anchored = TRUE
 
 
 
-/obj/machinery/floor_light/attackby(obj/item/W, mob/user)
+obj/machinery/floor_light/attackby(obj/item/W, mob/user)
 	if(W.is_screwdriver())
 		anchored = !anchored
 		visible_message(SPAN_NOTICE("\The [user] has [anchored ? "attached" : "detached"] \the [src]."))
@@ -62,7 +62,7 @@ var/list/floor_light_cache = list()
 		attack_hand(user)
 	return
 
-/obj/machinery/floor_light/attack_hand(mob/user, list/params)
+obj/machinery/floor_light/attack_hand(mob/user, list/params)
 
 	if(user.a_intent == INTENT_HARM && !issmall(user))
 		if(!isnull(damaged) && !(machine_stat & BROKEN))
@@ -95,7 +95,7 @@ var/list/floor_light_cache = list()
 		update_brightness()
 		return
 
-/obj/machinery/floor_light/process(delta_time)
+obj/machinery/floor_light/process(delta_time)
 	..()
 	var/need_update
 	if((!anchored || broken()) && on)
@@ -108,7 +108,7 @@ var/list/floor_light_cache = list()
 	if(need_update)
 		update_brightness()
 
-/obj/machinery/floor_light/proc/update_brightness()
+obj/machinery/floor_light/proc/update_brightness()
 	if(on && use_power == USE_POWER_ACTIVE)
 		if(light_range != default_light_range || light_power != default_light_power || light_color != default_light_colour)
 			set_light(default_light_range, default_light_power, default_light_colour)
@@ -120,7 +120,7 @@ var/list/floor_light_cache = list()
 	active_power_usage = ((light_range + light_power) * 10)
 	update_icon()
 
-/obj/machinery/floor_light/update_icon()
+obj/machinery/floor_light/update_icon()
 	cut_overlays()
 	if(use_power && !broken())
 		if(isnull(damaged))
@@ -142,10 +142,10 @@ var/list/floor_light_cache = list()
 				floor_light_cache[cache_key] = I
 			add_overlay(floor_light_cache[cache_key])
 
-/obj/machinery/floor_light/proc/broken()
+obj/machinery/floor_light/proc/broken()
 	return (machine_stat & (BROKEN|NOPOWER))
 
-/obj/machinery/floor_light/legacy_ex_act(severity)
+obj/machinery/floor_light/legacy_ex_act(severity)
 	switch(severity)
 		if(1)
 			qdel(src)
@@ -164,24 +164,24 @@ var/list/floor_light_cache = list()
 				damaged = FALSE
 	return
 
-/obj/machinery/floor_light/Destroy()
+obj/machinery/floor_light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE
 	. = ..()
 
-/obj/machinery/floor_light/cultify()
+obj/machinery/floor_light/cultify()
 	default_light_colour = "#FF0000"
 	update_brightness()
 
-/obj/machinery/floor_light/changing
+obj/machinery/floor_light/changing
 	name = "changing floor light"
 
-/obj/machinery/floor_light/changing/process(delta_time)
+obj/machinery/floor_light/changing/process(delta_time)
 	. = ..()
 	update_color()
 
-/obj/machinery/floor_light/changing/proc/update_color()
+obj/machinery/floor_light/changing/proc/update_color()
 	switch(default_light_colour)
 		if("#0CD5E8")
 			default_light_colour = "#0CF241"
@@ -203,6 +203,5 @@ var/list/floor_light_cache = list()
 			default_light_colour = "#0CD5E8"
 	update_brightness(default_light_range, default_light_power, default_light_colour)
 
-/obj/machinery/floor_light/changing/prebuilt
+obj/machinery/floor_light/changing/prebuilt
 	anchored = TRUE
-

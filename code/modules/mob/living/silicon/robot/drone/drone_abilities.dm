@@ -1,5 +1,5 @@
 // DRONE ABILITIES
-/mob/living/silicon/robot/drone/verb/set_mail_tag()
+mob/living/silicon/robot/drone/verb/set_mail_tag()
 	set name = "Set Mail Tag"
 	set desc = "Tag yourself for delivery through the disposals system."
 	set category = "Robot Commands"
@@ -21,7 +21,7 @@
 
 	return
 
-/mob/living/silicon/robot/drone/OnMouseDropLegacy(var/atom/over_object)
+mob/living/silicon/robot/drone/OnMouseDropLegacy(var/atom/over_object)
 	var/mob/living/carbon/human/H = over_object
 	if(!istype(H) || !Adjacent(H))
 		return ..()

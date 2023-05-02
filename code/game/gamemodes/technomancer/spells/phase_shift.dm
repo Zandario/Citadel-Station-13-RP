@@ -1,4 +1,4 @@
-/datum/technomancer/spell/phase_shift
+datum/technomancer/spell/phase_shift
 	name = "Phase Shift"
 	desc = "Hides you in the safest possible place, where no harm can come to you.  Unfortunately, a prolonged stay inside the \
 	rift you create will afflict you with instability."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_phaseshift"
 	category = DEFENSIVE_SPELLS
 
-/obj/item/spell/phase_shift
+obj/item/spell/phase_shift
 	name = "phase shift"
 	desc = "Allows you to dodge your untimely fate by shifting your location somewhere else, so long as you can survive inside the \
 	rift."
@@ -15,35 +15,35 @@
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-/obj/item/spell/phase_shift/Initialize(mapload)
+obj/item/spell/phase_shift/Initialize(mapload)
 	. = ..()
 	set_light(3, 2, l_color = "#FA58F4")
 
-/obj/effect/phase_shift
+obj/effect/phase_shift
 	name = "rift"
 	desc = "There was a maniac here a moment ago..."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "rift"
 
-/obj/effect/phase_shift/legacy_ex_act()
+obj/effect/phase_shift/legacy_ex_act()
 	return
 
-/obj/effect/phase_shift/Initialize(mapload)
+obj/effect/phase_shift/Initialize(mapload)
 	. = ..()
 	set_light(3, 5, l_color = "#FA58F4")
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/phase_shift/Destroy()
+obj/effect/phase_shift/Destroy()
 	for(var/atom/movable/AM in contents) //Eject everything out.
 		AM.forceMove(get_turf(src))
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/phase_shift/process(delta_time)
+obj/effect/phase_shift/process(delta_time)
 	for(var/mob/living/L in contents)
 		L.adjust_instability(2)
 
-/obj/effect/phase_shift/relaymove(mob/user as mob)
+obj/effect/phase_shift/relaymove(mob/user as mob)
 	if(user.stat)
 		return
 
@@ -51,7 +51,7 @@
 	user.forceMove(get_turf(src))
 	qdel(src)
 
-/obj/item/spell/phase_shift/on_use_cast(mob/user)
+obj/item/spell/phase_shift/on_use_cast(mob/user)
 	if(isturf(user.loc)) //Check if we're not already in a rift.
 		if(pay_energy(2000))
 			var/obj/effect/phase_shift/PS = new(get_turf(user))

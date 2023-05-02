@@ -1,7 +1,7 @@
 // Verb: ai_select_hardware()
 // Parameters: None
 // Description: Allows AI to select it's hardware module.
-/datum/game_mode/malfunction/verb/ai_select_hardware()
+datum/game_mode/malfunction/verb/ai_select_hardware()
 	set category = "Hardware"
 	set name = "Select Hardware"
 	set desc = "Allows you to select hardware piece to install"
@@ -59,7 +59,7 @@
 // Verb: ai_help()
 // Parameters: None
 // Descriptions: Opens help file and displays it to the AI.
-/datum/game_mode/malfunction/verb/ai_help()
+datum/game_mode/malfunction/verb/ai_help()
 	set category = "Hardware"
 	set name = "Display Help"
 	set desc = "Opens help window with overview of available hardware, software and other important information."
@@ -75,7 +75,7 @@
 // Verb: ai_select_research()
 // Parameters: None
 // Description: Allows AI to select it's next research priority.
-/datum/game_mode/malfunction/verb/ai_select_research()
+datum/game_mode/malfunction/verb/ai_select_research()
 	set category = "Hardware"
 	set name = "Select Research"
 	set desc = "Allows you to select your next research target."
@@ -95,7 +95,7 @@
 // Proc: ability_prechecks()
 // Parameters 2 - (user - User which used this ability check_price - If different than 0 checks for ability CPU price too. Does NOT use the CPU time!)
 // Description: This is pre-check proc used to determine if the AI can use the ability.
-/proc/ability_prechecks(var/mob/living/silicon/ai/user = null, var/check_price = 0, var/override = 0)
+proc/ability_prechecks(var/mob/living/silicon/ai/user = null, var/check_price = 0, var/override = 0)
 	if(!user)
 		return 0
 	if(!istype(user))
@@ -124,7 +124,7 @@
 // Proc: ability_pay()
 // Parameters 2 - (user - User from which we deduct CPU from, price - Amount of CPU power to use)
 // Description: Uses up certain amount of CPU power. Returns 1 on success, 0 on failure.
-/proc/ability_pay(var/mob/living/silicon/ai/user = null, var/price = 0)
+proc/ability_pay(var/mob/living/silicon/ai/user = null, var/price = 0)
 	if(!user)
 		return 0
 	if(user.APU_power)
@@ -145,7 +145,7 @@
 // Proc: announce_hack_failure()
 // Parameters 2 - (user - hacking user, text - Used in alert text creation)
 // Description: Uses up certain amount of CPU power. Returns 1 on success, 0 on failure.
-/proc/announce_hack_failure(var/mob/living/silicon/ai/user = null, var/text)
+proc/announce_hack_failure(var/mob/living/silicon/ai/user = null, var/text)
 	if(!user || !text)
 		return 0
 	var/fulltext = ""
@@ -166,7 +166,7 @@
 // Proc: get_unhacked_apcs()
 // Parameters: None
 // Description: Returns a list of all unhacked APCs
-/proc/get_unhacked_apcs(var/mob/living/silicon/ai/user)
+proc/get_unhacked_apcs(var/mob/living/silicon/ai/user)
 	var/list/H = list()
 	for(var/obj/machinery/power/apc/A in GLOB.apcs)
 		if(A.hacker && A.hacker == user)
@@ -176,7 +176,7 @@
 
 
 // Helper procs which return lists of relevant mobs.
-/proc/get_unlinked_cyborgs(var/mob/living/silicon/ai/A)
+proc/get_unlinked_cyborgs(var/mob/living/silicon/ai/A)
 	if(!A || !istype(A))
 		return
 
@@ -189,12 +189,12 @@
 		L.Add(RB)
 	return L
 
-/proc/get_linked_cyborgs(var/mob/living/silicon/ai/A)
+proc/get_linked_cyborgs(var/mob/living/silicon/ai/A)
 	if(!A || !istype(A))
 		return
 	return A.connected_robots
 
-/proc/get_other_ais(var/mob/living/silicon/ai/A)
+proc/get_other_ais(var/mob/living/silicon/ai/A)
 	if(!A || !istype(A))
 		return
 

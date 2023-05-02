@@ -1,4 +1,4 @@
-/datum/species/skrell
+datum/species/skrell
 	uid = SPECIES_ID_SKRELL
 	id = SPECIES_ID_SKRELL
 	name = SPECIES_SKRELL
@@ -90,5 +90,5 @@
 	)
 
 
-/datum/species/skrell/can_breathe_water()
+datum/species/skrell/can_breathe_water()
 	return TRUE

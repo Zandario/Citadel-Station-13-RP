@@ -24,7 +24,7 @@
 
 #define EXPORT_TIMEOUT_DS 200
 
-/datum/tgs_api/v4
+datum/tgs_api/v4
 	var/access_identifier
 	var/instance_name
 	var/json_path
@@ -46,10 +46,10 @@
 	var/export_lock = FALSE
 	var/list/last_interop_response
 
-/datum/tgs_api/v4/ApiVersion()
+datum/tgs_api/v4/ApiVersion()
 	return new /datum/tgs_version("4.0.0.0")
 
-/datum/tgs_api/v4/OnWorldNew(minimum_required_security_level)
+datum/tgs_api/v4/OnWorldNew(minimum_required_security_level)
 	if(minimum_required_security_level == TGS_SECURITY_ULTRASAFE)
 		TGS_WARNING_LOG("V4 DMAPI requires safe security!")
 		minimum_required_security_level = TGS_SECURITY_SAFE
@@ -111,10 +111,10 @@
 
 	return TRUE
 
-/datum/tgs_api/v4/OnInitializationComplete()
+datum/tgs_api/v4/OnInitializationComplete()
 	Export(TGS4_COMM_SERVER_PRIMED)
 
-/datum/tgs_api/v4/OnTopic(T)
+datum/tgs_api/v4/OnTopic(T)
 	var/list/params = params2list(T)
 	var/their_sCK = params[TGS4_INTEROP_ACCESS_IDENTIFIER]
 	if(!their_sCK)
@@ -174,7 +174,7 @@
 
 	return "Unknown command: [command]"
 
-/datum/tgs_api/v4/proc/Export(command, list/data, override_requesting_new_port = FALSE)
+datum/tgs_api/v4/proc/Export(command, list/data, override_requesting_new_port = FALSE)
 	if(!data)
 		data = list()
 	data[TGS4_PARAMETER_COMMAND] = command
@@ -226,7 +226,7 @@
 
 	export_lock = FALSE
 
-/datum/tgs_api/v4/OnReboot()
+datum/tgs_api/v4/OnReboot()
 	var/list/result = Export(TGS4_COMM_WORLD_REBOOT)
 	if(!result)
 		return
@@ -244,19 +244,19 @@
 	if(!world.OpenPort(port))
 		TGS_ERROR_LOG("Unable to set port to [port]!")
 
-/datum/tgs_api/v4/InstanceName()
+datum/tgs_api/v4/InstanceName()
 	return instance_name
 
-/datum/tgs_api/v4/TestMerges()
+datum/tgs_api/v4/TestMerges()
 	return cached_test_merges.Copy()
 
-/datum/tgs_api/v4/EndProcess()
+datum/tgs_api/v4/EndProcess()
 	Export(TGS4_COMM_END_PROCESS)
 
-/datum/tgs_api/v4/Revision()
+datum/tgs_api/v4/Revision()
 	return cached_revision
 
-/datum/tgs_api/v4/ChatBroadcast(datum/tgs_message_content/message, list/channels)
+datum/tgs_api/v4/ChatBroadcast(datum/tgs_message_content/message, list/channels)
 	var/list/ids
 	if(length(channels))
 		ids = list()
@@ -270,7 +270,7 @@
 	else
 		Export(TGS4_COMM_CHAT, message)
 
-/datum/tgs_api/v4/ChatTargetedBroadcast(datum/tgs_message_content/message, admin_only)
+datum/tgs_api/v4/ChatTargetedBroadcast(datum/tgs_message_content/message, admin_only)
 	var/list/channels = list()
 	for(var/I in ChatChannelInfo())
 		var/datum/tgs_chat_channel/channel = I
@@ -283,7 +283,7 @@
 	else
 		Export(TGS4_COMM_CHAT, message)
 
-/datum/tgs_api/v4/ChatPrivateMessage(datum/tgs_message_content/message, datum/tgs_chat_user/user)
+datum/tgs_api/v4/ChatPrivateMessage(datum/tgs_message_content/message, datum/tgs_chat_user/user)
 	message = UpgradeDeprecatedChatMessage(message)
 	message = list("message" = message.text, "channelIds" = list(user.channel.id))
 	if(intercepted_message_queue)
@@ -291,14 +291,14 @@
 	else
 		Export(TGS4_COMM_CHAT, message)
 
-/datum/tgs_api/v4/ChatChannelInfo()
+datum/tgs_api/v4/ChatChannelInfo()
 	. = list()
 	//no caching cause tgs may change this
 	var/list/json = json_decode(file2text(chat_channels_json_path))
 	for(var/I in json)
 		. += DecodeChannel(I)
 
-/datum/tgs_api/v4/proc/DecodeChannel(channel_json)
+datum/tgs_api/v4/proc/DecodeChannel(channel_json)
 	var/datum/tgs_chat_channel/channel = new
 	channel.id = channel_json["id"]
 	channel.friendly_name = channel_json["friendlyName"]
@@ -308,5 +308,5 @@
 	channel.custom_tag = channel_json["tag"]
 	return channel
 
-/datum/tgs_api/v4/SecurityLevel()
+datum/tgs_api/v4/SecurityLevel()
 	return security_level

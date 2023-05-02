@@ -1,4 +1,4 @@
-/obj/effect/mineral
+obj/effect/mineral
 	name = "mineral vein"
 	icon = 'icons/obj/mining.dmi'
 	desc = "Shiny."
@@ -9,11 +9,11 @@
 	var/image/scanner_image
 
 // taemp check
-/obj/effect/mineral/New(loc, datum/ore/O)
+obj/effect/mineral/New(loc, datum/ore/O)
 	. = ..()
 	ASSERT(O)
 
-/obj/effect/mineral/Initialize(mapload, datum/ore/M)
+obj/effect/mineral/Initialize(mapload, datum/ore/M)
 	. = ..()
 	name = "[M.display_name] deposit"
 	ore_key = M.name
@@ -21,7 +21,7 @@
 	var/turf/T = get_turf(src)
 	layer = T.layer+0.1
 
-/obj/effect/mineral/proc/get_scan_overlay()
+obj/effect/mineral/proc/get_scan_overlay()
 	if(!scanner_image)
 		var/datum/ore/O = GLOB.ore_data[ore_key]
 		if(O)

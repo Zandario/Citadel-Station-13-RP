@@ -1,4 +1,4 @@
-/client/proc/admin_lightning_strike()
+client/proc/admin_lightning_strike()
 	set name = "Lightning Strike"
 	set desc = "Causes lightning to strike on your tile. This will hurt things on or nearby it severely."
 	set category = "Fun"
@@ -25,7 +25,7 @@
 // The real lightning proc.
 // This is global until I can figure out a better place for it.
 // T is the turf that is being struck. If cosmetic is true, the lightning won't actually hurt anything.
-/proc/lightning_strike(turf/T, cosmetic = FALSE)
+proc/lightning_strike(turf/T, cosmetic = FALSE)
 	// First, visuals.
 
 	// Do a lightning flash for the whole planet, if the turf belongs to a planet.

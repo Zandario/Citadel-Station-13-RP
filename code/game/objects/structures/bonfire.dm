@@ -5,7 +5,7 @@
  * Structure that makes a big old fire. You can add rods to construct a grill for grilling meat, or a stake for buckling people to the fire,
  * salem style. Keeping the fire on requires oxygen. You can dismantle the bonfire back into logs when it is unignited.
  */
-/obj/structure/bonfire
+obj/structure/bonfire
 	name = "bonfire"
 	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
 	icon = 'icons/obj/structures.dmi'
@@ -26,7 +26,7 @@
 	var/set_temperature = T0C + 30	//K
 	var/heating_power = 80000
 
-/obj/structure/bonfire/Initialize(mapload, material_name)
+obj/structure/bonfire/Initialize(mapload, material_name)
 	. = ..()
 
 	if(!material_name)
@@ -38,17 +38,17 @@
 	color = material.icon_colour
 
 // Blue wood.
-/obj/structure/bonfire/sifwood/Initialize(mapload)
+obj/structure/bonfire/sifwood/Initialize(mapload)
 	. = ..(mapload, MAT_SIFWOOD)
 
-/obj/structure/bonfire/permanent/Initialize(mapload, material_name)
+obj/structure/bonfire/permanent/Initialize(mapload, material_name)
 	. = ..()
 	ignite()
 
-/obj/structure/bonfire/permanent/sifwood/Initialize(mapload)
+obj/structure/bonfire/permanent/sifwood/Initialize(mapload)
 	. = ..(mapload, MAT_SIFWOOD)
 
-/obj/structure/bonfire/attackby(obj/item/W, mob/user)
+obj/structure/bonfire/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/rods) && !buckle_allowed && !grill)
 		var/obj/item/stack/rods/R = W
 		var/choice = input(user, "What would you like to construct?", "Bonfire") as null|anything in list("Stake","Grill")
@@ -81,7 +81,7 @@
 	else
 		return ..()
 
-/obj/structure/bonfire/attack_hand(mob/user, list/params)
+obj/structure/bonfire/attack_hand(mob/user, list/params)
 	if(has_buckled_mobs())
 		return ..()
 
@@ -91,7 +91,7 @@
 		dismantle(user)
 
 
-/obj/structure/bonfire/proc/dismantle(mob/user)
+obj/structure/bonfire/proc/dismantle(mob/user)
 	if(!burning)
 		user.visible_message("[user] starts dismantling \the [src].", "You start dismantling \the [src].")
 		if(do_after(user, 5 SECONDS))
@@ -102,7 +102,7 @@
 	else
 		to_chat(user, SPAN_WARNING("\The [src] is still burning. Extinguish it first if you want to dismantle it."))
 
-/obj/structure/bonfire/proc/get_fuel_amount()
+obj/structure/bonfire/proc/get_fuel_amount()
 	var/F = 0
 	for(var/A in contents)
 		if(istype(A, /obj/item/stack/material/wood))
@@ -111,20 +111,20 @@
 			F += 4.0
 	return F
 
-/obj/structure/bonfire/permanent/get_fuel_amount()
+obj/structure/bonfire/permanent/get_fuel_amount()
 	return 10
 
-/obj/structure/bonfire/proc/remove_fuel(mob/user)
+obj/structure/bonfire/proc/remove_fuel(mob/user)
 	if(get_fuel_amount())
 		var/atom/movable/AM = pop(contents)
 		AM.forceMove(get_turf(src))
 		to_chat(user, SPAN_NOTICE("You take \the [AM] out of \the [src] before it has a chance to burn away."))
 		update_icon()
 
-/obj/structure/bonfire/permanent/remove_fuel(mob/user)
+obj/structure/bonfire/permanent/remove_fuel(mob/user)
 	dismantle(user)
 
-/obj/structure/bonfire/proc/add_fuel(atom/movable/new_fuel, mob/user)
+obj/structure/bonfire/proc/add_fuel(atom/movable/new_fuel, mob/user)
 	if(get_fuel_amount() >= 20)
 		to_chat(user, SPAN_WARNING("\The [src] already has enough fuel!"))
 		return FALSE
@@ -141,10 +141,10 @@
 		to_chat(user, SPAN_WARNING("\The [src] needs raw wood to burn, \a [new_fuel] won't work."))
 		return FALSE
 
-/obj/structure/bonfire/permanent/add_fuel(mob/user)
+obj/structure/bonfire/permanent/add_fuel(mob/user)
 	to_chat(user, SPAN_WARNING("\The [src] has plenty of fuel and doesn't need more fuel."))
 
-/obj/structure/bonfire/proc/consume_fuel(obj/item/stack/consumed_fuel)
+obj/structure/bonfire/proc/consume_fuel(obj/item/stack/consumed_fuel)
 	if(!istype(consumed_fuel))
 		qdel(consumed_fuel) // Don't know, don't care.
 		return FALSE
@@ -159,16 +159,16 @@
 
 	return FALSE
 
-/obj/structure/bonfire/permanent/consume_fuel()
+obj/structure/bonfire/permanent/consume_fuel()
 	return TRUE
 
-/obj/structure/bonfire/proc/check_oxygen()
+obj/structure/bonfire/proc/check_oxygen()
 	var/datum/gas_mixture/G = loc.return_air()
 	if(G.gas[/datum/gas/oxygen] < 1)
 		return FALSE
 	return TRUE
 
-/obj/structure/bonfire/proc/extinguish()
+obj/structure/bonfire/proc/extinguish()
 	if(burning)
 		burning = FALSE
 		update_icon()
@@ -176,7 +176,7 @@
 		STOP_PROCESSING(SSobj, src)
 		visible_message(SPAN_NOTICE("\The [src] stops burning."))
 
-/obj/structure/bonfire/proc/ignite()
+obj/structure/bonfire/proc/ignite()
 	if(!burning && get_fuel_amount())
 		burning = TRUE
 		update_icon()
@@ -184,7 +184,7 @@
 		START_PROCESSING(SSobj, src)
 		visible_message(SPAN_WARNING("\The [src] starts burning!"))
 
-/obj/structure/bonfire/proc/burn()
+obj/structure/bonfire/proc/burn()
 	var/turf/current_location = get_turf(src)
 	current_location.hotspot_expose(1000, 500)
 	for(var/A in current_location)
@@ -198,7 +198,7 @@
 			L.adjust_fire_stacks(get_fuel_amount() / 4)
 			L.IgniteMob()
 
-/obj/structure/bonfire/update_icon()
+obj/structure/bonfire/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(burning)
@@ -232,7 +232,7 @@
 	add_overlay(overlays_to_add)
 
 
-/obj/structure/bonfire/process(delta_time)
+obj/structure/bonfire/process(delta_time)
 	if(!check_oxygen())
 		extinguish()
 		return
@@ -260,14 +260,14 @@
 
 				env.merge(removed)
 
-/obj/structure/bonfire/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/structure/bonfire/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	ignite()
 
-/obj/structure/bonfire/water_act(amount)
+obj/structure/bonfire/water_act(amount)
 	if(prob(amount * 10))
 		extinguish()
 
-/obj/structure/fireplace //more like a space heater than a bonfire. A cozier alternative to both.
+obj/structure/fireplace //more like a space heater than a bonfire. A cozier alternative to both.
 	name = "fireplace"
 	desc = "The sound of the crackling hearth reminds you of home."
 	icon = 'icons/obj/structures.dmi'
@@ -279,7 +279,7 @@
 	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
 
-/obj/structure/fireplace/attackby(obj/item/W, mob/user)
+obj/structure/fireplace/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material/wood) || istype(W, /obj/item/stack/material/log) )
 		add_fuel(W, user)
 
@@ -288,11 +288,11 @@
 	else
 		return ..()
 
-/obj/structure/fireplace/attack_hand(mob/user, list/params)
+obj/structure/fireplace/attack_hand(mob/user, list/params)
 	if(get_fuel_amount())
 		remove_fuel(user)
 
-/obj/structure/fireplace/proc/get_fuel_amount()
+obj/structure/fireplace/proc/get_fuel_amount()
 	var/F = 0
 	for(var/A in contents)
 		if(istype(A, /obj/item/stack/material/wood))
@@ -301,14 +301,14 @@
 			F += 1.0
 	return F
 
-/obj/structure/fireplace/proc/remove_fuel(mob/user)
+obj/structure/fireplace/proc/remove_fuel(mob/user)
 	if(get_fuel_amount())
 		var/atom/movable/AM = pop(contents)
 		AM.forceMove(get_turf(src))
 		to_chat(user, "<span class='notice'>You take \the [AM] out of \the [src] before it has a chance to burn away.</span>")
 		update_icon()
 
-/obj/structure/fireplace/proc/add_fuel(atom/movable/new_fuel, mob/user)
+obj/structure/fireplace/proc/add_fuel(atom/movable/new_fuel, mob/user)
 	if(get_fuel_amount() >= 10)
 		to_chat(user, "<span class='warning'>\The [src] already has enough fuel!</span>")
 		return FALSE
@@ -325,7 +325,7 @@
 		to_chat(user, "<span class='warning'>\The [src] needs raw wood to burn, \a [new_fuel] won't work.</span>")
 		return FALSE
 
-/obj/structure/fireplace/proc/consume_fuel(var/obj/item/stack/consumed_fuel)
+obj/structure/fireplace/proc/consume_fuel(var/obj/item/stack/consumed_fuel)
 	if(!istype(consumed_fuel))
 		qdel(consumed_fuel) // Don't know, don't care.
 		return FALSE
@@ -341,27 +341,27 @@
 
 	return FALSE
 
-/obj/structure/fireplace/proc/check_oxygen()
+obj/structure/fireplace/proc/check_oxygen()
 	var/datum/gas_mixture/G = loc.return_air()
 	if(G.gas[/datum/gas/oxygen] < 1)
 		return FALSE
 	return TRUE
 
-/obj/structure/fireplace/proc/extinguish()
+obj/structure/fireplace/proc/extinguish()
 	if(burning)
 		burning = FALSE
 		update_icon()
 		STOP_PROCESSING(SSobj, src)
 		visible_message("<span class='notice'>\The [src] stops burning.</span>")
 
-/obj/structure/fireplace/proc/ignite()
+obj/structure/fireplace/proc/ignite()
 	if(!burning && get_fuel_amount())
 		burning = TRUE
 		update_icon()
 		START_PROCESSING(SSobj, src)
 		visible_message("<span class='warning'>\The [src] starts burning!</span>")
 
-/obj/structure/fireplace/proc/burn()
+obj/structure/fireplace/proc/burn()
 	var/turf/current_location = get_turf(src)
 	current_location.hotspot_expose(1000, 500)
 	for(var/A in current_location)
@@ -371,7 +371,7 @@
 			var/obj/O = A
 			O.fire_act(null, 1000, 500)
 
-/obj/structure/fireplace/update_icon()
+obj/structure/fireplace/update_icon()
 	cut_overlays()
 	if(burning)
 		var/state
@@ -391,7 +391,7 @@
 	else
 		set_light(0)
 
-/obj/structure/fireplace/process(delta_time)
+obj/structure/fireplace/process(delta_time)
 	if(!check_oxygen())
 		extinguish()
 		return
@@ -417,9 +417,9 @@
 
 				env.merge(removed)
 
-/obj/structure/fireplace/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/structure/fireplace/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	ignite()
 
-/obj/structure/fireplace/water_act(amount)
+obj/structure/fireplace/water_act(amount)
 	if(prob(amount * 10))
 		extinguish()

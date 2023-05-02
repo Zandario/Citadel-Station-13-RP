@@ -1,4 +1,4 @@
-/datum/lore/character_background/faction
+datum/lore/character_background/faction
 	abstract_type = /datum/lore/character_background/faction
 	/// station job types you can play as under this - **typepaths** e.g. /datum/role/job/station/security_officer, etc
 	/// if null, you can play as everything
@@ -14,25 +14,25 @@
 	/// if null, all can select
 	var/list/citizenship_whitelist
 
-/datum/lore/character_background/faction/New()
+datum/lore/character_background/faction/New()
 	// job whitelist cache
 	for(var/i in job_whitelist)
 		job_whitelist[i] = TRUE
 	return ..()
 
-/datum/lore/character_background/faction/check_character_species(datum/character_species/S)
+datum/lore/character_background/faction/check_character_species(datum/character_species/S)
 	if(S.species_fluff_flags & SPECIES_FLUFF_PICKY_FACTION)
 		. = (S.uid in allow_species) || (subspecies_included && S.is_subspecies && (S.superspecies_id in allow_species))
 		if(!.)
 			return
 	return ..()
 
-/datum/lore/character_background/faction/proc/check_job_id(id)
+datum/lore/character_background/faction/proc/check_job_id(id)
 	if(job_blacklist && job_blacklist[id])
 		return FALSE
 	return job_whitelist? (job_whitelist[id]) : TRUE
 
-/datum/lore/character_background/faction/nanotrasen
+datum/lore/character_background/faction/nanotrasen
 	name = "Nanotrasen"
 	id = "nanotrasen"
 	desc = "Formally established in 2274, NanoTrasen is one of the foremost research and development companies in the galaxy. \
@@ -51,7 +51,7 @@
 	job_whitelist = null
 	job_blacklist = list(JOB_ID_TRADER)
 
-/datum/lore/character_background/faction/aether
+datum/lore/character_background/faction/aether
 	name = "Aether Atmos & Recycling"
 	id = "aether"
 	desc = "Aether Atmospherics and Recycling is the prime maintainer and provider of atmospherics systems to both the many ships that navigate the \
@@ -73,7 +73,7 @@
 		JOB_ID_OFFDUTY_ENGINEER
 		)
 
-/datum/lore/character_background/faction/centauri
+datum/lore/character_background/faction/centauri
 	name = "Centauri Provisions"
 	id = "centauri"
 	desc = "Headquartered in Alpha Centauri, Centauri Provisions made a name in the snack-food industry primarily by being the first to focus on colonial holdings. \
@@ -92,7 +92,7 @@
 		JOB_ID_OFFDUTY_CARGO
 		)
 
-/datum/lore/character_background/faction/freetradeunion
+datum/lore/character_background/faction/freetradeunion
 	name = "Free Trade Union"
 	id = "ftu"
 	desc = "The Free Trade Union is different from other tran-stellars in that they are not just a company, but also a large conglomerate \
@@ -124,7 +124,7 @@
 		/datum/language/trader
 		)
 
-/datum/lore/character_background/faction/gilthari
+datum/lore/character_background/faction/gilthari
 	name = "Gilthari Exports"
 	id = "gilthari"
 	desc = "Gilthari started as Sol's premier supplier of luxury goods, specializing in extracting money from the rich and successful that weren't already shareholders. \
@@ -145,7 +145,7 @@
 		JOB_ID_OFFDUTY_CARGO
 		)
 
-/datum/lore/character_background/faction/hephaestus
+datum/lore/character_background/faction/hephaestus
 	name = "Hephaestus Industries"
 	id = "hephaestus"
 	desc = "Hephaestus Industries is the largest supplier of arms, ammunition, and small millitary vehicles on the Frontier. \
@@ -170,7 +170,7 @@
 		JOB_ID_OFFDUTY_ENGINEER
 		)
 
-/datum/lore/character_background/faction/oculum
+datum/lore/character_background/faction/oculum
 	name = "Oculum News Network"
 	id = "oculum"
 	desc = "Oculum owns approximately 30% of Frontier-wide news networks, including microblogging aggregate sites, network and comedy news, and even \
@@ -186,7 +186,7 @@
 		JOB_ID_OFFDUTY_CIVILLIAN
 		)
 
-/datum/lore/character_background/faction/veymed
+datum/lore/character_background/faction/veymed
 	name = "Vey-Med"
 	id = "veymed"
 	desc = "Vey-Med is a medical supply and research company notable for being largely owned and opperated by Skrell. \
@@ -212,7 +212,7 @@
 		JOB_ID_OFFDUTY_EXPLORER
 		)
 
-/datum/lore/character_background/faction/wardtakahashi
+datum/lore/character_background/faction/wardtakahashi
 	name = "Ward-Takahashi"
 	id = "wardtakashi"
 	desc = "Ward-Takahashi focuses on the sale of small consumer electronics, with its computers, communicators, \
@@ -234,7 +234,7 @@
 		JOB_ID_OFFDUTY_ENGINEER
 		)
 
-/datum/lore/character_background/faction/zenghu
+datum/lore/character_background/faction/zenghu
 	name = "Zeng-Hu Pharmaceuticals"
 	id = "zenghu"
 	desc = "Zeng-Hu is an old corporation, based close to Confederation space. Until the discovery of Phoron, Zeng-Hu maintained a stranglehold \
@@ -257,7 +257,7 @@
 		JOB_ID_OFFDUTY_MEDBAY
 		)
 
-/datum/lore/character_background/faction/naramadiguilds
+datum/lore/character_background/faction/naramadiguilds
 	name = "Naramadi Guilds"
 	id = "narguild"
 	desc = "Within the Naramadi Ascendancy, every piece of land, equipment and technology is owned by either a House or a person. \
@@ -286,7 +286,7 @@
 		"nameless"
 	)
 
-/datum/lore/character_background/faction/onkhera_necropolis
+datum/lore/character_background/faction/onkhera_necropolis
 	name = "Onkhera Synthetics & Necropolis"
 	id = "oss_necro"
 	desc = "Onkhera Synthetic Solutions, and by extension it's subsidiary Necropolis Industries, is one of the few \
@@ -308,7 +308,7 @@
 		JOB_ID_OFFDUTY_SCIENCE
 		)
 
-/datum/lore/character_background/faction/xam
+datum/lore/character_background/faction/xam
 	name = "Xsysorr Arms and Materiel"
 	id = "xam"
 	desc = "Xsysorr Arms and Material, also known as XAM. The only true Unathi Megacorporation, and a dealer in heavy equipment. They have cool \
@@ -322,7 +322,7 @@
 		JOB_ID_OFFDUTY_CARGO
 		)
 
-/datum/lore/character_background/faction/zaddatguild
+datum/lore/character_background/faction/zaddatguild
 	name = "Zaddat Guild"
 	id = "zaddatguild"
 	desc = "A collection of insular specialists in a given craft. Most well-known are the Engineers, yet there exists a Guild for most technical \

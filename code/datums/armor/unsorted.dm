@@ -1,4 +1,4 @@
-/datum/armor/thunderdome
+datum/armor/thunderdome
 	melee = 0.5
 	bullet = 0.5
 	laser = 0.5

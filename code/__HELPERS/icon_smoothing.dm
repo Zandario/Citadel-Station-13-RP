@@ -106,7 +106,7 @@
  * Arguments:
  * * target - The atom we're trying to smooth with.
  */
-/atom/proc/can_area_smooth(atom/target)
+atom/proc/can_area_smooth(atom/target)
 	var/area/target_area = get_area(target)
 	var/area/source_area = get_area(src)
 	if(!target_area)
@@ -120,7 +120,7 @@
 /**
  * Scans all adjacent turfs to find targets to smooth with.
  */
-/atom/proc/calculate_adjacencies()
+atom/proc/calculate_adjacencies()
 	. = NONE
 
 	if(!loc)
@@ -170,7 +170,7 @@
 				if(ADJ_FOUND)
 					. |= SOUTHEAST_JUNCTION
 
-/atom/movable/calculate_adjacencies()
+atom/movable/calculate_adjacencies()
 	if(can_be_unanchored && !anchored)
 		return NONE
 	return ..()
@@ -179,7 +179,7 @@
  *! DO NOT USE
  *! USE QUEUE_SMOOTH(atom)
  */
-/atom/proc/smooth_icon()
+atom/proc/smooth_icon()
 	smoothing_flags &= ~SMOOTH_QUEUED
 	atom_flags |= HTML_USE_INITAL_ICON
 	if (!z)
@@ -199,10 +199,10 @@
 	update_appearance(~UPDATE_SMOOTHING)
 
 
-/atom/proc/custom_smooth()
+atom/proc/custom_smooth()
 	CRASH("based custom_smooth called on atom")
 
-/atom/proc/corners_diagonal_smooth(adjacencies)
+atom/proc/corners_diagonal_smooth(adjacencies)
 	switch(adjacencies)
 		if(NORTH_JUNCTION|WEST_JUNCTION)
 			replace_smooth_overlays("d-se","d-se-0")
@@ -230,7 +230,7 @@
 	return TRUE
 
 
-/atom/proc/corners_cardinal_smooth(adjacencies)
+atom/proc/corners_cardinal_smooth(adjacencies)
 	var/mutable_appearance/temp_ma
 
 	//NW CORNER
@@ -322,7 +322,7 @@
 /**
  * Scans direction to find targets to smooth with.
  */
-/atom/proc/find_type_in_direction(direction)
+atom/proc/find_type_in_direction(direction)
 	var/turf/target_turf = get_step(src, direction)
 	if(!target_turf)
 		return NULLTURF_BORDER
@@ -359,7 +359,7 @@
  *
  * Returns the previous smoothing_junction state so the previous state can be compared with the new one after the proc ends, and see the changes, if any.
 */
-/atom/proc/bitmask_smooth()
+atom/proc/bitmask_smooth()
 	var/new_junction = NONE
 
 	for(var/direction in GLOB.cardinal) //Cardinal case first.
@@ -389,12 +389,12 @@
 /**
  * Changes the icon state based on the new junction bitmask. Returns the old junction value.
  */
-/atom/proc/set_smoothed_icon_state(new_junction)
+atom/proc/set_smoothed_icon_state(new_junction)
 	. = smoothing_junction
 	smoothing_junction = new_junction
 	icon_state = "[base_icon_state]-[smoothing_junction]"
 
-/turf/set_smoothed_icon_state(new_junction)
+turf/set_smoothed_icon_state(new_junction)
 	// Avoid calling ..() here to avoid setting icon_state twice, which is expensive given how hot this proc is
 	. = smoothing_junction
 	smoothing_junction = new_junction
@@ -440,7 +440,7 @@
 /**
  * Icon smoothing helpers.
  */
-/proc/smooth_zlevel(zlevel, now = FALSE)
+proc/smooth_zlevel(zlevel, now = FALSE)
 	var/list/away_turfs = block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel))
 	for(var/turf/turf_to_smooth as anything in away_turfs)
 		if(IS_SMOOTH(turf_to_smooth))
@@ -456,7 +456,7 @@
 				else
 					QUEUE_SMOOTH(movable_to_smooth)
 
-/atom/proc/clear_smooth_overlays()
+atom/proc/clear_smooth_overlays()
 	// cut_overlay() is efficient with single calls, but we might as well just pay proc-call overhead once given that we always have 4.
 	cut_overlay(list(
 		top_left_corner,
@@ -472,7 +472,7 @@
 /**
  * Internal: Takes icon states as text to replace smoothing corner overlays.
  */
-/atom/proc/replace_smooth_overlays(nw, ne, sw, se)
+atom/proc/replace_smooth_overlays(nw, ne, sw, se)
 	clear_smooth_overlays()
 	var/mutable_appearance/temp_ma
 
@@ -505,7 +505,7 @@
 	add_overlay(new_overlays)
 
 
-/proc/reverse_ndir(ndir)
+proc/reverse_ndir(ndir)
 	switch(ndir)
 		if(NORTH_JUNCTION)
 			return NORTH
@@ -542,7 +542,7 @@
 		else
 			return NONE
 
-/turf/proc/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
+turf/proc/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	underlay_appearance.icon = icon
 	underlay_appearance.icon_state = icon_state
 	underlay_appearance.dir = adjacency_dir

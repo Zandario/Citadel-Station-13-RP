@@ -1,4 +1,4 @@
-/datum/nifsoft/medichines_org
+datum/nifsoft/medichines_org
 	name = "Medichines"
 	desc = "An internal swarm of nanites to make sure you stay in good shape and to promote healing, or to preserve you if you are critically injured."
 	list_pos = NIF_ORGANIC_HEAL
@@ -13,17 +13,17 @@
 	health_flags = (NIF_H_ORGREPAIR)
 
 	//These self-activate on their own, these aren't user-settable to on/off.
-/datum/nifsoft/medichines_org/activate()
+datum/nifsoft/medichines_org/activate()
 	if((. = ..()))
 		mode = 1
 
-/datum/nifsoft/medichines_org/deactivate(var/force = FALSE)
+datum/nifsoft/medichines_org/deactivate(var/force = FALSE)
 	if((. = ..()))
 		a_drain = initial(a_drain)
 		mode = initial(mode)
 		nif.human.Stasis(0)
 
-/datum/nifsoft/medichines_org/on_life()
+datum/nifsoft/medichines_org/on_life()
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		var/HP_percent = H.health/H.getMaxHealth()
@@ -71,7 +71,7 @@
 
 		return TRUE
 
-/datum/nifsoft/medichines_syn
+datum/nifsoft/medichines_syn
 	name = "Medichines"
 	desc = "A swarm of mechanical repair nanites, able to repair relatively minor damage to synthetic bodies. Large repairs must still be performed manually."
 	list_pos = NIF_SYNTH_HEAL
@@ -86,15 +86,15 @@
 	health_flags = (NIF_H_SYNTHREPAIR)
 
 	//These self-activate on their own, these aren't user-settable to on/off.
-/datum/nifsoft/medichines_syn/activate()
+datum/nifsoft/medichines_syn/activate()
 	if((. = ..()))
 		mode = 1
 
-/datum/nifsoft/medichines_syn/deactivate(var/force = FALSE)
+datum/nifsoft/medichines_syn/deactivate(var/force = FALSE)
 	if((. = ..()))
 		mode = 0
 
-/datum/nifsoft/medichines_syn/on_life()
+datum/nifsoft/medichines_syn/on_life()
 	if((. = ..()))
 		//We're good!
 		if(!nif.human.bad_external_organs.len)
@@ -123,7 +123,7 @@
 
 		return TRUE
 
-/datum/nifsoft/spare_breath
+datum/nifsoft/spare_breath
 	name = "Respirocytes"
 	desc = "Nanites simulating red blood cells will filter and recycle oxygen for a short time, preventing suffocation in hostile environments. NOTE: Only capable of supplying OXYGEN."
 	list_pos = NIF_SPAREBREATH
@@ -136,18 +136,18 @@
 	var/filled = 100 //Tracks the internal tank 'refilling', which still uses power
 	health_flags = (NIF_H_SPAREBREATH)
 
-/datum/nifsoft/spare_breath/activate()
+datum/nifsoft/spare_breath/activate()
 	if(!(filled > 50))
 		nif.notify("Respirocytes not saturated!",TRUE)
 		return FALSE
 	if((. = ..()))
 		nif.notify("Now taking air from reserves.")
 
-/datum/nifsoft/spare_breath/deactivate(var/force = FALSE)
+datum/nifsoft/spare_breath/deactivate(var/force = FALSE)
 	if((. = ..()))
 		nif.notify("Now taking air from environment and refilling reserves.")
 
-/datum/nifsoft/spare_breath/on_life()
+datum/nifsoft/spare_breath/on_life()
 	if((. = ..()))
 		if(active) //Supplying air, not recharging it
 			switch(filled) //Text warnings
@@ -171,7 +171,7 @@
 			else if(nif.use_charge(0.1) && ++filled == 100)
 				nif.notify("Respirocytes now fully saturated.")
 
-/datum/nifsoft/spare_breath/proc/resp_breath()
+datum/nifsoft/spare_breath/proc/resp_breath()
 	if(!active)
 		return null
 	var/datum/gas_mixture/breath = new(BREATH_VOLUME)
@@ -179,13 +179,13 @@
 	breath.temperature = T20C
 	return breath
 /*
-/datum/nifsoft/mindbackup
+datum/nifsoft/mindbackup
 	name = "Mind Backup"
 	desc = "Backup your mind on the go. Stores a one-time sync of your current mindstate upon activation."
 	list_pos = NIF_BACKUP
 	cost = 125
 
-/datum/nifsoft/mindbackup/activate()
+datum/nifsoft/mindbackup/activate()
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		SStranscore.m_backup(H.mind,H.nif,one_time = TRUE)
@@ -194,9 +194,9 @@
 		nif.use_charge(0.1)
 		deactivate()
 		return TRUE
-/datum/nifsoft/mindbackup/deactivate()
+datum/nifsoft/mindbackup/deactivate()
 	if((. = ..()))
 		return TRUE
-/datum/nifsoft/mindbackup/stat_text()
+datum/nifsoft/mindbackup/stat_text()
 	return "Store Backup"
 */

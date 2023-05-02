@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(parallax)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun
 
-/datum/controller/subsystem/parallax/fire(resumed = FALSE)
+datum/controller/subsystem/parallax/fire(resumed = FALSE)
 	if (!resumed)
 		src.currentrun = GLOB.clients.Copy()
 
@@ -41,20 +41,20 @@ SUBSYSTEM_DEF(parallax)
 /**
  * Gets parallax type for zlevel.
  */
-/datum/controller/subsystem/parallax/proc/get_parallax_type(z)
+datum/controller/subsystem/parallax/proc/get_parallax_type(z)
 	return /datum/parallax/space
 
 /**
  * Gets parallax for zlevel.
  */
-/datum/controller/subsystem/parallax/proc/get_parallax_datum(z)
+datum/controller/subsystem/parallax/proc/get_parallax_datum(z)
 	var/type = get_parallax_type(z)
 	return new type(z)
 
 /**
  * Gets parallax added vis contents for zlevel
  */
-/datum/controller/subsystem/parallax/proc/get_parallax_vis_contents(z)
+datum/controller/subsystem/parallax/proc/get_parallax_vis_contents(z)
 	. = list()
 	// overmaps
 	var/obj/effect/overmap/visitable/v = get_overmap_sector(z)
@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(parallax)
  *
  * This will override area motion
  */
-/datum/controller/subsystem/parallax/proc/get_parallax_motion(z)
+datum/controller/subsystem/parallax/proc/get_parallax_motion(z)
 	// right now we only care about overmaps
 	var/obj/effect/overmap/visitable/ship/V = get_overmap_sector(z)
 	if(!istype(V))
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(parallax)
 /**
  * updates all parallax for clients on a z
  */
-/datum/controller/subsystem/parallax/proc/update_clients_on_z(z)
+datum/controller/subsystem/parallax/proc/update_clients_on_z(z)
 	for(var/client/C in GLOB.clients)
 		if(C.mob.z == z)
 			C.parallax_holder?.Update(TRUE)
@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(parallax)
 /**
  * resets all parallax for clients on a z
  */
-/datum/controller/subsystem/parallax/proc/reset_clients_on_z(z)
+datum/controller/subsystem/parallax/proc/reset_clients_on_z(z)
 	for(var/client/C in GLOB.clients)
 		if(C.mob.z == z)
 			C.parallax_holder?.Reset()
@@ -120,7 +120,7 @@ SUBSYSTEM_DEF(parallax)
 /**
  * resets vis contents for clients on a z
  */
-/datum/controller/subsystem/parallax/proc/update_z_vis_contents(z)
+datum/controller/subsystem/parallax/proc/update_z_vis_contents(z)
 	for(var/client/C in GLOB.clients)
 		if(C.mob.z == z)
 			C.parallax_holder?.SyncVisContents()
@@ -128,7 +128,7 @@ SUBSYSTEM_DEF(parallax)
 /**
  * updates motion of all clients on z
  */
-/datum/controller/subsystem/parallax/proc/update_z_motion(z)
+datum/controller/subsystem/parallax/proc/update_z_motion(z)
 	for(var/client/C in GLOB.clients)
 		if(C.mob.z == z)
 			C.parallax_holder?.UpdateMotion()
@@ -138,5 +138,5 @@ SUBSYSTEM_DEF(parallax)
  * ALWAYS USE THIS PROC FROM THINGS LIKE EVENTS AND OVERMAPS!
  * z
  */
-/datum/controller/subsystem/parallax/proc/queue_z_vis_update(z)
+datum/controller/subsystem/parallax/proc/queue_z_vis_update(z)
 	addtimer(CALLBACK(src, .proc/update_z_vis_contents, z), flags = TIMER_UNIQUE)

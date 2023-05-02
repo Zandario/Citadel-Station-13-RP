@@ -1,4 +1,4 @@
-/datum/department/research
+datum/department/research
 	name = DEPARTMENT_RESEARCH
 	short_name = "Sci"
 	color = "#A65BA6"

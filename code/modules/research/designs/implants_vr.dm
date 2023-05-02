@@ -6,7 +6,7 @@
 // 	build_path = /obj/item/implantcase/backup
 // 	sort_string = "MFAVA"
 
-/datum/design/item/implant/sizecontrol
+datum/design/item/implant/sizecontrol
 	name = "Size control implant"
 	id = "implant_size"
 	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_DATA = 4, TECH_ENGINEERING = 3)
@@ -15,7 +15,7 @@
 	sort_string = "MFAVB"
 
 /* Make language great again
-/datum/design/item/implant/language
+datum/design/item/implant/language
 	name = "Language implant"
 	id = "implant_language"
 	req_tech = list(TECH_MATERIAL = 5, TECH_BIO = 5, TECH_DATA = 4, TECH_ENGINEERING = 4) //This is not an easy to make implant.

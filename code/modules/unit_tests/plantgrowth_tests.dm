@@ -2,7 +2,7 @@
 // Checks plants for broken tray icons. Use Advanced Proc Call to activate.
 // Maybe some day it would be used as unit test.
 // -------- IT IS NOW!
-/datum/unit_test/plantgrowth/Run()
+datum/unit_test/plantgrowth/Run()
 	var/list/states = icon_states('icons/obj/hydroponics/growing.dmi')
 	states |= icon_states('icons/obj/hydroponics/growing_fruits.dmi')
 	states |= icon_states('icons/obj/hydroponics/growing_flowers.dmi')

@@ -1,4 +1,4 @@
-/obj/item/retail_scanner
+obj/item/retail_scanner
 	name = "retail scanner"
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
@@ -24,7 +24,7 @@
 
 
 // Claim machine ID
-/obj/item/retail_scanner/Initialize(mapload)
+obj/item/retail_scanner/Initialize(mapload)
 	. = ..()
 	machine_id = "[station_name()] RETAIL #[GLOB.num_financial_terminals++]"
 	if(locate(/obj/structure/table) in loc)
@@ -32,7 +32,7 @@
 	GLOB.transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
 // Always face the user when put on a table
-/obj/item/retail_scanner/afterattack(atom/movable/AM, mob/user, proximity)
+obj/item/retail_scanner/afterattack(atom/movable/AM, mob/user, proximity)
 	if(!proximity)	return
 	if(istype(AM, /obj/structure/table))
 		src.pixel_y = 3 // Shift it up slightly to look better on table
@@ -41,24 +41,24 @@
 		scan_item_price(AM)
 
 // Reset dir when picked back up
-/obj/item/retail_scanner/pickup(mob/user, flags, atom/oldLoc)
+obj/item/retail_scanner/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	setDir(SOUTH)
 	pixel_y = 0
 
-/obj/item/retail_scanner/attack_self(mob/user)
+obj/item/retail_scanner/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	user.set_machine(src)
 	interact(user)
 
-/obj/item/retail_scanner/AltClick(var/mob/user)
+obj/item/retail_scanner/AltClick(var/mob/user)
 	if(Adjacent(user))
 		user.set_machine(src)
 		interact(user)
 
-/obj/item/retail_scanner/interact(mob/user as mob)
+obj/item/retail_scanner/interact(mob/user as mob)
 	var/dat = "<h2>Retail Scanner<hr></h2>"
 	if (locked)
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
@@ -83,7 +83,7 @@
 	onclose(user, "retail")
 
 
-/obj/item/retail_scanner/Topic(var/href, var/href_list)
+obj/item/retail_scanner/Topic(var/href, var/href_list)
 	if(..())
 		return
 
@@ -159,7 +159,7 @@
 
 
 
-/obj/item/retail_scanner/attackby(obj/O as obj, user as mob)
+obj/item/retail_scanner/attackby(obj/O as obj, user as mob)
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
 	var/obj/item/card/id/I = O.GetID()
 	if(I)
@@ -177,12 +177,12 @@
 		scan_item_price(O)
 
 
-/obj/item/retail_scanner/showoff(mob/user)
+obj/item/retail_scanner/showoff(mob/user)
 	for (var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];clickitem=\ref[src]>Swipe card or item.</a>",1)
 
 
-/obj/item/retail_scanner/proc/confirm(var/obj/item/I)
+obj/item/retail_scanner/proc/confirm(var/obj/item/I)
 	if(confirm_item == I)
 		return 1
 	else
@@ -192,7 +192,7 @@
 		return 0
 
 
-/obj/item/retail_scanner/proc/scan_card(var/obj/item/card/id/I, var/obj/item/ID_container)
+obj/item/retail_scanner/proc/scan_card(var/obj/item/card/id/I, var/obj/item/ID_container)
 	if (!transaction_amount)
 		return
 
@@ -252,7 +252,7 @@
 					transaction_complete()
 
 
-/obj/item/retail_scanner/proc/scan_wallet(var/obj/item/spacecash/ewallet/E)
+obj/item/retail_scanner/proc/scan_wallet(var/obj/item/spacecash/ewallet/E)
 	if (!transaction_amount)
 		return
 
@@ -285,7 +285,7 @@
 			transaction_complete()
 
 
-/obj/item/retail_scanner/proc/scan_item_price(var/obj/O)
+obj/item/retail_scanner/proc/scan_item_price(var/obj/O)
 	if(!istype(O))	return
 	if(item_list.len > 10)
 		src.visible_message("[icon2html(thing = src, target = world)]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
@@ -317,7 +317,7 @@
 	confirm_item = null
 
 
-/obj/item/retail_scanner/proc/get_current_transaction()
+obj/item/retail_scanner/proc/get_current_transaction()
 	var/dat = {"
 	<head><style>
 		.tx-title-r {text-align: center; background-color:#ffdddd; font-weight: bold}
@@ -337,7 +337,7 @@
 	return dat
 
 
-/obj/item/retail_scanner/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
+obj/item/retail_scanner/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
 	var/dat = {"
 	<head><style>
 		.tx-title {text-align: center; background-color:#ddddff; font-weight: bold}
@@ -363,7 +363,7 @@
 	transaction_logs += dat
 
 
-/obj/item/retail_scanner/proc/check_account()
+obj/item/retail_scanner/proc/check_account()
 	if (!linked_account)
 		usr.visible_message("[icon2html(thing = src, target = world)]<span class='warning'>Unable to connect to linked account.</span>")
 		return 0
@@ -374,7 +374,7 @@
 	return 1
 
 
-/obj/item/retail_scanner/proc/transaction_complete()
+obj/item/retail_scanner/proc/transaction_complete()
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
 	src.visible_message("[icon2html(thing = src, target = world)]<span class='notice'>Transaction complete.</span>")
@@ -383,7 +383,7 @@
 	updateDialog()
 
 
-/obj/item/retail_scanner/proc/reset_memory()
+obj/item/retail_scanner/proc/reset_memory()
 	transaction_amount = null
 	transaction_purpose = ""
 	item_list.Cut()
@@ -391,7 +391,7 @@
 	confirm_item = null
 
 
-/obj/item/retail_scanner/emag_act(var/remaining_charges, var/mob/user)
+obj/item/retail_scanner/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		to_chat(user, "<span class='danger'>You stealthily swipe the cryptographic sequencer through \the [src].</span>")
 		playsound(src, "sparks", 50, 1)
@@ -400,23 +400,23 @@
 
 //--Premades--//
 
-/obj/item/retail_scanner/command
+obj/item/retail_scanner/command
 	account_to_connect = "Command"
 
-/obj/item/retail_scanner/medical
+obj/item/retail_scanner/medical
 	account_to_connect = "Medical"
 
-/obj/item/retail_scanner/engineering
+obj/item/retail_scanner/engineering
 	account_to_connect = "Engineering"
 
-/obj/item/retail_scanner/science
+obj/item/retail_scanner/science
 	account_to_connect = "Science"
 
-/obj/item/retail_scanner/security
+obj/item/retail_scanner/security
 	account_to_connect = "Security"
 
-/obj/item/retail_scanner/cargo
+obj/item/retail_scanner/cargo
 	account_to_connect = "Cargo"
 
-/obj/item/retail_scanner/civilian
+obj/item/retail_scanner/civilian
 	account_to_connect = "Civilian"

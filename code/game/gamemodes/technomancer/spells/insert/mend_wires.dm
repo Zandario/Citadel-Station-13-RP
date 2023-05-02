@@ -1,4 +1,4 @@
-/datum/technomancer/spell/mend_wires
+datum/technomancer/spell/mend_wires
 	name = "Mend Wires"
 	desc = "Binds the internal wiring of robotic limbs and components over time."
 	spell_power_desc = "Healing amount increased."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/insert/mend_wires
+obj/item/spell/insert/mend_wires
 	name = "mend wires"
 	desc = "A roboticist is now obsolete."
 	icon_state = "mend_wounds"
@@ -16,7 +16,7 @@
 	light_color = "#FF5C5C"
 	inserting = /obj/item/inserted_spell/mend_wires
 
-/obj/item/inserted_spell/mend_wires/on_insert()
+obj/item/inserted_spell/mend_wires/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host

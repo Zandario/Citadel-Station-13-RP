@@ -1,4 +1,4 @@
-/proc/get_all_outfits()
+proc/get_all_outfits()
 	. = list()
 	for(var/path in subtypesof(/datum/outfit))
 		var/datum/outfit/O = path
@@ -7,7 +7,7 @@
 		. += new path
 	tim_sort(., /proc/cmp_name_asc)
 
-/datum/outfit
+datum/outfit
 	/// Abstract type - set to self type for abstract outfits.
 	abstract_type = /datum/outfit
 
@@ -55,7 +55,7 @@
 
 	var/undress = 1	//Does the outfit undress the mob upon equp?
 
-/datum/outfit/proc/pre_equip(mob/living/carbon/human/H)
+datum/outfit/proc/pre_equip(mob/living/carbon/human/H)
 	if(flags & OUTFIT_HAS_BACKPACK)
 		switch(H.backbag)
 			if(2) back = backpack
@@ -66,7 +66,7 @@
 			if(7) back = dufflebag
 			else  back = null
 
-/datum/outfit/proc/post_equip(mob/living/carbon/human/H)
+datum/outfit/proc/post_equip(mob/living/carbon/human/H)
 	if(flags & OUTFIT_HAS_JETPACK)
 		var/obj/item/tank/jetpack/J = locate(/obj/item/tank/jetpack) in H
 		if(!J)
@@ -74,7 +74,7 @@
 		J.toggle()
 		J.toggle_valve()
 
-/datum/outfit/proc/equip(mob/living/carbon/human/H, rank, assignment)
+datum/outfit/proc/equip(mob/living/carbon/human/H, rank, assignment)
 	equip_base(H)
 
 	rank = rank || id_pda_assignment
@@ -96,7 +96,7 @@
 		H.set_id_info(W)
 	return 1
 
-/datum/outfit/proc/equip_base(mob/living/carbon/human/H)
+datum/outfit/proc/equip_base(mob/living/carbon/human/H)
 	pre_equip(H)
 
 	//Start with uniform,suit,backpack for additional slots
@@ -144,7 +144,7 @@
 	if(H.species)
 		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL, flags&OUTFIT_COMPREHENSIVE_SURVIVAL)
 
-/datum/outfit/proc/equip_id(mob/living/carbon/human/H, rank, assignment)
+datum/outfit/proc/equip_id(mob/living/carbon/human/H, rank, assignment)
 	if(!id_slot || !id_type)
 		return
 
@@ -161,7 +161,7 @@
 	if(H.equip_to_slot_or_del(W, id_slot))
 		return W
 
-/datum/outfit/proc/equip_pda(mob/living/carbon/human/H, rank, assignment)
+datum/outfit/proc/equip_pda(mob/living/carbon/human/H, rank, assignment)
 	if(!pda_slot || !pda_type)
 		return
 	var/obj/item/pda/pda = new pda_type(H)
@@ -180,13 +180,13 @@
 		return pda
 
 
-/datum/outfit/dd_SortValue()
+datum/outfit/dd_SortValue()
 	return name
 
 
 //! ## VR FILE MERGE ## !//
 
-/datum/outfit/JSDF/Marine
+datum/outfit/JSDF/Marine
 	name = "JSDF marine"
 	uniform = /obj/item/clothing/under/oricon/utility/marine/green
 	shoes = /obj/item/clothing/shoes/boots/jackboots
@@ -203,7 +203,7 @@
 	suit = /obj/item/clothing/suit/armor/combat/JSDF
 	belt = /obj/item/storage/belt/security/tactical
 
-/datum/outfit/JSDF/Marine/equip_id(mob/living/carbon/human/H)
+datum/outfit/JSDF/Marine/equip_id(mob/living/carbon/human/H)
 	var/obj/item/card/id/C = ..()
 	C.name = "[H?.real_name]'s military ID Card"
 	C.icon_state = "lifetime"
@@ -211,7 +211,7 @@
 	C.registered_name = H.real_name
 	return C
 
-/datum/outfit/JSDF/Officer
+datum/outfit/JSDF/Officer
 	name = "JSDF officer"
 	head = /obj/item/clothing/head/dress/marine/command/admiral
 	shoes = /obj/item/clothing/shoes/boots/jackboots
@@ -223,7 +223,7 @@
 	r_hand = /obj/item/clothing/accessory/holster/hip
 	l_hand = /obj/item/clothing/accessory/tie/black
 
-/datum/outfit/JSDF/Officer/equip_id(mob/living/carbon/human/H)
+datum/outfit/JSDF/Officer/equip_id(mob/living/carbon/human/H)
 	var/obj/item/card/id/C = ..()
 	C.name = "[H.real_name]'s military ID Card"
 	C.icon_state = "lifetime"
@@ -231,7 +231,7 @@
 	C.registered_name = H.real_name
 	return C
 
-/datum/outfit/oricon/representative
+datum/outfit/oricon/representative
 	name = "Confederation Representative"
 	shoes = /obj/item/clothing/shoes/laceup
 	l_ear = /obj/item/radio/headset/centcom
@@ -242,7 +242,7 @@
 	r_hand = /obj/item/pda/centcom
 	l_hand = /obj/item/clipboard
 
-/datum/outfit/oricon/representative/equip_id(mob/living/carbon/human/H)
+datum/outfit/oricon/representative/equip_id(mob/living/carbon/human/H)
 	var/obj/item/card/id/C = ..()
 	C.name = "[H.real_name]'s OriCon ID Card"
 	C.icon_state = "lifetime"
@@ -250,7 +250,7 @@
 	C.registered_name = H.real_name
 	return C
 
-/datum/outfit/imperial/soldier
+datum/outfit/imperial/soldier
 	name = "Imperial soldier"
 	head = /obj/item/clothing/head/helmet/combat/imperial
 	shoes =/obj/item/clothing/shoes/leg_guard/combat/imperial
@@ -267,7 +267,7 @@
 	l_hand = /obj/item/shield/energy/imperial
 	suit_store = /obj/item/gun/energy/imperial
 
-/datum/outfit/imperial/officer
+datum/outfit/imperial/officer
 	name = "Imperial officer"
 	head = /obj/item/clothing/head/helmet/combat/imperial/centurion
 	shoes = /obj/item/clothing/shoes/leg_guard/combat/imperial

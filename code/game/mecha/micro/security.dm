@@ -1,4 +1,4 @@
-/obj/mecha/micro/sec/moved_inside(var/mob/living/carbon/human/H as mob)
+obj/mecha/micro/sec/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())
 		if(H.client)
 			H.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
@@ -6,13 +6,13 @@
 	else
 		return 0
 
-/obj/mecha/micro/sec/go_out()
+obj/mecha/micro/sec/go_out()
 	if(src.occupant && src.occupant.client)
 		src.occupant.client.mouse_pointer_icon = initial(src.occupant.client.mouse_pointer_icon)
 	..()
 	return
 
-/obj/mecha/micro/sec/polecat //figured give 'em the names of small predatory critters
+obj/mecha/micro/sec/polecat //figured give 'em the names of small predatory critters
 	desc = "A hardened security vehicle for micro crewmembers. To them, it's a superheavy tank. To everyone else, it's kinda cute."
 	name = "Polecat"
 	icon_state = "polecat"
@@ -32,11 +32,11 @@
 	max_micro_weapon_equip = 3
 	damage_minimum = 5		//A teeny bit of armor
 
-/obj/effect/decal/mecha_wreckage/micro/sec/polecat
+obj/effect/decal/mecha_wreckage/micro/sec/polecat
 	name = "Polecat wreckage"
 	icon_state = "polecat-broken"
 
-/obj/mecha/micro/sec/weasel
+obj/mecha/micro/sec/weasel
 	desc = "A light scout exosuit for micro crewmembers, built for fast reconnaisance."
 	name = "Weasel"
 	icon_state = "weasel"
@@ -53,6 +53,6 @@
 	max_micro_utility_equip = 0
 	max_micro_weapon_equip = 2
 
-/obj/effect/decal/mecha_wreckage/micro/sec/weasel
+obj/effect/decal/mecha_wreckage/micro/sec/weasel
 	name = "Weasel wreckage"
 	icon_state = "weasel-broken"

@@ -1,6 +1,6 @@
 // An indestructible blast door that can only be opened once its puzzle requirements are completed.
 
-/obj/machinery/door/blast/puzzle
+obj/machinery/door/blast/puzzle
 	name = "puzzle door"
 	desc = "A large, virtually indestructible door that will not open unless certain requirements are met."
 	icon_state_open = "pdoor0"
@@ -17,7 +17,7 @@
 	var/lockID = null
 	var/checkrange_mult = 1
 
-/obj/machinery/door/blast/puzzle/proc/check_locks()
+obj/machinery/door/blast/puzzle/proc/check_locks()
 	if(!locks || locks.len <= 0)	// Puzzle doors with no locks will only listen to boring buttons.
 		return 0
 
@@ -26,16 +26,16 @@
 			return 0
 	return 1
 
-/obj/machinery/door/blast/puzzle/bullet_act(var/obj/projectile/Proj)
+obj/machinery/door/blast/puzzle/bullet_act(var/obj/projectile/Proj)
 	if(!istype(Proj, /obj/projectile/test))
 		visible_message("<span class='cult'>\The [src] is completely unaffected by \the [Proj].</span>")
 	qdel(Proj) //No piercing. No.
 
-/obj/machinery/door/blast/puzzle/legacy_ex_act(severity)
+obj/machinery/door/blast/puzzle/legacy_ex_act(severity)
 	visible_message("<span class='cult'>\The [src] is completely unaffected by the blast.</span>")
 	return
 
-/obj/machinery/door/blast/puzzle/Initialize(mapload)
+obj/machinery/door/blast/puzzle/Initialize(mapload)
 	. = ..()
 	implicit_material = SSmaterials.get_material(/datum/material/alienalloy/dungeonium)
 	if(locks.len)
@@ -46,20 +46,20 @@
 			L.linked_objects |= src
 			locks |= L
 
-/obj/machinery/door/blast/puzzle/Destroy()
+obj/machinery/door/blast/puzzle/Destroy()
 	if(locks.len)
 		for(var/obj/structure/prop/lock/L in locks)
 			L.linked_objects -= src
 			locks -= L
 	..()
 
-/obj/machinery/door/blast/puzzle/attack_hand(mob/user, list/params)
+obj/machinery/door/blast/puzzle/attack_hand(mob/user, list/params)
 	if(check_locks())
 		force_toggle(1, user)
 	else
 		to_chat(user, "<span class='notice'>\The [src] does not respond to your touch.</span>")
 
-/obj/machinery/door/blast/puzzle/attackby(obj/item/C as obj, mob/user as mob)
+obj/machinery/door/blast/puzzle/attackby(obj/item/C as obj, mob/user as mob)
 	if(istype(C, /obj/item))
 		if(C.pry == 1 && (user.a_intent != INTENT_HARM || (machine_stat & BROKEN)))
 			if(istype(C,/obj/item/material/twohanded/fireaxe))
@@ -87,10 +87,10 @@
 			qdel(C)
 			return 0
 
-/obj/machinery/door/blast/puzzle/attack_generic(var/mob/user, var/damage)
+obj/machinery/door/blast/puzzle/attack_generic(var/mob/user, var/damage)
 	if(check_locks())
 		force_toggle(1, user)
 
-/obj/machinery/door/blast/puzzle/attack_alien(var/mob/user)
+obj/machinery/door/blast/puzzle/attack_alien(var/mob/user)
 	if(check_locks())
 		force_toggle(1, user)

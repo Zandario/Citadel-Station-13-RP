@@ -1,5 +1,5 @@
 
-/obj/machinery/microwave
+obj/machinery/microwave
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
@@ -26,7 +26,7 @@
 *   Initialising
 ********************/
 
-/obj/machinery/microwave/Initialize(mapload)
+obj/machinery/microwave/Initialize(mapload)
 	. = ..()
 	reagents = new/datum/reagents(100)
 	reagents.my_atom = src
@@ -55,7 +55,7 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(src.broken > 0)
 		if(src.broken == 2 && O.is_screwdriver()) // If it's broken and they're using a screwdriver
 			user.visible_message( \
@@ -156,11 +156,11 @@
 	..()
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/attack_ai(mob/user as mob)
+obj/machinery/microwave/attack_ai(mob/user as mob)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user))
 		attack_hand(user)
 
-/obj/machinery/microwave/attack_hand(mob/user, list/params)
+obj/machinery/microwave/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	interact(user)
 
@@ -168,7 +168,7 @@
 *   Microwave Menu
 ********************/
 
-/obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
+obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
 	var/dat = ""
 	if(src.broken > 0)
 		dat = {"<TT>Bzzzzttttt</TT>"}
@@ -236,7 +236,7 @@
 *   Microwave Menu Handling/Cooking
 ************************************/
 
-/obj/machinery/microwave/proc/cook()
+obj/machinery/microwave/proc/cook()
 	if(src.operating)
 		return // no food duplication!
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -329,7 +329,7 @@
 
 		return
 
-/obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
+obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
 	for (var/i=1 to seconds)
 		if (machine_stat & (NOPOWER|BROKEN))
 			return 0
@@ -337,7 +337,7 @@
 		sleep(10)
 	return 1
 
-/obj/machinery/microwave/proc/has_extra_item()
+obj/machinery/microwave/proc/has_extra_item()
 	for (var/obj/O in contents)
 		if ( \
 				!istype(O,/obj/item/reagent_containers/food) && \
@@ -346,24 +346,24 @@
 			return 1
 	return 0
 
-/obj/machinery/microwave/proc/start()
+obj/machinery/microwave/proc/start()
 	src.visible_message("<span class='notice'>The microwave turns on.</span>", "<span class='notice'>You hear a microwave.</span>")
 	src.operating = 1
 	src.icon_state = "mw1"
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/abort()
+obj/machinery/microwave/proc/abort()
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/stop()
+obj/machinery/microwave/proc/stop()
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/dispose(var/message = 1)
+obj/machinery/microwave/proc/dispose(var/message = 1)
 	for (var/atom/movable/A in contents)
 		A.forceMove(loc)
 	if (src.reagents.total_volume)
@@ -373,11 +373,11 @@
 		to_chat(usr, "<span class='notice'>You dispose of the microwave contents.</span>")
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/muck_start()
+obj/machinery/microwave/proc/muck_start()
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) // Play a splat sound
 	src.icon_state = "mwbloody1" // Make it look dirty!!
 
-/obj/machinery/microwave/proc/muck_finish()
+obj/machinery/microwave/proc/muck_finish()
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	src.visible_message("<span class='warning'>The microwave gets covered in muck!</span>")
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
@@ -386,7 +386,7 @@
 	src.operating = 0 // Turn it off again aferwards
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/broke()
+obj/machinery/microwave/proc/broke()
 	var/datum/effect_system/spark_spread/s = new
 	s.set_up(2, 1, src)
 	s.start()
@@ -397,7 +397,7 @@
 	src.operating = 0 // Turn it off again aferwards
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/fail()
+obj/machinery/microwave/proc/fail()
 	var/obj/item/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
 	for (var/obj/O in contents-ffuu)
@@ -412,7 +412,7 @@
 	ffuu.reagents.add_reagent("toxin", amount/10)
 	return ffuu
 
-/obj/machinery/microwave/Topic(href, href_list)
+obj/machinery/microwave/Topic(href, href_list)
 	if(..())
 		return
 
@@ -429,7 +429,7 @@
 			dispose()
 	return
 
-/obj/machinery/microwave/verb/Eject()
+obj/machinery/microwave/verb/Eject()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Eject content"
@@ -446,4 +446,3 @@
 	"<span class='notice'>You have opened [src] and taken out [english_list(contents)].</span>"
 	)
 	dispose()
-

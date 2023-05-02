@@ -4,7 +4,7 @@
 // Therefore that functionality is disabled for now.  But it can be turned on by uncommenting this.
 // #define FLOORBOT_PATCHES_HOLES 1
 
-/datum/category_item/catalogue/technology/bot/floorbot
+datum/category_item/catalogue/technology/bot/floorbot
 	name = "Bot - Floorbot"
 	desc = "The standard Floorbot is an oft forgotten automaton \
 	utilized by Engineering teams to help rapidly patch catastrophic \
@@ -12,7 +12,7 @@
 	by hand, Floorbots are most effectively deployed as force multipliers."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/bot/floorbot
+mob/living/bot/floorbot
 	name = "Floorbot"
 	desc = "A little floor repairing robot, it looks so excited!"
 	icon = 'icons/obj/bots/floorbots.dmi'
@@ -35,12 +35,12 @@
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 	skin = "blue" // Blue Toolbox is the default
 
-/mob/living/bot/floorbot/Initialize(mapload, new_skin)
+mob/living/bot/floorbot/Initialize(mapload, new_skin)
 	. = ..()
 	skin = new_skin
 	update_icon()
 
-/mob/living/bot/floorbot/update_icon()
+mob/living/bot/floorbot/update_icon()
 	. = ..()
 	cut_overlays()
 
@@ -59,13 +59,13 @@
 		add_overlay("[base_icon_state]-[on]")
 
 
-/mob/living/bot/floorbot/ui_interact(mob/user, datum/tgui/ui)
+mob/living/bot/floorbot/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Floorbot", name)
 		ui.open()
 
-/mob/living/bot/floorbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+mob/living/bot/floorbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["on"] = on
@@ -89,10 +89,10 @@
 
 	return data
 
-/mob/living/bot/floorbot/attack_hand(mob/user, list/params)
+mob/living/bot/floorbot/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/mob/living/bot/floorbot/emag_act(var/remaining_charges, var/mob/user)
+mob/living/bot/floorbot/emag_act(var/remaining_charges, var/mob/user)
 	. = ..()
 	if(!emagged)
 		emagged = TRUE
@@ -101,7 +101,7 @@
 			playsound(src.loc, 'sound/machines/buzzbeep.ogg', 50, FALSE)
 		return TRUE
 
-/mob/living/bot/floorbot/ui_act(action, list/params, datum/tgui/ui)
+mob/living/bot/floorbot/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -135,7 +135,7 @@
 			targetdirection = text2dir(params["dir"])
 			. = TRUE
 
-/mob/living/bot/floorbot/handleRegular()
+mob/living/bot/floorbot/handleRegular()
 	++tilemake
 	if(tilemake >= 100)
 		tilemake = 0
@@ -145,11 +145,11 @@
 		custom_emote(2, "makes an excited beeping sound!")
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, FALSE)
 
-/mob/living/bot/floorbot/handleAdjacentTarget()
+mob/living/bot/floorbot/handleAdjacentTarget()
 	if(get_turf(target) == src.loc)
 		UnarmedAttack(target)
 
-/mob/living/bot/floorbot/lookForTargets()
+mob/living/bot/floorbot/lookForTargets()
 	if(emagged) // Time to griff
 		for(var/turf/simulated/floor/D in view(src))
 			if(confirmTarget(D))
@@ -189,7 +189,7 @@
 				target = S
 				return
 
-/mob/living/bot/floorbot/confirmTarget(var/atom/A) // The fact that we do some checks twice may seem confusing but remember that the bot's settings may be toggled while it's moving and we want them to stop in that case
+mob/living/bot/floorbot/confirmTarget(var/atom/A) // The fact that we do some checks twice may seem confusing but remember that the bot's settings may be toggled while it's moving and we want them to stop in that case
 	if(!..())
 		return 0
 
@@ -222,7 +222,7 @@
 	var/turf/simulated/floor/T = A
 	return (istype(T) && (T.broken || T.burnt || (improvefloors && !T.flooring)) && (get_turf(T) == loc || prob(40)))
 
-/mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
+mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
 	if(!..())
 		return
 
@@ -316,7 +316,7 @@
 					M.use(1)
 					addTiles(4)
 
-/mob/living/bot/floorbot/explode()
+mob/living/bot/floorbot/explode()
 	turn_off()
 	visible_message("<span class='danger'>\The [src] blows apart!</span>")
 	playsound(src.loc, "sparks", 50, 1)
@@ -334,14 +334,14 @@
 	s.start()
 	qdel(src)
 
-/mob/living/bot/floorbot/proc/addTiles(var/am)
+mob/living/bot/floorbot/proc/addTiles(var/am)
 	amount += am
 	if(amount < 0)
 		amount = 0
 	else if(amount > maxAmount)
 		amount = maxAmount
 
-/mob/living/bot/floorbot/handlePanic()	// Speed modification based on alert level.
+mob/living/bot/floorbot/handlePanic()	// Speed modification based on alert level.
 	. = 0
 	switch(get_security_level())
 		if("green")
@@ -369,7 +369,7 @@
 
 /* Assembly */
 
-/obj/item/storage/toolbox/attackby(var/obj/item/stack/tile/floor/T, mob/living/user, params)
+obj/item/storage/toolbox/attackby(var/obj/item/stack/tile/floor/T, mob/living/user, params)
 	if(!istype(T, /obj/item/stack/tile/floor))
 		..()
 		return
@@ -403,7 +403,7 @@
 		to_chat(user, SPAN_WARNING("You need 10 floor tiles for a floorbot."))
 		return
 
-/obj/item/bot_assembly/floorbot
+obj/item/bot_assembly/floorbot
 	desc = "It's a toolbox with tiles sticking out the top"
 	name = "tiles and toolbox"
 	icon = 'icons/obj/bots/floorbots.dmi'
@@ -418,13 +418,13 @@
 	created_name = "Floorbot"
 	var/toolbox = /obj/item/storage/toolbox
 
-/obj/item/bot_assembly/floorbot/Initialize(mapload)
+obj/item/bot_assembly/floorbot/Initialize(mapload)
 	. = ..()
 	spawn(1)
 		icon_state = "[base_icon_state]-[skin]"
 		add_overlay("[base_icon_state]-tile")
 
-/obj/item/bot_assembly/floorbot/attackby(obj/item/W, mob/user, params)
+obj/item/bot_assembly/floorbot/attackby(obj/item/W, mob/user, params)
 	..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)

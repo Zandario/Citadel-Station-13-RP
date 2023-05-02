@@ -1,4 +1,4 @@
-/obj/structure/salvageable
+obj/structure/salvageable
 	name = "broken macninery"
 	desc = "Broken beyond repair, but looks like you can still salvage something from this if you had a prying implement."
 	icon = 'icons/obj/salvageable.dmi'
@@ -6,14 +6,14 @@
 	anchored = 1
 	var/salvageable_parts = list()
 
-/obj/structure/salvageable/proc/dismantle()
+obj/structure/salvageable/proc/dismantle()
 	new /obj/structure/frame (src.loc)
 	for(var/path in salvageable_parts)
 		if(prob(salvageable_parts[path]))
 			new path (loc)
 	return
 
-/obj/structure/salvageable/attackby(obj/item/I, mob/user)
+obj/structure/salvageable/attackby(obj/item/I, mob/user)
 	if(I.is_crowbar())
 		playsound(src, I.tool_sound, 50, 1)
 		var/actual_time = I.tool_speed * 170
@@ -31,7 +31,7 @@
 
 //Types themself, use them, but not the parent object
 
-/obj/structure/salvageable/machine
+obj/structure/salvageable/machine
 	name = "broken machine"
 	icon_state = "machine1"
 	salvageable_parts = list(
@@ -56,11 +56,11 @@
 		/obj/item/stock_parts/matter_bin/adv = 20
 	)
 
-/obj/structure/salvageable/machine/Initialize(mapload)
+obj/structure/salvageable/machine/Initialize(mapload)
 	. = ..()
 	icon_state = "machine[rand(0,6)]"
 
-/obj/structure/salvageable/computer
+obj/structure/salvageable/computer
 	name = "broken computer"
 	icon_state = "computer0"
 	salvageable_parts = list(
@@ -81,11 +81,11 @@
 		/obj/item/computer_hardware/network_card/advanced = 20
 	)
 
-/obj/structure/salvageable/computer/Initialize()
+obj/structure/salvageable/computer/Initialize()
 	. = ..()
 	icon_state = "computer[rand(0,7)]"
 
-/obj/structure/salvageable/autolathe
+obj/structure/salvageable/autolathe
 	name = "broken autolathe"
 	icon_state = "autolathe"
 	salvageable_parts = list(
@@ -117,7 +117,7 @@
 		/obj/item/stack/material/phoron{amount = 10} = 20
 	)
 
-/obj/structure/salvageable/implant_container
+obj/structure/salvageable/implant_container
 	name = "old container"
 	icon_state = "implant_container0"
 	salvageable_parts = list(
@@ -137,11 +137,11 @@
 		/obj/item/stack/material/silver{amount = 10} = 30
 	)
 
-/obj/structure/salvageable/implant_container/Initialize()
+obj/structure/salvageable/implant_container/Initialize()
 	. = ..()
 	icon_state = "implant_container[rand(0,1)]"
 
-/obj/structure/salvageable/data
+obj/structure/salvageable/data
 	name = "broken data storage"
 	icon_state = "data0"
 	salvageable_parts = list(
@@ -165,11 +165,11 @@
 		/obj/item/computer_hardware/network_card/advanced = 20
 	)
 
-/obj/structure/salvageable/data/Initialize()
+obj/structure/salvageable/data/Initialize()
 	. = ..()
 	icon_state = "data[rand(0,1)]"
 
-/obj/structure/salvageable/server
+obj/structure/salvageable/server
 	name = "broken server"
 	icon_state = "server0"
 	salvageable_parts = list(
@@ -195,11 +195,11 @@
 		/obj/item/computer_hardware/network_card/advanced = 20
 	)
 
-/obj/structure/salvageable/server/Initialize()
+obj/structure/salvageable/server/Initialize()
 	. = ..()
 	icon_state = "server[rand(0,1)]"
 
-/obj/structure/salvageable/personal
+obj/structure/salvageable/personal
 	name = "personal terminal"
 	icon_state = "personal0"
 	salvageable_parts = list(
@@ -220,12 +220,12 @@
 		/obj/item/computer_hardware/hard_drive/advanced = 40
 	)
 
-/obj/structure/salvageable/personal/Initialize()
+obj/structure/salvageable/personal/Initialize()
 	. = ..()
 	icon_state = "personal[rand(0,12)]"
 	new /obj/structure/table/reinforced (loc)
 
-/obj/structure/salvageable/bliss
+obj/structure/salvageable/bliss
 	name = "strange terminal"
 	icon_state = "bliss0"
 	salvageable_parts = list(
@@ -235,11 +235,11 @@
 		/obj/item/computer_hardware/hard_drive/cluster = 50
 	)
 
-/obj/structure/salvageable/bliss/Initialize()
+obj/structure/salvageable/bliss/Initialize()
 	. = ..()
 	icon_state = "bliss[rand(0,1)]"
 
-/obj/structure/salvageable/bliss/attackby(obj/item/I, mob/user)
+obj/structure/salvageable/bliss/attackby(obj/item/I, mob/user)
 	if((. = ..()))
 		playsound(src, 'sound/machines/deniedbeep.ogg', 60, 1)
 
@@ -247,7 +247,7 @@
 //// ONE STAR ////
 //////////////////
 
-/obj/structure/salvageable/machine_os
+obj/structure/salvageable/machine_os
 	name = "broken machine"
 	icon_state = "os-machine"
 	salvageable_parts = list(
@@ -265,7 +265,7 @@
 		/obj/item/stock_parts/matter_bin = 40
 	)
 
-/obj/structure/salvageable/computer_os
+obj/structure/salvageable/computer_os
 	name = "broken computer"
 	icon_state = "os-computer"
 	salvageable_parts = list(
@@ -281,7 +281,7 @@
 		/obj/item/computer_hardware/network_card/advanced = 40
 	)
 
-/obj/structure/salvageable/implant_container_os
+obj/structure/salvageable/implant_container_os
 	name = "old container"
 	icon_state = "os-container"
 	salvageable_parts = list(
@@ -296,7 +296,7 @@
 		/obj/item/implanter = 30
 	)
 
-/obj/structure/salvageable/data_os
+obj/structure/salvageable/data_os
 	name = "broken data storage"
 	icon_state = "os-data"
 	salvageable_parts = list(
@@ -311,7 +311,7 @@
 		/obj/item/computer_hardware/network_card/wired = 40
 	)
 
-/obj/structure/salvageable/server_os
+obj/structure/salvageable/server_os
 	name = "broken server"
 	icon_state = "os-server"
 	salvageable_parts = list(
@@ -335,7 +335,7 @@
 		/obj/item/computer_hardware/network_card/wired = 20
 	)
 
-/obj/structure/salvageable/console_os
+obj/structure/salvageable/console_os
 	name = "pristine console"
 	desc = "Despite being in pristine condition this console doesn't respond to anything, but looks like you can still salvage something from this."
 	icon_state = "os_console"
@@ -351,7 +351,7 @@
 		/obj/item/computer_hardware/network_card/advanced = 40
 	)
 
-/obj/structure/salvageable/console_broken_os
+obj/structure/salvageable/console_broken_os
 	name = "broken console"
 	icon_state = "os_console_broken"
 	salvageable_parts = list(

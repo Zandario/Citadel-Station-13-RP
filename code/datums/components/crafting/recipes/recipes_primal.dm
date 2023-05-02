@@ -1,4 +1,4 @@
-/datum/crafting_recipe/bonetalisman
+datum/crafting_recipe/bonetalisman
 	name = "Bone Talisman"
 	result = /obj/item/clothing/accessory/talisman
 	time = 20
@@ -7,7 +7,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bonecodpiece
+datum/crafting_recipe/bonecodpiece
 	name = "Skull Codpiece"
 	result = /obj/item/clothing/accessory/skullcodpiece
 	time = 20
@@ -16,7 +16,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bracers
+datum/crafting_recipe/bracers
 	name = "Bone Bracers"
 	result = /obj/item/clothing/gloves/bracer
 	time = 20
@@ -25,7 +25,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/goliathcloak
+datum/crafting_recipe/goliathcloak
 	name = "Goliath Cloak"
 	result = /obj/item/clothing/suit/storage/hooded/cloak/goliath
 	time = 50
@@ -34,7 +34,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/drakecloak
+datum/crafting_recipe/drakecloak
 	name = "Ash Drake Armour"
 	result = /obj/item/clothing/suit/storage/hooded/cloak/drake
 	time = 60
@@ -44,7 +44,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bonebag
+datum/crafting_recipe/bonebag
 	name = "Bone Satchel"
 	result = /obj/item/storage/backpack/satchel/bone
 	time = 30
@@ -53,7 +53,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bonespear
+datum/crafting_recipe/bonespear
 	name = "Bone Spear"
 	result = /obj/item/material/twohanded/spear/bone
 	time = 30
@@ -62,7 +62,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/boneaxe
+datum/crafting_recipe/boneaxe
 	name = "Bone Axe"
 	result = /obj/item/material/twohanded/fireaxe/bone
 	time = 50
@@ -71,7 +71,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bonesword
+datum/crafting_recipe/bonesword
 	name = "Bone Sword"
 	result = /obj/item/melee/ashlander
 	time = 100
@@ -81,7 +81,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bonesword_elder
+datum/crafting_recipe/bonesword_elder
 	name = "Bone Sword (Elder)"
 	result = /obj/item/melee/ashlander/elder
 	time = 100
@@ -92,21 +92,21 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/sinew_line
+datum/crafting_recipe/sinew_line
 	name = "Sinew Fishing Line Reel"
 	result = /obj/item/fishing_line/sinew
 	reqs = list(/obj/item/stack/sinew = 2)
 	time = 2 SECONDS
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/bone_hook
+datum/crafting_recipe/bone_hook
 	name = "Goliath Bone Hook"
 	result = /obj/item/fishing_hook/bone
 	reqs = list(/obj/item/stack/material/bone = 1)
 	time = 2 SECONDS
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/bone_rod
+datum/crafting_recipe/bone_rod
 	name = "Bone Fishing Rod"
 	result = /obj/item/fishing_rod/bone
 	time = 5 SECONDS
@@ -117,7 +117,7 @@
 	)
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/bonfire
+datum/crafting_recipe/bonfire
 	name = "Bonfire"
 	time = 60
 	reqs = list(/obj/item/stack/material/log = 5)
@@ -125,7 +125,7 @@
 	category = CAT_PRIMAL
 
 /* Commenting these out until we have decapitation on this server.
-/datum/crafting_recipe/headpike
+datum/crafting_recipe/headpike
 	name = "Spike Head (Glass Spear)"
 	time = 65
 	reqs = list(/obj/item/material/twohanded/spear = 1,
@@ -135,7 +135,7 @@
 	result = /obj/structure/headpike
 	category = CAT_PRIMAL
 
-/datum/crafting_recipe/headpikebone
+datum/crafting_recipe/headpikebone
 	name = "Spike Head (Bone Spear)"
 	time = 65
 	reqs = list(/obj/item/material/twohanded/spear/bone = 1,
@@ -146,7 +146,7 @@
 	category = CAT_PRIMAL
 */
 
-/datum/crafting_recipe/quiver
+datum/crafting_recipe/quiver
 	name = "Quiver"
 	result = /obj/item/storage/belt/quiver
 	time = 80
@@ -155,7 +155,7 @@
 	category = CAT_PRIMAL
 	always_available = TRUE
 
-/datum/crafting_recipe/quiver_ashlander
+datum/crafting_recipe/quiver_ashlander
 	name = "Ashlander Quiver"
 	result = /obj/item/storage/belt/quiver
 	time = 80
@@ -164,7 +164,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bone_bow
+datum/crafting_recipe/bone_bow
 	name = "Bone Bow"
 	result = /obj/item/gun/ballistic/bow/ashen
 	time = 120 // 80+120 = 200
@@ -174,7 +174,7 @@
 	always_available = FALSE
 
 /* Leaving this out until I decide to fuck with the recipe knowledge stuff.
-/datum/crafting_recipe/bow_tablet
+datum/crafting_recipe/bow_tablet
 	name = "Sandstone Bow Making Manual"
 	result = /obj/item/book/granter/crafting_recipe/bone_bow
 	time = 200 //Scribing // don't care
@@ -184,7 +184,7 @@
 	category = CAT_PRIMAL
 */
 
-/datum/crafting_recipe/rib
+datum/crafting_recipe/rib
 	name = "Collosal Rib"
 	//always_available = FALSE
 	reqs = list(
@@ -195,7 +195,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/skull
+datum/crafting_recipe/skull
 	name = "Skull Carving"
 	//always_available = FALSE
 	reqs = list(
@@ -206,7 +206,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/halfskull
+datum/crafting_recipe/halfskull
 	name = "Cracked Skull Carving"
 	//always_available = FALSE
 	reqs = list(
@@ -217,7 +217,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bonepickaxe
+datum/crafting_recipe/bonepickaxe
 	name = "Bone Pickaxe"
 	reqs = list(
             /obj/item/stack/material/bone = 3,
@@ -226,7 +226,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/boneshovel
+datum/crafting_recipe/boneshovel
 	name = "Serrated Bone Shovel"
 	reqs = list(
             /obj/item/stack/material/bone = 4,
@@ -235,7 +235,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bonehatchet
+datum/crafting_recipe/bonehatchet
 	name = "Bone Hatchet"
 	//always_available = FALSE
 	reqs = list(
@@ -246,7 +246,7 @@
 	always_available = FALSE
 
 //Surgical Tools - I've added these to this crafting menu after I found the sprites on Main and brought them over for the novelty.
-/datum/crafting_recipe/primalretractor
+datum/crafting_recipe/primalretractor
 	name = "Primitive Retractor"
 	//always_available = FALSE
 	reqs = list(
@@ -256,7 +256,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/primalhemostat
+datum/crafting_recipe/primalhemostat
 	name = "Primitive Hemostat"
 	//always_available = FALSE
 	reqs = list(
@@ -266,7 +266,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/primalcautery
+datum/crafting_recipe/primalcautery
 	name = "Primitive Cautery"
 	//always_available = FALSE
 	reqs = list(
@@ -277,7 +277,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/primalscalpel
+datum/crafting_recipe/primalscalpel
 	name = "Primitive Scalpel"
 	//always_available = FALSE
 	reqs = list(
@@ -288,7 +288,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/primalsaw
+datum/crafting_recipe/primalsaw
 	name = "Primitive Bone Saw"
 	//always_available = FALSE
 	reqs = list(
@@ -299,7 +299,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/primalsetter
+datum/crafting_recipe/primalsetter
 	name = "Primitive Bone Setter"
 	//always_available = FALSE
 	reqs = list(
@@ -309,7 +309,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bone_crowbar
+datum/crafting_recipe/bone_crowbar
 	name = "Primitive Crowbar"
 	result = /obj/item/tool/crowbar/bone
 	time = 50
@@ -318,7 +318,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bone_screwdriver
+datum/crafting_recipe/bone_screwdriver
 	name = "Primitive Screwdriver"
 	result = /obj/item/tool/screwdriver/bone
 	time = 50
@@ -328,7 +328,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bone_wrench
+datum/crafting_recipe/bone_wrench
 	name = "Primitive Wrench"
 	result = /obj/item/tool/wrench/bone
 	time = 50
@@ -338,7 +338,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bone_wirecutters
+datum/crafting_recipe/bone_wirecutters
 	name = "Primitive Wirecutters"
 	result = /obj/item/tool/wirecutters/bone
 	time = 50
@@ -348,7 +348,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bone_welder
+datum/crafting_recipe/bone_welder
 	name = "Primitive Welding Tool"
 	result = /obj/item/weldingtool/bone
 	time = 50
@@ -359,7 +359,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/munition_box
+datum/crafting_recipe/munition_box
 	name = "Primitive Munitions Box"
 	result = /obj/item/storage/box/munition_box/empty
 	time = 40
@@ -370,7 +370,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/powder_horn
+datum/crafting_recipe/powder_horn
 	name = "Bone Powder Horn"
 	result = /obj/item/reagent_containers/glass/powder_horn/tribal
 	time = 40
@@ -380,7 +380,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/saddle_shank
+datum/crafting_recipe/saddle_shank
 	name = "Saddle (Goliath Hide)"
 	result = /obj/item/saddle/shank
 	time = 60
@@ -391,7 +391,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/saddle_stormdrifter
+datum/crafting_recipe/saddle_stormdrifter
 	name = "Saddle (Harness and Gondola)"
 	result = /obj/item/saddle/stormdrifter
 	time = 60
@@ -403,7 +403,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/stone_mortar
+datum/crafting_recipe/stone_mortar
 	name = "Stone Mortar"
 	result = /obj/item/reagent_containers/glass/stone
 	time = 40
@@ -413,7 +413,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/blessed_boat
+datum/crafting_recipe/blessed_boat
 	name = "Blessed Boat"
 	result = /obj/vehicle/ridden/boat/ashlander
 	time = 500
@@ -425,7 +425,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/blessed_oar
+datum/crafting_recipe/blessed_oar
 	name = "Blessed Boat"
 	result = /obj/item/oar/ashlander
 	time = 50
@@ -437,7 +437,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/goliath_curtain
+datum/crafting_recipe/goliath_curtain
 	name = "Goliath hide curtain"
 	result = /obj/structure/curtain/ashlander
 	time = 20
@@ -447,7 +447,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/alchemy_station
+datum/crafting_recipe/alchemy_station
 	name = "Basic Alchemical Station"
 	result = /obj/machinery/reagentgrinder/ashlander
 	time = 120
@@ -459,7 +459,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/calcinator
+datum/crafting_recipe/calcinator
 	name = "Calcinator"
 	result = /obj/structure/ashlander/calcinator
 	time = 60
@@ -470,7 +470,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/cooking_spit
+datum/crafting_recipe/cooking_spit
 	name = "Cooking Spit"
 	result = /obj/machinery/appliance/cooker/grill/spit
 	time = 200
@@ -481,7 +481,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/stone_dropper
+datum/crafting_recipe/stone_dropper
 	name = "Stone Dropper"
 	result = /obj/item/reagent_containers/dropper/ashlander
 	time = 40
@@ -491,7 +491,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/goliath_gloves
+datum/crafting_recipe/goliath_gloves
 	name = "Goliath Hide Gloves"
 	result = /obj/item/clothing/gloves/goliath
 	time = 20
@@ -500,7 +500,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/tying_post
+datum/crafting_recipe/tying_post
 	name = "Bone Tying Post"
 	result = /obj/structure/bed/chair/post
 	time = 60
@@ -510,7 +510,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/goliath_mining_satchel
+datum/crafting_recipe/goliath_mining_satchel
 	name = "Goliath Hide Mining Satchel"
 	result = /obj/item/storage/bag/ore/ashlander
 	time = 20
@@ -521,7 +521,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/ashlander_armor
+datum/crafting_recipe/ashlander_armor
 	name = "Ashen Lamellar Panoply"
 	result = /obj/item/clothing/suit/armor/ashlander
 	time = 120
@@ -532,7 +532,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/ashlander_helmet
+datum/crafting_recipe/ashlander_helmet
 	name = "Ashen Lamellar Helmet"
 	result = /obj/item/clothing/head/helmet/ashlander
 	time = 100
@@ -543,7 +543,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/ashlander_tunic
+datum/crafting_recipe/ashlander_tunic
 	name = "Coarse Tunic"
 	result = /obj/item/clothing/under/tribal_tunic/ashlander
 	time = 60
@@ -552,7 +552,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/ashlander_tunic_fem
+datum/crafting_recipe/ashlander_tunic_fem
 	name = "Coarse Tunic (female)"
 	result = /obj/item/clothing/under/tribal_tunic_fem/ashlander
 	time = 60
@@ -561,7 +561,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/goliath_plant_bag
+datum/crafting_recipe/goliath_plant_bag
 	name = "Goliath Hide Plant Bag"
 	result = /obj/item/storage/bag/plants/ashlander
 	time = 20
@@ -572,7 +572,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/goliath_halfcloak
+datum/crafting_recipe/goliath_halfcloak
 	name = "Goliath Hide Half Cloak"
 	result = /obj/item/clothing/accessory/poncho/rough_cloak/ashlander
 	time = 50
@@ -581,7 +581,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/sand_whetstone
+datum/crafting_recipe/sand_whetstone
 	name = "Ashen Whetstone"
 	result = /obj/item/whetstone/ashlander
 	time = 30
@@ -590,7 +590,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/ashen_vestment
+datum/crafting_recipe/ashen_vestment
 	name = "Ashen Vestments"
 	result = /obj/item/clothing/suit/ashen_vestment
 	time = 20
@@ -600,7 +600,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/ashen_tabard
+datum/crafting_recipe/ashen_tabard
 	name = "Ashen Tabard"
 	result = /obj/item/clothing/suit/ashen_tabard
 	time = 20
@@ -610,7 +610,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/heaven_shaker
+datum/crafting_recipe/heaven_shaker
 	name = "Heaven Shaker"
 	result = /obj/item/grenade/explosive/ashlander
 	time = 300
@@ -620,7 +620,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/heaven_shaker_frag
+datum/crafting_recipe/heaven_shaker_frag
 	name = "Heaven Shaker (fragmentation)"
 	result = /obj/item/grenade/explosive/ashlander/fragmentation
 	time = 300
@@ -631,7 +631,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/goliathcowl
+datum/crafting_recipe/goliathcowl
 	name = "Goliath Hide Cowl"
 	result = /obj/item/clothing/head/cowl/goliath
 	time = 30
@@ -640,7 +640,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/primitive_splint
+datum/crafting_recipe/primitive_splint
 	name = "Primitive Splints"
 	result = /obj/item/stack/medical/splint/primitive
 	time = 50
@@ -649,7 +649,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/bone_pipe
+datum/crafting_recipe/bone_pipe
 	name = "Bone Pipe"
 	result = /obj/item/clothing/mask/smokable/pipe/bonepipe
 	time = 30
@@ -658,7 +658,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/spark_striker
+datum/crafting_recipe/spark_striker
 	name = "Spark Striker"
 	result = /obj/item/flame/lighter/ashlander
 	time = 30
@@ -669,7 +669,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/skull_mask
+datum/crafting_recipe/skull_mask
 	name = "Bone Mask (Skull)"
 	result = /obj/item/clothing/mask/skull
 	time = 20
@@ -678,7 +678,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/alchemy_bandolier
+datum/crafting_recipe/alchemy_bandolier
 	name = "Alchemy Bandolier"
 	result = /obj/item/clothing/accessory/storage/ashlander_alchemy
 	time = 40
@@ -688,7 +688,7 @@
 	category = CAT_PRIMAL
 	always_available = FALSE
 
-/datum/crafting_recipe/ashlander_sandals
+datum/crafting_recipe/ashlander_sandals
 	name = "Leather Sandals"
 	result = /obj/item/clothing/shoes/ashwalker
 	time = 20
@@ -697,7 +697,7 @@
 	always_available = FALSE
 
 //Make this one cloth once I give Ashies a cloth plant? If I do??
-/datum/crafting_recipe/ashlander_wraps
+datum/crafting_recipe/ashlander_wraps
 	name = "Hide Footwraps"
 	result = /obj/item/clothing/shoes/footwraps
 	time = 10

@@ -5,7 +5,7 @@
 //conveyor2 is pretty much like the original, except it supports corners, but not diverters.
 //note that corner pieces transfer stuff clockwise when running forward, and anti-clockwise backwards.
 
-/obj/machinery/conveyor
+obj/machinery/conveyor
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor0"
 	name = "conveyor belt"
@@ -26,11 +26,11 @@
 
 	var/id = ""			// the control ID	- must match controller ID
 
-/obj/machinery/conveyor/centcom_auto
+obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
 
 	// create a conveyor
-/obj/machinery/conveyor/Initialize(mapload, newdir, on = 0)
+obj/machinery/conveyor/Initialize(mapload, newdir, on = 0)
 	. = ..()
 	if(newdir)
 		setDir(newdir)
@@ -49,7 +49,7 @@
 	component_parts += new /obj/item/stack/cable_coil(src,5)
 	RefreshParts()
 
-/obj/machinery/conveyor/proc/setmove()
+obj/machinery/conveyor/proc/setmove()
 	if(operating == FORWARDS)
 		movedir = forwards
 	else if(operating == BACKWARDS)
@@ -58,21 +58,21 @@
 		operating = OFF
 	update()
 
-/obj/machinery/conveyor/setDir()
+obj/machinery/conveyor/setDir()
 	. =..()
 	update_dir()
 
-/obj/machinery/conveyor/Crossed(atom/movable/AM)
+obj/machinery/conveyor/Crossed(atom/movable/AM)
 	. = ..()
 	if(operating)
 		AM.set_glide_size(conveyor_glide_size)
 
-/obj/machinery/conveyor/Uncrossed(atom/movable/AM)
+obj/machinery/conveyor/Uncrossed(atom/movable/AM)
 	. = ..()
 	if(operating)
 		AM.reset_glide_size()
 
-/obj/machinery/conveyor/proc/update_dir()
+obj/machinery/conveyor/proc/update_dir()
 	if(!(dir in GLOB.cardinal)) // Diagonal. Forwards is *away* from dir, curving to the right.
 		forwards = turn(dir, 135)
 		backwards = turn(dir, 45)
@@ -80,7 +80,7 @@
 		forwards = dir
 		backwards = turn(dir, 180)
 
-/obj/machinery/conveyor/proc/update()
+obj/machinery/conveyor/proc/update()
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = OFF
@@ -96,7 +96,7 @@
 
 	// machine process
 	// move items to the target location
-/obj/machinery/conveyor/process(delta_time)
+obj/machinery/conveyor/process(delta_time)
 	if(machine_stat & (BROKEN | NOPOWER))
 		return
 	if(!operating)
@@ -105,7 +105,7 @@
 	var/list/affecting = loc.contents - src		// moved items will be all in loc
 	addtimer(CALLBACK(src, .proc/convey, affecting), 1)
 
-/obj/machinery/conveyor/proc/convey(list/affecting)
+obj/machinery/conveyor/proc/convey(list/affecting)
 	var/turf/T = get_step(src, movedir)
 	if(!T)
 		return
@@ -126,7 +126,7 @@
 */
 
 // attack with item, place item on conveyor
-/obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
+obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	if(default_deconstruction_crowbar(user, I))
@@ -150,7 +150,7 @@
 	return ..()
 
 // attack with hand, move pulled object onto conveyor
-/obj/machinery/conveyor/attack_hand(mob/user, list/params)
+obj/machinery/conveyor/attack_hand(mob/user, list/params)
 	if(!CHECK_ALL_MOBILITY(user, MOBILITY_CAN_MOVE | MOBILITY_CAN_USE))
 		return
 	if(isnull(user.pulling) || user.pulling.anchored)
@@ -168,7 +168,7 @@
 
 // make the conveyor broken
 // also propagate inoperability to any connected conveyor with the same ID
-/obj/machinery/conveyor/proc/broken()
+obj/machinery/conveyor/proc/broken()
 	machine_stat |= BROKEN
 	update()
 
@@ -183,7 +183,7 @@
 
 //set the operable var if ID matches, propagating in the given direction
 
-/obj/machinery/conveyor/proc/set_operable(stepdir, match_id, op)
+obj/machinery/conveyor/proc/set_operable(stepdir, match_id, op)
 
 	if(id != match_id)
 		return
@@ -194,7 +194,7 @@
 	if(C)
 		C.set_operable(stepdir, id, op)
 
-/obj/machinery/conveyor/power_change()
+obj/machinery/conveyor/power_change()
 	..()
 	update()
 
@@ -202,7 +202,7 @@
 //
 //
 
-/obj/machinery/conveyor_switch
+obj/machinery/conveyor_switch
 
 	name = "conveyor switch"
 	desc = "A conveyor control switch."
@@ -219,12 +219,12 @@
 
 
 
-/obj/machinery/conveyor_switch/Initialize(mapload)
+obj/machinery/conveyor_switch/Initialize(mapload)
 	. = ..()
 	update()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/conveyor_switch/LateInitialize()
+obj/machinery/conveyor_switch/LateInitialize()
 	conveyors = list()
 	for(var/obj/machinery/conveyor/C in GLOB.machines)
 		if(C.id == id)
@@ -232,7 +232,7 @@
 
 // update the icon depending on the position
 
-/obj/machinery/conveyor_switch/proc/update()
+obj/machinery/conveyor_switch/proc/update()
 	if(position<0)
 		icon_state = "switch-rev"
 	else if(position>0)
@@ -244,7 +244,7 @@
 // timed process
 // if the switch changed, update the linked conveyors
 
-/obj/machinery/conveyor_switch/process(delta_time)
+obj/machinery/conveyor_switch/process(delta_time)
 	if(!operated)
 		return
 	operated = 0
@@ -254,7 +254,7 @@
 		C.setmove()
 
 // attack with hand, switch position
-/obj/machinery/conveyor_switch/attack_hand(mob/user, list/params)
+obj/machinery/conveyor_switch/attack_hand(mob/user, list/params)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
@@ -279,7 +279,7 @@
 			S.position = position
 			S.update()
 
-/obj/machinery/conveyor_switch/attackby(var/obj/item/I, mob/user)
+obj/machinery/conveyor_switch/attackby(var/obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
@@ -310,12 +310,12 @@
 					conveyors += C
 			return
 
-/obj/machinery/conveyor_switch/oneway
+obj/machinery/conveyor_switch/oneway
 	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)
 	desc = "A conveyor control switch. It appears to only go in one direction."
 
 // attack with hand, switch position
-/obj/machinery/conveyor_switch/oneway/attack_hand(mob/user, list/params)
+obj/machinery/conveyor_switch/oneway/attack_hand(mob/user, list/params)
 	if(position == 0)
 		position = convdir
 	else

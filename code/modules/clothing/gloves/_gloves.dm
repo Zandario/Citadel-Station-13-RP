@@ -1,5 +1,5 @@
 //Gloves
-/obj/item/clothing/gloves
+obj/item/clothing/gloves
 	name = "gloves"
 	item_icons = list(
 		SLOT_ID_LEFT_HAND = 'icons/mob/items/lefthand_gloves.dmi',
@@ -26,11 +26,11 @@
 	unequip_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
-/obj/item/clothing/gloves/get_fibers()
+obj/item/clothing/gloves/get_fibers()
 	return "material from a pair of [name]."
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
-/obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
+obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
 	return 0 // return 1 to cancel attack_hand()
 
 /*/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
@@ -52,7 +52,7 @@
 		return
 */
 
-/obj/item/clothing/gloves/equip_worn_over_check(mob/M, slot, mob/user, obj/item/I, flags)
+obj/item/clothing/gloves/equip_worn_over_check(mob/M, slot, mob/user, obj/item/I, flags)
 	if(slot != SLOT_ID_GLOVES)
 		return FALSE
 
@@ -62,7 +62,7 @@
 
 	return G.glove_level < glove_level
 
-/obj/item/clothing/gloves/equip_on_worn_over_insert(mob/M, slot, mob/user, obj/item/I, flags)
+obj/item/clothing/gloves/equip_on_worn_over_insert(mob/M, slot, mob/user, obj/item/I, flags)
 	. = ..()
 
 	if(!istype(I, /obj/item/clothing/gloves))
@@ -75,7 +75,7 @@
 
 	punch_force += G.punch_force
 
-/obj/item/clothing/gloves/equip_on_worn_over_remove(mob/M, slot, mob/user, obj/item/I, flags)
+obj/item/clothing/gloves/equip_on_worn_over_remove(mob/M, slot, mob/user, obj/item/I, flags)
 	. = ..()
 
 	if(!istype(I, /obj/item/clothing/gloves))
@@ -88,11 +88,11 @@
 
 	punch_force -= G.punch_force
 
-/obj/item/clothing/gloves
+obj/item/clothing/gloves
 	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?
 	var/special_attack_type = null
 
-/obj/item/clothing/gloves/Initialize(mapload)
+obj/item/clothing/gloves/Initialize(mapload)
 	. = ..()
 	if(special_attack_type && ispath(special_attack_type))
 		special_attack = new special_attack_type

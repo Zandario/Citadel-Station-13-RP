@@ -2,7 +2,7 @@
  * Donut Box
  */
 
-/obj/item/storage/box/donut
+obj/item/storage/box/donut
 	icon = 'icons/obj/food.dmi'
 	icon_state = "donutbox"
 	name = "donut box"
@@ -11,21 +11,21 @@
 	foldable = /obj/item/stack/material/cardboard
 	starts_with = list(/obj/item/reagent_containers/food/snacks/donut/normal = 6)
 
-/obj/item/storage/box/donut/Initialize(mapload)
+obj/item/storage/box/donut/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/storage/box/donut/update_icon()
+obj/item/storage/box/donut/update_icon()
 	cut_overlays()
 	var/i = 0
 	for(var/obj/item/reagent_containers/food/snacks/donut/D in contents)
 		add_overlay("[i][D.overlay_state]")
 		i++
 
-/obj/item/storage/box/donut/empty
+obj/item/storage/box/donut/empty
 	empty = TRUE
 
-/obj/item/storage/box/wormcan
+obj/item/storage/box/wormcan
 	icon = 'icons/obj/food.dmi'
 	icon_state = "wormcan"
 	name = "can of worms"
@@ -38,38 +38,38 @@
 	)
 	starts_with = list(/obj/item/reagent_containers/food/snacks/worm = 6)
 
-/obj/item/storage/box/wormcan/Initialize(mapload)
+obj/item/storage/box/wormcan/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/storage/box/wormcan/update_icon(var/itemremoved = 0)
+obj/item/storage/box/wormcan/update_icon(var/itemremoved = 0)
 	if (contents.len == 0)
 		icon_state = "wormcan_empty"
 
-/obj/item/storage/box/wormcan/sickly
+obj/item/storage/box/wormcan/sickly
 	icon_state = "wormcan_sickly"
 	name = "can of sickly worms"
 	desc = "You probably don't want to open this can of worms."
 	max_storage_space = ITEMSIZE_COST_TINY * 6
 	starts_with = list(/obj/item/reagent_containers/food/snacks/wormsickly = 6)
 
-/obj/item/storage/box/wormcan/sickly/update_icon(var/itemremoved = 0)
+obj/item/storage/box/wormcan/sickly/update_icon(var/itemremoved = 0)
 	if (contents.len == 0)
 		icon_state = "wormcan_empty_sickly"
 
-/obj/item/storage/box/wormcan/deluxe
+obj/item/storage/box/wormcan/deluxe
 	icon_state = "wormcan_deluxe"
 	name = "can of deluxe worms"
 	desc = "You absolutely want to open this can of worms."
 	max_storage_space = ITEMSIZE_COST_TINY * 6
 	starts_with = list(/obj/item/reagent_containers/food/snacks/wormdeluxe = 6)
 
-/obj/item/storage/box/wormcan/deluxe/update_icon(var/itemremoved = 0)
+obj/item/storage/box/wormcan/deluxe/update_icon(var/itemremoved = 0)
 	if (contents.len == 0)
 		icon_state = "wormcan_empty_deluxe"
 
 //Snowflake Survival Knife Code
-/obj/item/storage/box/survival_knife
+obj/item/storage/box/survival_knife
 	name = "survival knife"
 	desc = "A hunting grade survival knife. The handle is hollow and may be unscrewed to store small survival items."
 	icon = 'icons/obj/kitchen.dmi'
@@ -91,7 +91,7 @@
 		)
 	starts_with = list(/obj/item/pen/crayon/chalk, /obj/item/reagent_containers/pill/nutriment, /obj/item/gps/survival)
 
-/obj/item/storage/box/papersack
+obj/item/storage/box/papersack
 	name = "paper sack"
 	desc = "A sack neatly crafted out of paper."
 	icon_state = "paperbag_None"
@@ -100,7 +100,7 @@
 	/// A list of all available papersack reskins
 	var/list/papersack_designs = list()
 
-/obj/item/storage/box/papersack/Initialize(mapload)
+obj/item/storage/box/papersack/Initialize(mapload)
 	. = ..()
 	papersack_designs = sortList(list(
 		"None" = image(icon = src.icon, icon_state = "paperbag_None"),
@@ -110,14 +110,14 @@
 		"SmileyFace" = image(icon = src.icon, icon_state = "paperbag_SmileyFace")
 		))
 
-/obj/item/storage/box/papersack/update_icon_state()
+obj/item/storage/box/papersack/update_icon_state()
 	. = ..()
 	if(contents.len == 0)
 		icon_state = "[item_state]"
 	else
 		icon_state = "[item_state]_closed"
 
-/obj/item/storage/box/papersack/attackby(obj/item/W, mob/user, params)
+obj/item/storage/box/papersack/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen))
 		var/choice = show_radial_menu(user, src , papersack_designs, custom_check = CALLBACK(src, .proc/check_menu, user, W), radius = 36, require_near = TRUE)
 		if(!choice)
@@ -162,7 +162,7 @@
   * * user The mob interacting with a menu
   * * P The pen used to interact with a menu
   */
-/obj/item/storage/box/papersack/proc/check_menu(mob/user, obj/item/pen/P)
+obj/item/storage/box/papersack/proc/check_menu(mob/user, obj/item/pen/P)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated())
@@ -176,7 +176,7 @@
 	return TRUE
 
 //Ashlander Ammo Box - Exists mostly for ease of equipment @ spawn.
-/obj/item/storage/box/munition_box
+obj/item/storage/box/munition_box
 	name = "munition box (musket)"
 	desc = "A tanned leather pouch large enough to hold a few loose musket balls."
 	icon_state = "musket_box"
@@ -187,5 +187,5 @@
 		)
 	starts_with = list(/obj/item/ammo_casing/musket = 6)
 
-/obj/item/storage/box/munition_box/empty
+obj/item/storage/box/munition_box/empty
 	starts_with = list()

@@ -1,4 +1,4 @@
-/datum/asset/simple/headers
+datum/asset/simple/headers
 	assets = list(
 		"alarm_green.gif" = 'icons/program_icons/alarm_green.gif',
 		"alarm_red.gif" = 'icons/program_icons/alarm_red.gif',

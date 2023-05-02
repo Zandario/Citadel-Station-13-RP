@@ -14,7 +14,7 @@
  * - clickchain_flags - see [code/__DEFINES/procs/clickcode.dm]
  * - params - params as list.
  */
-/obj/item/proc/melee_attack_chain(atom/target, mob/user, clickchain_flags, list/params)
+obj/item/proc/melee_attack_chain(atom/target, mob/user, clickchain_flags, list/params)
 	// wow we have a lot of params
 	// if only this was ss14 so we could have the EntityEventArgs :pleading:
 
@@ -45,7 +45,7 @@
  * - clickchain_flags - see [code/__DEFINES/procs/clickcode.dm]
  * - params - params as list.
  */
-/obj/item/proc/ranged_attack_chain(atom/target, mob/user, clickchain_flags, list/params)
+obj/item/proc/ranged_attack_chain(atom/target, mob/user, clickchain_flags, list/params)
 	. = clickchain_flags
 
 	// todo: NO. MORE. LIST. PARAMS. WHY. ARE. WE. UNPACKING. THE. LIST. MULTIPLE. TIMES?
@@ -58,7 +58,7 @@
  * Called when trying to click something that the user can Reachability() to,
  * to allow for the tool system to intercept the attack as a tool action.
  */
-/obj/item/proc/tool_attack_chain(atom/target, mob/user, clickchain_flags, list/params)
+obj/item/proc/tool_attack_chain(atom/target, mob/user, clickchain_flags, list/params)
 	// are we on harm intent? if so, lol no
 	if(user && (user.a_intent == INTENT_HARM))
 		return NONE
@@ -76,7 +76,7 @@
  *
  * @return clickchain flags to add, halting the chain if CLICKCHAIN_DO_NOT_PROPAGATE is returned
  */
-/obj/item/proc/pre_attack(atom/target, mob/user, clickchain_flags, list/params)
+obj/item/proc/pre_attack(atom/target, mob/user, clickchain_flags, list/params)
 	// todo: signal
 	return NONE
 
@@ -108,7 +108,7 @@
  * * target_zone - zone to target
  * * intent - action intent to use
  */
-/obj/item/proc/standard_melee_attack(atom/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
+obj/item/proc/standard_melee_attack(atom/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
 	// too complciated to be put in proc header
 	if(isnull(target_zone))
 		target_zone = user.zone_sel?.selecting
@@ -147,7 +147,7 @@
  *
  * @return clickchain flags to append
  */
-/obj/item/proc/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
+obj/item/proc/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
 	PROTECTED_PROC(TRUE)	// route via standard_melee_attack please.
 	// too complciated to be put in proc header
 	if(isnull(target_zone))
@@ -202,7 +202,7 @@
  * * target_zone - zone that user tried to target
  * * intent - action intent that was attempted
  */
-/obj/item/proc/melee_mob_miss(mob/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
+obj/item/proc/melee_mob_miss(mob/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
 	// too complciated to be put in proc header
 	if(isnull(target_zone))
 		target_zone = user.zone_sel?.selecting
@@ -235,7 +235,7 @@
  * * target_zone - zone to target
  * * intent - action intent to use
  */
-/obj/item/proc/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
+obj/item/proc/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
 	SHOULD_CALL_PARENT(TRUE)
 	// too complciated to be put in proc header
 	if(isnull(target_zone))
@@ -292,7 +292,7 @@
  *
  * @return clickchain flags to append
  */
-/obj/item/proc/finalize_mob_melee(mob/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
+obj/item/proc/finalize_mob_melee(mob/target, mob/user, clickchain_flags, list/params, mult = 1, target_zone, intent)
 	// too complciated to be put in proc header
 	if(isnull(target_zone))
 		target_zone = user.zone_sel?.selecting
@@ -313,7 +313,7 @@
  *
  * @return clickchain flags to append
  */
-/obj/item/proc/attack_object(atom/target, mob/user, clickchain_flags, list/params)
+obj/item/proc/attack_object(atom/target, mob/user, clickchain_flags, list/params)
 	PROTECTED_PROC(TRUE)	// route via standard_melee_attack please.
 	if((item_flags & ITEM_CAREFUL_BLUDGEON) && user.a_intent == INTENT_HELP)
 		user.action_feedback(SPAN_WARNING("You refrain from hitting [target] because your intent is set to help."), src)
@@ -335,7 +335,7 @@
  * * params - list of click params
  * * mult - damage multiplier
  */
-/obj/item/proc/melee_object_hit(atom/target, mob/user, clickchain_flags, list/params, mult = 1)
+obj/item/proc/melee_object_hit(atom/target, mob/user, clickchain_flags, list/params, mult = 1)
 	SHOULD_CALL_PARENT(TRUE)
 	return NONE
 
@@ -352,5 +352,5 @@
  *
  * @return clickchain flags to append
  */
-/obj/item/proc/finalize_object_melee(atom/target, mob/user, clickchain_flags, list/params, mult = 1)
+obj/item/proc/finalize_object_melee(atom/target, mob/user, clickchain_flags, list/params, mult = 1)
 	return NONE

@@ -1,11 +1,11 @@
-/datum/progressbar
+datum/progressbar
 	var/goal = 1
 	var/image/bar
 	var/shown = 0
 	var/mob/user
 	var/client/client
 
-/datum/progressbar/New(mob/user, goal_number, atom/target)
+datum/progressbar/New(mob/user, goal_number, atom/target)
 	. = ..()
 	if(!target)
 		target = user
@@ -21,7 +21,7 @@
 	if(user)
 		client = user.client
 
-/datum/progressbar/Destroy()
+datum/progressbar/Destroy()
 	if (client)
 		client.images -= bar
 	QDEL_NULL(bar)
@@ -29,7 +29,7 @@
 	client = null
 	return ..()
 
-/datum/progressbar/proc/update(progress)
+datum/progressbar/proc/update(progress)
 	//to_chat(world, "Update [progress] - [goal] - [(progress / goal)] - [((progress / goal) * 100)] - [round(((progress / goal) * 100), 5)]")
 	if (!user || !user.client)
 		shown = 0

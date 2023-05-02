@@ -1,4 +1,4 @@
-/datum/power/changeling/panacea
+datum/power/changeling/panacea
 	name = "Anatomic Panacea"
 	desc = "Expels impurifications from our form; curing diseases, removing toxins, chemicals, radiation, and resetting our genetic code completely."
 	helptext = "Can be used while unconscious.  This will also purge any reagents inside ourselves, both harmful and beneficial."
@@ -8,7 +8,7 @@
 	verbpath = /mob/proc/changeling_panacea
 
 //Heals the things that the other regenerative abilities don't.
-/mob/proc/changeling_panacea()
+mob/proc/changeling_panacea()
 	set category = "Changeling"
 	set name = "Anatomic Panacea (20)"
 	set desc = "Clense ourselves of impurities."

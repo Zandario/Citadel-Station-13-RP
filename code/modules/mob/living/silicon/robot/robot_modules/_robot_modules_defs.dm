@@ -12,7 +12,7 @@
 #define MATTER_SYNTH(K,T,V...) .[K] = new /datum/matter_synth/##T (V)
 #define CYBORG_STACK(T,K) do { var/obj/item/stack/S = new /obj/item/stack/##T(src); S.synths = __cyborg_stack_map(K); . += S } while (FALSE)
 
-/obj/item/robot_module/proc/__cyborg_stack_map(list/targets)
+obj/item/robot_module/proc/__cyborg_stack_map(list/targets)
 	if (!islist(targets))
 		targets = list(targets)
 	. = list()

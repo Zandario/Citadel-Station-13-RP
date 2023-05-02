@@ -56,7 +56,7 @@ var/list/department_radio_keys = list(
 
 
 var/list/channel_to_radio_key = new
-/proc/get_radio_key_from_channel(channel)
+proc/get_radio_key_from_channel(channel)
 	var/key = channel_to_radio_key[channel]
 	if(!key)
 		for(var/radio_key in department_radio_keys)
@@ -69,7 +69,7 @@ var/list/channel_to_radio_key = new
 
 	return key
 
-/mob/living/proc/binarycheck()
+mob/living/proc/binarycheck()
 
 	if (istype(src, /mob/living/silicon/pai))
 		return
@@ -87,12 +87,12 @@ var/list/channel_to_radio_key = new
 		if(!istype(dongle)) return
 		if(dongle.translate_binary) return 1
 
-/mob/living/proc/get_default_language()
+mob/living/proc/get_default_language()
 	return default_language
 
 //Takes a list of the form list(message, verb, whispering) and modifies it as needed
 //Returns 1 if a speech problem was applied, 0 otherwise
-/mob/living/proc/handle_speech_problems(var/list/message_data)
+mob/living/proc/handle_speech_problems(var/list/message_data)
 	var/message = message_data[1]
 	var/verb = message_data[2]
 	var/whispering = message_data[3]
@@ -126,27 +126,27 @@ var/list/channel_to_radio_key = new
 	message_data[2] = verb
 	message_data[3] = whispering
 
-/mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	if(message_mode == "intercom")
 		for(var/obj/item/radio/intercom/I in view(1, null))
 			I.talk_into(src, message, verb, speaking)
 			used_radios += I
 	return 0
 
-/mob/living/proc/handle_speech_sound()
+mob/living/proc/handle_speech_sound()
 	var/list/returns[2]
 	returns[1] = null
 	returns[2] = null
 	return returns
 
-/mob/living/proc/get_speech_ending(verb, var/ending)
+mob/living/proc/get_speech_ending(verb, var/ending)
 	if(ending=="!")
 		return pick("exclaims","shouts","yells")
 	if(ending=="?")
 		return "asks"
 	return verb
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
+mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
 		if(message)
@@ -443,7 +443,7 @@ var/list/channel_to_radio_key = new
 		log_say(message, src)
 	return 1
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
+mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	var/turf/T = get_turf(src)
 	//We're in something, gesture to people inside the same thing
 	if(loc != T)
@@ -463,11 +463,11 @@ var/list/channel_to_radio_key = new
 			O.hear_signlang(message, verb, language, src)
 	return 1
 
-/obj/effect/speech_bubble
+obj/effect/speech_bubble
 	var/mob/parent
 
-/mob/living/proc/GetVoice()
+mob/living/proc/GetVoice()
 	return name
 
-/mob/proc/speech_bubble_appearance()
+mob/proc/speech_bubble_appearance()
 	return "normal"

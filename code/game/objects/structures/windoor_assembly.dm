@@ -9,7 +9,7 @@
  */
 
 
-/obj/structure/windoor_assembly
+obj/structure/windoor_assembly
 	name = "windoor assembly"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "l_windoor_assembly01"
@@ -28,12 +28,12 @@
 	var/state = "01"	//How far the door assembly has progressed in terms of sprites
 	var/step = null		//How far the door assembly has progressed in terms of steps
 
-/obj/structure/windoor_assembly/secure
+obj/structure/windoor_assembly/secure
 	name = "secure windoor assembly"
 	secure = "secure_"
 	icon_state = "l_secure_windoor_assembly01"
 
-/obj/structure/windoor_assembly/Initialize(mapload, start_dir = NORTH, constructed = FALSE)
+obj/structure/windoor_assembly/Initialize(mapload, start_dir = NORTH, constructed = FALSE)
 	. = ..()
 	if(constructed)
 		state = "01"
@@ -47,21 +47,21 @@
 
 	update_nearby_tiles()
 
-/obj/structure/windoor_assembly/Destroy()
+obj/structure/windoor_assembly/Destroy()
 	density = 0
 	update_nearby_tiles()
 	..()
 
-/obj/structure/windoor_assembly/update_icon()
+obj/structure/windoor_assembly/update_icon()
 	icon_state = "[facing]_[secure]windoor_assembly[state]"
 
-/obj/structure/windoor_assembly/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/windoor_assembly/CanAllowThrough(atom/movable/mover, turf/target)
 	if(!(get_dir(loc, mover) & dir))
 		// if it isn't our side we don't care
 		return TRUE
 	return ..()
 
-/obj/structure/windoor_assembly/CheckExit(atom/movable/AM, atom/newLoc)
+obj/structure/windoor_assembly/CheckExit(atom/movable/AM, atom/newLoc)
 	if(!(get_dir(src, newLoc) & dir))
 		// ditto
 		return TRUE
@@ -69,18 +69,18 @@
 		return TRUE
 	return !density
 
-/obj/structure/windoor_assembly/proc/rename_door(mob/living/user)
+obj/structure/windoor_assembly/proc/rename_door(mob/living/user)
 	var/t = sanitizeSafe(input(user, "Enter the name for the windoor.", src.name, src.created_name), MAX_NAME_LEN)
 	if(!in_range(src, user) && src.loc != user)	return
 	created_name = t
 	update_state()
 
-/obj/structure/windoor_assembly/attack_robot(mob/living/silicon/robot/user)
+obj/structure/windoor_assembly/attack_robot(mob/living/silicon/robot/user)
 	if(Adjacent(user) && (user.module && (istype(user.module,/obj/item/robot_module/robot/engineering/general)) \
 	|| istype(user.module,/obj/item/robot_module/drone))) //Only dron (and engiborg) needs this.
 		rename_door(user)
 
-/obj/structure/windoor_assembly/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/windoor_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen))
 		rename_door(user)
 		return
@@ -237,7 +237,7 @@
 	//Update to reflect changes(if applicable)
 	update_state()
 
-/obj/structure/windoor_assembly/proc/update_state()
+obj/structure/windoor_assembly/proc/update_state()
 	update_icon()
 	name = ""
 	switch(step)
@@ -250,7 +250,7 @@
 	name += "[secure ? "secure " : ""]windoor assembly[created_name ? " ([created_name])" : ""]"
 
 //Rotates the windoor assembly clockwise
-/obj/structure/windoor_assembly/verb/rotate_clockwise()
+obj/structure/windoor_assembly/verb/rotate_clockwise()
 	set name = "Rotate Windoor Assembly Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -270,7 +270,7 @@
 	return
 
 //Flips the windoor assembly, determines whather the door opens to the left or the right
-/obj/structure/windoor_assembly/verb/flip()
+obj/structure/windoor_assembly/verb/flip()
 	set name = "Flip Windoor Assembly"
 	set category = "Object"
 	set src in oview(1)

@@ -1,7 +1,7 @@
 //This is in the material folder because it's used by them...
 //Actual name may need to change
 //All of the important code is in material_weapons.dm
-/obj/item/whetstone
+obj/item/whetstone
 	name = "whetstone"
 	desc = "A simple, fine grit stone, useful for sharpening dull edges and polishing out dents."
 	icon = 'icons/obj/weapons.dmi'
@@ -11,7 +11,7 @@
 	var/repair_amount = 5
 	var/repair_time = 40
 
-/obj/item/whetstone/attackby(obj/item/I, mob/user)
+obj/item/whetstone/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/material))
 		var/obj/item/stack/material/M = I
 		if(M.amount >= 5)
@@ -27,12 +27,12 @@
 		else
 			to_chat(user, "You need 5 [src] to refine it into a sharpening kit.")
 
-/obj/item/whetstone/ashlander
+obj/item/whetstone/ashlander
 	name = "ashen whetstone"
 	icon = 'icons/obj/lavaland.dmi'
 	icon_state = "sandwhetstone"
 
-/obj/item/whetstone/ashlander/attackby(obj/item/I, mob/user)
+obj/item/whetstone/ashlander/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/material/bone))
 		var/obj/item/stack/material/bone/B = I
 		if(B.amount >= 5)
@@ -48,7 +48,7 @@
 		else
 			to_chat(user, "You need 5 [src] to refine it into a sharpening kit.")
 
-/obj/item/material/sharpeningkit
+obj/item/material/sharpeningkit
 	name = "sharpening kit"
 	desc = "A refined, fine grit whetstone, useful for sharpening dull edges, polishing out dents, and, with extra material, replacing an edge."
 	icon = 'icons/obj/kitchen.dmi'
@@ -61,20 +61,20 @@
 	var/sharpen_time = 100
 	var/uses = 0
 
-/obj/item/material/sharpeningkit/examine(mob/user, distance)
+obj/item/material/sharpeningkit/examine(mob/user, distance)
 	. = ..()
 	to_chat(user, "There [uses == 1 ? "is" : "are"] [uses] [material] [uses == 1 ? src.material.sheet_singular_name : src.material.sheet_plural_name] left for use.")
 
-/obj/item/material/sharpeningkit/Initialize(mapload)
+obj/item/material/sharpeningkit/Initialize(mapload)
 	. = ..()
 	setrepair()
 
-/obj/item/material/sharpeningkit/proc/setrepair()
+obj/item/material/sharpeningkit/proc/setrepair()
 	repair_amount = material.hardness * 0.1
 	repair_time = material.weight * 0.5
 	sharpen_time = material.weight * 3
 
-/obj/item/material/sharpeningkit/attackby(obj/item/W, mob/user)
+obj/item/material/sharpeningkit/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material))
 		var/obj/item/stack/material/S = W
 		if(S.material == material)

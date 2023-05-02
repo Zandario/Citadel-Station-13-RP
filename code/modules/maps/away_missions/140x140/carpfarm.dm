@@ -1,4 +1,4 @@
-/obj/effect/overmap/visitable/sector/gateway/carpfarm
+obj/effect/overmap/visitable/sector/gateway/carpfarm
 	initial_generic_waypoints = list("carpfarm1", "carpfarm2")
 	scanner_name = "Carp-Infested Outpost"
 	scanner_desc = @{"[i]Registration[/i]: UNKNOWN
@@ -6,21 +6,21 @@
 [i]Transponder[/i]: None Detected
 [b]Notice[/b]: Many spaceborne lifesigns detected"}
 
-/area/awaymission/carpfarm
+area/awaymission/carpfarm
 	icon_state = "blank"
 	requires_power = 0
 
-/area/awaymission/carpfarm/arrival
+area/awaymission/carpfarm/arrival
 	icon_state = "away"
 	requires_power = 0
 
-/area/awaymission/carpfarm/base
+area/awaymission/carpfarm/base
 	icon_state = "away"
 
-/area/awaymission/carpfarm/base/entry
+area/awaymission/carpfarm/base/entry
 	icon_state = "blue"
 
-/obj/item/paper/awaygate/carpfarm/suicide
+obj/item/paper/awaygate/carpfarm/suicide
 	name = "suicide letter"
 	info = "dear rescue,<br><br>my name markov. if reading this, i am dead. i <s>am</s> was miner for 3rd union of soviet socialist republiks. \
 			comrades yuri, dimitri, ivan, all eaten by space carp. all started month ago when soviet shipment sent new sonic jackhammers. \

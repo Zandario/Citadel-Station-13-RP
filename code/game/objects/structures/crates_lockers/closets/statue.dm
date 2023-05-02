@@ -1,4 +1,4 @@
-/obj/structure/closet/statue
+obj/structure/closet/statue
 	name = "statue"
 	desc = "An incredibly lifelike marble carving"
 	icon = 'icons/obj/statue.dmi'
@@ -12,7 +12,7 @@
 	var/intialOxy = 0
 	var/timer = 240 //eventually the person will be freed
 
-/obj/structure/closet/statue/Initialize(mapload, mob/living/L)
+obj/structure/closet/statue/Initialize(mapload, mob/living/L)
 	. = ..(mapload)
 	if(L && (ishuman(L) || L.isMonkey() || iscorgi(L)))
 		if(L.buckled)
@@ -45,7 +45,7 @@
 	START_PROCESSING(SSobj, src)
 	..()
 
-/obj/structure/closet/statue/process(delta_time)
+obj/structure/closet/statue/process(delta_time)
 	timer--
 	for(var/mob/living/M in src) //Go-go gadget stasis field
 		M.setToxLoss(intialTox)
@@ -57,7 +57,7 @@
 		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 
-/obj/structure/closet/statue/dump_contents()
+obj/structure/closet/statue/dump_contents()
 	for(var/obj/O in src)
 		O.forceMove(loc)
 
@@ -67,59 +67,59 @@
 		M.sdisabilities &= ~SDISABILITY_MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
 
-/obj/structure/closet/statue/open()
+obj/structure/closet/statue/open()
 	return
 
-/obj/structure/closet/statue/close()
+obj/structure/closet/statue/close()
 	return
 
-/obj/structure/closet/statue/toggle()
+obj/structure/closet/statue/toggle()
 	return
 
-/obj/structure/closet/statue/proc/check_health()
+obj/structure/closet/statue/proc/check_health()
 	if(health <= 0)
 		for(var/mob/M in src)
 			shatter(M)
 
-/obj/structure/closet/statue/bullet_act(var/obj/projectile/Proj)
+obj/structure/closet/statue/bullet_act(var/obj/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	check_health()
 
 	return
 
-/obj/structure/closet/statue/attack_generic(var/mob/user, damage, attacktext, environment_smash)
+obj/structure/closet/statue/attack_generic(var/mob/user, damage, attacktext, environment_smash)
 	if(damage && environment_smash)
 		for(var/mob/M in src)
 			shatter(M)
 
-/obj/structure/closet/statue/legacy_ex_act(severity)
+obj/structure/closet/statue/legacy_ex_act(severity)
 	for(var/mob/M in src)
 		LEGACY_EX_ACT(M, severity, null)
 		health -= 60 / severity
 		check_health()
 
-/obj/structure/closet/statue/attackby(obj/item/I as obj, mob/user as mob)
+obj/structure/closet/statue/attackby(obj/item/I as obj, mob/user as mob)
 	health -= I.damage_force
 	user.do_attack_animation(src)
 	visible_message("<span class='danger'>[user] strikes [src] with [I].</span>")
 	check_health()
 
-/obj/structure/closet/statue/MouseDroppedOnLegacy()
+obj/structure/closet/statue/MouseDroppedOnLegacy()
 	return
 
-/obj/structure/closet/statue/relaymove()
+obj/structure/closet/statue/relaymove()
 	return
 
-/obj/structure/closet/statue/attack_hand(mob/user, list/params)
+obj/structure/closet/statue/attack_hand(mob/user, list/params)
 	return
 
-/obj/structure/closet/statue/verb_toggleopen()
+obj/structure/closet/statue/verb_toggleopen()
 	return
 
-/obj/structure/closet/statue/update_icon()
+obj/structure/closet/statue/update_icon()
 	return
 
-/obj/structure/closet/statue/proc/shatter(mob/user as mob)
+obj/structure/closet/statue/proc/shatter(mob/user as mob)
 	if (user)
 		user.dust()
 	dump_contents()

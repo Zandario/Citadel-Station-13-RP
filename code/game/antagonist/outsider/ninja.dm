@@ -1,6 +1,6 @@
 var/datum/antagonist/ninja/ninjas
 
-/datum/antagonist/ninja
+datum/antagonist/ninja
 	id = MODE_NINJA
 	role_type = BE_NINJA
 	role_text = "Ninja"
@@ -18,14 +18,14 @@ var/datum/antagonist/ninja/ninjas
 
 	id_type = /obj/item/card/id/syndicate
 
-/datum/antagonist/ninja/New()
+datum/antagonist/ninja/New()
 	..()
 	ninjas = src
 
-/datum/antagonist/ninja/attempt_random_spawn()
+datum/antagonist/ninja/attempt_random_spawn()
 	if(config_legacy.ninjas_allowed) ..()
 
-/datum/antagonist/ninja/create_objectives(datum/mind/ninja)
+datum/antagonist/ninja/create_objectives(datum/mind/ninja)
 
 	if(!..())
 		return
@@ -80,7 +80,7 @@ var/datum/antagonist/ninja/ninjas
 	ninja_objective.owner = ninja
 	ninja.objectives += ninja_objective
 
-/datum/antagonist/ninja/greet(datum/mind/player)
+datum/antagonist/ninja/greet(datum/mind/player)
 
 	if(!..())
 		return 0
@@ -88,7 +88,7 @@ var/datum/antagonist/ninja/ninjas
 	player.store_memory("<B>Directive:</B> <span class='danger'>[directive]</span><br>")
 	to_chat(player, "<b>Remember your directive:</b> [directive].")
 
-/datum/antagonist/ninja/update_antag_mob(datum/mind/player)
+datum/antagonist/ninja/update_antag_mob(datum/mind/player)
 	..()
 	var/ninja_title = pick(GLOB.ninja_titles)
 	var/ninja_name = pick(GLOB.ninja_names)
@@ -98,7 +98,7 @@ var/datum/antagonist/ninja/ninjas
 		H.name = H.real_name
 	player.name = H.name
 
-/datum/antagonist/ninja/equip(mob/living/carbon/human/player)
+datum/antagonist/ninja/equip(mob/living/carbon/human/player)
 
 	if(!..())
 		return 0
@@ -128,7 +128,7 @@ var/datum/antagonist/ninja/ninjas
 		else
 			to_chat(player, "<span class='danger'>You forgot to turn on your internals! Quickly, toggle the valve!</span>")
 
-/datum/antagonist/ninja/proc/generate_ninja_directive(side)
+datum/antagonist/ninja/proc/generate_ninja_directive(side)
 	var/directive = "[side=="face"?"[GLOB.using_map.company_name]":"A criminal syndicate"] is your employer. "//Let them know which side they're on.
 	switch(rand(1,19))
 		if(1)

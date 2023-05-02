@@ -1,4 +1,4 @@
-/obj/machinery/igniter
+obj/machinery/igniter
 	name = "igniter"
 	desc = "It's useful for igniting flammable items."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -10,10 +10,10 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/igniter/attack_ai(mob/user)
+obj/machinery/igniter/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/igniter/attack_hand(mob/user, list/params)
+obj/machinery/igniter/attack_hand(mob/user, list/params)
 	if(..())
 		return
 
@@ -21,18 +21,18 @@
 	on = !(on)
 	icon_state = text("igniter[]", on)
 
-/obj/machinery/igniter/process(delta_time)	//ugh why is this even in process()?
+obj/machinery/igniter/process(delta_time)	//ugh why is this even in process()?
 	if(on && !(machine_stat & NOPOWER))
 		var/turf/location = src.loc
 		if(isturf(location))
 			location.hotspot_expose(1000,500,1)
 	return TRUE
 
-/obj/machinery/igniter/Initialize(mapload)
+obj/machinery/igniter/Initialize(mapload)
 	. = ..()
 	icon_state = "igniter[on]"
 
-/obj/machinery/igniter/power_change()
+obj/machinery/igniter/power_change()
 	..()
 	if(!(machine_stat & NOPOWER))
 		icon_state = "igniter[on]"
@@ -41,7 +41,7 @@
 
 // Wall mounted remote-control igniter.
 
-/obj/machinery/sparker
+obj/machinery/sparker
 	name = "Mounted igniter"
 	desc = "A wall-mounted ignition device."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -55,7 +55,7 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/sparker/power_change()
+obj/machinery/sparker/power_change()
 	..()
 	if(!(machine_stat & NOPOWER) && disable == 0)
 
@@ -65,7 +65,7 @@
 		icon_state = "[base_state]-p"
 //		sd_SetLuminosity(0)
 
-/obj/machinery/sparker/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/sparker/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_screwdriver())
 		add_fingerprint(user)
 		disable = !disable
@@ -86,13 +86,13 @@
 	else
 		..()
 
-/obj/machinery/sparker/attack_ai()
+obj/machinery/sparker/attack_ai()
 	if(anchored)
 		return ignite()
 	else
 		return
 
-/obj/machinery/sparker/proc/ignite()
+obj/machinery/sparker/proc/ignite()
 	if(!(powered()))
 		return
 
@@ -110,18 +110,18 @@
 		location.hotspot_expose(1000,500,1)
 	return TRUE
 
-/obj/machinery/sparker/emp_act(severity)
+obj/machinery/sparker/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	ignite()
 	..(severity)
 
-/obj/machinery/button/ignition
+obj/machinery/button/ignition
 	name = "ignition switch"
 	desc = "A remote control switch for a mounted igniter."
 
-/obj/machinery/button/ignition/attack_hand(mob/user, list/params)
+obj/machinery/button/ignition/attack_hand(mob/user, list/params)
 
 	if(..())
 		return

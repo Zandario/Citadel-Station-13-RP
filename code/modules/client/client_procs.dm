@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	If you have any  questions about this stuff feel free to ask. ~Carn
 	*/
 
-/client/Topic(href, href_list, hsrc)
+client/Topic(href, href_list, hsrc)
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
-/client/AllowUpload(filename, filelength)
+client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
 		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
 		return 0
@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//CONNECT//
 	///////////
 
-/client/New(TopicData)
+client/New(TopicData)
 	//! pre-connect-ish
 	// set appadmin for profiling or it might not work (?) (this is old code we just assume it's here for a reason)
 	world.SetConfig("APP/admin", ckey, "role=admin")
@@ -432,12 +432,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//DISCONNECT//
 	//////////////
 
-/client/Del()
+client/Del()
 	if(!gc_destroyed)
 		Destroy() //Clean up signals and timers.
 	return ..()
 
-/client/Destroy()
+client/Destroy()
 	GLOB.clients -= src
 	GLOB.directory -= ckey
 	log_access("Logout: [key_name(src)]")
@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 // here because it's similar to below
 
-/client/proc/add_system_note(system_ckey, message)
+client/proc/add_system_note(system_ckey, message)
 	notes_add(ckey, message)
 /*
 	var/sql_system_ckey = sanitizeSQL(system_ckey)
@@ -495,7 +495,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 // Returns null if no DB connection can be established, or -1 if the requested key was not found in the database
 
-/client/proc/log_client_to_db()
+client/proc/log_client_to_db()
 
 	if ( IsGuestKey(src.key) )
 		return
@@ -647,7 +647,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 //checks if a client is afk
 //3000 frames = 5 minutes
-/client/proc/is_afk(duration=3000)
+client/proc/is_afk(duration=3000)
 	if(inactivity > duration)
 		return inactivity
 	return 0
@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 // Calling things each tick can get expensive real quick.
 // So we slow this down a little.
 // See: http://www.byond.com/docs/ref/info.html#/client/proc/Stat
-/client/Stat()
+client/Stat()
 	. = ..()
 	if (holder)
 		sleep(1)
@@ -664,7 +664,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		stoplag(5)
 
 
-/client/Click(atom/object, atom/location, control, params)
+client/Click(atom/object, atom/location, control, params)
 	var/ab = FALSE
 	var/list/L = params2list(params)
 	if (object && object == middragatom && L["left"])
@@ -724,11 +724,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 GLOBAL_VAR_INIT(log_clicks, FALSE)
 
-/client/proc/last_activity_seconds()
+client/proc/last_activity_seconds()
 	return inactivity / 10
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
-/client/proc/send_resources()
+client/proc/send_resources()
 #if (PRELOAD_RSC == 0)
 	var/static/next_external_rsc = 0
 	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
@@ -755,10 +755,10 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 */
 //Hook, override it to run code when dir changes
 //Like for /atoms, but clients are their own snowflake FUCK
-/client/proc/setDir(newdir)
+client/proc/setDir(newdir)
 	dir = newdir
 
-/client/vv_edit_var(var_name, var_value)
+client/vv_edit_var(var_name, var_value)
 	switch (var_name)
 		if (NAMEOF(src, holder))
 			return FALSE
@@ -771,7 +771,7 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 			return TRUE
 	. = ..()
 
-/client/proc/change_view(new_size, forced, translocate)
+client/proc/change_view(new_size, forced, translocate)
 	set waitfor = FALSE	// to async temporary view
 	// todo: refactor this, client view changes should be ephemeral.
 	var/list/L = decode_view_size(new_size)
@@ -784,7 +784,7 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
  *
  * furthermore, this proc is BLOCKING.
  */
-/client/proc/set_temporary_view(width, height)
+client/proc/set_temporary_view(width, height)
 	if(!width || !height || width < 0 || height < 0)
 		reset_temporary_view()
 		return
@@ -799,7 +799,7 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
  *
  * furthermore, this proc is BLOCKING
  */
-/client/proc/reset_temporary_view()
+client/proc/reset_temporary_view()
 	using_temporary_viewsize = FALSE
 	temporary_viewsize_height = null
 	temporary_viewsize_width = null
@@ -808,7 +808,7 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 /**
  * switch perspective - null will cause us to shunt our eye to nullspace!
  */
-/client/proc/set_perspective(datum/perspective/P)
+client/proc/set_perspective(datum/perspective/P)
 	if(using_perspective)
 		using_perspective.RemoveClient(src, TRUE)
 		if(using_perspective)
@@ -826,26 +826,26 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 /**
  * reset perspective to default - usually to our mob's
  */
-/client/proc/reset_perspective()
+client/proc/reset_perspective()
 	set_perspective(mob.get_perspective())
 
-/mob/proc/MayRespawn()
+mob/proc/MayRespawn()
 	return 0
 
-/client/proc/MayRespawn()
+client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
 	return 0
 
-/client/verb/character_setup()
+client/verb/character_setup()
 	set name = "Character Setup"
 	set category = "Preferences"
 	if(prefs)
 		prefs.ShowChoices(usr)
 
-/client/proc/findJoinDate()
+client/proc/findJoinDate()
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
 	if(!http)
 		log_world("Failed to connect to byond age check for [ckey]")
@@ -858,14 +858,14 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 		else
 			CRASH("Age check regex failed for [src.ckey]")
 
-/client/proc/AnnouncePR(announcement)
+client/proc/AnnouncePR(announcement)
 	//if(prefs && prefs.chat_toggles & CHAT_PULLR)
 	to_chat(src, announcement)
 
 //This is for getipintel.net.
 //You're welcome to replace this proc with your own that does your own cool stuff.
 //Just set the client's ip_reputation var and make sure it makes sense with your config settings (higher numbers are worse results)
-/client/proc/update_ip_reputation()
+client/proc/update_ip_reputation()
 	var/request = "http://check.getipintel.net/check.php?ip=[address]&contact=[config_legacy.ipr_email]"
 	var/http[] = world.Export(request)
 
@@ -922,7 +922,7 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 		ip_reputation = score
 		return TRUE
 
-/client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
+client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
 	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
 	window_flash(src)
 	src << browse(message,"window=dropmessage;size=480x360;can_close=1")

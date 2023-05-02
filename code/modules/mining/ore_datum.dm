@@ -1,12 +1,12 @@
 GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 
-/proc/initialize_ore_data()
+proc/initialize_ore_data()
 	. = list()
 	for(var/oretype in subtypesof(/datum/ore))
 		var/datum/ore/OD = new oretype
 		.[OD.name] = OD
 
-/datum/ore
+datum/ore
 	var/name
 	var/display_name
 	var/alloy
@@ -24,12 +24,12 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 		)
 	var/xarch_source_mineral = "iron"
 
-/datum/ore/New()
+datum/ore/New()
 	. = ..()
 	if(!display_name)
 		display_name = name
 
-/datum/ore/uranium
+datum/ore/uranium
 	name = "uranium"
 	display_name = "pitchblende"
 	smelts_to = "uranium"
@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 		)
 	xarch_source_mineral = "potassium"
 
-/datum/ore/hematite
+datum/ore/hematite
 	name = "hematite"
 	display_name = "hematite"
 	smelts_to = "iron"
@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 	ore = /obj/item/ore/iron
 	scan_icon = "mineral_common"
 
-/datum/ore/coal
+datum/ore/coal
 	name = "carbon"
 	display_name = "raw carbon"
 	smelts_to = "plastic"
@@ -63,14 +63,14 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 	ore = /obj/item/ore/coal
 	scan_icon = "mineral_common"
 
-/datum/ore/glass
+datum/ore/glass
 	name = "sand"
 	display_name = "sand"
 	smelts_to = "glass"
 	alloy = 1
 	compresses_to = "sandstone"
 
-/datum/ore/phoron
+datum/ore/phoron
 	name = "phoron"
 	display_name = "phoron crystals"
 	compresses_to = "phoron"
@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 		)
 	xarch_source_mineral = "phoron"
 
-/datum/ore/silver
+datum/ore/silver
 	name = "silver"
 	display_name = "native silver"
 	smelts_to = "silver"
@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 	ore = /obj/item/ore/silver
 	scan_icon = "mineral_uncommon"
 
-/datum/ore/gold
+datum/ore/gold
 	smelts_to = "gold"
 	name = "gold"
 	display_name = "native gold"
@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 		"billion_lower" = 3
 		)
 
-/datum/ore/diamond
+datum/ore/diamond
 	name = "diamond"
 	display_name = "diamond"
 	alloy = 1
@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 	scan_icon = "mineral_rare"
 	xarch_source_mineral = "nitrogen"
 
-/datum/ore/platinum
+datum/ore/platinum
 	name = "platinum"
 	display_name = "raw platinum"
 	smelts_to = "platinum"
@@ -133,14 +133,14 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 	ore = /obj/item/ore/osmium
 	scan_icon = "mineral_rare"
 
-/datum/ore/hydrogen
+datum/ore/hydrogen
 	name = "mhydrogen"
 	display_name = "metallic hydrogen"
 	smelts_to = "tritium"
 	compresses_to = "mhydrogen"
 	scan_icon = "mineral_rare"
 
-/datum/ore/verdantium
+datum/ore/verdantium
 	name = MAT_VERDANTIUM
 	display_name = "crystalline verdantite"
 	compresses_to = MAT_VERDANTIUM
@@ -153,7 +153,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 		"billion_lower" = 10
 		)
 
-/datum/ore/marble
+datum/ore/marble
 	name = MAT_MARBLE
 	display_name = "recrystallized carbonate"
 	compresses_to = "marble"
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 	ore = /obj/item/ore/marble
 	scan_icon = "mineral_common"
 
-/datum/ore/lead
+datum/ore/lead
 	name = MAT_LEAD
 	display_name = "lead glance"
 	smelts_to = "lead"
@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 	ore = /obj/item/ore/lead
 	scan_icon = "mineral_rare"
 
-/datum/ore/vaudium
+datum/ore/vaudium
 	name = MAT_VAUDIUM
 	display_name = "raw vaudium"
 	smelts_to = "bananium"
@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(ore_data, initialize_ore_data())
 	ore = /obj/item/ore/vaudium
 	scan_icon = "mineral_rare"
 
-/datum/ore/copper
+datum/ore/copper
 	name = MAT_COPPER
 	display_name = "raw copper"
 	smelts_to = "copper"

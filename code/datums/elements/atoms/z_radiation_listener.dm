@@ -1,7 +1,7 @@
-/datum/element/z_radiation_listener
+datum/element/z_radiation_listener
 	element_flags = ELEMENT_DETACH
 
-/datum/element/z_radiation_listener/Attach(datum/target)
+datum/element/z_radiation_listener/Attach(datum/target)
 	if(!isatom(target) || ((. = ..()) & ELEMENT_INCOMPATIBLE))
 		return ELEMENT_INCOMPATIBLE | .
 	var/atom/A = target
@@ -14,7 +14,7 @@
 	A.rad_flags |= RAD_Z_LISTENING
 	RegisterSignal(A, COMSIG_MOVABLE_Z_CHANGED, .proc/z_change)
 
-/datum/element/z_radiation_listener/Detach(datum/source, force)
+datum/element/z_radiation_listener/Detach(datum/source, force)
 	. = ..()
 	var/atom/A = source
 	A.rad_flags &= ~RAD_Z_LISTENING
@@ -23,7 +23,7 @@
 	if(T)
 		SSradiation.z_listeners[T.z] -= A
 
-/datum/element/z_radiation_listener/proc/z_change(atom/source, old_z, new_z)
+datum/element/z_radiation_listener/proc/z_change(atom/source, old_z, new_z)
 	if(old_z)
 		SSradiation.z_listeners[old_z] -= source
 	if(new_z)

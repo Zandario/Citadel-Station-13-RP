@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
-/dmm_suite
+dmm_suite
 		// /"([a-zA-Z]+)" = \(((?:.|\n)*?)\)\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"([a-zA-Z\n]*)"\}/g
 	var/static/regex/dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
 		// /^[\s\n]+"?|"?[\s\n]+$|^"|"$/g
@@ -24,7 +24,7 @@
  * 2) Read the map line by line, parsing the result (using parse_grid)
  *
  */
-/dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num)
+dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num)
 
 	dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
 	trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
@@ -46,7 +46,7 @@
 	if(!measureOnly)
 		Master.StopLoadingMap()
 
-/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation)
+dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation)
 	var/list/areaCache = list()
 	var/tfile = dmm_file//the map file we're creating
 	if(isfile(tfile))
@@ -256,7 +256,7 @@
  * 4) Instanciates the atom with its variables
  *
  */
-/dmm_suite/proc/parse_grid(model as text, model_key as text, xcrd as num,ycrd as num,zcrd as num, no_changeturf as num, orientation as num, list/areaCache)
+dmm_suite/proc/parse_grid(model as text, model_key as text, xcrd as num,ycrd as num,zcrd as num, no_changeturf as num, orientation as num, list/areaCache)
 	/*Method parse_grid()
 	- Accepts a text string containing a comma separated list of type paths of the
 		same construction as those contained in a .dmm file, and instantiates them.
@@ -401,7 +401,7 @@
 ////////////////
 
 //Instance an atom at (x,y,z) and gives it the variables in attributes
-/dmm_suite/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf)
+dmm_suite/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf)
 	world.preloader_setup(attributes, path)
 
 	if(crds)
@@ -419,13 +419,13 @@
 		stoplag()
 		SSatoms.map_loader_begin()
 
-/dmm_suite/proc/create_atom(path, crds)
+dmm_suite/proc/create_atom(path, crds)
 	set waitfor = FALSE
 	. = new path (crds)
 
 //text trimming (both directions) helper proc
 //optionally removes quotes before and after the text (for variable name)
-/dmm_suite/proc/trim_text(what as text,trim_quotes=0)
+dmm_suite/proc/trim_text(what as text,trim_quotes=0)
 	if(trim_quotes)
 		return trimQuotesRegex.Replace(what, "")
 	else
@@ -434,7 +434,7 @@
 
 //find the position of the next delimiter,skipping whatever is comprised between opening_escape and closing_escape
 //returns 0 if reached the last delimiter
-/dmm_suite/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
+dmm_suite/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
 	var/position = initial_position
 	var/next_delimiter = findtext(text,delimiter,position,0)
 	var/next_opening = findtext(text,opening_escape,position,0)
@@ -453,7 +453,7 @@
 // keys_only_string - If true, text that looks like an associative list has its keys treated as var names,
 //                    otherwise they are parsed as valid associative list keys.
 //return the filled list
-/dmm_suite/proc/readlist(text as text, delimiter=",", keys_only_string = FALSE)
+dmm_suite/proc/readlist(text as text, delimiter=",", keys_only_string = FALSE)
 
 	var/list/to_return = list()
 	if(text == "")
@@ -514,7 +514,7 @@
 
 	return to_return
 
-/dmm_suite/Destroy()
+dmm_suite/Destroy()
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -522,10 +522,10 @@
 /// Template noop (no operation) is used to skip a turf or area when the template is loaded this allows for template transparency
 /// ex. if a ship has gaps in it's design, you would use template_noop to fill these in so that when the ship moves z-level, any
 /// tiles these gaps land on will not be deleted and replaced with the ships (empty) tiles
-/area/template_noop
+area/template_noop
 	name = "Area Passthrough"
 
 /// See above explanation
-/turf/template_noop
+turf/template_noop
 	name = "Turf Passthrough"
 	icon_state = "noop"

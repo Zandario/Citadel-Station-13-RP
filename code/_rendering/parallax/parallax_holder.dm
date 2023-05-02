@@ -10,7 +10,7 @@
  * - Absolute - absolute layers, scroll with movement to absolute position, cannot scroll
  * - Vis - vis_contents-like model - things in this are directly applied and get no processing whatsoever. Things like overmap ships can use this.
  */
-/datum/parallax_holder
+datum/parallax_holder
 	/// Client that owns us
 	var/client/owner
 	/// The parallax object we're currently rendering
@@ -40,14 +40,14 @@
 	/// override planemaster we manipulate for turning and other effects
 	var/atom/movable/screen/plane_master/parallax/planemaster_override
 
-/datum/parallax_holder/New(client/C, secondary_map, forced_eye, planemaster_override)
+datum/parallax_holder/New(client/C, secondary_map, forced_eye, planemaster_override)
 	owner = C
 	src.secondary_map = secondary_map
 	src.forced_eye = forced_eye
 	src.planemaster_override = planemaster_override
 	Reset()
 
-/datum/parallax_holder/Destroy()
+datum/parallax_holder/Destroy()
 	if(owner)
 		if(owner.parallax_holder == src)
 			owner.parallax_holder = null
@@ -62,7 +62,7 @@
 	owner = null
 	return ..()
 
-/datum/parallax_holder/proc/Reset(auto_z_change, force)
+datum/parallax_holder/proc/Reset(auto_z_change, force)
 	if(!(cached_eye = Eye()))
 		// if no eye, tear down
 		last = cached_eye = last_area = null
@@ -85,7 +85,7 @@
 		L.ResetPosition(T.x, T.y)
 
 // better updates via client_mobs_in_contents can be created again when important recursive contents is ported!
-/datum/parallax_holder/proc/Update(full)
+datum/parallax_holder/proc/Update(full)
 	if(!full && (!cached_eye || (get_turf(cached_eye) == last)))
 		return
 	if(cached_eye != Eye())
@@ -113,13 +113,13 @@
 /**
  * Gets the eye we should be centered on
  */
-/datum/parallax_holder/proc/Eye()
+datum/parallax_holder/proc/Eye()
 	return forced_eye || owner?.eye
 
 /**
  * Gets the base parallax planemaster for things like turning
  */
-/datum/parallax_holder/proc/GetPlaneMaster()
+datum/parallax_holder/proc/GetPlaneMaster()
 	return planemaster_override || (owner && (locate(/atom/movable/screen/plane_master/parallax) in owner?.screen))
 
 /**
@@ -129,7 +129,7 @@
  *
  * Also ensures movedirs are correct for the eye's pos.
  */
-/datum/parallax_holder/proc/Sync(auto_z_change, force)
+datum/parallax_holder/proc/Sync(auto_z_change, force)
 	layers = list()
 	for(var/atom/movable/screen/parallax_layer/L in parallax.objects)
 		layers += L
@@ -142,14 +142,14 @@
 /**
  * syncs vis contents
  */
-/datum/parallax_holder/proc/SyncVisContents()
+datum/parallax_holder/proc/SyncVisContents()
 	var/turf/T = get_turf(cached_eye)
 	vis_holder.vis_contents = vis = T? SSparallax.get_parallax_vis_contents(T.z) : list()
 
 /**
  * Updates motion if needed
  */
-/datum/parallax_holder/proc/UpdateMotion(auto_z_change, force)
+datum/parallax_holder/proc/UpdateMotion(auto_z_change, force)
 	var/turf/T = get_turf(cached_eye)
 	if(!T)
 		if(scroll_speed || scroll_turn)
@@ -162,7 +162,7 @@
 		var/area/A = T.loc
 		Animation(A.parallax_move_speed, A.parallax_move_angle, auto_z_change? 0 : null, auto_z_change? 0 : null, force)
 
-/datum/parallax_holder/proc/Apply(client/C = owner)
+datum/parallax_holder/proc/Apply(client/C = owner)
 	if(QDELETED(C))
 		return
 	. = list()
@@ -189,7 +189,7 @@
 				0, 0, 0, 0
 			)
 
-/datum/parallax_holder/proc/Remove(client/C = owner)
+datum/parallax_holder/proc/Remove(client/C = owner)
 	if(QDELETED(C))
 		return
 	C.screen -= layers
@@ -199,12 +199,12 @@
 		if(PM)
 			PM.color =  initial(PM.color)
 
-/datum/parallax_holder/proc/SetParallaxType(path)
+datum/parallax_holder/proc/SetParallaxType(path)
 	if(!ispath(path, /datum/parallax))
 		CRASH("Invalid path")
 	SetParallax(new path)
 
-/datum/parallax_holder/proc/SetParallax(datum/parallax/P, delete_old = TRUE, auto_z_change, force)
+datum/parallax_holder/proc/SetParallax(datum/parallax/P, delete_old = TRUE, auto_z_change, force)
 	if(P == parallax)
 		return
 	Remove()
@@ -226,7 +226,7 @@
  * windup - ds to spend on windups. 0 for immediate.
  * turn_speed - ds to spend on turning. 0 for immediate.
  */
-/datum/parallax_holder/proc/Animation(speed = 25, turn = 0, windup = speed, turn_speed = speed, force)
+datum/parallax_holder/proc/Animation(speed = 25, turn = 0, windup = speed, turn_speed = speed, force)
 	// Parallax doesn't currently use this method of rotating.
 
 	// #if !PARALLAX_ROTATION_ANIMATIONS
@@ -267,7 +267,7 @@
 /**
  * Smoothly stops the animation, turning to a certain angle as needed.
  */
-/datum/parallax_holder/proc/StopScrolling(turn = 0, time = 30)
+datum/parallax_holder/proc/StopScrolling(turn = 0, time = 30)
 	// reset turn
 	if(turn != scroll_turn && GetPlaneMaster())
 		var/matrix/turn_transform = matrix()
@@ -294,7 +294,7 @@
 /**
  * fully resets animation state
  */
-/datum/parallax_holder/proc/HardResetAnimations()
+datum/parallax_holder/proc/HardResetAnimations()
 	// reset vars
 	scroll_turn = 0
 	scroll_speed = 0
@@ -309,10 +309,10 @@
 		P.CancelAnimation()
 		animate(P, transform = matrix(), time = 0, flags = ANIMATION_END_NOW)
 
-/client/proc/CreateParallax()
+client/proc/CreateParallax()
 	if(!parallax_holder)
 		parallax_holder = new(src)
 
-/atom/movable/screen/parallax_vis
+atom/movable/screen/parallax_vis
 	screen_loc = "LEFT,BOTTOM"
 	icon = null

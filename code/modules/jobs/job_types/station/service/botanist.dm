@@ -1,4 +1,4 @@
-/datum/role/job/station/hydro
+datum/role/job/station/hydro
 	id = JOB_ID_BOTANIST
 	title = "Botanist"
 	flag = BOTANIST
@@ -18,11 +18,11 @@
 	desc = "A Botanist grows plants for the Chef and Bartender."
 	alt_titles = list("Gardener" = /datum/prototype/alt_title/gardener)
 
-/datum/prototype/alt_title/gardener
+datum/prototype/alt_title/gardener
 	title = "Gardener"
 	title_blurb = "A Gardener may be less professional than their counterparts, and are more likely to tend to the public gardens if they aren't needed elsewhere."
 
-/datum/outfit/job/station/botanist
+datum/outfit/job/station/botanist
 	name = OUTFIT_JOB_NAME("Botanist")
 	pda_type = /obj/item/pda/botanist
 	id_type = /obj/item/card/id/civilian/botanist
@@ -38,6 +38,6 @@
 	messenger_bag = /obj/item/storage/backpack/messenger/hyd
 	dufflebag = /obj/item/storage/backpack/dufflebag/hydroponics
 
-/datum/outfit/job/station/botanist/gardener
+datum/outfit/job/station/botanist/gardener
 	name = OUTFIT_JOB_NAME("Gardener")
 	id_pda_assignment = "Gardener"

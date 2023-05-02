@@ -1,10 +1,10 @@
-/datum/radiation_burst
+datum/radiation_burst
 	var/falloff
 	var/intensity
 	var/highest
 	var/emitter_count
 
-/datum/radiation_burst/New(intensity, falloff)
+datum/radiation_burst/New(intensity, falloff)
 	src.falloff = falloff
 	src.intensity = intensity
 	src.highest = intensity
@@ -13,7 +13,7 @@
 #define SPREAD_LEFT 1
 #define SPREAD_RIGHT 2
 
-/datum/radiation_wave
+datum/radiation_wave
 	/// source turf
 	var/turf/source
 	/// turfs, associated to power
@@ -37,17 +37,17 @@
 	/// dirs of spread next
 	var/list/spreads_next
 
-/datum/radiation_wave/New(turf/source, power, falloff_modifier = RAD_FALLOFF_NORMAL)
+datum/radiation_wave/New(turf/source, power, falloff_modifier = RAD_FALLOFF_NORMAL)
 	src.source = source
 	src.power = power
 	src.falloff_modifier = falloff_modifier
 	SSradiation.waves += src
 
-/datum/radiation_wave/Destroy()
+datum/radiation_wave/Destroy()
 	SSradiation.waves -= src
 	return ..()
 
-/datum/radiation_wave/proc/start()
+datum/radiation_wave/proc/start()
 	cycles = 0
 	// we have to stagger a bit, so we preprocess *part* of a 3x3.
 	var/after_center = power * irradiate_turf(source, power)
@@ -122,7 +122,7 @@
  *
  * returns rad insulation
  */
-/datum/radiation_wave/proc/irradiate_turf(turf/T, power)
+datum/radiation_wave/proc/irradiate_turf(turf/T, power)
 	. = T.rad_insulation * T.rad_insulation_contents
 	T.rad_act(power, src)
 	SEND_SIGNAL(T, COMSIG_ATOM_RAD_PULSE_ITERATE, power, src)
@@ -130,7 +130,7 @@
 /**
  * returns TRUE / FALSE based on if we're completed.
  */
-/datum/radiation_wave/proc/iterate(ticklimit)
+datum/radiation_wave/proc/iterate(ticklimit)
 	var/i
 	var/turf/T // current
 	var/turf/F // forwards
@@ -200,7 +200,7 @@
 	++cycles
 	return !length(turfs) && cycles < RAD_MAXIMUM_CYCLES
 
-/datum/radiation_wave/proc/next()
+datum/radiation_wave/proc/next()
 	turfs = turfs_next
 	dirs = dirs_next
 	spreads = spreads_next

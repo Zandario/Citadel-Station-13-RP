@@ -2,7 +2,7 @@
 var/global/list/random_maps = list()
 var/global/list/map_count = list()
 
-/datum/random_map
+datum/random_map
 
 	// Strings.
 	var/name                        // Set in New()
@@ -32,7 +32,7 @@ var/global/list/map_count = list()
 	var/priority_process
 
 // SEED DOES NOTHING
-/datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce)
+datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce)
 
 	// Store this for debugging.
 	if(!map_count[descriptor])
@@ -61,7 +61,7 @@ var/global/list/map_count = list()
 	// if(seed)
 	//	rand_seed(seed)
 	//	priority_process = 1
-	
+
 	// removed. the problem is that nothing but the master controller should ever be fucking with random seeding ~silicons
 
 	for(var/i = 0;i<max_attempts;i++)
@@ -70,14 +70,14 @@ var/global/list/map_count = list()
 			return
 	if(!do_not_announce) admin_notice("<span class='danger'>[capitalize(name)] failed to generate ([round(0.1*(world.timeofday-start_time),0.1)] seconds): could not produce sane map.</span>", R_DEBUG)
 
-/datum/random_map/proc/get_map_cell(var/x,var/y)
+datum/random_map/proc/get_map_cell(var/x,var/y)
 	if(!map)
 		set_map_size()
 	. = ((y-1)*limit_x)+x
 	if((. < 1) || (. > map.len))
 		return null
 
-/datum/random_map/proc/get_map_char(var/value)
+datum/random_map/proc/get_map_char(var/value)
 	switch(value)
 		if(WALL_CHAR)
 			return "#"
@@ -96,7 +96,7 @@ var/global/list/map_count = list()
 		else
 			return " "
 
-/datum/random_map/proc/display_map(atom/user)
+datum/random_map/proc/display_map(atom/user)
 
 	if(!user)
 		user = world
@@ -111,11 +111,11 @@ var/global/list/map_count = list()
 		CHECK_TICK
 	to_chat(user, "[dat]+------+</code>")
 
-/datum/random_map/proc/set_map_size()
+datum/random_map/proc/set_map_size()
 	map = list()
 	map.len = limit_x * limit_y
 
-/datum/random_map/proc/seed_map()
+datum/random_map/proc/seed_map()
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)
 			var/current_cell = get_map_cell(x,y)
@@ -124,12 +124,12 @@ var/global/list/map_count = list()
 			else
 				map[current_cell] = FLOOR_CHAR
 
-/datum/random_map/proc/clear_map()
+datum/random_map/proc/clear_map()
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)
 			map[get_map_cell(x,y)] = 0
 
-/datum/random_map/proc/generate()
+datum/random_map/proc/generate()
 	seed_map()
 	generate_map()
 	if(check_map_sanity())
@@ -140,18 +140,18 @@ var/global/list/map_count = list()
 	return 0
 
 // Unused for basic map.
-/datum/random_map/proc/generate_map()
+datum/random_map/proc/generate_map()
 	return 1
 
-/datum/random_map/proc/check_map_sanity()
+datum/random_map/proc/check_map_sanity()
 	return 1
 
-/datum/random_map/proc/set_origins(var/tx, var/ty, var/tz)
+datum/random_map/proc/set_origins(var/tx, var/ty, var/tz)
 	origin_x = tx ? tx : 1
 	origin_y = ty ? ty : 1
 	origin_z = tz ? tz : 1
 
-/datum/random_map/proc/apply_to_map()
+datum/random_map/proc/apply_to_map()
 	if(!origin_x) origin_x = 1
 	if(!origin_y) origin_y = 1
 	if(!origin_z) origin_z = 1
@@ -161,7 +161,7 @@ var/global/list/map_count = list()
 			if(!priority_process) sleep(-1)
 			apply_to_turf(x,y)
 
-/datum/random_map/proc/apply_to_turf(var/x,var/y)
+datum/random_map/proc/apply_to_turf(var/x,var/y)
 	var/current_cell = get_map_cell(x,y)
 	if(!current_cell)
 		return 0
@@ -174,24 +174,24 @@ var/global/list/map_count = list()
 	get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
 	return T
 
-/datum/random_map/proc/get_spawn_dir()
+datum/random_map/proc/get_spawn_dir()
 	return 0
 
-/datum/random_map/proc/get_appropriate_path(var/value)
+datum/random_map/proc/get_appropriate_path(var/value)
 	switch(value)
 		if(FLOOR_CHAR)
 			return floor_type
 		if(WALL_CHAR)
 			return wall_type
 
-/datum/random_map/proc/get_additional_spawns(var/value, var/turf/T)
+datum/random_map/proc/get_additional_spawns(var/value, var/turf/T)
 	if(value == DOOR_CHAR)
 		new /obj/machinery/door/airlock(T)
 
-/datum/random_map/proc/cleanup()
+datum/random_map/proc/cleanup()
 	return
 
-/datum/random_map/proc/overlay_with(var/datum/random_map/target_map, var/tx, var/ty)
+datum/random_map/proc/overlay_with(var/datum/random_map/target_map, var/tx, var/ty)
 	if(!map.len || !istype(target_map))
 		return
 	tx-- // Update origin so that x/y index
@@ -209,5 +209,5 @@ var/global/list/map_count = list()
 	handle_post_overlay_on(target_map,tx,ty)
 
 
-/datum/random_map/proc/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
+datum/random_map/proc/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
 	return

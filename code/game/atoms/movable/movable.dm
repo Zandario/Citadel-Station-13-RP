@@ -1,4 +1,4 @@
-/atom/movable
+atom/movable
 	layer = OBJ_LAYER
 	// todo: evaluate if we need TILE_BOUND
 	SET_APPEARANCE_FLAGS(TILE_BOUND | PIXEL_SCALE)
@@ -152,7 +152,7 @@
 	/// Used to manually offset buckle pixel offsets. Ignored if we have a riding component.
 	var/buckle_pixel_y = 0
 
-/atom/movable/Initialize(mapload)
+atom/movable/Initialize(mapload)
 	. = ..()
 	//atom color stuff
 	if(!isnull(color) && atom_colouration_system)
@@ -169,7 +169,7 @@
 		if(EMISSIVE_BLOCK_UNIQUE)
 			add_emissive_blocker()
 
-/atom/movable/Destroy(force)
+atom/movable/Destroy(force)
 	if(reagents)
 		QDEL_NULL(reagents)
 	unbuckle_all_mobs(BUCKLE_OP_FORCE)
@@ -195,7 +195,7 @@
 	if(un_opaque)
 		un_opaque.recalc_atom_opacity()
 
-/atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
+atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	if(mover in buckled_mobs)
 		return TRUE
 	. = ..()
@@ -204,21 +204,21 @@
 			. = TRUE
 
 //Overlays
-/atom/movable/overlay
+atom/movable/overlay
 	var/atom/master = null
 	anchored = TRUE
 
-/atom/movable/overlay/attackby(a, b)
+atom/movable/overlay/attackby(a, b)
 	if (src.master)
 		return src.master.attackby(a, b)
 	return
 
-/atom/movable/overlay/attack_hand(a, b, c)
+atom/movable/overlay/attack_hand(a, b, c)
 	if (src.master)
 		return src.master.attack_hand(a, b, c)
 	return
 
-/atom/movable/proc/touch_map_edge()
+atom/movable/proc/touch_map_edge()
 	if(z in GLOB.using_map.sealed_levels)
 		return
 
@@ -257,7 +257,7 @@
 			forceMove(T)
 
 //by default, transition randomly to another zlevel
-/atom/movable/proc/get_transit_zlevel()
+atom/movable/proc/get_transit_zlevel()
 	var/list/candidates = GLOB.using_map.accessible_z_levels.Copy()
 	candidates.Remove("[src.z]")
 
@@ -267,21 +267,21 @@
 
 // Returns the current scaling of the sprite.
 // Note this DOES NOT measure the height or width of the icon, but returns what number is being multiplied with to scale the icons, if any.
-/atom/movable/proc/get_icon_scale_x()
+atom/movable/proc/get_icon_scale_x()
 	return icon_scale_x
 
-/atom/movable/proc/get_icon_scale_y()
+atom/movable/proc/get_icon_scale_y()
 	return icon_scale_y
 
 // todo: refactor this shit
-/atom/movable/proc/update_transform()
+atom/movable/proc/update_transform()
 	var/matrix/M = matrix()
 	M.Scale(icon_scale_x, icon_scale_y)
 	M.Turn(icon_rotation)
 	src.transform = M
 
 // Use this to set the object's scale.
-/atom/movable/proc/adjust_scale(new_scale_x, new_scale_y)
+atom/movable/proc/adjust_scale(new_scale_x, new_scale_y)
 	if(isnull(new_scale_y))
 		new_scale_y = new_scale_x
 	if(new_scale_x != 0)
@@ -290,26 +290,26 @@
 		icon_scale_y = new_scale_y
 	update_transform()
 
-/atom/movable/proc/adjust_rotation(new_rotation)
+atom/movable/proc/adjust_rotation(new_rotation)
 	icon_rotation = new_rotation
 	update_transform()
 
 // Called when touching a lava tile.
-/atom/movable/proc/lava_act()
+atom/movable/proc/lava_act()
 	fire_act(null, 10000, 1000)
 
 //Called when touching an acid pool.
-/atom/movable/proc/acid_act()
+atom/movable/proc/acid_act()
 
 //Called when touching a blood pool.
-/atom/movable/proc/blood_act()
+atom/movable/proc/blood_act()
 	// blood_act(null, 500, 50)
 
-/atom/movable/proc/Bump_vr(var/atom/A, yes)
+atom/movable/proc/Bump_vr(var/atom/A, yes)
 	return
 
 // Procs to cloak/uncloak
-/atom/movable/proc/cloak()
+atom/movable/proc/cloak()
 	if(cloaked)
 		return FALSE
 	cloaked = TRUE
@@ -325,7 +325,7 @@
 	if(cloaked) // Ensure we are still cloaked after the animation delay
 		plane = CLOAKED_PLANE
 
-/atom/movable/proc/uncloak()
+atom/movable/proc/uncloak()
 	if(!cloaked)
 		return FALSE
 	cloaked = FALSE
@@ -342,7 +342,7 @@
 
 
 // Animations for cloaking/uncloaking
-/atom/movable/proc/cloak_animation(var/length = 1 SECOND)
+atom/movable/proc/cloak_animation(var/length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
 
@@ -363,7 +363,7 @@
 	//Back to original alpha
 	alpha = initial_alpha
 
-/atom/movable/proc/uncloak_animation(var/length = 1 SECOND)
+atom/movable/proc/uncloak_animation(var/length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
 
@@ -386,7 +386,7 @@
 
 
 // So cloaked things can see themselves, if necessary
-/atom/movable/proc/get_cloaked_selfimage()
+atom/movable/proc/get_cloaked_selfimage()
 	var/icon/selficon = icon(icon, icon_state)
 	selficon.MapColors(0,0,0, 0,0,0, 0,0,0, 1,1,1) //White
 	var/image/selfimage = image(selficon)
@@ -398,7 +398,7 @@
 
 	return selfimage
 
-/atom/movable/proc/ghost_tag(text)
+atom/movable/proc/ghost_tag(text)
 	var/atom/movable/ghost_tag_container/G = locate() in vis_contents
 	if(!length(text) || !istext(text))
 		if(G)
@@ -418,20 +418,20 @@
 	vis_contents += G
 	return G
 
-/atom/movable/ghost_tag_container
+atom/movable/ghost_tag_container
 	// no mouse opacity
 	name = ""
 	var/atom/movable/master
 	SET_APPEARANCE_FLAGS(RESET_COLOR | RESET_ALPHA | PIXEL_SCALE | TILE_BOUND)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/atom/movable/ghost_tag_container/Destroy()
+atom/movable/ghost_tag_container/Destroy()
 	if(istype(master))
 		master.vis_contents -= src
 		master = null
 	return ..()
 
-/atom/movable/proc/get_bullet_impact_effect_type()
+atom/movable/proc/get_bullet_impact_effect_type()
 	return BULLET_IMPACT_NONE
 
 // todo: we should probably have a way to just copy an appearance clone or something without render-targeting
@@ -439,20 +439,20 @@
 /**
  * Checks if we can avoid things like landmine, lava, etc, whether beneficial or harmful.
  */
-/atom/movable/proc/is_avoiding_ground()
+atom/movable/proc/is_avoiding_ground()
     return ((movement_type & MOVEMENT_TYPES) != MOVEMENT_GROUND) || throwing
 
 //? Perspectives
 /**
  * get perspective to use when shifting eye to us,
  */
-/atom/movable/proc/get_perspective()
+atom/movable/proc/get_perspective()
 	return self_perspective || temporary_perspective()
 
 /**
  * gets a tempoerary perspective for ourselves
  */
-/atom/movable/proc/temporary_perspective()
+atom/movable/proc/temporary_perspective()
 	var/datum/perspective/self/temporary/P = new
 	P.eye = src
 	return P
@@ -460,7 +460,7 @@
 /**
  * make a permanent self perspective
  */
-/atom/movable/proc/make_perspective()
+atom/movable/proc/make_perspective()
 	ASSERT(!self_perspective)
 	. = self_perspective = new /datum/perspective/self
 	self_perspective.eye = src
@@ -468,34 +468,34 @@
 /**
  * ensure we have a self perspective
  */
-/atom/movable/proc/ensure_self_perspective()
+atom/movable/proc/ensure_self_perspective()
 	if(!self_perspective)
 		make_perspective()
 
 //? Layers
-/atom/movable/set_base_layer(new_layer)
+atom/movable/set_base_layer(new_layer)
 	. = ..()
 	update_emissive_layers()
 
-/atom/movable/set_relative_layer(new_layer)
+atom/movable/set_relative_layer(new_layer)
 	. = ..()
 	update_emissive_layers()
 
 //? Pixel Offsets
-/atom/movable/get_centering_pixel_x_offset(dir, atom/aligning)
+atom/movable/get_centering_pixel_x_offset(dir, atom/aligning)
 	. = ..()
 	. *= icon_scale_x
 
-/atom/movable/get_centering_pixel_y_offset(dir, atom/aligning)
+atom/movable/get_centering_pixel_y_offset(dir, atom/aligning)
 	. = ..()
 	. *= icon_scale_y
 
 //? Emissives
-/atom/movable/proc/update_emissive_layers()
+atom/movable/proc/update_emissive_layers()
 	em_block?.layer = MANGLE_PLANE_AND_LAYER(plane, layer)
 	em_render?.layer = MANGLE_PLANE_AND_LAYER(plane, layer)
 
-/atom/movable/proc/add_emissive_blocker(full_copy = TRUE)
+atom/movable/proc/add_emissive_blocker(full_copy = TRUE)
 	if(em_block)
 		em_block.render_source = full_copy? render_target : null
 		update_emissive_blocker()
@@ -507,20 +507,20 @@
 	vis_contents += em_block
 	update_emissive_blocker()
 
-/atom/movable/proc/update_emissive_blocker()
+atom/movable/proc/update_emissive_blocker()
 	if(!em_block)
 		return
 	// layer it BELOW us incase WE wanna be fuh-nee with our own emissives
 	em_block.layer = MANGLE_PLANE_AND_LAYER(plane, layer)
 
-/atom/movable/proc/remove_emissive_blocker()
+atom/movable/proc/remove_emissive_blocker()
 	if(!em_block)
 		return
 	vis_contents -= em_block
 	qdel(em_block)
 	em_block = null
 
-/atom/movable/proc/add_emissive_render(full_copy = TRUE)
+atom/movable/proc/add_emissive_render(full_copy = TRUE)
 	if(em_render)
 		em_render.render_source = full_copy? render_target : null
 		update_emissive_render()
@@ -532,19 +532,19 @@
 	vis_contents += em_render
 	update_emissive_render()
 
-/atom/movable/proc/add_or_update_emissive_render()
+atom/movable/proc/add_or_update_emissive_render()
 	if(!em_render)
 		add_emissive_render()
 	else
 		update_emissive_render()
 
-/atom/movable/proc/update_emissive_render()
+atom/movable/proc/update_emissive_render()
 	if(!em_render)
 		return
 	// layer it at our layer
 	em_render.layer = MANGLE_PLANE_AND_LAYER(plane, layer)
 
-/atom/movable/proc/remove_emissive_render()
+atom/movable/proc/remove_emissive_render()
 	if(!em_render)
 		return
 	vis_contents -= em_render
@@ -556,13 +556,13 @@
 /**
  * getter for current color
  */
-/atom/movable/get_atom_colour()
+atom/movable/get_atom_colour()
 	return color
 
 /**
  * copies from other
  */
-/atom/movable/copy_atom_colour(atom/other, colour_priority)
+atom/movable/copy_atom_colour(atom/other, colour_priority)
 	if(!atom_colouration_system)
 		var/others = other.get_atom_colour()
 		if(isnull(others))
@@ -574,7 +574,7 @@
 /**
  * copies all from another movable
  */
-/atom/movable/proc/copy_atom_colours(atom/movable/other)
+atom/movable/proc/copy_atom_colours(atom/movable/other)
 	if(!atom_colouration_system)
 		return copy_atom_colour(other)
 	if(isnull(other.atom_colours))
@@ -583,7 +583,7 @@
 	update_atom_colour()
 
 /// Adds an instance of colour_type to the atom's atom_colours list
-/atom/movable/add_atom_colour(coloration, colour_priority)
+atom/movable/add_atom_colour(coloration, colour_priority)
 	if(!coloration)
 		return
 	if(!atom_colouration_system)
@@ -598,7 +598,7 @@
 	update_atom_colour()
 
 /// Removes an instance of colour_type from the atom's atom_colours list
-/atom/movable/remove_atom_colour(colour_priority, coloration)
+atom/movable/remove_atom_colour(colour_priority, coloration)
 	if(!atom_colouration_system)
 		if(coloration && color != coloration)
 			return
@@ -616,7 +616,7 @@
 	update_atom_colour()
 
 /// Resets the atom's color to null, and then sets it to the highest priority colour available
-/atom/movable/update_atom_colour()
+atom/movable/update_atom_colour()
 	if(!atom_colouration_system)
 		return
 	if(!islist(atom_colours))

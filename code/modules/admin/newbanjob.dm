@@ -1,7 +1,7 @@
 var/savefile/Banlistjob
 
 
-/proc/_jobban_isbanned(var/client/clientvar, var/rank)
+proc/_jobban_isbanned(var/client/clientvar, var/rank)
 	if(!clientvar) return 1
 	ClearTempbansjob()
 	var/id = clientvar.computer_id
@@ -20,7 +20,7 @@ var/savefile/Banlistjob
 			return 1
 	return 0
 
-/proc/LoadBansjob()
+proc/LoadBansjob()
 
 	Banlistjob = new("data/job_fullnew.bdb")
 	log_admin("Loading Banlistjob")
@@ -37,7 +37,7 @@ var/savefile/Banlistjob
 	ClearTempbansjob()
 	return 1
 
-/proc/ClearTempbansjob()
+proc/ClearTempbansjob()
 	UpdateTime()
 
 	Banlistjob.cd = "/base"
@@ -55,7 +55,7 @@ var/savefile/Banlistjob
 	return 1
 
 
-/proc/AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, rank)
+proc/AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, rank)
 	UpdateTime()
 	var/bantimestamp
 	if (temp)
@@ -157,7 +157,7 @@ var/savefile/Banlistjob
 
 	return 1
 
-/proc/RemoveBanjob(foldername)
+proc/RemoveBanjob(foldername)
 	var/key
 	var/id
 	var/rank
@@ -188,7 +188,7 @@ var/savefile/Banlistjob
 
 	return 1
 
-/proc/GetBanExpjob(minutes as num)
+proc/GetBanExpjob(minutes as num)
 	UpdateTime()
 	var/exp = minutes - CMinutes
 	if (exp <= 0)
@@ -203,7 +203,7 @@ var/savefile/Banlistjob
 			timeleftstring = "[exp] Minutes"
 		return timeleftstring
 
-/datum/admins/proc/unjobbanpanel()
+datum/admins/proc/unjobbanpanel()
 	var/count = 0
 	var/dat
 	//var/dat = "<HR><B>Unban Player:</B> <font color=#4F49AF>(U) = Unban , (E) = Edit Ban</font> <font color='green'>(Total<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 </font>>"
@@ -227,7 +227,7 @@ var/savefile/Banlistjob
 			to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
 		log_admin("[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis is a permanent ban.")
 		message_admins("<font color=#4F49AF>[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis is a permanent ban.</font>")
-/datum/admins/proc/timejobban(ckey, computerid, reason, bannedby, temp, minutes, rank)
+datum/admins/proc/timejobban(ckey, computerid, reason, bannedby, temp, minutes, rank)
 	if(AddBanjob(ckey, computerid, reason, usr.ckey, 1, mins, job))
 		to_chat(M, "<font color='red'><BIG><B>You have been jobbanned from [job] by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
 		to_chat(M, "<font color='red'>This is a temporary ban, it will be removed in [mins] minutes.</font>")
@@ -239,7 +239,7 @@ var/savefile/Banlistjob
 		message_admins("<font color=#4F49AF>[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</font>")*/
 //////////////////////////////////// DEBUG ////////////////////////////////////
 
-/proc/CreateBansjob()
+proc/CreateBansjob()
 
 	UpdateTime()
 
@@ -268,7 +268,7 @@ var/savefile/Banlistjob
 
 	Banlistjob.cd = "/base"
 
-/proc/ClearAllBansjob()
+proc/ClearAllBansjob()
 	Banlistjob.cd = "/base"
 	for (var/A in Banlistjob.dir)
 		RemoveBanjob(A, "full")

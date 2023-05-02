@@ -1,6 +1,6 @@
 // A vendor machine for modular computer portable devices - Laptops and Tablets
 
-/obj/machinery/lapvend
+obj/machinery/lapvend
 	name = "computer vendor"
 	desc = "A vending machine with a built-in microfabricator, capable of dispensing various NT-branded computers."
 	icon = 'icons/obj/vending.dmi'
@@ -28,7 +28,7 @@
 	var/dev_card = 0						// 0: None, 1: Standard
 
 // Removes all traces of old order and allows you to begin configuration from scratch.
-/obj/machinery/lapvend/proc/reset_order()
+obj/machinery/lapvend/proc/reset_order()
 	state = 0
 	devtype = 0
 	if(fabricated_laptop)
@@ -46,7 +46,7 @@
 	dev_card = 0
 
 // Recalculates the price and optionally even fabricates the device.
-/obj/machinery/lapvend/proc/fabricate_and_recalc_price(var/fabricate = 0)
+obj/machinery/lapvend/proc/fabricate_and_recalc_price(var/fabricate = 0)
 	total_price = 0
 	if(devtype == 1) 		// Laptop, generally cheaper to make it accessible for most station roles
 		if(fabricate)
@@ -164,7 +164,7 @@
 
 
 
-/obj/machinery/lapvend/Topic(href, href_list)
+obj/machinery/lapvend/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -214,10 +214,10 @@
 		return 1
 	return 0
 
-/obj/machinery/lapvend/attack_hand(mob/user, list/params)
+obj/machinery/lapvend/attack_hand(mob/user, list/params)
 	nano_ui_interact(user)
 
-/obj/machinery/lapvend/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/lapvend/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(machine_stat & (BROKEN | NOPOWER | MAINT))
 		if(ui)
 			ui.close()
@@ -245,7 +245,7 @@
 		ui.set_auto_update(1)
 
 
-/obj/machinery/lapvend/attackby(obj/item/W, mob/user)
+obj/machinery/lapvend/attackby(obj/item/W, mob/user)
 	var/obj/item/card/id/I = W.GetID()
 	// Awaiting payment state
 	if(state == 2)
@@ -274,7 +274,7 @@
 
 
 // Simplified payment processing, returns 1 on success.
-/obj/machinery/lapvend/proc/process_payment(var/obj/item/card/id/I, var/obj/item/ID_container)
+obj/machinery/lapvend/proc/process_payment(var/obj/item/card/id/I, var/obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
 		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	else

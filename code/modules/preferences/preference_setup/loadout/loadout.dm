@@ -1,11 +1,11 @@
 var/list/loadout_categories = list()
 var/list/gear_datums = list()
 
-/datum/loadout_category
+datum/loadout_category
 	var/category = ""
 	var/list/gear = list()
 
-/datum/gear
+datum/gear
 	/// name used for save/load don't change this or everyone loses it
 	var/name
 	/// what we display our name as. feel free to change this. defaults to name.
@@ -34,7 +34,7 @@ var/list/gear_datums = list()
 	/// Seasonal whitelist - only create if holiday is active. NOTE: This IGNORES ALLOW_HOLIDAYS config! This is because character setup isn't subsystem-init-synced so we must init all of this dumb shit before config loads.
 	var/list/holiday_whitelist
 
-/datum/gear/New()
+datum/gear/New()
 	if(!description)
 		var/obj/O = path
 		description = initial(O.desc)
@@ -42,15 +42,15 @@ var/list/gear_datums = list()
 	if(isnull(display_name))
 		display_name = name
 
-/datum/gear_data
+datum/gear_data
 	var/path
 	var/location
 
-/datum/gear_data/New(var/path, var/location)
+datum/gear_data/New(var/path, var/location)
 	src.path = path
 	src.location = location
 
-/datum/gear/proc/spawn_item(var/location, var/metadata)
+datum/gear/proc/spawn_item(var/location, var/metadata)
 	var/datum/gear_data/gd = new(path, location)
 	if(metadata)
 		for(var/datum/gear_tweak/gt in gear_tweaks)
@@ -64,11 +64,11 @@ var/list/gear_datums = list()
 		M.amend_exploitable(item)
 	return item
 
-/datum/loadout_category/New(var/cat)
+datum/loadout_category/New(var/cat)
 	category = cat
 	..()
 
-/hook/startup/proc/populate_gear_list()
+hook/startup/proc/populate_gear_list()
 
 	// Create a list of gear datums to sort
 	for(var/geartype in typesof(/datum/gear)-/datum/gear)
@@ -109,12 +109,12 @@ var/list/gear_datums = list()
 		LC.gear = tim_sort(LC.gear, /proc/cmp_text_asc)	// DO NOT ADD A ", TRUE" TO THE END OF THIS FUCKING LINE IT'S WHAT WAS CAUSING ALPHABETIZATION TO BREAK
 	return 1
 
-/datum/category_item/player_setup_item/loadout
+datum/category_item/player_setup_item/loadout
 	name = "Loadout"
 	sort_order = 1
 	var/current_tab = "General"
 
-/datum/category_item/player_setup_item/loadout/load_character(var/savefile/S)
+datum/category_item/player_setup_item/loadout/load_character(var/savefile/S)
 	READ_FILE(S["gear_list"], pref.gear_list)
 	READ_FILE(S["gear_slot"], pref.gear_slot)
 	if(pref.gear_list!=null && pref.gear_slot!=null)
@@ -123,12 +123,12 @@ var/list/gear_datums = list()
 		READ_FILE(S["gear"], pref.gear)
 		pref.gear_slot = 1
 
-/datum/category_item/player_setup_item/loadout/save_character(var/savefile/S)
+datum/category_item/player_setup_item/loadout/save_character(var/savefile/S)
 	pref.gear_list["[pref.gear_slot]"] = pref.gear
 	WRITE_FILE(S["gear_list"], pref.gear_list)
 	WRITE_FILE(S["gear_slot"], pref.gear_slot)
 
-/datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(datum/preferences/prefs ,max_cost)
+datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(datum/preferences/prefs ,max_cost)
 	. = list()
 	var/mob/preference_mob = preference_mob()
 	// todo: loadouts should use char species UID
@@ -147,7 +147,7 @@ var/list/gear_datums = list()
 				continue
 		. += gear_name
 
-/datum/category_item/player_setup_item/loadout/sanitize_character()
+datum/category_item/player_setup_item/loadout/sanitize_character()
 	var/mob/preference_mob = preference_mob()
 	if(!islist(pref.gear))
 		pref.gear = list()
@@ -174,7 +174,7 @@ var/list/gear_datums = list()
 			else
 				total_cost += G.cost
 
-/datum/category_item/player_setup_item/loadout/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/loadout/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	var/mob/preference_mob = preference_mob()
 	var/total_cost = 0
@@ -239,24 +239,24 @@ var/list/gear_datums = list()
 	. += "</table>"
 	. = jointext(., null)
 
-/datum/category_item/player_setup_item/loadout/proc/get_gear_metadata(var/datum/gear/G)
+datum/category_item/player_setup_item/loadout/proc/get_gear_metadata(var/datum/gear/G)
 	. = pref.gear[G.name]
 	if(!.)
 		. = list()
 		pref.gear[G.name] = .
 
-/datum/category_item/player_setup_item/loadout/proc/get_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak)
+datum/category_item/player_setup_item/loadout/proc/get_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak)
 	var/list/metadata = get_gear_metadata(G)
 	. = metadata["[tweak]"]
 	if(!.)
 		. = tweak.get_default()
 		metadata["[tweak]"] = .
 
-/datum/category_item/player_setup_item/loadout/proc/set_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak, var/new_metadata)
+datum/category_item/player_setup_item/loadout/proc/set_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak, var/new_metadata)
 	var/list/metadata = get_gear_metadata(G)
 	metadata["[tweak]"] = new_metadata
 
-/datum/category_item/player_setup_item/loadout/OnTopic(href, href_list, user)
+datum/category_item/player_setup_item/loadout/OnTopic(href, href_list, user)
 	if(href_list["toggle_gear"])
 		var/datum/gear/TG = gear_datums[href_list["toggle_gear"]]
 		if(TG?.name in pref.gear)
@@ -310,7 +310,7 @@ var/list/gear_datums = list()
 		return PREFERENCES_REFRESH_UPDATE_PREVIEW
 	return ..()
 
-/proc/max_gear_points()
+proc/max_gear_points()
 	. = MAX_GEAR_COST
 	for(var/name in SSevents.holidays)
 		var/datum/holiday/H = SSevents.holidays[name]

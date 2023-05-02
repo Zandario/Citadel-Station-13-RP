@@ -1,4 +1,4 @@
-/datum/department/cargo
+datum/department/cargo
 	name = DEPARTMENT_CARGO
 	short_name = "Car"
 	color = "#BB9040"

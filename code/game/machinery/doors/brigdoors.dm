@@ -16,7 +16,7 @@
 //  Date: 01/September/2010
 //  Programmer: Veryinky
 /////////////////////////////////////////////////////////////////////////////////////////////////
-/obj/machinery/door_timer
+obj/machinery/door_timer
 	name = "Door Timer"
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
@@ -41,11 +41,11 @@
 	maptext_width = 32
 	maptext_y = -1
 
-/obj/machinery/door_timer/Initialize(mapload)
+obj/machinery/door_timer/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/door_timer/LateInitialize()
+obj/machinery/door_timer/LateInitialize()
 	. = ..()
 	if(id != null)
 		for(var/obj/machinery/door/window/brigdoor/M in urange(20, src))
@@ -67,7 +67,7 @@
 //Main door timer loop, if it's timing and time is >0 reduce time by 1.
 // if it's less than 0, open door, reset timer
 // update the door_timer window and the icon
-/obj/machinery/door_timer/process(delta_time)
+obj/machinery/door_timer/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -78,7 +78,7 @@
 
 // open/closedoor checks if door_timer has power, if so it checks if the
 // linked door is open/closed (by density) then opens it/closes it.
-/obj/machinery/door_timer/proc/timer_start()
+obj/machinery/door_timer/proc/timer_start()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 
@@ -108,7 +108,7 @@
 	return TRUE
 
 ///Opens and unlocks doors, power check
-/obj/machinery/door_timer/proc/timer_end(forced = FALSE)
+obj/machinery/door_timer/proc/timer_end(forced = FALSE)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 
@@ -143,22 +143,22 @@
 
 	return TRUE
 
-/obj/machinery/door_timer/proc/time_left(seconds = FALSE)
+obj/machinery/door_timer/proc/time_left(seconds = FALSE)
 	. = max(0, timer_duration - (activation_time ? (REALTIMEOFDAY - activation_time) : 0))
 	if(seconds)
 		. /= 10
 
-/obj/machinery/door_timer/proc/set_timer(value)
+obj/machinery/door_timer/proc/set_timer(value)
 	var/new_time = clamp(value, 0, MAX_TIMER)
 	. = new_time == timer_duration //return 1 on no change
 	timer_duration = new_time
 	if(timer_duration && activation_time && timing) // Setting it while active will reset the activation time
 		activation_time = REALTIMEOFDAY
 
-/obj/machinery/door_timer/attack_ai(mob/user)
+obj/machinery/door_timer/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/door_timer/attack_hand(mob/user, list/params)
+obj/machinery/door_timer/attack_hand(mob/user, list/params)
 	if(..())
 		return TRUE
 	ui_interact(user)
@@ -167,7 +167,7 @@
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
 // if timing=true, run update display function
-/obj/machinery/door_timer/update_icon()
+obj/machinery/door_timer/update_icon()
 	. = ..()
 	if(machine_stat & (NOPOWER))
 		return
@@ -189,7 +189,7 @@
 	return
 
 ///Adds an icon in case the screen is broken/off, stolen from status_display.dm
-/obj/machinery/door_timer/proc/set_picture(state)
+obj/machinery/door_timer/proc/set_picture(state)
 	if(maptext)
 		maptext = ""
 
@@ -197,20 +197,20 @@
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display
-/obj/machinery/door_timer/proc/update_display(line1, line2)
+obj/machinery/door_timer/proc/update_display(line1, line2)
 	line1 = uppertext(line1)
 	line2 = uppertext(line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
 	if(maptext != new_text)
 		maptext = new_text
 
-/obj/machinery/door_timer/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/door_timer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BrigTimer", name)
 		ui.open()
 
-/obj/machinery/door_timer/ui_data()
+obj/machinery/door_timer/ui_data()
 	var/list/data = list()
 	var/time_left = time_left(seconds = TRUE)
 	data["seconds"] = round(time_left % 60)
@@ -227,7 +227,7 @@
 			break
 	return data
 
-/obj/machinery/door_timer/ui_act(action, params)
+obj/machinery/door_timer/ui_act(action, params)
 	if(..())
 		return
 
@@ -280,31 +280,31 @@
 			. = FALSE
 
 
-/obj/machinery/door_timer/cell_1
+obj/machinery/door_timer/cell_1
 	name = "Cell 1"
 	id = "Cell 1"
 
-/obj/machinery/door_timer/cell_2
+obj/machinery/door_timer/cell_2
 	name = "Cell 2"
 	id = "Cell 2"
 
-/obj/machinery/door_timer/cell_3
+obj/machinery/door_timer/cell_3
 	name = "Cell 3"
 	id = "Cell 3"
 
-/obj/machinery/door_timer/cell_4
+obj/machinery/door_timer/cell_4
 	name = "Cell 4"
 	id = "Cell 4"
 
-/obj/machinery/door_timer/cell_5
+obj/machinery/door_timer/cell_5
 	name = "Cell 5"
 	id = "Cell 5"
 
-/obj/machinery/door_timer/cell_6
+obj/machinery/door_timer/cell_6
 	name = "Cell 6"
 	id = "Cell 6"
 
-/obj/machinery/door_timer/tactical_pet_storage
+obj/machinery/door_timer/tactical_pet_storage
 	name = "Tactical Pet Storage"
 	id = "tactical_pet_storage"
 	desc = "Opens and Closes on a timer. This one seals away a tactical boost in morale."

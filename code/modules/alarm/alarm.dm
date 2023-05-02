@@ -1,6 +1,6 @@
 /// How long will the alarm/trigger remain active once origin/source has been found to be gone?
 #define ALARM_RESET_DELAY 100
-/datum/alarm_source
+datum/alarm_source
 	var/source		= null	// The source trigger
 	var/source_name = ""	// The name of the source should it be lost (for example a destroyed camera)
 	var/duration	= 0		// How long this source will be alarming, 0 for indefinetely.
@@ -8,12 +8,12 @@
 	var/start_time	= 0		// When this source began alarming.
 	var/end_time	= 0		// Use to set when this trigger should clear, in case the source is lost.
 
-/datum/alarm_source/New(var/atom/source)
+datum/alarm_source/New(var/atom/source)
 	src.source = source
 	start_time = world.time
 	source_name = source.get_source_name()
 
-/datum/alarm
+datum/alarm
 	var/atom/origin					//Used to identify the alarm area.
 	var/list/sources = new()		//List of sources triggering the alarm. Used to determine when the alarm should be cleared.
 	var/list/sources_assoc = new()	//Associative list of source triggers. Used to efficiently acquire the alarm source.
@@ -24,13 +24,13 @@
 	var/end_time					//Used to set when this alarm should clear, in case the origin is lost.
 	var/hidden = FALSE				//If this alarm can be seen from consoles or other things.
 
-/datum/alarm/New(var/atom/origin, var/atom/source, var/duration, var/severity, var/hidden)
+datum/alarm/New(var/atom/origin, var/atom/source, var/duration, var/severity, var/hidden)
 	src.origin = origin
 
 	cameras()	// Sets up both cameras and last alarm area.
 	set_source_data(source, duration, severity, hidden)
 
-/datum/alarm/process(delta_time)
+datum/alarm/process(delta_time)
 	// Has origin gone missing?
 	if(!origin && !end_time)
 		end_time = world.time + ALARM_RESET_DELAY
@@ -43,7 +43,7 @@
 			AS.duration = 0
 			AS.end_time = world.time + ALARM_RESET_DELAY
 
-/datum/alarm/proc/set_source_data(var/atom/source, var/duration, var/severity, var/hidden)
+datum/alarm/proc/set_source_data(var/atom/source, var/duration, var/severity, var/hidden)
 	var/datum/alarm_source/AS = sources_assoc[source]
 	if(!AS)
 		AS = new/datum/alarm_source(source)
@@ -57,26 +57,26 @@
 	AS.severity = severity
 	src.hidden = min(src.hidden, hidden)
 
-/datum/alarm/proc/clear(var/source)
+datum/alarm/proc/clear(var/source)
 	var/datum/alarm_source/AS = sources_assoc[source]
 	sources -= AS
 	sources_assoc -= source
 
-/datum/alarm/proc/alarm_area()
+datum/alarm/proc/alarm_area()
 	if(!origin)
 		return last_area
 
 	last_area = origin.get_alarm_area()
 	return last_area
 
-/datum/alarm/proc/alarm_name()
+datum/alarm/proc/alarm_name()
 	if(!origin)
 		return last_name
 
 	last_name = origin.get_alarm_name()
 	return last_name
 
-/datum/alarm/proc/cameras()
+datum/alarm/proc/cameras()
 	// If the alarm origin has changed area, for example a borg containing an alarming camera, reset the list of cameras
 	if(cameras && (last_camera_area != alarm_area()))
 		cameras = null
@@ -87,7 +87,7 @@
 	last_camera_area = last_area
 	return cameras
 
-/datum/alarm/proc/max_severity()
+datum/alarm/proc/max_severity()
 	var/max_severity = 0
 	for(var/datum/alarm_source/AS in sources)
 		max_severity = max(AS.severity, max_severity)
@@ -97,41 +97,41 @@
 /******************
 * Assisting procs *
 ******************/
-/atom/proc/get_alarm_area()
+atom/proc/get_alarm_area()
 	return get_area(src)
 
-/area/get_alarm_area()
+area/get_alarm_area()
 	return src
 
-/atom/proc/get_alarm_name()
+atom/proc/get_alarm_name()
 	var/area/A = get_area(src)
 	return A.name
 
-/area/get_alarm_name()
+area/get_alarm_name()
 	return name
 
-/mob/get_alarm_name()
+mob/get_alarm_name()
 	return name
 
-/atom/proc/get_source_name()
+atom/proc/get_source_name()
 	return name
 
-/obj/machinery/camera/get_source_name()
+obj/machinery/camera/get_source_name()
 	return c_tag
 
-/atom/proc/get_alarm_cameras()
+atom/proc/get_alarm_cameras()
 	var/area/A = get_area(src)
 	return A.get_cameras()
 
-/area/get_alarm_cameras()
+area/get_alarm_cameras()
 	return get_cameras()
 
-/mob/living/silicon/robot/get_alarm_cameras()
+mob/living/silicon/robot/get_alarm_cameras()
 	var/list/cameras = ..()
 	if(camera)
 		cameras += camera
 
 	return cameras
 
-/mob/living/silicon/robot/syndicate/get_alarm_cameras()
+mob/living/silicon/robot/syndicate/get_alarm_cameras()
 	return list()

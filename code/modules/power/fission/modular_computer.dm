@@ -1,4 +1,4 @@
-/datum/computer_file/program/fission_monitor
+datum/computer_file/program/fission_monitor
 	filename = "fismon"
 	filedesc = "Fission Monitoring"
 	nanomodule_path = /datum/nano_module/fission_monitor/
@@ -13,7 +13,7 @@
 	size = 5
 	var/last_status = 0
 
-/datum/computer_file/program/fission_monitor/process_tick()
+datum/computer_file/program/fission_monitor/process_tick()
 	..()
 	var/datum/nano_module/fission_monitor/NMS = NM
 	var/new_status = istype(NMS) ? NMS.get_status() : 0
@@ -24,22 +24,22 @@
 		if(istype(computer))
 			computer.update_icon()
 
-/datum/nano_module/fission_monitor
+datum/nano_module/fission_monitor
 	name = "Fission monitor"
 	var/list/fissioncores
 	var/obj/machinery/power/fission/active = null		// Currently selected fission core.
 
-/datum/nano_module/fission_monitor/Destroy()
+datum/nano_module/fission_monitor/Destroy()
 	. = ..()
 	active = null
 	fissioncores = null
 
-/datum/nano_module/fission_monitor/New()
+datum/nano_module/fission_monitor/New()
 	..()
 	refresh()
 
 // Refreshes list of active fission cores
-/datum/nano_module/fission_monitor/proc/refresh()
+datum/nano_module/fission_monitor/proc/refresh()
 	fissioncores = list()
 	var/z = get_z(nano_host())
 	if(!z)
@@ -54,14 +54,14 @@
 	if(!(active in fissioncores))
 		active = null
 
-/datum/nano_module/fission_monitor/proc/get_status()
+datum/nano_module/fission_monitor/proc/get_status()
 	. = FALSE
 	for(var/obj/machinery/power/fission/F in fissioncores)
 		if(F.anchored && F.powered())
 			. = TRUE
 			break
 
-/datum/nano_module/fission_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/fission_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	if(istype(active) && active.anchored)
@@ -94,7 +94,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/nano_module/fission_monitor/Topic(href, href_list)
+datum/nano_module/fission_monitor/Topic(href, href_list)
 	if(..())
 		return 1
 	if( href_list["clear"] )

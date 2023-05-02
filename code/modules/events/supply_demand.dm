@@ -1,6 +1,6 @@
-/var/global/running_demand_events = list()
+var/global/running_demand_events = list()
 
-/hook/sell_shuttle/proc/supply_demand_sell_shuttle(var/area/area_shuttle)
+hook/sell_shuttle/proc/supply_demand_sell_shuttle(var/area/area_shuttle)
 	for(var/datum/event/supply_demand/E in running_demand_events)
 		E.handle_sold_shuttle(area_shuttle)
 	return 1 // All hooks must return one to show success.
@@ -8,7 +8,7 @@
 //
 // The Supply Demand Event - CentCom asks for us to put some stuff on the shuttle
 //
-/datum/event/supply_demand
+datum/event/supply_demand
 	var/my_department = "Supply Division"
 	var/list/required_items = list()
 	var/end_time
@@ -16,7 +16,7 @@
 	startWhen = 2
 	endWhen = 1800 // Aproximately 1 hour in master controller ticks, refined by end_time
 
-/datum/event/supply_demand/setup()
+datum/event/supply_demand/setup()
 	my_department = "[GLOB.using_map.company_name] Supply Division" // Can't have company name in initial value (not const)
 	end_time = world.time + 1 HOUR + (severity * 30 MINUTES)
 	running_demand_events += src
@@ -40,7 +40,7 @@
 	if(required_items.len == 0)
 		choose_bar_items(rand(5, 10)) // Really? Well add drinks. If a crew can't even get the bar open they suck.
 
-/datum/event/supply_demand/announce()
+datum/event/supply_demand/announce()
 	var/message = "[GLOB.using_map.company_short] is comparing accounts and the bean counters found our division "
 	if(severity <= EVENT_LEVEL_MUNDANE)
 		message += "is a few items short. "
@@ -63,11 +63,11 @@
 	// Also announce over main comms so people know to look
 	command_announcement.Announce("An order for the station to deliver supplies to [command_name()] has been delivered to all supply Request Consoles", my_department)
 
-/datum/event/supply_demand/tick()
+datum/event/supply_demand/tick()
 	if(required_items.len == 0)
 		endWhen = activeFor  // End early becuase we're done already!
 
-/datum/event/supply_demand/end()
+datum/event/supply_demand/end()
 	running_demand_events -= src
 	// Check if the crew succeeded or failed!
 	if(required_items.len == 0)
@@ -96,7 +96,7 @@
 /**
  * Event Handler for responding to the supply shuttle arriving at centcom.
  */
-/datum/event/supply_demand/proc/handle_sold_shuttle(var/area/area_shuttle)
+datum/event/supply_demand/proc/handle_sold_shuttle(var/area/area_shuttle)
 	var/match_found = 0;
 
 	for(var/atom/movable/MA in area_shuttle)
@@ -124,7 +124,7 @@
 /**
  * Helper method to check an item against the list of required_items.
  */
-/datum/event/supply_demand/proc/match_item(var/atom/I)
+datum/event/supply_demand/proc/match_item(var/atom/I)
 	for(var/datum/supply_demand_order/meta in required_items)
 		if(meta.match_item(I))
 			if(meta.qty_need <= 0)
@@ -138,7 +138,7 @@
  * @param to_department - Name of department to deliver to, or null to send to all departments.
  * @return 1 if successful, 0 if couldn't send.
  */
-/datum/event/supply_demand/proc/send_console_message(var/message, var/to_department)
+datum/event/supply_demand/proc/send_console_message(var/message, var/to_department)
 	for(var/obj/machinery/message_server/MS in world)
 		if(!MS.active) continue
 		MS.send_rc_message(to_department ? to_department : "All Departments", my_department, message, "", "", 2)
@@ -147,35 +147,35 @@
 //  Supply Demand Datum - Keeps track of what centcomm has demanded
 //
 
-/datum/supply_demand_order
+datum/supply_demand_order
 	var/name		// Name of the item
 	var/qty_orig // How much was requested
 	var/qty_need // How much we still need
 
-/datum/supply_demand_order/New(var/qty)
+datum/supply_demand_order/New(var/qty)
 	if(qty) qty_orig = qty
 	qty_need = qty_orig
 
-/datum/supply_demand_order/proc/describe()
+datum/supply_demand_order/proc/describe()
 	return "[name] - (Qty: [qty_need])"
 
-/datum/supply_demand_order/proc/match_item(var/atom/I)
+datum/supply_demand_order/proc/match_item(var/atom/I)
 	return 0
 
 //
 // Request is for a physical thing
 //
-/datum/supply_demand_order/thing
+datum/supply_demand_order/thing
 	var/atom/type_path // Type path of the item required
 
-/datum/supply_demand_order/thing/New(var/qty, var/atom/type_path)
+datum/supply_demand_order/thing/New(var/qty, var/atom/type_path)
 	..()
 	src.type_path = type_path
 	src.name = initial(type_path.name)
 	if(!name)
 		log_debug(SPAN_DEBUGWARNING("supply_demand event: Order for thing [type_path] has no name."))
 
-/datum/supply_demand_order/thing/match_item(var/atom/I)
+datum/supply_demand_order/thing/match_item(var/atom/I)
 	if(istype(I, type_path))
 		// Hey, we found it!  How we handle it depends on some details tho.
 		if(istype(I, /obj/item/stack))
@@ -191,19 +191,19 @@
 //
 // Request is for an amount of some reagent
 //
-/datum/supply_demand_order/reagent
+datum/supply_demand_order/reagent
 	var/reagent_id
 
-/datum/supply_demand_order/reagent/New(var/qty, var/datum/reagent/R)
+datum/supply_demand_order/reagent/New(var/qty, var/datum/reagent/R)
 	..()
 	name = R.name
 	reagent_id = R.id
 
-/datum/supply_demand_order/reagent/describe()
+datum/supply_demand_order/reagent/describe()
 	return "[qty_need] units of [name] in its own container(s)"
 
 // Any reagent container will do now. Whole number units only.
-/datum/supply_demand_order/reagent/match_item(var/atom/I)
+datum/supply_demand_order/reagent/match_item(var/atom/I)
 	if(!I.reagents)
 		return
 	if(!istype(I, /obj/item/reagent_containers))
@@ -221,11 +221,11 @@
 // Request is for a gas mixture.
 //	In this case the target is moles!
 //
-/datum/supply_demand_order/gas
+datum/supply_demand_order/gas
 	name = "gas mixture"
 	var/datum/gas_mixture/mixture
 
-/datum/supply_demand_order/gas/describe()
+datum/supply_demand_order/gas/describe()
 	var/pressure = mixture.return_pressure()
 	var/total_moles = mixture.total_moles
 	var desc = "Canister filled to [round(pressure,0.1)] kPa with gas mixture:\n"
@@ -233,7 +233,7 @@
 		desc += "<br>- [GLOB.meta_gas_names[gas]]: [round((mixture.gas[gas] / total_moles) * 100)]%\n"
 	return desc
 
-/datum/supply_demand_order/gas/match_item(var/obj/machinery/portable_atmospherics/canister)
+datum/supply_demand_order/gas/match_item(var/obj/machinery/portable_atmospherics/canister)
 	if(!istype(canister))
 		return
 	var/datum/gas_mixture/canmix = canister.air_contents
@@ -257,7 +257,7 @@
 // Item choosing procs - Decide what supplies will be demanded!
 //
 
-/datum/event/supply_demand/proc/choose_food_items(var/differentTypes)
+datum/event/supply_demand/proc/choose_food_items(var/differentTypes)
 	var/list/types = typesof(/datum/recipe) - /datum/recipe
 	for(var/i in 1 to differentTypes)
 		var/datum/recipe/R = pick(types)
@@ -267,7 +267,7 @@
 		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
 	return
 
-/datum/event/supply_demand/proc/choose_research_items(var/differentTypes)
+datum/event/supply_demand/proc/choose_research_items(var/differentTypes)
 	var/list/types = typesof(/datum/design) - /datum/design
 	for(var/i in 1 to differentTypes)
 		var/datum/design/D = pick(types)
@@ -277,7 +277,7 @@
 		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
 	return
 
-/datum/event/supply_demand/proc/choose_chemistry_items(var/differentTypes)
+datum/event/supply_demand/proc/choose_chemistry_items(var/differentTypes)
 	// Checking if they show up in health analyzer is good huristic for it being a drug
 	var/list/medicineReagents = list()
 	for(var/path in typesof(/datum/chemical_reaction) - /datum/chemical_reaction)
@@ -292,7 +292,7 @@
 		required_items += new /datum/supply_demand_order/reagent(chosen_qty, R)
 	return
 
-/datum/event/supply_demand/proc/choose_bar_items(var/differentTypes)
+datum/event/supply_demand/proc/choose_bar_items(var/differentTypes)
 	var/list/drinkReagents = list()
 	for(var/path in typesof(/datum/chemical_reaction) - /datum/chemical_reaction)
 		var/datum/chemical_reaction/CR = path // Stupid casting required for reading
@@ -306,7 +306,7 @@
 		required_items += new /datum/supply_demand_order/reagent(chosen_qty, R)
 	return
 
-/datum/event/supply_demand/proc/choose_robotics_items(var/differentTypes)
+datum/event/supply_demand/proc/choose_robotics_items(var/differentTypes)
 	// Do not make mechs dynamic, its too silly
 	var/list/types = list(
 		/obj/mecha/combat/durand,
@@ -319,7 +319,7 @@
 		required_items += new /datum/supply_demand_order/thing(rand(1, 2), T)
 	return
 /*
-/datum/event/supply_demand/proc/choose_atmos_items(var/differentTypes)
+datum/event/supply_demand/proc/choose_atmos_items(var/differentTypes)
 	var/datum/gas_mixture/mixture = new
 	mixture.temperature = T20C
 	var/unpickedTypes = gas_data.gases.Copy()
@@ -334,7 +334,7 @@
 	required_items += O
 	return
 */
-/datum/event/supply_demand/proc/choose_alloy_items(var/differentTypes)
+datum/event/supply_demand/proc/choose_alloy_items(var/differentTypes)
 	var/list/types = typesof(/datum/alloy) - /datum/alloy
 	for(var/i in 1 to differentTypes)
 		var/datum/alloy/A = pick(types)

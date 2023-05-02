@@ -1,4 +1,4 @@
-/datum/unit_test/siunit/Run()
+datum/unit_test/siunit/Run()
 	TEST_ASSERT_EQUAL(siunit(0.5345, "A", 0), "535 mA", "")
 	TEST_ASSERT_EQUAL(siunit(0.5344, "A", 0), "534 mA", "")
 	TEST_ASSERT_EQUAL(siunit(-0.5344, "A", 0), "-534 mA", "")

@@ -1,4 +1,4 @@
-/datum/species/phoronoid
+datum/species/phoronoid
 	uid = SPECIES_ID_PHORONOID
 	id = SPECIES_ID_PHORONOID
 	name = SPECIES_PHORONOID
@@ -79,7 +79,7 @@
 
 	body_temperature = T20C
 
-/datum/species/phoronoid/handle_environment_special(mob/living/carbon/human/H)
+datum/species/phoronoid/handle_environment_special(mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(!T)
 		return
@@ -105,7 +105,7 @@
 			H.IgniteMob()
 	enviroment_bad = FALSE
 
-/datum/species/phoronoid/equip_survival_gear(mob/living/carbon/human/H, extendedtank = FALSE, comprehensive = FALSE)
+datum/species/phoronoid/equip_survival_gear(mob/living/carbon/human/H, extendedtank = FALSE, comprehensive = FALSE)
 	. = ..()
 	var/suit = /obj/item/clothing/suit/space/plasman
 	var/helm = /obj/item/clothing/head/helmet/space/plasman

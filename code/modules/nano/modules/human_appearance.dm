@@ -1,4 +1,4 @@
-/datum/nano_module/appearance_changer
+datum/nano_module/appearance_changer
 	name = "Appearance Editor"
 	var/flags = APPEARANCE_ALL_HAIR
 	var/mob/living/carbon/human/owner = null
@@ -10,14 +10,14 @@
 	var/list/whitelist
 	var/list/blacklist
 
-/datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list())
+datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list())
 	..()
 	owner = H
 	src.check_whitelist = check_species_whitelist
 	src.whitelist = species_whitelist
 	src.blacklist = species_blacklist
 
-/datum/nano_module/appearance_changer/Topic(ref, href_list, var/datum/topic_state/state = default_state)
+datum/nano_module/appearance_changer/Topic(ref, href_list, var/datum/topic_state/state = default_state)
 	if(..())
 		return 1
 
@@ -94,7 +94,7 @@
 
 	return 0
 
-/datum/nano_module/appearance_changer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/appearance_changer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 
 	if(!owner || !owner.species)
 		return
@@ -152,26 +152,26 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/nano_module/appearance_changer/proc/update_dna()
+datum/nano_module/appearance_changer/proc/update_dna()
 	if(owner && (flags & APPEARANCE_UPDATE_DNA))
 		owner.update_dna()
 
-/datum/nano_module/appearance_changer/proc/can_change(var/flag)
+datum/nano_module/appearance_changer/proc/can_change(var/flag)
 	return owner && (flags & flag)
 
-/datum/nano_module/appearance_changer/proc/can_change_skin_tone()
+datum/nano_module/appearance_changer/proc/can_change_skin_tone()
 	return owner && (flags & APPEARANCE_SKIN) && owner.species.species_appearance_flags & HAS_SKIN_TONE
 
-/datum/nano_module/appearance_changer/proc/can_change_skin_color()
+datum/nano_module/appearance_changer/proc/can_change_skin_color()
 	return owner && (flags & APPEARANCE_SKIN) && owner.species.species_appearance_flags & HAS_SKIN_COLOR
 
-/datum/nano_module/appearance_changer/proc/cut_and_generate_data()
+datum/nano_module/appearance_changer/proc/cut_and_generate_data()
 	// Making the assumption that the available species remain constant
 	valid_facial_hairstyles.Cut()
 	valid_facial_hairstyles.Cut()
 	generate_data()
 
-/datum/nano_module/appearance_changer/proc/generate_data()
+datum/nano_module/appearance_changer/proc/generate_data()
 	if(!owner)
 		return
 	if(!valid_species.len)
@@ -181,7 +181,7 @@
 		valid_facial_hairstyles = owner.generate_valid_facial_hairstyles()
 
 
-/datum/nano_module/appearance_changer/proc/get_genders()
+datum/nano_module/appearance_changer/proc/get_genders()
 	var/datum/species/S = owner.species
 	var/list/possible_genders = S.genders
 	if(!owner.internal_organs_by_name["cell"])

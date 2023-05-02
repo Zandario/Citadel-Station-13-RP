@@ -1,4 +1,4 @@
-/datum/species/zaddat
+datum/species/zaddat
 	uid = SPECIES_ID_ZADDAT
 	id = SPECIES_ID_ZADDAT
 	name = SPECIES_ZADDAT
@@ -95,7 +95,7 @@
 
 	descriptors = list()
 
-/datum/species/zaddat/equip_survival_gear(mob/living/carbon/human/H)
+datum/species/zaddat/equip_survival_gear(mob/living/carbon/human/H)
 	..()
 	if(H.wear_suit) //get rid of job labcoats so they don't stop us from equipping the Shroud
 		qdel(H.wear_suit) //if you know how to gently set it in like, their backpack or whatever, be my guest
@@ -114,7 +114,7 @@
 	else
 		H.equip_to_slot_or_del(L, /datum/inventory_slot_meta/abstract/put_in_backpack)
 
-/datum/species/zaddat/handle_environment_special(mob/living/carbon/human/H)
+datum/species/zaddat/handle_environment_special(mob/living/carbon/human/H)
 
 	if(H.inStasisNow())
 		return

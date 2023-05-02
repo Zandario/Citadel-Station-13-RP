@@ -1,10 +1,10 @@
-/obj/item/material/kitchen
+obj/item/material/kitchen
 	icon = 'icons/obj/kitchen.dmi'
 
 /*
  * Utensils
  */
-/obj/item/material/kitchen/utensil
+obj/item/material/kitchen/utensil
 	drop_sound = 'sound/items/drop/knife.ogg'
 	pickup_sound = 'sound/items/pickup/knife.ogg'
 	w_class = ITEMSIZE_TINY
@@ -18,13 +18,13 @@
 	var/loaded      //Descriptive string for currently loaded food object.
 	var/scoop_food = 1
 
-/obj/item/material/kitchen/utensil/Initialize(mapload)
+obj/item/material/kitchen/utensil/Initialize(mapload)
 	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
 	create_reagents(5)
 
-/obj/item/material/kitchen/utensil/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/material/kitchen/utensil/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!istype(target))
 		return ..()
 
@@ -54,41 +54,41 @@
 		to_chat(user, "<span class='warning'>You don't have anything on \the [src].</span>")	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
 		return
 
-/obj/item/material/kitchen/utensil/fork
+obj/item/material/kitchen/utensil/fork
 	name = "fork"
 	desc = "It's a fork. Sure is pointy."
 	icon_state = "fork"
 	sharp = 1
 	edge = 0
 
-/obj/item/material/kitchen/utensil/fork/plastic
+obj/item/material/kitchen/utensil/fork/plastic
 	default_material = "plastic"
 
-/obj/item/material/kitchen/utensil/fork/plasteel
+obj/item/material/kitchen/utensil/fork/plasteel
 	default_material = "plasteel"
 
-/obj/item/material/kitchen/utensil/fork/durasteel
+obj/item/material/kitchen/utensil/fork/durasteel
 	default_material = "durasteel"
 
-/obj/item/material/kitchen/utensil/spoon/plasteel
+obj/item/material/kitchen/utensil/spoon/plasteel
 	default_material = "plasteel"
 
-/obj/item/material/kitchen/utensil/spoon/durasteel
+obj/item/material/kitchen/utensil/spoon/durasteel
 	default_material = "durasteel"
 
-/obj/item/material/knife/plasteel
+obj/item/material/knife/plasteel
 	default_material = "plasteel"
 
-/obj/item/material/knife/durasteel
+obj/item/material/knife/durasteel
 	default_material = "durasteel"
 
-/obj/item/material/kitchen/rollingpin/plasteel
+obj/item/material/kitchen/rollingpin/plasteel
   default_material = "plasteel"
 
-/obj/item/material/kitchen/rollingpin/durasteel
+obj/item/material/kitchen/rollingpin/durasteel
   default_material = "durasteel"
 
-/obj/item/material/kitchen/utensil/spoon
+obj/item/material/kitchen/utensil/spoon
 	name = "spoon"
 	desc = "It's a spoon. You can see your own upside-down face in it."
 	icon_state = "spoon"
@@ -97,7 +97,7 @@
 	sharp = 0
 	force_divisor = 0.1 //2 when wielded with weight 20 (steel)
 
-/obj/item/material/kitchen/utensil/spoon/plastic
+obj/item/material/kitchen/utensil/spoon/plastic
 	default_material = "plastic"
 
 /*
@@ -105,21 +105,21 @@
  */
 
 /* From the time of Clowns. Commented out for posterity, and sanity.
-/obj/item/material/knife/attack(target as mob, mob/living/user as mob)
+obj/item/material/knife/attack(target as mob, mob/living/user as mob)
 	if ((MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='warning'>You accidentally cut yourself with \the [src].</span>")
 		user.take_organ_damage(20)
 		return
 	return ..()
 */
-/obj/item/material/knife/plastic
+obj/item/material/knife/plastic
 	default_material = "plastic"
 
 /*
  * Rolling Pins
  */
 
-/obj/item/material/kitchen/rollingpin
+obj/item/material/kitchen/rollingpin
 	name = "rolling pin"
 	desc = "Used to knock out the Bartender."
 	icon_state = "rolling_pin"
@@ -131,7 +131,7 @@
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
-/obj/item/material/kitchen/rollingpin/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/material/kitchen/rollingpin/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/L = user
 	if(!istype(L))
 		return ..()

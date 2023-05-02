@@ -5,7 +5,7 @@
 #define ROTATION_CLOCKWISE			(1<<4)
 #define ROTATION_FLIP				(1<<5)
 
-/datum/component/simple_rotation
+datum/component/simple_rotation
 	var/datum/callback/can_user_rotate //Checks if user can rotate
 	var/datum/callback/can_be_rotated  //Check if object can be rotated at all
 	var/datum/callback/after_rotation     //Additional stuff to do after rotation
@@ -13,7 +13,7 @@
 	var/rotation_flags = NONE
 	var/default_rotation_direction = ROTATION_CLOCKWISE
 
-/datum/component/simple_rotation/Initialize(rotation_flags = NONE ,can_user_rotate,can_be_rotated,after_rotation)
+datum/component/simple_rotation/Initialize(rotation_flags = NONE ,can_user_rotate,can_be_rotated,after_rotation)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -44,14 +44,14 @@
 	if(src.rotation_flags & ROTATION_CLOCKWISE)
 		default_rotation_direction = ROTATION_CLOCKWISE
 
-/datum/component/simple_rotation/proc/add_signals()
+datum/component/simple_rotation/proc/add_signals()
 	if(rotation_flags & ROTATION_ALTCLICK)
 		RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/HandRot)
 		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/ExamineMessage)
 	if(rotation_flags & ROTATION_WRENCH)
 		RegisterSignal(parent, COMSIG_ATOM_WRENCH_ACT, .proc/WrenchRot)
 
-/datum/component/simple_rotation/proc/add_verbs()
+datum/component/simple_rotation/proc/add_verbs()
 	if(rotation_flags & ROTATION_VERBS)
 		var/atom/movable/AM = parent
 		if(rotation_flags & ROTATION_FLIP)
@@ -61,59 +61,59 @@
 		if(src.rotation_flags & ROTATION_COUNTERCLOCKWISE)
 			add_obj_verb(AM, /atom/movable/proc/simple_rotate_counterclockwise)
 
-/datum/component/simple_rotation/proc/remove_verbs()
+datum/component/simple_rotation/proc/remove_verbs()
 	if(parent)
 		var/atom/movable/AM = parent
 		remove_obj_verb(AM, /atom/movable/proc/simple_rotate_flip)
 		remove_obj_verb(AM, /atom/movable/proc/simple_rotate_clockwise)
 		remove_obj_verb(AM, /atom/movable/proc/simple_rotate_counterclockwise)
 
-/datum/component/simple_rotation/proc/remove_signals()
+datum/component/simple_rotation/proc/remove_signals()
 	UnregisterSignal(parent, list(COMSIG_CLICK_ALT, COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY))
 
-/datum/component/simple_rotation/RegisterWithParent()
+datum/component/simple_rotation/RegisterWithParent()
 	add_verbs()
 	add_signals()
 	. = ..()
 
-/datum/component/simple_rotation/PostTransfer()
+datum/component/simple_rotation/PostTransfer()
 	//Because of the callbacks which we don't track cleanly we can't transfer this
 	//item cleanly, better to let the new of the new item create a new rotation datum
 	//instead (there's no real state worth transferring)
 	return COMPONENT_NOTRANSFER
 
-/datum/component/simple_rotation/UnregisterFromParent()
+datum/component/simple_rotation/UnregisterFromParent()
 	remove_verbs()
 	remove_signals()
 	. = ..()
 
-/datum/component/simple_rotation/Destroy()
+datum/component/simple_rotation/Destroy()
 	QDEL_NULL(can_user_rotate)
 	QDEL_NULL(can_be_rotated)
 	QDEL_NULL(after_rotation)
 	//Signals + verbs removed via UnRegister
 	. = ..()
 
-/datum/component/simple_rotation/RemoveComponent()
+datum/component/simple_rotation/RemoveComponent()
 	remove_verbs()
 	. = ..()
 
-/datum/component/simple_rotation/proc/ExamineMessage(datum/source, mob/user, list/examine_list)
+datum/component/simple_rotation/proc/ExamineMessage(datum/source, mob/user, list/examine_list)
 	if(rotation_flags & ROTATION_ALTCLICK)
 		examine_list += "<span class='notice'>Alt-click to rotate it clockwise.</span>"
 
-/datum/component/simple_rotation/proc/HandRot(datum/source, mob/user, rotation = default_rotation_direction)
+datum/component/simple_rotation/proc/HandRot(datum/source, mob/user, rotation = default_rotation_direction)
 	if(!can_be_rotated.Invoke(user, rotation) || !can_user_rotate.Invoke(user, rotation))
 		return
 	BaseRot(user, rotation)
 
-/datum/component/simple_rotation/proc/WrenchRot(datum/source, obj/item/I, mob/living/user)
+datum/component/simple_rotation/proc/WrenchRot(datum/source, obj/item/I, mob/living/user)
 	if(!can_be_rotated.Invoke(user,default_rotation_direction) || !can_user_rotate.Invoke(user,default_rotation_direction))
 		return
 	BaseRot(user,default_rotation_direction)
 	return COMPONENT_BLOCK_TOOL_ATTACK
 
-/datum/component/simple_rotation/proc/BaseRot(mob/user,rotation_type)
+datum/component/simple_rotation/proc/BaseRot(mob/user,rotation_type)
 	var/atom/movable/AM = parent
 	var/rot_degree
 	switch(rotation_type)
@@ -126,19 +126,19 @@
 	AM.setDir(turn(AM.dir,rot_degree))
 	after_rotation.Invoke(user,rotation_type)
 
-/datum/component/simple_rotation/proc/default_can_user_rotate(mob/living/user, rotation_type)
+datum/component/simple_rotation/proc/default_can_user_rotate(mob/living/user, rotation_type)
 	if(!istype(user) || !user.canUseTopic(parent, BE_CLOSE, NO_DEXTERY))
 		return FALSE
 	return TRUE
 
-/datum/component/simple_rotation/proc/default_can_be_rotated(mob/user, rotation_type)
+datum/component/simple_rotation/proc/default_can_be_rotated(mob/user, rotation_type)
 	var/atom/movable/AM = parent
 	return !AM.anchored
 
-/datum/component/simple_rotation/proc/default_after_rotation(mob/user, rotation_type)
+datum/component/simple_rotation/proc/default_after_rotation(mob/user, rotation_type)
 	to_chat(user,"<span class='notice'>You [rotation_type == ROTATION_FLIP ? "flip" : "rotate"] [parent].</span>")
 
-/atom/movable/proc/simple_rotate_clockwise()
+atom/movable/proc/simple_rotate_clockwise()
 	set name = "Rotate Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -146,7 +146,7 @@
 	if(rotcomp)
 		rotcomp.HandRot(null,usr,ROTATION_CLOCKWISE)
 
-/atom/movable/proc/simple_rotate_counterclockwise()
+atom/movable/proc/simple_rotate_counterclockwise()
 	set name = "Rotate Counter-Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -154,7 +154,7 @@
 	if(rotcomp)
 		rotcomp.HandRot(null,usr,ROTATION_COUNTERCLOCKWISE)
 
-/atom/movable/proc/simple_rotate_flip()
+atom/movable/proc/simple_rotate_flip()
 	set name = "Flip"
 	set category = "Object"
 	set src in oview(1)

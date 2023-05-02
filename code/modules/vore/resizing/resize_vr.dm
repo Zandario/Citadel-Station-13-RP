@@ -16,15 +16,15 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 // Adding needed defines to /mob/living
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
-/mob/living
+mob/living
 	var/holder_default
 
 // Define holder_type on types we want to be scoop-able
-/mob/living/carbon/human
+mob/living/carbon/human
 	holder_type = /obj/item/holder/micro
 
 // The reverse lookup of player_sizes_list, number to name.
-/proc/player_size_name(var/size_multiplier)
+proc/player_size_name(var/size_multiplier)
 	// (This assumes list is sorted big->small)
 	for(var/N in player_sizes_list)
 		. = N // So we return the smallest if we get to the end
@@ -38,7 +38,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  *	as long as that is true, we should be fine.  If that changes we need to
  *	re-evaluate.
  */
-/mob/living/update_icons()
+mob/living/update_icons()
 	. = ..()
 	ASSERT(!ishuman(src))
 	var/matrix/M = matrix()
@@ -51,17 +51,17 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * but in the future we may also incorporate the "mob_size", so that
  * a macro mouse is still only effectively "normal" or a micro dragon is still large etc.
  */
-/mob/proc/get_effective_size()
+mob/proc/get_effective_size()
 	return 100000 //Whatever it is, it's too big to pick up, or it's a ghost, or something.
 
-/mob/living/get_effective_size()
+mob/living/get_effective_size()
 	return src.size_multiplier
 
 /**
  * Resizes the mob immediately to the desired mod, animating it growing/shrinking.
  * It can be used by anything that calls it.
  */
-/mob/living/proc/resize(var/new_size, var/animate = FALSE)
+mob/living/proc/resize(var/new_size, var/animate = FALSE)
 	if(size_multiplier == new_size)
 		return 1
 	if(last_special > world.time)
@@ -80,7 +80,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		update_transform() //Lame way
 		last_special = world.time + base_attack_cooldown
 
-/mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
+mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
 	. = ..()
 	if(LAZYLEN(hud_list))
 		var/new_y_offset = 32 * (size_multiplier - 1)
@@ -89,7 +89,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			HI.pixel_y = new_y_offset
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
-/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE)
+mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE)
 	size_multiplier = new_size
 
 /**
@@ -98,7 +98,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  */
 
 
-/mob/living/proc/set_size()
+mob/living/proc/set_size()
 	set name = "Adjust Mass"
 	set category = "Abilities" //Seeing as prometheans have an IC reason to be changing mass.
 
@@ -111,7 +111,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 /*
 //Add the set_size() proc to usable verbs. By commenting this out, we can leave the proc and hand it to species that need it.
-/hook/living_new/proc/resize_setup(mob/living/H)
+hook/living_new/proc/resize_setup(mob/living/H)
 	add_verb(H, /mob/living/proc/set_size)
 	return 1
 */
@@ -120,7 +120,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * Attempt to scoop up this mob up into H's hands, if the size difference is large enough.
  * @return false if normal code should continue, 1 to prevent normal code.
  */
-/mob/living/proc/attempt_to_scoop(var/mob/living/M)
+mob/living/proc/attempt_to_scoop(var/mob/living/M)
 	var/size_diff = M.get_effective_size() - get_effective_size()
 	if(!holder_default && holder_type)
 		holder_default = holder_type
@@ -156,7 +156,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 #define NEITHER_OF_US_ARE_FETISH_CONTENT	4
 
 //! call this from the bumping side aka the mob that ran into other, not the other way around
-/mob/living/proc/fetish_hook_for_help_intent_swapping(mob/living/other)
+mob/living/proc/fetish_hook_for_help_intent_swapping(mob/living/other)
 	if(a_intent != INTENT_HELP)
 		return FALSE
 	switch(stupid_fucking_micro_canpass_fetish_check(other))
@@ -173,7 +173,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			inform_someone_you_just_stepped_over_them(other)
 			return TRUE
 
-/mob/living/proc/stupid_fucking_micro_canpass_fetish_check(mob/living/crossing)
+mob/living/proc/stupid_fucking_micro_canpass_fetish_check(mob/living/crossing)
 	var/hatred = a_intent != INTENT_HELP || crossing.a_intent != INTENT_HELP
 	if(hatred)
 		return NEITHER_OF_US_ARE_FETISH_CONTENT
@@ -184,14 +184,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		return NEITHER_OF_US_ARE_FETISH_CONTENT
 	return diff > 0? THEY_RAN_BETWEEN_OUR_LEGS : WE_RAN_BETWEEN_THEIR_LEGS
 
-/mob/living/proc/inform_someone_you_just_stepped_over_them(mob/living/micro)
+mob/living/proc/inform_someone_you_just_stepped_over_them(mob/living/micro)
 	var/mob/living/carbon/human/H
 	var/datum/sprite_accessory/tail/taur/tail
 	tail = ishuman(src)? ((H = src) && isTaurTail(H.tail_style) && H.tail_style) : null
 	to_chat(src, tail? STEP_TEXT_OWNER_NON_SHITCODE(tail.msg_owner_help_run, micro) : "You carefully step over [micro].")
 	to_chat(micro, tail? STEP_TEXT_PREY_NON_SHITCODE(tail.msg_prey_help_run, src) : "[src] carefully steps over you.")
 
-/mob/living/proc/inform_someone_they_just_ran_under_you(mob/living/micro)
+mob/living/proc/inform_someone_they_just_ran_under_you(mob/living/micro)
 	var/mob/living/carbon/human/H
 	var/datum/sprite_accessory/tail/taur/tail
 	tail = ishuman(src)? ((H = src) && isTaurTail(H.tail_style) && H.tail_style) : null
@@ -200,14 +200,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 //! sigh, we can't do this yet
 /*
-/mob/living/CanAllowThrough(atom/movable/mover, turf/target)
+mob/living/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(isliving(mover))
 		var/fetish_content_check = stupid_fucking_micro_canpass_fetish_check(mover)
 		if(fetish_content_check != NEITHER_OF_US_ARE_FETISH_CONTENT)
 			return TRUE
 
-/mob/lving/Crossed(atom/movable/AM, oldloc)
+mob/lving/Crossed(atom/movable/AM, oldloc)
 	. = ..()
 	if(isliving(AM))
 		var/fetish_content_check = stupid_fucking_micro_canpass_fetish_check(mover)
@@ -241,7 +241,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /**
  * we bumped into other
  */
-/mob/living/proc/fetish_hook_for_non_help_intent_bumps(mob/living/other)
+mob/living/proc/fetish_hook_for_non_help_intent_bumps(mob/living/other)
 	if(a_intent == INTENT_HELP)
 		return FALSE
 	// flatten to true/false
@@ -253,7 +253,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  *
  * @return false if normal code should continue, 1 to prevent normal code.
  */
-/mob/living/proc/handle_micro_bump_other(var/mob/living/tmob)
+mob/living/proc/handle_micro_bump_other(var/mob/living/tmob)
 	ASSERT(istype(tmob))
 
 	//If they're flying, don't do any special interactions.
@@ -455,6 +455,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 #undef STEP_TEXT_OWNER
 #undef STEP_TEXT_PREY
 
-/mob/living/get_standard_pixel_y_offset(lying)
+mob/living/get_standard_pixel_y_offset(lying)
 	. = ..()
 	. += (size_multiplier - 1) * 16

@@ -1,4 +1,4 @@
-/datum/role/job/station/mining
+datum/role/job/station/mining
 	id = JOB_ID_SHAFT_MINER
 	title = "Shaft Miner"
 	flag = MINER
@@ -21,17 +21,17 @@
 		"Belt Miner" = /datum/prototype/alt_title/miner/belt
 		)
 
-/datum/prototype/alt_title/miner
+datum/prototype/alt_title/miner
 	abstract_type = /datum/prototype/alt_title/miner
 
-/datum/prototype/alt_title/miner/drill_tech
+datum/prototype/alt_title/miner/drill_tech
 	title = "Drill Technician"
 	title_blurb = "A Drill Technician specializes in operating and maintaining the machinery needed to extract ore from veins deep below the surface."
 
-/datum/prototype/alt_title/miner/belt
+datum/prototype/alt_title/miner/belt
 	title = "Belt Miner"
 
-/datum/outfit/job/station/shaft_miner
+datum/outfit/job/station/shaft_miner
 	name = OUTFIT_JOB_NAME("Shaft Miner")
 	uniform = /obj/item/clothing/under/rank/miner
 	l_ear = /obj/item/radio/headset/headset_mine

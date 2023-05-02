@@ -1,11 +1,11 @@
 /*********
 * Back up *
 **********/
-/datum/uplink_item/item/backup
+datum/uplink_item/item/backup
 	category = /datum/uplink_category/backup
 	blacklisted = 1
 
-/datum/uplink_item/item/backup/syndicate_drone_protector
+datum/uplink_item/item/backup/syndicate_drone_protector
 	name = "Drone (Protector)"
 	desc = "A miniature teleport which will bring a powerful and loyal drone to you.  \
 	This type comes with a directional shield projector, a supressive fire energy weapon, \
@@ -14,7 +14,7 @@
 	antag_roles = list("mercenary")
 	path = /obj/item/antag_spawner/syndicate_drone/protector
 
-/datum/uplink_item/item/backup/syndicate_drone_combat_medic
+datum/uplink_item/item/backup/syndicate_drone_combat_medic
 	name = "Drone (Combat Medic)"
 	desc = "A miniature teleport which will bring a powerful and loyal drone to you.  \
 	This type comes with standard medical equipment, full set of surgery tools, \
@@ -24,7 +24,7 @@
 	antag_roles = list("mercenary")
 	path = /obj/item/antag_spawner/syndicate_drone/combat_medic
 
-/datum/uplink_item/item/backup/syndicate_drone_mechanist
+datum/uplink_item/item/backup/syndicate_drone_mechanist
 	name = "Drone (Mechanist)"
 	desc = "A miniature teleport which will bring a powerful and loyal drone to you.  \
 	This type comes with a full set of tools, an RCD, the ability to unlock other bound synthetics, \

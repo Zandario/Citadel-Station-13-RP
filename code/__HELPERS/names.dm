@@ -1,5 +1,5 @@
 var/church_name = null
-/proc/church_name()
+proc/church_name()
 	if (church_name)
 		return church_name
 
@@ -15,18 +15,18 @@ var/church_name = null
 
 	return name
 
-/proc/command_name()
+proc/command_name()
 	if(istype(GLOB.using_map))
 		return GLOB.using_map.boss_name
 
-/proc/change_command_name(var/name)
+proc/change_command_name(var/name)
 
 	GLOB.using_map.boss_name = name
 
 	return name
 
 var/religion_name = null
-/proc/religion_name()
+proc/religion_name()
 	if (religion_name)
 		return religion_name
 
@@ -37,10 +37,10 @@ var/religion_name = null
 
 	return capitalize(name)
 
-/proc/system_name()
+proc/system_name()
 	return GLOB.using_map.starsys_name
 
-/proc/station_name()
+proc/station_name()
 	if (GLOB.using_map.station_name)
 		return GLOB.using_map.station_name
 
@@ -100,7 +100,7 @@ var/religion_name = null
 	return new_station_name
 
 // Is this even used?
-/proc/world_name(var/name)
+proc/world_name(var/name)
 
 	GLOB.using_map.station_name = name
 
@@ -112,7 +112,7 @@ var/religion_name = null
 	return name
 
 var/syndicate_name = null
-/proc/syndicate_name()
+proc/syndicate_name()
 	if (syndicate_name)
 		return syndicate_name
 
@@ -160,7 +160,7 @@ var/syndicate_code_response//Code response for traitors.
 	-N
 	*/
 
-/proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
+proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
 
 	var/code_phrase = ""//What is returned when the proc finishes.
 	var/words = pick(//How many words there will be. Minimum of two. 2, 4 and 5 have a lesser chance of being selected. 3 is the most likely.
@@ -227,7 +227,7 @@ var/syndicate_code_response//Code response for traitors.
  * This will update a mob's name, real_name, mind.name, data_core records, pda and id.
  * Calling this proc without an oldname will only update the mob and skip updating the pda, id and records. ~Carn
  */
-/mob/proc/fully_replace_character_name(oldname, newname)
+mob/proc/fully_replace_character_name(oldname, newname)
 	if(!newname)
 		return FALSE
 	real_name = newname
@@ -275,7 +275,7 @@ var/syndicate_code_response//Code response for traitors.
  * Used for the AI name prompt and apparently /used/ to be use for Clowns too.
  * TODO: Change this to use the new role ID system when it's ready.
  */
-/mob/proc/rename_self(role)
+mob/proc/rename_self(role)
 	spawn(0)
 		var/oldname = real_name
 		// var/time_passed = world.time

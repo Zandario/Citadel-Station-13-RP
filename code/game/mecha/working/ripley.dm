@@ -1,4 +1,4 @@
-/obj/mecha/working/ripley
+obj/mecha/working/ripley
 	desc = "Autonomous Power Loader Unit. The workhorse of the exosuit world."
 	name = "APLU \"Ripley\""
 	icon_state = "ripley"
@@ -27,7 +27,7 @@
 	icon_scale_x = 1.2
 	icon_scale_y = 1.2
 
-/obj/mecha/working/ripley/Destroy()
+obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
 		A.loc = loc
 		var/turf/T = loc
@@ -37,7 +37,7 @@
 	cargo.Cut()
 	..()
 
-/obj/mecha/working/ripley/firefighter
+obj/mecha/working/ripley/firefighter
 	desc = "Standard APLU chassis was refitted with additional thermal protection and cistern."
 	name = "APLU \"Firefighter\""
 	icon_state = "firefighter"
@@ -53,7 +53,7 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
-/obj/mecha/working/ripley/deathripley
+obj/mecha/working/ripley/deathripley
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
 	name = "DEATH-RIPLEY"
 	icon_state = "deathripley"
@@ -69,17 +69,17 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
-/obj/mecha/working/ripley/deathripley/Initialize(mapload)
+obj/mecha/working/ripley/deathripley/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety
 	ME.attach(src)
 	return
 
-/obj/mecha/working/ripley/mining
+obj/mecha/working/ripley/mining
 	desc = "An old, dusty mining ripley."
 	name = "APLU \"Miner\""
 
-/obj/mecha/working/ripley/mining/Initialize(mapload)
+obj/mecha/working/ripley/mining/Initialize(mapload)
 	. = ..()
 	//Attach drill
 	if(prob(25)) //Possible diamond drill... Feeling lucky?
@@ -95,7 +95,7 @@
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)//Deletes the beacon so it can't be found easily
 		qdel (B)
 
-/obj/mecha/working/ripley/geiger
+obj/mecha/working/ripley/geiger
 	name = "APLU \"Geiger\""
 	desc = "You can't beat the classics."
 	icon_state = "ripley-old"
@@ -115,11 +115,11 @@
 	icon_scale_x = 1
 	icon_scale_y = 1
 
-/obj/mecha/working/ripley/Initialize(mapload)
+obj/mecha/working/ripley/Initialize(mapload)
 	. = ..()
 	orescanner = new /obj/item/mining_scanner
 
-/obj/mecha/working/ripley/verb/detect_ore()
+obj/mecha/working/ripley/verb/detect_ore()
 	set category = "Exosuit Interface"
 	set name = "Detect Ores"
 	set src = usr.loc
@@ -128,10 +128,10 @@
 	orescanner.attack_self(usr)
 
 //Meant for random spawns.
-/obj/mecha/working/ripley/mining/old
+obj/mecha/working/ripley/mining/old
 	desc = "An old, dusty mining ripley."
 
-/obj/mecha/working/ripley/mining/old/Initialize(mapload)
+obj/mecha/working/ripley/mining/old/Initialize(mapload)
 	. = ..()
 	health = 25
 	maxhealth = 190	//Just slightly worse.
@@ -139,7 +139,7 @@
 
 /// Moved here from underdark_things.dm (cleaning up files)
 //Mechbay
-/obj/mecha/working/ripley/abandoned/Initialize(mapload)
+obj/mecha/working/ripley/abandoned/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)	//Deletes the beacon so it can't be found easily
 		qdel(B)

@@ -1,4 +1,4 @@
-/obj/machinery/photocopier
+obj/machinery/photocopier
 	name = "photocopier"
 	desc = "Copy all your important papers here!"
 	icon = 'icons/obj/library.dmi'
@@ -19,15 +19,15 @@
 	var/maxcopies = 10	//how many copies can be copied at once- idea shamelessly stolen from bs12's copier!
 	var/copying = FALSE // Is the printer busy with something? Sanity check variable.
 
-/obj/machinery/photocopier/examine(mob/user)
+obj/machinery/photocopier/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "The screen shows there's [toner ? "[toner]" : "no"] toner left in the printer."
 
-/obj/machinery/photocopier/attack_ai(mob/user as mob)
+obj/machinery/photocopier/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/photocopier/attack_hand(mob/user, list/params)
+obj/machinery/photocopier/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 
 	nano_ui_interact(user)
@@ -37,7 +37,7 @@
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/photocopier/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/photocopier/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/list/data = list()
@@ -58,7 +58,7 @@
 		ui.open()
 		ui.set_auto_update(10)
 
-/obj/machinery/photocopier/proc/copy_operation(var/mob/user)
+obj/machinery/photocopier/proc/copy_operation(var/mob/user)
 	if(copying)
 		return FALSE
 	copying = TRUE
@@ -101,7 +101,7 @@
 		use_power(USE_POWER_ACTIVE)
 	copying = FALSE
 
-/obj/machinery/photocopier/Topic(href, href_list)
+obj/machinery/photocopier/Topic(href, href_list)
 	if(href_list["copy"])
 		if(machine_stat & (BROKEN|NOPOWER))
 			return
@@ -148,7 +148,7 @@
 
 	SSnanoui.update_uis(src)
 
-/obj/machinery/photocopier/attackby(obj/item/O as obj, mob/user as mob)
+obj/machinery/photocopier/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/paper) || istype(O, /obj/item/photo) || istype(O, /obj/item/paper_bundle))
 		if(!copyitem)
 			if(!user.attempt_insert_item_for_installation(O, src))
@@ -180,7 +180,7 @@
 
 	return
 
-/obj/machinery/photocopier/legacy_ex_act(severity)
+obj/machinery/photocopier/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -198,7 +198,7 @@
 					toner = 0
 	return
 
-/obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy, var/need_toner=1)
+obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy, var/need_toner=1)
 	var/obj/item/paper/c = new /obj/item/paper (loc)
 	if(toner > 10)	//lots of toner, make it dark
 		c.info = "<font color = #101010>"
@@ -237,7 +237,7 @@
 	return c
 
 
-/obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy, var/need_toner=1)
+obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy, var/need_toner=1)
 	var/obj/item/photo/p = photocopy.copy()
 	p.loc = src.loc
 
@@ -260,7 +260,7 @@
 
 	return p
 
-/obj/machinery/photocopier/proc/copyass(mob/user)
+obj/machinery/photocopier/proc/copyass(mob/user)
 	var/icon/temp_img
 	if(!has_buckled_mobs()) // Are there no mobs buckled to the photocopier?
 		return
@@ -345,7 +345,7 @@
 	return p
 
 //If need_toner is 0, the copies will still be lightened when low on toner, however it will not be prevented from printing. TODO: Implement print queues for fax machines and get rid of need_toner
-/obj/machinery/photocopier/proc/bundlecopy(var/obj/item/paper_bundle/bundle, var/need_toner=1)
+obj/machinery/photocopier/proc/bundlecopy(var/obj/item/paper_bundle/bundle, var/need_toner=1)
 	var/obj/item/paper_bundle/p = new /obj/item/paper_bundle (src)
 	for(var/obj/item/W in bundle.pages)
 		if(toner <= 0 && need_toner)
@@ -369,7 +369,7 @@
 	p.pixel_x = rand(-9, 9)
 	return p
 
-/obj/machinery/photocopier/can_buckle_mob(mob/M, flags, mob/user, semantic)
+obj/machinery/photocopier/can_buckle_mob(mob/M, flags, mob/user, semantic)
 	for(var/obj/item/clothing/C in M)
 		if(M.is_holding(C))
 			continue
@@ -378,7 +378,7 @@
 			return FALSE
 	return ..()
 
-/obj/item/toner
+obj/item/toner
 	name = "toner cartridge"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "tonercartridge"

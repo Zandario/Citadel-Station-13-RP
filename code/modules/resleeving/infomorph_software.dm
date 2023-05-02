@@ -1,4 +1,4 @@
-/datum/infomorph_software
+datum/infomorph_software
 	// Name for the software. This is used as the button text when buying or opening/toggling the software
 	var/name = "infomorph software module"
 	// RAM cost; pAIs start with 100 RAM, spending it on programs
@@ -12,22 +12,22 @@
 	// Whether pAIs should automatically receive this module at no cost
 	var/default = 0
 
-/datum/infomorph_software/proc/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
+datum/infomorph_software/proc/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
 	return
 
-/datum/infomorph_software/proc/toggle(mob/living/silicon/infomorph/user)
+datum/infomorph_software/proc/toggle(mob/living/silicon/infomorph/user)
 	return
 
-/datum/infomorph_software/proc/is_active(mob/living/silicon/infomorph/user)
+datum/infomorph_software/proc/is_active(mob/living/silicon/infomorph/user)
 	return 0
 
-/datum/infomorph_software/crew_manifest
+datum/infomorph_software/crew_manifest
 	name = "Crew Manifest"
 	ram_cost = 15
 	id = "manifest"
 	toggle = 0
 
-/datum/infomorph_software/crew_manifest/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
+datum/infomorph_software/crew_manifest/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
 	data_core.get_manifest_list()
 
 	var/data[0]
@@ -42,13 +42,13 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/infomorph_software/med_records
+datum/infomorph_software/med_records
 	name = "Medical Records"
 	ram_cost = 15
 	id = "med_records"
 	toggle = 0
 
-/datum/infomorph_software/med_records/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
+datum/infomorph_software/med_records/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	var/records[0]
@@ -74,7 +74,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/infomorph_software/med_records/Topic(href, href_list)
+datum/infomorph_software/med_records/Topic(href, href_list)
 	var/mob/living/silicon/infomorph/P = usr
 	if(!istype(P)) return
 
@@ -96,13 +96,13 @@
 			P.medical_cannotfind = 1
 		return 1
 
-/datum/infomorph_software/sec_records
+datum/infomorph_software/sec_records
 	name = "Security Records"
 	ram_cost = 15
 	id = "sec_records"
 	toggle = 0
 
-/datum/infomorph_software/sec_records/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
+datum/infomorph_software/sec_records/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	var/records[0]
@@ -128,7 +128,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/infomorph_software/sec_records/Topic(href, href_list)
+datum/infomorph_software/sec_records/Topic(href, href_list)
 	var/mob/living/silicon/infomorph/P = usr
 	if(!istype(P)) return
 
@@ -154,13 +154,13 @@
 			P.security_cannotfind = 1
 		return 1
 
-/datum/infomorph_software/door_jack
+datum/infomorph_software/door_jack
 	name = "Door Jack"
 	ram_cost = 30
 	id = "door_jack"
 	toggle = 0
 
-/datum/infomorph_software/door_jack/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
+datum/infomorph_software/door_jack/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	data["cable"] = user.cable != null
@@ -178,7 +178,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/infomorph_software/door_jack/Topic(href, href_list)
+datum/infomorph_software/door_jack/Topic(href, href_list)
 	var/mob/living/silicon/infomorph/P = usr
 	if(!istype(P)) return
 
@@ -200,7 +200,7 @@
 		T.visible_message("<span class='warning'>A port on \the [P] opens to reveal \the [P.cable].</span>")
 		return 1
 
-/mob/living/silicon/infomorph/proc/hackloop()
+mob/living/silicon/infomorph/proc/hackloop()
 	var/turf/T = get_turf(src)
 	if(prob(20))
 		for(var/mob/living/silicon/ai/AI in GLOB.player_list)
@@ -237,13 +237,13 @@
 	qdel(cable)
 	hackdoor = null
 
-/datum/infomorph_software/atmosphere_sensor
+datum/infomorph_software/atmosphere_sensor
 	name = "Atmosphere Sensor"
 	ram_cost = 15
 	id = "atmos_sense"
 	toggle = 0
 
-/datum/infomorph_software/atmosphere_sensor/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
+datum/infomorph_software/atmosphere_sensor/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	var/turf/T = get_turf_or_move(user.loc)
@@ -277,37 +277,37 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/infomorph_software/ar_hud
+datum/infomorph_software/ar_hud
 	name = "AR HUD"
 	ram_cost = 15
 	id = "ar_hud"
 
-/datum/infomorph_software/ar_hud/toggle(mob/living/silicon/infomorph/user)
+datum/infomorph_software/ar_hud/toggle(mob/living/silicon/infomorph/user)
 	user.arHUD = !user.arHUD
 	if(user.plane_holder)
 		user.plane_holder.set_vis(VIS_AUGMENTED, user.arHUD)
 
-/datum/infomorph_software/ar_hud/is_active(mob/living/silicon/infomorph/user)
+datum/infomorph_software/ar_hud/is_active(mob/living/silicon/infomorph/user)
 	return user.arHUD
 
-/datum/infomorph_software/translator
+datum/infomorph_software/translator
 	name = "Universal Translator"
 	ram_cost = 15
 	id = "translator"
 
-/datum/infomorph_software/translator/toggle(mob/living/silicon/infomorph/user)
+datum/infomorph_software/translator/toggle(mob/living/silicon/infomorph/user)
 	user.translator.attack_self(user)
 
-/datum/infomorph_software/translator/is_active(mob/living/silicon/infomorph/user)
+datum/infomorph_software/translator/is_active(mob/living/silicon/infomorph/user)
 	return user.translator.listening
 
-/datum/infomorph_software/signaller
+datum/infomorph_software/signaller
 	name = "Remote Signaller"
 	ram_cost = 15
 	id = "signaller"
 	toggle = 0
 
-/datum/infomorph_software/signaller/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
+datum/infomorph_software/signaller/on_nano_ui_interact(mob/living/silicon/infomorph/user, datum/nanoui/ui=null, force_open=1)
 	var/data[0]
 
 	data["frequency"] = format_frequency(user.sradio.frequency)
@@ -320,7 +320,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/infomorph_software/signaller/Topic(href, href_list)
+datum/infomorph_software/signaller/Topic(href, href_list)
 	var/mob/living/silicon/infomorph/P = usr
 	if(!istype(P)) return
 

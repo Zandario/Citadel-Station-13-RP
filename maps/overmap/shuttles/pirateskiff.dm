@@ -1,5 +1,5 @@
 // PIRATE SHIP (Yaya!)
-/datum/shuttle/autodock/overmap/pirate
+datum/shuttle/autodock/overmap/pirate
 	name = "Pirate Skiff"
 	warmup_time = 3
 	shuttle_area = list(/area/shuttle/pirate/deck, /area/shuttle/pirate/bridge, /area/shuttle/pirate/engine)
@@ -11,7 +11,7 @@
 	defer_initialisation = TRUE
 
 // The 'ship' of the shuttle
-/obj/effect/overmap/visitable/ship/landable/pirate
+obj/effect/overmap/visitable/ship/landable/pirate
 	name = "Unknown Vessel"
 	desc = "Scans inconclusive."
 	color = "#751713" //Dark Red
@@ -20,7 +20,7 @@
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Pirate Skiff"
 
-/obj/effect/shuttle_landmark/shuttle_initializer/pirate
+obj/effect/shuttle_landmark/shuttle_initializer/pirate
 	name = "Pirate Skiff Dock"
 	landmark_tag = "pirate_docking_arm"
 	docking_controller = "pirate_dock"
@@ -28,21 +28,21 @@
 	base_area = /area/space
 	shuttle_type = /datum/shuttle/autodock/overmap/pirate
 
-/obj/machinery/computer/shuttle_control/explore/pirate
+obj/machinery/computer/shuttle_control/explore/pirate
 	name = "short jump raiding console"
 	shuttle_tag = "Pirate Skiff"
 
 // Pirate Skiff
-/area/shuttle/pirate
+area/shuttle/pirate
 	requires_power = TRUE
 	name = "\improper Pirate Skiff"
 	icon_state = "shuttle1"
 
-/area/shuttle/pirate/deck
+area/shuttle/pirate/deck
 	name = "\improper Pirate Skiff Deck"
 
-/area/shuttle/pirate/bridge
+area/shuttle/pirate/bridge
 	name = "\improper Pirate Skiff Bridge"
 
-/area/shuttle/pirate/engine
+area/shuttle/pirate/engine
 	name = "\improper Pirate Skiff Engine"

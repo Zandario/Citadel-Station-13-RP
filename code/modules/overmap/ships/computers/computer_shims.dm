@@ -13,7 +13,7 @@
 //
 
 // Change one of the power consumption vars
-/obj/machinery/proc/change_power_consumption(new_power_consumption, use_power_mode = USE_POWER_IDLE)
+obj/machinery/proc/change_power_consumption(new_power_consumption, use_power_mode = USE_POWER_IDLE)
 	switch(use_power_mode)
 		if(USE_POWER_IDLE)
 			update_idle_power_usage(new_power_consumption)
@@ -22,7 +22,7 @@
 	// No need to do anything else in our power scheme.
 
 // Defining directly here to avoid conflicts with existing set_broken procs in our codebase that behave differently.
-/obj/machinery/atmospherics/component/unary/engine/proc/set_broken(var/new_state, var/cause)
+obj/machinery/atmospherics/component/unary/engine/proc/set_broken(var/new_state, var/cause)
 	if(!(machine_stat & BROKEN) == !new_state)
 		return // Nothing changed
 	machine_stat ^= BROKEN
@@ -33,7 +33,7 @@
 // Compoenents
 //
 
-/obj/machinery/proc/total_component_rating_of_type(var/part_type)
+obj/machinery/proc/total_component_rating_of_type(var/part_type)
 	. = 0
 	for(var/thing in component_parts)
 		if(istype(thing, part_type))
@@ -48,13 +48,13 @@
 //
 // Skills
 //
-/obj/machinery/computer/ship
+obj/machinery/computer/ship
 	var/core_skill = /datum/skill/devices //The skill used for skill checks for this machine (mostly so subtypes can use different skills).
 
 //
 // Topic
 //
-/obj/machinery/computer/ship/ui_state()
+obj/machinery/computer/ship/ui_state()
 	return GLOB.default_state
 
 //
@@ -65,22 +65,22 @@
 // Return TRUE for handled.
 // If you perform direct interactions in here, you are responsible for ensuring that full interactivity checks have been made (i.e CanInteract).
 // The checks leading in to here only guarantee that the user should be able to view a UI.
-/obj/machinery/computer/ship/proc/interface_interact(var/mob/user)
+obj/machinery/computer/ship/proc/interface_interact(var/mob/user)
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/computer/ship/attack_ai(mob/user)
+obj/machinery/computer/ship/attack_ai(mob/user)
 	if(ui_status(user, ui_state()) > UI_CLOSE)
 		return interface_interact(user)
 
 // After a recent rework this should mostly be safe.
-/obj/machinery/computer/ship/attack_ghost(mob/user)
+obj/machinery/computer/ship/attack_ghost(mob/user)
 	. = ..()
 	interface_interact(user)
 
 // If you don't call parent in this proc, you must make all appropriate checks yourself.
 // If you do, you must respect the return value.
-/obj/machinery/computer/ship/attack_hand(mob/user, list/params)
+obj/machinery/computer/ship/attack_hand(mob/user, list/params)
 	if((. = ..()))
 		return
 	if(!allowed(user))

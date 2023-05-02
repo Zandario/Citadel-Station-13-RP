@@ -11,7 +11,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 */
 
-/mob/living/carbon/var
+mob/living/carbon/var
 	image/halimage
 	image/halbody
 	obj/halitem
@@ -19,7 +19,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	handling_hal = 0
 	hal_crit = 0
 
-/mob/living/carbon/proc/handle_hallucinations()
+mob/living/carbon/proc/handle_hallucinations()
 	if(handling_hal) return
 	handling_hal = 1
 	while(client && hallucination > 20)
@@ -217,7 +217,7 @@ proc/check_panel(mob/M)
 			return 1
 	return 0*/
 
-/obj/effect/fake_attacker
+obj/effect/fake_attacker
 	icon = null
 	icon_state = null
 	name = ""
@@ -241,7 +241,7 @@ proc/check_panel(mob/M)
 
 	var/health = 100
 
-/obj/effect/fake_attacker/attackby(var/obj/item/P as obj, mob/user as mob)
+obj/effect/fake_attacker/attackby(var/obj/item/P as obj, mob/user as mob)
 	step_away(src,my_target,2)
 	for(var/mob/M in oviewers(world.view,my_target))
 		to_chat(M, "<font color='red'><B>[my_target] flails around wildly.</B></font>")
@@ -249,7 +249,7 @@ proc/check_panel(mob/M)
 
 	src.health -= P.damage_force
 
-/obj/effect/fake_attacker/Crossed(var/mob/M, somenumber)
+obj/effect/fake_attacker/Crossed(var/mob/M, somenumber)
 	. = ..()
 	if(M == my_target)
 		step_away(src,my_target,2)
@@ -257,18 +257,18 @@ proc/check_panel(mob/M)
 			for(var/mob/O in oviewers(world.view , my_target))
 				to_chat(O, "<font color='red'><B>[my_target] stumbles around.</B></font>")
 
-/obj/effect/fake_attacker/Initialize(mapload)
+obj/effect/fake_attacker/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 30 SECONDS)
 	step_away(src,my_target,2)
 	INVOKE_ASYNC(src, .proc/attack_loop)
 
-/obj/effect/fake_attacker/Destroy()
+obj/effect/fake_attacker/Destroy()
 	if(my_target)
 		my_target.hallucinations -= src
 	return ..()
 
-/obj/effect/fake_attacker/proc/updateimage()
+obj/effect/fake_attacker/proc/updateimage()
 
 	if(src.dir == NORTH)
 		qdel(src.currentimage)
@@ -284,7 +284,7 @@ proc/check_panel(mob/M)
 		src.currentimage = new /image(left,src)
 	SEND_IMAGE(my_target, currentimage)
 
-/obj/effect/fake_attacker/proc/attack_loop()
+obj/effect/fake_attacker/proc/attack_loop()
 	while(1)
 		sleep(rand(5,10))
 		if(src.health < 0)
@@ -315,11 +315,11 @@ proc/check_panel(mob/M)
 		if(prob(15))
 			step_away(src,my_target,2)
 
-/obj/effect/fake_attacker/proc/collapse()
+obj/effect/fake_attacker/proc/collapse()
 	collapse = 1
 	updateimage()
 
-/proc/fake_blood(var/mob/target)
+proc/fake_blood(var/mob/target)
 	var/obj/effect/overlay/O = new/obj/effect/overlay(target.loc)
 	O.name = "blood"
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
@@ -344,7 +344,7 @@ GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/gun/ballistic, /obj/item
 	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,\
 	/obj/item/clothing/suit/space/void, /obj/item/tank))
 
-/proc/fake_attack(var/mob/living/target)
+proc/fake_attack(var/mob/living/target)
 	var/list/possible_clones = new/list()
 	var/mob/living/carbon/human/clone = null
 	var/clone_weapon = null

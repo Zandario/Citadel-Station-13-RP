@@ -1,4 +1,4 @@
-/obj/structure/lightpost
+obj/structure/lightpost
 	name = "lightpost"
 	desc = "A homely lightpost."
 	icon = 'icons/obj/32x64.dmi'
@@ -12,11 +12,11 @@
 	var/lit = TRUE // If true, will have a glowing overlay and lighting.
 	var/festive = FALSE // If true, adds a festive bow overlay to it.
 
-/obj/structure/lightpost/Initialize(mapload)
+obj/structure/lightpost/Initialize(mapload)
 	update_icon()
 	return ..()
 
-/obj/structure/lightpost/update_icon()
+obj/structure/lightpost/update_icon()
 	cut_overlays()
 
 	if(lit)
@@ -31,12 +31,12 @@
 		// bow
 		add_overlay("[icon_state]-festive")
 
-/obj/structure/lightpost/unlit
+obj/structure/lightpost/unlit
 	lit = FALSE
 
-/obj/structure/lightpost/festive
+obj/structure/lightpost/festive
 	desc = "A homely lightpost adorned with festive decor."
 	festive = TRUE
 
-/obj/structure/lightpost/festive/unlit
+obj/structure/lightpost/festive/unlit
 	lit = FALSE

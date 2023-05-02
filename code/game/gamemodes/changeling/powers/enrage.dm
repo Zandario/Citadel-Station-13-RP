@@ -1,4 +1,4 @@
-/datum/power/changeling/enrage
+datum/power/changeling/enrage
 	name = "Enrage"
 	desc = "We evolve modifications to our mind and body, allowing us to call on intense periods of rage for our benefit."
 	helptext = "Berserks us, giving massive bonuses to fighting in close quarters for thirty seconds, and losing the ability to \
@@ -12,7 +12,7 @@
 	verbpath = /mob/living/proc/changeling_berserk
 
 // Makes the ling very upset.
-/mob/living/proc/changeling_berserk()
+mob/living/proc/changeling_berserk()
 	set category = "Changeling"
 	set name = "Enrage (30)"
 	set desc = "Causes you to go Berserk."

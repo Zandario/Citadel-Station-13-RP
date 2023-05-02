@@ -1,4 +1,4 @@
-/datum/technomancer/spell/chain_lightning
+datum/technomancer/spell/chain_lightning
 	name = "Chain Lightning"
 	desc = "This dangerous function shoots lightning that will strike someone, then bounce to a nearby person.  Be careful that \
 	it does not bounce to you.  The lighting prefers to bounce to people with the least resistance to electricity.  It will \
@@ -8,7 +8,7 @@
 	ability_icon_state = "tech_chain_lightning"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/projectile/chain_lightning
+obj/item/spell/projectile/chain_lightning
 	name = "chain lightning"
 	icon_state = "chain_lightning"
 	desc = "Fun for the whole security team!  Just don't kill yourself in the process.."
@@ -20,7 +20,7 @@
 	cooldown = 20
 	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 
-/obj/projectile/beam/chain_lightning
+obj/projectile/beam/chain_lightning
 	name = "lightning"
 	icon_state = "lightning"
 	nodamage = 1
@@ -34,7 +34,7 @@
 	var/list/hit_mobs = list() 	//Mobs which were already hit.
 	var/power = 35				//How hard it will hit for with electrocute_act(), decreases with each bounce.
 
-/obj/projectile/beam/chain_lightning/projectile_attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
+obj/projectile/beam/chain_lightning/projectile_attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 	//First we shock the guy we just hit.
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
@@ -75,6 +75,3 @@
 
 			return 0
 	return 1
-
-
-

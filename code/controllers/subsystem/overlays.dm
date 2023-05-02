@@ -17,24 +17,24 @@ SUBSYSTEM_DEF(overlays)
 	// This is only safe because SSoverlays can only ever consider one overlay list at a time with no interior sleeps. Professional on closed course, do not attempt.
 	var/context_needs_automangle
 
-/datum/controller/subsystem/overlays/stat_entry()
+datum/controller/subsystem/overlays/stat_entry()
 	return ..() + " Ov:[processing.len - (idex - 1)]"
 
-/datum/controller/subsystem/overlays/Initialize()
+datum/controller/subsystem/overlays/Initialize()
 	overlays_initialized = TRUE
 	Flush()
 	..()
 
-/datum/controller/subsystem/overlays/Shutdown()
+datum/controller/subsystem/overlays/Shutdown()
 	text2file(render_stats(stats), "[GLOB.log_directory]/overlay.log")
 
 
-/datum/controller/subsystem/overlays/Recover()
+datum/controller/subsystem/overlays/Recover()
 	overlay_icon_state_caches = SSoverlays.overlay_icon_state_caches
 	overlay_icon_cache = SSoverlays.overlay_icon_cache
 	processing = SSoverlays.processing
 
-/datum/controller/subsystem/overlays/fire(resumed = FALSE, mc_check = TRUE)
+datum/controller/subsystem/overlays/fire(resumed = FALSE, mc_check = TRUE)
 	var/list/processing = src.processing
 	while(idex <= processing.len)
 		var/atom/thing = processing[idex]
@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(overlays)
  * Of note: overlays aren't actually mutable appearances, they're just appearances
  * Don't have access to that type tho, so this is the best you're gonna get
  */
-/proc/overlays2text(list/overlays)
+proc/overlays2text(list/overlays)
 	var/list/unique_overlays = list()
 	// As anything because we're basically doing type coerrsion, rather then actually filtering for mutable apperances
 	for(var/mutable_appearance/overlay as anything in overlays)
@@ -71,12 +71,12 @@ SUBSYSTEM_DEF(overlays)
 		output_text += "([key]) = [unique_overlays[key]]"
 	return output_text.Join("\n")
 
-/datum/controller/subsystem/overlays/proc/Flush()
+datum/controller/subsystem/overlays/proc/Flush()
 	if(processing.len)
 		log_subsystem("overlays", "Flushing [processing.len] overlays.")
 		fire(mc_check = FALSE)
 
-/atom/proc/compile_overlays()
+atom/proc/compile_overlays()
 	var/list/oo = our_overlays
 	var/ool = LAZYLEN(oo)
 	var/list/po = priority_overlays
@@ -117,11 +117,11 @@ SUBSYSTEM_DEF(overlays)
 
 	atom_flags &= ~ATOM_OVERLAY_QUEUED
 
-/atom/movable/compile_overlays()
+atom/movable/compile_overlays()
 	..()
 	UPDATE_OO_IF_PRESENT
 
-/turf/compile_overlays()
+turf/compile_overlays()
 	..()
 	if (above)
 		update_above()
@@ -134,7 +134,7 @@ SUBSYSTEM_DEF(overlays)
 	Last version checked: 514.1584
 */
 
-/proc/iconstate2appearance(icon, iconstate)
+proc/iconstate2appearance(icon, iconstate)
 	var/static/image/stringbro = new()
 	var/list/icon_states_cache = SSoverlays.overlay_icon_state_caches
 	var/list/cached_icon = icon_states_cache[icon]
@@ -151,7 +151,7 @@ SUBSYSTEM_DEF(overlays)
 	cached_icon["[iconstate]"] = cached_appearance
 	return cached_appearance
 
-/proc/icon2appearance(icon)
+proc/icon2appearance(icon)
 	var/static/image/iconbro = new()
 	var/list/icon_cache = SSoverlays.overlay_icon_cache
 	. = icon_cache[icon]
@@ -178,7 +178,7 @@ SUBSYSTEM_DEF(overlays)
 // If the overlay has a planeset (e.g., emissive), mark for ZM mangle. This won't catch overlays on overlays, but the flag can just manually be set in that case.
 #define ZM_AUTOMANGLE(target) if ((target):plane != FLOAT_PLANE) { SSoverlays.context_needs_automangle = TRUE; }
 
-/atom/proc/build_appearance_list(atom/new_overlays)
+atom/proc/build_appearance_list(atom/new_overlays)
 	var/static/image/appearance_bro = new
 	if (islist(new_overlays))
 		// A lot of code seems to assume that it's safe to pass long-lived lists to SSoverlays.
@@ -194,7 +194,7 @@ SUBSYSTEM_DEF(overlays)
 		APPEARANCEIFY(new_overlays, .)
 
 // The same as the above, but with ZM_AUTOMANGLE.
-/atom/movable/build_appearance_list(atom/new_overlays)
+atom/movable/build_appearance_list(atom/new_overlays)
 	var/static/image/appearance_bro = new
 	if (islist(new_overlays))
 		new_overlays = new_overlays:Copy()
@@ -213,7 +213,7 @@ SUBSYSTEM_DEF(overlays)
 #define QUEUE_FOR_COMPILE atom_flags |= ATOM_OVERLAY_QUEUED; SSoverlays.processing += src;
 
 /// Remove all overlays from this atom.
-/atom/proc/cut_overlays(priority = FALSE)
+atom/proc/cut_overlays(priority = FALSE)
 	var/list/cached_overlays = our_overlays
 	var/list/cached_priority = priority_overlays
 
@@ -231,12 +231,12 @@ SUBSYSTEM_DEF(overlays)
 		QUEUE_FOR_COMPILE
 
 // This one gets to be done the sane way because it shouldn't be as hot as the others.
-/atom/movable/cut_overlays(priority = FALSE)
+atom/movable/cut_overlays(priority = FALSE)
 	..()
 	zmm_flags &= priority ? ~ZMM_AUTOMANGLE_PRI : ~ZMM_AUTOMANGLE_NRML
 
 /// Remove one or more overlays from this atom.
-/atom/proc/cut_overlay(list/overlays, priority)
+atom/proc/cut_overlay(list/overlays, priority)
 	if(!overlays)
 		return
 
@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(overlays)
 		QUEUE_FOR_COMPILE
 
 // This one also gets to be done sanely because it shouldn't be too hot.
-/atom/movable/cut_overlay(list/overlays, priority)
+atom/movable/cut_overlay(list/overlays, priority)
 	..()
 	// If we removed an automangle-eligible overlay and have automangle enabled, reevaluate automangling.
 	if (!SSoverlays.context_needs_automangle || !(zmm_flags & ZMM_AUTOMANGLE))
@@ -296,7 +296,7 @@ SUBSYSTEM_DEF(overlays)
 		zmm_flags &= priority ? ~ZMM_AUTOMANGLE_PRI : ~ZMM_AUTOMANGLE_NRML
 
 /// Add one or more overlays to this atom.
-/atom/proc/add_overlay(list/overlays, priority = FALSE)
+atom/proc/add_overlay(list/overlays, priority = FALSE)
 	if(!overlays)
 		return
 
@@ -322,7 +322,7 @@ SUBSYSTEM_DEF(overlays)
 		QUEUE_FOR_COMPILE
 
 /// Overwrite overlays with a given set of overlays. Like with other overlay procs, single overlays are also valid.
-/atom/proc/set_overlays(list/overlays, priority = FALSE)
+atom/proc/set_overlays(list/overlays, priority = FALSE)
 	if (!overlays)
 		return
 
@@ -350,7 +350,7 @@ SUBSYSTEM_DEF(overlays)
 		QUEUE_FOR_COMPILE
 
 /// Copy overlays from another atom.
-/atom/proc/copy_overlays(atom/other, cut_old = FALSE)
+atom/proc/copy_overlays(atom/other, cut_old = FALSE)
 	if(!other)
 		if(cut_old)
 			cut_overlays()
@@ -379,16 +379,16 @@ SUBSYSTEM_DEF(overlays)
 #undef QUEUE_FOR_COMPILE
 
 //TODO: Better solution for these?
-/image/proc/add_overlay(x)
+image/proc/add_overlay(x)
 	overlays += x
 
-/image/proc/cut_overlay(x)
+image/proc/cut_overlay(x)
 	overlays -= x
 
-/image/proc/cut_overlays(x)
+image/proc/cut_overlays(x)
 	overlays.Cut()
 
-/image/proc/copy_overlays(atom/other, cut_old)
+image/proc/copy_overlays(atom/other, cut_old)
 	if(!other)
 		if(cut_old)
 			cut_overlays()
@@ -402,6 +402,6 @@ SUBSYSTEM_DEF(overlays)
 	else
 		overlays |= cached_other
 
-/atom
+atom
 	var/tmp/list/our_overlays	//! our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
 	var/tmp/list/priority_overlays	//! overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.

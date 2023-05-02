@@ -1,4 +1,4 @@
-/obj/machinery/meter
+obj/machinery/meter
 	name = "meter"
 	desc = "It measures something."
 	icon = 'icons/obj/meter_vr.dmi'
@@ -12,17 +12,17 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 
-/obj/machinery/meter/Initialize(mapload)
+obj/machinery/meter/Initialize(mapload)
 	. = ..()
 	if (!target)
 		target = select_target()
 
-/obj/machinery/meter/Destroy()
+obj/machinery/meter/Destroy()
 	pipes_on_turf.Cut()
 	target = null
 	return ..()
 
-/obj/machinery/meter/proc/select_target()
+obj/machinery/meter/proc/select_target()
 	var/obj/machinery/atmospherics/pipe/P
 	for(P in loc)
 		if(!P.hides_under_flooring())
@@ -31,7 +31,7 @@
 		P = locate(/obj/machinery/atmospherics/pipe) in loc
 	return P
 
-/obj/machinery/meter/process(delta_time)
+obj/machinery/meter/process(delta_time)
 	if(!target)
 		icon_state = "meterX"
 		return 0
@@ -76,7 +76,7 @@
 		)
 		radio_connection.post_signal(src, signal)
 
-/obj/machinery/meter/examine(mob/user)
+obj/machinery/meter/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) > 3 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/observer/dead)))
 		. += "<span class='warning'>You are too far away to read it.</span>"
@@ -93,7 +93,7 @@
 	else
 		. += "The connect error light is blinking."
 
-/obj/machinery/meter/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/meter/attackby(var/obj/item/W, var/mob/user)
 	if(W.is_wrench())
 		playsound(src, W.tool_sound, 50, 1)
 		to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
@@ -121,8 +121,8 @@
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
 
-/obj/machinery/meter/turf/select_target()
+obj/machinery/meter/turf/select_target()
 	return loc
 
-/obj/machinery/meter/turf/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/meter/turf/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	return

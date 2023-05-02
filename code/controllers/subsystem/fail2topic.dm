@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(fail2topic)
 	var/rule_name
 	var/enabled = FALSE
 
-/datum/controller/subsystem/fail2topic/Initialize(timeofday)
+datum/controller/subsystem/fail2topic/Initialize(timeofday)
 	rate_limit = CONFIG_GET(number/fail2topic_rate_limit)
 	max_fails = CONFIG_GET(number/fail2topic_max_fails)
 	rule_name = CONFIG_GET(string/fail2topic_rule_name)
@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(fail2topic)
 
 	return ..()
 
-/datum/controller/subsystem/fail2topic/fire()
+datum/controller/subsystem/fail2topic/fire()
 	if(length(rate_limiting))
 		var/i = 1
 		while(i <= length(rate_limiting))
@@ -44,15 +44,15 @@ SUBSYSTEM_DEF(fail2topic)
 			if(MC_TICK_CHECK)
 				return
 
-/datum/controller/subsystem/fail2topic/Shutdown()
+datum/controller/subsystem/fail2topic/Shutdown()
 	DropFirewallRule()
 
-/datum/controller/subsystem/fail2topic/vv_edit_var(var_name, var_value)
+datum/controller/subsystem/fail2topic/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, rule_name))
 		return FALSE
 	return ..()
 
-/datum/controller/subsystem/fail2topic/CanProcCall(procname)
+datum/controller/subsystem/fail2topic/CanProcCall(procname)
 	. = ..()
 	if(.)
 		switch(procname)
@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(fail2topic)
 			if("BanFromFirewall")
 				return FALSE
 
-/datum/controller/subsystem/fail2topic/proc/IsRateLimited(ip)
+datum/controller/subsystem/fail2topic/proc/IsRateLimited(ip)
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(fail2topic)
 			fail_counts[ip] = failures + 1
 			return TRUE
 
-/datum/controller/subsystem/fail2topic/proc/BanFromFirewall(ip)
+datum/controller/subsystem/fail2topic/proc/BanFromFirewall(ip)
 	if (!enabled)
 		return
 	if(IsAdminAdvancedProcCall())
@@ -118,7 +118,7 @@ SUBSYSTEM_DEF(fail2topic)
 	else
 		subsystem_log("Banned [ip].")
 
-/datum/controller/subsystem/fail2topic/proc/DropFirewallRule()
+datum/controller/subsystem/fail2topic/proc/DropFirewallRule()
 	if (!enabled)
 		return
 

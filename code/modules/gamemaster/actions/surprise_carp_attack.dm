@@ -1,16 +1,16 @@
 // This event sends a few carp after someone in space.
 
-/datum/gm_action/surprise_carp_attack
+datum/gm_action/surprise_carp_attack
 	name = "surprise carp attack"
 	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
 	chaotic = 10
 	var/mob/living/victim = null
 
-/datum/gm_action/surprise_carp_attack/get_weight()
+datum/gm_action/surprise_carp_attack/get_weight()
 	return metric.count_all_space_mobs() * 50
 
-/datum/gm_action/surprise_carp_attack/set_up()
+datum/gm_action/surprise_carp_attack/set_up()
 	var/list/potential_victims = list()
 	victim = null
 	for(var/mob/living/L in GLOB.player_list)
@@ -25,7 +25,7 @@
 		victim = pick(potential_victims)
 
 
-/datum/gm_action/surprise_carp_attack/start()
+datum/gm_action/surprise_carp_attack/start()
 	..()
 	if(!victim)
 		message_admins("Surprise carp attack failed to find a target.")

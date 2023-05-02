@@ -1,4 +1,4 @@
-/obj/item/clothing/head/helmet
+obj/item/clothing/head/helmet
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
@@ -17,48 +17,48 @@
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 
-/obj/item/clothing/head/helmet/oricon
+obj/item/clothing/head/helmet/oricon
 	name = "\improper Orion Confederation Government helmet"
 	desc = "A helmet painted in Peacekeeper blue. Stands out like a sore thumb."
 	icon_state = "helmet_sol"
 	armor_type = /datum/armor/oricon/peacekeeper
 	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/oricon/command
+obj/item/clothing/head/helmet/oricon/command
 	name = "command helmet"
 	desc = "A helmet with 'Orion Confederation Government' printed on the back in gold lettering."
 	icon_state = "helmet_command"
 
-/obj/item/clothing/head/helmet/oricon/security
+obj/item/clothing/head/helmet/oricon/security
 	name = "security helmet"
 	desc = "A helmet with 'MASTER AT ARMS' printed on the back in silver lettering."
 	icon_state = "helmet_security"
 
-/obj/item/clothing/head/helmet/nt
+obj/item/clothing/head/helmet/nt
 	name = "\improper NanoTrasen helmet"
 	desc = "A helmet with 'CORPORATE SECURITY' printed on the back in red lettering."
 	icon_state = "helmet_nt"
 
-/obj/item/clothing/head/helmet/pcrc
+obj/item/clothing/head/helmet/pcrc
 	name = "\improper PCRC helmet"
 	desc = "A helmet with 'PRIVATE SECURITY' printed on the back in cyan lettering."
 	icon_state = "helmet_pcrc"
 
-/obj/item/clothing/head/helmet/tac
+obj/item/clothing/head/helmet/tac
 	name = "tactical helmet"
 	desc = "A tan helmet made from advanced ceramic. Comfortable and robust."
 	icon_state = "helmet_tac"
 	armor_type = /datum/armor/station/tactical
 	siemens_coefficient = 0.6
 
-/obj/item/clothing/head/helmet/merc
+obj/item/clothing/head/helmet/merc
 	name = "combat helmet"
 	desc = "A heavily reinforced helmet painted with red markings. Feels like it could take a lot of punishment."
 	icon_state = "helmet_merc"
 	armor_type = /datum/armor/merc/heavy
 	siemens_coefficient = 0.5
 
-/obj/item/clothing/head/helmet/riot
+obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
@@ -68,7 +68,7 @@
 	valid_accessory_slots = null
 	action_button_name = "Toggle Visor"
 
-/obj/item/clothing/head/helmet/riot/attack_self(mob/user)
+obj/item/clothing/head/helmet/riot/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -80,7 +80,7 @@
 		to_chat(user, "You lower the visor on the riot helmet.")
 	update_worn_icon()	//so our mob-overlays update
 
-/obj/item/clothing/head/helmet/laserproof
+obj/item/clothing/head/helmet/laserproof
 	name = "ablative helmet"
 	desc = "It's a helmet specifically designed to protect against energy projectiles."
 	icon_state = "helmet_reflec"
@@ -89,7 +89,7 @@
 	siemens_coefficient = 0.1
 	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/bulletproof
+obj/item/clothing/head/helmet/bulletproof
 	name = "bullet-resistant helmet"
 	desc = "It's a helmet specifically designed to protect against ballistic projectiles."
 	icon_state = "helmet_bulletproof"
@@ -98,7 +98,7 @@
 	siemens_coefficient = 0.7
 	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/combat
+obj/item/clothing/head/helmet/combat
 	name = "combat helmet"
 	desc = "It's a general purpose combat helmet, designed to protect against typical dangers to your head."
 	icon_state = "helmet_combat"
@@ -108,7 +108,7 @@
 	siemens_coefficient = 0.6
 	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/flexitac
+obj/item/clothing/head/helmet/flexitac
 	name = "tactical light helmet"
 	desc = "A tan helmet made from advanced ceramic with an integrated tactical flashlight."
 	icon_state = "flexitac"
@@ -120,7 +120,7 @@
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = HEAD
 
-/obj/item/clothing/head/helmet/swat
+obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
 	desc = "They're often used by highly trained SWAT Officers."
 	icon_state = "swat"
@@ -130,7 +130,7 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
 
-/obj/item/clothing/head/helmet/alien
+obj/item/clothing/head/helmet/alien
 	name = "alien helmet"
 	desc = "It's quite larger than your head, but it might still protect it."
 	icon_state = "alienhelmet"
@@ -138,11 +138,11 @@
 	armor_type = /datum/armor/alien/medium
 	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/alien/tank
+obj/item/clothing/head/helmet/alien/tank
 	name = "alien warhelm"
 	armor_type = /datum/armor/alien/heavy
 
-/obj/item/clothing/head/helmet/thunderdome
+obj/item/clothing/head/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
 	desc = "<i>'Let the battle commence!'</i>"
 	icon_state = "thunderdome"
@@ -151,7 +151,7 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 1
 
-/obj/item/clothing/head/helmet/gladiator
+obj/item/clothing/head/helmet/gladiator
 	name = "gladiator helmet"
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
@@ -162,13 +162,13 @@
 
 //Obsolete, but retained for posterity.
 /*
-/obj/item/clothing/head/helmet/gladiator/ashlander
+obj/item/clothing/head/helmet/gladiator/ashlander
 	name = "ashlander kranos"
 	desc = "This weathered helmet bears a collection of acidic pits and claw marks."
 	armor = list(melee = 5, bullet = 5, laser = 5,energy = 0, bomb = 0, bio = 0, rad = 0)
 */
 
-/obj/item/clothing/head/helmet/ashlander
+obj/item/clothing/head/helmet/ashlander
 	name = "ashen lamellar helmet"
 	desc = "This bronze helmet is wrapped in Goliath hide. Dull bronze plates connected by dry sinew are mounted to the exterior for protection."
 	icon = 'icons/clothing/suit/ashlander.dmi'
@@ -176,7 +176,7 @@
 	armor_type = /datum/armor/lavaland/ashlander
 	worn_render_flags = WORN_RENDER_SLOT_ONE_FOR_ALL
 
-/obj/item/clothing/head/helmet/tactical
+obj/item/clothing/head/helmet/tactical
 	name = "tactical helmet"
 	desc = "An armored helmet capable of being fitted with a multitude of attachments."
 	icon_state = "swathelm"
@@ -186,7 +186,7 @@
 	siemens_coefficient = 0.7
 	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/augment
+obj/item/clothing/head/helmet/augment
 	name = "Augment Array"
 	desc = "A helmet with optical and cranial augments coupled to it."
 	icon_state = "v62"
@@ -198,7 +198,7 @@
 	siemens_coefficient = 0.5
 	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/eraticator
+obj/item/clothing/head/helmet/eraticator
 	name = "Eraticator Head"
 	desc = "The 'head' of an Eraticator Artillery Platform, ripped off of the chassis. May be worn for totemic purposes."
 	icon_state = "eraticator-head"
@@ -208,24 +208,24 @@
 	siemens_coefficient = 0.7
 	valid_accessory_slots = null
 
-/obj/item/clothing/head/helmet/roman
+obj/item/clothing/head/helmet/roman
 	name = "Roman Galea"
 	desc = "A reproduction helmet fashioned to look like an ancient Roman Galea. It affords the same protections as standard helmets."
 	icon_state = "roman"
 
-/obj/item/clothing/head/helmet/romancent
+obj/item/clothing/head/helmet/romancent
 	name = "Roman Crested Galea"
 	desc = "A reproduction helmet fashioned to look like an ancient Roman Galea. It affords the same protections as standard helmets."
 	icon_state = "roman_c"
 
-/obj/item/clothing/head/helmet/samurai
+obj/item/clothing/head/helmet/samurai
 	name = "kabuto"
 	desc = "An authentic antique, this helmet from old Earth belongs to an ancient martial tradition. The advent of firearms made this style of protection obsolete. Unfortunately, this remains the case."
 	icon_state = "kabuto"
 	armor_type = /datum/armor/general/samurai
 
 //Non-hardsuit ERT helmets.
-/obj/item/clothing/head/helmet/ert
+obj/item/clothing/head/helmet/ert
 	name = "emergency response team helmet"
 	desc = "An in-atmosphere helmet worn by members of the NanoTrasen Emergency Response Team. Protects the head from impacts."
 	icon_state = "erthelmet_cmd"
@@ -234,31 +234,31 @@
 	valid_accessory_slots = null
 
 //Commander
-/obj/item/clothing/head/helmet/ert/command
+obj/item/clothing/head/helmet/ert/command
 	name = "emergency response team commander helmet"
 	desc = "An in-atmosphere helmet worn by the commander of a NanoTrasen Emergency Response Team. Has blue highlights."
 
 //Security
-/obj/item/clothing/head/helmet/ert/security
+obj/item/clothing/head/helmet/ert/security
 	name = "emergency response team security helmet"
 	desc = "An in-atmosphere helmet worn by security members of the NanoTrasen Emergency Response Team. Has red highlights."
 	icon_state = "erthelmet_sec"
 
 //Engineer
-/obj/item/clothing/head/helmet/ert/engineer
+obj/item/clothing/head/helmet/ert/engineer
 	name = "emergency response team engineer helmet"
 	desc = "An in-atmosphere helmet worn by engineering members of the NanoTrasen Emergency Response Team. Has orange highlights."
 	icon_state = "erthelmet_eng"
 
 //Medical
-/obj/item/clothing/head/helmet/ert/medical
+obj/item/clothing/head/helmet/ert/medical
 	name = "emergency response team medical helmet"
 	desc = "A set of armor worn by medical members of the NanoTrasen Emergency Response Team. Has red and white highlights."
 	icon_state = "erthelmet_med"
 
 
 //PARA Armor
-/obj/item/clothing/head/helmet/para
+obj/item/clothing/head/helmet/para
 	name = "Oculus Malum visor"
 	desc = "This specialty visor, nicknamed the 'MAW' by PMD agents, grants trained Agents the ability to view Paracausal events without suffering memetic hazards."
 	icon_state = "para_ert_helmet"
@@ -271,7 +271,7 @@
 
 	var/blessed = TRUE
 
-/obj/item/clothing/head/helmet/para/attack_self(mob/user)
+obj/item/clothing/head/helmet/para/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -292,7 +292,7 @@
 		blessed = FALSE
 		to_chat(user, "<font color=#4F49AF>The OM visor doesn't respond to you.</font>")
 
-/obj/item/clothing/head/helmet/para/inquisitor
+obj/item/clothing/head/helmet/para/inquisitor
 	name = "PMD Inquistor's Hat"
 	desc = "This wide brimmed hat projects authority and a vaguely mystical presence. It also grants its bearer the ability to view Paracausal events without suffering memetic hazards."
 	icon_state = "witchhunterhat"
@@ -300,7 +300,7 @@
 	armor_type = /datum/armor/centcom/ert/paracausal
 	action_button_name = "Enable Wards"
 
-/obj/item/clothing/head/helmet/para/inquisitor/attack_self(mob/user)
+obj/item/clothing/head/helmet/para/inquisitor/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -318,7 +318,7 @@
 		blessed = FALSE
 		to_chat(user, "<font color=#4F49AF>The hat does not respond to you.</font>")
 
-/obj/item/clothing/head/helmet/bike_helmet
+obj/item/clothing/head/helmet/bike_helmet
 	name = "riding helmet"
 	desc = "Safety gear designed to protect the head from impacts. It's a bit dorky."
 	icon_state = "sport"
@@ -326,61 +326,61 @@
 
 	color = "#ffffff"
 
-/obj/item/clothing/head/helmet/bike_helmet/random/Initialize(mapload)
+obj/item/clothing/head/helmet/bike_helmet/random/Initialize(mapload)
 	. = ..()
 	color = rgb(rand(1,255),rand(1,255),rand(1,255))
 
-/obj/item/clothing/head/helmet/oricon
+obj/item/clothing/head/helmet/oricon
 	name = "\improper Orion Confederation Government helmet"
 	desc = "A helmet painted in Peacekeeper blue. Stands out like a sore thumb."
 
-/obj/item/clothing/head/helmet/oricon/command
+obj/item/clothing/head/helmet/oricon/command
 	name = "\improper Orion Central commander helmet"
 	desc = "A helmet with 'Orion Confederation Government' printed on the back in gold lettering."
 
-/obj/item/clothing/head/helmet/combat/JSDF
+obj/item/clothing/head/helmet/combat/JSDF
 	name = "marine helmet"
 	desc = "If you wanna to keep your brain inside yo' head, you'd best put this on!"
 	icon_state = "unsc_helm"
 	item_state = "unsc_helm"
 	icon = 'icons/obj/clothing/hats.dmi'
 
-/obj/item/clothing/head/helmet/combat/imperial
+obj/item/clothing/head/helmet/combat/imperial
 	name = "imperial soldier helmet"
 	desc = "Veni, vidi, vici; I came, I saw, I conquered."
 	icon_state = "ge_helm"
 	icon = 'icons/obj/clothing/hats.dmi'
 
-/obj/item/clothing/head/helmet/combat/imperial/centurion
+obj/item/clothing/head/helmet/combat/imperial/centurion
 	name = "imperial centurion helmet"
 	desc = "Vendi, vidi, visa; I came, I saw, I realised this hat was too expensive."
 	icon_state = "ge_helmcent"
 	icon = 'icons/obj/clothing/hats.dmi'
 
 //Pirate
-/obj/item/clothing/head/helmet/pirate
+obj/item/clothing/head/helmet/pirate
 	name = "defaced helmet"
 	desc = "A helmet whose prior lettering has been defaced and painted over."
 	icon_state = "helmet_pirate"
 
 //Cyberpunk
-/obj/item/clothing/head/helmet/cyberpunk
+obj/item/clothing/head/helmet/cyberpunk
 	name = "cyberpunk goggles"
 	desc = "These armored goggles help to augment the sight of the wearer. Initially designed to allow the user to enter a fully immersive digital environment, they have since been phased out in favor of NIFs and personal VR suites."
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "cyberpunkgoggle"
 
 //Strange Plate Armor
-/obj/item/clothing/head/helmet/kettle
+obj/item/clothing/head/helmet/kettle
 	name = "KTL plate helmet"
 	desc = "These rare helmets are believed to originate from an isolationist human society on the Eastern Rim. The meaning of the designation is unknown, leading to the popular moniker 'Kettle'."
 	icon_state = "kettle"
 
-/obj/item/clothing/head/helmet/kettle/eyes
+obj/item/clothing/head/helmet/kettle/eyes
 	icon_state = "kettle_eyes"
 
 //More Warhammer Fun
-/obj/item/clothing/head/helmet/utilitarian
+obj/item/clothing/head/helmet/utilitarian
 	name = "utilitarian military helmet"
 	desc = "This high tech helmet provides plenty of battlefield telemetry and aim assistance. It is designed to protect the wearer almost exclusively from ranged attacks."
 	icon = 'icons/clothing/suit/armor/utilitarian.dmi'
@@ -389,7 +389,7 @@
 	armor_type = /datum/armor/general/utilitarian_military
 	worn_render_flags = WORN_RENDER_SLOT_ONE_FOR_ALL
 
-/obj/item/clothing/head/helmet/duraskull
+obj/item/clothing/head/helmet/duraskull
 	name = "durasteel skull mask"
 	desc = "The process of working durasteel into such a shape is no small feat. Whoever commissioned this wanted to send a serious message."
 	icon = 'icons/clothing/head/duraskull.dmi'

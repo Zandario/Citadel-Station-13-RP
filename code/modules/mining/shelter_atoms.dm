@@ -1,5 +1,5 @@
 /*****************************Survival Pod********************************/
-/area/survivalpod
+area/survivalpod
 	name = "\improper Emergency Shelter"
 	icon_state = "away"
 	dynamic_lighting = TRUE
@@ -7,7 +7,7 @@
 	has_gravity = TRUE
 
 //Survival Capsule
-/obj/item/survivalcapsule
+obj/item/survivalcapsule
 	name = "surfluid shelter capsule"
 	desc = "An emergency shelter programmed into construction nanomachines. It has a license for use printed on the bottom."
 	icon_state = "houseball"
@@ -17,7 +17,7 @@
 	var/datum/map_template/shelter/template
 	var/used = FALSE
 
-/obj/item/survivalcapsule/proc/get_template()
+obj/item/survivalcapsule/proc/get_template()
 	if(template)
 		return
 	template = SSmapping.shelter_templates[template_id]
@@ -25,17 +25,17 @@
 		throw EXCEPTION("Shelter template ([template_id]) not found!")
 		qdel(src)
 
-/obj/item/survivalcapsule/Destroy()
+obj/item/survivalcapsule/Destroy()
 	template = null // without this, capsules would be one use. per round.
 	. = ..()
 
-/obj/item/survivalcapsule/examine(mob/user)
+obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	get_template()
 	. += "This capsule has the [template.name] stored."
 	. += template.description
 
-/obj/item/survivalcapsule/attack_self(mob/user)
+obj/item/survivalcapsule/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -85,50 +85,50 @@
 		template.update_lighting(deploy_location)
 		qdel(src)
 
-/obj/item/survivalcapsule/luxury
+obj/item/survivalcapsule/luxury
 	name = "luxury surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
 	template_id = "shelter_beta"
 
-/obj/item/survivalcapsule/luxurybar
+obj/item/survivalcapsule/luxurybar
 	name = "luxury surfluid bar capsule"
 	desc = "A luxury bar in a capsule. Bartender required and not included. There's a license for use printed on the bottom."
 	template_id = "shelter_gamma"
 
-/obj/item/survivalcapsule/military
+obj/item/survivalcapsule/military
 	name = "military surfluid shelter capsule"
 	desc = "A prefabricated firebase in a capsule. Contains basic weapons, building materials, and combat suits. There's a license for use printed on the bottom."
 	template_id = "shelter_delta"
 
 //Custom Shelter Capsules
-/obj/item/survivalcapsule/tabiranth
+obj/item/survivalcapsule/tabiranth
 	name = "silver-trimmed surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. This one is a particularly rare and expensive model. There's a license for use printed on the bottom."
 	template_id = "shelter_phi"
 
 //Pod objects
 //Walls
-/turf/simulated/shuttle/wall/voidcraft/survival
+turf/simulated/shuttle/wall/voidcraft/survival
 	name = "survival shelter"
 	stripe_color = "#efbc3b"
 
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner
+turf/simulated/shuttle/wall/voidcraft/survival/hard_corner
 	hard_corner = 1
 
 //Doors
-/obj/machinery/door/airlock/voidcraft/survival_pod
+obj/machinery/door/airlock/voidcraft/survival_pod
 	name = "survival airlock"
 	block_air_zones = 1
 
 //Door access setter button
-/obj/machinery/button/remote/airlock/survival_pod
+obj/machinery/button/remote/airlock/survival_pod
 	name = "shelter privacy control"
 	desc = "You can secure yourself inside the shelter here."
 	specialfunctions = 4 // 4 is bolts
 	id = "placeholder_id_do_not_use" //This has to be this way, otherwise it will control ALL doors if left blank.
 	var/obj/machinery/door/airlock/voidcraft/survival_pod/door
 
-/obj/machinery/button/remote/airlock/survival_pod/attack_hand(obj/item/W, mob/user as mob)
+obj/machinery/button/remote/airlock/survival_pod/attack_hand(obj/item/W, mob/user as mob)
 	if(..()) return 1 //1 is failure on machines (for whatever reason)
 	if(!door)
 		var/turf/dT = get_step(src,dir)
@@ -138,7 +138,7 @@
 		door.opacity = !door.opacity
 
 //Windows
-/obj/structure/window/reinforced/survival_pod
+obj/structure/window/reinforced/survival_pod
 	name = "pod window"
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "pwindow"
@@ -146,42 +146,42 @@
 
 
 //Windoor
-/obj/machinery/door/window/survival_pod
+obj/machinery/door/window/survival_pod
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "windoor"
 	base_state = "windoor"
 
 //Table
-/obj/structure/table/survival_pod
+obj/structure/table/survival_pod
 	name = "table"
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "table"
 	can_reinforce = FALSE
 	can_plate = FALSE
 
-/obj/structure/table/survival_pod/update_icon_state()
+obj/structure/table/survival_pod/update_icon_state()
 	. = ..()
 	icon_state = "table"
 
-/obj/structure/table/survival_pod/Initialize(mapload)
+obj/structure/table/survival_pod/Initialize(mapload)
 	material = get_material_by_name(MAT_STEEL)
 	remove_obj_verb(src, /obj/structure/table/verb/do_flip)
 	remove_obj_verb(src, /obj/structure/table/proc/do_put)
 	return ..()
 
-/obj/structure/table/survival_pod/dismantle(obj/item/tool/wrench/W, mob/user)
+obj/structure/table/survival_pod/dismantle(obj/item/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 
 //Sleeper
-/obj/machinery/sleeper/survival_pod
+obj/machinery/sleeper/survival_pod
 	desc = "A limited functionality sleeper, all it can do is put patients into stasis. It lacks the medication and configuration of the larger units."
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "sleeper"
 	stasis_level = 100 //Just one setting
 
 
-/obj/machinery/sleeper/survival_pod/update_overlays()
+obj/machinery/sleeper/survival_pod/update_overlays()
 	. = ..()
 	cut_overlays()
 	if(occupant)
@@ -189,7 +189,7 @@
 
 
 //Computer
-/obj/item/gps/computer
+obj/item/gps/computer
 	name = "pod computer"
 	icon_state = "pod_computer"
 	icon = 'icons/obj/survival_pod_comp.dmi'
@@ -199,7 +199,7 @@
 	gps_tag = "SHELTER"
 	tracking = TRUE
 
-/obj/item/gps/computer/attackby(obj/item/I, mob/living/user)
+obj/item/gps/computer/attackby(obj/item/I, mob/living/user)
 	if(I.is_wrench())
 		user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
 			"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
@@ -210,19 +210,19 @@
 
 	return FALSE
 
-/obj/item/gps/computer/attack_hand(mob/user, list/params)
+obj/item/gps/computer/attack_hand(mob/user, list/params)
 	attack_self(user)
 
 //Bed
-/obj/structure/bed/pod
+obj/structure/bed/pod
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "bed"
 
-/obj/structure/bed/pod/Initialize(mapload)
+obj/structure/bed/pod/Initialize(mapload)
 	return ..(mapload, MAT_STEEL, "cotton")
 
 //Survival Storage Unit
-/obj/machinery/smartfridge/survival_pod
+obj/machinery/smartfridge/survival_pod
 	name = "survival pod storage"
 	desc = "A heated storage unit."
 	icon_state = "donkvendor"
@@ -235,21 +235,21 @@
 	pixel_y = -4
 	max_n_of_items = 100
 
-/obj/machinery/smartfridge/survival_pod/Initialize(mapload)
+obj/machinery/smartfridge/survival_pod/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/O in loc)
 		if(accept_check(O))
 			stock(O)
 
-/obj/machinery/smartfridge/survival_pod/accept_check(obj/item/O)
+obj/machinery/smartfridge/survival_pod/accept_check(obj/item/O)
 	return isitem(O)
 
-/obj/machinery/smartfridge/survival_pod/empty
+obj/machinery/smartfridge/survival_pod/empty
 	name = "dusty survival pod storage"
 	desc = "A heated storage unit. This one's seen better days."
 
 //Fans
-/obj/structure/fans
+obj/structure/fans
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "fans"
 	name = "environmental regulation system"
@@ -260,11 +260,11 @@
 	var/buildstacktype = /obj/item/stack/material/steel
 	var/buildstackamount = 5
 
-/obj/structure/fans/drop_products(method)
+obj/structure/fans/drop_products(method)
 	. = ..()
 	new buildstacktype(drop_location(), buildstackamount)
 
-/obj/structure/fans/attackby(obj/item/I, mob/living/user)
+obj/structure/fans/attackby(obj/item/I, mob/living/user)
 	if(I.is_wrench())
 		user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
 			"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
@@ -274,7 +274,7 @@
 
 	return TRUE
 
-/obj/structure/fans/tiny
+obj/structure/fans/tiny
 	name = "tiny fan"
 	desc = "A tiny fan, releasing a thin gust of air."
 	plane = TURF_PLANE
@@ -284,20 +284,20 @@
 	buildstackamount = 2
 
 //Signs
-/obj/structure/sign/mining
+obj/structure/sign/mining
 	name = "nanotrasen mining corps sign"
 	desc = "A sign of relief for weary miners, and a warning for would-be competitors to Nanotrasen's mining claims."
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "ntpod"
 
-/obj/structure/sign/mining/survival
+obj/structure/sign/mining/survival
 	name = "shelter sign"
 	desc = "A high visibility sign designating a safe shelter."
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "survival"
 
 //Fluff
-/obj/structure/tubes
+obj/structure/tubes
 	icon_state = "tubes"
 	icon = 'icons/obj/survival_pod.dmi'
 	name = "tubes"

@@ -1,7 +1,7 @@
-/datum/unit_test
+datum/unit_test
 	var/static/default_mobloc = null
 
-/datum/unit_test/proc/stupid_vore_test_mob(var/turf/mobloc = null, var/mobtype = /mob/living/carbon/human, var/with_mind = FALSE)
+datum/unit_test/proc/stupid_vore_test_mob(var/turf/mobloc = null, var/mobtype = /mob/living/carbon/human, var/with_mind = FALSE)
 	if(isnull(mobloc))
 		if(!default_mobloc)
 			for(var/turf/simulated/floor/tiled/T in world)
@@ -21,7 +21,7 @@
 
 	return H
 
-/datum/unit_test/belly_nonsuffocation
+datum/unit_test/belly_nonsuffocation
 	name = "MOB: human mob does not suffocate in a belly"
 	var/startLifeTick
 	var/startOxyloss
@@ -29,7 +29,7 @@
 	var/mob/living/carbon/human/pred
 	var/mob/living/carbon/human/prey
 
-/datum/unit_test/belly_nonsuffocation/Run()
+datum/unit_test/belly_nonsuffocation/Run()
 	pred = stupid_vore_test_mob()
 	if(!istype(pred))
 		Fail("Pred allocation failed")
@@ -68,7 +68,7 @@
 		Fail("Prey takes oxygen damage in a pred's belly! (Before: [startOxyloss]; after: [endOxyloss])")
 
 ////////////////////////////////////////////////////////////////
-/datum/unit_test/belly_spacesafe
+datum/unit_test/belly_spacesafe
 	name = "MOB: human mob protected from space in a belly"
 	var/startLifeTick
 	var/startOxyloss
@@ -77,7 +77,7 @@
 	var/mob/living/carbon/human/prey
 	async = 1
 
-/datum/unit_test/belly_spacesafe/Run()
+datum/unit_test/belly_spacesafe/Run()
 	pred = stupid_vore_test_mob()
 	if(!istype(pred))
 		Fail("Allocation failed")
@@ -125,7 +125,7 @@
 		Fail("Prey takes oxygen damage in space! (Before: [startOxyloss]; after: [endOxyloss])")
 
 ////////////////////////////////////////////////////////////////
-/datum/unit_test/belly_damage
+datum/unit_test/belly_damage
 	name = "MOB: human mob takes damage from digestion"
 	var/startLifeTick
 	var/startBruteBurn
@@ -134,7 +134,7 @@
 	var/mob/living/carbon/human/prey
 	async = 1
 
-/datum/unit_test/belly_damage/Run()
+datum/unit_test/belly_damage/Run()
 	pred = stupid_vore_test_mob()
 	if(!istype(pred))
 		Fail("Allocation failed")

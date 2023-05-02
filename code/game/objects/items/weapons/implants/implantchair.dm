@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/obj/machinery/implantchair
+obj/machinery/implantchair
 	name = "loyalty implanter"
 	desc = "Used to implant occupants with loyalty implants."
 	icon = 'icons/obj/machines/implantchair.dmi'
@@ -20,11 +20,11 @@
 	var/injecting = 0
 
 
-/obj/machinery/implantchair/New()
+obj/machinery/implantchair/New()
 	..()
 	add_implants()
 
-/obj/machinery/implantchair/attack_hand(mob/user, list/params)
+obj/machinery/implantchair/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	var/health_text = ""
 	if(src.occupant)
@@ -46,7 +46,7 @@
 	onclose(user, "implant")
 
 
-/obj/machinery/implantchair/Topic(href, href_list)
+obj/machinery/implantchair/Topic(href, href_list)
 	if((get_dist(src, usr) <= 1) || istype(usr, /mob/living/silicon/ai))
 		if(href_list["implant"])
 			if(src.occupant)
@@ -67,7 +67,7 @@
 		return
 
 
-/obj/machinery/implantchair/attackby(obj/item/G, mob/user)
+obj/machinery/implantchair/attackby(obj/item/G, mob/user)
 	if(istype(G, /obj/item/grab))
 		var/obj/item/grab/grab = G
 		if(!ismob(grab.affecting))
@@ -82,7 +82,7 @@
 	return
 
 
-/obj/machinery/implantchair/proc/go_out(mob/M)
+obj/machinery/implantchair/proc/go_out(mob/M)
 	if(!( src.occupant ))
 		return
 	if(M == occupant) // so that the guy inside can't eject himself -Agouri
@@ -97,7 +97,7 @@
 	return
 
 
-/obj/machinery/implantchair/proc/put_mob(mob/living/carbon/M)
+obj/machinery/implantchair/proc/put_mob(mob/living/carbon/M)
 	if(!iscarbon(M))
 		to_chat(usr, "<span class='warning'>\The [src] cannot hold this!</span>")
 		return
@@ -112,7 +112,7 @@
 	return 1
 
 
-/obj/machinery/implantchair/proc/implant(mob/M)
+obj/machinery/implantchair/proc/implant(mob/M)
 	if (!istype(M, /mob/living/carbon))
 		return
 	if(!implant_list.len)
@@ -132,14 +132,14 @@
 	return
 
 
-/obj/machinery/implantchair/proc/add_implants()
+obj/machinery/implantchair/proc/add_implants()
 	for(var/i=0, i<src.max_implants, i++)
 		var/obj/item/implant/loyalty/I = new /obj/item/implant/loyalty(src)
 		implant_list += I
 	return
 
 
-/obj/machinery/implantchair/verb/get_out()
+obj/machinery/implantchair/verb/get_out()
 	set name = "Eject occupant"
 	set category = "Object"
 	set src in oview(1)
@@ -150,7 +150,7 @@
 	return
 
 
-/obj/machinery/implantchair/verb/move_inside()
+obj/machinery/implantchair/verb/move_inside()
 	set name = "Move Inside"
 	set category = "Object"
 	set src in oview(1)

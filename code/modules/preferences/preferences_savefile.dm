@@ -1,4 +1,4 @@
-/datum/preferences/proc/load_path(ckey,filename="preferences.sav")
+datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
 		return FALSE
 	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/[filename]"
@@ -7,7 +7,7 @@
 		return FALSE
 	return TRUE
 
-/datum/preferences/proc/load_preferences()
+datum/preferences/proc/load_preferences()
 	// todo: storage handler datums...
 	if(!path)
 		return FALSE
@@ -47,7 +47,7 @@
 		auto_flush_errors()
 	return TRUE
 
-/datum/preferences/proc/save_preferences()
+datum/preferences/proc/save_preferences()
 	// todo: storage handler datums...
 	if(!path)
 		return FALSE
@@ -73,7 +73,7 @@
 		auto_flush_errors()
 	return TRUE
 
-/datum/preferences/proc/save_skin()
+datum/preferences/proc/save_skin()
 	if(!path)
 		return FALSE
 	// heyooo no interruptions please
@@ -87,7 +87,7 @@
 	WRITE_FILE(S["skin"], skin)
 	return TRUE
 
-/datum/preferences/proc/load_skin()
+datum/preferences/proc/load_skin()
 	LAZYINITLIST(skin)	// umm maybe don't be null when menus read this??
 	if(!path)
 		return FALSE
@@ -104,7 +104,7 @@
 	skin = sanitize_islist(skin)
 	return TRUE
 
-/datum/preferences/proc/load_character(slot)
+datum/preferences/proc/load_character(slot)
 	// todo: storage handler datums...
 	if(!path)
 		return FALSE
@@ -164,7 +164,7 @@
 		auto_flush_errors()
 	return TRUE
 
-/datum/preferences/proc/save_character()
+datum/preferences/proc/save_character()
 	// todo: storage handler datums...
 	if(!path)
 		return FALSE
@@ -188,7 +188,7 @@
 		auto_flush_errors()
 	return TRUE
 
-/datum/preferences/proc/overwrite_character(slot)
+datum/preferences/proc/overwrite_character(slot)
 	if(!path)
 		return 0
 	if(!fexists(path))
@@ -209,7 +209,7 @@
 		auto_flush_errors()
 	return 1
 
-/datum/preferences/proc/sanitize_preferences()
+datum/preferences/proc/sanitize_preferences()
 	player_setup.sanitize_setup()
 	// todo: error feedback
 	var/list/io_errors = list()

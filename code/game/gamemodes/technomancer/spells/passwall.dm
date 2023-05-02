@@ -1,4 +1,4 @@
-/datum/technomancer/spell/passwall
+datum/technomancer/spell/passwall
 	name = "Passwall"
 	desc = "An uncommon function that allows the user to phase through matter (usually walls) in order to enter or exit a room.  Be careful you don't pass into \
 	somewhere dangerous."
@@ -8,7 +8,7 @@
 	ability_icon_state = "tech_passwall"
 	category = UTILITY_SPELLS
 
-/obj/item/spell/passwall
+obj/item/spell/passwall
 	name = "passwall"
 	desc = "No walls can hold you back."
 	cast_methods = CAST_MELEE
@@ -16,7 +16,7 @@
 	var/maximum_distance = 20 //Measured in tiles.
 	var/busy = 0
 
-/obj/item/spell/passwall/on_melee_cast(atom/hit_atom, mob/user)
+obj/item/spell/passwall/on_melee_cast(atom/hit_atom, mob/user)
 	if(busy)	//Prevent someone from trying to get two uses of the spell from one instance.
 		return 0
 	if(!allowed_to_teleport())

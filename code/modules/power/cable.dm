@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		"Brown" = COLOR_BROWN
 	))
 
-/obj/structure/cable
+obj/structure/cable
 	name = "power cable"
 	desc = "A flexible superconducting cable for heavy-duty power transfer."
 	icon = 'icons/obj/power_cond_white.dmi'
@@ -63,15 +63,15 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	var/datum/powernet/powernet
 	var/obj/machinery/power/breakerbox/breaker_box
 
-/obj/structure/cable/drain_energy(datum/actor, amount, flags)
+obj/structure/cable/drain_energy(datum/actor, amount, flags)
 	if(!powernet)
 		return 0
 	return powernet.drain_energy_handler(actor, amount, flags)
 
-/obj/structure/cable/can_drain_energy(datum/actor, flags)
+obj/structure/cable/can_drain_energy(datum/actor, flags)
 	return TRUE
 
-/obj/structure/cable/Initialize(mapload, _color, _d1, _d2, auto_merge)
+obj/structure/cable/Initialize(mapload, _color, _d1, _d2, auto_merge)
 	. = ..()
 
 	if(_color)
@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		auto_merge()
 
 // cable refactor when
-/obj/structure/cable/proc/auto_merge()
+obj/structure/cable/proc/auto_merge()
 	mergeConnectedNetworks(d1) //merge the powernets...
 	mergeConnectedNetworks(d2) //...in the two new cable directions
 	mergeConnectedNetworksOnTurf()
@@ -106,35 +106,35 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	if(d2 & (d2 - 1))// if the cable is layed diagonally, check the others 2 possible directions
 		mergeDiagonalsNetworks(d2)
 
-/obj/structure/cable/yellow
+obj/structure/cable/yellow
 	color = COLOR_YELLOW
 
-/obj/structure/cable/green
+obj/structure/cable/green
 	color = COLOR_LIME
 
-/obj/structure/cable/blue
+obj/structure/cable/blue
 	color = COLOR_BLUE
 
-/obj/structure/cable/pink
+obj/structure/cable/pink
 	color = COLOR_PINK
 
-/obj/structure/cable/orange
+obj/structure/cable/orange
 	color = COLOR_ORANGE
 
-/obj/structure/cable/cyan
+obj/structure/cable/cyan
 	color = COLOR_CYAN
 
-/obj/structure/cable/white
+obj/structure/cable/white
 	color = COLOR_WHITE
 
-/obj/structure/cable/Destroy()					// called when a cable is deleted
+obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(powernet)
 		cut_cable_from_powernet()				// update the powernets
 	cable_list -= src							//remove it from global cable list
 	return ..()									// then go ahead and delete the cable
 
 // Ghost examining the cable -> tells him the power
-/obj/structure/cable/attack_ghost(mob/user)
+obj/structure/cable/attack_ghost(mob/user)
 	. = ..()
 	if(user.client?.inquisitive_ghost)
 		// following code taken from attackby (multitool)
@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
 
 // Rotating cables requires d1 and d2 to be rotated
-/obj/structure/cable/setDir(new_dir)
+obj/structure/cable/setDir(new_dir)
 	SHOULD_CALL_PARENT(FALSE)
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, new_dir)
 	if(powernet)
@@ -178,20 +178,20 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 ///////////////////////////////////
 
 //If underfloor, hide the cable
-/obj/structure/cable/hide(var/i)
+obj/structure/cable/hide(var/i)
 	if(istype(loc, /turf))
 		invisibility = i ? 101 : 0
 	update_icon()
 
-/obj/structure/cable/hides_under_flooring()
+obj/structure/cable/hides_under_flooring()
 	return 1
 
-/obj/structure/cable/update_icon()
+obj/structure/cable/update_icon()
 	icon_state = "[d1]-[d2]"
 	alpha = invisibility ? 127 : 255
 
 //Telekinesis has no effect on a cable
-/obj/structure/cable/attack_tk(mob/user)
+obj/structure/cable/attack_tk(mob/user)
 	return
 
 // Items usable on a cable :
@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //   - Multitool : get the power currently passing through the cable
 //
 
-/obj/structure/cable/attackby(obj/item/W, mob/user)
+obj/structure/cable/attackby(obj/item/W, mob/user)
 
 	var/turf/T = src.loc
 	if(!T.is_plating())
@@ -267,7 +267,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	src.add_fingerprint(user)
 
 // shock the user with probability prb
-/obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1.0)
+obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1.0)
 	if(!prob(prb))
 		return 0
 	if (electrocute_mob(user, powernet, src, siemens_coeff))
@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	return 0
 
 //explosion handling
-/obj/structure/cable/legacy_ex_act(severity)
+obj/structure/cable/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 				qdel(src)
 	return
 
-/obj/structure/cable/proc/cableColor(colorC)
+obj/structure/cable/proc/cableColor(colorC)
 	var/color_n = "#DD0000"
 	if(colorC)
 		color_n = colorC
@@ -306,7 +306,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 //handles merging diagonally matching cables
 //for info : direction^3 is flipping horizontally, direction^12 is flipping vertically
-/obj/structure/cable/proc/mergeDiagonalsNetworks(var/direction)
+obj/structure/cable/proc/mergeDiagonalsNetworks(var/direction)
 
 	//search for and merge diagonally matching cables from the first direction component (north/south)
 	var/turf/T  = get_step(src, direction&3)//go north/south
@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 				C.powernet.add_cable(src) //else, we simply connect to the matching cable powernet
 
 // merge with the powernets of power objects in the given direction
-/obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
+obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
 
 	var/fdir = direction ? global.reverse_dir[direction] : 0 //flip the direction, to match with the source position on its turf
 
@@ -378,7 +378,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 				C.powernet.add_cable(src) //else, we simply connect to the matching cable powernet
 
 // merge with the powernets of power objects in the source turf
-/obj/structure/cable/proc/mergeConnectedNetworksOnTurf()
+obj/structure/cable/proc/mergeConnectedNetworksOnTurf()
 	var/list/to_connect = list()
 
 	if(!powernet) //if we somehow have no powernet, make one (should not happen for cables)
@@ -424,7 +424,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //////////////////////////////////////////////
 
 //if powernetless_only = 1, will only get connections without powernet
-/obj/structure/cable/proc/get_connections(var/powernetless_only = 0)
+obj/structure/cable/proc/get_connections(var/powernetless_only = 0)
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T
 
@@ -466,7 +466,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 //should be called after placing a cable which extends another cable, creating a "smooth" cable that no longer terminates in the centre of a turf.
 //needed as this can, unlike other placements, disconnect cables
-/obj/structure/cable/proc/denode()
+obj/structure/cable/proc/denode()
 	var/turf/T1 = loc
 	if(!T1) return
 
@@ -479,7 +479,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 			qdel(PN)
 
 // cut the cable's powernet at this cable and updates the powergrid
-/obj/structure/cable/proc/cut_cable_from_powernet()
+obj/structure/cable/proc/cut_cable_from_powernet()
 	var/turf/T1 = loc
 	var/list/P_list
 	if(!T1)	return
@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 #define MAXCOIL 30
 
-/obj/item/stack/cable_coil
+obj/item/stack/cable_coil
 	name = "cable coil"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
@@ -541,7 +541,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
-/obj/item/stack/cable_coil/cyborg
+obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
 	desc = "A device that makes cable."
 	gender = NEUTER
@@ -549,7 +549,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	uses_charge = 1
 	charge_costs = list(1)
 
-/obj/item/stack/cable_coil/suicide_act(mob/user)
+obj/item/stack/cable_coil/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	if(locate(/obj/item/stool) in user.loc)
 		user.visible_message("<span class='suicide'>[user] is making a noose with the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
@@ -557,7 +557,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		user.visible_message("<span class='suicide'>[user] is strangling [TU.himself] with the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return(OXYLOSS)
 
-/obj/item/stack/cable_coil/Initialize(mapload, new_amount = MAXCOIL, merge, param_color)
+obj/item/stack/cable_coil/Initialize(mapload, new_amount = MAXCOIL, merge, param_color)
 	. = ..()
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		add_atom_colour(param_color, FIXED_COLOUR_PRIORITY)
@@ -571,7 +571,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 ///////////////////////////////////
 
 //you can use wires to heal robotics
-/obj/item/stack/cable_coil/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/stack/cable_coil/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(ishuman(target) && user.a_intent == INTENT_HELP)
 		var/mob/living/carbon/human/H = target
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
@@ -587,7 +587,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		return
 	return ..()
 
-/obj/item/stack/cable_coil/update_icon()
+obj/item/stack/cable_coil/update_icon()
 	if (!color)
 		color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == 1)
@@ -600,7 +600,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		icon_state = "coil"
 		name = "cable coil"
 
-/obj/item/stack/cable_coil/proc/set_cable_color(var/selected_color, var/user)
+obj/item/stack/cable_coil/proc/set_cable_color(var/selected_color, var/user)
 	if(!selected_color)
 		return
 
@@ -611,13 +611,13 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	color = final_color
 	to_chat(user, "<span class='notice'>You change \the [src]'s color to [lowertext(selected_color)].</span>")
 
-/obj/item/stack/cable_coil/proc/update_wclass()
+obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
 		w_class = ITEMSIZE_TINY
 	else
 		w_class = ITEMSIZE_SMALL
 
-/obj/item/stack/cable_coil/examine(mob/user)
+obj/item/stack/cable_coil/examine(mob/user)
 	. = ..()
 
 	if(get_amount() == 1)
@@ -627,7 +627,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	else
 		. += "A coil of power cable. There are [get_amount()] lengths of cable in the coil."
 
-/obj/item/stack/cable_coil/verb/make_restraint()
+obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
 	set category = "Object"
 	var/mob/M = usr
@@ -644,7 +644,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	else
 		to_chat(usr, "<span class='notice'>You cannot do that.</span>")
 
-/obj/item/stack/cable_coil/cyborg/verb/set_colour()
+obj/item/stack/cable_coil/cyborg/verb/set_colour()
 	set name = "Change Colour"
 	set category = "Object"
 
@@ -655,17 +655,17 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //   - Wirecutters : cut them duh !
 //   - Cable coil : merge cables
 
-/obj/item/stack/cable_coil/transfer_to(obj/item/stack/cable_coil/S)
+obj/item/stack/cable_coil/transfer_to(obj/item/stack/cable_coil/S)
 	if(!istype(S))
 		return
 	..()
 
-/obj/item/stack/cable_coil/use(used)
+obj/item/stack/cable_coil/use(used)
 	. = ..()
 	update_appearance()
 	return
 
-/obj/item/stack/cable_coil/add()
+obj/item/stack/cable_coil/add()
 	. = ..()
 	update_appearance()
 	return
@@ -675,7 +675,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //////////////////////////////////////////////
 
 // called when cable_coil is clicked on a turf/simulated/floor
-/obj/item/stack/cable_coil/proc/turf_place(turf/simulated/F, mob/user)
+obj/item/stack/cable_coil/proc/turf_place(turf/simulated/F, mob/user)
 	if(!isturf(user.loc))
 		return
 
@@ -714,7 +714,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		put_cable(GetBelow(F), user, UP, 0)
 		to_chat(user, "You slide some cable downward.")
 
-/obj/item/stack/cable_coil/proc/put_cable(turf/simulated/F, mob/user, d1, d2)
+obj/item/stack/cable_coil/proc/put_cable(turf/simulated/F, mob/user, d1, d2)
 	if(!istype(F))
 		return
 
@@ -747,7 +747,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 // called when cable_coil is click on an installed obj/cable
 // or click on a turf that already contains a "node" cable
-/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user)
+obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user)
 	var/turf/U = user.loc
 	if(!isturf(U))
 		return
@@ -839,10 +839,10 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 // Misc.
 /////////////////////////////
 
-/obj/item/stack/cable_coil/cut
+obj/item/stack/cable_coil/cut
 	item_state = "coil2"
 
-/obj/item/stack/cable_coil/cut/Initialize(mapload, new_amount, merge)
+obj/item/stack/cable_coil/cut/Initialize(mapload, new_amount, merge)
 	. = ..()
 	src.amount = rand(1,2)
 	pixel_x = rand(-2,2)
@@ -850,84 +850,84 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	update_icon()
 	update_wclass()
 
-/obj/item/stack/cable_coil/yellow
+obj/item/stack/cable_coil/yellow
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_YELLOW
 
-/obj/item/stack/cable_coil/blue
+obj/item/stack/cable_coil/blue
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_BLUE
 
-/obj/item/stack/cable_coil/green
+obj/item/stack/cable_coil/green
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_LIME
 
-/obj/item/stack/cable_coil/pink
+obj/item/stack/cable_coil/pink
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_PINK
 
-/obj/item/stack/cable_coil/orange
+obj/item/stack/cable_coil/orange
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_ORANGE
 
-/obj/item/stack/cable_coil/cyan
+obj/item/stack/cable_coil/cyan
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_CYAN
 
-/obj/item/stack/cable_coil/white
+obj/item/stack/cable_coil/white
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_WHITE
 
-/obj/item/stack/cable_coil/silver
+obj/item/stack/cable_coil/silver
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_SILVER
 
-/obj/item/stack/cable_coil/gray
+obj/item/stack/cable_coil/gray
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_GRAY
 
-/obj/item/stack/cable_coil/black
+obj/item/stack/cable_coil/black
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_BLACK
 
-/obj/item/stack/cable_coil/maroon
+obj/item/stack/cable_coil/maroon
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_MAROON
 
-/obj/item/stack/cable_coil/olive
+obj/item/stack/cable_coil/olive
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_OLIVE
 
-/obj/item/stack/cable_coil/lime
+obj/item/stack/cable_coil/lime
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_LIME
 
-/obj/item/stack/cable_coil/teal
+obj/item/stack/cable_coil/teal
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_TEAL
 
-/obj/item/stack/cable_coil/navy
+obj/item/stack/cable_coil/navy
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_NAVY
 
-/obj/item/stack/cable_coil/purple
+obj/item/stack/cable_coil/purple
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_PURPLE
 
-/obj/item/stack/cable_coil/beige
+obj/item/stack/cable_coil/beige
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_BEIGE
 
-/obj/item/stack/cable_coil/brown
+obj/item/stack/cable_coil/brown
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_BROWN
 
-/obj/item/stack/cable_coil/random/Initialize(mapload, new_amount, merge)
+obj/item/stack/cable_coil/random/Initialize(mapload, new_amount, merge)
 	. = ..()
 	stacktype = /obj/item/stack/cable_coil
 	color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN, COLOR_SILVER, COLOR_GRAY, COLOR_BLACK, COLOR_MAROON, COLOR_OLIVE, COLOR_LIME, COLOR_TEAL, COLOR_NAVY, COLOR_PURPLE, COLOR_BEIGE, COLOR_BROWN)
 
-/obj/item/stack/cable_coil/random_belt/Initialize(mapload, new_amount, merge)
+obj/item/stack/cable_coil/random_belt/Initialize(mapload, new_amount, merge)
 	. = ..()
 	stacktype = /obj/item/stack/cable_coil
 	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_ORANGE)
@@ -936,7 +936,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //Endless alien cable coil
 
 
-/datum/category_item/catalogue/anomalous/precursor_a/alien_wire
+datum/category_item/catalogue/anomalous/precursor_a/alien_wire
 	name = "Precursor Alpha Object - Recursive Spool"
 	desc = "Upon visual inspection, this merely appears to be a \
 	spool for silver-colored cable. If one were to use this for \
@@ -951,7 +951,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	further study."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/stack/cable_coil/alien
+obj/item/stack/cable_coil/alien
 	name = "alien spool"
 	desc = "A spool of cable. No matter how hard you try, you can never seem to get to the end."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wire)
@@ -970,7 +970,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	stacktype = null
 	tool_speed = 0.25
 
-/obj/item/stack/cable_coil/alien/Initialize(mapload, new_amount, merge, param_color)
+obj/item/stack/cable_coil/alien/Initialize(mapload, new_amount, merge, param_color)
 	. = ..()
 	if(embed_chance == -1)		//From /obj/item, don't want to do what the normal cable_coil does
 		if(sharp)
@@ -980,24 +980,24 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	update_icon()
 	remove_obj_verb(src, /obj/item/stack/cable_coil/verb/make_restraint)
 
-/obj/item/stack/cable_coil/alien/update_icon()
+obj/item/stack/cable_coil/alien/update_icon()
 	icon_state = initial(icon_state)
 
-/obj/item/stack/cable_coil/alien/can_use(var/used)
+obj/item/stack/cable_coil/alien/can_use(var/used)
 	return 1
 
-/obj/item/stack/cable_coil/alien/use()	//It's endless
+obj/item/stack/cable_coil/alien/use()	//It's endless
 	return 1
 
-/obj/item/stack/cable_coil/alien/add()	//Still endless
+obj/item/stack/cable_coil/alien/add()	//Still endless
 	return 0
 
-/obj/item/stack/cable_coil/alien/update_wclass()
+obj/item/stack/cable_coil/alien/update_wclass()
 	return 0
 
 
 
-/obj/item/stack/cable_coil/alien/attack_hand(mob/user, list/params)
+obj/item/stack/cable_coil/alien/attack_hand(mob/user, list/params)
 	if (user.get_inactive_held_item() == src)
 		var/N = input("How many units of wire do you want to take from [src]?  You can only take up to [amount] at a time.", "Split stacks", 1) as num|null
 		if(N && N <= amount)

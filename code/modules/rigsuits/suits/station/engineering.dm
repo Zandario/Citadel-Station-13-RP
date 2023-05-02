@@ -1,4 +1,4 @@
-/obj/item/rig/eva
+obj/item/rig/eva
 	name = "EVA suit control module"
 	suit_type = "EVA hardsuit"
 	desc = "A light hardsuit for repairs and maintenance to the outside of habitats and vessels."
@@ -26,7 +26,7 @@
 
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/datum/armor/rig/eva
+datum/armor/rig/eva
 	melee = 0.35
 	bullet = 0.1
 	laser = 0.2
@@ -35,11 +35,11 @@
 	bio = 1.0
 	rad = 0.95
 
-/obj/item/clothing/gloves/gauntlets/rig/eva
+obj/item/clothing/gloves/gauntlets/rig/eva
 	name = "insulated gauntlets"
 	siemens_coefficient = 0
 
-/obj/item/rig/eva/equipped
+obj/item/rig/eva/equipped
 	initial_modules = list(
 		/obj/item/rig_module/device/plasmacutter,
 		/obj/item/rig_module/maneuvering_jets,
@@ -47,11 +47,11 @@
 		/obj/item/rig_module/vision/meson
 		)
 
-/obj/item/clothing/head/helmet/space/rig/eva
+obj/item/clothing/head/helmet/space/rig/eva
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_ENGINEERING)
 
-/obj/item/rig/ce
+obj/item/rig/ce
 	name = "advanced voidsuit control module"
 	suit_type = "advanced voidsuit"
 	desc = "An advanced voidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
@@ -83,7 +83,7 @@
 
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/datum/armor/rig/ce
+datum/armor/rig/ce
 	melee = 0.4
 	bullet = 0.2
 	laser = 0.3
@@ -92,14 +92,14 @@
 	bio = 1.0
 	rad = 1.0
 
-/obj/item/clothing/gloves/gauntlets/rig/ce
+obj/item/clothing/gloves/gauntlets/rig/ce
 	name = "insulated gauntlets"
 	siemens_coefficient = 0
 
-/obj/item/clothing/shoes/magboots/rig/ce
+obj/item/clothing/shoes/magboots/rig/ce
 	slowdown_on = 0
 
-/obj/item/rig/ce/equipped
+obj/item/rig/ce/equipped
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/maneuvering_jets,
@@ -110,5 +110,5 @@
 		/obj/item/rig_module/device/toolset
 		)
 
-/obj/item/clothing/head/helmet/space/rig/ce
+obj/item/clothing/head/helmet/space/rig/ce
 	camera_networks = list(NETWORK_ENGINEERING,NETWORK_COMMAND)

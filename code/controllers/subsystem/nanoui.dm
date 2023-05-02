@@ -11,20 +11,20 @@ SUBSYSTEM_DEF(nanoui)
 
 
 
-/datum/controller/subsystem/nanoui/fire(resumed)
+datum/controller/subsystem/nanoui/fire(resumed)
 	for(var/thing in processing_uis)
 		var/datum/nanoui/UI = thing
 		UI.process()
 
 
-/datum/controller/subsystem/nanoui/Recover()
+datum/controller/subsystem/nanoui/Recover()
 	if(SSnanoui.open_uis)
 		open_uis |= SSnanoui.open_uis
 	if(SSnanoui.processing_uis)
 		processing_uis |= SSnanoui.processing_uis
 
 
-/datum/controller/subsystem/nanoui/stat_entry()
+datum/controller/subsystem/nanoui/stat_entry()
 	return ..() + " [processing_uis.len] UIs"
 
 
@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return /nanoui Returns the found ui, for null if none exists
  */
-/datum/controller/subsystem/nanoui/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, data, force_open = FALSE)
+datum/controller/subsystem/nanoui/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, data, force_open = FALSE)
 	if (isnull(ui)) // no ui has been passed, so we'll search for one
 		ui = get_open_ui(user, src_object, ui_key)
 
@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return /nanoui Returns the found ui, or null if none exists
  */
-/datum/controller/subsystem/nanoui/proc/get_open_ui(mob/user, src_object, ui_key)
+datum/controller/subsystem/nanoui/proc/get_open_ui(mob/user, src_object, ui_key)
 	var/src_object_key = "\ref[src_object]"
 	if (!open_uis[src_object_key] || !open_uis[src_object_key][ui_key])
 		return
@@ -83,7 +83,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return int The number of uis updated
  */
-/datum/controller/subsystem/nanoui/proc/update_uis(src_object)
+datum/controller/subsystem/nanoui/proc/update_uis(src_object)
 	. = 0 // We're going to return the number of uis updated.
 	var/src_object_key = "\ref[src_object]"
 	if (!open_uis[src_object_key])
@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return int The number of uis close
  */
-/datum/controller/subsystem/nanoui/proc/close_uis(src_object)
+datum/controller/subsystem/nanoui/proc/close_uis(src_object)
 	. = 0 // We're going to return the number of uis closed.
 	var/src_object_key = "\ref[src_object]"
 	if (!open_uis[src_object_key])
@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return int The number of uis updated
  */
-/datum/controller/subsystem/nanoui/proc/update_user_uis(mob/user, src_object, ui_key)
+datum/controller/subsystem/nanoui/proc/update_user_uis(mob/user, src_object, ui_key)
 	. = 0 // We're going to return the number of uis updated.
 	if (!length(user.open_uis))
 		return // has no open uis
@@ -147,7 +147,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return int The number of uis closed
  */
-/datum/controller/subsystem/nanoui/proc/close_user_uis(mob/user, src_object, ui_key)
+datum/controller/subsystem/nanoui/proc/close_user_uis(mob/user, src_object, ui_key)
 	. = 0 // We're going to return the number of uis closed.
 	if (!length(user.open_uis))
 		return // has no open uis
@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return nothing
  */
-/datum/controller/subsystem/nanoui/proc/ui_opened(datum/nanoui/ui)
+datum/controller/subsystem/nanoui/proc/ui_opened(datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
 	LAZYINITLIST(open_uis[src_object_key])
 	LAZYDISTINCTADD(open_uis[src_object_key][ui.ui_key], ui)
@@ -182,7 +182,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return bool FALSE if no ui was removed, TRUE if removed successfully
  */
-/datum/controller/subsystem/nanoui/proc/ui_closed(datum/nanoui/ui)
+datum/controller/subsystem/nanoui/proc/ui_closed(datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
 	if (!open_uis[src_object_key] || !open_uis[src_object_key][ui.ui_key])
 		return FALSE // wasn't open
@@ -208,7 +208,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return nothing
  */
-/datum/controller/subsystem/nanoui/proc/user_logout(mob/user)
+datum/controller/subsystem/nanoui/proc/user_logout(mob/user)
 	return close_user_uis(user)
 
 
@@ -221,7 +221,7 @@ SUBSYSTEM_DEF(nanoui)
  *
  * @return bool FALSE if no ui was removed, TRUE if removed successfully
  */
-/datum/controller/subsystem/nanoui/proc/user_transferred(mob/oldMob, mob/newMob)
+datum/controller/subsystem/nanoui/proc/user_transferred(mob/oldMob, mob/newMob)
 	if (!oldMob || !oldMob.open_uis)
 		return FALSE // has no open uis
 

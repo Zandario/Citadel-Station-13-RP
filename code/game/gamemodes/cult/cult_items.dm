@@ -1,4 +1,4 @@
-/obj/item/melee/cultblade
+obj/item/melee/cultblade
 	name = "cult blade"
 	desc = "An arcane weapon wielded by the followers of Nar-Sie."
 	icon_state = "cultblade"
@@ -13,10 +13,10 @@
 	edge = 1
 	sharp = 1
 
-/obj/item/melee/cultblade/cultify()
+obj/item/melee/cultblade/cultify()
 	return
 
-/obj/item/melee/cultblade/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/cultblade/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(iscultist(user) && !istype(user, /mob/living/simple_mob/construct))
 		return ..()
 	if(!isliving(user))
@@ -44,7 +44,7 @@
 
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/item/melee/cultblade/pickup(mob/user, flags, atom/oldLoc)
+obj/item/melee/cultblade/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	if(!iscultist(user) && !istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, "<span class='warning'>An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly.</span>")
@@ -52,7 +52,7 @@
 	if(istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, "<span class='warning'>\The [src] hisses, as it is discontent with your acquisition of it. It would be wise to return it to a worthy mortal quickly.</span>")
 
-/obj/item/clothing/head/culthood
+obj/item/clothing/head/culthood
 	name = "cult hood"
 	icon_state = "culthood"
 	desc = "A hood worn by the followers of Nar-Sie."
@@ -64,20 +64,20 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 
-/obj/item/clothing/head/culthood/cultify()
+obj/item/clothing/head/culthood/cultify()
 	return
 
-/obj/item/clothing/head/culthood/magus
+obj/item/clothing/head/culthood/magus
 	name = "magus helm"
 	icon_state = "magus"
 	desc = "A helm worn by the followers of Nar-Sie."
 	inv_hide_flags = HIDEFACE | BLOCKHAIR
 	body_cover_flags = HEAD|FACE|EYES
 
-/obj/item/clothing/head/culthood/alt
+obj/item/clothing/head/culthood/alt
 	icon_state = "cult_hoodalt"
 
-/obj/item/clothing/suit/cultrobes
+obj/item/clothing/suit/cultrobes
 	name = "cult robes"
 	desc = "A set of armored robes worn by the followers of Nar-Sie."
 	icon_state = "cultrobes"
@@ -88,20 +88,20 @@
 	inv_hide_flags = HIDEJUMPSUIT
 	siemens_coefficient = 0
 
-/obj/item/clothing/suit/cultrobes/cultify()
+obj/item/clothing/suit/cultrobes/cultify()
 	return
 
-/obj/item/clothing/suit/cultrobes/alt
+obj/item/clothing/suit/cultrobes/alt
 	icon_state = "cultrobesalt"
 
-/obj/item/clothing/suit/cultrobes/magusred
+obj/item/clothing/suit/cultrobes/magusred
 	name = "magus robes"
 	desc = "A set of armored robes worn by the followers of Nar-Sie."
 	icon_state = "magusred"
 	body_cover_flags = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
-/obj/item/clothing/head/helmet/space/cult
+obj/item/clothing/head/helmet/space/cult
 	name = "cult helmet"
 	desc = "A space worthy helmet used by the followers of Nar-Sie."
 	icon_state = "cult_helmet"
@@ -109,10 +109,10 @@
 	armor_type = /datum/armor/cult/space
 	siemens_coefficient = 0
 
-/obj/item/clothing/head/helmet/space/cult/cultify()
+obj/item/clothing/head/helmet/space/cult/cultify()
 	return
 
-/obj/item/clothing/suit/space/cult
+obj/item/clothing/suit/space/cult
 	name = "cult armour"
 	icon_state = "cult_armour"
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
@@ -125,5 +125,5 @@
 	inv_hide_flags = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	body_cover_flags = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS
 
-/obj/item/clothing/suit/space/cult/cultify()
+obj/item/clothing/suit/space/cult/cultify()
 	return

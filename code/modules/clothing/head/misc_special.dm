@@ -12,7 +12,7 @@
 /*
  * Welding mask
  */
-/obj/item/clothing/head/welding
+obj/item/clothing/head/welding
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
@@ -31,14 +31,14 @@
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 
-/obj/item/clothing/head/welding/attack_self(mob/user)
+obj/item/clothing/head/welding/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	toggle()
 
 
-/obj/item/clothing/head/welding/verb/toggle()
+obj/item/clothing/head/welding/verb/toggle()
 	set category = "Object"
 	set name = "Adjust welding mask"
 	set src in usr
@@ -69,7 +69,7 @@
 			M.update_inv_wear_mask()
 		usr.update_action_buttons()
 
-/obj/item/clothing/head/welding/demon
+obj/item/clothing/head/welding/demon
 	name = "demonic welding helmet"
 	desc = "A painted welding helmet, this one has a demonic face on it."
 	icon_state = "demonwelding"
@@ -78,7 +78,7 @@
 		SLOT_ID_RIGHT_HAND = "demonwelding",
 		)
 
-/obj/item/clothing/head/welding/knight
+obj/item/clothing/head/welding/knight
 	name = "knightly welding helmet"
 	desc = "A painted welding helmet, this one looks like a knights helmet."
 	icon_state = "knightwelding"
@@ -87,7 +87,7 @@
 		SLOT_ID_RIGHT_HAND = "knightwelding",
 		)
 
-/obj/item/clothing/head/welding/fancy
+obj/item/clothing/head/welding/fancy
 	name = "fancy welding helmet"
 	desc = "A painted welding helmet, the black and gold make this one look very fancy."
 	icon_state = "fancywelding"
@@ -96,7 +96,7 @@
 		SLOT_ID_RIGHT_HAND = "fancywelding",
 		)
 
-/obj/item/clothing/head/welding/engie
+obj/item/clothing/head/welding/engie
 	name = "engineering welding helmet"
 	desc = "A painted welding helmet, this one has been painted the engineering colours."
 	icon_state = "engiewelding"
@@ -109,14 +109,14 @@
 /*
  * Cakehat
  */
-/obj/item/clothing/head/cakehat
+obj/item/clothing/head/cakehat
 	name = "cake-hat"
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
 	var/onfire = 0
 	body_cover_flags = HEAD
 
-/obj/item/clothing/head/cakehat/process(delta_time)
+obj/item/clothing/head/cakehat/process(delta_time)
 	if(!onfire)
 		STOP_PROCESSING(SSobj, src)
 		return
@@ -130,7 +130,7 @@
 	if (istype(location, /turf))
 		location.hotspot_expose(700, 1)
 
-/obj/item/clothing/head/cakehat/attack_self(mob/user)
+obj/item/clothing/head/cakehat/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -150,14 +150,14 @@
 /*
  * Ushanka
  */
-/obj/item/clothing/head/ushanka
+obj/item/clothing/head/ushanka
 	name = "ushanka"
 	desc = "Perfect for winter in Siberia, da?"
 	icon_state = "ushankadown"
 	inv_hide_flags = HIDEEARS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/head/ushanka/attack_self(mob/user)
+obj/item/clothing/head/ushanka/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -171,7 +171,7 @@
 /*
  * Pumpkin head
  */
-/obj/item/clothing/head/pumpkinhead
+obj/item/clothing/head/pumpkinhead
 	name = "carved pumpkin"
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
 	icon_state = "hardhat0_pumpkin"//Could stand to be renamed
@@ -186,7 +186,7 @@
 /*
  * Kitty ears
  */
-/obj/item/clothing/head/kitty
+obj/item/clothing/head/kitty
 	name = "kitty ears"
 	desc = "A pair of kitty ears. Meow!"
 	icon_state = "kitty"
@@ -194,7 +194,7 @@
 	siemens_coefficient = 1.5
 	item_icons = list()
 
-/obj/item/clothing/head/richard
+obj/item/clothing/head/richard
 	name = "chicken mask"
 	desc = "You can hear the distant sounds of rhythmic electronica."
 	icon_state = "richard"
@@ -202,14 +202,14 @@
 	body_cover_flags = HEAD|FACE
 	inv_hide_flags = BLOCKHAIR
 
-/obj/item/clothing/head/santa
+obj/item/clothing/head/santa
 	name = "santa hat"
 	desc = "It's a festive christmas hat, in red!"
 	icon_state = "santahatnorm"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "santahat", SLOT_ID_LEFT_HAND = "santahat")
 	body_cover_flags = 0
 
-/obj/item/clothing/head/santa/green
+obj/item/clothing/head/santa/green
 	name = "green santa hat"
 	desc = "It's a festive christmas hat, in green!"
 	icon_state = "santahatgreen"
@@ -222,7 +222,7 @@
 
 // Triggers an effect when the wearer is 'in grave danger'.
 // Causes brainloss when it happens.
-/obj/item/clothing/head/psy_crown
+obj/item/clothing/head/psy_crown
 	name = "broken crown"
 	desc = "A crown-of-thorns with a missing gem."
 	var/tension_threshold = 125
@@ -234,19 +234,19 @@
 	var/flavor_activate = null // Ditto, for but activating.
 	var/brainloss_cost = 3 // Whenever it activates, inflict this much brainloss on the wearer, as its not good for the mind to wear things that manipulate it.
 
-/obj/item/clothing/head/psy_crown/proc/activate_ability(var/mob/living/wearer)
+obj/item/clothing/head/psy_crown/proc/activate_ability(var/mob/living/wearer)
 	cooldown = world.time + cooldown_duration
 	to_chat(wearer, flavor_activate)
 	to_chat(wearer, "<span class='danger'>The inside of your head hurts...</span>")
 	wearer.adjustBrainLoss(brainloss_cost)
 
-/obj/item/clothing/head/psy_crown/equipped(var/mob/living/carbon/human/H)
+obj/item/clothing/head/psy_crown/equipped(var/mob/living/carbon/human/H)
 	..()
 	if(istype(H) && H.head == src && H.is_sentient())
 		START_PROCESSING(SSobj, src)
 		to_chat(H, flavor_equip)
 
-/obj/item/clothing/head/psy_crown/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/head/psy_crown/dropped(mob/user, flags, atom/newLoc)
 	..()
 	STOP_PROCESSING(SSobj, src)
 	var/mob/living/carbon/human/H = user
@@ -258,18 +258,18 @@
 		else
 			to_chat(H, flavor_drop)
 
-/obj/item/clothing/head/psy_crown/Destroy()
+obj/item/clothing/head/psy_crown/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/clothing/head/psy_crown/process(delta_time)
+obj/item/clothing/head/psy_crown/process(delta_time)
 	if(isliving(loc))
 		var/mob/living/L = loc
 		if(world.time >= cooldown && L.is_sentient() && L.get_tension() >= tension_threshold)
 			activate_ability(L)
 
 
-/obj/item/clothing/head/psy_crown/wrath
+obj/item/clothing/head/psy_crown/wrath
 	name = "red crown"
 	desc = "A crown-of-thorns set with a red gemstone that seems to glow unnaturally. It feels rather disturbing to touch."
 	description_info = "This has a chance to cause the wearer to become extremely angry when in extreme danger."
@@ -280,11 +280,11 @@
 	flavor_activate = "<span class='danger'>An otherworldly feeling seems to enter your mind, and it ignites your mind in fury!</span>"
 	origin_tech = list(TECH_ARCANE = 4)
 
-/obj/item/clothing/head/psy_crown/wrath/activate_ability(var/mob/living/wearer)
+obj/item/clothing/head/psy_crown/wrath/activate_ability(var/mob/living/wearer)
 	..()
 	wearer.add_modifier(/datum/modifier/berserk, 30 SECONDS)
 
-/obj/item/clothing/head/psy_crown/gluttony
+obj/item/clothing/head/psy_crown/gluttony
 	name = "green crown"
 	desc = "A crown-of-thorns set with a green gemstone that seems to glow unnaturally. It feels rather disturbing to touch."
 	description_info = "This has a chance to cause the wearer to become extremely durable, but hungry when in extreme danger."
@@ -294,10 +294,10 @@
 	flavor_drop = "<span class='notice'>You feel much more sated after letting go of the crown.</span>"
 	flavor_activate = "<span class='danger'>An otherworldly feeling seems to enter your mind, and it drives your mind into gluttony!</span>"
 
-/obj/item/clothing/head/psy_crown/gluttony/activate_ability(var/mob/living/wearer)
+obj/item/clothing/head/psy_crown/gluttony/activate_ability(var/mob/living/wearer)
 	..()
 	wearer.add_modifier(/datum/modifier/gluttonyregeneration, 45 SECONDS)
-/obj/item/clothing/head/cone
+obj/item/clothing/head/cone
 	name = "warning cone"
 	desc = "This cone is trying to warn you of something!"
 	description_info = "It looks like you can wear it in your head slot."

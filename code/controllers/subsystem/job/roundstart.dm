@@ -1,4 +1,4 @@
-/datum/controller/subsystem/job
+datum/controller/subsystem/job
 	/// players who need jobs
 	var/list/mob/new_player/divide_unassigned
 	/// cached list of job priorities by the player
@@ -6,7 +6,7 @@
 	/// cached list of job overflow preferences by the player
 	var/list/mob/new_player/divide_overflows
 
-/datum/controller/subsystem/job/proc/reset_occupations()
+datum/controller/subsystem/job/proc/reset_occupations()
 	dispose_unassigned()
 	for(var/mob/new_player/NP in GLOB.player_list)
 		if(NP?.mind)
@@ -14,7 +14,7 @@
 			NP.mind.special_role = null
 	setup_occupations()
 
-/datum/controller/subsystem/job/proc/gather_unassigned()
+datum/controller/subsystem/job/proc/gather_unassigned()
 	//Get the players who are ready
 	divide_unassigned = list()
 	divide_priorities = list()
@@ -29,7 +29,7 @@
 		divide_priorities[player] = priorities
 		divide_overflows[player] = overflow_mode
 
-/datum/controller/subsystem/job/proc/dispose_unassigned()
+datum/controller/subsystem/job/proc/dispose_unassigned()
 	divide_unassigned = null
 	divide_priorities = null
 	divide_overflows = null
@@ -41,7 +41,7 @@
 // i'm going to figure out if i can speed it up BEFORE rewriting everything.
 
 /*
-/datum/controller/subsystem/job/proc/FindOccupationCandidates(datum/role/job/job, level, flag)
+datum/controller/subsystem/job/proc/FindOccupationCandidates(datum/role/job/job, level, flag)
 	JobDebug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
 	for(var/mob/new_player/player in unassigned)
@@ -68,7 +68,7 @@
 			candidates += player
 	return candidates
 
-/datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
+datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
 	for(var/datum/role/job/job in shuffle(GetAllJobs()))
@@ -109,7 +109,7 @@
 			if(Assign(player, job.title))
 				return TRUE
 
-/datum/controller/subsystem/job/proc/reset_occupations()
+datum/controller/subsystem/job/proc/reset_occupations()
 	JobDebug("Occupations reset.")
 	for(var/mob/new_player/player in GLOB.GLOB.player_list)
 		if((player) && (player.mind))
@@ -122,7 +122,7 @@
 //This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until
 //it locates a head or runs out of levels to check
 //This is basically to ensure that there's atleast a few heads in the round
-/datum/controller/subsystem/job/proc/FillHeadPosition()
+datum/controller/subsystem/job/proc/FillHeadPosition()
 	for(var/level in level_order)
 		for(var/datum/role/job/job as anything in GetDepartmentJobDatums(/datum/department/command))
 			if(!job)
@@ -139,7 +139,7 @@
 
 //This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
 //This is also to ensure we get as many heads as possible
-/datum/controller/subsystem/job/proc/CheckHeadPositions(level)
+datum/controller/subsystem/job/proc/CheckHeadPositions(level)
 	for(var/datum/role/job/job as anything in GetDepartmentJobDatums(/datum/department/command))
 		if(!job)
 			continue
@@ -151,7 +151,7 @@
 		var/mob/new_player/candidate = pick(candidates)
 		Assign(candidate, job)
 
-/datum/controller/subsystem/job/proc/FillAIPosition()
+datum/controller/subsystem/job/proc/FillAIPosition()
 	var/ai_selected = 0
 	var/datum/role/job/job = GetJobType(/datum/role/job/ai)
 	if(!job)
@@ -173,7 +173,7 @@
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
  **/
-/datum/controller/subsystem/job/proc/DivideOccupations(list/required_jobs)
+datum/controller/subsystem/job/proc/DivideOccupations(list/required_jobs)
 	//Setup new player list and get the jobs list
 	JobDebug("Running DO")
 
@@ -309,7 +309,7 @@
 
 	return validate_required_jobs(required_jobs)
 
-/datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
+datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
 	if(!required_jobs.len)
 		return TRUE
 	for(var/required_group in required_jobs)
@@ -328,7 +328,7 @@
 	return FALSE
 
 //We couldn't find a job from prefs for this guy.
-/datum/controller/subsystem/job/proc/HandleUnassigned(mob/new_player/player)
+datum/controller/subsystem/job/proc/HandleUnassigned(mob/new_player/player)
 	if(PopcapReached())
 		RejectPlayer(player)
 	else if(player.client.prefs.joblessrole == BEOVERFLOW)
@@ -351,7 +351,7 @@
 		RejectPlayer(player)
 
 
-/datum/controller/subsystem/job/proc/setup_officer_positions()
+datum/controller/subsystem/job/proc/setup_officer_positions()
 	var/datum/role/job/J = SSjob.GetJobType(/datum/role/job/officer)
 	if(!J)
 		CRASH("setup_officer_positions(): Security officer job is missing")
@@ -376,7 +376,7 @@
 		else //We ran out of spare locker spawns!
 			break
 
-/datum/controller/subsystem/job/proc/RejectPlayer(mob/new_player/player)
+datum/controller/subsystem/job/proc/RejectPlayer(mob/new_player/player)
 	if(player.mind && player.mind.special_role)
 		return
 	if(PopcapReached())
@@ -386,7 +386,7 @@
 	unassigned -= player
 	player.ready = PLAYER_NOT_READY
 
-/datum/controller/subsystem/job/proc/PopcapReached()
+datum/controller/subsystem/job/proc/PopcapReached()
 	var/hpc = CONFIG_GET(number/hard_popcap)
 	var/epc = CONFIG_GET(number/extreme_popcap)
 	if(hpc || epc)

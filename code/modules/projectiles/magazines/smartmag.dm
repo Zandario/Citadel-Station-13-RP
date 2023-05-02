@@ -1,6 +1,6 @@
 ///////// Smart Mags /////////
 
-/obj/item/ammo_magazine/smart
+obj/item/ammo_magazine/smart
 	name = "smart magazine"
 	icon_state = "smartmag-empty"
 	desc = "A Hephaistos Industries brand Smart Magazine. It uses advanced matter manipulation technology to create bullets from energy. Simply present your loaded gun or magazine to the Smart Magazine."
@@ -26,15 +26,15 @@
 
 	var/emagged = 0		// If you emag the smart mag, you can get the bullets out by clicking it
 
-/obj/item/ammo_magazine/smart/Initialize(mapload)
+obj/item/ammo_magazine/smart/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/ammo_magazine/smart/Destroy()
+obj/item/ammo_magazine/smart/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/ammo_magazine/smart/process(delta_time)
+obj/item/ammo_magazine/smart/process(delta_time)
 	if(!holding_gun)	// Yes, this is awful, sorry. Don't know a better way to figure out if we've been moved into or out of a gun.
 		if(istype(src.loc, /obj/item/gun))
 			holding_gun = src.loc
@@ -49,7 +49,7 @@
 			last_production_time = world.time
 			produce()
 
-/obj/item/ammo_magazine/smart/examine(mob/user)
+obj/item/ammo_magazine/smart/examine(mob/user)
 	. = ..()
 
 	if(attached_cell)
@@ -57,14 +57,14 @@
 	else
 		. += "<span class='warning'>\The [src] does not appear to have a power source installed.</span>"
 
-/obj/item/ammo_magazine/smart/update_icon()
+obj/item/ammo_magazine/smart/update_icon()
 	if(attached_cell)
 		icon_state = "smartmag-filled"
 	else
 		icon_state = "smartmag-empty"
 
 // Emagging lets you remove bullets from your bullet-making magazine
-/obj/item/ammo_magazine/smart/emag_act(var/remaining_charges, var/mob/user)
+obj/item/ammo_magazine/smart/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		to_chat(user, "<span class='notice'>You overload \the [src]'s security measures causing widespread destabilisation. It is likely you could empty \the [src] now.</span>")
 		emagged = TRUE
@@ -72,7 +72,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/ammo_magazine/smart/attackby(var/obj/item/I as obj, mob/user)
+obj/item/ammo_magazine/smart/attackby(var/obj/item/I as obj, mob/user)
 	if(istype(I, /obj/item/cell/device))
 		if(attached_cell)
 			to_chat(user, "<span class='notice'>\The [src] already has a [attached_cell.name] attached.</span>")
@@ -103,13 +103,13 @@
 
 	..()
 
-/obj/item/ammo_magazine/smart/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+obj/item/ammo_magazine/smart/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(src.loc == user)
 		scan_ammo(target, user)
 	..()
 
 // You can remove the power cell from the magazine by hand, but it's way slower than using a screwdriver
-/obj/item/ammo_magazine/smart/attack_hand(mob/user, list/params)
+obj/item/ammo_magazine/smart/attack_hand(mob/user, list/params)
 	if(user.get_inactive_held_item() == src)
 		if(attached_cell)
 			to_chat(user, "You struggle to remove \the [attached_cell] from \the [src].")
@@ -123,21 +123,21 @@
 	..()
 
 // Classic emp_act, just drains the battery
-/obj/item/ammo_magazine/smart/emp_act(severity)
+obj/item/ammo_magazine/smart/emp_act(severity)
 	..()
 	if(attached_cell)
 		attached_cell.emp_act(severity)
 
 // Finds the cell for the magazine, used by rechargers
-/obj/item/ammo_magazine/smart/get_cell()
+obj/item/ammo_magazine/smart/get_cell()
 	return attached_cell
 
 // Removes energy from the attached cell when creating new bullets
-/obj/item/ammo_magazine/smart/proc/chargereduction()
+obj/item/ammo_magazine/smart/proc/chargereduction()
 	return attached_cell && attached_cell.checked_use(production_cost)
 
 // Sets how much energy is drained to make each bullet
-/obj/item/ammo_magazine/smart/proc/set_production_cost(var/obj/item/ammo_casing/A)
+obj/item/ammo_magazine/smart/proc/set_production_cost(var/obj/item/ammo_casing/A)
 	var/list/matters = ammo_repository.get_materials_from_object(A)
 	var/tempcost
 	for(var/key in matters)
@@ -146,7 +146,7 @@
 	production_cost = tempcost
 
 // Scans a magazine or ammo casing and tells the smart mag to start making those, if it can
-/obj/item/ammo_magazine/smart/proc/scan_ammo(atom/target, mob/user)
+obj/item/ammo_magazine/smart/proc/scan_ammo(atom/target, mob/user)
 
 	var/new_caliber = caliber		// Tracks what our new caliber will be
 	var/new_ammo_type = ammo_type	// Tracks what our new ammo_type will be
@@ -190,7 +190,7 @@
 	return
 
 // Actually makes the bullets
-/obj/item/ammo_magazine/smart/proc/produce()
+obj/item/ammo_magazine/smart/proc/produce()
 	if(chargereduction())
 		var/obj/item/ammo_casing/W = new ammo_type(src)
 		stored_ammo.Insert(1, W) //add to the head of the list
@@ -199,7 +199,7 @@
 
 
 // This verb clears out the smart mag's copied data, but only if it's empty
-/obj/item/ammo_magazine/smart/verb/clear_ammo_data()
+obj/item/ammo_magazine/smart/verb/clear_ammo_data()
 	set name = "Clear Ammo Data"
 	set category = "Object"
 	set src in usr

@@ -5,7 +5,7 @@
 */
 
 // Obtained by scanning any giant spider.
-/datum/category_item/catalogue/fauna/giant_spider/giant_spiders
+datum/category_item/catalogue/fauna/giant_spider/giant_spiders
 	name = "Giant Spiders"
 	desc = "Giant Spiders are massive arachnids genetically descended from conventional Earth spiders, \
 	however what caused ordinary arachnids to evolve into these are disputed. \
@@ -24,7 +24,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/giant_spider)
 
 // Obtained by scanning all spider types.
-/datum/category_item/catalogue/fauna/all_giant_spiders
+datum/category_item/catalogue/fauna/all_giant_spiders
 	name = "Collection - Giant Spiders"
 	desc = "You have scanned a large array of different types of giant spiders, \
 	and therefore you have been granted a large sum of points, through this \
@@ -46,7 +46,7 @@
 		)
 
 // Specific to guard spiders.
-/datum/category_item/catalogue/fauna/giant_spider/guard_spider
+datum/category_item/catalogue/fauna/giant_spider/guard_spider
 	name = "Giant Spider - Guard"
 	desc = "This specific spider has been catalogued as 'Guard', \
 	and belongs to the 'Guard' caste. It has a brown coloration, with \
@@ -58,7 +58,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 // The base spider, in the 'walking tank' family.
-/mob/living/simple_mob/animal/giant_spider
+mob/living/simple_mob/animal/giant_spider
 	name = "giant spider"
 	desc = "Furry and brown, it makes you shudder to look at it. This one has deep red eyes."
 	tt_desc = "X Atrax robustus gigantus"
@@ -110,7 +110,7 @@
 		/obj/item/stack/material/chitin = 1\
 		)
 
-/mob/living/simple_mob/animal/giant_spider/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/animal/giant_spider/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -119,12 +119,12 @@
 				inject_poison(L, target_zone)
 
 // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/animal/giant_spider/proc/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/animal/giant_spider/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		L.custom_pain(SPAN_WARNING("You feel a tiny prick."), 1, TRUE)
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/simple_mob/animal/giant_spider/proc/make_spiderling()
+mob/living/simple_mob/animal/giant_spider/proc/make_spiderling()
 	adjust_scale(icon_scale_x * 0.7, icon_scale_y * 0.7)
 	maxHealth = round(maxHealth * 0.5)
 	health = round(health * 0.5)

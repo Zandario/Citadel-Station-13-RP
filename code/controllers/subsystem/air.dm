@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(air)
 	// This is used to tell Travis WHERE the edges are.
 	var/list/startup_active_edge_log = list()
 
-/datum/controller/subsystem/air/stat_entry()
+datum/controller/subsystem/air/stat_entry()
 	var/list/msg = list()
 	msg += "S:[current_step ? part_names[current_step] : ""] "
 	msg += "C:{"
@@ -56,14 +56,14 @@ SUBSYSTEM_DEF(air)
 	msg += "}"
 	return ..() + " [msg.Join()]"
 
-/datum/controller/subsystem/air/PreInit(recovering)
+datum/controller/subsystem/air/PreInit(recovering)
 	air_master = src
 
-/datum/controller/subsystem/air/Preload(recovering)
+datum/controller/subsystem/air/Preload(recovering)
 	cached_strings = list()
 	generate_atmospheres()
 
-/datum/controller/subsystem/air/Recover()
+datum/controller/subsystem/air/Recover()
 	// Preload() already generated stock ones
 	if(islist(SSair?.generated_atmospheres))
 		for(var/id in SSair.generated_atmospheres)
@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(air)
 				continue
 			generated_atmospheres[id] = SSair.generated_atmospheres[id]
 
-/datum/controller/subsystem/air/Initialize(timeofday)
+datum/controller/subsystem/air/Initialize(timeofday)
 #ifndef FASTBOOT_DISABLE_ZONES
 	report_progress("Initializing [name] subsystem...")
 
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(air)
 #endif
 	return ..()
 
-/datum/controller/subsystem/air/fire(resumed = FALSE)
+datum/controller/subsystem/air/fire(resumed = FALSE)
 	var/timer
 	if(!resumed)
 		if(LAZYLEN(currentrun) != 0)
@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(air)
 		stack_trace("current_step after processing cycle was [current_step] instead of [SSAIR_DONE]")
 	current_step = null
 
-/datum/controller/subsystem/air/proc/process_tiles_to_update(resumed = 0)
+datum/controller/subsystem/air/proc/process_tiles_to_update(resumed = 0)
 	if (!resumed)
 		// NOT a copy, because we are supposed to drain active turfs each cycle anyway, so just replace with empty list.
 		// We still use a separate list tho, to ensure we don't process a turf twice during a single cycle!
@@ -200,7 +200,7 @@ SUBSYSTEM_DEF(air)
 	if(selfblock_deferred.len != 0)
 		stack_trace("WARNING: selfblock_defered was not empty after selfblock tiles process (length [LAZYLEN(selfblock_deferred)])")
 
-/datum/controller/subsystem/air/proc/process_active_edges(resumed = 0)
+datum/controller/subsystem/air/proc/process_active_edges(resumed = 0)
 	if (!resumed)
 		src.currentrun = active_edges.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -213,7 +213,7 @@ SUBSYSTEM_DEF(air)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_active_fire_zones(resumed = 0)
+datum/controller/subsystem/air/proc/process_active_fire_zones(resumed = 0)
 	if (!resumed)
 		src.currentrun = active_fire_zones.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -226,7 +226,7 @@ SUBSYSTEM_DEF(air)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_active_hotspots(resumed = 0)
+datum/controller/subsystem/air/proc/process_active_hotspots(resumed = 0)
 	if (!resumed)
 		src.currentrun = active_hotspots.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -240,7 +240,7 @@ SUBSYSTEM_DEF(air)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_zones_to_update(resumed = 0)
+datum/controller/subsystem/air/proc/process_zones_to_update(resumed = 0)
 	if (!resumed)
 		active_zones = zones_to_update.len // Save how many zones there were to update this cycle (used by some debugging stuff)
 		if(!zones_to_update.len)
@@ -264,19 +264,19 @@ SUBSYSTEM_DEF(air)
 			return
 
 // ZAS might displace objects as the map loads if an air tick is processed mid-load.
-/datum/controller/subsystem/air/StartLoadingMap(var/quiet = TRUE)
+datum/controller/subsystem/air/StartLoadingMap(var/quiet = TRUE)
 	can_fire = FALSE
 	// Don't let map actually start loading if we are in the middle of firing
 	while(current_step)
 		stoplag()
 	. = ..()
 
-/datum/controller/subsystem/air/StopLoadingMap(var/quiet = TRUE)
+datum/controller/subsystem/air/StopLoadingMap(var/quiet = TRUE)
 	can_fire = TRUE
 	. = ..()
 
 // Reboot the air master.  A bit hacky right now, but sometimes necessary still.
-/datum/controller/subsystem/air/proc/RebootZAS()
+datum/controller/subsystem/air/proc/RebootZAS()
 	can_fire = FALSE // Pause processing while we reboot
 	// If we should happen to be in the middle of processing... wait until that finishes.
 	if (state != SS_IDLE)
@@ -311,7 +311,7 @@ SUBSYSTEM_DEF(air)
 /**
   * Initializes all subtypes of /datum/atmosphere and indexes them by key.
   */
-/datum/controller/subsystem/air/proc/generate_atmospheres()
+datum/controller/subsystem/air/proc/generate_atmospheres()
 	// todo: pretty world init progress reporter for everyone
 	report_progress("SSair: Generating atmospheres...")
 	generated_atmospheres = list()
@@ -330,7 +330,7 @@ SUBSYSTEM_DEF(air)
  * - gas_string - gas string
  * - turf_context - turf location
  */
-/datum/controller/subsystem/air/proc/_parse_gas_string(gas_string, turf/turf_context)
+datum/controller/subsystem/air/proc/_parse_gas_string(gas_string, turf/turf_context)
 	// 1. check if area
 	if(gas_string == ATMOSPHERE_USE_AREA)
 		var/area/A = turf_context.loc
@@ -350,7 +350,7 @@ SUBSYSTEM_DEF(air)
 		return
 	return (cached_strings[gas_string] = unpack_gas_string(gas_string))
 
-/datum/controller/subsystem/air/proc/unpack_gas_string(gas_string)
+datum/controller/subsystem/air/proc/unpack_gas_string(gas_string)
 	var/list/built = new /list(2)
 	var/list/unpacked = params2list(gas_string)
 	var/list/gases = list()

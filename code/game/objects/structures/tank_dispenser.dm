@@ -1,4 +1,4 @@
-/obj/structure/dispenser
+obj/structure/dispenser
 	name = "tank storage unit"
 	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten phoron tanks."
 	icon = 'icons/obj/objects.dmi'
@@ -11,17 +11,17 @@
 	var/list/oxytanks = list()	//sorry for the similar var names
 	var/list/platanks = list()
 
-/obj/structure/dispenser/oxygen
+obj/structure/dispenser/oxygen
 	phorontanks = 0
 
-/obj/structure/dispenser/phoron
+obj/structure/dispenser/phoron
 	oxygentanks = 0
 
-/obj/structure/dispenser/Initialize(mapload)
+obj/structure/dispenser/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/structure/dispenser/update_icon()
+obj/structure/dispenser/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -39,12 +39,12 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/structure/dispenser/attack_ai(mob/user as mob)
+obj/structure/dispenser/attack_ai(mob/user as mob)
 	if(user.Adjacent(src))
 		return attack_hand(user)
 	..()
 
-/obj/structure/dispenser/attack_hand(mob/user, list/params)
+obj/structure/dispenser/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
@@ -54,7 +54,7 @@
 	return
 
 
-/obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
+obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks < 10)
 			if(!user.attempt_insert_item_for_installation(I, src))
@@ -90,7 +90,7 @@
 			anchored = 1
 		return
 
-/obj/structure/dispenser/Topic(href, href_list)
+obj/structure/dispenser/Topic(href, href_list)
 	if(usr.stat || usr.restrained())
 		return
 	if(Adjacent(usr))

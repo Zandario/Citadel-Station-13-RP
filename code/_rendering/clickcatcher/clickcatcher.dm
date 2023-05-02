@@ -1,4 +1,4 @@
-/atom/movable/screen/click_catcher
+atom/movable/screen/click_catcher
 	icon = 'icons/screen/rendering/clickcatcher.dmi'
 	icon_state = "catcher"
 	appearance_flags = TILE_BOUND | NO_CLIENT_COLOR | RESET_TRANSFORM | RESET_COLOR | RESET_ALPHA
@@ -11,7 +11,7 @@
 #define MAX_SAFE_BYOND_ICON_SCALE_TILES (MAX_SAFE_BYOND_ICON_SCALE_PX / world.icon_size)
 ///Not using world.icon_size on purpose.
 #define MAX_SAFE_BYOND_ICON_SCALE_PX (33 * 32)
-/atom/movable/screen/click_catcher/proc/UpdateFill(view_size_x = 15, view_size_y = 15)
+atom/movable/screen/click_catcher/proc/UpdateFill(view_size_x = 15, view_size_y = 15)
 	var/icon/newicon = icon('icons/mob/screen_gen.dmi', "catcher")
 	var/ox = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_x)
 	var/oy = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_y)
@@ -30,12 +30,12 @@
 #undef MAX_SAFE_BYOND_ICON_SCALE_PX
 */
 
-/atom/movable/screen/click_catcher/proc/UpdateFill(view_size_x, view_size_y)
+atom/movable/screen/click_catcher/proc/UpdateFill(view_size_x, view_size_y)
 	var/matrix/transforming = matrix()
 	transforming.Scale(view_size_x, view_size_y)
 	transform = transforming
 
-/atom/movable/screen/click_catcher/Click(location, control, params)
+atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && iscarbon(usr))
 		var/mob/living/carbon/C = usr
@@ -47,7 +47,7 @@
 			T.Click(location, control, params)
 	return TRUE
 
-/atom/movable/screen/click_catcher/proc/Parse(scr_loc, turf/origin, client/C)
+atom/movable/screen/click_catcher/proc/Parse(scr_loc, turf/origin, client/C)
 	// screen-loc: Pixel coordinates in screen_loc format ("[tile_x]:[pixel_x],[tile_y]:[pixel_y]")
 	if(!scr_loc || !origin)
 		return null
@@ -65,7 +65,7 @@
 /**
  * Makes a clickcatcher if necessary, and ensures it's fit to our size.
  */
-/client/proc/update_clickcatcher()
+client/proc/update_clickcatcher()
 	if(!click_catcher)
 		click_catcher = new
 	screen |= click_catcher

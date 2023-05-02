@@ -1,9 +1,9 @@
-/datum/category_item/player_setup_item/background/culture
+datum/category_item/player_setup_item/background/culture
 	name = "Culture"
 	save_key = CHARACTER_DATA_CULTURE
 	sort_order = 5
 
-/datum/category_item/player_setup_item/background/culture/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/background/culture/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	var/list/datum/lore/character_background/culture/available = SScharacters.available_cultures(prefs.character_species_id())
 	var/list/categories = list()
@@ -33,7 +33,7 @@
 	. += current? current.desc : "<center>error; culture load failed</center>"
 	. += "</div>"
 
-/datum/category_item/player_setup_item/background/culture/act(datum/preferences/prefs, mob/user, action, list/params)
+datum/category_item/player_setup_item/background/culture/act(datum/preferences/prefs, mob/user, action, list/params)
 	switch(action)
 		if("pick")
 			var/id = params["pick"]
@@ -58,38 +58,38 @@
 			return PREFERENCES_REFRESH
 	return ..()
 
-/datum/category_item/player_setup_item/background/culture/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/background/culture/filter_data(datum/preferences/prefs, data, list/errors)
 	var/datum/lore/character_background/culture/current = SScharacters.resolve_culture(data)
 	if(!current?.check_species_id(prefs.character_species_id()))
 		return SScharacters.resolve_culture(/datum/lore/character_background/culture/custom).id
 	return data
 
-/datum/category_item/player_setup_item/background/culture/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/background/culture/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: sources - this one is from culture/bcakground
 	var/datum/lore/character_background/B = SScharacters.resolve_culture(data)
 	for(var/id in B.innate_languages)
 		M.add_language(id)
 	return TRUE
 
-/datum/category_item/player_setup_item/background/culture/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
+datum/category_item/player_setup_item/background/culture/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
 	var/datum/lore/character_background/culture/current = SScharacters.resolve_culture(data)
 	if(!current?.check_species_id(prefs.character_species_id()))
 		errors?.Add("Invalid culture for your current species.")
 		return FALSE
 	return TRUE
 
-/datum/category_item/player_setup_item/background/culture/default_value(randomizing)
+datum/category_item/player_setup_item/background/culture/default_value(randomizing)
 	return SScharacters.resolve_culture(/datum/lore/character_background/culture/custom).id
 
-/datum/category_item/player_setup_item/background/culture/informed_default_value(datum/preferences/prefs, randomizing)
+datum/category_item/player_setup_item/background/culture/informed_default_value(datum/preferences/prefs, randomizing)
 	var/datum/character_species/S = SScharacters.resolve_character_species(prefs.character_species_id())
 	if(!S)
 		return ..()
 	return S.get_default_culture_id()
 
-/datum/preferences/proc/lore_culture_id()
+datum/preferences/proc/lore_culture_id()
 	return get_character_data(CHARACTER_DATA_CULTURE)
 
-/datum/preferences/proc/lore_culture_datum()
+datum/preferences/proc/lore_culture_datum()
 	RETURN_TYPE(/datum/lore/character_background/culture)
 	return SScharacters.resolve_culture(lore_culture_id())

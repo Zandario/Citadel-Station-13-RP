@@ -1,5 +1,5 @@
 // Operates NanoUI
-/obj/item/modular_computer/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
+obj/item/modular_computer/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 	if(!screen_on || !enabled)
 		if(ui)
 			ui.close()
@@ -47,7 +47,7 @@
 		ui.set_auto_update(1)
 
 // Handles user's GUI input
-/obj/item/modular_computer/Topic(href, href_list)
+obj/item/modular_computer/Topic(href, href_list)
 	if(..())
 		return 1
 	if( href_list["PC_exit"] )
@@ -96,7 +96,7 @@
 		update_uis()
 
 // Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
-/obj/item/modular_computer/proc/get_header_data()
+obj/item/modular_computer/proc/get_header_data()
 	var/list/data = list()
 
 	if(battery_module)

@@ -62,15 +62,15 @@ SUBSYSTEM_DEF(timer)
 	var/log_all_loop_flagged = FALSE
 #endif
 
-/datum/controller/subsystem/timer/PreInit(recovering)
+datum/controller/subsystem/timer/PreInit(recovering)
 	bucket_list.len = BUCKET_LEN
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
 
-/datum/controller/subsystem/timer/stat_entry()
+datum/controller/subsystem/timer/stat_entry()
 	return ..() + " B:[bucket_count] P:[length(second_queue)] H:[length(hashes)] C:[length(clienttime_timers)] S:[length(timer_id_dict)]"
 
-/datum/controller/subsystem/timer/fire(resumed = FALSE)
+datum/controller/subsystem/timer/fire(resumed = FALSE)
 	// Store local references to datum vars as it is faster to access them
 	var/lit = last_invoke_tick
 	var/list/bucket_list = src.bucket_list
@@ -234,7 +234,7 @@ SUBSYSTEM_DEF(timer)
 /**
  * Generates a string with details about the timed event for debugging purposes
  */
-/datum/controller/subsystem/timer/proc/get_timer_debug_string(datum/timedevent/TE)
+datum/controller/subsystem/timer/proc/get_timer_debug_string(datum/timedevent/TE)
 	. = "Timer: [TE]"
 	. += "Prev: [TE.prev ? TE.prev : "NULL"], Next: [TE.next ? TE.next : "NULL"]"
 	if(TE.spent)
@@ -247,7 +247,7 @@ SUBSYSTEM_DEF(timer)
 /**
  * Destroys the existing buckets and creates new buckets from the existing timed events
  */
-/datum/controller/subsystem/timer/proc/reset_buckets()
+datum/controller/subsystem/timer/proc/reset_buckets()
 	var/list/bucket_list = src.bucket_list // Store local reference to datum var, this is faster
 	var/list/alltimers = list()
 
@@ -336,7 +336,7 @@ SUBSYSTEM_DEF(timer)
 	bucket_count = new_bucket_count
 
 
-/datum/controller/subsystem/timer/Recover()
+datum/controller/subsystem/timer/Recover()
 	second_queue |= SStimer.second_queue
 	hashes |= SStimer.hashes
 	timer_id_dict |= SStimer.timer_id_dict
@@ -351,7 +351,7 @@ SUBSYSTEM_DEF(timer)
  * See the documentation for the timer subsystem for an explanation of the buckets referenced
  * below in next and prev
  */
-/datum/timedevent
+datum/timedevent
 	/// ID used for timers when the TIMER_STOPPABLE flag is present
 	var/id
 	/// The callback to invoke after the timer completes
@@ -375,7 +375,7 @@ SUBSYSTEM_DEF(timer)
 	/// Previous timed event in the bucket
 	var/datum/timedevent/prev
 
-/datum/timedevent/New(datum/callback/callBack, wait, flags, hash, source)
+datum/timedevent/New(datum/callback/callBack, wait, flags, hash, source)
 	var/static/nextid = 1
 	id = TIMER_ID_NULL
 	src.callBack = callBack
@@ -408,7 +408,7 @@ SUBSYSTEM_DEF(timer)
 
 	bucketJoin()
 
-/datum/timedevent/Destroy()
+datum/timedevent/Destroy()
 	..()
 	if (timer_flags & TIMER_UNIQUE && hash)
 		SStimer.hashes -= hash
@@ -446,7 +446,7 @@ SUBSYSTEM_DEF(timer)
 /**
  * Debug proc : Find our location in timers, and then ensure bucketeject is able to eject us properly.
  */
-/datum/timedevent/proc/testEject()
+datum/timedevent/proc/testEject()
 	var/bucketpos = BUCKET_POS(src)
 	to_chat(usr, "Bucketpos: [bucketpos]")
 	var/should_second_queue = timeToRun > TIMER_MAX
@@ -516,7 +516,7 @@ SUBSYSTEM_DEF(timer)
 /**
  * Debugging: Brute force searches bucket lists for ourselves
  */
-/datum/timedevent/proc/searchAdvBucketList()
+datum/timedevent/proc/searchAdvBucketList()
 	to_chat(usr, "Searching for [name] in SStimer.bucket_list")
 	for(var/pos in 1 to BUCKET_LEN)
 		var/datum/timedevent/buckethead = SStimer.bucket_list[pos]
@@ -542,7 +542,7 @@ SUBSYSTEM_DEF(timer)
 /**
  * Removes this timed event from any relevant buckets, or the secondary queue
  */
-/datum/timedevent/proc/bucketEject()
+datum/timedevent/proc/bucketEject()
 	// Attempt to find bucket that contains this timed event
 	var/bucketpos = BUCKET_POS(src)
 
@@ -588,7 +588,7 @@ SUBSYSTEM_DEF(timer)
  * buckets is exceeded by the time at which this timed event is scheduled to be invoked.
  * If the timed event is tracking client time, it will be added to a special bucket.
  */
-/datum/timedevent/proc/bucketJoin()
+datum/timedevent/proc/bucketJoin()
 	// Generate debug-friendly name for timer
 	var/static/list/bitfield_flags = list("TIMER_UNIQUE", "TIMER_OVERRIDE", "TIMER_CLIENT_TIME", "TIMER_STOPPABLE", "TIMER_NO_HASH_WAIT", "TIMER_LOOP")
 	name = "Timer: [id] (\ref[src]), TTR: [timeToRun], wait:[wait] Flags: [jointext(bitfield2list(timer_flags, bitfield_flags), ", ")], \
@@ -638,7 +638,7 @@ SUBSYSTEM_DEF(timer)
 /**
  * Returns a string of the type of the callback for this timer
  */
-/datum/timedevent/proc/getcallingtype()
+datum/timedevent/proc/getcallingtype()
 	. = "ERROR"
 	if (callBack.object == GLOBAL_PROC)
 		. = "GLOBAL_PROC"
@@ -654,7 +654,7 @@ SUBSYSTEM_DEF(timer)
  * * wait deciseconds to run the timer for
  * * flags flags for this timer, see: code\__DEFINES\subsystems.dm
  */
-/proc/_addtimer(datum/callback/callback, wait = 0, flags = 0, file, line)
+proc/_addtimer(datum/callback/callback, wait = 0, flags = 0, file, line)
 	if (!callback)
 		CRASH("addtimer called without a callback")
 
@@ -707,7 +707,7 @@ SUBSYSTEM_DEF(timer)
  * Arguments:
  * * id a timerid or a /datum/timedevent
  */
-/proc/deltimer(id)
+proc/deltimer(id)
 	if (!id)
 		return FALSE
 	if (id == TIMER_ID_NULL)
@@ -728,7 +728,7 @@ SUBSYSTEM_DEF(timer)
  * Arguments:
  * * id a timerid or a /datum/timedevent
  */
-/proc/timeleft(id)
+proc/timeleft(id)
 	if (!id)
 		return null
 	if (id == TIMER_ID_NULL)

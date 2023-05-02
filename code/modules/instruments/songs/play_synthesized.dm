@@ -1,4 +1,4 @@
-/datum/song/proc/do_play_lines_synthesized(mob/user)
+datum/song/proc/do_play_lines_synthesized(mob/user)
 	compile_lines()
 	while(repeat >= 0)
 		if(should_stop_playing(user))
@@ -21,7 +21,7 @@
 	repeat = 0
 
 /// C-Db2-A-A4/2,A-B#4-C/3,/4,A,A-B-C as an example
-/datum/song/proc/compile_lines()
+datum/song/proc/compile_lines()
 	if(!length(src.lines))
 		return
 	var/list/lines = src.lines		//cache for hyepr speed!
@@ -60,7 +60,7 @@
 		CHECK_TICK
 	return compiled_chords
 
-/datum/song/proc/playkey_synth(key)
+datum/song/proc/playkey_synth(key)
 	if(can_noteshift)
 		key = clamp(key + note_shift, key_min, key_max)
 	if((world.time - MUSICIAN_HEARCHECK_MINDELAY) > last_hearcheck)
@@ -83,7 +83,7 @@
 		M.playsound_local(get_turf(parent), null, volume, FALSE, K.frequency, INSTRUMENT_DISTANCE_NO_FALLOFF, FALSE, channel, null, copy, /datum/client_preference/instrument_toggle, distance_multiplier = INSTRUMENT_DISTANCE_FALLOFF_BUFF)
 		// Could do environment and echo later but not for now
 
-/datum/song/proc/terminate_all_sounds(clear_channels = TRUE)
+datum/song/proc/terminate_all_sounds(clear_channels = TRUE)
 	for(var/i in hearing_mobs)
 		terminate_sound_mob(i)
 	if(clear_channels)
@@ -93,11 +93,11 @@
 		using_sound_channels = 0
 		SSsounds.free_datum_channels(src)
 
-/datum/song/proc/terminate_sound_mob(mob/M)
+datum/song/proc/terminate_sound_mob(mob/M)
 	for(var/channel in channels_playing)
 		M.stop_sound_channel(text2num(channel))
 
-/datum/song/proc/pop_channel()
+datum/song/proc/pop_channel()
 	if(length(channels_idle))			//just pop one off of here if we have one available
 		. = text2num(channels_idle[1])
 		channels_idle.Cut(1,2)
@@ -108,7 +108,7 @@
 	if(!isnull(.))
 		using_sound_channels++
 
-/datum/song/proc/process_decay(wait_ds)
+datum/song/proc/process_decay(wait_ds)
 	var/linear_dropoff = cached_linear_dropoff * wait_ds
 	var/exponential_dropoff = cached_exponential_dropoff ** wait_ds
 	for(var/channel in channels_playing)

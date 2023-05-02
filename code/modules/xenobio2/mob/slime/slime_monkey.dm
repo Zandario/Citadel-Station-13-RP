@@ -1,14 +1,14 @@
 /*
 Slime cube lives here.
 */
-/obj/item/slime_cube
+obj/item/slime_cube
 	name = "slimy monkey cube"
 	desc = "Wonder what might come out of this."
 	icon = 'icons/mob/slime2.dmi'
 	icon_state = "slime cube"
 	var/searching = 0
 
-/obj/item/slime_cube/attack_self(mob/user)
+obj/item/slime_cube/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -16,7 +16,7 @@ Slime cube lives here.
 		to_chat(user, "<span class='warning'>You stare at the slimy cube, watching as some activity occurs.</span>")
 		request_player()
 
-/obj/item/slime_cube/proc/request_player()
+obj/item/slime_cube/proc/request_player()
 	icon_state = "slime cube active"
 	searching = 1
 
@@ -28,7 +28,7 @@ Slime cube lives here.
 	else
 		reset_search()
 
-/obj/item/slime_cube/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
+obj/item/slime_cube/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 	icon_state = "slime cube"
 	if(searching == 1)
 		searching = 0
@@ -36,7 +36,7 @@ Slime cube lives here.
 		for(var/mob/M in viewers(T))
 			M.show_message("<span class='warning'>The activity in the cube dies down. Maybe it will spark another time.</span>")
 
-/obj/item/slime_cube/proc/transfer_personality(var/mob/candidate)
+obj/item/slime_cube/proc/transfer_personality(var/mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are a promethean now.")
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))

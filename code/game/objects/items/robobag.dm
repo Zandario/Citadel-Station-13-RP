@@ -1,5 +1,5 @@
 
-/obj/item/bodybag/cryobag/robobag
+obj/item/bodybag/cryobag/robobag
 	name = "synthmorph bag"
 	desc = "A reusable polymer bag designed to slow down synthetic functions such as data corruption and coolant flow, \
 	especially useful if short on time or in a hostile enviroment."
@@ -8,7 +8,7 @@
 	item_state = "bodybag_cryo_folded"
 	origin_tech = list(TECH_ENGINEERING = 3)
 
-/obj/item/bodybag/cryobag/robobag/attack_self(mob/user)
+obj/item/bodybag/cryobag/robobag/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -19,7 +19,7 @@
 		syringe = null
 	qdel(src)
 
-/obj/structure/closet/body_bag/cryobag/robobag
+obj/structure/closet/body_bag/cryobag/robobag
 	name = "synthmorph bag"
 	desc = "A reusable polymer bag designed to slow down synthetic functions such as data corruption and coolant flow, \
 	especially useful if short on time or in a hostile enviroment."
@@ -29,12 +29,12 @@
 	stasis_level = 2	// Lower than the normal cryobag, because it's not made for meat that dies. It's made for robots and is freezing.
 	var/obj/item/clothing/accessory/badge/corptag	// The tag on the bag.
 
-/obj/structure/closet/body_bag/cryobag/robobag/examine(mob/user)
+obj/structure/closet/body_bag/cryobag/robobag/examine(mob/user)
 	. = ..()
 	if(Adjacent(user) && corptag)
 		. += "<span class='notice'>\The [src] has a [corptag] attached to it.</span>"
 
-/obj/structure/closet/body_bag/cryobag/robobag/update_icon()
+obj/structure/closet/body_bag/cryobag/robobag/update_icon()
 	cut_overlays()
 	..()
 	if(corptag)
@@ -51,7 +51,7 @@
 		var/image/I = image(icon, corptag_icon_state)
 		add_overlay(I)
 
-/obj/structure/closet/body_bag/cryobag/robobag/AltClick(mob/user)
+obj/structure/closet/body_bag/cryobag/robobag/AltClick(mob/user)
 	if(!Adjacent(user))
 		..()
 	if(corptag)
@@ -62,7 +62,7 @@
 		return
 	return ..()
 
-/obj/structure/closet/body_bag/cryobag/robobag/Destroy()
+obj/structure/closet/body_bag/cryobag/robobag/Destroy()
 	if(corptag && get_turf(src))
 		var/turf/T = get_turf(src)
 		corptag.forceMove(T)
@@ -71,7 +71,7 @@
 		QDEL_NULL(corptag)
 	return ..()
 
-/obj/structure/closet/body_bag/cryobag/robobag/Entered(atom/movable/AM)
+obj/structure/closet/body_bag/cryobag/robobag/Entered(atom/movable/AM)
 	..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
@@ -81,7 +81,7 @@
 			else
 				H.add_modifier(/datum/modifier/fbp_debug/robobag)
 
-/obj/structure/closet/body_bag/cryobag/robobag/attackby(obj/item/W, mob/user)
+obj/structure/closet/body_bag/cryobag/robobag/attackby(obj/item/W, mob/user)
 	if(opened)
 		..()
 	else //Allows the bag to respond to a cyborg analyzer and tag.
@@ -108,7 +108,7 @@
 		else
 			..()
 
-/datum/modifier/fbp_debug
+datum/modifier/fbp_debug
 	name = "defragmenting"
 	desc = "Your software is being debugged."
 	mob_overlay_state = "signal_blue"
@@ -117,21 +117,21 @@
 	on_expired_text = "<span class='notice'>Your mind is clear once more.</span>"
 	stacks = MODIFIER_STACK_FORBID
 
-/datum/modifier/fbp_debug/tick()
+datum/modifier/fbp_debug/tick()
 	if(holder.getToxLoss())
 		holder.adjustToxLoss(rand(-1,-5))
 
-/datum/modifier/fbp_debug/can_apply(mob/living/L)
+datum/modifier/fbp_debug/can_apply(mob/living/L)
 	if(!L.isSynthetic())
 		return FALSE
 	return TRUE
 
-/datum/modifier/fbp_debug/check_if_valid()
+datum/modifier/fbp_debug/check_if_valid()
 	..()
 	if(!holder.getToxLoss())
 		src.expire()
 
-/datum/modifier/fbp_debug/robobag/check_if_valid()
+datum/modifier/fbp_debug/robobag/check_if_valid()
 	..()
 	if(!istype(holder.loc, /obj/structure/closet/body_bag/cryobag/robobag))
 		src.expire()

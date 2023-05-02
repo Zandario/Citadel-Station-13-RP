@@ -1,9 +1,9 @@
 //wrapper
-/proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE, bohsafe=FALSE)
+proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE, bohsafe=FALSE)
 	new /datum/teleport/instant/science(arglist(args))
 	return
 
-/datum/teleport
+datum/teleport
 	var/atom/movable/teleatom //Atom to teleport
 	var/atom/destination //Destination to teleport to
 	var/precision = 0 //Teleport precision
@@ -16,13 +16,13 @@
 	var/bohsafe = FALSE //If true, can teleport safely with a BoH
 
 
-/datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE, bohsafe=FALSE)
+datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE, bohsafe=FALSE)
 	..()
 	if(!initTeleport(arglist(args)))
 		return FALSE
 	return TRUE
 
-/datum/teleport/proc/initTeleport(ateleatom,adestination,aprecision,afteleport,aeffectin,aeffectout,asoundin,asoundout,local,bohsafe)
+datum/teleport/proc/initTeleport(ateleatom,adestination,aprecision,afteleport,aeffectin,aeffectout,asoundin,asoundout,local,bohsafe)
 	if(!setTeleatom(ateleatom))
 		return FALSE
 	if(!setDestination(adestination))
@@ -37,21 +37,21 @@
 	return TRUE
 
 //must succeed
-/datum/teleport/proc/setPrecision(aprecision)
+datum/teleport/proc/setPrecision(aprecision)
 	if(isnum(aprecision))
 		precision = aprecision
 		return TRUE
 	return FALSE
 
 //must succeed
-/datum/teleport/proc/setDestination(atom/adestination)
+datum/teleport/proc/setDestination(atom/adestination)
 	if(istype(adestination))
 		destination = adestination
 		return TRUE
 	return FALSE
 
 //must succeed in most cases
-/datum/teleport/proc/setTeleatom(atom/movable/ateleatom)
+datum/teleport/proc/setTeleatom(atom/movable/ateleatom)
 	if(istype(ateleatom, /obj/effect) && !istype(ateleatom, /obj/effect/dummy/chameleon))
 		qdel(ateleatom)
 		return FALSE
@@ -62,27 +62,27 @@
 
 //custom effects must be properly set up first for instant-type teleports
 //optional
-/datum/teleport/proc/setEffects(datum/effect_system/aeffectin=null,datum/effect_system/aeffectout=null)
+datum/teleport/proc/setEffects(datum/effect_system/aeffectin=null,datum/effect_system/aeffectout=null)
 	effectin = istype(aeffectin) ? aeffectin : null
 	effectout = istype(aeffectout) ? aeffectout : null
 	return TRUE
 
 //optional
-/datum/teleport/proc/setForceTeleport(afteleport)
+datum/teleport/proc/setForceTeleport(afteleport)
 		force_teleport = afteleport
 		return TRUE
 
 //optional
-/datum/teleport/proc/setSounds(asoundin=null,asoundout=null)
+datum/teleport/proc/setSounds(asoundin=null,asoundout=null)
 		soundin = isfile(asoundin) ? asoundin : null
 		soundout = isfile(asoundout) ? asoundout : null
 		return TRUE
 
 //placeholder
-/datum/teleport/proc/teleportChecks()
+datum/teleport/proc/teleportChecks()
 		return TRUE
 
-/datum/teleport/proc/playSpecials(atom/location,datum/effect_system/effect,sound)
+datum/teleport/proc/playSpecials(atom/location,datum/effect_system/effect,sound)
 	if(location)
 		if(effect)
 			spawn(-1)
@@ -96,7 +96,7 @@
 	return
 
 //Do the monkey dance
-/datum/teleport/proc/doTeleport()
+datum/teleport/proc/doTeleport()
 
 	var/turf/destturf
 	var/turf/curturf = get_turf(teleatom)
@@ -132,20 +132,20 @@
 
 	return TRUE
 
-/datum/teleport/proc/teleport()
+datum/teleport/proc/teleport()
 	if(teleportChecks())
 		return doTeleport()
 	return FALSE
 
-/datum/teleport/instant //Teleports when datum is created
+datum/teleport/instant //Teleports when datum is created
 
-/datum/teleport/instant/New(ateleatom, adestination, aprecision=0, afteleport=1, bohsafe=0, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
+datum/teleport/instant/New(ateleatom, adestination, aprecision=0, afteleport=1, bohsafe=0, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
 	if(..())
 		teleport()
 	return
 
 
-/datum/teleport/instant/science/setEffects(datum/effect_system/aeffectin,datum/effect_system/aeffectout)
+datum/teleport/instant/science/setEffects(datum/effect_system/aeffectin,datum/effect_system/aeffectout)
 	if(!aeffectin || !aeffectout)
 		var/datum/effect_system/spark_spread/aeffect = new
 		aeffect.set_up(5, 1, teleatom)
@@ -157,7 +157,7 @@
 	else
 		return ..()
 
-/datum/teleport/instant/science/setPrecision(aprecision)
+datum/teleport/instant/science/setPrecision(aprecision)
 	..()
 	if(bohsafe)
 		return TRUE
@@ -172,7 +172,7 @@
 			to_chat(MM, SPAN_DANGER("The Bluespace interface on your [teleatom] interferes with the teleport!"))
 	return TRUE
 
-/datum/teleport/instant/science/teleportChecks()
+datum/teleport/instant/science/teleportChecks()
 	if(istype(teleatom, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
 		return FALSE
@@ -212,14 +212,14 @@
 //! ## VR FILE MERGE ## !//
 
 //wrapper
-/proc/do_noeffect_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=FALSE)
+proc/do_noeffect_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=FALSE)
 	new /datum/teleport/instant/science/noeffect(arglist(args))
 	return
 
-/datum/teleport/instant/science/noeffect/setEffects(datum/effect_system/aeffectin,datum/effect_system/aeffectout)
+datum/teleport/instant/science/noeffect/setEffects(datum/effect_system/aeffectin,datum/effect_system/aeffectout)
 	return TRUE
 
-/datum/teleport/proc/try_televore()
+datum/teleport/proc/try_televore()
 	//Destination is in a belly
 	if(isbelly(destination.loc))
 		var/obj/belly/B = destination.loc

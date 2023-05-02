@@ -11,7 +11,7 @@
  * All client topic calls go through [/client/Topic] first, so a lot of our specialised
  * topic handling starts here
  */
-/client
+client
 
 	/**
 	 * This line makes clients parent type be a datum

@@ -10,7 +10,7 @@
 
 var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major")
 
-/datum/event_container
+datum/event_container
 	var/severity = -1
 	var/delayed = 0
 	var/delay_modifier = 1
@@ -21,7 +21,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 
 	var/last_world_time = 0
 
-/datum/event_container/process(delta_time)
+datum/event_container/process(delta_time)
 	if(!SSticker.round_start_time)
 		return //don't do events if the round hasn't even started yet
 
@@ -35,7 +35,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 
 	last_world_time = world.time
 
-/datum/event_container/proc/start_event()
+datum/event_container/proc/start_event()
 	if(!next_event)	// If non-one has explicitly set an event, randomly pick one
 		next_event = acquire_event()
 
@@ -55,7 +55,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		next_event_time += (60 * 10)
 
 
-/datum/event_container/proc/acquire_event()
+datum/event_container/proc/acquire_event()
 	if(available_events.len == 0)
 		return
 	var/active_with_role = number_active_with_role()
@@ -74,7 +74,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	available_events -= picked_event
 	return picked_event
 
-/datum/event_container/proc/get_weight(var/datum/event_meta/EM, var/list/active_with_role)
+datum/event_container/proc/get_weight(var/datum/event_meta/EM, var/list/active_with_role)
 	if(!EM.enabled)
 		return 0
 
@@ -87,7 +87,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 
 	return weight
 
-/datum/event_container/proc/set_event_delay()
+datum/event_container/proc/set_event_delay()
 	// If the next event time has not yet been set and we have a custom first time start
 	if(next_event_time == 0 && config_legacy.event_first_run[severity])
 		var/lower = config_legacy.event_first_run[severity]["lower"]
@@ -115,7 +115,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 
 	log_debug(SPAN_DEBUGINFO("Next event of severity [severity_to_string[severity]] in [(next_event_time - world.time)/600] minutes."))
 
-/datum/event_container/proc/SelectEvent()
+datum/event_container/proc/SelectEvent()
 	var/datum/event_meta/EM = input("Select an event to queue up.", "Event Selection", null) as null|anything in available_events
 	if(!EM)
 		return
@@ -125,7 +125,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	next_event = EM
 	return EM
 
-/datum/event_container/mundane
+datum/event_container/mundane
 	severity = EVENT_LEVEL_MUNDANE
 	available_events = list(
 		// Severity level, event name, even type, base weight, role weights, one shot, min weight, max weight. Last two only used if set and non-zero
@@ -148,7 +148,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		new /datum/event_meta(EVENT_LEVEL_MUNDANE, "Wallrot",			/datum/event/wallrot, 			0,		list(ASSIGNMENT_ENGINEER = 30, ASSIGNMENT_GARDENER = 50)),
 	)
 
-/datum/event_container/moderate
+datum/event_container/moderate
 	severity = EVENT_LEVEL_MODERATE
 	available_events = list(
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Nothing",					/datum/event/nothing,					1300),
@@ -171,7 +171,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Xenobiology Breach",		/datum/event/prison_break/xenobiology,	0,		list(ASSIGNMENT_SCIENCE = 100)),
 	)
 
-/datum/event_container/major
+datum/event_container/major
 	severity = EVENT_LEVEL_MAJOR
 	available_events = list(
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Nothing",				/datum/event/nothing,			900),

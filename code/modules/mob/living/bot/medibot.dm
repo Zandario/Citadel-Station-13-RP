@@ -14,7 +14,7 @@
 #define MEDIBOT_MIN_HEAL 0.1
 #define MEDIBOT_MAX_HEAL 75
 
-/datum/category_item/catalogue/technology/bot/medibot
+datum/category_item/catalogue/technology/bot/medibot
 	name = "Bot - Medibot"
 	desc = "Medibots have become vital additions to hazardous workplaces \
 	across the galaxy. A common sight on the Frontier, Medibots utilize \
@@ -23,7 +23,7 @@
 	can stabilize a severely injured worker as easily as it can treat a minor scrape."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/bot/medibot
+mob/living/bot/medibot
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon = 'icons/obj/bots/medibots.dmi'
@@ -78,20 +78,20 @@
 	var/last_tipping_action_voice = 0
 
 
-/mob/living/bot/medibot/Initialize(mapload, new_skin)
+mob/living/bot/medibot/Initialize(mapload, new_skin)
 	. = ..()
 
 	skin ||= new_skin //? Will only apply new_skin if skin is null.
 
 	update_appearance()
 
-/mob/living/bot/medibot/update_icon_state()
+mob/living/bot/medibot/update_icon_state()
 	. = ..()
 
 	if(skin)
 		icon_state = "[base_icon_state]-[skin]"
 
-/mob/living/bot/medibot/update_overlays()
+mob/living/bot/medibot/update_overlays()
 	. = ..()
 
 	if(!use_overlays)
@@ -115,7 +115,7 @@
 	add_overlay(temp_overlays)
 
 
-/mob/living/bot/medibot/handleIdle()
+mob/living/bot/medibot/handleIdle()
 	if(is_tipped) // Don't handle idle things if we're incapacitated!
 		return
 
@@ -133,13 +133,13 @@
 		playsound(loc, message_options[message], 50, FALSE)
 
 
-/mob/living/bot/medibot/handleAdjacentTarget()
+mob/living/bot/medibot/handleAdjacentTarget()
 	if(is_tipped) //Don't handle targets if we're incapacitated!
 		return
 	UnarmedAttack(target)
 
 
-/mob/living/bot/medibot/lookForTargets()
+mob/living/bot/medibot/lookForTargets()
 	if(is_tipped) // Don't look for targets if we're incapacitated!
 		return
 
@@ -161,7 +161,7 @@
 				last_newpatient_speak = world.time
 			break
 
-/mob/living/bot/medibot/UnarmedAttack(mob/living/carbon/human/victim)
+mob/living/bot/medibot/UnarmedAttack(mob/living/carbon/human/victim)
 	if(!..())
 		return
 
@@ -221,7 +221,7 @@
 	busy = FALSE
 	update_appearance()
 
-/mob/living/bot/medibot/attack_hand(mob/user, list/params)
+mob/living/bot/medibot/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
@@ -262,13 +262,13 @@
 	else
 		ui_interact(attacker)
 
-/mob/living/bot/medibot/ui_interact(mob/user, datum/tgui/ui)
+mob/living/bot/medibot/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Medibot", name)
 		ui.open()
 
-/mob/living/bot/medibot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+mob/living/bot/medibot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["on"] = on
 	data["open"] = open
@@ -294,7 +294,7 @@
 		data["vocal"] = vocal
 	return data
 
-/mob/living/bot/medibot/attackby(obj/item/target_item, mob/user)
+mob/living/bot/medibot/attackby(obj/item/target_item, mob/user)
 	if(istype(target_item, /obj/item/reagent_containers/glass))
 		if(locked)
 			to_chat(user, SPAN_NOTICE("You cannot insert a beaker because the panel is locked."))
@@ -310,7 +310,7 @@
 	else
 		..()
 
-/mob/living/bot/medibot/ui_act(action, list/params, datum/tgui/ui)
+mob/living/bot/medibot/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -356,7 +356,7 @@
 			declare_treatment = !declare_treatment
 			. = TRUE
 
-/mob/living/bot/medibot/emag_act(remaining_uses, mob/user)
+mob/living/bot/medibot/emag_act(remaining_uses, mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -371,7 +371,7 @@
 		. = TRUE
 	ignore_list |= user
 
-/mob/living/bot/medibot/explode()
+mob/living/bot/medibot/explode()
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
@@ -394,14 +394,14 @@
 	s.start()
 	qdel(src)
 
-/mob/living/bot/medibot/handleRegular()
+mob/living/bot/medibot/handleRegular()
 	. = ..()
 
 	if(is_tipped)
 		handle_panic()
 		return
 
-/mob/living/bot/medibot/proc/tip_over(mob/horrible_human_being)
+mob/living/bot/medibot/proc/tip_over(mob/horrible_human_being)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
 	horrible_human_being.visible_message(
 		SPAN_DANGER("[horrible_human_being] tips over [src]!"),
@@ -413,7 +413,7 @@
 	var/matrix/mat = transform
 	transform = mat.Turn(180)
 
-/mob/living/bot/medibot/proc/set_right(mob/wonderful_human_being)
+mob/living/bot/medibot/proc/set_right(mob/wonderful_human_being)
 	var/list/messagevoice
 	if(wonderful_human_being)
 		wonderful_human_being.visible_message(
@@ -451,7 +451,7 @@
 	transform = matrix()
 
 // if someone tipped us over, check whether we should ask for help or just right ourselves eventually
-/mob/living/bot/medibot/proc/handle_panic()
+mob/living/bot/medibot/proc/handle_panic()
 	tipped_status++
 	var/list/messagevoice
 	switch(tipped_status)
@@ -491,7 +491,7 @@
 	else if(prob(tipped_status * 0.2))
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 30, extrarange=-2)
 
-/mob/living/bot/medibot/examine(mob/user)
+mob/living/bot/medibot/examine(mob/user)
 	. = ..()
 	if(tipped_status == MEDIBOT_PANIC_NONE)
 		return
@@ -509,7 +509,7 @@
 		if(MEDIBOT_PANIC_FUCK to INFINITY)
 			. += SPAN_BOLDWARNING("They are freaking out from being tipped over!")
 
-/mob/living/bot/medibot/confirmTarget(mob/living/carbon/human/victim)
+mob/living/bot/medibot/confirmTarget(mob/living/carbon/human/victim)
 	if(!..())
 		return FALSE
 

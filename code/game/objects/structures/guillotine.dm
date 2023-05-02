@@ -18,7 +18,7 @@
 #define GUILLOTINE_ACTION_INUSE      5
 #define GUILLOTINE_ACTION_WRENCH     6
 
-/obj/structure/guillotine
+obj/structure/guillotine
 	name = "guillotine"
 	desc = "A large structure used to remove the heads of traitors and treasonists."
 	icon = 'icons/obj/guillotine.dmi'
@@ -35,11 +35,11 @@
 	var/kill_count = 0
 	var/current_action = 0 // What's currently happening to the guillotine
 
-/obj/structure/guillotine/Initialize(mapload)
+obj/structure/guillotine/Initialize(mapload)
 	LAZYINITLIST(buckled_mobs)
 	. = ..()
 
-/obj/structure/guillotine/examine(mob/user)
+obj/structure/guillotine/examine(mob/user)
 	. = ..()
 
 	. += "It is [anchored ? "wrenched to the floor." : "unsecured. A wrench should fix that."]"
@@ -57,7 +57,7 @@
 	if (LAZYLEN(buckled_mobs))
 		. += "Someone appears to be strapped in. You can help them out, or you can harm them by activating the guillotine."
 
-/obj/structure/guillotine/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+obj/structure/guillotine/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	add_fingerprint(user)
 
 	// Currently being used by something
@@ -98,11 +98,11 @@
 				icon_state = "guillotine_drop"
 				addtimer(CALLBACK(src, .proc/drop_blade), GUILLOTINE_ANIMATION_LENGTH)
 
-/obj/structure/guillotine/proc/raise_blade()
+obj/structure/guillotine/proc/raise_blade()
 	blade_status = GUILLOTINE_BLADE_RAISED
 	icon_state = "guillotine_raised"
 
-/obj/structure/guillotine/proc/drop_blade(mob/user)
+obj/structure/guillotine/proc/drop_blade(mob/user)
 	if (has_buckled_mobs() && blade_sharpness)
 		var/mob/living/carbon/human/H = buckled_mobs[1]
 
@@ -152,7 +152,7 @@
 	blade_status = GUILLOTINE_BLADE_DROPPED
 	icon_state = "guillotine"
 
-/obj/structure/guillotine/attackby(obj/item/W, mob/user, params)
+obj/structure/guillotine/attackby(obj/item/W, mob/user, params)
 	if (istype(W, /obj/item/sharpener))
 		add_fingerprint(user)
 		if (blade_status == GUILLOTINE_BLADE_SHARPENING)
@@ -180,7 +180,7 @@
 	else
 		return ..()
 
-/obj/structure/guillotine/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+obj/structure/guillotine/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if (!anchored)
 		to_chat(usr, "<span class='warning'>The [src] needs to be wrenched to the floor!</span>")
 		return FALSE
@@ -195,7 +195,7 @@
 
 	return ..(M, force, FALSE)
 
-/obj/structure/guillotine/post_buckle_mob(mob/living/M)
+obj/structure/guillotine/post_buckle_mob(mob/living/M)
 	if (!istype(M, /mob/living/carbon/human))
 		return
 
@@ -219,13 +219,13 @@
 
 	..()
 
-/obj/structure/guillotine/post_unbuckle_mob(mob/living/M)
+obj/structure/guillotine/post_unbuckle_mob(mob/living/M)
 	M.regenerate_icons()
 	M.pixel_y -= -GUILLOTINE_HEAD_OFFSET // Move their body back
 	M.layer -= GUILLOTINE_LAYER_DIFF
 	..()
 
-/obj/structure/guillotine/can_be_unfasten_wrench(mob/user, silent)
+obj/structure/guillotine/can_be_unfasten_wrench(mob/user, silent)
 	if (LAZYLEN(buckled_mobs))
 		if (!silent)
 			to_chat(user, "<span class='warning'>Can't unfasten, someone's strapped in!</span>")
@@ -236,7 +236,7 @@
 
 	return ..()
 
-/obj/structure/guillotine/wrench_act(mob/living/user, obj/item/I)
+obj/structure/guillotine/wrench_act(mob/living/user, obj/item/I)
 	if (current_action)
 		return
 

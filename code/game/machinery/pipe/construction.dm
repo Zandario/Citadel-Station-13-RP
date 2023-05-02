@@ -3,7 +3,7 @@ Buildable pipes
 Buildable meters
 */
 
-/obj/item/pipe
+obj/item/pipe
 	name = "pipe"
 	desc = "A pipe."
 	var/pipe_type
@@ -19,18 +19,18 @@ Buildable meters
 	var/dispenser_class // Tells the dispenser what orientations we support, so RPD can show previews.
 
 // One subtype for each way components connect to neighbors
-/obj/item/pipe/directional
+obj/item/pipe/directional
 	dispenser_class = PIPE_DIRECTIONAL
-/obj/item/pipe/binary
+obj/item/pipe/binary
 	dispenser_class = PIPE_STRAIGHT
-/obj/item/pipe/binary/bendable
+obj/item/pipe/binary/bendable
 	dispenser_class = PIPE_BENDABLE
-/obj/item/pipe/trinary
+obj/item/pipe/trinary
 	dispenser_class = PIPE_TRINARY
-/obj/item/pipe/trinary/flippable
+obj/item/pipe/trinary/flippable
 	dispenser_class = PIPE_TRIN_M
 	var/mirrored = FALSE
-/obj/item/pipe/quaternary
+obj/item/pipe/quaternary
 	dispenser_class = PIPE_ONEDIR
 
 /**
@@ -38,7 +38,7 @@ Buildable meters
  * @param loc Location
  * @pipe_type
  */
-/obj/item/pipe/Initialize(mapload, _pipe_type, _dir, obj/machinery/atmospherics/make_from)
+obj/item/pipe/Initialize(mapload, _pipe_type, _dir, obj/machinery/atmospherics/make_from)
 	if(make_from)
 		make_from_existing(make_from)
 	else
@@ -50,7 +50,7 @@ Buildable meters
 	pixel_y += rand(-5, 5)
 	return ..()
 
-/obj/item/pipe/proc/make_from_existing(obj/machinery/atmospherics/make_from)
+obj/item/pipe/proc/make_from_existing(obj/machinery/atmospherics/make_from)
 	setDir(make_from.dir)
 	pipename = make_from.name
 	if(make_from.req_access)
@@ -60,17 +60,17 @@ Buildable meters
 	color = make_from.pipe_color
 	pipe_type = make_from.type
 
-/obj/item/pipe/trinary/flippable/make_from_existing(obj/machinery/atmospherics/component/trinary/make_from)
+obj/item/pipe/trinary/flippable/make_from_existing(obj/machinery/atmospherics/component/trinary/make_from)
 	..()
 	if(make_from.mirrored)
 		do_a_flip()
 
-/obj/item/pipe/dropped(mob/user, flags, atom/newLoc)
+obj/item/pipe/dropped(mob/user, flags, atom/newLoc)
 	if(loc)
 		setPipingLayer(piping_layer)
 	return ..()
 
-/obj/item/pipe/proc/setPipingLayer(new_layer = PIPING_LAYER_DEFAULT)
+obj/item/pipe/proc/setPipingLayer(new_layer = PIPING_LAYER_DEFAULT)
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	if(initial(fakeA.pipe_flags) & (PIPING_ALL_LAYER|PIPING_DEFAULT_LAYER_ONLY))
 		new_layer = PIPING_LAYER_DEFAULT
@@ -94,12 +94,12 @@ Buildable meters
 	// pixel_y = PIPE_PIXEL_OFFSET_Y(piping_layer)
 	// layer = initial(layer) + PIPE_LAYER_OFFSET(piping_layer)
 
-/obj/item/pipe/proc/update()
+obj/item/pipe/proc/update()
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	name = "[initial(fakeA.name)] fitting"
 	icon_state = initial(fakeA.pipe_state)
 
-/obj/item/pipe/verb/flip()
+obj/item/pipe/verb/flip()
 	set category = "Object"
 	set name = "Flip Pipe"
 	set src in view(1)
@@ -109,11 +109,11 @@ Buildable meters
 
 	do_a_flip()
 
-/obj/item/pipe/proc/do_a_flip()
+obj/item/pipe/proc/do_a_flip()
 	setDir(turn(dir, -180))
 	fixdir()
 
-/obj/item/pipe/trinary/flippable/do_a_flip()
+obj/item/pipe/trinary/flippable/do_a_flip()
 	// setDir(turn(dir, flipped ? 45 : -45))
 	// TG has a magic icon set with the flipped versions in the diagonals.
 	// We may switch to this later, but for now gotta do some magic.
@@ -121,7 +121,7 @@ Buildable meters
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	icon_state = "[initial(fakeA.pipe_state)][mirrored ? "m" : ""]"
 
-/obj/item/pipe/verb/rotate_clockwise()
+obj/item/pipe/verb/rotate_clockwise()
 	set category = "Object"
 	set name = "Rotate Pipe Clockwise"
 	set src in view(1)
@@ -139,27 +139,27 @@ Buildable meters
 // 	setDir(old_dir) //pipes changing direction when moved is just annoying and buggy
 
 // Don't let pulling a pipe straighten it out.
-/obj/item/pipe/binary/bendable/Move()
+obj/item/pipe/binary/bendable/Move()
 	var/old_bent = !IS_CARDINAL(dir)
 	. = ..()
 	if(old_bent && IS_CARDINAL(dir))
 		setDir(turn(src.dir, -45))
 
 //Helper to clean up dir
-/obj/item/pipe/proc/fixdir()
+obj/item/pipe/proc/fixdir()
 	return
 
-/obj/item/pipe/binary/fixdir()
+obj/item/pipe/binary/fixdir()
 	if(dir == SOUTH)
 		setDir(NORTH)
 	else if(dir == WEST)
 		setDir(EAST)
 
-/obj/item/pipe/trinary/flippable/fixdir()
+obj/item/pipe/trinary/flippable/fixdir()
 	if(dir in GLOB.cornerdirs)
 		setDir(turn(dir, 45))
 
-/obj/item/pipe/attack_self(mob/user)
+obj/item/pipe/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -167,7 +167,7 @@ Buildable meters
 	fixdir()
 
 //called when a turf is attacked with a pipe item
-/obj/item/pipe/afterattack(turf/simulated/floor/target, mob/user, proximity)
+obj/item/pipe/afterattack(turf/simulated/floor/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(target))
@@ -175,12 +175,12 @@ Buildable meters
 	else
 		return ..()
 
-/obj/item/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/item/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.is_wrench())
 		return wrench_act(W, user)
 	return ..()
 
-/obj/item/pipe/wrench_act(obj/item/I, mob/user, flags, hint)
+obj/item/pipe/wrench_act(obj/item/I, mob/user, flags, hint)
 	if(!isturf(loc))
 		return TRUE
 
@@ -217,7 +217,7 @@ Buildable meters
 
 	qdel(src)
 
-/obj/item/pipe/proc/build_pipe(obj/machinery/atmospherics/A)
+obj/item/pipe/proc/build_pipe(obj/machinery/atmospherics/A)
 	A.setDir(dir)
 	A.init_dir()
 	if(pipename)
@@ -228,14 +228,14 @@ Buildable meters
 		A.req_one_access = req_one_access
 	A.on_construction(color, piping_layer)
 
-/obj/item/pipe/trinary/flippable/build_pipe(obj/machinery/atmospherics/component/trinary/T)
+obj/item/pipe/trinary/flippable/build_pipe(obj/machinery/atmospherics/component/trinary/T)
 	T.mirrored = mirrored
 	. = ..()
 
 // Lookup the initialize_directions for a given atmos machinery instance facing dir.
 // TODO - Right now this determines the answer by instantiating an instance and checking!
 // There has to be a better way... ~Leshana
-/datum/controller/subsystem/machines/proc/get_init_dirs(type, dir)
+datum/controller/subsystem/machines/proc/get_init_dirs(type, dir)
 	var/static/list/pipe_init_dirs_cache = list()
 	if(!pipe_init_dirs_cache[type])
 		pipe_init_dirs_cache[type] = list()
@@ -255,7 +255,7 @@ Buildable meters
 // Meters are special - not like any other pipes or components
 //
 
-/obj/item/pipe_meter
+obj/item/pipe_meter
 	name = "meter"
 	desc = "A meter that can be laid on pipes."
 	icon = 'icons/obj/pipe-item.dmi'
@@ -264,12 +264,12 @@ Buildable meters
 	w_class = ITEMSIZE_LARGE
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
-/obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.is_wrench())
 		return wrench_act(W, user)
 	return ..()
 
-/obj/item/pipe_meter/wrench_act(obj/item/I, mob/user, flags, hint)
+obj/item/pipe_meter/wrench_act(obj/item/I, mob/user, flags, hint)
 	var/obj/machinery/atmospherics/pipe/pipe
 	for(var/obj/machinery/atmospherics/pipe/P in loc)
 		if(P.piping_layer == piping_layer)
@@ -283,10 +283,10 @@ Buildable meters
 	to_chat(user, "<span class='notice'>You fasten the meter to the pipe.</span>")
 	qdel(src)
 
-/obj/item/pipe_meter/dropped(mob/user, flags, atom/newLoc)
+obj/item/pipe_meter/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(loc)
 		setAttachLayer(piping_layer)
 
-/obj/item/pipe_meter/proc/setAttachLayer(new_layer = PIPING_LAYER_DEFAULT)
+obj/item/pipe_meter/proc/setAttachLayer(new_layer = PIPING_LAYER_DEFAULT)
 	piping_layer = new_layer

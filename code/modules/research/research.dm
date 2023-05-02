@@ -45,7 +45,7 @@ research holder datum.
 ***************************************************************/
 
 ///Holder for all the existing, archived, and known tech. Individual to console.
-/datum/research
+datum/research
 	///List of locally known tech. Datum/tech go here.
 	var/list/known_tech = list()
 	///List of all designs.
@@ -55,7 +55,7 @@ research holder datum.
 	/// TODO: REWORK. FABRICATORS. DESIGNS. AND. SCIENCE - tracks unique design IDs
 	var/list/known_design_ids = list()
 
-/datum/research/New() //Insert techs into possible_tech here. Known_tech automatically updated.
+datum/research/New() //Insert techs into possible_tech here. Known_tech automatically updated.
 	for(var/T in typesof(/datum/tech) - /datum/tech)
 		known_tech += new T(src)
 	for(var/D in typesof(/datum/design) - /datum/design)
@@ -63,23 +63,23 @@ research holder datum.
 //	generate_integrated_circuit_designs()
 	RefreshResearch()
 
-/datum/research/Destroy()
+datum/research/Destroy()
 	possible_designs = null
 	known_designs = null
 	known_design_ids = null
 	known_tech = null
 	return ..()
 
-/datum/research/techonly
+datum/research/techonly
 
-/datum/research/techonly/New()
+datum/research/techonly/New()
 	for(var/T in typesof(/datum/tech) - /datum/tech)
 		known_tech += new T(src)
 	RefreshResearch()
 
 ///Checks to see if design has all the required pre-reqs.
 ///Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(var/datum/design/D)
+datum/research/proc/DesignHasReqs(var/datum/design/D)
 	if(!LAZYLEN(D.req_tech))
 		return TRUE
 
@@ -94,7 +94,7 @@ research holder datum.
 
 ///Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 ///Input: datum/tech; Output: Null
-/datum/research/proc/AddTech2Known(var/datum/tech/T)
+datum/research/proc/AddTech2Known(var/datum/tech/T)
 	for(var/datum/tech/known in known_tech)
 		if(T.id == known.id)
 			if(T.level > known.level)
@@ -102,7 +102,7 @@ research holder datum.
 			return
 	return
 
-/datum/research/proc/AddDesign2Known(var/datum/design/D)
+datum/research/proc/AddDesign2Known(var/datum/design/D)
 	if(known_design_ids[D.id])
 		return
 	known_design_ids[D.id] = D
@@ -110,7 +110,7 @@ research holder datum.
 
 ///Refreshes known_tech and known_designs list
 ///Input/Output: n/a
-/datum/research/proc/RefreshResearch()
+datum/research/proc/RefreshResearch()
 	for(var/datum/design/PD in possible_designs)
 		if(DesignHasReqs(PD))
 			AddDesign2Known(PD)
@@ -120,20 +120,20 @@ research holder datum.
 
 ///Refreshes the levels of a given tech.
 ///Input: Tech's ID and Level; Output: null
-/datum/research/proc/UpdateTech(var/ID, var/level)
+datum/research/proc/UpdateTech(var/ID, var/level)
 	for(var/datum/tech/KT in known_tech)
 		if(KT.id == ID && KT.level <= level)
 			KT.level = max(KT.level + 1, level - 1)
 	return
 
 ///A simple helper proc to find the name of a tech with a given ID.
-/proc/CallTechName(var/ID)
+proc/CallTechName(var/ID)
 	for(var/T in subtypesof(/datum/tech))
 		var/datum/tech/check_tech = T
 		if(initial(check_tech.id) == ID)
 			return  initial(check_tech.name)
 /*
-/datum/research/proc/generate_integrated_circuit_designs()
+datum/research/proc/generate_integrated_circuit_designs()
 	spawn(2 SECONDS) // So the list has time to initialize.
 		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
 			if(IC.spawn_flags & IC_SPAWN_RESEARCH)
@@ -154,7 +154,7 @@ research holder datum.
 ***************************************************************/
 
 ///Datum of individual technologies.
-/datum/tech
+datum/tech
 	///Name of the technology.
 	var/name = "name"
 	///General description of what it does and what it makes.
@@ -164,70 +164,70 @@ research holder datum.
 	///A simple number scale of the research level. Level 0 = Secret tech.
 	var/level = 1
 
-/datum/tech/materials
+datum/tech/materials
 	name = "Materials Research"
 	desc = "Development of new and improved materials."
 	id = TECH_MATERIAL
 
-/datum/tech/engineering
+datum/tech/engineering
 	name = "Engineering Research"
 	desc = "Development of new and improved engineering parts."
 	id = TECH_ENGINEERING
 
-/datum/tech/phorontech
+datum/tech/phorontech
 	name = "Phoron Research"
 	desc = "Research into the mysterious substance colloqually known as 'phoron'."
 	id = TECH_PHORON
 
-/datum/tech/powerstorage
+datum/tech/powerstorage
 	name = "Power Manipulation Technology"
 	desc = "The various technologies behind the storage and generation of electicity."
 	id = TECH_POWER
 
-/datum/tech/bluespace
+datum/tech/bluespace
 	name = "'Blue-space' Research"
 	desc = "Research into the sub-reality known as 'blue-space'"
 	id = TECH_BLUESPACE
 
-/datum/tech/biotech
+datum/tech/biotech
 	name = "Biological Technology"
 	desc = "Research into the deeper mysteries of life and organic substances."
 	id = TECH_BIO
 
-/datum/tech/combat
+datum/tech/combat
 	name = "Combat Systems Research"
 	desc = "The development of offensive and defensive systems."
 	id = TECH_COMBAT
 
-/datum/tech/magnets
+datum/tech/magnets
 	name = "Electromagnetic Spectrum Research"
 	desc = "Research into the electromagnetic spectrum. No clue how they actually work, though."
 	id = TECH_MAGNET
 
-/datum/tech/programming
+datum/tech/programming
 	name = "Data Theory Research"
 	desc = "The development of new computer and artificial intelligence and data storage systems."
 	id = TECH_DATA
 
-/datum/tech/syndicate
+datum/tech/syndicate
 	name = "Illegal Technologies Research"
 	desc = "The study of technologies that violate standard government regulations."
 	id = TECH_ILLEGAL
 	level = 0
 
-/datum/tech/arcane
+datum/tech/arcane
 	name = "Anomalous Research"
 	desc = "Study of phenomena that disobey the fundamental laws of this universe."
 	id = TECH_ARCANE
 	level = 0
 
-/datum/tech/precursor
+datum/tech/precursor
 	name = "Precursor Research"
 	desc = "The applied study of Precursor Technology, for modern applications."
 	id = TECH_PRECURSOR
 	level = 0
 
-/obj/item/disk/tech_disk
+obj/item/disk/tech_disk
 	name = "technology disk"
 	desc = "A disk for storing technology data for further research."
 	icon = 'icons/obj/cloning.dmi'
@@ -237,12 +237,12 @@ research holder datum.
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/tech/stored
 
-/obj/item/disk/tech_disk/Initialize(mapload)
+obj/item/disk/tech_disk/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)
 
-/obj/item/disk/design_disk
+obj/item/disk/design_disk
 	name = "component design disk"
 	desc = "A disk for storing device design data for construction in lathes."
 	icon = 'icons/obj/cloning.dmi'
@@ -252,7 +252,7 @@ research holder datum.
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/design/blueprint
 
-/obj/item/disk/design_disk/Initialize(mapload)
+obj/item/disk/design_disk/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)

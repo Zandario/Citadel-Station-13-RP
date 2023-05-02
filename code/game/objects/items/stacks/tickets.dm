@@ -1,4 +1,4 @@
-/obj/item/stack/arcadeticket
+obj/item/stack/arcadeticket
 	name = "arcade tickets"
 	desc = "Wow! With enough of these, you could buy a bike! ...Pssh, yeah right."
 	singular_name = "arcade ticket"
@@ -7,11 +7,11 @@
 	w_class = ITEMSIZE_TINY
 	max_amount = 30
 
-/obj/item/stack/arcadeticket/Initialize(mapload)
+obj/item/stack/arcadeticket/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/stack/arcadeticket/update_icon()
+obj/item/stack/arcadeticket/update_icon()
 	var/amount = get_amount()
 	switch(amount)
 		if(12 to INFINITY)
@@ -23,10 +23,10 @@
 		else
 			icon_state = "arcade-ticket"
 
-/obj/item/stack/arcadeticket/proc/pay_tickets()
+obj/item/stack/arcadeticket/proc/pay_tickets()
 	amount -= 2
 	if(amount == 0)
 		qdel(src)
 
-/obj/item/stack/arcadeticket/thirty
+obj/item/stack/arcadeticket/thirty
 	amount = 30

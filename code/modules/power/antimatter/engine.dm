@@ -1,14 +1,14 @@
-/obj/machinery/power/am_engine
+obj/machinery/power/am_engine
 	icon = 'icons/am_engine.dmi'
 	density = 1
 	anchored = 1.0
 	atom_flags = ATOM_BORDER
 
-/obj/machinery/power/am_engine/bits
+obj/machinery/power/am_engine/bits
 	name = "Antimatter Engine"
 	icon_state = "1"
 
-/obj/machinery/power/am_engine/engine
+obj/machinery/power/am_engine/engine
 	name = "Antimatter Engine"
 	icon_state = "am_engine"
 	var/engine_id = 0
@@ -18,7 +18,7 @@
 	var/stopping = 0
 	var/obj/machinery/power/am_engine/injector/connected = null
 
-/obj/machinery/power/am_engine/injector
+obj/machinery/power/am_engine/injector
 	name = "Injector"
 	icon_state = "injector"
 	var/engine_id = 0
@@ -28,16 +28,16 @@
 
 //injector
 
-/obj/machinery/power/am_engine/injector/Initialize(mapload, newdir)
+obj/machinery/power/am_engine/injector/Initialize(mapload, newdir)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/power/am_engine/injector/LateInitialize()
+obj/machinery/power/am_engine/injector/LateInitialize()
 	. = ..()
 	var/loc = get_step(src, NORTH)
 	connected = locate(/obj/machinery/power/am_engine/engine, get_step(loc, NORTH))
 
-/obj/machinery/power/am_engine/injector/attackby(obj/item/fuel/F, mob/user)
+obj/machinery/power/am_engine/injector/attackby(obj/item/fuel/F, mob/user)
 	if( (stat & BROKEN) || !connected) return
 
 	if(istype(F, /obj/item/fuel/H))
@@ -71,16 +71,16 @@
 
 //engine
 
-/obj/machinery/power/am_engine/engine/Initialize(mapload, newdir)
+obj/machinery/power/am_engine/engine/Initialize(mapload, newdir)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/power/am_engine/engine/LateInitialize()
+obj/machinery/power/am_engine/engine/LateInitialize()
 	. = ..()
 	var/loc = get_step(src, SOUTH)
 	src.connected = locate(/obj/machinery/power/am_engine/injector, get_step(loc, SOUTH))
 
-/obj/machinery/power/am_engine/engine/proc/engine_go()
+obj/machinery/power/am_engine/engine/proc/engine_go()
 
 	if( (!src.connected) || (stat & BROKEN) )
 		return
@@ -120,7 +120,7 @@
 	return
 
 
-/obj/machinery/power/am_engine/engine/proc/engine_process()
+obj/machinery/power/am_engine/engine/proc/engine_process()
 
 	do
 		if( (!src.connected) || (stat & BROKEN) )

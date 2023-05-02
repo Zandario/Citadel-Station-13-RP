@@ -1,4 +1,4 @@
-/datum/language/sergal
+datum/language/sergal
 	id = LANGUAGE_ID_NARAMADI
 	// todo: papalus go replace the sergal text
 	name = LANGUAGE_SAGARU

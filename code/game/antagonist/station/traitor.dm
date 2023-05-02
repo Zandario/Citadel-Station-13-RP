@@ -1,32 +1,32 @@
 var/datum/antagonist/traitor/traitors
 
 // Inherits most of its vars from the base datum.
-/datum/antagonist/traitor
+datum/antagonist/traitor
 	id = MODE_TRAITOR
 	antag_sound = 'sound/effects/antag_notice/traitor_alert.ogg'
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Facility Director")
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	can_speak_aooc = FALSE	// If they want to plot and plan as this sort of traitor, they'll need to do it ICly.
 
-/datum/antagonist/traitor/auto
+datum/antagonist/traitor/auto
 	id = MODE_AUTOTRAITOR
 	allow_latejoin = 1
 	hard_cap = 4
 	initial_spawn_target = 4
 
-/datum/antagonist/traitor/New()
+datum/antagonist/traitor/New()
 	..()
 	traitors = src
 
-/datum/antagonist/traitor/get_extra_panel_options(var/datum/mind/player)
+datum/antagonist/traitor/get_extra_panel_options(var/datum/mind/player)
 	return "<a href='?src=\ref[player];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[player.current]'>\[spawn uplink\]</a>"
 
-/datum/antagonist/traitor/Topic(href, href_list)
+datum/antagonist/traitor/Topic(href, href_list)
 	if (..())
 		return
 	if(href_list["spawn_uplink"]) spawn_uplink(locate(href_list["spawn_uplink"]))
 
-/datum/antagonist/traitor/create_objectives(var/datum/mind/traitor)
+datum/antagonist/traitor/create_objectives(var/datum/mind/traitor)
 	if(!..())
 		return
 
@@ -80,7 +80,7 @@ var/datum/antagonist/traitor/traitors
 					traitor.objectives += hijack_objective
 	return
 
-/datum/antagonist/traitor/equip(var/mob/living/carbon/human/traitor_mob)
+datum/antagonist/traitor/equip(var/mob/living/carbon/human/traitor_mob)
 	if(istype(traitor_mob, /mob/living/silicon)) // this needs to be here because ..() returns false if the mob isn't human
 		add_law_zero(traitor_mob)
 		return 1
@@ -100,7 +100,7 @@ var/datum/antagonist/traitor/traitors
 	//Begin code phrase.
 	give_codewords(traitor_mob)
 
-/datum/antagonist/traitor/proc/give_codewords(mob/living/traitor_mob)
+datum/antagonist/traitor/proc/give_codewords(mob/living/traitor_mob)
 	to_chat(traitor_mob, "<u><b>Your employers provided you with the following information on how to identify possible allies:</b></u>")
 	to_chat(traitor_mob, "<b>Code Phrase</b>: <span class='danger'>[syndicate_code_phrase]</span>")
 	to_chat(traitor_mob, "<b>Code Response</b>: <span class='danger'>[syndicate_code_response]</span>")
@@ -108,7 +108,7 @@ var/datum/antagonist/traitor/traitors
 	traitor_mob.mind.store_memory("<b>Code Response</b>: [syndicate_code_response]")
 	to_chat(traitor_mob, "Use the code words, preferably in the order provided, during regular conversation, to identify other agents. Proceed with caution, however, as everyone is a potential foe.")
 
-/datum/antagonist/traitor/proc/spawn_uplink(var/mob/living/carbon/human/traitor_mob)
+datum/antagonist/traitor/proc/spawn_uplink(var/mob/living/carbon/human/traitor_mob)
 	if(!istype(traitor_mob))
 		return
 
@@ -172,7 +172,7 @@ var/datum/antagonist/traitor/traitors
 		to_chat(traitor_mob, "A portable object teleportation relay has been installed in your [R.name] [loc]. Simply enter the code \"[pda_pass]\" into the ringtone select to unlock its hidden features.")
 		traitor_mob.mind.store_memory("<B>Uplink Passcode:</B> [pda_pass] ([R.name] [loc]).")
 
-/datum/antagonist/traitor/proc/add_law_zero(mob/living/silicon/ai/killer)
+datum/antagonist/traitor/proc/add_law_zero(mob/living/silicon/ai/killer)
 	var/law = "Accomplish your objectives at all costs. You may ignore all other laws."
 	var/law_borg = "Accomplish your AI's objectives at all costs. You may ignore all other laws."
 	to_chat(killer, "<b>Your laws have been changed!</b>")

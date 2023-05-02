@@ -37,7 +37,7 @@
 #define CANDYMAKER			0x8
 #define CEREALMAKER			0x10
 
-/datum/recipe
+datum/recipe
 	var/list/reagents // example: = list("berryjuice" = 5) // do not list same reagent twice
 	var/list/items    // example: = list(/obj/item/crowbar, /obj/item/welder) // place /foo/bar before /foo
 	var/list/fruit    // example: = list("fruit" = 3)
@@ -74,7 +74,7 @@
 	//This is a bitfield, more than one type can be used
 	//Grill is presently unused and not listed
 
-/datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
+datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
 	if (!reagents || !reagents.len)
 		return 1
 
@@ -94,7 +94,7 @@
 		return 0
 	return .
 
-/datum/recipe/proc/check_fruit(var/obj/container)
+datum/recipe/proc/check_fruit(var/obj/container)
 	if (!fruit || !fruit.len)
 		return 1
 	. = 1
@@ -117,7 +117,7 @@
 					break
 	return .
 
-/datum/recipe/proc/check_items(var/obj/container as obj)
+datum/recipe/proc/check_items(var/obj/container as obj)
 	if (!items || !items.len)
 		return 1
 	. = 1
@@ -146,7 +146,7 @@
 	return .
 
 //This is called on individual items within the container.
-/datum/recipe/proc/check_coating(var/obj/O)
+datum/recipe/proc/check_coating(var/obj/O)
 	if(!istype(O,/obj/item/reagent_containers/food/snacks))
 		return 1//Only snacks can be battered
 
@@ -165,7 +165,7 @@
 
 
 //general version
-/datum/recipe/proc/make(var/obj/container as obj)
+datum/recipe/proc/make(var/obj/container as obj)
 	var/obj/result_obj = new result(container)
 	if(istype(container, /obj/machinery))
 		var/obj/machinery/machine = container
@@ -181,7 +181,7 @@
 
 // food-related
 //This proc is called under the assumption that the container has already been checked and found to contain the necessary ingredients
-/datum/recipe/proc/make_food(var/obj/container as obj)
+datum/recipe/proc/make_food(var/obj/container as obj)
 	if(!result)
 		return
 
@@ -299,7 +299,7 @@
 //When exact is false, extraneous ingredients are ignored
 //When exact is true, extraneous ingredients will fail the recipe
 //In both cases, the full complement of required inredients is still needed
-/proc/select_recipe(var/list/datum/recipe/available_recipes, var/obj/obj as obj, var/exact = 0)
+proc/select_recipe(var/list/datum/recipe/available_recipes, var/obj/obj as obj, var/exact = 0)
 	var/list/datum/recipe/possible_recipes = list()
 	for (var/datum/recipe/recipe in available_recipes)
 		if((recipe.check_reagents(obj.reagents) < exact) || (recipe.check_items(obj) < exact) || (recipe.check_fruit(obj) < exact))

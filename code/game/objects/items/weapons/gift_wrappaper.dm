@@ -7,7 +7,7 @@
 /*
  * Gifts
  */
-/obj/item/a_gift
+obj/item/a_gift
 	name = "gift"
 	desc = "PRESENTS!!!! eek!"
 	icon = 'icons/obj/items.dmi'
@@ -16,7 +16,7 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/a_gift/Initialize(mapload)
+obj/item/a_gift/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
@@ -25,7 +25,7 @@
 	else
 		icon_state = "gift[pick(1, 2, 3)]"
 
-/obj/item/gift/attack_self(mob/user)
+obj/item/gift/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -36,15 +36,15 @@
 	else
 		to_chat(user, "<span class='warning'>The gift was empty!</span>")
 
-/obj/item/a_gift/legacy_ex_act()
+obj/item/a_gift/legacy_ex_act()
 	qdel(src)
 
-/obj/effect/spresent/relaymove(mob/user as mob)
+obj/effect/spresent/relaymove(mob/user as mob)
 	if (user.stat)
 		return
 	to_chat(user, "<span class='warning'>You can't move.</span>")
 
-/obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
+obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if (!W.is_wirecutter())
@@ -59,7 +59,7 @@
 
 	qdel(src)
 
-/obj/item/a_gift/attack_self(mob/user)
+obj/item/a_gift/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -115,7 +115,7 @@
 	I.add_fingerprint(user)
 	qdel(src)
 
-/obj/item/b_gift
+obj/item/b_gift
 	name = "gift"
 	desc = "It's slimy inside!"
 	icon = 'icons/obj/flora/pumpkins.dmi'
@@ -123,12 +123,12 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/b_gift/Initialize(mapload)
+obj/item/b_gift/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 
-/obj/item/gift/attack_self(mob/user)
+obj/item/gift/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -140,10 +140,10 @@
 		to_chat(user, "<span class='warning'>The pumpkin was empty!</span>")
 	qdel(src)
 
-/obj/item/b_gift/legacy_ex_act()
+obj/item/b_gift/legacy_ex_act()
 	qdel(src)
 
-/obj/item/b_gift/attack_self(mob/user)
+obj/item/b_gift/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -207,7 +207,7 @@
 /*
  * Wrapping Paper
  */
-/obj/item/wrapping_paper
+obj/item/wrapping_paper
 	name = "wrapping paper"
 	desc = "You can use this to wrap items in."
 	icon = 'icons/obj/items.dmi'
@@ -216,7 +216,7 @@
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
-/obj/item/wrapping_paper/attackby(obj/item/W as obj, mob/living/user as mob)
+obj/item/wrapping_paper/attackby(obj/item/W as obj, mob/living/user as mob)
 	..()
 	if (!( locate(/obj/structure/table, loc) ))
 		to_chat(user, "<span class='warning'>You must put the paper on a table first!</span>")
@@ -252,11 +252,11 @@
 		to_chat(user, "<span class='warning'>The object is FAR too large!</span>")
 
 
-/obj/item/wrapping_paper/examine(mob/user)
+obj/item/wrapping_paper/examine(mob/user)
 	. = ..()
 	. += "There is about [src.amount] square units of paper left!"
 
-/obj/item/wrapping_paper/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/wrapping_paper/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if (!istype(target, /mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/H = target

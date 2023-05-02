@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/gravcatapult
+obj/item/mecha_parts/mecha_equipment/gravcatapult
 	name = "gravitational catapult"
 	desc = "An exosuit mounted gravitational catapult."
 	icon_state = "mecha_teleport"
@@ -14,7 +14,7 @@
 
 	equip_type = EQUIP_UTILITY
 
-/obj/item/mecha_parts/mecha_equipment/gravcatapult/action(atom/movable/target)
+obj/item/mecha_parts/mecha_equipment/gravcatapult/action(atom/movable/target)
 
 	if(world.time >= last_fired + fire_delay)
 		last_fired = world.time
@@ -65,10 +65,10 @@
 			do_after_cooldown()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/gravcatapult/get_equip_info()
+obj/item/mecha_parts/mecha_equipment/gravcatapult/get_equip_info()
 	return "[..()] [mode==1?"([locked||"Nothing"])":null] \[<a href='?src=\ref[src];mode=1'>S</a>|<a href='?src=\ref[src];mode=2'>P</a>\]"
 
-/obj/item/mecha_parts/mecha_equipment/gravcatapult/Topic(href, href_list)
+obj/item/mecha_parts/mecha_equipment/gravcatapult/Topic(href, href_list)
 	..()
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])

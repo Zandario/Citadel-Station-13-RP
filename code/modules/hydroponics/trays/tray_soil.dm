@@ -1,4 +1,4 @@
-/obj/machinery/portable_atmospherics/hydroponics/soil
+obj/machinery/portable_atmospherics/hydroponics/soil
 	name = "soil"
 	icon_state = "soil"
 	density = FALSE
@@ -7,13 +7,13 @@
 	tray_light = 0
 	frozen = -1
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O,/obj/item/tank))
 		return
 	else
 		return ..()
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/Initialize(mapload)
+obj/machinery/portable_atmospherics/hydroponics/soil/Initialize(mapload)
 	. = ..()
 	remove_obj_verb(src, /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb)
 	remove_obj_verb(src, /obj/machinery/portable_atmospherics/hydroponics/verb/remove_label)
@@ -22,12 +22,12 @@
 // Holder for vine plants.
 // Icons for plants are generated as overlays, so setting it to invisible wouldn't work.
 // Hence using a blank icon.
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible
+obj/machinery/portable_atmospherics/hydroponics/soil/invisible
 	name = "plant"
 	icon = 'icons/obj/seeds.dmi'
 	icon_state = "blank"
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Initialize(mapload, datum/seed/newseed)
+obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Initialize(mapload, datum/seed/newseed)
 	. = ..()
 	seed = newseed
 	dead = 0
@@ -37,19 +37,19 @@
 	pixel_y = rand(-5,5)
 	check_health()
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/remove_dead()
+obj/machinery/portable_atmospherics/hydroponics/soil/invisible/remove_dead()
 	..()
 	qdel(src)
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/harvest()
+obj/machinery/portable_atmospherics/hydroponics/soil/invisible/harvest()
 	..()
 	if(!seed) // Repeat harvests are a thing.
 		qdel(src)
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/die()
+obj/machinery/portable_atmospherics/hydroponics/soil/invisible/die()
 	qdel(src)
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/process(delta_time)
+obj/machinery/portable_atmospherics/hydroponics/soil/invisible/process(delta_time)
 	if(!seed)
 		qdel(src)
 		return
@@ -57,13 +57,13 @@
 		name = seed.display_name
 	..()
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Destroy()
+obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Destroy()
 	// Check if we're masking a decal that needs to be visible again.
 	for(var/obj/effect/plant/plant in get_turf(src))
 		if(plant.invisibility == INVISIBILITY_MAXIMUM)
 			plant.invisibility = initial(plant.invisibility)
 	..()
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/ashlander
+obj/machinery/portable_atmospherics/hydroponics/soil/ashlander
 	name = "ashen soil"
 	hostile_soil = 1

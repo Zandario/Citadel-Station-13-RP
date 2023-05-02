@@ -1,4 +1,4 @@
-/datum/admins/proc/restart()
+datum/admins/proc/restart()
 	set category = "Server"
 	set name = "Reboot World"
 	set desc = "Restarts the world immediately"

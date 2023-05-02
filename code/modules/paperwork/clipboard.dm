@@ -1,4 +1,4 @@
-/obj/item/clipboard
+obj/item/clipboard
 	name = "clipboard"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "clipboard"
@@ -11,11 +11,11 @@
 	var/obj/item/toppaper	//The topmost piece of paper.
 	slot_flags = SLOT_BELT
 
-/obj/item/clipboard/Initialize(mapload)
+obj/item/clipboard/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/clipboard/update_icon()
+obj/item/clipboard/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(toppaper)
@@ -29,7 +29,7 @@
 
 	return
 
-/obj/item/clipboard/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/clipboard/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
 		if(!user.attempt_insert_item_for_installation(W, src))
 			return
@@ -45,7 +45,7 @@
 
 	return ..()
 
-/obj/item/clipboard/attack_self(mob/user)
+obj/item/clipboard/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -72,7 +72,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/clipboard/Topic(href, href_list)
+obj/item/clipboard/Topic(href, href_list)
 	..()
 	if((usr.stat || usr.restrained()))
 		return

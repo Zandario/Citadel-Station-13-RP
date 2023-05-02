@@ -1,4 +1,4 @@
-/obj/item/paper/carbon
+obj/item/paper/carbon
 	name = "paper"
 	icon_state = "paper_stack"
 	item_state = "paper"
@@ -6,7 +6,7 @@
 	var/iscopy = 0
 
 
-/obj/item/paper/carbon/update_icon()
+obj/item/paper/carbon/update_icon()
 	if(iscopy)
 		if(info)
 			icon_state = "cpaper_words"
@@ -25,7 +25,7 @@
 
 
 
-/obj/item/paper/carbon/verb/removecopy()
+obj/item/paper/carbon/verb/removecopy()
 	set name = "Remove carbon-copy"
 	set category = "Object"
 	set src in usr

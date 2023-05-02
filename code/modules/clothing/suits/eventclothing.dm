@@ -1,4 +1,4 @@
-/obj/item/clothing/under/event_reward/foxmiko
+obj/item/clothing/under/event_reward/foxmiko
 	name = "Miko Garb"
 	desc = "The creative reinterpretation of Shinto miko attire."
 	body_cover_flags = UPPER_TORSO|LOWER_TORSO
@@ -12,7 +12,7 @@
 	var/skirt = 0
 
 
-/obj/item/clothing/under/event_reward/foxmiko/verb/partkimono() //Verb for parting kimono - kinky. User reporting, flips state, and updates icon
+obj/item/clothing/under/event_reward/foxmiko/verb/partkimono() //Verb for parting kimono - kinky. User reporting, flips state, and updates icon
     set name = "Adjust Kimono"
     set category = "Object"
     set src in usr
@@ -33,7 +33,7 @@
     M.update_inv_w_uniform()
     update_worn_icon()
 
-/obj/item/clothing/under/event_reward/foxmiko/verb/liftskirt() //Verb for parting skirt - lewd. User reporting, flips state, and updates icon
+obj/item/clothing/under/event_reward/foxmiko/verb/liftskirt() //Verb for parting skirt - lewd. User reporting, flips state, and updates icon
     set name = "Adjust Skirt"
     set category = "Object"
     set src in usr
@@ -55,7 +55,7 @@
     update_worn_icon()
 
 
-/obj/item/clothing/under/event_reward/foxmiko/proc/switchsprite() //Handles the ultimate state of the icon as well as what parts of body the attire covers
+obj/item/clothing/under/event_reward/foxmiko/proc/switchsprite() //Handles the ultimate state of the icon as well as what parts of body the attire covers
 	body_cover_flags = initial(body_cover_flags) //Resets to default coverage for this uniform - upper and lower body
 	LAZYINITLIST(item_state_slots)
 	if(kimono) //If the kimono is parted
@@ -77,7 +77,7 @@
 			icon_state = "foxmiko"
 
 
-/obj/item/clothing/under/event_reward/foxmiko/proc/hide_accessory(mob/user, obj/item/clothing/accessory/A) //Proc, handles hiding and concealing accessories and user reporting
+obj/item/clothing/under/event_reward/foxmiko/proc/hide_accessory(mob/user, obj/item/clothing/accessory/A) //Proc, handles hiding and concealing accessories and user reporting
 	if(!LAZYLEN(accessories) || !(A in accessories)) //Double check - if there's no accessories, break it now.
 		return
 
@@ -95,7 +95,7 @@
 	update_worn_icon()
 
 
-/obj/item/clothing/under/event_reward/foxmiko/verb/hidetie() //Verb for concealing assessory icons on mob spirt - this is a hack of the original code to remove accessories
+obj/item/clothing/under/event_reward/foxmiko/verb/hidetie() //Verb for concealing assessory icons on mob spirt - this is a hack of the original code to remove accessories
 	set name = "Hide Accessory"
 	set category = "Object"
 	set src in usr

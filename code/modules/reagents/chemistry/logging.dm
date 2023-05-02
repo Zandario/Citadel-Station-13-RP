@@ -1,7 +1,7 @@
 
-/var/list/chemical_reaction_logs = list()
+var/list/chemical_reaction_logs = list()
 
-/proc/log_chemical_reaction(atom/A, datum/chemical_reaction/R, multiplier)
+proc/log_chemical_reaction(atom/A, datum/chemical_reaction/R, multiplier)
 	if(!A || !R)
 		return
 
@@ -14,7 +14,7 @@
 		message_admins(logstr)
 	log_admin(logstr)
 
-/client/proc/view_chemical_reaction_logs()
+client/proc/view_chemical_reaction_logs()
 	set name = "Show Chemical Reactions"
 	set category = "Admin"
 

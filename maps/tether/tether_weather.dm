@@ -14,13 +14,13 @@ The rest of the weather defines have been moved to code/modules/maps/weather
 
 var/datum/planet/virgo3b/planet_virgo3b = null
 
-/datum/planet/virgo3b/New()
+datum/planet/virgo3b/New()
 	..()
 	planet_virgo3b = src
 	weather_holder = new /datum/weather_holder/virgo3b(src)
 
 
-/datum/planet/virgo3b
+datum/planet/virgo3b
 	expected_z_levels = list(
 						Z_LEVEL_SURFACE_LOW,
 						Z_LEVEL_SURFACE_MID,
@@ -36,12 +36,12 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 ///////////////////////
 var/datum/planet/virgo4/planet_virgo4 = null
 
-/datum/planet/virgo4/New()
+datum/planet/virgo4/New()
 	..()
 	planet_virgo4 = src
 	weather_holder = new /datum/weather_holder/virgo4(src)
 
-/datum/planet/virgo4
+datum/planet/virgo4
 	expected_z_levels = list(Z_LEVEL_BEACH, Z_LEVEL_DESERT)
 
 
@@ -51,11 +51,10 @@ var/datum/planet/virgo4/planet_virgo4 = null
 ///////////////////////
 var/datum/planet/classd/planet_classd = null
 
-/datum/planet/classd/New()
+datum/planet/classd/New()
 	..()
 	planet_classd = src
 	weather_holder = new /datum/weather_holder/classd(src)
 
-/datum/planet/classd
+datum/planet/classd
 	expected_z_levels = list(Z_LEVEL_CLASS_D)
-

@@ -2,12 +2,12 @@
 // Lets read our settings from the configuration file on startup too!
 //
 
-/datum/configuration_legacy
+datum/configuration_legacy
 	var/time_off = FALSE
 	var/pto_job_change = FALSE
 	var/pto_cap = 100 //Hours
 
-/hook/startup/proc/read_vs_config()
+hook/startup/proc/read_vs_config()
 	var/list/Lines = world.file2list("config/legacy/config.txt")
 	for(var/t in Lines)
 		if(!t)	continue

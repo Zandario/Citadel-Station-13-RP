@@ -1,4 +1,4 @@
-/obj/machinery/computer/drone_control
+obj/machinery/computer/drone_control
 	name = "Maintenance Drone Control"
 	desc = "Used to monitor the station's drone population and the assembler that services them."
 	icon_keyboard = "power_key"
@@ -11,27 +11,27 @@
 	//Used to enable or disable drone fabrication.
 	var/obj/machinery/drone_fabricator/dronefab
 
-/obj/machinery/computer/drone_control/attack_ai(var/mob/user as mob)
+obj/machinery/computer/drone_control/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/drone_control/ui_status(mob/user)
+obj/machinery/computer/drone_control/ui_status(mob/user)
 	if(!allowed(user))
 		return UI_CLOSE
 	return ..()
 
-/obj/machinery/computer/drone_control/attack_hand(mob/user, list/params)
+obj/machinery/computer/drone_control/attack_hand(mob/user, list/params)
 	if(..())
 		return
 
 	ui_interact(user)
 
-/obj/machinery/computer/drone_control/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/drone_control/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DroneConsole", name)
 		ui.open()
 
-/obj/machinery/computer/drone_control/ui_data(mob/user)
+obj/machinery/computer/drone_control/ui_data(mob/user)
 	var/list/data = list()
 
 	var/list/drones = list()
@@ -59,7 +59,7 @@
 
 	return data
 
-/obj/machinery/computer/drone_control/ui_act(action, params)
+obj/machinery/computer/drone_control/ui_act(action, params)
 	if(..())
 		return TRUE
 

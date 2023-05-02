@@ -1,4 +1,4 @@
-/obj/mecha/combat/phazon
+obj/mecha/combat/phazon
 	desc = "An exosuit which can only be described as 'WTF?'."
 	name = "Phazon"
 	icon_state = "phazon"
@@ -39,7 +39,7 @@
 	phasing_possible = TRUE
 	switch_dmg_type_possible = TRUE
 
-/obj/mecha/combat/phazon/equipped/Initialize(mapload)
+obj/mecha/combat/phazon/equipped/Initialize(mapload)
 	. = ..()
 	starting_equipment = list(
 		/obj/item/mecha_parts/mecha_equipment/tool/rcd,
@@ -48,7 +48,7 @@
 	return
 
 /* Leaving this until we are really sure we don't need it for reference.
-/obj/mecha/combat/phazon/Bump(var/atom/obstacle)
+obj/mecha/combat/phazon/Bump(var/atom/obstacle)
 	if(phasing && get_charge()>=phasing_energy_drain)
 		spawn()
 			if(can_phase)
@@ -64,7 +64,7 @@
 */
 
 
-/obj/mecha/combat/phazon/get_commands()
+obj/mecha/combat/phazon/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
@@ -78,7 +78,7 @@
 
 
 
-/obj/mecha/combat/phazon/janus
+obj/mecha/combat/phazon/janus
 	name = "Phazon Prototype Janus Class"
 	desc = "An exosuit which a more crude civilization such as yours might describe as WTF?."
 	description_fluff = "An incredibly high-tech exosuit constructed out of salvaged alien and cutting-edge modern technology.\
@@ -110,7 +110,7 @@
 	switch_dmg_type_possible = TRUE
 	cloak_possible = FALSE
 
-/obj/mecha/combat/phazon/janus/take_damage(amount, type="brute")
+obj/mecha/combat/phazon/janus/take_damage(amount, type="brute")
 	..()
 	if(phasing)
 		phasing = FALSE
@@ -119,7 +119,7 @@
 		visible_message("<span class='alien'>The [src.name] appears to flicker, before its silhouette stabilizes!</span>")
 	return
 
-/obj/mecha/combat/phazon/janus/dynbulletdamage(var/obj/projectile/Proj)
+obj/mecha/combat/phazon/janus/dynbulletdamage(var/obj/projectile/Proj)
 	if((Proj.damage && !Proj.nodamage) && !istype(Proj, /obj/projectile/beam) && prob(max(1, 33 - round(Proj.damage / 4))))
 		src.occupant_message("<span class='alien'>The armor absorbs the incoming projectile's force, negating it!</span>")
 		src.visible_message("<span class='alien'>The [src.name] absorbs the incoming projectile's force, negating it!</span>")
@@ -133,7 +133,7 @@
 
 	..()
 
-/obj/mecha/combat/phazon/janus/dynattackby(obj/item/W as obj, mob/user as mob)
+obj/mecha/combat/phazon/janus/dynattackby(obj/item/W as obj, mob/user as mob)
 	if(prob(max(1, (50 - round((W.damage_force / 2) * damage_absorption["brute"])) * (1 - (W.armor_penetration / 100)))))
 		src.occupant_message("<span class='alien'>The armor absorbs the incoming attack's force, negating it!</span>")
 		src.visible_message("<span class='alien'>The [src.name] absorbs the incoming attack's force, negating it!</span>")
@@ -142,7 +142,7 @@
 
 	..()
 
-/obj/mecha/combat/phazon/janus/query_damtype()
+obj/mecha/combat/phazon/janus/query_damtype()
 	var/new_damtype = alert(src.occupant,"Gauntlet Phase Emitter Mode",null,"Force","Energy","Stun")
 	switch(new_damtype)
 		if("Force")
@@ -155,10 +155,10 @@
 	return
 
 //Meant for random spawns.
-/obj/mecha/combat/phazon/old
+obj/mecha/combat/phazon/old
 	desc = "An exosuit which can only be described as 'WTF?'. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/combat/phazon/old/Initialize(mapload)
+obj/mecha/combat/phazon/old/Initialize(mapload)
 	. = ..()
 	health = 25
 	maxhealth = 150	//Just slightly worse.

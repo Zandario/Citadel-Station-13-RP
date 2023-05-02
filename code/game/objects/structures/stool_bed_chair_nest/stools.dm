@@ -1,7 +1,7 @@
 //Todo: add leather and cloth for arbitrary coloured stools.
 var/global/list/stool_cache = list() //haha stool
 
-/obj/item/stool
+obj/item/stool
 	name = "stool"
 	desc = "Apply butt."
 	icon = 'icons/obj/furniture_vr.dmi'
@@ -13,10 +13,10 @@ var/global/list/stool_cache = list() //haha stool
 	var/datum/material/material
 	var/datum/material/padding_material
 
-/obj/item/stool/padded
+obj/item/stool/padded
 	icon_state = "stool_padded_preview" //set for the map
 
-/obj/item/stool/Initialize(mapload, new_material, new_padding_material)
+obj/item/stool/Initialize(mapload, new_material, new_padding_material)
 	. = ..(mapload)
 	if(!new_material)
 		new_material = MAT_STEEL
@@ -29,10 +29,10 @@ var/global/list/stool_cache = list() //haha stool
 	damage_force = round(material.get_blunt_damage()*0.4)
 	update_icon()
 
-/obj/item/stool/padded/Initialize(mapload, new_material)
+obj/item/stool/padded/Initialize(mapload, new_material)
 	. = ..(mapload, "steel", "carpet")
 
-/obj/item/stool/update_icon()
+obj/item/stool/update_icon()
 	// Prep icon.
 	icon_state = ""
 	cut_overlays()
@@ -62,17 +62,17 @@ var/global/list/stool_cache = list() //haha stool
 
 	add_overlay(overlays_to_add)
 
-/obj/item/stool/proc/add_padding(var/padding_type)
+obj/item/stool/proc/add_padding(var/padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
 
-/obj/item/stool/proc/remove_padding()
+obj/item/stool/proc/remove_padding()
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 		padding_material = null
 	update_icon()
 
-/obj/item/stool/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/stool/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 
 	var/mob/living/L = user
@@ -88,7 +88,7 @@ var/global/list/stool_cache = list() //haha stool
 		T.apply_damage(20)
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/item/stool/legacy_ex_act(severity)
+obj/item/stool/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -102,14 +102,14 @@ var/global/list/stool_cache = list() //haha stool
 				qdel(src)
 				return
 
-/obj/item/stool/proc/dismantle()
+obj/item/stool/proc/dismantle()
 	if(material)
 		material.place_sheet(get_turf(src))
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 	qdel(src)
 
-/obj/item/stool/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/stool/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		playsound(src, W.tool_sound, 50, 1)
 		dismantle()

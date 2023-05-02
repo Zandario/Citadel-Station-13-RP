@@ -2,7 +2,7 @@
  * announcer datums:
  * handles processing /datum/announcement's
  */
-/datum/announcer
+datum/announcer
 	/// our name
 	var/name = "Generic Announcer"
 	/// our desc
@@ -10,13 +10,13 @@
 	/// our location
 	var/datum/announce_location/location
 
-/datum/announcer/New(datum/announce_location/location)
+datum/announcer/New(datum/announce_location/location)
 	src.location = location
 
 /**
  * get affected things
  */
-/datum/announcer/proc/GetAffected()
+datum/announcer/proc/GetAffected()
 	return location?.get_affected_atoms() || list()
 
 /**
@@ -28,7 +28,7 @@
  * - message - message body. **supports HTML**
  * - affected - affected atoms. used to optimize.
  */
-/datum/announcer/proc/SendText(source, name, message, list/affected = location?.get_affected_atoms())
+datum/announcer/proc/SendText(source, name, message, list/affected = location?.get_affected_atoms())
 	// no default implementation
 	CRASH("Default announcer SendText called")
 
@@ -42,9 +42,8 @@
  * - volume - volume override for sound.
  * - sound_environment - true/false - if true, allow playsound_local to use local environment.
  */
-/datum/announcer/proc/SendSound(datum/soundbyte/SB, channel, list/affected = location?.get_affected_atoms(), volume, sound_environment = TRUE)
+datum/announcer/proc/SendSound(datum/soundbyte/SB, channel, list/affected = location?.get_affected_atoms(), volume, sound_environment = TRUE)
 	// default implementation given since we only care for players
 	var/sound/S = SB.instance_sound()
 	for(var/mob/M in affected)
 		M.playsound_local(turf_source = sound_environment? get_turf(M) : null, soundin = S, channel = channel, vol = volume, wait = FALSE)
-

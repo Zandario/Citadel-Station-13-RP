@@ -1,4 +1,4 @@
-/datum/lore/codex/category/main_virgo_lore // The top-level categories for the Virgo book
+datum/lore/codex/category/main_virgo_lore // The top-level categories for the Virgo book
 	name = "Index"
 	data = "Don't panic!\
 	<br><br>\
@@ -17,7 +17,7 @@
 		)
 
 // We're a bird.
-/datum/lore/codex/page/about_lore
+datum/lore/codex/page/about_lore
 	name = "About"
 	data = "<i>The Traveler's Guide to Human Space</i> is a series of books detailing a specific location inside a location colonized by humans.  \
 	This book is for the system Virgo, and was written by Eshi Tache, an explorer whom has visited many star systems, and \

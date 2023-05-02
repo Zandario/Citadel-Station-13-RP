@@ -1,5 +1,5 @@
 // TODO: port to modern vehicles. If you're in this file, STOP FUCKING WITH IT AND PORT IT OVER.
-/obj/vehicle_old/skateboard
+obj/vehicle_old/skateboard
 	name = "skaetbord"
 	desc = "You shouldn't be seeing this. Contact an Admin."
 	icon = 'icons/obj/vehicles.dmi'
@@ -23,45 +23,45 @@
 	var/board_item_type = null
 	var/rough_terrain = FALSE
 
-/obj/vehicle_old/skateboard/Initialize(mapload)
+obj/vehicle_old/skateboard/Initialize(mapload)
 	. = ..()
 	sparks = new
 	sparks.set_up(1, 0, src)
 	sparks.attach(src)
 
-/obj/vehicle_old/skateboard/Destroy()
+obj/vehicle_old/skateboard/Destroy()
 	if(sparks)
 		QDEL_NULL(sparks)
 	. = ..()
 
-/obj/vehicle_old/skateboard/load(var/atom/movable/C, var/mob/user as mob)
+obj/vehicle_old/skateboard/load(var/atom/movable/C, var/mob/user as mob)
 	var/mob/living/M = C
 	if(!istype(C)) return 0
 	if(M.buckled || M.restrained() || !Adjacent(M) || !M.Adjacent(src))
 		return 0
 	return ..(M, user)
 
-/obj/vehicle_old/skateboard/MouseDroppedOnLegacy(var/atom/movable/C, var/mob/user as mob)
+obj/vehicle_old/skateboard/MouseDroppedOnLegacy(var/atom/movable/C, var/mob/user as mob)
 	if(!load(C, user))
 		to_chat(user, "<span class='warning'> You were unable to load \the [C] onto \the [src].</span>")
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/vehicle_old/skateboard/attack_hand(mob/user, list/params)
+obj/vehicle_old/skateboard/attack_hand(mob/user, list/params)
 	if(user == load)
 		unbuckle_mob(load, user)
 		to_chat(user, "You unbuckle yourself from \the [src].")
 	else if(!load && load(user, user))
 		to_chat(user, "You buckle yourself to \the [src].")
 
-/obj/vehicle_old/skateboard/relaymove(mob/user, direction)
+obj/vehicle_old/skateboard/relaymove(mob/user, direction)
 	if(user != load || grinding || world.time < next_crash)
 		return 0
 	if(Move(get_step(src, direction), direction))
 		return 0
 	return 0
 
-/obj/vehicle_old/skateboard/Move(var/turf/destination, var/mob/living/H)
+obj/vehicle_old/skateboard/Move(var/turf/destination, var/mob/living/H)
 	if(istype(destination,/turf/space) || istype (destination,/turf/simulated/floor/water) || istype(destination,/turf/simulated/floor/outdoors))
 		rough_terrain = TRUE
 		return 1
@@ -69,16 +69,16 @@
 		rough_terrain = FALSE
 	return ..()
 
-/obj/vehicle_old/skateboard/mob_buckled(mob/M, flags, mob/user, semantic)
+obj/vehicle_old/skateboard/mob_buckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	density = TRUE
 
-/obj/vehicle_old/skateboard/mob_unbuckled(mob/M, flags, mob/user, semantic)
+obj/vehicle_old/skateboard/mob_unbuckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	if(!has_buckled_mobs(M))
 		density = FALSE
 
-/obj/vehicle_old/skateboard/Bump(atom/A)
+obj/vehicle_old/skateboard/Bump(atom/A)
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
@@ -111,7 +111,7 @@
 	next_crash = world.time + 10
 
 /* // Putting this in for reference if I want the door to open later.
-/obj/vehicle_old/train/security/engine/Bump(atom/Obstacle)
+obj/vehicle_old/train/security/engine/Bump(atom/Obstacle)
 	var/obj/machinery/door/D = Obstacle
 	var/mob/living/carbon/human/H = load
 	if(istype(D) && istype(H))
@@ -121,7 +121,7 @@
 */
 
 ///Moves the vehicle forward and if it lands on a table, repeats
-/obj/vehicle_old/skateboard/proc/grind()
+obj/vehicle_old/skateboard/proc/grind()
 	Move(get_step(src, dir))
 	if(has_buckled_mobs() && locate(/obj/structure/table) in loc.contents)
 		var/mob/living/L = buckled_mobs[1]
@@ -145,7 +145,7 @@
 		grinding = FALSE
 		icon_state = board_icon
 
-/obj/vehicle_old/skateboard/OnMouseDropLegacy(atom/over_object)
+obj/vehicle_old/skateboard/OnMouseDropLegacy(atom/over_object)
 	. = ..()
 	var/mob/living/carbon/M = usr
 	if(!istype(M) || M.incapacitated() || !Adjacent(M))
@@ -161,13 +161,13 @@
 /* //I've got little code context for these. Gonna leave it commented out until I can translate it in depth, or rewrite it.
 //The moves!
 
-/datum/action/vehicle/skateboard/verb/ollie()
+datum/action/vehicle/skateboard/verb/ollie()
 	name = "Ollie"
 	desc = "Get some air! Land on a table to do a gnarly grind."
 	///Cooldown to next jump
 	var/next_ollie
 
-/datum/action/vehicle/skateboard/ollie/Trigger()
+datum/action/vehicle/skateboard/ollie/Trigger()
 	if(world.time > next_ollie)
 		var/obj/vehicle_old/skateboard/V = vehicle_target
 		if (V.grinding)
@@ -200,21 +200,21 @@
 
 //Subsets
 
-/obj/vehicle_old/skateboard/improv
+obj/vehicle_old/skateboard/improv
 	name = "improvised skateboard"
 	desc = "A crude assembly which can only barely be called a skateboard. It's still rideable, but probably unsafe. Looks like you'll need to add a few rods to make handlebars."
 	board_item_type = /obj/item/melee/skateboard/improv
 	icon_state = "skateboard"
 	board_icon = "skateboard"
 
-/obj/vehicle_old/skateboard/beginner
+obj/vehicle_old/skateboard/beginner
 	name = "skateboard"
 	desc = "A XTREME SPORTZ brand skateboard for beginners. Ages 8 and up."
 	board_item_type = /obj/item/melee/skateboard/beginner
 	icon_state = "skateboard"
 	board_icon = "skateboard"
 
-/obj/vehicle_old/skateboard/pro
+obj/vehicle_old/skateboard/pro
 	name = "skateboard"
 	desc = "A RaDSTORMz brand professional skateboard. Looks a lot more stable than the average board."
 	board_item_type = /obj/item/melee/skateboard/pro
@@ -223,7 +223,7 @@
 	move_delay = 1
 
 /*
-/obj/vehicle_old/skateboard/pro/Bump(atom/A)
+obj/vehicle_old/skateboard/pro/Bump(atom/A)
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
@@ -260,7 +260,7 @@
 
 //Hoverboards
 
-/obj/vehicle_old/skateboard/hoverboard
+obj/vehicle_old/skateboard/hoverboard
 	name = "hoverboard"
 	desc = "A blast from the past, so retro!"
 	board_item_type = /obj/item/melee/skateboard/hoverboard
@@ -268,7 +268,7 @@
 	board_icon = "hoverboard_red"
 	move_delay = 0
 
-/obj/vehicle_old/skateboard/hoverboard/attackby(obj/item/I, mob/user, params)
+obj/vehicle_old/skateboard/hoverboard/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/stack/rods))
 		return
 	else if(istype(I, /obj/item/tool/screwdriver))
@@ -276,7 +276,7 @@
 	else
 		return ..()
 
-/obj/vehicle_old/skateboard/hoverboard/Move(var/turf/destination, var/mob/living/H)
+obj/vehicle_old/skateboard/hoverboard/Move(var/turf/destination, var/mob/living/H)
 	if(istype(destination,/turf/space) || istype (destination,/turf/simulated/floor/water) || istype(destination,/turf/simulated/floor/outdoors))
 		rough_terrain = FALSE
 		return 0
@@ -284,7 +284,7 @@
 		rough_terrain = FALSE
 	return ..()
 
-/obj/vehicle_old/skateboard/hoverboard/Bump(atom/A)
+obj/vehicle_old/skateboard/hoverboard/Bump(atom/A)
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
@@ -305,7 +305,7 @@
 			H.spin(4, 1)
 	next_crash = world.time + 10
 
-/obj/vehicle_old/skateboard/hoverboard/admin
+obj/vehicle_old/skateboard/hoverboard/admin
 	name = "\improper Board Of Directors"
 	desc = "The engineering complexity of a spaceship concentrated inside of a board. Just as expensive, too."
 	board_item_type = /obj/item/melee/skateboard/hoverboard/admin
@@ -313,7 +313,7 @@
 	board_icon = "hoverboard_nt"
 	move_delay = -1
 
-/obj/vehicle_old/skateboard/hoverboard/admin/Bump(atom/A)
+obj/vehicle_old/skateboard/hoverboard/admin/Bump(atom/A)
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
@@ -336,12 +336,12 @@
 
 //Construction Items
 
-/obj/item/skate_wheels
+obj/item/skate_wheels
 	name = "rubberized wheels"
 	desc = "These rubberized wheels encase ball bearings which ensure a smooth rotation. They could possibly be mounted on an appropriate frame."
 	icon_state = "skate_wheels"
 
-/obj/item/skateboard_frame
+obj/item/skateboard_frame
 	name = "skateboard frame"
 	desc = "This roughly shaped board of flexible steel seems like it could be used to travel in style. It's just missing something..."
 	icon = 'icons/obj/items.dmi'
@@ -353,7 +353,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/build_step = 0
 
-/obj/item/heavy_skateboard_frame
+obj/item/heavy_skateboard_frame
 	name = "reinforced skateboard frame"
 	desc = "This bulky board of reinforced steel seems like it could be used to travel in radical style. It's just missing something..."
 	icon = 'icons/obj/items.dmi'
@@ -367,7 +367,7 @@
 
 //Basic Board Construction
 
-/obj/item/skateboard_frame/attackby(var/obj/item/W as obj, var/mob/user)
+obj/item/skateboard_frame/attackby(var/obj/item/W as obj, var/mob/user)
 	..()
 
 	switch(build_step)
@@ -425,7 +425,7 @@
 
 //Pro Board
 
-/obj/item/heavy_skateboard_frame/attackby(var/obj/item/W as obj, var/mob/user)
+obj/item/heavy_skateboard_frame/attackby(var/obj/item/W as obj, var/mob/user)
 	..()
 
 	switch(build_step)
@@ -492,16 +492,16 @@
 
 // Scooters
 
-/obj/vehicle_old/skateboard/scooter
+obj/vehicle_old/skateboard/scooter
 	name = "scooter"
 	desc = "A fun way to get around."
 	icon_state = "scooter"
 	board_item_type = /obj/item/melee/skateboard/scooter
 
-/obj/vehicle_old/skateboard/scooter/Initialize(mapload)
+obj/vehicle_old/skateboard/scooter/Initialize(mapload)
 	. = ..()
 
-/obj/vehicle_old/skateboard/scooter/attackby(obj/item/W, mob/user)
+obj/vehicle_old/skateboard/scooter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wrench))
 		to_chat(user, "<span class='notice'>You begin to remove the handlebars...</span>")
 		var/obj/vehicle_old/skateboard/S = new(drop_location())
@@ -513,12 +513,12 @@
 			S.buckle_mob(H)
 		qdel(src)
 
-/obj/vehicle_old/skateboard/scooter/Moved()
+obj/vehicle_old/skateboard/scooter/Moved()
 	. = ..()
 
 //CONSTRUCTION
 
-/obj/item/scooter_frame
+obj/item/scooter_frame
 	name = "scooter frame"
 	desc = "A metal frame for building a scooter. Looks like you'll need to add some metal to make wheels."
 	icon = 'icons/obj/vehicles.dmi'
@@ -526,7 +526,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/build_step = 0
 
-/obj/item/scooter_frame/attackby(var/obj/item/W as obj, var/mob/user)
+obj/item/scooter_frame/attackby(var/obj/item/W as obj, var/mob/user)
 	..()
 
 	switch(build_step)
@@ -558,7 +558,7 @@
 
 //Decontstruction
 
-/obj/item/scooter_frame/attackby(obj/item/W, mob/user)
+obj/item/scooter_frame/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/tool/wrench))
 		to_chat(user, "<span class='notice'>You deconstruct \the [src].</span>")
@@ -567,7 +567,7 @@
 		qdel(src)
 	return
 
-/obj/vehicle_old/skateboard/scooter/attackby(obj/item/W, mob/user)
+obj/vehicle_old/skateboard/scooter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You uninstall the wheels and handlebars from \the [src].</span>")
 		new /obj/item/stack/rods(drop_location(), 2)
@@ -584,13 +584,13 @@
 //Look at this atrocity. Stowing this for later, most definitely.
 
 //Wheelys
-/obj/vehicle_old/ridden/scooter/wheelys
+obj/vehicle_old/ridden/scooter/wheelys
 	name = "Wheely-Heels"
 	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either."
 	icon = null
 	density = FALSE
 
-/obj/vehicle_old/ridden/scooter/wheelys/Initialize(mapload)
+obj/vehicle_old/ridden/scooter/wheelys/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 1
@@ -599,17 +599,17 @@
 	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
-/obj/vehicle_old/ridden/scooter/wheelys/post_unbuckle_mob(mob/living/M)
+obj/vehicle_old/ridden/scooter/wheelys/post_unbuckle_mob(mob/living/M)
 	if(!has_buckled_mobs())
 		to_chat(M, "<span class='notice'>You pop the Wheely-Heel's wheels back into place.</span>")
 		moveToNullspace()
 	return ..()
 
-/obj/vehicle_old/ridden/scooter/wheelys/post_buckle_mob(mob/living/M)
+obj/vehicle_old/ridden/scooter/wheelys/post_buckle_mob(mob/living/M)
 	to_chat(M, "<span class='notice'>You pop out the Wheely-Heel's wheels.</span>")
 	return ..()
 
-/obj/vehicle_old/ridden/scooter/wheelys/Bump(atom/A)
+obj/vehicle_old/ridden/scooter/wheelys/Bump(atom/A)
 	. = ..()
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]

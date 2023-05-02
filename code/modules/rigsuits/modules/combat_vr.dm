@@ -1,4 +1,4 @@
-/obj/item/rig_module/grenade_launcher/cleaner
+obj/item/rig_module/grenade_launcher/cleaner
 	name = "mounted cleaner-grenade launcher"
 	desc = "A shoulder-mounted cleaner-grenade dispenser."
 

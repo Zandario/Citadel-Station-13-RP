@@ -8,15 +8,15 @@
  */
 
 /// If set, a path at/above this one that expects not to be instantiated.
-/datum/var/abstract_type
+datum/var/abstract_type
 
 /// If true, this datum is an instance of an abstract type. Oops.
-/datum/proc/is_datum_abstract()
+datum/proc/is_datum_abstract()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return type == abstract_type
 
 /// Passed a path or instance, returns whether it is abstract. Otherwise null.
-/proc/is_abstract(datum/thing)
+proc/is_abstract(datum/thing)
 	if (ispath(thing))
 		return thing == initial(thing.abstract_type)
 	if (istype(thing))

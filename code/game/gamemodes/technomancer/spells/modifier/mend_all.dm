@@ -1,6 +1,6 @@
 // Gambit only spell.  Heals everything unconditionally.
 
-/obj/item/spell/modifier/mend_all
+obj/item/spell/modifier/mend_all
 	name = "mend all"
 	desc = "One function to heal them all."
 	icon_state = "mend_all"
@@ -10,7 +10,7 @@
 	modifier_type = /datum/modifier/technomancer/mend_life
 	modifier_duration = 1 MINUTE
 
-/datum/modifier/technomancer/mend_all
+datum/modifier/technomancer/mend_all
 	name = "mend all"
 	desc = "You feel serene and well rested."
 	mob_overlay_state = "green_sparkles"
@@ -19,7 +19,7 @@
 	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel much healthier than before.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/technomancer/mend_all/tick()
+datum/modifier/technomancer/mend_all/tick()
 	if(!holder.getBruteLoss() && !holder.getFireLoss() && !holder.getToxLoss() && !holder.getOxyLoss() && !holder.getCloneLoss()) // No point existing if the spell can't heal.
 		expire()
 		return

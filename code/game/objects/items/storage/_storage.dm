@@ -4,7 +4,7 @@
 // Do not remove this functionality without good reason, cough reagent_containers cough.
 // -Sayu
 #define storage_ui_default "LEFT+7,BOTTOM+7 to LEFT+10,BOTTOM+8"
-/obj/item/storage
+obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
 	inhand_default_type = INHAND_DEFAULT_ICON_STORAGE
@@ -38,7 +38,7 @@
 
 	var/last_message = 0
 
-/obj/item/storage/Destroy()
+obj/item/storage/Destroy()
 	close_all()
 	QDEL_NULL(boxes)
 	QDEL_NULL(src.storage_start)
@@ -52,7 +52,7 @@
 
 
 
-/obj/item/storage/AltClick(mob/user)
+obj/item/storage/AltClick(mob/user)
 	if(user in is_seeing)
 		src.close(user)
 	// I would think there should be some incap check here or something
@@ -62,7 +62,7 @@
 	else
 		return ..()
 
-/obj/item/storage/OnMouseDrop(atom/over, mob/user, proximity, params)
+obj/item/storage/OnMouseDrop(atom/over, mob/user, proximity, params)
 	if(user != over)
 		return ..()
 	if(user in is_seeing)
@@ -72,7 +72,7 @@
 	else
 		return ..()
 
-/obj/item/storage/proc/return_inv()
+obj/item/storage/proc/return_inv()
 
 	var/list/L = list(  )
 
@@ -86,7 +86,7 @@
 			L += G.gift:return_inv()
 	return L
 
-/obj/item/storage/proc/show_to(mob/user as mob)
+obj/item/storage/proc/show_to(mob/user as mob)
 	// todo: datum storage
 	if(!user.client)
 		return
@@ -114,7 +114,7 @@
 	is_seeing |= user
 	return
 
-/obj/item/storage/proc/hide_from(mob/user as mob)
+obj/item/storage/proc/hide_from(mob/user as mob)
 	if(!user)
 		return
 	is_seeing -= user
@@ -129,7 +129,7 @@
 	user.client.screen -= src.closer
 	user.client.screen -= src.contents
 
-/obj/item/storage/proc/open(mob/user as mob, sound_played = FALSE)
+obj/item/storage/proc/open(mob/user as mob, sound_played = FALSE)
 	if (src.use_sound && !isobserver(user) && !sound_played)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
@@ -138,17 +138,17 @@
 		user.s_active.close(user)
 	show_to(user)
 
-/obj/item/storage/proc/close(mob/user as mob)
+obj/item/storage/proc/close(mob/user as mob)
 	src.hide_from(user)
 	user.s_active = null
 	return
 
-/obj/item/storage/proc/close_all()
+obj/item/storage/proc/close_all()
 	for(var/mob/M in can_see_contents())
 		close(M)
 		. = 1
 
-/obj/item/storage/proc/can_see_contents()
+obj/item/storage/proc/can_see_contents()
 	var/list/cansee = list()
 	for(var/mob/M in is_seeing)
 		if(M.s_active == src && M.client)
@@ -158,14 +158,14 @@
 	return cansee
 
 /// Adds up the combined w_classes.
-/obj/item/storage/proc/storage_space_used()
+obj/item/storage/proc/storage_space_used()
 	. = 0
 	for(var/obj/item/I in contents)
 		. += I.get_storage_cost()
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
 //The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
-/obj/item/storage/proc/orient_objs(tx, ty, mx, my)
+obj/item/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
 	src.boxes.screen_loc = "LEFT+[tx],BOTTOM+[ty] to LEFT+[mx],BOTTOM+[my]"
@@ -180,7 +180,7 @@
 	return
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
+obj/item/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
 	var/cx = 3
 	var/cy = 1 + rows
 	src.boxes.screen_loc = "LEFT+3:16,BOTTOM+1:16 to LEFT+[3+cols]:16,BOTTOM+[1+rows]:16"
@@ -206,7 +206,7 @@
 	src.closer.screen_loc = "LEFT+[3+cols+1]:16,BOTTOM+1:16"
 	return
 
-/obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
+obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
 
 	var/baseline_max_storage_space = INVENTORY_STANDARD_SPACE / 2 //should be equal to default backpack capacity // This is a lie.
 	// Above var is misleading, what it does upon changing is makes smaller inventory sizes have smaller space on the UI.
@@ -262,18 +262,18 @@
 	return
 
 
-/datum/numbered_display
+datum/numbered_display
 	var/obj/item/sample_object
 	var/number
 
-/datum/numbered_display/New(obj/item/sample)
+datum/numbered_display/New(obj/item/sample)
 	if(!istype(sample))
 		qdel(src)
 	sample_object = sample
 	number = 1
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
-/obj/item/storage/proc/orient2hud(mob/user as mob)
+obj/item/storage/proc/orient2hud(mob/user as mob)
 
 	var/adjusted_contents = contents.len
 
@@ -305,7 +305,7 @@
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
-/obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W))
 		return //Not an item
 
@@ -352,7 +352,7 @@
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
-/obj/item/storage/proc/handle_item_insertion(obj/item/W as obj, mob/user, prevent_warning = 0)
+obj/item/storage/proc/handle_item_insertion(obj/item/W as obj, mob/user, prevent_warning = 0)
 	if(!istype(W))
 		return 0
 
@@ -375,13 +375,13 @@
 	update_icon()
 	return 1
 
-/obj/item/storage/proc/try_insert(obj/item/I, mob/user, prevent_warning = FALSE, force)
+obj/item/storage/proc/try_insert(obj/item/I, mob/user, prevent_warning = FALSE, force)
 	if(!force && !can_be_inserted(I, prevent_warning))
 		return FALSE
 	return handle_item_insertion(I, user, prevent_warning)
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location, do_move = TRUE)
+obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location, do_move = TRUE)
 	if(!istype(W))
 		return 0
 
@@ -410,7 +410,7 @@
 	update_icon()
 	return 1
 
-/obj/item/storage/Exited(atom/movable/AM, atom/newLoc)
+obj/item/storage/Exited(atom/movable/AM, atom/newLoc)
 	if(isitem(AM))
 		var/obj/item/I = AM
 		if(I.item_flags & ITEM_IN_STORAGE)
@@ -418,7 +418,7 @@
 	return ..()
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/storage/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if(isrobot(user))
@@ -448,7 +448,7 @@
 	W.add_fingerprint(user)
 	return handle_item_insertion(W, user)
 
-/obj/item/storage/attack_hand(mob/user, list/params)
+obj/item/storage/attack_hand(mob/user, list/params)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_held_item())	//Prevents opening if it's in a pocket.
@@ -470,7 +470,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/storage/proc/gather_all(turf/T as turf, mob/user as mob)
+obj/item/storage/proc/gather_all(turf/T as turf, mob/user as mob)
 	var/list/rejections = list()
 	var/success = 0
 	var/failure = 0
@@ -493,7 +493,7 @@
 			to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
 			last_message = world.time + 200
 
-/obj/item/storage/verb/toggle_gathering_mode()
+obj/item/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
 	set category = "Object"
 
@@ -504,7 +504,7 @@
 		if(0)
 			to_chat(usr, "[src] now picks up one item at a time.")
 
-/obj/item/storage/verb/quick_empty()
+obj/item/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
 
@@ -512,13 +512,13 @@
 		return
 	drop_contents()
 
-/obj/item/storage/proc/drop_contents()
+obj/item/storage/proc/drop_contents()
 	hide_from(usr)
 	var/turf/T = get_turf(src)
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-/obj/item/storage/Initialize(mapload)
+obj/item/storage/Initialize(mapload)
 	. = ..()
 
 	if(allow_quick_empty)
@@ -576,7 +576,7 @@
 
 	//calibrate_size()			//Let's not!
 
-/obj/item/storage/proc/populate_contents_legacy()
+obj/item/storage/proc/populate_contents_legacy()
 	if(LAZYLEN(starts_with) && !empty)
 		for(var/newtype in starts_with)
 			var/count = starts_with[newtype] || 1 //Could have left it blank.
@@ -585,20 +585,20 @@
 				new newtype(src)
 		starts_with = null //Reduce list count.
 
-/obj/item/storage/proc/PopulateContents()
+obj/item/storage/proc/PopulateContents()
 
 
 ///Prevents spawned containers from being too small for their contents.
-/obj/item/storage/proc/calibrate_size()
+obj/item/storage/proc/calibrate_size()
 	max_storage_space = max(storage_space_used(),max_storage_space)
 
-/obj/item/storage/emp_act(severity)
+obj/item/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 	..()
 
-/obj/item/storage/attack_self(mob/user)
+obj/item/storage/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -616,7 +616,7 @@
 
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.
-/atom/proc/storage_depth(atom/container)
+atom/proc/storage_depth(atom/container)
 	var/depth = 0
 	var/atom/cur_atom = src
 
@@ -634,7 +634,7 @@
 
 //Like storage depth, but returns the depth to the nearest turf
 //Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
-/atom/proc/storage_depth_turf()
+atom/proc/storage_depth_turf()
 	var/depth = 0
 	var/atom/cur_atom = src
 
@@ -651,7 +651,7 @@
 	return depth
 
 // See inventory_sizes.dm for the defines.
-/obj/item/proc/get_storage_cost()
+obj/item/proc/get_storage_cost()
 	if (storage_cost)
 		return storage_cost
 	else
@@ -669,7 +669,7 @@
 			else
 				return ITEMSIZE_COST_NO_CONTAINER
 
-/obj/item/storage/proc/make_exact_fit()
+obj/item/storage/proc/make_exact_fit()
 	storage_slots = contents.len
 
 	can_hold.Cut()
@@ -683,7 +683,7 @@
 /*
  * Trinket Box - READDING SOON
  */
-/obj/item/storage/trinketbox
+obj/item/storage/trinketbox
 	name = "trinket box"
 	desc = "A box that can hold small trinkets, such as a ring."
 	icon = 'icons/obj/items.dmi'
@@ -698,7 +698,7 @@
 	var/open_state
 	var/closed_state
 
-/obj/item/storage/trinketbox/update_icon()
+obj/item/storage/trinketbox/update_icon()
 	cut_overlays()
 	if(open)
 		icon_state = open_state
@@ -716,14 +716,14 @@
 	else
 		icon_state = closed_state
 
-/obj/item/storage/trinketbox/Initialize(mapload)
+obj/item/storage/trinketbox/Initialize(mapload)
 	if(!open_state)
 		open_state = "[initial(icon_state)]_open"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
 	. = ..()
 
-/obj/item/storage/trinketbox/attack_self(mob/user)
+obj/item/storage/trinketbox/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -731,16 +731,16 @@
 	update_icon()
 	..()
 
-/obj/item/storage/trinketbox/examine(mob/user)
+obj/item/storage/trinketbox/examine(mob/user)
 	. = ..()
 	if(open && contents.len)
 		var/display_item = contents[1]
 		. += "<span class='notice'>\The [src] contains \the [display_item]!</span>"
 
-/obj/item/storage/AllowDrop()
+obj/item/storage/AllowDrop()
 	return TRUE
 
-/obj/item/storage/clean_radiation(str, mul, cheap)
+obj/item/storage/clean_radiation(str, mul, cheap)
 	. = ..()
 	if(cheap)
 		return

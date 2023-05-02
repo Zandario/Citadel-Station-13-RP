@@ -1,7 +1,7 @@
 // the light switch
 // can have multiple per area
 // can also operate on non-loc area through "otherarea" var
-/obj/machinery/light_switch
+obj/machinery/light_switch
 	name = "light switch"
 	desc = "It turns lights on and off. What are you, simple?"
 	icon = 'icons/obj/power_vr.dmi'
@@ -17,11 +17,11 @@
 	var/otherarea = null
 	var/image/overlay
 
-/obj/machinery/light_switch/Initialize(mapload, newdir)
+obj/machinery/light_switch/Initialize(mapload, newdir)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/light_switch/LateInitialize()
+obj/machinery/light_switch/LateInitialize()
 	. = ..()
 	area = get_area(src)
 
@@ -34,7 +34,7 @@
 	on = area.lightswitch
 	updateicon()
 
-/obj/machinery/light_switch/proc/updateicon()
+obj/machinery/light_switch/proc/updateicon()
 	if(!overlay)
 		overlay = image(icon, "light1-overlay")
 		overlay.plane = ABOVE_LIGHTING_PLANE
@@ -49,10 +49,10 @@
 		add_overlay(overlay)
 		set_light(2, 0.1, on ? "#82FF4C" : "#F86060")
 
-/obj/machinery/light_switch/examine(mob/user)
+obj/machinery/light_switch/examine(mob/user)
 	. += SPAN_NOTICE("A light switch. It is [on? "on" : "off"].")
 
-/obj/machinery/light_switch/attack_hand(mob/user, list/params)
+obj/machinery/light_switch/attack_hand(mob/user, list/params)
 
 	on = !on
 
@@ -66,7 +66,7 @@
 
 	area.power_change()
 
-/obj/machinery/light_switch/power_change()
+obj/machinery/light_switch/power_change()
 	if(!otherarea)
 		if(powered(LIGHT))
 			machine_stat &= ~NOPOWER
@@ -75,7 +75,7 @@
 
 		updateicon()
 
-/obj/machinery/light_switch/emp_act(severity)
+obj/machinery/light_switch/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return

@@ -9,7 +9,7 @@
  *
  * @return TRUE/FALSE
  */
-/mob/proc/has_characteristic_talent(datum/characteristic_talent/typepath_or_id)
+mob/proc/has_characteristic_talent(datum/characteristic_talent/typepath_or_id)
 	if(!characteristics_active())
 		return FALSE
 	return mind?.characteristics?.has_talent(typepath_or_id)
@@ -22,7 +22,7 @@
  *
  * @return raw value
  */
-/mob/proc/get_characteristic_stat(datum/characteristic_stat/typepath_or_id)
+mob/proc/get_characteristic_stat(datum/characteristic_stat/typepath_or_id)
 	if(!characteristics_active())
 		typepath_or_id = resolve_characteristics_stat(typepath_or_id)
 		return typepath_or_id.baseline_value
@@ -36,7 +36,7 @@
  *
  * @return skill level
  */
-/mob/proc/get_characteristic_skill(datum/characteristic_skill/typepath_or_id)
+mob/proc/get_characteristic_skill(datum/characteristic_skill/typepath_or_id)
 	if(!characteristics_active())
 		typepath_or_id = resolve_characteristics_stat(typepath_or_id)
 		return typepath_or_id.baseline_value
@@ -59,7 +59,7 @@
  * * constant - constant for scaling
  * * method - skill scaling enum, see __DEFINES/mobs/characteristics.dm
  */
-/mob/proc/characteristic_skill_scaling(datum/characteristic_skill/typepath_or_id, level, constant, method)
+mob/proc/characteristic_skill_scaling(datum/characteristic_skill/typepath_or_id, level, constant, method)
 	var/diff = level - get_characteristic_skill(typepath_or_id)
 	switch(method)
 		if(SKILL_SCALING_EXPONENTIAL_HARD)
@@ -76,7 +76,7 @@
  * * typepath_or_id - typepath or id of skill
  * * level - what level is needed
  */
-/mob/proc/characteristic_skill_check(datum/characteristic_skill/typepath_or_id, level)
+mob/proc/characteristic_skill_check(datum/characteristic_skill/typepath_or_id, level)
 	return level <= get_characteristic_skill(typepath_or_id)
 
 /**
@@ -86,13 +86,13 @@
  * * typepath_or_id - typepath or id of skill
  * * level - what level is needed
  */
-/mob/proc/characteristic_skill_difference(datum/characteristic_skill/typepath_or_id, level)
+mob/proc/characteristic_skill_difference(datum/characteristic_skill/typepath_or_id, level)
 	return level - get_characteristic_skill(typepath_or_id)
 
 /**
  * get or create characteristics holder
  */
-/mob/proc/characteristics_holder()
+mob/proc/characteristics_holder()
 	if(!mind)
 		mind_initialize()
 	return mind.characteristics_holder()

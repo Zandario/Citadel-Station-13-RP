@@ -7,7 +7,7 @@
 /*
  * Beds
  */
-/obj/structure/bed
+obj/structure/bed
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
 	icon = 'icons/obj/furniture.dmi'
@@ -25,7 +25,7 @@
 	var/applies_material_colour = 1
 	var/can_buckle = TRUE
 
-/obj/structure/bed/Initialize(mapload, new_material, new_padding_material)
+obj/structure/bed/Initialize(mapload, new_material, new_padding_material)
 	. = ..(mapload)
 	remove_atom_colour(FIXED_COLOUR_PRIORITY)
 	if(!new_material)
@@ -38,11 +38,11 @@
 		padding_material = get_material_by_name(new_padding_material)
 	update_icon()
 
-/obj/structure/bed/get_material()
+obj/structure/bed/get_material()
 	return material
 
 // Reuse the cache/code from stools, todo maybe unify.
-/obj/structure/bed/update_icon()
+obj/structure/bed/update_icon()
 	// Prep icon.
 	icon_state = ""
 	cut_overlays()
@@ -74,7 +74,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/structure/bed/legacy_ex_act(severity)
+obj/structure/bed/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -88,7 +88,7 @@
 				qdel(src)
 				return
 
-/obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		playsound(src, W.tool_sound, 50, 1)
 		dismantle()
@@ -140,45 +140,45 @@
 	else
 		..()
 
-/obj/structure/bed/proc/remove_padding()
+obj/structure/bed/proc/remove_padding()
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 		padding_material = null
 	update_icon()
 
-/obj/structure/bed/proc/add_padding(var/padding_type)
+obj/structure/bed/proc/add_padding(var/padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
 
-/obj/structure/bed/proc/dismantle()
+obj/structure/bed/proc/dismantle()
 	material.place_sheet(get_turf(src))
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 
-/obj/structure/bed/psych
+obj/structure/bed/psych
 	name = "psychiatrist's couch"
 	desc = "For prime comfort during psychiatric evaluations."
 	icon_state = "psychbed"
 	base_icon = "psychbed"
 	icon_y_dimension = 32
 
-/obj/structure/bed/psych/Initialize(mapload)
+obj/structure/bed/psych/Initialize(mapload)
 	. = ..(mapload, "wood", "leather")
 
-/obj/structure/bed/padded/Initialize(mapload)
+obj/structure/bed/padded/Initialize(mapload)
 	. = ..(mapload, "plastic", "cotton")
 
-/obj/structure/bed/double
+obj/structure/bed/double
 	name = "double bed"
 	icon_state = "doublebed"
 	base_icon = "doublebed"
 	buckle_max_mobs = 2
 	icon_y_dimension = 32
 
-/obj/structure/bed/double/padded/Initialize(mapload)
+obj/structure/bed/double/padded/Initialize(mapload)
 	. = ..(mapload, "wood", "cotton")
 
-/obj/structure/bed/double/padded/get_centering_pixel_y_offset(dir, atom/aligning)
+obj/structure/bed/double/padded/get_centering_pixel_y_offset(dir, atom/aligning)
 	if(!aligning)
 		return ..()
 	if(!has_buckled_mobs())
@@ -199,7 +199,7 @@
 /*
  * Roller beds
  */
-/obj/structure/bed/roller
+obj/structure/bed/roller
 	name = "roller bed"
 	desc = "A portable bed-on-wheels made for transporting medical patients."
 	icon = 'icons/obj/medical/rollerbed.dmi'
@@ -211,14 +211,14 @@
 	var/bedtype = /obj/structure/bed/roller
 	var/rollertype = /obj/item/roller
 
-/obj/structure/bed/roller/adv
+obj/structure/bed/roller/adv
 	name = "advanced roller bed"
 	icon_state = "rollerbedadv"
 	base_icon_state = "rollerbedadv"
 	bedtype = /obj/structure/bed/roller/adv
 	rollertype = /obj/item/roller/adv
 
-/obj/structure/bed/roller/Moved(atom/old_loc, movement_dir/*, forced, list/old_locs, momentum_change = TRUE*/)
+obj/structure/bed/roller/Moved(atom/old_loc, movement_dir/*, forced, list/old_locs, momentum_change = TRUE*/)
 	. = ..()
 	if(has_gravity())
 		playsound(src, 'sound/effects/roll.ogg', 100, TRUE)
@@ -227,7 +227,7 @@
 		if(M.buckled == src)
 			M.dir = buckle_dir
 
-/obj/structure/bed/roller/mob_buckled(mob/M, flags, mob/user, semantic)
+obj/structure/bed/roller/mob_buckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	set_density(TRUE)
 	icon_state = "[base_icon_state]_up"
@@ -235,7 +235,7 @@
 	M.dir = buckle_dir // So they always face the right way, "upwards"
 	M.set_pixel_y(6)
 
-/obj/structure/bed/roller/mob_unbuckled(mob/M, flags, mob/user, semantic)
+obj/structure/bed/roller/mob_unbuckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	set_density(FALSE)
 	icon_state = base_icon_state
@@ -243,17 +243,17 @@
 	M.set_pixel_x(0)
 	M.set_pixel_y(0)
 
-/obj/structure/bed/roller/doLocationTransitForceMove(atom/destination)
+obj/structure/bed/roller/doLocationTransitForceMove(atom/destination)
 	var/list/old_buckled = buckled_mobs?.Copy()
 	. = ..()
 	if(old_buckled)
 		for(var/mob/M in old_buckled)
 			buckle_mob(M, BUCKLE_OP_FORCE)
 
-/obj/structure/bed/roller/update_icon()
+obj/structure/bed/roller/update_icon()
 	return
 
-/obj/structure/bed/roller/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/bed/roller/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench() || istype(W,/obj/item/stack) || W.is_wirecutter())
 		return
 	else if(istype(W,/obj/item/roller_holder))
@@ -268,7 +268,7 @@
 		return
 	..()
 
-/obj/item/roller
+obj/item/roller
 	name = "roller bed"
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/medical/rollerbed.dmi'
@@ -280,7 +280,7 @@
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
-/obj/item/roller/attack_self(mob/user)
+obj/item/roller/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -288,7 +288,7 @@
 	R.add_fingerprint(user)
 	qdel(src)
 
-/obj/item/roller/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/roller/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/roller_holder))
 		var/obj/item/roller_holder/RH = W
@@ -300,7 +300,7 @@
 
 	..()
 
-/obj/item/roller/adv
+obj/item/roller/adv
 	name = "advanced roller bed"
 	desc = "A high-tech, compact version of the regular roller bed."
 	icon_state = "folded_rollerbedadv"
@@ -308,18 +308,18 @@
 	rollertype = /obj/item/roller/adv
 	bedtype = /obj/structure/bed/roller/adv
 
-/obj/item/roller_holder
+obj/item/roller_holder
 	name = "roller bed rack"
 	desc = "A rack for carrying a collapsed roller bed."
 	icon = 'icons/obj/medical/rollerbed.dmi'
 	icon_state = "rollerbed"
 	var/obj/item/roller/held
 
-/obj/item/roller_holder/Initialize(mapload)
+obj/item/roller_holder/Initialize(mapload)
 	. = ..()
 	held = new /obj/item/roller(src)
 
-/obj/item/roller_holder/attack_self(mob/user)
+obj/item/roller_holder/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -335,7 +335,7 @@
 	held = null
 
 
-/obj/structure/bed/roller/Move()
+obj/structure/bed/roller/Move()
 	..()
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)
@@ -344,12 +344,12 @@
 			if(L.buckled == src)
 				L.forceMove(loc)
 
-/obj/structure/bed/roller/mob_buckled(mob/M, flags, mob/user, semantic)
+obj/structure/bed/roller/mob_buckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	density = TRUE
 	icon_state = "[initial(icon_state)]_up"
 
-/obj/structure/bed/roller/mob_unbuckled(mob/M, flags, mob/user, semantic)
+obj/structure/bed/roller/mob_unbuckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	if(has_buckled_mobs())
 		return
@@ -357,7 +357,7 @@
 	icon_state = "[initial(icon_state)]"
 	update_icon()
 
-/obj/structure/bed/roller/OnMouseDropLegacy(over_object, src_location, over_location)
+obj/structure/bed/roller/OnMouseDropLegacy(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))
 			return 0
@@ -370,7 +370,7 @@
 		return 0
 	return ..()
 
-/datum/category_item/catalogue/anomalous/precursor_a/alien_bed
+datum/category_item/catalogue/anomalous/precursor_a/alien_bed
 	name = "Precursor Alpha Object - Resting Contraption"
 	desc = "This appears to be a relatively long and flat object, with the top side being made of \
 	an soft material, giving it very similar characteristics to an ordinary bed. If this object was \
@@ -386,15 +386,15 @@
 	rest comfortably on top of it."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/structure/bed/alien
+obj/structure/bed/alien
 	name = "resting contraption"
 	desc = "Whatever species designed this must've enjoyed relaxation as well. Looks vaguely comfy."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_bed)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "bed"
 
-/obj/structure/bed/alien/update_icon()
+obj/structure/bed/alien/update_icon()
 	return // Doesn't care about material or anything else.
 
-/obj/structure/bed/alien/attackby(obj/item/W, mob/user)
+obj/structure/bed/alien/attackby(obj/item/W, mob/user)
 	return // No deconning.

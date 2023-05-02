@@ -1,6 +1,6 @@
 // Holds the various pages and implementations for codex books, so they can be used in more than just books.
 
-/datum/codex_tree
+datum/codex_tree
 	var/atom/movable/holder = null
 	var/root_type = null
 	var/datum/lore/codex/home = null // Top-most page.
@@ -8,36 +8,36 @@
 	var/list/indexed_pages = list() // Assoc list with search terms pointing to a ref of the page.  It's created on New().
 	var/list/history = list() // List of pages we previously visited.
 
-/datum/codex_tree/New(var/new_holder, var/new_root_type)
+datum/codex_tree/New(var/new_holder, var/new_root_type)
 	holder = new_holder
 	root_type = new_root_type
 	generate_pages()
 	..()
 
-/datum/codex_tree/proc/generate_pages()
+datum/codex_tree/proc/generate_pages()
 	home = new root_type(src) // This will also generate the others.
 	current_page = home
 	indexed_pages = current_page.index_page()
 
 // Changes current_page to its parent, assuming one exists.
-/datum/codex_tree/proc/go_to_parent()
+datum/codex_tree/proc/go_to_parent()
 	if(current_page && current_page.parent)
 		current_page = current_page.parent
 
 // Changes current_page to a specific page or category.
-/datum/codex_tree/proc/go_to_page(var/datum/lore/codex/new_page, var/dont_record_history = FALSE)
+datum/codex_tree/proc/go_to_page(var/datum/lore/codex/new_page, var/dont_record_history = FALSE)
 	if(new_page) // Make sure we're not going to a null page for whatever reason.
 		current_page = new_page
 		if(!dont_record_history)
 			history.Add(new_page)
 
-/datum/codex_tree/proc/quick_link(var/search_word)
+datum/codex_tree/proc/quick_link(var/search_word)
 	for(var/word in indexed_pages)
 		if(lowertext(search_word) == lowertext(word)) // Exact matches unfortunately limit our ability to perform SEOs.
 			go_to_page(indexed_pages[word])
 			return
 
-/datum/codex_tree/proc/get_page_from_type(var/desired_type)
+datum/codex_tree/proc/get_page_from_type(var/desired_type)
 	for(var/word in indexed_pages)
 		var/datum/lore/codex/C = indexed_pages[word]
 		if(C.type == desired_type)
@@ -45,13 +45,13 @@
 	return null
 
 // Returns to the last visited page, based on the history list.
-/datum/codex_tree/proc/go_back()
+datum/codex_tree/proc/go_back()
 	if(history.len - 1)
 		if(history[history.len] == current_page)
 			history.len-- // This gets rid of the current page in the history.
 		go_to_page(pop(history), dont_record_history = TRUE) // Where as this will get us the previous page that we want to go to.
 
-/datum/codex_tree/proc/get_tree_position()
+datum/codex_tree/proc/get_tree_position()
 	if(current_page)
 		var/output = ""
 		var/datum/lore/codex/checked = current_page
@@ -61,7 +61,7 @@
 			checked = checked.parent
 		return output
 
-/datum/codex_tree/proc/make_search_bar()
+datum/codex_tree/proc/make_search_bar()
 	var/html = {"
 	<form id="submitForm" action="?">
 	<input type = 'hidden' name = 'src' value = '\ref[src]'>
@@ -73,7 +73,7 @@
 	"}
 	return html
 
-/datum/codex_tree/proc/display(mob/user)
+datum/codex_tree/proc/display(mob/user)
 //	icon_state = "[initial(icon_state)]-open"
 	if(!current_page)
 		generate_pages()
@@ -112,7 +112,7 @@
 	user << browse(dat, "window=the_empress_protects;size=600x550")
 	onclose(user, "the_empress_protects", src)
 
-/datum/codex_tree/Topic(href, href_list)
+datum/codex_tree/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return

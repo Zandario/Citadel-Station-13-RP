@@ -1,4 +1,4 @@
-/obj/belly/proc/handle_remains_leaving(var/mob/living/M)
+obj/belly/proc/handle_remains_leaving(var/mob/living/M)
 
 	if(istype(M,/mob/living/carbon/human))	//Are we even humanoid?
 		var/mob/living/carbon/human/H = M
@@ -71,7 +71,7 @@
 	else
 		return
 
-/obj/item/digestion_remains
+obj/item/digestion_remains
 	name = "bone"
 	desc = "A bleached bone. It's very non-descript and its hard to tell what species or part of the body it came from."
 	icon = 'icons/obj/bones_vr.dmi'
@@ -83,14 +83,14 @@
 	var/pred_ckey
 	var/pred_name
 
-/obj/item/digestion_remains/Initialize(mapload, mob/living/pred)
+obj/item/digestion_remains/Initialize(mapload, mob/living/pred)
 	. = ..(mapload)
 	if(!pred)
 		return
 	pred_ckey = pred.ckey
 	pred_name = pred.name
 
-/obj/item/digestion_remains/attack_self(mob/user)
+obj/item/digestion_remains/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -98,71 +98,71 @@
 		to_chat(user,"<span class='warning'>As you squeeze the [name], it crumbles into dust and falls apart into nothing!</span>")
 		qdel(src)
 
-/obj/item/digestion_remains/ribcage
+obj/item/digestion_remains/ribcage
 	name = "ribcage"
 	desc = "A bleached ribcage. It's very white and definitely has seen better times. Hard to tell what it belonged to."
 	icon_state = "ribcage"
 
-/obj/item/digestion_remains/skull
+obj/item/digestion_remains/skull
 	name = "skull"
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a human."
 	icon_state = "skull"
 
-/obj/item/digestion_remains/skull/tajaran
+obj/item/digestion_remains/skull/tajaran
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a tajara."
 	icon_state = "skull_taj"
 
-/obj/item/digestion_remains/skull/unathi
+obj/item/digestion_remains/skull/unathi
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to an unathi."
 	icon_state = "skull_unathi"
 
-/obj/item/digestion_remains/skull/skrell
+obj/item/digestion_remains/skull/skrell
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a skrell."
 	icon_state = "skull"
 
-/obj/item/digestion_remains/skull/vasilissan
+obj/item/digestion_remains/skull/vasilissan
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a vasilissan."
 	icon_state = "skull"
 
-/obj/item/digestion_remains/skull/akula
+obj/item/digestion_remains/skull/akula
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to an akula."
 	icon_state = "skull_unathi"
 
-/obj/item/digestion_remains/skull/rapala
+obj/item/digestion_remains/skull/rapala
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a rapala."
 	icon_state = "skull"
 
-/obj/item/digestion_remains/skull/vulpkanin
+obj/item/digestion_remains/skull/vulpkanin
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a vulpkanin."
 	icon_state = "skull_taj"
 
-/obj/item/digestion_remains/skull/sergal
+obj/item/digestion_remains/skull/sergal
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a sergal."
 	icon_state = "skull_taj"
 
-/obj/item/digestion_remains/skull/zorren
+obj/item/digestion_remains/skull/zorren
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a zorren."
 	icon_state = "skull_taj"
 
-/obj/item/digestion_remains/skull/nevrean
+obj/item/digestion_remains/skull/nevrean
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a nevrean."
 	icon_state = "skull_taj"
 
-/obj/item/digestion_remains/skull/teshari
+obj/item/digestion_remains/skull/teshari
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a teshari."
 	icon_state = "skull_taj"
 
-/obj/item/digestion_remains/skull/vox
+obj/item/digestion_remains/skull/vox
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a vox."
 	icon_state = "skull_taj"
 
-/obj/item/digestion_remains/skull/unknown
+obj/item/digestion_remains/skull/unknown
 	desc = "A bleached skull. It looks very weakened. You can't quite tell what species it belonged to."
 	icon_state = "skull"
 
-/obj/item/digestion_remains/skull/unknown/anthro
+obj/item/digestion_remains/skull/unknown/anthro
 	icon_state = "skull_taj"
 
-/obj/item/digestion_remains/skull/xenohybrid
+obj/item/digestion_remains/skull/xenohybrid
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to something with an elongated head."
 	icon_state = "skull_xenohybrid"

@@ -6,7 +6,7 @@
  * Arguments:
  * - updates: A set of bitflags dictating what should be updated. Defaults to [ALL]
  */
-/atom/proc/update_appearance(updates=ALL)
+atom/proc/update_appearance(updates=ALL)
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 
@@ -23,7 +23,7 @@
  * Updates the name of the atom
  * Always call ..() *LAST* when overriding.
  */
-/atom/proc/update_name(updates=ALL)
+atom/proc/update_name(updates=ALL)
 	// SHOULD_CALL_PARENT(TRUE)
 	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_NAME, updates)
 
@@ -31,12 +31,12 @@
  * Updates the desc of the atom
  * Always call ..() *LAST* when overriding.
  */
-/atom/proc/update_desc(updates=ALL)
+atom/proc/update_desc(updates=ALL)
 	// SHOULD_CALL_PARENT(TRUE)
 	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_DESC, updates)
 
 /// Updates the icon of the atom
-/atom/proc/update_icon(updates=ALL)
+atom/proc/update_icon(updates=ALL)
 	SIGNAL_HANDLER
 	// SHOULD_CALL_PARENT(TRUE)
 
@@ -70,7 +70,7 @@
  *
  * Make sure to call return ..() last, so the comsig can force updates.
  */
-/atom/proc/update_icon_state()
+atom/proc/update_icon_state()
 	SHOULD_CALL_PARENT(TRUE)
 	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON_STATE)
 
@@ -80,7 +80,7 @@
  *
  * Make sure to call return ..() last, so the comsig can force updates.
  */
-/atom/proc/update_overlays()
+atom/proc/update_overlays()
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)

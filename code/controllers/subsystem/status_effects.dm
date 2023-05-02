@@ -8,21 +8,21 @@ SUBSYSTEM_DEF(status_effects)
 	/// currentrun
 	var/list/datum/status_effect/currentrun = list()
 
-/datum/controller/subsystem/status_effects/Recover()
+datum/controller/subsystem/status_effects/Recover()
 	if(islist(SSstatus_effects.ticking))
 		src.ticking = list()
 		for(var/datum/status_effect/eff in SSstatus_effects.ticking)
 			src.ticking += eff
 	return ..()
 
-/datum/controller/subsystem/status_effects/proc/register(datum/status_effect/effect)
+datum/controller/subsystem/status_effects/proc/register(datum/status_effect/effect)
 	ticking += effect
 
-/datum/controller/subsystem/status_effects/proc/unregister(datum/status_effect/effect)
+datum/controller/subsystem/status_effects/proc/unregister(datum/status_effect/effect)
 	ticking -= effect
 	currentrun -= effect
 
-/datum/controller/subsystem/status_effects/fire(resumed)
+datum/controller/subsystem/status_effects/fire(resumed)
 	if(!resumed)
 		currentrun = ticking.Copy()
 	if(!length(currentrun))

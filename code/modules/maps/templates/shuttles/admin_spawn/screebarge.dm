@@ -1,31 +1,31 @@
 
 
 // Map template for spawning the shuttle
-/datum/map_template/shuttle/overmap/generic/screebarge
+datum/map_template/shuttle/overmap/generic/screebarge
 	name = "OM Ship - Battle Barge"
 	desc = "The BATTLE BARGE."
 	suffix = "screebarge.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)
-/area/shuttle/screebarge
+area/shuttle/screebarge
 	icon_state = "shuttle2"
 	requires_power = 1
-/area/shuttle/screebarge/fore
+area/shuttle/screebarge/fore
 	name = "\improper Battle Barge - Fore"
-/area/shuttle/screebarge/mid
+area/shuttle/screebarge/mid
 	name = "\improper Battle Barge - Mid"
-/area/shuttle/screebarge/aft
+area/shuttle/screebarge/aft
 	name = "\improper Battle Barge - Aft"
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/screebarge
+obj/machinery/computer/shuttle_control/explore/screebarge
 	name = "short jump console"
 	shuttle_tag = "XN-29 Prototype Shuttle"
 	req_one_access = list(ACCESS_GENERAL_PILOT)
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/screebarge
+obj/effect/shuttle_landmark/shuttle_initializer/screebarge
 	name = "Origin - Battle Barge"
 	base_area = /area/space
 	base_turf = /turf/space
@@ -33,7 +33,7 @@
 	shuttle_type = /datum/shuttle/autodock/overmap/screebarge
 
 // The 'shuttle'
-/datum/shuttle/autodock/overmap/screebarge
+datum/shuttle/autodock/overmap/screebarge
 	name = "Battle Barge"
 	current_location = "omship_spawn_battlebarge"
 	docking_controller_tag = "battlebarge_docker"
@@ -42,7 +42,7 @@
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 
 // The 'ship'
-/obj/effect/overmap/visitable/ship/landable/screebarge
+obj/effect/overmap/visitable/ship/landable/screebarge
 	name = "Battle Barge"
 	desc = "Some sort of makeshift battle barge. Appears to be armed."
 	color = "#95c633" //Greenish

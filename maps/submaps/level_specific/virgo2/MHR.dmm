@@ -1,101 +1,101 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/template_noop,
-/area/submap/virgo2/MHR)
+turf/template_noop,
+area/submap/virgo2/MHR)
 "c" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/template_noop)
+area/template_noop)
 "d" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "e" = (
-/turf/simulated/mineral/ignore_mapgen/virgo2,
-/area/submap/virgo2/MHR)
+turf/simulated/mineral/ignore_mapgen/virgo2,
+area/submap/virgo2/MHR)
 "f" = (
-/obj/effect/debris/cleanable/spiderling_remains,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/effect/debris/cleanable/spiderling_remains,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "g" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/MHR)
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/MHR)
 "h" = (
-/obj/structure/table/rack,
-/obj/item/storage/backpack,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/structure/table/rack,
+obj/item/storage/backpack,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "i" = (
-/obj/structure/table/standard,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/structure/table/standard,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "j" = (
-/obj/structure/table/standard,
-/obj/item/paper{
+obj/structure/table/standard,
+obj/item/paper{
 	info = "Do not enter the cave. The estimated active time of the Vicerators is much longer due to the improvements on the rotor bearings. It's estimated to be roughly a few months before we start to see any chancces of mechanical failure. ";
 	name = "NOTICE: DO NOT ENTER"
 	},
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "k" = (
-/obj/effect/debris/cleanable/cobweb2,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/effect/debris/cleanable/cobweb2,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "l" = (
-/obj/tether_away_spawner/aerostat_surface,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/tether_away_spawner/aerostat_surface,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "n" = (
-/obj/effect/debris/cleanable/spiderling_remains,
-/obj/tether_away_spawner/aerostat_surface,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/effect/debris/cleanable/spiderling_remains,
+obj/tether_away_spawner/aerostat_surface,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "o" = (
-/obj/effect/debris/cleanable/cobweb,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/effect/debris/cleanable/cobweb,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "p" = (
-/obj/effect/debris/cleanable/spiderling_remains,
-/obj/effect/debris/cleanable/cobweb,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/effect/debris/cleanable/spiderling_remains,
+obj/effect/debris/cleanable/cobweb,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "q" = (
-/obj/effect/decal/remains/robot,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/effect/decal/remains/robot,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 "r" = (
-/obj/effect/decal/remains,
-/obj/item/clothing/mask/gas/explorer,
-/obj/item/material/twohanded/fireaxe,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
+obj/effect/decal/remains,
+obj/item/clothing/mask/gas/explorer,
+obj/item/material/twohanded/fireaxe,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
-/area/submap/virgo2/MHR)
+area/submap/virgo2/MHR)
 
 (1,1,1) = {"
 a

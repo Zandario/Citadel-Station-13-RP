@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(radiation)
 	/// current waves
 	var/list/datum/radiation_wave/waves = list()
 
-/datum/controller/subsystem/radiation/Recover()
+datum/controller/subsystem/radiation/Recover()
 	z_listeners.len = world.maxz
 	for(var/i in 1 to length(z_listeners))
 		if(!islist(z_listeners[i]))
@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(radiation)
 		for(var/datum/component/radioactive/R in SSradiation.sources)
 			sources += R
 
-/datum/controller/subsystem/radiation/fire(resumed)
+datum/controller/subsystem/radiation/fire(resumed)
 	if(!resumed)
 		stage = SSRADIATION_EMIT
 	if(stage == SSRADIATION_EMIT)
@@ -86,13 +86,13 @@ SUBSYSTEM_DEF(radiation)
 					return
 			qdel(wave)
 
-/datum/controller/subsystem/radiation/on_max_z_changed(old_z_count, new_z_count)
+datum/controller/subsystem/radiation/on_max_z_changed(old_z_count, new_z_count)
 	var/old = z_listeners.len
 	z_listeners.len = new_z_count
 	for(var/i in old + 1 to z_listeners.len)
 		z_listeners[i] = list()
 
-/datum/controller/subsystem/radiation/proc/warn(datum/component/radioactive/contamination)
+datum/controller/subsystem/radiation/proc/warn(datum/component/radioactive/contamination)
 	if(!contamination || QDELETED(contamination))
 		return
 	var/ref = REF(contamination.parent)
@@ -104,11 +104,11 @@ SUBSYSTEM_DEF(radiation)
 	var/msg = "has become contaminated with enough radiation to contaminate other objects. || Strength: [contamination.strength]"
 	master.investigate_log(msg, INVESTIGATE_RADIATION)
 
-/datum/controller/subsystem/radiation/proc/flush_queue()
+datum/controller/subsystem/radiation/proc/flush_queue()
 	next_wave_set = queued_waves
 	queued_waves = list()
 
-/datum/controller/subsystem/radiation/proc/emit_waves()
+datum/controller/subsystem/radiation/proc/emit_waves()
 	var/i
 	var/list/next_wave_set = src.next_wave_set
 	for(i in 1 to length(next_wave_set))
@@ -121,7 +121,7 @@ SUBSYSTEM_DEF(radiation)
 			break
 	next_wave_set.Cut(1, i + 1)
 
-/datum/controller/subsystem/radiation/proc/queue_wave(turf/source, intensity, falloff, can_contaminate)
+datum/controller/subsystem/radiation/proc/queue_wave(turf/source, intensity, falloff, can_contaminate)
 	var/list/datum/radiation_burst/queue = queued_waves[source]
 	if(!queue)
 		queue = list()
@@ -138,7 +138,7 @@ SUBSYSTEM_DEF(radiation)
 /**
  * todo: comment
  */
-/datum/controller/subsystem/radiation/proc/radiation_pulse(atom/source, intensity, falloff_modifier, log, can_contaminate)
+datum/controller/subsystem/radiation/proc/radiation_pulse(atom/source, intensity, falloff_modifier, log, can_contaminate)
 	if(!can_fire)	// we don't care
 		return FALSE
 	var/atom/nested = source
@@ -174,7 +174,7 @@ SUBSYSTEM_DEF(radiation)
 /**
  * does our best faith attempt at irradiating a whole zlevel without lagging the server to death
  */
-/datum/controller/subsystem/radiation/proc/z_radiation(turf/T, z, intensity, falloff_modifier, log, can_contaminate, z_radiate_flags)
+datum/controller/subsystem/radiation/proc/z_radiation(turf/T, z, intensity, falloff_modifier, log, can_contaminate, z_radiate_flags)
 	if(!T && !z)
 		CRASH("need either turf or z")
 	if(!z)

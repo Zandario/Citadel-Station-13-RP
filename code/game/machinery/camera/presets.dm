@@ -28,156 +28,156 @@ var/global/list/engineering_networks = list(
 	NETWORK_ALARM_ATMOS,
 	NETWORK_ALARM_FIRE,
 	NETWORK_ALARM_POWER)
-/obj/machinery/camera/network/crescent
+obj/machinery/camera/network/crescent
 	network = list(NETWORK_CRESCENT)
 
 /*
-/obj/machinery/camera/network/cafe_dock
+obj/machinery/camera/network/cafe_dock
 	network = list(NETWORK_CAFE_DOCK)
 */
 
-/obj/machinery/camera/network/cargo
+obj/machinery/camera/network/cargo
 	network = list(NETWORK_CARGO)
 
-/obj/machinery/camera/network/civilian
+obj/machinery/camera/network/civilian
 	network = list(NETWORK_CIVILIAN)
 
-/obj/machinery/camera/network/circuits
+obj/machinery/camera/network/circuits
 	network = list(NETWORK_CIRCUITS)
 
 /*
-/obj/machinery/camera/network/civilian_east
+obj/machinery/camera/network/civilian_east
 	network = list(NETWORK_CIVILIAN_EAST)
 
-/obj/machinery/camera/network/civilian_west
+obj/machinery/camera/network/civilian_west
 	network = list(NETWORK_CIVILIAN_WEST)
 */
 
-/obj/machinery/camera/network/command
+obj/machinery/camera/network/command
 	network = list(NETWORK_COMMAND)
 
-/obj/machinery/camera/network/engine
+obj/machinery/camera/network/engine
 	network = list(NETWORK_ENGINE)
 
-/obj/machinery/camera/network/engineering
+obj/machinery/camera/network/engineering
 	network = list(NETWORK_ENGINEERING)
 
-/obj/machinery/camera/network/engineering_outpost
+obj/machinery/camera/network/engineering_outpost
 	network = list(NETWORK_ENGINEERING_OUTPOST)
 
-/obj/machinery/camera/network/ert
+obj/machinery/camera/network/ert
 	network = list(NETWORK_ERT)
 
-/obj/machinery/camera/network/exodus
+obj/machinery/camera/network/exodus
 	network = list(NETWORK_DEFAULT)
 
-/obj/machinery/camera/network/interrogation
+obj/machinery/camera/network/interrogation
 	network = list(NETWORK_INTERROGATION)
 
-/obj/machinery/camera/network/mining
+obj/machinery/camera/network/mining
 	network = list(NETWORK_MINE)
 
-/obj/machinery/camera/network/northern_star
+obj/machinery/camera/network/northern_star
 	network = list(NETWORK_NORTHERN_STAR)
 
-/obj/machinery/camera/network/prison
+obj/machinery/camera/network/prison
 	network = list(NETWORK_PRISON)
 
-/obj/machinery/camera/network/medbay
+obj/machinery/camera/network/medbay
 	network = list(NETWORK_MEDICAL)
 
-/obj/machinery/camera/network/research
+obj/machinery/camera/network/research
 	network = list(NETWORK_RESEARCH)
 
-/obj/machinery/camera/network/research_outpost
+obj/machinery/camera/network/research_outpost
 	network = list(NETWORK_RESEARCH_OUTPOST)
 
-/obj/machinery/camera/network/security
+obj/machinery/camera/network/security
 	network = list(NETWORK_SECURITY)
 
-/obj/machinery/camera/network/telecom
+obj/machinery/camera/network/telecom
 	network = list(NETWORK_TELECOM)
 
-/obj/machinery/camera/network/thunder
+obj/machinery/camera/network/thunder
 	network = list(NETWORK_THUNDER)
 	invuln = 1
 
 // EMP
 
-/obj/machinery/camera/emp_proof/Initialize(mapload)
+obj/machinery/camera/emp_proof/Initialize(mapload)
 	. = ..()
 	upgradeEmpProof()
 
 // X-RAY
 
-/obj/machinery/camera/xray
+obj/machinery/camera/xray
 	icon_state = "xraycam" // Thanks to Krutchen for the icons.
 
-/obj/machinery/camera/xray/command
+obj/machinery/camera/xray/command
 	network = list(NETWORK_COMMAND)
 
-/obj/machinery/camera/xray/security
+obj/machinery/camera/xray/security
 	network = list(NETWORK_SECURITY)
 
-/obj/machinery/camera/xray/medbay
+obj/machinery/camera/xray/medbay
 	network = list(NETWORK_MEDICAL)
 
-/obj/machinery/camera/xray/research
+obj/machinery/camera/xray/research
 	network = list(NETWORK_RESEARCH)
 
-/obj/machinery/camera/xray/Initialize(mapload)
+obj/machinery/camera/xray/Initialize(mapload)
 	. = ..()
 	upgradeXRay()
 
 //Tether-unique network cameras
-/obj/machinery/camera/network/tether
+obj/machinery/camera/network/tether
 	network = list(NETWORK_TETHER)
 
-/obj/machinery/camera/network/triumph
+obj/machinery/camera/network/triumph
 	network = list(NETWORK_TRIUMPH)
 
-/obj/machinery/camera/network/rift
+obj/machinery/camera/network/rift
 	network = list(NETWORK_LYTHIOS)
 
-/obj/machinery/camera/network/tcomms
+obj/machinery/camera/network/tcomms
 	network = list(NETWORK_TCOMMS)
 
-/obj/machinery/camera/network/outside
+obj/machinery/camera/network/outside
 	network = list(NETWORK_OUTSIDE)
 
-/obj/machinery/camera/network/exploration
+obj/machinery/camera/network/exploration
 	network = list(NETWORK_EXPLORATION)
 
 // MOTION
 
-/obj/machinery/camera/motion/Initialize(mapload)
+obj/machinery/camera/motion/Initialize(mapload)
 	. = ..()
 	upgradeMotion()
 
-/obj/machinery/camera/motion/engineering_outpost
+obj/machinery/camera/motion/engineering_outpost
 	network = list(NETWORK_ENGINEERING_OUTPOST)
 
-/obj/machinery/camera/motion/security
+obj/machinery/camera/motion/security
 	network = list(NETWORK_SECURITY)
 
 // ALL UPGRADES
 
 
-/obj/machinery/camera/all/command
+obj/machinery/camera/all/command
 	network = list(NETWORK_COMMAND)
 
-/obj/machinery/camera/all/Initialize(mapload)
+obj/machinery/camera/all/Initialize(mapload)
 	. = ..()
 	upgradeEmpProof()
 	upgradeXRay()
 	upgradeMotion()
 
 // AUTONAME
-/obj/machinery/camera/autoname
+obj/machinery/camera/autoname
 	var/number = 0 //camera number in area
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
-/obj/machinery/camera/autoname/Initialize(mapload)
+obj/machinery/camera/autoname/Initialize(mapload)
 	. = ..()
 	spawn(10)
 		number = 1
@@ -194,39 +194,39 @@ var/global/list/engineering_networks = list(
 
 // CHECKS
 
-/obj/machinery/camera/proc/isEmpProof()
+obj/machinery/camera/proc/isEmpProof()
 	var/O = locate(/obj/item/stack/material/osmium) in assembly.upgrades
 	return O
 
-/obj/machinery/camera/proc/isXRay()
+obj/machinery/camera/proc/isXRay()
 	var/obj/item/stock_parts/scanning_module/O = locate(/obj/item/stock_parts/scanning_module) in assembly.upgrades
 	if (O && O.rating >= 2)
 		return O
 	return null
 
-/obj/machinery/camera/proc/isMotion()
+obj/machinery/camera/proc/isMotion()
 	var/O = locate(/obj/item/assembly/prox_sensor) in assembly.upgrades
 	return O
 
 // UPGRADE PROCS
 
-/obj/machinery/camera/proc/upgradeEmpProof()
+obj/machinery/camera/proc/upgradeEmpProof()
 	assembly.upgrades.Add(new /obj/item/stack/material/osmium(assembly))
 	setPowerUsage()
 	update_coverage()
 
-/obj/machinery/camera/proc/upgradeXRay()
+obj/machinery/camera/proc/upgradeXRay()
 	assembly.upgrades.Add(new /obj/item/stock_parts/scanning_module/adv(assembly))
 	setPowerUsage()
 	update_coverage()
 
-/obj/machinery/camera/proc/upgradeMotion()
+obj/machinery/camera/proc/upgradeMotion()
 	assembly.upgrades.Add(new /obj/item/assembly/prox_sensor(assembly))
 	setPowerUsage()
 	START_MACHINE_PROCESSING(src)
 	update_coverage()
 
-/obj/machinery/camera/proc/setPowerUsage()
+obj/machinery/camera/proc/setPowerUsage()
 	var/mult = 1
 	if (isXRay())
 		mult++

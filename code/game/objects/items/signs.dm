@@ -1,4 +1,4 @@
-/obj/item/picket_sign
+obj/item/picket_sign
 	icon_state = "picket"
 	name = "blank picket sign"
 	desc = "It's blank."
@@ -9,25 +9,25 @@
 	var/label = ""
 	var/last_wave = 0
 
-/obj/item/picket_sign/cyborg
+obj/item/picket_sign/cyborg
 	name = "metallic nano-sign"
 	desc = "A high tech picket sign used by silicons that can reprogram its surface at will. Probably hurts to get hit by, too."
 	damage_force = 13
 
-/obj/item/picket_sign/proc/retext(mob/user)
+obj/item/picket_sign/proc/retext(mob/user)
 	var/txt = stripped_input(user, "What would you like to write on the sign?", "Sign Label", null , 30)
 	if(txt)
 		label = txt
 		name = "[label] sign"
 		desc =	"It reads: [label]"
 
-/obj/item/picket_sign/attackby(obj/item/W, mob/user, params)
+obj/item/picket_sign/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/pen/crayon))
 		retext(user)
 	else
 		return ..()
 
-/obj/item/picket_sign/attack_self(mob/user)
+obj/item/picket_sign/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

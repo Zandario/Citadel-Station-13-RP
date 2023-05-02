@@ -6,7 +6,7 @@
 /**
  * tgui datum (represents a UI).
  */
-/datum/tgui
+datum/tgui
 	/// The mob who opened/is using the UI.
 	var/mob/user
 	/// The object which owns the UI.
@@ -55,7 +55,7 @@
  *
  * return datum/tgui The requested UI.
  */
-/datum/tgui/New(mob/user, datum/src_object, interface, title, datum/tgui/parent_ui)
+datum/tgui/New(mob/user, datum/src_object, interface, title, datum/tgui/parent_ui)
 	log_tgui(user,
 		"new [interface] fancy [user?.client?.prefs.tgui_fancy]",
 		src_object = src_object)
@@ -70,7 +70,7 @@
 	if(parent_ui)
 		parent_ui.children += src
 
-/datum/tgui/Destroy()
+datum/tgui/Destroy()
 	user = null
 	src_object = null
 	return ..()
@@ -82,7 +82,7 @@
  *
  * return bool - TRUE if a new pooled window is opened, FALSE in all other situations including if a new pooled window didn't open because one already exists.
  */
-/datum/tgui/proc/open()
+datum/tgui/proc/open()
 	if(!user.client)
 		return FALSE
 	if(window)
@@ -128,7 +128,7 @@
  *
  * optional can_be_suspended bool
  */
-/datum/tgui/proc/close(can_be_suspended = TRUE)
+datum/tgui/proc/close(can_be_suspended = TRUE)
 	if(closing)
 		return
 	closing = TRUE
@@ -155,7 +155,7 @@
  *
  * required value bool Enable/disable auto-updating.
  */
-/datum/tgui/proc/set_autoupdate(autoupdate)
+datum/tgui/proc/set_autoupdate(autoupdate)
 	src.autoupdate = autoupdate
 
 /**
@@ -165,7 +165,7 @@
  *
  * required value bool Enable/disable hooking.
  */
-/datum/tgui/proc/set_mouse_hook(value)
+datum/tgui/proc/set_mouse_hook(value)
 	src.mouse_hooked = value
 	// TODO: handle unhooking/hooking on already open windows ?
 
@@ -176,7 +176,7 @@
  *
  * required state datum/ui_state/state Next state
  */
-/datum/tgui/proc/set_state(datum/ui_state/state)
+datum/tgui/proc/set_state(datum/ui_state/state)
 	src.state = state
 
 /**
@@ -188,7 +188,7 @@
  *
  * return bool - true if an asset was actually sent
  */
-/datum/tgui/proc/send_asset(datum/asset/asset)
+datum/tgui/proc/send_asset(datum/asset/asset)
 	if(!window)
 		CRASH("send_asset() was called either without calling open() first or when open() did not return TRUE.")
 	return window.send_asset(asset)
@@ -201,7 +201,7 @@
  * optional force bool Send an update even if UI is not interactive.
  * optional hard_refresh block the ui entirely while this is refreshing. use if you don't want users to see an ui during a queued refresh.
  */
-/datum/tgui/proc/send_full_update(force, hard_refresh)
+datum/tgui/proc/send_full_update(force, hard_refresh)
 	if(!initialized || closing || !user.client)
 		return
 	if(!COOLDOWN_FINISHED(src, refresh_cooldown))
@@ -226,7 +226,7 @@
  *
  * optional force bool Send an update even if UI is not interactive.
  */
-/datum/tgui/proc/send_update(force)
+datum/tgui/proc/send_update(force)
 	if(!user.client || !initialized || closing)
 		return
 	var/should_update_data = force || status >= UI_UPDATE
@@ -245,7 +245,7 @@
  * required data The data to send
  * optional force bool Send an update even if UI is not interactive.
  */
-/datum/tgui/proc/push_data(data, force)
+datum/tgui/proc/push_data(data, force)
 	if(!user.client || !initialized || closing)
 		return
 	if(!force && status < UI_UPDATE)
@@ -259,7 +259,7 @@
  *
  * return list
  */
-/datum/tgui/proc/get_payload(with_data, with_static_data)
+datum/tgui/proc/get_payload(with_data, with_static_data)
 	var/list/json_data = list()
 	json_data["config"] = list(
 		"title" = title,
@@ -301,7 +301,7 @@
  * Run an update cycle for this UI. Called internally by SStgui
  * every second or so.
  */
-/datum/tgui/process(delta_time, force = FALSE)
+datum/tgui/process(delta_time, force = FALSE)
 	if(closing)
 		return
 	var/datum/host = src_object.ui_host(user)
@@ -333,7 +333,7 @@
  *
  * Updates the status, and returns TRUE if status has changed.
  */
-/datum/tgui/proc/process_status()
+datum/tgui/proc/process_status()
 	var/prev_status = status
 	status = src_object.ui_status(user, state)
 	if(parent_ui)
@@ -345,7 +345,7 @@
  *
  * Callback for handling incoming tgui messages.
  */
-/datum/tgui/proc/on_message(type, list/payload, list/href_list)
+datum/tgui/proc/on_message(type, list/payload, list/href_list)
 	if(type)
 		// micro opt in that these routes are same length so we only copytext once
 		switch(copytext(type, 1, 5))

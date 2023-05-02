@@ -1,7 +1,7 @@
-/obj/item/integrated_circuit/manipulation
+obj/item/integrated_circuit/manipulation
 	category_text = "Manipulation"
 
-/obj/item/integrated_circuit/manipulation/locomotion
+obj/item/integrated_circuit/manipulation/locomotion
 	name = "locomotion circuit"
 	desc = "This allows a machine to move in a given direction."
 	icon_state = "locomotion"
@@ -19,7 +19,7 @@
 	action_flags = IC_ACTION_MOVEMENT
 	power_draw_per_use = 100
 
-/obj/item/integrated_circuit/manipulation/locomotion/do_work(ord)
+obj/item/integrated_circuit/manipulation/locomotion/do_work(ord)
 	if(ord == 1)
 		..()
 		var/turf/T = get_turf(src)
@@ -39,7 +39,7 @@
 						return FALSE
 		return FALSE
 
-/obj/item/integrated_circuit/manipulation/anchoring
+obj/item/integrated_circuit/manipulation/anchoring
 	name = "anchoring bolts"
 	desc = "Pop-out anchoring bolts which can secure an assembly to the floor."
 
@@ -57,13 +57,13 @@
 	spawn_flags = IC_SPAWN_DEFAULT
 	origin_tech = list(TECH_ENGINEERING = 2)
 
-/obj/item/integrated_circuit/manipulation/anchoring/remove(mob/user, silent, index)
+obj/item/integrated_circuit/manipulation/anchoring/remove(mob/user, silent, index)
 	if(assembly.anchored_by == src)
 		silent ? null : to_chat(SPAN_WARNING("With the bolts deployed you can't remove the circuit."))
 		return
 	. = ..()
 
-/obj/item/integrated_circuit/manipulation/anchoring/do_work(ord)
+obj/item/integrated_circuit/manipulation/anchoring/do_work(ord)
 	//var/obj/item/electronic_assembly/ass = assembly
 	if(!isturf(assembly.loc))
 		return
@@ -86,7 +86,7 @@
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/manipulation/hatchlock
+obj/item/integrated_circuit/manipulation/hatchlock
 	name = "maintenance hatch lock"
 	desc = "An electronically controlled lock for the assembly's maintenance hatch."
 	extended_desc = "WARNING: If you lock the hatch with no circuitry to reopen it, there is no way to open the hatch again!"
@@ -107,7 +107,7 @@
 	origin_tech = list(TECH_ENGINEERING = 2)
 	var/lock_enabled = -1
 
-/obj/item/integrated_circuit/manipulation/hatchlock/do_work(ord)
+obj/item/integrated_circuit/manipulation/hatchlock/do_work(ord)
 	if(ord == 1)
 		if(!assembly)
 			return
@@ -118,11 +118,11 @@
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/manipulation/hatchlock/remove(mob/user, silent, index)
+obj/item/integrated_circuit/manipulation/hatchlock/remove(mob/user, silent, index)
 	lock_enabled ? (assembly.panel_locked -= 1) : null
 	. = ..()
 
-/obj/item/integrated_circuit/manipulation/plant_module
+obj/item/integrated_circuit/manipulation/plant_module
 	name = "plant manipulation module"
 	desc = "Used to uproot weeds and harvest/plant trays."
 	icon_state = "plant_m"
@@ -137,7 +137,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 50
 
-/obj/item/integrated_circuit/manipulation/plant_module/do_work(ord)
+obj/item/integrated_circuit/manipulation/plant_module/do_work(ord)
 	if(ord == 1)
 		..()
 		var/obj/acting_object = get_object()
@@ -194,7 +194,7 @@
 							TR.plant_seeds(O)
 		activate_pin(2)
 
-/obj/item/integrated_circuit/manipulation/seed_extractor
+obj/item/integrated_circuit/manipulation/seed_extractor
 	name = "seed extractor module"
 	desc = "Used to extract seeds from grown produce."
 	icon_state = "plant_m"
@@ -206,7 +206,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 50
 /* TBI:	Move seed extrac proc to root
-/obj/item/integrated_circuit/manipulation/seed_extractor/do_work()
+obj/item/integrated_circuit/manipulation/seed_extractor/do_work()
 	..()
 	var/obj/O = get_pin_data_as_type(IC_INPUT, 1, /obj/item)
 	if(!check_target(O))
@@ -223,7 +223,7 @@
 		push_data()
 	activate_pin(2)
 */
-/obj/item/integrated_circuit/manipulation/grabber
+obj/item/integrated_circuit/manipulation/grabber
 	name = "grabber"
 	desc = "A circuit with its own inventory for items.  Used to grab and store things."
 	icon_state = "grabber"
@@ -240,7 +240,7 @@
 	power_draw_per_use = 50
 	var/max_items = 10
 
-/obj/item/integrated_circuit/manipulation/grabber/do_work(ord)
+obj/item/integrated_circuit/manipulation/grabber/do_work(ord)
 	if(ord == 1)
 		var/obj/item/AM = get_pin_data_as_type(IC_INPUT, 1, /obj/item)
 		if(!QDELETED(AM) && !istype(AM, /obj/item/electronic_assembly) && !istype(AM, /obj/item/transfer_valve) && !istype(assembly.loc, /obj/item/implant/compressed))
@@ -258,7 +258,7 @@
 		update_outputs()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/manipulation/grabber/proc/grab(obj/item/AM)
+obj/item/integrated_circuit/manipulation/grabber/proc/grab(obj/item/AM)
 	var/max_w_class = assembly.w_class
 	if(check_target(AM))
 		if(contents.len < max_items && AM.w_class <= max_w_class)
@@ -266,21 +266,21 @@
 			A.investigate_log("picked up ([AM]) with [src].", INVESTIGATE_CIRCUIT)
 			AM.forceMove(src)
 
-/obj/item/integrated_circuit/manipulation/grabber/proc/drop(obj/item/AM, turf/T = drop_location())
+obj/item/integrated_circuit/manipulation/grabber/proc/drop(obj/item/AM, turf/T = drop_location())
 	if(!check_target(AM, FALSE, TRUE, TRUE, TRUE))
 		return
 	var/atom/A = get_object()
 	A.investigate_log("dropped ([AM]) from [src].", INVESTIGATE_CIRCUIT)
 	AM.forceMove(T)
 
-/obj/item/integrated_circuit/manipulation/grabber/proc/drop_all()
+obj/item/integrated_circuit/manipulation/grabber/proc/drop_all()
 	if(contents.len)
 		var/turf/T = drop_location()
 		var/obj/item/U
 		for(U in src)
 			drop(U, T)
 
-/obj/item/integrated_circuit/manipulation/grabber/proc/update_outputs()
+obj/item/integrated_circuit/manipulation/grabber/proc/update_outputs()
 	if(contents.len)
 		set_pin_data(IC_OUTPUT, 1, WEAKREF(contents[1]))
 		set_pin_data(IC_OUTPUT, 2, WEAKREF(contents[contents.len]))
@@ -291,7 +291,7 @@
 	set_pin_data(IC_OUTPUT, 4, contents)
 	push_data()
 
-/obj/item/integrated_circuit/manipulation/grabber/attack_self(mob/user)
+obj/item/integrated_circuit/manipulation/grabber/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -299,7 +299,7 @@
 	update_outputs()
 	push_data()
 
-/obj/item/integrated_circuit/manipulation/claw
+obj/item/integrated_circuit/manipulation/claw
 	name = "pulling claw"
 	desc = "Circuit which can pull things.."
 	icon_state = "pull_claw"
@@ -316,7 +316,7 @@
 	ext_cooldown = 1
 	var/max_grab = GRAB_PASSIVE
 
-/obj/item/integrated_circuit/manipulation/claw/do_work(ord)
+obj/item/integrated_circuit/manipulation/claw/do_work(ord)
 	var/obj/acting_object = get_object()
 	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 	// var/mode = get_pin_data(IC_INPUT, 2)
@@ -350,13 +350,13 @@
 							step_towards(pullee, F)
 	activate_pin(2)
 
-/obj/item/integrated_circuit/manipulation/claw/stop_pulling()
+obj/item/integrated_circuit/manipulation/claw/stop_pulling()
 	set_pin_data(IC_OUTPUT, 1, FALSE)
 	activate_pin(5)
 	push_data()
 	..()
 
-/obj/item/integrated_circuit/manipulation/thrower
+obj/item/integrated_circuit/manipulation/thrower
 	name = "thrower"
 	desc = "A compact launcher to throw things from inside or nearby tiles at a low enough velocity not to harm someone."
 	extended_desc = "The first and second inputs need to be numbers which correspond to the coordinates to throw objects at relative to the machine itself.  \
@@ -383,7 +383,7 @@
 	action_flags = IC_ACTION_COMBAT
 	power_draw_per_use = 50
 
-/obj/item/integrated_circuit/manipulation/thrower/do_work(ord)
+obj/item/integrated_circuit/manipulation/thrower/do_work(ord)
 	if(ord == 1)
 		set waitfor = FALSE // Don't sleep in a proc that is called by a processor without this set, otherwise it'll delay the entire thing
 		var/max_w_class = assembly.w_class
@@ -442,7 +442,7 @@
 		activate_pin(2)
 
 /*!	TBI: Material update
-/obj/item/integrated_circuit/manipulation/matman
+obj/item/integrated_circuit/manipulation/matman
 	name = "material manager"
 	desc = "This circuit is designed for automatic storage and distribution of materials."
 	extended_desc = "The first input takes a ref of a machine with a material container.  \
@@ -508,12 +508,12 @@
 		/datum/material/plastic
 		)
 
-/obj/item/integrated_circuit/manipulation/matman/ComponentInitialize()
+obj/item/integrated_circuit/manipulation/matman/ComponentInitialize()
 	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, mtypes, 100000, FALSE, /obj/item/stack, CALLBACK(src, .proc/is_insertion_ready), CALLBACK(src, .proc/AfterMaterialInsert))
 	materials.precise_insertion = TRUE
 	.=..()
 
-/obj/item/integrated_circuit/manipulation/matman/proc/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
+obj/item/integrated_circuit/manipulation/matman/proc/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	set_pin_data(IC_OUTPUT, 2, materials.total_amount)
 	for(var/I in 1 to mtypes.len)
@@ -523,10 +523,10 @@
 			set_pin_data(IC_OUTPUT, I+2, amount)
 	push_data()
 
-/obj/item/integrated_circuit/manipulation/matman/proc/is_insertion_ready(mob/user)
+obj/item/integrated_circuit/manipulation/matman/proc/is_insertion_ready(mob/user)
 	return TRUE
 
-/obj/item/integrated_circuit/manipulation/matman/do_work(ord)
+obj/item/integrated_circuit/manipulation/matman/do_work(ord)
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	var/atom/movable/H = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 	if(!check_target(H))
@@ -570,7 +570,7 @@
 			AfterMaterialInsert()
 			activate_pin(6)
 
-/obj/item/integrated_circuit/manipulation/matman/Destroy()
+obj/item/integrated_circuit/manipulation/matman/Destroy()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
 	.=..()
@@ -580,7 +580,7 @@
 
 
 // - inserter circuit - //
-/obj/item/integrated_circuit/manipulation/inserter
+obj/item/integrated_circuit/manipulation/inserter
 	name = "inserter"
 	desc = "A nimble circuit that puts stuff inside a storage like a backpack and can take it out aswell."
 	icon_state = "grabber"
@@ -597,7 +597,7 @@
 	power_draw_per_use = 20
 	var/max_items = 10
 
-/obj/item/integrated_circuit/manipulation/inserter/do_work(ord)
+obj/item/integrated_circuit/manipulation/inserter/do_work(ord)
 	if(ord == 1)
 		//There shouldn't be any target required to eject all contents
 		var/obj/item/target_obj = get_pin_data_as_type(IC_INPUT, 1, /obj/item)
@@ -630,7 +630,7 @@
 					return TRUE
 				return
 
-/obj/item/integrated_circuit/mining/mining_drill
+obj/item/integrated_circuit/mining/mining_drill
 	name = "mining drill"
 	desc = "A mining drill that can drill through rocks."
 	extended_desc = "A mining drill to strike the earth.  It takes some time to get the job done and \
@@ -661,7 +661,7 @@
 	var/drill_force = 15
 	var/turf/simulated/mineral
 
-/obj/item/integrated_circuit/mining/mining_drill/do_work(ord)
+obj/item/integrated_circuit/mining/mining_drill/do_work(ord)
 	if(ord == 1)
 		var/atom/target = get_pin_data(IC_INPUT, 1)
 		var/drill_delay = null
@@ -680,7 +680,7 @@
 		addtimer(CALLBACK(src, .proc/drill), drill_delay)
 
 
-/obj/item/integrated_circuit/mining/mining_drill/proc/drill()
+obj/item/integrated_circuit/mining/mining_drill/proc/drill()
 	var/atom/target = get_pin_data(IC_INPUT, 1)
 	busy = FALSE
 	// The assembly was moved, hence stopping the mining OR the rock was mined before
@@ -724,7 +724,7 @@
 
 
 // Renamer circuit.  Renames the assembly it is in.  Useful in cooperation with telecomms-based circuits.
-/obj/item/integrated_circuit/manipulation/renamer
+obj/item/integrated_circuit/manipulation/renamer
 	name = "renamer"
 	desc = "A small circuit that renames the assembly it is in.  Useful paired with speech-based circuits."
 	icon_state = "internalbm"
@@ -735,7 +735,7 @@
 	power_draw_per_use = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/manipulation/renamer/do_work(ord)
+obj/item/integrated_circuit/manipulation/renamer/do_work(ord)
 	if(!assembly)
 		return
 	switch(ord)
@@ -753,7 +753,7 @@
 
 
 // - redescribing circuit - //
-/obj/item/integrated_circuit/manipulation/redescribe
+obj/item/integrated_circuit/manipulation/redescribe
 	name = "redescriber"
 	desc = "Takes any string as an input and will set it as the assembly's description."
 	extended_desc = "Strings should can be of any length."
@@ -765,7 +765,7 @@
 	activators = list("redescribe" = IC_PINTYPE_PULSE_IN,"get description" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/manipulation/redescribe/do_work(ord)
+obj/item/integrated_circuit/manipulation/redescribe/do_work(ord)
 	if(!assembly)
 		return
 
@@ -780,7 +780,7 @@
 	activate_pin(3)
 
 // - repainting circuit - //
-/obj/item/integrated_circuit/manipulation/repaint
+obj/item/integrated_circuit/manipulation/repaint
 	name = "auto-repainter"
 	desc = "There's an oddly high amount of spraying cans fitted right inside this circuit."
 	extended_desc = "Takes a value in hexadecimal and uses it to repaint the assembly it is in."
@@ -791,7 +791,7 @@
 	activators = list("repaint" = IC_PINTYPE_PULSE_IN,"get color" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/manipulation/repaint/do_work(ord)
+obj/item/integrated_circuit/manipulation/repaint/do_work(ord)
 	if(!assembly)
 		return
 
@@ -806,7 +806,7 @@
 
 	activate_pin(3)
 
-/obj/item/integrated_circuit/manipulation/weapon_firing
+obj/item/integrated_circuit/manipulation/weapon_firing
 	name = "weapon firing mechanism"
 	desc = "This somewhat complicated system allows one to slot in a gun, direct it towards a position, and remotely fire it."
 	extended_desc = "The firing mechanism can slot in most ranged weapons, ballistic and energy.  \
@@ -830,16 +830,16 @@
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
 	power_draw_per_use = 50 // The targeting mechanism uses this.  The actual gun uses its own cell for firing if it's an energy weapon.
 
-/obj/item/integrated_circuit/manipulation/weapon_firing/Destroy()
+obj/item/integrated_circuit/manipulation/weapon_firing/Destroy()
 	installed_gun = null // It will be qdel'd by ..() if still in our contents
 	return ..()
 
-/obj/item/integrated_circuit/manipulation/weapon_firing/proc/ask_for_input(obj/item/I, mob/living/user, a_intent)
+obj/item/integrated_circuit/manipulation/weapon_firing/proc/ask_for_input(obj/item/I, mob/living/user, a_intent)
 	if(!isobj(I))
 		return FALSE
 	attackby_react(I, user, a_intent)
 
-/obj/item/integrated_circuit/manipulation/weapon_firing/attackby_react(var/obj/O, var/mob/user)
+obj/item/integrated_circuit/manipulation/weapon_firing/attackby_react(var/obj/O, var/mob/user)
 	if(istype(O, /obj/item/gun))
 		var/obj/item/gun/gun = O
 		if(installed_gun)
@@ -854,7 +854,7 @@
 	else
 		..()
 
-/obj/item/integrated_circuit/manipulation/weapon_firing/attack_self(mob/user)
+obj/item/integrated_circuit/manipulation/weapon_firing/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -867,7 +867,7 @@
 	else
 		to_chat(user, "<span class='notice'>There's no weapon to remove from the mechanism.</span>")
 
-/obj/item/integrated_circuit/manipulation/weapon_firing/do_work()
+obj/item/integrated_circuit/manipulation/weapon_firing/do_work()
 	if(!installed_gun)
 		return
 
@@ -915,7 +915,7 @@
 		installed_gun.Fire_userless(T)
 
 
-/obj/item/integrated_circuit/manipulation/grenade
+obj/item/integrated_circuit/manipulation/grenade
 	name = "grenade primer"
 	desc = "This circuit comes with the ability to attach most types of grenades at prime them at will."
 	extended_desc = "Time between priming and detonation is limited to between 1 to 12 seconds but is optional.  \
@@ -933,24 +933,24 @@
 	var/obj/item/grenade/attached_grenade
 	var/pre_attached_grenade_type
 
-/obj/item/integrated_circuit/manipulation/grenade/Initialize(mapload)
+obj/item/integrated_circuit/manipulation/grenade/Initialize(mapload)
 	. = ..()
 	if(pre_attached_grenade_type)
 		var/grenade = new pre_attached_grenade_type(src)
 		attach_grenade(grenade)
 
-/obj/item/integrated_circuit/manipulation/grenade/Destroy()
+obj/item/integrated_circuit/manipulation/grenade/Destroy()
 	if(attached_grenade && !attached_grenade.active)
 		attached_grenade.dropInto(loc)
 	detach_grenade()
 	. =..()
 
-/obj/item/integrated_circuit/manipulation/grenade/proc/ask_for_input(obj/item/I, mob/living/user, a_intent)
+obj/item/integrated_circuit/manipulation/grenade/proc/ask_for_input(obj/item/I, mob/living/user, a_intent)
 	if(!isobj(I))
 		return FALSE
 	attackby_react(I, user, a_intent)
 
-/obj/item/integrated_circuit/manipulation/grenade/attackby_react(var/obj/item/grenade/G, var/mob/user)
+obj/item/integrated_circuit/manipulation/grenade/attackby_react(var/obj/item/grenade/G, var/mob/user)
 	if(istype(G))
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
 		if(attached_grenade)
@@ -964,7 +964,7 @@
 	else
 		return ..()
 
-/obj/item/integrated_circuit/manipulation/grenade/attack_self(mob/user)
+obj/item/integrated_circuit/manipulation/grenade/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -976,7 +976,7 @@
 	else
 		return ..()
 
-/obj/item/integrated_circuit/manipulation/grenade/do_work()
+obj/item/integrated_circuit/manipulation/grenade/do_work()
 	if(attached_grenade && !attached_grenade.active)
 		var/datum/integrated_io/detonation_time = inputs[1]
 		if(isnum(detonation_time.data) && detonation_time.data > 0)
@@ -986,13 +986,13 @@
 		log_and_message_admins("activated a grenade assembly.  Last touches: Assembly: [holder.fingerprintslast] Circuit: [fingerprintslast] Grenade: [attached_grenade.fingerprintslast]")
 
 /// These procs do not relocate the grenade, that's the callers responsibility
-/obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(var/obj/item/grenade/G)
+obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(var/obj/item/grenade/G)
 	attached_grenade = G
 	RegisterSignal(attached_grenade, COMSIG_PARENT_QDELETING, .proc/detach_grenade)
 	size += G.w_class
 	desc += " \An [attached_grenade] is attached to it!"
 
-/obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade()
+obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade()
 	if(!attached_grenade)
 		return
 	UnregisterSignal(attached_grenade, COMSIG_PARENT_QDELETING)

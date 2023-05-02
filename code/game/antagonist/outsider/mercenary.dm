@@ -1,6 +1,6 @@
 var/datum/antagonist/mercenary/mercs
 
-/datum/antagonist/mercenary
+datum/antagonist/mercenary
 	id = MODE_MERCENARY
 	role_type = BE_OPERATIVE
 	role_text = "Mercenary"
@@ -19,18 +19,18 @@ var/datum/antagonist/mercenary/mercs
 	initial_spawn_req = 3
 	initial_spawn_target = 3
 
-/datum/antagonist/mercenary/New()
+datum/antagonist/mercenary/New()
 	..()
 	mercs = src
 
-/datum/antagonist/mercenary/create_global_objectives()
+datum/antagonist/mercenary/create_global_objectives()
 	if(!..())
 		return 0
 	global_objectives = list()
 	global_objectives |= new /datum/objective/nuclear
 	return 1
 
-/datum/antagonist/mercenary/equip(var/mob/living/carbon/human/player)
+datum/antagonist/mercenary/equip(var/mob/living/carbon/human/player)
 
 	if(!..())
 		return 0

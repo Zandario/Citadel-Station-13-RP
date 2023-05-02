@@ -1,4 +1,4 @@
-/obj/item/clothing/accessory/locket
+obj/item/clothing/accessory/locket
 	name = "silver locket"
 	desc = "A small locket of high-quality metal."
 	icon_state = "locket"
@@ -11,7 +11,7 @@
 	var/open
 	var/obj/item/held //Item inside locket.
 
-/obj/item/clothing/accessory/locket/attack_self(mob/user)
+obj/item/clothing/accessory/locket/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -33,7 +33,7 @@
 	else
 		icon_state = "[base_icon]"
 
-/obj/item/clothing/accessory/locket/attackby(var/obj/item/O as obj, mob/user as mob)
+obj/item/clothing/accessory/locket/attackby(var/obj/item/O as obj, mob/user as mob)
 	if(!open)
 		to_chat(user, "You have to open it first.")
 		return

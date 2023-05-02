@@ -1,4 +1,4 @@
-/datum/artifact_effect
+datum/artifact_effect
 	var/name = "unknown"
 	var/effect = EFFECT_TOUCH
 	var/effectrange = 4
@@ -10,7 +10,7 @@
 	var/artifact_id = ""
 	var/effect_type = 0
 
-/datum/artifact_effect/New(var/atom/location)
+datum/artifact_effect/New(var/atom/location)
 	..()
 	holder = location
 	effect = rand(0, MAX_EFFECT)
@@ -34,7 +34,7 @@
 			chargelevelmax = rand(20, 120)
 			effectrange = rand(20, 100)
 
-/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = 1)
+datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = 1)
 	//so that other stuff happens first
 	spawn(0)
 		if(activated)
@@ -55,12 +55,12 @@
 				toplevelholder = toplevelholder.loc
 			toplevelholder.visible_message("<font color='red'>[icon2html(thing = toplevelholder, target = world)] [toplevelholder] [display_msg]</font>")
 
-/datum/artifact_effect/proc/DoEffectTouch(var/mob/user)
-/datum/artifact_effect/proc/DoEffectAura(var/atom/holder)
-/datum/artifact_effect/proc/DoEffectPulse(var/atom/holder)
-/datum/artifact_effect/proc/UpdateMove()
+datum/artifact_effect/proc/DoEffectTouch(var/mob/user)
+datum/artifact_effect/proc/DoEffectAura(var/atom/holder)
+datum/artifact_effect/proc/DoEffectPulse(var/atom/holder)
+datum/artifact_effect/proc/UpdateMove()
 
-/datum/artifact_effect/process(delta_time)
+datum/artifact_effect/process(delta_time)
 	if(chargelevel < chargelevelmax)
 		chargelevel++
 
@@ -71,7 +71,7 @@
 			chargelevel = 0
 			DoEffectPulse()
 
-/datum/artifact_effect/proc/getDescription()
+datum/artifact_effect/proc/getDescription()
 	. = "<b>"
 	switch(effect_type)
 		if(EFFECT_ENERGY)
@@ -116,7 +116,7 @@
 			. += " Unable to determine any data about activation trigger."
 
 //returns 0..1, with 1 being no protection and 0 being fully protected
-/proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
+proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
 	if(!istype(H))
 		return 1
 	if(istype(get_area(H),/area/crew_quarters/sleep))

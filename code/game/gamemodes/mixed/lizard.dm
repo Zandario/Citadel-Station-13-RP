@@ -1,4 +1,4 @@
-/datum/game_mode/lizard
+datum/game_mode/lizard
 	name = "Technomancers & Changelings"
 	round_description = "A space wizard and changelings have invaded the station!"
 	extended_round_description = "Changelings and a wizard spawn during this round."

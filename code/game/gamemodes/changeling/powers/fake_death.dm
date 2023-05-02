@@ -1,4 +1,4 @@
-/datum/power/changeling/fakedeath
+datum/power/changeling/fakedeath
 	name = "Regenerative Stasis"
 	desc = "We become weakened to a death-like state, where we will rise again from death."
 	helptext = "Can be used before or after death. Duration varies greatly."
@@ -8,7 +8,7 @@
 	verbpath = /mob/proc/changeling_fakedeath
 
 //Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short delay.
-/mob/proc/changeling_fakedeath()
+mob/proc/changeling_fakedeath()
 	set category = "Changeling"
 	set name = "Regenerative Stasis (20)"
 

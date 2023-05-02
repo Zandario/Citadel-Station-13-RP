@@ -1,4 +1,4 @@
-/obj/effect/falling_effect
+obj/effect/falling_effect
 	name = "you should not see this"
 	desc = "no data"
 	invisibility = 101
@@ -8,7 +8,7 @@
 	var/falling_type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
 	var/crushing = TRUE
 
-/obj/effect/falling_effect/Initialize(mapload)
+obj/effect/falling_effect/Initialize(mapload)
 	. = ..()
 	new falling_type(src)
 	var/atom/movable/dropped = pick(contents) // Stupid, but allows to get spawn result without efforts if it is other type(Or if it was randomly generated).
@@ -24,7 +24,7 @@
 	addtimer(CALLBACK(dropped, /atom/movable.proc/end_fall), 7)
 	return INITIALIZE_HINT_QDEL
 
-/atom/movable/proc/end_fall(var/crushing = FALSE)
+atom/movable/proc/end_fall(var/crushing = FALSE)
 	if(crushing)
 		for(var/atom/movable/AM in loc)
 			if(AM != src)
@@ -39,11 +39,11 @@
 	opacity = initial(opacity)
 	plane = initial(plane)
 
-/obj/effect/falling_effect/singularity_act()
+obj/effect/falling_effect/singularity_act()
 	return
 
-/obj/effect/falling_effect/singularity_pull()
+obj/effect/falling_effect/singularity_pull()
 	return
 
-/obj/effect/falling_effect/legacy_ex_act()
+obj/effect/falling_effect/legacy_ex_act()
 	return

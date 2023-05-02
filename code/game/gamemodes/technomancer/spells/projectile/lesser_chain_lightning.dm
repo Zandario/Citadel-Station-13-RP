@@ -1,4 +1,4 @@
-/datum/technomancer/spell/lesser_chain_lightning
+datum/technomancer/spell/lesser_chain_lightning
 	name = "Lesser Chain Lightning"
 	desc = "This is very similar to the function Chain Lightning, however it is considerably less powerful.  As a result, it's a lot \
 	more economical in terms of energy cost, as well as instability generation.  Lightning functions cannot miss due to distance."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_chain_lightning"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/projectile/chain_lightning/lesser
+obj/item/spell/projectile/chain_lightning/lesser
 	name = "lesser chain lightning"
 	icon_state = "chain_lightning"
 	desc = "Now you can throw around lightning like it's nobody's business."
@@ -18,6 +18,6 @@
 	instability_per_shot = 5
 	cooldown = 10
 
-/obj/projectile/beam/chain_lightning/lesser
+obj/projectile/beam/chain_lightning/lesser
 	bounces = 2
 	power = 20

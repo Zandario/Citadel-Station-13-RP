@@ -1,5 +1,5 @@
 //Under clothing
-/obj/item/clothing/under
+obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	inhand_default_type = INHAND_DEFAULT_ICON_UNIFORMS
 	name = "under"
@@ -67,14 +67,14 @@
 	var/icon/rolled_down_sleeves_icon = 'icons/mob/clothing/uniform_sleeves_rolled.dmi'
 
 // todo kick to item flag for auto-unequip-without-clickdrag
-/obj/item/clothing/under/attack_hand(mob/user, list/params)
+obj/item/clothing/under/attack_hand(mob/user, list/params)
 	if(LAZYLEN(accessories))
 		..()
 	if ((ishuman(usr) || issmall(usr)) && src.loc == user)
 		return
 	..()
 
-/obj/item/clothing/under/Initialize(mapload)
+obj/item/clothing/under/Initialize(mapload)
 	. = ..()
 	CONSTRUCT_BODYTYPES(worn_rolldown_bodytypes)
 	CONSTRUCT_BODYTYPES(worn_rollsleeve_bodytypes)
@@ -85,7 +85,7 @@
 	var/mob/living/carbon/human/H = loc
 	init_sensors(istype(H)? H : null)
 
-/obj/item/clothing/under/proc/init_sensors(mob/living/carbon/human/H)
+obj/item/clothing/under/proc/init_sensors(mob/living/carbon/human/H)
 	if(has_sensors == UNIFORM_HAS_LOCKED_SENSORS)
 		return
 	if(H)
@@ -101,7 +101,7 @@
 
 //? Styles
 
-/obj/item/clothing/under/available_styles(mob/user)
+obj/item/clothing/under/available_styles(mob/user)
 	. = list()
 	var/old_roll = worn_rolled_down
 	var/old_sleeves = worn_rolled_sleeves
@@ -119,7 +119,7 @@
 	worn_rolled_down = old_roll
 	worn_rolled_sleeves = old_sleeves
 
-/obj/item/clothing/under/set_style(style, mob/user)
+obj/item/clothing/under/set_style(style, mob/user)
 	. = ..()
 	if(.)
 		return
@@ -147,7 +147,7 @@
 			return TRUE
 
 //! Inventory
-/obj/item/clothing/under/pickup(mob/user, flags, atom/oldLoc)
+obj/item/clothing/under/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	// since updating is now semi-cheap, update immediately
 	update_rolldown()
@@ -156,12 +156,12 @@
 //! Rendering
 // todo : NUKE THIS SHIT FROM ORBIT ~silicons
 //UNIFORM: Always appends "_s" to iconstate, stupidly.
-/obj/item/clothing/under/resolve_legacy_state(mob/M, datum/inventory_slot_meta/slot_meta, inhands, bodytype)
+obj/item/clothing/under/resolve_legacy_state(mob/M, datum/inventory_slot_meta/slot_meta, inhands, bodytype)
 	if(snowflake_worn_state && (slot_meta.id == SLOT_ID_UNIFORM))
 		return snowflake_worn_state + "_s"
 	return ..()
 
-/obj/item/clothing/under/base_worn_state(inhands, slot_key, bodytype)
+obj/item/clothing/under/base_worn_state(inhands, slot_key, bodytype)
 	. = ..()
 	if(worn_rolled_down == UNIFORM_ROLL_TRUE)
 		if(worn_rolldown_state)
@@ -172,7 +172,7 @@
 			return worn_rollsleeve_state
 		. += "_sleeves"
 
-/obj/item/clothing/under/proc/update_rolldown(updating)
+obj/item/clothing/under/proc/update_rolldown(updating)
 	var/has_roll
 	var/detected_bodytype = BODYTYPE_DEFAULT
 	var/mob/living/carbon/human/H = worn_mob()
@@ -194,7 +194,7 @@
 	if(!updating)
 		update_worn_icon()
 
-/obj/item/clothing/under/proc/update_rollsleeve(updating)
+obj/item/clothing/under/proc/update_rollsleeve(updating)
 	var/has_sleeves
 	var/detected_bodytype = BODYTYPE_DEFAULT
 	var/mob/living/carbon/human/H = worn_mob()
@@ -216,16 +216,16 @@
 	if(!updating)
 		update_worn_icon()
 
-/obj/item/clothing/under/proc/autodetect_rolldown(bodytype)
+obj/item/clothing/under/proc/autodetect_rolldown(bodytype)
 	var/datum/inventory_slot_meta/inventory/uniform/wow_this_sucks = resolve_inventory_slot_meta(SLOT_ID_UNIFORM)
 	return wow_this_sucks.check_rolldown_cache(bodytype, resolve_legacy_state(null, wow_this_sucks, FALSE, bodytype))
 
-/obj/item/clothing/under/proc/autodetect_rollsleeve(bodytype)
+obj/item/clothing/under/proc/autodetect_rollsleeve(bodytype)
 	var/datum/inventory_slot_meta/inventory/uniform/wow_this_sucks = resolve_inventory_slot_meta(SLOT_ID_UNIFORM)
 	return wow_this_sucks.check_rollsleeve_cache(bodytype, resolve_legacy_state(null, wow_this_sucks, FALSE, bodytype))
 
 //! Examine
-/obj/item/clothing/under/examine(mob/user)
+obj/item/clothing/under/examine(mob/user)
 	. = ..()
 	switch(sensor_mode)
 		if(0)
@@ -238,7 +238,7 @@
 			. += "Its vital tracker and tracking beacon appear to be enabled."
 
 //! Suit Sensors
-/obj/item/clothing/under/proc/set_sensors(mob/user)
+obj/item/clothing/under/proc/set_sensors(mob/user)
 	if (istype(user, /mob/observer))
 		return FALSE
 	if (user.stat || user.restrained())
@@ -272,18 +272,18 @@
 	else if (istype(loc, /mob))
 		user.visible_message("[user] adjusts [loc]'s sensors.", "You adjust [loc]'s sensors.")
 
-/obj/item/clothing/under/verb/toggle()
+obj/item/clothing/under/verb/toggle()
 	set name = "Toggle Suit Sensors"
 	set category = "Object"
 	set src in usr
 	set_sensors(usr)
 
 //! Strip Menu
-/obj/item/clothing/under/strip_menu_options(mob/user)
+obj/item/clothing/under/strip_menu_options(mob/user)
 	. = ..()
 	.["sensors"] = "Set Suit Sensors"
 
-/obj/item/clothing/under/strip_menu_act(mob/user, action)
+obj/item/clothing/under/strip_menu_act(mob/user, action)
 	. = ..()
 	switch(action)
 		if("sensors")
@@ -295,13 +295,13 @@
 			if(do_after(user, HUMAN_STRIP_DELAY, M, DO_AFTER_IGNORE_ACTIVE_ITEM))
 				. = strip_menu_sensor_interact(user, M)
 
-/obj/item/clothing/under/proc/strip_menu_sensor_interact(mob/user, mob/wearer = worn_mob())
+obj/item/clothing/under/proc/strip_menu_sensor_interact(mob/user, mob/wearer = worn_mob())
 	add_attack_logs(user, wearer, "Adjusted suit sensor level")
 	set_sensors(user)
 
-/obj/item/clothing/under/rank
+obj/item/clothing/under/rank
 
-/obj/item/clothing/under/rank/init_sensors(mob/living/carbon/human/H)
+obj/item/clothing/under/rank/init_sensors(mob/living/carbon/human/H)
 	if(!H)
 		sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)	//Select a random setting
 	return ..()

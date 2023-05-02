@@ -1,5 +1,5 @@
 //Mask
-/obj/item/clothing/mask
+obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi' //custom species support.
 	inhand_default_type = INHAND_DEFAULT_ICON_MASKS
@@ -12,5 +12,5 @@
 	var/list/say_messages
 	var/list/say_verbs
 
-/obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
+obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return

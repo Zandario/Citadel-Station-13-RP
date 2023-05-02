@@ -1,4 +1,4 @@
-/datum/event/prison_break
+datum/event/prison_break
 	startWhen		= 5
 	announceWhen	= 75
 
@@ -10,37 +10,37 @@
 	var/list/areaType = list(/area/security/prison, /area/security/brig)	//Area types to include.
 	var/list/areaNotType = list()		//Area types to specifically exclude.
 
-/datum/event/prison_break/virology
+datum/event/prison_break/virology
 	eventDept = "Medical"
 	areaName = list("Virology")
 	areaType = list(/area/medical/virology, /area/medical/virologyaccess)
 
-/datum/event/prison_break/xenobiology
+datum/event/prison_break/xenobiology
 	eventDept = "Science"
 	areaName = list("Xenobiology")
 	areaType = list(/area/rnd/xenobiology)
 	areaNotType = list(/area/rnd/xenobiology/xenoflora, /area/rnd/xenobiology/xenoflora_storage)
 
-/datum/event/prison_break/station
+datum/event/prison_break/station
 	eventDept = "Station"
 	areaName = list("Brig","Virology","Xenobiology")
 	areaType = list(/area/security/prison, /area/security/brig, /area/medical/virology, /area/medical/virologyaccess, /area/rnd/xenobiology)
 	areaNotType = list(/area/rnd/xenobiology/xenoflora, /area/rnd/xenobiology/xenoflora_storage)
 
 
-/datum/event/prison_break/setup()
+datum/event/prison_break/setup()
 	announceWhen = rand(75, 105)
 	releaseWhen = rand(60, 90)
 
 	src.endWhen = src.releaseWhen+2
 
 
-/datum/event/prison_break/announce()
+datum/event/prison_break/announce()
 	if(areas && areas.len > 0)
 		command_announcement.Announce("[pick("Gr3y.T1d3 virus","Malignant trojan")] detected in [station_name()] [(eventDept == "Security")? "imprisonment":"containment"] subroutines. Secure any compromised areas immediately. Station AI involvement is recommended.", "[eventDept] Alert")
 
 
-/datum/event/prison_break/start()
+datum/event/prison_break/start()
 	for(var/area/A in GLOB.sortedAreas)
 		if(is_type_in_list(A,areaType) && !is_type_in_list(A,areaNotType))
 			areas += A
@@ -58,7 +58,7 @@
 		kill()
 
 
-/datum/event/prison_break/tick()
+datum/event/prison_break/tick()
 	if(activeFor == releaseWhen)
 		if(areas && areas.len > 0)
 			var/obj/machinery/power/apc/theAPC = null
@@ -69,6 +69,6 @@
 						L.flicker(10)
 
 
-/datum/event/prison_break/end()
+datum/event/prison_break/end()
 	for(var/area/A in shuffle(areas))
 		A.prison_break()

@@ -1,6 +1,6 @@
 
 
-/obj/machinery/fossilrevive
+obj/machinery/fossilrevive
 	name = "fossil DNA extraction system"
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
@@ -13,7 +13,7 @@
 	circuit = /obj/item/circuitboard/dnarevive
 	var/reviving = FALSE
 
-/obj/machinery/fossilrevive/attackby(obj/item/I, mob/user)
+obj/machinery/fossilrevive/attackby(obj/item/I, mob/user)
 	if(reviving)
 		to_chat(user, SPAN_NOTICE("The machine is processing!"))
 		return ..()
@@ -28,7 +28,7 @@
 	else
 		to_chat(user, SPAN_WARNING("That fossil has either already been processed, or does not contain valid genetic material."))
 
-/obj/machinery/fossilrevive/proc/findsaway(generatetype)
+obj/machinery/fossilrevive/proc/findsaway(generatetype)
 	var/droploc = get_turf(src)
 	if(generatetype == "seed")
 		flick("pod_g", src)

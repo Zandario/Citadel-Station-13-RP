@@ -4,7 +4,7 @@
 
 var/datum/paiController/paiController			// Global handler for pAI candidates
 
-/datum/paiCandidate
+datum/paiCandidate
 	var/name
 	var/key
 	var/description
@@ -13,19 +13,19 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 	var/ready = 0
 
 
-/hook/startup/proc/paiControllerSetup()
+hook/startup/proc/paiControllerSetup()
 	paiController = new /datum/paiController()
 	return 1
 
 
-/datum/paiController
+datum/paiController
 	var/inquirer = null
 	var/list/pai_candidates = list()
 	var/list/asked = list()
 
 	var/askDelay = 10 * 60 * 1	// One minute [ms * sec * min]
 
-/datum/paiController/Topic(href, href_list[])
+datum/paiController/Topic(href, href_list[])
 	if(href_list["download"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
 		var/obj/item/paicard/card = locate(href_list["device"])
@@ -95,7 +95,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 		recruitWindow(usr, href_list["allow_submit"] != "0")
 
-/datum/paiController/proc/recruitWindow(var/mob/M as mob, allowSubmit = 1)
+datum/paiController/proc/recruitWindow(var/mob/M as mob, allowSubmit = 1)
 	var/datum/paiCandidate/candidate
 	for(var/datum/paiCandidate/c in pai_candidates)
 		if(!istype(c) || !istype(M))
@@ -227,7 +227,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 	M << browse(dat, "window=paiRecruit;size=580x580;")
 
-/datum/paiController/proc/findPAI(var/obj/item/paicard/p, var/mob/user)
+datum/paiController/proc/findPAI(var/obj/item/paicard/p, var/mob/user)
 	requestRecruits(user)
 	var/list/available = list()
 	for(var/datum/paiCandidate/c in paiController.pai_candidates)
@@ -344,7 +344,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 	user << browse(dat, "window=findPai")
 
 
-/datum/paiController/proc/requestRecruits(var/mob/user)
+datum/paiController/proc/requestRecruits(var/mob/user)
 	inquirer = user
 	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
@@ -360,7 +360,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 			if(O.client.prefs.be_special & BE_PAI)
 				question(O.client)
 
-/datum/paiController/proc/question(var/client/C)
+datum/paiController/proc/question(var/client/C)
 	spawn(0)
 		if(!C)	return
 		asked.Add(C.key)

@@ -1,4 +1,4 @@
-/obj/machinery/computer/cloning
+obj/machinery/computer/cloning
 	name = "cloning control console"
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
@@ -16,20 +16,20 @@
 	var/loading = 0 // Nice loading text
 
 
-/obj/machinery/computer/cloning/Initialize(mapload)
+obj/machinery/computer/cloning/Initialize(mapload)
 	. = ..()
 	updatemodules()
 
-/obj/machinery/computer/cloning/Destroy()
+obj/machinery/computer/cloning/Destroy()
 	releasecloner()
 	..()
 
-/obj/machinery/computer/cloning/proc/updatemodules()
+obj/machinery/computer/cloning/proc/updatemodules()
 	scanner = findscanner()
 	releasecloner()
 	findcloner()
 
-/obj/machinery/computer/cloning/proc/findscanner()
+obj/machinery/computer/cloning/proc/findscanner()
 	var/obj/machinery/dna_scannernew/scannerf = null
 
 	//Try to find scanner on adjacent tiles first
@@ -46,13 +46,13 @@
 
 	return
 
-/obj/machinery/computer/cloning/proc/releasecloner()
+obj/machinery/computer/cloning/proc/releasecloner()
 	for(var/obj/machinery/clonepod/P in pods)
 		P.connected = null
 		P.name = initial(P.name)
 	pods.Cut()
 
-/obj/machinery/computer/cloning/proc/findcloner()
+obj/machinery/computer/cloning/proc/findcloner()
 	var/num = 1
 	var/area/A = get_area(src)
 	for(var/obj/machinery/clonepod/P in A.get_contents())
@@ -61,7 +61,7 @@
 			P.connected = src
 			P.name = "[initial(P.name)] #[num++]"
 
-/obj/machinery/computer/cloning/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/computer/cloning/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/disk/data)) //INSERT SOME DISKETTES
 		if (!diskette)
 			if(!user.attempt_insert_item_for_installation(W, src))
@@ -91,10 +91,10 @@
 		..()
 	return
 
-/obj/machinery/computer/cloning/attack_ai(mob/user as mob)
+obj/machinery/computer/cloning/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/cloning/attack_hand(mob/user, list/params)
+obj/machinery/computer/cloning/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	add_fingerprint(user)
 
@@ -105,7 +105,7 @@
 
 	nano_ui_interact(user)
 
-/obj/machinery/computer/cloning/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/computer/cloning/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/data[0]
@@ -153,7 +153,7 @@
 		ui.open()
 		ui.set_auto_update(5)
 
-/obj/machinery/computer/cloning/Topic(href, href_list)
+obj/machinery/computer/cloning/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -288,7 +288,7 @@
 	SSnanoui.update_uis(src)
 	add_fingerprint(usr)
 
-/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
+obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
 	var/brain_skip = 0
 	if (istype(subject, /mob/living/carbon/brain)) //Brain scans.
 		brain_skip = 1
@@ -368,7 +368,7 @@
 	scantemp = "Subject successfully scanned."
 
 //Find a specific record by key.
-/obj/machinery/computer/cloning/proc/find_record(var/find_key)
+obj/machinery/computer/cloning/proc/find_record(var/find_key)
 	var/selected_record = null
 	for(var/datum/dna2/record/R in records)
 		if (R.ckey == find_key)

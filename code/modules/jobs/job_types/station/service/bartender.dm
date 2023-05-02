@@ -1,4 +1,4 @@
-/datum/role/job/station/bartender
+datum/role/job/station/bartender
 	id = JOB_ID_BARTENDER
 	title = "Bartender"
 	flag = BARTENDER
@@ -21,19 +21,19 @@
 		"Barmaid" = /datum/prototype/alt_title/bartender/barmaid
 	)
 
-/datum/prototype/alt_title/bartender/barkeeper
+datum/prototype/alt_title/bartender/barkeeper
 	title = "Barkeeper"
 
-/datum/prototype/alt_title/bartender/barmaid
+datum/prototype/alt_title/bartender/barmaid
 	title = "Barmaid"
 
-/datum/prototype/alt_title/bartender/barista
+datum/prototype/alt_title/bartender/barista
 	title = "Barista"
 	title_blurb = "A barista mans the Cafe, serving primarily non-alcoholic drinks to the crew. They generally have permission to charge for drinks \
 					or deny service to unruly patrons."
 	title_outfit = /datum/outfit/job/station/bartender/barista
 
-/datum/outfit/job/station/bartender
+datum/outfit/job/station/bartender
 	name = OUTFIT_JOB_NAME("Bartender")
 	uniform = /obj/item/clothing/under/rank/bartender
 	id_type = /obj/item/card/id/civilian/bartender
@@ -41,13 +41,12 @@
 	l_ear = /obj/item/radio/headset/headset_service
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/bar = 1)
 
-/datum/outfit/job/station/bartender/post_equip(mob/living/carbon/human/H)
+datum/outfit/job/station/bartender/post_equip(mob/living/carbon/human/H)
 	..()
 	for(var/obj/item/clothing/accessory/permit/gun/bar/permit in H.back.contents)
 		permit.set_name(H.real_name)
 
-/datum/outfit/job/station/bartender/barista
+datum/outfit/job/station/bartender/barista
 	name = OUTFIT_JOB_NAME("Barista")
 	id_pda_assignment = "Barista"
 	backpack_contents = null
-

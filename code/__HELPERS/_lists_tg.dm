@@ -1,7 +1,7 @@
 
 //Removes any null entries from the list
 //Returns TRUE if the list had nulls, FALSE otherwise
-/proc/listclearnulls(list/L)
+proc/listclearnulls(list/L)
 	var/start_len = L.len
 	var/list/N = new(start_len)
 	L -= N
@@ -12,7 +12,7 @@
  * If skiprep = 1, repeated elements are treated as one.
  * If either of arguments is not a list, returns null
  */
-/proc/difflist(list/first, list/second, skiprep=0)
+proc/difflist(list/first, list/second, skiprep=0)
 	if(!islist(first) || !islist(second))
 		return
 	var/list/result = new
@@ -29,7 +29,7 @@
  * If skipref = 1, repeated elements are treated as one.
  * If either of arguments is not a list, returns null
  */
-/proc/uniquemergelist(list/first, list/second, skiprep=0)
+proc/uniquemergelist(list/first, list/second, skiprep=0)
 	if(!islist(first) || !islist(second))
 		return
 	var/list/result = new
@@ -39,7 +39,7 @@
 		result = first ^ second
 	return result
 
-/proc/sorted_insert(list/L, thing, comparator)
+proc/sorted_insert(list/L, thing, comparator)
 	var/pos = L.len
 	while(pos > 0 && call(comparator)(thing, L[pos]) > 0)
 		pos--
@@ -49,7 +49,7 @@
 Two lists may be different (A!=B) even if they have the same elements.
 This actually tests if they have the same entries and values.
 */
-/proc/same_entries(var/list/first, var/list/second)
+proc/same_entries(var/list/first, var/list/second)
 	if(!islist(first) || !islist(second))
 		return 0
 	if(length(first) != length(second))
@@ -61,25 +61,25 @@ This actually tests if they have the same entries and values.
 
 
 //for sorting clients or mobs by ckey
-/proc/sortKey(list/L, order=1)
+proc/sortKey(list/L, order=1)
 	return tim_sort(L, order >= 0 ? /proc/cmp_ckey_asc : /proc/cmp_ckey_dsc)
 
 //Specifically for record datums in a list.
-/proc/sortRecord(list/L, field = "name", order = 1)
+proc/sortRecord(list/L, field = "name", order = 1)
 	GLOB.cmp_field = field
 	return tim_sort(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc)
 
 //any value in a list
-/proc/sortList(list/L, cmp=/proc/cmp_text_asc)
+proc/sortList(list/L, cmp=/proc/cmp_text_asc)
 	return tim_sort(L.Copy(), cmp)
 
 //uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
-/proc/sortNames(list/L, order=1)
+proc/sortNames(list/L, order=1)
 	return tim_sort(L, order >= 0 ? /proc/cmp_name_asc : /proc/cmp_name_dsc)
 
 
 
-/proc/count_by_type(list/L, type)
+proc/count_by_type(list/L, type)
 	var/i = 0
 	for(var/T in L)
 		if(istype(T, type))
@@ -94,7 +94,7 @@ This actually tests if they have the same entries and values.
  * fromIndex and toIndex must be in the range [1,L.len+1]
  * This will preserve associations ~Carnie
  */
-/proc/move_element(list/L, fromIndex, toIndex)
+proc/move_element(list/L, fromIndex, toIndex)
 	if(fromIndex == toIndex || fromIndex+1 == toIndex)	//no need to move
 		return
 	if(fromIndex > toIndex)
@@ -109,7 +109,7 @@ This actually tests if they have the same entries and values.
  * Same as move_element but for ranges of elements
  * This will preserve associations ~Carnie
  */
-/proc/move_range(list/L, fromIndex, toIndex, len=1)
+proc/move_range(list/L, fromIndex, toIndex, len=1)
 	var/distance = abs(toIndex - fromIndex)
 	if(len >= distance)	//there are more elements to be moved than the distance to be moved. Therefore the same result can be achieved (with fewer operations) by moving elements between where we are and where we are going. The result being, our range we are moving is shifted left or right by dist elements
 		if(fromIndex <= toIndex)
@@ -132,7 +132,7 @@ This actually tests if they have the same entries and values.
 //Move elements from [fromIndex, fromIndex+len) to [toIndex, toIndex+len)
 //Move any elements being overwritten by the move to the now-empty elements, preserving order
 //Note: if the two ranges overlap, only the destination order will be preserved fully, since some elements will be within both ranges ~Carnie
-/proc/swapRange(list/L, fromIndex, toIndex, len=1)
+proc/swapRange(list/L, fromIndex, toIndex, len=1)
 	var/distance = abs(toIndex - fromIndex)
 	if(len > distance)	//there is an overlap, therefore swapping each element will require more swaps than inserting new elements
 		if(fromIndex < toIndex)
@@ -154,7 +154,7 @@ This actually tests if they have the same entries and values.
 			L.Swap(fromIndex++, toIndex++)
 
 //replaces reverseList ~Carnie
-/proc/reverseRange(list/L, start=1, end=0)
+proc/reverseRange(list/L, start=1, end=0)
 	if(L.len)
 		start = start % L.len
 		end = end % (L.len+1)
@@ -173,7 +173,7 @@ This actually tests if they have the same entries and values.
 //return first thing in L which has var/varname == value
 //this is typecaste as list/L, but you could actually feed it an atom instead.
 //completely safe to use
-/proc/getElementByVar(list/L, varname, value)
+proc/getElementByVar(list/L, varname, value)
 	varname = "[varname]"
 	for(var/datum/D in L)
 		if(D.vars.Find(varname))
@@ -181,20 +181,20 @@ This actually tests if they have the same entries and values.
 				return D
 
 //remove all nulls from a list
-/proc/removeNullsFromList(list/L)
+proc/removeNullsFromList(list/L)
 	while(L.Remove(null))
 		continue
 	return L
 
 
 //! ## VR FILE MERGE ## !//
-/proc/dd_sortedObjectList(var/list/L, var/cache=list())
+proc/dd_sortedObjectList(var/list/L, var/cache=list())
 	if(L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1 // Copy is first,second-1
 	return dd_mergeObjectList(dd_sortedObjectList(L.Copy(0,middle), cache), dd_sortedObjectList(L.Copy(middle), cache), cache) //second parameter null = to end of list
 
-/proc/dd_mergeObjectList(var/list/L, var/list/R, var/list/cache)
+proc/dd_mergeObjectList(var/list/L, var/list/R, var/list/cache)
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()
@@ -219,7 +219,7 @@ This actually tests if they have the same entries and values.
 	return (result + R.Copy(Ri, 0))
 
 // Insert an object into a sorted list, preserving sortedness
-/proc/dd_insertObjectList(var/list/L, var/O)
+proc/dd_insertObjectList(var/list/L, var/O)
 	var/min = 1
 	var/max = L.len
 	var/Oval = O:dd_SortValue()
@@ -299,7 +299,7 @@ proc/dd_sortedObjectList(list/incoming)
 		sorted_list += list_bottom
 	return sorted_list
 */
-/proc/dd_sortedtextlist(list/incoming, case_sensitive = 0)
+proc/dd_sortedtextlist(list/incoming, case_sensitive = 0)
 	// Returns a new list with the text values sorted.
 	// Use binary search to order by sortValue.
 	// This works by going to the half-point of the list, seeing if the node in question is higher or lower cost,
@@ -359,16 +359,16 @@ proc/dd_sortedObjectList(list/incoming)
 
 
 
-/datum/proc/dd_SortValue()
+datum/proc/dd_SortValue()
 	return "[src]"
 
-/obj/machinery/dd_SortValue()
+obj/machinery/dd_SortValue()
 	return "[sanitize_old(name)]"
 
-/obj/machinery/camera/dd_SortValue()
+obj/machinery/camera/dd_SortValue()
 	return "[c_tag]"
 
-/datum/alarm/dd_SortValue()
+datum/alarm/dd_SortValue()
 	return "[sanitize_old(last_name)]"
 
 
@@ -376,7 +376,7 @@ proc/dd_sortedObjectList(list/incoming)
  * Creates every subtype of prototype (excluding prototype) and adds it to list L.
  * If no list/L is provided, one is created.
  */
-/proc/init_subtypes(prototype, list/L)
+proc/init_subtypes(prototype, list/L)
 	if(!istype(L))
 		L = list()
 	for(var/path in subtypesof(prototype))
@@ -385,20 +385,20 @@ proc/dd_sortedObjectList(list/incoming)
 
 //creates every subtype of prototype (excluding prototype) and adds it to list L as a type/instance pair.
 //if no list/L is provided, one is created.
-/proc/init_subtypes_assoc(prototype, list/L)
+proc/init_subtypes_assoc(prototype, list/L)
 	if(!istype(L))	L = list()
 	for(var/path in subtypesof(prototype))
 		L[path] = new path()
 	return L
 
 // List of lists, sorts by element[key] - for things like crew monitoring computer sorting records by name.
-/proc/sortByKey(var/list/L, var/key)
+proc/sortByKey(var/list/L, var/key)
 	if(L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1
 	return mergeKeyedLists(sortByKey(L.Copy(0, middle), key), sortByKey(L.Copy(middle), key), key)
 
-/proc/mergeKeyedLists(var/list/L, var/list/R, var/key)
+proc/mergeKeyedLists(var/list/L, var/list/R, var/key)
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()

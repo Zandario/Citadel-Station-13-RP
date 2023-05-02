@@ -5,7 +5,7 @@
 //
 // Timeclock terminal machine itself
 //
-/obj/machinery/computer/timeclock
+obj/machinery/computer/timeclock
 	name = "timeclock terminal"
 	icon = 'icons/obj/machines/timeclock_vr.dmi'
 	icon_state = "timeclock"
@@ -22,17 +22,17 @@
 	var/obj/item/radio/intercom/announce	// Integreated announcer
 
 
-/obj/machinery/computer/timeclock/Initialize(mapload)
+obj/machinery/computer/timeclock/Initialize(mapload)
 	. = ..()
 	announce = new /obj/item/radio/intercom(src)
 
-/obj/machinery/computer/timeclock/Destroy()
+obj/machinery/computer/timeclock/Destroy()
 	if(card)
 		card.forceMove(get_turf(src))
 		card = null
 	. = ..()
 
-/obj/machinery/computer/timeclock/update_icon()
+obj/machinery/computer/timeclock/update_icon()
 	if(inoperable())
 		icon_state = "[initial(icon_state)]_off"
 	else if(card)
@@ -40,7 +40,7 @@
 	else
 		icon_state = "[initial(icon_state)]"
 
-/obj/machinery/computer/timeclock/power_change()
+obj/machinery/computer/timeclock/power_change()
 	var/old_stat = machine_stat
 	. = ..()
 	if(old_stat != machine_stat)
@@ -50,7 +50,7 @@
 	else
 		set_light(light_range_on, light_power_on)
 
-/obj/machinery/computer/timeclock/attackby(obj/I, mob/user)
+obj/machinery/computer/timeclock/attackby(obj/I, mob/user)
 	if(istype(I, /obj/item/card/id))
 		if(!card)
 			if(!user.attempt_insert_item_for_installation(I, src))
@@ -63,19 +63,19 @@
 		return
 	. = ..()
 
-/obj/machinery/computer/timeclock/attack_hand(mob/user, list/params)
+obj/machinery/computer/timeclock/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	user.set_machine(src)
 	ui_interact(user)
 
-/obj/machinery/computer/timeclock/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/timeclock/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TimeClock", name)
 		ui.open()
 
-/obj/machinery/computer/timeclock/ui_data(mob/user)
+obj/machinery/computer/timeclock/ui_data(mob/user)
 	var/list/data = ..()
 
 	// Okay, data for showing the user's OWN PTO stuff
@@ -109,7 +109,7 @@
 
 	return data
 
-/obj/machinery/computer/timeclock/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/timeclock/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -145,7 +145,7 @@
 			update_icon()
 			return TRUE
 
-/obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
+obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
 	var/list/available_jobs = list()
 	for(var/datum/role/job/job in SSjob.occupations)
 		if(isOpenOnDutyJob(user, department, job))
@@ -155,11 +155,11 @@
 			available_jobs[job.title] = titles
 	return available_jobs
 
-/obj/machinery/computer/timeclock/proc/available_titles(mob/user, var/datum/role/job/job)
+obj/machinery/computer/timeclock/proc/available_titles(mob/user, var/datum/role/job/job)
 	var/list/datum/lore/character_background/backgrounds = user.mind?.original_background_ids()
 	return job.alt_title_query(backgrounds)
 
-/obj/machinery/computer/timeclock/proc/isOpenOnDutyJob(var/mob/user, var/department, var/datum/role/job/job)
+obj/machinery/computer/timeclock/proc/isOpenOnDutyJob(var/mob/user, var/department, var/datum/role/job/job)
 	return job \
 		   && job.is_position_available() \
 		   && !job.whitelist_only \
@@ -170,7 +170,7 @@
 		   && job.timeoff_factor > 0 \
 		   && (job.check_mob_availability_one(user) == ROLE_AVAILABLE)
 
-/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newrank, var/newassignment)
+obj/machinery/computer/timeclock/proc/makeOnDuty(var/newrank, var/newassignment)
 	var/datum/role/job/oldjob = SSjob.get_job(card.rank)
 	var/datum/role/job/newjob = SSjob.get_job(newrank)
 	if(!oldjob || !isOpenOnDutyJob(usr, oldjob.pto_type, newjob))
@@ -194,7 +194,7 @@
 		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight", channel, zlevels = GLOB.using_map.get_map_levels(get_z(src)))
 	return
 
-/obj/machinery/computer/timeclock/proc/makeOffDuty()
+obj/machinery/computer/timeclock/proc/makeOffDuty()
 	var/datum/role/job/foundjob = SSjob.get_job(card.rank)
 	if(!foundjob)
 		return
@@ -220,7 +220,7 @@
 		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight", channel, zlevels = GLOB.using_map.get_map_levels(get_z(src)))
 	return
 
-/obj/machinery/computer/timeclock/proc/checkCardCooldown()
+obj/machinery/computer/timeclock/proc/checkCardCooldown()
 	if(!card)
 		return FALSE
 	var/time_left = 3 MINUTES - (world.time - card.last_job_switch)
@@ -229,7 +229,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/timeclock/proc/checkFace()
+obj/machinery/computer/timeclock/proc/checkFace()
 	if(!card)
 		to_chat(usr, "<span class='notice'>No ID is inserted.</span>")
 		return FALSE
@@ -249,7 +249,7 @@
 //
 // Frame type for construction
 //
-/datum/frame/frame_types/timeclock_terminal
+datum/frame/frame_types/timeclock_terminal
 	name = "Timeclock Terminal"
 	frame_class = FRAME_CLASS_DISPLAY
 	frame_size = 2
@@ -258,24 +258,24 @@
 	y_offset = 30
 	icon_override = 'icons/obj/machines/timeclock_vr.dmi'
 
-/datum/frame/frame_types/timeclock_terminal/get_icon_state(var/state)
+datum/frame/frame_types/timeclock_terminal/get_icon_state(var/state)
 	return "timeclock_b[state]"
 
 //
 // Easy mapping
 //
-/obj/machinery/computer/timeclock/premade/north
+obj/machinery/computer/timeclock/premade/north
 	dir = 2
 	pixel_y = 26
 
-/obj/machinery/computer/timeclock/premade/south
+obj/machinery/computer/timeclock/premade/south
 	dir = 1
 	pixel_y = -26
 
-/obj/machinery/computer/timeclock/premade/east
+obj/machinery/computer/timeclock/premade/east
 	dir = 8
 	pixel_x = 26
 
-/obj/machinery/computer/timeclock/premade/west
+obj/machinery/computer/timeclock/premade/west
 	dir = 4
 	pixel_x = -26

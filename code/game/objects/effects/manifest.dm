@@ -1,15 +1,15 @@
-/obj/effect/manifest
+obj/effect/manifest
 	name = "manifest"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
 	unacidable = 1//Just to be sure.
 
-/obj/effect/manifest/Initialize(mapload)
+obj/effect/manifest/Initialize(mapload)
 	. = ..()
 	manifest()
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/manifest/proc/manifest()
+obj/effect/manifest/proc/manifest()
 	var/dat = "<B>Crew Manifest</B>:<BR>"
 	for(var/mob/living/carbon/human/M in GLOB.mob_list)
 		dat += text("    <B>[]</B> -  []<BR>", M.name, M.get_assignment())

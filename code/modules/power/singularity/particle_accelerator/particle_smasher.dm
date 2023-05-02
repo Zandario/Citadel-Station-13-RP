@@ -2,7 +2,7 @@
  * Contains the particle smasher and its recipes.
  */
 
-/obj/machinery/particle_smasher
+obj/machinery/particle_smasher
 	name = "Particle Focus"
 	desc = "A strange device used to create exotic matter."
 	icon = 'icons/obj/machines/particle_smasher.dmi'
@@ -23,13 +23,13 @@
 	var/max_storage = 3	// How many items can be jammed into it?
 	var/list/recipes	// The list containing the Particle Smasher's recipes.
 
-/obj/machinery/particle_smasher/Initialize(mapload)
+obj/machinery/particle_smasher/Initialize(mapload)
 	. = ..()
 	storage = list()
 	update_icon()
 	prepare_recipes()
 
-/obj/machinery/particle_smasher/Destroy()
+obj/machinery/particle_smasher/Destroy()
 	for(var/datum/particle_smasher_recipe/D in recipes)
 		qdel(D)
 	recipes.Cut()
@@ -37,13 +37,13 @@
 		AM.forceMove(drop_location())
 	return ..()
 
-/obj/machinery/particle_smasher/examine(mob/user)
+obj/machinery/particle_smasher/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>\The [src] contains:</span>"
 	for(var/obj/item/I in contents)
 		. += "<span class='notice'>\the [I]</span>"
 
-/obj/machinery/particle_smasher/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/particle_smasher/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.type == /obj/item/analyzer)
 		to_chat(user, "<span class='notice'>\The [src] reads an energy level of [energy].</span>")
 	else if(istype(W, /obj/item/stack/material) && !target)
@@ -89,7 +89,7 @@
 	else
 		return ..()
 
-/obj/machinery/particle_smasher/update_icon()
+obj/machinery/particle_smasher/update_icon()
 	cut_overlays()
 	if(!material_layer)
 		material_layer = image(icon, "[initial(icon_state)]-material")
@@ -127,13 +127,13 @@
 	else
 		set_light(0, 0, "#FFFFFF")
 
-/obj/machinery/particle_smasher/bullet_act(var/obj/projectile/Proj)
+obj/machinery/particle_smasher/bullet_act(var/obj/projectile/Proj)
 	if(istype(Proj, /obj/projectile/beam))
 		if(Proj.damage >= 50)
 			TryCraft()
 	return 0
 
-/obj/machinery/particle_smasher/process(delta_time)
+obj/machinery/particle_smasher/process(delta_time)
 	if(!src.anchored)	// Rapidly loses focus.
 		if(energy)
 			radiation_pulse(src, RAD_INTENSITY_PARTICLE_SMASHER_ENERGY_LOSS(30))
@@ -144,7 +144,7 @@
 		radiation_pulse(src, RAD_INTENSITY_PARTICLE_SMASHER_ENERGY_LOSS(5))
 		energy = clamp(energy - 5, 0, max_energy)
 
-/obj/machinery/particle_smasher/proc/prepare_recipes()
+obj/machinery/particle_smasher/proc/prepare_recipes()
 	if(!recipes)
 		recipes = list()
 		for(var/D in subtypesof(/datum/particle_smasher_recipe))
@@ -156,7 +156,7 @@
 		for(var/D in subtypesof(/datum/particle_smasher_recipe))
 			recipes += new D
 
-/obj/machinery/particle_smasher/proc/TryCraft()
+obj/machinery/particle_smasher/proc/TryCraft()
 
 	if(!recipes || !recipes.len)
 		recipes = typesof(/datum/particle_smasher_recipe)
@@ -194,7 +194,7 @@
 				break
 	update_icon()
 
-/obj/machinery/particle_smasher/proc/DoCraft(var/datum/particle_smasher_recipe/recipe)
+obj/machinery/particle_smasher/proc/DoCraft(var/datum/particle_smasher_recipe/recipe)
 	if(!recipe)
 		return
 
@@ -213,7 +213,7 @@
 	new recipe.result(drop_location())
 	update_icon()
 
-/obj/machinery/particle_smasher/Exited(atom/movable/AM)
+obj/machinery/particle_smasher/Exited(atom/movable/AM)
 	if(AM == target)
 		target = null
 	if(AM == reagent_container)
@@ -222,7 +222,7 @@
 		storage -= AM
 	return ..()
 
-/obj/machinery/particle_smasher/verb/eject_contents()
+obj/machinery/particle_smasher/verb/eject_contents()
 	set src in view(1)
 	set category = "Object"
 	set name = "Eject Particle Focus Contents"
@@ -232,7 +232,7 @@
 
 	DumpContents()
 
-/obj/machinery/particle_smasher/proc/DumpContents()
+obj/machinery/particle_smasher/proc/DumpContents()
 	var/atom/A = drop_location()
 	for(var/obj/item/I in contents)
 		I.forceMove(A)
@@ -242,7 +242,7 @@
  * The special recipe datums used for the particle smasher.
  */
 
-/datum/particle_smasher_recipe
+datum/particle_smasher_recipe
 	var/list/reagents	// example: = list("pacid" = 5)
 	var/list/items		// example: = list(/obj/item/tool/crowbar, /obj/item/welder) Place /foo/bar before /foo. Do not include fruit. Maximum of 3 items.
 
@@ -254,7 +254,7 @@
 	var/required_atmos_temp_max = 600	// The maximum ambient atmospheric temperature required, in kelvin.
 	var/probability = 0					// The probability for the recipe to be produced. 0 will make it impossible.
 
-/datum/particle_smasher_recipe/proc/check_items(var/obj/container as obj)
+datum/particle_smasher_recipe/proc/check_items(var/obj/container as obj)
 	. = 1
 	if (items && items.len)
 		var/list/checklist = list()
@@ -277,7 +277,7 @@
 			. = -1
 	return .
 
-/datum/particle_smasher_recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
+datum/particle_smasher_recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
 	. = 1
 	for (var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
@@ -290,7 +290,7 @@
 		return 0
 	return .
 
-/datum/particle_smasher_recipe/deuterium_tritium
+datum/particle_smasher_recipe/deuterium_tritium
 	reagents = list("hydrogen" = 15)
 
 	result = /obj/item/stack/material/tritium
@@ -302,7 +302,7 @@
 	required_atmos_temp_max = 200
 	probability = 30
 
-/datum/particle_smasher_recipe/verdantium_morphium
+datum/particle_smasher_recipe/verdantium_morphium
 	result = /obj/item/stack/material/morphium
 	required_material = /obj/item/stack/material/verdantium
 
@@ -310,7 +310,7 @@
 	required_energy_max = 500
 	probability = 20
 
-/datum/particle_smasher_recipe/plasteel_morphium
+datum/particle_smasher_recipe/plasteel_morphium
 	items = list(/obj/item/prop/alien/junk)
 
 	result = /obj/item/stack/material/morphium
@@ -320,7 +320,7 @@
 	required_energy_max = 300
 	probability = 10
 
-/datum/particle_smasher_recipe/osmium_lead
+datum/particle_smasher_recipe/osmium_lead
 	reagents = list("tungsten" = 10)
 
 	result = /obj/item/stack/material/lead
@@ -333,7 +333,7 @@
 	required_atmos_temp_max = 8000
 	probability = 50
 
-/datum/particle_smasher_recipe/steel_plasteel
+datum/particle_smasher_recipe/steel_plasteel
 	reagents = list(MAT_PHORON = 60) //three sheet of phoron and one sheet of steel
 
 	result = /obj/item/stack/material/plasteel
@@ -344,7 +344,7 @@
 
 	probability = 50
 
-/datum/particle_smasher_recipe/plasteel_durasteel
+datum/particle_smasher_recipe/plasteel_durasteel
 	reagents = list(MAT_PHORON = 40, "pacid" = 20)
 
 	result = /obj/item/stack/material/durasteel
@@ -357,7 +357,7 @@
 	required_atmos_temp_max = 896 //more temperature CBT either setup a cooler and heater array to hold or coordinate with your fellow scientists
 	probability = 50
 
-/datum/particle_smasher_recipe/plastic_diamond
+datum/particle_smasher_recipe/plastic_diamond
 	reagents = list(MAT_CARBON = 100, "ethanol" = 50) //read a paper sometime ago that some guys grew industrial diamonds from various alcoholic drinks
 
 	result = /obj/item/stack/material/diamond
@@ -370,7 +370,7 @@
 	required_atmos_temp_max = 7830
 	probability = 10
 
-/datum/particle_smasher_recipe/copper_silver
+datum/particle_smasher_recipe/copper_silver
 	reagents = list("chlorine" = 25, "fluorine" = 25)
 
 	result = /obj/item/stack/material/silver
@@ -383,7 +383,7 @@
 	required_atmos_temp_max = 140
 	probability = 20
 
-/datum/particle_smasher_recipe/deuterium_mhydrogen
+datum/particle_smasher_recipe/deuterium_mhydrogen
 	reagents = list("potassium" = 10, "chlorine" = 10, "sacid" = 10 )
 
 	result = /obj/item/stack/material/mhydrogen
@@ -396,7 +396,7 @@
 	required_atmos_temp_max = 25
 	probability = 90
 
-/datum/particle_smasher_recipe/steel_uranium
+datum/particle_smasher_recipe/steel_uranium
 	reagents = list("uranium" = 10, "fluorine")
 
 	result = /obj/item/stack/material/uranium
@@ -409,7 +409,7 @@
 	required_atmos_temp_max = 388
 	probability = 50
 
-/datum/particle_smasher_recipe/plasteel_titanium
+datum/particle_smasher_recipe/plasteel_titanium
 	reagents = list("potassium" = 5, "chlorine" = 5, "sacid" = 5) // :')
 
 	result = /obj/item/stack/material/titanium
@@ -422,7 +422,7 @@
 	required_atmos_temp_max = 566
 	probability = 50
 
-/datum/particle_smasher_recipe/platinum_osmium
+datum/particle_smasher_recipe/platinum_osmium
 	reagents = list("hydrogen" = 25)
 
 	result = /obj/item/stack/material/osmium
@@ -435,7 +435,7 @@
 	required_atmos_temp_max = 1000
 	probability = 20
 
-/datum/particle_smasher_recipe/osmium_platinum
+datum/particle_smasher_recipe/osmium_platinum
 	reagents = list("hydrogen" = 25, MAT_PHORON = 5)
 
 	result = /obj/item/stack/material/platinum
@@ -448,7 +448,7 @@
 	required_atmos_temp_max = 60
 	probability = 20
 
-/datum/particle_smasher_recipe/steel_gold
+datum/particle_smasher_recipe/steel_gold
 	reagents = list(MAT_PHORON = 5)
 
 	result = /obj/item/stack/material/gold
@@ -461,7 +461,7 @@
 	required_atmos_temp_max = 5250
 	probability = 5
 
-/datum/particle_smasher_recipe/gold_platinum
+datum/particle_smasher_recipe/gold_platinum
 	reagents = list("hydrogen" = 20)
 
 	result = /obj/item/stack/material/platinum
@@ -474,7 +474,7 @@
 	required_atmos_temp_max = 777
 	probability = 10
 
-/datum/particle_smasher_recipe/gold_copper
+datum/particle_smasher_recipe/gold_copper
 	reagents = list("hydrogen" = 50)
 
 	result = /obj/item/stack/material/copper
@@ -487,7 +487,7 @@
 	required_atmos_temp_max = 298
 	probability = 15
 
-/datum/particle_smasher_recipe/phoron_valhollide
+datum/particle_smasher_recipe/phoron_valhollide
 	reagents = list(MAT_PHORON = 10, "pacid" = 10)
 
 	result = /obj/item/stack/material/valhollide
@@ -500,7 +500,7 @@
 	required_atmos_temp_max = 100
 	probability = 10
 
-/datum/particle_smasher_recipe/valhollide_supermatter
+datum/particle_smasher_recipe/valhollide_supermatter
 	reagents = list(MAT_PHORON = 300)
 
 	result = /obj/item/stack/material/supermatter

@@ -1,5 +1,5 @@
 //Sweet Sweet Honeycomb
-/obj/item/reagent_containers/organic
+obj/item/reagent_containers/organic
 	name = " "
 	var/base_name = " "
 	desc = " "
@@ -35,7 +35,7 @@
 		/obj/machinery/portable_atmospherics/powered/reagent_distillery
 		)
 
-/obj/item/reagent_containers/organic/Initialize(mapload)
+obj/item/reagent_containers/organic/Initialize(mapload)
 	. = ..()
 	if(LAZYLEN(prefill))
 		for(var/R in prefill)
@@ -44,20 +44,20 @@
 	base_name = name
 	base_desc = desc
 
-/obj/item/reagent_containers/organic/pickup(mob/user, flags, atom/oldLoc)
+obj/item/reagent_containers/organic/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/organic/dropped(mob/user, flags, atom/newLoc)
+obj/item/reagent_containers/organic/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/organic/attack_hand(mob/user, list/params)
+obj/item/reagent_containers/organic/attack_hand(mob/user, list/params)
 	..()
 	update_icon()
 
 
-/obj/item/reagent_containers/organic/attack_self(mob/user)
+obj/item/reagent_containers/organic/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -74,20 +74,20 @@
 		atom_flags |= OPENCONTAINER
 	update_icon()
 
-/obj/item/reagent_containers/organic/update_icon()
+obj/item/reagent_containers/organic/update_icon()
 	cut_overlays()
 
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		add_overlay(lid)
 
-/obj/item/reagent_containers/organic/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/reagent_containers/organic/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return	..()
 
 	standard_feed_mob(user, target)
 
-/obj/item/reagent_containers/organic/standard_feed_mob(var/mob/user, var/mob/target)
+obj/item/reagent_containers/organic/standard_feed_mob(var/mob/user, var/mob/target)
 	if(!is_open_container())
 		to_chat(user, "<span class='notice'>You need to peeol open \the [src] first.</span>")
 		return 1
@@ -95,10 +95,10 @@
 		return 1
 	return ..()
 
-/obj/item/reagent_containers/organic/self_feed_message(var/mob/user)
+obj/item/reagent_containers/organic/self_feed_message(var/mob/user)
 	to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
-/obj/item/reagent_containers/organic/afterattack(var/obj/target, var/mob/user, var/proximity)
+obj/item/reagent_containers/organic/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!is_open_container() || !proximity) //Is the container open & are they next to whatever they're clicking?
 		return 1 //If not, do nothing.
 	for(var/type in can_be_placed_into) //Is it something it can be placed into?
@@ -117,7 +117,7 @@
 			return 1
 	..()
 
-/obj/item/reagent_containers/organic/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/reagent_containers/organic/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/flashlight/pen))
 		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
@@ -138,7 +138,7 @@
 		to_chat(user, "<span class='notice'>You dip \the [W] into \the [src].</span>")
 		reagents.touch_obj(W, reagents.total_volume)
 
-/obj/item/reagent_containers/organic/proc/update_name_label()
+obj/item/reagent_containers/organic/proc/update_name_label()
 	if(label_text == "")
 		name = base_name
 	else if(length(label_text) > 20)
@@ -150,7 +150,7 @@
 
 // Containers
 
-/obj/item/reagent_containers/organic/waxcomb
+obj/item/reagent_containers/organic/waxcomb
 	name = "waxcomb (honey)"
 	desc = "A glob of freshly produced honey encased in sturdy wax."
 	icon_state = "waxcomb"
@@ -161,7 +161,7 @@
 	possible_transfer_amounts = list(5,10,15,30)
 	prefill = list("honey" = 30)
 
-/obj/item/reagent_containers/organic/waxcomb_jelly
+obj/item/reagent_containers/organic/waxcomb_jelly
 	name = "waxcomb (jelly)"
 	desc = "A glob of freshly produced jelly encased in sturdy wax."
 	icon_state = "waxcomb"

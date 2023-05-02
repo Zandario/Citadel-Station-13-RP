@@ -1,5 +1,5 @@
 
-/obj/item/mecha_parts/component
+obj/item/mecha_parts/component
 	name = "mecha component"
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "component"
@@ -25,7 +25,7 @@
 
 	var/internal_damage_flag	// If set, the component will toggle the flag on or off if it is destroyed / severely damaged.
 
-/obj/item/mecha_parts/component/examine(mob/user)
+obj/item/mecha_parts/component/examine(mob/user)
 	. = ..()
 	var/show_integrity = round(integrity/max_integrity*100, 0.1)
 	switch(show_integrity)
@@ -42,20 +42,20 @@
 		if(0 to 1)
 			. += "<span class='warning'><b>It is completely destroyed.</b></span>"
 
-/obj/item/mecha_parts/component/Initialize(mapload)
+obj/item/mecha_parts/component/Initialize(mapload)
 	. = ..()
 	integrity = max_integrity
 
 	if(start_damaged)
 		integrity = round(integrity * integrity_danger_mod)
 
-/obj/item/mecha_parts/component/Destroy()
+obj/item/mecha_parts/component/Destroy()
 	detach()
 	return ..()
 
 // Damage code.
 
-/obj/item/mecha_parts/component/emp_act(var/severity = 4)
+obj/item/mecha_parts/component/emp_act(var/severity = 4)
 	if(severity + emp_resistance > 4)
 		return
 
@@ -63,11 +63,11 @@
 
 	take_damage((4 - severity) * round(integrity * 0.1, 0.1))
 
-/obj/item/mecha_parts/component/proc/adjust_integrity(var/amt = 0)
+obj/item/mecha_parts/component/proc/adjust_integrity(var/amt = 0)
 	integrity = clamp(integrity + amt, 0, max_integrity)
 	return
 
-/obj/item/mecha_parts/component/proc/damage_part(var/dam_amt = 0, var/type = BRUTE)
+obj/item/mecha_parts/component/proc/damage_part(var/dam_amt = 0, var/type = BRUTE)
 	if(dam_amt <= 0)
 		return FALSE
 
@@ -79,7 +79,7 @@
 
 	return TRUE
 
-/obj/item/mecha_parts/component/proc/get_efficiency()
+obj/item/mecha_parts/component/proc/get_efficiency()
 	var/integ_limit = round(max_integrity * integrity_danger_mod)
 
 	if(integrity < integ_limit)
@@ -91,7 +91,7 @@
 
 // Attach/Detach code.
 
-/obj/item/mecha_parts/component/proc/attach(var/obj/mecha/target, var/mob/living/user)
+obj/item/mecha_parts/component/proc/attach(var/obj/mecha/target, var/mob/living/user)
 	if(target)
 		if(!(component_type in target.internal_components))
 			if(user)
@@ -123,7 +123,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/mecha_parts/component/proc/detach()
+obj/item/mecha_parts/component/proc/detach()
 	if(chassis)
 		chassis.internal_components[component_type] = null
 
@@ -135,7 +135,7 @@
 	return TRUE
 
 
-/obj/item/mecha_parts/component/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/mecha_parts/component/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/NP = W
 
@@ -150,8 +150,8 @@
 
 // Various procs to handle different calls by Exosuits. IE, movement actions, damage actions, etc.
 
-/obj/item/mecha_parts/component/proc/get_step_delay()
+obj/item/mecha_parts/component/proc/get_step_delay()
 	return step_delay
 
-/obj/item/mecha_parts/component/proc/handle_move()
+obj/item/mecha_parts/component/proc/handle_move()
 	return

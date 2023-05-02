@@ -1,7 +1,7 @@
 /**
  * Convert RBG to HSL
  */
-/proc/rgb2hsl(red, green, blue)
+proc/rgb2hsl(red, green, blue)
 	red   /= 255
 	green /= 255
 	blue  /= 255
@@ -40,7 +40,7 @@
 /**
  * Convert HSL to RGB
  */
-/proc/hsl2rgb(hue, saturation, lightness)
+proc/hsl2rgb(hue, saturation, lightness)
 	var/red
 	var/green
 	var/blue
@@ -66,7 +66,7 @@
 /**
  * Convert hue to RGB
  */
-/proc/hue2rgb(a, b, hue)
+proc/hue2rgb(a, b, hue)
 	if(hue < 0)
 		hue++
 	else if(hue > 1)
@@ -84,7 +84,7 @@
  *
  * Adapted from http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
  */
-/proc/heat2colour(temp)
+proc/heat2colour(temp)
 	return rgb(
 		heat2colour_r(temp),
 		heat2colour_g(temp),
@@ -94,7 +94,7 @@
 /**
  * Convert Kelvin for the Red channel
  */
-/proc/heat2colour_r(temp)
+proc/heat2colour_r(temp)
 	temp /= 100
 	if(temp <= 66)
 		. = 255
@@ -104,7 +104,7 @@
 /**
  * Convert Kelvin for the Green channel
  */
-/proc/heat2colour_g(temp)
+proc/heat2colour_g(temp)
 	temp /= 100
 	if(temp <= 66)
 		. = max(0, min(255, 99.4708025861 * log(temp) - 161.1195681661))
@@ -114,7 +114,7 @@
 /**
  * Convert Kelvin for the Blue channel
  */
-/proc/heat2colour_b(temp)
+proc/heat2colour_b(temp)
 	temp /= 100
 	if(temp >= 66)
 		. = 255
@@ -127,7 +127,7 @@
 /**
  * Assumes format #RRGGBB #rrggbb
  */
-/proc/color_hex2num(A)
+proc/color_hex2num(A)
 	if(!A || length(A) != length_char(A))
 		return 0
 	var/R = hex2num(copytext(A, 2, 4))
@@ -139,7 +139,7 @@
  *! Word of warning:
  *  Using a matrix like this as a color value will simplify it back to a string after being set.
  */
-/proc/color_hex2color_matrix(string)
+proc/color_hex2color_matrix(string)
 	var/length = length(string)
 	if((length != 7 && length != 9) || length != length_char(string))
 		return color_matrix_identity()
@@ -161,7 +161,7 @@
 /**
  * Will drop all values not on the diagonal.
  */
-/proc/color_matrix2color_hex(list/the_matrix)
+proc/color_matrix2color_hex(list/the_matrix)
 	if(!istype(the_matrix) || the_matrix.len != 20)
 		return "#ffffffff"
 	return rgb(
@@ -174,21 +174,21 @@
 /**
  * Converts a hexadecimal color (e.g. #FF0050) to a list of numbers for red, green, and blue (e.g. list(255,0,80) ).
  */
-/proc/hex2rgb(hex)
+proc/hex2rgb(hex)
 	// Strips the starting #, in case this is ever supplied without one, so everything doesn't break.
 	if(findtext(hex,"#",1,2))
 		hex = copytext(hex, 2)
 	return list(hex2rgb_r(hex), hex2rgb_g(hex), hex2rgb_b(hex))
 
 //! The three procs below require that the '#' part of the hex be stripped, which hex2rgb() does automatically.
-/proc/hex2rgb_r(hex)
+proc/hex2rgb_r(hex)
 	var/hex_to_work_on = copytext(hex,1,3)
 	return hex2num(hex_to_work_on)
 
-/proc/hex2rgb_g(hex)
+proc/hex2rgb_g(hex)
 	var/hex_to_work_on = copytext(hex,3,5)
 	return hex2num(hex_to_work_on)
 
-/proc/hex2rgb_b(hex)
+proc/hex2rgb_b(hex)
 	var/hex_to_work_on = copytext(hex,5,7)
 	return hex2num(hex_to_work_on)

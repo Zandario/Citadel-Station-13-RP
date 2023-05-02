@@ -1,14 +1,14 @@
 /* Other, unaffiliated modules */
 
 // The module that borgs on the surface have.  Generally has a lot of useful tools in exchange for questionable loyalty to the crew.
-/obj/item/robot_module/robot/lost
+obj/item/robot_module/robot/lost
 	name = "lost robot module"
 	hide_on_manifest = 1
 	sprites = list(
 		"Drone" = "drone-lost"
 	)
 
-/obj/item/robot_module/robot/lost/get_modules()
+obj/item/robot_module/robot/lost/get_modules()
 	. = ..()
 	. |= list(
 		// Sec
@@ -31,11 +31,11 @@
 		/obj/item/robotanalyzer
 	)
 
-/obj/item/robot_module/robot/lost/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/lost/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	MATTER_SYNTH(MATSYN_WIRE, wire)
 
-/obj/item/robot_module/robot/lost/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/lost/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	// Potato
 	emag = new /obj/item/gun/energy/retro/mounted(src)
@@ -44,7 +44,7 @@
 	C.synths = list(synths_by_kind[MATSYN_WIRE])
 	. += C
 
-/obj/item/robot_module/robot/gravekeeper
+obj/item/robot_module/robot/gravekeeper
 	name = "gravekeeper robot module"
 	hide_on_manifest = 1
 	sprites = list(
@@ -52,7 +52,7 @@
 		"Sleek" = "sleek-gravekeeper"
 	)
 
-/obj/item/robot_module/robot/gravekeeper/get_modules()
+obj/item/robot_module/robot/gravekeeper/get_modules()
 	. = ..()
 	. |= list(
 		// For fending off animals and looters
@@ -76,11 +76,11 @@
 		/obj/item/gripper/gravekeeper
 	)
 
-/obj/item/robot_module/robot/gravekeeper/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/gravekeeper/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	MATTER_SYNTH(MATSYN_WOOD, wood, 25000)
 
-/obj/item/robot_module/robot/gravekeeper/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/gravekeeper/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	// For really persistent looters
 	emag = new /obj/item/gun/energy/retro/mounted(src)

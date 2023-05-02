@@ -1,4 +1,4 @@
-/datum/power/changeling/resonant_shriek
+datum/power/changeling/resonant_shriek
 	name = "Resonant Shriek"
 	desc = "Our lungs and vocal cords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded."
 	helptext = "Lights are blown, organics are disoriented, and synthetics act as if they were flashed."
@@ -7,7 +7,7 @@
 	genomecost = 2
 	verbpath = /mob/proc/changeling_resonant_shriek
 
-/datum/power/changeling/dissonant_shriek
+datum/power/changeling/dissonant_shriek
 	name = "Dissonant Shriek"
 	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics."
 	helptext = "Creates a moderate sized EMP."
@@ -17,7 +17,7 @@
 	verbpath = /mob/proc/changeling_dissonant_shriek
 
 //A flashy ability, good for crowd control and sewing chaos.
-/mob/proc/changeling_resonant_shriek()
+mob/proc/changeling_resonant_shriek()
 	set category = "Changeling"
 	set name = "Resonant Shriek (20)"
 	set desc = "Emits a high-frequency sound that confuses and deafens organics, blows out nearby lights, and overloads synthetics' sensors."
@@ -86,7 +86,7 @@
 	return 1
 
 //EMP version
-/mob/proc/changeling_dissonant_shriek()
+mob/proc/changeling_dissonant_shriek()
 	set category = "Changeling"
 	set name = "Dissonant Shriek (20)"
 	set desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics."

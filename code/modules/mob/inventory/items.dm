@@ -1,4 +1,4 @@
-/obj/item
+obj/item
 	/// currently equipped slot id
 	var/worn_slot
 	/**
@@ -14,7 +14,7 @@
 	/// suppress auto inventory hooks in forceMove
 	var/worn_hook_suppressed = FALSE
 
-/obj/item/Destroy()
+obj/item/Destroy()
 	if(worn_slot && !worn_hook_suppressed)
 		var/mob/M = worn_mob()
 		if(!ismob(M))
@@ -31,7 +31,7 @@
  * slot - slot id we're equipped to
  * flags - inventory operation flags, see defines
  */
-/obj/item/proc/equipped(mob/user, slot, flags)
+obj/item/proc/equipped(mob/user, slot, flags)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot, flags)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_EQUIPPED, user, slot, flags)
@@ -55,7 +55,7 @@
  * slot - slot id we're unequipping from
  * flags - inventory operation flags, see defines
  */
-/obj/item/proc/unequipped(mob/user, slot, flags)
+obj/item/proc/unequipped(mob/user, slot, flags)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, user, slot, flags)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_UNEQUIPPED, user, slot, flags)
@@ -77,7 +77,7 @@
  *
  * dropping is defined as moving out of both equipment slots and hand slots
  */
-/obj/item/proc/dropped(mob/user, flags, atom/newLoc)
+obj/item/proc/dropped(mob/user, flags, atom/newLoc)
 	SHOULD_CALL_PARENT(TRUE)
 /*
 	for(var/X in actions)
@@ -108,7 +108,7 @@
  *
  * picking up is defined as moving into either an equipment slot, or hand slots
  */
-/obj/item/proc/pickup(mob/user, flags, atom/oldLoc)
+obj/item/proc/pickup(mob/user, flags, atom/oldLoc)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user, flags, oldLoc)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_PICKUP, src, flags, oldLoc)
@@ -123,13 +123,13 @@
 /**
  * get the slowdown we incur when we're worn
  */
-/obj/item/proc/get_equipment_speed_mod()
+obj/item/proc/get_equipment_speed_mod()
 	return slowdown
 
 /**
  * update our worn icon if we can
  */
-/obj/item/proc/update_worn_icon()
+obj/item/proc/update_worn_icon()
 	if(!worn_slot)
 		return	// acceptable
 	var/mob/M = worn_mob()
@@ -168,7 +168,7 @@
  * returns either an item or a list
  * get_equipped_items() uses this so accessories are included
  */
-/obj/item/proc/_inv_return_attached()
+obj/item/proc/_inv_return_attached()
 	if(worn_over)
 		return list(src) + worn_over._inv_return_attached()
 	else
@@ -183,7 +183,7 @@
  *
  * todo: non-singular-letter proc args
  */
-/obj/item/proc/can_equip(mob/M, slot, mob/user, flags)
+obj/item/proc/can_equip(mob/M, slot, mob/user, flags)
 	if(!equip_check_beltlink(M, slot, user, flags))
 		return FALSE
 	return TRUE
@@ -195,13 +195,13 @@
  *
  * todo: non-singular-letter proc args
  */
-/obj/item/proc/can_unequip(mob/M, slot, mob/user, flags)
+obj/item/proc/can_unequip(mob/M, slot, mob/user, flags)
 	return TRUE
 
 /**
  * allow an item in suit storage slot?
  */
-/obj/item/proc/can_suit_storage(obj/item/I)
+obj/item/proc/can_suit_storage(obj/item/I)
 	// todo: this is awful
 	return is_type_in_list(I, allowed)
 
@@ -210,7 +210,7 @@
  *
  * todo: non-singular-letter proc args
  */
-/obj/item/proc/equip_check_beltlink(mob/M, slot, mob/user, flags)
+obj/item/proc/equip_check_beltlink(mob/M, slot, mob/user, flags)
 	if(clothing_flags & CLOTHING_IGNORE_BELTLINK)
 		return TRUE
 
@@ -245,7 +245,7 @@
 /**
  * automatically uneqiup if we're missing beltlink
  */
-/obj/item/proc/reconsider_beltlink()
+obj/item/proc/reconsider_beltlink()
 	var/mob/M = loc
 	if(!istype(M))
 		return
@@ -260,7 +260,7 @@
  *
  * todo: non-singular-letter proc args
  */
-/obj/item/proc/equip_worn_over_check(mob/M, slot, mob/user, obj/item/I, flags)
+obj/item/proc/equip_worn_over_check(mob/M, slot, mob/user, obj/item/I, flags)
 	return FALSE
 
 /**
@@ -268,7 +268,7 @@
  *
  * todo: non-singular-letter proc args
  */
-/obj/item/proc/equip_on_worn_over_insert(mob/M, slot, mob/user, obj/item/I, flags)
+obj/item/proc/equip_on_worn_over_insert(mob/M, slot, mob/user, obj/item/I, flags)
 	if(!(flags & INV_OP_SUPPRESS_WARNING))
 		to_chat(M, SPAN_NOTICE("You slip [src] over [I]."))
 
@@ -277,17 +277,17 @@
  *
  * todo: non-singular-letter proc args
  */
-/obj/item/proc/equip_on_worn_over_remove(mob/M, slot, mob/user, obj/item/I, flags)
+obj/item/proc/equip_on_worn_over_remove(mob/M, slot, mob/user, obj/item/I, flags)
 
 /**
  * get the mob we're equipped on
  */
-/obj/item/proc/worn_mob()
+obj/item/proc/worn_mob()
 	RETURN_TYPE(/mob)
 	return worn_inside?.worn_mob() || (worn_slot? loc : null)
 
 // doMove hook to ensure proper functionality when inv procs aren't called
-/obj/item/doMove(atom/destination)
+obj/item/doMove(atom/destination)
 	if(worn_slot && !worn_hook_suppressed)
 		// inventory handling
 		if(destination == worn_inside)
@@ -301,7 +301,7 @@
 	return ..()
 
 // todo: this is fucking awful
-/obj/item/Move(atom/newloc, direct, glide_size_override)
+obj/item/Move(atom/newloc, direct, glide_size_override)
 	if(!worn_slot)
 		return ..()
 	var/mob/M = worn_mob()
@@ -319,7 +319,7 @@
  * checks if we're in inventory. if so, returns mob we're in
  * **hands count**
  */
-/obj/item/proc/is_in_inventory(include_hands)
+obj/item/proc/is_in_inventory(include_hands)
 	return (worn_slot && ((worn_slot != SLOT_ID_HANDS) || include_hands)) && worn_mob()
 
 /**
@@ -327,7 +327,7 @@
  *
  * note: this is not the same as is_in_inventory, we check if it's a clothing/worn slot in this case!
  */
-/obj/item/proc/is_being_worn()
+obj/item/proc/is_being_worn()
 	if(!worn_slot)
 		return FALSE
 	var/datum/inventory_slot_meta/slot_meta = resolve_inventory_slot_meta(worn_slot)
@@ -336,7 +336,7 @@
 /**
  * get strip menu options by  href key associated to name.
  */
-/obj/item/proc/strip_menu_options(mob/user)
+obj/item/proc/strip_menu_options(mob/user)
 	RETURN_TYPE(/list)
 	return list()
 
@@ -346,13 +346,13 @@
  * adjacency is pre-checked.
  * return TRUE to refresh
  */
-/obj/item/proc/strip_menu_act(mob/user, action)
+obj/item/proc/strip_menu_act(mob/user, action)
 	return FALSE
 
 /**
  * standard do after for interacting from strip menu
  */
-/obj/item/proc/strip_menu_standard_do_after(mob/user, delay)
+obj/item/proc/strip_menu_standard_do_after(mob/user, delay)
 	. = FALSE
 	var/slot = worn_slot
 	if(!slot)

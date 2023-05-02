@@ -1,4 +1,4 @@
-/obj/machinery/oxygen_pump
+obj/machinery/oxygen_pump
 	name = "emergency oxygen pump"
 	icon = 'icons/obj/walllocker.dmi'
 	desc = "A wall mounted oxygen pump with a retractable mask that you can pull over your face in case of emergencies."
@@ -19,12 +19,12 @@
 	idle_power_usage = 10
 	active_power_usage = 120 // No idea what the realistic amount would be.
 
-/obj/machinery/oxygen_pump/Initialize(mapload)
+obj/machinery/oxygen_pump/Initialize(mapload)
 	. = ..()
 	tank = new spawn_type (src)
 	contained = new mask_type (src)
 
-/obj/machinery/oxygen_pump/Destroy()
+obj/machinery/oxygen_pump/Destroy()
 	if(breather)
 		breather.internal = null
 		if(breather.internals)
@@ -38,7 +38,7 @@
 		QDEL_NULL(contained)
 	return ..()
 
-/obj/machinery/oxygen_pump/OnMouseDropLegacy(mob/living/carbon/human/target, src_location, over_location)
+obj/machinery/oxygen_pump/OnMouseDropLegacy(mob/living/carbon/human/target, src_location, over_location)
 	..()
 	if(istype(target) && CanMouseDrop(target))
 		if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
@@ -51,7 +51,7 @@
 		attach_mask(target)
 		src.add_fingerprint(usr)
 
-/obj/machinery/oxygen_pump/attack_hand(mob/user, list/params)
+obj/machinery/oxygen_pump/attack_hand(mob/user, list/params)
 	if((machine_stat & MAINT) && tank)
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] removes \the [tank] from \the [src]."), \
@@ -74,10 +74,10 @@
 		breather = null
 		update_use_power(USE_POWER_IDLE)
 
-/obj/machinery/oxygen_pump/attack_ai(mob/user)
+obj/machinery/oxygen_pump/attack_ai(mob/user)
 	nano_ui_interact(user)
 
-/obj/machinery/oxygen_pump/proc/attach_mask(mob/living/carbon/C)
+obj/machinery/oxygen_pump/proc/attach_mask(mob/living/carbon/C)
 	if(C && istype(C))
 		if(!C.equip_to_slot_if_possible(contained, SLOT_ID_MASK, INV_OP_FLUFFLESS | INV_OP_SUPPRESS_WARNING))
 			return
@@ -90,7 +90,7 @@
 				breather.internals.icon_state = "internal1"
 		update_use_power(USE_POWER_ACTIVE)
 
-/obj/machinery/oxygen_pump/proc/can_apply_to_target(mob/living/carbon/human/target, mob/user)
+obj/machinery/oxygen_pump/proc/can_apply_to_target(mob/living/carbon/human/target, mob/user)
 	if(!user)
 		user = target
 	// Check target validity
@@ -125,7 +125,7 @@
 		return
 	return 1
 
-/obj/machinery/oxygen_pump/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/oxygen_pump/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_screwdriver())
 		machine_stat ^= MAINT
 		user.visible_message( \
@@ -148,7 +148,7 @@
 	if(istype(W, /obj/item/tank) && !machine_stat)
 		to_chat(user, SPAN_WARNING("Please open the maintenance hatch first."))
 
-/obj/machinery/oxygen_pump/examine(mob/user)
+obj/machinery/oxygen_pump/examine(mob/user)
 	. = ..()
 	if(tank)
 		. += SPAN_NOTICE("The meter shows [round(tank.air_contents.return_pressure())] kPa.")
@@ -156,7 +156,7 @@
 		. += SPAN_WARNING("It is missing a tank!")
 
 
-/obj/machinery/oxygen_pump/process(delta_time)
+obj/machinery/oxygen_pump/process(delta_time)
 	if(breather)
 		if(!can_apply_to_target(breather))
 			if(tank)
@@ -171,14 +171,14 @@
 				breather.internals.icon_state = "internal0"
 
 //Create rightclick to view tank settings
-/obj/machinery/oxygen_pump/verb/settings()
+obj/machinery/oxygen_pump/verb/settings()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Show Tank Settings"
 	nano_ui_interact(usr)
 
 //GUI Tank Setup
-/obj/machinery/oxygen_pump/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+obj/machinery/oxygen_pump/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/data[0]
 	if(!tank)
 		to_chat(usr, "<span class='warning'>It is missing a tank!</span>")
@@ -216,7 +216,7 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
-/obj/machinery/oxygen_pump/Topic(href, href_list)
+obj/machinery/oxygen_pump/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -231,7 +231,7 @@
 		tank.distribute_pressure = min(max(round(tank.distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
 		return 1
 
-/obj/machinery/oxygen_pump/anesthetic
+obj/machinery/oxygen_pump/anesthetic
 	name = "anesthetic pump"
 	spawn_type = /obj/item/tank/anesthetic
 	icon_state = "anesthetic_tank"
@@ -239,7 +239,7 @@
 	icon_state_open = "anesthetic_tank_open"
 	mask_type = /obj/item/clothing/mask/breath/anesthetic
 
-/obj/machinery/oxygen_pump/mobile
+obj/machinery/oxygen_pump/mobile
 	name = "portable oxygen pump"
 	icon = 'icons/obj/atmos.dmi'
 	desc = "A portable oxygen pump with a retractable mask that you can pull over your face in case of emergencies."
@@ -254,7 +254,7 @@
 
 	var/last_area = null
 
-/obj/machinery/oxygen_pump/mobile/process(delta_time)
+obj/machinery/oxygen_pump/mobile/process(delta_time)
 	..()
 
 	var/turf/T = get_turf(src)
@@ -266,7 +266,7 @@
 		power_change()
 		last_area = T.loc
 
-/obj/machinery/oxygen_pump/mobile/anesthetic
+obj/machinery/oxygen_pump/mobile/anesthetic
 	name = "portable anesthetic pump"
 	spawn_type = /obj/item/tank/anesthetic
 	icon_state = "medpump_n2o"
@@ -274,11 +274,11 @@
 	icon_state_open = "medpump_n2o_open"
 	mask_type = /obj/item/clothing/mask/breath/anesthetic
 
-/obj/machinery/oxygen_pump/mobile/stabilizer
+obj/machinery/oxygen_pump/mobile/stabilizer
 	name = "portable patient stabilizer"
 	desc = "A portable oxygen pump with a retractable mask used for stabilizing patients in the field."
 
-/obj/machinery/oxygen_pump/mobile/stabilizer/process(delta_time)
+obj/machinery/oxygen_pump/mobile/stabilizer/process(delta_time)
 	if(breather)
 		if(!can_apply_to_target(breather))
 			if(tank)

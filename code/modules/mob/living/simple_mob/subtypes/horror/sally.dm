@@ -1,10 +1,10 @@
-/datum/category_item/catalogue/fauna/horror/Sally
+datum/category_item/catalogue/fauna/horror/Sally
 	name = "*@!!EARS*OF#@$$$JOY"
 	desc = "%WARNING% PROCESSING FAILURE! RETURN SCANNER TO A CENTRAL \
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/Sally
+mob/living/simple_mob/horror/Sally
 	name = "???"
 	desc = "A mass of tentacles hold up a large head, graced with one of the grandest smiles in the galaxy. It's a shame about the constant oil leaking from its eyes."
 
@@ -39,31 +39,31 @@
 	hide_amount = 10
 	exotic_amount = 5
 
-/mob/living/simple_mob/horror/Sally/Initialize(mapload)
+mob/living/simple_mob/horror/Sally/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)
 
-/mob/living/simple_mob/horror/Sally/death()
+mob/living/simple_mob/horror/Sally/death()
 	playsound(src, 'sound/h_sounds/lynx.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Sally/bullet_act()
+mob/living/simple_mob/horror/Sally/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Sally/attack_hand(mob/user, list/params)
+mob/living/simple_mob/horror/Sally/attack_hand(mob/user, list/params)
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Sally/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+mob/living/simple_mob/horror/Sally/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/Sally/attackby()
+mob/living/simple_mob/horror/Sally/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/datum/say_list/Sally
+datum/say_list/Sally
 	speak = list("Yeeeeee?","Haaah! Gashuuuuuh!", "Gahgahgahgah...")
 	emote_hear = list("shrieks", "groans in pain", "breathes heavily", "gnashes its teeth")
 	emote_see = list("wiggles its head", "shakes violently", "stares aggressively")

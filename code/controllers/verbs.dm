@@ -2,31 +2,31 @@
 //TODO: allow all controllers to be deleted for clean restarts (see WIP master controller stuff) - MC done - lighting done
 
 // Clickable stat() button.
-/obj/effect/statclick
+obj/effect/statclick
 	name = "Initializing..."
 	icon = null
 	var/target
 
 INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 
-/obj/effect/statclick/Initialize(mapload, text, target) //Don't port this to Initialize it's too critical
+obj/effect/statclick/Initialize(mapload, text, target) //Don't port this to Initialize it's too critical
 	. = ..()
 	name = text
 	src.target = target
 
-/obj/effect/statclick/proc/update(text)
+obj/effect/statclick/proc/update(text)
 	if(name == text)
 		return src	// let's ont change for no reason shall we
 	name = text
 	return name
 
-/obj/effect/statclick/statpanel_click(client/C, action)
+obj/effect/statclick/statpanel_click(client/C, action)
 	Click()
 
-/obj/effect/statclick/debug
+obj/effect/statclick/debug
 	var/class
 
-/obj/effect/statclick/debug/Click()
+obj/effect/statclick/debug/Click()
 	if(!usr.client.holder || !target)
 		return
 	if(!class)
@@ -44,7 +44,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 
 
 // Debug verbs.
-/client/proc/restart_controller(controller in list("Master", "Failsafe"))
+client/proc/restart_controller(controller in list("Master", "Failsafe"))
 	set category = "Debug"
 	set name = "Restart Controller"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
@@ -61,7 +61,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 
-/client/proc/debug_antagonist_template(antag_type in GLOB.all_antag_types)
+client/proc/debug_antagonist_template(antag_type in GLOB.all_antag_types)
 	set category = "Debug"
 	set name = "Debug Antagonist"
 	set desc = "Debug an antagonist template."
@@ -71,7 +71,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
-/client/proc/debug_controller()
+client/proc/debug_controller()
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various subsystems/controllers for the game (be careful!)"

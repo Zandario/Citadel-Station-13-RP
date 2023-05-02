@@ -1,4 +1,4 @@
-/obj/structure/noticeboard
+obj/structure/noticeboard
 	name = "notice board"
 	desc = "A board for pinning important notices upon."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -7,7 +7,7 @@
 	anchored = 1
 	var/notices = 0
 
-/obj/structure/noticeboard/Initialize(mapload, dir, building = FALSE)
+obj/structure/noticeboard/Initialize(mapload, dir, building = FALSE)
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
 		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
@@ -23,7 +23,7 @@
 	. = ..()
 
 //attaching papers!!
-/obj/structure/noticeboard/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/structure/noticeboard/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/paper))
 		if(notices < 5)
 			if(!user.attempt_insert_item_for_installation(O, src))
@@ -43,12 +43,12 @@
 			new /obj/item/frame/noticeboard( src.loc )
 			qdel(src)
 
-/obj/structure/noticeboard/attack_hand(mob/user, list/params)
+obj/structure/noticeboard/attack_hand(mob/user, list/params)
 	user.do_examinate(src)
 
 // Since Topic() never seems to interact with usr on more than a superficial
 // level, it should be fine to let anyone mess with the board other than ghosts.
-/obj/structure/noticeboard/examine(mob/user) //why the fuck is this shit on examine
+obj/structure/noticeboard/examine(mob/user) //why the fuck is this shit on examine
 	if(!user)
 		user = usr
 	if(user.Adjacent(src))
@@ -60,7 +60,7 @@
 	else
 		..()
 
-/obj/structure/noticeboard/Topic(href, href_list)
+obj/structure/noticeboard/Topic(href, href_list)
 	..()
 	usr.set_machine(src)
 	if(href_list["remove"])

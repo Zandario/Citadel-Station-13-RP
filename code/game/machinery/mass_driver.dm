@@ -1,5 +1,5 @@
 
-/obj/machinery/mass_driver
+obj/machinery/mass_driver
 	name = "mass driver"
 	desc = "Shoots things into space."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -15,7 +15,7 @@
 	var/id = 1
 	var/drive_range = 50 //this is mostly irrelevant since current mass drivers throw into space, but you could make a lower-range mass driver for interstation transport or something I guess.
 
-/obj/machinery/mass_driver/attackby(obj/item/I, mob/user)
+obj/machinery/mass_driver/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	if(default_deconstruction_crowbar(user, I))
@@ -31,7 +31,7 @@
 			return
 	return
 
-/obj/machinery/mass_driver/proc/drive(amount)
+obj/machinery/mass_driver/proc/drive(amount)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	use_power(500)
@@ -50,7 +50,7 @@
 	flick("mass_driver1", src)
 	return
 
-/obj/machinery/mass_driver/emp_act(severity)
+obj/machinery/mass_driver/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	drive()

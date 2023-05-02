@@ -1,4 +1,4 @@
-/datum/nifsoft/crewmonitor
+datum/nifsoft/crewmonitor
 	name = "Crew Monitor"
 	desc = "A link to the local crew monitor sensors. Useful for finding people in trouble."
 	list_pos = NIF_MEDMONITOR
@@ -7,27 +7,27 @@
 	p_drain = 0.025
 	var/datum/tgui_module_old/crew_monitor/nif/arscreen
 
-/datum/nifsoft/crewmonitor/New()
+datum/nifsoft/crewmonitor/New()
 	..()
 	arscreen = new(nif)
 
-/datum/nifsoft/crewmonitor/Destroy()
+datum/nifsoft/crewmonitor/Destroy()
 		QDEL_NULL(arscreen)
 		return ..()
 
-/datum/nifsoft/crewmonitor/activate()
+datum/nifsoft/crewmonitor/activate()
 	if((. = ..()))
 		arscreen.ui_interact(nif.human)
 		return TRUE
 
-/datum/nifsoft/crewmonitor/deactivate(var/force = FALSE)
+datum/nifsoft/crewmonitor/deactivate(var/force = FALSE)
 	if((. = ..()))
 		return TRUE
 
-/datum/nifsoft/crewmonitor/stat_text()
+datum/nifsoft/crewmonitor/stat_text()
 	return "Show Monitor"
 
-/datum/nifsoft/alarmmonitor
+datum/nifsoft/alarmmonitor
 	name = "Alarm Monitor"
 	desc = "A link to the local alarm monitors. Useful for detecting alarms in a pinch."
 	list_pos = NIF_ENGMONITOR
@@ -36,22 +36,22 @@
 	p_drain = 0.025
 	var/datum/nano_module/alarm_monitor/engineering/arscreen
 
-/datum/nifsoft/alarmmonitor/New()
+datum/nifsoft/alarmmonitor/New()
 	..()
 	arscreen = new(nif)
 
-/datum/nifsoft/alarmmonitor/Destroy()
+datum/nifsoft/alarmmonitor/Destroy()
 		QDEL_NULL(arscreen)
 		return ..()
 
-/datum/nifsoft/alarmmonitor/activate()
+datum/nifsoft/alarmmonitor/activate()
 	if((. = ..()))
 		arscreen.ui_interact(nif.human)
 		return TRUE
 
-/datum/nifsoft/alarmmonitor/deactivate(var/force = FALSE)
+datum/nifsoft/alarmmonitor/deactivate(var/force = FALSE)
 	if((. = ..()))
 		return TRUE
 
-/datum/nifsoft/alarmmonitor/stat_text()
+datum/nifsoft/alarmmonitor/stat_text()
 	return "Show Monitor"

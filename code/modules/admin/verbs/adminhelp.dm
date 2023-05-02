@@ -1,5 +1,5 @@
-/client/var/adminhelptimerid = 0	//a timer id for returning the ahelp verb
-/client/var/datum/admin_help/current_ticket	//the current ticket the (usually) not-admin client is dealing with
+client/var/adminhelptimerid = 0	//a timer id for returning the ahelp verb
+client/var/datum/admin_help/current_ticket	//the current ticket the (usually) not-admin client is dealing with
 
 //
 //TICKET MANAGER
@@ -7,7 +7,7 @@
 
 GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
-/datum/admin_help_tickets
+datum/admin_help_tickets
 	var/list/active_tickets = list()
 	var/list/closed_tickets = list()
 	var/list/resolved_tickets = list()
@@ -16,7 +16,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/obj/effect/statclick/ticket_list/cstatclick = new(null, null, AHELP_CLOSED)
 	var/obj/effect/statclick/ticket_list/rstatclick = new(null, null, AHELP_RESOLVED)
 
-/datum/admin_help_tickets/Destroy()
+datum/admin_help_tickets/Destroy()
 	QDEL_LIST(active_tickets)
 	QDEL_LIST(closed_tickets)
 	QDEL_LIST(resolved_tickets)
@@ -25,7 +25,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	QDEL_NULL(rstatclick)
 	return ..()
 
-/datum/admin_help_tickets/proc/TicketByID(id)
+datum/admin_help_tickets/proc/TicketByID(id)
 	var/list/lists = list(active_tickets, closed_tickets, resolved_tickets)
 	for(var/I in lists)
 		for(var/J in I)
@@ -33,7 +33,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			if(AH.id == id)
 				return J
 
-/datum/admin_help_tickets/proc/TicketsByCKey(ckey)
+datum/admin_help_tickets/proc/TicketsByCKey(ckey)
 	. = list()
 	var/list/lists = list(active_tickets, closed_tickets, resolved_tickets)
 	for(var/I in lists)
@@ -43,7 +43,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				. += AH
 
 //private
-/datum/admin_help_tickets/proc/ListInsert(datum/admin_help/new_ticket)
+datum/admin_help_tickets/proc/ListInsert(datum/admin_help/new_ticket)
 	var/list/ticket_list
 	switch(new_ticket.state)
 		if(AHELP_ACTIVE)
@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	ticket_list += new_ticket
 
 //opens the ticket listings for one of the 3 states
-/datum/admin_help_tickets/proc/BrowseTickets(state)
+datum/admin_help_tickets/proc/BrowseTickets(state)
 	var/list/l2b
 	var/title
 	switch(state)
@@ -88,7 +88,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
 
 //Tickets statpanel
-/datum/admin_help_tickets/proc/stat_data()
+datum/admin_help_tickets/proc/stat_data()
 	. = list()
 	var/num_disconnected = 0
 	STATPANEL_DATA_CLICK("Active Tickets:", "[active_tickets.len]", "\ref[astatclick]")
@@ -104,21 +104,21 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	STATPANEL_DATA_CLICK("Resolved Tickets:", "[resolved_tickets.len]", "\ref[rstatclick]")
 
 //Reassociate still open ticket if one exists
-/datum/admin_help_tickets/proc/ClientLogin(client/C)
+datum/admin_help_tickets/proc/ClientLogin(client/C)
 	C.current_ticket = CKey2ActiveTicket(C.ckey)
 	if(C.current_ticket)
 		C.current_ticket.AddInteraction("Client reconnected.")
 		C.current_ticket.initiator = C
 
 //Dissasociate ticket
-/datum/admin_help_tickets/proc/ClientLogout(client/C)
+datum/admin_help_tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		C.current_ticket.AddInteraction("Client disconnected.")
 		C.current_ticket.initiator = null
 		C.current_ticket = null
 
 //Get a ticket given a ckey
-/datum/admin_help_tickets/proc/CKey2ActiveTicket(ckey)
+datum/admin_help_tickets/proc/CKey2ActiveTicket(ckey)
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
 		if(AH.initiator_ckey == ckey)
@@ -128,22 +128,22 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //TICKET LIST STATCLICK
 //
 
-/obj/effect/statclick/ticket_list
+obj/effect/statclick/ticket_list
 	var/current_state
 
 INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
-/obj/effect/statclick/ticket_list/Initialize(mapload, name, state)
+obj/effect/statclick/ticket_list/Initialize(mapload, name, state)
 	. = ..()
 	current_state = state
 
-/obj/effect/statclick/ticket_list/Click()
+obj/effect/statclick/ticket_list/Click()
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
 
 //
 //TICKET DATUM
 //
 
-/datum/admin_help
+datum/admin_help
 	var/id
 	var/name
 	var/state = AHELP_ACTIVE
@@ -164,7 +164,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
 //is_bwoink is TRUE if this ticket was started by an admin PM
-/datum/admin_help/New(msg, client/C, is_bwoink)
+datum/admin_help/New(msg, client/C, is_bwoink)
 	//clean the input msg
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
 	if(!msg || !C || !C.mob)
@@ -207,17 +207,17 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	send2adminchat()
 	GLOB.ahelp_tickets.active_tickets += src
 
-/datum/admin_help/Destroy()
+datum/admin_help/Destroy()
 	RemoveActive()
 	GLOB.ahelp_tickets.closed_tickets -= src
 	GLOB.ahelp_tickets.resolved_tickets -= src
 	return ..()
 
-/datum/admin_help/proc/AddInteraction(formatted_message)
+datum/admin_help/proc/AddInteraction(formatted_message)
 	_interactions += "[gameTimestamp()]: [formatted_message]"
 
 //private
-/datum/admin_help/proc/FullMonty(ref_src)
+datum/admin_help/proc/FullMonty(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
 	. = ADMIN_FULLMONTY_NONAME(initiator.mob)
@@ -225,26 +225,26 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		. += ClosureLinks(ref_src)
 
 //private
-/datum/admin_help/proc/ClosureLinks(ref_src)
+datum/admin_help/proc/ClosureLinks(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
 	. = ADMIN_AHELP_FULLMONTY(ref_src)
 
 //private
-/datum/admin_help/proc/LinkedReplyName(ref_src)
+datum/admin_help/proc/LinkedReplyName(ref_src)
 	if(!ref_src)
 		ref_src = "\ref[src]"
 	return "<A HREF='?_src_=holder;ahelp=[ref_src];ahelp_action=reply'>[initiator_key_name]</A>"
 
 //private
-/datum/admin_help/proc/TicketHref(msg, ref_src, action = "ticket")
+datum/admin_help/proc/TicketHref(msg, ref_src, action = "ticket")
 	if(!ref_src)
 		ref_src = "\ref[src]"
 	return "<A HREF='?_src_=holder;ahelp=[ref_src];ahelp_action=[action]'>[msg]</A>"
 
 //message from the initiator without a target, all admins will see this
 //won't bug irc
-/datum/admin_help/proc/MessageNoRecipient(msg)
+datum/admin_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "\ref[src]"
 	var/chat_msg = SPAN_ADMINNOTICE("<span class='adminhelp'>Ticket [TicketHref(SPAN_TOOLTIP("Open the ticket in a new window.","#[id]"), ref_src)]</span><b>: [SPAN_TOOLTIP("Open a prompt to reply to this ticket.","[LinkedReplyName(ref_src)]")] [FullMonty(ref_src)]:</b> [msg]")
 
@@ -258,7 +258,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		to_chat(X, chat_msg)
 
 //Reopen a closed ticket
-/datum/admin_help/proc/Reopen()
+datum/admin_help/proc/Reopen()
 	if(state == AHELP_ACTIVE)
 		to_chat(usr, "<span class='warning'>This ticket is already open.</span>")
 		return
@@ -291,7 +291,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	TicketPanel()	//can only be done from here, so refresh it
 
 //private
-/datum/admin_help/proc/RemoveActive()
+datum/admin_help/proc/RemoveActive()
 	if(state != AHELP_ACTIVE)
 		return
 	closed_at = world.time
@@ -301,7 +301,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		initiator.current_ticket = null
 
 //Mark open ticket as closed/meme
-/datum/admin_help/proc/Close(silent = FALSE)
+datum/admin_help/proc/Close(silent = FALSE)
 	if(state != AHELP_ACTIVE)
 		return
 	RemoveActive()
@@ -317,7 +317,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		log_admin(msg)
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
-/datum/admin_help/proc/Resolve(silent = FALSE)
+datum/admin_help/proc/Resolve(silent = FALSE)
 	if(state != AHELP_ACTIVE)
 		return
 	RemoveActive()
@@ -334,7 +334,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		log_admin(msg)
 
 //Close and return ahelp verb, use if ticket is incoherent
-/datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
+datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
 	if(state != AHELP_ACTIVE)
 		return
 
@@ -354,7 +354,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	Close(silent = TRUE)
 
 //Resolve ticket with IC Issue message
-/datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
+datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
 	if(state != AHELP_ACTIVE)
 		return
 
@@ -373,7 +373,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	Resolve(silent = TRUE)
 
 //Resolve ticket with IC Issue message
-/datum/admin_help/proc/HandleIssue()
+datum/admin_help/proc/HandleIssue()
 	if(state != AHELP_ACTIVE)
 		return
 
@@ -389,7 +389,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	AddInteraction("[key_name_admin(usr)] is now handling this ticket.")
 
 //Show the ticket panel
-/datum/admin_help/proc/TicketPanel()
+datum/admin_help/proc/TicketPanel()
 	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
 	var/ref_src = "\ref[src]"
 	dat += "<h4>Admin Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
@@ -420,7 +420,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 
 	usr << browse(dat.Join(), "window=ahelp[id];size=620x480")
 
-/datum/admin_help/proc/Retitle()
+datum/admin_help/proc/Retitle()
 	var/new_title = input(usr, "Enter a title for the ticket", "Rename Ticket", name) as text|null
 	if(new_title)
 		name = new_title
@@ -431,7 +431,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	TicketPanel()	//we have to be here to do this
 
 //Forwarded action from admin/Topic
-/datum/admin_help/proc/Action(action)
+datum/admin_help/proc/Action(action)
 	testing("Ahelp action: [action]")
 	switch(action)
 		if("ticket")
@@ -457,21 +457,21 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 // TICKET STATCLICK
 //
 
-/obj/effect/statclick/ahelp
+obj/effect/statclick/ahelp
 	var/datum/admin_help/ahelp_datum
 
 INITIALIZE_IMMEDIATE(/obj/effect/statclick/ahelp)
-/obj/effect/statclick/ahelp/Initialize(mapload, datum/admin_help/AH)
+obj/effect/statclick/ahelp/Initialize(mapload, datum/admin_help/AH)
 	ahelp_datum = AH
 	return ..(mapload)
 
-/obj/effect/statclick/ahelp/update()
+obj/effect/statclick/ahelp/update()
 	return ..(ahelp_datum.name)
 
-/obj/effect/statclick/ahelp/Click()
+obj/effect/statclick/ahelp/Click()
 	ahelp_datum.TicketPanel()
 
-/obj/effect/statclick/ahelp/Destroy()
+obj/effect/statclick/ahelp/Destroy()
 	ahelp_datum = null
 	return ..()
 
@@ -479,17 +479,17 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ahelp)
 // CLIENT PROCS
 //
 
-/client/proc/giveadminhelpverb()
+client/proc/giveadminhelpverb()
 	add_verb(src, /client/verb/adminhelp)
 	deltimer(adminhelptimerid)
 	adminhelptimerid = 0
 
 // Used for methods where input via arg doesn't work
-/client/proc/get_adminhelp()
+client/proc/get_adminhelp()
 	var/msg = input(src, "Please describe your problem concisely and an admin will help as soon as they're able.", "Adminhelp contents") as message|null
 	adminhelp(msg)
 
-/client/verb/adminhelp(msg as text)
+client/verb/adminhelp(msg as text)
 	set category = "Admin"
 	set name = "Adminhelp"
 
@@ -525,7 +525,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ahelp)
 	new /datum/admin_help(msg, src, FALSE)
 
 //admin proc
-/client/proc/cmd_admin_ticket_panel()
+client/proc/cmd_admin_ticket_panel()
 	set name = "Show Ticket List"
 	set category = "Admin"
 
@@ -552,7 +552,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ahelp)
 
 //Use this proc when an admin takes action that may be related to an open ticket on what
 //what can be a client, ckey, or mob
-/proc/admin_ticket_log(what, message)
+proc/admin_ticket_log(what, message)
 	var/client/C
 	var/mob/Mob = what
 	if(istype(Mob))
@@ -572,7 +572,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ahelp)
 // HELPER PROCS
 //
 
-/proc/get_admin_counts(requiredflags = R_BAN)
+proc/get_admin_counts(requiredflags = R_BAN)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
 	for(var/client/X in GLOB.admins)
 		.["total"] += X
@@ -585,7 +585,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ahelp)
 		else
 			.["present"] += X
 
-/proc/send2irc_adminless_only(source, msg, requiredflags = R_BAN)
+proc/send2irc_adminless_only(source, msg, requiredflags = R_BAN)
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
 	. = activemins.len
@@ -601,12 +601,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ahelp)
 			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
 		send2irc(source,final)
 
-/proc/send2irc(msg,msg2)
+proc/send2irc(msg,msg2)
 	msg = replacetext(replacetext(msg, "\proper", ""), "\improper", "")
 	msg2 = replacetext(replacetext(msg2, "\proper", ""), "\improper", "")
 	world.TgsTargetedChatBroadcast("[msg] | [msg2]", TRUE)
 
-/proc/ircadminwho()
+proc/ircadminwho()
 	var/list/message = list("Admins: ")
 	var/list/admin_keys = list()
 	for(var/adm in GLOB.admins)
@@ -621,7 +621,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ahelp)
 
 	return jointext(message, "")
 
-/proc/keywords_lookup(msg,irc)
+proc/keywords_lookup(msg,irc)
 
 	//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
 	var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as", "i")

@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/frog
+datum/category_item/catalogue/fauna/frog
 	name = "Giant Frog"
 	desc = "Another example of genetic engineering gone right - mostly - the Giant Frog \
 	is an upscaled amphibian originally imported from Earth. Although questions abound \
@@ -6,7 +6,7 @@
 	are simply happy the DNA wasn't added to fossilized dinosaur eggs."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/aggressive/frog
+mob/living/simple_mob/vore/aggressive/frog
 	name = "giant frog"
 	desc = "You've heard of having a frog in your throat, now get ready for the reverse."
 	tt_desc = "Anura gigantus"
@@ -28,7 +28,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 // Pepe is love, not hate.
-/mob/living/simple_mob/vore/aggressive/frog/Initialize(mapload)
+mob/living/simple_mob/vore/aggressive/frog/Initialize(mapload)
 	. = ..()
 	if(rand(1,1000000) == 1)
 		name = "rare Pepe"
@@ -37,12 +37,12 @@
 		mod_max = 150
 
 // Activate Noms!
-/mob/living/simple_mob/vore/aggressive/frog
+mob/living/simple_mob/vore/aggressive/frog
 	vore_active = 1
 	vore_pounce_chance = 50
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/vore/aggressive/frog/space
+mob/living/simple_mob/vore/aggressive/frog/space
 	name = "space frog"
 
 	//Space frog can hold its breath or whatever

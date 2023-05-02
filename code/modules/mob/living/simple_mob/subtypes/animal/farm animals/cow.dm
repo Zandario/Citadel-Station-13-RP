@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/livestock/cow
+datum/category_item/catalogue/fauna/livestock/cow
 	name = "Livestock - Cow"
 	desc = "The premier source of meat from old Earth, the cow is a lumbering \
 	herbivore. The milk produced by cows is safe for human consumption, and has \
@@ -7,7 +7,7 @@
 	Frontier."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/cow
+mob/living/simple_mob/animal/passive/cow
 	name = "cow"
 	desc = "Known for their milk, just don't tip them over."
 	tt_desc = "E Bos taurus"
@@ -37,12 +37,12 @@
 
 	var/datum/reagents/udder = null
 
-/mob/living/simple_mob/animal/passive/cow/Initialize(mapload)
+mob/living/simple_mob/animal/passive/cow/Initialize(mapload)
 	. = ..()
 	udder = new(50)
 	udder.my_atom = src
 
-/mob/living/simple_mob/animal/passive/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
+mob/living/simple_mob/animal/passive/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
@@ -54,7 +54,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/animal/passive/cow/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/animal/passive/cow/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -62,7 +62,7 @@
 		if(udder && prob(5))
 			udder.add_reagent("milk", rand(5, 10))
 
-/mob/living/simple_mob/animal/passive/cow/attack_hand(mob/user, list/params)
+mob/living/simple_mob/animal/passive/cow/attack_hand(mob/user, list/params)
 	var/mob/living/M = user
 	if(!istype(M))
 		return
@@ -81,7 +81,7 @@
 	else
 		..()
 
-/datum/say_list/cow
+datum/say_list/cow
 	speak = list("moo?","moo","MOOOOOO")
 	emote_hear = list("brays", "moos","moos hauntingly")
 	emote_see = list("shakes its head")

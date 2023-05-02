@@ -1,15 +1,15 @@
-/datum/armor/centcom
+datum/armor/centcom
 
-/datum/armor/centcom/jumpsuit
+datum/armor/centcom/jumpsuit
 	melee = 0.1
 	bullet = 0.1
 	laser = 0.1
 	energy = 0.1
 	bomb = 0.1
 
-/datum/armor/centcom/jumpsuit/ert
+datum/armor/centcom/jumpsuit/ert
 
-/datum/armor/centcom/coat
+datum/armor/centcom/coat
 	melee = 0.4
 	bullet = 0.45
 	laser = 0.45
@@ -18,7 +18,7 @@
 	bio = 0.55
 	rad = 0.55
 
-/datum/armor/centcom/ert
+datum/armor/centcom/ert
 	melee = 0.65
 	bullet = 0.5
 	laser = 0.65
@@ -27,10 +27,10 @@
 	bio = 0.2
 	rad = 0.2
 
-/datum/armor/centcom/ert/paracausal
+datum/armor/centcom/ert/paracausal
 	energy = 0.6
 
-/datum/armor/centcom/deathsquad
+datum/armor/centcom/deathsquad
 	melee = 0.8
 	bullet = 0.65
 	laser = 0.65

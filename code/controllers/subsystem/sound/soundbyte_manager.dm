@@ -1,11 +1,11 @@
 //! ## Soundbyte Mangaer
-/datum/controller/subsystem/sounds
+datum/controller/subsystem/sounds
 	/// soundbytes by id - text id = sound
 	var/list/soundbytes_by_id
 	/// soundbytes by alias - alias = list(sounds)
 	var/list/soundbytes_by_alias
 
-/datum/controller/subsystem/sounds/proc/setup_soundbytes()
+datum/controller/subsystem/sounds/proc/setup_soundbytes()
 	// kill old
 	if(islist(soundbytes_by_id))
 		for(var/datum/soundbyte/SB in soundbytes_by_id)
@@ -56,7 +56,7 @@
  * fetch soundbyte by alias or id
  * you should almost never need to do this
  */
-/datum/controller/subsystem/sounds/proc/fetch_soundbyte(alias)
+datum/controller/subsystem/sounds/proc/fetch_soundbyte(alias)
 	RETURN_TYPE(/datum/soundbyte)
 	alias = "[alias]"
 	if(soundbytes_by_alias[alias])
@@ -67,7 +67,7 @@
  * fetch sound file/path/asset by alias or id
  * defaults to alias itself if not found, so passing in a valid sound datum is fine
  */
-/datum/controller/subsystem/sounds/proc/fetch_asset(alias)
+datum/controller/subsystem/sounds/proc/fetch_asset(alias)
 	if(!istext(alias))
 		return alias
 	return fetch_soundbyte(alias)?.get_asset() || alias
@@ -76,7 +76,7 @@
  * fetch sound object
  * defaults to alias itself, so passing in a valid sound datum is fine
  */
-/datum/controller/subsystem/sounds/proc/create_sfx(alias)
+datum/controller/subsystem/sounds/proc/create_sfx(alias)
 	return fetch_soundbyte(alias)?.instance_sound() || alias
 
 ///////////// TODO: dynamic soundbyte creation but we can deal with this later ////////////

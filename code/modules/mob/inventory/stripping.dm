@@ -1,6 +1,6 @@
 // todo: tgui
 // todo: ui state handles prechecks? interesting to deal with.
-/mob/proc/mouse_drop_strip_interaction(mob/user)
+mob/proc/mouse_drop_strip_interaction(mob/user)
 	if(user.a_intent == INTENT_GRAB)
 		return NONE	// riding code
 	if(user == src)
@@ -8,22 +8,22 @@
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
 	request_strip_menu(user)
 
-/mob/proc/request_strip_menu(mob/user)
+mob/proc/request_strip_menu(mob/user)
 	if(!strip_interaction_prechecks(user, FALSE))
 		return FALSE
 	return open_strip_menu(user)
 
-/mob/proc/open_strip_menu(mob/user)
+mob/proc/open_strip_menu(mob/user)
 	var/datum/browser/B = new(user, "strip_window_[REF(src)]", "[name] (stripping)", 340, 540)
 	var/list/content = render_strip_menu(user)
 	B.set_content(content.Join(""))
 	B.open()
 	return TRUE
 
-/mob/proc/close_strip_menu(mob/user)
+mob/proc/close_strip_menu(mob/user)
 	user << browse(null, "window=strip_window_[REF(src)]")
 
-/mob/proc/render_strip_menu(mob/user)
+mob/proc/render_strip_menu(mob/user)
 	RETURN_TYPE(/list)
 	. = list()
 	. += "<h1>Inventory</h1>"
@@ -93,7 +93,7 @@
 	// now for misc
 	. += "<a href='?src=[REF(src)];strip=refresh'>Refresh</a><br>"
 
-/mob/proc/attempt_slot_strip(mob/user, slot_id, delay_mod = 1)
+mob/proc/attempt_slot_strip(mob/user, slot_id, delay_mod = 1)
 	if(!strip_interaction_prechecks(user))
 		return FALSE
 
@@ -123,7 +123,7 @@
 			add_attack_logs(user, src, "Failed to put [theirs] in slot [slot_id]")
 	return TRUE
 
-/mob/proc/attempt_hand_strip(mob/user, index, delay_mod = 1)
+mob/proc/attempt_hand_strip(mob/user, index, delay_mod = 1)
 	if(!strip_interaction_prechecks(user))
 		return FALSE
 
@@ -153,7 +153,7 @@
 			add_attack_logs(user, src, "Failed to put [theirs] in hand index [index]")
 	return TRUE
 
-/mob/proc/attempt_strip_common(obj/item/ours, obj/item/theirs, mob/user, slot_id_or_index)
+mob/proc/attempt_strip_common(obj/item/ours, obj/item/theirs, mob/user, slot_id_or_index)
 	var/removing = !!ours
 
 	var/view_flags = NONE
@@ -227,7 +227,7 @@
 			return FALSE
 	return TRUE
 
-/mob/proc/handle_strip_topic(mob/user, list/href_list, operation = href_list["strip"])
+mob/proc/handle_strip_topic(mob/user, list/href_list, operation = href_list["strip"])
 	// do checks
 	if(!strip_interaction_prechecks(user))
 		return
@@ -266,7 +266,7 @@
 	if(.)
 		open_strip_menu(user)
 
-/mob/proc/strip_interaction_prechecks(mob/user, autoclose = TRUE)
+mob/proc/strip_interaction_prechecks(mob/user, autoclose = TRUE)
 	if(!isliving(user))
 		// no ghost fuckery
 		return FALSE
@@ -286,7 +286,7 @@
 /**
  * return a list of action = name. action should be short, for hrefs! same for name!
  */
-/mob/proc/strip_menu_options(mob/user)
+mob/proc/strip_menu_options(mob/user)
 	RETURN_TYPE(/list)
 	return list()
 
@@ -295,5 +295,5 @@
  * adjacency/can act is checked already
  * return TRUE to refresh
  */
-/mob/proc/strip_menu_act(mob/user, action)
+mob/proc/strip_menu_act(mob/user, action)
 	return FALSE

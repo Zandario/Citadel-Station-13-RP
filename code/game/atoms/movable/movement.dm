@@ -2,7 +2,7 @@
  * Internal Move() handling, called from the actual Move() implementation via override and ..()
  * This rewrites how we handle movement to avoid some BYOND-isms.
  */
-/atom/movable/Move(atom/newloc, direct, step_x, step_y, glide_size_override)
+atom/movable/Move(atom/newloc, direct, step_x, step_y, glide_size_override)
 	. = FALSE
 	if(newloc == loc)
 		return
@@ -181,7 +181,7 @@
  *
  * Only supports moves up to range 1, in any direction including diagonals.
  */
-/atom/movable/Move(atom/newloc, direct, step_x, step_y, glide_size_override)
+atom/movable/Move(atom/newloc, direct, step_x, step_y, glide_size_override)
 	var/is_multi_tile = bound_width > world.icon_size || bound_height > world.icon_size
 	if(is_multi_tile && isturf(newloc))
 		newloc = locate(newloc.x + round(step_x / WORLD_ICON_SIZE), newloc.y + round(step_y / WORLD_ICON_SIZE), newloc.z)
@@ -312,7 +312,7 @@
 	l_move_time = world.time
 
 //! WARNING WARNING THIS IS SHITCODE
-/atom/movable/proc/handle_buckled_mob_movement(newloc, direct, glide_size_override, forcemoving)
+atom/movable/proc/handle_buckled_mob_movement(newloc, direct, glide_size_override, forcemoving)
 	for(var/mob/M as anything in buckled_mobs)
 		if(!M.Move(newloc, direct, glide_size_override))
 			if(forcemoving)
@@ -343,7 +343,7 @@
  * * The old_locs is an optional argument, in case the moved movable was present in multiple locations before the movement.
  * * momentum_change represents whether this movement is due to a "new" force if TRUE or an already "existing" force if FALSE
  **/
-/atom/movable/proc/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+atom/movable/proc/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	SHOULD_CALL_PARENT(TRUE)
 
 	if (!inertia_moving)
@@ -371,7 +371,7 @@
  * if you want something to move onto a tile with a beartrap or recycler or tripmine or mouse without that object knowing about it at all, use this
  * most of the time you want forceMove()
  */
-/atom/movable/proc/abstract_move(atom/new_loc)
+atom/movable/proc/abstract_move(atom/new_loc)
 	var/atom/old_loc = loc
 	var/direction = get_dir(old_loc, new_loc)
 	loc = new_loc
@@ -384,7 +384,7 @@
  *
  * You probably want CanPass() if you're overriding.
  */
-/atom/movable/Cross(atom/movable/AM)
+atom/movable/Cross(atom/movable/AM)
 	. = TRUE
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM)
 	return CanPass(AM, loc)
@@ -395,7 +395,7 @@
  * Do not do anything that will re-move the atom, or bad things happen.
  * Use spawn(0) to yield behavior until after the movement call stack is done if you want to do that.
  */
-/atom/movable/Crossed(atom/movable/AM, oldloc)
+atom/movable/Crossed(atom/movable/AM, oldloc)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
@@ -406,7 +406,7 @@
  *
  * This *must* be a pure proc. You cannot act on the atom if you override this! Use Bump() for that.
  */
-/atom/movable/Uncross(atom/movable/AM, atom/newloc)
+atom/movable/Uncross(atom/movable/AM, atom/newloc)
 	. = TRUE
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_UNCROSS, AM) & COMPONENT_MOVABLE_BLOCK_UNCROSS)
 		return FALSE
@@ -419,10 +419,10 @@
  * Do not do anything that will re-move the atom, or bad things happen.
  * Use spawn(0) to yield behavior until after the movement call stack is done if you want to do that.
  */
-/atom/movable/Uncrossed(atom/movable/AM)
+atom/movable/Uncrossed(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UNCROSSED, AM)
 
-/atom/movable/Bump(atom/A)
+atom/movable/Bump(atom/A)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
 
 	. = ..()
@@ -440,7 +440,7 @@
   * recurse_levels determines how many levels it recurses this call. Don't set it too high or else someone's going to transit 20 conga liners in a single move.
   * Probably needs a better way of handling this in the future.
   */
-/atom/movable/proc/locationTransitForceMove(atom/destination, recurse_levels = 0, allow_buckled = TRUE, allow_pulled = TRUE, allow_grabbed = GRAB_PASSIVE, list/recursed = list())
+atom/movable/proc/locationTransitForceMove(atom/destination, recurse_levels = 0, allow_buckled = TRUE, allow_pulled = TRUE, allow_grabbed = GRAB_PASSIVE, list/recursed = list())
 	// we need the recursion guard for loop situations.
 	// todo: rework everything about this proc omg
 	if(recursed[src])
@@ -477,7 +477,7 @@
 			oldpulling.doLocationTransitForceMove(destination)
 		start_pulling(oldpulling, suppress_message = TRUE)
 
-/mob/locationTransitForceMove(atom/destination, recurse_levels = 0, allow_buckled = TRUE, allow_pulled = TRUE, allow_grabbed = GRAB_PASSIVE, list/recursed = list())
+mob/locationTransitForceMove(atom/destination, recurse_levels = 0, allow_buckled = TRUE, allow_pulled = TRUE, allow_grabbed = GRAB_PASSIVE, list/recursed = list())
 	var/list/old_grabbed
 	if(allow_grabbed)
 		old_grabbed = list()
@@ -494,7 +494,7 @@
 /**
   * Gets the atoms that we'd pull along with a locationTransitForceMove
   */
-/atom/movable/proc/getLocationTransitForceMoveTargets(atom/destination, recurse_levels = 0, allow_buckled = TRUE, allow_pulled = TRUE, allow_grabbed = GRAB_PASSIVE, list/recursed = list())
+atom/movable/proc/getLocationTransitForceMoveTargets(atom/destination, recurse_levels = 0, allow_buckled = TRUE, allow_pulled = TRUE, allow_grabbed = GRAB_PASSIVE, list/recursed = list())
 	if(recursed[src])
 		return list()
 	recursed[src] = TRUE
@@ -506,7 +506,7 @@
 			. |= recurse_levels? M.getLocationTransitForceMoveTargets(destination, recurse_levels - 1, allow_buckled, allow_pulled, allow_grabbed, recursed) : M
 
 // until movement rework
-/mob/getLocationTransitForceMoveTargets(atom/destination, recurse_levels = 0, allow_buckled = TRUE, allow_pulled = TRUE, allow_grabbed = GRAB_PASSIVE)
+mob/getLocationTransitForceMoveTargets(atom/destination, recurse_levels = 0, allow_buckled = TRUE, allow_pulled = TRUE, allow_grabbed = GRAB_PASSIVE)
 	. = ..()
 	if(allow_grabbed)
 		var/list/grabbing = grabbing()
@@ -518,11 +518,11 @@
 /**
   * Wrapper for forceMove when we're called by a recursing locationTransitForceMove().
   */
-/atom/movable/proc/doLocationTransitForceMove(atom/destination)
+atom/movable/proc/doLocationTransitForceMove(atom/destination)
 	. = TRUE
 	forceMove(destination)
 
-/atom/movable/proc/forceMove(atom/destination)
+atom/movable/proc/forceMove(atom/destination)
 	. = FALSE
 	pulledby?.stop_pulling()
 	if(destination)
@@ -530,10 +530,10 @@
 	else
 		CRASH("No valid destination passed into forceMove")
 
-/atom/movable/proc/moveToNullspace()
+atom/movable/proc/moveToNullspace()
 	return doMove(null)
 
-/atom/movable/proc/doMove(atom/destination)
+atom/movable/proc/doMove(atom/destination)
 	. = FALSE
 
 	++in_move
@@ -639,13 +639,13 @@
 
 	--in_move
 
-/atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
+atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(mover in buckled_mobs)
 		return TRUE
 
 /// Returns true or false to allow src to move through the blocker, mover has final say
-/atom/movable/proc/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
+atom/movable/proc/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_BE_PURE(TRUE)
 	return blocker_opinion
@@ -661,7 +661,7 @@
   * Arguments:
   * * movement_dir - 0 when stopping or any dir when trying to move
   */
-/atom/movable/proc/Process_Spacemove(movement_dir = NONE)
+atom/movable/proc/Process_Spacemove(movement_dir = NONE)
 	if(has_gravity(src))
 		return TRUE
 
@@ -680,7 +680,7 @@
 	return FALSE
 
 /// Only moves the object if it's under no gravity
-/atom/movable/proc/newtonian_move(direction)
+atom/movable/proc/newtonian_move(direction)
 	if(!loc || Process_Spacemove(NONE))
 		inertia_dir = NONE
 		return FALSE
@@ -699,21 +699,21 @@
 /**
  * return true to let something push through us
  */
-/atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
+atom/movable/proc/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	return FALSE
 
 /**
  * return true to let something crush through us
  */
-/atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
+atom/movable/proc/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	return FALSE
 
-/atom/movable/proc/force_push(atom/movable/AM, force = move_force, direction, silent)
+atom/movable/proc/force_push(atom/movable/AM, force = move_force, direction, silent)
 	. = AM.force_pushed(src, force, direction)
 	if(!silent && .)
 		visible_message("<span class='warning'>[src] forcefully pushes against [AM]!</span>", "<span class='warning'>You forcefully push against [AM]!</span>")
 
-/atom/movable/proc/move_crush(atom/movable/AM, force = move_force, direction, silent)
+atom/movable/proc/move_crush(atom/movable/AM, force = move_force, direction, silent)
 	. = AM.move_crushed(src, force, direction)
 	if(!silent && .)
 		visible_message("<span class='danger'>[src] crushes past [AM]!</span>", "<span class='danger'>You crush [AM]!</span>")
@@ -723,7 +723,7 @@
 /**
  * Hook for running code when a dir change occurs
  */
-/atom/proc/setDir(newdir)
+atom/proc/setDir(newdir)
 	SHOULD_CALL_PARENT(TRUE)
 	if(dir == newdir)
 		return FALSE
@@ -743,7 +743,7 @@
  * Do not do anything that will re-move the atom, or bad things happen.
  * Use spawn(0) to yield behavior until after the movement call stack is done if you want to do that.
  */
-/atom/movable/proc/on_changed_z_level(old_z, new_z)
+atom/movable/proc/on_changed_z_level(old_z, new_z)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
 	for(var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
 		var/atom/movable/AM = item
@@ -759,7 +759,7 @@
  *
  * @return TRUE / FALSE on if anchored changed from its value
  */
-/atom/movable/proc/set_anchored(anchorvalue)
+atom/movable/proc/set_anchored(anchorvalue)
 	SHOULD_CALL_PARENT(TRUE)
 	if(anchored == anchorvalue)
 		return
@@ -772,12 +772,12 @@
 /**
  * for regexing
  */
-/atom/movable/proc/check_pass_flags(flags)
+atom/movable/proc/check_pass_flags(flags)
 	return pass_flags & flags
 
 //? Movement Types
 
-/atom/movable/proc/update_movement_type()
+atom/movable/proc/update_movement_type()
 	var/old_type = movement_type & MOVEMENT_TYPES
 
 	#define RESET_MOVE_TYPE(type) movement_type = (movement_type & ~(movement_type & MOVEMENT_TYPES)) | type
@@ -798,29 +798,29 @@
 
 	on_update_movement_type(old_type, new_type)
 
-/atom/movable/proc/on_update_movement_type(old_type, new_type)
+atom/movable/proc/on_update_movement_type(old_type, new_type)
 
-/atom/movable/proc/add_atom_flying(source)
+atom/movable/proc/add_atom_flying(source)
 	ADD_TRAIT(src, TRAIT_ATOM_FLYING, source)
 	update_movement_type()
 
-/atom/movable/proc/add_atom_phasing(source)
+atom/movable/proc/add_atom_phasing(source)
 	ADD_TRAIT(src, TRAIT_ATOM_PHASING, source)
 	update_movement_type()
 
-/atom/movable/proc/add_atom_floating(source)
+atom/movable/proc/add_atom_floating(source)
 	ADD_TRAIT(src, TRAIT_ATOM_FLOATING, source)
 	update_movement_type()
 
-/atom/movable/proc/remove_atom_flying(source)
+atom/movable/proc/remove_atom_flying(source)
 	REMOVE_TRAIT(src, TRAIT_ATOM_FLYING, source)
 	update_movement_type()
 
-/atom/movable/proc/remove_atom_phasing(source)
+atom/movable/proc/remove_atom_phasing(source)
 	REMOVE_TRAIT(src, TRAIT_ATOM_PHASING, source)
 	update_movement_type()
 
-/atom/movable/proc/remove_atom_floating(source)
+atom/movable/proc/remove_atom_floating(source)
 	REMOVE_TRAIT(src, TRAIT_ATOM_FLOATING, source)
 	update_movement_type()
 
@@ -829,7 +829,7 @@
 /**
   * Sets our glide size
   */
-/atom/movable/proc/set_glide_size(new_glide_size, recursive = TRUE)
+atom/movable/proc/set_glide_size(new_glide_size, recursive = TRUE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, new_glide_size, glide_size)
 	glide_size = new_glide_size
 
@@ -845,5 +845,5 @@
   * Sets our glide size back to our standard glide size.
   */
 
-/atom/movable/proc/reset_glide_size()
+atom/movable/proc/reset_glide_size()
 	set_glide_size(isnull(default_glide_size)? GLOB.default_glide_size : default_glide_size)

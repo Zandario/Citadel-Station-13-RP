@@ -4,158 +4,158 @@
 // They are left here for the moment in order to make existing maps loadable, but should be phased out.
 //
 
-/area/shuttle/arrival/pre_game
+area/shuttle/arrival/pre_game
 	icon_state = "shuttle2"
 
-/area/shuttle/arrival/station
+area/shuttle/arrival/station
 	icon_state = "shuttle"
 	ambience = AMBIENCE_ARRIVALS
 
-/area/shuttle/escape/station
+area/shuttle/escape/station
 	name = "\improper Emergency Shuttle Station"
 	icon_state = "shuttle2"
 
-/area/shuttle/escape/centcom
+area/shuttle/escape/centcom
 	name = "\improper Emergency Shuttle CentCom"
 	icon_state = "shuttle"
 
-/area/shuttle/escape/transit // the area to pass through for 3 minute transit
+area/shuttle/escape/transit // the area to pass through for 3 minute transit
 	name = "\improper Emergency Shuttle Transit"
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod1/station
+area/shuttle/escape_pod1/station
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod1/centcom
+area/shuttle/escape_pod1/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod1/transit
+area/shuttle/escape_pod1/transit
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod2/station
+area/shuttle/escape_pod2/station
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod2/centcom
+area/shuttle/escape_pod2/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod2/transit
+area/shuttle/escape_pod2/transit
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod3/station
+area/shuttle/escape_pod3/station
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod3/centcom
+area/shuttle/escape_pod3/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod3/transit
+area/shuttle/escape_pod3/transit
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod4/station
+area/shuttle/escape_pod4/station
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod4/centcom
+area/shuttle/escape_pod4/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod4/transit
+area/shuttle/escape_pod4/transit
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod5/station
+area/shuttle/escape_pod5/station
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod5/centcom
+area/shuttle/escape_pod5/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod5/transit
+area/shuttle/escape_pod5/transit
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod6/station
+area/shuttle/escape_pod6/station
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod6/centcom
+area/shuttle/escape_pod6/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod6/transit
+area/shuttle/escape_pod6/transit
 	icon_state = "shuttle"
 
-/area/shuttle/large_escape_pod1/station
+area/shuttle/large_escape_pod1/station
 	icon_state = "shuttle2"
 
-/area/shuttle/large_escape_pod1/centcom
+area/shuttle/large_escape_pod1/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/large_escape_pod1/transit
+area/shuttle/large_escape_pod1/transit
 	icon_state = "shuttle"
 
-/area/shuttle/large_escape_pod2/station
+area/shuttle/large_escape_pod2/station
 	icon_state = "shuttle2"
 
-/area/shuttle/large_escape_pod2/centcom
+area/shuttle/large_escape_pod2/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/large_escape_pod2/transit
+area/shuttle/large_escape_pod2/transit
 	icon_state = "shuttle"
 
-/area/shuttle/cryo/station
+area/shuttle/cryo/station
 	icon_state = "shuttle2"
 
-/area/shuttle/cryo/centcom
+area/shuttle/cryo/centcom
 	icon_state = "shuttle"
 
-/area/shuttle/cryo/transit
+area/shuttle/cryo/transit
 	icon_state = "shuttle"
 
-/area/shuttle/mining/station
+area/shuttle/mining/station
 	icon_state = "shuttle2"
 
-/area/shuttle/mining/outpost
+area/shuttle/mining/outpost
 	icon_state = "shuttle"
 
-/area/shuttle/trade/centcom
+area/shuttle/trade/centcom
 	name = "\improper Trade Shuttle CentCom"
 	icon_state = "shuttlered"
 
-/area/shuttle/trade/station
+area/shuttle/trade/station
 	name = "\improper Trade Shuttle"
 	icon_state = "shuttlered"
 
-/area/shuttle/thunderdome/grnshuttle
+area/shuttle/thunderdome/grnshuttle
 	name = "\improper Thunderdome GRN Shuttle"
 	icon_state = "green"
 
-/area/shuttle/thunderdome/grnshuttle/dome
+area/shuttle/thunderdome/grnshuttle/dome
 	name = "\improper GRN Shuttle"
 	icon_state = "shuttlegrn"
 
-/area/shuttle/thunderdome/grnshuttle/station
+area/shuttle/thunderdome/grnshuttle/station
 	name = "\improper GRN Station"
 	icon_state = "shuttlegrn2"
 
-/area/shuttle/thunderdome/redshuttle
+area/shuttle/thunderdome/redshuttle
 	name = "\improper Thunderdome RED Shuttle"
 	icon_state = "red"
 
-/area/shuttle/thunderdome/redshuttle/dome
+area/shuttle/thunderdome/redshuttle/dome
 	name = "\improper RED Shuttle"
 	icon_state = "shuttlered"
 
-/area/shuttle/thunderdome/redshuttle/station
+area/shuttle/thunderdome/redshuttle/station
 	name = "\improper RED Station"
 	icon_state = "shuttlered2"
 
-/area/shuttle/research/station
+area/shuttle/research/station
 	icon_state = "shuttle2"
 
-/area/shuttle/research/outpost
+area/shuttle/research/outpost
 	icon_state = "shuttle"
 
-/area/supply
+area/supply
 
-/area/supply/station
+area/supply/station
 	name = "Supply Shuttle"
 	icon_state = "shuttle3"
 	requires_power = FALSE
 
-/area/supply/dock
+area/supply/dock
 	name = "Supply Shuttle"
 	icon_state = "shuttle3"
 	requires_power = FALSE

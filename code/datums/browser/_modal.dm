@@ -1,21 +1,21 @@
-/datum/browser/modal
+datum/browser/modal
 	var/opentime = 0
 	var/timeout
 	var/selectedbutton = 0
 	var/stealfocus
 
-/datum/browser/modal/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null, StealFocus = 1, Timeout = 6000)
+datum/browser/modal/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null, StealFocus = 1, Timeout = 6000)
 	..()
 	stealfocus = StealFocus
 	if (!StealFocus)
 		window_options += "focus=false;"
 	timeout = Timeout
 
-/datum/browser/modal/close()
+datum/browser/modal/close()
 	. =..()
 	opentime = 0
 
-/datum/browser/modal/open(use_onclose)
+datum/browser/modal/open(use_onclose)
 	set waitfor = 0
 	opentime = world.time
 
@@ -37,6 +37,6 @@
 	if (timeout)
 		addtimer(CALLBACK(src, .proc/close), timeout)
 
-/datum/browser/modal/proc/wait()
+datum/browser/modal/proc/wait()
 	while (opentime && selectedbutton <= 0 && (!timeout || opentime+timeout > world.time))
 		stoplag(1)

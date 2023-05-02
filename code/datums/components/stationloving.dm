@@ -1,10 +1,10 @@
-/datum/component/stationloving
+datum/component/stationloving
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	var/inform_admins = FALSE
 	var/disallow_soul_imbue = TRUE
 	var/allow_death = FALSE
 
-/datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
+datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_MOVABLE_Z_CHANGED), .proc/check_in_bounds)
@@ -16,7 +16,7 @@
 	src.allow_death = allow_death
 	check_in_bounds() // Just in case something is being created outside of station/centcom
 
-/datum/component/stationloving/InheritComponent(datum/component/stationloving/newc, original, list/arguments)
+datum/component/stationloving/InheritComponent(datum/component/stationloving/newc, original, list/arguments)
 	if (original)
 		if (istype(newc))
 			inform_admins = newc.inform_admins
@@ -24,7 +24,7 @@
 		else if (LAZYLEN(arguments))
 			inform_admins = arguments[1]
 
-/datum/component/stationloving/proc/relocate()
+datum/component/stationloving/proc/relocate()
 	var/targetturf = find_safe_turf()
 	if(!targetturf)
 		if(GLOB.blobstart.len > 0)
@@ -38,7 +38,7 @@
 	// move the disc, so ghosts remain orbiting it even if it's "destroyed"
 	return targetturf
 
-/datum/component/stationloving/proc/check_in_bounds()
+datum/component/stationloving/proc/check_in_bounds()
 	if(in_bounds())
 		return
 	else
@@ -48,13 +48,13 @@
 		if(inform_admins)
 			message_admins("[parent] has been moved out of bounds in [ADMIN_VERBOSEJMP(currentturf)]. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
 
-/datum/component/stationloving/proc/check_soul_imbue()
+datum/component/stationloving/proc/check_soul_imbue()
 	return disallow_soul_imbue
 
-/datum/component/stationloving/proc/check_mark_retrieval()
+datum/component/stationloving/proc/check_mark_retrieval()
 	return COMPONENT_BLOCK_MARK_RETRIEVAL
 
-/datum/component/stationloving/proc/in_bounds()
+datum/component/stationloving/proc/in_bounds()
 	var/static/list/allowed_shuttles = typecacheof(list(/area/shuttle/syndicate, /area/shuttle/escape, /area/shuttle/pod_1, /area/shuttle/pod_2, /area/shuttle/pod_3, /area/shuttle/pod_4))
 	var/static/list/disallowed_centcom_areas = typecacheof(list(/area/abductor_ship, /area/awaymission/errorroom))
 	var/turf/T = get_turf(parent)
@@ -73,7 +73,7 @@
 
 	return FALSE
 
-/datum/component/stationloving/proc/check_deletion(datum/source, force) // TRUE = interrupt deletion, FALSE = proceed with deletion
+datum/component/stationloving/proc/check_deletion(datum/source, force) // TRUE = interrupt deletion, FALSE = proceed with deletion
 
 	var/turf/T = get_turf(parent)
 

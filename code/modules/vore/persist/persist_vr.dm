@@ -9,12 +9,12 @@
 // So that is what we need to add!  Whenever a mind is initialized from a save file slot,
 // we record that so we can save it back when persisting!
 
-/datum/mind
+datum/mind
 	var/loaded_from_ckey = null
 	var/loaded_from_slot = null
 
 // Handle people leaving due to round ending.
-/hook/roundend/proc/persist_locations()
+hook/roundend/proc/persist_locations()
 	for(var/mob/Player in human_mob_list)
 		if(!Player.mind || isnewplayer(Player))
 			continue // No mind we can do nothing, new players we care not for
@@ -38,7 +38,7 @@
 /**
  * Prep for save: returns a preferences object if we're ready and allowed to save this mob.
  */
-/proc/prep_for_persist(var/mob/persister)
+proc/prep_for_persist(var/mob/persister)
 	if(!istype(persister))
 		stack_trace("Persist (P4P): Given non-mob [persister].")
 		return
@@ -66,13 +66,13 @@
 /**
  * Called when mob despawns early (via cryopod)!
  */
-/hook/despawn/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
+hook/despawn/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
 	ASSERT(istype(pod))
 	ASSERT(ispath(pod.spawnpoint_type, /datum/spawnpoint))
 	persist_interround_data(occupant, pod.spawnpoint_type)
 	return 1
 
-/proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
+proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
 	if(!istype(occupant))
 		stack_trace("Persist (PID): Given non-mob [occupant].")
 		return
@@ -109,7 +109,7 @@
 
 // Saves mob's current organ state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_organs_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+proc/apply_organs_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
 	if(!istype(character) || !character.species) return
 	// Checkify the limbs!
 	for(var/name in character.species.has_limbs)
@@ -140,7 +140,7 @@
 
 // Saves mob's current body markings state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
 	if(!istype(character)) return
 	var/list/new_body_markings = list()
 	for(var/N in character.organs_by_name)
@@ -168,7 +168,7 @@
 * Normally this would slowly apply during the round; once we get to the end
 * we need to apply it all at once.
 */
-/proc/resolve_excess_nutrition(var/mob/living/carbon/C)
+proc/resolve_excess_nutrition(var/mob/living/carbon/C)
 	if(C.stat == DEAD)
 		return // You don't metabolize if dead
 	if(!C.metabolism || !C.species || !C.species.hunger_factor)
@@ -190,7 +190,7 @@
 * towards future shenanigans such as upgradable NIFs or different types or things of that nature,
 * without invoking the need for a bunch of different save file variables.
 */
-/proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
+proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
 	if(!istype(H))
 		stack_trace("Persist (NIF): Given a nonhuman: [H]")
 		return

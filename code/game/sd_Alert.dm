@@ -67,7 +67,7 @@
 #define SD_ALERT_LINKS			4
 #define SD_ALERT_NOVALIDATE		8
 
-/proc/sd_Alert(client/who, message, title, buttons = list("Ok"),\
+proc/sd_Alert(client/who, message, title, buttons = list("Ok"),\
 	default, duration = 0, unfocus = 1, size = "300x200", \
 	table = "width=100% height=100%", style, tag, select, flags = SD_ALERT_SCROLL)
 
@@ -88,26 +88,26 @@
 	T.Display(message,title,buttons,default,unfocus,size,table,style,select,flags)
 	. = T.Response()
 
-/sd_alert
+sd_alert
 	var/client/target
 	var/response
 	var/list/validation
 
-/sd_alert/Destroy()
+sd_alert/Destroy()
 	target << browse(null,"window=\ref[src]")
 	..()
 
-/sd_alert/New(who, tag)
+sd_alert/New(who, tag)
 	..()
 	target = who
 	src.tag = tag
 
-/sd_alert/Topic(href,params[])
+sd_alert/Topic(href,params[])
 	if(usr.client != target)
 		return
 	response = params["clk"]
 
-/sd_alert/proc/Display(message, title, list/buttons, default, unfocus, size, table, style, select, flags)
+sd_alert/proc/Display(message, title, list/buttons, default, unfocus, size, table, style, select, flags)
 	if (unfocus)
 		spawn() target << browse(null,null)
 	if (istext(buttons))
@@ -157,7 +157,7 @@
 
 	target << browse(html,"window=\ref[src];size=[size];can_close=0")
 
-/sd_alert/proc/Response()
+sd_alert/proc/Response()
 	var/validated
 	while(!validated)
 		while(target && !response) // wait for a response

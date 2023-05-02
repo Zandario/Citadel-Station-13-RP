@@ -2,7 +2,7 @@
 //These are shared by various items that have shield-like behaviour
 
 //bad_arc is the ABSOLUTE arc of directions from which we cannot block. If you want to fix it to e.g. the user's facing you will need to rotate the dirs yourself.
-/proc/check_shield_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
+proc/check_shield_arc(mob/user, var/bad_arc, atom/damage_source = null, mob/attacker = null)
 	//check attack direction
 	var/attack_dir = 0 //direction from the user to the source of the attack
 	if(istype(damage_source, /obj/projectile))
@@ -17,7 +17,7 @@
 		return 1
 	return 0
 
-/proc/default_parry_check(mob/user, mob/attacker, atom/damage_source)
+proc/default_parry_check(mob/user, mob/attacker, atom/damage_source)
 	//parry only melee attacks
 	if(istype(damage_source, /obj/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
 		return 0
@@ -29,10 +29,10 @@
 
 	return 1
 
-/obj/item/proc/unique_parry_check(mob/user, mob/attacker, atom/damage_source)	// An overrideable version of the above proc.
+obj/item/proc/unique_parry_check(mob/user, mob/attacker, atom/damage_source)	// An overrideable version of the above proc.
 	return default_parry_check(user, attacker, damage_source)
 
-/obj/item/shield
+obj/item/shield
 	name = "shield"
 	var/base_block_chance = 50
 	preserve_item = 1
@@ -41,7 +41,7 @@
 				SLOT_ID_RIGHT_HAND = 'icons/mob/items/righthand_melee.dmi',
 				)
 
-/obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 
@@ -53,10 +53,10 @@
 			return 1
 	return 0
 
-/obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
 
-/obj/item/shield/riot
+obj/item/shield/riot
 	name = "riot shield"
 	desc = "A shield adept for close quarters engagement.  It's also capable of protecting from less powerful projectiles."
 	icon = 'icons/obj/weapons.dmi'
@@ -72,7 +72,7 @@
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/shield/riot/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/shield/riot/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 
@@ -98,7 +98,7 @@
 			return 1
 	return 0
 
-/obj/item/shield/riot/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/shield/riot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/melee/baton))
 		if(cooldown < world.time - 25)
 			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
@@ -107,7 +107,7 @@
 	else
 		..()
 
-/obj/item/shield/riot/flash
+obj/item/shield/riot/flash
 	name = "strobe shield"
 	desc = "A shield with a built in, high intensity light capable of blinding and disorienting suspects. Takes regular handheld flashes as bulbs."
 	icon_state = "flashshield"
@@ -115,29 +115,29 @@
 	var/obj/item/flash/embedded_flash
 	var/flashfail = 0
 
-/obj/item/shield/riot/flash/Initialize(mapload)
+obj/item/shield/riot/flash/Initialize(mapload)
 	. = ..()
 	embedded_flash = new(src)
 
-/obj/item/shield/riot/flash/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/shield/riot/flash/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	return embedded_flash.attack_mob(arglist(args))
 
-/obj/item/shield/riot/flash/attack_self(mob/user)
+obj/item/shield/riot/flash/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	. = embedded_flash.attack_self(user)
 	update_icon()
 
-/obj/item/shield/riot/flash/handle_shield(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
+obj/item/shield/riot/flash/handle_shield(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	. = ..()
 	if (. && damage && !embedded_flash.broken)
 		embedded_flash.melee_attack_chain()
 		update_icon()
 
-/obj/item/shield/riot/flash/attackby(obj/item/W, mob/user)
+obj/item/shield/riot/flash/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/flash))
 		var/obj/item/flash/flash = W
 		if(flashfail)
@@ -156,12 +156,12 @@
 				return
 	..()
 
-/obj/item/shield/riot/flash/emp_act(severity)
+obj/item/shield/riot/flash/emp_act(severity)
 	. = ..()
 	embedded_flash.emp_act(severity)
 	update_icon()
 
-/obj/item/shield/riot/flash/update_icon_state()
+obj/item/shield/riot/flash/update_icon_state()
 	. = ..()
 	if(!embedded_flash || embedded_flash.broken)
 		icon_state = "riot"
@@ -170,12 +170,12 @@
 		icon_state = "flashshield"
 		item_state = "flashshield"
 
-/obj/item/shield/riot/flash/examine(mob/user)
+obj/item/shield/riot/flash/examine(mob/user)
 	. = ..()
 	if (embedded_flash?.broken)
 		. += "<span class='info'>The mounted bulb has burnt out. You can try replacing it with a new one.</span>"
 
-/obj/item/shield/makeshift
+obj/item/shield/makeshift
 	name = "metal shield"
 	desc = "A large shield made of wired and welded sheets of metal. The handle is made of cloth and leather, making it unwieldy."
 	icon = 'icons/obj/weapons.dmi'
@@ -185,7 +185,7 @@
 	damage_force = 10
 	throw_force = 7
 
-/obj/item/shield/riot/tower
+obj/item/shield/riot/tower
 	name = "tower shield"
 	desc = "An immense tower shield. Designed to ensure maximum protection to the user, at the expense of mobility."
 	item_state = "metal"
@@ -195,11 +195,11 @@
 	throw_force = 15 //Massive piece of metal
 	w_class = ITEMSIZE_HUGE
 
-/obj/item/shield/riot/tower/swat
+obj/item/shield/riot/tower/swat
 	name = "swat shield"
 
 /* I don't know if I really want this in the game. I DO want the code though.
-/obj/item/shield/riot/implant
+obj/item/shield/riot/implant
 	name = "hardlight shield implant"
 	desc = "A hardlight plane of force projected from the implant. While it is capable of withstanding immense amounts of abuse, it will eventually overload from sustained impacts, especially against energy attacks. Recharges while retracted."
 	item_state = "holoshield"
@@ -215,7 +215,7 @@
 	var/recharge_delay = 15 SECONDS
 
 /// Entirely overriden take_damage. This shouldn't exist outside of an implant (other than maybe christmas).
-/obj/item/shield/riot/implant/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+obj/item/shield/riot/implant/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
 	obj_integrity -= damage_amount
 	if(obj_integrity < 0)
 		obj_integrity = 0
@@ -226,7 +226,7 @@
 			L.visible_message("<span class='boldwarning'>[src] overloads from the damage sustained!</span>")
 			L.dropItemToGround(src)			//implant component catch hook will grab it.
 
-/obj/item/shield/riot/implant/Moved()
+obj/item/shield/riot/implant/Moved()
 	. = ..()
 	if(istype(loc, /obj/item/organ/cyberimp/arm/shield))
 		recharge_timerid = addtimer(CALLBACK(src, .proc/recharge), recharge_delay, flags = TIMER_STOPPABLE)
@@ -235,7 +235,7 @@
 			deltimer(recharge_timerid)
 			recharge_timerid = null
 
-/obj/item/shield/riot/implant/proc/recharge()
+obj/item/shield/riot/implant/proc/recharge()
 	if(obj_integrity == max_integrity)
 		return
 	obj_integrity = max_integrity
@@ -243,18 +243,18 @@
 		to_chat(loc, "<span class='notice'>[src] has recharged its reinforcement matrix and is ready for use!</span>")
 */
 
-/obj/item/shield/riot/energy_proof
+obj/item/shield/riot/energy_proof
 	name = "energy resistant shield"
 	desc = "An ablative shield designed to absorb and disperse energy attacks. This comes at significant cost to its ability to withstand ballistics and kinetics, breaking apart easily."
 	icon_state = "riot_laser"
 
-/obj/item/shield/riot/kinetic_proof
+obj/item/shield/riot/kinetic_proof
 	name = "kinetic resistant shield"
 	desc = "A polymer and ceramic shield designed to absorb ballistic projectiles and kinetic force. It doesn't do very well into energy attacks, especially from weapons that inflict burns."
 	icon_state = "riot_bullet"
 
 //Exotics/Costume Shields
-/obj/item/shield/riot/roman
+obj/item/shield/riot/roman
 	name = "scutum"
 	desc = "A replica shield for close quarters engagement.  Its modern materials are also capable of protecting from less powerful projectiles."
 	icon = 'icons/obj/weapons.dmi'
@@ -266,7 +266,7 @@
 			SLOT_ID_RIGHT_HAND = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-/obj/item/shield/riot/buckler
+obj/item/shield/riot/buckler
 	name = "buckler"
 	desc = "A wrist mounted round shield for close quarters engagement.  Its modern materials are also capable of protecting from less powerful projectiles."
 	icon = 'icons/obj/weapons.dmi'
@@ -282,7 +282,7 @@
  * Energy Shield
  */
 
-/obj/item/shield/energy
+obj/item/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon = 'icons/obj/weapons.dmi'
@@ -306,7 +306,7 @@
 			SLOT_ID_RIGHT_HAND = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-/obj/item/shield/energy/handle_shield(mob/user)
+obj/item/shield/energy/handle_shield(mob/user)
 	if(!active)
 		return 0 //turn it on first!
 	. = ..()
@@ -317,14 +317,14 @@
 		spark_system.start()
 		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
 
-/obj/item/shield/energy/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+obj/item/shield/energy/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	if(istype(damage_source, /obj/projectile))
 		var/obj/projectile/P = damage_source
 		if((is_sharp(P) && damage > 10) || istype(P, /obj/projectile/beam))
 			return (base_block_chance - round(damage / 3)) //block bullets and beams using the old block chance
 	return base_block_chance
 
-/obj/item/shield/energy/attack_self(mob/user)
+obj/item/shield/energy/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -357,7 +357,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/shield/energy/update_icon()
+obj/item/shield/energy/update_icon()
 	var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
 	if(lcolor)
 		blade_overlay.color = lcolor
@@ -370,7 +370,7 @@
 		set_light(0)
 		item_state = "[icon_state]"
 
-/obj/item/shield/energy/AltClick(mob/living/user)
+obj/item/shield/energy/AltClick(mob/living/user)
 	if(!in_range(src, user))	//Basic checks to prevent abuse
 		return
 	if(user.incapacitated() || !istype(user))
@@ -382,11 +382,11 @@
 			lcolor = sanitize_hexcolor(energy_color_input, desired_format=6, include_crunch=1)
 		update_icon()
 
-/obj/item/shield/energy/examine(mob/user)
+obj/item/shield/energy/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Alt-click to recolor it.</span>"
 
-/obj/item/shield/riot/tele
+obj/item/shield/riot/tele
 	name = "telescopic shield"
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
 	icon = 'icons/obj/weapons.dmi'
@@ -399,13 +399,13 @@
 	w_class = ITEMSIZE_NORMAL
 	var/active = 0
 /*
-/obj/item/shield/energy/IsShield()
+obj/item/shield/energy/IsShield()
 	if(active)
 		return 1
 	else
 		return 0
 */
-/obj/item/shield/riot/tele/attack_self(mob/user)
+obj/item/shield/riot/tele/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -436,14 +436,14 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/shield/energy/imperial
+obj/item/shield/energy/imperial
 	name = "energy scutum"
 	desc = "It's really easy to mispronounce the name of this shield if you've only read it in books."
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
 	item_icons = list(SLOT_ID_LEFT_HAND = 'icons/mob/items/lefthand_melee.dmi', SLOT_ID_RIGHT_HAND = 'icons/mob/items/righthand_melee.dmi')
 
-/obj/item/shield/fluff/wolfgirlshield
+obj/item/shield/fluff/wolfgirlshield
 	name = "Autumn Shield"
 	desc = "A shiny silvery shield with a large red leaf symbol in the center."
 	icon = 'icons/obj/weapons_vr.dmi'
@@ -458,7 +458,7 @@
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	allowed = list(/obj/item/melee/fluffstuff/wolfgirlsword)
 
-/obj/item/shield/fluff/roman
+obj/item/shield/fluff/roman
 	name = "replica scutum"
 	desc = "A replica shield for close quarters engagement.  It looks sturdy enough to withstand foam weapons, and nothing more."
 	icon = 'icons/obj/weapons.dmi'
@@ -474,7 +474,7 @@
 	throw_range = 6
 
 //Foam Shield
-/obj/item/shield/riot/foam
+obj/item/shield/riot/foam
 	name = "foam riot shield"
 	desc = "A shield for close quarters engagement.  It looks sturdy enough to withstand foam weapons, and nothing more."
 	icon = 'icons/obj/weapons.dmi'

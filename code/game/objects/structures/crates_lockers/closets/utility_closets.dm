@@ -12,14 +12,14 @@
 /*
  * Emergency Closet
  */
-/obj/structure/closet/emcloset
+obj/structure/closet/emcloset
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and O2 tanks."
 	icon_state = "emergency"
 	icon_closed = "emergency"
 	icon_opened = "emergencyopen"
 
-/obj/structure/closet/emcloset/Initialize(mapload)
+obj/structure/closet/emcloset/Initialize(mapload)
 	switch (pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
 		if ("small")
 			starts_with = list(
@@ -50,7 +50,7 @@
 
 	return ..()
 
-/obj/structure/closet/emcloset/legacy
+obj/structure/closet/emcloset/legacy
 	starts_with = list(
 		/obj/item/tank/oxygen,
 		/obj/item/clothing/mask/gas)
@@ -58,7 +58,7 @@
 /*
  * Fire Closet
  */
-/obj/structure/closet/firecloset
+obj/structure/closet/firecloset
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
 	icon_state = "firecloset"
@@ -74,7 +74,7 @@
 		/obj/item/storage/toolbox/emergency,
 		/obj/item/stack/medical/ointment) // CIT ADD
 
-/obj/structure/closet/firecloset/full
+obj/structure/closet/firecloset/full
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
@@ -83,7 +83,7 @@
 		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
 
-/obj/structure/closet/firecloset/full/double
+obj/structure/closet/firecloset/full/double
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter = 2,
 		/obj/item/clothing/mask/gas = 2,
@@ -92,7 +92,7 @@
 		/obj/item/extinguisher = 2,
 		/obj/item/clothing/head/hardhat/red = 2)
 
-/obj/structure/closet/firecloset/update_icon()
+obj/structure/closet/firecloset/update_icon()
 	if(!opened)
 		icon_state = icon_closed
 	else
@@ -101,14 +101,14 @@
 /*
  * Tool Closet
  */
-/obj/structure/closet/toolcloset
+obj/structure/closet/toolcloset
 	name = "tool closet"
 	desc = "It's a storage unit for tools."
 	icon_state = "toolcloset"
 	icon_closed = "toolcloset"
 	icon_opened = "toolclosetopen"
 
-/obj/structure/closet/toolcloset/Initialize(mapload)
+obj/structure/closet/toolcloset/Initialize(mapload)
 	starts_with = list()
 	if(prob(40))
 		starts_with += /obj/item/clothing/suit/storage/hazardvest
@@ -147,7 +147,7 @@
 /*
  * Radiation Closet
  */
-/obj/structure/closet/radiation
+obj/structure/closet/radiation
 	name = "radiation suit closet"
 	desc = "It's a storage unit for rad-protective suits."
 	icon_state = "radsuitcloset"
@@ -163,7 +163,7 @@
 /*
  * Bombsuit closet
  */
-/obj/structure/closet/bombcloset
+obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
 	icon_state = "bombsuit"
@@ -176,14 +176,14 @@
 		/obj/item/clothing/shoes/black,
 		/obj/item/clothing/head/bomb_hood)
 
-/obj/structure/closet/bombcloset/double
+obj/structure/closet/bombcloset/double
 	starts_with = list(
 		/obj/item/clothing/suit/bomb_suit = 2,
 		/obj/item/clothing/under/color/black = 2,
 		/obj/item/clothing/shoes/black = 2,
 		/obj/item/clothing/head/bomb_hood = 2)
 
-/obj/structure/closet/bombclosetsecurity
+obj/structure/closet/bombclosetsecurity
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
 	icon_state = "bombsuitsec"
@@ -199,7 +199,7 @@
 /*
  * Hydrant
  */
-/obj/structure/closet/hydrant //wall mounted fire closet
+obj/structure/closet/hydrant //wall mounted fire closet
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
 	icon_state = "hydrant"
@@ -224,7 +224,7 @@
 /*
  * First Aid
  */
-/obj/structure/closet/medical_wall //wall mounted medical closet
+obj/structure/closet/medical_wall //wall mounted medical closet
 	name = "first-aid closet"
 	desc = "It's wall-mounted storage unit for first aid supplies."
 	icon_state = "medical_wall"
@@ -234,7 +234,7 @@
 	density = 0
 	wall_mounted = 1
 
-/obj/structure/closet/medical_wall/update_icon()
+obj/structure/closet/medical_wall/update_icon()
 	if(!opened)
 		icon_state = icon_closed
 	else

@@ -1,7 +1,7 @@
 /**
  * Return a list with no duplicate entries.
  */
-/proc/uniqueList(list/L)
+proc/uniqueList(list/L)
 	. = list()
 	for(var/i in L)
 		. |= i
@@ -9,7 +9,7 @@
 /**
  * Returns nothing and acts on list in place (also handles associated values properly)
  */
-/proc/uniqueList_inplace(list/L)
+proc/uniqueList_inplace(list/L)
 	var/temp = L.Copy()
 	L.len = 0
 	for(var/key in temp)
@@ -19,7 +19,7 @@
 			L[key] = temp[key]
 	return L
 
-/proc/unique_list_atoms_by_name(list/atom/atoms)
+proc/unique_list_atoms_by_name(list/atom/atoms)
 	. = list()
 	var/list/conflicting_so_far = list()
 	for(var/atom/A as anything in atoms)

@@ -1,10 +1,10 @@
-/obj/random/maintenance //Clutter and loot for maintenance and away missions
+obj/random/maintenance //Clutter and loot for maintenance and away missions
 	name = "random maintenance item"
 	desc = "This is a random maintenance item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift1"
 
-/obj/random/maintenance/item_to_spawn()
+obj/random/maintenance/item_to_spawn()
 	return pick(prob(300);/obj/random/tech_supply,
 				prob(200);/obj/random/medical,
 				prob(100);/obj/random/firstaid,
@@ -19,7 +19,7 @@
 				prob(60);/obj/random/drinkbottle,
 				prob(500);/obj/random/maintenance/clean)
 
-/obj/random/maintenance/clean
+obj/random/maintenance/clean
 /*Maintenance loot lists without the trash, for use inside things.
 Individual items to add to the maintenance list should go here, if you add
 something, make sure it's not in one of the other lists.*/
@@ -28,7 +28,7 @@ something, make sure it's not in one of the other lists.*/
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift1"
 
-/obj/random/maintenance/clean/item_to_spawn()
+obj/random/maintenance/clean/item_to_spawn()
 	return pick(prob(10);/obj/random/contraband,
 				prob(2);/obj/item/flashlight/flare,
 				prob(2);/obj/item/flashlight/glowstick,
@@ -109,14 +109,14 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/radio/headset,
 				prob(1);/obj/item/pizzavoucher)
 
-/obj/random/maintenance/security
+obj/random/maintenance/security
 /*Maintenance loot list. This one is for around security areas*/
 	name = "random security maintenance item"
 	desc = "This is a random security maintenance item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift1"
 
-/obj/random/maintenance/security/item_to_spawn()
+obj/random/maintenance/security/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(2);/obj/item/flashlight/maglight,
 				prob(2);/obj/item/flash,
@@ -166,14 +166,14 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/clothing/ears/earmuffs,
 				prob(2);/obj/item/handcuffs,)
 
-/obj/random/maintenance/medical
+obj/random/maintenance/medical
 /*Maintenance loot list. This one is for around medical areas*/
 	name = "random medical maintenance item"
 	desc = "This is a random medical maintenance item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift1"
 
-/obj/random/maintenance/medical/item_to_spawn()
+obj/random/maintenance/medical/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(25);/obj/random/medical/lite,
 				prob(2);/obj/item/clothing/mask/breath/medical,
@@ -206,14 +206,14 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/clothing/accessory/storage/black_drop_pouches,
 				prob(2);/obj/item/clothing/accessory/stethoscope)
 
-/obj/random/maintenance/engineering
+obj/random/maintenance/engineering
 /*Maintenance loot list. This one is for around medical areas*/
 	name = "random engineering maintenance item"
 	desc = "This is a random engineering maintenance item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift1"
 
-/obj/random/maintenance/engineering/item_to_spawn()
+obj/random/maintenance/engineering/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(2);/obj/item/flashlight/maglight,
 				prob(3);/obj/item/clothing/mask/gas/half,
@@ -244,14 +244,14 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/beartrap,
 				prob(2);/obj/item/handcuffs)
 
-/obj/random/maintenance/research
+obj/random/maintenance/research
 /*Maintenance loot list. This one is for around medical areas*/
 	name = "random research maintenance item"
 	desc = "This is a random research maintenance item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift1"
 
-/obj/random/maintenance/research/item_to_spawn()
+obj/random/maintenance/research/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(3);/obj/item/analyzer/plant_analyzer,
 				prob(1);/obj/item/flash/synthetic,
@@ -276,14 +276,14 @@ something, make sure it's not in one of the other lists.*/
 				prob(4);/obj/item/clothing/under/rank/scientist,
 				prob(2);/obj/item/clothing/under/rank/scientist_new)
 
-/obj/random/maintenance/cargo
+obj/random/maintenance/cargo
 /*Maintenance loot list. This one is for around cargo areas*/
 	name = "random cargo maintenance item"
 	desc = "This is a random cargo maintenance item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift1"
 
-/obj/random/maintenance/cargo/item_to_spawn()
+obj/random/maintenance/cargo/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(3);/obj/item/flashlight/lantern,
 				prob(4);/obj/item/pickaxe,

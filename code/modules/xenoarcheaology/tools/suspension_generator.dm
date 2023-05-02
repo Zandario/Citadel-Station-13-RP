@@ -1,4 +1,4 @@
-/obj/machinery/suspension_gen
+obj/machinery/suspension_gen
 	name = "suspension field generator"
 	desc = "It has stubby legs bolted up against it's body for stabilising."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -10,12 +10,12 @@
 	var/power_use = 5
 	var/obj/effect/suspension_field/suspension_field
 
-/obj/machinery/suspension_gen/Initialize(mapload)
+obj/machinery/suspension_gen/Initialize(mapload)
 	. = ..()
 	qdel(cell)
 	cell = new /obj/item/cell/high(src)
 
-/obj/machinery/suspension_gen/process(delta_time)
+obj/machinery/suspension_gen/process(delta_time)
 	if(suspension_field)
 		if(cell.use(power_use))
 			var/turf/T = get_turf(suspension_field)
@@ -35,7 +35,7 @@
 		else
 			deactivate()
 
-/obj/machinery/suspension_gen/attack_hand(mob/user, list/params)
+obj/machinery/suspension_gen/attack_hand(mob/user, list/params)
 	if(panel_open)
 		if(cell)
 			to_chat(user, SPAN_NOTICE("You remove [cell]."))
@@ -49,13 +49,13 @@
 
 	ui_interact(user)
 
-/obj/machinery/suspension_gen/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/suspension_gen/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchSuspension", name)
 		ui.open()
 
-/obj/machinery/suspension_gen/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/suspension_gen/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["cell"] = cell
@@ -67,7 +67,7 @@
 
 	return data
 
-/obj/machinery/suspension_gen/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/suspension_gen/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -90,7 +90,7 @@
 				locked = !locked
 				return TRUE
 
-/obj/machinery/suspension_gen/attackby(obj/item/W, mob/user)
+obj/machinery/suspension_gen/attackby(obj/item/W, mob/user)
 	if(!locked && !suspension_field && default_deconstruction_screwdriver(user, W))
 		return
 	else if(W.is_wrench())
@@ -127,13 +127,13 @@
 			to_chat(user, SPAN_WARNING("[src] flashes \'<i>Access denied.</i>\'"))
 		return
 
-/obj/machinery/suspension_gen/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/suspension_gen/emag_act(var/remaining_charges, var/mob/user)
 	if(locked)
 		locked = FALSE
 		return TRUE
 
 //checks for whether the machine can be activated or not should already have occurred by this point
-/obj/machinery/suspension_gen/proc/activate()
+obj/machinery/suspension_gen/proc/activate()
 	var/turf/T = get_turf(get_step(src,dir))
 	var/collected = 0
 
@@ -159,7 +159,7 @@
 		else
 			suspension_field.icon_state = "shield2"
 
-/obj/machinery/suspension_gen/proc/deactivate()
+obj/machinery/suspension_gen/proc/deactivate()
 	//drop anything we picked up
 	var/turf/T = get_turf(suspension_field)
 
@@ -172,11 +172,11 @@
 	suspension_field = null
 	icon_state = "suspension2"
 
-/obj/machinery/suspension_gen/Destroy()
+obj/machinery/suspension_gen/Destroy()
 	deactivate()
 	..()
 
-/obj/machinery/suspension_gen/verb/rotate_counterclockwise()
+obj/machinery/suspension_gen/verb/rotate_counterclockwise()
 	set src in view(1)
 	set name = "Rotate suspension gen Counterclockwise"
 	set category = "Object"
@@ -186,7 +186,7 @@
 		return
 	setDir(turn(dir, 90))
 
-/obj/machinery/suspension_gen/verb/rotate_clockwise()
+obj/machinery/suspension_gen/verb/rotate_clockwise()
 	set src in view(1)
 	set name = "Rotate suspension gen Clockwise"
 	set category = "Object"
@@ -196,16 +196,16 @@
 		return
 	setDir(turn(dir, 270))
 
-/obj/machinery/suspension_gen/powered(channel)
+obj/machinery/suspension_gen/powered(channel)
 	return TRUE		// we use snowflake cell power
 
-/obj/effect/suspension_field
+obj/effect/suspension_field
 	name = "energy field"
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
 	density = TRUE
 
-/obj/effect/suspension_field/Destroy()
+obj/effect/suspension_field/Destroy()
 	for(var/atom/movable/I in src)
 		I.dropInto(loc)
 	return ..()

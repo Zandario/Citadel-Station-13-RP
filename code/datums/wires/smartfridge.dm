@@ -1,17 +1,17 @@
-/datum/wires/smartfridge
+datum/wires/smartfridge
 	wire_count = 3
 	holder_type = /obj/machinery/smartfridge
 	proper_name = "Smartfridge"
 
-/datum/wires/smartfridge/New(atom/_holder)
+datum/wires/smartfridge/New(atom/_holder)
 	wires = list(WIRE_ELECTRIFY, WIRE_IDSCAN, WIRE_THROW_ITEM)
 	return ..()
 
-/datum/wires/smartfridge/secure
+datum/wires/smartfridge/secure
 	randomize = TRUE
 	wire_count = 4 // 3 actual, 1 dud.
 
-/datum/wires/smartfridge/interactable(mob/user)
+datum/wires/smartfridge/interactable(mob/user)
 	var/obj/machinery/smartfridge/S = holder
 	if(iscarbon(user) && S.Adjacent(user) && S.seconds_electrified && S.shock(user, 100))
 		return FALSE
@@ -19,14 +19,14 @@
 		return TRUE
 	return FALSE
 
-/datum/wires/smartfridge/get_status()
+datum/wires/smartfridge/get_status()
 	. = ..()
 	var/obj/machinery/smartfridge/S = holder
 	. += "The orange light is [S.seconds_electrified ? "off" : "on"]."
 	. += "The red light is [S.shoot_inventory ? "off" : "blinking"]."
 	. += "A [S.scan_id ? "purple" : "yellow"] light is on."
 
-/datum/wires/smartfridge/on_pulse(wire)
+datum/wires/smartfridge/on_pulse(wire)
 	var/obj/machinery/smartfridge/S = holder
 	switch(wire)
 		if(WIRE_THROW_ITEM)
@@ -37,7 +37,7 @@
 			S.scan_id = !S.scan_id
 	..()
 
-/datum/wires/smartfridge/on_cut(wire, mend)
+datum/wires/smartfridge/on_cut(wire, mend)
 	var/obj/machinery/smartfridge/S = holder
 	switch(wire)
 		if(WIRE_THROW_ITEM)

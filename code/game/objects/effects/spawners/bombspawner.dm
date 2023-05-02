@@ -1,5 +1,5 @@
 /* The old single tank bombs that dont really work anymore
-/obj/effect/spawner/bomb
+obj/effect/spawner/bomb
 	name = "bomb"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
@@ -8,22 +8,22 @@
 	var/btemp = 500	// bomb temperature (degC)
 	var/active = 0
 
-/obj/effect/spawner/bomb/radio
+obj/effect/spawner/bomb/radio
 	btype = 0
 
-/obj/effect/spawner/bomb/proximity
+obj/effect/spawner/bomb/proximity
 	btype = 1
 
-/obj/effect/spawner/bomb/timer
+obj/effect/spawner/bomb/timer
 	btype = 2
 
-/obj/effect/spawner/bomb/timer/syndicate
+obj/effect/spawner/bomb/timer/syndicate
 	btemp = 450
 
-/obj/effect/spawner/bomb/suicide
+obj/effect/spawner/bomb/suicide
 	btype = 3
 
-/obj/effect/spawner/bomb/Initialize(mapload)
+obj/effect/spawner/bomb/Initialize(mapload)
 	. = ..()
 
 	switch (src.btype)
@@ -105,7 +105,7 @@
 	qdel(src)
 */
 
-/client/proc/spawn_tanktransferbomb()
+client/proc/spawn_tanktransferbomb()
 	set category = "Debug"
 	set desc = "Spawn a tank transfer valve bomb"
 	set name = "Instant TTV"
@@ -125,7 +125,7 @@
 
 	new /obj/effect/spawner/newbomb/radio/custom(get_turf(mob), p, o, c)
 
-/obj/effect/spawner/newbomb
+obj/effect/spawner/newbomb
 	name = "TTV bomb"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
@@ -137,21 +137,21 @@
 	var/oxygen_amt = 18
 	var/carbon_amt = 0
 
-/obj/effect/spawner/newbomb/timer
+obj/effect/spawner/newbomb/timer
 	name = "TTV bomb - timer"
 	assembly_type = /obj/item/assembly/timer
 
-/obj/effect/spawner/newbomb/timer/syndicate
+obj/effect/spawner/newbomb/timer/syndicate
 	name = "TTV bomb - merc"
 	//High yield bombs. Yes, it is possible to make these with toxins
 	phoron_amt = 18.5
 	oxygen_amt = 28.5
 
-/obj/effect/spawner/newbomb/proximity
+obj/effect/spawner/newbomb/proximity
 	name = "TTV bomb - proximity"
 	assembly_type = /obj/item/assembly/prox_sensor
 
-/obj/effect/spawner/newbomb/radio/custom/Initialize(mapload, ph, ox, co)
+obj/effect/spawner/newbomb/radio/custom/Initialize(mapload, ph, ox, co)
 	if(ph != null)
 		phoron_amt = ph
 	if(ox != null)
@@ -160,7 +160,7 @@
 		carbon_amt = co
 	return ..()
 
-/obj/effect/spawner/newbomb/Initialize(mapload)
+obj/effect/spawner/newbomb/Initialize(mapload)
 	. = ..()
 	var/obj/item/transfer_valve/V = new(src.loc)
 	var/obj/item/tank/phoron/PT = new(V)
@@ -202,7 +202,7 @@
 //One Tank Bombs, WOOOOOOO! -Luke
 ///////////////////////
 
-/obj/effect/spawner/onetankbomb
+obj/effect/spawner/onetankbomb
 	name = "Single-tank bomb"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
@@ -213,13 +213,13 @@
 	var/phoron_amt = 0
 	var/oxygen_amt = 0
 
-/obj/effect/spawner/onetankbomb/Initialize(mapload)
+obj/effect/spawner/onetankbomb/Initialize(mapload)
 	. = ..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb, /obj/item/tank/oxygen/onetankbomb)
 	new type(src.loc)
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/spawner/onetankbomb/full
+obj/effect/spawner/onetankbomb/full
 	name = "Single-tank bomb"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
@@ -227,7 +227,7 @@
 //	var/assembly_type = /obj/item/assembly/signaler
 
 	//Note that the maximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.44 mol.
-/obj/effect/spawner/onetankbomb/full/Initialize(mapload)
+obj/effect/spawner/onetankbomb/full/Initialize(mapload)
 	. = ..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb/full, /obj/item/tank/oxygen/onetankbomb/full)
 	new type(src.loc)

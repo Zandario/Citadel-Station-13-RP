@@ -1,4 +1,4 @@
-/datum/technomancer/equipment/tesla_armor
+datum/technomancer/equipment/tesla_armor
 	name = "Tesla Armor"
 	desc = "This piece of armor offers a retaliation-based defense.  When the armor is 'ready', it will completely protect you from \
 	the next attack you suffer, and strike the attacker with a strong bolt of lightning, provided they are close enough.  This effect requires \
@@ -7,7 +7,7 @@
 	cost = 150
 	obj_path = /obj/item/clothing/suit/armor/tesla
 
-/obj/item/clothing/suit/armor/tesla
+obj/item/clothing/suit/armor/tesla
 	name = "tesla armor"
 	desc = "This rather dangerous looking armor will hopefully shock your enemies, and not you in the process."
 	icon_state = "tesla_armor_1" //wip
@@ -21,7 +21,7 @@
 	var/normal_icon_state = "tesla_armor_0"
 	var/cooldown_to_charge = 15 SECONDS
 
-/obj/item/clothing/suit/armor/tesla/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/clothing/suit/armor/tesla/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	//First, some retaliation.
 	if(active)
 		if(istype(damage_source, /obj/projectile))
@@ -52,7 +52,7 @@
 			return 1
 	return 0
 
-/obj/item/clothing/suit/armor/tesla/attack_self(mob/user)
+obj/item/clothing/suit/armor/tesla/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -62,7 +62,7 @@
 	user.update_inv_wear_suit()
 	user.update_action_buttons()
 
-/obj/item/clothing/suit/armor/tesla/update_icon()
+obj/item/clothing/suit/armor/tesla/update_icon()
 	if(active && ready)
 		icon_state = ready_icon_state
 		item_state = ready_icon_state
@@ -78,7 +78,7 @@
 		H.update_action_buttons()
 	..()
 
-/obj/item/clothing/suit/armor/tesla/proc/shoot_lightning(mob/target, power)
+obj/item/clothing/suit/armor/tesla/proc/shoot_lightning(mob/target, power)
 	var/obj/projectile/beam/lightning/lightning = new(get_turf(src))
 	lightning.power = power
 	lightning.old_style_target(target)

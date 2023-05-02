@@ -1,86 +1,86 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/idleruins)
+obj/effect/floor_decal/asteroid,
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/idleruins)
 "c" = (
-/obj/structure/table/bench/wooden,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/structure/table/bench/wooden,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "d" = (
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "j" = (
-/mob/living/simple_mob/mechanical/cyber_horror/corgi/surt,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+mob/living/simple_mob/mechanical/cyber_horror/corgi/surt,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "k" = (
-/obj/effect/debris/cleanable/blood/gibs,
-/obj/structure/table/bench/wooden,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/effect/debris/cleanable/blood/gibs,
+obj/structure/table/bench/wooden,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "l" = (
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "q" = (
-/obj/structure/trash_pile,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/structure/trash_pile,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "t" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/structure/table/woodentable,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "v" = (
-/obj/effect/floor_decal/asteroid,
-/turf/simulated/mineral/floor/ignore_mapgen/lavaland,
-/area/lavaland/idleruins)
+obj/effect/floor_decal/asteroid,
+turf/simulated/mineral/floor/ignore_mapgen/lavaland,
+area/lavaland/idleruins)
 "w" = (
-/turf/simulated/wall/wood,
-/area/lavaland/idleruins)
+turf/simulated/wall/wood,
+area/lavaland/idleruins)
 "x" = (
-/obj/item/bone,
-/obj/effect/debris/cleanable/blood,
-/obj/item/material/shard/shrapnel,
-/obj/structure/table,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/item/bone,
+obj/effect/debris/cleanable/blood,
+obj/item/material/shard/shrapnel,
+obj/structure/table,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "y" = (
-/obj/item/bone,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/idleruins)
+obj/item/bone,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/idleruins)
 "D" = (
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/surt,
-/turf/simulated/mineral/floor/ignore_mapgen/lavaland,
-/area/lavaland/idleruins)
+mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/surt,
+turf/simulated/mineral/floor/ignore_mapgen/lavaland,
+area/lavaland/idleruins)
 "E" = (
-/turf/simulated/mineral/floor/ignore_mapgen/lavaland,
-/area/lavaland/idleruins)
+turf/simulated/mineral/floor/ignore_mapgen/lavaland,
+area/lavaland/idleruins)
 "I" = (
-/obj/structure/barricade,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/structure/barricade,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "M" = (
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/idleruins)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/idleruins)
 "N" = (
-/obj/structure/loot_pile/surface/bones,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/structure/loot_pile/surface/bones,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 "P" = (
-/obj/structure/loot_pile/surface/bones,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/idleruins)
+obj/structure/loot_pile/surface/bones,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/idleruins)
 "T" = (
-/obj/effect/debris/cleanable/blood/gibs,
-/turf/simulated/floor/wood/lavaland,
-/area/lavaland/idleruins)
+obj/effect/debris/cleanable/blood/gibs,
+turf/simulated/floor/wood/lavaland,
+area/lavaland/idleruins)
 
 (1,1,1) = {"
 a

@@ -9,7 +9,7 @@
 //ahuhuhuhu
 //-Antsnap
 
-/obj/item/clothing/suit/web_bindings
+obj/item/clothing/suit/web_bindings
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	name = "web bindings"
@@ -22,7 +22,7 @@
 // todo: convert to new icon system ; tesh will be broken until then, too bad!
 
 /* //Commenting all this out, as people keep abusing it. Sorry!
-/mob/proc/weaveWeb()
+mob/proc/weaveWeb()
 	set name = "Weave Web"
 	set category = "Species Powers"
 	if(nutrition >= 500) //People decided to abuse it. Sorry. It was asked to be made so it couldn't be spammed, and what do ya know, people are spamming it everywhere.
@@ -34,7 +34,7 @@
 		to_chat(src, "You do not have enough nutrition to create webbing!")
 */
 
-/mob/proc/weaveWebBindings()
+mob/proc/weaveWebBindings()
 	set name = "Weave Web Bindings"
 	set category = "Species Powers"
 	if(nutrition >= 30) //This isn't a huge problem. This is so you can bind people up.

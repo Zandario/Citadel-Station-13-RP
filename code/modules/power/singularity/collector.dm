@@ -1,5 +1,5 @@
 // todo: rework
-/obj/machinery/power/rad_collector
+obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
 	desc = "A device which uses Hawking Radiation and phoron to produce power."
 	icon = 'icons/obj/singularity.dmi'
@@ -40,11 +40,11 @@
 	var/active = 0
 	var/locked = 0
 
-/obj/machinery/power/rad_collector/Initialize(mapload)
+obj/machinery/power/rad_collector/Initialize(mapload)
 	. = ..()
 	rad_insulation = active? rad_insulation_active : rad_insulation_inactive
 
-/obj/machinery/power/rad_collector/attack_hand(mob/user, list/params)
+obj/machinery/power/rad_collector/attack_hand(mob/user, list/params)
 	if(anchored)
 		if(!src.locked)
 			toggle_power()
@@ -54,7 +54,7 @@
 		else
 			to_chat(user, "<font color='red'>The controls are locked!</font>")
 
-/obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
+obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tank/phoron))
 		if(!src.anchored)
 			to_chat(user, "<font color='red'>The [src] needs to be secured to the floor first.</font>")
@@ -98,20 +98,20 @@
 		return 1
 	return ..()
 
-/obj/machinery/power/rad_collector/examine(mob/user)
+obj/machinery/power/rad_collector/examine(mob/user)
 	. = ..()
 	if(active)
 		. += "<span class='notice'>[src]'s display states that it has stored <b>[render_power(stored_power, ENUM_POWER_SCALE_KILO, ENUM_POWER_UNIT_JOULE)]</b>, and is currently outputting [render_power(last_output, ENUM_POWER_SCALE_KILO, ENUM_POWER_UNIT_WATT)].</span>"
 	else
 		. += "<span class='notice'><b>[src]'s display displays the words:</b> \"Power production mode. Please insert <b>Phoron</b>.\"</span>"
 
-/obj/machinery/power/rad_collector/legacy_ex_act(severity)
+obj/machinery/power/rad_collector/legacy_ex_act(severity)
 	switch(severity)
 		if(2, 3)
 			eject()
 	return ..()
 
-/obj/machinery/power/rad_collector/proc/eject()
+obj/machinery/power/rad_collector/proc/eject()
 	locked = 0
 	var/obj/item/tank/phoron/Z = src.P
 	if (!Z)
@@ -125,7 +125,7 @@
 		update_icons()
 
 // todo: rework
-/obj/machinery/power/rad_collector/rad_act(strength, datum/radiation_wave/wave)
+obj/machinery/power/rad_collector/rad_act(strength, datum/radiation_wave/wave)
 	. = ..()
 	var/power_produced = max(0, (strength - flat_loss) * efficiency)
 	var/gas_needed = power_produced * gas_usage_factor
@@ -137,7 +137,7 @@
 		eject()
 	stored_power += power_produced
 
-/obj/machinery/power/rad_collector/process(delta_time)
+obj/machinery/power/rad_collector/process(delta_time)
 	if(!stored_power)
 		last_output = 0
 		return
@@ -147,7 +147,7 @@
 	//? kj to kw
 	add_avail((last_output = (attempt / delta_time)))
 
-/obj/machinery/power/rad_collector/proc/update_icons()
+obj/machinery/power/rad_collector/proc/update_icons()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(P)
@@ -161,7 +161,7 @@
 	return
 
 
-/obj/machinery/power/rad_collector/proc/toggle_power()
+obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active
 	rad_insulation = active? rad_insulation_active : rad_insulation_inactive
 	if(active)
@@ -173,7 +173,7 @@
 	density = active
 	update_icons()
 
-/obj/machinery/power/rad_collector/MouseDroppedOnLegacy(mob/living/O, mob/living/user)
+obj/machinery/power/rad_collector/MouseDroppedOnLegacy(mob/living/O, mob/living/user)
 	. = ..()
 	if(!istype(O))
 		return 0 //not a mob

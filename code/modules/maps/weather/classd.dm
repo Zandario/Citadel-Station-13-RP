@@ -1,4 +1,4 @@
-/datum/atmosphere/planet/classd
+datum/atmosphere/planet/classd
 	base_gases = list(
 	/datum/gas/nitrogen = 0.01
 	)
@@ -9,16 +9,16 @@
 	maximum_temp = 203
 
 
-/datum/time/classd
+datum/time/classd
 	seconds_in_day = 1 HOURS
 
-/datum/planet/classd
+datum/planet/classd
 	name = "Class-D Moon"
 	desc = "A rocky moon which has recently had its quarantine lifted following a campaign of nuclear bombings and mercenary \
 	forces deploying to eradicate a large xenomorph infestation."
 	current_time = new /datum/time/classd()
 
-/datum/planet/classd/update_sun()
+datum/planet/classd/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
@@ -96,7 +96,7 @@
 
 	update_sun_deferred(new_brightness, new_color)
 
-/datum/weather_holder/classd
+datum/weather_holder/classd
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_CLEAR		= new /datum/weather/classd/clear(),
@@ -107,12 +107,12 @@
 		WEATHER_FALLOUT		= 25
 		)
 
-/datum/weather/classd
+datum/weather/classd
 	name = "classd base"
 	temp_high	= 203
 	temp_low 	= 203
 
-/datum/weather/classd/clear
+datum/weather/classd/clear
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR	 = 65,
@@ -125,7 +125,7 @@
 	sky_visible = TRUE
 	observed_message = "The stars are visible overhead."
 
-/datum/weather/classd/fallout
+datum/weather/classd/fallout
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
@@ -150,7 +150,7 @@
 	var/fallout_rad_low = RAD_INTENSITY_FALLOUT_INDIRECT_LOW
 	var/fallout_rad_high = RAD_INTENSITY_FALLOUT_INDIRECT_HIGH
 
-/datum/weather/classd/fallout/process_effects()
+datum/weather/classd/fallout/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -164,7 +164,7 @@
 
 // This makes random tiles near people radioactive for awhile.
 // Tiles far away from people are left alone, for performance.
-/datum/weather/classd/fallout/proc/irradiate_nearby_turf(mob/living/L)
+datum/weather/classd/fallout/proc/irradiate_nearby_turf(mob/living/L)
 	if(!istype(L))
 		return
 	var/list/turfs = RANGE_TURFS(world.view, L)

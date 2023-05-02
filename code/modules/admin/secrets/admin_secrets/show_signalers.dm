@@ -1,10 +1,10 @@
-/datum/admin_secret_item/admin_secret/show_signalers
+datum/admin_secret_item/admin_secret/show_signalers
 	name = "Show Last Signalers"
 
-/datum/admin_secret_item/admin_secret/show_signalers/name()
+datum/admin_secret_item/admin_secret/show_signalers/name()
 	return "Show Last [length(lastsignalers)] Signaler\s"
 
-/datum/admin_secret_item/admin_secret/show_signalers/execute(var/mob/user)
+datum/admin_secret_item/admin_secret/show_signalers/execute(var/mob/user)
 	. = ..()
 	if(!.)
 		return

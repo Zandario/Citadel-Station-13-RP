@@ -1,4 +1,4 @@
-/datum/armor/changeling/chitin
+datum/armor/changeling/chitin
 	melee = 0.75
 	bullet = 0.6
 	laser = 0.6

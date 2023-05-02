@@ -8,7 +8,7 @@
 /*
  * Banana Peals
  */
-/obj/item/bananapeel/Crossed(atom/movable/AM as mob|obj)
+obj/item/bananapeel/Crossed(atom/movable/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -18,15 +18,15 @@
 /*
  * Soap
  */
-/obj/item/soap/Initialize(mapload)
+obj/item/soap/Initialize(mapload)
 	. = ..()
 	create_reagents(5)
 	wet()
 
-/obj/item/soap/proc/wet()
+obj/item/soap/proc/wet()
 	reagents.add_reagent("cleaner", 5)
 
-/obj/item/soap/Crossed(atom/movable/AM as mob|obj)
+obj/item/soap/Crossed(atom/movable/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -34,7 +34,7 @@
 		var/mob/living/M = AM
 		M.slip("the [src.name]",3)
 
-/obj/item/soap/pre_attack(atom/target, mob/user, clickchain_flags, list/params)
+obj/item/soap/pre_attack(atom/target, mob/user, clickchain_flags, list/params)
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
@@ -58,7 +58,7 @@
 		target.clean_blood()
 	return
 
-/obj/item/soap/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/soap/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(target && user && ishuman(target) && ishuman(user) && !user.incapacitated() && user.zone_sel &&user.zone_sel.selecting == "mouth" )
 		user.visible_message("<span class='danger'>\The [user] washes \the [target]'s mouth out with soap!</span>")
 		playsound(src.loc, 'sound/items/soapmouth.ogg', 50, 1)
@@ -69,7 +69,7 @@
 /*
  * Bike Horns
  */
-/obj/item/bikehorn/attack_self(mob/user)
+obj/item/bikehorn/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

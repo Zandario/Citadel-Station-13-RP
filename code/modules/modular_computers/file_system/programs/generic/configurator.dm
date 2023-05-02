@@ -2,7 +2,7 @@
 // It is to be used only with modular computers.
 // It allows you to toggle components of your device.
 
-/datum/computer_file/program/computerconfig
+datum/computer_file/program/computerconfig
 	filename = "compconfig"
 	filedesc = "Computer Configuration Tool"
 	extended_desc = "This program allows configuration of computer's hardware"
@@ -16,11 +16,11 @@
 	requires_ntnet = 0
 	nanomodule_path = /datum/nano_module/program/computer_configurator/
 
-/datum/nano_module/program/computer_configurator
+datum/nano_module/program/computer_configurator
 	name = "NTOS Computer Configuration Tool"
 	var/obj/item/modular_computer/movable = null
 
-/datum/nano_module/program/computer_configurator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/computer_configurator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	if(program)
 		movable = program.computer
 	if(!istype(movable))

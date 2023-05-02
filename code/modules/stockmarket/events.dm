@@ -1,6 +1,6 @@
 /// So I can speed up/slow down shit
 #define TIME_MULTIPLIER 0.7
-/datum/stockEvent
+datum/stockEvent
 	var/name = "event"
 	var/next_phase = 0
 	var/datum/stock/company = null
@@ -11,28 +11,28 @@
 	var/finished = 0
 	var/last_change = 0
 
-/datum/stockEvent/process()
+datum/stockEvent/process()
 	if(finished)
 		return
 	if(world.time > next_phase)
 		transition()
 
-/datum/stockEvent/proc/transition()
+datum/stockEvent/proc/transition()
 	return
 
-/datum/stockEvent/proc/spacetime(var/ticks)
+datum/stockEvent/proc/spacetime(var/ticks)
 	var/seconds = round(ticks / 10)
 	var/minutes = round(seconds / 60)
 	seconds -= minutes * 60
 	return "[minutes] minute(s) and [seconds] second(s)"
 
-/datum/stockEvent/product
+datum/stockEvent/product
 	name = "product"
 	var/product_name = ""
 	var/datum/article/product_article = null
 	var/effect = 0
 
-/datum/stockEvent/product/New(datum/stock/S)
+datum/stockEvent/product/New(datum/stock/S)
 	company = S
 	var/mins = rand(5*TIME_MULTIPLIER, 20*TIME_MULTIPLIER)
 	next_phase = mins * (600*TIME_MULTIPLIER) + world.time
@@ -41,7 +41,7 @@
 	S.addEvent(src)
 
 
-/datum/stockEvent/product/transition()
+datum/stockEvent/product/transition()
 	last_change = world.time
 	switch(phase_id)
 		if(0)
@@ -63,12 +63,12 @@
 			phase_id = 2
 			company.generateEvent(type)
 
-/datum/stockEvent/bankruptcy
+datum/stockEvent/bankruptcy
 	name = "bankruptcy"
 	var/effect = 0
 	var/bailout_millions = 0
 
-/datum/stockEvent/bankruptcy/New(var/datum/stock/S)
+datum/stockEvent/bankruptcy/New(var/datum/stock/S)
 	hidden = 1
 	company = S
 	var/mins = rand(9*TIME_MULTIPLIER,60*TIME_MULTIPLIER)
@@ -78,7 +78,7 @@
 	current_desc = ""
 	S.addEvent(src)
 
-/datum/stockEvent/bankruptcy/transition()
+datum/stockEvent/bankruptcy/transition()
 	switch (phase_id)
 		if(0)
 			next_phase = world.time + rand(300*TIME_MULTIPLIER, 600*TIME_MULTIPLIER) * (10*TIME_MULTIPLIER)
@@ -118,7 +118,7 @@
 				company.affectPublicOpinion(-abs(effect) / 2)
 			company.generateEvent(type)
 
-/datum/stockEvent/bankruptcy/proc/generateBankruptcyArticle()
+datum/stockEvent/bankruptcy/proc/generateBankruptcyArticle()
 	var/datum/article/A = new
 	var/list/bankrupt_reason = list("investor pessimism", "failure of product lines", "economic recession", "overblown inflation", "overblown deflation", "collapsed pyramid schemes", "a Ponzi scheme", "economic terrorism", "extreme hedonism", "unfavourable economic climate", "rampant government corruption", "divine conspiracy", "some total bullshit", "volatile plans")
 	A.about = company
@@ -141,7 +141,7 @@
 	A.article = A.detokenize(article, company.industry.tokens)
 	return A
 
-/datum/stockEvent/arrest
+datum/stockEvent/arrest
 	name = "arrest"
 	var/female = FALSE
 	var/tname = "Elvis Presley"
@@ -149,7 +149,7 @@
 	var/offenses = "murder"
 	var/effect = 0
 
-/datum/stockEvent/arrest/New(datum/stock/S)
+datum/stockEvent/arrest/New(datum/stock/S)
 	hidden = TRUE
 	company = S
 	var/mins = rand(10*TIME_MULTIPLIER, 35*TIME_MULTIPLIER)
@@ -182,7 +182,7 @@
 	offenses += " and [prob(20) ? "attempted " : null][pick(O)]" // lazy
 	S.addEvent(src)
 
-/datum/stockEvent/arrest/transition()
+datum/stockEvent/arrest/transition()
 	switch (phase_id)
 		if(0)
 			var/name_part1
@@ -214,7 +214,7 @@
 			company.affectPublicOpinion(effect)
 			company.generateEvent(type)
 
-/datum/stockEvent/arrest/proc/generateArrestArticle()
+datum/stockEvent/arrest/proc/generateArrestArticle()
 	var/datum/article/A = new
 	A.about = company
 	A.headline = company.industry.detokenize(pick( \

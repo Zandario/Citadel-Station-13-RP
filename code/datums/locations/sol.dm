@@ -1,10 +1,10 @@
 //Sol
 
-/datum/locations/sol
+datum/locations/sol
 	name = "Sol"
 	desc = "The home system of humanity."
 
-/datum/locations/sol/New(var/creator)
+datum/locations/sol/New(var/creator)
 	contents.Add(
 		new /datum/locations/mercury(src),
 		new /datum/locations/venus(src),
@@ -17,26 +17,26 @@
 		)
 	..(creator)
 
-/datum/locations/mercury
+datum/locations/mercury
 	name = "Mercury"
 
-/datum/locations/venus
+datum/locations/venus
 	name = "Venus"
 
-/datum/locations/earth
+datum/locations/earth
 	name = "Earth"
 
-/datum/locations/mars
+datum/locations/mars
 	name = "Mars"
 
-/datum/locations/jupiter
+datum/locations/jupiter
 	name = "Jupiter"
 
-/datum/locations/saturn
+datum/locations/saturn
 	name = "Saturn"
 
-/datum/locations/uranus
+datum/locations/uranus
 	name = "Uranus"
 
-/datum/locations/neptune
+datum/locations/neptune
 	name = "Neptune"

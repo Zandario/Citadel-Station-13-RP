@@ -1,4 +1,4 @@
-/client/proc/air_report()
+client/proc/air_report()
 	set category = "Debug"
 	set name = "Show Air Report"
 
@@ -41,7 +41,7 @@
 
 	usr << browse(output,"window=airreport")
 
-/client/proc/fix_next_move()
+client/proc/fix_next_move()
 	set category = "Debug"
 	set name = "Unfreeze Everyone"
 	var/largest_move_time = 0
@@ -72,7 +72,7 @@
 	feedback_add_details("admin_verb","UFE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/radio_report()
+client/proc/radio_report()
 	set category = "Debug"
 	set name = "Radio report"
 
@@ -98,7 +98,7 @@
 	usr << browse(output,"window=radioreport")
 	feedback_add_details("admin_verb","RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/reload_admins()
+client/proc/reload_admins()
 	set name = "Reload Admins"
 	set category = "Debug"
 
@@ -108,7 +108,7 @@
 	load_admins()
 	feedback_add_details("admin_verb","RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/reload_eventMs()
+client/proc/reload_eventMs()
 	set name = "Reload Event Managers"
 	set category = "Debug"
 
@@ -119,7 +119,7 @@
 
 
 //todo:
-/client/proc/jump_to_dead_group()
+client/proc/jump_to_dead_group()
 	set name = "Jump to dead group"
 	set category = "Debug"
 		/*
@@ -140,7 +140,7 @@
 	return
 	*/
 
-/client/proc/kill_airgroup()
+client/proc/kill_airgroup()
 	set name = "Kill Local Airgroup"
 	set desc = "Use this to allow manual manupliation of atmospherics."
 	set category = "Debug"
@@ -163,7 +163,7 @@
 	feedback_add_details("admin_verb","KLAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	*/
 
-/client/proc/print_jobban_old()
+client/proc/print_jobban_old()
 	set name = "Print Jobban Log"
 	set desc = "This spams all the active jobban entries for the current round to standard output."
 	set category = "Debug"
@@ -172,7 +172,7 @@
 	for(var/t in jobban_keylist)
 		to_chat(usr, "[t]")
 
-/client/proc/print_jobban_old_filter()
+client/proc/print_jobban_old_filter()
 	set name = "Search Jobban Log"
 	set desc = "This searches all the active jobban entries for the current round and outputs the results to standard output."
 	set category = "Debug"

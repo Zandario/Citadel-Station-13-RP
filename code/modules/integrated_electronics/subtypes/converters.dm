@@ -1,5 +1,5 @@
 //These circuits convert one variable to another.
-/obj/item/integrated_circuit/converter
+obj/item/integrated_circuit/converter
 	complexity = 2
 	inputs = list("input")
 	outputs = list("output")
@@ -7,7 +7,7 @@
 	category_text = "Converter"
 	power_draw_per_use = 10
 
-/obj/item/integrated_circuit/converter/num2text
+obj/item/integrated_circuit/converter/num2text
 	name = "number to string"
 	desc = "This circuit can convert a number variable into a string."
 	extended_desc = "Because of circuit limitations, null/false variables will output a '0' string."
@@ -16,7 +16,7 @@
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/num2text/do_work()
+obj/item/integrated_circuit/converter/num2text/do_work()
 	var/result = null
 	var/incoming = get_pin_data(IC_INPUT, 1)
 	if(!isnull(incoming))
@@ -28,7 +28,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/text2num
+obj/item/integrated_circuit/converter/text2num
 	name = "string to number"
 	desc = "This circuit can convert a string variable into a number."
 	icon_state = "string-num"
@@ -36,7 +36,7 @@
 	outputs = list("output" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/text2num/do_work()
+obj/item/integrated_circuit/converter/text2num/do_work()
 	var/result = null
 
 	var/incoming = get_pin_data(IC_INPUT, 1)
@@ -47,7 +47,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/ref2text
+obj/item/integrated_circuit/converter/ref2text
 	name = "reference to string"
 	desc = "This circuit can convert a reference to something else to a string, specifically the name of that reference."
 	icon_state = "ref-string"
@@ -55,7 +55,7 @@
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/ref2text/do_work()
+obj/item/integrated_circuit/converter/ref2text/do_work()
 	var/result = null
 
 	var/atom/A = get_pin_data(IC_INPUT, 1)
@@ -66,7 +66,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/refcode
+obj/item/integrated_circuit/converter/refcode
 	name = "reference encoder"
 	desc = "This circuit can encode a reference into a string, which can then be read by a reference decoder circuit."
 	icon_state = "ref-string"
@@ -74,7 +74,7 @@
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/refcode/do_work()
+obj/item/integrated_circuit/converter/refcode/do_work()
 	var/result = null
 	var/atom/A = get_pin_data(IC_INPUT, 1)
 	if(A && istype(A))
@@ -84,7 +84,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/refdecode
+obj/item/integrated_circuit/converter/refdecode
 	name = "reference decoder"
 	desc = "This circuit can convert an encoded reference to an actual reference."
 	icon_state = "ref-string"
@@ -93,13 +93,13 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	var/dec
 
-/obj/item/integrated_circuit/converter/refdecode/do_work()
+obj/item/integrated_circuit/converter/refdecode/do_work()
 	dec = XorEncrypt(hextostr(get_pin_data(IC_INPUT, 1), TRUE), SScircuit.cipherkey)
 	set_pin_data(IC_OUTPUT, 1, WEAKREF(locate(dec)))
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/lowercase
+obj/item/integrated_circuit/converter/lowercase
 	name = "lowercase string converter"
 	desc = "This circuit will cause a string to come out in all lowercase."
 	icon_state = "lowercase"
@@ -107,7 +107,7 @@
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/lowercase/do_work()
+obj/item/integrated_circuit/converter/lowercase/do_work()
 	var/result = null
 
 	var/incoming = get_pin_data(IC_INPUT, 1)
@@ -118,7 +118,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/uppercase
+obj/item/integrated_circuit/converter/uppercase
 	name = "uppercase string converter"
 	desc = "THIS WILL CAUSE A STRING TO COME OUT IN ALL UPPERCASE."
 	icon_state = "uppercase"
@@ -126,7 +126,7 @@
 	outputs = list("output" = IC_PINTYPE_STRING)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/uppercase/do_work()
+obj/item/integrated_circuit/converter/uppercase/do_work()
 	var/result = null
 
 	var/incoming = get_pin_data(IC_INPUT, 1)
@@ -137,7 +137,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/concatenator
+obj/item/integrated_circuit/converter/concatenator
 	name = "concatenator"
 	desc = "This circuit joins up to 8 strings together to get a string with a maximum of 2048 characters."
 	complexity = 4
@@ -148,12 +148,12 @@
 	var/number_of_pins = 8
 	var/max_string_length = 2048
 
-/obj/item/integrated_circuit/converter/concatenator/Initialize(mapload)
+obj/item/integrated_circuit/converter/concatenator/Initialize(mapload)
 	for(var/i = 1 to number_of_pins)
 		inputs["input [i]"] = IC_PINTYPE_STRING
 	. = ..()
 
-/obj/item/integrated_circuit/converter/concatenator/do_work()
+obj/item/integrated_circuit/converter/concatenator/do_work()
 	var/result = null
 	var/spamprotection
 	for(var/k in 1 to inputs.len)
@@ -181,20 +181,20 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/concatenator/small
+obj/item/integrated_circuit/converter/concatenator/small
 	name = "small concatenator"
 	desc = "This circuit joins up to 4 strings together to get a string with a maximum of 2048 characters."
 	complexity = 2
 	number_of_pins = 4
 	max_string_length = 2048
 
-/obj/item/integrated_circuit/converter/concatenator/large
+obj/item/integrated_circuit/converter/concatenator/large
 	name = "large concatenator"
 	desc = "This circuit joins up to 16 strings together to get a string with a maximum of 2048 characters."
 	complexity = 6
 	number_of_pins = 16
 	max_string_length = 2048
-/obj/item/integrated_circuit/converter/separator
+obj/item/integrated_circuit/converter/separator
 	name = "separator"
 	desc = "This splits a single string into two at the relative split point."
 	extended_desc = "This circuit splits a given string into two, based on the string and the index value.  \
@@ -212,7 +212,7 @@
 	activators = list("separate" = IC_PINTYPE_PULSE_IN, "on separated" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/separator/do_work()
+obj/item/integrated_circuit/converter/separator/do_work()
 	var/text = get_pin_data(IC_INPUT, 1)
 	var/index = get_pin_data(IC_INPUT, 2)
 
@@ -227,7 +227,7 @@
 
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/findstring
+obj/item/integrated_circuit/converter/findstring
 	name = "find text"
 	desc = "This circuit outputs the position of the sample in the string or returns 0."
 	extended_desc = "The first pin is the string to be examined.  The second pin is the sample to be found.  \
@@ -250,7 +250,7 @@
 
 
 
-/obj/item/integrated_circuit/converter/findstring/do_work()
+obj/item/integrated_circuit/converter/findstring/do_work()
 	var/position = findtext(get_pin_data(IC_INPUT, 1),get_pin_data(IC_INPUT, 2))
 
 	set_pin_data(IC_OUTPUT, 1, position)
@@ -261,7 +261,7 @@
 	else
 		activate_pin(4)
 
-/obj/item/integrated_circuit/converter/stringlength
+obj/item/integrated_circuit/converter/stringlength
 	name = "get length"
 	desc = "This circuit will return the number of characters in a string."
 	complexity = 1
@@ -274,13 +274,13 @@
 	activators = list("get length" = IC_PINTYPE_PULSE_IN, "on acquisition" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/stringlength/do_work()
+obj/item/integrated_circuit/converter/stringlength/do_work()
 	set_pin_data(IC_OUTPUT, 1, length(get_pin_data(IC_INPUT, 1)))
 	push_data()
 
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/exploders
+obj/item/integrated_circuit/converter/exploders
 	name = "string exploder"
 	desc = "This splits a single string into a list of strings."
 	extended_desc = "This circuit splits a given string into a list of strings based on the string and given delimiter.  \
@@ -297,7 +297,7 @@
 	activators = list("separate" = IC_PINTYPE_PULSE_IN, "on separated" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/exploders/do_work()
+obj/item/integrated_circuit/converter/exploders/do_work()
 	var/string = get_pin_data(IC_INPUT, 1)
 	var/delimiter = get_pin_data(IC_INPUT, 2)
 	if(delimiter == null)
@@ -307,14 +307,14 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/radians2degrees
+obj/item/integrated_circuit/converter/radians2degrees
 	name = "radians to degrees converter"
 	desc = "Converts radians to degrees."
 	inputs = list("radian" = IC_PINTYPE_NUMBER)
 	outputs = list("degrees" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/radians2degrees/do_work()
+obj/item/integrated_circuit/converter/radians2degrees/do_work()
 	var/result = null
 
 	var/incoming = get_pin_data(IC_INPUT, 1)
@@ -325,14 +325,14 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/degrees2radians
+obj/item/integrated_circuit/converter/degrees2radians
 	name = "degrees to radians converter"
 	desc = "Converts degrees to radians."
 	inputs = list("degrees" = IC_PINTYPE_NUMBER)
 	outputs = list("radians" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/degrees2radians/do_work()
+obj/item/integrated_circuit/converter/degrees2radians/do_work()
 	var/result = null
 
 	var/incoming = get_pin_data(IC_INPUT, 1)
@@ -344,7 +344,7 @@
 	activate_pin(2)
 
 
-/obj/item/integrated_circuit/converter/abs_to_rel_coords
+obj/item/integrated_circuit/converter/abs_to_rel_coords
 	name = "abs to rel coordinate converter"
 	desc = "Easily convert absolute coordinates to relative coordinates with this."
 	extended_desc = "Keep in mind that both sets of input coordinates should be absolute."
@@ -362,7 +362,7 @@
 	activators = list("compute rel coordinates" = IC_PINTYPE_PULSE_IN, "on convert" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/abs_to_rel_coords/do_work()
+obj/item/integrated_circuit/converter/abs_to_rel_coords/do_work()
 	var/x1 = get_pin_data(IC_INPUT, 1)
 	var/y1 = get_pin_data(IC_INPUT, 2)
 
@@ -376,7 +376,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/rel_to_abs_coords
+obj/item/integrated_circuit/converter/rel_to_abs_coords
 	name = "rel to abs coordinate converter"
 	desc = "Convert relative coordinates to absolute coordinates with this."
 	extended_desc = "Keep in mind that only one set of input coordinates should be absolute, and the other relative.  \
@@ -395,7 +395,7 @@
 	activators = list("compute abs coordinates" = IC_PINTYPE_PULSE_IN, "on convert" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/rel_to_abs_coords/do_work()
+obj/item/integrated_circuit/converter/rel_to_abs_coords/do_work()
 	var/x1 = get_pin_data(IC_INPUT, 1)
 	var/y1 = get_pin_data(IC_INPUT, 2)
 
@@ -409,7 +409,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/adv_rel_to_abs_coords
+obj/item/integrated_circuit/converter/adv_rel_to_abs_coords
 	name = "advanced rel to abs coordinate converter"
 	desc = "Easily convert relative coordinates to absolute coordinates with this."
 	extended_desc = "This circuit only requires a single set of relative inputs to output absolute coordinates."
@@ -425,7 +425,7 @@
 	activators = list("compute abs coordinates" = IC_PINTYPE_PULSE_IN, "on convert" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/adv_rel_to_abs_coords/do_work()
+obj/item/integrated_circuit/converter/adv_rel_to_abs_coords/do_work()
 	var/turf/T = get_turf(src)
 
 	if(!T)
@@ -441,7 +441,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/hsv2hex
+obj/item/integrated_circuit/converter/hsv2hex
 	name = "hsv to hexadecimal converter"
 	desc = "This circuit can convert a HSV (Hue, Saturation, and Value) color to a Hexadecimal RGB color."
 	extended_desc = "The first pin controls tint (0-359), the second pin controls how intense the tint is (0-255), \
@@ -455,7 +455,7 @@
 	outputs = list("hexadecimal rgb" = IC_PINTYPE_COLOR)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/hsv2hex/do_work()
+obj/item/integrated_circuit/converter/hsv2hex/do_work()
 	var/result = null
 
 	var/hue = get_pin_data(IC_INPUT, 1)
@@ -468,7 +468,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/converter/rgb2hex
+obj/item/integrated_circuit/converter/rgb2hex
 	name = "rgb to hexadecimal converter"
 	desc = "This circuit can convert a RGB (Red, Green, Blue) color to a Hexadecimal RGB color."
 	extended_desc = "The first pin controls red amount, the second pin controls green amount, and the third controls blue amount.  They all go from 0-255."
@@ -481,7 +481,7 @@
 	outputs = list("hexadecimal rgb" = IC_PINTYPE_COLOR)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/rgb2hex/do_work()
+obj/item/integrated_circuit/converter/rgb2hex/do_work()
 	var/result = null
 	var/red = get_pin_data(IC_INPUT, 1)
 	var/green = get_pin_data(IC_INPUT, 2)

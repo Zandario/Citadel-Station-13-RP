@@ -1,11 +1,11 @@
-/datum/power/changeling/lesser_form
+datum/power/changeling/lesser_form
 	name = "Lesser Form"
 	desc = "We debase ourselves and become lesser.  We become a monkey."
 	genomecost = 1
 	verbpath = /mob/proc/changeling_lesser_form
 
 //Transform into a monkey.
-/mob/proc/changeling_lesser_form()
+mob/proc/changeling_lesser_form()
 	set category = "Changeling"
 	set name = "Lesser Form (1)"
 
@@ -35,7 +35,7 @@
 	return 1
 
 //Transform into a human
-/mob/proc/changeling_lesser_transform()
+mob/proc/changeling_lesser_transform()
 	set category = "Changeling"
 	set name = "Transform (1)"
 

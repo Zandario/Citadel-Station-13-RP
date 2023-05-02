@@ -1,6 +1,6 @@
-/datum/armor/none
+datum/armor/none
 
-/datum/armor/invulnerable
+datum/armor/invulnerable
 	melee = 1.0
 	bullet = 1.0
 	laser = 1.0

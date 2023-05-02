@@ -1,391 +1,391 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/template_noop,
-/area/submap/crashedcontainmentshuttle)
+turf/template_noop,
+area/submap/crashedcontainmentshuttle)
 "ab" = (
-/obj/structure/grille,
-/obj/item/material/shard{
+obj/structure/grille,
+obj/item/material/shard{
 	icon_state = "medium"
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "ac" = (
-/obj/random/landmine,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/random/landmine,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "ad" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/girder,
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "ae" = (
-/obj/item/material/shard{
+obj/item/material/shard{
 	icon_state = "medium"
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "af" = (
-/turf/simulated/shuttle/wall/dark/hard_corner,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/wall/dark/hard_corner,
+area/submap/crashedcontainmentshuttle)
 "ag" = (
-/turf/simulated/shuttle/wall/dark,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/wall/dark,
+area/submap/crashedcontainmentshuttle)
 "ah" = (
-/obj/structure/lattice,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/lattice,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "ai" = (
-/turf/simulated/floor/outdoors/rocks,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/floor/outdoors/rocks,
+area/submap/crashedcontainmentshuttle)
 "aj" = (
-/obj/item/material/shard,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/item/material/shard,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "ak" = (
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "al" = (
-/obj/item/stack/rods,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/item/stack/rods,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "am" = (
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "an" = (
-/obj/item/stack/rods,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/item/stack/rods,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "ao" = (
-/obj/structure/door_assembly/door_assembly_ext,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/door_assembly/door_assembly_ext,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "ap" = (
-/obj/structure/door_assembly/door_assembly_ext{
+obj/structure/door_assembly/door_assembly_ext{
 	anchored = 1
 	},
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "aq" = (
-/obj/structure/grille,
-/obj/item/material/shard,
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/grille,
+obj/item/material/shard,
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "ar" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/loot_pile/maint/technical,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "as" = (
-/obj/structure/grille{
+obj/structure/grille{
 	density = 0;
 	icon_state = "brokengrille"
 	},
-/obj/structure/lattice,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/lattice,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "at" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "au" = (
-/obj/item/circuitboard/broken,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/item/circuitboard/broken,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "av" = (
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "aw" = (
-/obj/structure/closet/crate{
+obj/structure/closet/crate{
 	name = "landmines crate";
 	opened = 1
 	},
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "ax" = (
-/obj/random/landmine,
-/obj/random/landmine,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/random/landmine,
+obj/random/landmine,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "ay" = (
-/obj/effect/decal/mecha_wreckage/gygax{
+obj/effect/decal/mecha_wreckage/gygax{
 	anchored = 1
 	},
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "az" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/loot_pile/maint/technical,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aA" = (
-/obj/item/clothing/suit/space/cult,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/item/clothing/suit/space/cult,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "aB" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4;
 	health = 1e+006
 	},
-/turf/template_noop,
-/area/submap/crashedcontainmentshuttle)
+turf/template_noop,
+area/submap/crashedcontainmentshuttle)
 "aC" = (
-/obj/effect/decal/remains/robot,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/decal/remains/robot,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "aD" = (
-/obj/random/landmine,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/random/landmine,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aE" = (
-/obj/effect/gibspawner/generic,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/gibspawner/generic,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aF" = (
-/obj/effect/debris/cleanable/blood/drip,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood/drip,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aG" = (
-/obj/structure/table/steel_reinforced,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/table/steel_reinforced,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aH" = (
-/obj/random/landmine,
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+obj/random/landmine,
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "aI" = (
-/obj/effect/decal/remains/human,
-/obj/effect/gibspawner/human,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/decal/remains/human,
+obj/effect/gibspawner/human,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "aJ" = (
-/obj/item/clothing/head/helmet/space/cult,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/item/clothing/head/helmet/space/cult,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "aK" = (
-/obj/item/material/knife/ritual,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/item/material/knife/ritual,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "aL" = (
-/obj/structure/closet/medical_wall,
-/turf/simulated/shuttle/wall/dark,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/closet/medical_wall,
+turf/simulated/shuttle/wall/dark,
+area/submap/crashedcontainmentshuttle)
 "aM" = (
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "aN" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/loot_pile/maint/technical,
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "aO" = (
-/obj/structure/door_assembly/door_assembly_highsecurity{
+obj/structure/door_assembly/door_assembly_highsecurity{
 	anchored = 1
 	},
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aP" = (
-/obj/structure/closet/walllocker/emerglocker/east,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/closet/walllocker/emerglocker/east,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aQ" = (
-/obj/effect/decal/remains/human,
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/decal/remains/human,
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "aR" = (
-/obj/structure/grille,
-/obj/item/material/shard{
+obj/structure/grille,
+obj/item/material/shard{
 	icon_state = "medium"
 	},
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "aS" = (
-/obj/item/circuitboard/broken,
-/obj/effect/decal/remains/human,
-/obj/item/gun/energy/laser,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/item/circuitboard/broken,
+obj/effect/decal/remains/human,
+obj/item/gun/energy/laser,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aT" = (
-/obj/item/gps/internal/poi,
-/turf/simulated/shuttle/floor/red,
-/area/submap/crashedcontainmentshuttle)
+obj/item/gps/internal/poi,
+turf/simulated/shuttle/floor/red,
+area/submap/crashedcontainmentshuttle)
 "aU" = (
-/turf/simulated/shuttle/floor/red,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/red,
+area/submap/crashedcontainmentshuttle)
 "aV" = (
-/obj/random/landmine,
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+obj/random/landmine,
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "aW" = (
-/obj/structure/bed/chair/office/dark{
+obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "aX" = (
-/obj/structure/frame/computer,
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/frame/computer,
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "aY" = (
-/obj/structure/frame,
-/obj/item/circuitboard/broken,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/frame,
+obj/item/circuitboard/broken,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "aZ" = (
-/obj/effect/debris/cleanable/vomit,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/vomit,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "ba" = (
-/obj/effect/debris/cleanable/blood/oil,
-/turf/simulated/shuttle/floor/red,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood/oil,
+turf/simulated/shuttle/floor/red,
+area/submap/crashedcontainmentshuttle)
 "bb" = (
-/obj/item/material/knife/ritual,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/shuttle/floor/red,
-/area/submap/crashedcontainmentshuttle)
+obj/item/material/knife/ritual,
+obj/effect/debris/cleanable/blood,
+turf/simulated/shuttle/floor/red,
+area/submap/crashedcontainmentshuttle)
 "bc" = (
-/obj/item/circuitboard/broken,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/item/circuitboard/broken,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "bd" = (
-/obj/item/circuitboard/broken,
-/obj/structure/bed/chair/office/dark{
+obj/item/circuitboard/broken,
+obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "be" = (
-/turf/simulated/shuttle/wall/dark/no_join,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/wall/dark/no_join,
+area/submap/crashedcontainmentshuttle)
 "bf" = (
-/obj/effect/decal/remains/robot,
-/turf/simulated/shuttle/floor/red,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/decal/remains/robot,
+turf/simulated/shuttle/floor/red,
+area/submap/crashedcontainmentshuttle)
 "bg" = (
-/obj/effect/debris/cleanable/blood,
-/obj/random/landmine,
-/turf/simulated/shuttle/floor/red,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood,
+obj/random/landmine,
+turf/simulated/shuttle/floor/red,
+area/submap/crashedcontainmentshuttle)
 "bh" = (
-/obj/effect/decal/remains/human,
-/obj/item/clothing/head/helmet/space/cult,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/shuttle/floor/red,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/decal/remains/human,
+obj/item/clothing/head/helmet/space/cult,
+obj/effect/debris/cleanable/blood,
+turf/simulated/shuttle/floor/red,
+area/submap/crashedcontainmentshuttle)
 "bi" = (
-/obj/item/material/shard,
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+obj/item/material/shard,
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "bj" = (
-/obj/effect/debris/cleanable/blood/drip,
-/obj/effect/debris/cleanable/blood/drip,
-/obj/effect/debris/cleanable/blood/drip,
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood/drip,
+obj/effect/debris/cleanable/blood/drip,
+obj/effect/debris/cleanable/blood/drip,
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "bk" = (
-/obj/machinery/computer,
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+obj/machinery/computer,
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "bl" = (
-/obj/structure/grille{
+obj/structure/grille{
 	density = 0;
 	icon_state = "brokengrille"
 	},
-/obj/item/stack/rods,
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+obj/item/stack/rods,
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "bm" = (
-/obj/structure/bed/chair/office/dark{
+obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/decal/remains/human,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/decal/remains/human,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "bn" = (
-/obj/effect/debris/cleanable/blood/drip,
-/obj/effect/debris/cleanable/blood/drip,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood/drip,
+obj/effect/debris/cleanable/blood/drip,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "bo" = (
-/obj/structure/extinguisher_cabinet,
-/turf/simulated/shuttle/wall/dark,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/extinguisher_cabinet,
+turf/simulated/shuttle/wall/dark,
+area/submap/crashedcontainmentshuttle)
 "bp" = (
-/obj/item/stack/rods,
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+obj/item/stack/rods,
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "bq" = (
-/obj/structure/door_assembly,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/door_assembly,
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "br" = (
-/obj/structure/table/steel_reinforced,
-/turf/simulated/shuttle/floor/yellow,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/table/steel_reinforced,
+turf/simulated/shuttle/floor/yellow,
+area/submap/crashedcontainmentshuttle)
 "bs" = (
-/obj/item/material/shard,
-/turf/template_noop,
-/area/submap/crashedcontainmentshuttle)
+obj/item/material/shard,
+turf/template_noop,
+area/submap/crashedcontainmentshuttle)
 "bt" = (
-/obj/effect/debris/cleanable/blood/drip,
-/obj/effect/debris/cleanable/blood/drip,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood/drip,
+obj/effect/debris/cleanable/blood/drip,
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "bu" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/loot_pile/maint/technical,
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "bv" = (
-/obj/effect/debris/cleanable/blood/drip,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood/drip,
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "bw" = (
-/obj/structure/closet/walllocker/emerglocker/north,
-/obj/structure/frame,
-/obj/item/circuitboard/broken,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/closet/walllocker/emerglocker/north,
+obj/structure/frame,
+obj/item/circuitboard/broken,
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "bx" = (
-/obj/structure/ghost_pod/manual/lost_drone/dogborg,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/ghost_pod/manual/lost_drone/dogborg,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "by" = (
-/obj/structure/frame,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/frame,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 "bz" = (
-/obj/item/frame/mirror,
-/obj/item/material/shard{
+obj/item/frame/mirror,
+obj/item/material/shard{
 	icon_state = "medium"
 	},
-/turf/simulated/shuttle/wall/dark,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/wall/dark,
+area/submap/crashedcontainmentshuttle)
 "bA" = (
-/obj/structure/sink{
+obj/structure/sink{
 	icon_state = "sink";
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/obj/effect/debris/cleanable/blood/drip,
-/obj/effect/debris/cleanable/blood/drip,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood/drip,
+obj/effect/debris/cleanable/blood/drip,
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "bB" = (
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "bC" = (
-/obj/effect/debris/cleanable/vomit,
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/vomit,
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "bD" = (
-/obj/structure/toilet{
+obj/structure/toilet{
 	dir = 8
 	},
-/obj/effect/gibspawner/generic,
-/obj/effect/decal/remains/human,
-/obj/item/card/id/syndicate{
+obj/effect/gibspawner/generic,
+obj/effect/decal/remains/human,
+obj/item/card/id/syndicate{
 	age = "\\42";
 	blood_type = "\\O+";
 	desc = "A strange ID card.";
@@ -395,72 +395,72 @@
 	registered_name = "Aaron Presley";
 	sex = "\\Male"
 	},
-/turf/simulated/shuttle/floor/white,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/shuttle/floor/white,
+area/submap/crashedcontainmentshuttle)
 "bE" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4;
 	health = 1e+006
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "bF" = (
-/obj/structure/door_assembly/door_assembly_ext{
+obj/structure/door_assembly/door_assembly_ext{
 	anchored = 1
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "bG" = (
-/obj/structure/grille{
+obj/structure/grille{
 	density = 0;
 	icon_state = "brokengrille"
 	},
-/obj/item/material/shard{
+obj/item/material/shard{
 	icon_state = "medium"
 	},
-/obj/item/stack/rods,
-/turf/simulated/floor/plating,
-/area/submap/crashedcontainmentshuttle)
+obj/item/stack/rods,
+turf/simulated/floor/plating,
+area/submap/crashedcontainmentshuttle)
 "bH" = (
-/obj/effect/gibspawner/generic,
-/turf/template_noop,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/gibspawner/generic,
+turf/template_noop,
+area/submap/crashedcontainmentshuttle)
 "bI" = (
-/obj/effect/debris/cleanable/liquid_fuel,
-/turf/template_noop,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/liquid_fuel,
+turf/template_noop,
+area/submap/crashedcontainmentshuttle)
 "bJ" = (
-/obj/effect/debris/cleanable/blood/drip,
-/turf/template_noop,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/blood/drip,
+turf/template_noop,
+area/submap/crashedcontainmentshuttle)
 "bK" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_r"
 	},
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "bL" = (
-/obj/effect/debris/cleanable/liquid_fuel,
-/obj/random/landmine,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/liquid_fuel,
+obj/random/landmine,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "bM" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/structure/reagent_dispensers/fueltank,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "bN" = (
-/obj/effect/debris/cleanable/liquid_fuel,
-/obj/effect/decal/remains/human,
-/obj/item/flame/lighter/random,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/liquid_fuel,
+obj/effect/decal/remains/human,
+obj/item/flame/lighter/random,
+turf/simulated/mineral/floor/ignore_mapgen,
+area/submap/crashedcontainmentshuttle)
 "bO" = (
-/obj/effect/debris/cleanable/liquid_fuel,
-/turf/simulated/shuttle/floor/black,
-/area/submap/crashedcontainmentshuttle)
+obj/effect/debris/cleanable/liquid_fuel,
+turf/simulated/shuttle/floor/black,
+area/submap/crashedcontainmentshuttle)
 
 (1,1,1) = {"
 aa

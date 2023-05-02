@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/reconstitute_form() //Scree's race ability.in exchange for: No cloning.
+mob/living/carbon/human/proc/reconstitute_form() //Scree's race ability.in exchange for: No cloning.
 	set name = "Reconstitute Form"
 	set category = "Abilities"
 
@@ -8,7 +8,7 @@
 	if(confirm == "Yes")
 		chimera_regenerate()
 
-/mob/living/carbon/human/proc/chimera_regenerate()
+mob/living/carbon/human/proc/chimera_regenerate()
 	//If they're already regenerating
 	switch(revive_ready)
 		if(REVIVING_NOW)
@@ -74,11 +74,11 @@
 				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
 				revive_ready = REVIVING_READY //reset their cooldown
 
-/mob/living/carbon/human/proc/hasnutriment()
+mob/living/carbon/human/proc/hasnutriment()
 	return (nutrition+ bloodstr.get_reagent("protein") * 10 + bloodstr.get_reagent("nutriment") * 5 + ingested.get_reagent("protein") * 5 + ingested.get_reagent("nutriment") * 2.5) > 425
 
 
-/mob/living/carbon/human/proc/hatch()
+mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"
 	set category = "Abilities"
 
@@ -102,7 +102,7 @@
 			chimera_hatch()
 			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
 
-/mob/living/carbon/human/proc/chimera_hatch()
+mob/living/carbon/human/proc/chimera_hatch()
 	remove_verb(src, /mob/living/carbon/human/proc/hatch)
 	to_chat(src, "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>")
 
@@ -128,20 +128,20 @@
 
 	revive_ready = world.time + 1 HOUR //set the cooldown
 
-/mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
+mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
 
-/obj/effect/gibspawner/human/xenochimera
+obj/effect/gibspawner/human/xenochimera
 	fleshcolor = "#14AD8B"
 	bloodcolor = "#14AD8B"
 
-/mob/living/carbon/human/proc/getlightlevel() //easier than having the same code in like three places
+mob/living/carbon/human/proc/getlightlevel() //easier than having the same code in like three places
 	if(isturf(src.loc)) //else, there's considered to be no light
 		var/turf/T = src.loc
 		return T.get_lumcount() * 5
 	else return 0
 
-/mob/living/carbon/human/proc/handle_feral()
+mob/living/carbon/human/proc/handle_feral()
 	if(handling_hal) return
 	handling_hal = 1
 
@@ -334,7 +334,7 @@
 	return
 
 
-/mob/living/carbon/human/proc/bloodsuck()
+mob/living/carbon/human/proc/bloodsuck()
 	set name = "Partially Drain prey of blood"
 	set desc = "Bites prey and drains them of a significant portion of blood, feeding you in the process. You may only do this once per minute."
 	set category = "Abilities"
@@ -413,7 +413,7 @@
 
 
 //Welcome to the adapted changeling absorb code.
-/mob/living/carbon/human/proc/succubus_drain()
+mob/living/carbon/human/proc/succubus_drain()
 	set name = "Drain prey of nutrition"
 	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. You may only do this to one person at a time."
 	set category = "Abilities"
@@ -490,7 +490,7 @@
 			C.absorbing_prey = 0
 			return
 
-/mob/living/carbon/human/proc/succubus_drain_lethal()
+mob/living/carbon/human/proc/succubus_drain_lethal()
 	set name = "Lethally drain prey" //Provide a warning that THIS WILL KILL YOUR PREY.
 	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to drain them lethally. You may only do this to one person at a time."
 	set category = "Abilities"
@@ -608,7 +608,7 @@
 			absorbing_prey = 0
 			return
 
-/mob/living/carbon/human/proc/slime_feed()
+mob/living/carbon/human/proc/slime_feed()
 	set name = "Feed prey with self"
 	set desc = "Slowly feed prey with your body, draining you in the process. You may only do this to one person at a time."
 	set category = "Abilities"
@@ -669,7 +669,7 @@
 			C.absorbing_prey = 0
 			return
 
-/mob/living/carbon/human/proc/succubus_drain_finalize()
+mob/living/carbon/human/proc/succubus_drain_finalize()
 	set name = "Drain/Feed Finalization"
 	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained, or you will feed yourself to the prey's selected stomach if you're feeding them. Can be toggled at any time."
 	set category = "Abilities"
@@ -680,8 +680,8 @@
 
 
 //Test to see if we can shred a mob. Some child override needs to pass us a target. We'll return it if you can.
-/mob/living/var/vore_shred_time = 45 SECONDS
-/mob/living/proc/can_shred(var/mob/living/carbon/human/target)
+mob/living/var/vore_shred_time = 45 SECONDS
+mob/living/proc/can_shred(var/mob/living/carbon/human/target)
 	//Needs to have organs to be able to shred them.
 	if(!istype(target))
 		to_chat(src,"<span class='warning'>You can't shred that type of creature.</span>")
@@ -702,8 +702,8 @@
 	return target
 
 //Human test for shreddability, returns the mob if they can be shredded.
-/mob/living/carbon/human/vore_shred_time = 10 SECONDS
-/mob/living/carbon/human/can_shred()
+mob/living/carbon/human/vore_shred_time = 10 SECONDS
+mob/living/carbon/human/can_shred()
 	//Humans need a grab
 	var/obj/item/grab/G = get_active_held_item()
 	if(!istype(G))
@@ -716,7 +716,7 @@
 	return ..(G.affecting)
 
 //PAIs, borgs, and animals don't need a grab or anything
-/mob/living/silicon/pai/can_shred(var/mob/living/carbon/human/target)
+mob/living/silicon/pai/can_shred(var/mob/living/carbon/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))
@@ -731,7 +731,7 @@
 
 	return ..(target)
 
-/mob/living/silicon/robot/can_shred(var/mob/living/carbon/human/target)
+mob/living/silicon/robot/can_shred(var/mob/living/carbon/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))
@@ -746,7 +746,7 @@
 
 	return ..(target)
 
-/mob/living/simple_mob/can_shred(var/mob/living/carbon/human/target)
+mob/living/simple_mob/can_shred(var/mob/living/carbon/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))
@@ -761,7 +761,7 @@
 
 	return ..(target)
 
-/mob/living/proc/shred_limb()
+mob/living/proc/shred_limb()
 	set name = "Damage/Remove Prey's Organ"
 	set desc = "Severely damages prey's organ. If the limb is already severely damaged, it will be torn off."
 	set category = "Abilities"
@@ -835,13 +835,13 @@
 
 		add_attack_logs(src,T,"Shredded (hardvore)")
 
-/mob/living/proc/shred_limb_temp()
+mob/living/proc/shred_limb_temp()
 	set name = "Damage/Remove Prey's Organ (beartrap)"
 	set desc = "Severely damages prey's organ. If the limb is already severely damaged, it will be torn off."
 	set category = "Abilities"
 	shred_limb()
 
-/mob/living/proc/flying_toggle()
+mob/living/proc/flying_toggle()
 	set name = "Toggle Flight"
 	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
 	set category = "Abilities"
@@ -862,7 +862,7 @@
 	to_chat(C, "<span class='notice'>You have [C.flying?"started":"stopped"] flying.</span>")
 
 //Proc to stop inertial_drift. Exchange nutrition in order to stop gliding around.
-/mob/living/proc/start_wings_hovering()
+mob/living/proc/start_wings_hovering()
 	set name = "Hover"
 	set desc = "Allows you to stop gliding and hover. This will take a fair amount of nutrition to perform."
 	set category = "Abilities"
@@ -891,7 +891,7 @@
 	else
 		return
 
-/mob/living/proc/toggle_pass_table()
+mob/living/proc/toggle_pass_table()
 	set name = "Toggle Agility" //Dunno a better name for this. You have to be pretty agile to hop over stuff!!!
 	set desc = "Allows you to start/stop hopping over things such as hydroponics trays, tables, and railings."
 	set category = "Abilities"

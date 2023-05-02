@@ -2,7 +2,7 @@
 /* /datum/event/mundane_news
 	endWhen = 10
 
-/datum/event/mundane_news/announce()
+datum/event/mundane_news/announce()
 	var/datum/trade_destination/affected_dest = pickweight(weighted_mundaneevent_locations)
 	var/event_type = 0
 	if(affected_dest.viable_mundane_events.len)
@@ -124,10 +124,10 @@
 
 	news_network.SubmitArticle(body, author, channel, null, 1)
 */
-/datum/event/trivial_news
+datum/event/trivial_news
 	endWhen = 10
 
-/datum/event/trivial_news/announce()
+datum/event/trivial_news/announce()
 	var/author = "Editor Mike Hammers"
 	var/channel = "The Gibson Gazette"
 

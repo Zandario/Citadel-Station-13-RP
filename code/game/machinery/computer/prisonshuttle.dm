@@ -12,7 +12,7 @@ var/prison_shuttle_can_send = 1
 var/prison_shuttle_time = 0
 var/prison_shuttle_timeleft = 0
 
-/obj/machinery/computer/prison_shuttle
+obj/machinery/computer/prison_shuttle
 	name = "prison shuttle control console"
 	icon_keyboard = "security_key"
 	icon_screen = "syndishuttle"
@@ -24,10 +24,10 @@ var/prison_shuttle_timeleft = 0
 	var/allowedtocall = 0
 	var/prison_break = 0
 
-/obj/machinery/computer/prison_shuttle/attack_ai(var/mob/user as mob)
+obj/machinery/computer/prison_shuttle/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/prison_shuttle/attack_hand(mob/user, list/params)
+obj/machinery/computer/prison_shuttle/attack_hand(mob/user, list/params)
 	if(!src.allowed(user) && (!hacked))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
@@ -52,7 +52,7 @@ var/prison_shuttle_timeleft = 0
 	return
 
 
-/obj/machinery/computer/prison_shuttle/Topic(href, href_list)
+obj/machinery/computer/prison_shuttle/Topic(href, href_list)
 	if(..())
 		return
 
@@ -95,12 +95,12 @@ var/prison_shuttle_timeleft = 0
 	return
 
 
-/obj/machinery/computer/prison_shuttle/proc/prison_can_move()
+obj/machinery/computer/prison_shuttle/proc/prison_can_move()
 	if(prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return 0
 	else return 1
 
 
-/obj/machinery/computer/prison_shuttle/proc/prison_break()
+obj/machinery/computer/prison_shuttle/proc/prison_break()
 	switch(prison_break)
 		if (0)
 			if(!prison_shuttle_at_station || prison_shuttle_moving_to_prison) return
@@ -116,7 +116,7 @@ var/prison_shuttle_timeleft = 0
 		if(1)
 			prison_break = 0
 
-/obj/machinery/computer/prison_shuttle/proc/post_signal(var/command)
+obj/machinery/computer/prison_shuttle/proc/post_signal(var/command)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1311)
 	if(!frequency) return
 	var/datum/signal/status_signal = new
@@ -126,7 +126,7 @@ var/prison_shuttle_timeleft = 0
 	frequency.post_signal(src, status_signal)
 	return
 
-/obj/machinery/computer/prison_shuttle/proc/prison_process()
+obj/machinery/computer/prison_shuttle/proc/prison_process()
 	while(prison_shuttle_time - world.timeofday > 0)
 		var/ticksleft = prison_shuttle_time - world.timeofday
 
@@ -207,7 +207,7 @@ var/prison_shuttle_timeleft = 0
 			start_location.move_contents_to(end_location)
 	return
 
-/obj/machinery/computer/prison_shuttle/emag_act(var/charges, var/mob/user)
+obj/machinery/computer/prison_shuttle/emag_act(var/charges, var/mob/user)
 	if(!hacked)
 		hacked = 1
 		to_chat(user, "<span class='notice'>You disable the lock.</span>")

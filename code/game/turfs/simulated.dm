@@ -1,4 +1,4 @@
-/turf/simulated
+turf/simulated
 	name = "station"
 	var/wet = 0
 	var/image/wet_overlay = null
@@ -24,20 +24,20 @@
 	/// edge icon state, overrides icon_state if set
 	var/edge_icon_state
 
-/turf/simulated/Initialize(mapload)
+turf/simulated/Initialize(mapload)
 	. = ..()
 	if(mapload)
 		levelupdate()
 	if(outdoors)
 		SSplanets.addTurf(src)
 
-/turf/simulated/Destroy()
+turf/simulated/Destroy()
 	if(outdoors)
 		SSplanets.removeTurf(src)
 	return ..()
 
 // This is not great.
-/turf/simulated/proc/wet_floor(var/wet_val = 1)
+turf/simulated/proc/wet_floor(var/wet_val = 1)
 	if(wet > 2)	//Can't mop up ice
 		return
 	spawn(0)
@@ -54,7 +54,7 @@
 			cut_overlay(wet_overlay)
 			wet_overlay = null
 
-/turf/simulated/proc/freeze_floor()
+turf/simulated/proc/freeze_floor()
 	if(!wet) // Water is required for it to freeze.
 		return
 	wet = 3 // icy
@@ -69,18 +69,18 @@
 			cut_overlay(wet_overlay)
 			wet_overlay = null
 
-/turf/simulated/clean_blood()
+turf/simulated/clean_blood()
 	for(var/obj/effect/debris/cleanable/blood/B in contents)
 		B.clean_blood()
 	..()
 
-/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/debris/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
-/turf/simulated/proc/update_dirt()
+turf/simulated/proc/update_dirt()
 	if(can_dirty)
 		dirt = min(dirt+1, 101)
 		var/obj/effect/debris/cleanable/dirt/dirtoverlay = locate(/obj/effect/debris/cleanable/dirt, src)
@@ -89,7 +89,7 @@
 				dirtoverlay = new/obj/effect/debris/cleanable/dirt(src)
 			dirtoverlay.alpha = min((dirt - 50) * 5, 255)
 
-/turf/simulated/Entered(atom/movable/AM, atom/oldLoc)
+turf/simulated/Entered(atom/movable/AM, atom/oldLoc)
 	..()
 	if(AM.rad_insulation != 1)
 		rad_insulation_contents *= AM.rad_insulation
@@ -136,7 +136,7 @@
 		if(src.wet)
 			process_slip(M)
 
-/turf/simulated/proc/process_slip(mob/living/M)
+turf/simulated/proc/process_slip(mob/living/M)
 	if(M.buckled || (src.wet == 1 && M.m_intent == "walk"))
 		return
 
@@ -160,7 +160,7 @@
 			sleep(1)
 
 //returns 1 if made bloody, returns 0 otherwise
-/turf/simulated/add_blood(mob/living/carbon/human/M as mob)
+turf/simulated/add_blood(mob/living/carbon/human/M as mob)
 	if (!..())
 		return 0
 
@@ -177,7 +177,7 @@
 	return 0
 
 // Only adds blood on the floor -- Skie
-/turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
+turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
 	if( istype(M, /mob/living/carbon/alien ))
 		var/obj/effect/debris/cleanable/blood/xeno/this = new /obj/effect/debris/cleanable/blood/xeno(src)
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
@@ -186,12 +186,12 @@
 	else if(ishuman(M))
 		add_blood(M)
 
-/turf/simulated/floor/plating
+turf/simulated/floor/plating
 	can_start_dirty = TRUE	// But let maints and decrepit areas have some randomness
 
 //? Radiation
 
-/turf/simulated/update_rad_insulation()
+turf/simulated/update_rad_insulation()
 	. = ..()
 	for(var/atom/movable/AM as anything in contents)
 		rad_insulation_contents *= AM.rad_insulation

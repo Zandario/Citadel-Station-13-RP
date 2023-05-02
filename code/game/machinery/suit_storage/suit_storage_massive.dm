@@ -1,7 +1,7 @@
 //A variant of the suitstorage that can store multiple suits at once
 //
 
-/obj/machinery/suit_storage_closet
+obj/machinery/suit_storage_closet
 	name = "Suit Storage Automated Closet"
 	desc = "A repurposed automated closet to help manage space and voidsuits. Thank Frag Felix Storage for this gift."
 	icon = 'icons/obj/suitstorage.dmi'
@@ -30,7 +30,7 @@
 	var/max_amount = 10
 	var/ispowered = 1
 
-/obj/machinery/suit_storage_closet/Initialize(mapload, newdir)
+obj/machinery/suit_storage_closet/Initialize(mapload, newdir)
 	. = ..()
 	for(var/i=0;i < starting_amount; i++)
 		LAZYADD(suits, new suit_stored_TYPE(src))
@@ -40,13 +40,13 @@
 
 	update_amounts()
 
-/obj/machinery/suit_storage_closet/proc/update_amounts()
+obj/machinery/suit_storage_closet/proc/update_amounts()
 	suit_amount = LAZYLEN(suits)
 	helmet_amount = LAZYLEN(helmets)
 	mask_amount = LAZYLEN(masks)
 	boots_amount = LAZYLEN(boots)
 
-/obj/machinery/suit_storage_closet/power_change()
+obj/machinery/suit_storage_closet/power_change()
 	..()
 	if(!(machine_stat & NOPOWER))
 		ispowered = 1
@@ -54,7 +54,7 @@
 		ispowered = 0
 		//Todo: add lockdown
 
-/obj/machinery/suit_storage_closet/legacy_ex_act(severity)
+obj/machinery/suit_storage_closet/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			if(prob(50))
@@ -65,7 +65,7 @@
 				dump_everything()
 				qdel(src)
 
-/obj/machinery/suit_storage_closet/attack_hand(mob/user, list/params)
+obj/machinery/suit_storage_closet/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(machine_stat & NOPOWER)
@@ -74,7 +74,7 @@
 		return 0
 	removal_menu(user)
 
-/obj/machinery/suit_storage_closet/proc/removal_menu(var/mob/user)
+obj/machinery/suit_storage_closet/proc/removal_menu(var/mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
 		if(helmet_amount > 0)
@@ -122,7 +122,7 @@
 		return 1
 	return 0
 
-/obj/machinery/suit_storage_closet/proc/can_remove_items(var/mob/user)
+obj/machinery/suit_storage_closet/proc/can_remove_items(var/mob/user)
 	if (!Adjacent(user))
 		return 0
 
@@ -131,7 +131,7 @@
 
 	return 1
 /*
-/obj/machinery/suit_storage_closet/proc/dispense_helmet(mob/user as mob, var/list_index)
+obj/machinery/suit_storage_closet/proc/dispense_helmet(mob/user as mob, var/list_index)
 	if(helmet_amount <= 0)
 		return
 	else
@@ -140,7 +140,7 @@
 		helmet_dispense.loc = src.loc
 		return
 
-/obj/machinery/suit_storage_closet/proc/dispense_mask(mob/user as mob, var/list_index)
+obj/machinery/suit_storage_closet/proc/dispense_mask(mob/user as mob, var/list_index)
 	if(mask_amount <= 0)
 		return
 	else
@@ -149,7 +149,7 @@
 		mask_dispense.loc = src.loc
 		return
 
-/obj/machinery/suit_storage_closet/proc/dispense_suit(mob/user as mob, var/list_index)
+obj/machinery/suit_storage_closet/proc/dispense_suit(mob/user as mob, var/list_index)
 	if(suit_amount <= 0)
 		return
 	else
@@ -158,7 +158,7 @@
 		suit_dispense.loc = src.loc
 		return
 
-/obj/machinery/suit_storage_closet/proc/dispense_boot(mob/user as mob, var/list_index)
+obj/machinery/suit_storage_closet/proc/dispense_boot(mob/user as mob, var/list_index)
 	if(boots_amount <= 0)
 		return
 	else
@@ -167,7 +167,7 @@
 		boot_dispense.loc = src.loc
 		return*/
 
-/obj/machinery/suit_storage_closet/proc/dump_everything()
+obj/machinery/suit_storage_closet/proc/dump_everything()
 	helmet_amount = 0
 	suit_amount = 0
 	mask_amount = 0
@@ -195,7 +195,7 @@
 			LAZYREMOVE(boots, dispense_item)
 	return
 
-/obj/machinery/suit_storage_closet/attackby(obj/item/I as obj, mob/user as mob)
+obj/machinery/suit_storage_closet/attackby(obj/item/I as obj, mob/user as mob)
 	if(!ispowered)
 		return
 	/*if(I.is_screwdriver())

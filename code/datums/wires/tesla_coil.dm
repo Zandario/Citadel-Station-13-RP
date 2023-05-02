@@ -1,19 +1,19 @@
-/datum/wires/tesla_coil
+datum/wires/tesla_coil
 	holder_type = /obj/machinery/power/tesla_coil
 	wire_count = 1
 	proper_name = "Tesla coil"
 
-/datum/wires/tesla_coil/New(atom/_holder)
+datum/wires/tesla_coil/New(atom/_holder)
 	wires = list(WIRE_TESLACOIL_ZAP)
 	return ..()
 
-/datum/wires/tesla_coil/interactable(mob/user)
+datum/wires/tesla_coil/interactable(mob/user)
 	var/obj/machinery/power/tesla_coil/T = holder
 	if(T && T.panel_open)
 		return TRUE
 	return FALSE
 
-/datum/wires/tesla_coil/on_pulse(wire)
+datum/wires/tesla_coil/on_pulse(wire)
 	var/obj/machinery/power/tesla_coil/T = holder
 	switch(wire)
 		if(WIRE_TESLACOIL_ZAP)

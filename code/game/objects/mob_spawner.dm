@@ -1,7 +1,7 @@
 ////////////////////////////////////
 //Mob spawner structure. This one is an on map structure that players can see, sometimes break.
 ////////////////////////////////////
-/obj/structure/mob_spawner
+obj/structure/mob_spawner
 	name = "mob spawner"
 	desc = "This shouldn't be seen, yell at a dev."
 	icon = 'icons/effects/effects.dmi'
@@ -25,26 +25,26 @@
 
 	var/list/spawned_mobs = list()
 
-/obj/structure/mob_spawner/Initialize(mapload)
+obj/structure/mob_spawner/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	last_spawn = world.time + rand(0,spawn_delay)
 
-/obj/structure/mob_spawner/Destroy()
+obj/structure/mob_spawner/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	for(var/mob/living/L in spawned_mobs)
 		L.source_spawner = null
 	spawned_mobs.Cut()
 	return ..()
 
-/obj/structure/mob_spawner/process()
+obj/structure/mob_spawner/process()
 	if(!can_spawn())
 		return
 	var/chosen_mob = choose_spawn()
 	if(chosen_mob)
 		do_spawn(chosen_mob)
 
-/obj/structure/mob_spawner/proc/can_spawn()
+obj/structure/mob_spawner/proc/can_spawn()
 	if(!total_spawns)
 		return 0
 	if(spawned_mobs.len >= simultaneous_spawns)
@@ -53,10 +53,10 @@
 		return 0
 	return 1
 
-/obj/structure/mob_spawner/proc/choose_spawn()
+obj/structure/mob_spawner/proc/choose_spawn()
 	return pickweight(spawn_types)
 
-/obj/structure/mob_spawner/proc/do_spawn(var/mob_path)
+obj/structure/mob_spawner/proc/do_spawn(var/mob_path)
 	if(!ispath(mob_path))
 		return 0
 	var/mob/living/L = new mob_path(get_turf(src))
@@ -69,11 +69,11 @@
 		L.faction = mob_faction
 	return L
 
-/obj/structure/mob_spawner/proc/get_death_report(var/mob/living/L)
+obj/structure/mob_spawner/proc/get_death_report(var/mob/living/L)
 	if(L in spawned_mobs)
 		spawned_mobs.Remove(L)
 
-/obj/structure/mob_spawner/attackby(var/obj/item/I, var/mob/living/user)
+obj/structure/mob_spawner/attackby(var/obj/item/I, var/mob/living/user)
 	if(!I.damage_force || I.item_flags & ITEM_NOBLUDGEON || !destructible)
 		return
 
@@ -82,18 +82,18 @@
 	visible_message("<span class='warning'>\The [src] has been [I.get_attack_verb(src, user)] with \the [I] by [user].</span>")
 	take_damage(I.damage_force)
 
-/obj/structure/mob_spawner/bullet_act(var/obj/projectile/Proj)
+obj/structure/mob_spawner/bullet_act(var/obj/projectile/Proj)
 	..()
 	if(destructible)
 		take_damage(Proj.get_structure_damage())
 
-/obj/structure/mob_spawner/take_damage(var/damage)
+obj/structure/mob_spawner/take_damage(var/damage)
 	health -= damage
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks apart!</span>")
 		qdel(src)
 
-/obj/structure/mob_spawner/clear_zlevel/can_spawn()
+obj/structure/mob_spawner/clear_zlevel/can_spawn()
 	if(!..())
 		return 0
 	var/turf/T = get_turf(src)
@@ -114,11 +114,11 @@ This code is based on the mob spawner and the proximity sensor, the idea is to l
 It also makes it so a ghost wont know where all the goodies/mobs are.
 */
 
-/obj/structure/mob_spawner/scanner
+obj/structure/mob_spawner/scanner
 	name ="Lazy Mob Spawner"
 	var/range = 10 //range in tiles from the spawner to detect moving stuff
 
-/obj/structure/mob_spawner/scanner/process()
+obj/structure/mob_spawner/scanner/process()
 	if(!can_spawn())
 		return
 	if(world.time > last_spawn + spawn_delay)
@@ -134,7 +134,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 /////////////
 
 //Non-Scanners
-/obj/structure/mob_spawner/goliath
+obj/structure/mob_spawner/goliath
 	name = "Deep Warrens Rift"
 	desc = "This hole leads deep underground. Although possibly large enough for you to enter, something seems to compel you not to. Occasionally, a deep, choral rumbling can be heard far below."
 	icon_state = "tunnel_hole"
@@ -149,7 +149,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	/mob/living/simple_mob/animal/goliath = 100
 	)
 
-/obj/structure/mob_spawner/gutshank
+obj/structure/mob_spawner/gutshank
 	name = "Gutshank Hive"
 	desc = "This telltale pile of debris and hardened sand marks this as the entrance to a Gutshank hive."
 	icon_state = "eggy_tunnel"
@@ -164,7 +164,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	/mob/living/simple_mob/animal/gutshank = 100
 	)
 
-/obj/structure/mob_spawner/stormdrifter
+obj/structure/mob_spawner/stormdrifter
 	name = "Violent Downdraft"
 	desc = "The air here seems especially hot. A swirling wind agitates the ash and sand, kicking up eddies and small dust devils."
 	icon_state = "punch"
@@ -181,7 +181,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	)
 
 //Scanners
-/obj/structure/mob_spawner/scanner/corgi
+obj/structure/mob_spawner/scanner/corgi
 	name = "Corgi Lazy Spawner"
 	desc = "This is a proof of concept, not sure why you would use this one"
 	spawn_delay = 3 MINUTES
@@ -197,7 +197,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	health = 200
 	total_spawns = 100
 
-/obj/structure/mob_spawner/scanner/wild_animals
+obj/structure/mob_spawner/scanner/wild_animals
 	name = "Wilderness Lazy Spawner"
 	spawn_delay = 10 MINUTES
 	range = 10
@@ -214,7 +214,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	/mob/living/simple_mob/vore/aggressive/dragon/virgo3b = 1
 	)
 
-/obj/structure/mob_spawner/scanner/xenos
+obj/structure/mob_spawner/scanner/xenos
 	name = "Xenomorph Egg"
 	spawn_delay = 10 MINUTES
 	range = 10
@@ -233,7 +233,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	/mob/living/simple_mob/animal/space/alien/queen = 1
 	)
 
-/obj/structure/mob_spawner/scanner/xenos/royal
+obj/structure/mob_spawner/scanner/xenos/royal
 	name = "Royal Xenomorph Egg"
 	spawn_delay = 10 MINUTES
 	range = 10
@@ -252,7 +252,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 ////////////////////////////////////
 //Invisible mob spawner. This one spawns mobs until depleted. Often used in caves.
 ////////////////////////////////////
-/obj/mob_spawner
+obj/mob_spawner
 	name = "RENAME ME, JERK"
 	desc = "Spawns the mobs!"
 	icon = 'icons/mob/screen1.dmi'
@@ -279,7 +279,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	var/mob/living/simple_mob/my_mob
 	var/depleted = FALSE
 
-/obj/mob_spawner/Initialize(mapload)
+obj/mob_spawner/Initialize(mapload)
 	. = ..()
 
 	if(!LAZYLEN(mobs_to_pick_from))
@@ -287,7 +287,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 		return INITIALIZE_HINT_QDEL
 	START_PROCESSING(SSobj, src)
 
-/obj/mob_spawner/process()
+obj/mob_spawner/process()
 	if(my_mob && my_mob.stat != DEAD)
 		return //No need
 
@@ -325,7 +325,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 		depleted = TRUE
 		return
 
-/obj/mob_spawner/carp
+obj/mob_spawner/carp
 	name = "Carp Spawner"
 	prob_fall = 15
 	mobs_to_pick_from = list(
@@ -333,27 +333,27 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 		/mob/living/simple_mob/animal/space/carp/large = 1
 	)
 
-/obj/mob_spawner/carp/small
+obj/mob_spawner/carp/small
 	prob_fall = 30
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/carp = 3,
 		/mob/living/simple_mob/animal/space/carp/large = 1,
 	)
 
-/obj/mob_spawner/carp/hard
+obj/mob_spawner/carp/hard
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/carp/large = 2,
 		/mob/living/simple_mob/animal/space/carp/large/huge = 1
 	)
 
-/obj/mob_spawner/carp/medium
+obj/mob_spawner/carp/medium
 	prob_fall = 10
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/carp = 5,
 		/mob/living/simple_mob/animal/space/carp/large = 2
 	)
 
-/obj/mob_spawner/carp/large
+obj/mob_spawner/carp/large
 	name = "Carp Horde Spawner"
 	prob_fall = 10
 	mobs_to_pick_from = list(
@@ -362,7 +362,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 		/mob/living/simple_mob/animal/space/carp/large/huge = 1
 	)
 
-/obj/mob_spawner/derelict
+obj/mob_spawner/derelict
 	name = "Derelict random mob spawner"
 	faction = "derelict"
 	mobs_to_pick_from = list(
@@ -371,42 +371,42 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 		/mob/living/simple_mob/mechanical/combat_drone = 1
 	)
 
-/obj/mob_spawner/derelict/corrupt_maint_swarm
+obj/mob_spawner/derelict/corrupt_maint_swarm
 	name = "Derelict maint swarm"
 	faction = "derelict"
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 4
 	)
 
-/obj/mob_spawner/derelict/mech_wizard
+obj/mob_spawner/derelict/mech_wizard
 	name = "Derelict wizard"
 	faction = "derelict"
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/technomancer_golem = 2
 	)
 
-/obj/mob_spawner/hound_spawner
+obj/mob_spawner/hound_spawner
 	name = "Corrupt Hound Spawner"
 	prob_fall = 50
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
 		)
 
-/obj/mob_spawner/drone_spawner
+obj/mob_spawner/drone_spawner
 	name = "Drone Swarm Spawner"
 	prob_fall = 10
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 3
 	)
 
-/obj/mob_spawner/alien
+obj/mob_spawner/alien
 	name = "Alien Spawner"
 	prob_fall = 10
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/alien = 1
 	)
 
-/obj/mob_spawner/alien/easy
+obj/mob_spawner/alien/easy
 	name = "Easy Alien Spawner"
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/alien = 1,
@@ -414,7 +414,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 		/mob/living/simple_mob/animal/space/alien/sentinel = 1,
 	)
 
-/obj/mob_spawner/alien/medium
+obj/mob_spawner/alien/medium
 	name = "Medium Alien Spawner"
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/alien = 2,
@@ -423,7 +423,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 		/mob/living/simple_mob/animal/space/alien/sentinel/praetorian = 1
 	)
 
-/obj/mob_spawner/alien/hard
+obj/mob_spawner/alien/hard
 	name = "Hard Alien Spawner"
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/alien = 4,
@@ -431,7 +431,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 		/mob/living/simple_mob/animal/space/alien/sentinel/praetorian = 2
 	)
 
-/obj/structure/mob_spawner/scanner/corgi
+obj/structure/mob_spawner/scanner/corgi
 	name = "Corgi Lazy Spawner"
 	desc = "This is a proof of concept, not sure why you would use this one"
 	spawn_delay = 3 MINUTES
@@ -447,7 +447,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	health = 200
 	total_spawns = 100
 
-/obj/structure/mob_spawner/scanner/wild_animals
+obj/structure/mob_spawner/scanner/wild_animals
 	name = "Wilderness Lazy Spawner"
 	spawn_delay = 10 MINUTES
 	range = 10
@@ -464,7 +464,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	/mob/living/simple_mob/vore/aggressive/dragon/virgo3b = 1
 	)
 
-/obj/structure/mob_spawner/scanner/xenos
+obj/structure/mob_spawner/scanner/xenos
 	name = "Xenomorph Egg"
 	spawn_delay = 10 MINUTES
 	range = 10
@@ -483,7 +483,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	/mob/living/simple_mob/animal/space/alien/queen = 1
 	)
 
-/obj/structure/mob_spawner/scanner/xenos/royal
+obj/structure/mob_spawner/scanner/xenos/royal
 	name = "Royal Xenomorph Egg"
 	spawn_delay = 10 MINUTES
 	range = 10

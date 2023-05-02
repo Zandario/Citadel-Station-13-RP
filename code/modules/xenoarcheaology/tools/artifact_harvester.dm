@@ -1,4 +1,4 @@
-/obj/machinery/artifact_harvester
+obj/machinery/artifact_harvester
 	name = "Exotic Particle Harvester"
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "incubator"	//incubator_on
@@ -13,16 +13,16 @@
 	var/obj/machinery/artifact_scanpad/owned_scanner = null
 	var/last_process = 0
 
-/obj/machinery/artifact_harvester/Initialize(mapload)
+obj/machinery/artifact_harvester/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/artifact_harvester/LateInitialize()
+obj/machinery/artifact_harvester/LateInitialize()
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir) //connect to a nearby scanner pad
 	if(!owned_scanner)
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
-/obj/machinery/artifact_harvester/attackby(var/obj/I as obj, var/mob/user as mob)
+obj/machinery/artifact_harvester/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I,/obj/item/anobattery))
 		if(!inserted_battery)
 			if(!user.attempt_insert_item_for_installation(I, src))
@@ -35,19 +35,19 @@
 	else
 		return..()
 
-/obj/machinery/artifact_harvester/attack_hand(mob/user, list/params)
+obj/machinery/artifact_harvester/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	ui_interact(user)
 
-/obj/machinery/artifact_harvester/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/artifact_harvester/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchArtifactHarvester", name)
 		ui.open()
 
-/obj/machinery/artifact_harvester/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/artifact_harvester/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["info"] = list(
@@ -72,7 +72,7 @@
 				data["info"]["inserted_battery"]["artifact_id"] = "N/A"
 	return data
 
-/obj/machinery/artifact_harvester/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/artifact_harvester/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -117,7 +117,7 @@
 			return TRUE
 
 
-/obj/machinery/artifact_harvester/proc/harvest()
+obj/machinery/artifact_harvester/proc/harvest()
 	if(!inserted_battery)
 		atom_say("Cannot harvest. No battery inserted.")
 		return
@@ -215,7 +215,7 @@
 				inserted_battery.battery_effect = E
 				inserted_battery.stored_charge = 0
 
-/obj/machinery/artifact_harvester/process(delta_time)
+obj/machinery/artifact_harvester/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 

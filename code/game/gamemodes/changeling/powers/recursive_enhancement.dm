@@ -1,4 +1,4 @@
-/datum/power/changeling/recursive_enhancement
+datum/power/changeling/recursive_enhancement
 	name = "Recursive Enhancement"
 	desc = "We cause our abilities to have increased or additional effects."
 	helptext = "To check the effects for each ability, check the blue text underneath the ability in the evolution menu."
@@ -7,7 +7,7 @@
 	verbpath = /mob/proc/changeling_recursive_enhancement
 
 //Increases macimum chemical storage
-/mob/proc/changeling_recursive_enhancement()
+mob/proc/changeling_recursive_enhancement()
 	set category = "Changeling"
 	set name = "Recursive Enhancement"
 	set desc = "Empowers our abilities."

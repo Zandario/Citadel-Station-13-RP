@@ -1,17 +1,17 @@
-/datum/random_map/maze
+datum/random_map/maze
 	descriptor = "maze"
 	initial_wall_cell = 100
 	var/list/checked_coord_cache = list()
 	var/list/openlist = list()
 	var/list/closedlist = list()
 
-/datum/random_map/maze/set_map_size()
+datum/random_map/maze/set_map_size()
 	// Map has to be odd so that there are walls on all sides.
 	if(limit_x%2==0) limit_x++
 	if(limit_y%2==0) limit_y++
 	..()
 
-/datum/random_map/maze/generate_map()
+datum/random_map/maze/generate_map()
 
 	// Grab a random point on the map to begin the maze cutting at.
 	var/start_x = rand(1,limit_x-2)
@@ -56,7 +56,7 @@
 	openlist.Cut()
 	closedlist.Cut()
 
-/datum/random_map/maze/proc/add_to_openlist(var/tx, var/ty, var/nx, var/ny)
+datum/random_map/maze/proc/add_to_openlist(var/tx, var/ty, var/nx, var/ny)
 	if(tx < 1 || ty < 1 || tx > limit_x || ty > limit_y || !isnull(checked_coord_cache["[tx]-[ty]"]))
 		return 0
 	checked_coord_cache["[tx]-[ty]"] = 1

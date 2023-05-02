@@ -1,4 +1,4 @@
-/datum/role/job/station/chaplain
+datum/role/job/station/chaplain
 	id = JOB_ID_CHAPLAIN
 	title = "Chaplain"
 	flag = CHAPLAIN
@@ -20,18 +20,18 @@
 		)
 
 // Chaplain Alt Titles
-/datum/prototype/alt_title/counselor
+datum/prototype/alt_title/counselor
 	title = "Counselor"
 	title_blurb = "The Counselor attends to the emotional needs of the crew, without a specific medicinal or spiritual focus."
 
-/datum/prototype/alt_title/chaplain/advisor
+datum/prototype/alt_title/chaplain/advisor
 	title = "Religious Affairs Advisor"
 
-/datum/role/job/station/chaplain/equip(mob/living/carbon/human/H, src)
+datum/role/job/station/chaplain/equip(mob/living/carbon/human/H, src)
 	. = ..()
 	if(H.mind)
 		H.mind.isholy = TRUE
-/datum/role/job/station/chaplain/equip(var/mob/living/carbon/human/H, var/alt_title, var/ask_questions = TRUE)
+datum/role/job/station/chaplain/equip(var/mob/living/carbon/human/H, var/alt_title, var/ask_questions = TRUE)
 	. = ..()
 	if(!.)
 		return
@@ -161,7 +161,7 @@
 		feedback_set_details("religion_book","[new_book_style]")
 	return 1
 
-/datum/outfit/job/station/chaplain
+datum/outfit/job/station/chaplain
 	name = OUTFIT_JOB_NAME("Chaplain")
 	uniform = /obj/item/clothing/under/rank/chaplain
 	l_hand = /obj/item/storage/bible

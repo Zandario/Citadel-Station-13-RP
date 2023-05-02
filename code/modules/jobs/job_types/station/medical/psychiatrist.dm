@@ -1,4 +1,4 @@
-/datum/role/job/station/psychiatrist
+datum/role/job/station/psychiatrist
 	id = JOB_ID_PSYCHIATRIST
 	title = "Psychiatrist"
 	flag = PSYCHIATRIST
@@ -22,24 +22,24 @@
 		"Therapist" = /datum/prototype/alt_title/therapist
 		)
 
-/datum/prototype/alt_title/psychologist
+datum/prototype/alt_title/psychologist
 	title = "Psychologist"
 	title_blurb =  "A Psychologist provides mental health services to crew members in need, focusing more on therapy than medication. They may also be \
 					called upon to determine whatever ails the mentally unwell, frequently under Security supervision."
 	title_outfit = /datum/outfit/job/station/psychiatrist/psychologist
 
-/datum/prototype/alt_title/psychologist/psychoanalyst
+datum/prototype/alt_title/psychologist/psychoanalyst
 	title = "Psychoanalyst"
 	title_blurb =  "A Psychoanalyst provides mental health services to crew members in need, focusing more on therapy than medication. They may also be \
 					called upon to determine whatever ails the mentally unwell, frequently under Security supervision."
 
-/datum/prototype/alt_title/counselor
+datum/prototype/alt_title/counselor
 	title = "Counselor"
 
-/datum/prototype/alt_title/therapist
+datum/prototype/alt_title/therapist
 	title = "Therapist"
 
-/datum/outfit/job/station/psychiatrist
+datum/outfit/job/station/psychiatrist
 	name = OUTFIT_JOB_NAME("Psychiatrist")
 	uniform = /obj/item/clothing/under/rank/psych
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
@@ -54,6 +54,6 @@
 	messenger_bag = /obj/item/storage/backpack/messenger/med
 	dufflebag = /obj/item/storage/backpack/dufflebag/med
 
-/datum/outfit/job/station/psychiatrist/psychologist
+datum/outfit/job/station/psychiatrist/psychologist
 	name = OUTFIT_JOB_NAME("Psychologist")
 	uniform = /obj/item/clothing/under/rank/psych/turtleneck

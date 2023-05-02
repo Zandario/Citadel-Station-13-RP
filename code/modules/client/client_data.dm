@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(client_data)
 
-/proc/resolve_client_data(ckey)
+proc/resolve_client_data(ckey)
 	ckey = ckey(ckey)	// just in case
 	if(!islist(GLOB.client_data))
 		// we CANNOT RUNTIME
@@ -14,9 +14,9 @@ GLOBAL_LIST_EMPTY(client_data)
  * round-based data that we don't want wiped
  * by a disconnect.
  */
-/datum/client_data
+datum/client_data
 	/// owner ckey
 	var/ckey
 
-/datum/client_data/New(ckey)
+datum/client_data/New(ckey)
 	src.ckey = ckey

@@ -1,16 +1,16 @@
-/obj/item/forensics
+obj/item/forensics
 	icon = 'icons/obj/forensics.dmi'
 	w_class = ITEMSIZE_TINY
 
 //This is the output of the stringpercent(print) proc, and means about 80% of
 //the print must be there for it to be complete.  (Prints are 32 digits)
 var/const/FINGERPRINT_COMPLETE = 6
-/proc/is_complete_print(var/print)
+proc/is_complete_print(var/print)
 	return stringpercent(print) <= FINGERPRINT_COMPLETE
 
-/atom/var/list/suit_fibers
+atom/var/list/suit_fibers
 
-/atom/proc/add_fibers(mob/living/carbon/human/M)
+atom/proc/add_fibers(mob/living/carbon/human/M)
 	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.transfer_blood) //bloodied gloves transfer blood to touched objects
@@ -43,11 +43,11 @@ var/const/FINGERPRINT_COMPLETE = 6
 		if(fibertext && prob(20*item_multiplier))
 			suit_fibers |= fibertext
 
-/datum/data/record/forensic
+datum/data/record/forensic
 	name = "forensic data"
 	var/uid
 
-/datum/data/record/forensic/New(var/atom/A)
+datum/data/record/forensic/New(var/atom/A)
 	uid = "\ref [A]"
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
@@ -56,7 +56,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 	fields["blood"] = A.blood_DNA ? A.blood_DNA.Copy() : list()
 	fields["time"] = world.time
 
-/datum/data/record/forensic/proc/merge(var/datum/data/record/other)
+datum/data/record/forensic/proc/merge(var/datum/data/record/other)
 	var/list/prints = fields["fprints"]
 	var/list/o_prints = other.fields["fprints"]
 	for(var/print in o_prints)
@@ -79,7 +79,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 	fields["area"] = other.fields["area"]
 	fields["time"] = other.fields["time"]
 
-/datum/data/record/forensic/proc/update_prints(var/list/o_prints)
+datum/data/record/forensic/proc/update_prints(var/list/o_prints)
 	var/list/prints = fields["fprints"]
 	for(var/print in o_prints)
 		if(prints[print])

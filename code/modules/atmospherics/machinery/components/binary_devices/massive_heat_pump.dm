@@ -7,7 +7,7 @@
 #define EFFICENCY_LIMIT_MULT 1
 
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump
+obj/machinery/atmospherics/component/binary/massive_heat_pump
 	name = "High performance heat pump"
 	use_power = USE_POWER_OFF
 	idle_power_usage = 150
@@ -32,7 +32,7 @@
 	var/on = 0
 	var/efficiency = 0
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/Initialize(mapload)
+obj/machinery/atmospherics/component/binary/massive_heat_pump/Initialize(mapload)
 	. = ..()
 	power_machine = new(src)
 
@@ -52,11 +52,11 @@
 	overlays_to_add += I
 	add_overlay(overlays_to_add)
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/Destroy()
+obj/machinery/atmospherics/component/binary/massive_heat_pump/Destroy()
 	. = ..()
 	qdel(power_machine)
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/process(delta_time)
+obj/machinery/atmospherics/component/binary/massive_heat_pump/process(delta_time)
 	if(!network1 || !network2)
 		build_network()//built networks if we are missing them
 		network1?.update = 1
@@ -105,13 +105,13 @@
 
 	return 1
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/proc/get_thermal_efficency()
+obj/machinery/atmospherics/component/binary/massive_heat_pump/proc/get_thermal_efficency()
 	if((target_temp < air2.temperature))
 		return clamp((air2.temperature / air1.temperature) * EFFICENCY_MULT, 0, 1 * EFFICENCY_LIMIT_MULT)
 	else if((target_temp > air2.temperature))
 		return clamp((air1.temperature / air2.temperature) * EFFICENCY_MULT, 0, 1 * EFFICENCY_LIMIT_MULT)
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/proc/handle_passive_flow()
+obj/machinery/atmospherics/component/binary/massive_heat_pump/proc/handle_passive_flow()
 	var/air_heat_capacity = air1.heat_capacity()
 	var/other_air_heat_capacity = air2.heat_capacity()
 	var/combined_heat_capacity = other_air_heat_capacity + air_heat_capacity
@@ -123,14 +123,14 @@
 		air1.temperature = new_temperature
 		air2.temperature = new_temperature
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/proc/check_passive_opportunity()
+obj/machinery/atmospherics/component/binary/massive_heat_pump/proc/check_passive_opportunity()
     if((target_temp < air2.temperature) && (air1.temperature < air2.temperature - 5))//Little offsets to prevent just constant passive flow for minor temperature differences
         return TRUE
     if((target_temp > air2.temperature) && (air1.temperature > air2.temperature + 5))
         return TRUE
     return FALSE
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/atmospherics/component/binary/massive_heat_pump/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -142,7 +142,7 @@
 		to_chat(user, SPAN_NOTICE("You cannot insert this item into \the [src]!"))
 		return
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/update_icon()
+obj/machinery/atmospherics/component/binary/massive_heat_pump/update_icon()
 	if(inoperable() || !anchored || !power_machine.powernet)
 		icon_state = "pump"
 	else if(use_power)
@@ -157,7 +157,7 @@
 		icon_state = "pump"
 	return TRUE
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/atmospherics/component/binary/massive_heat_pump/ui_interact(mob/user, datum/tgui/ui)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -166,7 +166,7 @@
 		ui.open()
 
 //This is the data which will be sent to the ui
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/ui_data(mob/user)
+obj/machinery/atmospherics/component/binary/massive_heat_pump/ui_data(mob/user)
 	var/list/data = list()
 
 	data = list(
@@ -184,7 +184,7 @@
 
 	return data
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/attack_hand(mob/user, list/params)
+obj/machinery/atmospherics/component/binary/massive_heat_pump/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	add_fingerprint(usr)
@@ -193,7 +193,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/atmospherics/component/binary/massive_heat_pump/ui_act(action, params)
+obj/machinery/atmospherics/component/binary/massive_heat_pump/ui_act(action, params)
 	if(..())
 		return TRUE
 

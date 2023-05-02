@@ -3,7 +3,7 @@
 
 var/global/list/image/splatter_cache=list()
 
-/obj/effect/debris/cleanable/blood
+obj/effect/debris/cleanable/blood
 	name = "blood"
 	var/dryname = "dried blood"
 	desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
@@ -22,13 +22,13 @@ var/global/list/image/splatter_cache=list()
 	var/amount = 5
 	var/drytime
 
-/obj/effect/debris/cleanable/blood/reveal_blood()
+obj/effect/debris/cleanable/blood/reveal_blood()
 	if(!fluorescent)
 		fluorescent = 1
 		basecolor = COLOR_LUMINOL
 		update_icon()
 
-/obj/effect/debris/cleanable/blood/clean_blood()
+obj/effect/debris/cleanable/blood/clean_blood()
 	fluorescent = 0
 	if(invisibility != 100)
 		invisibility = 100
@@ -36,11 +36,11 @@ var/global/list/image/splatter_cache=list()
 		STOP_PROCESSING(SSobj, src)
 	..(ignore=1)
 
-/obj/effect/debris/cleanable/blood/Destroy()
+obj/effect/debris/cleanable/blood/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/debris/cleanable/blood/Initialize(mapload)
+obj/effect/debris/cleanable/blood/Initialize(mapload)
 	. = ..()
 	update_icon()
 	if(istype(src, /obj/effect/debris/cleanable/blood/gibs))
@@ -56,7 +56,7 @@ var/global/list/image/splatter_cache=list()
 					qdel(B)
 	addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount + 1))
 
-/obj/effect/debris/cleanable/blood/update_icon()
+obj/effect/debris/cleanable/blood/update_icon()
 	if(basecolor == "rainbow")
 		basecolor = "#[get_random_colour(1)]"
 	add_atom_colour(basecolor, FIXED_COLOUR_PRIORITY)
@@ -71,7 +71,7 @@ var/global/list/image/splatter_cache=list()
 		name = initial(name)
 		desc = initial(desc)
 
-/obj/effect/debris/cleanable/blood/Crossed(mob/living/carbon/human/perp)
+obj/effect/debris/cleanable/blood/Crossed(mob/living/carbon/human/perp)
 	. = ..()
 	if(perp.is_incorporeal())
 		return
@@ -114,14 +114,14 @@ var/global/list/image/splatter_cache=list()
 
 	amount--
 
-/obj/effect/debris/cleanable/blood/proc/dry()
+obj/effect/debris/cleanable/blood/proc/dry()
 	name = dryname
 	desc = drydesc
 	var/newcolor = adjust_brightness(color, -50)
 	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 	amount = 0
 
-/obj/effect/debris/cleanable/blood/attack_hand(mob/user, list/params)
+obj/effect/debris/cleanable/blood/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
@@ -142,11 +142,11 @@ var/global/list/image/splatter_cache=list()
 		l.update_inv_gloves(1)
 		add_verb(l, /mob/living/carbon/human/proc/bloody_doodle)
 
-/obj/effect/debris/cleanable/blood/splatter
+obj/effect/debris/cleanable/blood/splatter
         random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
         amount = 2
 
-/obj/effect/debris/cleanable/blood/drip
+obj/effect/debris/cleanable/blood/drip
 	name = "drips of blood"
 	desc = "It's red."
 	gender = PLURAL
@@ -156,11 +156,11 @@ var/global/list/image/splatter_cache=list()
 	amount = 0
 	var/list/drips = list()
 
-/obj/effect/debris/cleanable/blood/drip/Initialize(mapload)
+obj/effect/debris/cleanable/blood/drip/Initialize(mapload)
 	. = ..()
 	drips |= icon_state
 
-/obj/effect/debris/cleanable/blood/writing
+obj/effect/debris/cleanable/blood/writing
 	icon_state = "tracks"
 	desc = "It looks like a writing in blood."
 	gender = NEUTER
@@ -168,7 +168,7 @@ var/global/list/image/splatter_cache=list()
 	amount = 0
 	var/message
 
-/obj/effect/debris/cleanable/blood/writing/Initialize(mapload)
+obj/effect/debris/cleanable/blood/writing/Initialize(mapload)
 	. = ..()
 	if(random_icon_states.len)
 		for(var/obj/effect/debris/cleanable/blood/writing/W in loc)
@@ -177,11 +177,11 @@ var/global/list/image/splatter_cache=list()
 	else
 		icon_state = "writing1"
 
-/obj/effect/debris/cleanable/blood/writing/examine(mob/user)
+obj/effect/debris/cleanable/blood/writing/examine(mob/user)
 	. = ..()
 	. += "It reads: <font color='[basecolor]'>\"[message]\"</font>"
 
-/obj/effect/debris/cleanable/blood/gibs
+obj/effect/debris/cleanable/blood/gibs
 	name = "gibs"
 	desc = "They look bloody and gruesome."
 	gender = PLURAL
@@ -192,7 +192,7 @@ var/global/list/image/splatter_cache=list()
 	random_icon_states = list("gib1", "gib2", "gib3", "gib5", "gib6")
 	var/fleshcolor = "#FFFFFF"
 
-/obj/effect/debris/cleanable/blood/gibs/update_icon()
+obj/effect/debris/cleanable/blood/gibs/update_icon()
 
 	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
 	if(!fleshcolor || fleshcolor == "rainbow")
@@ -207,23 +207,23 @@ var/global/list/image/splatter_cache=list()
 	cut_overlays()
 	add_overlay(giblets)
 
-/obj/effect/debris/cleanable/blood/gibs/up
+obj/effect/debris/cleanable/blood/gibs/up
 	random_icon_states = list("gib1", "gib2", "gib3", "gib5", "gib6","gibup1","gibup1","gibup1")
 
-/obj/effect/debris/cleanable/blood/gibs/down
+obj/effect/debris/cleanable/blood/gibs/down
 	random_icon_states = list("gib1", "gib2", "gib3", "gib5", "gib6","gibdown1","gibdown1","gibdown1")
 
-/obj/effect/debris/cleanable/blood/gibs/body
+obj/effect/debris/cleanable/blood/gibs/body
 	random_icon_states = list("gibhead", "gibtorso")
 
-/obj/effect/debris/cleanable/blood/gibs/limb
+obj/effect/debris/cleanable/blood/gibs/limb
 	random_icon_states = list("gibleg", "gibarm")
 
-/obj/effect/debris/cleanable/blood/gibs/core
+obj/effect/debris/cleanable/blood/gibs/core
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 
-/obj/effect/debris/cleanable/blood/gibs/proc/streak(var/list/directions)
+obj/effect/debris/cleanable/blood/gibs/proc/streak(var/list/directions)
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
@@ -237,7 +237,7 @@ var/global/list/image/splatter_cache=list()
 				break
 
 
-/obj/effect/debris/cleanable/mucus
+obj/effect/debris/cleanable/mucus
 	name = "mucus"
 	desc = "Disgusting mucus."
 	gender = PLURAL
@@ -250,12 +250,12 @@ var/global/list/image/splatter_cache=list()
 	var/list/datum/disease2/disease/virus2 = list()
 	var/dry=0 // Keeps the lag down
 
-/obj/effect/debris/cleanable/mucus/Initialize(mapload)
+obj/effect/debris/cleanable/mucus/Initialize(mapload)
 	. = ..()
 	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)
 
 //This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
-/obj/effect/debris/cleanable/mucus/mapped/Initialize(mapload)
+obj/effect/debris/cleanable/mucus/mapped/Initialize(mapload)
 	. = ..()
 	virus2 |= new /datum/disease2/disease
 	virus2[1].makerandom()

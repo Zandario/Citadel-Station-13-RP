@@ -1,6 +1,6 @@
 // -- Datums -- //
 
-/obj/effect/overmap/visitable/sector/alienship
+obj/effect/overmap/visitable/sector/alienship
 	name = "Unknown Vessel"
 	desc = "An unknown vessel detected by sensors."
 	start_x = 12
@@ -11,7 +11,7 @@
 
 // -- Objs -- //
 
-/obj/away_mission_init/alienship
+obj/away_mission_init/alienship
 	name = "away mission initializer - alienship"
 	icon = 'icons/map_assets/level/alienship.dmi'
 	icon_state = null
@@ -27,7 +27,7 @@
 	var/door_on_mode
 	var/teleport_on_mode
 
-/obj/away_mission_init/alienship/Initialize(mapload)
+obj/away_mission_init/alienship/Initialize(mapload)
 	. = ..()
 
 	if(!mission_mode) //WE ARE NUMBER ONE
@@ -51,7 +51,7 @@
 	else //You are dismissed
 		return INITIALIZE_HINT_QDEL
 
-/obj/machinery/porta_turret/alien/ion
+obj/machinery/porta_turret/alien/ion
 	name = "interior anti-boarding turret"
 	desc = "A very tough looking turret made by alien hands."
 	installation = /obj/item/gun/energy/ionrifle/weak
@@ -62,39 +62,39 @@
 	health = 250
 	maxhealth = 250
 
-/obj/away_mission_init/alienship/door_n2s
+obj/away_mission_init/alienship/door_n2s
 	icon_state = "n2s"
 	door_on_mode = "n2s"
 
-/obj/away_mission_init/alienship/door_s2n
+obj/away_mission_init/alienship/door_s2n
 	icon_state = "s2n"
 	door_on_mode = "s2n"
 
-/obj/away_mission_init/alienship/door_e2w
+obj/away_mission_init/alienship/door_e2w
 	icon_state = "e2w"
 	door_on_mode = "e2w"
 
-/obj/away_mission_init/alienship/door_w2e
+obj/away_mission_init/alienship/door_w2e
 	icon_state = "w2e"
 	door_on_mode = "w2e"
 
-/obj/away_mission_init/alienship/start_n2s
+obj/away_mission_init/alienship/start_n2s
 	icon_state = "n2s"
 	teleport_on_mode = "n2s"
 
-/obj/away_mission_init/alienship/start_s2n
+obj/away_mission_init/alienship/start_s2n
 	icon_state = "s2n"
 	teleport_on_mode = "s2n"
 
-/obj/away_mission_init/alienship/start_e2w
+obj/away_mission_init/alienship/start_e2w
 	icon_state = "e2w"
 	teleport_on_mode = "e2w"
 
-/obj/away_mission_init/alienship/start_w2e
+obj/away_mission_init/alienship/start_w2e
 	icon_state = "w2e"
 	teleport_on_mode = "w2e"
 
-/obj/item/reagent_containers/hypospray/autoinjector/alien
+obj/item/reagent_containers/hypospray/autoinjector/alien
 	name = "alien injector(?)"
 	desc = "It appears to contain some sort of liquid and has a needle for injecting."
 	icon = 'icons/map_assets/level/alienship.dmi'
@@ -105,18 +105,18 @@
 
 // -- Areas -- //
 
-/area/shuttle/excursion/away_alienship
+area/shuttle/excursion/away_alienship
 	name = "\improper Excursion Shuttle - Alien Ship"
 	var/did_entry = FALSE
 	var/list/teleport_to
 	var/area/dump_area
 	var/obj/shuttle_connector/shuttle_friend
 
-/area/shuttle/excursion/away_alienship/Initialize(mapload)
+area/shuttle/excursion/away_alienship/Initialize(mapload)
 	. = ..()
 	dump_area = locate(/area/tether_away/alienship/equip_dump)
 
-/area/shuttle/excursion/away_alienship/shuttle_arrived()
+area/shuttle/excursion/away_alienship/shuttle_arrived()
 	. = ..()
 	spawn(20)
 		if(did_entry)
@@ -137,7 +137,7 @@
 
 		did_entry = TRUE
 
-/area/shuttle/excursion/away_alienship/proc/abduct(var/mob/living/mob)
+area/shuttle/excursion/away_alienship/proc/abduct(var/mob/living/mob)
 	if(isliving(mob))
 		var/mob/living/L = mob
 
@@ -173,9 +173,9 @@
 		L << 'sound/effects/bamf.ogg'
 		to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 
-/area/tether_away/alienship
+area/tether_away/alienship
 	name = "\improper Away Mission - Unknown Vessel"
 	icon_state = "away"
 	requires_power = FALSE
 
-/area/tether_away/alienship/equip_dump
+area/tether_away/alienship/equip_dump

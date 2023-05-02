@@ -1,4 +1,4 @@
-/datum/admin_help/proc/send2adminchat()
+datum/admin_help/proc/send2adminchat()
 	if(!config_legacy.chat_webhook_url)
 		return
 

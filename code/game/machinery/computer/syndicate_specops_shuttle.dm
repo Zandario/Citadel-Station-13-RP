@@ -12,7 +12,7 @@ var/syndicate_elite_shuttle_can_send = 1
 var/syndicate_elite_shuttle_time = 0
 var/syndicate_elite_shuttle_timeleft = 0
 
-/obj/machinery/computer/syndicate_elite_shuttle
+obj/machinery/computer/syndicate_elite_shuttle
 	name = "elite syndicate squad shuttle control console"
 	icon_keyboard = "syndie_key"
 	icon_screen = "syndishuttle"
@@ -22,7 +22,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 	var/hacked = 0
 	var/allowedtocall = 0
 
-/proc/syndicate_elite_process()
+proc/syndicate_elite_process()
 	var/area/syndicate_mothership/control/syndicate_ship = locate()//To find announcer. This area should exist for this proc to work.
 	var/area/syndicate_mothership/elite_squad/elite_squad = locate()//Where is the specops area located?
 	var/mob/living/silicon/decoy/announcer = locate() in syndicate_ship//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
@@ -178,20 +178,20 @@ var/syndicate_elite_shuttle_timeleft = 0
 		var/mob/M = locate(/mob) in T
 		to_chat(M, "<span class='warning'>You have arrived to [station_name()]. Commence operation!</span>")
 
-/proc/syndicate_elite_can_move()
+proc/syndicate_elite_can_move()
 	if(syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return 0
 	else return 1
 
-/obj/machinery/computer/syndicate_elite_shuttle/attackby(I as obj, user as mob)
+obj/machinery/computer/syndicate_elite_shuttle/attackby(I as obj, user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/syndicate_elite_shuttle/attack_ai(var/mob/user as mob)
+obj/machinery/computer/syndicate_elite_shuttle/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/syndicate_elite_shuttle/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/syndicate_elite_shuttle/emag_act(var/remaining_charges, var/mob/user)
 	to_chat(user, "<span class='notice'>The electronic systems in this console are far too advanced for your primitive hacking peripherals.</span>")
 
-/obj/machinery/computer/syndicate_elite_shuttle/attack_hand(mob/user, list/params)
+obj/machinery/computer/syndicate_elite_shuttle/attack_hand(mob/user, list/params)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
@@ -217,7 +217,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/syndicate_elite_shuttle/Topic(href, href_list)
+obj/machinery/computer/syndicate_elite_shuttle/Topic(href, href_list)
 	if(..())
 		return 1
 

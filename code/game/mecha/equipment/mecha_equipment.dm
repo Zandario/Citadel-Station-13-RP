@@ -8,7 +8,7 @@
 #define EQUIP_MICRO_UTILITY	"micro_utility"
 #define EQUIP_MICRO_WEAPON	"micro_weapon"
 
-/obj/item/mecha_parts/mecha_equipment
+obj/item/mecha_parts/mecha_equipment
 	name = "mecha equipment"
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = "mecha_equip"
@@ -35,7 +35,7 @@
 	///Does the component slow/speed up the suit?
 	var/step_delay = 0
 
-/obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
+obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
 	sleep(equip_cooldown)
 	set_ready_state(1)
 	if(ready_sound) //Kind of like the kinetic accelerator.
@@ -44,28 +44,28 @@
 		return TRUE
 	return FALSE
 
-/obj/item/mecha_parts/mecha_equipment/examine(mob/user)
+obj/item/mecha_parts/mecha_equipment/examine(mob/user)
 	. = ..()
 	. += SPAN_NOTICE("[src] will fill [equip_type?"a [equip_type]":"any"] slot.")
 
-/obj/item/mecha_parts/mecha_equipment/proc/add_equip_overlay(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/proc/add_equip_overlay(obj/mecha/M as obj)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
+obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
 	if(chassis)
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
 		send_byjax(chassis.occupant,"exosuit.browser","equipment_menu",chassis.get_equipment_menu(),"dropdowns")
 		return TRUE
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/update_equip_info()
+obj/item/mecha_parts/mecha_equipment/proc/update_equip_info()
 	if(chassis)
 		send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",get_equip_info())
 		return TRUE
 	return
 
 ///Missiles detonating, teleporter creating singularity?
-/obj/item/mecha_parts/mecha_equipment/proc/destroy()
+obj/item/mecha_parts/mecha_equipment/proc/destroy()
 	if(chassis)
 		if(equip_type)
 			if(equip_type == EQUIP_HULL)
@@ -114,22 +114,22 @@
 		qdel(src)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/critfail()
+obj/item/mecha_parts/mecha_equipment/proc/critfail()
 	if(chassis)
 		log_message("Critical failure",1)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/get_equip_info()
+obj/item/mecha_parts/mecha_equipment/proc/get_equip_info()
 	if(!chassis) return
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected==src?"<b>":"<a href='?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"]"
 
-/obj/item/mecha_parts/mecha_equipment/proc/is_ranged()//add a distance restricted equipment. Why not?
+obj/item/mecha_parts/mecha_equipment/proc/is_ranged()//add a distance restricted equipment. Why not?
 	return range&RANGED
 
-/obj/item/mecha_parts/mecha_equipment/proc/is_melee()
+obj/item/mecha_parts/mecha_equipment/proc/is_melee()
 	return range&MELEE
 
-/obj/item/mecha_parts/mecha_equipment/proc/enable_special_checks(atom/target)
+obj/item/mecha_parts/mecha_equipment/proc/enable_special_checks(atom/target)
 	if(ispath(required_type))
 		return istype(target, required_type)
 
@@ -138,7 +138,7 @@
 			return TRUE
 	return FALSE
 
-/obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target)
+obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target)
 	if(!target)
 		return FALSE
 	if(!chassis)
@@ -149,10 +149,10 @@
 		return FALSE
 	return TRUE
 
-/obj/item/mecha_parts/mecha_equipment/proc/action(atom/target)
+obj/item/mecha_parts/mecha_equipment/proc/action(atom/target)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/can_attach(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/proc/can_attach(obj/mecha/M as obj)
 	//if(M.equipment.len >= M.max_equip)
 	//	return FALSE
 	if(!allow_duplicate)
@@ -184,7 +184,7 @@
 	*/
 	return FALSE
 
-/obj/item/mecha_parts/mecha_equipment/proc/attach(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/proc/attach(obj/mecha/M as obj)
 	//M.equipment += src
 	var/has_equipped = FALSE
 	if(equip_type == EQUIP_HULL && M.hull_equipment.len < M.max_hull_equip && !has_equipped)
@@ -220,7 +220,7 @@
 	src.update_chassis_page()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
+obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
 	moveto = moveto || get_turf(chassis)
 	if(src.forceMove(moveto))
 		chassis.equipment -= src
@@ -248,31 +248,31 @@
 	enable_special = FALSE
 	return
 
-/obj/item/mecha_parts/mecha_equipment/Topic(href,href_list)
+obj/item/mecha_parts/mecha_equipment/Topic(href,href_list)
 	if(href_list["detach"])
 		src.detach()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/set_ready_state(state)
+obj/item/mecha_parts/mecha_equipment/proc/set_ready_state(state)
 	equip_ready = state
 	if(chassis)
 		send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/occupant_message(message)
+obj/item/mecha_parts/mecha_equipment/proc/occupant_message(message)
 	if(chassis)
 		chassis.occupant_message("[icon2html(src, world)] [message]")
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/log_message(message)
+obj/item/mecha_parts/mecha_equipment/proc/log_message(message)
 	if(chassis)
 		chassis.log_message("<i>[src]:</i> [message]")
 	return
 
 ///Allows mech equipment to do an action upon the mech moving
-/obj/item/mecha_parts/mecha_equipment/proc/MoveAction()
+obj/item/mecha_parts/mecha_equipment/proc/MoveAction()
 	return
 
 ///Equipment returns its slowdown or speedboost.
-/obj/item/mecha_parts/mecha_equipment/proc/get_step_delay()
+obj/item/mecha_parts/mecha_equipment/proc/get_step_delay()
 	return step_delay

@@ -1,4 +1,4 @@
-/obj/item/integrated_circuit_printer
+obj/item/integrated_circuit_printer
 	name = "integrated circuit printer"
 	desc = "A portable(ish) machine made to print tiny modular circuitry out of metal."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -25,16 +25,16 @@
 	var/list/program
 	var/dirty_items = FALSE
 
-/obj/item/integrated_circuit_printer/examine(mob/user)
+obj/item/integrated_circuit_printer/examine(mob/user)
 	. = ..()
 	ui_interact(user)
 
-/obj/item/integrated_circuit_printer/upgraded
+obj/item/integrated_circuit_printer/upgraded
 	upgraded = TRUE
 	can_clone = TRUE
 	fast_clone = TRUE
 
-/obj/item/integrated_circuit_printer/debug
+obj/item/integrated_circuit_printer/debug
 	name = "fractal integrated circuit printer"
 	desc = "A portable(ish) machine that makes modular circuitry seemingly out of thin air."
 	debug = TRUE
@@ -43,12 +43,12 @@
 	fast_clone = TRUE
 	w_class = WEIGHT_CLASS_TINY
 /* TBI: Requires material containers
-/obj/item/integrated_circuit_printer/Initialize(mapload)
+obj/item/integrated_circuit_printer/Initialize(mapload)
 	. = ..()
 	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(/datum/material/iron), MINERAL_MATERIAL_AMOUNT * 25, TRUE, list(/obj/item/stack, /obj/item/integrated_circuit, /obj/item/electronic_assembly))
 	materials.precise_insertion = TRUE
 */
-/obj/item/integrated_circuit_printer/proc/print_program(mob/user)
+obj/item/integrated_circuit_printer/proc/print_program(mob/user)
 	visible_message(SPAN_NOTICE("[src] has finished printing its assembly!"))
 	playsound(src, 'sound/items/poster_being_created.ogg', 50, TRUE)
 	var/obj/item/electronic_assembly/assembly = SScircuit.load_electronic_assembly(get_turf(src), program)
@@ -56,7 +56,7 @@
 	assembly.investigate_log("was printed by [assembly.creator].", INVESTIGATE_CIRCUIT)
 	cloning = FALSE
 
-/obj/item/integrated_circuit_printer/proc/check_max_metal(inc)
+obj/item/integrated_circuit_printer/proc/check_max_metal(inc)
 	if(cur_metal + inc > max_metal)
 		inc = CEILING(src.cur_metal + inc - src.max_metal, src.metal_per_sheet) / 10
 		var/obj/item/stack/material/steel/S = new /obj/item/stack/material/steel(loc, inc, TRUE)
@@ -65,13 +65,13 @@
 		return TRUE
 	return FALSE
 
-/obj/item/integrated_circuit_printer/attack_robot(mob/user as mob)
+obj/item/integrated_circuit_printer/attack_robot(mob/user as mob)
 	if(Adjacent(user))
 		return ui_interact(user)
 	else
 		return ..()
 
-/obj/item/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
+obj/item/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/stack = O
 		if(stack.material.name == MAT_STEEL)
@@ -164,22 +164,22 @@
 			return TRUE
 	return ..()
 
-/obj/item/integrated_circuit_printer/vv_edit_var(var_name, var_value)
+obj/item/integrated_circuit_printer/vv_edit_var(var_name, var_value)
 	// Gotta update the static data in case an admin VV's the upgraded var for some reason..! //I would :) -Zan
 	if(var_name == "upgraded")
 		dirty_items = TRUE
 	return ..()
 
-/obj/item/integrated_circuit_printer/attack_self(mob/user)
+obj/item/integrated_circuit_printer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/obj/item/integrated_circuit_printer/ui_state(mob/user, datum/tgui_module/module)
+obj/item/integrated_circuit_printer/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/obj/item/integrated_circuit_printer/ui_interact(mob/user, datum/tgui/ui)
+obj/item/integrated_circuit_printer/ui_interact(mob/user, datum/tgui/ui)
 	if(dirty_items)
 		update_static_data(user, ui)
 		dirty_items = FALSE
@@ -189,7 +189,7 @@
 		ui = new(user, src, "ICPrinter", name) // 500, 600
 		ui.open()
 
-/obj/item/integrated_circuit_printer/ui_static_data(mob/user)
+obj/item/integrated_circuit_printer/ui_static_data(mob/user)
 	var/list/data = ..()
 
 	var/list/categories = list()
@@ -233,7 +233,7 @@
 
 	return data
 
-/obj/item/integrated_circuit_printer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/integrated_circuit_printer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["metal"] = cur_metal
@@ -255,7 +255,7 @@
 
 	return data
 
-/obj/item/integrated_circuit_printer/ui_act(action, list/params, datum/tgui/ui)
+obj/item/integrated_circuit_printer/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -354,7 +354,7 @@
 
 
 // FUKKEN UPGRADE DISKS
-/obj/item/disk/integrated_circuit/upgrade
+obj/item/disk/integrated_circuit/upgrade
 	name = "integrated circuit printer upgrade disk"
 	desc = "Install this into your integrated circuit printer to enhance it."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -363,11 +363,11 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
 
-/obj/item/disk/integrated_circuit/upgrade/advanced
+obj/item/disk/integrated_circuit/upgrade/advanced
 	name = "integrated circuit printer upgrade disk - advanced designs"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, advanced designs to the printer."
 
-/obj/item/disk/integrated_circuit/upgrade/clone
+obj/item/disk/integrated_circuit/upgrade/clone
 	name = "integrated circuit printer upgrade disk - circuit cloner"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one allows the printer to duplicate assemblies."
 	icon_state = "upgrade_disk_clone"

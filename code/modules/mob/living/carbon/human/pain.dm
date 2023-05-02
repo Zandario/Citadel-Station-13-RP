@@ -1,17 +1,17 @@
-/mob/proc/flash_pain()
+mob/proc/flash_pain()
 	flick("pain",pain)
 
-/mob/var/list/pain_stored = list()
-/mob/var/last_pain_message = ""
-/mob/var/next_pain_time = 0
+mob/var/list/pain_stored = list()
+mob/var/last_pain_message = ""
+mob/var/next_pain_time = 0
 
 
-/mob/living/proc/custom_pain(message, power, force)
+mob/living/proc/custom_pain(message, power, force)
 
 // message is the custom message to be displayed
 // power decides how much painkillers will stop the message
 // force means it ignores anti-spam timer
-/mob/living/carbon/custom_pain(message, power, force)
+mob/living/carbon/custom_pain(message, power, force)
 	if(!message || stat || !can_feel_pain() || chem_effects[CE_PAINKILLER] > power)
 		return 0
 	message = "<span class='danger'>[message]</span>"
@@ -24,7 +24,7 @@
 		to_chat(src, message)
 		next_pain_time = world.time + (100 - power)
 
-/mob/living/carbon/human/proc/handle_pain()
+mob/living/carbon/human/proc/handle_pain()
 	if(stat)
 		return
 
@@ -85,7 +85,7 @@
 
 
 /*
-/obj/item/organ/external/proc/stun_act(var/stun_amount, var/agony_amount)
+obj/item/organ/external/proc/stun_act(var/stun_amount, var/agony_amount)
 	return
 	if(agony_amount > 5 && owner && vital && get_pain() > 0.5 * max_damage)
 		owner.visible_message("<span class='warning'>[owner] reels in pain!</span>")
@@ -97,6 +97,6 @@
 			owner.drop_r_hand()
 		return 1
 
-/obj/item/organ/external/proc/get_agony_multiplier()
+obj/item/organ/external/proc/get_agony_multiplier()
 	return has_genitals() ? 2 : 1
 */

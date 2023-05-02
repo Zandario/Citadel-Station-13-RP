@@ -1,4 +1,4 @@
-/obj/item/assembly/igniter
+obj/item/assembly/igniter
 	name = "igniter"
 	desc = "A small electronic device able to ignite combustable substances."
 	icon_state = "igniter"
@@ -8,7 +8,7 @@
 	secured = TRUE
 	wires = WIRE_RECEIVE
 
-/obj/item/assembly/igniter/activate()
+obj/item/assembly/igniter/activate()
 	if(!..())
 		return FALSE
 
@@ -32,12 +32,12 @@
 	return TRUE
 
 
-/obj/item/assembly/igniter/attack_self(mob/user)
+obj/item/assembly/igniter/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	activate()
 	add_fingerprint(user)
 
-/obj/item/assembly/igniter/is_hot()
+obj/item/assembly/igniter/is_hot()
 	return TRUE

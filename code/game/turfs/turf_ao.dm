@@ -28,7 +28,7 @@
 		AO_LIST.Cut(); \
 	}
 
-/proc/make_ao_image(corner, px = 0, py = 0, pz = 0, pw = 0, alpha)
+proc/make_ao_image(corner, px = 0, py = 0, pz = 0, pw = 0, alpha)
 	var/list/cache = SSao.image_cache
 	var/cstr = "ao-[corner]"
 	// PROCESS_AO above also uses this cache, check it before changing this key.
@@ -48,7 +48,7 @@
 
 	. = cache[key] = I
 
-/turf
+turf
 	/**
 	 * Whether this turf is allowed to have ambient occlusion.
 	 * If FALSE, this turf will not be considered for ambient occlusion.
@@ -78,7 +78,7 @@
 	/// Whether this turf is currently queued for ambient occlusion.
 	var/ao_queued = AO_UPDATE_NONE
 
-/turf/proc/calculate_ao_junction()
+turf/proc/calculate_ao_junction()
 	ao_junction = NONE
 	ao_junction_mimic = NONE
 	if (!permit_ao)
@@ -90,13 +90,13 @@
 	if (AO_SELF_CHECK(src) && !(mz_flags & MZ_MIMIC_NO_AO))
 		CALCULATE_JUNCTIONS(src, ao_junction, T, AO_TURF_CHECK(T))
 
-/turf/proc/regenerate_ao()
+turf/proc/regenerate_ao()
 	for (var/thing in RANGE_TURFS(1, src))
 		var/turf/T = thing
 		if (T?.permit_ao)
 			T.queue_ao(TRUE)
 
-/turf/proc/queue_ao(rebuild = TRUE)
+turf/proc/queue_ao(rebuild = TRUE)
 	if (!ao_queued)
 		SSao.queue += src
 
@@ -104,7 +104,7 @@
 	if (ao_queued < new_level)
 		ao_queued = new_level
 
-/turf/proc/update_ao()
+turf/proc/update_ao()
 	var/list/cache = SSao.image_cache
 	CUT_AO(shadower, ao_overlays_mimic)
 	CUT_AO(src, ao_overlays)

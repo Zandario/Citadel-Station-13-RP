@@ -1,4 +1,4 @@
-/datum/stock_log
+datum/stock_log
 	var/user_name = ""
 	var/company_name = ""
 	var/shareprice
@@ -6,8 +6,8 @@
 	var/stocks
 	var/time
 
-/datum/stock_log/buy
+datum/stock_log/buy
 
-/datum/stock_log/sell
+datum/stock_log/sell
 
-/datum/stock_log/borrow
+datum/stock_log/borrow

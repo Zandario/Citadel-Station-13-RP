@@ -1,4 +1,4 @@
-/obj/machinery/computer/robotics
+obj/machinery/computer/robotics
 	name = "robotics control console"
 	desc = "Used to remotely lockdown or detonate linked cyborgs."
 	icon_keyboard = "tech_key"
@@ -8,17 +8,17 @@
 	circuit = /obj/item/circuitboard/robotics
 	var/safety = TRUE
 
-/obj/machinery/computer/robotics/attack_ai(var/mob/user as mob)
+obj/machinery/computer/robotics/attack_ai(var/mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/computer/robotics/attack_hand(mob/user, list/params)
+obj/machinery/computer/robotics/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/robotics/proc/is_authenticated(mob/user)
+obj/machinery/computer/robotics/proc/is_authenticated(mob/user)
 	if(!istype(user))
 		return FALSE
 	if(isobserver(user))
@@ -37,7 +37,7 @@
   * Arguments:
   * * R - The [mob/living/silicon/robot] to be checked
   */
-/obj/machinery/computer/robotics/proc/console_shows(mob/living/silicon/robot/R)
+obj/machinery/computer/robotics/proc/console_shows(mob/living/silicon/robot/R)
 	if(!istype(R))
 		return FALSE
 	if(istype(R, /mob/living/silicon/robot/drone))
@@ -58,7 +58,7 @@
   * * R - The [mob/living/silicon/robot] to be checked
   * * telluserwhy - Bool of whether the user should be sent a to_chat message if they don't have access
   */
-/obj/machinery/computer/robotics/proc/can_control(mob/user, mob/living/silicon/robot/R, telluserwhy = FALSE)
+obj/machinery/computer/robotics/proc/can_control(mob/user, mob/living/silicon/robot/R, telluserwhy = FALSE)
 	if(!istype(user))
 		return FALSE
 	if(!console_shows(R))
@@ -83,7 +83,7 @@
   * Arguments:
   * * user - The [mob/user] to be checked
   */
-/obj/machinery/computer/robotics/proc/can_hack_any(mob/user)
+obj/machinery/computer/robotics/proc/can_hack_any(mob/user)
 	if(!istype(user))
 		return FALSE
 	if(isobserver(user))
@@ -103,7 +103,7 @@
   * * user - The [mob/user] to be checked
   * * R - The [mob/living/silicon/robot] to be checked
   */
-/obj/machinery/computer/robotics/proc/can_hack(mob/user, mob/living/silicon/robot/R)
+obj/machinery/computer/robotics/proc/can_hack(mob/user, mob/living/silicon/robot/R)
 	if(!can_hack_any(user))
 		return FALSE
 	if(!istype(R))
@@ -115,13 +115,13 @@
 	return TRUE
 
 
-/obj/machinery/computer/robotics/ui_interact(mob/user, datum/tgui/ui = null)
+obj/machinery/computer/robotics/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RoboticsControlConsole",  name)
 		ui.open()
 
-/obj/machinery/computer/robotics/ui_data(mob/user)
+obj/machinery/computer/robotics/ui_data(mob/user)
 	var/list/data = list()
 	data["auth"] = is_authenticated(user)
 	data["can_hack"] = can_hack_any(user)
@@ -150,7 +150,7 @@
 	data["show_detonate_all"] = (data["auth"] && length(data["cyborgs"]) > 0 && ishuman(user))
 	return data
 
-/obj/machinery/computer/robotics/ui_act(action, params)
+obj/machinery/computer/robotics/ui_act(action, params)
 	if(..())
 		return TRUE
 	. = FALSE

@@ -1,4 +1,4 @@
-/datum/technomancer/spell/asphyxiation
+datum/technomancer/spell/asphyxiation
 	name = "Asphyxiation"
 	desc = "Launches a projectile at a target.  If the projectile hits, a short-lived toxin is created inside what the projectile \
 	hits, which inhibits the delivery of oxygen.  The effectiveness of the toxin is heavily dependant on how healthy the target is, \
@@ -6,7 +6,7 @@
 	cost = 140
 	obj_path = /obj/item/spell/insert/asphyxiation
 
-/obj/item/spell/insert/asphyxiation
+obj/item/spell/insert/asphyxiation
 	name = "asphyxiation"
 	desc = "Now you can cause suffication from afar!"
 	icon_state = "generic"
@@ -17,7 +17,7 @@
 
 // maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
-/obj/item/inserted_spell/asphyxiation/on_insert()
+obj/item/inserted_spell/asphyxiation/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
@@ -39,12 +39,12 @@
 			if(src) //We might've been dispelled at this point and deleted, better safe than sorry.
 				on_expire()
 
-/obj/item/inserted_spell/asphyxiation/on_expire()
+obj/item/inserted_spell/asphyxiation/on_expire()
 	..()
 
 // if((getOxyLoss() > (species.total_health/2)) || (health <= config_legacy.health_threshold_crit))
 
-/obj/item/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/carbon/human/victim, var/previous_damage = 0)
+obj/item/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/carbon/human/victim, var/previous_damage = 0)
 	if(pulses_remaining <= 0) // Infinite loop protection
 		return 0
 	var/health_lost

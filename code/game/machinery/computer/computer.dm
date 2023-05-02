@@ -1,4 +1,4 @@
-/obj/machinery/computer
+obj/machinery/computer
 	name = "computer"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
@@ -18,23 +18,23 @@
 
 	clicksound = "keyboard"
 
-/obj/machinery/computer/Initialize(mapload)
+obj/machinery/computer/Initialize(mapload)
 	overlay_layer = layer
 	. = ..()
 	power_change()
 	update_icon()
 
-/obj/machinery/computer/process(delta_time)
+obj/machinery/computer/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/emp_act(severity)
+obj/machinery/computer/emp_act(severity)
 	if(prob(20/severity)) set_broken()
 	..()
 
 
-/obj/machinery/computer/legacy_ex_act(severity)
+obj/machinery/computer/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -55,15 +55,15 @@
 		else
 	return
 
-/obj/machinery/computer/bullet_act(var/obj/projectile/Proj)
+obj/machinery/computer/bullet_act(var/obj/projectile/Proj)
 	if(prob(Proj.get_structure_damage()))
 		set_broken()
 	..()
 
-/obj/machinery/computer/blob_act()
+obj/machinery/computer/blob_act()
 	legacy_ex_act(2)
 
-/obj/machinery/computer/update_icon()
+obj/machinery/computer/update_icon()
 	cut_overlays()
 
 	. = list()
@@ -99,7 +99,7 @@
 
 	add_overlay(.)
 
-/obj/machinery/computer/power_change()
+obj/machinery/computer/power_change()
 	..()
 	update_icon()
 	if(machine_stat & NOPOWER)
@@ -107,16 +107,16 @@
 	else
 		set_light(light_range_on, light_power_on)
 
-/obj/machinery/computer/proc/set_broken()
+obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	update_icon()
 
-/obj/machinery/computer/proc/decode(text)
+obj/machinery/computer/proc/decode(text)
 	// Adds line breaks
 	text = replacetext(text, "\n", "<BR>")
 	return text
 
-/obj/machinery/computer/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
+obj/machinery/computer/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	else

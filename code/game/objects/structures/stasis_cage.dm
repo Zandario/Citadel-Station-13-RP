@@ -1,4 +1,4 @@
-/obj/structure/stasis_cage
+obj/structure/stasis_cage
 	name = "stasis cage"
 	desc = "A high-tech animal cage, designed to keep contained fauna docile and safe."
 	icon = 'icons/obj/storage.dmi'
@@ -7,21 +7,21 @@
 
 	var/mob/living/simple_mob/contained
 
-/obj/structure/stasis_cage/Initialize(mapload)
+obj/structure/stasis_cage/Initialize(mapload)
 	. = ..()
 
 	var/mob/living/simple_mob/A = locate() in loc
 	if(A)
 		contain(A)
 
-/obj/structure/stasis_cage/attack_hand(mob/user, list/params)
+obj/structure/stasis_cage/attack_hand(mob/user, list/params)
 	release()
 
-/obj/structure/stasis_cage/attack_robot(var/mob/user)
+obj/structure/stasis_cage/attack_robot(var/mob/user)
 	if(Adjacent(user))
 		release()
 
-/obj/structure/stasis_cage/proc/contain(var/mob/living/simple_mob/animal)
+obj/structure/stasis_cage/proc/contain(var/mob/living/simple_mob/animal)
 	if(contained || !istype(animal))
 		return
 
@@ -33,7 +33,7 @@
 	icon_state = "critter"
 	desc = initial(desc) + " \The [contained] is kept inside."
 
-/obj/structure/stasis_cage/proc/release()
+obj/structure/stasis_cage/proc/release()
 	if(!contained)
 		return
 
@@ -46,12 +46,12 @@
 	underlays.Cut()
 	desc = initial(desc)
 
-/obj/structure/stasis_cage/Destroy()
+obj/structure/stasis_cage/Destroy()
 	release()
 
 	return ..()
 
-/mob/living/simple_mob/OnMouseDropLegacy(var/obj/structure/stasis_cage/over_object)
+mob/living/simple_mob/OnMouseDropLegacy(var/obj/structure/stasis_cage/over_object)
 	if(istype(over_object) && Adjacent(over_object) && CanMouseDrop(over_object, usr))
 
 		if(!can_be_involuntarily_caged(over_object, usr))
@@ -66,7 +66,7 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/proc/can_be_involuntarily_caged(obj/structure/stasis_cage/over_object, mob/living/user)
+mob/living/simple_mob/proc/can_be_involuntarily_caged(obj/structure/stasis_cage/over_object, mob/living/user)
 	if(istype(buckled, /obj/effect/energy_net))
 		return TRUE
 

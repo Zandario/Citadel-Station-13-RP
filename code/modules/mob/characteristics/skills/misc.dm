@@ -1,4 +1,4 @@
-/datum/characteristic_skill/misc
+datum/characteristic_skill/misc
 	abstract_type = /datum/characteristic_skill/misc
 	category = "General"
 
@@ -9,7 +9,7 @@
  *
  * Implementation status: Not started
  */
-/datum/characteristic_skill/security/athletics
+datum/characteristic_skill/security/athletics
 	id = "athletics"
 	name = "Athletics"
 	desc = "How skilled you are with gymnastics, athletics, as well as general hand-eye coordination."

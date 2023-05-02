@@ -1,6 +1,6 @@
 //Hyper pads, kinda a fusion between quantum pads and gateways. 3x3 teleporter with slow recharge.
 
-/obj/machinery/hyperpad
+obj/machinery/hyperpad
 	name = "quantum leap pad"
 	desc = "A high scale quantum entangled teleportation device for secure short distance travel."
 	icon = 'icons/obj/telescience.dmi'
@@ -9,7 +9,7 @@
 	anchored = 1
 	var/obj/machinery/hyperpad/centre/primary
 
-/obj/machinery/hyperpad/centre
+obj/machinery/hyperpad/centre
 	var/teleport_cooldown = 400 //30 seconds
 	var/teleport_speed = 60
 	var/last_teleport //to handle the cooldown
@@ -26,35 +26,35 @@
 	var/list/linked = list()
 	var/max_item_teleport = 30
 
-/obj/machinery/hyperpad/centre/Initialize(mapload)
+obj/machinery/hyperpad/centre/Initialize(mapload)
 	. = ..()
 	if(map_pad_id)
 		mapped_hyper_pads[map_pad_id] = src
 		detect()
 	set_light(3, 1, newcolor)
 
-/obj/machinery/hyperpad/operable()
+obj/machinery/hyperpad/operable()
 	return 1
 
-/obj/machinery/hyperpad/inoperable() //A lame way of making this machine always useable
+obj/machinery/hyperpad/inoperable() //A lame way of making this machine always useable
 	return 0
 
-/obj/machinery/hyperpad/attack_ai(mob/user)
+obj/machinery/hyperpad/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/hyperpad/centre/attack_ghost(mob/observer/dead/ghost)
+obj/machinery/hyperpad/centre/attack_ghost(mob/observer/dead/ghost)
 	. = ..()
 	if(.)
 		return
 	if(linked_pad && !QDELETED(linked_pad))
 		ghost.forceMove(get_turf(linked_pad))
 
-/obj/machinery/hyperpad/attack_ghost(mob/observer/dead/ghost)
+obj/machinery/hyperpad/attack_ghost(mob/observer/dead/ghost)
 	. = ..()
 	if(primary)
 		primary.attack_ghost(ghost)
 
-/obj/machinery/hyperpad/centre/attack_hand(mob/user, list/params)
+obj/machinery/hyperpad/centre/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
@@ -75,19 +75,19 @@
 	src.add_fingerprint(user)
 	startteleport(user)
 
-/obj/machinery/hyperpad/attack_hand(mob/user, list/params)
+obj/machinery/hyperpad/attack_hand(mob/user, list/params)
 	. = ..()
 	if(primary)
 		primary.attack_hand(user)
 
-/obj/machinery/hyperpad/centre/proc/initMappedLink()
+obj/machinery/hyperpad/centre/proc/initMappedLink()
 	. = FALSE
 	var/obj/machinery/hyperpad/centre/link = mapped_hyper_pads[map_pad_link_id]
 	if(link)
 		linked_pad = link
 		. = TRUE
 
-/obj/machinery/hyperpad/centre/proc/detect(mob/user)
+obj/machinery/hyperpad/centre/proc/detect(mob/user)
 	if(!ready)
 		var/list/dirs = list(1,2,4,8,5,9,6,10) //A really dumb way of making a circle of dirs around the centre piece. If there's a better way, tell me.
 		var/list/turfs = trange(1, src) - loc
@@ -104,7 +104,7 @@
 		else
 			to_chat(user, "<span class='warning'>Pad detect failed. Are all eight pieces linked?</span>")
 
-/obj/machinery/hyperpad/centre/proc/startteleport(mob/user)
+obj/machinery/hyperpad/centre/proc/startteleport(mob/user)
 	if(!linked_pad)
 		return
 	playsound(get_turf(src), 'sound/weapons/flash.ogg', 25, 1)
@@ -115,10 +115,10 @@
 		addtimer(CALLBACK(src, .proc/animate_discharge, P), speed)
 		speed += teleport_speed/8
 
-/obj/machinery/hyperpad/centre/proc/animate_discharge(var/obj/machinery/hyperpad/Pad)
+obj/machinery/hyperpad/centre/proc/animate_discharge(var/obj/machinery/hyperpad/Pad)
 	Pad.cut_overlays()
 
-/obj/machinery/hyperpad/centre/proc/doteleport(mob/user)
+obj/machinery/hyperpad/centre/proc/doteleport(mob/user)
 	if(!src || QDELETED(src))
 		teleporting = 0
 		return
@@ -162,7 +162,7 @@
 		P.cut_overlays()
 	start_charge()
 
-/obj/machinery/hyperpad/centre/proc/start_charge()
+obj/machinery/hyperpad/centre/proc/start_charge()
 	var/mutable_appearance/color_overlay = mutable_appearance('icons/obj/telescience.dmi', "hpad_centre_on")
 	color_overlay.color = newcolor
 	add_overlay(color_overlay)
@@ -174,5 +174,5 @@
 		addtimer(CALLBACK(src, .proc/animate_charge, P, color_overlay), timer)
 		timer += teleport_cooldown/8
 
-/obj/machinery/hyperpad/centre/proc/animate_charge(var/obj/machinery/hyperpad/Pad, var/mutable_appearance/color)
+obj/machinery/hyperpad/centre/proc/animate_charge(var/obj/machinery/hyperpad/Pad, var/mutable_appearance/color)
 	Pad.add_overlay(color)

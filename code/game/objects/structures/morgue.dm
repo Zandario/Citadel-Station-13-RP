@@ -10,7 +10,7 @@
  * Morgue
  */
 
-/obj/structure/morgue
+obj/structure/morgue
 	name = "morgue"
 	desc = "Used to keep bodies in untill someone fetches them."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -22,20 +22,20 @@
 	anchored = 1
 	can_be_unanchored = 1
 
-/obj/structure/morgue/Destroy()
+obj/structure/morgue/Destroy()
 	if(connected)
 		qdel(connected)
 		connected = null
 	return ..()
 
-/obj/structure/morgue/proc/get_occupants()
+obj/structure/morgue/proc/get_occupants()
 	occupants.Cut()
 	for(var/mob/living/carbon/human/H in contents)
 		occupants += H
 	for(var/obj/structure/closet/body_bag/B in contents)
 		occupants += B.get_occupants()
 
-/obj/structure/morgue/proc/update(var/broadcast=0)
+obj/structure/morgue/proc/update(var/broadcast=0)
 	if (src.connected)
 		src.icon_state = "morgue0"
 	else
@@ -54,7 +54,7 @@
 			src.icon_state = "morgue1"
 	return
 
-/obj/structure/morgue/legacy_ex_act(severity)
+obj/structure/morgue/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
@@ -78,11 +78,11 @@
 				return
 	return
 
-/obj/structure/morgue/attack_robot(mob/user)
+obj/structure/morgue/attack_robot(mob/user)
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/morgue/attack_hand(mob/user, list/params)
+obj/structure/morgue/attack_hand(mob/user, list/params)
 	if (src.connected)
 		close()
 	else
@@ -92,7 +92,7 @@
 	return
 
 
-/obj/structure/morgue/proc/close()
+obj/structure/morgue/proc/close()
 	for(var/atom/movable/A as mob|obj in src.connected.loc)
 		if (!( A.anchored ))
 			A.forceMove(src)
@@ -101,7 +101,7 @@
 	src.connected = null
 
 
-/obj/structure/morgue/proc/open()
+obj/structure/morgue/proc/open()
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	src.connected = new /obj/structure/m_tray( src.loc )
 	step(src.connected, src.dir)
@@ -119,7 +119,7 @@
 		src.connected = null
 
 
-/obj/structure/morgue/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/morgue/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_held_item() != W)
@@ -143,7 +143,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/morgue/relaymove(mob/user as mob)
+obj/structure/morgue/relaymove(mob/user as mob)
 	if (user.stat)
 		return
 	if (user in src.occupants)
@@ -152,7 +152,7 @@
 /*
  * Morgue tray
  */
-/obj/structure/m_tray
+obj/structure/m_tray
 	name = "morgue tray"
 	desc = "Apply corpse before closing."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -163,17 +163,17 @@
 	plane = TURF_PLANE
 	var/obj/structure/morgue/connected = null
 
-/obj/structure/m_tray/Destroy()
+obj/structure/m_tray/Destroy()
 	if(connected && connected.connected == src)
 		connected.connected = null
 	connected = null
 	return ..()
 
-/obj/structure/m_tray/attack_robot(mob/user)
+obj/structure/m_tray/attack_robot(mob/user)
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/m_tray/attack_hand(mob/user, list/params)
+obj/structure/m_tray/attack_hand(mob/user, list/params)
 	if (src.connected)
 		for(var/atom/movable/A as mob|obj in src.loc)
 			if (!( A.anchored ))
@@ -187,7 +187,7 @@
 		return
 	return
 
-/obj/structure/m_tray/MouseDroppedOnLegacy(atom/movable/O as mob|obj, mob/user as mob)
+obj/structure/m_tray/MouseDroppedOnLegacy(atom/movable/O as mob|obj, mob/user as mob)
 	if ((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src) || user.contents.Find(O)))
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
@@ -208,7 +208,7 @@
 
 GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
-/obj/structure/morgue/crematorium
+obj/structure/morgue/crematorium
 	name = "crematorium"
 	desc = "A human incinerator. Works well on barbeque nights."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -217,7 +217,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 	var/id = 1
 	var/locked = 0
 
-/obj/structure/morgue/crematorium/update()
+obj/structure/morgue/crematorium/update()
 	if (src.connected)
 		src.icon_state = "crema0"
 	else
@@ -227,7 +227,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 			src.icon_state = "crema1"
 	return
 
-/obj/structure/morgue/crematorium/attack_hand(mob/user, list/params)
+obj/structure/morgue/crematorium/attack_hand(mob/user, list/params)
 	if (cremating)
 		to_chat(usr, "<span class='warning'>It's locked.</span>")
 		return
@@ -256,7 +256,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 	src.add_fingerprint(user)
 	update()
 
-/obj/structure/morgue/crematorium/attackby(P as obj, mob/user as mob)
+obj/structure/morgue/crematorium/attackby(P as obj, mob/user as mob)
 	if (istype(P, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_held_item() != P)
@@ -271,7 +271,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/morgue/crematorium/relaymove(mob/user as mob)
+obj/structure/morgue/crematorium/relaymove(mob/user as mob)
 	if (user.stat || locked)
 		return
 	src.connected = new /obj/structure/m_tray/c_tray( src.loc )
@@ -289,7 +289,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 		src.connected = null
 	return
 
-/obj/structure/morgue/crematorium/proc/cremate(atom/A, mob/user as mob)
+obj/structure/morgue/crematorium/proc/cremate(atom/A, mob/user as mob)
 	if(cremating)
 		return //don't let you cremate something twice or w/e
 
@@ -336,13 +336,13 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 /*
  * Crematorium tray
  */
-/obj/structure/m_tray/c_tray
+obj/structure/m_tray/c_tray
 	name = "crematorium tray"
 	desc = "Apply body before burning."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "cremat"
 
-/obj/machinery/button/crematorium
+obj/machinery/button/crematorium
 	name = "crematorium igniter"
 	desc = "Burn baby burn!"
 	icon = 'icons/obj/power.dmi'
@@ -350,7 +350,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 	req_access = list(ACCESS_GENERAL_CREMATOR)
 	id = 1
 
-/obj/machinery/button/crematorium/attack_hand(mob/user, list/params)
+obj/machinery/button/crematorium/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(src.allowed(user))
@@ -363,14 +363,14 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 
 //! ## VR FILE MERGE ## !//
-/obj/structure/morgue/crematorium/vr
+obj/structure/morgue/crematorium/vr
 	var/list/allowed_items = list(/obj/item/organ,
 			/obj/item/implant,
 			/obj/item/material/shard/shrapnel,
 			/mob/living)
 
 
-/obj/structure/morgue/crematorium/vr/cremate(atom/A, mob/user as mob)
+obj/structure/morgue/crematorium/vr/cremate(atom/A, mob/user as mob)
 	if(cremating)
 		return //don't let you cremate something twice or w/e
 

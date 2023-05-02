@@ -1,4 +1,4 @@
-/obj/machinery/computer/curer
+obj/machinery/computer/curer
 	name = "cure research machine"
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
@@ -8,7 +8,7 @@
 
 	var/obj/item/reagent_containers/container = null
 
-/obj/machinery/computer/curer/attackby(var/obj/I as obj, var/mob/user as mob)
+obj/machinery/computer/curer/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I,/obj/item/reagent_containers))
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
 		if(!container)
@@ -33,10 +33,10 @@
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return ..()
 
-/obj/machinery/computer/curer/attack_ai(var/mob/user as mob)
+obj/machinery/computer/curer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/curer/attack_hand(mob/user, list/params)
+obj/machinery/computer/curer/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	user.machine = src
@@ -63,7 +63,7 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/curer/process(delta_time)
+obj/machinery/computer/curer/process(delta_time)
 	..()
 
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -77,7 +77,7 @@
 				createcure(container)
 	return
 
-/obj/machinery/computer/curer/Topic(href, href_list)
+obj/machinery/computer/curer/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.machine = src
@@ -91,7 +91,7 @@
 	src.updateUsrDialog()
 
 
-/obj/machinery/computer/curer/proc/createcure(var/obj/item/reagent_containers/container)
+obj/machinery/computer/curer/proc/createcure(var/obj/item/reagent_containers/container)
 	var/obj/item/reagent_containers/glass/beaker/product = new(src.loc)
 
 	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list

@@ -1,4 +1,4 @@
-/datum/game_mode/technomancer
+datum/game_mode/technomancer
 	name = "Technomancer"
 	round_description = "An entity possessing advanced, unknown technology is onboard, who is capable of accomplishing amazing feats."
 	extended_round_description = "A powerful entity capable of manipulating space around them, has arrived the station. \

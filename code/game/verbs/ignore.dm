@@ -1,4 +1,4 @@
-/client/verb/ignore(key_to_ignore as text)
+client/verb/ignore(key_to_ignore as text)
 	set name = "Ignore"
 	set category = "OOC"
 	set desc = "Makes OOC and Deadchat messages from a specific player not appear to you."
@@ -18,7 +18,7 @@
 		SScharacters.queue_preferences_save(prefs)
 		to_chat(usr, "<span class='notice'>Now ignoring <b>[key_to_ignore]</b>.</span>")
 
-/client/verb/unignore(key_to_unignore as text)
+client/verb/unignore(key_to_unignore as text)
 	set name = "Unignore"
 	set category = "OOC"
 	set desc = "Reverts your ignoring of a specific player."
@@ -34,12 +34,12 @@
 		SScharacters.queue_preferences_save(prefs)
 		to_chat(usr, "<span class='notice'>Reverted ignore on <b>[key_to_unignore]</b>.</span>")
 
-/mob/proc/is_key_ignored(var/key_to_check)
+mob/proc/is_key_ignored(var/key_to_check)
 	if(client)
 		return client.is_key_ignored(key_to_check)
 	return 0
 
-/client/proc/is_key_ignored(var/key_to_check)
+client/proc/is_key_ignored(var/key_to_check)
 	key_to_check = ckey(key_to_check)
 	if(key_to_check in prefs.ignored_players)
 		if(GLOB.directory[key_to_check] in GLOB.admins) // This is here so this is only evaluated if someone is actually being blocked.

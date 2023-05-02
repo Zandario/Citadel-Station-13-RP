@@ -1,14 +1,14 @@
 // Formerly /datum/shuttle/autodock/ferry/emergency
-/datum/shuttle/autodock/ferry/emergency
+datum/shuttle/autodock/ferry/emergency
 	category = /datum/shuttle/autodock/ferry/emergency
 
-/datum/shuttle/autodock/ferry/emergency/New()
+datum/shuttle/autodock/ferry/emergency/New()
 	..()
 	if(SSemergencyshuttle.shuttle)
 		CRASH("An emergency shuttle has already been defined.")
 	SSemergencyshuttle.shuttle = src
 
-/datum/shuttle/autodock/ferry/emergency/arrived()
+datum/shuttle/autodock/ferry/emergency/arrived()
 	. = ..()
 	if (istype(in_use, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = in_use
@@ -16,7 +16,7 @@
 
 	SSemergencyshuttle.shuttle_arrived()
 
-/datum/shuttle/autodock/ferry/emergency/long_jump(var/destination, var/interim, var/travel_time)
+datum/shuttle/autodock/ferry/emergency/long_jump(var/destination, var/interim, var/travel_time)
 	if (!location)
 		travel_time = SHUTTLE_TRANSIT_DURATION_RETURN
 	else
@@ -28,7 +28,7 @@
 
 	..(destination, interim, travel_time, direction)
 
-/datum/shuttle/autodock/ferry/emergency/perform_shuttle_move()
+datum/shuttle/autodock/ferry/emergency/perform_shuttle_move()
 	if (current_location == landmark_station)	// Leaving the station
 		spawn(0)
 			SSemergencyshuttle.departed = 1
@@ -40,14 +40,14 @@
 				priority_announcement.Announce(replacetext(replacetext(GLOB.using_map.shuttle_leaving_dock, "%dock_name%", "[GLOB.using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"))
 	..()
 
-/datum/shuttle/autodock/ferry/emergency/can_launch(var/user)
+datum/shuttle/autodock/ferry/emergency/can_launch(var/user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
 		if (!C.has_authorization())
 			return 0
 	return ..()
 
-/datum/shuttle/autodock/ferry/emergency/can_force(var/user)
+datum/shuttle/autodock/ferry/emergency/can_force(var/user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
 
@@ -57,14 +57,14 @@
 			return 0
 	return ..()
 
-/datum/shuttle/autodock/ferry/emergency/can_cancel(var/user)
+datum/shuttle/autodock/ferry/emergency/can_cancel(var/user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
 		if (!C.has_authorization())
 			return 0
 	return ..()
 
-/datum/shuttle/autodock/ferry/emergency/launch(var/user)
+datum/shuttle/autodock/ferry/emergency/launch(var/user)
 	if (!can_launch(user)) return
 
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	// If we were given a command by an emergency shuttle console
@@ -78,7 +78,7 @@
 
 	..(user)
 
-/datum/shuttle/autodock/ferry/emergency/force_launch(var/user)
+datum/shuttle/autodock/ferry/emergency/force_launch(var/user)
 	if (!can_force(user)) return
 
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	// If we were given a command by an emergency shuttle console
@@ -92,7 +92,7 @@
 
 	..(user)
 
-/datum/shuttle/autodock/ferry/emergency/cancel_launch(var/user)
+datum/shuttle/autodock/ferry/emergency/cancel_launch(var/user)
 	if (!can_cancel(user)) return
 
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	// If we were given a command by an emergency shuttle console
@@ -108,21 +108,21 @@
 
 
 
-/obj/machinery/computer/shuttle_control/emergency
+obj/machinery/computer/shuttle_control/emergency
 	shuttle_tag = "Escape"
 	var/debug = 0
 	var/req_authorizations = 2
 	var/list/authorized = list()
 
-/obj/machinery/computer/shuttle_control/emergency/proc/has_authorization()
+obj/machinery/computer/shuttle_control/emergency/proc/has_authorization()
 	return (authorized.len >= req_authorizations || emagged)
 
-/obj/machinery/computer/shuttle_control/emergency/proc/reset_authorization()
+obj/machinery/computer/shuttle_control/emergency/proc/reset_authorization()
 	// No need to reset emagged status. If they really want to go back to the station they can.
 	authorized = initial(authorized)
 
 // Returns 1 if the ID was accepted and a new authorization was added, 0 otherwise
-/obj/machinery/computer/shuttle_control/emergency/proc/read_authorization(var/obj/item/ident)
+obj/machinery/computer/shuttle_control/emergency/proc/read_authorization(var/obj/item/ident)
 	if (!ident || !istype(ident))
 		return 0
 	if (authorized.len >= req_authorizations)
@@ -166,12 +166,12 @@
 
 	return 1
 
-/obj/machinery/computer/shuttle_control/emergency/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/shuttle_control/emergency/emag_act(var/remaining_charges, var/mob/user)
 	if (!emagged)
 		to_chat(user, "<span class='notice'>You short out \the [src]'s authorization protocols.</span>")
 		emagged = 1
 		return 1
 
-/obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/W as obj, mob/user as mob)
 	read_authorization(W)
 	..()

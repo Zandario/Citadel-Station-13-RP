@@ -1,4 +1,4 @@
-/obj/structure/extinguisher_cabinet
+obj/structure/extinguisher_cabinet
 	name = "extinguisher cabinet"
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/closet.dmi'
@@ -10,7 +10,7 @@
 	var/obj/item/extinguisher/has_extinguisher
 	var/opened = 0
 
-/obj/structure/extinguisher_cabinet/Initialize(mapload, dir, building = FALSE)
+obj/structure/extinguisher_cabinet/Initialize(mapload, dir, building = FALSE)
 	. = ..()
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27 : 27)
@@ -20,7 +20,7 @@
 	else
 		has_extinguisher = new/obj/item/extinguisher(src)
 
-/obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
+obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
 	if(isrobot(user))
 		return
 	if(istype(O, /obj/item/extinguisher))
@@ -45,7 +45,7 @@
 	update_icon()
 
 
-/obj/structure/extinguisher_cabinet/attack_hand(mob/user, list/params)
+obj/structure/extinguisher_cabinet/attack_hand(mob/user, list/params)
 	if(isrobot(user))
 		return
 	if (ishuman(user))
@@ -65,7 +65,7 @@
 		opened = !opened
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/attack_tk(mob/user)
+obj/structure/extinguisher_cabinet/attack_tk(mob/user)
 	if(has_extinguisher)
 		has_extinguisher.loc = loc
 		to_chat(user, "<span class='notice'>You telekinetically remove [has_extinguisher] from [src].</span>")
@@ -75,7 +75,7 @@
 		opened = !opened
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/update_icon()
+obj/structure/extinguisher_cabinet/update_icon()
 	if(!opened)
 		icon_state = "extinguisher_closed"
 		return

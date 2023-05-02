@@ -1,10 +1,10 @@
-/obj/item/kevlarupgrade
+obj/item/kevlarupgrade
 	name = "kevlar upgrade kit"
 	desc = "A kit for reinforcing standard jumpsuits with kevlar weave, upgrading their armour slightly."
 	icon = 'icons/obj/clothing/modular_armor.dmi'	// NO LONGER A PLACEHOLDER
 	icon_state = "kevlar_upgrade"	// RIP PLACEHOLDERS WOOO
 
-/obj/item/kevlarupgrade/afterattack(atom/target, mob/user, proximity_flag)
+obj/item/kevlarupgrade/afterattack(atom/target, mob/user, proximity_flag)
 	if(!proximity_flag)
 		return ..()
 

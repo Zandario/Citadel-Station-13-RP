@@ -5,7 +5,7 @@
 // 2) This is an experiment in modernizing construction steps and examine tabs.
 
 // The frame item in hand
-/obj/item/frame/lightswitch
+obj/item/frame/lightswitch
 	name = "light switch frame"
 	desc = "Used for building light switches."
 	icon = 'icons/obj/power_vr.dmi'
@@ -14,7 +14,7 @@
 	refund_amt = 2
 
 // The under construction light switch
-/obj/structure/construction/lightswitch
+obj/structure/construction/lightswitch
 	name = "light switch frame"
 	desc = "A light switch under construction."
 	icon = 'icons/obj/power_vr.dmi'
@@ -25,7 +25,7 @@
 	y_offset = 26
 
 // Attackby on the lightswitch for deconstruction steps.
-/obj/machinery/light_switch/attackby(obj/item/W, mob/user, params)
+obj/machinery/light_switch/attackby(obj/item/W, mob/user, params)
 	src.add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -33,7 +33,7 @@
 		return
 	return ..()
 
-/obj/machinery/light_switch/dismantle()
+obj/machinery/light_switch/dismantle()
 	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 	var/obj/structure/construction/lightswitch/A = new(src.loc, src.dir)
 	A.stage = FRAME_WIRED
@@ -48,7 +48,7 @@
 // If this works out well for light switches we can use it for other lightweight constructables.
 //
 
-/obj/structure/construction
+obj/structure/construction
 	name = "simple frame prototype"
 	desc = "This is a prototype object and you should not see it, report to a developer"
 	anchored = TRUE
@@ -58,7 +58,7 @@
 	var/x_offset = 26
 	var/y_offset = 26
 
-/obj/structure/construction/Initialize(mapload, ndir, building = FALSE)
+obj/structure/construction/Initialize(mapload, ndir, building = FALSE)
 	. = ..()
 	if(ndir)
 		setDir(ndir)
@@ -67,7 +67,7 @@
 	if(y_offset)
 		pixel_y = (dir & 3) ? (dir == NORTH ? -y_offset : y_offset) : 0
 
-/obj/structure/construction/examine(mob/user)
+obj/structure/construction/examine(mob/user)
 	. = ..()
 	switch(stage)
 		if(FRAME_UNFASTENED)
@@ -77,10 +77,10 @@
 		if(FRAME_WIRED)
 			. += "It's wired."
 
-/obj/structure/construction/update_icon()
+obj/structure/construction/update_icon()
 	icon_state = "[base_icon][stage]"
 
-/obj/structure/construction/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/construction/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(istype(W, /obj/item/weldingtool))
 		if(stage == FRAME_UNFASTENED)
@@ -155,7 +155,7 @@
 		return
 	. = ..()
 
-/obj/structure/construction/get_description_interaction(mob/user)
+obj/structure/construction/get_description_interaction(mob/user)
 	. = list()
 	switch(stage)
 		if(FRAME_UNFASTENED)

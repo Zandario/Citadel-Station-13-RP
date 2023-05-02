@@ -1,6 +1,6 @@
 var/global/nttransfer_uid = 0
 
-/datum/computer_file/program/nttransfer
+datum/computer_file/program/nttransfer
 	filename = "nttransfer"
 	filedesc = "NTNet P2P Transfer Client"
 	extended_desc = "This program allows for simple file transfer via direct peer to peer connection."
@@ -25,12 +25,12 @@ var/global/nttransfer_uid = 0
 	var/unique_token 									// UID of this program
 	var/upload_menu = 0									// Whether we show the program list and upload menu
 
-/datum/computer_file/program/nttransfer/New()
+datum/computer_file/program/nttransfer/New()
 	unique_token = nttransfer_uid
 	nttransfer_uid++
 	..()
 
-/datum/computer_file/program/nttransfer/process_tick()
+datum/computer_file/program/nttransfer/process_tick()
 	..()
 	// Server mode
 	if(provided_file)
@@ -46,7 +46,7 @@ var/global/nttransfer_uid = 0
 		if(!remote)
 			crash_download("Connection to remote server lost")
 
-/datum/computer_file/program/nttransfer/kill_program(var/forced = 0)
+datum/computer_file/program/nttransfer/kill_program(var/forced = 0)
 	if(downloaded_file) // Client mode, clean up variables for next use
 		finalize_download()
 
@@ -57,18 +57,18 @@ var/global/nttransfer_uid = 0
 	..(forced)
 
 // Finishes download and attempts to store the file on HDD
-/datum/computer_file/program/nttransfer/proc/finish_download()
+datum/computer_file/program/nttransfer/proc/finish_download()
 	if(!computer || !computer.hard_drive || !computer.hard_drive.store_file(downloaded_file))
 		error = "I/O Error:  Unable to save file. Check your hard drive and try again."
 	finalize_download()
 
 //  Crashes the download and displays specific error message
-/datum/computer_file/program/nttransfer/proc/crash_download(var/message)
+datum/computer_file/program/nttransfer/proc/crash_download(var/message)
 	error = message ? message : "An unknown error has occured during download"
 	finalize_download()
 
 // Cleans up variables for next use
-/datum/computer_file/program/nttransfer/proc/finalize_download()
+datum/computer_file/program/nttransfer/proc/finalize_download()
 	if(remote)
 		remote.connected_clients.Remove(src)
 	downloaded_file = null
@@ -76,10 +76,10 @@ var/global/nttransfer_uid = 0
 	download_completion = 0
 
 
-/datum/nano_module/program/computer_nttransfer
+datum/nano_module/program/computer_nttransfer
 	name = "NTNet P2P Transfer Client"
 
-/datum/nano_module/program/computer_nttransfer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/computer_nttransfer/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	if(!program)
 		return
 	var/datum/computer_file/program/nttransfer/PRG = program
@@ -132,7 +132,7 @@ var/global/nttransfer_uid = 0
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/computer_file/program/nttransfer/Topic(href, href_list)
+datum/computer_file/program/nttransfer/Topic(href, href_list)
 	if(..())
 		return 1
 	if(href_list["PRG_downloadfile"])

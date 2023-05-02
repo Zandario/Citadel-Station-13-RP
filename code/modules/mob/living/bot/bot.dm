@@ -1,5 +1,5 @@
 // Obtained by scanning any bot.
-/datum/category_item/catalogue/technology/bot
+datum/category_item/catalogue/technology/bot
 	name = "Bots"
 	desc = "Robots, commonly referred to as 'Bots', are unsophisticated automata programmed to follow \
 	a set routine of behaviors. Although automation has far outpaced the standard bot in sophistication \
@@ -9,7 +9,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/technology/bot)
 
 // Obtained by scanning all bots.
-/datum/category_item/catalogue/technology/all_bots
+datum/category_item/catalogue/technology/all_bots
 	name = "Collection - Bots"
 	desc = "You have scanned a large array of different types of bot, \
 	and therefore you have been granted a fair sum of points, through this \
@@ -28,7 +28,7 @@
 		/datum/category_item/catalogue/technology/bot/secbot/slime
 		)
 
-/mob/living/bot
+mob/living/bot
 	name = "Bot"
 	health = 20
 	maxHealth = 20
@@ -87,7 +87,7 @@
 	/// For variants of a bot, like Burn medkit Medibots!
 	var/skin = null
 
-/mob/living/bot/Initialize(mapload)
+mob/living/bot/Initialize(mapload)
 	. = ..()
 	update_icons()
 
@@ -104,12 +104,12 @@
 		will_patrol = FALSE
 
 // Make sure mapped in units start turned on.
-/mob/living/bot/Initialize(mapload)
+mob/living/bot/Initialize(mapload)
 	. = ..()
 	if(on)
 		turn_on() // Update lights and other stuff
 
-/mob/living/bot/Life(seconds, times_fired)
+mob/living/bot/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 	if(health <= 0)
@@ -127,7 +127,7 @@
 		spawn(0)
 			handleAI()
 
-/mob/living/bot/update_health()
+mob/living/bot/update_health()
 	if(status_flags & STATUS_GODMODE)
 		health = getMaxHealth()
 		set_stat(CONSCIOUS)
@@ -138,10 +138,10 @@
 	cloneloss = 0
 	halloss = 0
 
-/mob/living/bot/death()
+mob/living/bot/death()
 	explode()
 
-/mob/living/bot/attackby(var/obj/item/O, var/mob/user)
+mob/living/bot/attackby(var/obj/item/O, var/mob/user)
 	if(O.GetID())
 		if(access_scanner.allowed(user) && !open)
 			locked = !locked
@@ -192,19 +192,19 @@
 	else
 		..()
 
-/mob/living/bot/attack_ai(var/mob/user)
+mob/living/bot/attack_ai(var/mob/user)
 	return attack_hand(user)
 
-/mob/living/bot/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
+mob/living/bot/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	verb = "beeps"
 
 	message = sanitize(message)
 	return ..()
 
-/mob/living/bot/speech_bubble_appearance()
+mob/living/bot/speech_bubble_appearance()
 	return "machine"
 
-/mob/living/bot/Bump(var/atom/A)
+mob/living/bot/Bump(var/atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
 		// Elevator safety precaution
@@ -213,10 +213,10 @@
 	else
 		..()
 
-/mob/living/bot/emag_act(var/remaining_charges, var/mob/user)
+mob/living/bot/emag_act(var/remaining_charges, var/mob/user)
 	return 0
 
-/mob/living/bot/proc/handleAI()
+mob/living/bot/proc/handleAI()
 	if(ignore_list.len)
 		for(var/atom/A in ignore_list)
 			if(!A || !A.loc || prob(1))
@@ -254,17 +254,17 @@
 		else
 			handleIdle()
 
-/mob/living/bot/proc/handleRegular()
+mob/living/bot/proc/handleRegular()
 	return
 
-/mob/living/bot/proc/handleAdjacentTarget()
+mob/living/bot/proc/handleAdjacentTarget()
 	return
 
-/mob/living/bot/proc/handleRangedTarget()
+mob/living/bot/proc/handleRangedTarget()
 	return
 
 /// Speed modification based on alert level.
-/mob/living/bot/proc/handlePanic()
+mob/living/bot/proc/handlePanic()
 	switch(get_security_level())
 		if(SEC_LEVEL_GREEN)
 			return 0
@@ -290,7 +290,7 @@
 			return 0
 
 
-/mob/living/bot/proc/stepToTarget()
+mob/living/bot/proc/stepToTarget()
 	if(!target || !target.loc)
 		return
 	if(get_dist(src, target) > min_target_dist)
@@ -302,16 +302,16 @@
 			++frustration
 	return
 
-/mob/living/bot/proc/handleFrustrated(var/targ)
+mob/living/bot/proc/handleFrustrated(var/targ)
 	obstacle = targ ? target_path[1] : patrol_path[1]
 	target_path = list()
 	patrol_path = list()
 	return
 
-/mob/living/bot/proc/lookForTargets()
+mob/living/bot/proc/lookForTargets()
 	return
 
-/mob/living/bot/proc/confirmTarget(var/atom/A)
+mob/living/bot/proc/confirmTarget(var/atom/A)
 	if(A.invisibility >= INVISIBILITY_LEVEL_ONE)
 		return 0
 	if(A in ignore_list)
@@ -320,11 +320,11 @@
 		return 0
 	return 1
 
-/mob/living/bot/proc/handlePatrol()
+mob/living/bot/proc/handlePatrol()
 	makeStep(patrol_path)
 	return
 
-/mob/living/bot/proc/startPatrol()
+mob/living/bot/proc/startPatrol()
 	var/turf/T = getPatrolTurf()
 	if(T)
 		patrol_path = AStar(get_turf(loc), T, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, max_patrol_dist, id = botcard, exclude = obstacle)
@@ -333,7 +333,7 @@
 		obstacle = null
 	return
 
-/mob/living/bot/proc/getPatrolTurf()
+mob/living/bot/proc/getPatrolTurf()
 	var/minDist = INFINITY
 	var/obj/machinery/navbeacon/targ = locate() in get_turf(src)
 
@@ -355,10 +355,10 @@
 		return get_turf(targ)
 	return null
 
-/mob/living/bot/proc/handleIdle()
+mob/living/bot/proc/handleIdle()
 	return
 
-/mob/living/bot/proc/calcTargetPath()
+mob/living/bot/proc/calcTargetPath()
 	target_path = AStar(get_turf(loc), get_turf(target), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, max_target_dist, id = botcard, exclude = obstacle)
 	if(!target_path)
 		if(target && target.loc)
@@ -367,7 +367,7 @@
 		obstacle = null
 	return
 
-/mob/living/bot/proc/makeStep(var/list/path)
+mob/living/bot/proc/makeStep(var/list/path)
 	if(!path.len)
 		return 0
 	var/turf/T = path[1]
@@ -377,13 +377,13 @@
 
 	return step_towards(src, T)
 
-/mob/living/bot/proc/resetTarget()
+mob/living/bot/proc/resetTarget()
 	target = null
 	target_path = list()
 	frustration = 0
 	obstacle = null
 
-/mob/living/bot/proc/turn_on()
+mob/living/bot/proc/turn_on()
 	if(stat)
 		return 0
 	on = 1
@@ -394,16 +394,16 @@
 	ignore_list = list()
 	return 1
 
-/mob/living/bot/proc/turn_off()
+mob/living/bot/proc/turn_off()
 	on = 0
 	busy = 0 // If ever stuck... reboot!
 	set_light(0)
 	update_icons()
 
-/mob/living/bot/proc/explode()
+mob/living/bot/proc/explode()
 	qdel(src)
 
-/mob/living/bot/is_sentient()
+mob/living/bot/is_sentient()
 	return FALSE
 
 /******************************************************************/
@@ -413,7 +413,7 @@
 
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
+turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
 	//	for(var/turf/simulated/t in oview(src,1))
@@ -427,7 +427,7 @@
 
 
 // Similar to above but not restricted to just cardinal directions.
-/turf/proc/TurfsWithAccess(var/obj/item/card/id/ID)
+turf/proc/TurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
 	for(var/d in GLOB.alldirs)
@@ -440,7 +440,7 @@
 
 // Returns true if a link between A and B is blocked
 // Movement through doors allowed if ID has access
-/proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/card/id/ID)
+proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/card/id/ID)
 
 	if(A == null || B == null) return 1
 	var/adir = get_dir(A,B)
@@ -469,7 +469,7 @@
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
-/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/card/id/ID)
+proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/card/id/ID)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)			continue
 		if(D.dir == SOUTHWEST)	return 1
@@ -491,5 +491,5 @@
 	return 0
 
 
-/mob/living/bot/isSynthetic() //Robots are synthetic, no?
+mob/living/bot/isSynthetic() //Robots are synthetic, no?
 	return 1

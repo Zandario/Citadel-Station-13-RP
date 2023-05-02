@@ -19,7 +19,7 @@ var/list/pai_emotions = list(
 
 var/global/list/pai_software_by_key = list()
 var/global/list/default_pai_software = list()
-/hook/startup/proc/populate_pai_software_list()
+hook/startup/proc/populate_pai_software_list()
 	var/r = 1 // I would use ., but it'd sacrifice runtime detection
 	for(var/type in typesof(/datum/pai_software) - /datum/pai_software)
 		var/datum/pai_software/P = new type()
@@ -33,17 +33,17 @@ var/global/list/default_pai_software = list()
 			default_pai_software[P.id] = P
 	return r
 
-/mob/living/silicon/pai/Initialize(mapload)
+mob/living/silicon/pai/Initialize(mapload)
 	. = ..()
 	software = default_pai_software.Copy()
 
-/mob/living/silicon/pai/verb/paiInterface()
+mob/living/silicon/pai/verb/paiInterface()
 	set category = "pAI Commands"
 	set name = "Software Interface"
 
 	nano_ui_interact(src)
 
-/mob/living/silicon/pai/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
+mob/living/silicon/pai/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 	if(user != src)
 		if(ui) ui.set_status(UI_CLOSE, 0)
 		return
@@ -97,7 +97,7 @@ var/global/list/default_pai_software = list()
 		ui.open()
 		ui.set_auto_update(1)
 
-/mob/living/silicon/pai/Topic(href, href_list)
+mob/living/silicon/pai/Topic(href, href_list)
 	. = ..()
 	if(.) return
 

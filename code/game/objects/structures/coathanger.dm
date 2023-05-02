@@ -1,4 +1,4 @@
-/obj/structure/coatrack
+obj/structure/coatrack
 	name = "coat rack"
 	desc = "Rack that holds coats."
 	icon = 'icons/obj/coatrack.dmi'
@@ -6,14 +6,14 @@
 	var/obj/item/clothing/suit/coat
 	var/list/allowed = list(/obj/item/clothing/suit/storage/toggle/labcoat, /obj/item/clothing/suit/storage/det_trench)
 
-/obj/structure/coatrack/attack_hand(mob/user, list/params)
+obj/structure/coatrack/attack_hand(mob/user, list/params)
 	user.visible_message("[user] takes [coat] off \the [src].", "You take [coat] off the \the [src]")
 	if(!user.put_in_active_hand(coat))
 		coat.loc = get_turf(user)
 	coat = null
 	update_icon()
 
-/obj/structure/coatrack/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/coatrack/attackby(obj/item/W as obj, mob/user as mob)
 	var/can_hang = 0
 	for (var/T in allowed)
 		if(istype(W,T))
@@ -28,7 +28,7 @@
 		to_chat(user, "<span class='notice'>You cannot hang [W] on [src]</span>")
 		return ..()
 
-/obj/structure/coatrack/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/coatrack/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	var/can_hang = 0
 	for (var/T in allowed)
@@ -44,7 +44,7 @@
 	else
 		return 1
 
-/obj/structure/coatrack/update_icon()
+obj/structure/coatrack/update_icon()
 	cut_overlays()
 
 	var/list/overlays_to_add = list()

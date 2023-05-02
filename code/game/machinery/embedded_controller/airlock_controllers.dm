@@ -1,5 +1,5 @@
 //base type for controllers of two-door systems
-/obj/machinery/embedded_controller/radio/airlock
+obj/machinery/embedded_controller/radio/airlock
 	// Setup parameters only
 	radio_filter = RADIO_AIRLOCK
 	program = /datum/computer/file/embedded_program/airlock
@@ -17,7 +17,7 @@
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "purge", "secure")
 	layer = ABOVE_WINDOW_LAYER
 
-/obj/machinery/embedded_controller/radio/airlock/Destroy()
+obj/machinery/embedded_controller/radio/airlock/Destroy()
 	// TODO - Leshana - Implement dummy terminals
 	//for(var/thing in dummy_terminals)
 	//	var/obj/machinery/dummy_airlock_controller/dummy = thing
@@ -25,16 +25,16 @@
 	//dummy_terminals.Cut()
 	return ..()
 
-/obj/machinery/embedded_controller/radio/airlock/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
+obj/machinery/embedded_controller/radio/airlock/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
 	. = ..()
 	if(!allowed(user))
 		return min(UI_UPDATE, .)
 
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
-/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller
+obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller
 	name = "Advanced Airlock Controller"
 
-/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_data(mob/user)
+obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_data(mob/user)
 	. = list(
 		"chamber_pressure" = round(program.memory["chamber_sensor_pressure"]),
 		"external_pressure" = round(program.memory["external_sensor_pressure"]),
@@ -47,12 +47,12 @@
 
 
 //Airlock controller for airlock control - most airlocks on the station use this
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller
+obj/machinery/embedded_controller/radio/airlock/airlock_controller
 	name = "Airlock Controller"
 	tag_secure = 1
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort")
 
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_data(mob/user)
+obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_data(mob/user)
 	. = list(
 		"chamber_pressure" = round(program.memory["chamber_sensor_pressure"]),
 		"exterior_status" = program.memory["exterior_status"],
@@ -62,7 +62,7 @@
 	)
 
 //Access controller for door control - used in virology and the like
-/obj/machinery/embedded_controller/radio/airlock/access_controller
+obj/machinery/embedded_controller/radio/airlock/access_controller
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "access_control_standby"
 
@@ -71,7 +71,7 @@
 	valid_actions = list("cycle_ext_door", "cycle_int_door", "force_ext", "force_int")
 
 
-/obj/machinery/embedded_controller/radio/airlock/access_controller/update_icon()
+obj/machinery/embedded_controller/radio/airlock/access_controller/update_icon()
 	if(on && program)
 		if(program.memory["processing"])
 			icon_state = "access_control_process"
@@ -80,7 +80,7 @@
 	else
 		icon_state = "access_control_off"
 
-/obj/machinery/embedded_controller/radio/airlock/access_controller/ui_data(mob/user)
+obj/machinery/embedded_controller/radio/airlock/access_controller/ui_data(mob/user)
 	. = list(
 		"exterior_status" = program.memory["exterior_status"],
 		"interior_status" = program.memory["interior_status"],

@@ -1,6 +1,6 @@
-/datum/armor/autolok
+datum/armor/autolok
 
-/datum/armor/autolok/space
+datum/armor/autolok/space
 	melee = 0.15
 	bullet = 0.05
 	laser = 0.05

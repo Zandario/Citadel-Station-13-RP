@@ -1,6 +1,6 @@
-/obj/structure/closet/secure_closet/freezer
+obj/structure/closet/secure_closet/freezer
 
-/obj/structure/closet/secure_closet/freezer/update_icon()
+obj/structure/closet/secure_closet/freezer/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -12,7 +12,7 @@
 		else
 			icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/freezer/kitchen
+obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
 	req_access = list(ACCESS_GENERAL_KITCHEN)
 
@@ -20,11 +20,11 @@
 		/obj/item/reagent_containers/food/condiment/flour = 7,
 		/obj/item/reagent_containers/food/condiment/sugar = 2)
 
-/obj/structure/closet/secure_closet/freezer/kitchen/mining
+obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()
 
 
-/obj/structure/closet/secure_closet/freezer/meat
+obj/structure/closet/secure_closet/freezer/meat
 	name = "meat fridge"
 	icon_state = "fridge1"
 	icon_closed = "fridge"
@@ -37,7 +37,7 @@
 		/obj/item/reagent_containers/food/snacks/meat/monkey = 10)
 
 
-/obj/structure/closet/secure_closet/freezer/fridge
+obj/structure/closet/secure_closet/freezer/fridge
 	name = "refrigerator"
 	icon_state = "fridge1"
 	icon_closed = "fridge"
@@ -53,7 +53,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose = 2)
 
 
-/obj/structure/closet/secure_closet/freezer/money
+obj/structure/closet/secure_closet/freezer/money
 	name = "freezer"
 	icon_state = "fridge1"
 	icon_closed = "fridge"

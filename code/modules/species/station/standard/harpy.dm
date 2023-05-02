@@ -1,4 +1,4 @@
-/datum/species/harpy
+datum/species/harpy
 	uid = SPECIES_ID_HARPY
 	id = SPECIES_ID_HARPY
 	name = SPECIES_RAPALA

@@ -1,7 +1,7 @@
 /**
   * Attempts to move our pulled atom/movable onto the target.
   */
-/atom/movable/proc/move_pulled_towards(atom/A)
+atom/movable/proc/move_pulled_towards(atom/A)
 	if(!pulling)
 		return
 	if(pulling.anchored || ((pulling.pull_resist * MOVE_FORCE_PULL_RATIO) > pull_force) || !pulling.Adjacent(src))
@@ -22,7 +22,7 @@
 /**
   * Attempts to start pulling an object.
   */
-/atom/movable/proc/start_pulling(atom/movable/AM, force = pull_force, suppress_message = FALSE)
+atom/movable/proc/start_pulling(atom/movable/AM, force = pull_force, suppress_message = FALSE)
 	if(QDELETED(AM))
 		return FALSE
 	if(!AM.can_be_pulled(src, force))
@@ -55,7 +55,7 @@
 /**
   * Stops pulling. Returns the object we "dropped" from our pull.
   */
-/atom/movable/proc/stop_pulling()
+atom/movable/proc/stop_pulling()
 	if(isnull(pulling))
 		return
 	. = pulling
@@ -67,13 +67,13 @@
 /**
  * stops a pull on ourselves
  */
-/atom/movable/proc/break_pull()
+atom/movable/proc/break_pull()
 	pulledby?.stop_pulling()
 
 /**
   * Checks if a pull is valid. If it ain't, stop pulling.
   */
-/atom/movable/proc/check_pulling()
+atom/movable/proc/check_pulling()
 	if(!pulling)
 		return
 	var/atom/movable/pullee = pulling
@@ -94,7 +94,7 @@
 /**
   * Checks if we can be pulled by something/someone.
   */
-/atom/movable/proc/can_be_pulled(atom/movable/user, force = MOVE_FORCE_DEFAULT)
+atom/movable/proc/can_be_pulled(atom/movable/user, force = MOVE_FORCE_DEFAULT)
 	if(src == user || !isturf(loc))
 		return FALSE
 	if(anchored || throwing)
@@ -106,7 +106,7 @@
 /**
   * Hook for stuff to do when we move a pulled atom/movable.
   */
-/atom/movable/proc/on_move_pulled(atom/movable/moved)
+atom/movable/proc/on_move_pulled(atom/movable/moved)
 	if(isliving(pulling) && !istype(pulling.loc, /turf/space))
 		var/mob/living/M = pulling
 		var/area/A = get_area(M)
@@ -158,7 +158,7 @@
  *
  * todo: un-jankify this proc
  */
-/atom/movable/proc/recursive_glidesize_update()
+atom/movable/proc/recursive_glidesize_update()
 	var/list/ran = list()
 	var/atom/movable/updating = pulling
 	while(updating)
@@ -176,11 +176,11 @@
 /**
  * on start pull
  */
-/atom/movable/proc/on_start_pulled_by(atom/movable/puller)
+atom/movable/proc/on_start_pulled_by(atom/movable/puller)
 	return
 
 /**
  * on stop pull
  */
-/atom/movable/proc/on_stop_pulled_by(atom/movable/puller)
+atom/movable/proc/on_stop_pulled_by(atom/movable/puller)
 	return

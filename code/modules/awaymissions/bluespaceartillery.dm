@@ -1,5 +1,5 @@
 
-/obj/machinery/artillerycontrol
+obj/machinery/artillerycontrol
 	var/reload = 180
 	name = "bluespace artillery control"
 	icon_state = "control_boxp1"
@@ -7,20 +7,20 @@
 	density = 1
 	anchored = 1
 
-/obj/machinery/artillerycontrol/process(delta_time)
+obj/machinery/artillerycontrol/process(delta_time)
 	if(src.reload<180)
 		src.reload++
 
-/obj/structure/artilleryplaceholder
+obj/structure/artilleryplaceholder
 	name = "artillery"
 	icon = 'icons/obj/machines/artillery.dmi'
 	anchored = 1
 	density = 1
 
-/obj/structure/artilleryplaceholder/decorative
+obj/structure/artilleryplaceholder/decorative
 	density = 0
 
-/obj/machinery/artillerycontrol/attack_hand(mob/user, list/params)
+obj/machinery/artillerycontrol/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	var/dat = "<B>Bluespace Artillery Control:</B><BR>"
 	dat += "Locked on<BR>"
@@ -31,7 +31,7 @@
 	onclose(user, "scroll")
 	return
 
-/obj/machinery/artillerycontrol/Topic(href, href_list)
+obj/machinery/artillerycontrol/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained())
 		return

@@ -1,4 +1,4 @@
-/datum/reagent/blood
+datum/reagent/blood
 	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
 	name = "Blood"
 	id = "blood"
@@ -15,20 +15,20 @@
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 
-/datum/reagent/blood/initialize_data(newdata)
+datum/reagent/blood/initialize_data(newdata)
 	..()
 	if(data && data["blood_colour"])
 		color = data["blood_colour"]
 	return
 
-/datum/reagent/blood/get_data() // Just in case you have a reagent that handles data differently.
+datum/reagent/blood/get_data() // Just in case you have a reagent that handles data differently.
 	var/t = data.Copy()
 	if(t["virus2"])
 		var/list/v = t["virus2"]
 		t["virus2"] = v.Copy()
 	return t
 
-/datum/reagent/blood/touch_turf(turf/simulated/T)
+datum/reagent/blood/touch_turf(turf/simulated/T)
 	if(!istype(T) || volume < 3)
 		return
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
@@ -38,7 +38,7 @@
 		if(B)
 			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 
-/datum/reagent/blood/affect_ingest(mob/living/carbon/M, alien, removed)
+datum/reagent/blood/affect_ingest(mob/living/carbon/M, alien, removed)
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
@@ -74,7 +74,7 @@
 				if(V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())
 
-/datum/reagent/blood/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/blood/affect_touch(mob/living/carbon/M, alien, removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())
@@ -92,7 +92,7 @@
 	if(data && data["antibodies"])
 		M.antibodies |= data["antibodies"]
 
-/datum/reagent/blood/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/blood/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_SLIME) //They don't have blood, so it seems weird that they would instantly 'process' the chemical like another species does.
 		affect_ingest(M, alien, removed)
 		return
@@ -116,32 +116,32 @@
 	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
 
-/datum/reagent/blood/synthblood
+datum/reagent/blood/synthblood
 	name = "Synthetic blood"
 	id = "synthblood"
 	color = "#999966"
 	volume_mod = 2
 
-/datum/reagent/blood/synthblood/initialize_data(newdata)
+datum/reagent/blood/synthblood/initialize_data(newdata)
 	..()
 	if(data && !data["blood_type"])
 		data["blood_type"] = "O-"
 	return
 
-/datum/reagent/blood/bludbloodlight
+datum/reagent/blood/bludbloodlight
 	name = "Synthetic blood"
 	id = "bludbloodlight"
 	color = "#999966"
 	volume_mod = 2
 
-/datum/reagent/blood/bludbloodlight/initialize_data(newdata)
+datum/reagent/blood/bludbloodlight/initialize_data(newdata)
 	..()
 	if(data && !data["blood_type"])
 		data["blood_type"] = "AB+"
 	return
 
 // pure concentrated antibodies
-/datum/reagent/antibodies
+datum/reagent/antibodies
 	data = list("antibodies"=list())
 	name = "Antibodies"
 	taste_description = "slime"
@@ -150,14 +150,14 @@
 	color = "#0050F0"
 	mrate_static = TRUE
 
-/datum/reagent/antibodies/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/antibodies/affect_blood(mob/living/carbon/M, alien, removed)
 	if(src.data)
 		M.antibodies |= src.data["antibodies"]
 	..()
 
 /// How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
 #define WATER_LATENT_HEAT 19000
-/datum/reagent/water
+datum/reagent/water
 	name = "Water"
 	id = "water"
 	taste_description = "water"
@@ -169,7 +169,7 @@
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."
 
-/datum/reagent/water/touch_turf(turf/simulated/T)
+datum/reagent/water/touch_turf(turf/simulated/T)
 	if(!istype(T))
 		return
 
@@ -193,7 +193,7 @@
 	else if(volume >= 10)
 		T.wet_floor(1)
 
-/datum/reagent/water/touch_obj(obj/O, amount)
+datum/reagent/water/touch_obj(obj/O, amount)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
@@ -203,7 +203,7 @@
 	var/effective = amount || 10
 	O.clean_radiation(RAD_CONTAMINATION_CLEANSE_POWER * (effective / 10), RAD_CONTAMINATION_CLEANSE_FACTOR ** (1 / (effective / 10)))
 
-/datum/reagent/water/touch_mob(mob/living/L, amount)
+datum/reagent/water/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		// First, kill slimes.
 		if(istype(L, /mob/living/simple_mob/slime))
@@ -220,14 +220,14 @@
 	var/effective = amount || 10
 	L.clean_radiation(RAD_CONTAMINATION_CLEANSE_POWER * (effective / 10), RAD_CONTAMINATION_CLEANSE_FACTOR ** (1 / (effective / 10)))
 
-/datum/reagent/water/affect_ingest(mob/living/carbon/M, alien, removed)
+datum/reagent/water/affect_ingest(mob/living/carbon/M, alien, removed)
 	//if(alien == IS_SLIME)
 	//	M.adjustToxLoss(6 * removed)
 	//else
 	M.adjust_hydration(removed * 10)
 	..()
 
-/datum/reagent/fuel
+datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"
 	description = "Required for welders. Flamable."
@@ -238,15 +238,15 @@
 	glass_name = "welder fuel"
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
-/datum/reagent/fuel/touch_turf(turf/T, amount)
+datum/reagent/fuel/touch_turf(turf/T, amount)
 	new /obj/effect/debris/cleanable/liquid_fuel(T, amount, FALSE)
 	remove_self(amount)
 	return
 
-/datum/reagent/fuel/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/fuel/affect_blood(mob/living/carbon/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.adjustToxLoss(4 * removed)
 
-/datum/reagent/fuel/touch_mob(mob/living/L, amount)
+datum/reagent/fuel/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 10) // Splashing people with welding fuel to make them easy to ignite!

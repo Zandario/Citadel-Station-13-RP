@@ -1,5 +1,5 @@
 
-/obj/machinery/computer/prisoner
+obj/machinery/computer/prisoner
 	name = "prisoner management console"
 	icon_keyboard = "security_key"
 	icon_screen = "explosive"
@@ -13,21 +13,21 @@
 	var/stop = 0
 	var/screen = 0 // 0 - No Access Denied, 1 - Access allowed
 
-/obj/machinery/computer/prisoner/attack_ai(var/mob/user as mob)
+obj/machinery/computer/prisoner/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/prisoner/attack_hand(mob/user, list/params)
+obj/machinery/computer/prisoner/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/prisoner/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/prisoner/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PrisonerManagement", name)
 		ui.open()
 
-/obj/machinery/computer/prisoner/ui_data(mob/user)
+obj/machinery/computer/prisoner/ui_data(mob/user)
 	var/list/chemImplants = list()
 	var/list/trackImplants = list()
 	if(screen)
@@ -64,7 +64,7 @@
 	return list("locked" = !screen, "chemImplants" = chemImplants, "trackImplants" = trackImplants)
 
 
-/obj/machinery/computer/prisoner/ui_act(action, list/params)
+obj/machinery/computer/prisoner/ui_act(action, list/params)
 	if(..())
 		return TRUE
 

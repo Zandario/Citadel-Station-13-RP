@@ -23,7 +23,7 @@
  *
  * @return new mobility flags
  */
-/mob/proc/update_mobility(blocked, forced)
+mob/proc/update_mobility(blocked, forced)
 	if(transforming)
 		. = mobility_flags = NONE
 		SEND_SIGNAL(src, COMSIG_MOB_ON_UPDATE_MOBILITY, .)
@@ -46,7 +46,7 @@
 	. = mobility_flags
 	SEND_SIGNAL(src, COMSIG_MOB_ON_UPDATE_MOBILITY, .)
 
-/mob/proc/update_mobility_blocked()
+mob/proc/update_mobility_blocked()
 	var/old = mobility_flags_blocked
 
 	. = NONE
@@ -73,7 +73,7 @@
 	if(. != old)
 		update_mobility()
 
-/mob/proc/update_mobility_forced()
+mob/proc/update_mobility_forced()
 	var/old = mobility_flags_forced
 
 	. = NONE

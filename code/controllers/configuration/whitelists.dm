@@ -1,5 +1,5 @@
 // todo: rework whitelists, fuck.
-/datum/controller/configuration
+datum/controller/configuration
 	/// alien whitelist: list() of species **NAME** (not uid because headmins don't read code) = list(ckeys)
 	///     language whitelists also go in here because what the fuck i hate this.
 	var/list/cached_alien_whitelist = list()
@@ -9,7 +9,7 @@
 /**
  * name and ckey must be CKEY()'d.
  */
-/datum/controller/configuration/proc/check_alien_whitelist(name, ckey)
+datum/controller/configuration/proc/check_alien_whitelist(name, ckey)
 	if(!config_legacy.usealienwhitelist)
 		// ignore
 		return TRUE
@@ -23,7 +23,7 @@
  * get every alien (species | language) someone's whitelisted for
  * returns *names*, not uids.
  */
-/datum/controller/configuration/proc/all_alien_whitelists_for(ckey)
+datum/controller/configuration/proc/all_alien_whitelists_for(ckey)
 	. = list()
 	for(var/ayy in cached_alien_whitelist)
 		if(!(ckey in cached_alien_whitelist[ayy]))
@@ -33,18 +33,18 @@
 /**
  * name, ckey must be CKEY()'d.
  */
-/datum/controller/configuration/proc/check_job_whitelist(name, ckey)
+datum/controller/configuration/proc/check_job_whitelist(name, ckey)
 	if(admin_datums[ckey])
 		// bypass
 		return TRUE
 	var/list/relevant = cached_job_whitelist[name]
 	return relevant?.Find(ckey)
 
-/datum/controller/configuration/proc/LoadWhitelists()
+datum/controller/configuration/proc/LoadWhitelists()
 	reload_alien_whitelist()
 	reload_job_whitelist()
 
-/datum/controller/configuration/proc/reload_job_whitelist()
+datum/controller/configuration/proc/reload_job_whitelist()
 	cached_job_whitelist = list()
 	var/fname = "config/jobwhitelist.txt"
 	if(!fexists(fname))
@@ -70,7 +70,7 @@
 		LAZYADD(cached_job_whitelist[title], ckey)
 	return TRUE
 
-/datum/controller/configuration/proc/reload_alien_whitelist()
+datum/controller/configuration/proc/reload_alien_whitelist()
 	cached_alien_whitelist = list()
 	var/fname = "config/alienwhitelist.txt"
 	if(!fexists(fname))

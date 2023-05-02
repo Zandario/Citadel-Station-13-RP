@@ -10,7 +10,7 @@
 /*
  * Glass sheets
  */
-/obj/item/stack/material/glass
+obj/item/stack/material/glass
 	name = "glass"
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
@@ -19,13 +19,13 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
-/obj/item/stack/material/glass/attack_self(mob/user)
+obj/item/stack/material/glass/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	construct_window(user)
 
-/obj/item/stack/material/glass/attackby(obj/item/W, mob/user)
+obj/item/stack/material/glass/attackby(obj/item/W, mob/user)
 	..()
 	if(!is_reinforced)
 		if(istype(W,/obj/item/stack/cable_coil))
@@ -57,7 +57,7 @@
 /*
  * Reinforced glass sheets
  */
-/obj/item/stack/material/glass/reinforced
+obj/item/stack/material/glass/reinforced
 	name = "reinforced glass"
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
@@ -67,13 +67,13 @@
 /*
  * Phoron Glass sheets
  */
-/obj/item/stack/material/glass/phoronglass
+obj/item/stack/material/glass/phoronglass
 	name = "phoron glass"
 	singular_name = "phoron glass sheet"
 	icon_state = "sheet-phoronglass"
 	default_type = "phoron glass"
 
-/obj/item/stack/material/glass/phoronglass/attackby(obj/item/W, mob/user)
+obj/item/stack/material/glass/phoronglass/attackby(obj/item/W, mob/user)
 	..()
 	if( istype(W, /obj/item/stack/rods) )
 		var/obj/item/stack/rods/V  = W
@@ -92,7 +92,7 @@
 /*
  * Reinforced phoron glass sheets
  */
-/obj/item/stack/material/glass/phoronrglass
+obj/item/stack/material/glass/phoronrglass
 	name = "reinforced phoron glass"
 	singular_name = "reinforced phoron glass sheet"
 	icon_state = "sheet-phoronrglass"

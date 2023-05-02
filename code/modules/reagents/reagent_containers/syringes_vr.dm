@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/syringe
+obj/item/reagent_containers/syringe
 	icon = 'icons/goonstation/objects/syringe_vr.dmi'
 	mode = SYRINGE_CAPPED //Override
 	var/used = FALSE
@@ -6,16 +6,16 @@
 	var/list/targets
 	var/list/datum/disease2/disease/viruses
 
-/obj/item/reagent_containers/syringe/Initialize(mapload)
+obj/item/reagent_containers/syringe/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/Destroy()
+obj/item/reagent_containers/syringe/Destroy()
 	QDEL_LIST_NULL(viruses)
 	LAZYCLEARLIST(targets)
 	return ..()
 
-/obj/item/reagent_containers/syringe/process(delta_time)
+obj/item/reagent_containers/syringe/process(delta_time)
 	dirtiness = min(dirtiness + targets.len,75)
 	if(dirtiness >= 75)
 		STOP_PROCESSING(SSobj, src)
@@ -23,7 +23,7 @@
 
 // The code block below handles the syringes' infection chance among storing a hash of the first user targeted on it.
 //
-/obj/item/reagent_containers/syringe/proc/dirty(var/mob/living/carbon/human/target, var/obj/item/organ/external/eo)
+obj/item/reagent_containers/syringe/proc/dirty(var/mob/living/carbon/human/target, var/obj/item/organ/external/eo)
 	if(!ishuman(loc))
 		return //Avoid borg syringe problems.
 	LAZYINITLIST(targets)
@@ -62,11 +62,11 @@
 	if(!used)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/reagent_containers/syringe/proc/infect_limb(var/obj/item/organ/external/eo)
+obj/item/reagent_containers/syringe/proc/infect_limb(var/obj/item/organ/external/eo)
 	eo.queue_syringe_infection()
 
 //Allow for capped syringe mode
-/obj/item/reagent_containers/syringe/attack_self(mob/user)
+obj/item/reagent_containers/syringe/attack_self(mob/user)
 	switch(mode)
 		if(SYRINGE_CAPPED)
 			mode = SYRINGE_DRAW
@@ -80,7 +80,7 @@
 	update_icon()
 
 //Allow for capped syringes
-/obj/item/reagent_containers/syringe/update_icon()
+obj/item/reagent_containers/syringe/update_icon()
 	cut_overlays(src)
 
 	var/matrix/tf = matrix()

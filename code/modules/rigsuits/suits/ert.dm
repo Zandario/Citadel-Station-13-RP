@@ -1,8 +1,8 @@
-/obj/item/clothing/head/helmet/space/rig/ert
+obj/item/clothing/head/helmet/space/rig/ert
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_ERT)
 
-/datum/armor/rig/ert
+datum/armor/rig/ert
 	melee = 0.6
 	bullet = 0.5
 	laser = 0.3
@@ -11,7 +11,7 @@
 	bio = 1.0
 	rad = 1.0
 
-/obj/item/rig/ert
+obj/item/rig/ert
 	name = "ERT-C hardsuit control module"
 	desc = "A suit worn by the commander of an Emergency Response Team. Has blue highlights. Armoured and space ready."
 	suit_type = "ERT commander"
@@ -52,7 +52,7 @@
 		/obj/item/rig_module/datajack,
 		)
 
-/obj/item/rig/ert/engineer
+obj/item/rig/ert/engineer
 	name = "ERT-E suit control module"
 	desc = "A suit worn by the engineering division of an Emergency Response Team. Has orange highlights. Armoured and space ready."
 	suit_type = "ERT engineer"
@@ -66,7 +66,7 @@
 		/obj/item/rig_module/device/rcd
 		)
 
-/obj/item/rig/ert/medical
+obj/item/rig/ert/medical
 	name = "ERT-M suit control module"
 	desc = "A suit worn by the medical division of an Emergency Response Team. Has white highlights. Armoured and space ready."
 	suit_type = "ERT medic"
@@ -79,7 +79,7 @@
 		/obj/item/rig_module/chem_dispenser/injector/advanced
 		)
 
-/obj/item/rig/ert/security
+obj/item/rig/ert/security
 	name = "ERT-S suit control module"
 	desc = "A suit worn by the security division of an Emergency Response Team. Has red highlights. Armoured and space ready."
 	suit_type = "ERT security"
@@ -92,7 +92,7 @@
 		/obj/item/rig_module/mounted/egun,
 		)
 
-/obj/item/rig/ert/janitor
+obj/item/rig/ert/janitor
 	name = "ERT-J suit control module"
 	desc = "A suit worn by the janitorial division of an Emergency Response Team. Has purple highlights. Armoured and space ready."
 	suit_type = "ERT janitor"
@@ -103,7 +103,7 @@
 		/obj/item/rig_module/grenade_launcher/cleaner,
 		)
 
-/datum/armor/rig/ert/deathsquad
+datum/armor/rig/ert/deathsquad
 	melee = 0.8
 	bullet = 0.65
 	laser = 0.5
@@ -111,7 +111,7 @@
 	bomb = 0.8
 	bio = 1.0
 
-/obj/item/rig/ert/assetprotection
+obj/item/rig/ert/assetprotection
 	name = "Heavy Asset Protection suit control module"
 	desc = "A heavy suit worn by the highest level of Asset Protection, don't mess with the person wearing this. Armoured and space ready."
 	suit_type = "heavy asset protection"
@@ -132,7 +132,7 @@
 		/obj/item/rig_module/datajack
 		)
 
-/obj/item/rig/ert/para
+obj/item/rig/ert/para
 	name = "PARA suit control module"
 	desc = "A sleek module decorated with intricate glyphs and alien wards. When worn by a trained agent, the various glyphs faintly glow."
 	suit_type = "PMD agent"
@@ -154,7 +154,7 @@
 		/obj/item/rig_module/self_destruct
 		)
 
-/obj/item/rig/ert/para/attack_self(mob/user)
+obj/item/rig/ert/para/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -172,7 +172,7 @@
 	if(!user.mind.isholy)
 		to_chat(user, "<font color='red'>You can't figure out what these symbols do.</font>")
 
-/obj/item/rig/ert/para/emp_act(severity)
+obj/item/rig/ert/para/emp_act(severity)
 	if(emp_proof)
 		emp_protection = 75
 	else

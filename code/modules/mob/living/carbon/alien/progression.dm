@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/verb/evolve()
+mob/living/carbon/alien/verb/evolve()
 
 	set name = "Evolve"
 	set desc = "Evolve into your adult form."
@@ -52,13 +52,13 @@
 
 	qdel(src)
 
-/mob/living/carbon/alien/proc/update_progression()
+mob/living/carbon/alien/proc/update_progression()
 	if(amount_grown < max_grown)
 		amount_grown++
 	return
 
-/mob/living/carbon/alien/proc/confirm_evolution()
+mob/living/carbon/alien/proc/confirm_evolution()
 	return
 
-/mob/living/carbon/alien/proc/show_evolution_blurb()
+mob/living/carbon/alien/proc/show_evolution_blurb()
 	return

@@ -3,19 +3,19 @@ GLOBAL_VAR_INIT(use_preloader, FALSE)
 GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 
 /// Preloader datum
-/datum/map_preloader
+datum/map_preloader
 	parent_type = /datum
 	var/list/attributes
 	var/target_path
 
-/world/proc/preloader_setup(list/the_attributes, path)
+world/proc/preloader_setup(list/the_attributes, path)
 	if(the_attributes.len)
 		GLOB.use_preloader = TRUE
 		var/datum/map_preloader/preloader_local = GLOB._preloader
 		preloader_local.attributes = the_attributes
 		preloader_local.target_path = path
 
-/world/proc/preloader_load(atom/what)
+world/proc/preloader_load(atom/what)
 	GLOB.use_preloader = FALSE
 	var/datum/map_preloader/preloader_local = GLOB._preloader
 	for(var/attribute in preloader_local.attributes)
@@ -30,18 +30,18 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 		#endif
 		what.vars[attribute] = value
 
-/area/template_noop
+area/template_noop
 	name = "Area Passthrough"
 	icon = 'icons/mapping/helpers/maploader_objects.dmi'
 	icon_state = "area_noop"
 
-/turf/template_noop
+turf/template_noop
 	name = "Turf Passthrough"
 	icon = 'icons/mapping/helpers/maploader_objects.dmi'
 	icon_state = "turf_noop"
 
 /*		No sane way to implement.
-/atom/template_no_annihilate
+atom/template_no_annihilate
 	name = "Block In-Load Tile Annihilation"
 	icon = 'icons/mapping/helpers/maploader_objects.dmi'
 	icon_state = "no_annihilate"

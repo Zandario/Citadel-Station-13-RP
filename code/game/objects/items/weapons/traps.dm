@@ -1,5 +1,5 @@
 // todo: rewrite this shitcode
-/obj/item/beartrap
+obj/item/beartrap
 	name = "mechanical trap"
 	throw_speed = 2
 	throw_range = 1
@@ -21,7 +21,7 @@
 		SLOT_ID_MASK = 'icons/mob/clothing/mask.dmi'
 		)
 
-/obj/item/beartrap/equipped(mob/user, slot, flags)
+obj/item/beartrap/equipped(mob/user, slot, flags)
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
 		if(H.wear_mask == src)
@@ -30,16 +30,16 @@
 			remove_verb(H, /mob/living/proc/shred_limb_temp)
 	..()
 
-/obj/item/beartrap/dropped(mob/user, flags, atom/newLoc)
+obj/item/beartrap/dropped(mob/user, flags, atom/newLoc)
 	remove_verb(user, /mob/living/proc/shred_limb_temp)
 	..()
 
-/obj/item/beartrap/suicide_act(mob/user)
+obj/item/beartrap/suicide_act(mob/user)
 	var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 	user.visible_message("<span class='danger'>[user] is putting the [src.name] on [T.his] head! It looks like [T.hes] trying to commit suicide.</span>")
 	return (BRUTELOSS)
 
-/obj/item/beartrap/attack_self(mob/user)
+obj/item/beartrap/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -62,12 +62,12 @@
 			playsound(src.loc, 'sound/machines/click.ogg',70, 1)
 			activate()
 
-/obj/item/beartrap/proc/activate()
+obj/item/beartrap/proc/activate()
 	deployed = TRUE
 	anchored = TRUE
 	update_icon()
 
-/obj/item/beartrap/user_unbuckle_mob(mob/M, flags, mob/user, semantic)
+obj/item/beartrap/user_unbuckle_mob(mob/M, flags, mob/user, semantic)
 	if(user == M)
 		user.visible_message(SPAN_WARNING("[user] begins carefully pulling themselves free of [src]!"))
 	else
@@ -80,12 +80,12 @@
 		user.visible_message(SPAN_WARNING("[user] frees [M] from [src]!"))
 	return ..()
 
-/obj/item/beartrap/mob_unbuckled(mob/M, flags, mob/user, semantic)
+obj/item/beartrap/mob_unbuckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	if(!has_buckled_mobs())
 		anchored = FALSE
 
-/obj/item/beartrap/attack_hand(mob/user, list/params)
+obj/item/beartrap/attack_hand(mob/user, list/params)
 	// check unbuckle first
 	if(click_unbuckle_interaction(user))
 		return CLICKCHAIN_DO_NOT_PROPAGATE
@@ -110,7 +110,7 @@
 	else
 		return ..()
 
-/obj/item/beartrap/proc/trap_mob(mob/living/L)
+obj/item/beartrap/proc/trap_mob(mob/living/L)
 
 	var/target_zone
 	if(L.lying)
@@ -140,7 +140,7 @@
 	to_chat(L, "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>")
 	deployed = FALSE
 
-/obj/item/beartrap/Crossed(atom/movable/AM as mob|obj)
+obj/item/beartrap/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
 	if(deployed && isliving(AM))
@@ -158,7 +158,7 @@
 			update_icon()
 	..()
 
-/obj/item/beartrap/update_icon()
+obj/item/beartrap/update_icon()
 	..()
 
 	if(!deployed)
@@ -172,7 +172,7 @@
 
 		icon_state = "beartrap1"
 
-/obj/item/beartrap/hunting
+obj/item/beartrap/hunting
 	name = "hunting trap"
 	desc = "A mechanically activated leg trap. High-tech and reliable. Looks like it could really hurt if you set it off."
 	stun_length = 1 SECOND
@@ -182,10 +182,10 @@
 
 	origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_PHORON = 2, TECH_ARCANE = 1)
 
-/obj/item/beartrap/hunting/emp
+obj/item/beartrap/hunting/emp
 	name = "stealth disruptor trap"
 	desc = "A mechanically activated leg trap. High tech and reliable. Looks like it could really be a problem for unshielded electronics."
 
-/obj/item/beartrap/hunting/emp/trap_mob(mob/living/L)
+obj/item/beartrap/hunting/emp/trap_mob(mob/living/L)
 	. = ..()
 	empulse(L.loc, 0, 0, 0, 0)	// very localized, apparently

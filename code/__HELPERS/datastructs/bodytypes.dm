@@ -6,7 +6,7 @@
  * total *must* be provided/known for compare to make it fast.
  * compare will check for this.
  */
-/datum/bodytypes
+datum/bodytypes
 	/// for VV
 	var/name
 	/// entries - null for inverted = none, null for non-inverted = all
@@ -14,7 +14,7 @@
 	/// inverted?
 	var/inverted
 
-/datum/bodytypes/New(list/values, inverted = FALSE)
+datum/bodytypes/New(list/values, inverted = FALSE)
 	src.values = values
 	src.inverted = inverted
 
@@ -25,7 +25,7 @@
  * * other - other list
  * * total - total values possible; this MUST be known for anything involving inversions, so we can do quick comparisons.
  */
-/datum/bodytypes/proc/compare(datum/bodytypes/other, total)
+datum/bodytypes/proc/compare(datum/bodytypes/other, total)
 	if(inverted)
 		// ensure total is set as inversions are present
 		if(!total)
@@ -69,10 +69,10 @@
 /**
  * checks if we contain an element
  */
-/datum/bodytypes/proc/contains(elem)
+datum/bodytypes/proc/contains(elem)
 	return values? (inverted? !(elem in values) : (elem in values)) : (inverted? FALSE : TRUE)
 
-/datum/bodytypes/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
+datum/bodytypes/vv_edit_var(var_name, var_value, mass_edit, raw_edit)
 	if(raw_edit)
 		// allow
 		return ..()
@@ -87,7 +87,7 @@
 
 GLOBAL_LIST_EMPTY(struct_bodytypes)
 
-/proc/fetch_bodytypes_struct(encoded)
+proc/fetch_bodytypes_struct(encoded)
 	if(istype(encoded, /datum/bodytypes))
 		return encoded
 	var/list/original

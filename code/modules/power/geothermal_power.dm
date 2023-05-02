@@ -4,7 +4,7 @@
  */
 // Admin editable variable for power gen
 
-/obj/machinery/power/geothermal_controller
+obj/machinery/power/geothermal_controller
 	name = "Akureyri Geothermal Power Controller"
 	desc = "The Akureyri Geothermal Power Controller is the specialised geothermal Power solution offered to you by Frag Felix Storage."
 
@@ -23,10 +23,10 @@
 	var/active_for = -1
 	var/power_total = 0
 
-/obj/machinery/power/geothermal_controller/can_drain_energy(datum/actor, flags)
+obj/machinery/power/geothermal_controller/can_drain_energy(datum/actor, flags)
 	return FALSE
 
-/obj/machinery/power/geothermal_controller/process(delta_time)
+obj/machinery/power/geothermal_controller/process(delta_time)
 	if(machine_stat & BROKEN)
 		return
 	update_icon()
@@ -40,7 +40,7 @@
 			add_avail(power_total/power_factor)
 
 
-/obj/machinery/power/geothermal_controller/update_icon_state()
+obj/machinery/power/geothermal_controller/update_icon_state()
 	switch(power_total)
 		if(50 to 500 KILOWATTS)
 			icon_state = "controller_low"
@@ -55,7 +55,7 @@
 	return ..()
 
 
-/obj/machinery/power/geothermal_controller/proc/scan_for_collectors(var/ran)
+obj/machinery/power/geothermal_controller/proc/scan_for_collectors(var/ran)
 	power_total = 0
 	for (var/obj/machinery/power/geothermal_collector/col in range(ran, src))
 		if(istype(col))
@@ -63,7 +63,7 @@
 			power_total += col.power_provided
 			//LAZYADD(collectors, col)
 
-/obj/machinery/power/geothermal_controller/attackby(obj/item/W, mob/user)
+obj/machinery/power/geothermal_controller/attackby(obj/item/W, mob/user)
 	if(scanner && istype(scanner))
 		if(W.is_multitool())
 			//update_use_power(USE_POWER_IDLE)
@@ -86,7 +86,7 @@
 			scan_for_collectors(scanner.range)
 	update_icon_state()
 
-/obj/machinery/power/geothermal_controller/attack_robot(mob/user)
+obj/machinery/power/geothermal_controller/attack_robot(mob/user)
 	if (scanner)
 		to_chat(user, "There is a scanner array already present, nothing left to do.")
 	else
@@ -95,7 +95,7 @@
 			scan_for_collectors(5)//scan with default part range
 			active_for = 1800
 
-/obj/machinery/power/geothermal_collector
+obj/machinery/power/geothermal_collector
 	name = "Akureyri Geothermal Power Collector"
 	desc = "The power collecting part of the Akureyri Geothermal Power system, built to withstand serious heat."
 
@@ -111,7 +111,7 @@
 	var/local_special_temp
 	var/power_provided = 0
 
-/obj/machinery/power/geothermal_collector/Initialize(mapload)
+obj/machinery/power/geothermal_collector/Initialize(mapload)
 	. = ..()
 	var/turf/simulated/T = src.loc
 	if(istype(T))
@@ -132,26 +132,26 @@
 
 			animate(src, color = rgb(h_r, h_g, h_b), time = 20, easing = SINE_EASING)
 
-/obj/machinery/power/geothermal_collector/manifold
+obj/machinery/power/geothermal_collector/manifold
 	icon_state = "manifold"
 
-/obj/machinery/power/geothermal_collector/fourway
+obj/machinery/power/geothermal_collector/fourway
 	icon_state = "fourway"
 
-/obj/item/scanning_array
+obj/item/scanning_array
 	name = "Scanning array"
 	desc = "An array of scanning modules, used by the Akureyri Geothermal Power Controller to locate collectors and establish a connection with them"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "scan_module"
 	var/range = 5
 
-/obj/item/scanning_array/adv
+obj/item/scanning_array/adv
 	name = "Advanced Scanning array"
 	desc = "An array of scanning modules, used by the Akureyri Geothermal Power Controller to locate collectors and establish a connection with them"
 	icon_state = "scan_module_adv"
 	range = 11
 
-/obj/item/scanning_array/phasic
+obj/item/scanning_array/phasic
 	name = "Phasic Scanning array"
 	desc = "An array of scanning modules, used by the Akureyri Geothermal Power Controller to locate collectors and establish a connection with them"
 	icon_state = "scan_module_phasic"

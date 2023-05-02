@@ -1,4 +1,4 @@
-/client/proc/cmd_admin_say(msg as text)
+client/proc/cmd_admin_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
 	set hidden = 1
@@ -18,11 +18,11 @@
 
 	feedback_add_details("admin_verb","M") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/get_admin_say()
+client/proc/get_admin_say()
 	var/msg = input(src, null, "asay \"text\"") as text|null
 	cmd_admin_say(msg)
 
-/client/proc/cmd_mod_say(msg as text)
+client/proc/cmd_mod_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Msay"
 	set hidden = 1
@@ -45,7 +45,7 @@
 
 	feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_event_say(msg as text)
+client/proc/cmd_event_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Esay"
 	set hidden = 1

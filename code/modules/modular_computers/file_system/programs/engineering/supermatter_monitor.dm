@@ -1,4 +1,4 @@
-/datum/computer_file/program/supermatter_monitor
+datum/computer_file/program/supermatter_monitor
 	filename = "supmon"
 	filedesc = "Supermatter Monitoring"
 	nanomodule_path = /datum/nano_module/supermatter_monitor/
@@ -13,7 +13,7 @@
 	size = 5
 	var/last_status = 0
 
-/datum/computer_file/program/supermatter_monitor/process_tick()
+datum/computer_file/program/supermatter_monitor/process_tick()
 	..()
 	var/datum/nano_module/supermatter_monitor/NMS = NM
 	var/new_status = istype(NMS) ? NMS.get_status() : 0
@@ -24,22 +24,22 @@
 		if(istype(computer))
 			computer.update_icon()
 
-/datum/nano_module/supermatter_monitor
+datum/nano_module/supermatter_monitor
 	name = "Supermatter monitor"
 	var/list/supermatters
 	var/obj/machinery/power/supermatter/active = null		// Currently selected supermatter crystal.
 
-/datum/nano_module/supermatter_monitor/Destroy()
+datum/nano_module/supermatter_monitor/Destroy()
 	. = ..()
 	active = null
 	supermatters = null
 
-/datum/nano_module/supermatter_monitor/New()
+datum/nano_module/supermatter_monitor/New()
 	..()
 	refresh()
 
 // Refreshes list of active supermatter crystals
-/datum/nano_module/supermatter_monitor/proc/refresh()
+datum/nano_module/supermatter_monitor/proc/refresh()
 	supermatters = list()
 	var/turf/T = get_turf(nano_host())
 	if(!T)
@@ -54,12 +54,12 @@
 	if(!(active in supermatters))
 		active = null
 
-/datum/nano_module/supermatter_monitor/proc/get_status()
+datum/nano_module/supermatter_monitor/proc/get_status()
 	. = SUPERMATTER_INACTIVE
 	for(var/obj/machinery/power/supermatter/S in supermatters)
 		. = max(., S.get_status())
 
-/datum/nano_module/supermatter_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/supermatter_monitor/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	if(istype(active))
@@ -116,7 +116,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/nano_module/supermatter_monitor/Topic(href, href_list)
+datum/nano_module/supermatter_monitor/Topic(href, href_list)
 	if(..())
 		return 1
 	if( href_list["clear"] )

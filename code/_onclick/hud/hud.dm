@@ -5,13 +5,13 @@
 
 GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 
-/datum/hud
+datum/hud
 	var/atom/movable/screen/grab_intent
 	var/atom/movable/screen/hurt_intent
 	var/atom/movable/screen/disarm_intent
 	var/atom/movable/screen/help_intent
 
-/datum/global_hud
+datum/global_hud
 	var/atom/movable/screen/whitense
 	var/list/darkMask
 	var/atom/movable/screen/centermarker
@@ -28,7 +28,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 	var/atom/movable/screen/orange
 	var/atom/movable/screen/holomap
 
-/datum/global_hud/proc/setup_overlay(var/icon_state)
+datum/global_hud/proc/setup_overlay(var/icon_state)
 	var/atom/movable/screen/screen = new /atom/movable/screen()
 	screen.screen_loc = "CENTER-7,CENTER-7"
 	screen.icon = 'icons/obj/hud_full.dmi'
@@ -39,12 +39,12 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 
 	return screen
 
-/atom/movable/screen/global_screen
+atom/movable/screen/global_screen
 	screen_loc = ui_entire_screen
 	plane = FULLSCREEN_PLANE
 	mouse_opacity = 0
 
-/datum/global_hud/New()
+datum/global_hud/New()
 	//static overlay effect for cameras and the like
 	whitense = new /atom/movable/screen/global_screen()
 	whitense.icon = 'icons/effects/static.dmi'
@@ -131,7 +131,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 	including inventories and item quick actions.
 */
 
-/datum/hud
+datum/hud
 	var/mob/mymob
 
 	var/hud_shown = 1			//Used for the HUD toggle (F12)
@@ -173,12 +173,12 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 
 	var/list/minihuds = list()
 
-/datum/hud/New(mob/owner)
+datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
 	..()
 
-/datum/hud/Destroy()
+datum/hud/Destroy()
 	. = ..()
 	grab_intent = null
 	hurt_intent = null
@@ -203,7 +203,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 
 	QDEL_LIST(static_inventory)
 
-/datum/hud/proc/hidden_inventory_update()
+datum/hud/proc/hidden_inventory_update()
 	if(!mymob) return
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
@@ -251,7 +251,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 						if(H.wear_mask) H.wear_mask.screen_loc = null
 
 
-/datum/hud/proc/persistant_inventory_update()
+datum/hud/proc/persistant_inventory_update()
 	if(!mymob)
 		return
 
@@ -289,7 +289,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 						if(H.r_store) H.r_store.screen_loc = null
 
 
-/datum/hud/proc/instantiate()
+datum/hud/proc/instantiate()
 	if(!ismob(mymob)) return 0
 	if(!mymob.client) return 0
 	ui_style = ui_style2icon(mymob.client.prefs.UI_style)
@@ -311,10 +311,10 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 	else
 		mymob.instantiate_hud(src)
 
-/mob/proc/instantiate_hud(var/datum/hud/HUD)
+mob/proc/instantiate_hud(var/datum/hud/HUD)
 	return
 
-/datum/hud/proc/apply_minihud(var/datum/mini_hud/MH)
+datum/hud/proc/apply_minihud(var/datum/mini_hud/MH)
 	if(MH in minihuds)
 		return
 	minihuds += MH
@@ -324,7 +324,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 	if(mymob.client)
 		mymob.client.screen += miniobjs
 
-/datum/hud/proc/remove_minihud(var/datum/mini_hud/MH)
+datum/hud/proc/remove_minihud(var/datum/mini_hud/MH)
 	if(!(MH in minihuds))
 		return
 	minihuds -= MH
@@ -335,7 +335,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 		mymob.client.screen += miniobjs
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
-/mob/verb/button_pressed_F12(var/full = 0 as null)
+mob/verb/button_pressed_F12(var/full = 0 as null)
 	set name = "F12"
 	set hidden = 1
 
@@ -397,7 +397,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 	update_action_buttons()
 
 //Similar to button_pressed_F12() but keeps zone_sel, gun_setting_icon, and healths.
-/mob/proc/toggle_zoom_hud()
+mob/proc/toggle_zoom_hud()
 	if(!hud_used)
 		return
 	if(!ishuman(src))

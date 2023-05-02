@@ -1,6 +1,6 @@
-/datum/game_mode/var/list/memes = list()
+datum/game_mode/var/list/memes = list()
 
-/datum/game_mode/meme
+datum/game_mode/meme
 	name = "Memetic Anomaly"
 	config_tag = "meme"
 	required_players = 3
@@ -33,11 +33,11 @@
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
-/datum/game_mode/meme/announce()
+datum/game_mode/meme/announce()
 	to_chat(world, "<B>The current game mode is - Meme!</B>")
 	to_chat(world, "<B>An unknown creature has infested the mind of a crew member. Find and destroy it by any means necessary.</B>")
 
-/datum/game_mode/meme/can_start()
+datum/game_mode/meme/can_start()
 	if(!..())
 		return 0
 
@@ -69,11 +69,11 @@
 
 	return 1
 
-/datum/game_mode/meme/pre_setup()
+datum/game_mode/meme/pre_setup()
 	return 1
 
 
-/datum/game_mode/meme/post_setup()
+datum/game_mode/meme/post_setup()
 	// create a meme and enter it
 	for(var/datum/mind/meme in memes)
 		var/mob/living/parasite/meme/M = new
@@ -101,7 +101,7 @@
 	return
 
 
-/datum/game_mode/proc/forge_meme_objectives(var/datum/mind/meme, var/datum/mind/first_host)
+datum/game_mode/proc/forge_meme_objectives(var/datum/mind/meme, var/datum/mind/first_host)
 	if (config_legacy.objectives_disabled)
 		return
 
@@ -122,13 +122,13 @@
 
 	return
 
-/datum/game_mode/proc/greet_meme(var/datum/mind/meme, var/you_are=1)
+datum/game_mode/proc/greet_meme(var/datum/mind/meme, var/you_are=1)
 	if (you_are)
 		to_chat(meme.current, "<span class='danger'>You are a meme!</span>")
 	show_objectives(meme)
 	return
 
-/datum/game_mode/meme/check_finished()
+datum/game_mode/meme/check_finished()
 	var/memes_alive = 0
 	for(var/datum/mind/meme in memes)
 		if(!istype(meme.current,/mob/living))

@@ -1,5 +1,5 @@
 // Based on railing.dmi from https://github.com/Endless-Horizon/CEV-Eris
-/obj/structure/railing
+obj/structure/railing
 	name = "railing"
 	desc = "A standard steel railing.  Play stupid games, win stupid prizes."
 	icon = 'icons/obj/railing.dmi'
@@ -15,12 +15,12 @@
 	var/maxhealth = 70
 	var/check = 0
 
-/obj/structure/railing/grey
+obj/structure/railing/grey
 	name = "grey railing"
 	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
 	icon_state = "grey_railing0"
 
-/obj/structure/railing/Initialize(mapload, constructed = FALSE)
+obj/structure/railing/Initialize(mapload, constructed = FALSE)
 	. = ..()
 	// TODO - "constructed" is not passed to us. We need to find a way to do this safely.
 	if (constructed) // player-constructed railings
@@ -30,25 +30,25 @@
 	if(src.anchored)
 		update_icon(0)
 
-/obj/structure/railing/Destroy()
+obj/structure/railing/Destroy()
 	var/turf/location = loc
 	. = ..()
 	for(var/obj/structure/railing/R in orange(location, 1))
 		R.update_icon()
 
-/obj/structure/railing/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/railing/CanAllowThrough(atom/movable/mover, turf/target)
 	if(!(get_dir(mover, target) & turn(dir, 180)))
 		return TRUE
 	return ..()
 
-/obj/structure/railing/CheckExit(atom/movable/mover, atom/newLoc)
+obj/structure/railing/CheckExit(atom/movable/mover, atom/newLoc)
 	if(check_standard_flag_pass(mover))
 		return TRUE
 	if(!(get_dir(src, newLoc) & dir))
 		return TRUE
 	return !density
 
-/obj/structure/railing/examine(mob/user)
+obj/structure/railing/examine(mob/user)
 	. = ..()
 	if(health < maxhealth)
 		switch(health / maxhealth)
@@ -59,7 +59,7 @@
 			if(0.5 to 1.0)
 				. += "<span class='notice'>It has a few scrapes and dents.</span>"
 
-/obj/structure/railing/take_damage(amount)
+obj/structure/railing/take_damage(amount)
 	health -= amount
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
@@ -67,7 +67,7 @@
 		new /obj/item/stack/rods(get_turf(src))
 		qdel(src)
 
-/obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
+obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
 	check = 0
 	//if (!anchored) return
 	var/Rturn = turn(src.dir, -90)
@@ -105,7 +105,7 @@
 			if (UpdateNeighbors)
 				R.update_icon(UpdateNeighbors = FALSE)
 
-/obj/structure/railing/update_icon(updates, UpdateNeighbors = TRUE)
+obj/structure/railing/update_icon(updates, UpdateNeighbors = TRUE)
 	NeighborsCheck(UpdateNeighbors)
 	//layer = (dir == SOUTH) ? FLY_LAYER : initial(layer) // wtf does this even do
 	cut_overlays()
@@ -135,7 +135,7 @@
 
 			add_overlay(overlays_to_add)
 
-/obj/structure/railing/verb/rotate_counterclockwise()
+obj/structure/railing/verb/rotate_counterclockwise()
 	set name = "Rotate Railing Counter-Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -154,7 +154,7 @@
 	update_icon()
 	return
 
-/obj/structure/railing/verb/rotate_clockwise()
+obj/structure/railing/verb/rotate_clockwise()
 	set name = "Rotate Railing Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -173,7 +173,7 @@
 	update_icon()
 	return
 
-/obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
+obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
 	set name = "Flip Railing"
 	set category = "Object"
 	set src in oview(1)
@@ -198,7 +198,7 @@
 	update_icon()
 	return
 
-/obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
 	if(W.is_wrench() && !anchored)
 		playsound(src.loc, W.tool_sound, 50, 1)
@@ -264,7 +264,7 @@
 
 	return ..()
 
-/obj/structure/railing/legacy_ex_act(severity)
+obj/structure/railing/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -279,7 +279,7 @@
 	return
 
 // Duplicated from structures.dm, but its a bit different.
-/obj/structure/railing/do_climb(var/mob/living/user)
+obj/structure/railing/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
 
@@ -303,7 +303,7 @@
 	if(!anchored)	take_damage(maxhealth) // Fatboy
 	climbers -= user
 
-/obj/structure/railing/can_climb(var/mob/living/user, post_climb_check=0)
+obj/structure/railing/can_climb(var/mob/living/user, post_climb_check=0)
 	if(!..())
 		return 0
 
@@ -317,7 +317,7 @@
 	return 1
 
 // TODO - This here might require some investigation
-/obj/structure/proc/neighbor_turf_impassable()
+obj/structure/proc/neighbor_turf_impassable()
 	var/turf/T = get_step(src, src.dir)
 	if(!T || !istype(T))
 		return 0

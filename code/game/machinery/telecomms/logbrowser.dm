@@ -1,8 +1,8 @@
 
-/obj/machinery/computer/telecomms
+obj/machinery/computer/telecomms
 	icon_keyboard = "tech_key"
 
-/obj/machinery/computer/telecomms/server
+obj/machinery/computer/telecomms/server
 	name = "Telecommunications Server Monitor"
 	desc = "View communication logs and operate triangulation systems here. Translation not guaranteed."
 	icon_screen = "comm_logs"
@@ -18,7 +18,7 @@
 
 	req_access = list(ACCESS_ENGINEERING_TELECOMMS)
 
-/obj/machinery/computer/telecomms/server/ui_data(mob/user)
+obj/machinery/computer/telecomms/server/ui_data(mob/user)
 	var/list/data = list()
 
 	data["universal_translate"] = universal_translate
@@ -62,18 +62,18 @@
 
 	return data
 
-/obj/machinery/computer/telecomms/server/attack_hand(mob/user, list/params)
+obj/machinery/computer/telecomms/server/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/telecomms/server/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/telecomms/server/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TelecommsLogBrowser", name)
 		ui.open()
 
-/obj/machinery/computer/telecomms/server/ui_act(action, params)
+obj/machinery/computer/telecomms/server/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -144,7 +144,7 @@
 			SelectedServer.set_triangulating(!SelectedServer.triangulating)
 			return TRUE
 
-/obj/machinery/computer/telecomms/server/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/telecomms/server/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
@@ -152,5 +152,5 @@
 		src.updateUsrDialog()
 		return 1
 
-/obj/machinery/computer/telecomms/server/proc/set_temp(var/text, var/color = "average")
+obj/machinery/computer/telecomms/server/proc/set_temp(var/text, var/color = "average")
 	temp = list("color" = color, "text" = text)

@@ -1,6 +1,6 @@
 // Helper proc to check if you can hit them or not.
 // Will return a list of hit mobs/objects.
-/proc/check_trajectory(atom/target, atom/firer, pass_flags=ATOM_PASS_TABLE|ATOM_PASS_GLASS|ATOM_PASS_GRILLE, atom_flags)
+proc/check_trajectory(atom/target, atom/firer, pass_flags=ATOM_PASS_TABLE|ATOM_PASS_GLASS|ATOM_PASS_GRILLE, atom_flags)
 	if(!istype(target) || !istype(firer))
 		return 0
 
@@ -13,11 +13,11 @@
 
 	return trace.launch_projectile(target) //Test it!
 
-/obj/projectile/proc/_check_fire(atom/target as mob, var/mob/living/user as mob)  //Checks if you can hit them or not.
+obj/projectile/proc/_check_fire(atom/target as mob, var/mob/living/user as mob)  //Checks if you can hit them or not.
 	check_trajectory(target, user, pass_flags, atom_flags)
 
 //"Tracing" projectile
-/obj/projectile/test //Used to see if you can hit them.
+obj/projectile/test //Used to see if you can hit them.
 	invisibility = 101 //Nope!  Can't see me!
 	hitscan = TRUE
 	nodamage = TRUE
@@ -25,16 +25,16 @@
 	has_tracer = FALSE
 	var/list/hit = list()
 
-/obj/projectile/test/process_hitscan()
+obj/projectile/test/process_hitscan()
 	. = ..()
 	if(!QDELING(src))
 		qdel(src)
 	return hit
 
-/obj/projectile/test/Bump(atom/A)
+obj/projectile/test/Bump(atom/A)
 	if(A != src)
 		hit |= A
 	return ..()
 
-/obj/projectile/test/projectile_attack_mob()
+obj/projectile/test/projectile_attack_mob()
 	return

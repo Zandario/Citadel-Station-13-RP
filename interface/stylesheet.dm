@@ -8,7 +8,7 @@
  * Sample font-size: DM: 8 CSS: 64px
  */
 
-/client/script = {"<style>
+client/script = {"<style>
 body					{font-family: Verdana, sans-serif;}
 
 h1, h2, h3, h4, h5, h6	{color: #0000ff;font-family: Georgia, Verdana, sans-serif;}

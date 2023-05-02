@@ -1,29 +1,29 @@
 // Dimension of overmap (squares 4 lyfe)
 var/global/list/map_sectors = list()
 
-/area/overmap
+area/overmap
 	name = "System Map"
 	icon_state = "start"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
-/turf/unsimulated/map
+turf/unsimulated/map
 	icon = 'icons/turf/space.dmi'
 	icon_state = "map"
 	permit_ao = FALSE
 //	initialized = FALSE	// TODO - Fix unsimulated turf initialization so this override is not necessary!
 
-/turf/unsimulated/map/edge
+turf/unsimulated/map/edge
 	opacity = TRUE
 	density = TRUE
 	var/map_is_to_my
 	var/turf/unsimulated/map/edge/wrap_buddy
 
-/turf/unsimulated/map/edge/Initialize(mapload)
+turf/unsimulated/map/edge/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/turf/unsimulated/map/edge/LateInitialize()
+turf/unsimulated/map/edge/LateInitialize()
 	//This could be done by using the GLOB.using_map.overmap_size much faster, HOWEVER, doing it programatically to 'find'
 	//  the edges this way allows for 'sub overmaps' elsewhere and whatnot.
 	for(var/side in GLOB.alldirs) //The order of this list is relevant: It should definitely break on finding a cardinal FIRST.
@@ -40,17 +40,17 @@ var/global/list/map_sectors = list()
 				wrap_buddy = T
 				break
 
-/turf/unsimulated/map/edge/Destroy()
+turf/unsimulated/map/edge/Destroy()
 	wrap_buddy = null
 	return ..()
 
-/turf/unsimulated/map/edge/Bumped(var/atom/movable/AM)
+turf/unsimulated/map/edge/Bumped(var/atom/movable/AM)
 	if(wrap_buddy?.map_is_to_my)
 		AM.forceMove(get_step(wrap_buddy, wrap_buddy.map_is_to_my))
 	else
 		. = ..()
 
-/turf/unsimulated/map/Initialize(mapload)
+turf/unsimulated/map/Initialize(mapload)
 	. = ..()
 	name = "[x]-[y]"
 	var/list/numbers = list()
@@ -78,12 +78,12 @@ var/global/list/map_sectors = list()
 			I.pixel_x = 5*i + 2
 		add_overlay(I)
 
-/turf/unsimulated/map/Entered(var/atom/movable/O, var/atom/oldloc)
+turf/unsimulated/map/Entered(var/atom/movable/O, var/atom/oldloc)
 	..()
 	if(istype(O, /obj/effect/overmap/visitable/ship))
 		GLOB.overmap_event_handler.on_turf_entered(src, O, oldloc)
 
-/turf/unsimulated/map/Exited(var/atom/movable/O, var/atom/newloc)
+turf/unsimulated/map/Exited(var/atom/movable/O, var/atom/newloc)
 	..()
 	if(istype(O, /obj/effect/overmap/visitable/ship))
 		GLOB.overmap_event_handler.on_turf_exited(src, O, newloc)

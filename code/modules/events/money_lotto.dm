@@ -1,9 +1,9 @@
-/datum/event/money_lotto
+datum/event/money_lotto
 	var/winner_name = "John Smith"
 	var/winner_sum = 0
 	var/deposit_success = 0
 
-/datum/event/money_lotto/start()
+datum/event/money_lotto/start()
 	winner_sum = pick(5000, 10000, 50000, 100000, 500000, 1000000, 1500000)
 	if(GLOB.all_money_accounts.len)
 		var/datum/money_account/D = pick(GLOB.all_money_accounts)
@@ -22,7 +22,7 @@
 
 			deposit_success = 1
 
-/datum/event/money_lotto/announce()
+datum/event/money_lotto/announce()
 	var/author = "[GLOB.using_map.company_name] Editor"
 	var/channel = "The [GLOB.using_map.starsys_name] Times"
 

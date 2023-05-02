@@ -13,7 +13,7 @@
 /// Roughly 20 emitter shots. Phoron can take more but this is enough to max out both SMESs anyway.
 #define ENERGY_PHORON 300
 
-/datum/admins/proc/setup_supermatter()
+datum/admins/proc/setup_supermatter()
 	set category = "Debug"
 	set name = "Setup Supermatter"
 	set desc = "Allows you to start the Supermatter engine."
@@ -99,7 +99,7 @@
 
 	log_and_message_admins("## SUPERMATTER SETUP - Setup completed with [errors] errors, [warnings] warnings and [success] successful steps.")
 
-/obj/effect/engine_setup
+obj/effect/engine_setup
 	name = "Engine Setup Marker"
 	desc = "You shouldn't see this."
 	invisibility = 101
@@ -110,14 +110,14 @@
 
 GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 
-/obj/effect/engine_setup/proc/activate(var/last = 0)
+obj/effect/engine_setup/proc/activate(var/last = 0)
 	return 1
 
 // Tries to locate a pump, enables it, and sets it to MAX. Triggers warning if unable to locate a pump.
-/obj/effect/engine_setup/pump_max
+obj/effect/engine_setup/pump_max
 	name = "Pump Setup Marker"
 
-/obj/effect/engine_setup/pump_max/activate()
+obj/effect/engine_setup/pump_max/activate()
 	..()
 	var/obj/machinery/atmospherics/component/binary/pump/P = locate() in get_turf(src)
 	if(!P)
@@ -129,10 +129,10 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 	return SETUP_OK
 
 // Spawns an empty canister on this turf, if it has a connector port. Triggers warning if unable to find a connector port
-/obj/effect/engine_setup/empty_canister
+obj/effect/engine_setup/empty_canister
 	name = "Empty Canister Marker"
 
-/obj/effect/engine_setup/empty_canister/activate()
+obj/effect/engine_setup/empty_canister/activate()
 	..()
 	var/obj/machinery/atmospherics/portables_connector/P = locate() in get_turf(src)
 	if(!P)
@@ -143,11 +143,11 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 
 // Spawns a coolant canister on this turf, if it has a connector port.
 // Triggers error when unable to locate connector port or when coolant canister type is unset.
-/obj/effect/engine_setup/coolant_canister
+obj/effect/engine_setup/coolant_canister
 	name = "Coolant Canister Marker"
 	var/canister_type = null
 
-/obj/effect/engine_setup/coolant_canister/activate()
+obj/effect/engine_setup/coolant_canister/activate()
 	..()
 	var/obj/machinery/atmospherics/portables_connector/P = locate() in get_turf(src)
 	if(!P)
@@ -160,11 +160,11 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 	return SETUP_OK
 
 // Energises the supermatter. Errors when unable to locate supermatter.
-/obj/effect/engine_setup/core
+obj/effect/engine_setup/core
 	name = "Supermatter Core Marker"
 	var/energy_setting = 0
 
-/obj/effect/engine_setup/core/activate(var/last = 0)
+obj/effect/engine_setup/core/activate(var/last = 0)
 	if(!last)
 		return SETUP_DELAYED
 	..()
@@ -179,16 +179,16 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 	return SETUP_OK
 
 // Tries to enable the SMES on max input/output settings, unless the vars are changed. THIS SHOULD NOT BE PLACED ON THE MAIN SMES OR THE ENGINE WILL OVERHEAT
-/obj/effect/engine_setup/smes
+obj/effect/engine_setup/smes
 	name = "SMES Marker"
 	var/target_input_level		//These are in watts, the display is in kilowatts. Add three zeros to the value you want.
 	var/target_output_level		//These are in watts, the display is in kilowatts. Add three zeros to the value you want.
 
-/obj/effect/engine_setup/smes/main
+obj/effect/engine_setup/smes/main
 	target_input_level = 750000
 	target_output_level = 750000
 
-/obj/effect/engine_setup/smes/activate()
+obj/effect/engine_setup/smes/activate()
 	..()
 	var/obj/machinery/power/smes/S = locate() in get_turf(src)
 	if(!S)
@@ -216,11 +216,11 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 	return SETUP_OK
 
 // Sets up filters. This assumes filters are set to filter out N2 back to the core loop by default!
-/obj/effect/engine_setup/atmo_filter
+obj/effect/engine_setup/atmo_filter
 	name = "Omni Filter Marker"
 	var/coolant = null
 
-/obj/effect/engine_setup/atmo_filter/activate()
+obj/effect/engine_setup/atmo_filter/activate()
 	..()
 	var/obj/machinery/atmospherics/component/quaternary/atmos_filter/F = locate() in get_turf(src)
 	if(!F)
@@ -251,11 +251,11 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 	return SETUP_OK
 
 // Closes the monitoring room shutters so the first Engi to show up doesn't get microwaved
-/obj/effect/engine_setup/shutters
+obj/effect/engine_setup/shutters
 	name = "Shutter Button Marker"
 	var/target_button = "Engine Monitoring Room Blast Doors"	// This needs to be set to whatever the shutter button is called
 
-/obj/effect/engine_setup/shutters/activate()
+obj/effect/engine_setup/shutters/activate()
 	if(!target_button)
 		log_and_message_admins("## WARNING: No button type set at [x] [y] [z]!")
 		return SETUP_WARNING
@@ -275,7 +275,7 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 	found.update_icon()
 	return SETUP_OK
 
-/datum/silly_datum_to_block_byond_bug_2072419
+datum/silly_datum_to_block_byond_bug_2072419
 
 #undef SETUP_OK
 #undef SETUP_WARNING

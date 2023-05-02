@@ -1,4 +1,4 @@
-/obj/item/modular_computer/console
+obj/item/modular_computer/console
 	name = "console"
 	desc = "A stationary computer."
 	icon = 'icons/obj/modular_console.dmi'
@@ -17,7 +17,7 @@
 	max_damage = 300
 	broken_damage = 150
 
-/obj/item/modular_computer/console/update_icon()
+obj/item/modular_computer/console/update_icon()
 	. = ..()
 
 	// Connecty //TODO: Use TG Smoothing.

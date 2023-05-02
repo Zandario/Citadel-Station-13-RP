@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(holoposters)
-/obj/machinery/holoposter
+obj/machinery/holoposter
 	name = "Holographic Poster"
 	desc = "A wall-mounted holographic projector displaying advertisements by all manner of factions. How much do they pay to advertise here?"
 	icon = 'icons/obj/holoposter_vr.dmi'
@@ -24,24 +24,24 @@ GLOBAL_LIST_EMPTY(holoposters)
 		"moebius" = list(LIGHT_COLOR_PURPLE, "Moebius. One of the few companies worth merit beyond their local bubble staffed completely by synthetics. 'For synths, by synths.'")
 	)
 
-/obj/machinery/holoposter/Initialize(mapload)
+obj/machinery/holoposter/Initialize(mapload)
 	. = ..()
 	set_rand_sprite()
 	GLOB.holoposters += src
 	mytimer = addtimer(CALLBACK(src, .proc/set_rand_sprite), 30 MINUTES + rand(0, 5 MINUTES), TIMER_STOPPABLE | TIMER_LOOP)
 
-/obj/machinery/holoposter/Destroy()
+obj/machinery/holoposter/Destroy()
 	GLOB.holoposters -= src
 	return ..()
 
-/obj/machinery/holoposter/process()
+obj/machinery/holoposter/process()
 	return PROCESS_KILL
 
-/obj/machinery/holoposter/examine(mob/user, infix, suffix)
+obj/machinery/holoposter/examine(mob/user, infix, suffix)
 	. = ..()
 	. += examine_addon
 
-/obj/machinery/holoposter/update_icon()
+obj/machinery/holoposter/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "off"
 		examine_addon = "It appears to be powered off."
@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 
 	set_light(l_range = 2, l_power = 2, l_color = new_color)
 
-/obj/machinery/holoposter/proc/set_rand_sprite()
+obj/machinery/holoposter/proc/set_rand_sprite()
 	if(alerting)
 		return
 	if(icon_forced && mytimer)
@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 	icon_state = pick(postertypes)
 	update_icon()
 
-/obj/machinery/holoposter/attackby(obj/item/W, mob/user)
+obj/machinery/holoposter/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 	if(machine_stat & (NOPOWER))
 		return
@@ -101,15 +101,15 @@ GLOBAL_LIST_EMPTY(holoposters)
 		update_icon()
 		return
 
-/obj/machinery/holoposter/attack_ai(mob/user)
+obj/machinery/holoposter/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/holoposter/power_change()
+obj/machinery/holoposter/power_change()
 	var/wasUnpowered = machine_stat & NOPOWER
 	..()
 	if(wasUnpowered != (machine_stat & NOPOWER))
 		update_icon()
 
-/obj/machinery/holoposter/emp_act()
+obj/machinery/holoposter/emp_act()
 	machine_stat |= BROKEN
 	update_icon()

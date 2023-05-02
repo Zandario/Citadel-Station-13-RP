@@ -1,4 +1,4 @@
-/spell/aoe_turf/conjure/forcewall
+spell/aoe_turf/conjure/forcewall
 	name = "Forcewall"
 	desc = "Create a wall of pure energy at your location."
 	summon_type = list(/obj/effect/forcefield)
@@ -10,7 +10,7 @@
 
 	hud_state = "wiz_shield"
 
-/spell/aoe_turf/conjure/forcewall/mime
+spell/aoe_turf/conjure/forcewall/mime
 	name = "Invisible wall"
 	desc = "Create an invisible wall on your location."
 	school = "mime"
@@ -24,7 +24,7 @@
 	override_base = "grey"
 	hud_state = "mime_wall"
 
-/obj/effect/forcefield
+obj/effect/forcefield
 	desc = "A space wizard's magic wall."
 	name = "FORCEWALL"
 	icon = 'icons/effects/effects.dmi'
@@ -35,18 +35,18 @@
 	unacidable = 1
 	invisibility = 101
 
-/obj/effect/forcefield/bullet_act(var/obj/projectile/Proj, var/def_zone)
+obj/effect/forcefield/bullet_act(var/obj/projectile/Proj, var/def_zone)
 	var/turf/T = get_turf(src.loc)
 	if(T)
 		for(var/mob/M in T)
 			Proj.on_hit(M,M.bullet_act(Proj, def_zone))
 
-/obj/effect/forcefield/mime
+obj/effect/forcefield/mime
 	icon_state = "empty"
 	name = "invisible wall"
 	desc = "You have a bad feeling about this."
 
-/obj/effect/forcefield/cultify()
+obj/effect/forcefield/cultify()
 	new /obj/effect/forcefield/cult(get_turf(src))
 	qdel(src)
 	return

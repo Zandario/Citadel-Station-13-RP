@@ -1,5 +1,5 @@
 // Making this separate from /obj/landmark until that mess can be dealt with
-/obj/effect/shuttle_landmark
+obj/effect/shuttle_landmark
 	name = "Nav Point"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
@@ -24,7 +24,7 @@
 	// Name of the shuttle, null for generic waypoint
 	var/shuttle_restricted
 
-/obj/effect/shuttle_landmark/Initialize(mapload)
+obj/effect/shuttle_landmark/Initialize(mapload)
 	. = ..()
 	if(docking_controller)
 		. = INITIALIZE_HINT_LATELOAD
@@ -46,7 +46,7 @@
 	name = (name + " ([x],[y])")
 	SSshuttle.register_landmark(landmark_tag, src)
 
-/obj/effect/shuttle_landmark/LateInitialize()
+obj/effect/shuttle_landmark/LateInitialize()
 	if(!docking_controller)
 		return
 	var/docking_tag = docking_controller
@@ -59,7 +59,7 @@
 
 			docking_controller.docking_codes = location.docking_codes
 
-/obj/effect/shuttle_landmark/forceMove()
+obj/effect/shuttle_landmark/forceMove()
 	var/obj/effect/overmap/visitable/map_origin = get_overmap_sector(z)
 	. = ..()
 	var/obj/effect/overmap/visitable/map_destination = get_overmap_sector(z)
@@ -70,10 +70,10 @@
 			map_destination.add_landmark(src, shuttle_restricted)
 
 // Called when the landmark is added to an overmap sector.
-/obj/effect/shuttle_landmark/proc/sector_set(var/obj/effect/overmap/visitable/O, shuttle_name)
+obj/effect/shuttle_landmark/proc/sector_set(var/obj/effect/overmap/visitable/O, shuttle_name)
 	shuttle_restricted = shuttle_name
 
-/obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
+obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
 	if(shuttle.current_location == src)
 		return FALSE
 	for(var/area/A in shuttle.shuttle_area)
@@ -87,7 +87,7 @@
 	return TRUE
 
 // This creates a graphical warning to where the shuttle is about to land in approximately five seconds.
-/obj/effect/shuttle_landmark/proc/create_warning_effect(var/datum/shuttle/shuttle)
+obj/effect/shuttle_landmark/proc/create_warning_effect(var/datum/shuttle/shuttle)
 	if(shuttle.current_location == src)
 		return	// TOO LATE!
 	for(var/area/A in shuttle.shuttle_area)
@@ -97,16 +97,16 @@
 	return
 
 // Should return a readable description of why not if it can't depart.
-/obj/effect/shuttle_landmark/proc/cannot_depart(datum/shuttle/shuttle)
+obj/effect/shuttle_landmark/proc/cannot_depart(datum/shuttle/shuttle)
 	return FALSE
 
-/obj/effect/shuttle_landmark/proc/shuttle_departed(datum/shuttle/shuttle)
+obj/effect/shuttle_landmark/proc/shuttle_departed(datum/shuttle/shuttle)
 	return
 
-/obj/effect/shuttle_landmark/proc/shuttle_arrived(datum/shuttle/shuttle)
+obj/effect/shuttle_landmark/proc/shuttle_arrived(datum/shuttle/shuttle)
 	return
 
-/proc/check_collision(area/target_area, list/target_turfs)
+proc/check_collision(area/target_area, list/target_turfs)
 	for(var/target_turf in target_turfs)
 		var/turf/target = target_turf
 		if(!target)
@@ -120,54 +120,54 @@
 //
 // Self-naming/numbering ones.
 //
-/obj/effect/shuttle_landmark/automatic
+obj/effect/shuttle_landmark/automatic
 	name = "Navpoint"
 	landmark_tag = "navpoint"
 	shuttle_landmark_flags = SLANDMARK_FLAG_AUTOSET
 	var/original_name = null // Save our mapped-in name so we can rebuild our name when moving sectors.
 
-/obj/effect/shuttle_landmark/automatic/Initialize(mapload)
+obj/effect/shuttle_landmark/automatic/Initialize(mapload)
 	original_name = name
 	landmark_tag += "-[x]-[y]-[z]-[random_id("landmarks",1,9999)]"
 	return ..()
 
-/obj/effect/shuttle_landmark/automatic/sector_set(var/obj/effect/overmap/visitable/O)
+obj/effect/shuttle_landmark/automatic/sector_set(var/obj/effect/overmap/visitable/O)
 	..()
 	name = ("[O.name] - [original_name] ([x],[y])")
 
 // Subtype that calls explosion on init to clear space for shuttles
-/obj/effect/shuttle_landmark/automatic/clearing
+obj/effect/shuttle_landmark/automatic/clearing
 	var/radius = 10
 
-/obj/effect/shuttle_landmark/automatic/clearing/Initialize(mapload)
+obj/effect/shuttle_landmark/automatic/clearing/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/shuttle_landmark/automatic/clearing/LateInitialize()
+obj/effect/shuttle_landmark/automatic/clearing/LateInitialize()
 	..()
 	for(var/turf/T in range(radius, src))
 		if(T.density)
 			T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 // Subtype that also queues a shuttle datum (for shuttles starting on maps loaded at runtime)
-/obj/effect/shuttle_landmark/shuttle_initializer
+obj/effect/shuttle_landmark/shuttle_initializer
 	var/datum/shuttle/shuttle_type
 
-/obj/effect/shuttle_landmark/shuttle_initializer/Initialize(mapload)
+obj/effect/shuttle_landmark/shuttle_initializer/Initialize(mapload)
 	. = ..()
 	LAZYADD(SSshuttle.shuttles_to_initialize, shuttle_type)	// Queue up for init.
 
 //
 // Bluespace flare landmark beacon
 //
-/obj/item/spaceflare
+obj/item/spaceflare
 	name = "bluespace flare"
 	desc = "Burst transmitter used to broadcast all needed information for shuttle navigation systems. Has a flare attached for marking the spot where you probably shouldn't be standing."
 	icon_state = "bluflare"
 	light_color = "#3728ff"
 	var/active
 
-/obj/item/spaceflare/attack_self(mob/user)
+obj/item/spaceflare/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -175,7 +175,7 @@
 		visible_message("<span class='notice'>[user] pulls the cord, activating the [src].</span>")
 		activate()
 
-/obj/item/spaceflare/proc/activate()
+obj/item/spaceflare/proc/activate()
 	if(active)
 		return
 	var/turf/T = get_turf(src)
@@ -191,7 +191,7 @@
 	T.hotspot_expose(1500, 5)
 	update_icon()
 
-/obj/item/spaceflare/update_icon()
+obj/item/spaceflare/update_icon()
 	. = ..()
 	if(active)
 		icon_state = "bluflare_on"

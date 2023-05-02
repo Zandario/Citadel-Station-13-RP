@@ -1,15 +1,15 @@
-/datum/random_map/noise/ore
+datum/random_map/noise/ore
 	descriptor = "ore distribution map"
 	var/deep_val = 0.8              // Threshold for deep metals, set in new as percentage of cell_range.
 	var/rare_val = 0.7              // Threshold for rare metal, set in new as percentage of cell_range.
 	var/chunk_size = 4              // Size each cell represents on map
 
-/datum/random_map/noise/ore/New()
+datum/random_map/noise/ore/New()
 	rare_val = cell_range * rare_val
 	deep_val = cell_range * deep_val
 	..()
 
-/datum/random_map/noise/ore/check_map_sanity()
+datum/random_map/noise/ore/check_map_sanity()
 
 	var/rare_count = 0
 	var/surface_count = 0
@@ -36,7 +36,7 @@
 	else
 		return 1
 
-/datum/random_map/noise/ore/apply_to_turf(var/x,var/y)
+datum/random_map/noise/ore/apply_to_turf(var/x,var/y)
 
 	var/tx = ((origin_x-1)+x)*chunk_size
 	var/ty = ((origin_y-1)+y)*chunk_size
@@ -94,7 +94,7 @@
 				T.resources["copper"] =   0
 	return
 
-/datum/random_map/noise/ore/get_map_char(var/value)
+datum/random_map/noise/ore/get_map_char(var/value)
 	if(value < rare_val)
 		return "S"
 	else if(value < deep_val)

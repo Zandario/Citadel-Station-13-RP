@@ -3,7 +3,7 @@
 // ###
 // ###
 // Species definition follows.
-/datum/species/shapeshifter/promethean/avatar
+datum/species/shapeshifter/promethean/avatar
 	uid = SPECIES_ID_VIRTUAL_REALITY
 	id = SPECIES_ID_VIRTUAL_REALITY
 	name =             SPECIES_VR
@@ -41,15 +41,15 @@
 		)
 
 
-/datum/species/shapeshifter/promethean/avatar/handle_death(var/mob/living/carbon/human/H)
+datum/species/shapeshifter/promethean/avatar/handle_death(var/mob/living/carbon/human/H)
 	return
 
-/datum/species/shapeshifter/promethean/avatar/handle_environment_special(var/mob/living/carbon/human/H)
+datum/species/shapeshifter/promethean/avatar/handle_environment_special(var/mob/living/carbon/human/H)
 	return
 
 /* NO. YOU CAN HAVE THIS BACK WHEN THIS DOESNT SWAP SPECIES TO CHANGE OPACITY
 	FUCK OFF
-/mob/living/carbon/human/proc/shapeshifter_change_opacity()
+mob/living/carbon/human/proc/shapeshifter_change_opacity()
 
 	set name = "Toggle Opacity"
 	set category = "Abilities"
@@ -68,7 +68,7 @@
 */
 
 // enter_vr is called on the original mob, and puts the mind into the supplied vr mob
-/mob/living/carbon/human/proc/enter_vr(var/mob/living/carbon/human/avatar) // Avatar is currently a human, because we have preexisting setup code for appearance manipulation, etc.
+mob/living/carbon/human/proc/enter_vr(var/mob/living/carbon/human/avatar) // Avatar is currently a human, because we have preexisting setup code for appearance manipulation, etc.
 	if(!istype(avatar))
 		return
 
@@ -84,7 +84,7 @@
 	to_chat(avatar, "<span class='notice'> You black out for a moment, and wake to find yourself in a new body in virtual reality.</span>") // So this is what VR feels like?
 
 // exit_vr is called on the vr mob, and puts the mind back into the original mob
-/mob/living/carbon/human/proc/exit_vr()
+mob/living/carbon/human/proc/exit_vr()
 	set name = "Exit Virtual Reality"
 	set category = "Abilities"
 

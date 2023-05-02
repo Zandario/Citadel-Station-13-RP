@@ -1,4 +1,4 @@
-/obj/item/integrated_electronics/detailer
+obj/item/integrated_electronics/detailer
 	name = "assembly detailer"
 	desc = "A combination autopainter and flash anodizer designed to give electronic assemblies a colorful, wear-resistant finish."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -25,32 +25,32 @@
 		"hot pink" = COLOR_ASSEMBLY_HOT_PINK
 		)
 
-/obj/item/integrated_electronics/detailer/Initialize(mapload)
+obj/item/integrated_electronics/detailer/Initialize(mapload)
 	update_icon()
 	return ..()
 
-/obj/item/integrated_electronics/detailer/update_icon()
+obj/item/integrated_electronics/detailer/update_icon()
 	cut_overlays()
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/integrated_electronics/electronic_tools.dmi', "detailer-color")
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
 
-/obj/item/integrated_electronics/detailer/ui_state(mob/user, datum/tgui_module/module)
+obj/item/integrated_electronics/detailer/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/integrated_electronics/detailer/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/item/integrated_electronics/detailer/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICDetailer", name)
 		ui.open()
 
-/obj/item/integrated_electronics/detailer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/integrated_electronics/detailer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["detail_color"] = detail_color
 	data["color_list"] = color_list
 	return data
 
-/obj/item/integrated_electronics/detailer/ui_act(action, list/params, datum/tgui/ui)
+obj/item/integrated_electronics/detailer/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -62,7 +62,7 @@
 			update_icon()
 			return TRUE
 
-/obj/item/integrated_electronics/detailer/attack_self(mob/user)
+obj/item/integrated_electronics/detailer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

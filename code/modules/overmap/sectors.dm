@@ -1,7 +1,7 @@
 //===================================================================================
 //Overmap object representing zlevel(s)
 //===================================================================================
-/obj/effect/overmap/visitable
+obj/effect/overmap/visitable
 	name = "map object"
 	scannable = TRUE
 	scanner_desc = "!! No Data Available !!"
@@ -35,7 +35,7 @@
 	var/list/levels_for_distress
 	var/list/unowned_areas // areas we don't own despite them being present on our z
 
-/obj/effect/overmap/visitable/Initialize(mapload)
+obj/effect/overmap/visitable/Initialize(mapload)
 	. = ..()
 	if(. == INITIALIZE_HINT_QDEL)
 		return
@@ -72,27 +72,27 @@
 
 
 // You generally shouldn't destroy these.
-/obj/effect/overmap/visitable/Destroy()
+obj/effect/overmap/visitable/Destroy()
 	testing("Deleting [src] overmap sector at [x],[y]")
 	unregister_z_levels()
 	return ..()
 
 //This is called later in the init order by SSshuttles to populate sector objects. Importantly for subtypes, shuttles will be created by then.
-/obj/effect/overmap/visitable/proc/populate_sector_objects()
+obj/effect/overmap/visitable/proc/populate_sector_objects()
 
-/obj/effect/overmap/visitable/proc/get_areas()
+obj/effect/overmap/visitable/proc/get_areas()
 	. = list()
 	for(var/area/A)
 		if (A.z in map_z)
 			. += A
 
-/obj/effect/overmap/visitable/proc/find_z_levels()
+obj/effect/overmap/visitable/proc/find_z_levels()
 	if(!LAZYLEN(map_z)) // If map_z is already populated use it as-is, otherwise start with connected z-levels.
 		map_z = GetConnectedZlevels(z)
 	if(LAZYLEN(extra_z_levels))
 		map_z |= extra_z_levels
 
-/obj/effect/overmap/visitable/proc/register_z_levels()
+obj/effect/overmap/visitable/proc/register_z_levels()
 	for(var/zlevel in map_z)
 		map_sectors["[zlevel]"] = src
 
@@ -100,14 +100,14 @@
 	if(!in_space)
 		GLOB.using_map.sealed_levels |= map_z
 
-/obj/effect/overmap/visitable/proc/unregister_z_levels()
+obj/effect/overmap/visitable/proc/unregister_z_levels()
 	map_sectors -= map_z
 
 	GLOB.using_map.player_levels -= map_z
 	if(!in_space)
 		GLOB.using_map.sealed_levels -= map_z
 
-/obj/effect/overmap/visitable/get_scan_data()
+obj/effect/overmap/visitable/get_scan_data()
 	if(!known)
 		known = TRUE
 		name = initial(name)
@@ -116,14 +116,14 @@
 		desc = initial(desc)
 	return ..()
 
-/obj/effect/overmap/visitable/proc/get_space_zlevels()
+obj/effect/overmap/visitable/proc/get_space_zlevels()
 	if(in_space)
 		return map_z
 	else
 		return list()
 
 //Helper for init.
-/obj/effect/overmap/visitable/proc/check_ownership(obj/object)
+obj/effect/overmap/visitable/proc/check_ownership(obj/object)
 	var/area/A = get_area(object)
 	if(A in SSshuttle.shuttle_areas)
 		return 0
@@ -133,21 +133,21 @@
 		return 1
 
 //If shuttle_name is false, will add to generic waypoints; otherwise will add to restricted. Does not do checks.
-/obj/effect/overmap/visitable/proc/add_landmark(obj/effect/shuttle_landmark/landmark, shuttle_name)
+obj/effect/overmap/visitable/proc/add_landmark(obj/effect/shuttle_landmark/landmark, shuttle_name)
 	landmark.sector_set(src, shuttle_name)
 	if(shuttle_name)
 		LAZYADD(restricted_waypoints[shuttle_name], landmark)
 	else
 		generic_waypoints += landmark
 
-/obj/effect/overmap/visitable/proc/remove_landmark(obj/effect/shuttle_landmark/landmark, shuttle_name)
+obj/effect/overmap/visitable/proc/remove_landmark(obj/effect/shuttle_landmark/landmark, shuttle_name)
 	if(shuttle_name)
 		var/list/shuttles = restricted_waypoints[shuttle_name]
 		LAZYREMOVE(shuttles, landmark)
 	else
 		generic_waypoints -= landmark
 
-/obj/effect/overmap/visitable/proc/get_waypoints(var/shuttle_name)
+obj/effect/overmap/visitable/proc/get_waypoints(var/shuttle_name)
 	. = list()
 	for(var/obj/effect/overmap/visitable/contained in src)
 		. += contained.get_waypoints(shuttle_name)
@@ -157,25 +157,25 @@
 		for(var/thing in restricted_waypoints[shuttle_name])
 			.[thing] = name
 
-/obj/effect/overmap/visitable/proc/cleanup()
+obj/effect/overmap/visitable/proc/cleanup()
 	return FALSE
 
-/obj/effect/overmap/visitable/MouseEntered(location, control, params)
+obj/effect/overmap/visitable/MouseEntered(location, control, params)
 	openToolTip(user = usr, tip_src = src, params = params, title = name)
 
 	..()
 
-/obj/effect/overmap/visitable/MouseDown()
+obj/effect/overmap/visitable/MouseDown()
 	closeToolTip(usr) //No reason not to, really
 
 	..()
 
-/obj/effect/overmap/visitable/MouseExited()
+obj/effect/overmap/visitable/MouseExited()
 	closeToolTip(usr) //No reason not to, really
 
 	..()
 
-/obj/effect/overmap/visitable/sector
+obj/effect/overmap/visitable/sector
 	name = "generic sector"
 	desc = "Sector with some stuff in it."
 	icon_state = "sector"
@@ -183,9 +183,9 @@
 
 // Because of the way these are spawned, they will potentially have their invisibility adjusted by the turfs they are mapped on
 // 	prior to being moved to the overmap. This blocks that. Use set_invisibility to adjust invisibility as needed instead.
-/obj/effect/overmap/visitable/sector/hide()
+obj/effect/overmap/visitable/sector/hide()
 
-/obj/effect/overmap/visitable/proc/distress(mob/user)
+obj/effect/overmap/visitable/proc/distress(mob/user)
 	if(has_distress_beacon)
 		return FALSE
 	has_distress_beacon = TRUE
@@ -208,16 +208,16 @@
 	addtimer(CALLBACK(src, .proc/distress_update), 5 MINUTES)
 	return TRUE
 
-/obj/effect/overmap/visitable/proc/get_distress_info()
+obj/effect/overmap/visitable/proc/get_distress_info()
 	return "\[X:[x], Y:[y]\]"
 
-/obj/effect/overmap/visitable/proc/distress_update()
+obj/effect/overmap/visitable/proc/distress_update()
 	var/message = "This is the final message from the distress beacon launched from '[initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
 	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your urgent assistance."
 
 	priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = -1)
 
-/proc/build_overmap()
+proc/build_overmap()
 	if(!GLOB.using_map.use_overmap)
 		return 1
 

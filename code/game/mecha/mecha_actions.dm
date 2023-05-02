@@ -12,7 +12,7 @@
 /// If you want it to be only for a special mech, you have to go and make an override like in the durand mech.
 //
 
-/obj/mecha/proc/GrantActions(mob/living/user, human_occupant = 0)
+obj/mecha/proc/GrantActions(mob/living/user, human_occupant = 0)
 	if(human_occupant)
 		eject_action.grant(user, src)
 	internals_action.grant(user, src)
@@ -38,7 +38,7 @@
 	if(cloak_possible)
 		cloak_action.grant(user, src)
 
-/obj/mecha/proc/RemoveActions(mob/living/user, human_occupant = 0)
+obj/mecha/proc/RemoveActions(mob/living/user, human_occupant = 0)
 	if(human_occupant)
 		eject_action.remove(user, src)
 	internals_action.remove(user, src)
@@ -61,129 +61,129 @@
 ////BUTTONS STUFF
 //
 
-/datum/action/innate/mecha
+datum/action/innate/mecha
 	check_flags = ACTION_CHECK_RESTRAINED | ACTION_CHECK_STUNNED | ACTION_CHECK_ALIVE
 	button_icon = 'icons/effects/actions_mecha.dmi'
 	var/obj/mecha/chassis
 
 // todo: this is shitcode
-/datum/action/innate/mecha/grant(mob/living/T, obj/mecha/M)
+datum/action/innate/mecha/grant(mob/living/T, obj/mecha/M)
 	if(M)
 		chassis = M
 	..()
 
 
-/datum/action/innate/mecha/mech_toggle_lights
+datum/action/innate/mecha/mech_toggle_lights
 	name = "Toggle Lights"
 	button_icon_state = "mech_lights_off"
 
-/datum/action/innate/mecha/mech_toggle_lights/Activate()
+datum/action/innate/mecha/mech_toggle_lights/Activate()
 	button_icon_state = "mech_lights_[chassis.lights ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.lights()
 
 
 
-/datum/action/innate/mecha/mech_toggle_internals
+datum/action/innate/mecha/mech_toggle_internals
 	name = "Toggle Internal Airtank Usage"
 	button_icon_state = "mech_internals_off"
 
-/datum/action/innate/mecha/mech_toggle_internals/Activate()
+datum/action/innate/mecha/mech_toggle_internals/Activate()
 	button_icon_state = "mech_internals_[chassis.use_internal_tank ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.internal_tank()
 
 
 
-/datum/action/innate/mecha/mech_view_stats
+datum/action/innate/mecha/mech_view_stats
 	name = "View stats"
 	button_icon_state = "mech_view_stats"
 
-/datum/action/innate/mecha/mech_view_stats/Activate()
+datum/action/innate/mecha/mech_view_stats/Activate()
 	chassis.view_stats()
 
 
 
-/datum/action/innate/mecha/mech_eject
+datum/action/innate/mecha/mech_eject
 	name = "Eject From Mech"
 	button_icon_state = "mech_eject"
 
-/datum/action/innate/mecha/mech_eject/Activate()
+datum/action/innate/mecha/mech_eject/Activate()
 	chassis.go_out()
 
 
 
-/datum/action/innate/mecha/strafe
+datum/action/innate/mecha/strafe
 	name = "Toggle Mech Strafing"
 	button_icon_state = "mech_strafe_off"
 
-/datum/action/innate/mecha/strafe/Activate()
+datum/action/innate/mecha/strafe/Activate()
 	button_icon_state = "mech_strafe_[chassis.strafing ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.strafing()
 
 
 
-/datum/action/innate/mecha/mech_defence_mode
+datum/action/innate/mecha/mech_defence_mode
 	name = "Toggle Mech defence mode"
 	button_icon_state = "mech_defense_mode_off"
 
-/datum/action/innate/mecha/mech_defence_mode/Activate()
+datum/action/innate/mecha/mech_defence_mode/Activate()
 	button_icon_state = "mech_defense_mode_[chassis.defence_mode ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.defence_mode()
 
 
 
-/datum/action/innate/mecha/mech_overload_mode
+datum/action/innate/mecha/mech_overload_mode
 	name = "Toggle Mech Leg Overload"
 	button_icon_state = "mech_overload_off"
 
-/datum/action/innate/mecha/mech_overload_mode/Activate()
+datum/action/innate/mecha/mech_overload_mode/Activate()
 	button_icon_state = "mech_overload_[chassis.overload ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.overload()
 
 
 
-/datum/action/innate/mecha/mech_smoke
+datum/action/innate/mecha/mech_smoke
 	name = "Toggle Mech Smoke"
 	button_icon_state = "mech_smoke_off"
 
-/datum/action/innate/mecha/mech_smoke/Activate()
+datum/action/innate/mecha/mech_smoke/Activate()
 	//button_icon_state = "mech_smoke_[chassis.smoke ? "off" : "on"]"
 	//button.UpdateIcon()	//Dual colors notneeded ATM
 	chassis.smoke()
 
 
 
-/datum/action/innate/mecha/mech_zoom
+datum/action/innate/mecha/mech_zoom
 	name = "Toggle Mech Zoom"
 	button_icon_state = "mech_zoom_off"
 
-/datum/action/innate/mecha/mech_zoom/Activate()
+datum/action/innate/mecha/mech_zoom/Activate()
 	button_icon_state = "mech_zoom_[chassis.zoom ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.zoom()
 
 
 
-/datum/action/innate/mecha/mech_toggle_thrusters
+datum/action/innate/mecha/mech_toggle_thrusters
 	name = "Toggle Mech thrusters"
 	button_icon_state = "mech_thrusters_off"
 
-/datum/action/innate/mecha/mech_toggle_thrusters/Activate()
+datum/action/innate/mecha/mech_toggle_thrusters/Activate()
 	button_icon_state = "mech_thrusters_[chassis.thrusters ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.thrusters()
 
 
 
-/datum/action/innate/mecha/mech_cycle_equip	//I'll be honest, i don't understand this part, buuuuuut it works!
+datum/action/innate/mecha/mech_cycle_equip	//I'll be honest, i don't understand this part, buuuuuut it works!
 	name = "Cycle Equipment"
 	button_icon_state = "mech_cycle_equip_off"
 
-/datum/action/innate/mecha/mech_cycle_equip/Activate()
+datum/action/innate/mecha/mech_cycle_equip/Activate()
 
 	var/list/available_equipment = list()
 	available_equipment = chassis.equipment
@@ -219,12 +219,12 @@
 
 
 
-/datum/action/innate/mecha/mech_switch_damtype
+datum/action/innate/mecha/mech_switch_damtype
 	name = "Reconfigure arm microtool arrays"
 	button_icon_state = "mech_damtype_brute"
 
 
-/datum/action/innate/mecha/mech_switch_damtype/Activate()
+datum/action/innate/mecha/mech_switch_damtype/Activate()
 
 
 	button_icon_state = "mech_damtype_[chassis.damtype]"
@@ -234,22 +234,22 @@
 
 
 
-/datum/action/innate/mecha/mech_toggle_phasing
+datum/action/innate/mecha/mech_toggle_phasing
 	name = "Toggle Mech phasing"
 	button_icon_state = "mech_phasing_off"
 
-/datum/action/innate/mecha/mech_toggle_phasing/Activate()
+datum/action/innate/mecha/mech_toggle_phasing/Activate()
 	button_icon_state = "mech_phasing_[chassis.phasing ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.phasing()
 
 
 
-/datum/action/innate/mecha/mech_toggle_cloaking
+datum/action/innate/mecha/mech_toggle_cloaking
 	name = "Toggle Mech phasing"
 	button_icon_state = "mech_phasing_off"
 
-/datum/action/innate/mecha/mech_toggle_cloaking/Activate()
+datum/action/innate/mecha/mech_toggle_cloaking/Activate()
 	button_icon_state = "mech_phasing_[chassis.cloaked ? "off" : "on"]"
 	button.UpdateIcon()
 	chassis.toggle_cloaking()
@@ -264,14 +264,14 @@
 /////
 
 
-/obj/mecha/verb/toggle_defence_mode()
+obj/mecha/verb/toggle_defence_mode()
 	set category = "Exosuit Interface"
 	set name = "Toggle defence mode"
 	set src = usr.loc
 	set popup_menu = 0
 	defence_mode()
 
-/obj/mecha/proc/defence_mode()
+obj/mecha/proc/defence_mode()
 	if(usr!=src.occupant)
 		return
 	playsound(src, 'sound/mecha/duranddefencemode.ogg', 50, 1)
@@ -287,14 +287,14 @@
 
 
 
-/obj/mecha/verb/toggle_overload()
+obj/mecha/verb/toggle_overload()
 	set category = "Exosuit Interface"
 	set name = "Toggle leg actuators overload"
 	set src = usr.loc
 	set popup_menu = 0
 	overload()
 
-/obj/mecha/proc/overload()
+obj/mecha/proc/overload()
 	if(usr.stat == 1)//No manipulating things while unconcious.
 		return
 	if(usr!=src.occupant)
@@ -316,14 +316,14 @@
 	return
 
 
-/obj/mecha/verb/toggle_smoke()
+obj/mecha/verb/toggle_smoke()
 	set category = "Exosuit Interface"
 	set name = "Activate Smoke"
 	set src = usr.loc
 	set popup_menu = 0
 	smoke()
 
-/obj/mecha/proc/smoke()
+obj/mecha/proc/smoke()
 	if(usr!=src.occupant)
 		return
 
@@ -348,14 +348,14 @@
 
 
 
-/obj/mecha/verb/toggle_zoom()
+obj/mecha/verb/toggle_zoom()
 	set category = "Exosuit Interface"
 	set name = "Zoom"
 	set src = usr.loc
 	set popup_menu = 0
 	zoom()
 
-/obj/mecha/proc/zoom()//This could use improvements but maybe later.
+obj/mecha/proc/zoom()//This could use improvements but maybe later.
 	if(usr!=src.occupant)
 		return
 	if(src.occupant.client)
@@ -372,14 +372,14 @@
 
 
 
-/obj/mecha/verb/toggle_thrusters()
+obj/mecha/verb/toggle_thrusters()
 	set category = "Exosuit Interface"
 	set name = "Toggle thrusters"
 	set src = usr.loc
 	set popup_menu = 0
 	thrusters()
 
-/obj/mecha/proc/thrusters()
+obj/mecha/proc/thrusters()
 	if(usr!=src.occupant)
 		return
 	if(src.occupant)
@@ -391,14 +391,14 @@
 
 
 
-/obj/mecha/verb/switch_damtype()
+obj/mecha/verb/switch_damtype()
 	set category = "Exosuit Interface"
 	set name = "Change melee damage type"
 	set src = usr.loc
 	set popup_menu = 0
 	query_damtype()
 
-/obj/mecha/proc/query_damtype()
+obj/mecha/proc/query_damtype()
 	if(usr!=src.occupant)
 		return
 	var/new_damtype = alert(src.occupant,"Melee Damage Type",null,"Brute","Fire","Toxic")
@@ -417,14 +417,14 @@
 
 
 
-/obj/mecha/verb/toggle_phasing()
+obj/mecha/verb/toggle_phasing()
 	set category = "Exosuit Interface"
 	set name = "Toggle phasing"
 	set src = usr.loc
 	set popup_menu = 0
 	phasing()
 
-/obj/mecha/proc/phasing()
+obj/mecha/proc/phasing()
 	if(usr!=src.occupant)
 		return
 	phasing = !phasing
@@ -433,14 +433,14 @@
 	return
 
 
-/obj/mecha/verb/toggle_cloak()
+obj/mecha/verb/toggle_cloak()
 	set category = "Exosuit Interface"
 	set name = "Toggle cloaking"
 	set src = usr.loc
 	set popup_menu = 0
 	toggle_cloaking()
 
-/obj/mecha/proc/toggle_cloaking()
+obj/mecha/proc/toggle_cloaking()
 	if(usr!=src.occupant)
 		return
 
@@ -452,14 +452,14 @@
 	src.occupant_message("<font color=\"[cloaked?"#00f\">En":"#f00\">Dis"]abled cloaking.</font>")
 	return
 
-/obj/mecha/verb/toggle_weapons_only_cycle()
+obj/mecha/verb/toggle_weapons_only_cycle()
 	set category = "Exosuit Interface"
 	set name = "Toggle weapons only cycling"
 	set src = usr.loc
 	set popup_menu = 0
 	set_weapons_only_cycle()
 
-/obj/mecha/proc/set_weapons_only_cycle()
+obj/mecha/proc/set_weapons_only_cycle()
 	if(usr!=src.occupant)
 		return
 	weapons_only_cycle = !weapons_only_cycle

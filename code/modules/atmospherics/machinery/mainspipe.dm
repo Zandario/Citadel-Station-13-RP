@@ -1,13 +1,13 @@
 // internal pipe, don't actually place or use these
-/obj/machinery/atmospherics/pipe/mains_component
+obj/machinery/atmospherics/pipe/mains_component
 	var/obj/machinery/atmospherics/mains_pipe/parent_pipe
 	var/list/obj/machinery/atmospherics/pipe/mains_component/nodes = new()
 
-/obj/machinery/atmospherics/pipe/mains_component/New(loc)
+obj/machinery/atmospherics/pipe/mains_component/New(loc)
 	..(loc)
 	parent_pipe = loc
 
-/obj/machinery/atmospherics/pipe/mains_component/check_pressure(pressure)
+obj/machinery/atmospherics/pipe/mains_component/check_pressure(pressure)
 	var/datum/gas_mixture/environment = loc.loc.return_air()
 
 	var/pressure_difference = pressure - environment.return_pressure()
@@ -22,17 +22,17 @@
 
 	else return 1
 
-/obj/machinery/atmospherics/pipe/mains_component/pipeline_expansion()
+obj/machinery/atmospherics/pipe/mains_component/pipeline_expansion()
 	return nodes
 
-/obj/machinery/atmospherics/pipe/mains_component/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipe/mains_component/disconnect(obj/machinery/atmospherics/reference)
 	if(nodes.Find(reference))
 		nodes.Remove(reference)
 
-/obj/machinery/atmospherics/pipe/mains_component/proc/mains_burst()
+obj/machinery/atmospherics/pipe/mains_component/proc/mains_burst()
 	parent_pipe.burst()
 
-/obj/machinery/atmospherics/mains_pipe
+obj/machinery/atmospherics/mains_pipe
 	icon = 'icons/obj/atmospherics/mainspipe.dmi'
 	plane = TURF_PLANE
 	layer = PIPE_LAYER
@@ -55,7 +55,7 @@
 	var/fatigue_pressure = 55*ONE_ATMOSPHERE
 	alert_pressure = 55*ONE_ATMOSPHERE
 
-/obj/machinery/atmospherics/mains_pipe/Initialize(mapload)
+obj/machinery/atmospherics/mains_pipe/Initialize(mapload)
 	. = ..()
 
 	supply = new(src)
@@ -68,16 +68,16 @@
 	aux.volume = volume
 	aux.nodes.len = nodes.len
 
-/obj/machinery/atmospherics/mains_pipe/hide(var/i)
+obj/machinery/atmospherics/mains_pipe/hide(var/i)
 	if(level == 1 && istype(loc, /turf/simulated))
 		invisibility = i ? 101 : 0
 	update_icon()
 
-/obj/machinery/atmospherics/mains_pipe/proc/burst()
+obj/machinery/atmospherics/mains_pipe/proc/burst()
 	for(var/obj/machinery/atmospherics/pipe/mains_component/pipe in contents)
 		burst()
 
-/obj/machinery/atmospherics/mains_pipe/proc/check_pressure(pressure)
+obj/machinery/atmospherics/mains_pipe/proc/check_pressure(pressure)
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	var/pressure_difference = pressure - environment.return_pressure()
@@ -93,19 +93,19 @@
 	else
 		return 1
 
-/obj/machinery/atmospherics/mains_pipe/get_neighbor_nodes_for_init()
+obj/machinery/atmospherics/mains_pipe/get_neighbor_nodes_for_init()
 	return nodes
 
-/obj/machinery/atmospherics/mains_pipe/disconnect()
+obj/machinery/atmospherics/mains_pipe/disconnect()
 	..()
 	for(var/obj/machinery/atmospherics/pipe/mains_component/node in nodes)
 		node.disconnect()
 
-/obj/machinery/atmospherics/mains_pipe/Destroy()
+obj/machinery/atmospherics/mains_pipe/Destroy()
 	disconnect()
 	return ..()
 
-/obj/machinery/atmospherics/mains_pipe/atmos_init()
+obj/machinery/atmospherics/mains_pipe/atmos_init()
 	for(var/i = 1 to nodes.len)
 		var/obj/machinery/atmospherics/mains_pipe/node = nodes[i]
 		if(node)
@@ -113,14 +113,14 @@
 			scrubbers.nodes[i] = node.scrubbers
 			aux.nodes[i] = node.aux
 
-/obj/machinery/atmospherics/mains_pipe/simple
+obj/machinery/atmospherics/mains_pipe/simple
 	name = "mains pipe"
 	desc = "A one meter section of 3-line mains pipe"
 
 	dir = SOUTH
 	initialize_mains_directions = SOUTH|NORTH
 
-/obj/machinery/atmospherics/mains_pipe/simple/Initialize(mapload, newdir)
+obj/machinery/atmospherics/mains_pipe/simple/Initialize(mapload, newdir)
 	nodes.len = 2
 	. = ..()
 	switch(dir)
@@ -137,13 +137,13 @@
 		if(SOUTHWEST)
 			initialize_mains_directions = SOUTH|WEST
 
-/obj/machinery/atmospherics/mains_pipe/simple/proc/normalize_dir()
+obj/machinery/atmospherics/mains_pipe/simple/proc/normalize_dir()
 	if(dir==3)
 		setDir(1)
 	else if(dir==12)
 		setDir(4)
 
-/obj/machinery/atmospherics/mains_pipe/simple/update_icon_state()
+obj/machinery/atmospherics/mains_pipe/simple/update_icon_state()
 	. = ..()
 	if(nodes[1] && nodes[2])
 		icon_state = "intact[invisibility ? "-f" : "" ]"
@@ -160,7 +160,7 @@
 		var/have_node2 = nodes[2]?1:0
 		icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
 
-/obj/machinery/atmospherics/mains_pipe/simple/atmos_init()
+obj/machinery/atmospherics/mains_pipe/simple/atmos_init()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -187,15 +187,15 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/mains_pipe/simple/hidden
+obj/machinery/atmospherics/mains_pipe/simple/hidden
 	level = 1
 	icon_state = "intact-f"
 
-/obj/machinery/atmospherics/mains_pipe/simple/visible
+obj/machinery/atmospherics/mains_pipe/simple/visible
 	level = 2
 	icon_state = "intact"
 
-/obj/machinery/atmospherics/mains_pipe/manifold
+obj/machinery/atmospherics/mains_pipe/manifold
 	name = "manifold pipe"
 	desc = "A manifold composed of mains pipes"
 
@@ -203,12 +203,12 @@
 	initialize_mains_directions = EAST|NORTH|WEST
 	volume = 105
 
-/obj/machinery/atmospherics/mains_pipe/manifold/Initialize(mapload, newdir)
+obj/machinery/atmospherics/mains_pipe/manifold/Initialize(mapload, newdir)
 	nodes.len = 3
 	. = ..()
 	initialize_mains_directions = (NORTH|SOUTH|EAST|WEST) & ~dir
 
-/obj/machinery/atmospherics/mains_pipe/manifold/atmos_init()
+obj/machinery/atmospherics/mains_pipe/manifold/atmos_init()
 	var/connect_directions = initialize_mains_directions
 
 	for(var/direction in GLOB.cardinal)
@@ -249,19 +249,19 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/mains_pipe/manifold/update_icon_state()
+obj/machinery/atmospherics/mains_pipe/manifold/update_icon_state()
 	. = ..()
 	icon_state = "manifold[invisibility ? "-f" : "" ]"
 
-/obj/machinery/atmospherics/mains_pipe/manifold/hidden
+obj/machinery/atmospherics/mains_pipe/manifold/hidden
 	level = 1
 	icon_state = "manifold-f"
 
-/obj/machinery/atmospherics/mains_pipe/manifold/visible
+obj/machinery/atmospherics/mains_pipe/manifold/visible
 	level = 2
 	icon_state = "manifold"
 
-/obj/machinery/atmospherics/mains_pipe/manifold4w
+obj/machinery/atmospherics/mains_pipe/manifold4w
 	name = "manifold pipe"
 	desc = "A manifold composed of mains pipes"
 
@@ -269,11 +269,11 @@
 	initialize_mains_directions = EAST|NORTH|WEST|SOUTH
 	volume = 105
 
-/obj/machinery/atmospherics/mains_pipe/manifold4w/Initialize(mapload, newdir)
+obj/machinery/atmospherics/mains_pipe/manifold4w/Initialize(mapload, newdir)
 	nodes.len = 4
 	return ..()
 
-/obj/machinery/atmospherics/mains_pipe/manifold4w/atmos_init()
+obj/machinery/atmospherics/mains_pipe/manifold4w/atmos_init()
 	for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,NORTH))
 		if(target.initialize_mains_directions & get_dir(target,src))
 			nodes[1] = target
@@ -300,19 +300,19 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/mains_pipe/manifold4w/update_icon_state()
+obj/machinery/atmospherics/mains_pipe/manifold4w/update_icon_state()
 	. = ..()
 	icon_state = "manifold4w[invisibility ? "-f" : "" ]"
 
-/obj/machinery/atmospherics/mains_pipe/manifold4w/hidden
+obj/machinery/atmospherics/mains_pipe/manifold4w/hidden
 	level = 1
 	icon_state = "manifold4w-f"
 
-/obj/machinery/atmospherics/mains_pipe/manifold4w/visible
+obj/machinery/atmospherics/mains_pipe/manifold4w/visible
 	level = 2
 	icon_state = "manifold4w"
 
-/obj/machinery/atmospherics/mains_pipe/split
+obj/machinery/atmospherics/mains_pipe/split
 	name = "mains splitter"
 	desc = "A splitter for connecting to a single pipe off a mains."
 
@@ -320,13 +320,13 @@
 	var/obj/machinery/atmospherics/node3
 	var/icon_type
 
-/obj/machinery/atmospherics/mains_pipe/split/Initialize(mapload, newdir)
+obj/machinery/atmospherics/mains_pipe/split/Initialize(mapload, newdir)
 	nodes.len = 2
 	. = ..()
 	initialize_mains_directions = turn(dir, 90) | turn(dir, -90)
 	initialize_directions = dir // actually have a normal connection too
 
-/obj/machinery/atmospherics/mains_pipe/split/atmos_init()
+obj/machinery/atmospherics/mains_pipe/split/atmos_init()
 	var/node1_dir
 	var/node2_dir
 	var/node3_dir
@@ -362,59 +362,59 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/mains_pipe/split/update_icon_state()
+obj/machinery/atmospherics/mains_pipe/split/update_icon_state()
 	. = ..()
 	icon_state = "split-[icon_type][invisibility ? "-f" : "" ]"
 
-/obj/machinery/atmospherics/mains_pipe/split/return_network(A)
+obj/machinery/atmospherics/mains_pipe/split/return_network(A)
 	return split_node.return_network(A)
 
-/obj/machinery/atmospherics/mains_pipe/split/supply
+obj/machinery/atmospherics/mains_pipe/split/supply
 	icon_type = "supply"
 
-/obj/machinery/atmospherics/mains_pipe/split/Initialize(mapload)
+obj/machinery/atmospherics/mains_pipe/split/Initialize(mapload)
 	. = ..()
 	split_node = supply
 
-/obj/machinery/atmospherics/mains_pipe/split/hidden
+obj/machinery/atmospherics/mains_pipe/split/hidden
 	level = 1
 	icon_state = "split-supply-f"
 
-/obj/machinery/atmospherics/mains_pipe/split/visible
+obj/machinery/atmospherics/mains_pipe/split/visible
 	level = 2
 	icon_state = "split-supply"
 
-/obj/machinery/atmospherics/mains_pipe/split/scrubbers
+obj/machinery/atmospherics/mains_pipe/split/scrubbers
 	icon_type = "scrubbers"
 
-/obj/machinery/atmospherics/mains_pipe/split/Initialize(mapload)
+obj/machinery/atmospherics/mains_pipe/split/Initialize(mapload)
 	. = ..()
 	split_node = scrubbers
 
-/obj/machinery/atmospherics/mains_pipe/split/hidden
+obj/machinery/atmospherics/mains_pipe/split/hidden
 	level = 1
 	icon_state = "split-scrubbers-f"
 
-/obj/machinery/atmospherics/mains_pipe/split/visible
+obj/machinery/atmospherics/mains_pipe/split/visible
 	level = 2
 	icon_state = "split-scrubbers"
 
-/obj/machinery/atmospherics/mains_pipe/split/aux
+obj/machinery/atmospherics/mains_pipe/split/aux
 	icon_type = "aux"
 
-/obj/machinery/atmospherics/mains_pipe/split/Initialize(mapload)
+obj/machinery/atmospherics/mains_pipe/split/Initialize(mapload)
 	. = ..()
 	split_node = aux
 
-/obj/machinery/atmospherics/mains_pipe/split/hidden
+obj/machinery/atmospherics/mains_pipe/split/hidden
 	level = 1
 	icon_state = "split-aux-f"
 
-/obj/machinery/atmospherics/mains_pipe/split/visible
+obj/machinery/atmospherics/mains_pipe/split/visible
 	level = 2
 	icon_state = "split-aux"
 
-/obj/machinery/atmospherics/mains_pipe/split3
+obj/machinery/atmospherics/mains_pipe/split3
 	name = "triple mains splitter"
 	desc = "A splitter for connecting to the 3 pipes on a mainline."
 
@@ -422,13 +422,13 @@
 	var/obj/machinery/atmospherics/scrubbers_node
 	var/obj/machinery/atmospherics/aux_node
 
-/obj/machinery/atmospherics/mains_pipe/split3/Initialize(mapload, newdir)
+obj/machinery/atmospherics/mains_pipe/split3/Initialize(mapload, newdir)
 	nodes.len = 1
 	. =..()
 	initialize_mains_directions = dir
 	initialize_directions = GLOB.cardinal & ~dir // actually have a normal connection too
 
-/obj/machinery/atmospherics/mains_pipe/split3/atmos_init()
+obj/machinery/atmospherics/mains_pipe/split3/atmos_init()
 	var/node1_dir
 	var/supply_node_dir
 	var/scrubbers_node_dir
@@ -484,10 +484,10 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/mains_pipe/split3/update_icon()
+obj/machinery/atmospherics/mains_pipe/split3/update_icon()
 	icon_state = "split-t[invisibility ? "-f" : "" ]"
 
-/obj/machinery/atmospherics/mains_pipe/split3/return_network(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/mains_pipe/split3/return_network(obj/machinery/atmospherics/reference)
 	var/obj/machinery/atmospherics/A
 
 	A = supply_node.return_network(reference)
@@ -498,15 +498,15 @@
 
 	return A
 
-/obj/machinery/atmospherics/mains_pipe/split3/hidden
+obj/machinery/atmospherics/mains_pipe/split3/hidden
 	level = 1
 	icon_state = "split-t-f"
 
-/obj/machinery/atmospherics/mains_pipe/split3/visible
+obj/machinery/atmospherics/mains_pipe/split3/visible
 	level = 2
 	icon_state = "split-t"
 
-/obj/machinery/atmospherics/mains_pipe/cap
+obj/machinery/atmospherics/mains_pipe/cap
 	name = "pipe cap"
 	desc = "A cap for the end of a mains pipe"
 
@@ -514,15 +514,15 @@
 	initialize_directions = SOUTH
 	volume = 35
 
-/obj/machinery/atmospherics/mains_pipe/cap/Initialize(mapload, newdir)
+obj/machinery/atmospherics/mains_pipe/cap/Initialize(mapload, newdir)
 	nodes.len = 1
 	. = ..()
 	initialize_mains_directions = dir
 
-/obj/machinery/atmospherics/mains_pipe/cap/update_icon()
+obj/machinery/atmospherics/mains_pipe/cap/update_icon()
 	icon_state = "cap[invisibility ? "-f" : ""]"
 
-/obj/machinery/atmospherics/mains_pipe/cap/atmos_init()
+obj/machinery/atmospherics/mains_pipe/cap/atmos_init()
 	for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,dir))
 		if(target.initialize_mains_directions & get_dir(target,src))
 			nodes[1] = target
@@ -534,10 +534,10 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/mains_pipe/cap/hidden
+obj/machinery/atmospherics/mains_pipe/cap/hidden
 	level = 1
 	icon_state = "cap-f"
 
-/obj/machinery/atmospherics/mains_pipe/cap/visible
+obj/machinery/atmospherics/mains_pipe/cap/visible
 	level = 2
 	icon_state = "cap"

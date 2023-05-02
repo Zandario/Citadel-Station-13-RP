@@ -2,7 +2,7 @@
  * Arm mounted augments.
  */
 
-/obj/item/organ/internal/augment/armmounted
+obj/item/organ/internal/augment/armmounted
 	name = "laser rifle implant"
 	desc = "A large implant that fits into a subject's arm. It deploys a laser-emitting array by some painful means."
 	icon_state = "augment_laser"
@@ -14,7 +14,7 @@
 	integrated_object_type = /obj/item/gun/energy/laser/mounted/augment
 
 
-/obj/item/organ/internal/augment/armmounted/attackby(obj/item/I as obj, mob/user as mob)
+obj/item/organ/internal/augment/armmounted/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_screwdriver())
 		switch(organ_tag)
 			if(O_AUG_L_FOREARM)
@@ -30,13 +30,13 @@
 
 	. = ..()
 
-/obj/item/organ/internal/augment/armmounted/taser
+obj/item/organ/internal/augment/armmounted/taser
 	name = "taser implant"
 	desc = "A large implant that fits into a subject's arm. It deploys a taser-emitting array by some painful means."
 	icon_state = "augment_taser"
 	integrated_object_type = /obj/item/gun/energy/taser/mounted/augment
 
-/obj/item/organ/internal/augment/armmounted/dartbow
+obj/item/organ/internal/augment/armmounted/dartbow
 	name = "crossbow implant"
 	desc = "A small implant that fits into a subject's arm. It deploys a dart launching mechanism through the flesh through unknown means."
 	icon_state = "augment_dart"
@@ -45,14 +45,14 @@
 
 // Wrist-or-hand-mounted implant
 
-/obj/item/organ/internal/augment/armmounted/hand
+obj/item/organ/internal/augment/armmounted/hand
 	name = "resonant analyzer implant"
 	desc = "An augment that fits neatly into the hand, useful for determining the usefulness of an object for research."
 	icon_state = "augment_box"
 	w_class = ITEMSIZE_SMALL
 	integrated_object_type = /obj/item/portable_scanner
 
-/obj/item/organ/internal/augment/armmounted/hand/attackby(obj/item/I as obj, mob/user as mob)
+obj/item/organ/internal/augment/armmounted/hand/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_screwdriver())
 		switch(organ_tag)
 			if(O_AUG_L_HAND)
@@ -68,7 +68,7 @@
 
 	. = ..()
 
-/obj/item/organ/internal/augment/armmounted/hand/sword
+obj/item/organ/internal/augment/armmounted/hand/sword
 	name = "energy blade implant"
 	integrated_object_type = /obj/item/melee/energy/sword
 
@@ -76,7 +76,7 @@
  * Shoulder augment.
  */
 
-/obj/item/organ/internal/augment/armmounted/shoulder
+obj/item/organ/internal/augment/armmounted/shoulder
 	name = "shoulder augment"
 	desc = "A large implant that fits into a subject's arm. It looks kind of like a skeleton."
 	icon_state = "augment_armframe"
@@ -84,7 +84,7 @@
 	w_class = ITEMSIZE_HUGE
 	integrated_object_type = null
 
-/obj/item/organ/internal/augment/armmounted/shoulder/attackby(obj/item/I as obj, mob/user as mob)
+obj/item/organ/internal/augment/armmounted/shoulder/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_screwdriver())
 		switch(organ_tag)
 			if(O_AUG_L_UPPERARM)
@@ -100,12 +100,12 @@
 
 	. = ..()
 
-/obj/item/organ/internal/augment/armmounted/shoulder/surge
+obj/item/organ/internal/augment/armmounted/shoulder/surge
 	name = "muscle overclocker"
 
 	aug_cooldown = 1.5 MINUTES
 
-/obj/item/organ/internal/augment/armmounted/shoulder/surge/augment_action()
+obj/item/organ/internal/augment/armmounted/shoulder/surge/augment_action()
 	if(!owner)
 		return
 
@@ -121,7 +121,7 @@
 
 // The toolkit / multi-tool implant.
 
-/obj/item/organ/internal/augment/armmounted/shoulder/multiple
+obj/item/organ/internal/augment/armmounted/shoulder/multiple
 	name = "rotary toolkit"
 	desc = "A large implant that fits into a subject's arm. It deploys an array of tools by some painful means."
 
@@ -155,7 +155,7 @@
 		/datum/matter_synth/wire
 		)
 
-/obj/item/organ/internal/augment/armmounted/shoulder/multiple/Initialize(mapload)
+obj/item/organ/internal/augment/armmounted/shoulder/multiple/Initialize(mapload)
 	. = ..()
 
 	if(integrated_object)
@@ -190,7 +190,7 @@
 			integrated_tools_by_name[Tool.name] = Tool
 			integrated_tool_images[Tool.name] = image(icon = Tool.icon, icon_state = Tool.icon_state)
 
-/obj/item/organ/internal/augment/armmounted/shoulder/multiple/handle_organ_proc_special()
+obj/item/organ/internal/augment/armmounted/shoulder/multiple/handle_organ_proc_special()
 	..()
 
 	if(!owner || is_bruised() || !synths)
@@ -200,7 +200,7 @@
 		for(var/datum/matter_synth/MS in synths)
 			MS.add_charge(MS.recharge_rate)
 
-/obj/item/organ/internal/augment/armmounted/shoulder/multiple/augment_action()
+obj/item/organ/internal/augment/armmounted/shoulder/multiple/augment_action()
 	if(!owner)
 		return
 
@@ -220,7 +220,7 @@
 
 	..()
 
-/obj/item/organ/internal/augment/armmounted/shoulder/multiple/medical
+obj/item/organ/internal/augment/armmounted/shoulder/multiple/medical
 	name = "rotary medical kit"
 	icon_state = "augment_medkit"
 	integrated_object_type = null

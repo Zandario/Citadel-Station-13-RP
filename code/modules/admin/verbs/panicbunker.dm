@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(bunker_passthrough)
 
-/client/proc/panicbunker()
+client/proc/panicbunker()
 	set category = "Server"
 	set name = "Toggle Panic Bunker"
 
@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(bunker_passthrough)
 		message_admins("The Database is not connected! Panic bunker will not work until the connection is reestablished.")
 	feedback_add_details("admin_verb","PANIC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/addbunkerbypass(ckeytobypass as text)
+client/proc/addbunkerbypass(ckeytobypass as text)
 	set category = "Server"
 	set name = "Add PB Bypass"
 	set desc = "Allows a given ckey to connect despite the panic bunker for a given round."
@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(bunker_passthrough)
 	message_admins("[key_name_admin(usr)] has added [ckeytobypass] to the current round's bunker bypass list.")
 	send2irc("Panic Bunker", "[key_name(usr)] has added [ckeytobypass] to the current round's bunker bypass list.")
 
-/client/proc/revokebunkerbypass(ckeytobypass as text)
+client/proc/revokebunkerbypass(ckeytobypass as text)
 	set category = "Server"
 	set name = "Revoke PB Bypass"
 	set desc = "Revoke's a ckey's permission to bypass the panic bunker for a given round."
@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(bunker_passthrough)
 	message_admins("[key_name_admin(usr)] has removed [ckeytobypass] from the current round's bunker bypass list.")
 	send2irc("Panic Bunker", "[key_name(usr)] has removed [ckeytobypass] from the current round's bunker bypass list.")
 
-/client/proc/paranoia_logging()
+client/proc/paranoia_logging()
 	set category = "Server"
 	set name = "New Player Warnings"
 
@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(bunker_passthrough)
 		message_admins("The Database is not connected! Paranoia logging will not be able to give 'player age' (time since first connection) warnings, only Byond account warnings.")
 	feedback_add_details("admin_verb","PARLOG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/ip_reputation()
+client/proc/ip_reputation()
 	set category = "Server"
 	set name = "Toggle IP Rep Checks"
 

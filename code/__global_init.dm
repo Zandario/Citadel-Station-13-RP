@@ -22,13 +22,13 @@
 var/datum/world_log_shunter/world_log_shunter = new
 var/world_log_redirected = FALSE
 
-/datum/world_log_shunter/New()
+datum/world_log_shunter/New()
 	world.ensure_logging_active()
 
 //! Debugging
 var/datum/world_debug_enabler/world_debug_enabler = new
 
-/datum/world_debug_enabler/New()
+datum/world_debug_enabler/New()
 	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (debug_server)
 		LIBCALL(debug_server, "auxtools_init")()

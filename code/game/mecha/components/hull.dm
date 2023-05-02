@@ -1,5 +1,5 @@
 
-/obj/item/mecha_parts/component/hull
+obj/item/mecha_parts/component/hull
 	name = "mecha hull"
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "hull"
@@ -19,14 +19,14 @@
 
 	step_delay = 2
 
-/obj/item/mecha_parts/component/hull/durable
+obj/item/mecha_parts/component/hull/durable
 	name = "durable mecha hull"
 
 	step_delay = 4
 	integrity_danger_mod = 0.3
 	max_integrity = 100
 
-/obj/item/mecha_parts/component/hull/lightweight
+obj/item/mecha_parts/component/hull/lightweight
 	name = "lightweight mecha hull"
 
 	step_delay = 1

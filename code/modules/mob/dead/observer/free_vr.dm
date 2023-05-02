@@ -1,12 +1,12 @@
 var/global/list/prevent_respawns = list()
 
-/hook/death/proc/quit_notify(mob/dead)
+hook/death/proc/quit_notify(mob/dead)
 	if(ishuman(dead))
 		to_chat(dead,"<span class='notice'>You're dead! If you don't intend to continue playing this round as this character, please use the <b>Quit This Round</b> verb in the OOC tab to free your job slot.</span>")
 
 	return TRUE
 
-/mob/observer/dead/verb/cleanup()
+mob/observer/dead/verb/cleanup()
 	set name = "Quit This Round"
 	set category = "OOC"
 	set desc = "Free your job slot, remove yourself from the manifest, and prevent respawning as this character for this round."

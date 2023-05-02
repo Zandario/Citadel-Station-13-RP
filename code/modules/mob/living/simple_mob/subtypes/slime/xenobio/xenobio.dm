@@ -1,6 +1,6 @@
 // These slimes have the mechanics xenobiologists care about, such as reproduction, mutating into new colors, and being able to submit through fear.
 
-/mob/living/simple_mob/slime/xenobio
+mob/living/simple_mob/slime/xenobio
 	desc = "The most basic of slimes.  The grey slime has no remarkable qualities, however it remains one of the most useful colors for scientists."
 	layer = MOB_LAYER + 1 // Need them on top of other mobs or it looks weird when consuming something.
 	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime // This should never be changed for xenobio slimes.
@@ -20,7 +20,7 @@
 	var/number = 0 // This is used to make the slime semi-unique for indentification.
 	var/harmless = FALSE // Set to true when pacified. Makes the slime harmless, not get hungry, and not be able to grow/reproduce.
 
-/mob/living/simple_mob/slime/xenobio/Initialize(mapload, var/mob/living/simple_mob/slime/xenobio/my_predecessor)
+mob/living/simple_mob/slime/xenobio/Initialize(mapload, var/mob/living/simple_mob/slime/xenobio/my_predecessor)
 	ASSERT(ispath(ai_holder_type, /datum/ai_holder/simple_mob/xenobio_slime))
 	number = rand(1, 1000)
 	update_name()
@@ -31,13 +31,13 @@
 		inherit_information(my_predecessor)
 
 
-/mob/living/simple_mob/slime/xenobio/Destroy()
+mob/living/simple_mob/slime/xenobio/Destroy()
 	if(victim)
 		stop_consumption() // Unbuckle us from our victim.
 	return ..()
 
 // Called when a slime makes another slime by splitting. The predecessor slime will be deleted shortly afterwards.
-/mob/living/simple_mob/slime/xenobio/proc/inherit_information(var/mob/living/simple_mob/slime/xenobio/predecessor)
+mob/living/simple_mob/slime/xenobio/proc/inherit_information(var/mob/living/simple_mob/slime/xenobio/predecessor)
 	if(!predecessor)
 		return
 
@@ -54,14 +54,14 @@
 	AI.rabid = previous_AI.rabid
 
 
-/mob/living/simple_mob/slime/xenobio/update_icon()
+mob/living/simple_mob/slime/xenobio/update_icon()
 	icon_living = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"][victim ? " eating" : ""]"
 	icon_dead = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"] dead"
 	icon_rest = icon_dead
 	..() // This will apply the correct icon_state and do the other overlay-related things.
 
 
-/mob/living/simple_mob/slime/xenobio/handle_special()
+mob/living/simple_mob/slime/xenobio/handle_special()
 	if(stat != DEAD)
 		handle_nutrition()
 
@@ -72,7 +72,7 @@
 
 	..()
 
-/mob/living/simple_mob/slime/xenobio/examine(mob/user)
+mob/living/simple_mob/slime/xenobio/examine(mob/user)
 	. = ..()
 	if(hat)
 		. += "It is wearing \a [hat]."
@@ -95,7 +95,7 @@
 		if(user in friends)
 			. += "It looks rather friendly... to you."
 
-/mob/living/simple_mob/slime/xenobio/proc/make_adult()
+mob/living/simple_mob/slime/xenobio/proc/make_adult()
 	if(is_adult)
 		return
 
@@ -107,14 +107,14 @@
 	update_icon()
 	update_name()
 
-/mob/living/simple_mob/slime/xenobio/update_name()
+mob/living/simple_mob/slime/xenobio/update_name()
 	. = ..()
 	if(harmless) // Docile slimes are generally named, so we shouldn't mess with it.
 		return
 	name = "[slime_color] [is_adult ? "adult" : "baby"] [initial(name)] ([number])"
 	real_name = name
 
-/mob/living/simple_mob/slime/xenobio/update_mood()
+mob/living/simple_mob/slime/xenobio/update_mood()
 	var/old_mood = mood
 	if(incapacitated(INCAPACITATION_DISABLED))
 		mood = "sad"
@@ -136,14 +136,14 @@
 	if(old_mood != mood)
 		update_icon()
 
-/mob/living/simple_mob/slime/xenobio/proc/enrage()
+mob/living/simple_mob/slime/xenobio/proc/enrage()
 	if(harmless)
 		return
 	if(has_AI())
 		var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
 		AI.enrage()
 
-/mob/living/simple_mob/slime/xenobio/proc/pacify()
+mob/living/simple_mob/slime/xenobio/proc/pacify()
 	harmless = TRUE
 	if(has_AI())
 		var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
@@ -159,7 +159,7 @@
 
 
 // These are verbs so that player slimes can evolve/split.
-/mob/living/simple_mob/slime/xenobio/verb/evolve()
+mob/living/simple_mob/slime/xenobio/verb/evolve()
 	set category = "Slime"
 	set desc = "This will let you evolve from baby to adult slime."
 
@@ -180,7 +180,7 @@
 		to_chat(src, SPAN_WARNING( "I have already evolved..."))
 
 
-/mob/living/simple_mob/slime/xenobio/verb/reproduce()
+mob/living/simple_mob/slime/xenobio/verb/reproduce()
 	set category = "Slime"
 	set desc = "This will make you split into four new slimes."
 
@@ -230,7 +230,7 @@
 		to_chat(src, SPAN_WARNING( "I have not evolved enough to reproduce yet..."))
 
 // Used when reproducing or dying.
-/mob/living/simple_mob/slime/xenobio/proc/make_new_slime(var/desired_type)
+mob/living/simple_mob/slime/xenobio/proc/make_new_slime(var/desired_type)
 	var/t = src.type
 	if(desired_type)
 		t = desired_type
@@ -252,7 +252,7 @@
 	step_away(baby, src)
 	return baby
 
-/mob/living/simple_mob/slime/xenobio/get_description_interaction(mob/user)
+mob/living/simple_mob/slime/xenobio/get_description_interaction(mob/user)
 	var/list/results = list()
 
 	if(!stat)
@@ -262,7 +262,7 @@
 
 	return results
 
-/mob/living/simple_mob/slime/xenobio/get_description_info()
+mob/living/simple_mob/slime/xenobio/get_description_info()
 	var/list/lines = list()
 	var/intro_line = "Slimes are generally the test subjects of Xenobiology, with different colors having different properties.  \
 	They can be extremely dangerous if not handled properly."

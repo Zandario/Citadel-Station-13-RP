@@ -1,6 +1,6 @@
 
 
-/obj/mecha
+obj/mecha
 	// Show the pilot.
 	var/show_pilot = FALSE
 
@@ -13,7 +13,7 @@
 	// How many pixels do we bump the pilot upward?
 	var/pilot_lift = 0
 
-/obj/mecha/update_transform()
+obj/mecha/update_transform()
 	// Now for the regular stuff.
 	var/matrix/M = matrix()
 	M.Scale(icon_scale_x, icon_scale_y)
@@ -21,7 +21,7 @@
 	animate(src, transform = M, time = 10)
 	return
 
-/obj/mecha/update_icon()
+obj/mecha/update_icon()
 	if(!initial_icon)
 		initial_icon = initial(icon_state)
 

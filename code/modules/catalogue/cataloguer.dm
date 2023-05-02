@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	the person with the scanner gets a visual box that shows where they are allowed to move to
 	without inturrupting the scan.
 */
-/obj/item/cataloguer
+obj/item/cataloguer
 	name = "cataloguer"
 	desc = "A hand-held device, used for compiling information about an object by scanning it. Alt+click to highlight scannable objects around you."
 	description_info = "This is a special device used to obtain information about objects and entities in the environment. \
@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/datum/weakref/partial_scanned = null // Weakref of the thing that was last scanned if inturrupted. Used to allow for partial scans to be resumed.
 	var/partial_scan_time = 0 // How much to make the next scan shorter.
 
-/obj/item/cataloguer/advanced
+obj/item/cataloguer/advanced
 	name = "advanced cataloguer"
 	icon_state = "adv_cataloguer"
 	desc = "A hand-held device, used for compiling information about an object by scanning it. This one is an upgraded model, \
@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	tool_speed = 0.8
 
 // Able to see all defined catalogue data regardless of if it was unlocked, intended for testing.
-/obj/item/cataloguer/debug
+obj/item/cataloguer/debug
 	name = "omniscient cataloguer"
 	desc = "A hand-held cataloguer device that appears to be plated with gold. For some reason, it \
 	just seems to already know everything about narrowly defined pieces of knowledge one would find \
@@ -54,22 +54,22 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	debug = TRUE
 
 
-/obj/item/cataloguer/Initialize(mapload)
+obj/item/cataloguer/Initialize(mapload)
 	GLOB.all_cataloguers += src
 	return ..()
 
-/obj/item/cataloguer/Destroy()
+obj/item/cataloguer/Destroy()
 	GLOB.all_cataloguers -= src
 	displayed_data = null
 	return ..()
 
-/obj/item/cataloguer/update_icon()
+obj/item/cataloguer/update_icon()
 	if(busy)
 		icon_state = "[initial(icon_state)]_active"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/cataloguer/afterattack(atom/target, mob/user, proximity_flag)
+obj/item/cataloguer/afterattack(atom/target, mob/user, proximity_flag)
 	// Things that invalidate the scan immediately.
 	if(busy)
 		to_chat(user, SPAN_WARNING( "\The [src] is already scanning something."))
@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		delete_box(box_segments, user.client)
 
 // Todo: Display scanned information, increment points, etc.
-/obj/item/cataloguer/proc/catalogue_object(atom/target, mob/living/user)
+obj/item/cataloguer/proc/catalogue_object(atom/target, mob/living/user)
 	// Figure out who may have helped out.
 	var/list/contributers = list()
 	var/list/contributer_names = list()
@@ -196,12 +196,12 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 
 
-/obj/item/cataloguer/AltClick(mob/user)
+obj/item/cataloguer/AltClick(mob/user)
 	pulse_scan(user)
 
 // Gives everything capable of being scanned an outline for a brief moment.
 // Helps to avoid having to click a hundred things in a room for things that have an entry.
-/obj/item/cataloguer/proc/pulse_scan(mob/user)
+obj/item/cataloguer/proc/pulse_scan(mob/user)
 	if(busy)
 		to_chat(user, SPAN_WARNING( "\The [src] is busy doing something else."))
 		return
@@ -243,16 +243,16 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 
 // Negative points are bad.
-/obj/item/cataloguer/proc/adjust_points(amount)
+obj/item/cataloguer/proc/adjust_points(amount)
 	points_stored = max(0, points_stored += amount)
 
-/obj/item/cataloguer/attack_self(mob/user)
+obj/item/cataloguer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	interact(user)
 
-/obj/item/cataloguer/interact(mob/user)
+obj/item/cataloguer/interact(mob/user)
 	var/list/dat = list()
 	var/title = "Cataloguer Data Display"
 
@@ -298,7 +298,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	popup.open()
 	add_fingerprint(user)
 
-/obj/item/cataloguer/Topic(href, href_list)
+obj/item/cataloguer/Topic(href, href_list)
 	if(..())
 		usr << browse(null, "window=cataloguer_display")
 		return 0
@@ -320,7 +320,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	interact(usr) // So it refreshes the window.
 	return 1
 
-/obj/item/cataloguer/attackby(obj/item/W, mob/user)
+obj/item/cataloguer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id) && !busy)
 		busy = TRUE
 		var/obj/item/card/id/ID = W

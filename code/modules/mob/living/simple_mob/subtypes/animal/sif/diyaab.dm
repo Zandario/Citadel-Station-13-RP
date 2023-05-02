@@ -2,7 +2,7 @@
 // They cooperate with other diyaabs, in order to swarm whoever decides to pick on the little fluffy critter.
 // A cleaving weapon like an axe will make short work of the pack.
 
-/datum/category_item/catalogue/fauna/diyaab
+datum/category_item/catalogue/fauna/diyaab
 	name = "Sivian Fauna - Diyaab"
 	desc = "Classification: S Choeros hirtus\
 	<br><br>\
@@ -13,7 +13,7 @@
 	Despite their unassuming appearance, the Diyaab possesses remarkably sharp anterior teeth."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/sif/diyaab
+mob/living/simple_mob/animal/sif/diyaab
 	name = "diyaab"
 	desc = "A small pack animal. Although omnivorous, it will hunt meat on occasion."
 	tt_desc = "S Choeros hirtus" //diyaab and shantak are technically reletives!
@@ -41,8 +41,7 @@
 	say_list_type = /datum/say_list/diyaab
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 
-/datum/say_list/diyaab
+datum/say_list/diyaab
 	speak = list("Awrr?", "Aowrl!", "Worrl.")
 	emote_see = list("sniffs the air cautiously","looks around")
 	emote_hear = list("snuffles")
-

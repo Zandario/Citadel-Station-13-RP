@@ -1,5 +1,5 @@
 //Captain's Spacesuit
-/obj/item/clothing/head/helmet/space/capspace
+obj/item/clothing/head/helmet/space/capspace
 	name = "space helmet"
 	icon_state = "capspace"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the most fashionable of military figureheads."
@@ -13,7 +13,7 @@
 	max_pressure_protection = 10 * ONE_ATMOSPHERE
 
 //Captain's space suit This is not the proper path but I don't currently know enough about how this all works to mess with it.
-/obj/item/clothing/suit/armor/captain
+obj/item/clothing/suit/armor/captain
 	name = "Facility Director's armor"
 	desc = "A bulky, heavy-duty piece of exclusive corporate armor. YOU are in charge!"
 	icon_state = "caparmor"
@@ -33,7 +33,7 @@
 	siemens_coefficient = 0.7
 
 //Deathsquad suit
-/obj/item/clothing/head/helmet/space/deathsquad
+obj/item/clothing/head/helmet/space/deathsquad
 	name = "deathsquad helmet"
 	desc = "That's not red paint. That's real blood."
 	icon_state = "deathsquad"
@@ -44,7 +44,7 @@
 	siemens_coefficient = 0.6
 
 //how is this a space helmet?
-/obj/item/clothing/head/helmet/space/deathsquad/beret
+obj/item/clothing/head/helmet/space/deathsquad/beret
 	name = "officer's beret"
 	desc = "An armored beret commonly used by special operations officers."
 	icon_state = "beret_badge"
@@ -54,7 +54,7 @@
 	siemens_coefficient = 0.9
 
 //Space santa outfit suit
-/obj/item/clothing/head/helmet/space/santahat
+obj/item/clothing/head/helmet/space/santahat
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
@@ -62,7 +62,7 @@
 	inv_hide_flags = BLOCKHAIR
 	body_cover_flags = HEAD
 
-/obj/item/clothing/suit/space/santa
+obj/item/clothing/suit/space/santa
 	name = "Santa's suit"
 	desc = "Festive!"
 	icon_state = "santa"
@@ -71,7 +71,7 @@
 	allowed = list(/obj/item) //for stuffing exta special presents
 
 //Space pirate outfit
-/obj/item/clothing/head/helmet/space/pirate
+obj/item/clothing/head/helmet/space/pirate
 	name = "pirate hat"
 	desc = "Yarr."
 	icon_state = "pirate"
@@ -81,7 +81,7 @@
 	body_cover_flags = 0
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/suit/space/pirate //Whhhhyyyyyyy???
+obj/item/clothing/suit/space/pirate //Whhhhyyyyyyy???
 	name = "pirate coat"
 	desc = "Yarr."
 	icon_state = "pirate"
@@ -94,26 +94,26 @@
 	body_cover_flags = UPPER_TORSO|ARMS
 
 //Orange emergency space suit
-/obj/item/clothing/head/helmet/space/emergency
+obj/item/clothing/head/helmet/space/emergency
 	name = "Emergency Space Helmet"
 	icon_state = "syndicate-helm-orange"
 	desc = "A simple helmet with a built in light, smells like mothballs."
 	flash_protection = FLASH_PROTECTION_NONE
 
-/obj/item/clothing/suit/space/emergency
+obj/item/clothing/suit/space/emergency
 	name = "Emergency Softsuit"
 	icon_state = "syndicate-orange"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
 	slowdown = 4
 
 //Russian Emergency Suit
-/obj/item/clothing/head/helmet/space/emergency/russian
+obj/item/clothing/head/helmet/space/emergency/russian
 	name = "Sovjet Emergency Space Helmet"
 	icon_state = "russian"
 	desc = "A simple helmet with a built in light, smells like mothballs."
 	flash_protection = FLASH_PROTECTION_NONE
 
-/obj/item/clothing/suit/space/emergency/russian
+obj/item/clothing/suit/space/emergency/russian
 	name = "Sovjet Emergency Softsuit"
 	icon_state = "russian"
 	desc = "A chunky antique softsuit distributed to members of the Indo-Russian Diaspora. After all this time, it looks pretty fragile."

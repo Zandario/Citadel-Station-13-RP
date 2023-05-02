@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/cargotech
+obj/structure/closet/secure_closet/cargotech
 	name = "cargo technician's locker"
 	req_access = list(ACCESS_SUPPLY_BAY)
 	icon_state = "securecargo1"
@@ -25,7 +25,7 @@
 		/obj/item/stamp/cargo,
 		/obj/item/clothing/head/soft)
 
-/obj/structure/closet/secure_closet/cargotech/Initialize(mapload)
+obj/structure/closet/secure_closet/cargotech/Initialize(mapload)
 	if(prob(75))
 		starts_with += /obj/item/storage/backpack
 	else
@@ -34,7 +34,7 @@
 		starts_with += /obj/item/storage/backpack/dufflebag
 	return ..()
 
-/obj/structure/closet/secure_closet/quartermaster
+obj/structure/closet/secure_closet/quartermaster
 	name = "quartermaster's locker"
 	req_access = list(ACCESS_SUPPLY_QM)
 	icon_state = "secureqm1"
@@ -65,7 +65,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
 		/obj/item/clothing/shoes/boots/winter/supply)
 
-/obj/structure/closet/secure_closet/quartermaster/Initialize(mapload)
+obj/structure/closet/secure_closet/quartermaster/Initialize(mapload)
 	if(prob(75))
 		starts_with += /obj/item/storage/backpack
 	else
@@ -74,7 +74,7 @@
 		starts_with += /obj/item/storage/backpack/dufflebag
 	return ..()
 
-/obj/structure/closet/secure_closet/miner
+obj/structure/closet/secure_closet/miner
 	name = "miner's equipment"
 	icon_state = "miningsec1"
 	icon_closed = "miningsec"
@@ -103,13 +103,13 @@
 		/obj/item/reagent_containers/portable_fuelcan/miniature,
 		/obj/item/stack/marker_beacon/thirty)
 
-/obj/structure/closet/secure_closet/miner/Initialize(mapload)
+obj/structure/closet/secure_closet/miner/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/industrial
 	else
 		starts_with += /obj/item/storage/backpack/satchel/eng
 	return ..()
 
-/obj/structure/closet/secure_closet/miner/Initialize(mapload)
+obj/structure/closet/secure_closet/miner/Initialize(mapload)
 	starts_with += /obj/item/gps/mining
 	return ..()

@@ -8,7 +8,7 @@
 	from Servers/Buses and sends that back to the relay, to then be broadcasted.
 */
 
-/obj/machinery/telecomms/hub
+obj/machinery/telecomms/hub
 	name = "Telecommunication Hub"
 	icon_state = "hub"
 	desc = "A mighty piece of hardware used to send/receive massive amounts of data."
@@ -21,7 +21,7 @@
 	long_range_link = 1
 	netspeed = 40
 
-/obj/machinery/telecomms/hub/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+obj/machinery/telecomms/hub/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	if(is_freq_listening(signal))
 		if(istype(machine_from, /obj/machinery/telecomms/receiver))
 			//If the signal is compressed, send it to the bus.

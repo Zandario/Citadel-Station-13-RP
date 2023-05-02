@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(characteristics_stats, _create_characteristics_stats())
 
-/proc/_create_characteristics_stats()
+proc/_create_characteristics_stats()
 	. = list()
 	for(var/datum/characteristic_stat/stat in subtypesof(/datum/characteristic_stat))
 		if(is_abstract(stat))
@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(characteristics_stats, _create_characteristics_stats())
  *
  * use typepaths whenever possible for compile time!
  */
-/proc/resolve_characteristics_stat(datum/characteristic_stat/typepath_or_id)
+proc/resolve_characteristics_stat(datum/characteristic_stat/typepath_or_id)
 	RETURN_TYPE(/datum/characteristic_stat)
 	return GLOB.characteristics_stats[ispath(typepath_or_id)? initial(typepath_or_id.id) : typepath_or_id]
 
@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(characteristics_stats, _create_characteristics_stats())
  *
  * stats are null when unset, and baseline when characteristics are disabled
  */
-/datum/characteristic_stat
+datum/characteristic_stat
 	abstract_type = /datum/characteristic_stat
 	/// unique id
 	var/id
@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(characteristics_stats, _create_characteristics_stats())
  * if bool, default handling is returning TRUE if either is true
  * else, returns first value.
  */
-/datum/characteristic_stat/proc/greater_value(a, b)
+datum/characteristic_stat/proc/greater_value(a, b)
 	switch(datatype)
 		if(CHARACTER_STAT_NUMERIC)
 			return a > b? a : b

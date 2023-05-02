@@ -8,14 +8,14 @@ SUBSYSTEM_DEF(ambient_lighting)
 
 	var/list/queued = list()
 
-/datum/controller/subsystem/ambient_lighting/stat_entry()
+datum/controller/subsystem/ambient_lighting/stat_entry()
 	return ..() + " Queue:[length(queued)]"
 
-/datum/controller/subsystem/ambient_lighting/Initialize(start_timeofday)
+datum/controller/subsystem/ambient_lighting/Initialize(start_timeofday)
 	fire(FALSE, TRUE)
 	return ..()
 
-/datum/controller/subsystem/ambient_lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
+datum/controller/subsystem/ambient_lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
 	var/list/curr = queued
 	var/starlight_enabled = CONFIG_GET(flag/starlight)
 

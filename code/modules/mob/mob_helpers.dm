@@ -1,80 +1,80 @@
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-/proc/isxenomorph(A)
+proc/isxenomorph(A)
 	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
 		return istype(H.species, /datum/species/xenos)
 	return 0
 
-/proc/issmall(A)
+proc/issmall(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
 		return L.mob_size <= MOB_SMALL
 	return 0
 
 //returns the number of size categories between two mob_sizes, rounded. Positive means A is larger than B
-/proc/mob_size_difference(var/mob_size_A, var/mob_size_B)
+proc/mob_size_difference(var/mob_size_A, var/mob_size_B)
 	return round(log(2, mob_size_A/mob_size_B), 1)
 
-/mob/proc/can_wield_item(obj/item/W)
+mob/proc/can_wield_item(obj/item/W)
 	if(W.w_class >= ITEMSIZE_LARGE && issmall(src))
 		return FALSE //M is too small to wield this
 	return TRUE
 
-/proc/istiny(A)
+proc/istiny(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
 		return L.mob_size <= MOB_TINY
 	return 0
 
 
-/proc/ismini(A)
+proc/ismini(A)
 	if(A && istype(A, /mob/living))
 		var/mob/living/L = A
 		return L.mob_size <= MOB_MINISCULE
 	return 0
 
-/mob/living/silicon/isSynthetic()
+mob/living/silicon/isSynthetic()
 	return 1
 
-/mob/proc/isMonkey()
+mob/proc/isMonkey()
 	return 0
 
-/mob/living/carbon/human/isMonkey()
+mob/living/carbon/human/isMonkey()
 	return istype(species, /datum/species/monkey)
 
-/proc/isdeaf(A)
+proc/isdeaf(A)
 	if(istype(A, /mob))
 		var/mob/M = A
 		return (M.sdisabilities & SDISABILITY_DEAF) || M.ear_deaf
 	return 0
 
-/mob/proc/get_ear_protection()
+mob/proc/get_ear_protection()
 	return 0
 
-/mob/proc/break_cloak()
+mob/proc/break_cloak()
 	return
 
-/mob/proc/is_cloaked()
+mob/proc/is_cloaked()
 	return FALSE
 
-/proc/hasorgans(A) // Fucking really??
+proc/hasorgans(A) // Fucking really??
 	return ishuman(A)
 
-/proc/iscuffed(A)
+proc/iscuffed(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
 		if(C.handcuffed)
 			return 1
 	return 0
 
-/proc/hassensorlevel(A, var/level)
+proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode >= level
 	return 0
 
-/proc/getsensorlevel(A)
+proc/getsensorlevel(A)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -82,14 +82,14 @@
 	return SUIT_SENSOR_OFF
 
 
-/proc/is_admin(var/mob/user)
+proc/is_admin(var/mob/user)
 	return check_rights(R_ADMIN, 0, user) != 0
 
 /**
  * Returns true if the user should have admin AI level access
  *! TO-BE-DEPRICATED
  */
-/proc/IsAdminGhost(mob/user)
+proc/IsAdminGhost(mob/user)
 	if(!user)		//Are they a mob? Auto interface updates call this with a null src
 		return
 	if(!user.client) // Do they have a client?
@@ -103,7 +103,7 @@
 	return TRUE
 
 /// Is the passed in mob a ghost with admin powers, doesn't check for AI interact like isAdminGhost() used to
-/proc/isAdminObserver(mob/user)
+proc/isAdminObserver(mob/user)
 	if(!user) //Are they a mob? Auto interface updates call this with a null src
 		return
 	if(!user.client) // Do they have a client?
@@ -115,7 +115,7 @@
 	return TRUE
 
 /// Is the passed in mob an admin ghost WITH AI INTERACT enabled
-/proc/isAdminGhostAI(mob/user)
+proc/isAdminGhostAI(mob/user)
 	if(!isAdminObserver(user))
 		return
 	if(!user.client.AI_Interact) // Do they have it enabled?
@@ -126,7 +126,7 @@
  * Returns true if the AI has silicon control with those flags
  */
 /* - Unused until AI interaction refactor
-/atom/proc/hasSiliconAccessInArea(mob/user, flags = PRIVILEDGES_SILICON, all = FALSE)
+atom/proc/hasSiliconAccessInArea(mob/user, flags = PRIVILEDGES_SILICON, all = FALSE)
 	return all? ((user.silicon_privileges & (flags)) == flags) : (user.silicon_privileges & flags)
 */
 
@@ -134,7 +134,7 @@
 	Miss Chance
 */
 
-/proc/check_zone(zone)
+proc/check_zone(zone)
 	if(!zone)	return BP_TORSO
 	switch(zone)
 		if(O_EYES)
@@ -146,7 +146,7 @@
 // Returns zone with a certain probability. If the probability fails, or no zone is specified, then a random body part is chosen.
 // Do not use this if someone is intentionally trying to hit a specific body part.
 // Use get_zone_with_miss_chance() for that.
-/proc/ran_zone(zone, probability)
+proc/ran_zone(zone, probability)
 	if (zone)
 		zone = check_zone(zone)
 		if (prob(probability))
@@ -173,7 +173,7 @@
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0)
+proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0, var/ranged_attack=0)
 	zone = check_zone(zone)
 
 	if(!ranged_attack)
@@ -197,21 +197,21 @@
 		return pick(base_miss_chance)
 	return zone
 
-/proc/findname(msg)
+proc/findname(msg)
 	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[msg]"))
 			return 1
 	return 0
 
-/mob/proc/abiotic(full_body)
+mob/proc/abiotic(full_body)
 	return FALSE
 
-/mob/proc/item_considered_abiotic(obj/item/I)
+mob/proc/item_considered_abiotic(obj/item/I)
 	return I && (I.item_flags & ITEM_ABSTRACT)
 
 //converts intent-strings into numbers and back
 var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
-/proc/intent_numeric(argument)
+proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)
 			if(INTENT_HELP)
@@ -234,7 +234,7 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 				return INTENT_HARM
 
 //change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left
-/mob/verb/a_intent_change(input as text)
+mob/verb/a_intent_change(input as text)
 	set name = "a-intent"
 	set hidden = 1
 
@@ -263,14 +263,14 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 			else
 				hud_used.action_intent.icon_state = INTENT_HELP
 
-/proc/is_blind(A)
+proc/is_blind(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
 		if(C.sdisabilities & SDISABILITY_NERVOUS || C.blinded)
 			return 1
 	return 0
 
-/proc/mobs_in_area(var/area/A)
+proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
 	for(var/mob/living/M in GLOB.mob_list)
 		if(get_area(M) == A)
@@ -280,7 +280,7 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 //Direct dead say used both by emote and say
 //It is somewhat messy. I don't know what to do.
 //I know you can't see the change, but I rewrote the name code. It is significantly less messy now
-/proc/say_dead_direct(var/message, var/mob/subject = null)
+proc/say_dead_direct(var/message, var/mob/subject = null)
 	var/name
 	var/keyname
 	if(subject && subject.client)
@@ -331,7 +331,7 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 				lname = "<span class='name'>[lname]</span> "
 			to_chat(M, "<span class='deadsay'>" + "<b>DEAD:</b> "+ "[lname][follow][message]</span>")
 
-/proc/say_dead_object(var/message, var/obj/subject = null)
+proc/say_dead_object(var/message, var/obj/subject = null)
 	for(var/mob/M in GLOB.player_list)
 		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights)) && M.is_preference_enabled(/datum/client_preference/show_dsay))
 			var/follow
@@ -346,7 +346,7 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 			to_chat(M, "<span class='deadsay'>" + "EVENT:"+ " [lname][follow][message]</span>")
 
 //Announces that a ghost has joined/left, mainly for use with wizards
-/proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
+proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
 	var/client/C
 	//Accept any type, sort what we want here
 	if(istype(O, /mob))
@@ -387,7 +387,7 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
  *
  * ignore_key, ignore_dnr_observers will NOT work!
  */
-/proc/notify_ghosts(message, ghost_sound, enter_link, atom/source, mutable_appearance/alert_overlay, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, ignore_dnr_observers = FALSE, header) //Easy notification of ghosts.
+proc/notify_ghosts(message, ghost_sound, enter_link, atom/source, mutable_appearance/alert_overlay, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, ignore_dnr_observers = FALSE, header) //Easy notification of ghosts.
 	// Don't notify for objects created during a mapload.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)
 		return
@@ -415,10 +415,10 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 				alert_overlay.plane = FLOAT_PLANE
 				A.add_overlay(alert_overlay)
 
-/mob/proc/switch_to_camera(obj/machinery/camera/C)
+mob/proc/switch_to_camera(obj/machinery/camera/C)
 	return FALSE
 
-/mob/living/silicon/ai/switch_to_camera(obj/machinery/camera/C)
+mob/living/silicon/ai/switch_to_camera(obj/machinery/camera/C)
 	if(!C.can_use() || !is_in_chassis())
 		return FALSE
 
@@ -426,29 +426,29 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 	return TRUE
 
 /// Returns TRUE if the mob has a client which has been active in the last given X minutes.
-/mob/proc/is_client_active(active = TRUE)
+mob/proc/is_client_active(active = TRUE)
 	return client && client.inactivity < active MINUTES
 
-/mob/proc/can_eat()
+mob/proc/can_eat()
 	return TRUE
 
-/mob/proc/can_force_feed()
+mob/proc/can_force_feed()
 	return TRUE
 
 #define SAFE_PERP -50
-/mob/living/proc/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
+mob/living/proc/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(stat == DEAD)
 		return SAFE_PERP
 
 	return FALSE
 
-/mob/living/carbon/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
+mob/living/carbon/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(handcuffed)
 		return SAFE_PERP
 
 	return ..()
 
-/mob/living/carbon/human/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
+mob/living/carbon/human/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -491,7 +491,7 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 
 	return threatcount
 
-/mob/living/simple_mob/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
+mob/living/simple_mob/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -502,7 +502,7 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 	return threatcount
 
 /// Beepsky will (try to) only beat 'bad' slimes.
-/mob/living/simple_mob/slime/xenobio/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
+mob/living/simple_mob/slime/xenobio/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = 0
 
 	if(stat == DEAD)
@@ -566,29 +566,29 @@ var/list/global/organ_rel_size = list(
 	BP_R_FOOT = 10,
 )
 
-/mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/tiled/flash)
+mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/tiled/flash)
 	return
 
 /// Recalculates what planes this mob can see using their plane_holder, for humans this is checking slots, for others, could be whatever.
-/mob/proc/recalculate_vis()
+mob/proc/recalculate_vis()
 	return
 
 /// General HUD updates done regularly (health puppet things, etc)
-/mob/proc/handle_regular_hud_updates()
+mob/proc/handle_regular_hud_updates()
 	return
 
 /// Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
-/mob/proc/handle_vision()
+mob/proc/handle_vision()
 	return
 
-/mob/proc/get_sound_env(pressure_factor)
+mob/proc/get_sound_env(pressure_factor)
 	if (pressure_factor < 0.5)
 		return SPACE
 	else
 		var/area/A = get_area(src)
 		return A.sound_env
 
-/mob/proc/position_hud_item(obj/item/item, slot)
+mob/proc/position_hud_item(obj/item/item, slot)
 	var/held = is_holding(item)
 
 	if(!slot)
@@ -617,12 +617,12 @@ var/list/global/organ_rel_size = list(
 
 	item.screen_loc = screen_place
 
-/mob/proc/can_see_reagents()
+mob/proc/can_see_reagents()
 	// Dead guys and silicons can always see reagents.
 	return stat == DEAD || issilicon(src)
 
 /// Ingnores the possibility of breaking tags.
-/proc/stars_no_html(text, pr, re_encode)
+proc/stars_no_html(text, pr, re_encode)
 	// We don't want to screw up escaped characters.
 	text = html_decode(text)
 	. = list()

@@ -1,4 +1,4 @@
-/datum/role/job/station/blueshield
+datum/role/job/station/blueshield
 	id = JOB_ID_BLUESHIELD
 	economy_payscale = ECONOMY_PAYSCALE_JOB_COMMAND
 	title = "Blueshield"
@@ -46,7 +46,7 @@
 						and security of the client, not the apprehension or neutralization of the offender. No one is above corporate regulations however, \
 						neither Security nor Command."
 
-/datum/outfit/job/station/blueshield
+datum/outfit/job/station/blueshield
 	name = OUTFIT_JOB_NAME("Blueshield")
 	uniform = /obj/item/clothing/under/oricon/utility/sysguard/crew/blueshield
 	l_pocket = /obj/item/flash

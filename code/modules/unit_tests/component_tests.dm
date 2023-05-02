@@ -1,4 +1,4 @@
-/datum/unit_test/component_duping/Run()
+datum/unit_test/component_duping/Run()
 	var/list/bad_dms = list()
 	var/list/bad_dts = list()
 	for(var/t in typesof(/datum/component))

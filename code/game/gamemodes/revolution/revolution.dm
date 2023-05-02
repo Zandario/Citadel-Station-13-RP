@@ -1,4 +1,4 @@
-/datum/game_mode/revolution
+datum/game_mode/revolution
 	name = "Revolution"
 	config_tag = "revolution"
 	round_description = "Some crewmembers are attempting to start a revolution!"

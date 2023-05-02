@@ -2,7 +2,7 @@
 //trying to call any of these procs directly.
 
 //A single piece of NIF software
-/datum/nifsoft
+datum/nifsoft
 	abstract_type = /datum/nifsoft
 
 	var/name = "Prototype"
@@ -65,7 +65,7 @@
 	var/list/incompatible_with = null
 
 //Constructor accepts the NIF it's being loaded into
-/datum/nifsoft/New(var/obj/item/nif/nif_load)
+datum/nifsoft/New(var/obj/item/nif/nif_load)
 	ASSERT(nif_load)
 
 	nif = nif_load
@@ -73,18 +73,18 @@
 		qdel(src)
 
 //Destructor cleans up the software and nif reference
-/datum/nifsoft/Destroy()
+datum/nifsoft/Destroy()
 	if(nif)
 		uninstall()
 		nif = null
 	return ..()
 
 ///Called when the software is installed in the NIF
-/datum/nifsoft/proc/install()
+datum/nifsoft/proc/install()
 	return nif.install(src)
 
 ///Called when the software is removed from the NIF
-/datum/nifsoft/proc/uninstall()
+datum/nifsoft/proc/uninstall()
 	if(active)
 		deactivate()
 	if(nif)
@@ -94,11 +94,11 @@
 		qdel(src)
 
 ///Called every life() tick on a mob on active implants
-/datum/nifsoft/proc/on_life(var/mob/living/carbon/human/human)
+datum/nifsoft/proc/on_life(var/mob/living/carbon/human/human)
 	return TRUE
 
 ///Called when attempting to activate an implant (could be a 'pulse' activation or toggling it on)
-/datum/nifsoft/proc/activate(var/force = FALSE)
+datum/nifsoft/proc/activate(var/force = FALSE)
 	if(active && !force)
 		return
 	var/nif_result = nif.activate(src)
@@ -130,7 +130,7 @@
 	return nif_result
 
 ///Called when attempting to deactivate an implant
-/datum/nifsoft/proc/deactivate(var/force = FALSE)
+datum/nifsoft/proc/deactivate(var/force = FALSE)
 	if(!active && !force)
 		return
 	var/nif_result = nif.deactivate(src)
@@ -158,16 +158,16 @@
 	return nif_result
 
 ///Called when an implant expires
-/datum/nifsoft/proc/expire()
+datum/nifsoft/proc/expire()
 	uninstall()
 	return
 
 ///Called when installed from a disk
-/datum/nifsoft/proc/disk_install(var/mob/living/carbon/human/target,var/mob/living/carbon/human/user)
+datum/nifsoft/proc/disk_install(var/mob/living/carbon/human/target,var/mob/living/carbon/human/user)
 	return TRUE
 
 ///Status text for menu
-/datum/nifsoft/proc/stat_text()
+datum/nifsoft/proc/stat_text()
 	if(activates)
 		return "[active ? "Active" : "Disabled"]"
 
@@ -175,12 +175,12 @@
 
 //////////////////////
 ///A package of NIF software
-/datum/nifsoft/package
+datum/nifsoft/package
 	var/list/software = list()
 	wear = 0 //Packages don't cause wear themselves, the software does
 
 //Constructor accepts a NIF and loads all the software
-/datum/nifsoft/package/New(var/obj/item/nif/nif_load)
+datum/nifsoft/package/New(var/obj/item/nif/nif_load)
 	ASSERT(nif_load)
 
 	for(var/P in software)
@@ -189,14 +189,14 @@
 	qdel(src)
 
 //Clean self up
-/datum/nifsoft/package/Destroy()
+datum/nifsoft/package/Destroy()
 	software.Cut()
 	software = null
 	return ..()
 
 /////////////////
 // A NIFSoft Uploader
-/obj/item/disk/nifsoft
+obj/item/disk/nifsoft
 	name = "NIFSoft Uploader"
 	desc = "It has a small label: \n\
 	\"Portable NIFSoft Installation Media. \n\
@@ -211,7 +211,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/datum/nifsoft/stored = null
 
-/obj/item/disk/nifsoft/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/disk/nifsoft/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!in_range(user, target))
 		return
 
@@ -245,11 +245,11 @@
 		update_icon()
 
 ///So disks can pass fancier stuff.
-/obj/item/disk/nifsoft/proc/extra_params()
+obj/item/disk/nifsoft/proc/extra_params()
 	return null
 
 // Compliance Disk //
-/obj/item/disk/nifsoft/compliance
+obj/item/disk/nifsoft/compliance
 	name = "NIFSoft Uploader (Compliance)"
 	desc = "Wow, adding laws to people? That seems illegal. It probably is. Okay, it really is."
 	icon_state = "compliance"
@@ -261,14 +261,14 @@
 	stored = /datum/nifsoft/compliance
 	var/laws
 
-/obj/item/disk/nifsoft/compliance/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/disk/nifsoft/compliance/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!ishuman(target))
 		return
 	if(!laws)
 		to_chat(user,"<span class='warning'>You haven't set any laws yet. Use the disk in-hand first.</span>")
 		return
 
-/obj/item/disk/nifsoft/compliance/attack_self(mob/user)
+obj/item/disk/nifsoft/compliance/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -278,11 +278,11 @@
 		to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
 		laws = newlaws
 
-/obj/item/disk/nifsoft/compliance/extra_params()
+obj/item/disk/nifsoft/compliance/extra_params()
 	return laws
 
 // Security Disk //
-/obj/item/disk/nifsoft/security
+obj/item/disk/nifsoft/security
 	name = "NIFSoft Uploader - Security"
 	desc = "Contains free NIFSofts useful for security members.\n\
 	It has a small label: \n\
@@ -292,20 +292,20 @@
 	icon_state = "security"
 	stored = /datum/nifsoft/package/security
 
-/datum/nifsoft/package/security
+datum/nifsoft/package/security
 	software = list(/datum/nifsoft/hud/ar_sec,/datum/nifsoft/flashprot)
 
-/obj/item/storage/box/nifsofts_security
+obj/item/storage/box/nifsofts_security
 	name = "security nifsoft uploaders"
 	desc = "A box of free nifsofts for security employees."
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/nifsofts_security/PopulateContents()
+obj/item/storage/box/nifsofts_security/PopulateContents()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/security(src)
 
 // Engineering Disk //
-/obj/item/disk/nifsoft/engineering
+obj/item/disk/nifsoft/engineering
 	name = "NIFSoft Uploader - Engineering"
 	desc = "Contains free NIFSofts useful for engineering members.\n\
 	It has a small label: \n\
@@ -315,20 +315,20 @@
 	icon_state = "engineering"
 	stored = /datum/nifsoft/package/engineering
 
-/datum/nifsoft/package/engineering
+datum/nifsoft/package/engineering
 	software = list(/datum/nifsoft/hud/ar_eng,/datum/nifsoft/alarmmonitor,/datum/nifsoft/uvblocker)
 
-/obj/item/storage/box/nifsofts_engineering
+obj/item/storage/box/nifsofts_engineering
 	name = "engineering nifsoft uploaders"
 	desc = "A box of free nifsofts for engineering employees."
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/nifsofts_engineering/PopulateContents()
+obj/item/storage/box/nifsofts_engineering/PopulateContents()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/engineering(src)
 
 // Medical Disk //
-/obj/item/disk/nifsoft/medical
+obj/item/disk/nifsoft/medical
 	name = "NIFSoft Uploader - Medical"
 	desc = "Contains free NIFSofts useful for medical members.\n\
 	It has a small label: \n\
@@ -337,20 +337,20 @@
 
 	stored = /datum/nifsoft/package/medical
 
-/datum/nifsoft/package/medical
+datum/nifsoft/package/medical
 	software = list(/datum/nifsoft/hud/ar_med,/datum/nifsoft/crewmonitor)
 
-/obj/item/storage/box/nifsofts_medical
+obj/item/storage/box/nifsofts_medical
 	name = "medical nifsoft uploaders"
 	desc = "A box of free nifsofts for medical employees."
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/nifsofts_medical/PopulateContents()
+obj/item/storage/box/nifsofts_medical/PopulateContents()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/medical(src)
 
 // Mining Disk //
-/obj/item/disk/nifsoft/mining
+obj/item/disk/nifsoft/mining
 	name = "NIFSoft Uploader - Mining"
 	desc = "Contains free NIFSofts useful for mining members.\n\
 	It has a small label: \n\
@@ -360,14 +360,14 @@
 	icon_state = "mining"
 	stored = /datum/nifsoft/package/mining
 
-/datum/nifsoft/package/mining
+datum/nifsoft/package/mining
 	software = list(/datum/nifsoft/material,/datum/nifsoft/spare_breath)
 
-/obj/item/storage/box/nifsofts_mining
+obj/item/storage/box/nifsofts_mining
 	name = "mining nifsoft uploaders"
 	desc = "A box of free nifsofts for mining employees."
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/nifsofts_mining/PopulateContents()
+obj/item/storage/box/nifsofts_mining/PopulateContents()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/mining(src)

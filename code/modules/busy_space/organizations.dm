@@ -1,5 +1,5 @@
 //Datums for different companies that can be used by busy_space
-/datum/lore/organization
+datum/lore/organization
 	/// Organization's name
 	var/name = ""
 	/// Organization's shortname (NanoTrasen for "NanoTrasen Incorporated")
@@ -201,7 +201,7 @@
 	/// Pad the destination lists with some extra random ones?
 	var/autogenerate_destination_names = TRUE
 
-/datum/lore/organization/New()
+datum/lore/organization/New()
 	if(autogenerate_destination_names) // Lets pad out the destination names.
 		var/i = rand(7, 12) //was 6-10, now 7-12, slight increase for flavor, especially 'starved' lists
 
@@ -267,7 +267,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // TSCs
-/datum/lore/organization/tsc/nanotrasen
+datum/lore/organization/tsc/nanotrasen
 	name = "NanoTrasen Incorporated"
 	short_name = "NanoTrasen "
 	acronym = "NT"
@@ -309,7 +309,7 @@
 		"an asteroid orbiting Rota", "Vir Interstellar Spaceport",
 		"NSB Adephagia","Ishtar Sector")
 
-/datum/lore/organization/tsc/nanotrasen/New()
+datum/lore/organization/tsc/nanotrasen/New()
 	..()
 	spawn(1) // BYOND shenanigans means GLOB.using_map is not initialized yet.  Wait a tick.
 		// Get rid of the current map from the list, so ships flying in don't say they're coming to the current map.
@@ -317,7 +317,7 @@
 		if(string_to_test in destination_names)
 			destination_names.Remove(string_to_test)
 
-/datum/lore/organization/tsc/hephaestus
+datum/lore/organization/tsc/hephaestus
 	name = "Hephaestus Industries"
 	short_name = "Hephaestus "
 	acronym = "HI"
@@ -354,7 +354,7 @@
 		"a Fleet outpost on the Moghes border"
 		)
 
-/datum/lore/organization/tsc/vey_med
+datum/lore/organization/tsc/vey_med
 	name = "Vey-Medical" //The Wiki displays them as Vey-Medical.
 	short_name = "Vey-Med "
 	acronym = "VM"
@@ -390,7 +390,7 @@
 		"a sapientarian mission in the Almach Rim"
 		)
 
-/datum/lore/organization/tsc/zeng_hu
+datum/lore/organization/tsc/zeng_hu
 	name = "Zeng-Hu Pharmaceuticals"
 	short_name = "Zeng-Hu "
 	acronym = "ZH"
@@ -418,7 +418,7 @@
 		"Urbani", "Vesalius", "Vidius", "Whipple", "White", "Worcestor", "Yegorov", "Xichun")
 	destination_names = list("our headquarters on Bashe")
 
-/datum/lore/organization/tsc/ward_takahashi
+datum/lore/organization/tsc/ward_takahashi
 	name = "Ward-Takahashi General Manufacturing Conglomerate"
 	short_name = "Ward-Takahashi "
 	acronym = "WT"
@@ -443,7 +443,7 @@
 		"Planetar", "Quasar", "Binary")
 	destination_names = list()
 
-/datum/lore/organization/tsc/bishop
+datum/lore/organization/tsc/bishop
 	name = "Bishop Cybernetics"
 	short_name = "Bishop "
 	acronym = "BC"
@@ -472,7 +472,7 @@
 		"Vaucanson", "Vishweswarayya", "Wankel", "Watt", "Wiberg")
 	destination_names = list("a medical facility in Angessa's Pearl")
 
-/datum/lore/organization/tsc/morpheus
+datum/lore/organization/tsc/morpheus
 	name = "Morpheus Cyberkinetics"
 	short_name = "Morpheus "
 	acronym = "MC"
@@ -510,7 +510,7 @@
 		"research base Tsadi",
 		"manufacturing facility Samekh")
 
-/datum/lore/organization/tsc/xion
+datum/lore/organization/tsc/xion
 	name = "Xion Manufacturing Group"
 	short_name = "Xion "
 	acronym = "XMG"
@@ -541,7 +541,7 @@
 	destination_names = list()
 
 //Keek&Allakai&Peesh's new TSC
-/datum/lore/organization/tsc/antares
+datum/lore/organization/tsc/antares
 	name = "Antares Robotics Group"
 	short_name = "Antares "
 	acronym = "ARG"
@@ -562,7 +562,7 @@
 	ship_names = list()
 	destination_names = list()
 
-/datum/lore/organization/tsc/antares/New()
+datum/lore/organization/tsc/antares/New()
 	..()
 	var/i = 20 //give us twenty random names, antares has snowflake rng-ids
 	var/list/numbers = list(
@@ -573,7 +573,7 @@
 		ship_names.Add("[pick(numbers)] [pick(numbers)] [pick(numbers)] [pick(numbers)]")
 		i--
 
-/datum/lore/organization/tsc/ftu
+datum/lore/organization/tsc/ftu
 	name = "Free Trade Union"
 	short_name = "Trade Union "
 	acronym = "FTU"
@@ -609,7 +609,7 @@
 	destination_names = list("a Free Trade Union office", "FTU HQ", "an FTU freeport")
 
 //has to be disabled entirely or else the system will runtime any time MBT comes up
-/datum/lore/organization/tsc/mbt
+datum/lore/organization/tsc/mbt
 	name = "Major Bill's Transportation"
 	short_name = "Major Bill's "
 	acronym = "MBT"
@@ -643,7 +643,7 @@
 		"a Major Bill's distribution center",
 		"a Major Bill's supply depot" )
 
-/datum/lore/organization/tsc/grayson
+datum/lore/organization/tsc/grayson
 	name = "Grayson Manufactories Ltd."
 	short_name = "Grayson "
 	acronym = "GM"
@@ -706,7 +706,7 @@
 			"one of our mining installations"
 			)
 
-/datum/lore/organization/tsc/aether
+datum/lore/organization/tsc/aether
 	name = "Aether Atmospherics & Recycling"
 	short_name = "Aether "
 	acronym = "AAR"
@@ -759,7 +759,7 @@
 			"a liquid extraction plant"
 			)
 
-/datum/lore/organization/tsc/focalpoint
+datum/lore/organization/tsc/focalpoint
 	name = "Focal Point Energistics"
 	short_name = "Focal "
 	acronym = "FPE"
@@ -822,7 +822,7 @@
 			"Focal Point HQ"
 			)
 
-/datum/lore/organization/tsc/starlanes
+datum/lore/organization/tsc/starlanes
 	name = "StarFlight Inc."
 	short_name = "StarFlight "
 	acronym = "SFI"
@@ -884,7 +884,7 @@
 			"an arctic retreat"
 			)
 
-/datum/lore/organization/tsc/oculum
+datum/lore/organization/tsc/oculum
 	name = "Oculum Broadcasting Network"
 	short_name = "Oculus "
 	acronym = "OBN"
@@ -903,7 +903,7 @@
 			"Oculus HQ"
 			)
 
-/datum/lore/organization/tsc/centauriprovisions
+datum/lore/organization/tsc/centauriprovisions
 	name = "Centauri Provisions"
 	short_name = "Centauri "
 	acronym = "ACP"
@@ -923,7 +923,7 @@
 			"a Centauri Provisions depot",
 			"a Centauri Provisions warehouse"
 			)
-/datum/lore/organization/tsc/einstein
+datum/lore/organization/tsc/einstein
 	name = "Einstein Engines"
 	short_name = "Einstein "
 	acronym = "EEN"
@@ -940,7 +940,7 @@
 	destination_names = list(
 			"Einstein HQ"
 			)
-/datum/lore/organization/tsc/wulf
+datum/lore/organization/tsc/wulf
 	name = "Wulf Aeronautics"
 	short_name = "Wulf Aero "
 	acronym = "WUFA"
@@ -961,7 +961,7 @@
 			"a Wulf Aeronautics Shipyard"
 			)
 
-/datum/lore/organization/tsc/gilthari
+datum/lore/organization/tsc/gilthari
 	name = "Gilthari Exports"
 	short_name = "Gilthari "
 	acronym = "GEX"
@@ -1039,7 +1039,7 @@
 			"a GE-owned luxury resort"
 			)
 
-/datum/lore/organization/tsc/coyotecorp
+datum/lore/organization/tsc/coyotecorp
 	name = "Coyote Salvage Corp."
 	short_name = "Coyote "
 	acronym = "CSC"
@@ -1112,7 +1112,7 @@
 			"a nearby system"
 			)
 
-/datum/lore/organization/tsc/chimera
+datum/lore/organization/tsc/chimera
 	name = "Chimera Genetics Corp."
 	short_name = "Chimera "
 	acronym = "CGC"
@@ -1178,7 +1178,7 @@
 			"a Chimera research lab"
 			)
 
-/datum/lore/organization/tsc/independent
+datum/lore/organization/tsc/independent
 	name = "Independent Pilots Association"
 	short_name = "" //using the same whitespace hack as JSDF
 	acronym = "IPA"
@@ -1205,7 +1205,7 @@
 // Other
 
 //SPACE LAW
-/datum/lore/organization/other/sysdef
+datum/lore/organization/other/sysdef
 	name = "System Defense Force"
 	short_name = "" //whitespace hack again
 	acronym = "SDF"
@@ -1297,7 +1297,7 @@
 			)
 
 //basically just a dummy/placeholder 'org' for smuggler events
-/datum/lore/organization/other/smugglers
+datum/lore/organization/other/smugglers
 	name = "Smugglers"
 	short_name = "" //whitespace hack again
 	acronym = "ISC"
@@ -1476,7 +1476,7 @@
 			)
 	*/
 
-/datum/lore/organization/other/pirates
+datum/lore/organization/other/pirates
 	name = "Pirates"
 	short_name = "" //whitespace hack again
 	acronym = "IPG"
@@ -1653,7 +1653,7 @@
 			)
 	*/
 
-/datum/lore/organization/other/uekatish
+datum/lore/organization/other/uekatish
 	name = "Ue-Katish Pirates"
 	short_name = ""
 	acronym = "UEK"
@@ -1693,7 +1693,7 @@
 			"Keq'keax' Blade"
 			)
 
-/datum/lore/organization/other/marauders
+datum/lore/organization/other/marauders
 	name = "Vox Marauders"
 	short_name = "" //whitespace hack again
 	acronym = "VOX"
@@ -1721,7 +1721,7 @@
 			)
 	*/
 
-/datum/lore/organization/other/marauders/New()
+datum/lore/organization/other/marauders/New()
 	..()
 	var/i = 20 //give us twenty random names, marauders get tactical designations from SDF
 	var/list/letters = list(
@@ -1770,7 +1770,7 @@
 
 // Governments
 
-/datum/lore/organization/gov/theorionconfederation
+datum/lore/organization/gov/theorionconfederation
 	name = "Orion Confederation"
 	short_name = "OriCon "
 	acronym = "TOC"
@@ -1868,7 +1868,7 @@
 			)
 			// autogen will add a lot of other places as well.
 
-/datum/lore/organization/gov/teshari
+datum/lore/organization/gov/teshari
 	name = "Teshari Expeditionary Fleet"
 	short_name = "Teshari Expeditionary "
 	acronym = "TEF"
@@ -1922,7 +1922,7 @@
 // Military
 // Used for Para-Military groups right now! Pair of placeholder-ish PMCs.
 
-/datum/lore/organization/mil/jsdf
+datum/lore/organization/mil/jsdf
 	name = "Joint System Defense Force"
 	short_name = "" //Doesn't cause whitespace any more, with a little sneaky low-effort workaround
 	acronym = "JSDF"
@@ -2014,7 +2014,7 @@
 			"a classified location"
 			)
 
-/datum/lore/organization/mil/pcrc
+datum/lore/organization/mil/pcrc
 	name = "Proxima Centauri Risk Control"
 	short_name = "Proxima Centauri "
 	acronym = "PCRC"
@@ -2074,7 +2074,7 @@
 			)
 
 //I'm covered in beeeeeeees!
-/datum/lore/organization/mil/hive
+datum/lore/organization/mil/hive
 	name = "HIVE Security"
 	short_name = "HIVE "
 	acronym = "HVS"
@@ -2162,7 +2162,7 @@
 			//some basics, padded with autogen
 
 //intentionally edgy a.f.
-/datum/lore/organization/mil/blackstar
+datum/lore/organization/mil/blackstar
 	name = "Blackstar Legion"
 	short_name = "Blackstar "
 	acronym = "BSL"
@@ -2236,7 +2236,7 @@
 			"a contract location"
 			)
 
-/datum/lore/organization/other/pmd
+datum/lore/organization/other/pmd
 	name = "Paracausal Monitoring Division"
 	short_name = ""
 	acronym = "PMD"
@@ -2304,7 +2304,7 @@
 			)
 
 //Cheeses
-/datum/lore/organization/gov/naramadi_ascendancy
+datum/lore/organization/gov/naramadi_ascendancy
     name = "The Naramadi Ascendancy"
     short_name = "Naramadi Ascendancy "
     acronym = "NA"

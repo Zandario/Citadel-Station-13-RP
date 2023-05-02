@@ -1,4 +1,4 @@
-/obj/item/binoculars
+obj/item/binoculars
 	name = "binoculars"
 	desc = "A pair of binoculars."
 	icon = 'icons/obj/device.dmi'
@@ -12,7 +12,7 @@
 	//matter = list("metal" = 50, MAT_GLASS = 50)
 
 
-/obj/item/binoculars/attack_self(mob/user)
+obj/item/binoculars/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

@@ -5,11 +5,11 @@
 // A 16x16 grid of the map with a list of turfs that can be seen, are visible and are dimmed.
 // Allows the Eye to stream these chunks and know what it can and cannot see.
 
-/datum/obfuscation
+datum/obfuscation
 	var/icon = 'icons/effects/cameravis.dmi'
 	var/icon_state = "black"
 
-/datum/chunk
+datum/chunk
 	var/list/obscuredTurfs = list()
 	var/list/visibleTurfs = list()
 	var/list/obscured = list()
@@ -25,7 +25,7 @@
 
 // Add an eye to the chunk, then update if changed.
 
-/datum/chunk/proc/add(mob/observer/eye/eye)
+datum/chunk/proc/add(mob/observer/eye/eye)
 	if(!eye.owner)
 		return
 	eye.visibleChunks += src
@@ -38,7 +38,7 @@
 
 // Remove an eye from the chunk, then update if changed.
 
-/datum/chunk/proc/remove(mob/observer/eye/eye)
+datum/chunk/proc/remove(mob/observer/eye/eye)
 	if(!eye.owner)
 		return
 	eye.visibleChunks -= src
@@ -50,7 +50,7 @@
 
 // Called when a chunk has changed. I.E: A wall was deleted.
 
-/datum/chunk/proc/visibilityChanged(turf/loc)
+datum/chunk/proc/visibilityChanged(turf/loc)
 	if(!visibleTurfs[loc])
 		return
 	hasChanged()
@@ -58,7 +58,7 @@
 // Updates the chunk, makes sure that it doesn't update too much. If the chunk isn't being watched it will
 // instead be flagged to update the next time an AI Eye moves near it.
 
-/datum/chunk/proc/hasChanged(var/update_now = 0)
+datum/chunk/proc/hasChanged(var/update_now = 0)
 	if(visible || update_now)
 		if(!updating)
 			updating = 1
@@ -70,7 +70,7 @@
 
 // The actual updating.
 
-/datum/chunk/proc/update()
+datum/chunk/proc/update()
 
 	set background = 1
 
@@ -115,11 +115,11 @@
 				if(m.owner.client)
 					m.owner.client.images += t.obfuscations[obfuscation.type]
 
-/datum/chunk/proc/acquireVisibleTurfs(var/list/visible)
+datum/chunk/proc/acquireVisibleTurfs(var/list/visible)
 
 // Create a new camera chunk, since the chunks are made as they are needed.
 
-/datum/chunk/New(loc, x, y, z)
+datum/chunk/New(loc, x, y, z)
 
 	// 0xf = 15
 	x &= ~0xf

@@ -27,7 +27,7 @@ it's entirety. You can then take the disk to any R&D console and upload it's dat
 won't update every console in existence) but it's more of a hassle to do. Also, the disks can be stolen.
 */
 
-/obj/machinery/computer/rdconsole
+obj/machinery/computer/rdconsole
 	name = "R&D control console"
 	desc = "Science, in a computer! Experiment results not guaranteed."
 	icon_keyboard = "rd_key"
@@ -50,7 +50,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/protofilter //String to filter protolathe designs by
 	var/circuitfilter //String to filter circuit designs by
 
-/obj/machinery/computer/rdconsole/proc/CallMaterialName(var/ID)
+obj/machinery/computer/rdconsole/proc/CallMaterialName(var/ID)
 	var/return_name = ID
 	switch(return_name)
 		if("metal")
@@ -69,13 +69,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			return_name = "Diamond"
 	return return_name
 
-/obj/machinery/computer/rdconsole/proc/CallReagentName(var/ID)
+obj/machinery/computer/rdconsole/proc/CallReagentName(var/ID)
 	var/datum/reagent/R = SSchemistry.reagent_lookup["[ID]"]
 	if(!R)
 		return ID
 	return R.name
 
-/obj/machinery/computer/rdconsole/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
+obj/machinery/computer/rdconsole/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
 	for(var/obj/machinery/r_n_d/D in range(5, src)) //Originally 3, buffed to 5 - Werewolf
 		if(D.linked_console != null || D.panel_open)
 			continue
@@ -93,7 +93,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				D.linked_console = src
 	return
 
-/obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the CentCom server so wild griffins can't fuck up R&D's work
+obj/machinery/computer/rdconsole/proc/griefProtection() //Have it automatically push research to the CentCom server so wild griffins can't fuck up R&D's work
 	for(var/obj/machinery/r_n_d/server/centcom/C in GLOB.machines)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
@@ -101,7 +101,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
-/obj/machinery/computer/rdconsole/Initialize(mapload)
+obj/machinery/computer/rdconsole/Initialize(mapload)
 	. = ..()
 	files = new /datum/research(src) //Setup the research data holder.
 	if(!id)
@@ -109,11 +109,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			S.update_connections()
 			break
 
-/obj/machinery/computer/rdconsole/Initialize(mapload)
+obj/machinery/computer/rdconsole/Initialize(mapload)
 	SyncRDevices()
 	. = ..()
 
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
+obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
 		if(t_disk || d_disk)
@@ -135,14 +135,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		//The construction/deconstruction of the console code.
 		return ..()
 
-/obj/machinery/computer/rdconsole/emp_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/rdconsole/emp_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, "<span class='notice'>You you disable the security protocols.</span>")
 		return 1
 
-/obj/machinery/computer/rdconsole/proc/GetResearchLevelsInfo()
+obj/machinery/computer/rdconsole/proc/GetResearchLevelsInfo()
 	var/list/dat = list()
 	dat += "<UL>"
 	for(var/datum/tech/T in files.known_tech)
@@ -156,7 +156,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		dat += "</UL>"
 	return dat.Join()
 
-/obj/machinery/computer/rdconsole/proc/GetResearchListInfo()
+obj/machinery/computer/rdconsole/proc/GetResearchListInfo()
 	var/list/dat = list()
 	dat += "<UL>"
 	for(var/datum/design/D in files.known_designs)
@@ -165,16 +165,16 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	dat += "</UL>"
 	return dat.Join()
 
-/obj/machinery/computer/rdconsole/attack_hand(mob/user, list/params)
+obj/machinery/computer/rdconsole/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/rdconsole/robotics
+obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"
 	id = 2
 	req_access = list(ACCESS_SCIENCE_ROBOTICS)
 
-/obj/machinery/computer/rdconsole/core
+obj/machinery/computer/rdconsole/core
 	name = "Core R&D Console"
 	id = 1

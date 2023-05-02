@@ -3,7 +3,7 @@
  * with an /obj/effect/overmap/visitable/ship present elsewhere on that z level, or else placed in a shuttle area with an /obj/effect/overmap/visitable/ship
  * somewhere on that shuttle. Subtypes of these can be then used to perform ship overmap movement functions.
  */
-/obj/machinery/computer/ship
+obj/machinery/computer/ship
 	var/obj/effect/overmap/visitable/ship/linked
 	/// Weakrefs to mobs in direct-view mode.
 	var/list/viewers
@@ -13,14 +13,14 @@
 	var/hacked = 0
 
 /// A late init operation called in SSshuttle, used to attach the thing to the right ship.
-/obj/machinery/computer/ship/proc/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
+obj/machinery/computer/ship/proc/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
 	if(!istype(sector))
 		return
 	if(sector.check_ownership(src))
 		linked = sector
 		return TRUE
 
-/obj/machinery/computer/ship/proc/sync_linked(var/user = null)
+obj/machinery/computer/ship/proc/sync_linked(var/user = null)
 	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(z)
 	if(!sector)
 		return
@@ -29,19 +29,19 @@
 		to_chat(user, SPAN_NOTICE("[src] reconnected to [linked]"))
 		user << browse(null, "window=[src]") // Close reconnect dialog
 
-/obj/machinery/computer/ship/proc/attempt_hook_up_recursive(obj/effect/overmap/visitable/ship/sector)
+obj/machinery/computer/ship/proc/attempt_hook_up_recursive(obj/effect/overmap/visitable/ship/sector)
 	if(attempt_hook_up(sector))
 		return sector
 	for(var/obj/effect/overmap/visitable/ship/candidate in sector)
 		if((. = .(candidate)))
 			return
 
-/obj/machinery/computer/ship/proc/display_reconnect_dialog(var/mob/user, var/flavor)
+obj/machinery/computer/ship/proc/display_reconnect_dialog(var/mob/user, var/flavor)
 	var/datum/browser/popup = new (user, "[src]", "[src]")
 	popup.set_content("<center><strong><font color = 'red'>Error</strong></font><br>Unable to connect to [flavor].<br><a href='?src=\ref[src];sync=1'>Reconnect</a></center>")
 	popup.open()
 
-/obj/machinery/computer/ship/Topic(href, href_list)
+obj/machinery/computer/ship/Topic(href, href_list)
 	if(..())
 		return TRUE
 	if(href_list["sync"])
@@ -54,7 +54,7 @@
 // 	ui_interact(user)
 // 	return TRUE
 
-/obj/machinery/computer/ship/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/ship/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	switch(action)
@@ -69,7 +69,7 @@
 
 // Management of mob view displacement. look to shift view to the ship on the overmap; unlook to shift back.
 
-/obj/machinery/computer/ship/proc/look(mob/user)
+obj/machinery/computer/ship/proc/look(mob/user)
 	var/WR = WEAKREF(user)
 	if(WR in viewers)
 		return
@@ -86,7 +86,7 @@
 	var/list/view_size = decode_view_size(world.view)
 	user.client?.set_temporary_view(view_size[1] + extra_view, view_size[2] + extra_view)
 
-/obj/machinery/computer/ship/proc/unlook(mob/user, vis_update)
+obj/machinery/computer/ship/proc/unlook(mob/user, vis_update)
 	user.reset_perspective()
 	user.client?.reset_temporary_view()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED, /obj/machinery/computer/ship/proc/unlook)
@@ -98,10 +98,10 @@
 	// TODO GLOB.stat_set_event.unregister(user, src, /obj/machinery/computer/ship/proc/unlook)
 	LAZYREMOVE(viewers, WEAKREF(user))
 
-/obj/machinery/computer/ship/proc/viewing_overmap(mob/user)
+obj/machinery/computer/ship/proc/viewing_overmap(mob/user)
 	return (WEAKREF(user) in viewers)
 
-/obj/machinery/computer/ship/ui_status(mob/user)
+obj/machinery/computer/ship/ui_status(mob/user)
 	. = ..()
 	if(. > UI_DISABLED)
 		if(viewing_overmap(user))
@@ -109,19 +109,19 @@
 		return
 	unlook(user)
 
-/obj/machinery/computer/ship/ui_close(mob/user, datum/tgui_module/module)
+obj/machinery/computer/ship/ui_close(mob/user, datum/tgui_module/module)
 	. = ..()
 	user.unset_machine()
 	unlook(user)
 
-/obj/machinery/computer/ship/check_eye(mob/user, vis_update)
+obj/machinery/computer/ship/check_eye(mob/user, vis_update)
 	if(!get_dist(user, src) > 1 || user.blinded || !linked)
 		unlook(user, vis_update)
 		return -1
 	else
 		return 0
 
-/obj/machinery/computer/ship/sensors/Destroy()
+obj/machinery/computer/ship/sensors/Destroy()
 	sensors = null
 	if(LAZYLEN(viewers))
 		for(var/datum/weakref/W in viewers)
@@ -130,7 +130,7 @@
 				unlook(M)
 	. = ..()
 
-/obj/machinery/computer/ship/emag_act(remaining_charges, mob/user)
+obj/machinery/computer/ship/emag_act(remaining_charges, mob/user)
 	if (!hacked)
 		req_access = list()
 		req_one_access = list()

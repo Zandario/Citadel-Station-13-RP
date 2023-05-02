@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(all_turbines)
 
-/obj/machinery/power/generator
+obj/machinery/power/generator
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
 	icon_state = "teg-unassembled"
@@ -26,17 +26,17 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	var/lastgenlev = 0
 	var/datum/looping_sound/generator/soundloop
 
-/obj/machinery/power/generator/Initialize(mapload)
+obj/machinery/power/generator/Initialize(mapload)
 	soundloop = new(list(src), FALSE)
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
 	GLOB.all_turbines += src
 	..() //Not returned, because...
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/power/generator/LateInitialize()
+obj/machinery/power/generator/LateInitialize()
 	reconnect()
 
-/obj/machinery/power/generator/Destroy()
+obj/machinery/power/generator/Destroy()
 	QDEL_NULL(soundloop)
 	GLOB.all_turbines -= src
 	return ..()
@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 //so a circulator to the NORTH of the generator connects first to the EAST, then to the WEST
 //and a circulator to the WEST of the generator connects first to the NORTH, then to the SOUTH
 //note that the circulator's outlet dir is it's always facing dir, and it's inlet is always the reverse
-/obj/machinery/power/generator/proc/reconnect()
+obj/machinery/power/generator/proc/reconnect()
 	circ1 = null
 	circ2 = null
 	if(src.loc && anchored)
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 				circ1 = null
 				circ2 = null
 
-/obj/machinery/power/generator/proc/updateicon()
+obj/machinery/power/generator/proc/updateicon()
 	icon_state = anchored ? "teg-assembled" : "teg-unassembled"
 	cut_overlays()
 	if (circ1)
@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 					circ2.temperature_overlay = "circ-[extreme]cold"
 		return 1
 
-/obj/machinery/power/generator/process(delta_time)
+obj/machinery/power/generator/process(delta_time)
 	if(!circ1 || !circ2 || !anchored || machine_stat & (BROKEN|NOPOWER))
 		stored_energy = 0
 		return
@@ -165,10 +165,10 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		updateicon()
 	add_avail(effective_gen * 0.001)
 
-/obj/machinery/power/generator/attack_ai(mob/user)
+obj/machinery/power/generator/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		playsound(src, W.tool_sound, 75, 1)
 		anchored = !anchored
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	else
 		..()
 
-/obj/machinery/power/generator/attack_hand(mob/user, list/params)
+obj/machinery/power/generator/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER) || !anchored)
 		return
@@ -195,13 +195,13 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		reconnect()
 	ui_interact(user)
 
-/obj/machinery/power/generator/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/power/generator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TEGenerator", name)
 		ui.open()
 
-/obj/machinery/power/generator/ui_data(mob/user)
+obj/machinery/power/generator/ui_data(mob/user)
 	// this is the data which will be sent to the ui
 	var/vertical = 0
 	if (dir == NORTH || dir == SOUTH)
@@ -236,7 +236,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 
 	return data
 /*
-/obj/machinery/power/generator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/power/generator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	// this is the data which will be sent to the ui
 	var/vertical = 0
 	if (dir == NORTH || dir == SOUTH)
@@ -287,12 +287,12 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 */
-/obj/machinery/power/generator/power_change()
+obj/machinery/power/generator/power_change()
 	..()
 	updateicon()
 
 
-/obj/machinery/power/generator/verb/rotate_clockwise()
+obj/machinery/power/generator/verb/rotate_clockwise()
 	set category = "Object"
 	set name = "Rotate Generator Clockwise"
 	set src in view(1)
@@ -302,7 +302,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 
 	src.setDir(turn(src.dir, 270))
 
-/obj/machinery/power/generator/verb/rotate_counterclockwise()
+obj/machinery/power/generator/verb/rotate_counterclockwise()
 	set category = "Object"
 	set name = "Rotate Generator Counterclockwise"
 	set src in view(1)
@@ -312,7 +312,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 
 	src.setDir(turn(src.dir, 90))
 
-/obj/machinery/power/generator/power_spike()
+obj/machinery/power/generator/power_spike()
 //	if(!effective_gen >= max_power / 2 && powernet) // Don't make a spike if we're not making a whole lot of power.
 //		return
 

@@ -1,4 +1,4 @@
-/datum/role/job/station/mime
+datum/role/job/station/mime
 	id = JOB_ID_MIME
 	title = "Mime"
 	flag = MIME
@@ -16,16 +16,16 @@
 	outfit_type = /datum/outfit/job/station/mime
 	pto_type = PTO_CIVILIAN
 
-/datum/prototype/alt_title/mime/poseur
+datum/prototype/alt_title/mime/poseur
 	title = "Poseur"
 
-/datum/role/job/station/mime/get_access()
+datum/role/job/station/mime/get_access()
 	if(config_legacy.assistant_maint)
 		return list(ACCESS_ENGINEERING_MAINT, ACCESS_GENERAL_ENTERTAINMENT, ACCESS_GENERAL_TOMFOOLERY, ACCESS_GENERAL_MIME)
 	else
 		return list(ACCESS_GENERAL_ENTERTAINMENT, ACCESS_GENERAL_TOMFOOLERY, ACCESS_GENERAL_MIME)
 
-/datum/outfit/job/station/mime
+datum/outfit/job/station/mime
 	name = OUTFIT_JOB_NAME("Mime")
 	shoes = /obj/item/clothing/shoes/mime
 	uniform = /obj/item/clothing/under/mime

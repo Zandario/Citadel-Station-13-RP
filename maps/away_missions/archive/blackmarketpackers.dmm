@@ -1,2100 +1,2100 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
-/area)
+turf/space,
+area)
 "ab" = (
-/turf/simulated/mineral/triumph,
-/area/awaymission)
+turf/simulated/mineral/triumph,
+area/awaymission)
 "ac" = (
-/turf/simulated/floor/airless,
-/area/awaymission)
+turf/simulated/floor/airless,
+area/awaymission)
 "ad" = (
-/obj/item/surgical/circular_saw,
-/obj/structure/lattice,
-/turf/space,
-/area)
+obj/item/surgical/circular_saw,
+obj/structure/lattice,
+turf/space,
+area)
 "ae" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "ag" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 1
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "ah" = (
-/turf/simulated/shuttle/wall,
-/area/awaymission/BMPship3)
+turf/simulated/shuttle/wall,
+area/awaymission/BMPship3)
 "ai" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/grille,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/structure/grille,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "aj" = (
-/obj/machinery/porta_turret{
+obj/machinery/porta_turret{
 	dir = 8;
 	emagged = 1;
 	installation = /obj/item/gun/energy/lasercannon
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "ak" = (
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "am" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "an" = (
-/turf/simulated/floor/plating,
-/turf/simulated/shuttle/wall,
-/area/awaymission/BMPship3)
+turf/simulated/floor/plating,
+turf/simulated/shuttle/wall,
+area/awaymission/BMPship3)
 "ao" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/grille,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/structure/grille,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "ap" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "aq" = (
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "ar" = (
-/obj/structure/lattice,
-/turf/space,
-/area)
+obj/structure/lattice,
+turf/space,
+area)
 "as" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/grille,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/structure/grille,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "at" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/machinery/light/small,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "au" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 8
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "av" = (
-/turf/simulated/shuttle/wall,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/wall,
+area/awaymission/BMPship1)
 "aw" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 4
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "ax" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 1
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "az" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 8
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "aA" = (
-/obj/machinery/door/airlock/silver{
+obj/machinery/door/airlock/silver{
 	locked = 1
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "aF" = (
-/obj/item/roller,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/item/roller,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aG" = (
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aH" = (
-/obj/item/handcuffs,
-/obj/item/handcuffs,
-/obj/structure/closet/crate,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/item/handcuffs,
+obj/item/handcuffs,
+obj/structure/closet/crate,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aI" = (
-/obj/item/surgical/scalpel,
-/obj/structure/closet/crate,
-/obj/item/tank/anesthetic,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/item/surgical/scalpel,
+obj/structure/closet/crate,
+obj/item/tank/anesthetic,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aJ" = (
-/obj/item/bodybag,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/item/bodybag,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aK" = (
-/obj/item/storage/box/syringes,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/item/storage/box/syringes,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aL" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aM" = (
-/obj/machinery/optable,
-/obj/structure/cable{
+obj/machinery/optable,
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aN" = (
-/obj/machinery/computer/operating,
-/obj/structure/cable{
+obj/machinery/computer/operating,
+obj/structure/cable{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aP" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 9
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "aQ" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/organ/internal/appendix,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/turf/simulated/floor/plating{
+obj/structure/closet/crate/freezer,
+obj/item/organ/internal/appendix,
+obj/item/reagent_containers/food/snacks/meat,
+obj/item/reagent_containers/food/snacks/meat,
+turf/simulated/floor/plating{
 	dir = 1
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "aR" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/organ/internal/brain,
-/obj/item/organ/internal/appendix,
-/obj/item/reagent_containers/food/snacks/meat,
-/turf/simulated/floor/plating{
+obj/structure/closet/crate/freezer,
+obj/item/organ/internal/brain,
+obj/item/organ/internal/appendix,
+obj/item/reagent_containers/food/snacks/meat,
+turf/simulated/floor/plating{
 	dir = 1
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "aS" = (
-/obj/structure/table/standard,
-/obj/item/packageWrap,
-/turf/simulated/floor/plating{
+obj/structure/table/standard,
+obj/item/packageWrap,
+turf/simulated/floor/plating{
 	dir = 1
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "aT" = (
-/obj/structure/table/standard,
-/obj/item/storage/box,
-/obj/machinery/light/small{
+obj/structure/table/standard,
+obj/item/storage/box,
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 1
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "aU" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 1
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "aV" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 5
 	},
-/turf/simulated/shuttle/wall,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/wall,
+area/awaymission/BMPship1)
 "aW" = (
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "aY" = (
-/obj/effect/gibspawner/generic,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/effect/gibspawner/generic,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "aZ" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "bb" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 8
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "bc" = (
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bd" = (
-/obj/item/storage/box,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+obj/item/storage/box,
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "be" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 9
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bf" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bg" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 5
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bh" = (
-/obj/item/hand_labeler,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+obj/item/hand_labeler,
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bi" = (
-/obj/structure/largecrate,
-/turf/simulated/floor/plating{
+obj/structure/largecrate,
+turf/simulated/floor/plating{
 	dir = 4
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "bj" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/grille,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/structure/grille,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "bk" = (
-/obj/structure/table/woodentable,
-/obj/item/spacecash/c500,
-/obj/item/spacecash/c100,
-/turf/simulated/floor/wood,
-/area/awaymission/BMPship3)
+obj/structure/table/woodentable,
+obj/item/spacecash/c500,
+obj/item/spacecash/c100,
+turf/simulated/floor/wood,
+area/awaymission/BMPship3)
 "bl" = (
-/obj/item/bedsheet/yellow,
-/turf/simulated/floor/wood,
-/area/awaymission/BMPship3)
+obj/item/bedsheet/yellow,
+turf/simulated/floor/wood,
+area/awaymission/BMPship3)
 "bn" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 9
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "bo" = (
-/obj/structure/table/rack,
-/turf/simulated/floor/plating{
+obj/structure/table/rack,
+turf/simulated/floor/plating{
 	dir = 1
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "bp" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 1
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "bq" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 5
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "br" = (
-/obj/structure/sign/vacuum,
-/turf/simulated/shuttle/wall{
+obj/structure/sign/vacuum,
+turf/simulated/shuttle/wall{
 	dir = 1
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "bu" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/item/clothing/glasses/regular/hipster,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/item/clothing/glasses/regular/hipster,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "bv" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "bw" = (
-/obj/machinery/door/unpowered/shuttle,
-/obj/structure/cable{
+obj/machinery/door/unpowered/shuttle,
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated,
-/area/awaymission/BMPship1)
+turf/simulated,
+area/awaymission/BMPship1)
 "bx" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 8
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "by" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bz" = (
-/obj/structure/closet/crate/freezer,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+obj/structure/closet/crate/freezer,
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bA" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bB" = (
-/obj/machinery/gateway/centeraway{
+obj/machinery/gateway/centeraway{
 	calibrated = 0
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bC" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bD" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bE" = (
-/turf/simulated/floor/wood,
-/area/awaymission/BMPship3)
+turf/simulated/floor/wood,
+area/awaymission/BMPship3)
 "bF" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/awaymission/BMPship3)
+turf/simulated/floor/wood,
+area/awaymission/BMPship3)
 "bG" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 8
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "bH" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+obj/machinery/door/airlock/external,
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "bJ" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bK" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bL" = (
-/obj/machinery/gateway,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+obj/machinery/gateway,
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bM" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bN" = (
-/obj/structure/closet/crate,
-/obj/item/spacecash/c1000,
-/obj/item/spacecash/c50,
-/turf/simulated/floor/plating{
+obj/structure/closet/crate,
+obj/item/spacecash/c1000,
+obj/item/spacecash/c50,
+turf/simulated/floor/plating{
 	dir = 4
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "bO" = (
-/turf/simulated/floor,
-/area/awaymission/BMPship3)
+turf/simulated/floor,
+area/awaymission/BMPship3)
 "bP" = (
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship3)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship3)
 "bQ" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship3)
+obj/machinery/light/small,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship3)
 "bR" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 6
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "bU" = (
-/obj/machinery/light,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/machinery/light,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "bV" = (
-/obj/machinery/button/remote/blast_door{
+obj/machinery/button/remote/blast_door{
 	id = "packerMed";
 	pixel_y = -24
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "bW" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/machinery/sleeper,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "bX" = (
-/obj/machinery/sleep_console,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+obj/machinery/sleep_console,
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "bY" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "bZ" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/hand_labeler,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+obj/item/hand_labeler,
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "ca" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "cb" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/storage/box,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+obj/item/storage/box,
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "cc" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 4
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "cd" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 6
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "cf" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor{
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor{
 	dir = 1
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "ch" = (
-/obj/machinery/door/airlock/silver,
-/turf/simulated/floor{
+obj/machinery/door/airlock/silver,
+turf/simulated/floor{
 	dir = 1
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "ci" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 6
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "cj" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 4
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "ck" = (
-/turf/simulated/shuttle/wall,
-/area/awaymission/BMPship2)
+turf/simulated/shuttle/wall,
+area/awaymission/BMPship2)
 "cm" = (
-/obj/machinery/door/blast/shutters{
+obj/machinery/door/blast/shutters{
 	id = "packerMed"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "cn" = (
-/obj/structure/largecrate,
-/turf/simulated/floor/plating{
+obj/structure/largecrate,
+turf/simulated/floor/plating{
 	dir = 10
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "co" = (
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "cp" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/machinery/light/small,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "cq" = (
-/obj/structure/kitchenspike,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/kitchenspike,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "cr" = (
-/obj/structure/closet/crate,
-/obj/item/analyzer,
-/obj/item/spacecash/c10,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/closet/crate,
+obj/item/analyzer,
+obj/item/spacecash/c10,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "cs" = (
-/obj/structure/closet/crate,
-/obj/item/spacecash/c1000,
-/obj/item/spacecash/c200,
-/obj/item/spacecash/c500,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/closet/crate,
+obj/item/spacecash/c1000,
+obj/item/spacecash/c200,
+obj/item/spacecash/c500,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "ct" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/hugemushroomslice,
-/obj/item/organ/internal/appendix,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/closet/crate/freezer,
+obj/item/reagent_containers/food/snacks/meat,
+obj/item/reagent_containers/food/snacks/hugemushroomslice,
+obj/item/organ/internal/appendix,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "cv" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "cw" = (
-/turf/simulated/floor/plating{
+turf/simulated/floor/plating{
 	dir = 6
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "cy" = (
-/turf/simulated/floor,
-/turf/simulated/shuttle/wall,
-/area/awaymission/BMPship3)
+turf/simulated/floor,
+turf/simulated/shuttle/wall,
+area/awaymission/BMPship3)
 "cA" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 1;
 	locked = 0;
 	req_access = ""
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship3)
+turf/simulated/floor,
+area/awaymission/BMPship3)
 "cC" = (
-/obj/structure/table/standard,
-/obj/item/tool/screwdriver,
-/obj/item/tool/screwdriver,
-/obj/item/paper{
+obj/structure/table/standard,
+obj/item/tool/screwdriver,
+obj/item/tool/screwdriver,
+obj/item/paper{
 	info = "The next person who takes one of my screwdrivers gets stabbed with one. They are MINE. - Love, Madsen";
 	name = "scribbled note"
 	},
-/obj/item/tool/screwdriver,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/item/tool/screwdriver,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cD" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cE" = (
-/obj/machinery/seed_extractor,
-/turf/simulated/floor{
+obj/machinery/seed_extractor,
+turf/simulated/floor{
 	dir = 8
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "cF" = (
-/obj/structure/sink,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/structure/sink,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cG" = (
-/obj/machinery/vending/hydroseeds{
+obj/machinery/vending/hydroseeds{
 	slogan_delay = 700
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cH" = (
-/obj/machinery/vending/hydronutrients,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/machinery/vending/hydronutrients,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cI" = (
-/obj/machinery/seed_extractor,
-/turf/simulated/floor{
+obj/machinery/seed_extractor,
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "cJ" = (
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cK" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 1
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "cL" = (
-/obj/structure/table/standard,
-/obj/item/material/knife/butch,
-/obj/item/reagent_containers/food/snacks/meat,
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+obj/structure/table/standard,
+obj/item/material/knife/butch,
+obj/item/reagent_containers/food/snacks/meat,
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "cM" = (
-/obj/structure/table/standard,
-/obj/item/storage/box/donkpockets,
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+obj/structure/table/standard,
+obj/item/storage/box/donkpockets,
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "cN" = (
-/obj/structure/table/standard,
-/obj/machinery/microwave,
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+obj/structure/table/standard,
+obj/machinery/microwave,
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "cO" = (
-/obj/machinery/processor,
-/obj/machinery/light{
+obj/machinery/processor,
+obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "cP" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/structure/table/standard,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cQ" = (
-/obj/structure/table/standard,
-/obj/item/material/knife,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/structure/table/standard,
+obj/item/material/knife,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cR" = (
-/obj/structure/table/standard,
-/obj/machinery/light/small{
+obj/structure/table/standard,
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cS" = (
-/obj/structure/table/standard,
-/obj/effect/debris/cleanable/cobweb2,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/structure/table/standard,
+obj/effect/debris/cleanable/cobweb2,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cV" = (
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "cX" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "cY" = (
-/obj/item/reagent_containers/food/snacks/hugemushroomslice,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/item/reagent_containers/food/snacks/hugemushroomslice,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "cZ" = (
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "dd" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "di" = (
-/obj/machinery/door/airlock/silver,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/machinery/door/airlock/silver,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dk" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dl" = (
-/obj/machinery/gibber,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/machinery/gibber,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dn" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "do" = (
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "dp" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 5
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "ds" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "dt" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship3)
+turf/simulated/floor,
+area/awaymission/BMPship3)
 "du" = (
-/obj/item/reagent_containers/food/snacks/hugemushroomslice,
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+obj/item/reagent_containers/food/snacks/hugemushroomslice,
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "dv" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor{
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor{
 	icon_state = "bar"
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "dw" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+obj/structure/window/reinforced,
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "dx" = (
-/obj/structure/window/reinforced,
-/obj/structure/cable{
+obj/structure/window/reinforced,
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "dy" = (
-/obj/machinery/door/window,
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+obj/machinery/door/window,
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "dz" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+obj/structure/window/reinforced,
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "dB" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dC" = (
-/obj/structure/closet/secure_closet/freezer/meat{
+obj/structure/closet/secure_closet/freezer/meat{
 	opened = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dD" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/closet/crate/freezer,
+obj/item/reagent_containers/food/snacks/meat,
+obj/item/reagent_containers/food/snacks/meat,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dE" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/obj/effect/debris/cleanable/blood/splatter,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/effect/debris/cleanable/blood/splatter,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dF" = (
-/obj/item/tool/crowbar,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/item/tool/crowbar,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dH" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 1;
 	environ = 0;
 	locked = 0;
 	req_access = ""
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "dJ" = (
-/obj/structure/table/standard,
-/obj/item/paper{
+obj/structure/table/standard,
+obj/item/paper{
 	info = "I'm no scientist, but judging from the design and components, it seems to be some kind of gateway. This thing is gonna be worth a lot of cash to the right man. The boys are excited, as they have every right to be, and I've let them crack into that case of beer we got. I normally wouldn't allow such a thing, but this is a time for celebration! It's not like a couple drinks will hurt anything.";
 	name = "Captain's log entry"
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "dK" = (
-/obj/structure/table/standard,
-/turf/simulated/floor{
+obj/structure/table/standard,
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "dN" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship3)
+turf/simulated/floor,
+area/awaymission/BMPship3)
 "dO" = (
-/obj/machinery/seed_extractor,
-/turf/simulated/floor{
+obj/machinery/seed_extractor,
+turf/simulated/floor{
 	dir = 10
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "dQ" = (
-/obj/machinery/seed_extractor,
-/obj/item/seeds/plumpmycelium,
-/turf/simulated/floor,
-/area/awaymission/BMPship2)
+obj/machinery/seed_extractor,
+obj/item/seeds/plumpmycelium,
+turf/simulated/floor,
+area/awaymission/BMPship2)
 "dR" = (
-/obj/machinery/seed_extractor,
-/turf/simulated/floor{
+obj/machinery/seed_extractor,
+turf/simulated/floor{
 	dir = 6
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "dT" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "dU" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "dV" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "dW" = (
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/structure/cable{
+obj/item/reagent_containers/food/snacks/meat,
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dX" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "dY" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "dZ" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "ea" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "eb" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "ec" = (
-/obj/item/multitool,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship1)
+obj/item/multitool,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship1)
 "ed" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship1)
+turf/simulated/floor/airless,
+area/awaymission/BMPship1)
 "ee" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
-/turf/space,
-/area/awaymission/BMPship1)
+turf/space,
+area/awaymission/BMPship1)
 "eg" = (
-/obj/structure/table/standard,
-/obj/machinery/recharger,
-/turf/simulated/floor{
+obj/structure/table/standard,
+obj/machinery/recharger,
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "ek" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "el" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "em" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "eo" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "ep" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "eq" = (
-/turf/simulated/wall/r_wall,
-/area/awaymission/BMPship2)
+turf/simulated/wall/r_wall,
+area/awaymission/BMPship2)
 "es" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "et" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "ew" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "ex" = (
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship1)
 "ey" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+obj/structure/grille,
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "ez" = (
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 9
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "eA" = (
-/obj/item/material/shard,
-/turf/simulated/floor{
+obj/item/material/shard,
+turf/simulated/floor{
 	dir = 5
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "eB" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship3)
+turf/simulated/floor,
+area/awaymission/BMPship3)
 "eC" = (
-/obj/machinery/door/airlock/silver,
-/obj/structure/cable{
+obj/machinery/door/airlock/silver,
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "eD" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "eE" = (
-/obj/machinery/shieldwallgen,
-/obj/structure/cable{
+obj/machinery/shieldwallgen,
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "eF" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "eG" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
+obj/machinery/power/apc{
 	dir = 1;
 	locked = 0;
 	req_access = ""
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "eH" = (
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "eI" = (
-/obj/machinery/conveyor{
+obj/machinery/conveyor{
 	dir = 4;
 	id = "meatConvey1"
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship2)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship2)
 "eJ" = (
-/obj/machinery/conveyor{
+obj/machinery/conveyor{
 	dir = 4;
 	id = "meatConvey1"
 	},
-/obj/structure/plasticflaps,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship2)
+obj/structure/plasticflaps,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship2)
 "eK" = (
-/obj/structure/disposalpipe/trunk{
+obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/obj/machinery/disposal/deliveryChute{
+obj/machinery/disposal/deliveryChute{
 	dir = 8
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship2)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship2)
 "eL" = (
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/wall/r_wall,
-/area/awaymission/BMPship2)
+turf/simulated/wall/r_wall,
+area/awaymission/BMPship2)
 "eM" = (
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "eN" = (
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "eO" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "eP" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "eQ" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "eR" = (
-/obj/structure/table/rack,
-/obj/item/storage/box/lights,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/table/rack,
+obj/item/storage/box/lights,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "eT" = (
-/obj/machinery/power/smes/magical{
+obj/machinery/power/smes/magical{
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit.";
 	name = "power storage unit"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "eU" = (
-/obj/machinery/power/terminal{
+obj/machinery/power/terminal{
 	dir = 8
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "eV" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "eW" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+obj/structure/grille,
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "eY" = (
-/obj/structure/bed/chair/office{
+obj/structure/bed/chair/office{
 	dir = 8
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "fb" = (
-/obj/effect/debris/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+obj/effect/debris/cleanable/dirt,
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "fc" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/effect/gibspawner/generic,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+obj/effect/debris/cleanable/dirt,
+obj/effect/gibspawner/generic,
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "fd" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "fe" = (
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "ff" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/item/reagent_containers/glass/bucket,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fg" = (
-/obj/machinery/conveyor_switch/oneway{
+obj/machinery/conveyor_switch/oneway{
 	id = "meatConvey1"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fh" = (
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fi" = (
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "fj" = (
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "fk" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "fl" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/disposalpipe/trunk{
+obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/structure/disposaloutlet{
+obj/structure/disposaloutlet{
 	dir = 4
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "fm" = (
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "fn" = (
-/obj/effect/gibspawner/human,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+obj/effect/gibspawner/human,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "fo" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "fp" = (
-/obj/structure/table/rack,
-/obj/item/storage/belt/utility/full,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/table/rack,
+obj/item/storage/belt/utility/full,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "ft" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "fu" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "fw" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "fx" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fy" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fz" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fA" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fC" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "fD" = (
-/obj/machinery/door/window{
+obj/machinery/door/window{
 	base_state = "right";
 	icon_state = "right"
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "fE" = (
-/obj/structure/table/rack,
-/obj/item/cell/high,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/table/rack,
+obj/item/cell/high,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "fF" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+obj/structure/window/reinforced,
+obj/structure/grille,
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "fG" = (
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 10
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "fH" = (
-/turf/simulated/floor{
+turf/simulated/floor{
 	dir = 6
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "fJ" = (
-/obj/machinery/door/airlock/silver,
-/turf/simulated/floor{
+obj/machinery/door/airlock/silver,
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "fK" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/machinery/light/small{
+obj/effect/debris/cleanable/dirt,
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "fL" = (
-/obj/machinery/door/window{
+obj/machinery/door/window{
 	base_state = "right";
 	icon_state = "right"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "fM" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/machinery/light,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fN" = (
-/obj/effect/gibspawner/generic,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/effect/gibspawner/generic,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fO" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "fR" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "fS" = (
-/obj/effect/gibspawner/generic,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+obj/effect/gibspawner/generic,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "fT" = (
-/obj/structure/table/rack,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/table/rack,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "fU" = (
-/obj/machinery/power/smes/magical{
+obj/machinery/power/smes/magical{
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit.";
 	name = "power storage unit"
 	},
-/obj/structure/cable,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+obj/structure/cable,
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "fV" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "fW" = (
-/obj/effect/debris/cleanable/cobweb,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship1)
+obj/effect/debris/cleanable/cobweb,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship1)
 "fY" = (
-/obj/structure/closet,
-/turf/simulated/floor{
+obj/structure/closet,
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "fZ" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/closet,
-/turf/simulated/floor{
+obj/structure/closet,
+turf/simulated/floor{
 	dir = 4
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "ga" = (
-/obj/effect/gibspawner/generic,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+obj/effect/gibspawner/generic,
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "gb" = (
-/obj/item/tool/wrench,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship2)
+obj/item/tool/wrench,
+turf/simulated/floor/plating,
+area/awaymission/BMPship2)
 "gc" = (
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "ge" = (
-/obj/structure/mopbucket,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+obj/structure/mopbucket,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "gf" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/material/knife,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+obj/item/material/knife,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "gg" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/item/cell/high,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/item/cell/high,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "gi" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor,
-/area/awaymission/BMPship3)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor,
+area/awaymission/BMPship3)
 "gj" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor,
-/area/awaymission/BMPship3)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor,
+area/awaymission/BMPship3)
 "gm" = (
-/obj/structure/kitchenspike,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/structure/kitchenspike,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "go" = (
-/obj/machinery/conveyor{
+obj/machinery/conveyor{
 	dir = 4;
 	id = "meatConvey2"
 	},
-/obj/item/material/knife,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship2)
+obj/item/material/knife,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship2)
 "gp" = (
-/obj/machinery/conveyor{
+obj/machinery/conveyor{
 	dir = 4;
 	id = "meatConvey2"
 	},
-/obj/structure/plasticflaps,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship2)
+obj/structure/plasticflaps,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship2)
 "gq" = (
-/obj/machinery/conveyor{
+obj/machinery/conveyor{
 	dir = 4;
 	id = "meatConvey2"
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship2)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship2)
 "gr" = (
-/obj/structure/disposalpipe/segment{
+obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "gs" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+obj/structure/window/reinforced,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "gt" = (
-/obj/structure/window/reinforced,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+obj/structure/window/reinforced,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "gu" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+obj/structure/window/reinforced,
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "gv" = (
-/obj/item/stack/cable_coil,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/item/stack/cable_coil,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "gx" = (
-/turf/simulated/shuttle/wall,
-/area)
+turf/simulated/shuttle/wall,
+area)
 "gy" = (
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "gz" = (
-/obj/structure/lattice,
-/turf/space,
-/area/awaymission/BMPship3)
+obj/structure/lattice,
+turf/space,
+area/awaymission/BMPship3)
 "gB" = (
-/obj/item/stack/cable_coil{
+obj/item/stack/cable_coil{
 	amount = 5
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship3)
+turf/simulated/floor/airless,
+area/awaymission/BMPship3)
 "gC" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship3)
+turf/simulated/floor/airless,
+area/awaymission/BMPship3)
 "gD" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "gE" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "gF" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/item/material/knife,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/item/material/knife,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "gG" = (
-/obj/machinery/conveyor_switch/oneway{
+obj/machinery/conveyor_switch/oneway{
 	id = "meatConvey2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "gH" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "gJ" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "gK" = (
-/obj/item/mop,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/item/mop,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "gL" = (
-/obj/effect/debris/cleanable/blood/oil,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/effect/debris/cleanable/blood/oil,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "gM" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/reagent_dispensers/fueltank,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "gO" = (
-/obj/item/material/shard,
-/area/awaymission/BMPship3)
+obj/item/material/shard,
+area/awaymission/BMPship3)
 "gQ" = (
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship3)
+turf/simulated/floor/airless,
+area/awaymission/BMPship3)
 "gR" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship3)
+turf/simulated/floor/airless,
+area/awaymission/BMPship3)
 "gT" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "gU" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/meat,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/closet/crate/freezer,
+obj/item/reagent_containers/food/snacks/meat,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "gV" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/item/reagent_containers/glass/bucket,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "gW" = (
-/obj/structure/reagent_dispensers,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/reagent_dispensers,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "gX" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/shuttle/plating,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/plating,
+area/awaymission/BMPship1)
 "gY" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 6
 	},
-/area/awaymission/BMPship1)
+area/awaymission/BMPship1)
 "gZ" = (
-/turf/space,
-/area/awaymission/BMPship3)
+turf/space,
+area/awaymission/BMPship3)
 "hc" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship2)
+obj/machinery/light/small,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship2)
 "hf" = (
-/obj/machinery/door/airlock/silver{
+obj/machinery/door/airlock/silver{
 	locked = 1
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hg" = (
-/obj/machinery/door/airlock/silver{
+obj/machinery/door/airlock/silver{
 	locked = 1
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "hh" = (
-/obj/machinery/door/unpowered/shuttle,
-/obj/structure/cable{
+obj/machinery/door/unpowered/shuttle,
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hi" = (
-/turf/simulated/mineral,
-/area/awaymission)
+turf/simulated/mineral,
+area/awaymission)
 "hj" = (
-/obj/item/multitool,
-/area/awaymission)
+obj/item/multitool,
+area/awaymission)
 "hk" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 5
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "hl" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 10
 	},
-/area/awaymission/BMPship3)
+area/awaymission/BMPship3)
 "hm" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/silver,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship3)
+obj/machinery/door/airlock/silver,
+turf/simulated/floor/airless,
+area/awaymission/BMPship3)
 "hn" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 5
 	},
-/area/awaymission/BMPship2)
+area/awaymission/BMPship2)
 "hp" = (
-/turf/simulated/mineral,
-/area/awaymission/BMPship2)
+turf/simulated/mineral,
+area/awaymission/BMPship2)
 "hs" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hu" = (
-/obj/structure/table/standard,
-/obj/item/paper{
+obj/structure/table/standard,
+obj/item/paper{
 	info = "DEAR DAIRY: So we was doing our typpical route when the captain says we've been picking up weird signals on some backwatter planet. Madsen wanted to stay on course but he ain't the captain, so we went out of the way to check it out. There was lots of rocks on the way, but we got to the planet fine. Found a big fancy camp with nobody around and this big metal donut thing with NT stamps all over it right in the middle. Case of beer too. Captain reckons we can pass it off to some buyer in the Syndicate. Ingram says it's bad luck and that someone is going to come look for it but it sounds like better money than selling bad meat to jerky companies.";
 	name = "Old Diary"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hv" = (
-/obj/structure/table/standard,
-/obj/item/pen/red,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/structure/table/standard,
+obj/item/pen/red,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hw" = (
-/obj/structure/closet,
-/obj/item/clothing/under/overalls,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/structure/closet,
+obj/item/clothing/under/overalls,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hx" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/grille,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/structure/grille,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "hy" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "hz" = (
-/obj/structure/cable,
-/area/awaymission/BMPship3)
+obj/structure/cable,
+area/awaymission/BMPship3)
 "hA" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship3)
+turf/simulated/floor/airless,
+area/awaymission/BMPship3)
 "hC" = (
-/obj/structure/table/rack,
-/turf/simulated/floor/airless,
-/area/awaymission/BMPship3)
+obj/structure/table/rack,
+turf/simulated/floor/airless,
+area/awaymission/BMPship3)
 "hE" = (
-/turf/simulated/shuttle/wall,
-/area/awaymission)
+turf/simulated/shuttle/wall,
+area/awaymission)
 "hF" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 1
 	},
-/area/awaymission)
+area/awaymission)
 "hH" = (
-/area/awaymission)
+area/awaymission)
 "hI" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/airless,
-/area/awaymission)
+turf/simulated/floor/airless,
+area/awaymission)
 "hJ" = (
-/turf/simulated/floor/plating,
-/area/awaymission)
+turf/simulated/floor/plating,
+area/awaymission)
 "hK" = (
-/obj/item/frame/apc,
-/turf/simulated/floor/airless,
-/area/awaymission)
+obj/item/frame/apc,
+turf/simulated/floor/airless,
+area/awaymission)
 "hL" = (
-/obj/structure/ore_box,
-/obj/machinery/light/small{
+obj/structure/ore_box,
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/airless,
-/area/awaymission)
+turf/simulated/floor/airless,
+area/awaymission)
 "hM" = (
-/obj/item/stack/cable_coil{
+obj/item/stack/cable_coil{
 	amount = 5
 	},
-/turf/simulated/floor/airless,
-/area/awaymission)
+turf/simulated/floor/airless,
+area/awaymission)
 "hN" = (
-/obj/structure/ore_box,
-/turf/simulated/floor/airless,
-/area/awaymission)
+obj/structure/ore_box,
+turf/simulated/floor/airless,
+area/awaymission)
 "hO" = (
-/obj/machinery/computer/arcade,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/machinery/computer/arcade,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hP" = (
-/obj/effect/decal/remains/human,
-/obj/structure/cable{
+obj/effect/decal/remains/human,
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hQ" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hR" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hS" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "hT" = (
-/obj/effect/decal/remains/human,
-/obj/item/clothing/head/helmet/space/syndicate/green/dark,
-/obj/effect/gibspawner/generic,
-/turf/simulated/floor,
-/area/awaymission)
+obj/effect/decal/remains/human,
+obj/item/clothing/head/helmet/space/syndicate/green/dark,
+obj/effect/gibspawner/generic,
+turf/simulated/floor,
+area/awaymission)
 "hU" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/grille,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/structure/grille,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "hV" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated,
-/area/awaymission/BMPship3)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated,
+area/awaymission/BMPship3)
 "hW" = (
-/obj/effect/gibspawner/robot,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship3)
+obj/effect/gibspawner/robot,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship3)
 "hY" = (
-/obj/effect/decal/mecha_wreckage/ripley,
-/turf/simulated/floor/airless,
-/area/awaymission)
+obj/effect/decal/mecha_wreckage/ripley,
+turf/simulated/floor/airless,
+area/awaymission)
 "hZ" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission)
+turf/simulated/floor/airless,
+area/awaymission)
 "ia" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission)
+turf/simulated/floor/plating,
+area/awaymission)
 "id" = (
-/obj/item/bedsheet,
-/obj/item/storage/wallet/random,
-/obj/structure/cable{
+obj/item/bedsheet,
+obj/item/storage/wallet/random,
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "ie" = (
-/obj/structure/closet,
-/obj/item/clothing/under/lawyer/bluesuit,
-/obj/item/clothing/suit/chef/classic,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/structure/closet,
+obj/item/clothing/under/lawyer/bluesuit,
+obj/item/clothing/suit/chef/classic,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "if" = (
-/obj/item/clothing/suit/space/syndicate/green/dark,
-/turf/simulated/floor/airless,
-/area/awaymission)
+obj/item/clothing/suit/space/syndicate/green/dark,
+turf/simulated/floor/airless,
+area/awaymission)
 "ig" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/obj/structure/grille,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/structure/window/reinforced,
+obj/structure/grille,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "ih" = (
-/obj/effect/gibspawner/robot,
-/area/awaymission)
+obj/effect/gibspawner/robot,
+area/awaymission)
 "ii" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission)
+turf/simulated/floor/airless,
+area/awaymission)
 "ij" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/airless,
-/area/awaymission)
+turf/simulated/floor/airless,
+area/awaymission)
 "ik" = (
-/obj/machinery/door/unpowered/shuttle,
-/obj/structure/cable{
+obj/machinery/door/unpowered/shuttle,
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship1)
+turf/simulated/floor/plating,
+area/awaymission/BMPship1)
 "im" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "ir" = (
-/obj/effect/decal/remains/human,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/effect/decal/remains/human,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "is" = (
-/obj/item/bedsheet,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/item/bedsheet,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "it" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "iu" = (
-/obj/structure/mirror{
+obj/structure/mirror{
 	pixel_y = 28
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "iv" = (
-/obj/structure/toilet{
+obj/structure/toilet{
 	dir = 8
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "iw" = (
-/obj/item/caution,
-/turf/simulated/floor/airless,
-/area/awaymission)
+obj/item/caution,
+turf/simulated/floor/airless,
+area/awaymission)
 "ix" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/airless,
-/area/awaymission)
+obj/machinery/portable_atmospherics/canister/air,
+turf/simulated/floor/airless,
+area/awaymission)
 "iy" = (
-/obj/structure/closet/crate,
-/obj/item/spacecash/c10,
-/obj/item/spacecash/c200,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/structure/closet/crate,
+obj/item/spacecash/c10,
+obj/item/spacecash/c200,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "iz" = (
-/obj/structure/closet/crate,
-/obj/item/spacecash/c10,
-/turf/simulated/floor,
-/area/awaymission/BMPship1)
+obj/structure/closet/crate,
+obj/item/spacecash/c10,
+turf/simulated/floor,
+area/awaymission/BMPship1)
 "iA" = (
-/obj/structure/sink,
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+obj/structure/sink,
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 "iB" = (
-/turf/simulated/floor{
+turf/simulated/floor{
 	icon_state = "cafeteria"
 	},
-/turf/simulated/shuttle/wall,
-/area/awaymission/BMPship1)
+turf/simulated/shuttle/wall,
+area/awaymission/BMPship1)
 "iC" = (
-/obj/item/clothing/gloves/fyellow,
-/turf/simulated/floor/airless,
-/area/awaymission)
+obj/item/clothing/gloves/fyellow,
+turf/simulated/floor/airless,
+area/awaymission)
 "iD" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 4
 	},
-/area/awaymission)
+area/awaymission)
 "iF" = (
-/obj/item/storage/box/matches,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+obj/item/storage/box/matches,
+obj/item/storage/fancy/cigarettes/dromedaryco,
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "iG" = (
-/obj/item/contraband/poster,
-/turf/simulated/floor/plating,
-/area/awaymission/BMPship3)
+obj/item/contraband/poster,
+turf/simulated/floor/plating,
+area/awaymission/BMPship3)
 "iK" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced,
-/obj/structure/grille,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/awaymission/BMPship3)
+obj/structure/window/reinforced,
+obj/structure/grille,
+turf/simulated/floor/tiled/techfloor/grid,
+area/awaymission/BMPship3)
 "mG" = (
-/obj/machinery/door/airlock/silver{
+obj/machinery/door/airlock/silver{
 	locked = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/awaymission/BMPship1)
+turf/simulated/floor/tiled/dark,
+area/awaymission/BMPship1)
 
 (1,1,1) = {"
 aa

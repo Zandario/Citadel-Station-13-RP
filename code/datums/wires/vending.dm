@@ -1,13 +1,13 @@
-/datum/wires/vending
+datum/wires/vending
 	holder_type = /obj/machinery/vending
 	wire_count = 4
 	proper_name = "Vending machine"
 
-/datum/wires/vending/New(atom/_holder)
+datum/wires/vending/New(atom/_holder)
 	wires = list(WIRE_THROW_ITEM, WIRE_IDSCAN, WIRE_ELECTRIFY, WIRE_CONTRABAND)
 	return ..()
 
-/datum/wires/vending/interactable(mob/user)
+datum/wires/vending/interactable(mob/user)
 	var/obj/machinery/vending/V = holder
 	if(iscarbon(user) && V.seconds_electrified && V.shock(user, 100))
 		return FALSE
@@ -15,7 +15,7 @@
 		return TRUE
 	return FALSE
 
-/datum/wires/vending/get_status()
+datum/wires/vending/get_status()
 	var/obj/machinery/vending/V = holder
 	. = ..()
 	. += "The orange light is [V.seconds_electrified ? "on" : "off"]."
@@ -23,7 +23,7 @@
 	. += "The green light is [(V.categories & CAT_HIDDEN) ? "on" : "off"]."
 	. += "A [V.scan_id ? "purple" : "yellow"] light is on."
 
-/datum/wires/vending/on_pulse(wire)
+datum/wires/vending/on_pulse(wire)
 	var/obj/machinery/vending/V = holder
 	switch(wire)
 		if(WIRE_THROW_ITEM)
@@ -36,7 +36,7 @@
 			V.scan_id = !V.scan_id
 	..()
 
-/datum/wires/vending/on_cut(wire, mend)
+datum/wires/vending/on_cut(wire, mend)
 	var/obj/machinery/vending/V = holder
 	switch(wire)
 		if(WIRE_THROW_ITEM)

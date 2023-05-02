@@ -12,7 +12,7 @@
 // * p - The price of the purchasable in biomass
 #define BIOGEN_REAGENT(n, o, r, p) n = new /datum/data/biogenerator_reagent(n, o, r, p)
 
-/obj/machinery/biogenerator
+obj/machinery/biogenerator
 	name = "biogenerator"
 	desc = "Converts plants into biomass, which can be used for fertilizer and sort-of-synthetic products."
 	icon = 'icons/obj/biogenerator.dmi'
@@ -31,30 +31,30 @@
 
 	var/list/item_list
 
-/datum/data/biogenerator_item
+datum/data/biogenerator_item
 	var/equipment_path = null
 	var/equipment_amt = 1
 	var/cost = 0
 
-/datum/data/biogenerator_item/New(name, path, amt, cost)
+datum/data/biogenerator_item/New(name, path, amt, cost)
 	src.name = name
 	src.equipment_path = path
 	src.equipment_amt = amt
 	src.cost = cost
 
-/datum/data/biogenerator_reagent
+datum/data/biogenerator_reagent
 	var/reagent_id = null
 	var/reagent_amt = 0
 	var/cost = 0
 
-/datum/data/biogenerator_reagent/New(name, id, amt, cost)
+datum/data/biogenerator_reagent/New(name, id, amt, cost)
 	src.name = name
 	src.reagent_id = id
 	src.reagent_amt = amt
 	src.cost = cost
 
 
-/obj/machinery/biogenerator/Initialize(mapload, newdir)
+obj/machinery/biogenerator/Initialize(mapload, newdir)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
@@ -111,7 +111,7 @@
  * user - the mob inserting the beaker
  * inserted_beaker - the beaker we're inserting into the biogen
  */
-/obj/machinery/biogenerator/proc/insert_beaker(mob/living/user, obj/item/reagent_containers/glass/inserted_beaker)
+obj/machinery/biogenerator/proc/insert_beaker(mob/living/user, obj/item/reagent_containers/glass/inserted_beaker)
 	if(!can_interact(user))
 		return
 	if(!user.attempt_insert_item_for_installation(inserted_beaker, src))
@@ -132,7 +132,7 @@
  * user - the mob ejecting the beaker
  * silent - whether to give a message to the user that the beaker was ejected.
  */
-/obj/machinery/biogenerator/proc/eject_beaker(mob/living/user, silent = FALSE)
+obj/machinery/biogenerator/proc/eject_beaker(mob/living/user, silent = FALSE)
 	if(!beaker)
 		return
 
@@ -150,18 +150,18 @@
 	beaker = null
 	update_appearance()
 
-/obj/machinery/biogenerator/ui_status(mob/user)
+obj/machinery/biogenerator/ui_status(mob/user)
 	if(machine_stat & BROKEN || panel_open)
 		return UI_CLOSE
 	return ..()
 
-/obj/machinery/biogenerator/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/biogenerator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Biogenerator", name)
 		ui.open()
 
-/obj/machinery/biogenerator/ui_data(mob/user)
+obj/machinery/biogenerator/ui_data(mob/user)
 	var/list/data = ..()
 
 	data["build_eff"] = build_eff
@@ -171,7 +171,7 @@
 
 	return data
 
-/obj/machinery/biogenerator/ui_static_data(mob/user)
+obj/machinery/biogenerator/ui_static_data(mob/user)
 	var/list/static_data[0]
 
 	// Available items - in static data because we don't wanna compute this list every time! It hardly changes.
@@ -185,7 +185,7 @@
 
 	return static_data
 
-/obj/machinery/biogenerator/ui_act(action, list/params)
+obj/machinery/biogenerator/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
@@ -243,17 +243,17 @@
 		else
 			return FALSE
 
-/obj/machinery/biogenerator/on_reagent_change() //When the reagents change, change the icon as well.
+obj/machinery/biogenerator/on_reagent_change() //When the reagents change, change the icon as well.
 	update_appearance()
 
-/obj/machinery/biogenerator/update_icon()
+obj/machinery/biogenerator/update_icon()
 	cut_overlays()
 	if(beaker)
 		add_overlay("[base_icon_state]-standby")
 		if(processing)
 			add_overlay("[base_icon_state]-work")
 
-/obj/machinery/biogenerator/attackby(obj/item/O, mob/user)
+obj/machinery/biogenerator/attackby(obj/item/O, mob/user)
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))
@@ -303,7 +303,7 @@
 			to_chat(user, SPAN_NOTICE("You put \the [O] in \the [src]"))
 	update_appearance()
 
-/obj/machinery/biogenerator/proc/activate()
+obj/machinery/biogenerator/proc/activate()
 	if(usr.stat)
 		return
 	if(machine_stat) //NOPOWER etc
@@ -332,7 +332,7 @@
 		to_chat(usr, SPAN_WARNING("Error: No growns inside. Please insert growns."))
 	return
 
-/obj/machinery/biogenerator/RefreshParts()
+obj/machinery/biogenerator/RefreshParts()
 	..()
 	var/man_rating = 0
 	var/bin_rating = 0

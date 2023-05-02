@@ -1,4 +1,4 @@
-/datum/computer_file/program/filemanager
+datum/computer_file/program/filemanager
 	filename = "filemanager"
 	filedesc = "NTOS File Manager"
 	extended_desc = "This program allows management of files."
@@ -13,7 +13,7 @@
 	var/open_file
 	var/error
 
-/datum/computer_file/program/filemanager/Topic(href, href_list)
+datum/computer_file/program/filemanager/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -147,10 +147,10 @@
 	if(.)
 		SSnanoui.update_uis(NM)
 
-/datum/nano_module/program/computer_filemanager
+datum/nano_module/program/computer_filemanager
 	name = "NTOS File Manager"
 
-/datum/nano_module/program/computer_filemanager/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/computer_filemanager/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 	var/datum/computer_file/program/filemanager/PRG
 	PRG = program

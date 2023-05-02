@@ -1,6 +1,6 @@
 #define ANTAG_TYPE_RATIO 8
 
-/datum/game_mode/calamity
+datum/game_mode/calamity
 	name = "Calamity"
 	round_description = "This must be a Thursday. You never could get the hang of Thursdays..."
 	extended_round_description = "All Hell is about to break loose. Literally every antagonist type may spawn in this round. Hold on tight."
@@ -10,7 +10,7 @@
 	event_delay_mod_moderate = 0.5
 	event_delay_mod_major = 0.75
 
-/datum/game_mode/calamity/create_antagonists()
+datum/game_mode/calamity/create_antagonists()
 
 	shuffle(GLOB.all_antag_types) // This is probably the only instance in the game where the order will be important.
 	var/i = 1
@@ -22,7 +22,7 @@
 		i++
 	..()
 
-/datum/game_mode/calamity/check_victory()
+datum/game_mode/calamity/check_victory()
 	to_chat(world, "<font size = 3><b>This terrible, terrible day has finally ended!</b></font>")
 
 #undef ANTAG_TYPE_RATIO

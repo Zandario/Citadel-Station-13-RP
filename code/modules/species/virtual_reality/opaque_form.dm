@@ -1,7 +1,7 @@
 // Species for the opaque appearance
 // Due to sprite construction, they have to have separate limb lists
 
-/datum/species/shapeshifter/promethean/avatar/human
+datum/species/shapeshifter/promethean/avatar/human
 	uid = SPECIES_ID_VIRTUAL_REALITY_HUMAN
 	id = SPECIES_ID_VIRTUAL_REALITY_HUMAN
 	name = SPECIES_VR_HUMAN
@@ -22,7 +22,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right),
 	)
 
-/datum/species/shapeshifter/promethean/avatar/unathi
+datum/species/shapeshifter/promethean/avatar/unathi
 	uid = SPECIES_ID_VIRTUAL_REALITY_UNATHI
 	id = SPECIES_ID_VIRTUAL_REALITY_UNATHI
 	name = SPECIES_VR_UNATHI
@@ -45,7 +45,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right),
 	)
 
-/datum/species/shapeshifter/promethean/avatar/tajaran
+datum/species/shapeshifter/promethean/avatar/tajaran
 	uid = SPECIES_ID_VIRTUAL_REALITY_TAJARAN
 	id = SPECIES_ID_VIRTUAL_REALITY_TAJARAN
 	name = "Virtual Reality Tajaran"
@@ -68,7 +68,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right),
 	)
 
-/datum/species/shapeshifter/promethean/avatar/skrell
+datum/species/shapeshifter/promethean/avatar/skrell
 	uid = SPECIES_ID_VIRTUAL_REALITY_SKRELL
 	id = SPECIES_ID_VIRTUAL_REALITY_SKRELL
 	name = SPECIES_VR_SKRELL
@@ -89,7 +89,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right),
 	)
 
-/datum/species/shapeshifter/promethean/avatar/teshari
+datum/species/shapeshifter/promethean/avatar/teshari
 	uid = SPECIES_ID_VIRTUAL_REALITY_TESHARI
 	id = SPECIES_ID_VIRTUAL_REALITY_TESHARI
 	name = SPECIES_VR_TESHARI
@@ -110,7 +110,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/teshari),
 	)
 
-/datum/species/shapeshifter/promethean/avatar/diona
+datum/species/shapeshifter/promethean/avatar/diona
 	uid = SPECIES_ID_VIRTUAL_REALITY_DIONA
 	id = SPECIES_ID_VIRTUAL_REALITY_DIONA
 	name = SPECIES_VR_DIONA
@@ -131,7 +131,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/diona/foot/right),
 	)
 
-/datum/species/shapeshifter/promethean/avatar/monkey
+datum/species/shapeshifter/promethean/avatar/monkey
 	uid = SPECIES_ID_VIRTUAL_REALITY_MONKEY
 	id = SPECIES_ID_VIRTUAL_REALITY_MONKEY
 	name = SPECIES_VR_MONKEY
@@ -156,7 +156,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right),
 	)
 
-/datum/species/shapeshifter/promethean/avatar/vox
+datum/species/shapeshifter/promethean/avatar/vox
 	uid = SPECIES_ID_VIRTUAL_REALITY_VOX
 	id = SPECIES_ID_VIRTUAL_REALITY_VOX
 	name = SPECIES_VR_VOX
@@ -177,7 +177,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right),
 	)
 
-/datum/species/shapeshifter/promethean/avatar/skeleton
+datum/species/shapeshifter/promethean/avatar/skeleton
 	uid = SPECIES_ID_VIRTUAL_REALITY_SKELETON
 	id = SPECIES_ID_VIRTUAL_REALITY_SKELETON
 	name = SPECIES_VR_SKELETON

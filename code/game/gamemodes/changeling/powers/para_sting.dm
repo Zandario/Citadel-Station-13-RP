@@ -1,10 +1,10 @@
-/datum/power/changeling/paralysis_sting
+datum/power/changeling/paralysis_sting
 	name = "Paralysis Sting"
 	desc = "We silently sting a human, paralyzing them for a short time."
 	genomecost = 3
 	verbpath = /mob/proc/changeling_paralysis_sting
 
-/mob/proc/changeling_paralysis_sting()
+mob/proc/changeling_paralysis_sting()
 	set category = "Changeling"
 	set name = "Paralysis sting (30)"
 	set desc="Sting target"

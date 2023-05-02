@@ -24,13 +24,13 @@
  * @params
  * - prevent_types - these types aren't allowed
  */
-/obj/item/proc/is_static_currency(prevent_types)
+obj/item/proc/is_static_currency(prevent_types)
 	return NOT_STATIC_CURRENCY
 
 /**
  * returns our value as currency
  */
-/obj/item/proc/amount_static_currency()
+obj/item/proc/amount_static_currency()
 	return 0
 
 /**
@@ -46,7 +46,7 @@
  *
  * @return amount consumed, or a payment status enum
  */
-/obj/item/proc/consume_static_currency(amount, force, mob/user, atom/target, range)
+obj/item/proc/consume_static_currency(amount, force, mob/user, atom/target, range)
 	return PAYMENT_NOT_CURRENCY
 
 /**
@@ -54,7 +54,7 @@
  *
  * **due to consume_static_currency potentially deleting us, it is on the item to call this proc, not the main proc!**
  */
-/obj/item/proc/do_static_currency_feedback(amount, mob/user, atom/target, range)
+obj/item/proc/do_static_currency_feedback(amount, mob/user, atom/target, range)
 	return
 
 /**
@@ -88,7 +88,7 @@
  *
  * @returns amount paid
  */
-/obj/item/proc/attempt_dynamic_currency(mob/user, atom/movable/predicate, amount, force, prevent_types, list/data = list(), silent, visual_range = 7)
+obj/item/proc/attempt_dynamic_currency(mob/user, atom/movable/predicate, amount, force, prevent_types, list/data = list(), silent, visual_range = 7)
 	. = PAYMENT_NOT_CURRENCY
 	var/list/iterating  = list()
 	SEND_SIGNAL(src, COMSIG_ITEM_DYNAMIC_CURRENCY_QUERY, iterating)
@@ -128,7 +128,7 @@
  *
  * @returns amount paid, or payment failure enum
  */
-/obj/item/proc/attempt_use_currency(mob/user, atom/movable/predicate, amount, force, prevent_types, list/data = list(), silent, visual_range = 7)
+obj/item/proc/attempt_use_currency(mob/user, atom/movable/predicate, amount, force, prevent_types, list/data = list(), silent, visual_range = 7)
 	. = PAYMENT_NOT_CURRENCY
 	// check static currency
 	if(is_static_currency(prevent_types))
@@ -146,7 +146,7 @@
  * used to return data on its identity and info
  * must return a data list
  */
-/datum/proc/query_transaction_details(list/data)
+datum/proc/query_transaction_details(list/data)
 	return list(
 		CHARGE_DETAIL_LOCATION = "Unknown",
 		CHARGE_DETAIL_RECIPIENT = "Unknown",

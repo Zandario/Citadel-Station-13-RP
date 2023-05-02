@@ -8,7 +8,7 @@
 	Link to a subspace hub if it can't send to a server.
 */
 
-/obj/machinery/telecomms/bus
+obj/machinery/telecomms/bus
 	name = "Bus Mainframe"
 	icon_state = "bus"
 	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
@@ -21,7 +21,7 @@
 	netspeed = 40
 	var/change_frequency = 0
 
-/obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 
 	if(is_freq_listening(signal))
 

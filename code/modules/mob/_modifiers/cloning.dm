@@ -3,7 +3,7 @@
  */
 
 // Gives rather nasty downsides for awhile, making them less robust.
-/datum/modifier/cloning_sickness
+datum/modifier/cloning_sickness
 	name = "cloning sickness"
 	desc = "You feel rather weak, having been cloned not so long ago."
 
@@ -18,7 +18,7 @@
 	evasion = -15							// 15% easier to hit.
 
 // Tracks number of deaths, one modifier added per cloning
-/datum/modifier/cloned
+datum/modifier/cloned
 	name = "cloned"
 	desc = "You died and were cloned, and you can never forget that."
 
@@ -26,7 +26,7 @@
 	stacks = MODIFIER_STACK_ALLOWED		// Two deaths means two instances of this.
 
 // Prevents cloning, actual effect is on the cloning machine
-/datum/modifier/no_clone
+datum/modifier/no_clone
 	name = "Cloning Incompatability"
 	desc = "For whatever reason, you cannot be cloned."
 
@@ -38,7 +38,7 @@
 
 
 // Prevents borging (specifically the MMI part), actual effect is on the MMI.
-/datum/modifier/no_borg
+datum/modifier/no_borg
 	name = "Cybernetic Incompatability"
 	desc = "For whatever reason, your brain is incompatable with direct cybernetic interfaces, such as the MMI."
 
@@ -48,7 +48,7 @@
 //Species-Specific Cloning Modifiers//
 /////////////////////////////////////
 
-/datum/modifier/cloning_sickness/promethean
+datum/modifier/cloning_sickness/promethean
 	name = "reformation sickness"
 	desc = "Your core feels damaged, as you were reformed with the improper machinery."
 
@@ -66,7 +66,7 @@
 //Surgical Modifiers// As of writing, limited to the 'Frankenstein' modifier.
 //////////////////////
 
-/datum/modifier/franken_sickness
+datum/modifier/franken_sickness
 	name = "surgically attached brain"
 	desc = "You feel weak, as your central nervous system is still recovering from being repaired."
 
@@ -85,7 +85,7 @@
 
 	stacks = MODIFIER_STACK_ALLOWED //You have somehow had the surgery done twice. Your brain is very, very fucked, but I won't say no.
 
-/datum/modifier/franken_sickness/can_apply(var/mob/living/L)
+datum/modifier/franken_sickness/can_apply(var/mob/living/L)
 	if(!ishuman(L))
 		return FALSE
 	if(L.isSynthetic()) //Nonhumans and Machines cannot be Frankensteined, at this time.
@@ -93,17 +93,17 @@
 
 	return ..()
 
-/datum/modifier/franken_sickness/tick()
+datum/modifier/franken_sickness/tick()
 	if(holder.stat != DEAD)
 		if(istype(holder, /mob/living/carbon/human))
 			var/mob/living/carbon/human/F = holder
 			if(F.can_defib)
 				F.can_defib = 0
 
-/datum/modifier/franken_sickness/on_expire() //Not permanent, but its child is.
+datum/modifier/franken_sickness/on_expire() //Not permanent, but its child is.
 	holder.add_modifier(/datum/modifier/franken_recovery, 0)
 
-/datum/modifier/franken_recovery //When Franken_Sickness expires, this will be permanently applied in its place.
+datum/modifier/franken_recovery //When Franken_Sickness expires, this will be permanently applied in its place.
 	name = "neural recovery"
 	desc = "You feel out of touch, as your central nervous system is still recovering from being repaired."
 
@@ -117,7 +117,7 @@
 
 	stacks = MODIFIER_STACK_ALLOWED
 
-/datum/modifier/franken_recovery/can_apply(var/mob/living/L)
+datum/modifier/franken_recovery/can_apply(var/mob/living/L)
 	if(!ishuman(L))
 		return FALSE
 	if(L.isSynthetic()) //Nonhumans and Machines cannot be Frankensteined, at this time.

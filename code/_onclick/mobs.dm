@@ -6,7 +6,7 @@
  * - clickchain_flags - see [code/__DEFINES/procs/clickcode.dm]
  * - params - parameters of click, as list
  */
-/mob/proc/melee_attack_chain(atom/target, clickchain_flags, list/params)
+mob/proc/melee_attack_chain(atom/target, clickchain_flags, list/params)
 	// todo: refactor cooldown handling
 	if(ismob(target))
 		setClickCooldown(get_attack_speed())
@@ -20,7 +20,7 @@
  * - clickchain_flags - see [code/__DEFINES/procs/clickcode.dm]
  * - params - parameters of click, as list
  */
-/mob/proc/ranged_attack_chain(atom/target, clickchain_flags, list/params)
+mob/proc/ranged_attack_chain(atom/target, clickchain_flags, list/params)
 	// todo: NO. MORE. LIST. PARAMS. WHY. ARE. WE. UNPACKING. THE. LIST. MULTIPLE. TIMES?
 	var/stupid_fucking_shim = list2params(params)
 	RangedAttack(target, stupid_fucking_shim)

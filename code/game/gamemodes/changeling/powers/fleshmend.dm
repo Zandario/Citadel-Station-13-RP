@@ -1,4 +1,4 @@
-/datum/power/changeling/fleshmend
+datum/power/changeling/fleshmend
 	name = "Fleshmend"
 	desc = "Begins a slow rengeration of our form.  Does not effect stuns or chemicals."
 	helptext = "Can be used while unconscious."
@@ -8,7 +8,7 @@
 	verbpath = /mob/proc/changeling_fleshmend
 
 //Starts healing you every second for 50 seconds. Can be used whilst unconscious.
-/mob/proc/changeling_fleshmend()
+mob/proc/changeling_fleshmend()
 	set category = "Changeling"
 	set name = "Fleshmend (10)"
 	set desc = "Begins a slow rengeration of our form.  Does not effect stuns or chemicals."

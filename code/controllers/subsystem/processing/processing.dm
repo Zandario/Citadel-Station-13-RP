@@ -10,10 +10,10 @@ SUBSYSTEM_DEF(processing)
 	var/list/processing = list()
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/processing/stat_entry()
+datum/controller/subsystem/processing/stat_entry()
 	return ..() + " [stat_tag]:[length(processing)]"
 
-/datum/controller/subsystem/processing/fire(resumed = FALSE)
+datum/controller/subsystem/processing/fire(resumed = FALSE)
 	if (!resumed)
 		currentrun = processing.Copy()
 	//cache for sanic speed (lists are references anyways)
@@ -45,6 +45,6 @@ SUBSYSTEM_DEF(processing)
  *
  * If you override this do not call parent, as it will return PROCESS_KILL. This is done to prevent objects that dont override process() from staying in the processing list
  */
-/datum/proc/process(delta_time)
+datum/proc/process(delta_time)
 	set waitfor = FALSE
 	return PROCESS_KILL

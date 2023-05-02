@@ -1,7 +1,7 @@
-/datum/role/ghostrole/golem
+datum/role/ghostrole/golem
 	instantiator = /datum/ghostrole_instantiator/human/random/species/golem
 
-/datum/role/ghostrole/golem/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
+datum/role/ghostrole/golem/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
 	var/mob/living/carbon/human/H = created
 	if(!istype(H))
@@ -11,18 +11,18 @@
 		return
 	to_chat(created, G.info_text)
 
-/datum/role/ghostrole/golem/free
+datum/role/ghostrole/golem/free
 	name = "Free Golem"
 	desc = "You are a Free Golem. Your family worships The Liberator."
 	spawntext = "In his infinite and divine wisdom, he set your clan free to \
 	travel the stars with a single declaration: \"Yeah go do whatever.\" Though you are bound to the one who created you, it is customary in your society to repeat those same words to newborn \
 	golems, so that no golem may ever be forced to serve again."
 
-/datum/role/ghostrole/golem/free/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
+datum/role/ghostrole/golem/free/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
 	to_chat(created, span_boldwarning("Build golem shells in the autolathe, and feed refined mineral sheets to the shells to bring them to life! You are generally a peaceful group unless provoked."))
 
-/datum/role/ghostrole/golem/servant
+datum/role/ghostrole/golem/servant
 	name = "Servant Golem"
 	desc = "You are a golem."
 	spawntext = "You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools."
@@ -30,7 +30,7 @@
 		"servant" = TRUE
 	)
 
-/datum/role/ghostrole/golem/servant/PostInstantiate(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
+datum/role/ghostrole/golem/servant/PostInstantiate(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
 	var/datum/mind/creator_mind = params["creator"]
 	if(!creator_mind)
@@ -44,9 +44,9 @@
 	var/datum/species/golem/G = H.dna.species
 	G.owner = creator_mind
 
-/datum/ghostrole_instantiator/human/random/species/golem
+datum/ghostrole_instantiator/human/random/species/golem
 
-/datum/ghostrole_instantiator/human/random/species/golem/GetSpeciesPath(mob/living/carbon/human/H, list/params)
+datum/ghostrole_instantiator/human/random/species/golem/GetSpeciesPath(mob/living/carbon/human/H, list/params)
 	var/predestined = params["species"]
 	if(istext(predestined))
 		predestined = text2path(predestined)
@@ -54,14 +54,14 @@
 		return pick(typesof(/datum/species/golem))
 	return predestined
 
-/datum/ghostrole_instantiator/human/random/species/golem/Randomize(mob/living/carbon/human/H, list/params)
+datum/ghostrole_instantiator/human/random/species/golem/Randomize(mob/living/carbon/human/H, list/params)
 	. = ..()
 	H.set_cloned_appearance()
 	var/datum/species/golem/G = H.dna.species
 	H.real_name = params["name"] || (params["servant"]? "[initial(G.prefix)] Golem ([rand(1,999)])" : H.dna.species.random_name())
 
 //Golem shells: Spawns in Free Golem ships in lavaland. Ghosts become mineral golems and are advised to spread personal freedom.
-/obj/structure/ghost_role_spawner/golem
+obj/structure/ghost_role_spawner/golem
 	name = "inert free golem shell"
 	desc = "A humanoid shape, empty, lifeless, and full of potential."
 	icon = 'icons/obj/wizard.dmi'
@@ -76,7 +76,7 @@
 	/// override golem species?
 	var/golem_species_override
 
-/obj/structure/ghost_role_spawner/golem/Initialize(mapload, datum/species/golem/species, mob/creator)
+obj/structure/ghost_role_spawner/golem/Initialize(mapload, datum/species/golem/species, mob/creator)
 	if(golem_species_override)
 		species = golem_species_override
 	if(species) //spawners list uses object name to register so this goes before ..()
@@ -87,7 +87,7 @@
 		"creator" = creator && (istype(creator, /datum/mind)? creator : creator.mind)
 	), (has_owner && creator)? /datum/role/ghostrole/golem/servant : /datum/role/ghostrole/golem/free)
 
-/obj/structure/ghost_role_spawner/golem/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
+obj/structure/ghost_role_spawner/golem/on_attack_hand(mob/user, act_intent = user.a_intent, unarmed_attack_flags)
 	if(isgolem(user) && can_transfer)
 		// this is a bit special
 		// we want them to keep their mind, so....
@@ -112,11 +112,11 @@
 		return
 	return ..()
 
-/obj/structure/ghost_role_spawner/golem/servant
+obj/structure/ghost_role_spawner/golem/servant
 	has_owner = TRUE
 	name = "inert servant golem shell"
 
-/obj/structure/ghost_role_spawner/golem/adamantine
+obj/structure/ghost_role_spawner/golem/adamantine
 	name = "dust-caked free golem shell"
 	desc = "A humanoid shape, empty, lifeless, and full of potential."
 	can_transfer = FALSE

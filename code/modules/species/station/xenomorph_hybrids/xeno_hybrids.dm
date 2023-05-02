@@ -1,4 +1,4 @@
-/datum/species/xenohybrid
+datum/species/xenohybrid
 	name = SPECIES_XENOHYBRID
 	name_plural = "Xenomorph Hybrids"
 	uid = SPECIES_ID_XENOHYBRID
@@ -99,10 +99,10 @@
 
 	reagent_tag = IS_XENOHYBRID
 
-/datum/species/xenohybrid/can_breathe_water()
+datum/species/xenohybrid/can_breathe_water()
 	return TRUE	//they dont quite breathe
 
-/datum/species/xenohybrid/handle_environment_special(var/mob/living/carbon/human/H)
+datum/species/xenohybrid/handle_environment_special(var/mob/living/carbon/human/H)
 	var/heal_amount = min(H.nutrition, 200) / 50 //Not to much else we might as well give them a diona like healing
 	H.nutrition = max(H.nutrition-heal_amount,0)
 

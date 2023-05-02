@@ -1,4 +1,4 @@
-/obj/structure/closet/crate/secure/loot
+obj/structure/closet/crate/secure/loot
 	name = "abandoned crate"
 	desc = "What could be inside?"
 	icon_state = "securecrate"
@@ -10,7 +10,7 @@
 	var/codelen = 4
 	locked = 1
 
-/obj/structure/closet/crate/secure/loot/Initialize(mapload)
+obj/structure/closet/crate/secure/loot/Initialize(mapload)
 	. = ..()
 	var/list/digits = list("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 
@@ -20,11 +20,11 @@
 
 	generate_loot()
 
-/obj/structure/closet/crate/secure/loot/proc/generate_loot()
+obj/structure/closet/crate/secure/loot/proc/generate_loot()
 	var/datum/prototype/loot_table/table = SSrepository.fetch(/datum/prototype/loot_table/abandoned_crate)
 	table.instantiate(src, 1)
 
-/obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
+obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
 	if(!locked)
 		return
 
@@ -56,12 +56,12 @@
 			explosion(T, 0, 0, 1, 2)
 			qdel(src)
 
-/obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
+obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
 	if (locked)
 		to_chat(user, "<span class='notice'>The crate unlocks!</span>")
 		locked = 0
 
-/obj/structure/closet/crate/secure/loot/proc/check_input(var/input)
+obj/structure/closet/crate/secure/loot/proc/check_input(var/input)
 	if(length(input) != codelen)
 		return 0
 
@@ -73,7 +73,7 @@
 		if(guesschar != code[i])
 			. = 0
 
-/obj/structure/closet/crate/secure/loot/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/closet/crate/secure/loot/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
 		if (istype(W, /obj/item/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
 			to_chat(user, "<span class='notice'>DECA-CODE LOCK ANALYSIS:</span>")

@@ -1,4 +1,4 @@
-/turf/simulated/floor/outdoors/grass
+turf/simulated/floor/outdoors/grass
 	name = "grass"
 	icon_state = "grass"
 	initial_flooring = /singleton/flooring/outdoors/grass
@@ -16,7 +16,7 @@
 		/obj/structure/flora/ausbushes/fullgrass,
 	)
 
-/datum/category_item/catalogue/flora/sif_grass
+datum/category_item/catalogue/flora/sif_grass
 	name = "Sivian Flora - Moss"
 	desc = "A natural moss that has adapted to the sheer cold climate of Sif. \
 	The moss came to rely partially on bioluminescent bacteria provided by the local tree populations. \
@@ -24,7 +24,7 @@
 	The moss has evolved into it's distinctive blue hue thanks to it's reliance on bacteria that has a similar color."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/turf/simulated/floor/outdoors/grass/sif
+turf/simulated/floor/outdoors/grass/sif
 	name = "growth"
 	icon_state = "grass_sif"
 	initial_flooring = /singleton/flooring/outdoors/grass/sif
@@ -39,12 +39,12 @@
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_grass)
 	catalogue_delay = 2 SECONDS
 
-/turf/simulated/floor/outdoors/grass/sif/Initialize(mapload)
+turf/simulated/floor/outdoors/grass/sif/Initialize(mapload)
 	if(tree_chance && prob(tree_chance) && !check_density())
 		new /obj/structure/flora/tree/sif(src)
 	. = ..()
 
-/turf/simulated/floor/outdoors/grass/Initialize(mapload)
+turf/simulated/floor/outdoors/grass/Initialize(mapload)
 	if(prob(50))
 		icon_state = "[initial(icon_state)]2"
 		//edge_blending_priority++
@@ -54,13 +54,13 @@
 		new grass_type(src)
 	. = ..()
 
-/turf/simulated/floor/outdoors/grass/forest
+turf/simulated/floor/outdoors/grass/forest
 	name = "thick grass"
 	icon_state = "grass-dark"
 	grass_chance = 80
 	//tree_chance = 20
 
-/turf/simulated/floor/outdoors/grass/sif/forest
+turf/simulated/floor/outdoors/grass/sif/forest
 	name = "thick growth"
 	icon_state = "grass_sif_dark"
 	tree_chance = 10

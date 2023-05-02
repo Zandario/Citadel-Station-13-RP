@@ -1,11 +1,11 @@
-/obj/item/integrated_circuit/input
+obj/item/integrated_circuit/input
 	category_text = "Input"
 	power_draw_per_use = 5
 
-/obj/item/integrated_circuit/input/proc/ask_for_input(mob/user)
+obj/item/integrated_circuit/input/proc/ask_for_input(mob/user)
 	return
 
-/obj/item/integrated_circuit/input/button
+obj/item/integrated_circuit/input/button
 	name = "button"
 	desc = "This tiny button must do something, right?"
 	icon_state = "button"
@@ -18,11 +18,11 @@
 
 
 
-/obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
+obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
 	to_chat(user, SPAN_NOTICE("You press the button labeled '[src.displayed_name]'."))
 	activate_pin(1)
 
-/obj/item/integrated_circuit/input/toggle_button
+obj/item/integrated_circuit/input/toggle_button
 	name = "toggle button"
 	desc = "It toggles on, off, on, off..."
 	icon_state = "toggle_button"
@@ -33,13 +33,13 @@
 	activators = list("on toggle" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/input/toggle_button/ask_for_input(mob/user) // Ditto.
+obj/item/integrated_circuit/input/toggle_button/ask_for_input(mob/user) // Ditto.
 	set_pin_data(IC_OUTPUT, 1, !get_pin_data(IC_OUTPUT, 1))
 	push_data()
 	activate_pin(1)
 	to_chat(user, "<span class='notice'>You toggle the button labeled '[src.displayed_name]' [get_pin_data(IC_OUTPUT, 1) ? "on" : "off"].</span>")
 
-/obj/item/integrated_circuit/input/numberpad
+obj/item/integrated_circuit/input/numberpad
 	name = "number pad"
 	desc = "This small number pad allows someone to input a number into the system."
 	icon_state = "numberpad"
@@ -51,14 +51,14 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
-/obj/item/integrated_circuit/input/numberpad/ask_for_input(mob/user)
+obj/item/integrated_circuit/input/numberpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter a number, please.","Number pad", null) as null|num
 	if(isnum(new_input))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
 		activate_pin(1)
 
-/obj/item/integrated_circuit/input/textpad
+obj/item/integrated_circuit/input/textpad
 	name = "text pad"
 	desc = "This small text pad allows someone to input a string into the system."
 	icon_state = "textpad"
@@ -70,14 +70,14 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
-/obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
+obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
 	var/new_input = input(user, "Enter some words, please.","Number pad", null) as null|text
 	if(istext(new_input))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
 		activate_pin(1)
 
-/obj/item/integrated_circuit/input/colorpad
+obj/item/integrated_circuit/input/colorpad
 	name = "color pad"
 	desc = "This small color pad allows someone to input a hexadecimal color into the system."
 	icon_state = "colorpad"
@@ -89,14 +89,14 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
-/obj/item/integrated_circuit/input/colorpad/ask_for_input(mob/user)
+obj/item/integrated_circuit/input/colorpad/ask_for_input(mob/user)
 	var/new_color = input(user, "Enter a color, please.", "Color pad", get_pin_data(IC_OUTPUT, 1)) as color|null
 	if(new_color)
 		set_pin_data(IC_OUTPUT, 1, new_color)
 		push_data()
 		activate_pin(1)
 
-/obj/item/integrated_circuit/input/card_reader
+obj/item/integrated_circuit/input/card_reader
 	name = "ID card reader" //To differentiate it from the data card reader
 	desc = "A circuit that can read the registred name, assignment, and PassKey string from an ID card."
 	icon_state = "card_reader"
@@ -111,7 +111,7 @@
 		"on read" = IC_PINTYPE_PULSE_OUT
 	)
 
-/obj/item/integrated_circuit/input/card_reader/attackby_react(obj/item/I, mob/living/user, intent)
+obj/item/integrated_circuit/input/card_reader/attackby_react(obj/item/I, mob/living/user, intent)
 	var/obj/item/card/id/card = I.GetID()
 	var/list/access = I.GetAccess()
 
@@ -133,7 +133,7 @@
 	activate_pin(1)
 	return TRUE
 
-/obj/item/integrated_circuit/input/med_scanner
+obj/item/integrated_circuit/input/med_scanner
 	name = "integrated medical analyser"
 	desc = "A very small version of the common medical analyser.  This allows the machine to know how healthy someone is."
 	icon_state = "medscan"
@@ -149,7 +149,7 @@
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	power_draw_per_use = 40
 
-/obj/item/integrated_circuit/input/med_scanner/do_work(ord)
+obj/item/integrated_circuit/input/med_scanner/do_work(ord)
 	if(ord == 1)
 		var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 		if(!istype(H)) //Invalid input
@@ -167,7 +167,7 @@
 
 
 
-/obj/item/integrated_circuit/input/adv_med_scanner
+obj/item/integrated_circuit/input/adv_med_scanner
 
 	name = "integrated advanced medical analyzer"
 	desc = "A very small version of the medibot's medical analyzer.  This allows the machine to know how healthy someone is.  \
@@ -195,7 +195,7 @@
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
 	power_draw_per_use = 80
 
-/obj/item/integrated_circuit/input/adv_med_scanner/do_work(ord)
+obj/item/integrated_circuit/input/adv_med_scanner/do_work(ord)
 	if(ord == 1)
 		var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 		if(!istype(H)) //Invalid input
@@ -222,7 +222,7 @@
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/slime_scanner
+obj/item/integrated_circuit/input/slime_scanner
 	name = "slime scanner"
 	desc = "A very small version of the xenobio analyser.  This allows the machine to know every needed properties of slime.  Output mutation list is non-associative."
 	icon_state = "medscan_adv"
@@ -243,7 +243,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 80
 
-/obj/item/integrated_circuit/input/slime_scanner/do_work(ord)
+obj/item/integrated_circuit/input/slime_scanner/do_work(ord)
 	if(ord == 1)
 		var/mob/living/simple_mob/slime/xenobio/T = get_pin_data_as_type(IC_INPUT, 1, /mob/living/simple_mob/slime)
 		if(!isslime(T)) //Invalid input
@@ -264,7 +264,7 @@
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/examiner
+obj/item/integrated_circuit/input/examiner
 	name = "examiner"
 	desc = "It's a little machine vision system.  It can return the name, description, distance,\
 	relative coordinates, total amount of reagents, and maximum amount of reagents of the referenced object."
@@ -288,7 +288,7 @@
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 4)
 	power_draw_per_use = 80
 
-/obj/item/integrated_circuit/input/examiner/do_work(ord)
+obj/item/integrated_circuit/input/examiner/do_work(ord)
 	if(ord == 1)
 		var/atom/movable/H = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 		var/turf/T = get_turf(src)
@@ -322,7 +322,7 @@
 
 
 
-/obj/item/integrated_circuit/input/turfpoint
+obj/item/integrated_circuit/input/turfpoint
 	name = "Tile pointer"
 	desc = "This circuit will get a tile ref with the provided absolute coordinates."
 	extended_desc = "If the machine	cannot see the target, it will not be able to calculate the correct direction.\
@@ -335,7 +335,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 40
 
-/obj/item/integrated_circuit/input/turfpoint/do_work(ord)
+obj/item/integrated_circuit/input/turfpoint/do_work(ord)
 	if(ord == 1)
 		if(!assembly)
 			activate_pin(3)
@@ -353,7 +353,7 @@
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/turfscan
+obj/item/integrated_circuit/input/turfscan
 	name = "tile analyzer"
 	desc = "This circuit can analyze the contents of the scanned turf, and can read letters on the turf."
 	icon_state = "video_camera"
@@ -375,7 +375,7 @@
 	power_draw_per_use = 40
 	cooldown_per_use = 10
 
-/obj/item/integrated_circuit/input/turfscan/do_work(ord)
+obj/item/integrated_circuit/input/turfscan/do_work(ord)
 	if(ord == 1)
 		var/turf/scanned_turf = get_pin_data_as_type(IC_INPUT, 1, /turf)
 		var/turf/circuit_turf = get_turf(src)
@@ -400,7 +400,7 @@
 			push_data()
 			activate_pin(2)
 
-/obj/item/integrated_circuit/input/turfpoint
+obj/item/integrated_circuit/input/turfpoint
 	name = "tile pointer"
 	desc = "This circuit will get tile ref with given absolute coorinates."
 	extended_desc = "If the machine	cannot see the target, it will not be able to scan it.\
@@ -413,7 +413,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 40
 
-/obj/item/integrated_circuit/input/turfpoint/do_work(ord)
+obj/item/integrated_circuit/input/turfpoint/do_work(ord)
 	if(ord == 1)
 		if(!assembly)
 			activate_pin(3)
@@ -431,7 +431,7 @@
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/turfscan
+obj/item/integrated_circuit/input/turfscan
 	name = "tile analyzer"
 	desc = "This machine vision system can analyze contents of desired tile and read letters on the floor."
 	icon_state = "video_camera"
@@ -452,7 +452,7 @@
 	power_draw_per_use = 40
 	cooldown_per_use = 10
 
-/obj/item/integrated_circuit/input/turfscan/do_work(ord)
+obj/item/integrated_circuit/input/turfscan/do_work(ord)
 	if(ord == 1)
 		var/atom/movable/H = get_pin_data_as_type(IC_INPUT, 1, /atom)
 		var/turf/T = get_turf(src)
@@ -477,7 +477,7 @@
 		else
 			activate_pin(3)
 
-/obj/item/integrated_circuit/input/local_locator
+obj/item/integrated_circuit/input/local_locator
 	name = "local locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon.  This type only locates something \
 	that is holding the machine containing it."
@@ -492,7 +492,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/local_locator/do_work(ord)
+obj/item/integrated_circuit/input/local_locator/do_work(ord)
 	if(ord == 1)
 		var/datum/integrated_io/O = outputs[1]
 		O.data = null
@@ -507,7 +507,7 @@
 		activate_pin(2)
 
 
-/obj/item/integrated_circuit/input/adjacent_locator
+obj/item/integrated_circuit/input/adjacent_locator
 	name = "adjacent locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon.  This type only locates something \
 	that is standing a meter away from the machine."
@@ -521,7 +521,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 30
 
-/obj/item/integrated_circuit/input/adjacent_locator/do_work(ord)
+obj/item/integrated_circuit/input/adjacent_locator/do_work(ord)
 	if(ord == 1)
 		var/datum/integrated_io/I = inputs[1]
 		var/datum/integrated_io/O = outputs[1]
@@ -547,7 +547,7 @@
 			activate_pin(3)
 		O.push_data()
 
-/obj/item/integrated_circuit/input/advanced_locator
+obj/item/integrated_circuit/input/advanced_locator
 	complexity = 6
 	name = "advanced locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon.  This type locates something \
@@ -563,13 +563,13 @@
 	power_draw_per_use = 30
 	var/radius = 1
 
-/obj/item/integrated_circuit/input/advanced_locator/on_data_written()
+obj/item/integrated_circuit/input/advanced_locator/on_data_written()
 	var/rad = get_pin_data(IC_INPUT, 2)
 	if(isnum(rad))
 		rad = clamp(rad, 0, 8)
 		radius = rad
 
-/obj/item/integrated_circuit/input/advanced_locator/do_work(ord)
+obj/item/integrated_circuit/input/advanced_locator/do_work(ord)
 	if(ord == 1)
 		var/datum/integrated_io/I = inputs[1]
 		var/datum/integrated_io/O = outputs[1]
@@ -600,7 +600,7 @@
 			activate_pin(3)
 
 
-/obj/item/integrated_circuit/input/advanced_locator_list
+obj/item/integrated_circuit/input/advanced_locator_list
 	complexity = 6
 	name = "list advanced locator"
 	desc = "This is needed for certain devices that demand list of names for a target to act upon.  This type locates something \
@@ -616,14 +616,14 @@
 	var/radius = 1
 	cooldown_per_use = 10
 
-/obj/item/integrated_circuit/input/advanced_locator_list/on_data_written()
+obj/item/integrated_circuit/input/advanced_locator_list/on_data_written()
 	var/rad = get_pin_data(IC_INPUT, 2)
 
 	if(isnum(rad))
 		rad = clamp(rad, 0, 8)
 		radius = rad
 
-/obj/item/integrated_circuit/input/advanced_locator_list/do_work(ord)
+obj/item/integrated_circuit/input/advanced_locator_list/do_work(ord)
 	if(ord == 1)
 		var/datum/integrated_io/I = inputs[1]
 		var/datum/integrated_io/O = outputs[1]
@@ -665,7 +665,7 @@
 			activate_pin(3)
 
 
-/obj/item/integrated_circuit/input/signaler
+obj/item/integrated_circuit/input/signaler
 	name = "integrated signaler"
 	desc = "Signals from a signaler can be received with this, allowing for remote control.  Additionally, it can send signals as well."
 	extended_desc = "When a signal is received from another signaler, the 'on signal received' activator pin will be pulsed.  \
@@ -689,7 +689,7 @@
 	var/code = 30
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/integrated_circuit/input/signaler/Initialize(mapload)
+obj/item/integrated_circuit/input/signaler/Initialize(mapload)
 	. = ..()
 	spawn(40)
 		set_frequency(frequency)
@@ -697,13 +697,13 @@
 		set_pin_data(IC_INPUT, 2, code)
 		addtimer(CALLBACK(src, .proc/set_frequency, frequency), 40)
 
-/obj/item/integrated_circuit/input/signaler/Destroy()
+obj/item/integrated_circuit/input/signaler/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
 	frequency = 0
 	. = ..()
 
-/obj/item/integrated_circuit/input/signaler/on_data_written()
+obj/item/integrated_circuit/input/signaler/on_data_written()
 	var/new_freq = get_pin_data(IC_INPUT, 1)
 	var/new_code = get_pin_data(IC_INPUT, 2)
 	if(isnum(new_freq) && new_freq > 0)
@@ -712,7 +712,7 @@
 		code = new_code
 
 
-/obj/item/integrated_circuit/input/signaler/do_work(ord) // Sends a signal.
+obj/item/integrated_circuit/input/signaler/do_work(ord) // Sends a signal.
 	if(ord == 1)
 		if(!radio_connection)
 			return
@@ -724,7 +724,7 @@
 		radio_connection.post_signal(src, signal)
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
+obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
 	if(!frequency)
 		return
 	if(!radio_controller)
@@ -735,7 +735,7 @@
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/integrated_circuit/input/signaler/receive_signal(datum/signal/signal)
+obj/item/integrated_circuit/input/signaler/receive_signal(datum/signal/signal)
 	var/new_code = get_pin_data(IC_INPUT, 2)
 	var/code = 0
 
@@ -754,7 +754,7 @@
 		for(var/mob/O in hearers(1, get_turf(src)))
 			to_chat(O, "[icon2html(thing = src, target = O)] *beep beep*")
 
-/obj/item/integrated_circuit/input/EPv2
+obj/item/integrated_circuit/input/EPv2
 	name = "\improper EPv2 circuit"
 	desc = "Enables the sending and receiving of messages on the Exonet with the EPv2 protocol."
 	extended_desc = "An EPv2 address is a string with the format of XXXX:XXXX:XXXX:XXXX.  Data can be send or received using the \
@@ -778,20 +778,20 @@
 	power_draw_per_use = 50
 	var/datum/exonet_protocol/exonet = null
 
-/obj/item/integrated_circuit/input/EPv2/Initialize(mapload)
+obj/item/integrated_circuit/input/EPv2/Initialize(mapload)
 	. = ..()
 	exonet = new(src)
 	exonet.make_address("EPv2_circuit-\ref[src]")
 	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
 
-/obj/item/integrated_circuit/input/EPv2/Destroy()
+obj/item/integrated_circuit/input/EPv2/Destroy()
 	if(exonet)
 		exonet.remove_address()
 		qdel(exonet)
 		exonet = null
 	return ..()
 
-/obj/item/integrated_circuit/input/EPv2/do_work(ord)
+obj/item/integrated_circuit/input/EPv2/do_work(ord)
 	if(ord == 1)
 		var/target_address = get_pin_data(IC_INPUT, 1)
 		var/message = get_pin_data(IC_INPUT, 2)
@@ -800,7 +800,7 @@
 		if(target_address && istext(target_address))
 			exonet.send_message(target_address, message, text)
 
-/obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
+obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
 	set_pin_data(IC_OUTPUT, 1, origin_address)
 	set_pin_data(IC_OUTPUT, 2, message)
 	set_pin_data(IC_OUTPUT, 3, text)
@@ -809,7 +809,7 @@
 	activate_pin(2)
 
 /* TBI NTNet
-/obj/item/integrated_circuit/input/ntnet_packet
+obj/item/integrated_circuit/input/ntnet_packet
 	name = "NTNet networking circuit"
 	desc = "Enables the sending and receiving of messages over NTNet via packet data protocol."
 	extended_desc = "Data can be sent or received using the second pin on each side, \
@@ -837,14 +837,14 @@
 	power_draw_per_use = 50
 	var/address
 
-/obj/item/integrated_circuit/input/ntnet_packet/Initialize(mapload)
+obj/item/integrated_circuit/input/ntnet_packet/Initialize(mapload)
 	. = ..()
 	var/datum/component/ntnet_interface/net = LoadComponent(/datum/component/ntnet_interface)
 	address = net.hardware_id
 	net.differentiate_broadcast = FALSE
 	desc += "<br>This circuit's NTNet hardware address is: [address]"
 
-/obj/item/integrated_circuit/input/ntnet_packet/do_work(ord)
+obj/item/integrated_circuit/input/ntnet_packet/do_work(ord)
 	if(ord == 1)
 		var/target_address = get_pin_data(IC_INPUT, 1)
 		var/message = get_pin_data(IC_INPUT, 2)
@@ -855,7 +855,7 @@
 		data.standard_format_data(message, text, assembly ? strtohex(XorEncrypt(json_encode(assembly.access_card.access), SScircuit.cipherkey)) : null)
 		ntnet_send(data)
 
-/obj/item/integrated_circuit/input/ntnet_receive(datum/netdata/data)
+obj/item/integrated_circuit/input/ntnet_receive(datum/netdata/data)
 	set_pin_data(IC_OUTPUT, 1, data.sender_id)
 	set_pin_data(IC_OUTPUT, 2, data.data["data"])
 	set_pin_data(IC_OUTPUT, 3, data.data["data_secondary"])
@@ -865,7 +865,7 @@
 	push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/input/ntnet_advanced
+obj/item/integrated_circuit/input/ntnet_advanced
 	name = "Low level NTNet transreceiver"
 	desc = "Enables the sending and receiving of messages over NTNet via packet data protocol. Allows advanced control of message contents and signalling. Must use associative lists. Outputs associative list. Has a slower transmission rate than normal NTNet circuits, due to increased data processing complexity."
 	extended_desc = "Data can be sent or received using the second pin on each side, \
@@ -886,14 +886,14 @@
 	power_draw_per_use = 50
 	var/address
 
-/obj/item/integrated_circuit/input/ntnet_advanced/Initialize(mapload)
+obj/item/integrated_circuit/input/ntnet_advanced/Initialize(mapload)
 	. = ..()
 	var/datum/component/ntnet_interface/net = LoadComponent(/datum/component/ntnet_interface)
 	address = net.hardware_id
 	net.differentiate_broadcast = FALSE
 	desc += "<br>This circuit's NTNet hardware address is: [address]"
 
-/obj/item/integrated_circuit/input/ntnet_advanced/do_work(ord)
+obj/item/integrated_circuit/input/ntnet_advanced/do_work(ord)
 	if(ord == 1)
 		var/target_address = get_pin_data(IC_INPUT, 1)
 		var/list/message = get_pin_data(IC_INPUT, 2)
@@ -905,14 +905,14 @@
 		data.passkey = assembly.access_card.access
 		ntnet_send(data)
 
-/obj/item/integrated_circuit/input/ntnet_advanced/ntnet_receive(datum/netdata/data)
+obj/item/integrated_circuit/input/ntnet_advanced/ntnet_receive(datum/netdata/data)
 	set_pin_data(IC_OUTPUT, 1, data.data)
 	set_pin_data(IC_OUTPUT, 2, data.broadcast)
 	push_data()
 	activate_pin(2)
 */
 //This circuit gives information on where the machine is.
-/obj/item/integrated_circuit/input/gps
+obj/item/integrated_circuit/input/gps
 	name = "global positioning system"
 	desc = "This allows you to easily know the position of a machine containing this device."
 	extended_desc = "The GPS's coordinates it gives is absolute, not relative."
@@ -924,7 +924,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 30
 
-/obj/item/integrated_circuit/input/gps/do_work(ord)
+obj/item/integrated_circuit/input/gps/do_work(ord)
 	if(ord == 1)
 		var/turf/T = get_turf(src)
 
@@ -944,10 +944,10 @@
 
 GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple/integrated_circuit, new)
 
-/datum/translation_context/simple/integrated_circuit
+datum/translation_context/simple/integrated_circuit
 	translation_class = TRANSLATION_CLASS_LEVEL_1
 
-/obj/item/integrated_circuit/input/microphone
+obj/item/integrated_circuit/input/microphone
 	name = "microphone"
 	desc = "Useful for spying on people, or for voice-activated machines."
 	extended_desc = "This will automatically translate most languages it hears to Galactic Common.  \
@@ -967,16 +967,16 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	/// translation context
 	var/datum/translation_context/translation_context
 
-/obj/item/integrated_circuit/input/microphone/Initialize(mapload)
+obj/item/integrated_circuit/input/microphone/Initialize(mapload)
 	translation_context = GLOB.circuit_translation_context
 	. = ..()
 	listening_objects |= src
 
-/obj/item/integrated_circuit/input/microphone/Destroy()
+obj/item/integrated_circuit/input/microphone/Destroy()
 	listening_objects -= src
 	return ..()
 
-/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
+obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
 	var/translated = FALSE
 	if(M && msg)
 		if(speaking)
@@ -994,7 +994,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	if(translated)
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/microphone/sign
+obj/item/integrated_circuit/input/microphone/sign
 	name = "sign-language translator"
 	desc = "Useful for spying on people or for sign activated machines."
 	extended_desc = "This will automatically translate galactic standard sign language it sees to Galactic Common.  \
@@ -1021,13 +1021,13 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		LANGUAGE_TERMINUS
 		)
 
-/obj/item/integrated_circuit/input/microphone/sign/Initialize(mapload)
+obj/item/integrated_circuit/input/microphone/sign/Initialize(mapload)
 	. = ..()
 	for(var/lang in readable_langs)
 		var/datum/language/newlang = SScharacters.resolve_language_name(lang)
 		my_langs |= newlang
 
-/obj/item/integrated_circuit/input/microphone/sign/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
+obj/item/integrated_circuit/input/microphone/sign/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
 	var/signlang = FALSE
 	if(M && msg)
 		if(speaking)
@@ -1044,12 +1044,12 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	if(signlang)
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/microphone/sign/hear_signlang(text, verb, datum/language/speaking, mob/M as mob)
+obj/item/integrated_circuit/input/microphone/sign/hear_signlang(text, verb, datum/language/speaking, mob/M as mob)
 	hear_talk(M, text, verb, speaking)
 	return
 
 
-/obj/item/integrated_circuit/output/move_detector
+obj/item/integrated_circuit/output/move_detector
 	name = "movement detection"
 	desc = "It's have a complicit gyroscope system, that activates pin if assembly moved"
 	category_text = "Output"
@@ -1061,16 +1061,16 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	power_draw_idle = 0
 	var/turf/last_location
 
-/obj/item/integrated_circuit/output/light/advanced/on_data_written()
+obj/item/integrated_circuit/output/light/advanced/on_data_written()
 	get_pin_data(IC_INPUT, 1) ? (power_draw_idle = 10) : (power_draw_idle = 0)
 
-/obj/item/integrated_circuit/output/move_detector/ext_moved()
+obj/item/integrated_circuit/output/move_detector/ext_moved()
 	var/turf/T = get_turf(get_object())
 	if(last_location != T && get_pin_data(IC_INPUT, 1))
 		activate_pin(1)
 	last_location = T
 
-/obj/item/integrated_circuit/input/sensor
+obj/item/integrated_circuit/input/sensor
 	name = "sensor"
 	desc = "Scans and obtains a reference for any objects or persons near you.  All you need to do is shove the machine in their face."
 	extended_desc = "If the 'ignore storage' pin is set to true, the sensor will disregard scanning various storage containers such as backpacks."
@@ -1082,7 +1082,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 120
 
-/obj/item/integrated_circuit/input/sensor/sense(atom/A, mob/user, prox)
+obj/item/integrated_circuit/input/sensor/sense(atom/A, mob/user, prox)
 	if(!prox || !A || (ismob(A) && !isliving(A)))
 		return FALSE
 	if(!check_then_do_work())
@@ -1097,7 +1097,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	activate_pin(1)
 	return TRUE
 
-/obj/item/integrated_circuit/input/sensor/ranged
+obj/item/integrated_circuit/input/sensor/ranged
 	name = "ranged sensor"
 	desc = "Scans and obtains a reference for any objects or persons in range.  All you need to do is point the machine towards the target."
 	extended_desc = "If the 'ignore storage' pin is set to true, the sensor will disregard scanning various storage containers such as backpacks."
@@ -1109,7 +1109,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 120
 
-/obj/item/integrated_circuit/input/sensor/ranged/sense(atom/A, mob/user)
+obj/item/integrated_circuit/input/sensor/ranged/sense(atom/A, mob/user)
 	if(!user || !A || (ismob(A) && !isliving(A)))
 		return FALSE
 	if(user.client)
@@ -1130,7 +1130,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	activate_pin(1)
 	return TRUE
 
-/obj/item/integrated_circuit/input/obj_scanner
+obj/item/integrated_circuit/input/obj_scanner
 	name = "scanner"
 	desc = "Scans and obtains a reference for any objects you use on the assembly."
 	extended_desc = "If the 'put down' pin is set to true, the assembly will take the scanned object from your hands to its location.  \
@@ -1144,12 +1144,12 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/obj_scanner/ask_for_input(obj/item/I, mob/living/user, a_intent)
+obj/item/integrated_circuit/input/obj_scanner/ask_for_input(obj/item/I, mob/living/user, a_intent)
 	if(!isobj(I))
 		return FALSE
 	attackby_react(I, user, a_intent)
 
-/obj/item/integrated_circuit/input/obj_scanner/attackby_react(obj/item/I, mob/living/user, a_intent)
+obj/item/integrated_circuit/input/obj_scanner/attackby_react(obj/item/I, mob/living/user, a_intent)
 	if(!isobj(I) || a_intent!=INTENT_HELP || !check_then_do_work())
 		return FALSE
 	var/pu = get_pin_data(IC_INPUT, 1)
@@ -1161,7 +1161,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	activate_pin(1)
 	return TRUE
 
-/obj/item/integrated_circuit/input/internalbm
+obj/item/integrated_circuit/input/internalbm
 	name = "internal battery monitor"
 	desc = "This monitors the charge level of an internal battery."
 	icon_state = "internalbm"
@@ -1181,7 +1181,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNET = 3)
 	power_draw_per_use = 1
 
-/obj/item/integrated_circuit/input/internalbm/do_work(ord)
+obj/item/integrated_circuit/input/internalbm/do_work(ord)
 	if(ord == 1)
 		set_pin_data(IC_OUTPUT, 1, null)
 		set_pin_data(IC_OUTPUT, 2, null)
@@ -1198,7 +1198,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/externalbm
+obj/item/integrated_circuit/input/externalbm
 	name = "external battery monitor"
 	desc = "This can read the battery state of any device in view."
 	icon_state = "externalbm"
@@ -1216,7 +1216,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNET = 3)
 	power_draw_per_use = 1
 
-/obj/item/integrated_circuit/input/externalbm/do_work(ord)
+obj/item/integrated_circuit/input/externalbm/do_work(ord)
 	if(ord == 1)
 
 		var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
@@ -1245,7 +1245,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 /*TBI NTNet
-/obj/item/integrated_circuit/input/ntnetsc
+obj/item/integrated_circuit/input/ntnetsc
 	name = "NTNet scanner"
 	desc = "This can return the NTNet IDs of a component inside the given object, if there are any."
 	icon_state = "signalsc"
@@ -1259,7 +1259,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 1
 
-/obj/item/integrated_circuit/input/ntnetsc/do_work(ord)
+obj/item/integrated_circuit/input/ntnetsc/do_work(ord)
 	if(ord == 1)
 		var/atom/AM = get_pin_data_as_type(IC_INPUT, 1, /atom)
 		var/datum/component/ntnet_interface/net
@@ -1284,7 +1284,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 			activate_pin(3)
 */
 /* TBI ouija
-/obj/item/integrated_circuit/input/ouija
+obj/item/integrated_circuit/input/ouija
 	name = "superstring resonator"
 	desc = "A highly dubious piece of hardware.  It may do nothing or it may ruin your day."
 	extended_desc = "This chip contains an esoteric mix of sensors with spurious claims.  Proponents claim it facilitates communication \
@@ -1300,12 +1300,12 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	power_draw_idle = 10
 	power_draw_per_use = 50
 
-/obj/item/integrated_circuit/input/ouija/do_work(ord)
+obj/item/integrated_circuit/input/ouija/do_work(ord)
 //	if(ord == 1)
 
 */
 
-/obj/item/integrated_circuit/input/data_card_reader
+obj/item/integrated_circuit/input/data_card_reader
 	name = "data card reader"
 	desc = "A circuit that can read from and write to data cards."
 	extended_desc = "Setting the \"write mode\" boolean to true will cause any data cards that are used on the assembly to replace\
@@ -1329,12 +1329,12 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		"on read" = IC_PINTYPE_PULSE_OUT
 	)
 
-/obj/item/integrated_circuit/input/data_card_reader/ask_for_input(obj/item/I, mob/living/user, a_intent)
+obj/item/integrated_circuit/input/data_card_reader/ask_for_input(obj/item/I, mob/living/user, a_intent)
 	if(!isobj(I))
 		return FALSE
 	attackby_react(I, user, a_intent)
 
-/obj/item/integrated_circuit/input/data_card_reader/attackby_react(obj/item/I, mob/living/user, intent)
+obj/item/integrated_circuit/input/data_card_reader/attackby_react(obj/item/I, mob/living/user, intent)
 	var/obj/item/card/data/card = I
 	var/write_mode = get_pin_data(IC_INPUT, 3)
 	if(card)
@@ -1353,14 +1353,14 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	return TRUE
 
 /*Adding some color to cards aswell, because why not //  Because it's not implemented?
-/obj/item/card/data/attackby_react(obj/item/I, mob/living/user)
+obj/item/card/data/attackby_react(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/integrated_electronics/detailer))
 		var/obj/item/integrated_electronics/detailer/D = I
 		detail_color = D.detail_color
 		update_icon()
 	return ..()
 */
-/obj/item/integrated_circuit/input/storage_examiner
+obj/item/integrated_circuit/input/storage_examiner
 	name = "storage examiner circuit"
 	desc = "This circuit lets you scan a storage's content.  (backpacks, toolboxes etc.)"
 	extended_desc = "The items are put out as reference, which makes it possible to interact with them.  Additionally also gives the amount of items."
@@ -1381,7 +1381,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	)
 	power_draw_per_use = 85
 
-/obj/item/integrated_circuit/input/storage_examiner/do_work(ord)
+obj/item/integrated_circuit/input/storage_examiner/do_work(ord)
 	if(ord == 1)
 		var/obj/item/storage = get_pin_data_as_type(IC_INPUT, 1, /obj/item)
 		if(!istype(storage,/obj/item/storage))
@@ -1398,7 +1398,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/mining/ore_analyzer
+obj/item/integrated_circuit/mining/ore_analyzer
 	name = "ore analyzer"
 	desc = "Analyzes a rock for its ore type."
 	extended_desc = "Takes a reference for an object and checks if it is a rock first.  If that is the case, it outputs the mineral \
@@ -1419,7 +1419,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/mining/ore_analyzer/do_work(ord)
+obj/item/integrated_circuit/mining/ore_analyzer/do_work(ord)
 	if(ord == 1)
 		var/turf/simulated/mineral/T
 		var/mineral
@@ -1436,7 +1436,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(3)
 
-/obj/item/integrated_circuit/input/atmo_scanner
+obj/item/integrated_circuit/input/atmo_scanner
 	name = "integrated atmospheric analyser"
 	desc = "The same atmospheric analysis module that is integrated into every PDA.  \
 	This allows the machine to know the composition, temperature and pressure of the surrounding atmosphere."
@@ -1457,7 +1457,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 60
 
-/obj/item/integrated_circuit/input/atmo_scanner/do_work(ord)
+obj/item/integrated_circuit/input/atmo_scanner/do_work(ord)
 	if(ord == 1)
 		var/turf/T = get_turf(src)
 		if(!istype(T)) //Invalid input
@@ -1491,7 +1491,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/pressure_sensor
+obj/item/integrated_circuit/input/pressure_sensor
 	name = "integrated pressure sensor"
 	desc = "A tiny pressure sensor module similar to that found in a PDA atmosphere analyser."
 	icon_state = "medscan_adv"
@@ -1505,7 +1505,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/pressure_sensor/do_work(ord)
+obj/item/integrated_circuit/input/pressure_sensor/do_work(ord)
 	if(ord == 1)
 		var/turf/T = get_turf(src)
 		if(!istype(T)) //Invalid input
@@ -1522,7 +1522,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/temperature_sensor
+obj/item/integrated_circuit/input/temperature_sensor
 	name = "integrated temperature sensor"
 	desc = "A tiny temperature sensor module similar to that found in a PDA atmosphere analyser."
 	icon_state = "medscan_adv"
@@ -1536,7 +1536,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/temperature_sensor/do_work(ord)
+obj/item/integrated_circuit/input/temperature_sensor/do_work(ord)
 	if(ord == 1)
 		var/turf/T = get_turf(src)
 		if(!istype(T)) //Invalid input
@@ -1552,7 +1552,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/oxygen_sensor
+obj/item/integrated_circuit/input/oxygen_sensor
 	name = "integrated oxygen sensor"
 	desc = "A tiny oxygen sensor module similar to that found in a PDA atmosphere analyser."
 	icon_state = "medscan_adv"
@@ -1566,7 +1566,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/oxygen_sensor/do_work(ord)
+obj/item/integrated_circuit/input/oxygen_sensor/do_work(ord)
 	if(ord == 1)
 		var/turf/T = get_turf(src)
 		if(!istype(T)) //Invalid input
@@ -1583,7 +1583,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/co2_sensor
+obj/item/integrated_circuit/input/co2_sensor
 	name = "integrated co2 sensor"
 	desc = "A tiny carbon dioxide sensor module similar to that found in a PDA atmosphere analyser."
 	icon_state = "medscan_adv"
@@ -1597,7 +1597,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/co2_sensor/do_work(ord)
+obj/item/integrated_circuit/input/co2_sensor/do_work(ord)
 	if(ord == 1)
 		var/turf/T = get_turf(src)
 		if(!istype(T)) //Invalid input
@@ -1614,7 +1614,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/nitrogen_sensor
+obj/item/integrated_circuit/input/nitrogen_sensor
 	name = "integrated nitrogen sensor"
 	desc = "A tiny nitrogen sensor module similar to that found in a PDA atmosphere analyser."
 	icon_state = "medscan_adv"
@@ -1628,7 +1628,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/nitrogen_sensor/do_work(ord)
+obj/item/integrated_circuit/input/nitrogen_sensor/do_work(ord)
 	if(ord == 1)
 		var/turf/T = get_turf(src)
 		if(!istype(T)) //Invalid input
@@ -1645,7 +1645,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		push_data()
 		activate_pin(2)
 
-/obj/item/integrated_circuit/input/phoron_sensor
+obj/item/integrated_circuit/input/phoron_sensor
 	name = "integrated phoron sensor"
 	desc = "A tiny phoron gas sensor module similar to that found in a PDA atmosphere analyser."
 	icon_state = "medscan_adv"
@@ -1659,7 +1659,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/phoron_sensor/do_work(ord)
+obj/item/integrated_circuit/input/phoron_sensor/do_work(ord)
 	if(ord == 1)
 		var/turf/T = get_turf(src)
 		if(!istype(T)) //Invalid input

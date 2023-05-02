@@ -1,125 +1,125 @@
 
 //////// Mothership areas ////////
-/area/mothership
+area/mothership
 	requires_power = 1
 	area_flags = AREA_RAD_SHIELDED
 	icon_state = "blue2"
 
-/area/mothership/breakroom
+area/mothership/breakroom
 	name = "Daedalus - Breakroom"
 
-/area/mothership/hydroponics
+area/mothership/hydroponics
 	name = "Daedalus - Hydroponics"
 
-/area/mothership/kitchen
+area/mothership/kitchen
 	name = "Daedalus - Kitchen"
 
-/area/mothership/eva
+area/mothership/eva
 	name = "Daedalus - EVA"
 
-/area/mothership/bathroom1
+area/mothership/bathroom1
 	name = "Daedalus - Bathroom 1"
 
-/area/mothership/bathroom2
+area/mothership/bathroom2
 	name = "Daedalus - Bathroom 2"
 
-/area/mothership/dorm1
+area/mothership/dorm1
 	name = "Daedalus - Dorm 1"
 
-/area/mothership/dorm2
+area/mothership/dorm2
 	name = "Daedalus - Dorm 2"
 
-/area/mothership/dorm3
+area/mothership/dorm3
 	name = "Daedalus - Dorm 3"
 
-/area/mothership/dorm4
+area/mothership/dorm4
 	name = "Daedalus - Dorm 4"
 
-/area/mothership/dorm5
+area/mothership/dorm5
 	name = "Daedalus - Dorm 5"
 
-/area/mothership/dorm6
+area/mothership/dorm6
 	name = "Daedalus - Dorm 6"
 
-/area/mothership/chemistry
+area/mothership/chemistry
 	name = "Daedalus - Chemistry"
 
-/area/mothership/surgery
+area/mothership/surgery
 	name = "Daedalus - Surgery"
 
-/area/mothership/vault
+area/mothership/vault
 	name = "Daedalus - Vault"
 	area_flags = AREA_RAD_SHIELDED | AREA_FLAG_BLUE_SHIELDED
 
-/area/mothership/teleporter
+area/mothership/teleporter
 	name = "Daedalus - Teleporter Room"
 
-/area/mothership/security
+area/mothership/security
 	name = "Daedalus - Security Equipment"
 
-/area/mothership/treatment
+area/mothership/treatment
 	name = "Daedalus - Treatment Center"
 
-/area/mothership/medical
+area/mothership/medical
 	name = "Daedalus - Medical Equipment"
 
-/area/mothership/resleeving
+area/mothership/resleeving
 	name = "Daedalus - Resleeving"
 
-/area/mothership/morgue
+area/mothership/morgue
 	name = "Daedalus - Morgue"
 
-/area/mothership/rnd
+area/mothership/rnd
 	name = "Daedalus - Research"
 
-/area/mothership/robotics
+area/mothership/robotics
 	name = "Daedalus - Robotics"
 
-/area/mothership/sechallway
+area/mothership/sechallway
 	name = "Daedalus - Security Hallway"
 
-/area/mothership/processing
+area/mothership/processing
 	name = "Daedalus - Processing"
 
-/area/mothership/warden
+area/mothership/warden
 	name = "Daedalus - Warden"
 
-/area/mothership/armory
+area/mothership/armory
 	name = "Daedalus - Armory"
 	area_flags = AREA_RAD_SHIELDED | AREA_FLAG_BLUE_SHIELDED
 
-/area/mothership/bridge
+area/mothership/bridge
 	name = "Daedalus - Bridge"
 
-/area/mothership/holodeck
+area/mothership/holodeck
 	name = "Daedalus - Holodeck Controls"
-/area/mothership/holodeck/holo
+area/mothership/holodeck/holo
 	name = "Daedalus - Holodeck"
 	icon_state = "dk_yellow"
 
-/area/mothership/cryotube
+area/mothership/cryotube
 	name = "Daedalus - Cryo chamber"
 
-/area/mothership/engineering
+area/mothership/engineering
 	name = "Daedalus - Engineering"
 
-/area/mothership/hallway
+area/mothership/hallway
 	name = "Daedalus - Main Hallway"
 
-/area/mothership/telecomms1
+area/mothership/telecomms1
 	name = "Daedalus - Hangar 1"
 	has_gravity = 0
 
-/area/mothership/telecomms2
+area/mothership/telecomms2
 	name = "Daedalus - Hangar 2"
 	has_gravity = 0
 
-/datum/map_template/shuttle/overmap/generic/cruiser
+datum/map_template/shuttle/overmap/generic/cruiser
 	name = "OM Ship - Daedalus (New Z)"
 	desc = "A large NT cruiser."
 	suffix = "cruiser.dmm"
 
-/obj/effect/overmap/visitable/ship/cruiser
+obj/effect/overmap/visitable/ship/cruiser
 	name = "spacecraft"
 	desc = "Spacefaring vessel. NanoTrasen IFF detected."
 	scanner_name = "NDV Daedalus"

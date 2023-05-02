@@ -3,7 +3,7 @@
 
 var/global/list/navbeacons = list()	// no I don't like putting this in, but it will do for now
 
-/obj/machinery/navbeacon
+obj/machinery/navbeacon
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "navbeacon0-f"
 	name = "navigation beacon"
@@ -24,7 +24,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 	var/list/codes = list()
 	req_access = list(ACCESS_ENGINEERING_MAIN)
 
-/obj/machinery/navbeacon/Initialize(mapload)
+obj/machinery/navbeacon/Initialize(mapload)
 	. = ..()
 	set_codes_from_txt(codes_txt)
 	if(freq)
@@ -38,7 +38,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 // DEPRECATED - This is kept only for compatibilty with old map files! Do not use this!
 // Instead, you should replace the map instance with one of the appropriate navbeacon subtypes.
 // See the bottom of this file for a list of subtypes, make your own examples if your map needs more
-/obj/machinery/navbeacon/proc/set_codes_from_txt()
+obj/machinery/navbeacon/proc/set_codes_from_txt()
 	if(!codes_txt)
 		return
 	warning("[src] at [x],[y],[z] in [get_area(src)] is using the deprecated 'codes_txt' mapping method.  Replace it with proper type.")
@@ -54,17 +54,17 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 		else
 			codes[e] = "1"
 
-/obj/machinery/navbeacon/hides_under_flooring()
+obj/machinery/navbeacon/hides_under_flooring()
 	return 1
 
 // called when turf state changes
 // hide the object if turf is intact
-/obj/machinery/navbeacon/hide(var/intact)
+obj/machinery/navbeacon/hide(var/intact)
 	invisibility = intact ? 101 : 0
 	updateicon()
 
 // update the icon_state
-/obj/machinery/navbeacon/proc/updateicon()
+obj/machinery/navbeacon/proc/updateicon()
 	var/state="navbeacon[open]"
 
 	if(invisibility)
@@ -73,7 +73,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 	else
 		icon_state = "[state]"
 
-/obj/machinery/navbeacon/attackby(obj/item/I, mob/user)
+obj/machinery/navbeacon/attackby(obj/item/I, mob/user)
 	var/turf/T = loc
 	if(!T.is_plating())
 		return		// prevent intraction when T-scanner revealed
@@ -97,17 +97,17 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 			to_chat(user, "You must open the cover first!")
 	return
 
-/obj/machinery/navbeacon/attack_ai(var/mob/user)
+obj/machinery/navbeacon/attack_ai(var/mob/user)
 	interact(user, 1)
 
-/obj/machinery/navbeacon/attack_hand(mob/user, list/params)
+obj/machinery/navbeacon/attack_hand(mob/user, list/params)
 
 	if(!user.IsAdvancedToolUser())
 		return FALSE
 
 	interact(user, FALSE)
 
-/obj/machinery/navbeacon/interact(mob/user, ai = FALSE)
+obj/machinery/navbeacon/interact(mob/user, ai = FALSE)
 	var/turf/T = loc
 	if(!T.is_plating())
 		return		// prevent intraction when T-scanner revealed
@@ -147,7 +147,7 @@ Transponder Codes:<UL>"}
 	onclose(user, "navbeacon")
 	return
 
-/obj/machinery/navbeacon/Topic(href, href_list)
+obj/machinery/navbeacon/Topic(href, href_list)
 	..()
 	if(usr.stat)
 		return
@@ -202,7 +202,7 @@ Transponder Codes:<UL>"}
 
 				updateDialog()
 
-/obj/machinery/navbeacon/Destroy()
+obj/machinery/navbeacon/Destroy()
 	navbeacons.Remove(src)
 	..()
 
@@ -220,25 +220,25 @@ Transponder Codes:<UL>"}
 
 // Mulebot delivery destinations
 
-/obj/machinery/navbeacon/delivery/north
+obj/machinery/navbeacon/delivery/north
 	codes = list("delivery" = 1, "dir" = NORTH)
 
-/obj/machinery/navbeacon/delivery/south
+obj/machinery/navbeacon/delivery/south
 	codes = list("delivery" = 1, "dir" = SOUTH)
 
-/obj/machinery/navbeacon/delivery/east
+obj/machinery/navbeacon/delivery/east
 	codes = list("delivery" = 1, "dir" = EAST)
 
-/obj/machinery/navbeacon/delivery/west
+obj/machinery/navbeacon/delivery/west
 	codes = list("delivery" = 1, "dir" = WEST)
 
 
 // For part of the patrol route
 // You MUST set "location"
 // You MUST set "next_patrol"
-/obj/machinery/navbeacon/patrol
+obj/machinery/navbeacon/patrol
 	var/next_patrol
 
-/obj/machinery/navbeacon/patrol/Initialize(mapload)
+obj/machinery/navbeacon/patrol/Initialize(mapload)
 	codes = list("patrol" = 1, "next_patrol" = next_patrol)
 	. = ..()

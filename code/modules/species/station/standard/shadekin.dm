@@ -1,4 +1,4 @@
-/datum/species/crew_shadekin
+datum/species/crew_shadekin
 	uid = SPECIES_ID_SHADEKIN_BLACK
 	id = SPECIES_ID_SHADEKIN_BLACK
 	name = SPECIES_SHADEKIN_CREW
@@ -101,8 +101,8 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/crewkin)
 		)
 
-/datum/species/shadekin/get_bodytype_legacy()
+datum/species/shadekin/get_bodytype_legacy()
 	return SPECIES_SHADEKIN
 
-/datum/species/shadekin/can_breathe_water()
+datum/species/shadekin/can_breathe_water()
 	return TRUE	//they dont quite breathe

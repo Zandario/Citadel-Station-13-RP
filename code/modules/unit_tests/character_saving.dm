@@ -1,4 +1,4 @@
-/datum/unit_test/character_saving/Run()
+datum/unit_test/character_saving/Run()
 	try
 		var/datum/preferences/P = new
 		P.load_path("test")

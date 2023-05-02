@@ -1,7 +1,7 @@
 // Disposal pipe construction
 // This is the pipe that you drag around, not the attached ones.
 
-/obj/structure/disposalconstruct
+obj/structure/disposalconstruct
 
 	name = "disposal pipe segment"
 	desc = "A huge pipe segment used for constructing disposal systems."
@@ -18,7 +18,7 @@
 	var/dpdir = 0	// directions as disposalpipe
 	var/base_state = "pipe-s"
 
-/obj/structure/disposalconstruct/Initialize(mapload, newtype, newdir, flipped, newsubtype)
+obj/structure/disposalconstruct/Initialize(mapload, newtype, newdir, flipped, newsubtype)
 	. = ..(mapload, )
 	ptype = newtype
 	dir = newdir
@@ -46,7 +46,7 @@
 		update() // do_a_flip() calls update anyway, so, lazy way of catching unupdated pipe!
 
 // update iconstate and dpdir due to dir and type
-/obj/structure/disposalconstruct/proc/update()
+obj/structure/disposalconstruct/proc/update()
 	var/flip = turn(dir, 180)
 	var/left = turn(dir, 90)
 	var/right = turn(dir, -90)
@@ -122,13 +122,13 @@
 
 // hide called by levelupdate if turf intact status changes
 // change visibility status and force update of icon
-/obj/structure/disposalconstruct/hide(var/intact)
+obj/structure/disposalconstruct/hide(var/intact)
 	invisibility = (intact && level==1) ? 101: 0	// hide if floor is intact
 	update()
 
 
 // flip and rotate verbs
-/obj/structure/disposalconstruct/verb/rotate()
+obj/structure/disposalconstruct/verb/rotate()
 	set category = "Object"
 	set name = "Rotate Pipe"
 	set src in view(1)
@@ -143,7 +143,7 @@
 	setDir(turn(dir, -90))
 	update()
 
-/obj/structure/disposalconstruct/verb/flip()
+obj/structure/disposalconstruct/verb/flip()
 	set category = "Object"
 	set name = "Flip Pipe"
 	set src in view(1)
@@ -156,7 +156,7 @@
 
 	do_a_flip()
 
-/obj/structure/disposalconstruct/proc/do_a_flip()
+obj/structure/disposalconstruct/proc/do_a_flip()
 	setDir(turn(dir, 180))
 	switch(ptype)
 		if(DISPOSAL_PIPE_JUNCTION)
@@ -171,7 +171,7 @@
 	update()
 
 // returns the type path of disposalpipe corresponding to this item dtype
-/obj/structure/disposalconstruct/proc/dpipetype()
+obj/structure/disposalconstruct/proc/dpipetype()
 	switch(ptype)
 		if(DISPOSAL_PIPE_STRAIGHT,DISPOSAL_PIPE_CORNER)
 			return /obj/structure/disposalpipe/segment
@@ -219,7 +219,7 @@
 // wrench: (un)anchor
 // weldingtool: convert to real pipe
 
-/obj/structure/disposalconstruct/attackby(var/obj/item/I, var/mob/user)
+obj/structure/disposalconstruct/attackby(var/obj/item/I, var/mob/user)
 	var/nicetype = "pipe"
 	var/ispipe = 0 // Indicates if we should change the level of this pipe
 	add_fingerprint(user, 0, I)
@@ -350,17 +350,17 @@
 			to_chat(user, "You need to attach it to the plating first!")
 			return
 
-/obj/structure/disposalconstruct/hides_under_flooring()
+obj/structure/disposalconstruct/hides_under_flooring()
 	if(anchored)
 		return 1
 	else
 		return 0
 
-/obj/structure/disposalconstruct/proc/is_pipe()
+obj/structure/disposalconstruct/proc/is_pipe()
 	return (ptype != DISPOSAL_PIPE_BIN && ptype != DISPOSAL_PIPE_OUTLET && ptype != DISPOSAL_PIPE_CHUTE)
 
 //helper proc that makes sure you can place the construct (i.e no dense objects stacking)
-/obj/structure/disposalconstruct/proc/can_place()
+obj/structure/disposalconstruct/proc/can_place()
 	if(is_pipe())
 		return TRUE
 

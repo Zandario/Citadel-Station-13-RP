@@ -1,4 +1,4 @@
-/datum/species/unathi/digi
+datum/species/unathi/digi
 	uid = SPECIES_ID_UNATHI_DIGI
 	id = SPECIES_ID_UNATHI_DIGI
 	name = SPECIES_UNATHI_DIGI

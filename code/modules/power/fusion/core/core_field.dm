@@ -3,7 +3,7 @@
 #define PLASMA_TEMP_RADIATION_DIVISIOR 10
 GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 
-/obj/effect/fusion_em_field
+obj/effect/fusion_em_field
 	name = "electromagnetic field"
 	desc = "A coruscating, barely visible field of energy. It is shaped like a slightly flattened torus."
 	icon = 'icons/obj/machines/power/fusion.dmi'
@@ -38,7 +38,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	var/last_range
 	var/last_power
 
-/obj/effect/fusion_em_field/Initialize(mapload, obj/machinery/power/fusion_core/new_owned_core)
+obj/effect/fusion_em_field/Initialize(mapload, obj/machinery/power/fusion_core/new_owned_core)
 	. = ..()
 	ignore_types = typecacheof(list(
 		/obj/effect,
@@ -121,7 +121,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/fusion_em_field/process(delta_time)
+obj/effect/fusion_em_field/process(delta_time)
 	//make sure the field generator is still intact
 	if(!owned_core || QDELETED(owned_core))
 		qdel(src)
@@ -185,7 +185,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	Radiate()
 	return 1
 
-/obj/effect/fusion_em_field/proc/check_instability()
+obj/effect/fusion_em_field/proc/check_instability()
 	if(tick_instability > 0)
 		percent_unstable += (tick_instability*size)/10000
 		tick_instability = 0
@@ -263,7 +263,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 		else if(critical >= 25)
 			visible_message("<span class='danger'>\The [src] rumbles and quivers slightly, vibrating the deck.</span>")
 */
-/obj/effect/fusion_em_field/proc/ChangeFieldStrength(var/new_strength)
+obj/effect/fusion_em_field/proc/ChangeFieldStrength(var/new_strength)
 	var/calc_size = 1
 	if(new_strength <= 50)
 		calc_size = 1
@@ -282,7 +282,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	field_strength = new_strength
 	change_size(calc_size)
 
-/obj/effect/fusion_em_field/proc/AddEnergy(var/a_energy, var/a_plasma_temperature)
+obj/effect/fusion_em_field/proc/AddEnergy(var/a_energy, var/a_plasma_temperature)
 	energy += a_energy
 	plasma_temperature += a_plasma_temperature
 	if(a_energy && percent_unstable > 0)
@@ -293,14 +293,14 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 		energy -= 100
 		plasma_temperature += 1
 
-/obj/effect/fusion_em_field/proc/AddParticles(var/name, var/quantity = 1)
+obj/effect/fusion_em_field/proc/AddParticles(var/name, var/quantity = 1)
 	if(name in dormant_reactant_quantities)
 		dormant_reactant_quantities[name] += quantity
 	else if(name != "proton" && name != "electron" && name != "neutron")
 		dormant_reactant_quantities.Add(name)
 		dormant_reactant_quantities[name] = quantity
 
-/obj/effect/fusion_em_field/proc/RadiateAll(var/ratio_lost = 1)
+obj/effect/fusion_em_field/proc/RadiateAll(var/ratio_lost = 1)
 
 	// Create our plasma field and dump it into our environment.
 	var/turf/T = get_turf(src)
@@ -324,7 +324,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	radiation_pulse(src, clamp(radiation, 0, 50000), RAD_FALLOFF_ENGINE_FUSION)
 	Radiate()
 
-/obj/effect/fusion_em_field/proc/Radiate()
+obj/effect/fusion_em_field/proc/Radiate()
 	if(istype(loc, /turf))
 		var/empsev = max(1, min(3, CEILING(size/2, 1)))
 		for(var/atom/movable/AM in range(max(1,FLOOR(size/2, 1)), loc))
@@ -340,7 +340,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 			tick_instability += rand(30,50)
 			AM.emp_act(empsev)
 
-/obj/effect/fusion_em_field/proc/change_size(var/newsize = 1)
+obj/effect/fusion_em_field/proc/change_size(var/newsize = 1)
 	var/changed = 0
 	var/static/list/size_to_icon = list(
 			"3" = 'icons/effects/96x96.dmi',
@@ -366,7 +366,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	return changed
 
 //the !!fun!! part
-/obj/effect/fusion_em_field/proc/React()
+obj/effect/fusion_em_field/proc/React()
 	//loop through the reactants in random order
 	var/list/react_pool = dormant_reactant_quantities.Copy()
 
@@ -477,7 +477,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 		for(var/reactant in react_pool)
 			AddParticles(reactant, react_pool[reactant])
 
-/obj/effect/fusion_em_field/Destroy()
+obj/effect/fusion_em_field/Destroy()
 	set_light(0)
 	RadiateAll()
 	for(var/obj/effect/fusion_particle_catcher/catcher in particle_catchers)
@@ -488,13 +488,13 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/effect/fusion_em_field/bullet_act(var/obj/projectile/Proj)
+obj/effect/fusion_em_field/bullet_act(var/obj/projectile/Proj)
 	AddEnergy(Proj.damage)
 	update_icon()
 	return 0
 //All procs below this point are called in _core.dm, starting at line 41.
 //Stability monitoring. Gives radio annoucements if field stability is below 80%
-/obj/effect/fusion_em_field/proc/stability_monitor()
+obj/effect/fusion_em_field/proc/stability_monitor()
 	var/warnpoint = 0.10 //start warning at 10% instability
 	var/warnmessage = "Warning! Field unstable! Instability at [percent_unstable * 100]%, plasma temperature at [plasma_temperature + 295]k."
 	var/stablemessage = "Containment field returning to stable conditions."
@@ -510,11 +510,11 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 		return
 
 //Reaction radiation is fairly buggy and there's at least three procs dealing with radiation here, this is to ensure constant radiation output.
-/obj/effect/fusion_em_field/proc/radiation_scale()
+obj/effect/fusion_em_field/proc/radiation_scale()
 	radiation_pulse(src, 2 + plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)
 
 //Somehow fixing the radiation issue managed to break this, but moving it to it's own proc seemed to have fixed it. I don't know.
-/obj/effect/fusion_em_field/proc/temp_dump()
+obj/effect/fusion_em_field/proc/temp_dump()
 	if(owned_core && owned_core.loc)
 		var/datum/gas_mixture/environment = owned_core.loc.return_air()
 		if(environment && environment.temperature < (GLOB.max_fusion_air_heat))
@@ -522,7 +522,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 			check_instability()
 
 //Temperature changes depending on color. Now, the visibility of the field increases with temperature, along with the glow.
-/obj/effect/fusion_em_field/proc/temp_color()
+obj/effect/fusion_em_field/proc/temp_color()
 	for(var/i=1,i < plasma_temperature / 35, i++)
 		alpha = i
 	if(plasma_temperature > 60000) //high ultraviolet - magenta
@@ -547,7 +547,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 		light_max_power = alpha / 30
 	return
 //moved the flare to a proc for various reasons. Called on line 225.
-/obj/effect/fusion_em_field/proc/emflare()
+obj/effect/fusion_em_field/proc/emflare()
 		radiation += plasma_temperature/2
 		light_color = "#ff0000"
 		light_max_power = alpha
@@ -562,7 +562,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 //Rupture() is no longer the end all be all. Fear the magnetic resonance cascade and quantum flux cascade
 
 
-/obj/effect/fusion_em_field/proc/Rupture()
+obj/effect/fusion_em_field/proc/Rupture()
 	visible_message("<span class='danger'>\The [src] shudders like a dying animal before flaring to eye-searing brightness and rupturing!</span>")
 	set_light(15, 15, "#CCCCFF")
 	empulse(get_turf(src), CEILING(plasma_temperature/1000, 1), CEILING(plasma_temperature/300, 1))
@@ -590,7 +590,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 							explosion(pick(things_in_range), -1, 5, 5, 5)
 	return
 
-/obj/effect/fusion_em_field/proc/MRC() //spews electromagnetic pulses in an area around the core.
+obj/effect/fusion_em_field/proc/MRC() //spews electromagnetic pulses in an area around the core.
 	visible_message("<span class='danger'>\The [src] glows an extremely bright pink and flares out of existance!</span>")
 	GLOB.global_announcer.autosay("Warning! Magnetic Resonance Cascade detected! Brace for electronic system distruption.", "Field Stability Monitor")
 	set_light(15, 15, "#ff00d8")
@@ -605,7 +605,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	Destroy()
 	return
 
-/obj/effect/fusion_em_field/proc/QuantumFluxCascade() //spews hot phoron and oxygen in a radius around the RUST. Will probably set fire to things
+obj/effect/fusion_em_field/proc/QuantumFluxCascade() //spews hot phoron and oxygen in a radius around the RUST. Will probably set fire to things
 	GLOB.global_announcer.autosay("Warning! Quantum fluxuation detected! Flammable gas release expected.", "Field Stability Monitor")
 	var/list/things_in_range = range(15, owned_core)
 	var/list/turfs_in_range = list()
@@ -626,7 +626,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	Destroy()
 	return
 
-/obj/effect/fusion_em_field/proc/MagneticQuench() //standard hard shutdown. dumps hot oxygen/phoron into the core's area and releases an EMP in the area around the core.
+obj/effect/fusion_em_field/proc/MagneticQuench() //standard hard shutdown. dumps hot oxygen/phoron into the core's area and releases an EMP in the area around the core.
 	GLOB.global_announcer.autosay("Warning! Magnetic Quench event detected, engaging hard shutdown.", "Field Stability Monitor")
 	empulse(owned_core, 10, 15)
 	var/turf/TT = get_turf(owned_core)
@@ -643,7 +643,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	owned_core.Shutdown()
 	return
 
-/obj/effect/fusion_em_field/proc/BluespaceQuenchEvent() //!!FUN!! causes a number of explosions in an area around the core. Will likely destory or heavily damage the reactor.
+obj/effect/fusion_em_field/proc/BluespaceQuenchEvent() //!!FUN!! causes a number of explosions in an area around the core. Will likely destory or heavily damage the reactor.
 	visible_message("<span class='danger'>\The [src] shudders like a dying animal before flaring to eye-searing brightness and rupturing!</span>")
 	set_light(15, 15, "#CCCCFF")
 	empulse(get_turf(src), CEILING(plasma_temperature/1000, 1), CEILING(plasma_temperature/300, 1))

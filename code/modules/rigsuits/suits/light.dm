@@ -1,4 +1,4 @@
-/datum/armor/rig/light
+datum/armor/rig/light
 	melee = 0.5
 	bullet = 0.15
 	laser = 0.5
@@ -6,7 +6,7 @@
 	bomb = 0.25
 
 // Light rigs are not space-capable, but don't suffer excessive slowdown or sight issues when depowered.
-/obj/item/rig/light
+obj/item/rig/light
 	name = "light suit control module"
 	desc = "A lighter, less armoured rig suit."
 	icon_state = "ninja_rig"
@@ -26,21 +26,21 @@
 	rigsuit_max_pressure = 5 * ONE_ATMOSPHERE			  // Max pressure the rig protects against when sealed
 	rigsuit_min_pressure = 0							  // Min pressure the rig protects against when sealed
 
-/obj/item/clothing/suit/space/rig/light
+obj/item/clothing/suit/space/rig/light
 	name = "suit"
 	breach_threshold = 18 //comparable to voidsuits
 
-/obj/item/clothing/gloves/gauntlets/rig/light
+obj/item/clothing/gloves/gauntlets/rig/light
 	name = "gloves"
 
-/obj/item/clothing/shoes/magboots/rig/light
+obj/item/clothing/shoes/magboots/rig/light
 	name = "shoes"
 	step_volume_mod = 0.8
 
-/obj/item/clothing/head/helmet/space/rig/light
+obj/item/clothing/head/helmet/space/rig/light
 	name = "hood"
 
-/obj/item/rig/light/hacker
+obj/item/rig/light/hacker
 	name = "cybersuit control module"
 	suit_type = "cyber"
 	desc = "An advanced powered armour suit with many cyberwarfare enhancements. Comes with built-in insulated gloves for safely tampering with electronics."
@@ -66,23 +66,23 @@
 		)
 
 //The cybersuit is not space-proof. It does however, have good siemens_coefficient values
-/obj/item/clothing/head/helmet/space/rig/light/hacker
+obj/item/clothing/head/helmet/space/rig/light/hacker
 	name = "headgear"
 	siemens_coefficient = 0.4
 	inv_hide_flags = HIDEEARS
 
-/obj/item/clothing/suit/space/rig/light/hacker
+obj/item/clothing/suit/space/rig/light/hacker
 	siemens_coefficient = 0.4
 
-/obj/item/clothing/shoes/lightrig/hacker
+obj/item/clothing/shoes/lightrig/hacker
 	siemens_coefficient = 0.4
 	step_volume_mod = 0.3 //Special sneaky cyber-soles, for infiltration.
 	atom_flags = NOSLIP //They're not magboots, so they're not super good for exterior hull walking, BUT for interior infiltration they'll do swell.
 
-/obj/item/clothing/gloves/gauntlets/rig/light/hacker
+obj/item/clothing/gloves/gauntlets/rig/light/hacker
 	siemens_coefficient = 0
 
-/obj/item/rig/light/ninja
+obj/item/rig/light/ninja
 	name = "ominous suit control module"
 	suit_type = "ominous"
 	desc = "A unique suit of nano-enhanced armor designed for covert operations."
@@ -125,17 +125,17 @@
 		)
 
 
-/obj/item/clothing/gloves/gauntlets/rig/light/ninja
+obj/item/clothing/gloves/gauntlets/rig/light/ninja
 	name = "insulated gloves"
 	siemens_coefficient = 0
 
-/obj/item/clothing/shoes/magboots/rig/light/ninja
+obj/item/clothing/shoes/magboots/rig/light/ninja
 	step_volume_mod = 0.25	//Not quite silent, but still damn quiet
 
-/obj/item/clothing/suit/space/rig/light/ninja
+obj/item/clothing/suit/space/rig/light/ninja
 	breach_threshold = 38 //comparable to regular hardsuits
 
-/obj/item/rig/light/stealth
+obj/item/rig/light/stealth
 	name = "stealth suit control module"
 	suit_type = "stealth"
 	desc = "A highly advanced and expensive suit designed for covert operations."

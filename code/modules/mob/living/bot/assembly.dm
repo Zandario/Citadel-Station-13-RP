@@ -1,4 +1,4 @@
-/obj/item/bot_assembly
+obj/item/bot_assembly
 	icon = 'icons/obj/bots/aibots.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	damage_force = 3
@@ -12,13 +12,13 @@
 	/// Same as medibot, set to tox or ointment for the respective kits.
 	var/skin = null
 
-/obj/item/bot_assembly/attackby(obj/item/I, mob/user, params)
+obj/item/bot_assembly/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/pen))
 		rename_bot()
 		return
 
-/obj/item/bot_assembly/proc/rename_bot()
+obj/item/bot_assembly/proc/rename_bot()
 	var/t = sanitizeSafe(input(usr, "Enter new robot name", name, created_name), MAX_NAME_LEN)
 	if(!t)
 		return
@@ -26,13 +26,13 @@
 		return
 	created_name = t
 
-/obj/item/bot_assembly/proc/can_finish_build(obj/item/I, mob/user)
+obj/item/bot_assembly/proc/can_finish_build(obj/item/I, mob/user)
 	if(contents.len >= 1)
 		to_chat(user, SPAN_WARNING("You need to empty [src] out first."))
 		return FALSE
 	return TRUE
 
-/obj/item/bot_assembly/proc/is_valid_arm(obj/item/I, mob/user)
+obj/item/bot_assembly/proc/is_valid_arm(obj/item/I, mob/user)
 	if(istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm) || (istype(I, /obj/item/organ/external/arm) && (I.name == "robotic right arm") || (I.name == "robotic left arm")))
 		return TRUE
 	return FALSE

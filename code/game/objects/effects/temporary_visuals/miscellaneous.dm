@@ -1,8 +1,8 @@
-/obj/effect/temp_visual/decoy
+obj/effect/temp_visual/decoy
 	desc = "It's a decoy!"
 	duration = 15
 
-/obj/effect/temp_visual/decoy/Initialize(mapload, atom/mimiced_atom, var/customappearance)
+obj/effect/temp_visual/decoy/Initialize(mapload, atom/mimiced_atom, var/customappearance)
 	. = ..()
 	alpha = initial(alpha)
 	if(mimiced_atom)
@@ -13,26 +13,26 @@
 	if(customappearance)
 		appearance = customappearance
 
-/obj/effect/temp_visual/decoy/fading/Initialize(mapload, atom/mimiced_atom)
+obj/effect/temp_visual/decoy/fading/Initialize(mapload, atom/mimiced_atom)
 	. = ..()
 	animate(src, alpha = 0, time = duration)
 
-/obj/effect/temp_visual/decoy/fading/fivesecond
+obj/effect/temp_visual/decoy/fading/fivesecond
 	duration = 50
 
-/obj/effect/temp_visual/small_smoke
+obj/effect/temp_visual/small_smoke
 	icon_state = "smoke"
 	duration = 50
 
 // Used by Kinetic Accelerator
-/obj/effect/temp_visual/kinetic_blast
+obj/effect/temp_visual/kinetic_blast
 	name = "kinetic explosion"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "kinetic_blast"
 	layer = ABOVE_MOB_LAYER
 	duration = 4
 
-/obj/effect/temp_visual/explosion
+obj/effect/temp_visual/explosion
 	name = "explosion"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
@@ -40,17 +40,17 @@
 	pixel_y = -32
 	duration = 8
 
-/obj/effect/temp_visual/explosion/fast
+obj/effect/temp_visual/explosion/fast
 	icon_state = "explosionfast"
 	duration = 4
 
 // Medigun
-/obj/effect/temp_visual/heal
+obj/effect/temp_visual/heal
 	name = "healing glow"
 	icon_state = "heal"
 	duration = 15
 
-/obj/effect/temp_visual/heal/Initialize(mapload)
+obj/effect/temp_visual/heal/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-12, 12)
 	pixel_y = rand(-9, 0)

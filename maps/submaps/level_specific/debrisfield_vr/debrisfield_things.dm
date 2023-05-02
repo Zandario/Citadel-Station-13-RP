@@ -1,22 +1,22 @@
-/obj/tether_away_spawner/debrisfield
+obj/tether_away_spawner/debrisfield
 	atmos_comp = FALSE
 	prob_spawn = 100
 	prob_fall = 15
 
-/obj/tether_away_spawner/debrisfield/carp
+obj/tether_away_spawner/debrisfield/carp
 	name = "debris field carp spawner"
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/carp = 3,
 		/mob/living/simple_mob/animal/space/carp/large = 1
 	)
 
-/obj/tether_away_spawner/debrisfield/carp/hard
+obj/tether_away_spawner/debrisfield/carp/hard
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/space/carp/large = 2,
 		/mob/living/simple_mob/animal/space/carp/large/huge = 1
 	)
 
-/obj/tether_away_spawner/debrisfield/derelict
+obj/tether_away_spawner/debrisfield/derelict
 	name = "debris field derelict random mob spawner"
 	faction = "derelict"
 	mobs_to_pick_from = list(
@@ -25,14 +25,14 @@
 		/mob/living/simple_mob/mechanical/combat_drone = 1
 	)
 
-/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm
+obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm
 	name = "debris field derelict maint swarm"
 	faction = "derelict"
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 4
 	)
 
-/obj/tether_away_spawner/debrisfield/derelict/mech_wizard
+obj/tether_away_spawner/debrisfield/derelict/mech_wizard
 	name = "debris field derelict wizard lol"
 	faction = "derelict"
 	mobs_to_pick_from = list(
@@ -40,7 +40,7 @@
 	)
 
 //Sciship
-/mob/living/simple_mob/tomato/space
+mob/living/simple_mob/tomato/space
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -51,16 +51,16 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/tomato/space/Process_Spacemove(var/check_drift = 0)
+mob/living/simple_mob/tomato/space/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 
-/obj/random/slimecore
+obj/random/slimecore
 	name = "random slime core"
 	desc = "Random slime core."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "rainbow slime extract"
 
-/obj/random/slimecore/item_to_spawn()
+obj/random/slimecore/item_to_spawn()
 	return pick(prob(3);/obj/item/slime_extract/metal,
 				prob(3);/obj/item/slime_extract/blue,
 				prob(3);/obj/item/slime_extract/purple,
@@ -84,7 +84,7 @@
 				prob(1);/obj/item/slime_extract/grey,
 				prob(1);/obj/item/slime_extract/rainbow)
 
-/obj/item/paper/robo_escape_pod
+obj/item/paper/robo_escape_pod
 	name = "faded note"
 	info = {"<i>This paper is old and the shaky writing has faded, rendering it difficult to read.</i><br>\
 whichever poor bastard finds this pod<br>\

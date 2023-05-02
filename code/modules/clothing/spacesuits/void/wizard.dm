@@ -1,5 +1,5 @@
 //Wizard Rig
-/obj/item/clothing/head/helmet/space/void/wizard
+obj/item/clothing/head/helmet/space/void/wizard
 	name = "gem-encrusted voidsuit helmet"
 	desc = "A bizarre gem-encrusted helmet that radiates magical energies."
 	icon_state = "rig0-wiz"
@@ -11,7 +11,7 @@
 	sprite_sheets_obj = null
 	wizard_garb = 1
 
-/obj/item/clothing/suit/space/void/wizard
+obj/item/clothing/suit/space/void/wizard
 	icon_state = "rig-wiz"
 	name = "gem-encrusted voidsuit"
 	desc = "A bizarre gem-encrusted suit that radiates magical energies."
@@ -26,7 +26,7 @@
 	wizard_garb = 1
 
 //Chaos Berserker "Costume" Armor
-/obj/item/clothing/head/helmet/space/void/wizard/berserk_knight
+obj/item/clothing/head/helmet/space/void/wizard/berserk_knight
 	name = "berserk knight helmet"
 	desc = "A bulky helmet that radiates ravenous magical energies."
 	icon_state = "knight_berserker"
@@ -34,7 +34,7 @@
 	armor_type = /datum/armor/wizard/beserk
 	light_overlay = "bk_overlay"
 
-/obj/item/clothing/suit/space/void/wizard/berserk_knight
+obj/item/clothing/suit/space/void/wizard/berserk_knight
 	name = "berserk knight voidsuit"
 	desc = "A bloodsoaked suit that emits a nauseating aura of hatred."
 	icon_state = "knight_berserker"

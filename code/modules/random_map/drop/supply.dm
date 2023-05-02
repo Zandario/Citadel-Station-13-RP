@@ -1,4 +1,4 @@
-/datum/random_map/droppod/supply
+datum/random_map/droppod/supply
 	descriptor = "supply drop"
 	limit_x = 5
 	limit_y = 5
@@ -9,7 +9,7 @@
 // UNLIKE THE DROP POD, this map deals ENTIRELY with strings and types.
 // Drop type is a string representing a mode rather than an atom or path.
 // supplied_drop_types is a list of types to spawn in the pod.
-/datum/random_map/droppod/supply/get_spawned_drop(var/turf/T)
+datum/random_map/droppod/supply/get_spawned_drop(var/turf/T)
 
 	if(!drop_type) drop_type = pick(supply_drop_random_loot_types())
 
@@ -32,7 +32,7 @@
 		log_world("Unhandled drop type: [drop_type]")
 
 
-/datum/admins/proc/call_supply_drop()
+datum/admins/proc/call_supply_drop()
 	set category = "Fun"
 	set desc = "Call an immediate supply drop on your location."
 	set name = "Call Supply Drop"

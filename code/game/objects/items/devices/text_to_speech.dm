@@ -1,4 +1,4 @@
-/obj/item/text_to_speech
+obj/item/text_to_speech
 	name = "TTS device"
 	desc = "A device that speaks an inputted message. Given to crew which can not speak properly or at all."
 	icon = 'icons/obj/integrated_electronics/electronic_setups.dmi'
@@ -6,7 +6,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/named
 
-/obj/item/text_to_speech/attack_self(mob/user)
+obj/item/text_to_speech/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -36,5 +36,5 @@
 		user.say_overhead("stopped typing.")
 
 
-/obj/item/text_to_speech/AltClick(mob/user) // QOL Change
+obj/item/text_to_speech/AltClick(mob/user) // QOL Change
 	attack_self(user)

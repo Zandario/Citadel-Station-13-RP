@@ -1,4 +1,4 @@
-/datum/technomancer/spell/ionic_bolt
+datum/technomancer/spell/ionic_bolt
 	name = "Ionic Bolt"
 	desc = "Shoots a bolt of ion energy at the target.  If it hits something, it will generally drain energy, corrupt electronics, \
 	or otherwise ruin complex machinery."
@@ -6,7 +6,7 @@
 	obj_path = /obj/item/spell/projectile/ionic_bolt
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/projectile/ionic_bolt
+obj/item/spell/projectile/ionic_bolt
 	name = "ionic bolt"
 	icon_state = "ionic bolt"
 	desc = "For those pesky security units."

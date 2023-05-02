@@ -17,7 +17,7 @@
 
 // Keep savefile compatibilty at minimum supported level
 #if DM_VERSION >= 515
-/savefile/byond_version = MIN_COMPILER_VERSION
+savefile/byond_version = MIN_COMPILER_VERSION
 #endif
 
 // 515 split call for external libraries into call_ext

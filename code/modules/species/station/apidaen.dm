@@ -1,4 +1,4 @@
-/datum/species/apidaen
+datum/species/apidaen
 	uid = SPECIES_ID_APIDAEN
 	id = SPECIES_ID_APIDAEN
 	name = SPECIES_APIDAEN
@@ -82,7 +82,7 @@
 	)
 
 // Did you know it's actually called a honey stomach? I didn't!
-/obj/item/organ/internal/honey_stomach
+obj/item/organ/internal/honey_stomach
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "innards"
 	name = "honey stomach"
@@ -101,11 +101,11 @@
 	var/nectar_type = "nectar (honey)"
 	var/gen_cost = 5
 
-/obj/item/organ/internal/honey_stomach/Initialize(mapload)
+obj/item/organ/internal/honey_stomach/Initialize(mapload)
 	. = ..()
 	create_reagents(usable_volume)
 
-/obj/item/organ/internal/honey_stomach/tick_life(dt)
+obj/item/organ/internal/honey_stomach/tick_life(dt)
 	. = ..()
 	if(.)
 		return
@@ -121,13 +121,13 @@
 		else if(reagents.total_volume == reagents.maximum_volume && before_gen < reagents.maximum_volume)
 			to_chat(owner, SPAN_WARNING("[pick(full_message)]"))
 
-/obj/item/organ/internal/honey_stomach/proc/do_generation()
+obj/item/organ/internal/honey_stomach/proc/do_generation()
 	owner.nutrition -= gen_cost
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])
 
 /// So if someone doesn't want to vomit jelly, they don't have to.
-/mob/living/carbon/human/proc/nectar_select()
+mob/living/carbon/human/proc/nectar_select()
 	set name = "Produce Honey"
 	set desc = "Begin producing honey."
 	set category = "Abilities"
@@ -149,7 +149,7 @@
 		to_chat(src, SPAN_NOTICE("You lack the organ required to produce nectar."))
 		return
 
-/mob/living/carbon/human/proc/nectar_pick()
+mob/living/carbon/human/proc/nectar_pick()
 	set name = "Collect Waxcomb"
 	set desc = "Coax waxcomb from [src]."
 	set category = "Abilities"

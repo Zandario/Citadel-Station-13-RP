@@ -1,5 +1,5 @@
 // -------------- Pummeler -------------
-/obj/item/gun/energy/pummeler
+obj/item/gun/energy/pummeler
 	name = "hypersonic gun"
 	desc = "For when you want to get that pesky marketing guy out of your face ASAP. The PML9 'Pummeler' fires one HUGE \
 	sonic blast in the direction of fire, throwing the target away from you at high speed. Now you can REALLY \
@@ -26,7 +26,7 @@
 	w_class = ITEMSIZE_LARGE
 
 //Projectile
-/obj/projectile/pummel
+obj/projectile/pummel
 	name = "sonic blast"
 	icon_state = "sound"
 	damage = 5
@@ -36,7 +36,7 @@
 	vacuum_traversal = 0
 	range = 6 //Scary name, but just deletes the projectile after this range
 
-/obj/projectile/pummel/on_hit(var/atom/movable/target, var/blocked = 0)
+obj/projectile/pummel/on_hit(var/atom/movable/target, var/blocked = 0)
 	if(isliving(target))
 		var/mob/living/L = target
 		var/throwdir = get_dir(firer,L)

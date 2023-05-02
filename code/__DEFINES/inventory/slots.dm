@@ -126,7 +126,7 @@ DEFINE_BITFIELD(slot_flags_forbidden, SLOT_FLAG_BITFIELDS)
 /// global list of default slots to use when equipping to appropriate slot
 GLOBAL_LIST_INIT(slot_equipment_priority, meta_slot_equipment_priority())
 
-/proc/meta_slot_equipment_priority()
+proc/meta_slot_equipment_priority()
 	return list(
 		SLOT_ID_BACK,
 		SLOT_ID_WORN_ID,

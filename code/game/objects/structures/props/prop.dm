@@ -1,6 +1,6 @@
 //The base 'prop' for PoIs or other large junk.
 
-/obj/structure/prop
+obj/structure/prop
 	name = "something"
 	desc = "My description is broken, bug a developer."
 	icon = 'icons/obj/structures.dmi'
@@ -9,7 +9,7 @@
 	anchored = TRUE
 	var/interaction_message = null
 
-/obj/structure/prop/attack_hand(mob/user, list/params) // Used to tell the player that this isn't useful for anything.
+obj/structure/prop/attack_hand(mob/user, list/params) // Used to tell the player that this isn't useful for anything.
 	if(!istype(user))
 		return FALSE
 	if(!interaction_message)

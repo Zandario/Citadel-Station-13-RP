@@ -1,5 +1,5 @@
 //The UI portion. Should probably be made its own thing/made into a NanoUI thing later.
-/datum/controller/subsystem/events
+datum/controller/subsystem/events
 	var/window_x = 700
 	var/window_y = 600
 	var/report_at_round_end = 0
@@ -9,7 +9,7 @@
 	var/row_options3 = " width='150px'"
 	var/datum/event_container/selected_event_container = null
 
-/datum/controller/subsystem/events/proc/Interact(var/mob/living/user)
+datum/controller/subsystem/events/proc/Interact(var/mob/living/user)
 
 	var/html = GetInteractWindow()
 
@@ -17,7 +17,7 @@
 	popup.set_content(html)
 	popup.open()
 
-/datum/controller/subsystem/events/proc/GetInteractWindow()
+datum/controller/subsystem/events/proc/GetInteractWindow()
 	var/html = "<A align='right' href='?src=\ref[src];refresh=1'>Refresh</A>"
 	html += "<A align='right' href='?src=\ref[src];pause_all=[!config_legacy.allow_random_events]'>Pause All - [config_legacy.allow_random_events ? "Pause" : "Resume"]</A>"
 
@@ -126,7 +126,7 @@
 
 	return html
 
-/datum/controller/subsystem/events/Topic(href, href_list)
+datum/controller/subsystem/events/Topic(href, href_list)
 	if(..())
 		return
 
@@ -222,7 +222,7 @@
 
 	Interact(usr)
 
-/client/proc/forceEvent(var/type in SSevents.allEvents)
+client/proc/forceEvent(var/type in SSevents.allEvents)
 	set name = "Trigger Event (Debug Only)"
 	set category = "Debug"
 
@@ -233,14 +233,14 @@
 		new type(new /datum/event_meta(EVENT_LEVEL_MAJOR))
 		message_admins("[key_name_admin(usr)] has triggered an event. ([type])", 1)
 
-/client/proc/event_manager_panel()
+client/proc/event_manager_panel()
 	set name = "Event Manager Panel"
 	set category = "Admin"
 	SSevents.Interact(usr)
 	feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /*
-/datum/event_manager/New()
+datum/event_manager/New()
 	..()
 	allEvents = typesof(/datum/event) - /datum/event
 	report_at_round_end = 1 //So people can see what admins have been up to regarding events. Can be disabled by admins for a round.

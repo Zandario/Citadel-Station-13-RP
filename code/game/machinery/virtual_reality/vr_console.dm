@@ -1,4 +1,4 @@
-/obj/machinery/vr_sleeper
+obj/machinery/vr_sleeper
 	name = "virtual reality sleeper"
 	desc = "A fancy bed with built-in sensory I/O ports and connectors to interface users' minds with their bodies in virtual reality."
 	icon = 'icons/obj/medical/cryogenic2.dmi'
@@ -23,7 +23,7 @@
 	active_power_usage = 200
 	light_color = "#FF0000"
 
-/obj/machinery/vr_sleeper/Initialize(mapload)
+obj/machinery/vr_sleeper/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
@@ -31,16 +31,16 @@
 
 	RefreshParts()
 
-/obj/machinery/vr_sleeper/Initialize(mapload)
+obj/machinery/vr_sleeper/Initialize(mapload)
 	. = ..()
 	smoke = new
 	update_icon()
 
-/obj/machinery/vr_sleeper/Destroy()
+obj/machinery/vr_sleeper/Destroy()
 	. = ..()
 	go_out()
 
-/obj/machinery/vr_sleeper/process(delta_time)
+obj/machinery/vr_sleeper/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
 		if(occupant)
 			go_out()
@@ -50,10 +50,10 @@
 		visible_message("<span class='warning'>\The [src] sounds an alarm, swinging its hatch open.</span>")
 		go_out()
 
-/obj/machinery/vr_sleeper/update_icon()
+obj/machinery/vr_sleeper/update_icon()
 	icon_state = "[base_state][occupant ? "1" : "0"]"
 
-/obj/machinery/vr_sleeper/Topic(href, href_list)
+obj/machinery/vr_sleeper/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -68,7 +68,7 @@
 
 	return 1
 
-/obj/machinery/vr_sleeper/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/vr_sleeper/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
 
 	if(occupant && (istype(I, /obj/item/healthanalyzer) || istype(I, /obj/item/robotanalyzer)))
@@ -85,14 +85,14 @@
 		return
 
 
-/obj/machinery/vr_sleeper/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/machinery/vr_sleeper/MouseDroppedOnLegacy(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !isliving(target))
 		return
 	go_in(target, user)
 
 
 
-/obj/machinery/sleeper/relaymove(var/mob/user)
+obj/machinery/sleeper/relaymove(var/mob/user)
 	..()
 	if(usr.incapacitated())
 		return
@@ -100,7 +100,7 @@
 
 
 
-/obj/machinery/vr_sleeper/emp_act(var/severity)
+obj/machinery/vr_sleeper/emp_act(var/severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -118,7 +118,7 @@
 
 	..(severity)
 
-/obj/machinery/vr_sleeper/verb/eject()
+obj/machinery/vr_sleeper/verb/eject()
 	set src in view(1)
 	set category = "Object"
 	set name = "Eject VR Capsule"
@@ -134,7 +134,7 @@
 	go_out(forced)
 	add_fingerprint(usr)
 
-/obj/machinery/vr_sleeper/verb/climb_in()
+obj/machinery/vr_sleeper/verb/climb_in()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Enter VR Capsule"
@@ -144,12 +144,12 @@
 	go_in(usr, usr)
 	add_fingerprint(usr)
 
-/obj/machinery/vr_sleeper/relaymove(mob/user as mob)
+obj/machinery/vr_sleeper/relaymove(mob/user as mob)
 	if(user.incapacitated())
 		return 0 //maybe they should be able to get out with cuffs, but whatever
 	go_out()
 
-/obj/machinery/vr_sleeper/proc/go_in(mob/M, mob/user)
+obj/machinery/vr_sleeper/proc/go_in(mob/M, mob/user)
 	if(!M)
 		return
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -180,7 +180,7 @@
 		enter_vr()
 	return
 
-/obj/machinery/vr_sleeper/proc/go_out(var/forced = TRUE)
+obj/machinery/vr_sleeper/proc/go_out(var/forced = TRUE)
 	if(!occupant)
 		return
 
@@ -202,7 +202,7 @@
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 
-/obj/machinery/vr_sleeper/proc/enter_vr()
+obj/machinery/vr_sleeper/proc/enter_vr()
 
 	// No mob to transfer a mind from
 	if(!occupant)

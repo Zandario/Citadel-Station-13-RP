@@ -1,4 +1,4 @@
-/turf/simulated/floor/outdoors/snow
+turf/simulated/floor/outdoors/snow
 	name = "snow"
 	icon_state = "snow"
 	edge_blending_priority = 1
@@ -12,7 +12,7 @@
 
 	var/crossed_dirs = NONE
 
-/turf/simulated/floor/outdoors/snow/Entered(atom/movable/AM)
+turf/simulated/floor/outdoors/snow/Entered(atom/movable/AM)
 	if(AM.hovering || AM.is_incorporeal()) // Flying things shouldn't make footprints.
 		return ..()
 	if(isliving(AM))
@@ -21,7 +21,7 @@
 			add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = AM.dir))
 	return ..()
 
-/turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
+turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/shovel))
 		to_chat(user, "<span class='notice'>You begin to remove \the [src] with your [W].</span>")
 		if(do_after(user, 4 SECONDS * W.tool_speed))
@@ -39,26 +39,26 @@
 	else
 		..()
 
-/turf/simulated/floor/outdoors/snow/attack_hand(mob/user, list/params)
+turf/simulated/floor/outdoors/snow/attack_hand(mob/user, list/params)
 	visible_message("[user] starts scooping up some snow.", "You start scooping up some snow.")
 	if(do_after(user, 1 SECOND))
 		user.put_in_hands_or_drop(new /obj/item/stack/material/snow)
 		visible_message("[user] scoops up a pile of snow.", "You scoop up a pile of snow.")
 	return
 
-/turf/simulated/floor/outdoors/snow/noblend
+turf/simulated/floor/outdoors/snow/noblend
 	edge_blending_priority = 0
 
-/turf/simulated/floor/outdoors/snow/noblend/indoors
+turf/simulated/floor/outdoors/snow/noblend/indoors
 	outdoors = FALSE
 
-/turf/simulated/floor/outdoors/ice
+turf/simulated/floor/outdoors/ice
 	name = "ice"
 	icon_state = "ice"
 	desc = "Looks slippery."
 	edge_blending_priority = 0
 
-/turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
+turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
 	. = ..()
 	if(istype(M, /mob/living))
 		if(!M.is_stunned())
@@ -67,7 +67,7 @@
 		step(M,M.dir)
 
 // Ice that is used for, say, areas floating on water or similar.
-/turf/simulated/floor/outdoors/shelfice
+turf/simulated/floor/outdoors/shelfice
 	name = "ice"
 	icon_state = "ice"
 	desc = "Looks slippery."
@@ -75,7 +75,7 @@
 	edge_blending_priority = 0
 
 // Ice that is safe to walk on.
-/turf/simulated/floor/outdoors/safeice
+turf/simulated/floor/outdoors/safeice
 	name = "ice"
 	icon_state = "ice"
 	desc = "Seems safe enough to walk on."
@@ -83,7 +83,7 @@
 	edge_blending_priority = 0
 
 // Snowy gravel
-/turf/simulated/floor/outdoors/gravsnow
+turf/simulated/floor/outdoors/gravsnow
 	name = "snowy gravel"
 	icon = 'icons/turf/snow_new.dmi'
 	icon_state = "gravsnow"

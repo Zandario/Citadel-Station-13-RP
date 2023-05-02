@@ -3,14 +3,14 @@
 #define FARMBOT_UPROOT 3
 #define FARMBOT_NUTRIMENT 4
 
-/datum/category_item/catalogue/technology/bot/farmbot
+datum/category_item/catalogue/technology/bot/farmbot
 	name = "Bot - Farmbot"
 	desc = "Farmbots are the fusion of mobile water tanks with sophisticated \
 	cultivation routines. Designed to ease the burden of maintaining Hydroponics \
 	gardens - often a vital facet of life in space - these bots are always in demand."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/bot/farmbot
+mob/living/bot/farmbot
 	name = "Farmbot"
 	desc = "The botanist's best friend."
 	icon = 'icons/obj/bots/farmbots.dmi'
@@ -29,20 +29,20 @@
 	var/removes_dead = FALSE
 	var/obj/structure/reagent_dispensers/watertank/tank
 
-/mob/living/bot/farmbot/Initialize(mapload, newTank)
+mob/living/bot/farmbot/Initialize(mapload, newTank)
 	. = ..(mapload)
 	if(!newTank)
 		newTank = new /obj/structure/reagent_dispensers/watertank(src)
 	tank = newTank
 	tank.forceMove(src)
 
-/mob/living/bot/farmbot/ui_interact(mob/user, datum/tgui/ui)
+mob/living/bot/farmbot/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Farmbot", name)
 		ui.open()
 
-/mob/living/bot/farmbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+mob/living/bot/farmbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["on"] = on
@@ -69,13 +69,13 @@
 
 	return data
 
-/mob/living/bot/farmbot/attack_hand(mob/user, list/params)
+mob/living/bot/farmbot/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/mob/living/bot/farmbot/emag_act(var/remaining_charges, var/mob/user)
+mob/living/bot/farmbot/emag_act(var/remaining_charges, var/mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -85,7 +85,7 @@
 			emagged = TRUE
 		return TRUE
 
-/mob/living/bot/farmbot/ui_act(action, list/params, datum/tgui/ui)
+mob/living/bot/farmbot/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -123,20 +123,20 @@
 		// 	removes_dead = !removes_dead
 		// 	. = TRUE
 
-/mob/living/bot/farmbot/update_icons()
+mob/living/bot/farmbot/update_icons()
 	if(on && action)
 		icon_state = "farmbot_[action]"
 	else
 		icon_state = "farmbot[on]"
 
-/mob/living/bot/farmbot/handleRegular()
+mob/living/bot/farmbot/handleRegular()
 	if(emagged && prob(1))
 		flick("farmbot_broke", src)
 
-/mob/living/bot/farmbot/handleAdjacentTarget()
+mob/living/bot/farmbot/handleAdjacentTarget()
 	UnarmedAttack(target)
 
-/mob/living/bot/farmbot/lookForTargets()
+mob/living/bot/farmbot/lookForTargets()
 	if(emagged)
 		for(var/mob/living/carbon/human/H in view(7, src))
 			target = H
@@ -151,7 +151,7 @@
 				target = source
 				return
 
-/mob/living/bot/farmbot/calcTargetPath() // We need to land NEXT to the tray, because the tray itself is impassable
+mob/living/bot/farmbot/calcTargetPath() // We need to land NEXT to the tray, because the tray itself is impassable
 	target_path = AStar(
 		get_turf(loc),
 		get_turf(target),
@@ -167,13 +167,13 @@
 		target = null
 		target_path = list()
 
-/mob/living/bot/farmbot/stepToTarget() // Same reason
+mob/living/bot/farmbot/stepToTarget() // Same reason
 	var/turf/T = get_turf(target)
 	if(!target_path.len || !T.Adjacent(target_path[target_path.len]))
 		calcTargetPath()
 	makeStep(target_path)
 
-/mob/living/bot/farmbot/UnarmedAttack(var/atom/A, var/proximity)
+mob/living/bot/farmbot/UnarmedAttack(var/atom/A, var/proximity)
 	if(!..())
 		return
 
@@ -269,7 +269,7 @@
 				visible_message("<span class='danger'>[src] splashes [A] with water!</span>")
 				tank.reagents.splash(A, 100)
 
-/mob/living/bot/farmbot/explode()
+mob/living/bot/farmbot/explode()
 	visible_message("<span class='danger'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
@@ -291,7 +291,7 @@
 	return
 
 
-/mob/living/bot/farmbot/confirmTarget(var/atom/targ)
+mob/living/bot/farmbot/confirmTarget(var/atom/targ)
 	if(!..())
 		return 0
 
@@ -328,7 +328,7 @@
 
 // Assembly
 
-/obj/item/farmbot_arm_assembly
+obj/item/farmbot_arm_assembly
 	name = "water tank/robot arm assembly"
 	desc = "A water tank with a robot arm permanently grafted to it."
 	icon = 'icons/obj/bots/farmbots.dmi'
@@ -339,7 +339,7 @@
 	w_class = ITEMSIZE_NORMAL
 
 
-/obj/item/farmbot_arm_assembly/Initialize(mapload, theTank)
+obj/item/farmbot_arm_assembly/Initialize(mapload, theTank)
 	. = ..(mapload)
 	if(!theTank) // If an admin spawned it, it won't have a watertank it, so lets make one for em!
 		tank = new /obj/structure/reagent_dispensers/watertank(src)
@@ -347,7 +347,7 @@
 		tank = theTank
 		tank.forceMove(src)
 
-/obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/robot_parts/S, mob/user as mob)
+obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/robot_parts/S, mob/user as mob)
 	if ((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
 		return ..()
 	if(!user.attempt_consume_item_for_construction(S))
@@ -356,7 +356,7 @@
 
 	new /obj/item/farmbot_arm_assembly(loc, src)
 
-/obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/organ/external/S, mob/user as mob)
+obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/organ/external/S, mob/user as mob)
 	if ((!istype(S, /obj/item/organ/external/arm)) || S.robotic != ORGAN_ROBOT)
 		return ..()
 	if(!user.attempt_consume_item_for_construction(S))
@@ -365,7 +365,7 @@
 
 	new /obj/item/farmbot_arm_assembly(loc, src)
 
-/obj/item/farmbot_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/farmbot_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if((istype(W, /obj/item/analyzer/plant_analyzer)) && (build_step == 0))
 		if(!user.attempt_consume_item_for_construction(W))
@@ -408,5 +408,5 @@
 
 		created_name = t
 
-/obj/item/farmbot_arm_assembly/attack_hand(mob/user, list/params)
+obj/item/farmbot_arm_assembly/attack_hand(mob/user, list/params)
 	return //it's a converted watertank, no you cannot pick it up and put it in your backpack

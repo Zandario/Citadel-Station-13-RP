@@ -1,4 +1,4 @@
-/datum/game_mode/conflux
+datum/game_mode/conflux
 	name = "Technomancers & Cult"
 	round_description = "A space wizard and a cult have invaded the station!"
 	extended_round_description = "Cultists and wizards spawn during this round."

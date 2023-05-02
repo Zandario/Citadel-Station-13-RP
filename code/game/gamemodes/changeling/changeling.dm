@@ -1,4 +1,4 @@
-/datum/game_mode/changeling
+datum/game_mode/changeling
 	name = "Changeling"
 	round_description = "There are alien changelings on the station. Do not let the changelings succeed!"
 	extended_round_description = {"

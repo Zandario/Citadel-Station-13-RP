@@ -2,7 +2,7 @@
 #define NEUTRAL_MODE 2
 #define NEGATIVE_MODE 3
 
-/datum/preferences
+datum/preferences
 	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
 	var/custom_base		// What to base the custom species on
 	var/blood_color = "#A10808"
@@ -21,11 +21,11 @@
 	var/max_traits = MAX_SPECIES_TRAITS
 
 // Definition of the stuff for Ears
-/datum/category_item/player_setup_item/vore/traits
+datum/category_item/player_setup_item/vore/traits
 	name = "Traits"
 	sort_order = 8
 
-/datum/category_item/player_setup_item/vore/traits/load_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/traits/load_character(var/savefile/S)
 	S["custom_species"]	>> pref.custom_species
 	S["custom_base"]	>> pref.custom_base
 	S["pos_traits"]		>> pref.pos_traits
@@ -42,7 +42,7 @@
 	S["custom_ask"]		>> pref.custom_ask
 	S["custom_exclaim"]	>> pref.custom_exclaim
 
-/datum/category_item/player_setup_item/vore/traits/save_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/traits/save_character(var/savefile/S)
 	S["custom_species"]	<< pref.custom_species
 	S["custom_base"]	<< pref.custom_base
 	S["pos_traits"]		<< pref.pos_traits
@@ -59,7 +59,7 @@
 	S["custom_ask"]		<< pref.custom_ask
 	S["custom_exclaim"]	<< pref.custom_exclaim
 
-/datum/category_item/player_setup_item/vore/traits/sanitize_character()
+datum/category_item/player_setup_item/vore/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()
 	if(!pref.neu_traits) pref.neu_traits = list()
 	if(!pref.neg_traits) pref.neg_traits = list()
@@ -100,7 +100,7 @@
 	pref.custom_exclaim = lowertext(trim(pref.custom_exclaim))
 
 
-/datum/category_item/player_setup_item/vore/traits/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/vore/traits/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -125,7 +125,7 @@
 			log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
 	return TRUE
 
-/datum/category_item/player_setup_item/vore/traits/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/vore/traits/content(datum/preferences/prefs, mob/user, data)
 	. += "<b>Custom Species Name:</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
@@ -181,7 +181,7 @@
 	. += "<b>Custom Exclaim: </b>"
 	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a><br>"
 
-/datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
 		return PREFERENCES_NOACTION
 

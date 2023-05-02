@@ -1,5 +1,5 @@
 /// Used by players to ask badmins to do things for them, but ICly.
-/mob/verb/pray(msg as text)
+mob/verb/pray(msg as text)
 	set category = "IC"
 	set name = "Pray"
 
@@ -60,7 +60,7 @@
 
 //TODO: Reimplement IA CentcCom message, seems to have been lost to time.
 /// Used by communications consoles to message CentCom.
-/proc/message_centcom(text, mob/sender, iamessage)
+proc/message_centcom(text, mob/sender, iamessage)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	// GLOB.requests.message_centcom(sender.client, msg)
 	msg = SPAN_ADMINNOTICE("<b><font color=orange>[uppertext(GLOB.using_map.boss_short)]M[iamessage ? " IA" : ""]:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_CENTCOM_REPLY(sender)]:</b> [msg]")
@@ -75,7 +75,7 @@
 
 
 /// Used by communications consoles to message the Syndicate
-/proc/message_syndicate(text, mob/sender)
+proc/message_syndicate(text, mob/sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	// GLOB.requests.message_syndicate(sender.client, msg)
 	msg = SPAN_ADMINNOTICE("<b><font color=crimson>ILLEGAL:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_SYNDICATE_REPLY(sender)]:</b> [msg]")

@@ -13,7 +13,7 @@
  * @return
  * The atom that's blocking. Returns NULL if there's no obstruction.
  */
-/turf/proc/z_pass_in_obstruction(atom/movable/mover, dir, turf/source)
+turf/proc/z_pass_in_obstruction(atom/movable/mover, dir, turf/source)
 	if(!(mz_flags & (dir == UP? MZ_OPEN_UP : MZ_OPEN_DOWN)))
 		return src
 	for(var/atom/movable/AM as anything in contents)
@@ -35,7 +35,7 @@
  * @return
  * The atom that's blocking. Returns NULL if there's no obstruction.
  */
-/turf/proc/z_pass_out_obstruction(atom/movable/mover, dir, turf/dest)
+turf/proc/z_pass_out_obstruction(atom/movable/mover, dir, turf/dest)
 	if(!(mz_flags & (dir == UP? MZ_OPEN_UP : MZ_OPEN_DOWN)))
 		return src
 	for(var/atom/movable/AM as anything in contents)
@@ -53,7 +53,7 @@
  * - mover - atom that needs to move
  * - dir - are they going UP abov eus or DOWN below us?
  */
-/turf/proc/z_exit_obstruction(atom/movable/mover, dir)
+turf/proc/z_exit_obstruction(atom/movable/mover, dir)
 	// we assume dir is up/down because why wouldn't it be
 	var/turf/dest
 	if(dir == UP)
@@ -71,7 +71,7 @@
  * - mover - atom that needs to move
  * - dir - are they going UP abov eus or DOWN below us?
  */
-/turf/proc/z_exit_check(atom/movable/mover, dir)
+turf/proc/z_exit_check(atom/movable/mover, dir)
 	// we assume dir is up/down because why wouldn't it be
 	var/turf/dest
 	if(dir == UP)
@@ -85,7 +85,7 @@
 /**
  * checks what is going to block something from falling through us
  */
-/turf/proc/z_fall_obstruction(atom/movable/mover, levels, fall_flags)
+turf/proc/z_fall_obstruction(atom/movable/mover, levels, fall_flags)
 	for(var/atom/movable/AM as anything in contents)
 		if(AM.prevent_z_fall(mover, levels, fall_flags))
 			return AM
@@ -93,33 +93,33 @@
 /**
  * simple boolean check to see if something's physically blocked from falling through us
  */
-/turf/proc/z_fall_check(atom/movable/mover, levels, fall_flags)
+turf/proc/z_fall_check(atom/movable/mover, levels, fall_flags)
 	if(!(mz_flags & MZ_OPEN_DOWN))
 		return FALSE
 	return isnull(z_fall_obstruction(mover, levels, fall_flags))
 
-/turf/z_pass_in(atom/movable/AM, dir, turf/old_loc)
+turf/z_pass_in(atom/movable/AM, dir, turf/old_loc)
 	return isnull(z_pass_in_obstruction(AM, dir, old_loc))
 
-/turf/z_pass_out(atom/movable/AM, dir, turf/new_loc)
+turf/z_pass_out(atom/movable/AM, dir, turf/new_loc)
 	return isnull(z_pass_out_obstruction(AM, dir, new_loc))
 
 // todo: redo
-/turf/CheckFall(atom/movable/falling_atom)
+turf/CheckFall(atom/movable/falling_atom)
 	if(!(mz_flags & MZ_OPEN_DOWN))
 		return TRUE	// impact!
 	return ..()
 
-/turf/check_impact(atom/movable/falling_atom)
+turf/check_impact(atom/movable/falling_atom)
 	return TRUE
 
-/turf/proc/multiz_turf_del(turf/T, dir)
+turf/proc/multiz_turf_del(turf/T, dir)
 	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)
 
-/turf/proc/multiz_turf_new(turf/T, dir)
+turf/proc/multiz_turf_new(turf/T, dir)
 	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
 
-/turf/smooth_icon()
+turf/smooth_icon()
 	. = ..()
 	if(SSzmimic.initialized)
 		var/turf/simulated/open/above = GetAbove(src)

@@ -2,7 +2,7 @@
 //! Claw Machine !//
 ////////////////////
 
-/obj/machinery/computer/arcade/clawmachine
+obj/machinery/computer/arcade/clawmachine
 	name = "AlliCo Grab-a-Gift"
 	desc = "Show off your arcade skills for that special someone!"
 	icon_state = "clawmachine_new"
@@ -19,7 +19,7 @@
 	var/winscreen = ""
 
 // Payment
-/obj/machinery/computer/arcade/clawmachine/attackby(obj/item/I, mob/user)
+obj/machinery/computer/arcade/clawmachine/attackby(obj/item/I, mob/user)
 	if(..())
 		return
 
@@ -41,7 +41,7 @@
 		return
 
 // Cash
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_cash(obj/item/spacecash/cashmoney, mob/user)
+obj/machinery/computer/arcade/clawmachine/proc/pay_with_cash(obj/item/spacecash/cashmoney, mob/user)
 	if(!emagged)
 		if(gameprice > cashmoney.worth)
 
@@ -70,7 +70,7 @@
 
 
 ///// Ewallet
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(obj/item/spacecash/ewallet/wallet)
+obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(obj/item/spacecash/ewallet/wallet)
 	if(!emagged)
 		visible_message(SPAN_INFO("\The [usr] swipes \the [wallet] through \the [src]."))
 		playsound(src, 'sound/machines/id_swipe.ogg', 50, TRUE)
@@ -87,7 +87,7 @@
 		to_chat(usr, SPAN_INFO("It doesn't seem to accept that! Seem you'll need to swipe a valid ID."))
 
 ///// ID
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(obj/item/card/id/I, obj/item/ID_container)
+obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(obj/item/card/id/I, obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
 		visible_message(SPAN_INFO("\The [usr] swipes \the [I] through \the [src]."))
 	else
@@ -143,7 +143,7 @@
 
 /// Add to vendor account
 
-/obj/machinery/computer/arcade/clawmachine/proc/credit_purchase(target as text)
+obj/machinery/computer/arcade/clawmachine/proc/credit_purchase(target as text)
 	GLOB.vendor_account.money += gameprice
 
 	var/datum/transaction/T = new()
@@ -157,24 +157,24 @@
 
 /// End Payment
 
-/obj/machinery/computer/arcade/clawmachine/Initialize(mapload)
+obj/machinery/computer/arcade/clawmachine/Initialize(mapload)
 	. = ..()
 
-/obj/machinery/computer/arcade/clawmachine/attack_hand(mob/user, list/params)
+obj/machinery/computer/arcade/clawmachine/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	ui_interact(user)
 
 /// TGUI Stuff
 
-/obj/machinery/computer/arcade/clawmachine/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/arcade/clawmachine/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ClawMachine", name)
 		ui.autoupdate = TRUE
 		ui.open()
 
-/obj/machinery/computer/arcade/clawmachine/ui_data(mob/user)
+obj/machinery/computer/arcade/clawmachine/ui_data(mob/user)
 	var/list/data = list()
 
 	data["wintick"] = wintick
@@ -184,7 +184,7 @@
 
 	return data
 
-/obj/machinery/computer/arcade/clawmachine/ui_act(action, params)
+obj/machinery/computer/arcade/clawmachine/ui_act(action, params)
 	if(..())
 		return
 
@@ -208,7 +208,7 @@
 		clawvend(usr)
 
 /// True to a real claw machine, it's NEARLY impossible to win.
-/obj/machinery/computer/arcade/clawmachine/proc/clawvend(mob/user)
+obj/machinery/computer/arcade/clawmachine/proc/clawvend(mob/user)
 	winprob += 1 /// Yeah.
 
 	if(prob(winprob)) /// YEAH.
@@ -234,7 +234,7 @@
 	icon_state = "clawmachine_new"
 	gameStatus = "CLAWMACHINE_END"
 
-/obj/machinery/computer/arcade/clawmachine/emag_act(mob/user)
+obj/machinery/computer/arcade/clawmachine/emag_act(mob/user)
 	if(!emagged)
 		to_chat(user, SPAN_NOTICE("You modify the claw of the machine. The next one is sure to win! You just have to pay..."))
 		name = "AlliCo Snag-A-Prize"

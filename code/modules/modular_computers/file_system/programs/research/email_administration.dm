@@ -1,4 +1,4 @@
-/datum/computer_file/program/email_administration
+datum/computer_file/program/email_administration
 	filename = "emailadmin"
 	filedesc = "Email Administration Utility"
 	extended_desc = "This program may be used to administrate NTNet's emailing service."
@@ -14,13 +14,13 @@
 
 
 
-/datum/nano_module/email_administration/
+datum/nano_module/email_administration/
 	name = "Email Client"
 	var/datum/computer_file/data/email_account/current_account = null
 	var/datum/computer_file/data/email_message/current_message = null
 	var/error = ""
 
-/datum/nano_module/email_administration/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/email_administration/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	if(error)
@@ -65,7 +65,7 @@
 		ui.open()
 
 
-/datum/nano_module/email_administration/Topic(href, href_list)
+datum/nano_module/email_administration/Topic(href, href_list)
 	if(..())
 		return 1
 

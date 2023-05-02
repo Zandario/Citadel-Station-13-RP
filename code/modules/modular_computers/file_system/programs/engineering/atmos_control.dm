@@ -1,4 +1,4 @@
-/datum/computer_file/program/atmos_control
+datum/computer_file/program/atmos_control
 	filename = "atmoscontrol"
 	filedesc = "Atmosphere Control"
 	tguimodule_path = /datum/tgui_module_old/atmos_control/ntos

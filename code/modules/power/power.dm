@@ -6,7 +6,7 @@
 // Definitions
 /////////////////////////////
 
-/obj/machinery/power
+obj/machinery/power
 	name = null
 	icon = 'icons/obj/power.dmi'
 	anchored = 1.0
@@ -15,7 +15,7 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 
-/obj/machinery/power/Destroy()
+obj/machinery/power/Destroy()
 	disconnect_from_network()
 	disconnect_terminal()
 
@@ -26,25 +26,25 @@
 //////////////////////////////
 
 // common helper procs for all power machines
-/obj/machinery/power/drain_energy(datum/actor, amount, flags)
+obj/machinery/power/drain_energy(datum/actor, amount, flags)
 	if(!powernet)
 		return 0
 	return powernet.drain_energy_handler(actor, amount, flags)
 
-/obj/machinery/power/can_drain_energy(datum/actor, amount)
+obj/machinery/power/can_drain_energy(datum/actor, amount)
 	return TRUE
 
 /**
  * amount is in KW, NOT W
  */
-/obj/machinery/power/proc/add_avail(amount)
+obj/machinery/power/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
 
 /**
  * amount is in KW, NOT W
  */
-/obj/machinery/power/proc/draw_power(amount)
+obj/machinery/power/proc/draw_power(amount)
 	if(powernet)
 		return powernet.draw_power(amount)
 	return 0
@@ -54,7 +54,7 @@
  *
  * include amount to turn this into a boolean check.
  */
-/obj/machinery/power/proc/surplus(amount)
+obj/machinery/power/proc/surplus(amount)
 	if(!powernet)
 		return 0
 	. = powernet.avail - powernet.load
@@ -66,23 +66,23 @@
  *
  * include amount to turn this into a boolean check.
  */
-/obj/machinery/power/proc/avail(amount)
+obj/machinery/power/proc/avail(amount)
 	return isnull(amount)? (powernet?.avail || 0) : (powernet?.avail >= amount)
 
 /**
  * amount is in KW, NOT W
  */
-/obj/machinery/power/proc/viewload()
+obj/machinery/power/proc/viewload()
 	if(powernet)
 		return powernet.viewload
 	else
 		return 0
 
-/obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
+obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
 
 // connect the machine to a powernet if a node cable is present on the turf
-/obj/machinery/power/proc/connect_to_network()
+obj/machinery/power/proc/connect_to_network()
 	var/turf/T = src.loc
 	if(!T || !istype(T))
 		return 0
@@ -95,7 +95,7 @@
 	return 1
 
 // remove and disconnect the machine from its current powernet
-/obj/machinery/power/proc/disconnect_from_network()
+obj/machinery/power/proc/disconnect_from_network()
 	if(!powernet)
 		return 0
 	powernet.remove_machine(src)
@@ -103,7 +103,7 @@
 
 // attach a wire to a power machine - leads from the turf you are standing on
 //almost never called, overwritten by all power machines but terminal and generator
-/obj/machinery/power/attackby(obj/item/W, mob/user)
+obj/machinery/power/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/stack/cable_coil))
 
@@ -124,7 +124,7 @@
 	return
 
 // Power machinery should also connect/disconnect from the network.
-/obj/machinery/power/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
+obj/machinery/power/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
 	if((. = ..()))
 		if(anchored)
 			connect_to_network()
@@ -132,14 +132,14 @@
 			disconnect_from_network()
 
 // Used for power spikes by the engine, has specific effects on different machines.
-/obj/machinery/power/proc/overload(var/obj/machinery/power/source)
+obj/machinery/power/proc/overload(var/obj/machinery/power/source)
 	return
 
 // Used by the grid checker upon receiving a power spike.
-/obj/machinery/power/proc/do_grid_check()
+obj/machinery/power/proc/do_grid_check()
 	return
 
-/obj/machinery/power/proc/power_spike()
+obj/machinery/power/proc/power_spike()
 	return
 
 ///////////////////////////////////////////
@@ -148,7 +148,7 @@
 
 //returns all the cables WITHOUT a powernet in neighbors turfs,
 //pointing towards the turf the machine is located at
-/obj/machinery/power/proc/get_connections()
+obj/machinery/power/proc/get_connections()
 
 	. = list()
 
@@ -167,7 +167,7 @@
 
 //returns all the cables in neighbors turfs,
 //pointing towards the turf the machine is located at
-/obj/machinery/power/proc/get_marked_connections()
+obj/machinery/power/proc/get_marked_connections()
 
 	. = list()
 
@@ -184,7 +184,7 @@
 	return .
 
 //returns all the NODES (O-X) cables WITHOUT a powernet in the turf the machine is located at
-/obj/machinery/power/proc/get_indirect_connections()
+obj/machinery/power/proc/get_indirect_connections()
 	. = list()
 	for(var/obj/structure/cable/C in loc)
 		if(C.powernet)	continue
@@ -200,7 +200,7 @@
 // returns a list of all power-related objects (nodes, cable, junctions) in turf,
 // excluding source, that match the direction d
 // if unmarked==1, only return those with no powernet
-/proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 0)
+proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 0)
 	. = list()
 
 	var/reverse = d ? global.reverse_dir[d] : 0
@@ -224,7 +224,7 @@
 	return .
 
 //remove the old powernet and replace it with a new one throughout the network.
-/proc/propagate_network(var/obj/O, var/datum/powernet/PN)
+proc/propagate_network(var/obj/O, var/datum/powernet/PN)
 	//to_chat(world.log, "propagating new network")
 	var/list/worklist = list()
 	var/list/found_machines = list()
@@ -257,7 +257,7 @@
 
 
 //Merge two powernets, the bigger (in cable length term) absorbing the other
-/proc/merge_powernets(var/datum/powernet/net1, var/datum/powernet/net2)
+proc/merge_powernets(var/datum/powernet/net1, var/datum/powernet/net2)
 	if(!net1 || !net2) //if one of the powernet doesn't exist, return
 		return
 
@@ -287,7 +287,7 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
+proc/electrocute_mob(mob/living/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
 	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
 	if(issilicon(M))	return 0	//No more robot shocks from machinery
 	var/area/source_area

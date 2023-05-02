@@ -1,14 +1,14 @@
-/obj/machinery/camera
+obj/machinery/camera
 	var/list/motionTargets = list()
 	var/detectTime = 0
 	var/area/ai_monitored/area_motion = null
 	var/alarm_delay = 100 // Don't forget, there's another 10 seconds in queueAlarm()
 
-/obj/machinery/camera/Initialize(mapload)
+obj/machinery/camera/Initialize(mapload)
 	. = ..()
 	new /datum/proxfield/basic/square(src, 1)
 
-/obj/machinery/camera/internal_process()
+obj/machinery/camera/internal_process()
 	// motion camera event loop
 	if (machine_stat & (EMPED|NOPOWER))
 		return
@@ -29,7 +29,7 @@
 					// If they aren't in range, lose the target.
 					lostTarget(target)
 
-/obj/machinery/camera/proc/newTarget(var/mob/target)
+obj/machinery/camera/proc/newTarget(var/mob/target)
 	if (istype(target, /mob/living/silicon/ai))
 		return FALSE
 	if (detectTime == 0)
@@ -38,13 +38,13 @@
 		motionTargets += target
 	return TRUE
 
-/obj/machinery/camera/proc/lostTarget(var/mob/target)
+obj/machinery/camera/proc/lostTarget(var/mob/target)
 	if (target in motionTargets)
 		motionTargets -= target
 	if (motionTargets.len == 0)
 		cancelAlarm()
 
-/obj/machinery/camera/proc/cancelAlarm()
+obj/machinery/camera/proc/cancelAlarm()
 	if (!status || (machine_stat & NOPOWER))
 		return FALSE
 	if (detectTime == -1)
@@ -52,7 +52,7 @@
 	detectTime = 0
 	return TRUE
 
-/obj/machinery/camera/proc/triggerAlarm()
+obj/machinery/camera/proc/triggerAlarm()
 	if (!status || (machine_stat & NOPOWER))
 		return FALSE
 	if (!detectTime)
@@ -61,7 +61,7 @@
 	detectTime = -1
 	return TRUE
 
-/obj/machinery/camera/Proximity(datum/proxfield/field, atom/movable/AM)
+obj/machinery/camera/Proximity(datum/proxfield/field, atom/movable/AM)
 	// Motion cameras outside of an "ai monitored" area will use this to detect stuff.
 	if(!isMotion())
 		return

@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/technology/bot/cleanbot
+datum/category_item/catalogue/technology/bot/cleanbot
 	name = "Bot - Cleanbot"
 	desc = "Cleanbots are little more than stabilized mop buckets \
 	on wheels, programmed with basic pathfinding abilities and onboard \
@@ -6,7 +6,7 @@
 	Space Cleaner solution which will generally last it an entire shift."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/bot/cleanbot
+mob/living/bot/cleanbot
 	name = "Cleanbot"
 	desc = "A little cleaning robot, it looks so excited!"
 	icon_state = "cleanbot0"
@@ -24,11 +24,11 @@
 	var/blood = TRUE
 	var/list/target_types = list()
 
-/mob/living/bot/cleanbot/Initialize(mapload)
+mob/living/bot/cleanbot/Initialize(mapload)
 	. = ..()
 	get_targets()
 
-/mob/living/bot/cleanbot/handleIdle()
+mob/living/bot/cleanbot/handleIdle()
 	if(!wet_floors && !spray_blood && prob(2))
 		custom_emote(2, "makes an excited booping sound!")
 		playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, FALSE)
@@ -47,7 +47,7 @@
 		spawn(600)
 			ignore_list -= g
 
-/mob/living/bot/cleanbot/handlePanic()	// Speed modification based on alert level.
+mob/living/bot/cleanbot/handlePanic()	// Speed modification based on alert level.
 	. = 0
 	switch(get_security_level())
 		if("green")
@@ -73,13 +73,13 @@
 
 	return .
 
-/mob/living/bot/cleanbot/lookForTargets()
+mob/living/bot/cleanbot/lookForTargets()
 	for(var/obj/effect/debris/cleanable/D in view(world.view, src)) // There was some odd code to make it start with nearest decals, it's unnecessary, this works
 		if(confirmTarget(D))
 			target = D
 			return
 
-/mob/living/bot/cleanbot/confirmTarget(var/obj/effect/debris/cleanable/D)
+mob/living/bot/cleanbot/confirmTarget(var/obj/effect/debris/cleanable/D)
 	if(!..())
 		return FALSE
 	for(var/T in target_types)
@@ -87,11 +87,11 @@
 			return TRUE
 	return FALSE
 
-/mob/living/bot/cleanbot/handleAdjacentTarget()
+mob/living/bot/cleanbot/handleAdjacentTarget()
 	if(get_turf(target) == src.loc)
 		UnarmedAttack(target)
 
-/mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/debris/cleanable/D, var/proximity)
+mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/debris/cleanable/D, var/proximity)
 	if(!..())
 		return
 
@@ -118,7 +118,7 @@
 	busy = FALSE
 	update_icons()
 
-/mob/living/bot/cleanbot/explode()
+mob/living/bot/cleanbot/explode()
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
@@ -134,22 +134,22 @@
 	qdel(src)
 	return
 
-/mob/living/bot/cleanbot/update_icons()
+mob/living/bot/cleanbot/update_icons()
 	if(busy)
 		icon_state = "cleanbot-c"
 	else
 		icon_state = "cleanbot[on]"
 
-/mob/living/bot/cleanbot/attack_hand(mob/user, list/params)
+mob/living/bot/cleanbot/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/mob/living/bot/cleanbot/ui_interact(mob/user, datum/tgui/ui)
+mob/living/bot/cleanbot/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Cleanbot", name)
 		ui.open()
 
-/mob/living/bot/cleanbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+mob/living/bot/cleanbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["on"] = on
 	data["open"] = open
@@ -163,7 +163,7 @@
 	data["version"] = "v2.0"
 	return data
 
-/mob/living/bot/cleanbot/ui_act(action, list/params, datum/tgui/ui)
+mob/living/bot/cleanbot/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -197,7 +197,7 @@
 			to_chat(usr, SPAN_NOTICE("You press the weird button."))
 			. = TRUE
 
-/mob/living/bot/cleanbot/emag_act(var/remaining_uses, var/mob/user)
+mob/living/bot/cleanbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
 	if(!wet_floors || !spray_blood)
 		if(user)
@@ -207,7 +207,7 @@
 		wet_floors = TRUE
 		return TRUE
 
-/mob/living/bot/cleanbot/proc/get_targets()
+mob/living/bot/cleanbot/proc/get_targets()
 	target_types = list()
 
 	target_types += /obj/effect/debris/cleanable/blood/oil
@@ -222,7 +222,7 @@
 
 /* Assembly */
 
-/obj/item/bucket_sensor
+obj/item/bucket_sensor
 	desc = "It's a bucket. With a sensor attached."
 	name = "proxy bucket"
 	icon = 'icons/obj/aibots.dmi'
@@ -234,7 +234,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/created_name = "Cleanbot"
 
-/obj/item/bucket_sensor/attackby(var/obj/item/W, var/mob/user)
+obj/item/bucket_sensor/attackby(var/obj/item/W, var/mob/user)
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm) || (istype(W, /obj/item/organ/external/arm) && ((W.name == "robotic left arm") || (W.name == "robotic right arm"))))
 		if(!user.attempt_insert_item_for_installation(W, src))
@@ -267,7 +267,7 @@
 
 //Port of Roombas and the Roomba Maid from /vg/station.
 
-/mob/living/bot/cleanbot/roomba
+mob/living/bot/cleanbot/roomba
 	desc = "A small, plate-like cleaning robot. It looks quite concerned."
 	icon_state = "roombot0"
 	var/created_name = "Roombot"
@@ -275,7 +275,7 @@
 	var/coolingdown = 0
 	var/attackcooldown = 0
 
-/mob/living/bot/cleanbot/roomba/attackby(var/obj/item/W, mob/user)
+mob/living/bot/cleanbot/roomba/attackby(var/obj/item/W, mob/user)
 	if(istype(W, /obj/item/material/kitchen/utensil/fork) && !armed && user.a_intent != INTENT_HARM)
 		qdel(W)
 		to_chat(user, "<span class='notice'>You attach \the [W] to \the [src]. It looks increasingly concerned about its current situation.</span>")
@@ -302,18 +302,18 @@
 	else
 		. = ..()
 
-/mob/living/bot/cleanbot/roomba/Crossed(atom/A)
+mob/living/bot/cleanbot/roomba/Crossed(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		annoy(L)
 	..()
 
-/mob/living/bot/cleanbot/roomba/proc/attack_cooldown()
+mob/living/bot/cleanbot/roomba/proc/attack_cooldown()
 	coolingdown = TRUE
 	spawn(attackcooldown)
 		coolingdown = FALSE
 
-/mob/living/bot/cleanbot/roomba/proc/annoy(var/mob/living/L)
+mob/living/bot/cleanbot/roomba/proc/annoy(var/mob/living/L)
 	if(coolingdown == FALSE)
 		switch(armed)
 			if(1)
@@ -327,19 +327,19 @@
 				L.adjustFireLoss(damage/2)
 		attack_cooldown()
 
-/mob/living/bot/cleanbot/roomba/update_icons()
+mob/living/bot/cleanbot/roomba/update_icons()
 	if(busy)
 		icon_state = "roombot-c"
 	else
 		icon_state = "roombot[on]"
 
-/mob/living/bot/cleanbot/roomba/meido
+mob/living/bot/cleanbot/roomba/meido
 	name = "maidbot"
 	desc = "A small, plate-like cleaning robot. It looks quite concerned. This one has a frilly headband attached to the top."
 	icon_state = "maidbot0"
 	armed = 0
 
-/mob/living/bot/cleanbot/roomba/meido/attackby(var/obj/item/W, mob/user)
+mob/living/bot/cleanbot/roomba/meido/attackby(var/obj/item/W, mob/user)
 	if(istype(W, /obj/item/material/kitchen/utensil/fork) || istype(W, /obj/item/flame/lighter))
 		to_chat(user, "<span class='notice'>\The [src] buzzes and recoils at \the [W]. Perhaps it would prefer something more refined?</span>")
 		return
@@ -355,13 +355,13 @@
 	else
 		. = ..()
 
-/mob/living/bot/cleanbot/roomba/meido/update_icons()
+mob/living/bot/cleanbot/roomba/meido/update_icons()
 	if(busy)
 		icon_state = "maidbot-c"
 	else
 		icon_state = "maidbot[on]"
 
-/mob/living/bot/cleanbot/roomba/meido/annoy(var/mob/living/L)
+mob/living/bot/cleanbot/roomba/meido/annoy(var/mob/living/L)
 	if(!coolingdown && armed)
 		L.visible_message("<span class = 'warning'>\The [src] [pick("jabs","stabs","pokes")] \the [L]", "<span class = 'warning'>The little shit, \the [src], stabs you with its knife!</span>")
 		L.adjustBruteLoss(rand(4,8))

@@ -11,7 +11,7 @@
  * Stacks
  */
 
-/obj/item/stack
+obj/item/stack
 	gender = PLURAL
 	origin_tech = list(TECH_MATERIAL = 1)
 	icon = 'icons/obj/stacks.dmi'
@@ -37,7 +37,7 @@
 	/// Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc).
 	var/strict_color_stacking = FALSE
 
-/obj/item/stack/Initialize(mapload, new_amount, merge = TRUE)
+obj/item/stack/Initialize(mapload, new_amount, merge = TRUE)
 	if(new_amount != null)
 		amount = new_amount
 	safety_check()
@@ -50,7 +50,7 @@
 				merge(S)
 	update_icon()
 
-/obj/item/stack/proc/safety_check()
+obj/item/stack/proc/safety_check()
 	if(amount > max_amount)
 		to_chat(usr, "The [name] spills on the [get_area_name(src)]!")
 		amount -= max_amount
@@ -59,13 +59,13 @@
 		return TRUE
 	return FALSE
 
-/obj/item/stack/Destroy()
+obj/item/stack/Destroy()
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
 	mid_delete = TRUE
 	return ..()
 
-/obj/item/stack/update_icon()
+obj/item/stack/update_icon()
 	if(no_variants)
 		icon_state = initial(icon_state)
 	else
@@ -77,14 +77,14 @@
 			icon_state = "[initial(icon_state)]_3"
 		item_state = initial(icon_state)
 
-/obj/item/stack/examine(mob/user)
+obj/item/stack/examine(mob/user)
 	. = ..()
 	if(!uses_charge)
 		. += "There are [amount] [singular_name]\s in the stack."
 	else
 		. += "There is enough charge for [get_amount()]."
 
-/obj/item/stack/attack_self(mob/user)
+obj/item/stack/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -92,7 +92,7 @@
 		return
 	list_recipes(user)
 
-/obj/item/stack/proc/list_recipes(mob/user, recipes_sublist)
+obj/item/stack/proc/list_recipes(mob/user, recipes_sublist)
 	if (!recipes)
 		return
 	if (!src || get_amount() <= 0)
@@ -147,7 +147,7 @@
 	onclose(user, "stack")
 	return
 
-/obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, quantity, mob/user)
+obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
@@ -197,7 +197,7 @@
 			else
 				O.color = color
 
-/obj/item/stack/Topic(href, href_list)
+obj/item/stack/Topic(href, href_list)
 	..()
 	if ((usr.restrained() || usr.stat || usr.get_active_held_item() != src))
 		return
@@ -230,7 +230,7 @@
  * Return 1 if an immediate subsequent call to use() would succeed.
  * Ensures that code dealing with stacks uses the same logic
  */
-/obj/item/stack/proc/can_use(used)
+obj/item/stack/proc/can_use(used)
 	if (get_amount() < used)
 		return FALSE
 	return TRUE
@@ -238,7 +238,7 @@
 /**
  * Can we merge with this stack?
  */
-/obj/item/stack/proc/can_merge(obj/item/stack/other)
+obj/item/stack/proc/can_merge(obj/item/stack/other)
 	if(!istype(other))
 		return FALSE
 	if(mid_delete || other.mid_delete) // bandaid until new inventory code
@@ -247,7 +247,7 @@
 		return FALSE
 	return other.stacktype == stacktype
 
-/obj/item/stack/proc/use(used)
+obj/item/stack/proc/use(used)
 	if (!can_use(used))
 		return FALSE
 	if(!uses_charge)
@@ -265,7 +265,7 @@
 			S.use_charge(charge_costs[i] * used) // Doesn't need to be deleted
 		return TRUE
 
-/obj/item/stack/proc/add(extra)
+obj/item/stack/proc/add(extra)
 	if(!uses_charge)
 		if(amount + extra > get_max_amount())
 			return FALSE
@@ -287,7 +287,7 @@
  */
 
 /// Attempts to transfer amount to S, and returns the amount actually transferred.
-/obj/item/stack/proc/transfer_to(obj/item/stack/S, tamount=null, type_verified)
+obj/item/stack/proc/transfer_to(obj/item/stack/S, tamount=null, type_verified)
 	if (!get_amount())
 		return 0
 	if (!can_merge(S) && !type_verified)
@@ -309,7 +309,7 @@
 	return 0
 
 /// Creates a new stack with the specified amount.
-/obj/item/stack/proc/split(tamount)
+obj/item/stack/proc/split(tamount)
 	if (!amount)
 		return null
 	if (uses_charge)
@@ -328,7 +328,7 @@
 		return newstack
 	return null
 
-/obj/item/stack/proc/get_amount()
+obj/item/stack/proc/get_amount()
 	if(uses_charge)
 		if(!synths || synths.len < uses_charge)
 			return 0
@@ -341,7 +341,7 @@
 		return
 	return amount
 
-/obj/item/stack/proc/get_max_amount()
+obj/item/stack/proc/get_max_amount()
 	if(uses_charge)
 		if(!synths || synths.len < uses_charge)
 			return 0
@@ -354,7 +354,7 @@
 		return
 	return max_amount
 
-/obj/item/stack/proc/add_to_stacks(mob/user)
+obj/item/stack/proc/add_to_stacks(mob/user)
 	for (var/obj/item/stack/item in user.loc)
 		if (item==src)
 			continue
@@ -364,7 +364,7 @@
 		if(!amount)
 			break
 
-/obj/item/stack/attack_hand(mob/user, list/params)
+obj/item/stack/attack_hand(mob/user, list/params)
 	if(safety_check())
 		return
 	if(user.get_inactive_held_item() == src)
@@ -372,14 +372,14 @@
 	else
 		return ..()
 
-/obj/item/stack/Crossed(atom/movable/AM)
+obj/item/stack/Crossed(atom/movable/AM)
 	. = ..()
 	// if we're in a mob, do not automerge
 	if(!ismob(loc) && !AM.throwing && can_merge(AM))
 		merge(AM)
 
 /// Merge src into S, as much as possible.
-/obj/item/stack/proc/merge(obj/item/stack/S)
+obj/item/stack/proc/merge(obj/item/stack/S)
 	if(uses_charge)
 		return	// how about no!
 	if(QDELETED(S) || QDELETED(src) || (S == src)) //amusingly this can cause a stack to consume itself, let's not allow that.
@@ -396,7 +396,7 @@
 	S.add(transfer)
 	return transfer
 
-/obj/item/stack/attackby(obj/item/W, mob/user)
+obj/item/stack/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		src.transfer_to(S)
@@ -409,13 +409,13 @@
 	else
 		return ..()
 
-/obj/item/stack/AltClick(mob/living/user)
+obj/item/stack/AltClick(mob/living/user)
 	. = ..()
 	if(!istype(user) || !in_range(user, src) || !CHECK_MOBILITY(user, MOBILITY_CAN_PICKUP))
 		return
 	attempt_split_stack(user)
 
-/obj/item/stack/proc/attempt_split_stack(mob/living/user)
+obj/item/stack/proc/attempt_split_stack(mob/living/user)
 	if(uses_charge)
 		return
 	else
@@ -434,7 +434,7 @@
 			to_chat(user, SPAN_NOTICE("You take [stackmaterial] sheets out of the stack"))
 		return TRUE
 
-/obj/item/stack/proc/change_stack(mob/user, amount)
+obj/item/stack/proc/change_stack(mob/user, amount)
 	if(!use(amount, TRUE, FALSE))
 		return FALSE
 	var/obj/item/stack/F = new type(user? user : drop_location(), amount, FALSE)
@@ -447,7 +447,7 @@
 		F.add_fingerprint(user)
 	zero_amount()
 
-/obj/item/stack/proc/zero_amount()
+obj/item/stack/proc/zero_amount()
 	if(uses_charge)
 		return get_amount() <= 0
 	if(amount < 1)
@@ -455,7 +455,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/stack/proc/copy_evidences(obj/item/stack/from)
+obj/item/stack/proc/copy_evidences(obj/item/stack/from)
 	if(from.blood_DNA)
 		blood_DNA = from.blood_DNA.Copy()
 	if(from.fingerprints)
@@ -468,7 +468,7 @@
 /*
  * Recipe datum
  */
-/datum/stack_recipe
+datum/stack_recipe
 	var/title = "ERROR"
 	var/result_type
 	/// Amount of material needed for this recipe.
@@ -482,7 +482,7 @@
 	var/use_material
 	var/pass_color
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, supplied_material = null, pass_stack_color)
+datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, supplied_material = null, pass_stack_color)
 	src.title = title
 	src.result_type = result_type
 	src.req_amount = req_amount
@@ -497,15 +497,15 @@
 /*
  * Recipe list datum
  */
-/datum/stack_recipe_list
+datum/stack_recipe_list
 	var/title = "ERROR"
 	var/list/recipes = null
 
-/datum/stack_recipe_list/New(title, recipes)
+datum/stack_recipe_list/New(title, recipes)
 	src.title = title
 	src.recipes = recipes
 
-/obj/item/stack/proc/set_amount(new_amount, no_limits = FALSE)
+obj/item/stack/proc/set_amount(new_amount, no_limits = FALSE)
 	if(new_amount < 0 || new_amount % 1)
 		stack_trace("Tried to set a bad stack amount: [new_amount]")
 		return 0

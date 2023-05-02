@@ -3,7 +3,7 @@
 // a scanner console for the asteroid belt
 //////////////////////////////
 
-/obj/machinery/computer/roguezones
+obj/machinery/computer/roguezones
 	name = "asteroid belt scanning computer"
 	desc = "Used to monitor the nearby asteroid belt and detect new areas."
 	icon_keyboard = "tech_key"
@@ -20,26 +20,26 @@
 	var/legacy_zone = 0	// Disable scanning and whatnot.
 	var/obj/machinery/computer/shuttle_control/belter/shuttle_control
 
-/obj/machinery/computer/roguezones/Initialize(mapload)
+obj/machinery/computer/roguezones/Initialize(mapload)
 	. = ..()
 	shuttle_control = locate(/obj/machinery/computer/shuttle_control/belter)
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/computer/roguezones/LateInitialize()
+obj/machinery/computer/roguezones/LateInitialize()
 	if(!rm_controller)
 		rm_controller = new /datum/controller/rogue()
 
-/obj/machinery/computer/roguezones/attack_ai(mob/user as mob)
+obj/machinery/computer/roguezones/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/roguezones/attack_hand(mob/user, list/params)
+obj/machinery/computer/roguezones/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
 	nano_ui_interact(user)
 
-/obj/machinery/computer/roguezones/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/computer/roguezones/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 
@@ -88,7 +88,7 @@
 		ui.open()
 		ui.set_auto_update(5)
 
-/obj/machinery/computer/roguezones/Topic(href, href_list)
+obj/machinery/computer/roguezones/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.set_machine(src)
@@ -104,7 +104,7 @@
 	src.add_fingerprint(usr)
 	SSnanoui.update_uis(src)
 
-/obj/machinery/computer/roguezones/proc/scan_for_new_zone()
+obj/machinery/computer/roguezones/proc/scan_for_new_zone()
 	if(scanning) return
 
 	// Set some kinda scanning var to pause UI input on console
@@ -137,11 +137,11 @@
 
 	return
 
-/obj/machinery/computer/roguezones/proc/point_at_old_zone()
+obj/machinery/computer/roguezones/proc/point_at_old_zone()
 
 	return
 
-/obj/machinery/computer/roguezones/proc/failsafe_shuttle_recall()
+obj/machinery/computer/roguezones/proc/failsafe_shuttle_recall()
 	if(!shuttle_control)
 		return	// Shuttle computer has been destroyed
 	if (!(shuttle_control.z in GLOB.using_map.belter_belt_z))
@@ -152,13 +152,13 @@
 	var/datum/shuttle/autodock/ferry/S = SSshuttle.shuttles["Belter"]
 	S.launch(usr)
 
-/obj/item/circuitboard/roguezones
+obj/item/circuitboard/roguezones
 	name = T_BOARD("asteroid belt scanning computer")
 	build_path = /obj/machinery/computer/roguezones
 	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 1)
 
 
-/obj/item/paper/rogueminer
+obj/item/paper/rogueminer
 	name = "R-38 Scanner Console Guide"
 	info = {"<h4>Getting Started</h4>
 	Congratulations, your station has purchased the R-38 industrial asteroid belt scanner!<br>

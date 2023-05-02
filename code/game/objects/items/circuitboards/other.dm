@@ -4,12 +4,12 @@
 
 //Stuff that doesn't fit into any category goes here
 
-/obj/item/circuitboard/aicore
+obj/item/circuitboard/aicore
 	name = T_BOARD("AI core")
 	origin_tech = list(TECH_DATA = 4, TECH_BIO = 2)
 	board_type = "other"
 
-/obj/item/circuitboard/chem_master
+obj/item/circuitboard/chem_master
 	name = T_BOARD("ChemMaster 3000")
 	build_path = /obj/machinery/chem_master
 	board_type = new /datum/frame/frame_types/machine

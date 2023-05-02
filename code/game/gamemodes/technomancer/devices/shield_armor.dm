@@ -1,4 +1,4 @@
-/datum/technomancer/equipment/shield_armor
+datum/technomancer/equipment/shield_armor
 	name = "Personal Shield Projector"
 	desc = "This state-of-the-art technology uses the bleeding edge of energy distribution and field projection \
 	to provide a personal shield around you, which can diffuse laser beams and reduce the velocity of bullets and close quarters \
@@ -9,7 +9,7 @@
 	cost = 200
 	obj_path = /obj/item/clothing/suit/armor/shield
 
-/obj/item/clothing/suit/armor/shield
+obj/item/clothing/suit/armor/shield
 	name = "shield projector"
 	desc = "This armor has no inherent ability to absorb shock, as normal armor usually does.  Instead, this emits a strong field \
 	around the wearer, designed to protect from most forms of harm, from lasers to bullets to close quarters combat.  It appears to \
@@ -24,16 +24,16 @@
 	var/datum/effect_system/spark_spread/spark_system = null
 	var/block_percentage = 75
 
-/obj/item/clothing/suit/armor/shield/Initialize(mapload)
+obj/item/clothing/suit/armor/shield/Initialize(mapload)
 	. = ..()
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 
-/obj/item/clothing/suit/armor/shield/Destroy()
+obj/item/clothing/suit/armor/shield/Destroy()
 	qdel(spark_system)
 	return ..()
 
-/obj/item/clothing/suit/armor/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/clothing/suit/armor/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	//Since this is a pierce of armor that is passive, we do not need to check if the user is incapacitated.
 	if(!active)
 		return 0
@@ -73,7 +73,7 @@
 	playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
 	return 0 // This shield does not block all damage, so returning 0 is needed to tell the game to apply the new damage.
 
-/obj/item/clothing/suit/armor/shield/attack_self(mob/user)
+obj/item/clothing/suit/armor/shield/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -83,7 +83,7 @@
 	user.update_inv_wear_suit()
 	user.update_action_buttons()
 
-/obj/item/clothing/suit/armor/shield/update_icon()
+obj/item/clothing/suit/armor/shield/update_icon()
 	icon_state = "shield_armor_[active]"
 	item_state = "shield_armor_[active]"
 	if(active)

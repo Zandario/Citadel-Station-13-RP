@@ -7,7 +7,7 @@
 /*
  * Locator
  */
-/obj/item/locator
+obj/item/locator
 	name = "locator"
 	desc = "Used to track those with locater implants."
 	icon = 'icons/obj/device.dmi'
@@ -23,7 +23,7 @@
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(MAT_STEEL = 400)
 
-/obj/item/locator/attack_self(mob/user)
+obj/item/locator/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -45,7 +45,7 @@ Frequency:
 	onclose(user, "radio")
 	return
 
-/obj/item/locator/Topic(href, href_list)
+obj/item/locator/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained())
 		return
@@ -119,7 +119,7 @@ Frequency:
 /*
  * Hand-tele
  */
-/obj/item/hand_tele
+obj/item/hand_tele
 	name = "hand tele"
 	desc = "A portable item using blue-space technology."
 	icon = 'icons/obj/device.dmi'
@@ -133,7 +133,7 @@ Frequency:
 	matter = list(MAT_STEEL = 10000)
 	preserve_item = 1
 
-/obj/item/hand_tele/attack_self(mob/user)
+obj/item/hand_tele/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

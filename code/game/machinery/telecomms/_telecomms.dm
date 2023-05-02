@@ -13,7 +13,7 @@
 	Look at radio.dm for the prequel to this code.
 */
 
-/obj/machinery/telecomms
+obj/machinery/telecomms
 	icon = 'icons/obj/stationobjs.dmi'
 	///List of machines this machine is linked to.
 	var/list/links = list()
@@ -48,7 +48,7 @@
 	var/listening_level = 0
 
 
-/obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
+obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
 
 	if(!on)
@@ -105,14 +105,14 @@
 
 	return send_count
 
-/obj/machinery/telecomms/proc/relay_direct_information(datum/signal/signal, obj/machinery/telecomms/machine)
+obj/machinery/telecomms/proc/relay_direct_information(datum/signal/signal, obj/machinery/telecomms/machine)
 	// send signal directly to a machine
 	machine.receive_information(signal, src)
 
-/obj/machinery/telecomms/proc/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+obj/machinery/telecomms/proc/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// receive information from linked machinery
 
-/obj/machinery/telecomms/proc/is_freq_listening(datum/signal/signal)
+obj/machinery/telecomms/proc/is_freq_listening(datum/signal/signal)
 	// return 1 if found, 0 if not found
 	if(!signal)
 		return 0
@@ -121,7 +121,7 @@
 	else
 		return 0
 
-/obj/machinery/telecomms/Initialize(mapload)
+obj/machinery/telecomms/Initialize(mapload)
 	GLOB.telecomms_list += src
 	. = ..()
 
@@ -132,7 +132,7 @@
 		listening_level = position.z
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/telecomms/LateInitialize()
+obj/machinery/telecomms/LateInitialize()
 	if(autolinkers.len)
 		// Links nearby machines
 		if(!long_range_link)
@@ -143,7 +143,7 @@
 				add_link(T)
 	return ..()
 
-/obj/machinery/telecomms/Destroy()
+obj/machinery/telecomms/Destroy()
 	GLOB.telecomms_list -= src
 	for(var/obj/machinery/telecomms/comm in GLOB.telecomms_list)
 		comm.links -= src
@@ -151,7 +151,7 @@
 	..()
 
 // Used in auto linking
-/obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)
+obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)
 	var/pos_z = get_z(src)
 	var/tpos_z = get_z(T)
 	if((pos_z == tpos_z) || (src.long_range_link && T.long_range_link))
@@ -160,13 +160,13 @@
 				if(src != T)
 					links |= T
 
-/obj/machinery/telecomms/update_icon()
+obj/machinery/telecomms/update_icon()
 	if(on)
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]_off"
 
-/obj/machinery/telecomms/proc/update_power()
+obj/machinery/telecomms/proc/update_power()
 	if(toggled)
 		if(machine_stat & (BROKEN|NOPOWER|EMPED) || integrity <= 0) // if powered, on. if not powered, off. if too damaged, off
 			on = FALSE
@@ -175,7 +175,7 @@
 	else
 		on = FALSE
 
-/obj/machinery/telecomms/process()
+obj/machinery/telecomms/process()
 	update_power()
 
 	// Check heat and generate some
@@ -187,7 +187,7 @@
 	if(traffic > 0)
 		traffic -= netspeed
 
-/obj/machinery/telecomms/emp_act(severity)
+obj/machinery/telecomms/emp_act(severity)
 	if(prob(100/severity))
 		if(!(machine_stat & EMPED))
 			machine_stat |= EMPED
@@ -196,7 +196,7 @@
 				machine_stat &= ~EMPED
 	..()
 
-/obj/machinery/telecomms/proc/checkheat()
+obj/machinery/telecomms/proc/checkheat()
 	// Checks heat from the environment and applies any integrity damage
 	var/damage_chance = 0                           // Percent based chance of applying 1 integrity damage this tick
 	switch(loc.return_temperature())
@@ -217,7 +217,7 @@
 		produce_heat()
 		delay = initial(delay)
 
-/obj/machinery/telecomms/proc/produce_heat()
+obj/machinery/telecomms/proc/produce_heat()
 	if (!produces_heat)
 		return
 
@@ -244,7 +244,7 @@
 			env.merge(removed)
 
 //Generic telecomm connectivity test proc
-/proc/can_telecomm(var/atom/A, var/atom/B, var/ad_hoc = FALSE)
+proc/can_telecomm(var/atom/A, var/atom/B, var/ad_hoc = FALSE)
 	if(!A || !B)
 		log_debug(SPAN_DEBUG("can_telecomm(): Undefined endpoints!"))
 		return FALSE
@@ -276,10 +276,10 @@
 #define STATION_Z 1
 #define TELECOMM_Z 3
 
-/obj/machinery/telecomms
+obj/machinery/telecomms
 	var/list/temp = null // output message
 
-/obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
+obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
 
 	// Using a multitool lets you access the receiver's interface
 	if(istype(P, /obj/item/multitool))
@@ -302,10 +302,10 @@
 	if(default_deconstruction_crowbar(user, P))
 		return
 
-/obj/machinery/telecomms/attack_ai(var/mob/user as mob)
+obj/machinery/telecomms/attack_ai(var/mob/user as mob)
 	attack_hand(user)
 
-/obj/machinery/telecomms/ui_data(mob/user)
+obj/machinery/telecomms/ui_data(mob/user)
 	var/list/data = list()
 
 	data["temp"] = temp
@@ -357,16 +357,16 @@
 
 	return data
 
-/obj/machinery/telecomms/ui_status(mob/user)
+obj/machinery/telecomms/ui_status(mob/user)
 	if(!issilicon(user))
 		if(!istype(user.get_active_held_item(), /obj/item/multitool))
 			return UI_CLOSE
 	. = ..()
 
-/obj/machinery/telecomms/attack_hand(mob/user, list/params)
+obj/machinery/telecomms/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/obj/machinery/telecomms/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/telecomms/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TelecommsMultitoolMenu", name)
@@ -378,7 +378,7 @@
 // the relay is on the telecomm satellite (changable in the TELECOMM_Z #define)
 
 
-/obj/machinery/telecomms/relay/proc/toggle_level()
+obj/machinery/telecomms/relay/proc/toggle_level()
 
 	var/turf/position = get_turf(src)
 
@@ -393,7 +393,7 @@
 
 // Returns a multitool from a user depending on their mobtype.
 
-/obj/machinery/proc/get_multitool(mob/user as mob)	//No need to have this being a telecomms specific proc.
+obj/machinery/proc/get_multitool(mob/user as mob)	//No need to have this being a telecomms specific proc.
 
 	var/obj/item/multitool/P = null
 	// Let's double check
@@ -410,22 +410,22 @@
 // Additional Options for certain machines. Use this when you want to add an option to a specific machine.
 // Example of how to use below.
 
-/obj/machinery/telecomms/proc/Options_Menu()
+obj/machinery/telecomms/proc/Options_Menu()
 	return list()
 
 /*
 // Add an option to the processor to switch processing mode. (COMPRESS -> UNCOMPRESS or UNCOMPRESS -> COMPRESS)
-/obj/machinery/telecomms/processor/Options_Menu()
+obj/machinery/telecomms/processor/Options_Menu()
 	var/dat = "<br>Processing Mode: <A href='?src=\ref[src];process=1'>[process_mode ? "UNCOMPRESS" : "COMPRESS"]</a>"
 	return dat
 */
 // The topic for Additional Options. Use this for checking href links for your specific option.
 // Example of how to use below.
-/obj/machinery/telecomms/proc/Options_Act(action, params)
+obj/machinery/telecomms/proc/Options_Act(action, params)
 	return
 
 /*
-/obj/machinery/telecomms/processor/Options_Act(action, params)
+obj/machinery/telecomms/processor/Options_Act(action, params)
 
 	if(href_list["process"])
 		set_temp("-% Processing mode changed. %-", "average")
@@ -434,7 +434,7 @@
 
 // RELAY
 
-/obj/machinery/telecomms/relay/Options_Menu()
+obj/machinery/telecomms/relay/Options_Menu()
 	var/list/data = ..()
 	data["use_listening_level"] = TRUE
 	data["use_broadcasting"] = TRUE
@@ -444,7 +444,7 @@
 	data["receiving"] = receiving
 	return data
 
-/obj/machinery/telecomms/relay/Options_Act(action, params)
+obj/machinery/telecomms/relay/Options_Act(action, params)
 	if(..())
 		return TRUE
 
@@ -469,13 +469,13 @@
 
 // BUS
 
-/obj/machinery/telecomms/bus/Options_Menu()
+obj/machinery/telecomms/bus/Options_Menu()
 	var/list/data = ..()
 	data["use_change_freq"] = TRUE
 	data["change_freq"] = change_frequency
 	return data
 
-/obj/machinery/telecomms/bus/Options_Act(action, params)
+obj/machinery/telecomms/bus/Options_Act(action, params)
 	if(..())
 		return TRUE
 
@@ -496,7 +496,7 @@
 
 
 // BROADCASTER
-/obj/machinery/telecomms/broadcaster/Options_Menu()
+obj/machinery/telecomms/broadcaster/Options_Menu()
 	var/list/data = ..()
 	data["use_broadcast_range"] = TRUE
 	data["range"] = overmap_range
@@ -504,10 +504,10 @@
 	data["maxRange"] = overmap_range_max
 	return data
 
-/obj/machinery/telecomms/broadcaster
+obj/machinery/telecomms/broadcaster
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_ALLOW_SILICON
 
-/obj/machinery/telecomms/broadcaster/Options_Act(action, params)
+obj/machinery/telecomms/broadcaster/Options_Act(action, params)
 	if(..())
 		return TRUE
 
@@ -518,7 +518,7 @@
 			update_idle_power_usage(initial(idle_power_usage)**(overmap_range+1))
 
 // RECEIVER
-/obj/machinery/telecomms/receiver/Options_Menu()
+obj/machinery/telecomms/receiver/Options_Menu()
 	var/list/data = ..()
 	data["use_receive_range"] = TRUE
 	data["range"] = overmap_range
@@ -526,10 +526,10 @@
 	data["maxRange"] = overmap_range_max
 	return data
 
-/obj/machinery/telecomms/receiver
+obj/machinery/telecomms/receiver
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_ALLOW_SILICON
 
-/obj/machinery/telecomms/receiver/Options_Act(action, params)
+obj/machinery/telecomms/receiver/Options_Act(action, params)
 	if(..())
 		return TRUE
 
@@ -539,7 +539,7 @@
 			overmap_range = clamp(new_range, overmap_range_min, overmap_range_max)
 			update_idle_power_usage(initial(idle_power_usage)**(overmap_range+1))
 
-/obj/machinery/telecomms/ui_act(action, params)
+obj/machinery/telecomms/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -636,12 +636,12 @@
 	if(Options_Act(action, params))
 		. = TRUE
 
-/obj/machinery/telecomms/proc/canAccess(var/mob/user)
+obj/machinery/telecomms/proc/canAccess(var/mob/user)
 	if(issilicon(user) || in_range(user, src))
 		return 1
 	return 0
 
-/obj/machinery/telecomms/proc/set_temp(var/text, var/color = "average")
+obj/machinery/telecomms/proc/set_temp(var/text, var/color = "average")
 	temp = list("color" = color, "text" = text)
 
 #undef TELECOMM_Z

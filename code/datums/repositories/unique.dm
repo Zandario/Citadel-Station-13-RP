@@ -1,13 +1,13 @@
 var/repository/unique/uniqueness_repository = new()
 
-/repository/unique
+repository/unique
 	var/list/generators
 
-/repository/unique/New()
+repository/unique/New()
 	..()
 	generators = list()
 
-/repository/unique/proc/Generate()
+repository/unique/proc/Generate()
 	var/generator_type = args[1]
 	var/datum/uniqueness_generator/generator = generators[generator_type]
 	if(!generator)
@@ -17,17 +17,17 @@ var/repository/unique/uniqueness_repository = new()
 	generator_args -= generator_type
 	return generator.Generate(arglist(generator_args))
 
-/datum/uniqueness_generator/proc/Generate()
+datum/uniqueness_generator/proc/Generate()
 	return
 
-/datum/uniqueness_generator/id_sequential
+datum/uniqueness_generator/id_sequential
 	var/list/ids_by_key
 
-/datum/uniqueness_generator/id_sequential/New()
+datum/uniqueness_generator/id_sequential/New()
 	..()
 	ids_by_key = list()
 
-/datum/uniqueness_generator/id_sequential/Generate(var/key, var/default_id = 100)
+datum/uniqueness_generator/id_sequential/Generate(var/key, var/default_id = 100)
 	var/id = ids_by_key[key]
 	if(id)
 		id++
@@ -37,14 +37,14 @@ var/repository/unique/uniqueness_repository = new()
 	ids_by_key[key] = id
 	. = id
 
-/datum/uniqueness_generator/id_random
+datum/uniqueness_generator/id_random
 	var/list/ids_by_key
 
-/datum/uniqueness_generator/id_random/New()
+datum/uniqueness_generator/id_random/New()
 	..()
 	ids_by_key = list()
 
-/datum/uniqueness_generator/id_random/Generate(var/key, var/min, var/max)
+datum/uniqueness_generator/id_random/Generate(var/key, var/min, var/max)
 	var/list/ids = ids_by_key[key]
 	if(!ids)
 		ids = list()

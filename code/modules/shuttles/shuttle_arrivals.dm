@@ -1,5 +1,5 @@
 // The new arrivals shuttle.
-/datum/shuttle/autodock/ferry/arrivals
+datum/shuttle/autodock/ferry/arrivals
 	category = /datum/shuttle/autodock/ferry/arrivals
 
 	name = "Arrivals"
@@ -15,34 +15,34 @@
 	// docking_controller_tag
 
 // For debugging.
-/obj/machinery/computer/shuttle_control/arrivals
+obj/machinery/computer/shuttle_control/arrivals
 	name = "shuttle control console"
 	req_access = list(ACCESS_CENTCOM_GENERAL)
 	shuttle_tag = "Arrivals"
 
 // Unlike most shuttles, the arrivals shuttle is completely automated, so we need to put some additional code here.
 // Process the arrivals shuttle even when idle.
-/obj/machinery/computer/shuttle_control/arrivals/process()
+obj/machinery/computer/shuttle_control/arrivals/process()
 	var/datum/shuttle/autodock/ferry/arrivals/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if(shuttle && shuttle.process_state == IDLE_STATE)
 		shuttle.process()
 	..()
 
 // This proc checks if anyone is on the shuttle.
-/datum/shuttle/autodock/ferry/arrivals/proc/check_for_passengers()
+datum/shuttle/autodock/ferry/arrivals/proc/check_for_passengers()
 	for(var/area/A in shuttle_area)
 		for(var/mob/living/L in A)
 			return TRUE
 	return FALSE
 
 // This is to stop the shuttle if someone tries to stow away when its leaving.
-/datum/shuttle/autodock/ferry/arrivals/post_warmup_checks()
+datum/shuttle/autodock/ferry/arrivals/post_warmup_checks()
 	if(!location) // If we're at station.
 		if(check_for_passengers())
 			return FALSE
 	return TRUE
 
-/datum/shuttle/autodock/ferry/arrivals/process()
+datum/shuttle/autodock/ferry/arrivals/process()
 	if(process_state == IDLE_STATE)
 
 		if(location) // If we're off-station (space).
@@ -67,7 +67,7 @@
 	..() // Do everything else
 
 /*
-/datum/shuttle/autodock/ferry/arrivals/current_dock_target()
+datum/shuttle/autodock/ferry/arrivals/current_dock_target()
 	if(location) // If we're off station.
 		return null // Nothing to dock to in space.
 	return ..()

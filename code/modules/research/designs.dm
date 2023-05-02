@@ -21,7 +21,7 @@ other types of metals and chemistry for reagents).
 /**
  * makes new datums for all hardcoded designs
  */
-/proc/instantiate_all_hardcoded_designs()
+proc/instantiate_all_hardcoded_designs()
 	. = list()
 	for(var/path in subtypesof(/datum/design))
 		var/datum/design/D = path
@@ -33,7 +33,7 @@ other types of metals and chemistry for reagents).
 		. += D
 
 ///Datum for object designs, used in construction
-/datum/design
+datum/design
 	/// Abstract type.
 	abstract_type = /datum/design
 
@@ -64,7 +64,7 @@ other types of metals and chemistry for reagents).
 	///Optional string that interfaces can use as part of search filters. See- item/borg/upgrade/ai and the Exosuit Fabs.
 	var/search_metadata
 
-/datum/design/New()
+datum/design/New()
 	if(!islist(category))
 		log_runtime(EXCEPTION("Warning: Design [type] defined a non-list category. Please fix this."))
 		category = list(category)
@@ -72,33 +72,33 @@ other types of metals and chemistry for reagents).
 	AssembleDesignInfo()
 
 //These procs are used in subtypes for assigning names and descriptions dynamically
-/datum/design/proc/AssembleDesignInfo()
+datum/design/proc/AssembleDesignInfo()
 	AssembleDesignName()
 	AssembleDesignDesc()
 	return
 
-/datum/design/proc/AssembleDesignName()
+datum/design/proc/AssembleDesignName()
 	if(!name && build_path)					//Get name from build path if posible
 		var/atom/movable/A = build_path
 		name = initial(A.name)
 		item_name = name
 	return
 
-/datum/design/proc/AssembleDesignDesc()
+datum/design/proc/AssembleDesignDesc()
 	if(!desc)								//Try to make up a nice description if we don't have one
 		desc = "Allows for the construction of \a [item_name]."
 	return
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
-/datum/design/proc/Fabricate(var/newloc, var/fabricator)
+datum/design/proc/Fabricate(var/newloc, var/fabricator)
 	return new build_path(newloc)
 
-/datum/design/item
+datum/design/item
 	build_type = PROTOLATHE
 
 //Make sure items don't get free power
-/datum/design/item/Fabricate()
+datum/design/item/Fabricate()
 	var/obj/item/I = ..()
 	var/obj/item/cell/C = I.get_cell()
 	if(C)

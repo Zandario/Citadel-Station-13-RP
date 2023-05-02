@@ -1,4 +1,4 @@
-/datum/technomancer/spell/purify
+datum/technomancer/spell/purify
 	name = "Purify"
 	desc = "Clenses the body of harmful impurities, such as toxins, radiation, viruses, genetic damage, and such.  \
 	Instability is split between the target and technomancer, if seperate.  The function will end prematurely \
@@ -9,7 +9,7 @@
 	ability_icon_state = "tech_purify"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/modifier/purify
+obj/item/spell/modifier/purify
 	name = "mend life"
 	desc = "Watch your wounds close up before your eyes."
 	icon_state = "mend_life"
@@ -19,7 +19,7 @@
 	modifier_type = /datum/modifier/technomancer/purify
 	modifier_duration = 10 SECONDS
 
-/datum/modifier/technomancer/purify
+datum/modifier/technomancer/purify
 	name = "purify"
 	desc = "You feel rather clean and pure."
 	mob_overlay_state = "green_sparkles"
@@ -28,7 +28,7 @@
 	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel healthier than before.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/technomancer/purify/tick()
+datum/modifier/technomancer/purify/tick()
 	if(!holder.getToxLoss()) // No point existing if the spell can't heal.
 		expire()
 		return

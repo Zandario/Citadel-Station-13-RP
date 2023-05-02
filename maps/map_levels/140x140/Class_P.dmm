@@ -1,1141 +1,1141 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "am" = (
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "ax" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/atmospherics/pipe/simple/visible/green,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "aT" = (
-/obj/machinery/atmospherics/pipe/tank/air,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/pipe/tank/air,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "aV" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/table/standard,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "bG" = (
-/obj/structure/table/rack/shelf,
-/obj/machinery/light,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/table/rack/shelf,
+obj/machinery/light,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "bU" = (
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "bY" = (
-/obj/structure/barricade,
-/obj/machinery/door/airlock/centcom{
+obj/structure/barricade,
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "ch" = (
-/obj/structure/barricade,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/barricade,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "ck" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "cq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "cs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "cD" = (
-/obj/machinery/atmospherics/pipe/tank{
+obj/machinery/atmospherics/pipe/tank{
 	name = "Waste Tank"
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "cP" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
+obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "cY" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "dd" = (
-/obj/vehicle_old/train/rover/engine/dunebuggy,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/vehicle_old/train/rover/engine/dunebuggy,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "dy" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/green{
+obj/machinery/atmospherics/pipe/manifold/visible/green{
 	dir = 4
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "ej" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/on,
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/component/unary/vent_pump/on,
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "eu" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/obj/machinery/light{
+obj/machinery/atmospherics/pipe/simple/visible/green,
+obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "eC" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/table/standard,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "eN" = (
-/obj/effect/shuttle_landmark/automatic{
+obj/effect/shuttle_landmark/automatic{
 	docking_controller = "frozen"
 	},
-/turf/simulated/floor/outdoors/snow/classp/no_tree,
-/area/class_p/explored)
+turf/simulated/floor/outdoors/snow/classp/no_tree,
+area/class_p/explored)
 "eY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "fb" = (
-/obj/machinery/artifact,
-/obj/structure/anomaly_container,
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/artifact,
+obj/structure/anomaly_container,
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "fk" = (
-/obj/structure/table/wooden_reinforced,
-/obj/item/storage/pill_bottle/dice_nerd,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/table/wooden_reinforced,
+obj/item/storage/pill_bottle/dice_nerd,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "fn" = (
-/obj/machinery/atmospherics/component/unary/heater{
+obj/machinery/atmospherics/component/unary/heater{
 	dir = 4
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "gk" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "gP" = (
-/obj/machinery/light,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/light,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "hp" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/unexplored)
+obj/machinery/crystal/ice,
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/unexplored)
 "hC" = (
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/explored)
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/explored)
 "iu" = (
-/obj/structure/table/standard,
-/obj/item/paper/carbon{
+obj/structure/table/standard,
+obj/item/paper/carbon{
 	info = "If you're reading this then we've evacuated safely and this research outpost is gone. Something... Something happened during the storage of one of the anomalies we found on this planet. It was humanoid in shape, and... fuck the growths getting worse. If you're here to reclaim this place be CAREFUL! Somethings' not right..";
 	name = "rushed letter"
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "iJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "iO" = (
-/obj/structure/blob/normal,
-/obj/machinery/light{
+obj/structure/blob/normal,
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "iW" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "jw" = (
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "jC" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "kb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "ki" = (
-/obj/structure/barricade,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/barricade,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "kz" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "kD" = (
-/obj/structure/railing,
-/turf/simulated/floor/outdoors/ice/classp,
-/area/class_p/unexplored)
+obj/structure/railing,
+turf/simulated/floor/outdoors/ice/classp,
+area/class_p/unexplored)
 "kP" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "lq" = (
-/obj/random/mob/robotic/hivebot{
+obj/random/mob/robotic/hivebot{
 	mob_faction = "frozen"
 	},
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/unexplored)
 "lC" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "lF" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/green,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/pipe/manifold/visible/green,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "lY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "mt" = (
-/obj/structure/barricade,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/barricade,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "mM" = (
-/obj/structure/sandbag,
-/turf/simulated/floor/outdoors/snow/classp/no_tree,
-/area/class_p/unexplored)
+obj/structure/sandbag,
+turf/simulated/floor/outdoors/snow/classp/no_tree,
+area/class_p/unexplored)
 "oa" = (
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 24
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "ob" = (
-/obj/machinery/door/blast/shutters,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/door/blast/shutters,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "od" = (
-/turf/simulated/floor/outdoors/shelfice/classp,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/shelfice/classp,
+area/class_p/unexplored)
 "oe" = (
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 24
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "pk" = (
-/obj/structure/table/wooden_reinforced,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/table/wooden_reinforced,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "qj" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/structure/blob/normal,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "qZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/centcom{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "rk" = (
-/obj/machinery/power/port_gen/pacman,
-/obj/structure/cable{
+obj/machinery/power/port_gen/pacman,
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "rF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "rL" = (
-/turf/simulated/floor/old_tile/green/classp{
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "rN" = (
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/turf/simulated/floor/old_tile/green/classp{
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "sn" = (
-/obj/machinery/computer/gyrotron_control,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/computer/gyrotron_control,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "ss" = (
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 24
 	},
-/obj/structure/barricade,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/barricade,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "sA" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/component/unary/vent_pump/on,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/atmospherics/component/unary/vent_pump/on,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "sB" = (
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "sN" = (
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "tF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "tI" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/ice/classp,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/ice/classp,
+area/class_p/unexplored)
 "uA" = (
-/obj/structure/blob/normal,
-/obj/machinery/light,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+obj/machinery/light,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "uG" = (
-/obj/structure/table/wooden_reinforced,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/table/wooden_reinforced,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "vy" = (
-/obj/machinery/artifact_scanpad,
-/turf/simulated/floor/old_tile/green/classp{
+obj/machinery/artifact_scanpad,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "vJ" = (
-/obj/machinery/atmospherics/pipe/manifold4w/visible/green,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/pipe/manifold4w/visible/green,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "vS" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "wg" = (
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "wk" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "wl" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/atmospherics/pipe/simple/visible/universal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "wL" = (
-/obj/structure/table/rack/shelf,
-/obj/machinery/light,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/table/rack/shelf,
+obj/machinery/light,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "wQ" = (
-/mob/living/simple_mob/animal/space/tree{
+mob/living/simple_mob/animal/space/tree{
 	faction = "frozen"
 	},
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/unexplored)
 "wW" = (
-/obj/structure/blob/normal,
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "xS" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/machinery/light,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/light,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "yi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "zl" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
+obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1380;
 	id_tag = "frozen";
 	layer = 3.3;
 	name = "Frozen Dock Controller";
 	pixel_y = 30
 	},
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/explored)
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/explored)
 "zo" = (
-/obj/structure/table/marble,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/table/marble,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "zK" = (
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/ruins)
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/ruins)
 "AG" = (
-/turf/simulated/floor/outdoors/snow/classp/no_tree,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/snow/classp/no_tree,
+area/class_p/unexplored)
 "AK" = (
-/obj/structure/closet/statue,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/closet/statue,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "AQ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "BE" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable/point_of_interest,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/power/smes/buildable/point_of_interest,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "BH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Cn" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Cu" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/on,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/atmospherics/component/unary/vent_pump/on,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Dd" = (
-/obj/machinery/door/airlock/external/glass,
-/obj/structure/barricade,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/door/airlock/external/glass,
+obj/structure/barricade,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Df" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/terminal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/power/terminal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Dm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Dw" = (
-/turf/simulated/floor/classp/outdoors,
-/area/class_p/explored)
+turf/simulated/floor/classp/outdoors,
+area/class_p/explored)
 "EH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Fu" = (
-/obj/machinery/power/emitter/gyrotron{
+obj/machinery/power/emitter/gyrotron{
 	dir = 1
 	},
-/turf/simulated/floor/old_tile/green/classp{
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "FO" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Go" = (
-/turf/simulated/floor/wood/classp/outdoors,
-/area/class_p/unexplored)
+turf/simulated/floor/wood/classp/outdoors,
+area/class_p/unexplored)
 "Gw" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "GL" = (
-/obj/machinery/atmospherics/component/binary/pump/on,
-/obj/machinery/light{
+obj/machinery/atmospherics/component/binary/pump/on,
+obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Hh" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/machinery/light{
+obj/machinery/atmospherics/pipe/simple/visible/universal,
+obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Hj" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Hl" = (
-/obj/machinery/door/blast/shutters,
-/obj/structure/barricade,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/door/blast/shutters,
+obj/structure/barricade,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Hm" = (
-/turf/simulated/floor/outdoors/snow/classp/no_tree,
-/area/class_p/explored)
+turf/simulated/floor/outdoors/snow/classp/no_tree,
+area/class_p/explored)
 "HC" = (
-/obj/structure/anomaly_container,
-/obj/machinery/artifact,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/anomaly_container,
+obj/machinery/artifact,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "II" = (
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "IK" = (
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 24
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "IP" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Jv" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "JC" = (
-/obj/structure/blob/normal,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/blob/normal,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "JS" = (
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "KC" = (
-/obj/machinery/atmospherics/portables_connector,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/portables_connector,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "KU" = (
-/turf/simulated/floor/classp/outdoors,
-/area/class_p/unexplored)
+turf/simulated/floor/classp/outdoors,
+area/class_p/unexplored)
 "Ln" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
+obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Lq" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/alarms_hidden{
+obj/structure/cable,
+obj/machinery/power/apc/alarms_hidden{
 	dir = 4;
 	pixel_x = 32;
 	req_access = null;
 	start_charge = 0
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Ms" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/centcom{
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Mw" = (
-/obj/structure/table/rack/shelf,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/table/rack/shelf,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "MJ" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
+obj/machinery/door/airlock/multi_tile/metal/mait{
 	dir = 2
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "NC" = (
-/obj/structure/bedsheetbin,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/bedsheetbin,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "NH" = (
-/obj/structure/table/marble,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/table/marble,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "OB" = (
-/obj/structure/bonfire,
-/turf/simulated/floor/outdoors/snow/classp/no_tree,
-/area/class_p/unexplored)
+obj/structure/bonfire,
+turf/simulated/floor/outdoors/snow/classp/no_tree,
+area/class_p/unexplored)
 "OT" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Pn" = (
-/obj/structure/anomaly_container,
-/obj/machinery/artifact,
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/anomaly_container,
+obj/machinery/artifact,
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "PA" = (
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/obj/structure/barricade,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/barricade,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "PL" = (
-/obj/effect/overmap/visitable/sector/class_p,
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/explored)
+obj/effect/overmap/visitable/sector/class_p,
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/explored)
 "PO" = (
-/obj/structure/table/standard,
-/obj/structure/table/standard,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/table/standard,
+obj/structure/table/standard,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Qg" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Qt" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/green{
+obj/machinery/atmospherics/pipe/manifold/visible/green{
 	dir = 8
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "QK" = (
-/obj/structure/barricade,
-/obj/machinery/light{
+obj/structure/barricade,
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Rd" = (
-/obj/effect/shuttle_landmark/automatic{
+obj/effect/shuttle_landmark/automatic{
 	docking_controller = "frozen"
 	},
-/turf/simulated/floor/classp/outdoors,
-/area/class_p/explored)
+turf/simulated/floor/classp/outdoors,
+area/class_p/explored)
 "Rh" = (
-/obj/random/mob/robotic/hivebot{
+obj/random/mob/robotic/hivebot{
 	mob_faction = "frozen"
 	},
-/turf/simulated/floor/outdoors/snow/classp/no_tree,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/snow/classp/no_tree,
+area/class_p/unexplored)
 "Rn" = (
-/obj/machinery/artifact_harvester,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/artifact_harvester,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Rw" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/wall/classp,
-/area/class_p/facility)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+turf/simulated/wall/classp,
+area/class_p/facility)
 "RX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/blob/normal,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/blob/normal,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "SZ" = (
-/obj/effect/shuttle_landmark/automatic{
+obj/effect/shuttle_landmark/automatic{
 	docking_controller = "frozen"
 	},
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/unexplored)
 "Tr" = (
-/obj/structure/blob/normal,
-/obj/machinery/light,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+obj/machinery/light,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Tt" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
+obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 5
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "TP" = (
-/turf/simulated/floor/outdoors/snow/classp,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/snow/classp,
+area/class_p/unexplored)
 "Ug" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/blob/normal,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/blob/normal,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Vc" = (
-/obj/machinery/power/port_gen/pacman,
-/obj/structure/cable{
+obj/machinery/power/port_gen/pacman,
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/old_tile/blue/classp{
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Vr" = (
-/turf/simulated/floor/old_tile/blue/classp,
-/area/class_p/facility)
+turf/simulated/floor/old_tile/blue/classp,
+area/class_p/facility)
 "Vx" = (
-/obj/machinery/door/airlock/centcom{
+obj/machinery/door/airlock/centcom{
 	name = "Airlock";
 	req_one_access = null
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "VA" = (
-/obj/structure/table/wooden_reinforced,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/structure/table/wooden_reinforced,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Wm" = (
-/obj/machinery/door/airlock/external/glass,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/machinery/door/airlock/external/glass,
+turf/simulated/floor/classp,
+area/class_p/facility)
 "Wn" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/on,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/atmospherics/component/unary/vent_pump/on,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "WI" = (
-/turf/simulated/floor/outdoors/ice/classp,
-/area/class_p/explored)
+turf/simulated/floor/outdoors/ice/classp,
+area/class_p/explored)
 "WJ" = (
-/obj/structure/bed,
-/turf/simulated/floor/old_tile/green/classp{
+obj/structure/bed,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "XK" = (
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 24
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "XX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/blob/normal,
-/turf/simulated/floor/old_tile/blue/classp{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/structure/blob/normal,
+turf/simulated/floor/old_tile/blue/classp{
 	color = "#8ba7ad";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Yq" = (
-/turf/simulated/floor/outdoors/ice/classp,
-/area/class_p/unexplored)
+turf/simulated/floor/outdoors/ice/classp,
+area/class_p/unexplored)
 "Yr" = (
-/turf/simulated/wall/classp,
-/area/class_p/explored)
+turf/simulated/wall/classp,
+area/class_p/explored)
 "YA" = (
-/obj/machinery/artifact_analyser,
-/turf/simulated/floor/old_tile/green/classp{
+obj/machinery/artifact_analyser,
+turf/simulated/floor/old_tile/green/classp{
 	color = "#63A83A";
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "tile_full"
 	},
-/area/class_p/facility)
+area/class_p/facility)
 "Zr" = (
-/obj/machinery/atmospherics/pipe/simple/visible/black,
-/obj/machinery/light{
+obj/machinery/atmospherics/pipe/simple/visible/black,
+obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+turf/simulated/floor/classp,
+area/class_p/facility)
 "ZB" = (
-/turf/simulated/wall/classp,
-/area/class_p/facility)
+turf/simulated/wall/classp,
+area/class_p/facility)
 "ZK" = (
-/obj/structure/table/rack/shelf,
-/turf/simulated/floor/classp,
-/area/class_p/facility)
+obj/structure/table/rack/shelf,
+turf/simulated/floor/classp,
+area/class_p/facility)
 
 (1,1,1) = {"
 Yr

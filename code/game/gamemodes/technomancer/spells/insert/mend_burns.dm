@@ -1,4 +1,4 @@
-/datum/technomancer/spell/mend_burns
+datum/technomancer/spell/mend_burns
 	name = "Mend Burns"
 	desc = "Heals minor burns, such as from exposure to flame, electric shock, or lasers."
 	spell_power_desc = "Healing amount increased."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_mendburns"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/insert/mend_burns
+obj/item/spell/insert/mend_burns
 	name = "mend burns"
 	desc = "Ointment is a thing of the past."
 	icon_state = "mend_burns"
@@ -16,7 +16,7 @@
 	light_color = "#FF5C5C"
 	inserting = /obj/item/inserted_spell/mend_burns
 
-/obj/item/inserted_spell/mend_burns/on_insert()
+obj/item/inserted_spell/mend_burns/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host

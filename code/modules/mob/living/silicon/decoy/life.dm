@@ -1,4 +1,4 @@
-/mob/living/silicon/decoy/Life(seconds, times_fired)
+mob/living/silicon/decoy/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -6,7 +6,7 @@
 		death()
 		return TRUE
 
-/mob/living/silicon/decoy/update_health()
+mob/living/silicon/decoy/update_health()
 	if(status_flags & STATUS_GODMODE)
 		health = 100
 		set_stat(CONSCIOUS)

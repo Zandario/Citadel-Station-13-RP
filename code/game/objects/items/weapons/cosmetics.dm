@@ -1,4 +1,4 @@
-/obj/item/lipstick
+obj/item/lipstick
 	gender = PLURAL
 	name = "red lipstick"
 	desc = "A generic brand of lipstick."
@@ -12,51 +12,51 @@
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 
-/obj/item/lipstick/orange
+obj/item/lipstick/orange
 	name = "orange lipstick"
 	colour = "orange"
 
-/obj/item/lipstick/yellow
+obj/item/lipstick/yellow
 	name = "yellow lipstick"
 	colour = "yellow"
 
-/obj/item/lipstick/jade
+obj/item/lipstick/jade
 	name = "jade lipstick"
 	colour = "jade"
 
-/obj/item/lipstick/cyan
+obj/item/lipstick/cyan
 	name = "cyan lipstick"
 	colour = "cyan"
 
-/obj/item/lipstick/purple
+obj/item/lipstick/purple
 	name = "purple lipstick"
 	colour = "purple"
 
-/obj/item/lipstick/pink
+obj/item/lipstick/pink
 	name = "pink lipstick"
 	colour = "pink"
 
-/obj/item/lipstick/maroon
+obj/item/lipstick/maroon
 	name = "maroon lipstick"
 	colour = "maroon"
 
-/obj/item/lipstick/black
+obj/item/lipstick/black
 	name = "black lipstick"
 	colour = "black"
 
-/obj/item/lipstick/white
+obj/item/lipstick/white
 	name = "white lipstick"
 	colour = "white"
 
-/obj/item/lipstick/random
+obj/item/lipstick/random
 	name = "lipstick"
 
-/obj/item/lipstick/random/Initialize(mapload)
+obj/item/lipstick/random/Initialize(mapload)
 	. = ..()
 	colour = pick("red","orange","yellow","jade","cyan","purple","pink","maroon","black","white")
 	name = "[colour] lipstick"
 
-/obj/item/lipstick/attack_self(mob/user)
+obj/item/lipstick/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -67,7 +67,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/lipstick/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/lipstick/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!open)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -94,7 +94,7 @@
 
 //you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack()
 
-/obj/item/haircomb //sparklysheep's comb
+obj/item/haircomb //sparklysheep's comb
 	name = "purple comb"
 	desc = "A pristine purple comb made from flexible plastic."
 	w_class = ITEMSIZE_TINY
@@ -102,7 +102,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "purplecomb"
 
-/obj/item/haircomb/attack_self(mob/user)
+obj/item/haircomb/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -122,7 +122,7 @@
 				text = "lady"
 	user.visible_message("<span class='notice'>[user] uses [src] to comb their hair with incredible style and sophistication. What a [text].</span>")
 
-/obj/item/makeover
+obj/item/makeover
 	name = "makeover kit"
 	desc = "A tiny case containing a mirror and some contact lenses."
 	w_class = ITEMSIZE_TINY
@@ -130,7 +130,7 @@
 	icon_state = "trinketbox"
 	var/list/ui_users = list()
 
-/obj/item/makeover/attack_self(mob/user)
+obj/item/makeover/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

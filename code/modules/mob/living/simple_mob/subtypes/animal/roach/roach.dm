@@ -5,7 +5,7 @@
 */
 
 // Obtained by scanning any roach.
-/datum/category_item/catalogue/fauna/roach/roach
+datum/category_item/catalogue/fauna/roach/roach
 	name = "Roaches"
 	desc = "This hardy species of insect existed on earth for Millions of years prior to humanity,\
 	and attained a demonstrable measure of evolutionary 'perfection', as evidenced by their longevity.\
@@ -20,7 +20,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/roach)
 
 // Obtained by scanning all roach types.
-/datum/category_item/catalogue/fauna/all_roaches
+datum/category_item/catalogue/fauna/all_roaches
 	name = "Collection - Roaches"
 	desc = "You have scanned a large array of different types of roaches, \
 	and therefore you have been granted a large sum of points, through this \
@@ -39,11 +39,11 @@
 		/datum/category_item/catalogue/fauna/roach/fuhrer
 		)
 
-/datum/armor/physiology/roach
+datum/armor/physiology/roach
 	melee = 0.05
 	rad = 1.0
 
-/mob/living/simple_mob/animal/roach
+mob/living/simple_mob/animal/roach
 	name = "roach"
 	real_name = "roach"
 	desc = "A hardy pest native to Terra. It somehow survived the Final War and spread among the stars."
@@ -91,7 +91,7 @@
 	holder_type = /obj/item/holder/roach
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/animal/roach/Initialize(mapload)
+mob/living/simple_mob/animal/roach/Initialize(mapload)
 	. = ..()
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -101,7 +101,7 @@
 		name = "[name] ([rand(1, 1000)])"
 	real_name = name
 
-/mob/living/simple_mob/animal/roach/Crossed(AM as mob|obj)
+mob/living/simple_mob/animal/roach/Crossed(AM as mob|obj)
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
@@ -114,7 +114,7 @@
  */
 
 //How DARE you!
-/mob/living/simple_mob/animal/roach/Greta
+mob/living/simple_mob/animal/roach/Greta
 	name = "Greta"
 	desc = "Legend has it this roach sailed across the Eagle Nebula to protest bug burgers."
 
@@ -123,7 +123,7 @@
 	taser_kill = 0
 
 //Unrandom the pet...?
-/mob/living/simple_mob/animal/roach/Greta/Initialize(mapload)
+mob/living/simple_mob/animal/roach/Greta/Initialize(mapload)
     . = ..()
     size_multiplier = 1
     maxHealth = maxHealth
@@ -134,20 +134,20 @@
     meat_amount = meat_amount
     update_icons()
 
-/mob/living/simple_mob/animal/roach/Greta/Initialize(mapload)
+mob/living/simple_mob/animal/roach/Greta/Initialize(mapload)
 	. = ..()
 	// Change my name back, don't want to be named Tom (666)
 	name = initial(name)
 
 //Baby Roaches? Baby Roaches.
-/datum/category_item/catalogue/fauna/roach/roachling
+datum/category_item/catalogue/fauna/roach/roachling
 	name = "Roachling"
 	desc = "Every life begins somewhere, and the juvenile roach, commonly referred to as a 'roachling',\
 	serves as one of the first signs of a budding roach infestation. If you see one, there are more.\
 	Attentive crews will take the sign of a single roachling as a warning to dock and pull up panels."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/roachling
+mob/living/simple_mob/animal/roach/roachling
 	name = "roachling"
 	real_name = "roachling"
 	desc = "A hardy pest native to Terra. This one's just a baby."
@@ -171,7 +171,7 @@
 	var/spawn_delay = 20
 	var/list/grow_as = list(/mob/living/simple_mob/animal/roach, /mob/living/simple_mob/animal/roach/seuche, /mob/living/simple_mob/animal/roach/jaeger)
 
-/mob/living/simple_mob/animal/roach/roachling/Initialize(mapload, atom/parent)
+mob/living/simple_mob/animal/roach/roachling/Initialize(mapload, atom/parent)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	//50% chance to grow up
@@ -179,35 +179,35 @@
 		amount_grown = 1
 	get_light_and_color(parent)
 
-/mob/living/simple_mob/animal/roach/roachling/death()
+mob/living/simple_mob/animal/roach/roachling/death()
 	STOP_PROCESSING(SSobj, src)
 	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
-/mob/living/simple_mob/animal/roach/roachling/process(delta_time)
+mob/living/simple_mob/animal/roach/roachling/process(delta_time)
 	if(amount_grown >= 0)
 		amount_grown += rand(0,2)
 	if(amount_grown >= 100)
 		mature()
 
-/mob/living/simple_mob/animal/roach/roachling/proc/mature()
+mob/living/simple_mob/animal/roach/roachling/proc/mature()
 	var/spawn_type = pick(grow_as)
 	new spawn_type(src.loc, src)
 	qdel(src)
 
 //That's just great. That's what we wanna show kids. Santa rolling down the block - in a Panzer.
-/datum/category_item/catalogue/fauna/roach/panzer
+datum/category_item/catalogue/fauna/roach/panzer
 	name = "Armored Roach"
 	desc = "This peculiar subspecies of roach is believed to have adapted in high pressure environments,\
 	where even the sturdy exoskeleton of its ancestors were too frail to survive. Slower than average,\
 	but formidable in numbers, these creatures require more than a boot to dispatch effectively."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/armor/physiology/roach/panzer
+datum/armor/physiology/roach/panzer
 	melee = 0.2
 	bullet = 0.15
 
-/mob/living/simple_mob/animal/roach/panzer
+mob/living/simple_mob/animal/roach/panzer
 	name = "armored roach"
 	real_name = "armored roach"
 	desc = "A descendant of an Old Terra pest. This one has evolved a bulky shell that shields it from harm."
@@ -227,18 +227,18 @@
 
 	armor_type = /datum/armor/physiology/roach/panzer
 
-/datum/armor/physiology/roach/jaegar
+datum/armor/physiology/roach/jaegar
 	melee = 0.1
 
 //Sie Sind Das Essen Und Wir Sind Die Jager
-/datum/category_item/catalogue/fauna/roach/jaeger
+datum/category_item/catalogue/fauna/roach/jaeger
 	name = "Hunter Roach"
 	desc = "According to the standing theory, 'Hunter Roaches' adapted in a predator rich environment,\
 	where mobility and speed became evolutionary advantages. The Hunter's aggressive nature and striking\
 	green coloration make it an enticing and deadly foe, even when found alone."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/jaeger
+mob/living/simple_mob/animal/roach/jaeger
 	name = "hunter roach"
 	real_name = "hunter roach"
 	desc = "A descendant of an Old Terra pest. This one moves quickly to chase down its prey. Potentially more effective in forests."
@@ -263,7 +263,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 //When I said roaches made me sick, this isn't what I meant.
-/datum/category_item/catalogue/fauna/roach/seuche
+datum/category_item/catalogue/fauna/roach/seuche
 	name = "Diseased Roach"
 	desc = "This phenomena was first observed on Virgo 3b, among certain species of Atrax robustus.\
 	When exposed to gaseous or powdered phoron over long periods of time without protection will mutate,\
@@ -272,10 +272,10 @@
 	and should be handled with extreme care."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/armor/physiology/roach/seuche
+datum/armor/physiology/roach/seuche
 	bio = 1.0
 
-/mob/living/simple_mob/animal/roach/seuche
+mob/living/simple_mob/animal/roach/seuche
 	name = "diseased roach"
 	real_name = "diseased roach"
 	desc = "A descendant of an Old Terra pest. This one is suffering from the long term effects of direct Phoron exposure."
@@ -296,7 +296,7 @@
 	var/poison_per_bite = 5
 	var/poison_type = "phoron"
 
-/mob/living/simple_mob/animal/roach/seuche/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/animal/roach/seuche/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -306,13 +306,13 @@
 				infect_mob(L, target_zone)
 
 // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/animal/roach/seuche/proc/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/animal/roach/seuche/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>The bite stings!</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 //If you think roaches are bad, imagine dragons.
-/datum/category_item/catalogue/fauna/roach/atomar
+datum/category_item/catalogue/fauna/roach/atomar
 	name = "Cancerous Roach"
 	desc = "Most roaches display an intensely robust resistance to the effects of radiaton. Most.\
 	Genetic mutations leading to a pronounced weakness to cell degeneration are rare, but not unheard of.\
@@ -321,11 +321,11 @@
 	ripping off chunks of diseased flesh and throwing it at percieved threats in an attempt to ward them off."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/armor/physiology/roach/atomar
+datum/armor/physiology/roach/atomar
 	energy = 0.4
 	rad = 0.1
 
-/mob/living/simple_mob/animal/roach/atomar
+mob/living/simple_mob/animal/roach/atomar
 	name = "cancerous roach"
 	real_name = "cancerous roach"
 	desc = "A descendant of an Old Terra pest. This one is covered in cancerous growths indicative of intense radiation sickness."
@@ -353,7 +353,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
 //Nanomachines? Huh. That's not very Patriotic.
-/datum/category_item/catalogue/fauna/roach/uberfallen
+datum/category_item/catalogue/fauna/roach/uberfallen
 	name = "Infested Roach"
 	desc = "WARNING: Infested roaches are currently flagged as a Class Red threat by NanoTrasen.\
 	This dangerous organism appeared shortly after the unidentified incident on local NT asset 'Surt',\
@@ -363,12 +363,12 @@
 	attack their victim on a molecular level. Terminate with extreme prejudice."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/armor/physiology/roach/uberfallen
+datum/armor/physiology/roach/uberfallen
 	melee = 0.2
 	bullet = 0.5
 	bio = 1.0
 
-/mob/living/simple_mob/animal/roach/uberfallen
+mob/living/simple_mob/animal/roach/uberfallen
 	name = "infested roach"
 	real_name = "infested roach"
 	desc = "A descendant of an Old Terra pest. This one has become a hive for even smaller rapidly breeding pests. Ironic."
@@ -394,7 +394,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
 //Remember when Liam Neeson taught you how to kill these?
-/datum/category_item/catalogue/fauna/roach/strahlend
+datum/category_item/catalogue/fauna/roach/strahlend
 	name = "Glowing Roach"
 	desc = "Just because roaches are by and large immune to radiation, it doesn't mean they avoid it.\
 	Glowing roaches are one of the first recorded subspecies of roach to be recorded off of Earth.\
@@ -403,12 +403,12 @@
 	which these roaches are not afraid to use to deter assailants, or, rarely, to wound prey."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/armor/physiology/roach/strahland
+datum/armor/physiology/roach/strahland
 	melee = 0.2
 	laser = 0.2
 	energy = 0.2
 
-/mob/living/simple_mob/animal/roach/strahlend
+mob/living/simple_mob/animal/roach/strahlend
 	name = "glowing roach"
 	real_name = "glowing roach"
 	desc = "A descendant of an Old Terra pest. This one pulses with an intense, visible radioactive glow. You shouldn't be standing this close."
@@ -431,7 +431,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
 //The Color out of Bluespace
-/datum/category_item/catalogue/fauna/roach/zeitraum
+datum/category_item/catalogue/fauna/roach/zeitraum
 	name = "Bluespace Roach"
 	desc = "The belief that these roaches actually inhabit Bluespace has long been disproven.\
 	However, the apellation has stuck to these creatures due to their trademark predation mechanism.\
@@ -441,12 +441,12 @@
 	genuinely infest Bluespace at this time."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/armor/physiology/roach/zeitraum
+datum/armor/physiology/roach/zeitraum
 	melee = 0.2
 	laser = 0.2
 	energy = 0.2
 
-/mob/living/simple_mob/animal/roach/zeitraum
+mob/living/simple_mob/animal/roach/zeitraum
 	name = "bluespace roach"
 	real_name = "bluespace roach"
 	desc = "A descendant of an Old Terra pest. Where did this one even come from?! Watch out!"
@@ -479,14 +479,14 @@
 	var/last_unstealth = 0			// world.time
 
 
-/mob/living/simple_mob/animal/roach/zeitraum/proc/stealth()
+mob/living/simple_mob/animal/roach/zeitraum/proc/stealth()
 	if(stealthed)
 		return
 	animate(src, alpha = stealthed_alpha, time = 1 SECOND)
 	stealthed = TRUE
 
 
-/mob/living/simple_mob/animal/roach/zeitraum/proc/unstealth()
+mob/living/simple_mob/animal/roach/zeitraum/proc/unstealth()
 	last_unstealth = world.time // This is assigned even if it isn't stealthed already, to 'reset' the timer if the spider is continously getting attacked.
 	if(!stealthed)
 		return
@@ -495,7 +495,7 @@
 
 
 // Check if stealthing if possible.
-/mob/living/simple_mob/animal/roach/zeitraum/proc/can_stealth()
+mob/living/simple_mob/animal/roach/zeitraum/proc/can_stealth()
 	if(stat)
 		return FALSE
 	if(last_unstealth + stealth_cooldown > world.time)
@@ -505,28 +505,28 @@
 
 
 // Called by things that break stealths, like Technomancer wards.
-/mob/living/simple_mob/animal/roach/zeitraum/break_cloak()
+mob/living/simple_mob/animal/roach/zeitraum/break_cloak()
 	unstealth()
 
 
-/mob/living/simple_mob/animal/roach/zeitraum/is_cloaked()
+mob/living/simple_mob/animal/roach/zeitraum/is_cloaked()
 	return stealthed
 
 
 // Cloaks the spider automatically, if possible.
-/mob/living/simple_mob/animal/roach/zeitraum/handle_special()
+mob/living/simple_mob/animal/roach/zeitraum/handle_special()
 	if(!stealthed && can_stealth())
 		stealth()
 
 
 // Applies bonus base damage if stealthed.
-/mob/living/simple_mob/animal/roach/zeitraum/apply_bonus_melee_damage(atom/A, damage_amount)
+mob/living/simple_mob/animal/roach/zeitraum/apply_bonus_melee_damage(atom/A, damage_amount)
 	if(stealthed)
 		return damage_amount + stealthed_bonus_damage
 	return ..()
 
 // Applies stun, then unstealths.
-/mob/living/simple_mob/animal/roach/zeitraum/apply_melee_effects(atom/A)
+mob/living/simple_mob/animal/roach/zeitraum/apply_melee_effects(atom/A)
 	if(stealthed)
 		if(isliving(A))
 			var/mob/living/L = A
@@ -537,23 +537,23 @@
 	..() // For the poison.
 
 // Force unstealthing if attacked.
-/mob/living/simple_mob/animal/roach/zeitraum/bullet_act(obj/projectile/P)
+mob/living/simple_mob/animal/roach/zeitraum/bullet_act(obj/projectile/P)
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/animal/roach/zeitraum/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
+mob/living/simple_mob/animal/roach/zeitraum/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 	. = ..()
 	break_cloak()
 
 //King? Look around you! King of what?
-/datum/category_item/catalogue/fauna/roach/fuhrer
+datum/category_item/catalogue/fauna/roach/fuhrer
 	name = "King Roach"
 	desc = "Known as the 'King Roach' by researchers, the Periplaneta rex displays no social behavior.\
 	Its nickname comes from its intimidating presence. Naturally resilient, the King Roach is slow, meaty,\
 	and its powerful mandibles can deliver a painful bite."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/armor/physiology/roach/fuhrer
+datum/armor/physiology/roach/fuhrer
 	melee = 0.25
 	bullet = 0.15
 	laser = 0.25
@@ -561,7 +561,7 @@
 	bomb = 0.25
 	bio = 0.15
 
-/mob/living/simple_mob/animal/roach/fuhrer
+mob/living/simple_mob/animal/roach/fuhrer
 	name = "king roach"
 	real_name = "king roach"
 	desc = "A descendant of an Old Terra pest. This one moves slowly, but with purpose. The other roaches seem to revere it."

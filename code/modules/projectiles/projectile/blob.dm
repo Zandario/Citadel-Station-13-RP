@@ -1,4 +1,4 @@
-/obj/projectile/energy/blob //Not super strong.
+obj/projectile/energy/blob //Not super strong.
 	name = "spore"
 	icon_state = "declone"
 	damage = 3
@@ -11,21 +11,21 @@
 	var/splatter_volume = 5			// The volume of its chemical container, for said cloud of reagents.
 	var/list/my_chems = list("mold")
 
-/obj/projectile/energy/blob/splattering
+obj/projectile/energy/blob/splattering
 	splatter = TRUE
 
-/obj/projectile/energy/blob/Initialize(mapload)
+obj/projectile/energy/blob/Initialize(mapload)
 	. = ..()
 	if(splatter)
 		create_reagents(splatter_volume)
 		ready_chemicals()
 
-/obj/projectile/energy/blob/Destroy()
+obj/projectile/energy/blob/Destroy()
 	qdel(reagents)
 	reagents = null
 	..()
 
-/obj/projectile/energy/blob/on_impact(var/atom/A)
+obj/projectile/energy/blob/on_impact(var/atom/A)
 	if(splatter)
 		var/turf/location = get_turf(src)
 		var/datum/effect_system/smoke_spread/chem/S = new /datum/effect_system/smoke_spread/chem
@@ -36,37 +36,37 @@
 			S.start()
 	..()
 
-/obj/projectile/energy/blob/proc/ready_chemicals()
+obj/projectile/energy/blob/proc/ready_chemicals()
 	if(reagents)
 		var/reagent_vol = (round((splatter_volume / my_chems.len) * 100) / 100) //Cut it at the hundreds place, please.
 		for(var/reagent in my_chems)
 			reagents.add_reagent(reagent, reagent_vol)
 
-/obj/projectile/energy/blob/toxic
+obj/projectile/energy/blob/toxic
 	damage_type = TOX
 	damage_flag = ARMOR_BIO
 	my_chems = list("amatoxin")
 
-/obj/projectile/energy/blob/toxic/splattering
+obj/projectile/energy/blob/toxic/splattering
 	splatter = TRUE
 
-/obj/projectile/energy/blob/acid
+obj/projectile/energy/blob/acid
 	damage_type = BURN
 	damage_flag = ARMOR_BIO
 	my_chems = list("sacid", "mold")
 
-/obj/projectile/energy/blob/acid/splattering
+obj/projectile/energy/blob/acid/splattering
 	splatter = TRUE
 
-/obj/projectile/energy/blob/combustible
+obj/projectile/energy/blob/combustible
 	splatter = TRUE
 	flammability = 0.25
 	my_chems = list("fuel", "mold")
 
-/obj/projectile/energy/blob/freezing
+obj/projectile/energy/blob/freezing
 	my_chems = list("frostoil")
 	modifier_type_to_apply = /datum/modifier/chilled
 	modifier_duration = 1 MINUTE
 
-/obj/projectile/energy/blob/freezing/splattering
+obj/projectile/energy/blob/freezing/splattering
 	splatter = TRUE

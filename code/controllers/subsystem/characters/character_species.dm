@@ -1,5 +1,5 @@
 
-/datum/controller/subsystem/characters
+datum/controller/subsystem/characters
 	//! Species
 	/**
 	 * yeah so funny right
@@ -21,7 +21,7 @@
 	 */
 	var/list/character_species_cache
 
-/datum/controller/subsystem/characters/proc/rebuild_character_species()
+datum/controller/subsystem/characters/proc/rebuild_character_species()
 	// make species lookup
 	character_species_lookup = list()
 	for(var/path in species_paths)
@@ -49,7 +49,7 @@
 	tim_sort(character_species_lookup, /proc/cmp_auto_compare, TRUE)
 	rebuild_character_species_ui_cache()
 
-/datum/controller/subsystem/characters/proc/rebuild_character_species_ui_cache()
+datum/controller/subsystem/characters/proc/rebuild_character_species_ui_cache()
 	// make species data cache
 	character_species_cache = list()
 	for(var/id in character_species_lookup)
@@ -65,11 +65,11 @@
 			"category" = S.category,	// note to self optimize this
 		))
 
-/datum/controller/subsystem/characters/proc/resolve_character_species(uid)
+datum/controller/subsystem/characters/proc/resolve_character_species(uid)
 	RETURN_TYPE(/datum/character_species)
 	return character_species_lookup[uid]
 
-/datum/controller/subsystem/characters/proc/construct_character_species(uid)
+datum/controller/subsystem/characters/proc/construct_character_species(uid)
 	RETURN_TYPE(/datum/species)
 	var/datum/character_species/faux = resolve_character_species(uid)
 	var/datum/species/built = new faux.real_species_type
@@ -79,7 +79,7 @@
 	faux.tweak(built)
 	return built
 
-/datum/controller/subsystem/characters/proc/all_character_species()
+datum/controller/subsystem/characters/proc/all_character_species()
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/uid in character_species_lookup)

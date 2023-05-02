@@ -26,7 +26,7 @@
 /// Create a varset timer
 #define VARSET_IN(datum, var, var_value, time) addtimer(VARSET_CALLBACK(datum, var, var_value), time)
 
-/proc/___callbackvarset(list_or_datum, var_name, var_value)
+proc/___callbackvarset(list_or_datum, var_name, var_value)
 	if(islist(list_or_datum))
 		list_or_datum[var_name] = var_value
 		return
@@ -41,5 +41,5 @@
 /// flick() using timer
 #define FLICK_IN(state, target, time) addtimer(CALLBACK(GLOBAL_PROC, /proc/___callbackflick, target, state), time)
 
-/proc/___callbackflick(target, state)
+proc/___callbackflick(target, state)
 	flick(target, state)

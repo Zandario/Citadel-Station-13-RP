@@ -1,7 +1,7 @@
 //
 // Base type of pipes
 //
-/obj/machinery/atmospherics/pipe
+obj/machinery/atmospherics/pipe
 	buckle_allowed = TRUE
 	buckle_flags = BUCKLING_REQUIRES_RESTRAINTS
 
@@ -20,56 +20,56 @@
 	var/alert_pressure = 80*ONE_ATMOSPHERE
 		//minimum pressure before check_pressure(...) should be called
 
-/obj/machinery/atmospherics/pipe/Initialize(mapload, newdir)
+obj/machinery/atmospherics/pipe/Initialize(mapload, newdir)
 	if(istype(get_turf(src), /turf/simulated/wall) || istype(get_turf(src), /turf/simulated/shuttle/wall) || istype(get_turf(src), /turf/unsimulated/wall))
 		level = 1
 	return ..()
 
-/obj/machinery/atmospherics/pipe/hides_under_flooring()
+obj/machinery/atmospherics/pipe/hides_under_flooring()
 	return level != 2
 
-/obj/machinery/atmospherics/pipe/proc/pipeline_expansion()
+obj/machinery/atmospherics/pipe/proc/pipeline_expansion()
 	return null
 
 // For pipes this is the same as pipeline_expansion()
-/obj/machinery/atmospherics/pipe/get_neighbor_nodes_for_init()
+obj/machinery/atmospherics/pipe/get_neighbor_nodes_for_init()
 	return pipeline_expansion()
 
-/obj/machinery/atmospherics/pipe/proc/check_pressure(pressure)
+obj/machinery/atmospherics/pipe/proc/check_pressure(pressure)
 	//Return 1 if parent should continue checking other pipes
 	//Return null if parent should stop checking other pipes. Recall: qdel(src) will by default return null
 
 	return 1
 
-/obj/machinery/atmospherics/pipe/return_air()
+obj/machinery/atmospherics/pipe/return_air()
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.air
 
-/obj/machinery/atmospherics/pipe/build_network()
+obj/machinery/atmospherics/pipe/build_network()
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.return_network()
 
-/obj/machinery/atmospherics/pipe/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+obj/machinery/atmospherics/pipe/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.network_expand(new_network, reference)
 
-/obj/machinery/atmospherics/pipe/return_network(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipe/return_network(obj/machinery/atmospherics/reference)
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.return_network(reference)
 
-/obj/machinery/atmospherics/pipe/Destroy()
+obj/machinery/atmospherics/pipe/Destroy()
 	QDEL_NULL(parent)
 	if(air_temporary)
 		loc.assume_air(air_temporary)
@@ -80,7 +80,7 @@
 			qdel(meter)
 	. = ..()
 
-/obj/machinery/atmospherics/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/atmospherics/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 
@@ -105,7 +105,7 @@
 			"You hear a ratchet.")
 		deconstruct()
 
-/obj/machinery/atmospherics/pipe/proc/change_color(var/new_color)
+obj/machinery/atmospherics/pipe/proc/change_color(var/new_color)
 	//only pass valid pipe colors please ~otherwise your pipe will turn invisible
 	if(!pipe_color_check(new_color))
 		return
@@ -113,7 +113,7 @@
 	pipe_color = new_color
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/color_cache_name(var/obj/machinery/atmospherics/node)
+obj/machinery/atmospherics/pipe/color_cache_name(var/obj/machinery/atmospherics/node)
 	if(istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 
@@ -127,18 +127,18 @@
 	else
 		return pipe_color
 
-/obj/machinery/atmospherics/pipe/hide(var/i)
+obj/machinery/atmospherics/pipe/hide(var/i)
 	if(istype(loc, /turf/simulated))
 		invisibility = i ? 100 : 0
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/process(delta_time)
+obj/machinery/atmospherics/pipe/process(delta_time)
 	if(!parent) //This should cut back on the overhead calling build_network thousands of times per cycle
 		..()
 	else
 		. = PROCESS_KILL
 
-/obj/machinery/atmospherics/pipe/attack_ghost(mob/user)
+obj/machinery/atmospherics/pipe/attack_ghost(mob/user)
 	. = ..()
 	if(user.client && user.client.inquisitive_ghost)
 		analyze_gases_ghost(src, user)

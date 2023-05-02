@@ -1,10 +1,10 @@
-/datum/locations
+datum/locations
 	var/name
 	var/desc
 	var/list/contents = list()
 	var/parent
 
-/datum/locations/New(var/creator)
+datum/locations/New(var/creator)
 	if(creator)
 		parent = creator
 
@@ -12,11 +12,11 @@ var/global/datum/locations/milky_way/all_locations = new()
 
 //Galaxy
 
-/datum/locations/milky_way
+datum/locations/milky_way
 	name = "Milky Way Galaxy"
 	desc = "The galaxy we all live in."
 
-/datum/locations/milky_way/New()
+datum/locations/milky_way/New()
 	contents.Add(
 		new /datum/locations/sol(src),
 		new /datum/locations/tau_ceti(src),
@@ -27,7 +27,7 @@ var/global/datum/locations/milky_way/all_locations = new()
 		new /datum/locations/vir(src)
 		)
 
-/proc/choose_location_datum(client/user)
+proc/choose_location_datum(client/user)
 	var/datum/locations/choice = all_locations
 	while(length(choice.contents) > 0) //For some reason it wouldn't let me do contents.len even when I defined it as a list.
 		var/specific = alert(user, "The location currently selected is [choice.name].  More specific options exist, would you like to pick a more specific location?",
@@ -45,30 +45,30 @@ var/global/datum/locations/milky_way/all_locations = new()
 
 
 /*
-/datum/locations/proc/show_contents()
+datum/locations/proc/show_contents()
 //	to_chat(world, "[src]\n[desc]")
 	for(var/datum/locations/a in contents)
 		to_chat(world, "[a]\n[a.parent ? "Located in [a.parent]\n" : ""][a.desc]")
 		a.show_contents()
 	to_chat(world, "\n")
 
-/datum/locations/proc/count_locations()
+datum/locations/proc/count_locations()
 	var/i = 0
 	for(var/datum/locations/a in contents)
 		i = i + a.count_locations()
 	return i
 
-/client/verb/show_locations()
+client/verb/show_locations()
 	set name = "Show Locations"
 	set category = "Debug"
 	locations.show_contents()
 
-/client/verb/debug_locations()
+client/verb/debug_locations()
 	set name = "Debug Locations"
 	set category = "Debug"
 	debug_variables(locations)
 
-/client/verb/count_locations()
+client/verb/count_locations()
 	set name = "Count Locations"
 	set category = "Debug"
 	var/location_number = locations.count_locations()

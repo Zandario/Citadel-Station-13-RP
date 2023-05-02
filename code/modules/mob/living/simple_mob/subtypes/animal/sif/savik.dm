@@ -1,6 +1,6 @@
 // Saviks are dangerous, angry creatures that hit hard, and will berserk if losing a fight.
 
-/datum/category_item/catalogue/fauna/savik
+datum/category_item/catalogue/fauna/savik
 	name = "Sivian Fauna - Savik"
 	desc = "Classification: S Pistris tellus\
 	<br><br>\
@@ -17,7 +17,7 @@
 	The Savik has no known predators, and should be avoided at all costs."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/sif/savik
+mob/living/simple_mob/animal/sif/savik
 	name = "savik"
 	tt_desc = "S Pistris tellus" //landshark
 	catalogue_data = list(/datum/category_item/catalogue/fauna/savik)
@@ -48,21 +48,21 @@
 	say_list_type = /datum/say_list/savik
 	ai_holder_type = /datum/ai_holder/simple_mob/savik
 
-/datum/say_list/savik
+datum/say_list/savik
 	speak = list("Hruuugh!","Hrunnph")
 	emote_see = list("paws the ground","shakes its mane","stomps")
 	emote_hear = list("snuffles")
 
-/mob/living/simple_mob/animal/sif/savik/handle_special()
+mob/living/simple_mob/animal/sif/savik/handle_special()
 	if((get_AI_stance() in list(STANCE_APPROACH, STANCE_FIGHT)) && !is_AI_busy() && isturf(loc))
 		if(health <= (maxHealth * 0.5)) // At half health, and fighting someone currently.
 			berserk()
 
-/datum/ai_holder/simple_mob/savik
+datum/ai_holder/simple_mob/savik
 	mauling = TRUE
 
 // So players can use it too.
-/mob/living/simple_mob/animal/sif/savik/verb/berserk()
+mob/living/simple_mob/animal/sif/savik/verb/berserk()
 	set name = "Berserk"
 	set desc = "Enrage and become vastly stronger for a period of time, however you will be weaker afterwards."
 	set category = "Abilities"

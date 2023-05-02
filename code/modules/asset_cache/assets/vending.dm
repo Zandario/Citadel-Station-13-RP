@@ -1,7 +1,7 @@
-/datum/asset/spritesheet/vending
+datum/asset/spritesheet/vending
 	name = "vending"
 
-/datum/asset/spritesheet/vending/create_spritesheets()
+datum/asset/spritesheet/vending/create_spritesheets()
 	for (var/k in GLOB.vending_products)
 		var/atom/item = k
 		if (!ispath(item, /atom))

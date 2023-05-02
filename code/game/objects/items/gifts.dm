@@ -10,7 +10,7 @@
 
 GLOBAL_LIST_EMPTY(possible_gifts)
 
-/obj/item/a_gift
+obj/item/a_gift
 	name = "gift"
 	desc = "PRESENTS!!!! eek!"
 	icon = 'icons/obj/storage.dmi'
@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 	var/obj/item/contains_type
 
-/obj/item/a_gift/Initialize(mapload)
+obj/item/a_gift/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
@@ -28,11 +28,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 	contains_type = get_gift_type()
 
-/obj/item/a_gift/examine(mob/M)
+obj/item/a_gift/examine(mob/M)
 	. = ..()
 	. += SPAN_NOTICE("It contains \a [initial(contains_type.name)].")
 
-/obj/item/a_gift/attack_self(mob/user)
+obj/item/a_gift/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	else
 		user.visible_message(SPAN_DANGER("Oh no! The present that [user] opened had nothing inside it!"))
 
-/obj/item/a_gift/proc/get_gift_type()
+obj/item/a_gift/proc/get_gift_type()
 	var/gift_type_list = list(
 		/obj/item/storage/wallet,
 		/obj/item/storage/photo_album,
@@ -78,11 +78,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	return gift_type
 
 
-/obj/item/a_gift/anything
+obj/item/a_gift/anything
 	name = "christmas gift"
 	desc = "It could be anything!"
 
-/obj/item/a_gift/anything/get_gift_type()
+obj/item/a_gift/anything/get_gift_type()
 	if(!GLOB.possible_gifts.len)
 		var/list/gift_types_list = subtypesof(/obj/item)
 		for(var/V in gift_types_list)

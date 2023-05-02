@@ -1,11 +1,11 @@
-/datum/gm_action/wallrot
+datum/gm_action/wallrot
 	name = "wall rot"
 	departments = list(DEPARTMENT_ENGINEERING)
 	reusable = TRUE
 	var/turf/simulated/wall/center
 	severity = 1
 
-/datum/gm_action/wallrot/set_up()
+datum/gm_action/wallrot/set_up()
 	severity = rand(1,3)
 	center = null
 	// 100 attempts
@@ -16,11 +16,11 @@
 			return 1
 	return 0
 
-/datum/gm_action/wallrot/announce()
+datum/gm_action/wallrot/announce()
 	if(center && prob(min(90,40 * severity)))
 		command_announcement.Announce("Harmful fungi detected on \the [station_name()] nearby [center.loc.name]. Station structures may be contaminated.", "Biohazard Alert")
 
-/datum/gm_action/wallrot/start()
+datum/gm_action/wallrot/start()
 	..()
 	spawn()
 		if(center)
@@ -39,5 +39,5 @@
 					if(rotcount >= actual_severity)
 						break
 
-/datum/gm_action/wallrot/get_weight()
+datum/gm_action/wallrot/get_weight()
 	return 60 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 35)

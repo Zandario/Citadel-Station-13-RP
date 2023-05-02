@@ -7,7 +7,7 @@
  * Circumvents the message queue and sends the message
  * to the recipient (target) as soon as possible.
  */
-/proc/to_chat_immediate(
+proc/to_chat_immediate(
 	target,
 	html,
 	type = null,
@@ -63,7 +63,7 @@
  *     html = "You have found <strong>[object]</strong>")
  * ```
  */
-/proc/to_chat(
+proc/to_chat(
 	target,
 	html,
 	type = null,

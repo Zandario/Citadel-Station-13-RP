@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/larva/confirm_evolution()
+mob/living/carbon/alien/larva/confirm_evolution()
 
 	to_chat(src, "<span class='notice'><b>You are growing into a beautiful alien! It is time to choose a caste.</b></span>")
 	to_chat(src, "<span class='notice'>There are three to choose from:</span>")
@@ -8,5 +8,5 @@
 	var/alien_caste = alert(src, "Please choose which alien caste you shall belong to.",,"Hunter","Sentinel","Drone")
 	return alien_caste ? "Xenomorph [alien_caste]" : null
 
-/mob/living/carbon/alien/larva/show_evolution_blurb()
+mob/living/carbon/alien/larva/show_evolution_blurb()
 	return

@@ -11,11 +11,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 var/const/CE_STABLE_THRESHOLD = 0.5
 */
 
-/mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
-/mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
+mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
+mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
 
 //Initializes blood vessels
-/mob/living/carbon/human/proc/make_blood()
+mob/living/carbon/human/proc/make_blood()
 
 	if(vessel)
 		return
@@ -32,7 +32,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	vessel.add_reagent("blood",species.blood_volume)
 
 //Resets blood data
-/mob/living/carbon/human/proc/fixblood()
+mob/living/carbon/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.get_blood_colour(src),"blood_type"=dna.b_type,	\
@@ -46,7 +46,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			B.name = B.data["blood_name"]
 
 // Takes care blood loss and regeneration
-/mob/living/carbon/human/handle_blood()
+mob/living/carbon/human/handle_blood()
 	if(inStasisNow())
 		return
 
@@ -200,11 +200,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/proc/drip(var/amt)
+mob/living/carbon/human/proc/drip(var/amt)
 	if(remove_blood(amt))
 		blood_splatter(src,src)
 
-/mob/living/carbon/human/proc/remove_blood(var/amt)
+mob/living/carbon/human/proc/remove_blood(var/amt)
 	if(!should_have_organ(O_HEART)) //TODO: Make drips come from the reagents instead.
 		return 0
 
@@ -221,7 +221,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 ****************************************************/
 
 //Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/item/reagent_containers/container, var/amount)
+mob/living/carbon/proc/take_blood(obj/item/reagent_containers/container, var/amount)
 
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B)
@@ -252,7 +252,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	return B
 
 //For humans, blood does not appear from blue, it comes from vessels.
-/mob/living/carbon/human/take_blood(obj/item/reagent_containers/container, var/amount)
+mob/living/carbon/human/take_blood(obj/item/reagent_containers/container, var/amount)
 
 	if(!should_have_organ(O_HEART))
 		return null
@@ -264,7 +264,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	vessel.remove_reagent("blood",amount) // Removes blood if human
 
 //Transfers blood from container ot vessels
-/mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
+mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
 	if (!injected || !istype(injected))
 		return
 	var/list/sniffles = virus_copylist(injected.data["virus2"])
@@ -280,7 +280,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	reagents.update_total()
 
 //Transfers blood from reagents to vessel, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
+mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
 
 	if(!should_have_organ(O_HEART))
 		reagents.add_reagent("blood", amount, injected.data)
@@ -300,7 +300,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	..()
 
 //Gets human's own blood.
-/mob/living/carbon/proc/get_blood(datum/reagents/container)
+mob/living/carbon/proc/get_blood(datum/reagents/container)
 	var/datum/reagent/blood/res = locate() in container.reagent_list //Grab some blood
 	if(res) // Make sure there's some blood at all
 		if(res.data["donor"] != src) //If it's not theirs, then we look for theirs
@@ -309,7 +309,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 					return D
 	return res
 
-/proc/blood_incompatible(donor, receiver, donor_species, receiver_species)
+proc/blood_incompatible(donor, receiver, donor_species, receiver_species)
 	if(!donor || !receiver)
 		return 0
 
@@ -333,7 +333,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		//AB is a universal receiver.
 	return 0
 
-/proc/blood_splatter(target, datum/reagent/blood/source, large)
+proc/blood_splatter(target, datum/reagent/blood/source, large)
 
 	// We're not going to splatter at all because we're in something and that's silly.
 	if(istype(source,/atom/movable))

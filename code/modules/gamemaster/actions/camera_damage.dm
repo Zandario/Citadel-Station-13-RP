@@ -1,9 +1,9 @@
-/datum/gm_action/camera_damage
+datum/gm_action/camera_damage
 	name = "random camera damage"
 	reusable = TRUE
 	departments = list(DEPARTMENT_SYNTHETIC, DEPARTMENT_ENGINEERING)
 
-/datum/gm_action/camera_damage/start()
+datum/gm_action/camera_damage/start()
 	var/obj/machinery/camera/C = acquire_random_camera()
 	if(!C)
 		return
@@ -32,7 +32,7 @@
 				if(prob(5*severity))
 					cam.wires.cut(WIRE_CAM_ALARM)
 
-/datum/gm_action/camera_damage/proc/acquire_random_camera(var/remaining_attempts = 5)
+datum/gm_action/camera_damage/proc/acquire_random_camera(var/remaining_attempts = 5)
 	if(!GLOB.cameranet.cameras.len)
 		return
 	if(!remaining_attempts)
@@ -43,10 +43,10 @@
 		return C
 	return acquire_random_camera(remaining_attempts--)
 
-/datum/gm_action/camera_damage/proc/is_valid_camera(var/obj/machinery/camera/C)
+datum/gm_action/camera_damage/proc/is_valid_camera(var/obj/machinery/camera/C)
 	// Only return a functional camera, not installed in a silicon/hardsuit/circuit/etc, and that exists somewhere players have access
 	var/turf/T = get_turf(C)
 	return T && C.can_use() && istype(C.loc, /turf) && (T.z in GLOB.using_map.player_levels)
 
-/datum/gm_action/camera_damage/get_weight()
+datum/gm_action/camera_damage/get_weight()
 	return 40 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20) + (metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 40)

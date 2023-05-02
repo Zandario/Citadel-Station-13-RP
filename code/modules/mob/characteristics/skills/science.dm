@@ -1,4 +1,4 @@
-/datum/characteristic_skill/science
+datum/characteristic_skill/science
 	abstract_type = /datum/characteristic_skill/science
 	category = "Research"
 
@@ -7,7 +7,7 @@
  *
  * Implementation status: Not started
  */
-/datum/characteristic_skill/science/devices
+datum/characteristic_skill/science/devices
 	id = "devices"
 	name = "Complex Devices"
 	desc = "Your ability to fabricate, utilize, maintain, and analyze complex machinery."
@@ -26,7 +26,7 @@
  *
  * Implementation status: Not started
  */
-/datum/characteristic_skill/science/robotics
+datum/characteristic_skill/science/robotics
 	id = "robotics"
 	name = "Robotics"
 	desc = "Your ability to build and maintain prosthetics, synthetics, and robots in general. Each level gives slight increases in repair rate, as well as fabrication rate for related machinery."
@@ -45,7 +45,7 @@
  *
  * Implementation status: Not started
  */
-/datum/characteristic_skill/science/mecha
+datum/characteristic_skill/science/mecha
 	id = "mecha"
 	name = "Mechatronics"
 	desc = "Your ability to pilot and maintain exosuits, as well as powered hardsuits. Each level gives benefits to repair speed and efficiency (diminishing returns)."
@@ -61,7 +61,7 @@
 /**
  * biology: xenobiology, genetics, nanoswarms, etc
  */
-/datum/characteristic_skill/medical/biology
+datum/characteristic_skill/medical/biology
 	id = "biotech"
 	name = "Biotechnology"
 	desc = "How well you understand biology, genetics, xeno-lifeform research, nanoswarms, and anything else relating to weird life sciences."

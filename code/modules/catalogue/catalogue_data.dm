@@ -1,10 +1,10 @@
 GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 // The collection holds everything together and is GLOB accessible.
-/datum/category_collection/catalogue
+datum/category_collection/catalogue
 	category_group_type = /datum/category_group/catalogue
 
-/datum/category_collection/catalogue/proc/resolve_item(item_path)
+datum/category_collection/catalogue/proc/resolve_item(item_path)
 	for(var/group in categories)
 		var/datum/category_group/G = group
 
@@ -20,41 +20,41 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 
 // Groups act as sections for the different data.
-/datum/category_group/catalogue
+datum/category_group/catalogue
 
 // Plants.
-/datum/category_group/catalogue/flora
+datum/category_group/catalogue/flora
 	name = "Flora"
 	category_item_type = /datum/category_item/catalogue/flora
 
 // Animals.
-/datum/category_group/catalogue/fauna
+datum/category_group/catalogue/fauna
 	name = "Fauna"
 	category_item_type = /datum/category_item/catalogue/fauna
 
 // Gadgets, tech, and robots.
-/datum/category_group/catalogue/technology
+datum/category_group/catalogue/technology
 	name = "Technology"
 	category_item_type = /datum/category_item/catalogue/technology
 
 // Abstract information.
-/datum/category_group/catalogue/information
+datum/category_group/catalogue/information
 	name = "Information"
 	category_item_type = /datum/category_item/catalogue/information
 
 // Weird stuff like precursors.
-/datum/category_group/catalogue/anomalous
+datum/category_group/catalogue/anomalous
 	name = "Anomalous"
 	category_item_type = /datum/category_item/catalogue/anomalous
 
 // Physical material things like crystals and metals.
-/datum/category_group/catalogue/material
+datum/category_group/catalogue/material
 	name = "Material"
 	category_item_type = /datum/category_item/catalogue/material
 
 
 // Items act as individual data for each object.
-/datum/category_item/catalogue
+datum/category_item/catalogue
 	var/desc = null		// Paragraph or two about what the object is.
 	var/value = 0		// How many 'exploration points' you get for scanning it. Suggested to use the CATALOGUER_REWARD_* defines for easy tweaking.
 	var/visible = FALSE	// When someone scans the correct object, this gets set to TRUE and becomes viewable in the databanks.
@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 // Discovers a specific datum, and any datums associated with this datum by unlocked_by_[any|all].
 // Returns null if nothing was found, otherwise returns a list of datum instances that was discovered, usually for the cataloguer to use.
-/datum/category_item/catalogue/proc/discover(mob/user, list/new_cataloguers)
+datum/category_item/catalogue/proc/discover(mob/user, list/new_cataloguers)
 	if(visible) // Already found.
 		return
 
@@ -76,7 +76,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 // Calls discover() on other datums if they include the type that was just discovered is inside unlocked_by_[any|all].
 // Returns discovered datums.
-/datum/category_item/catalogue/proc/attempt_chain_discoveries(mob/user, list/new_cataloguers, type_to_test)
+datum/category_item/catalogue/proc/attempt_chain_discoveries(mob/user, list/new_cataloguers, type_to_test)
 	. = list()
 	for(var/G in category.collection.categories) // I heard you like loops.
 		var/datum/category_group/catalogue/group = G
@@ -102,7 +102,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 					if(should_discover && item.discover(user, new_cataloguers))
 						. += item
 
-/datum/category_item/catalogue/proc/display_in_chatlog(mob/user)
+datum/category_item/catalogue/proc/display_in_chatlog(mob/user)
 	to_chat(user, "<br>")
 	to_chat(user, SPAN_NOTICE("<b>[uppertext(name)]</b>"))
 
@@ -126,17 +126,17 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 			return copytext(message, 1, length + 1)
 */
 
-/datum/category_item/catalogue/flora
+datum/category_item/catalogue/flora
 
-/datum/category_item/catalogue/flora/common
+datum/category_item/catalogue/flora/common
 	name = "Flora - Common"
 	desc = "A common type of plant, whose seeds are typically commercially available."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna
+datum/category_item/catalogue/fauna
 
 
-/datum/category_item/catalogue/fauna/skrell
+datum/category_item/catalogue/fauna/skrell
 	name = "Sapients - Skrell"
 	desc = "The Skrell are a species of amphibious humanoids, distinguished by their green-blue gelatinous \
 	appearance and head tentacles. Skrell warble from the world of Qerr'balak, a humid planet with \
@@ -153,7 +153,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	species, and are humanity's longest, and closest, ally in space."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/unathi
+datum/category_item/catalogue/fauna/unathi
 	name = "Sapients - Unathi"
 	desc = "The Unathi are a species of large reptilian humanoids hailing from Moghes, in the \
 	Uueoa-Esa binary star system. Most Unathi live in a semi-rigid clan system, and clan \
@@ -164,7 +164,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	distrust runs rampant among individuals of both groups."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/tajaran
+datum/category_item/catalogue/fauna/tajaran
 	name = "Sapients - Tajaran"
 	desc = "Tajaran are a race of humanoid mammalian aliens from Meralar, the fourth planet \
 	of the Rarkajar star system. Thickly furred and protected from cold, they thrive on \
@@ -180,7 +180,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	Among these bonds, Humanity stands out as valued trade partner and maybe even friend."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/dionaea
+datum/category_item/catalogue/fauna/dionaea
 	name = "Sapients - Dionaea"
 	desc = "The Dionaea are a group of intensely curious plant-like organisms. An individual \
 	Diona is a single dog-sized creature called a nymphs, and multiple nymphs link together \
@@ -195,7 +195,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	minds can be hard to sympathize with."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/teshari
+datum/category_item/catalogue/fauna/teshari
 	name = "Sapients - Teshari"
 	desc = "The Teshari are reptilian pack predators from the Skrell homeworld. \
 	While they evolved alongside the Skrell, their interactions with them tended \
@@ -208,7 +208,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	comes to meeting and exploring the rest of the galaxy."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/zaddat
+datum/category_item/catalogue/fauna/zaddat
 	name = "Sapients - Zaddat"
 	desc = "The Zaddat are an Unathi client species that has recently come to the \
 	Golden Crescent. They wear high-pressure voidsuits called Shrouds to protect \
@@ -219,7 +219,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	now-lifeless homeworld of Xohox."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/promethean
+datum/category_item/catalogue/fauna/promethean
 	name = "Sapients - Promethean"
 	desc = "Prometheans (Macrolimus artificialis) are a species of artificially-created \
 	gelatinous humanoids, chiefly characterized by their primarily liquid bodies and \
@@ -229,7 +229,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	and as such many things about them have yet to be comprehensively studied."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/vox
+datum/category_item/catalogue/fauna/vox
 	name = "Sapients - Vox"
 	desc = "Probably the best known of these aliens are the Vox, a bird-like species \
 	with a very rough comprehension of Galactic Common and an even looser understanding \
@@ -242,7 +242,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	an assumption which is at odds with their ramshackle technological level."
 	value = CATALOGUER_REWARD_MEDIUM // Since Vox are much rarer.
 
-/datum/category_item/catalogue/fauna/ashlander
+datum/category_item/catalogue/fauna/ashlander
 	name = "Sapients - Ashlanders"
 	desc = "The native inhabitants of Surt. Much of their history has been lost, save for artistic \
 	depictions sometimes recovered on archaeological digs. Insular and deeply xenophobic, Ashlanders \
@@ -251,9 +251,9 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	in nomadic caravans, Ashlanders are to be treated with caution."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/datum/category_item/catalogue/technology
+datum/category_item/catalogue/technology
 
-/datum/category_item/catalogue/technology/drone/drones
+datum/category_item/catalogue/technology/drone/drones
 	name = "Drones"
 	desc = "A drone is a software-based artificial intelligence, generally about an order of magnitude \
 	less intelligent than a positronic brain. However, the processing power available to a drone can \
@@ -264,7 +264,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	// Scanning any drone mob will get you this alongside the mob entry itself.
 	unlocked_by_any = list(/datum/category_item/catalogue/technology/drone)
 
-/datum/category_item/catalogue/technology/positronics
+datum/category_item/catalogue/technology/positronics
 	name = "Sapients - Positronics"
 	desc = "A Positronic being, often an Android, Gynoid, or Robot, is an individual with a positronic brain, \
 	manufactured and fostered amongst organic life Positronic brains enjoy the same legal status as a humans, \
@@ -276,7 +276,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	lump of platinum: �What is my purpose?�."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/technology/cyborgs
+datum/category_item/catalogue/technology/cyborgs
 	name = "Cyborgs"
 	desc = "A Cyborg is an originally organic being composed of largely cybernetic parts. As a brain preserved \
 	in an MMI, they may inhabit an expensive humanoid chassis, a specially designed industrial shell of some \
@@ -287,14 +287,14 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	value = CATALOGUER_REWARD_TRIVIAL
 
 
-/datum/category_item/catalogue/information
+datum/category_item/catalogue/information
 
 // For these we can piggyback off of the lore datums that are already defined and used in some places.
-/datum/category_item/catalogue/information/organization
+datum/category_item/catalogue/information/organization
 	value = CATALOGUER_REWARD_TRIVIAL
 	var/datum_to_copy = null
 
-/datum/category_item/catalogue/information/organization/New()
+datum/category_item/catalogue/information/organization/New()
 	..()
 	if(datum_to_copy)
 		// I'd just access the loremaster object but it might not exist because its ugly.
@@ -312,56 +312,56 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 		desc = constructed_desc
 		qdel(O)
 
-/datum/category_item/catalogue/information/organization/nanotrasen
+datum/category_item/catalogue/information/organization/nanotrasen
 	name = "TSC - NanoTrasen Incorporated"
 	datum_to_copy = /datum/lore/organization/tsc/nanotrasen
 
-/datum/category_item/catalogue/information/organization/hephaestus
+datum/category_item/catalogue/information/organization/hephaestus
 	name = "TSC - Hephaestus Industries"
 	datum_to_copy = /datum/lore/organization/tsc/hephaestus
 
-/datum/category_item/catalogue/information/organization/vey_med
+datum/category_item/catalogue/information/organization/vey_med
 	name = "TSC - Vey-Medical"
 	datum_to_copy = /datum/lore/organization/tsc/vey_med
 
-/datum/category_item/catalogue/information/organization/zeng_hu
+datum/category_item/catalogue/information/organization/zeng_hu
 	name = "TSC - Zeng Hu Pharmaceuticals"
 	datum_to_copy = /datum/lore/organization/tsc/zeng_hu
 
-/datum/category_item/catalogue/information/organization/ward_takahashi
+datum/category_item/catalogue/information/organization/ward_takahashi
 	name = "TSC - Ward-Takahashi General Manufacturing Conglomerate"
 	datum_to_copy = /datum/lore/organization/tsc/ward_takahashi
 
-/datum/category_item/catalogue/information/organization/bishop
+datum/category_item/catalogue/information/organization/bishop
 	name = "TSC - Bishop Cybernetics"
 	datum_to_copy = /datum/lore/organization/tsc/bishop
 
-/datum/category_item/catalogue/information/organization/morpheus
+datum/category_item/catalogue/information/organization/morpheus
 	name = "TSC - Morpheus Cyberkinetics"
 	datum_to_copy = /datum/lore/organization/tsc/morpheus
 
-/datum/category_item/catalogue/information/organization/xion
+datum/category_item/catalogue/information/organization/xion
 	name = "TSC - Xion Manufacturing Group"
 	datum_to_copy = /datum/lore/organization/tsc/xion
 
-/datum/category_item/catalogue/information/organization/major_bills
+datum/category_item/catalogue/information/organization/major_bills
 	name = "TSC - Major Bill's Transportation"
 	datum_to_copy = /datum/lore/organization/tsc/mbt
 
-/datum/category_item/catalogue/information/organization/theorionconfederation
+datum/category_item/catalogue/information/organization/theorionconfederation
 	name = "Government - The Orion Confederation"
 	datum_to_copy = /datum/lore/organization/gov/theorionconfederation
 
 /*
-/datum/category_item/catalogue/information/organization/virgov
+datum/category_item/catalogue/information/organization/virgov
 	name = "Government - Vir Governmental Authority"
 	datum_to_copy = /datum/lore/organization/gov/virgov
 */
 
-/datum/category_item/catalogue/anomalous
+datum/category_item/catalogue/anomalous
 
 
-/datum/category_item/catalogue/anomalous/precursor_controversy
+datum/category_item/catalogue/anomalous/precursor_controversy
 	name = "Precursor Controversy"
 	desc = "The term 'Precursor' is generally used to refer to one or more ancient races that \
 	had obtained vast technological and cultural progress, but no longer appear to be present, \
@@ -386,7 +386,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 		/datum/category_item/catalogue/anomalous/precursor_b
 	)
 
-/datum/category_item/catalogue/anomalous/singularitarians
+datum/category_item/catalogue/anomalous/singularitarians
 	name = "Precursors - Singularitarians"
 	desc = "The Singularitarians were a massive, highly-advanced spacefaring race which are now \
 	believed to be extinct. At their height, they extended throughout all of known human space, \
@@ -406,7 +406,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 // Obtained by scanning any 'precursor a' object, generally things in the UFO PoI.
 // A is for Ayyyyyy.
-/datum/category_item/catalogue/anomalous/precursor_a/precursor_a_basic
+datum/category_item/catalogue/anomalous/precursor_a/precursor_a_basic
 	name = "Precursors - Precursor Group Alpha"
 	desc = "This describes a group of xenoarcheological findings which have strong similarities \
 	together. Specifically, this group of objects appears to have a strong aesthetic for the colors \
@@ -426,10 +426,10 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 // Obtained by scanning any 'precursor b' object, generally things dug up from xenoarch.
 // B is for buried.
-/datum/category_item/catalogue/anomalous/precursor_b/precursor_b_basic
+datum/category_item/catalogue/anomalous/precursor_b/precursor_b_basic
 	name = "Precursors - Precursor Group Beta"
 
-/datum/category_item/catalogue/anomalous/scorian_religion
+datum/category_item/catalogue/anomalous/scorian_religion
 	name = "Scorian Religion"
 	desc = "To date, anthropologists and NanoTrasen researchers have been unable to fully decipher \
 	the Scorian language. A fusion of pictographs and script, much of the modern conception of Ashlander \
@@ -448,98 +448,98 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 		/datum/category_item/catalogue/anomalous/scorian_religion
 	)
 
-/datum/category_item/catalogue/material
+datum/category_item/catalogue/material
 
 //Port of _vr file.
 //TODO: VIRGO_LORE_WRITING_WIP - this whole file
 
-/datum/category_item/catalogue/fauna/akula
+datum/category_item/catalogue/fauna/akula
 	name = "Sapients - Akula"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/sergal
+datum/category_item/catalogue/fauna/sergal
 	name = "Sapients - Sergal"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/nevrean
+datum/category_item/catalogue/fauna/nevrean
 	name = "Sapients - Nevrean"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/rapala
+datum/category_item/catalogue/fauna/rapala
 	name = "Sapients - Rapala"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/xenochimera
+datum/category_item/catalogue/fauna/xenochimera
 	name = "Sapients - Xenochimera"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/vulpkanin
+datum/category_item/catalogue/fauna/vulpkanin
 	name = "Sapients - Vulpkanin"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/alraune
+datum/category_item/catalogue/fauna/alraune
 	name = "Sapients - Alraune"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/vasilissan
+datum/category_item/catalogue/fauna/vasilissan
 	name = "Sapients - Vasilissan"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/xenohybrid
+datum/category_item/catalogue/fauna/xenohybrid
 	name = "Sapients - Xenomorph Hybrid"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/zorren
+datum/category_item/catalogue/fauna/zorren
 	name = "Sapients - Zorren"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/highzorren
+datum/category_item/catalogue/fauna/highzorren
 	name = "Sapients - Highlander Zorren"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/flatzorren
+datum/category_item/catalogue/fauna/flatzorren
 	name = "Sapients - Flatlander Zorren"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/shadekin
+datum/category_item/catalogue/fauna/shadekin
 	name = "Sapients - Shadekin"
 	desc = ""
 	value = CATALOGUER_REWARD_EASY
 
-/datum/category_item/catalogue/fauna/custom_species
+datum/category_item/catalogue/fauna/custom_species
 	name = "Sapients - Other"
 	desc = "Remote frontiers require people of all sorts of life...\
 	Sometimes species one would never see anywhere close to core worlds can be met here."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/apidaen
+datum/category_item/catalogue/fauna/apidaen
 	name = "Sapients - Apidaen"
 	desc = ""
 	value = CATALOGUER_REWARD_EASY
 
-/datum/category_item/catalogue/fauna/auril
+datum/category_item/catalogue/fauna/auril
 	name = "Sapients - Auril"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/dremachir
+datum/category_item/catalogue/fauna/dremachir
 	name = "Sapients - Dremachir"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/technology/resleeving
+datum/category_item/catalogue/technology/resleeving
 	name = "Resleeving"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
@@ -547,14 +547,14 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 ///// Template for Catalogue Data.
 // Obtained by scanning any X.
 /*
-/datum/category_item/catalogue/fauna/X
+datum/category_item/catalogue/fauna/X
 	name = "X"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/X)
 
 // Obtained by scanning all X.
-/datum/category_item/catalogue/fauna/all_X
+datum/category_item/catalogue/fauna/all_X
 	name = "Collection - X"
 	desc = "You have scanned a large array of different types of _, \
 	and therefore you have been granted a _ sum of points, through this \
@@ -565,7 +565,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 		/datum/category_item/catalogue/fauna/X
 		)
 
-/datum/category_item/catalogue/fauna/X/Y
+datum/category_item/catalogue/fauna/X/Y
 	name = "X - Y"
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL

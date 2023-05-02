@@ -1,5 +1,5 @@
 //Empty Sandbags
-/obj/item/stack/emptysandbag
+obj/item/stack/emptysandbag
 	name = "empty sandbag"
 	desc = "A bag designed to be filled with sand."
 	singular_name = "empty sandbag"
@@ -15,11 +15,11 @@
 	max_amount = 50
 	attack_verb = list("tapped", "smacked", "flapped")
 
-/obj/item/stack/emptysandbag/Initialize(mapload, new_amount, merge)
+obj/item/stack/emptysandbag/Initialize(mapload, new_amount, merge)
 	. = ..()
 	update_icon()
 
-/obj/item/stack/emptysandbag/update_icon()
+obj/item/stack/emptysandbag/update_icon()
 	var/amount = get_amount()
 	if((amount >= 35))
 		icon_state = "sandbag_empty_3"
@@ -28,7 +28,7 @@
 	else
 		icon_state = "sandbag_empty"
 
-/obj/item/stack/emptysandbag/attackby(var/obj/item/W, var/mob/user)
+obj/item/stack/emptysandbag/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/ore/glass) && !interact(user, src))
 		if(do_after(user, 1 SECONDS, src) && use(1))
 			var/turf/T = get_turf(user)
@@ -46,7 +46,7 @@
 	return ..()
 
 //Filled Sandbags
-/obj/item/stack/sandbags
+obj/item/stack/sandbags
 	name = "sandbag"
 	desc = "This is a synthetic bag tightly packed with sand. It is designed to provide structural support and serve as a portable barrier."
 	singular_name = "sandbag"
@@ -62,12 +62,12 @@
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
-/obj/item/stack/sandbags/Initialize(mapload, new_amount, merge)
+obj/item/stack/sandbags/Initialize(mapload, new_amount, merge)
 	. = ..()
 	recipes = sandbags_recipes
 	update_icon()
 
-/obj/item/stack/sandbags/update_icon()
+obj/item/stack/sandbags/update_icon()
 	var/amount = get_amount()
 	if((amount >= 35))
 		icon_state = "sandbags_3"
@@ -79,7 +79,7 @@
 var/global/list/datum/stack_recipe/sandbags_recipes = list( \
 	new/datum/stack_recipe("sandbag barricade", /obj/structure/sandbag, 10, one_per_turf = 1, on_floor = 1))
 
-/obj/item/stack/sandbags/attackby(var/obj/item/W, var/mob/user)
+obj/item/stack/sandbags/attackby(var/obj/item/W, var/mob/user)
 	if(is_sharp(W))
 		user.visible_message("<span class='notice'>\The [user] begins cutting up [src] with [W].</span>", "<span class='notice'>You begin cutting up [src] with [W].</span>")
 		if(do_after(user, 3 SECONDS, src) && use(1))
@@ -98,7 +98,7 @@ var/global/list/datum/stack_recipe/sandbags_recipes = list( \
 		return
 
 //Sandbag Barricades
-/obj/structure/sandbag
+obj/structure/sandbag
 	name = "sandbag barricade"
 	desc = "A barrier made of stacked sandbags."
 	icon = 'icons/obj/structures/sandbags.dmi'
@@ -114,7 +114,7 @@ var/global/list/datum/stack_recipe/sandbags_recipes = list( \
 	var/maxhealth = 100
 	var/vestigial = TRUE
 
-/obj/structure/sandbag/Initialize(mapload, material_name)
+obj/structure/sandbag/Initialize(mapload, material_name)
 	. = ..()
 	health = maxhealth
 	for(var/obj/structure/sandbag/S in loc)
@@ -127,16 +127,16 @@ var/global/list/datum/stack_recipe/sandbags_recipes = list( \
 		//update_connections(TRUE)
 		update_icon()
 
-/obj/structure/sandbag/LateInitialize()
+obj/structure/sandbag/LateInitialize()
 	. = ..()
 	//update_connections(FALSE)
 	update_icon()
 
-/obj/structure/sandbag/Destroy()
+obj/structure/sandbag/Destroy()
 	//update_connections(TRUE)
 	. = ..()
 
-/obj/structure/sandbag/examine(mob/user)
+obj/structure/sandbag/examine(mob/user)
 	. = ..()
 	if(health < maxhealth)
 		switch(health / maxhealth)
@@ -148,7 +148,7 @@ var/global/list/datum/stack_recipe/sandbags_recipes = list( \
 				. += "<span class='notice'>It has a few nicks and holes.</span>"
 
 
-/obj/structure/sandbag/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/sandbag/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))
 	if(istype(W, /obj/item/stack/sandbags))
 		var/obj/item/stack/sandbags/S = W
@@ -173,17 +173,17 @@ var/global/list/datum/stack_recipe/sandbags_recipes = list( \
 		CheckHealth()
 		..()
 
-/obj/structure/sandbag/proc/CheckHealth()
+obj/structure/sandbag/proc/CheckHealth()
 	if(health <= 0)
 		dismantle()
 	return
 
-/obj/structure/sandbag/take_damage(var/damage)
+obj/structure/sandbag/take_damage(var/damage)
 	health -= damage
 	CheckHealth()
 	return
 
-/obj/structure/sandbag/attack_generic(var/mob/user, var/damage, var/attack_verb)
+obj/structure/sandbag/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
 	playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 	user.do_attack_animation(src)
@@ -191,13 +191,13 @@ var/global/list/datum/stack_recipe/sandbags_recipes = list( \
 	CheckHealth()
 	return
 
-/obj/structure/sandbag/proc/dismantle()
+obj/structure/sandbag/proc/dismantle()
 	visible_message("<span class='danger'>\The [src] falls apart!</span>")
 	qdel(src)
 	//Make it drop materials? I dunno. For now it just disappears.
 	return
 
-/obj/structure/sandbag/legacy_ex_act(severity)
+obj/structure/sandbag/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			dismantle()
@@ -205,7 +205,7 @@ var/global/list/datum/stack_recipe/sandbags_recipes = list( \
 			health -= 25
 			CheckHealth()
 
-/obj/structure/sandbag/proc/break_to_parts(full_return = 0)
+obj/structure/sandbag/proc/break_to_parts(full_return = 0)
 	if(full_return || prob(20))
 		new /obj/item/stack/sandbags(src.loc)
 	else

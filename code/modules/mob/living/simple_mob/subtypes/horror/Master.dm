@@ -1,10 +1,10 @@
-/datum/category_item/catalogue/fauna/horror/Master
+datum/category_item/catalogue/fauna/horror/Master
 	name = "&^DOCTO***ELIX!!%%"
 	desc = "%WARNING% PROCESSING FAILURE! RETURN SCANNER TO A CENTRAL \
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/Master
+mob/living/simple_mob/horror/Master
 	name = "Dr. Helix"
 	desc = "A massive pile of grotesque flesh and bulging tumor like growths. Every inch of its skin is undulating in every direction possible, bringing a literal definition to 'Skin Crawling.' Stuck in the middle of this monstrosity is a large AI core with a bloodied, emaciated man sewn into its circuitry."
 
@@ -41,26 +41,26 @@
 	hide_amount = 2
 	exotic_amount = 2
 
-/mob/living/simple_mob/horror/Master/Initialize(mapload)
+mob/living/simple_mob/horror/Master/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/strong)
 
-/mob/living/simple_mob/horror/Master/death()
+mob/living/simple_mob/horror/Master/death()
 	playsound(src, 'sound/h_sounds/imbeciles.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Master/bullet_act()
+mob/living/simple_mob/horror/Master/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Master/attack_hand(mob/user, list/params)
+mob/living/simple_mob/horror/Master/attack_hand(mob/user, list/params)
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Master/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+mob/living/simple_mob/horror/Master/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/Master/attackby()
+mob/living/simple_mob/horror/Master/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()

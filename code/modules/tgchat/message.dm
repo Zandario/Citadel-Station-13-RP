@@ -11,7 +11,7 @@
  *! SPDX-License-Identifier: MIT
  */
 
-/proc/message_to_html(message)
+proc/message_to_html(message)
 	// Here it is possible to add a switch statement
 	// to custom-handle various message types.
 	return message["html"] || message["text"]

@@ -1,4 +1,4 @@
-/datum/asset/simple/vstation_misc
+datum/asset/simple/vstation_misc
 	legacy = TRUE
 	assets = list(
 		"loading.gif" = 'html/images/loading.gif',
@@ -9,7 +9,7 @@
 		"no_image32.png" = 'html/images/no_image32.png'
 	)
 
-/datum/asset/simple/vstation_spideros
+datum/asset/simple/vstation_spideros
 	legacy = TRUE
 	assets = list(
 		"sos_1.png" = 'icons/spideros_icons/sos_1.png',

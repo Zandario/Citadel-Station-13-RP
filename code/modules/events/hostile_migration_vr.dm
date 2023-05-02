@@ -7,7 +7,7 @@
 #define LOC_ENGINEERING 7
 #define LOC_TALON 8
 
-/datum/event/hostile_migration
+datum/event/hostile_migration
 	var/location
 	var/locstring
 	var/spawn_area_type
@@ -18,7 +18,7 @@
 	var/list/players = list()
 	has_skybox_image = TRUE
 
-/datum/event/hostile_migration/get_skybox_image()
+datum/event/hostile_migration/get_skybox_image()
 	var/color1 = color_matrix_multiply(color_matrix_rotate_hue(rand(-3, 3) * 15), rgba_auto_greyscale_matrix("#8888ff"))
 	var/color2 = color_matrix_multiply(color_matrix_rotate_hue(rand(-3, 3) * 15), rgba_auto_greyscale_matrix("#88ff88"))
 	var/image/res = image('icons/skybox/caelus.dmi', "aurora")
@@ -27,16 +27,16 @@
 	animate_color_shift(res, color1, color2, 1080 * 0.5, 1080 * 0.5)
 	return res
 
-/datum/event/hostile_migration/setup()
+datum/event/hostile_migration/setup()
 	announceWhen = rand(announceWhen, announceWhen + 3)
 	startWhen = announceWhen - 1
 	endWhen = 50
 
-/datum/event/hostile_migration/announce()
+datum/event/hostile_migration/announce()
 	command_announcement.Announce("Unidentified lifesigns moving through the [station_name()]'s pipe-net heading towards [locstring]. Secure any ducting and ventilation.", "Vermin Migration Alert")
 
 
-/datum/event/hostile_migration/start()
+datum/event/hostile_migration/start()
 	sleep(1)
 	if(isTalon == 0)
 		location = rand(1,7)
@@ -87,7 +87,7 @@
 		spawncount = rand(2 * severity, 5 * severity)
 		boss_spawn_count = rand(1,2)
 
-/datum/event/hostile_migration/end()
+datum/event/hostile_migration/end()
 	var/list/vents = list()
 	for(var/areapath in typesof(spawn_area_type))
 		var/area/A = locate(areapath)
@@ -113,7 +113,7 @@
 		isTalon = 0
 
 // Overmap version
-/datum/event/hostile_migration/overmap/announce()
+datum/event/hostile_migration/overmap/announce()
 	if(istype(victim, /obj/effect/overmap/visitable/ship/talon))
 		command_announcement.Announce("Unidentified hostile lifesigns detected migrating towards ITV Talon through the exterior pipes. Secure any exterior access, including ducting and ventilation.","Hostile Vermin Boarding Alert")
 		return
@@ -122,7 +122,7 @@
 		return
 
 // override: cancel if not main ship as this is too dumb to target the actual ship crossing it.
-/datum/event/hostile_migration/overmap/start()
+datum/event/hostile_migration/overmap/start()
 	if(istype(victim, /obj/effect/overmap/visitable/ship/landable))
 		kill()
 		return

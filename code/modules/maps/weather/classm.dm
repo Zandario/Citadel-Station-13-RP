@@ -1,4 +1,4 @@
-/datum/atmosphere/planet/classm
+datum/atmosphere/planet/classm
 	base_gases = list(
 	/datum/gas/oxygen = 0.22,
 	/datum/gas/nitrogen = 0.78
@@ -10,15 +10,15 @@
 	maximum_temp = 307.3
 
 
-/datum/time/classm
+datum/time/classm
 	seconds_in_day = 10 HOURS
 
-/datum/planet/classm
+datum/planet/classm
 	name = "Class-M Gaia Planet"
 	desc = "A beautiful, lush planet that is owned by the Happy Days and Sunshine Corporation."
 	current_time = new /datum/time/classm()
 
-/datum/planet/classm/update_sun()
+datum/planet/classm/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
@@ -97,7 +97,7 @@
 	update_sun_deferred(new_brightness, new_color)
 
 
-/datum/weather_holder/classm
+datum/weather_holder/classm
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_CLEAR		= new /datum/weather/classm/clear(),
@@ -114,12 +114,12 @@
 		WEATHER_BLOODMOON	= 0
 		)
 
-/datum/weather/classm
+datum/weather/classm
 	name = "classm base"
 	temp_high = 293.15 // 20c
 	temp_low = 303.15  // 30c
 
-/datum/weather/classm/clear
+datum/weather/classm/clear
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR = 90,
@@ -133,7 +133,7 @@
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
 
-/datum/weather/classm/overcast
+datum/weather/classm/overcast
 	name = "overcast"
 	light_modifier = 0.8
 	transition_chances = list(
@@ -150,7 +150,7 @@
 		)
 
 
-/datum/weather/classm/rain
+datum/weather/classm/rain
 	name = "rain"
 	icon_state = "rain"
 	wind_high = 2
@@ -170,7 +170,7 @@
 		"The sky grows dark, and rain falls down upon you."
 	)
 
-/datum/weather/classm/rain/process_effects()
+datum/weather/classm/rain/process_effects()
 	..()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -196,7 +196,7 @@
 			if(show_message)
 				to_chat(L, effect_message)
 
-/datum/weather/classm/storm
+datum/weather/classm/storm
 	name = "storm"
 	icon_state = "storm"
 	wind_high = 4
@@ -224,7 +224,7 @@
 		WEATHER_OVERCAST = 5
 		)
 
-/datum/weather/classm/storm/process_effects()
+datum/weather/classm/storm/process_effects()
 	..()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -255,7 +255,7 @@
 
 // This gets called to do lightning periodically.
 // There is a seperate function to do the actual lightning strike, so that badmins can play with it.
-/datum/weather/classm/storm/proc/handle_lightning()
+datum/weather/classm/storm/proc/handle_lightning()
 	if(world.time < next_lightning_strike)
 		return // It's too soon to strike again.
 	next_lightning_strike = world.time + rand(min_lightning_cooldown, max_lightning_cooldown)
@@ -263,7 +263,7 @@
 	lightning_strike(T)
 
 
-/datum/weather/classm/blood_moon
+datum/weather/classm/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"

@@ -1,4 +1,4 @@
-/datum/lore/codex/category/standard_operating_procedures
+datum/lore/codex/category/standard_operating_procedures
 	name = "Standard Operating Procedures"
 	data = "This section details the various Standard Operating Procedures (often shortened to 'SOP') one may find onboard a NanoTrasen facility."
 	children = list(
@@ -12,7 +12,7 @@
 		/datum/lore/codex/category/alert_levels
 		)
 
-/datum/lore/codex/page/general_sop
+datum/lore/codex/page/general_sop
 	name = "General SOP"
 	data = "This applies to everyone onboard a NanoTrasen facility, including guests.  Note that specific departmental operating procedures can override some of \
 	the procedures listed here.\
@@ -58,7 +58,7 @@
 	<br>\
 	"
 /*
-/datum/lore/codex/page/command_sop
+datum/lore/codex/page/command_sop
 	name = "Command SOP"
 	data = "This SOP is specific to those in the Command department, which includes the Station Director, Head of Personnel, Chief Engineer, Head of Security, and Research Director.  \
 	This also covers Internal Affairs Agents, however they do not occupy a position inside Command crew, and instead exist outside of all the other departments.\
@@ -118,7 +118,7 @@
 	the Command crew and other Internal Affairs agents.  If the Internal Affairs investigation reveals wrongdoing, including SOP breach, the investigated party is to \
 	be punished according to Corporate Regulations or Sif Law, whichever is applicable, or from orders from Central Command."
 
-/datum/lore/codex/page/engineering_sop
+datum/lore/codex/page/engineering_sop
 	name = "Engineering SOP"
 	data = "This SOP is specific to those in the Engineering department, and focuses on engine safety, breach response, atmospherics, and such.  \
 	<br>\
@@ -180,7 +180,7 @@
 	it would be prudent for an Engineering member to forcefully enter to press the required buttons."
 
 /*
-/datum/lore/codex/page/medical_sop
+datum/lore/codex/page/medical_sop
 	name = "Medical SOP"
 	data = "This SOP is specific to those in the Medical department, and focuses on Triage/First Aid priority, Proper Cloning procedure and CMD, how to store a body, and DNC orders.  \
 	<br>\
@@ -239,7 +239,7 @@
 	capability.  Those exposed to vacuum without protection will almost certainly require advanced medical care, so bring anyone harmed to Medical.  \
 	Remember to avoid risking your own life, as stated in the Triage section."
 */
-/datum/lore/codex/page/science_sop
+datum/lore/codex/page/science_sop
 	name = "Research SOP"
 	data = "This SOP is specific to those in the Research department, and focuses on Experiment Safety, Toxins Safety, and Robotics.\
 	<br>\
@@ -296,7 +296,7 @@
 	Robotics is also tasked with the repair of prostheses limbs.  Robotics may also be tasked with installing a prosthetic, however the Medical team \
 	may also do this if the Robotics staff lack the training to do so."
 */
-/datum/lore/codex/category/alert_levels
+datum/lore/codex/category/alert_levels
 	name = "Alert Levels"
 	data = "NanoTrasen facilities oftentimes use a color-coded alert system in order to inform the crew of ongoing danger or other threats.  Below is a list of \
 	alert levels, as well as how the facility should shift in response to a change in an alert.  You can check what the current level is by looking at a fire alarm. \
@@ -308,7 +308,7 @@
 		/datum/lore/codex/page/red
 		)
 
-/datum/lore/codex/page/green
+datum/lore/codex/page/green
 	name = "Green Alert"
 	data = "Green is the default level, and it means that no threat to the facility currently exists.\
 	<br>\
@@ -322,7 +322,7 @@
 	only be done with the consent of the searched, or with a signed warrant by the Head of Security or Station Director.  A warrant is not required \
 	for instances of visible contraband."
 
-/datum/lore/codex/page/blue
+datum/lore/codex/page/blue
 	name = "Blue Alert"
 	data = "Blue alert is for when there is a suspected or confirmed threat to the facility.\
 	<br>\
@@ -335,7 +335,7 @@
 	Employees and guests are recommended to comply with all requests from Security.  Suit sensor activation is mandatory, however the coordinate tracker functionality \
 	is not required.  Random body and workplace searched are allowed without a warrant.  Command can demand that only Galactic Common is spoken on the radio."
 
-/datum/lore/codex/page/red
+datum/lore/codex/page/red
 	name = "Red Alert"
 	data = "Red alert is the highest level, and is reserved for when the facility is under a serious threat.\
 	<br>\

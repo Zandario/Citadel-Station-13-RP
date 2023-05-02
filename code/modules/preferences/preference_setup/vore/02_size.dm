@@ -5,7 +5,7 @@
 #define WEIGHT_CHANGE_MAX 100
 
 // Define a place to save in character setup
-/datum/preferences
+datum/preferences
 	var/size_multiplier = RESIZE_NORMAL
 	// Body weight stuff.
 	var/weight_vr = 137		// bodyweight of character (pounds, because I'm not doing the math again -Spades)
@@ -14,25 +14,25 @@
 	var/fuzzy = 0			// Preference toggle for sharp/fuzzy icon. Default sharp.
 
 // Definition of the stuff for Sizing
-/datum/category_item/player_setup_item/vore/size
+datum/category_item/player_setup_item/vore/size
 	name = "Size"
 	sort_order = 2
 
-/datum/category_item/player_setup_item/vore/size/load_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/size/load_character(var/savefile/S)
 	S["size_multiplier"]	>> pref.size_multiplier
 	S["weight_vr"]			>> pref.weight_vr
 	S["weight_gain"]		>> pref.weight_gain
 	S["weight_loss"]		>> pref.weight_loss
 	S["fuzzy"]				>> pref.fuzzy
 
-/datum/category_item/player_setup_item/vore/size/save_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/size/save_character(var/savefile/S)
 	S["size_multiplier"]	<< pref.size_multiplier
 	S["weight_vr"]			<< pref.weight_vr
 	S["weight_gain"]		<< pref.weight_gain
 	S["weight_loss"]		<< pref.weight_loss
 	S["fuzzy"]				<< pref.fuzzy
 
-/datum/category_item/player_setup_item/vore/size/sanitize_character()
+datum/category_item/player_setup_item/vore/size/sanitize_character()
 	pref.weight_vr			= isnum(pref.weight_vr) ? round(clamp(pref.weight_vr, WEIGHT_MIN, WEIGHT_MAX)) : initial(pref.weight_vr)
 	pref.weight_gain		= sanitize_integer(pref.weight_gain, WEIGHT_CHANGE_MIN, WEIGHT_CHANGE_MAX, initial(pref.weight_gain))
 	pref.weight_loss		= sanitize_integer(pref.weight_loss, WEIGHT_CHANGE_MIN, WEIGHT_CHANGE_MAX, initial(pref.weight_loss))
@@ -40,7 +40,7 @@
 	if(pref.size_multiplier == null || pref.size_multiplier < RESIZE_TINY || pref.size_multiplier > RESIZE_HUGE)
 		pref.size_multiplier = initial(pref.size_multiplier)
 
-/datum/category_item/player_setup_item/vore/size/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/vore/size/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -52,7 +52,7 @@
 	character.resize(pref.size_multiplier, animate = FALSE)
 	return TRUE
 
-/datum/category_item/player_setup_item/vore/size/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/vore/size/content(datum/preferences/prefs, mob/user, data)
 	. += "<br>"
 	. += "<b>Scale:</b> <a href='?src=\ref[src];size_multiplier=1'>[round(pref.size_multiplier*100)]%</a><br>"
 	. += "<b>Scaled Appearance:</b> <a [pref.fuzzy ? "" : ""] href='?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Fuzzy" : "Sharp"]</b></a><br>"
@@ -61,7 +61,7 @@
 	. += "<b>Weight Gain Rate:</b> <a href='?src=\ref[src];weight_gain=1'>[pref.weight_gain]</a><br>"
 	. += "<b>Weight Loss Rate:</b> <a href='?src=\ref[src];weight_loss=1'>[pref.weight_loss]</a><br>"
 
-/datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])
 		var/new_size = input(user, "Choose your character's size, ranging from 25% to 200%", "Set Size") as num|null
 		if (!ISINRANGE(new_size,25,200))

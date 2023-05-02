@@ -1,4 +1,4 @@
-/obj/item/clothing
+obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
@@ -59,11 +59,11 @@
 	var/list/accessories
 
 // Aurora forensics port.
-/obj/item/clothing/clean_blood()
+obj/item/clothing/clean_blood()
 	..()
 	gunshot_residue = null
 
-/obj/item/clothing/proc/get_fibers()
+obj/item/clothing/proc/get_fibers()
 	. = "material from \a [name]"
 	var/list/acc = list()
 	for(var/obj/item/clothing/accessory/A in accessories)
@@ -72,29 +72,29 @@
 	if(acc.len)
 		. += " with traces of [english_list(acc)]"
 
-/obj/item/clothing/Initialize(mapload)
+obj/item/clothing/Initialize(mapload)
 	. = ..()
 	if(starting_accessories)
 		for(var/T in starting_accessories)
 			var/obj/item/clothing/accessory/tie = new T(src)
 			src.attach_accessory(null, tie)
 
-/obj/item/clothing/equipped(mob/user, slot, flags)
+obj/item/clothing/equipped(mob/user, slot, flags)
 	. = ..()
 	if(enables_planes)
 		user.recalculate_vis()
 
-/obj/item/clothing/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(enables_planes)
 		user.recalculate_vis()
 
-/obj/item/clothing/examine_more(mob/user)
+obj/item/clothing/examine_more(mob/user)
 	. = ..()
 	if(user.using_perspective?.eye && get_dist(user.using_perspective?.eye, src) <= 2)
 		. += "From this distance you can determine its <a href='?src=[REF(src)];examine_armor=1'>armor</a> with a close examination."
 
-/obj/item/clothing/Topic(href, list/href_list)
+obj/item/clothing/Topic(href, list/href_list)
 	. = ..()
 	if(.)
 		return
@@ -106,7 +106,7 @@
 		to_chat(usr, SPAN_BLOCKQUOTE("<center>--- Armor: [src] ---</center><hr>[jointext(assembled, "<br>")]", null))
 		return TRUE
 
-/obj/item/clothing/can_equip(mob/M, slot, mob/user, flags)
+obj/item/clothing/can_equip(mob/M, slot, mob/user, flags)
 	. = ..()
 
 	if(!. || !LAZYLEN(species_restricted))
@@ -129,7 +129,7 @@
 	return TRUE
 
 //micros in shoes
-/obj/item/clothing/relaymove(var/mob/living/user,var/direction)
+obj/item/clothing/relaymove(var/mob/living/user,var/direction)
 	if(recent_struggle)
 		return
 
@@ -150,7 +150,7 @@
 		src.visible_message("<font color='red'>\The [src] moves a little!</font>")
 		to_chat(user, "<font color='red'>You throw yourself against the inside of \the [src]!</font>")
 
-/obj/item/clothing/proc/refit_for_species(var/target_species)
+obj/item/clothing/proc/refit_for_species(var/target_species)
 	if(!species_restricted)
 		return //this item doesn't use the species_restricted system
 
@@ -174,7 +174,7 @@
 	else
 		icon = initial(icon)
 
-/obj/item/clothing/head/helmet/refit_for_species(var/target_species)
+obj/item/clothing/head/helmet/refit_for_species(var/target_species)
 	if(!species_restricted)
 		return //this item doesn't use the species_restricted system
 
@@ -202,19 +202,19 @@
 /**
  * returns available styles as name = state or image or mutable_appearance
  */
-/obj/item/clothing/proc/available_styles(mob/user)
+obj/item/clothing/proc/available_styles(mob/user)
 	. = list()
 
 /**
  * sets us to a specific style
  */
-/obj/item/clothing/proc/set_style(style, mob/user)
+obj/item/clothing/proc/set_style(style, mob/user)
 	return FALSE
 
 /**
  * prompts a user to pick style
  */
-/obj/item/clothing/proc/pick_style(mob/user)
+obj/item/clothing/proc/pick_style(mob/user)
 	var/list/available = available_styles(user)
 	var/list/assembled = list()
 	for(var/name in available)
@@ -235,7 +235,7 @@
 		return
 	set_style(choice, user)
 
-/obj/item/clothing/verb/pick_style_verb()
+obj/item/clothing/verb/pick_style_verb()
 	set name = "Set Worn Style"
 	set category = "IC"
 	set desc = "Wear this piece of clothing in a different style."

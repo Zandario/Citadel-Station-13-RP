@@ -1,4 +1,4 @@
-/obj/item/pizzavoucher
+obj/item/pizzavoucher
 	name = "free pizza voucher"
 	desc = "A pocket-sized plastic slip with a button in the middle. The writing on it seems to have faded."
 	icon = 'icons/obj/items.dmi'
@@ -7,7 +7,7 @@
 	var/special_delivery = FALSE
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/pizzavoucher/Initialize(mapload)
+obj/item/pizzavoucher/Initialize(mapload)
 	. = ..()
 	var/list/descstrings = list("24/7 PIZZA PIE HEAVEN",
 	"WE ALWAYS DELIVER!",
@@ -20,7 +20,7 @@
 	"WE ALWAYS DELIVER! WE ALWAYS DELIVER! WE ALWAYS DELIVER!")
 	desc = "A pocket-sized plastic slip with a button in the middle. \"[pick(descstrings)]\" is written on the back."
 
-/obj/item/pizzavoucher/attack_self(mob/user)
+obj/item/pizzavoucher/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -40,7 +40,7 @@
 	else
 		to_chat(user, "<span class='warning'>The [src] is spent!</span>")
 
-/obj/item/pizzavoucher/emag_act(var/remaining_charges, var/mob/user)
+obj/item/pizzavoucher/emag_act(var/remaining_charges, var/mob/user)
 	if(spent)
 		to_chat(user, "<span class='warning'>The [src] is spent!</span>")
 		return
@@ -51,11 +51,11 @@
 	else
 		to_chat(user, "<span class='warning'>The [src] is already in special delivery mode!</span>")
 
-/obj/effect/falling_effect/pizza_delivery
+obj/effect/falling_effect/pizza_delivery
 	name = "PIZZA PIE POWER!"
 	crushing = FALSE
 
-/obj/effect/falling_effect/pizza_delivery/Initialize(mapload)
+obj/effect/falling_effect/pizza_delivery/Initialize(mapload)
 	. = ..()
 	falling_type = pick(prob(20);/obj/item/pizzabox/meat,
 				prob(20);/obj/item/pizzabox/margherita,
@@ -63,5 +63,5 @@
 				prob(20);/obj/item/pizzabox/mushroom,
 				prob(20);/obj/item/pizzabox/pineapple)
 
-/obj/effect/falling_effect/pizza_delivery/special
+obj/effect/falling_effect/pizza_delivery/special
 	crushing = TRUE

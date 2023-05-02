@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/Life(seconds, times_fired)
+mob/living/silicon/ai/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -153,14 +153,14 @@
 	handle_regular_hud_updates()
 	handle_vision()
 
-/mob/living/silicon/ai/proc/lacks_power()
+mob/living/silicon/ai/proc/lacks_power()
 	if(APU_power)
 		return 0
 	var/turf/T = get_turf(src)
 	var/area/A = get_area(src)
 	return ((!A.power_equip) && A.requires_power == 1 || istype(T, /turf/space)) && !istype(src.loc,/obj/item)
 
-/mob/living/silicon/ai/update_health()
+mob/living/silicon/ai/update_health()
 	if(status_flags & STATUS_GODMODE)
 		health = 100
 		set_stat(CONSCIOUS)
@@ -168,6 +168,6 @@
 	else
 		health = 100 - getFireLoss() - getBruteLoss() // Oxyloss is not part of health as it represents AIs backup power. AI is immune against ToxLoss as it is machine.
 
-/mob/living/silicon/ai/rejuvenate()
+mob/living/silicon/ai/rejuvenate()
 	..()
 	add_ai_verbs(src)

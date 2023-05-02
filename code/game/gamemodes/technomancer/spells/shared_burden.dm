@@ -1,4 +1,4 @@
-/datum/technomancer/spell/shared_burden
+datum/technomancer/spell/shared_burden
 	name = "Shared Burden"
 	desc = "One of the few functions able to adjust instability, this allows you to take someone else's instability."
 	spell_power_desc = "Draws bonus instability from the target, with the bonus dissipating harmlessly, for 'free'."
@@ -6,14 +6,14 @@
 	obj_path = /obj/item/spell/shared_burden
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/shared_burden
+obj/item/spell/shared_burden
 	name = "shared burden"
 	icon_state = "shared_burden"
 	desc = "Send instability from the target to you, for whatever reason you'd want to."
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_UNSTABLE
 
-/obj/item/spell/shared_burden/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
+obj/item/spell/shared_burden/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(ishuman(hit_atom) && within_range(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom
 		if(H == user)

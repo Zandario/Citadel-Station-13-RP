@@ -1,6 +1,6 @@
 //A locking mechanism that pulses when hit by a projectile. The base one responds to high-power lasers.
 
-/obj/structure/prop/lock
+obj/structure/prop/lock
 	name = "weird lock"
 	desc = "An esoteric object that responds to.. something."
 	icon = 'icons/obj/props/prism.dmi'
@@ -11,7 +11,7 @@
 
 	var/list/linked_objects = list()
 
-/obj/structure/prop/lock/Destroy()
+obj/structure/prop/lock/Destroy()
 	if(linked_objects.len)
 		for(var/obj/O in linked_objects)
 			if(istype(O, /obj/machinery/door/blast/puzzle))
@@ -20,7 +20,7 @@
 				linked_objects -= P
 	..()
 
-/obj/structure/prop/lock/proc/toggle_lock()
+obj/structure/prop/lock/proc/toggle_lock()
 	enabled = !enabled
 
 	if(enabled)
@@ -28,7 +28,7 @@
 	else
 		icon_state = "[initial(icon_state)]"
 
-/obj/structure/prop/lock/projectile
+obj/structure/prop/lock/projectile
 	name = "beam lock"
 	desc = "An esoteric object that responds to high intensity light."
 
@@ -39,7 +39,7 @@
 
 	interaction_message = "<span class='notice'>The object remains inert to your touch.</span>"
 
-/obj/structure/prop/lock/projectile/bullet_act(var/obj/projectile/Proj)
+obj/structure/prop/lock/projectile/bullet_act(var/obj/projectile/Proj)
 	if(!istype(Proj, projectile_key) || timing)
 		return
 

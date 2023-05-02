@@ -1,4 +1,4 @@
-/obj/item/clothing/head/hardhat
+obj/item/clothing/head/hardhat
 	name = "hard hat"
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
@@ -13,11 +13,11 @@
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 
-/obj/item/clothing/head/hardhat/orange
+obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"
 	name = "orange hard hat"
 
-/obj/item/clothing/head/hardhat/red
+obj/item/clothing/head/hardhat/red
 	icon_state = "hardhat0_red"
 	name = "firefighter helmet"
 	heat_protection = HEAD
@@ -26,7 +26,7 @@
 	max_pressure_protection = 20 * ONE_ATMOSPHERE
 
 
-/obj/item/clothing/head/hardhat/white
+obj/item/clothing/head/hardhat/white
 	icon_state = "hardhat0_white"
 	name = "sleek hard hat"
 	heat_protection = HEAD
@@ -34,11 +34,11 @@
 	min_pressure_protection = 0.2* ONE_ATMOSPHERE
 	max_pressure_protection = 20 * ONE_ATMOSPHERE
 
-/obj/item/clothing/head/hardhat/dblue
+obj/item/clothing/head/hardhat/dblue
 	name = "blue hard hat"
 	icon_state = "hardhat0_dblue"
 
-/obj/item/clothing/head/hardhat/ranger
+obj/item/clothing/head/hardhat/ranger
 	var/hatcolor = "white"
 	name = "ranger helmet"
 	desc = "A special helmet designed for the Go Go ERT-Rangers, able to withstand a pressureless environment, filter gas and provide air. It has thermal vision and sometimes \
@@ -48,26 +48,26 @@
 	light_overlay = "helmet_light"
 	inv_hide_flags = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 
-/obj/item/clothing/head/hardhat/ranger/Initialize(mapload)
+obj/item/clothing/head/hardhat/ranger/Initialize(mapload)
 	. = ..()
 	if(icon_state == "ranger_helmet")
 		name = "[hatcolor] ranger helmet"
 		icon_state = "[hatcolor]_ranger_helmet"
 
-/obj/item/clothing/head/hardhat/ranger/black
+obj/item/clothing/head/hardhat/ranger/black
 	hatcolor = "black"
 
-/obj/item/clothing/head/hardhat/ranger/pink
+obj/item/clothing/head/hardhat/ranger/pink
 	hatcolor = "pink"
 
-/obj/item/clothing/head/hardhat/ranger/green
+obj/item/clothing/head/hardhat/ranger/green
 	hatcolor = "green"
 
-/obj/item/clothing/head/hardhat/ranger/cyan
+obj/item/clothing/head/hardhat/ranger/cyan
 	hatcolor = "cyan"
 
-/obj/item/clothing/head/hardhat/ranger/orange
+obj/item/clothing/head/hardhat/ranger/orange
 	hatcolor = "orange"
 
-/obj/item/clothing/head/hardhat/ranger/yellow
+obj/item/clothing/head/hardhat/ranger/yellow
 	hatcolor = "yellow"

@@ -1,4 +1,4 @@
-/datum/minimap
+datum/minimap
 	var/name = "minimap"
 	var/icon/overlay_icon
 	// The map icons
@@ -15,7 +15,7 @@
 	var/z_level
 	var/id = ""
 
-/datum/minimap/New(z, x1 = 1, y1 = 1, x2 = world.maxx, y2 = world.maxy, name = "minimap")
+datum/minimap/New(z, x1 = 1, y1 = 1, x2 = world.maxx, y2 = world.maxy, name = "minimap")
 	if(!z)
 		CRASH("ERROR: new minimap requested without z level") //CRASH to halt the operatio
 
@@ -78,24 +78,24 @@
 	if (!SSassets.cache["minimap-[id]-meta.png"])
 		SSassets.transport.register_asset("minimap-[id]-meta.png", meta_icon)
 
-/datum/minimap/proc/send(mob/user)
+datum/minimap/proc/send(mob/user)
 	if(!id)
 		CRASH("ERROR: send called, but the minimap id is null/missing. ID: [id]")
 	SSassets.transport.send_assets(user, list("minimap-[id].png" = map_icon, "minimap-[id]-meta.png" = meta_icon))
 
-/datum/minimap_group
+datum/minimap_group
 	var/list/minimaps = list()
 	var/static/next_id = 0
 	var/id
 	var/name
 
-/datum/minimap_group/New(list/maps, name)
+datum/minimap_group/New(list/maps, name)
 	id = ++next_id
 	src.name = name
 	if(maps)
 		minimaps = maps
 
-/datum/minimap_group/proc/show(mob/user)
+datum/minimap_group/proc/show(mob/user)
 	if(!length(minimaps))
 		to_chat(user, "<span class='boldwarning'>ERROR: Attempted to access an empty datum/minimap_group. This should probably not happen.</span>")
 		return

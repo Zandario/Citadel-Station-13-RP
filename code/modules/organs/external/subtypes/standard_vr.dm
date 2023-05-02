@@ -1,7 +1,7 @@
 //! ## Leave everything here as it is for now since this is using unique behavior.
 
 /// For custom heads with custom parts since the base code is restricted to a single icon file.
-/obj/item/organ/external/head/vr/get_icon()
+obj/item/organ/external/head/vr/get_icon()
 	..()
 	cut_overlays()
 	if(!owner || !owner.species)
@@ -54,21 +54,21 @@
 
 	return mob_icon
 
-/obj/item/organ/external/head/vr
+obj/item/organ/external/head/vr
 	var/eye_icons_vr = 'icons/mob/human_face_vr.dmi'
 	var/eye_icon_vr = "blank_eyes"
 	var/head_offset = 0
 	eye_icon = "blank_eyes"
 
-/obj/item/organ/external/head/vr/sergal
+obj/item/organ/external/head/vr/sergal
 	eye_icon_vr = "eyes_sergal"
 
-/obj/item/organ/external/head/vr/werebeast
+obj/item/organ/external/head/vr/werebeast
 	eye_icons_vr = 'icons/mob/werebeast_face_vr.dmi'
 	eye_icon_vr = "werebeast_eyes"
 	head_offset = 6
 
-/obj/item/organ/external/head/vr/shadekin
+obj/item/organ/external/head/vr/shadekin
 	cannot_gib = 1
 	cannot_amputate = 1
 

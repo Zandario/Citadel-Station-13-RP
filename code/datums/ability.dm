@@ -7,7 +7,7 @@
  *
  * used for intrinsic species / antagonist / body abiltiies
  */
-/datum/ability
+datum/ability
 	//? basics
 	/// name
 	var/name = "Unnamed ability"
@@ -68,7 +68,7 @@
 	/// for toggle interacts: are we enabled?
 	var/enabled = FALSE
 
-/datum/ability/Destroy()
+datum/ability/Destroy()
 	if(!isnull(owner))
 		disassociate(owner)
 	if(!isnull(action))
@@ -80,7 +80,7 @@
  *
  * @return our action button.
  */
-/datum/ability/proc/generate_action()
+datum/ability/proc/generate_action()
 	if(!isnull(action))
 		return action
 	rebuild_action()
@@ -90,7 +90,7 @@
  * full action button update including icon regeneration
  * creates the action if it did not already exist.
  */
-/datum/ability/proc/rebuild_action()
+datum/ability/proc/rebuild_action()
 	if(isnull(action))
 		action = new(src)
 	action.name = hotbind_name()
@@ -105,14 +105,14 @@
 /**
  * updates action button for availability / toggle status
  */
-/datum/ability/proc/update_action()
+datum/ability/proc/update_action()
 	var/availability = 1
 	if(cooldown && !isnull(last_used))
 		availability = clamp((world.time - last_used) / cooldown, 0, 1)
 	action?.push_button_update(availability, (interact_type == ABILITY_INTERACT_TOGGLE) && enabled)
 	recheck_queued_action_update()
 
-/datum/ability/proc/recheck_queued_action_update()
+datum/ability/proc/recheck_queued_action_update()
 	if(cooldown_visual_timerid)
 		deltimer(cooldown_visual_timerid)
 		cooldown_visual_timerid = null
@@ -122,17 +122,17 @@
 	if(next_available > 0)
 		addtimer(CALLBACK(src, PROC_REF(update_action)), next_available, TIMER_STOPPABLE)
 
-/datum/ability/ui_action_click(datum/action/action, mob/user)
+datum/ability/ui_action_click(datum/action/action, mob/user)
 	. = ..()
 	action_trigger(user)
 
-/datum/ability/proc/action_trigger(mob/user)
+datum/ability/proc/action_trigger(mob/user)
 	attempt_trigger(user)
 
-/datum/ability/proc/hotbind_name()
+datum/ability/proc/hotbind_name()
 	return "[category] - [name]"
 
-/datum/ability/proc/hotbind_desc()
+datum/ability/proc/hotbind_desc()
 	return desc
 
 /**
@@ -142,7 +142,7 @@
  * * user - triggering user. this is usually owner, but sometimes isn't.
  * * toggling - null if not toggled ability / not toggling, TRUE / FALSE for on / off.
  */
-/datum/ability/proc/attempt_trigger(mob/user, toggling)
+datum/ability/proc/attempt_trigger(mob/user, toggling)
 	if(interact_type == ABILITY_INTERACT_TOGGLE)
 		if(!isnull(toggling) && toggling == enabled)
 			return
@@ -165,7 +165,7 @@
  * * toggling - null if not toggled ability / not toggling, TRUE / FALSE for on / off.
  * * feedback - output feedback messages
  */
-/datum/ability/proc/check_trigger(mob/user, toggling, feedback)
+datum/ability/proc/check_trigger(mob/user, toggling, feedback)
 	if(!isnull(last_used) && (isnull(toggling) || toggling || (!toggling && cooldown_for_deactivation)) && (cooldown + last_used > world.time))
 		to_chat(user, SPAN_WARNING("[src] is still on cooldown! ([round((world.time - last_used) * 0.1, 0.1)] / [round(cooldown * 0.1, 0.1)])"))
 		return FALSE
@@ -181,7 +181,7 @@
  * * user - triggering user. this is usually owner, but sometimes isn't.
  * * toggling - null if not toggled ability / not toggling, TRUE / FALSE for on / off.
  */
-/datum/ability/proc/on_trigger(mob/user, toggling)
+datum/ability/proc/on_trigger(mob/user, toggling)
 	last_used = world.time
 	if(interact_type != ABILITY_INTERACT_TOGGLE)
 		update_action()
@@ -195,25 +195,25 @@
 	else if(!enabled && toggling)
 		enable()
 
-/datum/ability/proc/enable(update_action)
+datum/ability/proc/enable(update_action)
 	enabled = TRUE
 	if(update_action)
 		update_action()
 	on_enable()
 
-/datum/ability/proc/disable(update_action)
+datum/ability/proc/disable(update_action)
 	enabled = FALSE
 	if(update_action)
 		update_action()
 	on_disable()
 
-/datum/ability/proc/on_enable()
+datum/ability/proc/on_enable()
 	return
 
-/datum/ability/proc/on_disable()
+datum/ability/proc/on_disable()
 	return
 
-/datum/ability/proc/quickbind()
+datum/ability/proc/quickbind()
 	if(bound)
 		return
 	bound = TRUE
@@ -221,12 +221,12 @@
 	if(!isnull(owner))
 		action?.grant(owner)
 
-/datum/ability/proc/unbind()
+datum/ability/proc/unbind()
 	bound = FALSE
 	if(!isnull(owner))
 		action?.remove(owner)
 
-/datum/ability/proc/associate(mob/M)
+datum/ability/proc/associate(mob/M)
 	if(owner == M)
 		return
 	ASSERT(isnull(owner))
@@ -238,7 +238,7 @@
 	else if(always_bind && !hidden)
 		quickbind()
 
-/datum/ability/proc/disassociate(mob/M)
+datum/ability/proc/disassociate(mob/M)
 	ASSERT(owner == M)
 	if(bound)
 		action?.remove(owner)
@@ -248,7 +248,7 @@
 /**
  * checks if we can be used
  */
-/datum/ability/proc/available_check()
+datum/ability/proc/available_check()
 	if(isnull(owner))
 		return FALSE
 	if(ability_check_flags == NONE)
@@ -266,7 +266,7 @@
 /**
  * checks if we can be used, returning reason on failure or null for success.
  */
-/datum/ability/proc/unavailable_reason()
+datum/ability/proc/unavailable_reason()
 	if(isnull(owner))
 		return "!ERROR - NO OWNER!"
 	if(ability_check_flags == NONE)
@@ -283,14 +283,14 @@
 /**
  * sets us to hidden - no binding and not seen on panel
  */
-/datum/ability/proc/hide()
+datum/ability/proc/hide()
 	hidden = TRUE
 	unbind()
 
 /**
  * sets us to not hidden - bind if needed, seen on panel.
  */
-/datum/ability/proc/unhide()
+datum/ability/proc/unhide()
 	hidden = FALSE
 	if(always_bind)
 		quickbind()
@@ -298,7 +298,7 @@
 /**
  * static data for tgui panel
  */
-/datum/ability/ui_static_data(mob/user)
+datum/ability/ui_static_data(mob/user)
 	return list(
 		"$tgui" = tgui_id,
 		"$src" = REF(src),
@@ -312,6 +312,6 @@
 /**
  * action datums for abilities
  */
-/datum/action/ability
+datum/action/ability
 	abstract_type = /datum/action/ability
 	target_type = /datum/ability

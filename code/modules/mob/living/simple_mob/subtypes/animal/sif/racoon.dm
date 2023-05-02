@@ -1,6 +1,6 @@
 // Sakimm are small scavengers with an adoration for shiny things. They won't attack you for them, but you will be their friend holding something like a coin.
 
-/datum/category_item/catalogue/fauna/sakimm
+datum/category_item/catalogue/fauna/sakimm
 	name = "Sivian Fauna - Sakimm"
 	desc = "Classification: S Procyon cogitae \
 	<br><br>\
@@ -11,7 +11,7 @@
 	It is advised to keep any valuable items within dull wraps when venturing near the den of a Sakimm."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/sif/sakimm
+mob/living/simple_mob/animal/sif/sakimm
 	name = "sakimm"
 	desc = "What appears to be an oversized rodent with hands."
 	tt_desc = "S Procyon cogitae"
@@ -62,7 +62,7 @@
 	var/list/friend_loot_list = list(/obj/item/coin)	// What will make this animal non-hostile if held?
 	var/randomize_size = TRUE
 
-/mob/living/simple_mob/animal/sif/sakimm/verb/remove_hat()
+mob/living/simple_mob/animal/sif/sakimm/verb/remove_hat()
 	set name = "Remove Hat"
 	set desc = "Remove the animal's hat. You monster."
 	set category = "Abilities"
@@ -70,7 +70,7 @@
 
 	drop_hat(usr)
 
-/mob/living/simple_mob/animal/sif/sakimm/proc/drop_hat(var/mob/user)
+mob/living/simple_mob/animal/sif/sakimm/proc/drop_hat(var/mob/user)
 	if(hat)
 		hat.forceMove(get_turf(user))
 		hat = null
@@ -85,7 +85,7 @@
 			return
 		to_chat(user, "<span class='notice'>\The [src] is not wearing a hat!</span>")
 
-/mob/living/simple_mob/animal/sif/sakimm/verb/give_hat()
+mob/living/simple_mob/animal/sif/sakimm/verb/give_hat()
 	set name = "Give Hat"
 	set desc = "Give the animal a hat. You hero."
 	set category = "Abilities"
@@ -93,7 +93,7 @@
 
 	take_hat(usr)
 
-/mob/living/simple_mob/animal/sif/sakimm/proc/take_hat(var/mob/user)
+mob/living/simple_mob/animal/sif/sakimm/proc/take_hat(var/mob/user)
 	if(hat)
 		if(user == src)
 			to_chat(user, "<span class='notice'>You already have a hat!</span>")
@@ -123,17 +123,17 @@
 			else
 				to_chat(user, "<span class='warning'>You aren't holding a hat...</span>")
 
-/datum/say_list/sakimm
+datum/say_list/sakimm
 	speak = list("Shurr.", "|R|rr?", "Hss.")
 	emote_see = list("sniffs","looks around", "rubs its hands")
 	emote_hear = list("chitters", "clicks")
 
-/mob/living/simple_mob/animal/sif/sakimm/Destroy()
+mob/living/simple_mob/animal/sif/sakimm/Destroy()
 	if(hat)
 		drop_hat(src)
 	..()
 
-/mob/living/simple_mob/animal/sif/sakimm/update_icon()
+mob/living/simple_mob/animal/sif/sakimm/update_icon()
 	cut_overlays()
 	..()
 	if(hat)
@@ -141,7 +141,7 @@
 		MA.appearance_flags = RESET_COLOR
 		add_overlay(MA)
 
-/mob/living/simple_mob/animal/sif/sakimm/Initialize(mapload)
+mob/living/simple_mob/animal/sif/sakimm/Initialize(mapload)
 	. = ..()
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -150,7 +150,7 @@
 	if(randomize_size)
 		adjust_scale(rand(8, 11) / 10)
 
-/mob/living/simple_mob/animal/sif/sakimm/IIsAlly(mob/living/L)
+mob/living/simple_mob/animal/sif/sakimm/IIsAlly(mob/living/L)
 	. = ..()
 
 	var/mob/living/carbon/human/H = L
@@ -167,7 +167,7 @@
 					break
 		return has_loot
 
-/datum/ai_holder/simple_mob/retaliate/cooperative/sakimm/handle_special_strategical()	// Just needs to take hats.
+datum/ai_holder/simple_mob/retaliate/cooperative/sakimm/handle_special_strategical()	// Just needs to take hats.
 	var/mob/living/simple_mob/animal/sif/sakimm/S = holder
 
 	if(holder.get_active_held_item() && istype(holder.get_active_held_item(), /obj/item/clothing/head) && !S.hat)
@@ -175,12 +175,12 @@
 		S.take_hat(S)
 		holder.visible_message("<span class='notice'>\The [holder] wears \the [I]</span>")
 
-/mob/living/simple_mob/animal/sif/sakimm/intelligent
+mob/living/simple_mob/animal/sif/sakimm/intelligent
 	desc = "What appears to be an oversized rodent with hands. This one has a curious look in its eyes."
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/sakimm
 	randomize_size = FALSE	// Most likely to have a hat.
 
-/datum/ai_holder/simple_mob/intentional/sakimm
+datum/ai_holder/simple_mob/intentional/sakimm
 	hostile = FALSE
 	retaliate = TRUE
 	vision_range = 10
@@ -195,11 +195,11 @@
 	var/search_delay = 2 SECONDS	// How often can we look for item targets?
 	var/last_search = 0
 
-/datum/ai_holder/simple_mob/intentional/sakimm/New()
+datum/ai_holder/simple_mob/intentional/sakimm/New()
 	..()
 	original_home_distance = max_home_distance
 
-/datum/ai_holder/simple_mob/intentional/sakimm/post_melee_attack(atom/A)
+datum/ai_holder/simple_mob/intentional/sakimm/post_melee_attack(atom/A)
 	if(istype(A, /obj/item) && !holder.get_active_held_item() && holder.Adjacent(A))
 		var/obj/item/I = A
 		I.attack_hand(holder)
@@ -209,7 +209,7 @@
 		holder.face_atom(A)
 		request_help()	// And we're going to call friends, too.
 
-/datum/ai_holder/simple_mob/intentional/sakimm/list_targets()
+datum/ai_holder/simple_mob/intentional/sakimm/list_targets()
 	. = hearers(vision_range, holder) - holder
 
 	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha))
@@ -236,7 +236,7 @@
 
 	. -= holder.contents
 
-/datum/ai_holder/simple_mob/intentional/sakimm/find_target(var/list/possible_targets, var/has_targets_list = FALSE)
+datum/ai_holder/simple_mob/intentional/sakimm/find_target(var/list/possible_targets, var/has_targets_list = FALSE)
 	var/can_pick_mobs = TRUE
 
 	if(!hostile)
@@ -266,7 +266,7 @@
 	give_target(new_target)
 	return new_target
 
-/datum/ai_holder/simple_mob/intentional/sakimm/pre_melee_attack(atom/A)
+datum/ai_holder/simple_mob/intentional/sakimm/pre_melee_attack(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		// Are we holding something? If so, drop it, we have a new target to kill, and we shouldn't use their weapons.
@@ -297,7 +297,7 @@
 	else
 		holder.a_intent = INTENT_HARM
 
-/datum/ai_holder/simple_mob/intentional/sakimm/should_go_home()
+datum/ai_holder/simple_mob/intentional/sakimm/should_go_home()
 	if((!returns_home && !holder.get_active_held_item()) || !home_turf)	// If we have an item, we want to go home.
 		return FALSE
 	if(get_dist(holder, home_turf) > max_home_distance)
@@ -307,14 +307,14 @@
 			return TRUE
 	return FALSE
 
-/datum/ai_holder/simple_mob/intentional/sakimm/handle_special_tactic()
+datum/ai_holder/simple_mob/intentional/sakimm/handle_special_tactic()
 	var/mob/living/simple_mob/animal/sif/sakimm/S = holder
 	if(S.hat)
 		hoard_items = FALSE
 	else
 		hoard_items = TRUE
 
-/datum/ai_holder/simple_mob/intentional/sakimm/handle_special_strategical()
+datum/ai_holder/simple_mob/intentional/sakimm/handle_special_strategical()
 	var/mob/living/simple_mob/animal/sif/sakimm/S = holder
 	var/carrying_item = FALSE
 
@@ -343,5 +343,5 @@
 	if(!holder.get_active_held_item())
 		max_home_distance = original_home_distance
 
-/datum/ai_holder/simple_mob/intentional/sakimm/special_flee_check()
+datum/ai_holder/simple_mob/intentional/sakimm/special_flee_check()
 	return holder.get_active_held_item()

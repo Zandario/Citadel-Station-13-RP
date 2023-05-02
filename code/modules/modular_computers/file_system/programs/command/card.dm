@@ -1,4 +1,4 @@
-/datum/computer_file/program/card_mod
+datum/computer_file/program/card_mod
 	filename = "cardmod"
 	filedesc = "ID card modification program"
 	nanomodule_path = /datum/nano_module/program/card_mod
@@ -10,13 +10,13 @@
 	requires_ntnet = 0
 	size = 8
 
-/datum/nano_module/program/card_mod
+datum/nano_module/program/card_mod
 	name = "ID card modification program"
 	var/mod_mode = 1
 	var/is_centcom = 0
 	var/show_assignments = 0
 
-/datum/nano_module/program/card_mod/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/card_mod/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	data["src"] = "\ref[src]"
@@ -89,7 +89,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/program/card_mod/proc/format_jobs(list/jobs)
+datum/nano_module/program/card_mod/proc/format_jobs(list/jobs)
 	var/obj/item/card/id/id_card = program.computer.card_slot ? program.computer.card_slot.stored_card : null
 	var/list/formatted = list()
 	for(var/job in jobs)
@@ -100,11 +100,11 @@
 
 	return formatted
 
-/datum/nano_module/program/card_mod/proc/get_accesses(var/is_centcom = 0)
+datum/nano_module/program/card_mod/proc/get_accesses(var/is_centcom = 0)
 	return null
 
 
-/datum/computer_file/program/card_mod/Topic(href, href_list)
+datum/computer_file/program/card_mod/Topic(href, href_list)
 	if(..())
 		return 1
 

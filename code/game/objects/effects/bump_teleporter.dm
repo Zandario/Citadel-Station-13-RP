@@ -1,6 +1,6 @@
 var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 
-/obj/effect/bump_teleporter
+obj/effect/bump_teleporter
 	name = "bump-teleporter"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
@@ -11,15 +11,15 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 	density = 1
 	opacity = 0
 
-/obj/effect/bump_teleporter/Initialize(mapload)
+obj/effect/bump_teleporter/Initialize(mapload)
 	. = ..()
 	BUMP_TELEPORTERS += src
 
-/obj/effect/bump_teleporter/Destroy()
+obj/effect/bump_teleporter/Destroy()
 	BUMP_TELEPORTERS -= src
 	return ..()
 
-/obj/effect/bump_teleporter/Bumped(atom/user)
+obj/effect/bump_teleporter/Bumped(atom/user)
 	if(!ismob(user))
 		//user.loc = src.loc	//Stop at teleporter location
 		return

@@ -1,12 +1,12 @@
 
-/obj/item/organ/internal/kidneys
+obj/item/organ/internal/kidneys
 	name = "kidneys"
 	icon_state = "kidneys"
 	gender = PLURAL
 	organ_tag = O_KIDNEYS
 	parent_organ = BP_GROIN
 
-/obj/item/organ/internal/kidneys/tick_life(dt)
+obj/item/organ/internal/kidneys/tick_life(dt)
 	. = ..()
 
 	// Coffee is really bad for you with busted kidneys.
@@ -19,21 +19,21 @@
 		else if(is_broken())
 			owner.adjustToxLoss(0.3 * (dt * 5))
 
-/obj/item/organ/internal/kidneys/handle_organ_proc_special()
+obj/item/organ/internal/kidneys/handle_organ_proc_special()
 	. = ..()
 
 	if(owner && owner.getToxLoss() <= owner.getMaxHealth() * 0.1) // If you have less than 10 tox damage (for a human), your kidneys can help purge it.
 		if(prob(owner.getToxLoss()))
 			owner.adjustToxLoss(rand(-1,-3))
 
-/obj/item/organ/internal/kidneys/handle_germ_effects()
+obj/item/organ/internal/kidneys/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer
 	if(!.)
 		return
 
 	if(!owner?.client)	// we don't care
 		return
-	
+
 	//Pyelonephritis
 	if (. >= 1)
 		if(prob(1))
@@ -44,14 +44,14 @@
 			owner.m_intent = "walk"
 			owner.hud_used.move_intent.icon_state = "walking"
 
-/obj/item/organ/internal/kidneys/grey
+obj/item/organ/internal/kidneys/grey
 	icon_state = "kidneys_grey"
 
-/obj/item/organ/internal/kidneys/grey/colormatch/Initialize(mapload)
+obj/item/organ/internal/kidneys/grey/colormatch/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/sync_color), 15)
 
-/obj/item/organ/internal/kidneys/grey/colormatch/proc/sync_color()
+obj/item/organ/internal/kidneys/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		if(H.species.blood_color)

@@ -14,14 +14,14 @@ SUBSYSTEM_DEF(atoms)
 
 	var/list/BadInitializeCalls = list()
 
-/datum/controller/subsystem/atoms/Initialize(timeofday)
+datum/controller/subsystem/atoms/Initialize(timeofday)
 	//GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	//setupGenetics() //to set the mutations' sequence
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 	return ..()
 
-/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
+datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
 	if(initialized == INITIALIZATION_INSSATOMS)
 		return
 
@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(atoms)
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
 
-/datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
+datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
 	var/the_type = A.type
 	if(QDELING(A))
 		BadInitializeCalls[the_type] |= BAD_INIT_QDEL_BEFORE
@@ -93,14 +93,14 @@ SUBSYSTEM_DEF(atoms)
 
 	return qdeleted || QDELING(A)
 
-/datum/controller/subsystem/atoms/proc/map_loader_begin()
+datum/controller/subsystem/atoms/proc/map_loader_begin()
 	old_subsystem_initialized = initialized
 	initialized = INITIALIZATION_INSSATOMS
 
-/datum/controller/subsystem/atoms/proc/map_loader_stop()
+datum/controller/subsystem/atoms/proc/map_loader_stop()
 	initialized = old_subsystem_initialized
 
-/datum/controller/subsystem/atoms/Recover()
+datum/controller/subsystem/atoms/Recover()
 	initialized = SSatoms.initialized
 	if(initialized == INITIALIZATION_INNEW_MAPLOAD)
 		InitializeAtoms()
@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(atoms)
 	BadInitializeCalls = SSatoms.BadInitializeCalls
 
 /*
-/datum/controller/subsystem/atoms/proc/setupGenetics()
+datum/controller/subsystem/atoms/proc/setupGenetics()
 	var/list/mutations = subtypesof(/datum/mutation/human)
 	shuffle_inplace(mutations)
 	for(var/A in subtypesof(/datum/generecipe))
@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(atoms)
 		CHECK_TICK
 */
 
-/datum/controller/subsystem/atoms/proc/InitLog()
+datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""
 	for(var/path in BadInitializeCalls)
 		. += "Path : [path] \n"
@@ -145,7 +145,7 @@ SUBSYSTEM_DEF(atoms)
 		if(fails & BAD_INIT_SLEPT)
 			. += "- Slept during Initialize()\n"
 
-/datum/controller/subsystem/atoms/Shutdown()
+datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()
 	if(initlog)
 		text2file(initlog, "[GLOB.log_directory]/initialize.log")

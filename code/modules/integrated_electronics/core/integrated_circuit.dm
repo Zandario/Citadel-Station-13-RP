@@ -3,7 +3,7 @@
 a creative player the means to solve many problems.  Circuits are held inside an electronic assembly, and are wired using special tools.
 */
 
-/obj/item/integrated_circuit
+obj/item/integrated_circuit
 	name = "integrated circuit"
 	desc = "It's a tiny chip!  This one doesn't seem to do much, however."
 	icon = 'icons/obj/integrated_electronics/electronic_components.dmi'
@@ -47,17 +47,17 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	/// Allows additional multitool functionality
 	var/allow_multitool = 1
 
-/obj/item/integrated_circuit/examine(mob/user)
+obj/item/integrated_circuit/examine(mob/user)
 	. = ..()
 	external_examine(user)
 	ui_interact(user)
 
 /// Can be called via electronic_assembly/attackby()
-/obj/item/integrated_circuit/proc/additem(var/obj/item/I, var/mob/living/user)
+obj/item/integrated_circuit/proc/additem(var/obj/item/I, var/mob/living/user)
 	attackby(I, user)
 
 /// This should be used when someone is examining while the case is opened.
-/obj/item/integrated_circuit/proc/internal_examine(mob/user)
+obj/item/integrated_circuit/proc/internal_examine(mob/user)
 	to_chat(user, "This board has [inputs.len] input pin\s, [outputs.len] output pin\s and [activators.len] activation pin\s.")
 	for(var/datum/integrated_io/I in inputs)
 		if(I.linked.len)
@@ -72,19 +72,19 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	ui_interact(user)
 
 /// This should be used when someone is examining from an 'outside' perspective, e.g. reading a screen or LED.
-/obj/item/integrated_circuit/proc/external_examine(mob/user)
+obj/item/integrated_circuit/proc/external_examine(mob/user)
 	return any_examine(user)
 
-/obj/item/integrated_circuit/proc/any_examine(mob/user)
+obj/item/integrated_circuit/proc/any_examine(mob/user)
 	return
 
-/obj/item/integrated_circuit/proc/attackby_react(var/atom/movable/A,mob/user)
+obj/item/integrated_circuit/proc/attackby_react(var/atom/movable/A,mob/user)
 	return
 
-/obj/item/integrated_circuit/proc/sense(var/atom/movable/A,mob/user,prox)
+obj/item/integrated_circuit/proc/sense(var/atom/movable/A,mob/user,prox)
 	return
 
-/obj/item/integrated_circuit/Initialize(mapload)
+obj/item/integrated_circuit/Initialize(mapload)
 	displayed_name = name
 	if(!size)
 		size = w_class
@@ -97,23 +97,23 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	setup_io(activators, /datum/integrated_io/activate, null, IC_ACTIVATOR)
 	. = ..()
 
-/obj/item/integrated_circuit/proc/on_data_written() //Override this for special behaviour when new data gets pushed to the circuit.
+obj/item/integrated_circuit/proc/on_data_written() //Override this for special behaviour when new data gets pushed to the circuit.
 	return
 
-/obj/item/integrated_circuit/Destroy()
+obj/item/integrated_circuit/Destroy()
 	QDEL_LIST(inputs)
 	QDEL_LIST(outputs)
 	QDEL_LIST(activators)
 	. = ..()
 
-/obj/item/integrated_circuit/emp_act(severity)
+obj/item/integrated_circuit/emp_act(severity)
 	for(var/datum/integrated_io/io in inputs + outputs + activators)
 		io.scramble()
 
-/obj/item/integrated_circuit/proc/check_interactivity(mob/user)
+obj/item/integrated_circuit/proc/check_interactivity(mob/user)
 	return ui_status(user, GLOB.physical_state) && !assembly || assembly.opened == UI_INTERACTIVE
 
-/obj/item/integrated_circuit/verb/rename_component()
+obj/item/integrated_circuit/verb/rename_component()
 	set name = "Rename Circuit"
 	set category = "Object"
 	set desc = "Rename your circuit, useful to stay organized."
@@ -125,21 +125,21 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		to_chat(M, SPAN_NOTICE("The circuit '[src.name]' is now labeled '[input]'."))
 		displayed_name = input
 
-/obj/item/integrated_circuit/ui_state(mob/user, datum/tgui_module/module)
+obj/item/integrated_circuit/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/obj/item/integrated_circuit/ui_host(mob/user, datum/tgui_module/module)
+obj/item/integrated_circuit/ui_host(mob/user, datum/tgui_module/module)
 	if(istype(loc, /obj/item/electronic_assembly))
 		return loc.ui_host()
 	return ..()
 
-/obj/item/integrated_circuit/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/item/integrated_circuit/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICCircuit", name, parent_ui)
 		ui.open()
 
-/obj/item/integrated_circuit/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/integrated_circuit/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["name"] = name
@@ -186,7 +186,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	return data
 
-/obj/item/integrated_circuit/proc/tgui_pin_data(datum/integrated_io/io)
+obj/item/integrated_circuit/proc/tgui_pin_data(datum/integrated_io/io)
 	if(!istype(io))
 		return list()
 	var/list/pindata = list()
@@ -206,7 +206,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	return pindata
 
-/obj/item/integrated_circuit/ui_act(action, list/params, datum/tgui/ui)
+obj/item/integrated_circuit/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -275,7 +275,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			return
 	return FALSE
 
-/obj/item/integrated_circuit/proc/remove(mob/user, silent, index)
+obj/item/integrated_circuit/proc/remove(mob/user, silent, index)
 	var/obj/item/electronic_assembly/A = assembly
 	if(!A && !silent)
 		to_chat(user, SPAN_WARNING("This circuit is not in an assembly!"))
@@ -302,32 +302,32 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		ea.ui_interact(user)
 
 
-/obj/item/integrated_circuit/proc/push_data()
+obj/item/integrated_circuit/proc/push_data()
 	for(var/datum/integrated_io/O in outputs)
 		O.push_data()
 
 //! Don't use this!  Very bad!  Takes all data from attached pins regardless of pulse state.  Make sure you understand the consequences of this if you insist on using it.
-/obj/item/integrated_circuit/proc/pull_data()
+obj/item/integrated_circuit/proc/pull_data()
 	for(var/datum/integrated_io/I in inputs)
 		I.push_data()
 
-/obj/item/integrated_circuit/proc/draw_idle_power()
+obj/item/integrated_circuit/proc/draw_idle_power()
 	if(assembly)
 		return assembly.draw_power(power_draw_idle)
 
 /// Override this for special behaviour when there's no power left.
-/obj/item/integrated_circuit/proc/power_fail()
+obj/item/integrated_circuit/proc/power_fail()
 	return
 
 /// Returns true if there's enough power to work().
-/obj/item/integrated_circuit/proc/check_power()
+obj/item/integrated_circuit/proc/check_power()
 	if(!assembly)
 		return FALSE // Not in an assembly, therefore no power.
 	if(assembly.draw_power(power_draw_per_use))
 		return TRUE // Battery has enough.
 	return FALSE // Not enough power.
 
-/obj/item/integrated_circuit/proc/check_then_do_work(ord, ignore_power = FALSE)
+obj/item/integrated_circuit/proc/check_then_do_work(ord, ignore_power = FALSE)
 	if(world.time < next_use) 	// All intergrated circuits have an internal cooldown, to protect from spam.
 		return FALSE
 	if(assembly && ext_cooldown && (world.time < assembly.ext_next_use)) 	// Some circuits have external cooldown, to protect from spam.
@@ -342,10 +342,10 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	do_work(ord)
 	return TRUE
 
-/obj/item/integrated_circuit/proc/do_work(ord)
+obj/item/integrated_circuit/proc/do_work(ord)
 	return
 
-/obj/item/integrated_circuit/proc/disconnect_all()
+obj/item/integrated_circuit/proc/disconnect_all()
 	var/datum/integrated_io/I
 
 	for(var/i in inputs)
@@ -360,12 +360,12 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		I = i
 		I.disconnect_all()
 
-/obj/item/integrated_circuit/proc/ext_moved(oldLoc, dir)
+obj/item/integrated_circuit/proc/ext_moved(oldLoc, dir)
 	return
 
 
 /// Returns the object that is supposed to be used in attack messages, location checks, etc.
-/obj/item/integrated_circuit/proc/get_object()
+obj/item/integrated_circuit/proc/get_object()
 	// If the component is located in an assembly, let assembly determine it.
 	if(assembly)
 		return assembly.get_object()
@@ -375,7 +375,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 /// Returns the location to be used for dropping items.
 /// Same as the regular drop_location(), but with proc being run on assembly if there is any.
-/obj/item/integrated_circuit/drop_location()
+obj/item/integrated_circuit/drop_location()
 	// If the component is located in an assembly, let the assembly figure that one out.
 	if(assembly)
 		return assembly.drop_location()
@@ -384,7 +384,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 
 /// Checks if the target object is reachable.  Useful for various manipulators and manipulator-like objects.
-/obj/item/integrated_circuit/proc/check_target(atom/target, exclude_contents = FALSE, exclude_components = FALSE, exclude_self = FALSE, exclude_outside = FALSE)
+obj/item/integrated_circuit/proc/check_target(atom/target, exclude_contents = FALSE, exclude_components = FALSE, exclude_self = FALSE, exclude_outside = FALSE)
 	if(!target)
 		return FALSE
 
@@ -405,13 +405,13 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		return TRUE
 	return FALSE
 /*  TBI: Hand recog
-/obj/item/integrated_circuit/can_trigger_gun(mob/living/user)
+obj/item/integrated_circuit/can_trigger_gun(mob/living/user)
 	if(!user.is_holding(src))
 		return FALSE
 	return ..()
 */
-/obj/item/integrated_circuit/proc/on_anchored()
+obj/item/integrated_circuit/proc/on_anchored()
 	return
 
-/obj/item/integrated_circuit/proc/on_unanchored()
+obj/item/integrated_circuit/proc/on_unanchored()
 	return

@@ -1,4 +1,4 @@
-/client/proc/fixatmos()
+client/proc/fixatmos()
 	set category = "Admin"
 	set name = "Fix Atmospherics Grief"
 

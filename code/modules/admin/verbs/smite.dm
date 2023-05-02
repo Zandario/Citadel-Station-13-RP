@@ -1,4 +1,4 @@
-/client/proc/smite(mob/victim as mob)
+client/proc/smite(mob/victim as mob)
 	set name = "Smite"
 	set desc = "Abuse a player with various 'special treatments' from a list."
 	set category = "Fun"
@@ -104,7 +104,7 @@
 	log_and_message_admins("[key_name(src)] has used SMITE ([smite_choice]) on [key_name(target)].")
 	feedback_add_details("admin_verb","SMITE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/proc/bluespace_artillery(mob/living/target, user)
+proc/bluespace_artillery(mob/living/target, user)
 	if(!istype(target))
 		return
 
@@ -140,7 +140,7 @@
 		target.afflict_paralyze(20 * 20)
 		target.stuttering = 20
 
-/proc/fake_autosave(var/mob/living/target, var/client/user, var/wide)
+proc/fake_autosave(var/mob/living/target, var/client/user, var/wide)
 	if(!istype(target) || !target.client)
 		to_chat(user, "<span class='warning'>Skipping [target] because they are not a /mob/living or have no client.</span>")
 		return
@@ -185,7 +185,7 @@
 				target.client.screen -= loader
 
 
-/proc/darkspace_abduction(mob/living/target, user)
+proc/darkspace_abduction(mob/living/target, user)
 	var/darkspace_abduction_z
 	if(darkspace_abduction_z < 0)
 		to_chat(user,"<span class='warning'>The abduction z-level is already being created. Please wait.</span>")

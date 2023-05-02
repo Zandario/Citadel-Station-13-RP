@@ -1,5 +1,5 @@
 //generic procs copied from obj/effect/alien
-/obj/effect/spider
+obj/effect/spider
 	name = "web"
 	desc = "it's stringy and sticky"
 	icon = 'icons/effects/effects.dmi'
@@ -8,7 +8,7 @@
 	var/health = 15
 
 //similar to weeds, but only barfed out by nurses manually
-/obj/effect/spider/legacy_ex_act(severity)
+obj/effect/spider/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -20,7 +20,7 @@
 				qdel(src)
 	return
 
-/obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
+obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	visible_message("<span class='warning'>\The [src] has been [W.get_attack_verb(src, user)] with \the [W][(user ? " by [user]." : ".")]</span>")
@@ -37,29 +37,29 @@
 	health -= damage
 	healthcheck()
 
-/obj/effect/spider/bullet_act(var/obj/projectile/Proj)
+obj/effect/spider/bullet_act(var/obj/projectile/Proj)
 	..()
 	health -= Proj.get_structure_damage()
 	healthcheck()
 
-/obj/effect/spider/proc/healthcheck()
+obj/effect/spider/proc/healthcheck()
 	if(health <= 0)
 		qdel(src)
 
-/obj/effect/spider/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/effect/spider/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300 + T0C)
 		health -= 5
 		healthcheck()
 
-/obj/effect/spider/stickyweb
+obj/effect/spider/stickyweb
 	icon_state = "stickyweb1"
 
-/obj/effect/spider/stickyweb/Initialize(mapload)
+obj/effect/spider/stickyweb/Initialize(mapload)
 	if(prob(50))
 		icon_state = "stickyweb2"
 	return ..()
 
-/obj/effect/spider/stickyweb/CanAllowThrough(atom/movable/mover, turf/target)
+obj/effect/spider/stickyweb/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover, /mob/living/simple_mob/animal/giant_spider))
 		return TRUE
@@ -71,7 +71,7 @@
 		return prob(30)
 	return TRUE
 
-/obj/effect/spider/eggcluster
+obj/effect/spider/eggcluster
 	name = "egg cluster"
 	desc = "They seem to pulse slightly with an inner life"
 	icon_state = "eggs"
@@ -80,17 +80,17 @@
 	var/spiders_max = 24
 	var/spider_type = /obj/effect/spider/spiderling
 
-/obj/effect/spider/eggcluster/Initialize(mapload)
+obj/effect/spider/eggcluster/Initialize(mapload)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/spider/eggcluster/Initialize(mapload, atom/parent)
+obj/effect/spider/eggcluster/Initialize(mapload, atom/parent)
 	. = ..()
 	get_light_and_color(parent)
 
-/obj/effect/spider/eggcluster/Destroy()
+obj/effect/spider/eggcluster/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(istype(loc, /obj/item/organ/external))
 		var/obj/item/organ/external/O = loc
@@ -98,7 +98,7 @@
 
 	return ..()
 
-/obj/effect/spider/eggcluster/process(delta_time)
+obj/effect/spider/eggcluster/process(delta_time)
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
 		var/num = rand(spiders_min, spiders_max)
@@ -112,14 +112,14 @@
 				O.implants += spiderling
 		qdel(src)
 
-/obj/effect/spider/eggcluster/small
+obj/effect/spider/eggcluster/small
 	spiders_min = 1
 	spiders_max = 3
 
-/obj/effect/spider/eggcluster/small/frost
+obj/effect/spider/eggcluster/small/frost
 	spider_type = /obj/effect/spider/spiderling/frost
 
-/obj/effect/spider/spiderling
+obj/effect/spider/spiderling
 	name = "spiderling"
 	desc = "It never stays still for long."
 	icon_state = "spiderling"
@@ -134,10 +134,10 @@
 
 	var/stunted = FALSE
 
-/obj/effect/spider/spiderling/frost
+obj/effect/spider/spiderling/frost
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider/frost)
 
-/obj/effect/spider/spiderling/Initialize(mapload, atom/parent)
+obj/effect/spider/spiderling/Initialize(mapload, atom/parent)
 	. = ..()
 	pixel_x = rand(6,-6)
 	pixel_y = rand(6,-6)
@@ -147,27 +147,27 @@
 		amount_grown = 1
 	get_light_and_color(parent)
 
-/obj/effect/spider/spiderling/Destroy()
+obj/effect/spider/spiderling/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
-/obj/effect/spider/spiderling/Bump(atom/user)
+obj/effect/spider/spiderling/Bump(atom/user)
 	if(istype(user, /obj/structure/table))
 		src.loc = user.loc
 	else
 		..()
 
-/obj/effect/spider/spiderling/proc/die()
+obj/effect/spider/spiderling/proc/die()
 	visible_message("<span class='alert'>[src] dies!</span>")
 	new /obj/effect/debris/cleanable/spiderling_remains(src.loc)
 	qdel(src)
 
-/obj/effect/spider/spiderling/healthcheck()
+obj/effect/spider/spiderling/healthcheck()
 	if(health <= 0)
 		die()
 
-/obj/effect/spider/spiderling/process(delta_time)
+obj/effect/spider/spiderling/process(delta_time)
 	if(travelling_in_vent)
 		if(istype(src.loc, /turf))
 			travelling_in_vent = 0
@@ -224,7 +224,7 @@
 	if(amount_grown >= 0)
 		amount_grown += rand(0,2)
 
-/obj/effect/spider/spiderling/proc/skitter()
+obj/effect/spider/spiderling/proc/skitter()
 	if(isturf(loc))
 		if(prob(25))
 			var/list/nearby = trange(5, src) - loc
@@ -249,9 +249,9 @@
 			qdel(src)
 
 //Rather than kneecap all spiderlings, I figure I'll just make a spiderling cousin that doesn't have the ability.
-/obj/effect/spider/spiderling/no_crawl
+obj/effect/spider/spiderling/no_crawl
 
-/obj/effect/spider/spiderling/no_crawl/skitter()
+obj/effect/spider/spiderling/no_crawl/skitter()
 	if(isturf(loc))
 		if(prob(25))
 			var/list/nearby = trange(5, src) - loc
@@ -276,28 +276,28 @@
 			qdel(src)
 
 
-/obj/effect/spider/spiderling/stunted
+obj/effect/spider/spiderling/stunted
 	stunted = TRUE
 
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/hunter)
 
-/obj/effect/debris/cleanable/spiderling_remains
+obj/effect/debris/cleanable/spiderling_remains
 	name = "spiderling remains"
 	desc = "Green squishy mess."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenshatter"
 
-/obj/effect/spider/cocoon
+obj/effect/spider/cocoon
 	name = "cocoon"
 	desc = "Something wrapped in silky spider web"
 	icon_state = "cocoon1"
 	health = 10
 
-/obj/effect/spider/cocoon/Initialize(mapload)
+obj/effect/spider/cocoon/Initialize(mapload)
 	. = ..()
 	icon_state = pick("cocoon1","cocoon2","cocoon3")
 
-/obj/effect/spider/cocoon/Destroy()
+obj/effect/spider/cocoon/Destroy()
 	src.visible_message("<span class='warning'>\The [src] splits open.</span>")
 	for(var/atom/movable/A in contents)
 		A.loc = src.loc

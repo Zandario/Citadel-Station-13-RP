@@ -2,7 +2,7 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/recharge_station
+obj/item/circuitboard/recharge_station
 	name = T_BOARD("cyborg recharging station")
 	build_path = /obj/machinery/recharge_station
 	board_type = new /datum/frame/frame_types/machine

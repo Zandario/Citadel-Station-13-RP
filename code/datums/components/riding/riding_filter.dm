@@ -21,7 +21,7 @@
  *
  * ? This component overrides all normal can buckles and will force operations if needed. Be careful.
  */
-/datum/component/riding_filter
+datum/component/riding_filter
 	//? disabled as we don't have dupe handling
 	can_transfer = FALSE
 	dupe_mode = COMPONENT_DUPE_UNIQUE
@@ -41,7 +41,7 @@
 	/// ~~our overlays~~ e-er, I mean our_offhands.
 	var/list/our_offhands
 
-/datum/component/riding_filter/Initialize(handler_typepath)
+datum/component/riding_filter/Initialize(handler_typepath)
 	. = ..()
 	if(. & COMPONENT_INCOMPATIBLE)
 		return
@@ -53,13 +53,13 @@
 			CRASH("bad handler typepath passed in")
 		src.handler_typepath = handler_typepath
 
-/datum/component/riding_filter/Destroy()
+datum/component/riding_filter/Destroy()
 	for(var/obj/item/offhand/riding/R in our_offhands)
 		R._silently_erase()
 	our_offhands = null
 	return ..()
 
-/datum/component/riding_filter/RegisterWithParent()
+datum/component/riding_filter/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOVABLE_PRE_BUCKLE_MOB, .proc/signal_hook_pre_buckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOB_BUCKLED, .proc/signal_hook_post_buckle)
@@ -68,7 +68,7 @@
 	if(implements_can_buckle_hints)
 		RegisterSignal(parent, COMSIG_MOVABLE_CAN_BUCKLE_MOB, .proc/signal_hook_can_buckle)
 
-/datum/component/riding_filter/UnregisterFromParent()
+datum/component/riding_filter/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
 		COMSIG_MOVABLE_PRE_BUCKLE_MOB,
@@ -78,15 +78,15 @@
 		COMSIG_MOVABLE_MOB_UNBUCKLED
 	))
 
-/datum/component/riding_filter/proc/signal_hook_user_buckle(atom/movable/source, mob/M, flags, mob/user, semantic)
+datum/component/riding_filter/proc/signal_hook_user_buckle(atom/movable/source, mob/M, flags, mob/user, semantic)
 	SIGNAL_HANDLER_DOES_SLEEP
 	return check_user_mount(M, flags, user, semantic)? COMPONENT_FORCE_BUCKLE_OPERATION : COMPONENT_BLOCK_BUCKLE_OPERATION
 
-/datum/component/riding_filter/proc/signal_hook_pre_buckle(atom/movable/source, mob/M, flags, mob/user, semantic)
+datum/component/riding_filter/proc/signal_hook_pre_buckle(atom/movable/source, mob/M, flags, mob/user, semantic)
 	SIGNAL_HANDLER
 	return on_mount_attempt(M, flags, user, semantic)? COMPONENT_FORCE_BUCKLE_OPERATION : COMPONENT_BLOCK_BUCKLE_OPERATION
 
-/datum/component/riding_filter/proc/signal_hook_post_buckle(atom/movable/source, mob/M, flags, mob/user, semantic)
+datum/component/riding_filter/proc/signal_hook_post_buckle(atom/movable/source, mob/M, flags, mob/user, semantic)
 	SIGNAL_HANDLER
 	var/datum/component/riding_handler/handler = handler_instantiated()
 	if(!handler)
@@ -94,7 +94,7 @@
 		return
 	post_buckle_handler_tweak(handler, M, flags, user, semantic)
 
-/datum/component/riding_filter/proc/signal_hook_mob_unbuckle(atom/movable/source, mob/M, flags, mob/user, semantic)
+datum/component/riding_filter/proc/signal_hook_mob_unbuckle(atom/movable/source, mob/M, flags, mob/user, semantic)
 	SIGNAL_HANDLER
 	cleanup_rider(M, semantic)
 
@@ -104,7 +104,7 @@
  *
  * it is good practice, but not required, to do this.
  */
-/datum/component/riding_filter/proc/signal_hook_can_buckle(atom/movable/source, mob/M, flags, mob/user, semantic)
+datum/component/riding_filter/proc/signal_hook_can_buckle(atom/movable/source, mob/M, flags, mob/user, semantic)
 	SIGNAL_HANDLER
 	return check_mount_attempt(M, flags, user, semantic)? COMPONENT_FORCE_BUCKLE_OPERATION : COMPONENT_BLOCK_BUCKLE_OPERATION
 
@@ -112,7 +112,7 @@
  * called on buckling process right before point of no return
  * overrides atom opinion.
  */
-/datum/component/riding_filter/proc/on_mount_attempt(mob/M, buckle_flags, mob/user, semantic)
+datum/component/riding_filter/proc/on_mount_attempt(mob/M, buckle_flags, mob/user, semantic)
 	if(!check_mount_attempt(M, buckle_flags, user, semantic))
 		return FALSE
 	. = TRUE
@@ -123,7 +123,7 @@
  * checks if we should allow someone to mount.
  * overrides atom opinion.
  */
-/datum/component/riding_filter/proc/check_mount_attempt(mob/M, buckle_flags, mob/user, semantic)
+datum/component/riding_filter/proc/check_mount_attempt(mob/M, buckle_flags, mob/user, semantic)
 	if(!mount_allocate_offhands(M, buckle_flags, user, semantic))
 		return FALSE
 	return TRUE
@@ -132,30 +132,30 @@
  * checks if we should allow an entity to buckle another entity to us
  * overrides atom opinion
  */
-/datum/component/riding_filter/proc/check_user_mount(mob/M, buckle_flags, mob/user, semantic)
+datum/component/riding_filter/proc/check_user_mount(mob/M, buckle_flags, mob/user, semantic)
 	return TRUE
 
-/datum/component/riding_filter/proc/create_riding_handler(mob/M, buckle_flags, mob/user, semantic, ...)
+datum/component/riding_filter/proc/create_riding_handler(mob/M, buckle_flags, mob/user, semantic, ...)
 	return handler_instantiated() || parent.LoadComponent(handler_typepath)
 
-/datum/component/riding_filter/proc/handler_instantiated()
+datum/component/riding_filter/proc/handler_instantiated()
 	RETURN_TYPE(/datum/component/riding_handler)
 	return parent.GetComponent(/datum/component/riding_handler)
 
-/datum/component/riding_filter/proc/pre_buckle_handler_tweak(datum/component/riding_handler/handler, mob/M, flags, mob/user, semantic, ...)
+datum/component/riding_filter/proc/pre_buckle_handler_tweak(datum/component/riding_handler/handler, mob/M, flags, mob/user, semantic, ...)
 	return
 
-/datum/component/riding_filter/proc/post_buckle_handler_tweak(datum/component/riding_handler/handler, mob/M, flags, mob/user, semantic, ...)
+datum/component/riding_filter/proc/post_buckle_handler_tweak(datum/component/riding_handler/handler, mob/M, flags, mob/user, semantic, ...)
 	return
 
-/datum/component/riding_filter/proc/cleanup_rider(mob/rider, semantic)
+datum/component/riding_filter/proc/cleanup_rider(mob/rider, semantic)
 	cleanup_rider_offhands(rider)
 	check_offhands(rider, TRUE)
 
 /**
  * handles offhand allocation on mount
  */
-/datum/component/riding_filter/proc/mount_allocate_offhands(mob/M, buckle_flags, mob/user, semantic)
+datum/component/riding_filter/proc/mount_allocate_offhands(mob/M, buckle_flags, mob/user, semantic)
 	var/list/allocating = list()
 	if(!allocate_offhands(M, semantic, allocating))
 		for(var/obj/item/offhand/riding/R in allocating)
@@ -170,7 +170,7 @@
  *
  * ! This proc is shitcode, don't fuck with this without knowing what you're doing.
  */
-/datum/component/riding_filter/proc/check_offhands(mob/rider, unbuckling)
+datum/component/riding_filter/proc/check_offhands(mob/rider, unbuckling)
 	if(unbuckling)
 		return		// base level don't care as of now
 	var/atom/movable/AM = parent
@@ -192,10 +192,10 @@
 				)
 				AM.unbuckle_mob(M, BUCKLE_OP_FORCE)
 
-/datum/component/riding_filter/proc/rider_offhands_needed(mob/rider, semantic)
+datum/component/riding_filter/proc/rider_offhands_needed(mob/rider, semantic)
 	return offhands_needed_rider
 
-/datum/component/riding_filter/proc/get_offhands_of_rider(mob/rider)
+datum/component/riding_filter/proc/get_offhands_of_rider(mob/rider)
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/obj/item/offhand/riding/R as anything in rider.get_held_items_of_type(/obj/item/offhand/riding))
@@ -206,7 +206,7 @@
  * called to register offhands for a new rider
  * returns true/false based on success/failure
  */
-/datum/component/riding_filter/proc/allocate_offhands(mob/rider, semantic, list/offhands)
+datum/component/riding_filter/proc/allocate_offhands(mob/rider, semantic, list/offhands)
 	ASSERT(islist(offhands))
 	var/amount_needed = rider_offhands_needed(rider, semantic)
 	if(!offhand_requirements_are_rigid)
@@ -220,10 +220,10 @@
 		offhands += R
 	return TRUE
 
-/datum/component/riding_filter/proc/offhand_destroyed(obj/item/offhand/riding/offhand, mob/rider)
+datum/component/riding_filter/proc/offhand_destroyed(obj/item/offhand/riding/offhand, mob/rider)
 	check_offhands(rider)
 
-/datum/component/riding_filter/proc/try_equip_offhand_to_rider(mob/rider)
+datum/component/riding_filter/proc/try_equip_offhand_to_rider(mob/rider)
 	var/obj/item/offhand/riding/R = rider.allocate_offhand(/obj/item/offhand/riding)
 	if(!R)
 		return
@@ -232,7 +232,7 @@
 	LAZYADD(our_offhands, R)
 	return R
 
-/datum/component/riding_filter/proc/cleanup_rider_offhands(mob/rider)
+datum/component/riding_filter/proc/cleanup_rider_offhands(mob/rider)
 	for(var/obj/item/offhand/riding/R as anything in rider.get_held_items_of_type(/obj/item/offhand/riding))
 		R._silently_erase()
 		LAZYREMOVE(our_offhands, R)
@@ -242,7 +242,7 @@
  * qdel the entire list on failure.T
  */
 
-/obj/item/offhand/riding
+obj/item/offhand/riding
 	name = "riding offhand"
 	desc = "Your hand is full carrying someone on you!"
 	/// riding handler component
@@ -250,7 +250,7 @@
 	/// person
 	var/mob/owner
 
-/obj/item/offhand/riding/Destroy()
+obj/item/offhand/riding/Destroy()
 	if(filter)
 		filter.offhand_destroyed(src, owner)
 		LAZYREMOVE(filter.our_offhands, src)
@@ -258,7 +258,7 @@
 	owner = null
 	return ..()
 
-/obj/item/offhand/riding/proc/_silently_erase()
+obj/item/offhand/riding/proc/_silently_erase()
 	filter = null
 	owner = null
 	qdel(src)

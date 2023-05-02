@@ -1,4 +1,4 @@
-/datum/computer_file/program/access_decrypter
+datum/computer_file/program/access_decrypter
 	filename = "nt_accrypt"
 	filedesc = "NTNet Access Decrypter"
 	program_icon_state = "hostile"
@@ -16,16 +16,16 @@
 	var/target_progress = 300
 	var/datum/access/target_access = null
 
-/datum/computer_file/program/access_decrypter/kill_program(var/forced)
+datum/computer_file/program/access_decrypter/kill_program(var/forced)
 	reset()
 	..(forced)
 
-/datum/computer_file/program/access_decrypter/proc/reset()
+datum/computer_file/program/access_decrypter/proc/reset()
 	running = FALSE
 	message = ""
 	progress = 0
 
-/datum/computer_file/program/access_decrypter/process_tick()
+datum/computer_file/program/access_decrypter/process_tick()
 	. = ..()
 	if(!running)
 		return
@@ -48,7 +48,7 @@
 		message = "Successfully decrypted and saved operational key codes. Downloaded access codes for: [target_access.access_name]"
 		target_access = null
 
-/datum/computer_file/program/access_decrypter/Topic(href, href_list)
+datum/computer_file/program/access_decrypter/Topic(href, href_list)
 	if(..())
 		return 1
 	if(href_list["PRG_reset"])
@@ -74,11 +74,11 @@
 			ntnet_global.intrusion_detection_alarm = 1
 		return 1
 
-/datum/nano_module/program/access_decrypter
+datum/nano_module/program/access_decrypter
 	name = "NTNet Access Decrypter"
 	var/list/restricted_access_codes = list(ACCESS_COMMAND_CARDMOD, ACCESS_SCIENCE_EXONET) // access codes that are not hackable due to balance reasons
 
-/datum/nano_module/program/access_decrypter/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/access_decrypter/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	if(!ntnet_global)
 		return
 	var/datum/computer_file/program/access_decrypter/PRG = program

@@ -21,10 +21,10 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 //   relevant info about that error.
 
 // Common vars and procs are kept at the error_viewer level
-/datum/error_viewer
+datum/error_viewer
 	var/name = ""
 
-/datum/error_viewer/proc/browse_to(client/user, html)
+datum/error_viewer/proc/browse_to(client/user, html)
 	var/datum/browser/browser = new(ismob(user)? user : user.mob, "error_viewer", null, 600, 400)
 	browser.set_content(html)
 	browser.add_head_content({"
@@ -46,7 +46,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 	"})
 	browser.open()
 
-/datum/error_viewer/proc/build_header(datum/error_viewer/back_to, linear)
+datum/error_viewer/proc/build_header(datum/error_viewer/back_to, linear)
 	// Common starter HTML for show_to
 
 	. = ""
@@ -56,11 +56,11 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 	. += "[make_link("Refresh")]<br><br>"
 
-/datum/error_viewer/proc/show_to(user, datum/error_viewer/back_to, linear)
+datum/error_viewer/proc/show_to(user, datum/error_viewer/back_to, linear)
 	// Specific to each child type
 	return
 
-/datum/error_viewer/proc/make_link(linktext, datum/error_viewer/back_to, linear)
+datum/error_viewer/proc/make_link(linktext, datum/error_viewer/back_to, linear)
 	var/back_to_param = ""
 	if (!linktext)
 		linktext = name
@@ -73,12 +73,12 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 	return "<a href='?_src_=holder;[HrefToken()];viewruntime=[REF(src)][back_to_param]'>[linktext]</a>"
 
-/datum/error_viewer/error_cache
+datum/error_viewer/error_cache
 	var/list/errors = list()
 	var/list/error_sources = list()
 	var/list/errors_silenced = list()
 
-/datum/error_viewer/error_cache/show_to(user, datum/error_viewer/back_to, linear)
+datum/error_viewer/error_cache/show_to(user, datum/error_viewer/back_to, linear)
 	var/html = build_header()
 	html += "<b>[GLOB.total_runtimes]</b> runtimes, <b>[GLOB.total_runtimes_skipped]</b> skipped<br><br>"
 	if (!linear)
@@ -95,7 +95,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 	browse_to(user, html)
 
-/datum/error_viewer/error_cache/proc/log_error(exception/e, list/desclines, skip_count)
+datum/error_viewer/error_cache/proc/log_error(exception/e, list/desclines, skip_count)
 	if (!istype(e))
 		return // Abnormal exception, don't even bother
 
@@ -128,18 +128,18 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 		var/err_msg_delay = 50
 		error_source.next_message_at = world.time + err_msg_delay
 
-/datum/error_viewer/error_source
+datum/error_viewer/error_source
 	var/list/errors = list()
 	var/next_message_at = 0
 
-/datum/error_viewer/error_source/New(exception/e)
+datum/error_viewer/error_source/New(exception/e)
 	if (!istype(e))
 		name = "\[[time_stamp()]] Uncaught exceptions"
 		return
 
 	name = "<b>\[[time_stamp()]]</b> Runtime in <b>[e.file]</b>, line <b>[e.line]</b>: <b>[html_encode(e.name)]</b>"
 
-/datum/error_viewer/error_source/show_to(user, datum/error_viewer/back_to, linear)
+datum/error_viewer/error_source/show_to(user, datum/error_viewer/back_to, linear)
 	if (!istype(back_to))
 		back_to = GLOB.error_cache
 
@@ -149,7 +149,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 	browse_to(user, html)
 
-/datum/error_viewer/error_entry
+datum/error_viewer/error_entry
 	var/datum/error_viewer/error_source/error_source
 	var/exception/exc
 	var/desc = ""
@@ -157,7 +157,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 	var/turf/usr_loc
 	var/is_skip_count
 
-/datum/error_viewer/error_entry/New(exception/e, list/desclines, skip_count)
+datum/error_viewer/error_entry/New(exception/e, list/desclines, skip_count)
 	if (!istype(e))
 		name = "<b>\[[time_stamp()]]</b> Uncaught exception: <b>[html_encode(e.name)]</b>"
 		return
@@ -178,7 +178,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 		usr_ref = "[REF(usr)]"
 		usr_loc = get_turf(usr)
 
-/datum/error_viewer/error_entry/show_to(user, datum/error_viewer/back_to, linear)
+datum/error_viewer/error_entry/show_to(user, datum/error_viewer/back_to, linear)
 	if (!istype(back_to))
 		back_to = error_source
 
@@ -194,5 +194,5 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 	browse_to(user, html)
 
-/datum/error_viewer/error_entry/make_link(linktext, datum/error_viewer/back_to, linear)
+datum/error_viewer/error_entry/make_link(linktext, datum/error_viewer/back_to, linear)
 	return is_skip_count ? name : ..()

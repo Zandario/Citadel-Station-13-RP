@@ -1,20 +1,20 @@
 // TODO: this file is still commented out, because we will not even *SHOW* it until skills implementation is near critical mass.
 
-/datum/category_group/player_setup_category/skills
+datum/category_group/player_setup_category/skills
 	name = "Skills"
 	sort_order = 3.5
 	category_item_type = /datum/category_item/player_setup_item/skills
 
-/datum/category_item/player_setup_item/skills
+datum/category_item/player_setup_item/skills
 	name = "Skills"
 	sort_order = 1
 	save_key = CHARACTER_DATA_SKILLS
 	is_global = FALSE
 
-/datum/category_item/player_setup_item/skills/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/skills/content(datum/preferences/prefs, mob/user, data)
 	. = ..()
 
-/datum/category_item/player_setup_item/skills/act(datum/preferences/prefs, mob/user, action, list/params)
+datum/category_item/player_setup_item/skills/act(datum/preferences/prefs, mob/user, action, list/params)
 	switch(action)
 		if("set")
 
@@ -26,33 +26,33 @@
 
 	return ..()
 
-/datum/category_item/player_setup_item/skills/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/skills/filter_data(datum/preferences/prefs, data, list/errors)
 	var/list/skill_data = sanitize_islist(data)
 
 
-/datum/category_item/player_setup_item/skills/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/skills/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	. = ..()
 
 #warn impl above
 
-/datum/category_item/player_setup_item/skills/load_character(var/savefile/S)
+datum/category_item/player_setup_item/skills/load_character(var/savefile/S)
 	S["skills"]					>> pref.skills
 	S["used_skillpoints"]		>> pref.used_skillpoints
 	S["skill_specialization"]	>> pref.skill_specialization
 
-/datum/category_item/player_setup_item/skills/save_character(var/savefile/S)
+datum/category_item/player_setup_item/skills/save_character(var/savefile/S)
 	S["skills"]					<< pref.skills
 	S["used_skillpoints"]		<< pref.used_skillpoints
 	S["skill_specialization"]	<< pref.skill_specialization
 
-/datum/category_item/player_setup_item/skills/sanitize_character()
+datum/category_item/player_setup_item/skills/sanitize_character()
 	if(SKILLS == null)				setup_skills()
 	if(!pref.skills)				pref.skills = list()
 	if(!pref.skills.len)			pref.ZeroSkills()
 	if(pref.used_skillpoints < 0)	pref.used_skillpoints = 0
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/skills/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/skills/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -61,7 +61,7 @@
 	character.used_skillpoints	= pref.used_skillpoints
 	return TRUE
 
-/datum/category_item/player_setup_item/skills/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/skills/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	. += "<b>Select your Skills</b><br>"
 	. += "Current skill level: <b>[pref.GetSkillClass(pref.used_skillpoints)]</b> ([pref.used_skillpoints])<br>"
@@ -86,12 +86,12 @@
 	. += "</table>"
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/proc/skill_to_button(var/skill, var/level_name, var/current_level, var/selection_level)
+datum/category_item/player_setup_item/proc/skill_to_button(var/skill, var/level_name, var/current_level, var/selection_level)
 	if(current_level == selection_level)
 		return "<th><span class='linkOn'>[level_name]</span></th>"
 	return "<th><a href='?src=\ref[src];setskill=\ref[skill];newvalue=[selection_level]'>[level_name]</a></th>"
 
-/datum/category_item/player_setup_item/skills/OnTopic(href, href_list, user)
+datum/category_item/player_setup_item/skills/OnTopic(href, href_list, user)
 	if(href_list["skillinfo"])
 		var/datum/skill/S = locate(href_list["skillinfo"])
 		var/HTML = "<b>[S.name]</b><br>[S.desc]"

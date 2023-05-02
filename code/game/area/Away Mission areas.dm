@@ -1,4 +1,4 @@
-/area/awaymission
+area/awaymission
 	name = "\improper Unknown Location"
 	icon_state = "away"
 	var/list/valid_spawn_turfs = list()
@@ -7,14 +7,14 @@
 	var/mobcountmax = 0
 	var/floracountmax = 0
 
-/area/awaymission/proc/EvalValidSpawnTurfs()
+area/awaymission/proc/EvalValidSpawnTurfs()
 	//Adds turfs to the valid)turfs list, used for spawning.
 	for(var/turf/simulated/floor/F in src)
 		valid_spawn_turfs |= F
 	for(var/turf/unsimulated/floor/F in src)
 		valid_spawn_turfs |= F
 
-/area/awaymission/LateInitialize()
+area/awaymission/LateInitialize()
 	..()
 	EvalValidSpawnTurfs()
 
@@ -30,7 +30,7 @@
 
 	to_chat(world, "Away mission spawning done.")
 
-/area/awaymission/proc/spawn_mob_on_turf()
+area/awaymission/proc/spawn_mob_on_turf()
 	if(!valid_mobs.len)
 		log_world("[src] does not have a set valid mobs list!")
 		return TRUE
@@ -43,7 +43,7 @@
 		valid_spawn_turfs -= Turf
 		new M(Turf)
 
-/area/awaymission/proc/spawn_flora_on_turf()
+area/awaymission/proc/spawn_flora_on_turf()
 	if(!valid_flora.len)
 		log_world("[src] does not have a set valid flora list!")
 		return TRUE

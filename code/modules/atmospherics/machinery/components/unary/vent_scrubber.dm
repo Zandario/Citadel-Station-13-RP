@@ -1,4 +1,4 @@
-/obj/machinery/atmospherics/component/unary/vent_scrubber
+obj/machinery/atmospherics/component/unary/vent_scrubber
 	icon = 'icons/atmos/vent_scrubber.dmi'
 	icon_state = "map_scrubber_off"
 	pipe_state = "scrubber"
@@ -28,15 +28,15 @@
 	var/radio_filter_out
 	var/radio_filter_in
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on
+obj/machinery/atmospherics/component/unary/vent_scrubber/on
 	use_power = USE_POWER_IDLE
 	icon_state = "map_scrubber_on"
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on/welded
+obj/machinery/atmospherics/component/unary/vent_scrubber/on/welded
 	welded = 1
 
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/Initialize(mapload)
+obj/machinery/atmospherics/component/unary/vent_scrubber/Initialize(mapload)
 	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
 
@@ -56,7 +56,7 @@
 		assign_uid()
 		id_tag = num2text(uid)
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/Destroy()
+obj/machinery/atmospherics/component/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
 	if(initial_loc)
 		initial_loc.air_scrub_info -= id_tag
@@ -64,7 +64,7 @@
 	return ..()
 
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/update_icon(safety = 0)
+obj/machinery/atmospherics/component/unary/vent_scrubber/update_icon(safety = 0)
 	if(!check_icon_cache())
 		return
 
@@ -85,7 +85,7 @@
 
 	add_overlay(icon_manager.get_atmos_icon("device", , , scrubber_icon))
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/update_underlays()
+obj/machinery/atmospherics/component/unary/vent_scrubber/update_underlays()
 	if(..())
 		underlays.Cut()
 		var/turf/T = get_turf(src)
@@ -99,12 +99,12 @@
 			else
 				add_underlay(T,, dir)
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/proc/set_frequency(new_frequency)
+obj/machinery/atmospherics/component/unary/vent_scrubber/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, radio_filter_in)
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/proc/broadcast_status()
+obj/machinery/atmospherics/component/unary/vent_scrubber/proc/broadcast_status()
 	if(!radio_connection)
 		return 0
 
@@ -136,7 +136,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/atmos_init()
+obj/machinery/atmospherics/component/unary/vent_scrubber/atmos_init()
 	..()
 	radio_filter_in = frequency==initial(frequency)?(RADIO_FROM_AIRALARM):null
 	radio_filter_out = frequency==initial(frequency)?(RADIO_TO_AIRALARM):null
@@ -145,7 +145,7 @@
 		src.broadcast_status()
 
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/proc/can_scrub()
+obj/machinery/atmospherics/component/unary/vent_scrubber/proc/can_scrub()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return 0
 	if(!use_power)
@@ -155,7 +155,7 @@
 	return 1
 
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/process(delta_time)
+obj/machinery/atmospherics/component/unary/vent_scrubber/process(delta_time)
 	..()
 
 	if (hibernate)
@@ -191,11 +191,11 @@
 
 	return 1
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/hide(var/i) //to make the little pipe section invisible, the icon changes.
+obj/machinery/atmospherics/component/unary/vent_scrubber/hide(var/i) //to make the little pipe section invisible, the icon changes.
 	update_icon()
 	update_underlays()
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/receive_signal(datum/signal/signal)
+obj/machinery/atmospherics/component/unary/vent_scrubber/receive_signal(datum/signal/signal)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(!signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"]!="command"))
@@ -279,13 +279,13 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/power_change()
+obj/machinery/atmospherics/component/unary/vent_scrubber/power_change()
 	var/old_stat = machine_stat
 	..()
 	if(old_stat != machine_stat)
 		update_icon()
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/atmospherics/component/unary/vent_scrubber/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
 	if (!(machine_stat & NOPOWER) && use_power)
@@ -307,7 +307,7 @@
 			"You hear a ratchet.")
 		deconstruct()
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/examine(mob/user)
+obj/machinery/atmospherics/component/unary/vent_scrubber/examine(mob/user)
 	. = ..()
 	. += "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
 	if(welded)
@@ -315,7 +315,7 @@
 
 /// Scrubber Welding
 
-/obj/machinery/atmospherics/component/unary/vent_scrubber/attackby(obj/item/W, mob/user)
+obj/machinery/atmospherics/component/unary/vent_scrubber/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))

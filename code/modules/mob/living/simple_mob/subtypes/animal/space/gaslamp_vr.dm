@@ -10,7 +10,7 @@ kills them.
 TODO: Make them light up and heat the air when exposed to oxygen.
 */
 
-/datum/category_item/catalogue/fauna/gaslamp		//TODO: VIRGO_LORE_WRITING_WIP
+datum/category_item/catalogue/fauna/gaslamp		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Virgo 3b Fauna - Gaslamp"
 	desc = "Gaslamps are a phoron-based life form endemic to the world \
 	of Virgo-3B. They are a sort of fungal organism with physical similarities \
@@ -21,7 +21,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	eventually kills them."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/gaslamp
+mob/living/simple_mob/animal/passive/gaslamp
 	name = "gaslamp"
 	desc = "Some sort of floaty alien with a warm glow. This creature is endemic to Virgo-3B."
 	tt_desc = "Semaeostomeae virginus"
@@ -68,10 +68,10 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 
 	exotic_amount = 5
 
-/datum/say_list/gaslamp
+datum/say_list/gaslamp
 	emote_see = list("looms", "sways gently")
 
-/datum/ai_holder/simple_mob/gaslamp
+datum/ai_holder/simple_mob/gaslamp
 	hostile = FALSE // The majority of simplemobs are hostile, gaslamps are nice.
 	cooperative = FALSE
 	retaliate = TRUE //so the monster can attack back

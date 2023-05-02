@@ -1,4 +1,4 @@
-/obj/structure/bed/chair/e_chair
+obj/structure/bed/chair/e_chair
 	name = "electric chair"
 	desc = "Looks absolutely SHOCKING!"
 	icon_state = "echair0"
@@ -6,11 +6,11 @@
 	var/obj/item/assembly/shock_kit/part = null
 	var/last_time = 1.0
 
-/obj/structure/bed/chair/e_chair/Initialize(mapload)
+obj/structure/bed/chair/e_chair/Initialize(mapload)
 	. = ..()
 	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
 
-/obj/structure/bed/chair/e_chair/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/bed/chair/e_chair/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
 		playsound(src, W.tool_sound, 50, 1)
@@ -22,7 +22,7 @@
 		return
 	return
 
-/obj/structure/bed/chair/e_chair/verb/toggle()
+obj/structure/bed/chair/e_chair/verb/toggle()
 	set name = "Toggle Electric Chair"
 	set category = "Object"
 	set src in oview(1)
@@ -36,12 +36,12 @@
 	to_chat(usr, "<span class='notice'>You switch [on ? "on" : "off"] [src].</span>")
 	return
 
-/obj/structure/bed/chair/e_chair/rotate_clockwise()
+obj/structure/bed/chair/e_chair/rotate_clockwise()
 	. = ..()
 	cut_overlays()
 	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))	//there's probably a better way of handling this, but eh. -Pete
 
-/obj/structure/bed/chair/e_chair/proc/shock()
+obj/structure/bed/chair/e_chair/proc/shock()
 	if(!on)
 		return
 	if(last_time + 50 > world.time)

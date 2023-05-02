@@ -1,15 +1,15 @@
 // Wires for airlocks
 
-/datum/wires/airlock/secure
+datum/wires/airlock/secure
 	randomize = TRUE
 	wire_count = 14
 
-/datum/wires/airlock
+datum/wires/airlock
 	holder_type = /obj/machinery/door/airlock
 	wire_count = 12
 	proper_name = "Airlock"
 
-/datum/wires/airlock/interactable(mob/user)
+datum/wires/airlock/interactable(mob/user)
 	var/obj/machinery/door/airlock/A = holder
 	if(!issilicon(user))
 		if(A.isElectrified())
@@ -19,7 +19,7 @@
 		return TRUE
 	return FALSE
 
-/datum/wires/airlock/New(atom/_holder)
+datum/wires/airlock/New(atom/_holder)
 	wires = list(
 		WIRE_IDSCAN, WIRE_MAIN_POWER1, WIRE_MAIN_POWER2, WIRE_DOOR_BOLTS,
 		WIRE_BACKUP_POWER1, WIRE_BACKUP_POWER2, WIRE_OPEN_DOOR, WIRE_AI_CONTROL,
@@ -27,7 +27,7 @@
 	)
 	return ..()
 
-/datum/wires/airlock/get_status()
+datum/wires/airlock/get_status()
 	. = ..()
 	var/obj/machinery/door/airlock/A = holder
 	var/haspower = A.arePowerSystemsOn() //If there's no power, then no lights will be on.
@@ -41,7 +41,7 @@
 	. += "The 'Check Timing Mechanism' light is [(A.normalspeed == 0 && haspower) ? "on" : "off"]."
 	. += "The IDScan light is [(A.aiDisabledIdScanner == 0 && haspower) ? "on" : "off."]"
 
-/datum/wires/airlock/on_cut(wire, mend)
+datum/wires/airlock/on_cut(wire, mend)
 	var/obj/machinery/door/airlock/A = holder
 	switch(wire)
 		if(WIRE_IDSCAN)
@@ -106,7 +106,7 @@
 			A.update_icon()
 
 
-/datum/wires/airlock/on_pulse(wire)
+datum/wires/airlock/on_pulse(wire)
 	var/obj/machinery/door/airlock/A = holder
 	switch(wire)
 		if(WIRE_IDSCAN)

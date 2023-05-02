@@ -1,13 +1,13 @@
 ///////////////ANTIBODY SCANNER///////////////
 
-/obj/item/antibody_scanner
+obj/item/antibody_scanner
 	name = "antibody scanner"
 	desc = "Scans living beings for antibodies in their blood."
 	icon_state = "health"
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
 
-/obj/item/antibody_scanner/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/antibody_scanner/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -32,12 +32,12 @@
 	else
 		report("Antibodies detected: [antigens2string(C.antibodies)]", user)
 
-/obj/item/antibody_scanner/proc/report(var/text, mob/user as mob)
+obj/item/antibody_scanner/proc/report(var/text, mob/user as mob)
 	to_chat(user, "<font color=#4F49AF>\[icon2html(thing = src, target = user)] \The [src] beeps,</font> \"<font color=#4F49AF>[text]</font>\"")
 
 ///////////////VIRUS DISH///////////////
 
-/obj/item/virusdish
+obj/item/virusdish
 	name = "virus dish"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
@@ -47,16 +47,16 @@
 	var/info = 0
 	var/analysed = 0
 
-/obj/item/virusdish/random
+obj/item/virusdish/random
 	name = "virus sample"
 
-/obj/item/virusdish/random/Initialize(mapload)
+obj/item/virusdish/random/Initialize(mapload)
 	. = ..()
 	virus2 = new /datum/disease2/disease
 	virus2.makerandom()
 	growth = rand(5, 50)
 
-/obj/item/virusdish/attackby(var/obj/item/W as obj,var/mob/living/carbon/user as mob)
+obj/item/virusdish/attackby(var/obj/item/W as obj,var/mob/living/carbon/user as mob)
 	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_containers/syringe))
 		return
 	..()
@@ -68,12 +68,12 @@
 					infect_virus2(target, src.virus2)
 		qdel(src)
 
-/obj/item/virusdish/examine(mob/user)
+obj/item/virusdish/examine(mob/user)
 	. = ..()
 	if(basic_info)
 		. += "[basic_info] : <a href='?src=\ref[src];info=1'>More Information</a>"
 
-/obj/item/virusdish/Topic(href, href_list)
+obj/item/virusdish/Topic(href, href_list)
 	. = ..()
 	if(.) return 1
 
@@ -81,13 +81,13 @@
 		usr << browse(info, "window=info_\ref[src]")
 		return 1
 
-/obj/item/ruinedvirusdish
+obj/item/ruinedvirusdish
 	name = "ruined virus sample"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
 	desc = "The bacteria in the dish are completely dead."
 
-/obj/item/ruinedvirusdish/attackby(var/obj/item/W as obj,var/mob/living/carbon/user as mob)
+obj/item/ruinedvirusdish/attackby(var/obj/item/W as obj,var/mob/living/carbon/user as mob)
 	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_containers/syringe))
 		return ..()
 
@@ -97,7 +97,7 @@
 
 ///////////////GNA DISK///////////////
 
-/obj/item/diseasedisk
+obj/item/diseasedisk
 	name = "blank GNA disk"
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0"
@@ -107,7 +107,7 @@
 	var/stage = 1
 	var/analysed = 1
 
-/obj/item/diseasedisk/premade/Initialize(mapload)
+obj/item/diseasedisk/premade/Initialize(mapload)
 	. = ..()
 	name = "blank GNA disk (stage: [stage])"
 	effect = new /datum/disease2/effectholder

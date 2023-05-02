@@ -1,7 +1,7 @@
 //
 // This generator is for the supercool big shields intended for ships that do nice stuff with overmaps.
 //
-/obj/machinery/power/shield_generator
+obj/machinery/power/shield_generator
 	name = "advanced shield generator"
 	desc = "A heavy-duty shield generator and capacitor, capable of generating energy shields at large distances."
 	icon = 'icons/obj/machines/shielding_vr.dmi'
@@ -41,7 +41,7 @@
 	var/spinup_delay      = 20
 	var/spinup_counter    = 0
 
-/obj/machinery/power/shield_generator/update_icon()
+obj/machinery/power/shield_generator/update_icon()
 	if(running)
 		icon_state = "generator1"
 		set_light(1, 2, "#66FFFF")
@@ -50,7 +50,7 @@
 		set_light(0)
 
 
-/obj/machinery/power/shield_generator/Initialize(mapload)
+obj/machinery/power/shield_generator/Initialize(mapload)
 	. = ..()
 	if(!wires)
 		wires = new(src)
@@ -62,7 +62,7 @@
 		mode_list.Add(SM)
 	toggle_flag(initial_shield_modes)
 
-/obj/machinery/power/shield_generator/Destroy()
+obj/machinery/power/shield_generator/Destroy()
 	shutdown_field()
 	field_segments = null
 	damaged_segments = null
@@ -70,7 +70,7 @@
 	. = ..()
 
 
-/obj/machinery/power/shield_generator/RefreshParts()
+obj/machinery/power/shield_generator/RefreshParts()
 	max_energy = 0
 	full_shield_strength = 0
 	for(var/obj/item/smes_coil/S in component_parts)
@@ -86,7 +86,7 @@
 
 
 // Shuts down the shield, removing all shield segments and unlocking generator settings.
-/obj/machinery/power/shield_generator/proc/shutdown_field()
+obj/machinery/power/shield_generator/proc/shutdown_field()
 	for(var/obj/effect/shield/S in field_segments)
 		qdel(S)
 
@@ -100,7 +100,7 @@
 
 // TODO: Make this use TG Smoothing.
 // Generates the field objects. Deletes existing field, if applicable.
-/obj/machinery/power/shield_generator/proc/regenerate_field()
+obj/machinery/power/shield_generator/proc/regenerate_field()
 	for(var/obj/effect/shield/S in field_segments)
 		qdel(S)
 	var/list/shielded_turfs
@@ -248,7 +248,7 @@
 	//Phew, update our own icon
 	update_icon()
 
-/obj/machinery/power/shield_generator/proc/do_corner_shield(var/obj/effect/shield/S, var/new_dir, var/force_outside)
+obj/machinery/power/shield_generator/proc/do_corner_shield(var/obj/effect/shield/S, var/new_dir, var/force_outside)
 	S.enabled_icon_state = "blank"
 	S.setDir(new_dir)
 	var/inside = force_outside ? FALSE : isspaceturf(get_step(S, new_dir))
@@ -283,7 +283,7 @@
 				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = SOUTH))
 
 // Recalculates and updates the upkeep multiplier
-/obj/machinery/power/shield_generator/proc/update_upkeep_multiplier()
+obj/machinery/power/shield_generator/proc/update_upkeep_multiplier()
 	var/new_upkeep = 1.0
 	for(var/datum/shield_mode/SM in mode_list)
 		if(check_flag(SM.mode_flag))
@@ -292,7 +292,7 @@
 	upkeep_multiplier = new_upkeep * power_coefficient
 
 
-/obj/machinery/power/shield_generator/process()
+obj/machinery/power/shield_generator/process()
 	upkeep_power_usage = 0
 	power_usage = 0
 
@@ -352,7 +352,7 @@
 	else if (field_integrity() > 25)
 		overloaded = 0
 
-/obj/machinery/power/shield_generator/attackby(obj/item/O as obj, mob/user as mob)
+obj/machinery/power/shield_generator/attackby(obj/item/O as obj, mob/user as mob)
 	if(panel_open && (O?.is_multitool() || O?.is_wirecutter()))
 		wires.Interact(user)
 		return TRUE
@@ -373,7 +373,7 @@
 		return
 	return ..()
 
-/obj/machinery/power/shield_generator/proc/energy_failure()
+obj/machinery/power/shield_generator/proc/energy_failure()
 	if(running == SHIELD_DISCHARGING)
 		shutdown_field()
 	else
@@ -382,7 +382,7 @@
 		for(var/obj/effect/shield/S in field_segments)
 			S.fail(1)
 
-/obj/machinery/power/shield_generator/proc/set_idle(var/new_state)
+obj/machinery/power/shield_generator/proc/set_idle(var/new_state)
 	if(new_state)
 		if(running == SHIELD_IDLE)
 			return
@@ -396,13 +396,13 @@
 		spinup_counter = round(spinup_delay / idle_multiplier)
 	update_icon()
 
-/obj/machinery/power/shield_generator/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/machinery/power/shield_generator/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "OvermapShieldGenerator", name) // 500, 800
 		ui.open()
 
-/obj/machinery/power/shield_generator/ui_data(mob/user)
+obj/machinery/power/shield_generator/ui_data(mob/user)
 	var/list/data = list()
 
 	data["running"] = running
@@ -431,7 +431,7 @@
 
 	return data
 
-/obj/machinery/power/shield_generator/attack_hand(mob/user, list/params)
+obj/machinery/power/shield_generator/attack_hand(mob/user, list/params)
 	if((. = ..()))
 		return
 	if(panel_open && Adjacent(user))
@@ -439,14 +439,14 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/power/shield_generator/ui_status(mob/user)
+obj/machinery/power/shield_generator/ui_status(mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
 		return UI_UPDATE
 	if(panel_open)
 		return min(..(), UI_DISABLED)
 	return ..()
 
-/obj/machinery/power/shield_generator/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/power/shield_generator/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -531,14 +531,14 @@
 				idle_multiplier = new_idle
 			return TRUE
 
-/obj/machinery/power/shield_generator/proc/field_integrity()
+obj/machinery/power/shield_generator/proc/field_integrity()
 	if(full_shield_strength)
 		return round(CLAMP01(current_energy / full_shield_strength) * 100)
 	return FALSE
 
 
 // Takes specific amount of damage
-/obj/machinery/power/shield_generator/proc/deal_shield_damage(var/damage, var/shield_damtype)
+obj/machinery/power/shield_generator/proc/deal_shield_damage(var/damage, var/shield_damtype)
 	var/energy_to_use = damage * ENERGY_PER_HP
 	if(check_flag(MODEFLAG_MODULATE))
 		mitigation_em -= MITIGATION_HIT_LOSS
@@ -577,11 +577,11 @@
 
 
 // Checks whether specific flags are enabled
-/obj/machinery/power/shield_generator/proc/check_flag(var/flag)
+obj/machinery/power/shield_generator/proc/check_flag(var/flag)
 	return (shield_modes & flag)
 
 
-/obj/machinery/power/shield_generator/proc/toggle_flag(var/flag)
+obj/machinery/power/shield_generator/proc/toggle_flag(var/flag)
 	shield_modes ^= flag
 	update_upkeep_multiplier()
 	for(var/obj/effect/shield/S in field_segments)
@@ -596,7 +596,7 @@
 		mitigation_heat = 0
 
 
-/obj/machinery/power/shield_generator/proc/get_flag_descriptions()
+obj/machinery/power/shield_generator/proc/get_flag_descriptions()
 	var/list/all_flags = list()
 	for(var/datum/shield_mode/SM in mode_list)
 		if(SM.hacked_only && !hacked)
@@ -614,7 +614,7 @@
 
 // These two procs determine tiles that should be shielded given the field range. They are quite CPU intensive and may trigger BYOND infinite loop checks, therefore they are set
 // as background procs to prevent locking up the server. They are only called when the field is generated, or when hull mode is toggled on/off.
-/obj/machinery/power/shield_generator/proc/fieldtype_square()
+obj/machinery/power/shield_generator/proc/fieldtype_square()
 	set background = 1
 	var/list/out = list()
 	var/list/base_turfs = get_base_turfs()
@@ -639,7 +639,7 @@
 	return out
 
 
-/obj/machinery/power/shield_generator/proc/fieldtype_hull()
+obj/machinery/power/shield_generator/proc/fieldtype_hull()
 	set background = 1
 	. = list()
 	var/list/base_turfs = get_base_turfs()
@@ -662,7 +662,7 @@
 					continue
 
 // Returns a list of turfs from which a field will propagate. If multi-Z mode is enabled, this will return a "column" of turfs above and below the generator.
-/obj/machinery/power/shield_generator/proc/get_base_turfs()
+obj/machinery/power/shield_generator/proc/get_base_turfs()
 	var/list/turfs = list()
 	var/turf/T = get_turf(src)
 
@@ -691,12 +691,12 @@
 
 
 // Starts fully charged
-/obj/machinery/power/shield_generator/charged/Initialize(mapload)
+obj/machinery/power/shield_generator/charged/Initialize(mapload)
 	. = ..()
 	current_energy = max_energy
 
 // Starts with the best SMES coil and capacitor (and fully charged)
-/obj/machinery/power/shield_generator/upgraded/Initialize(mapload)
+obj/machinery/power/shield_generator/upgraded/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/smes_coil/sc in component_parts)
 		component_parts -= sc
@@ -712,7 +712,7 @@
 	current_energy = max_energy
 
 // Only uses 20% as much power (and starts upgraded and charged and hacked)
-/obj/machinery/power/shield_generator/upgraded/admin
+obj/machinery/power/shield_generator/upgraded/admin
 	name = "experimental shield generator"
 	power_coefficient = 0.2
 	hacked = TRUE

@@ -4,7 +4,7 @@
   * Only one element of each type is instanced during game init.
   * Otherwise acts basically like a lightweight component.
   */
-/datum/element
+datum/element
 	/// Option flags for element behaviour
 	var/element_flags = NONE
 	/**
@@ -15,7 +15,7 @@
 	var/id_arg_index = INFINITY
 
 /// Activates the functionality defined by the element on the given target datum
-/datum/element/proc/Attach(datum/target)
+datum/element/proc/Attach(datum/target)
 	SHOULD_CALL_PARENT(1)
 	if(type == /datum/element)
 		return ELEMENT_INCOMPATIBLE
@@ -23,11 +23,11 @@
 		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/Detach, override = TRUE)
 
 /// Deactivates the functionality defines by the element on the given datum
-/datum/element/proc/Detach(datum/source, force)
+datum/element/proc/Detach(datum/source, force)
 	SHOULD_CALL_PARENT(1)
 	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 
-/datum/element/Destroy(force)
+datum/element/Destroy(force)
 	if(!force)
 		return QDEL_HINT_LETMELIVE
 	SSdcs.elements_by_type -= type
@@ -36,7 +36,7 @@
 //DATUM PROCS
 
 /// Finds the singleton for the element type given and attaches it to src
-/datum/proc/_AddElement(list/arguments)
+datum/proc/_AddElement(list/arguments)
 	var/datum/element/ele = SSdcs.GetElement(arguments)
 	arguments[1] = src
 	if(ele.Attach(arglist(arguments)) == ELEMENT_INCOMPATIBLE)
@@ -46,6 +46,6 @@
   * Finds the singleton for the element type given and detaches it from src
   * You only need additional arguments beyond the type if you're using ELEMENT_BESPOKE
   */
-/datum/proc/_RemoveElement(list/arguments)
+datum/proc/_RemoveElement(list/arguments)
 	var/datum/element/ele = SSdcs.GetElement(arguments)
 	ele.Detach(src)

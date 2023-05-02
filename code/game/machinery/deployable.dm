@@ -5,7 +5,7 @@ Barricades
 */
 
 //Barricades!
-/obj/structure/barricade
+obj/structure/barricade
 	name = "barricade"
 	desc = "This space is blocked off by a barricade."
 	icon = 'icons/obj/structures.dmi'
@@ -17,7 +17,7 @@ Barricades
 	var/maxhealth = 100
 	var/datum/material/material
 
-/obj/structure/barricade/Initialize(mapload, material_name)
+obj/structure/barricade/Initialize(mapload, material_name)
 	. = ..()
 	if(!material_name)
 		material_name = "wood"
@@ -31,10 +31,10 @@ Barricades
 	maxhealth = material.integrity
 	health = maxhealth
 
-/obj/structure/barricade/get_material()
+obj/structure/barricade/get_material()
 	return material
 
-/obj/structure/barricade/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/barricade/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))
 	if(istype(W, /obj/item/stack))
 		var/obj/item/stack/D = W
@@ -64,17 +64,17 @@ Barricades
 		CheckHealth()
 		..()
 
-/obj/structure/barricade/proc/CheckHealth()
+obj/structure/barricade/proc/CheckHealth()
 	if(health <= 0)
 		dismantle()
 	return
 
-/obj/structure/barricade/take_damage(damage)
+obj/structure/barricade/take_damage(damage)
 	health -= damage
 	CheckHealth()
 	return
 
-/obj/structure/barricade/attack_generic(mob/user, damage, attack_verb)
+obj/structure/barricade/attack_generic(mob/user, damage, attack_verb)
 	visible_message(SPAN_DANGER("[user] [attack_verb] \the [src]!"))
 
 	if(material == get_material_by_name("resin"))
@@ -88,13 +88,13 @@ Barricades
 	CheckHealth()
 	return
 
-/obj/structure/barricade/proc/dismantle()
+obj/structure/barricade/proc/dismantle()
 	material.place_dismantled_product(get_turf(src))
 	visible_message("<span class='danger'>\The [src] falls apart!</span>")
 	qdel(src)
 	return
 
-/obj/structure/barricade/legacy_ex_act(severity)
+obj/structure/barricade/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			dismantle()
@@ -103,13 +103,13 @@ Barricades
 			CheckHealth()
 
 //Actual Deployable machinery stuff
-/obj/machinery/deployable
+obj/machinery/deployable
 	name = "deployable"
 	desc = "deployable"
 	icon = 'icons/obj/objects.dmi'
 	req_access = list(ACCESS_SECURITY_EQUIPMENT)//I'm changing this until these are properly tested./N
 
-/obj/machinery/deployable/barrier
+obj/machinery/deployable/barrier
 	name = "deployable barrier"
 	desc = "A deployable barrier. Swipe your ID card to lock/unlock it."
 	icon = 'icons/obj/objects.dmi'
@@ -122,15 +122,15 @@ Barricades
 	var/locked = FALSE
 //	req_access = list(ACCESS_ENGINEERING_MAINT)
 
-/obj/machinery/deployable/barrier/Initialize(mapload, newdir)
+obj/machinery/deployable/barrier/Initialize(mapload, newdir)
 	. = ..()
 	update_icon()
 
-/obj/machinery/deployable/barrier/update_icon_state()
+obj/machinery/deployable/barrier/update_icon_state()
 	. = ..()
 	icon_state = "barrier[locked]"
 
-/obj/machinery/deployable/barrier/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/deployable/barrier/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(istype(W, /obj/item/card/id/))
 		if(allowed(user))
@@ -174,12 +174,12 @@ Barricades
 		CheckHealth()
 		..()
 
-/obj/machinery/deployable/barrier/proc/CheckHealth()
+obj/machinery/deployable/barrier/proc/CheckHealth()
 	if(health <= 0)
 		explode()
 	return
 
-/obj/machinery/deployable/barrier/attack_generic(mob/user, damage, attack_verb)
+obj/machinery/deployable/barrier/attack_generic(mob/user, damage, attack_verb)
 	visible_message(SPAN_DANGER("[user] [attack_verb] \the [src]!"))
 	playsound(src, 'sound/weapons/smash.ogg', 50, TRUE)
 	user.do_attack_animation(src)
@@ -187,12 +187,12 @@ Barricades
 	CheckHealth()
 	return
 
-/obj/machinery/deployable/barrier/take_damage(damage)
+obj/machinery/deployable/barrier/take_damage(damage)
 	health -= damage
 	CheckHealth()
 	return
 
-/obj/machinery/deployable/barrier/legacy_ex_act(severity)
+obj/machinery/deployable/barrier/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			explode()
@@ -202,7 +202,7 @@ Barricades
 			CheckHealth()
 			return
 
-/obj/machinery/deployable/barrier/emp_act(severity)
+obj/machinery/deployable/barrier/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(prob(50/severity))
@@ -210,7 +210,7 @@ Barricades
 		anchored = !anchored
 		icon_state = "barrier[locked]"
 
-/obj/machinery/deployable/barrier/proc/explode()
+obj/machinery/deployable/barrier/proc/explode()
 
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
@@ -226,7 +226,7 @@ Barricades
 	if(src)
 		qdel(src)
 
-/obj/machinery/deployable/barrier/emag_act(remaining_charges, mob/user)
+obj/machinery/deployable/barrier/emag_act(remaining_charges, mob/user)
 	if(emagged == 0)
 		emagged = 1
 		req_access.Cut()

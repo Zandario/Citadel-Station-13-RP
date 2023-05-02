@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers/watertank
+obj/structure/reagent_dispensers/watertank
 	name = "watertank"
 	desc = "A watertank."
 	icon = 'icons/obj/objects_vr.dmi'
@@ -9,7 +9,7 @@
 	starting_capacity = 1000
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/watertank/high
+obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
 	desc = "A highly-pressurized water tank made to hold vast amounts of water.."
 	icon_state = "watertank_high"

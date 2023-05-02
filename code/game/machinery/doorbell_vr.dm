@@ -1,5 +1,5 @@
 ////////////////////DOORBELL CHIME///////////////////////////////////////
-/obj/machinery/doorbell_chime
+obj/machinery/doorbell_chime
 	name = "doorbell chime"
 	desc = "Small wall-mounted chime triggered by a doorbell"
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
@@ -11,11 +11,11 @@
 	var/id_tag = null
 	var/chime_sound = 'sound/machines/doorbell.ogg'
 
-/obj/machinery/doorbell_chime/Initialize(mapload)
+obj/machinery/doorbell_chime/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/machinery/doorbell_chime/proc/chime()
+obj/machinery/doorbell_chime/proc/chime()
 	set waitfor = FALSE
 	if(inoperable())
 		return
@@ -28,11 +28,11 @@
 	set_light(0)
 	update_icon()
 
-/obj/machinery/doorbell_chime/power_change()
+obj/machinery/doorbell_chime/power_change()
 	..()
 	update_icon()
 
-/obj/machinery/doorbell_chime/update_icon()
+obj/machinery/doorbell_chime/update_icon()
 	cut_overlays()
 	if(panel_open)
 		add_overlay("dbchime-open")
@@ -44,7 +44,7 @@
 		icon_state = "dbchime-standby"
 
 //TFF 3/6/19 - Port Cit RP fix of infinite frames. ToDo: Make it so that you can completely deconstruct it and reconstruct it.
-/obj/machinery/doorbell_chime/attackby(obj/item/W, mob/user)
+obj/machinery/doorbell_chime/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -63,7 +63,7 @@
 
 ////////////////////DOORBELL CHIME CONSTRUCTION///////////////////////////////////////
 // We want these to be constructable so more chimes can be added in departments.
-/datum/frame/frame_types/doorbell_chime
+datum/frame/frame_types/doorbell_chime
 	name = "Doorbell Chime"
 	frame_class = "alarm"  // It isn't an alarm, but thats the construction flow we want.
 	frame_size = 3
@@ -77,21 +77,21 @@
 // Makes some sense, its how the frame code knows what to actually build. Alternative
 // is to make building it a single-step process which is too quick I say.
 // This links up the frame_type to the acutal machine to build. Never seen by players.
-/obj/item/circuitboard/doorbell_chime
+obj/item/circuitboard/doorbell_chime
 	build_path = /obj/machinery/doorbell_chime
 	board_type = new /datum/frame/frame_types/doorbell_chime
 	req_components = list()
 
 ////////////////////DOORBELL SWITCH///////////////////////////////////////
 
-/obj/machinery/button/doorbell
+obj/machinery/button/doorbell
 	name = "doorbell switch"
 	desc = "A doorbell, press to chime."
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
 	icon_state = "doorbell-standby"
 	use_power = USE_POWER_OFF
 
-/obj/machinery/button/doorbell/Initialize(mapload, dir, building = FALSE)
+obj/machinery/button/doorbell/Initialize(mapload, dir, building = FALSE)
 	. = ..()
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
@@ -101,17 +101,17 @@
 		id = num2text(uid)
 	update_icon()
 
-/obj/machinery/button/doorbell/power_change()
+obj/machinery/button/doorbell/power_change()
 	..()
 	update_icon()
 
-/obj/machinery/button/doorbell/update_icon()
+obj/machinery/button/doorbell/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "doorbell-off"
 	else
 		icon_state = "doorbell-standby"
 
-/obj/machinery/button/doorbell/attack_hand(mob/user, list/params)
+obj/machinery/button/doorbell/attack_hand(mob/user, list/params)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(..())
 		return
@@ -122,7 +122,7 @@
 		if(M.id_tag == id)
 			M.chime()
 
-/obj/machinery/button/doorbell/attackby(obj/item/W, mob/user)
+obj/machinery/button/doorbell/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -146,7 +146,7 @@
 ////////////////////DOORBELL SWITCH CONSTRUCTION///////////////////////////////////////
 // Right now they are very simple to construct, just throw them up on the wall
 
-/obj/item/frame/doorbell
+obj/item/frame/doorbell
 	name = "doorbell switch frame"
 	desc = "Used for building doorbell switches."
 	icon = 'icons/obj/machines/doorbell_vr.dmi'

@@ -1,7 +1,7 @@
 /*
  * Screwdriver
  */
-/obj/item/tool/screwdriver
+obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/tools.dmi'
@@ -24,13 +24,13 @@
 	tool_speed = 1
 	var/random_color = TRUE
 
-/obj/item/tool/screwdriver/suicide_act(mob/user)
+obj/item/tool/screwdriver/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	user.visible_message(pick("<span class='danger'>\The [user] is stabbing the [src.name] into [TU.his] temple! It looks like [TU.hes] trying to commit suicide.</span>", \
 						"<span class='danger'>\The [user] is stabbing the [src.name] into [TU.his] heart! It looks like [TU.hes] trying to commit suicide.</span>"))
 	return(BRUTELOSS)
 
-/obj/item/tool/screwdriver/Initialize(mapload)
+obj/item/tool/screwdriver/Initialize(mapload)
 	. = ..()
 	if(random_color)
 		switch(pick("red","blue","purple","brown","green","cyan","yellow"))
@@ -59,7 +59,7 @@
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
 
-/obj/item/tool/screwdriver/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/tool/screwdriver/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent != INTENT_HARM)
 		return ..()
 	if(user.zone_sel.selecting != O_EYES && user.zone_sel.selecting != BP_HEAD)
@@ -68,21 +68,21 @@
 		target = user
 	return eyestab(target,user)
 
-/obj/item/tool/screwdriver/bone
+obj/item/tool/screwdriver/bone
 	name = "primitive screwdriver"
 	desc = "A whittled bone with a tapered point, used to remove screws, or stab."
 	icon_state = "screwdriver_bone"
 	random_color = FALSE
 	tool_speed = 1.25
 
-/obj/item/tool/screwdriver/brass
+obj/item/tool/screwdriver/brass
 	name = "brass screwdriver"
 	desc = "A screwdriver with a very sharp tip, that ensures fine deliberate adjustments."
 	icon_state = "screwdriver_brass"
 	tool_speed = 0.75
 	random_color = FALSE
 
-/datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver
+datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver
 	name = "Precursor Alpha Object - Hard Light Torgue Tool"
 	desc = "This appears to be a tool, with a solid handle, and a thin hard light \
 	shaft, with a tip at the end. On the handle appears to be two mechanisms that \
@@ -95,7 +95,7 @@
 	fastener, which includes the screws."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/tool/screwdriver/alien
+obj/item/tool/screwdriver/alien
 	name = "alien screwdriver"
 	desc = "An ultrasonic screwdriver."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver)
@@ -106,7 +106,7 @@
 	tool_speed = 0.1
 	random_color = FALSE
 
-/obj/item/tool/screwdriver/hybrid
+obj/item/tool/screwdriver/hybrid
 	name = "strange screwdriver"
 	desc = "A strange conglomerate of a screwdriver."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver)
@@ -122,19 +122,19 @@
 
 
 
-/obj/item/tool/screwdriver/cyborg
+obj/item/tool/screwdriver/cyborg
 	name = "powered screwdriver"
 	desc = "An electrical screwdriver, designed to be both precise and quick."
 	tool_sound = 'sound/items/drill_use.ogg'
 	tool_speed = 0.5
 
-/obj/item/tool/screwdriver/RIGset
+obj/item/tool/screwdriver/RIGset
 	name = "integrated screwdriver"
 	desc = "If you're seeing this, someone did a dum-dum."
 	tool_sound = 'sound/items/drill_use.ogg'
 	tool_speed = 0.7
 
-/obj/item/tool/screwdriver/power
+obj/item/tool/screwdriver/power
 	name = "hand drill"
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
 	icon_state = "drill_screw"
@@ -154,19 +154,19 @@
 	random_color = FALSE
 	var/obj/item/tool/wrench/power/counterpart = null
 
-/obj/item/tool/screwdriver/power/Initialize(mapload, no_counterpart = TRUE)
+obj/item/tool/screwdriver/power/Initialize(mapload, no_counterpart = TRUE)
 	. = ..()
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src
 
-/obj/item/tool/screwdriver/power/Destroy()
+obj/item/tool/screwdriver/power/Destroy()
 	if(counterpart)
 		counterpart.counterpart = null // So it can qdel cleanly.
 		QDEL_NULL(counterpart)
 	return ..()
 
-/obj/item/tool/screwdriver/power/attack_self(mob/user)
+obj/item/tool/screwdriver/power/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -178,7 +178,7 @@
 	to_chat(user, "<span class='notice'>You attach the bolt driver bit to [src].</span>")
 
 
-/obj/item/tool/screwdriver/crystal
+obj/item/tool/screwdriver/crystal
 	name = "crystalline screwdriver"
 	desc = "A crystalline screwdriving tool of an alien make."
 	icon_state = "crystal_screwdriver"
@@ -187,7 +187,7 @@
 	matter = list(MATERIAL_CRYSTAL = 1250)
 	tool_speed = 0.2
 
-/obj/item/tool/screwdriver/crystal/Initialize()
+obj/item/tool/screwdriver/crystal/Initialize()
 	. = ..()
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)

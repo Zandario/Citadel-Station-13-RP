@@ -1,6 +1,6 @@
 // This event gives the station an advance warning about meteors, so that they can prepare in various ways.
 
-/datum/gm_action/meteor_defense
+datum/gm_action/meteor_defense
 	name = "meteor defense"
 	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_CARGO)
 	chaotic = 50
@@ -10,7 +10,7 @@
 
 	var/meteor_types
 
-/datum/gm_action/meteor_defense/get_weight()
+datum/gm_action/meteor_defense/get_weight()
 	var/engineers = metric.count_people_in_department(DEPARTMENT_ENGINEERING)
 	var/cargo = metric.count_people_in_department(DEPARTMENT_CARGO)
 	var/bots = metric.count_people_in_department(DEPARTMENT_SYNTHETIC)
@@ -22,7 +22,7 @@
 
 	return weight
 
-/datum/gm_action/meteor_defense/set_up()
+datum/gm_action/meteor_defense/set_up()
 	severity = pickweight(EVENT_LEVEL_MUNDANE = 10,
 	EVENT_LEVEL_MODERATE = 3
 	)
@@ -46,12 +46,12 @@
 		if(WEST)
 			dir_text = "starboard"
 
-/datum/gm_action/meteor_defense/announce()
+datum/gm_action/meteor_defense/announce()
 	var/announcement = "Alert!  Two asteroids have collided near [station_name()].  Chunks of it are expected to approach from the [dir_text] side.  ETA to arrival is \
 	approximately [round(5 * severity * 2)] minutes."
 	command_announcement.Announce(announcement, "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
 
-/datum/gm_action/meteor_defense/start()
+datum/gm_action/meteor_defense/start()
 	..()
 	spawn(0)
 		sleep(round(5 * severity) MINUTES)

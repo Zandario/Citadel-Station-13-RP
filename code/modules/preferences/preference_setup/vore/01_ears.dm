@@ -1,11 +1,11 @@
 // Global stuff that will put us on the map
-/datum/category_group/player_setup_category/vore
+datum/category_group/player_setup_category/vore
 	name = "Species Customization"
 	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/vore
 
 // Define a place to save appearance in character setup
-/datum/preferences
+datum/preferences
 	var/ear_style_id    // Type of selected ear style
 	var/r_ears = 30  // Ear color.
 	var/g_ears = 30  // Ear color
@@ -51,11 +51,11 @@
 	var/b_gradwing = 30
 
 // Definition of the stuff for Ears
-/datum/category_item/player_setup_item/vore/ears
+datum/category_item/player_setup_item/vore/ears
 	name = "Appearance"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/vore/ears/load_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/ears/load_character(var/savefile/S)
 	S["ear_style_id"]	>> pref.ear_style_id
 	S["r_ears"]			>> pref.r_ears
 	S["g_ears"]			>> pref.g_ears
@@ -100,7 +100,7 @@
 	S["g_gradwing"]		>> pref.g_gradwing
 	S["b_gradwing"]		>> pref.b_gradwing
 
-/datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
+datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
 	S["ear_style_id"]		<< pref.ear_style_id
 	S["r_ears"]			<< pref.r_ears
 	S["g_ears"]			<< pref.g_ears
@@ -145,7 +145,7 @@
 	S["g_gradwing"]		<< pref.g_gradwing
 	S["b_gradwing"]		<< pref.b_gradwing
 
-/datum/category_item/player_setup_item/vore/ears/sanitize_character()
+datum/category_item/player_setup_item/vore/ears/sanitize_character()
 	pref.r_ears		= sanitize_integer(pref.r_ears, 0, 255, initial(pref.r_ears))
 	pref.g_ears		= sanitize_integer(pref.g_ears, 0, 255, initial(pref.g_ears))
 	pref.b_ears		= sanitize_integer(pref.b_ears, 0, 255, initial(pref.b_ears))
@@ -210,7 +210,7 @@
 		if(temp_wing_style_id.apply_restrictions && (!(species_name in temp_wing_style_id.species_allowed)))
 			pref.wing_style_id = initial(pref.wing_style_id)
 
-/datum/category_item/player_setup_item/vore/ears/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/vore/ears/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -268,7 +268,7 @@
 	character.b_gradwing		= pref.b_gradwing
 	return TRUE
 
-/datum/category_item/player_setup_item/vore/ears/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/vore/ears/content(datum/preferences/prefs, mob/user, data)
 	. += "<h2>Appearance and Custom Species Settings</h2>"
 
 	var/datum/sprite_accessory/rendering
@@ -349,7 +349,7 @@
 	rendering = null
 
 
-/datum/category_item/player_setup_item/vore/ears/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/vore/ears/OnTopic(var/href,var/list/href_list, var/mob/user)
 	var/datum/species/S = pref.real_species_datum()
 	var/species_name = S.name
 

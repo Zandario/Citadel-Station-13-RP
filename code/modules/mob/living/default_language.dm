@@ -1,7 +1,7 @@
-/mob/living
+mob/living
 	var/datum/language/default_language
 
-/mob/living/verb/set_default_language(language as anything in languages)
+mob/living/verb/set_default_language(language as anything in languages)
 	set name = "Set Default Language"
 	set category = "IC"
 
@@ -23,10 +23,10 @@
 	default_language = language
 
 // Silicons can't neccessarily speak everything in their languages list
-/mob/living/silicon/set_default_language(language as null|anything in speech_synthesizer_langs)
+mob/living/silicon/set_default_language(language as null|anything in speech_synthesizer_langs)
 	..()
 
-/mob/living/verb/check_default_language()
+mob/living/verb/check_default_language()
 	set name = "Check Default Language"
 	set category = "IC"
 

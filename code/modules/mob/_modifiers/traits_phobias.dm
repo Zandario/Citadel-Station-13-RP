@@ -1,7 +1,7 @@
 // Gives various spooky messages to people afraid of a specific thing.
 // Doesn't have any real mechanical effect, and is more of an aid to remind someone "You're supposed to be afraid of the dark", and such.
 
-/datum/modifier/trait/phobia
+datum/modifier/trait/phobia
 	var/current_fear = 0					// Counter for how 'afraid' the holder is.
 	var/max_fear = 100						// Cap for current_fear.
 	var/fear_decay_rate = 1					// How much is subtracted every Life() tick when not being spooked by something.
@@ -15,7 +15,7 @@
 	var/list/full_fear_up = list()		// Similar to above, but for the cap.
 	var/list/full_fear_down = list()	// Ditto.
 
-/datum/modifier/trait/phobia/tick()
+datum/modifier/trait/phobia/tick()
 	if(holder.stat)
 		return // You got bigger problems.
 	var/new_fear = should_fear()
@@ -24,7 +24,7 @@
 	else
 		adjust_fear(-fear_decay_rate)
 
-/datum/modifier/trait/phobia/proc/adjust_fear(var/amount)
+datum/modifier/trait/phobia/proc/adjust_fear(var/amount)
 	var/last_fear = current_fear
 	current_fear = clamp( current_fear + amount, 0,  max_fear)
 
@@ -49,13 +49,13 @@
 		to_chat(holder, message)
 
 // Override for specific fears, e.g. seeing blood or spiders.
-/datum/modifier/trait/phobia/proc/should_fear()
+datum/modifier/trait/phobia/proc/should_fear()
 	return FALSE
 
 
 // Actual phobia trait implementations below.
 
-/datum/modifier/trait/phobia/haemophobia
+datum/modifier/trait/phobia/haemophobia
 	name = "haemophobia"
 	desc = "Seeing a bunch of blood isn't really pleasant for most people, but for you, it is very distressing."
 	fear_decay_rate = 4
@@ -92,13 +92,13 @@
 		"<span class='danger'>No more blood... Please.</span>"
 		)
 
-/datum/modifier/trait/phobia/haemophobia/check_if_valid()
+datum/modifier/trait/phobia/haemophobia/check_if_valid()
 	if(iscultist(holder)) // Nar-nar can't be having cultists afraid of blood.
 		expire()
 	else
 		..()
 
-/datum/modifier/trait/phobia/haemophobia/should_fear()
+datum/modifier/trait/phobia/haemophobia/should_fear()
 	if(holder.blinded)
 		return 0 // Can't fear what cannot be seen.
 
@@ -151,7 +151,7 @@
 	return fear_amount
 
 
-/datum/modifier/trait/phobia/arachnophobe
+datum/modifier/trait/phobia/arachnophobe
 	name = "arachnophobia"
 	desc = "Spiders are quite creepy to most people, however for you, those chitters of pure evil inspire pure dread and fear."
 	fear_decay_rate = 1
@@ -189,7 +189,7 @@
 		"<span class='danger'>No more spiders... Please.</span>"
 		)
 
-/datum/modifier/trait/phobia/arachnophobe/should_fear()
+datum/modifier/trait/phobia/arachnophobe/should_fear()
 	if(holder.blinded)
 		return 0 // Can't fear what cannot be seen.
 
@@ -216,7 +216,7 @@
 	return fear_amount
 
 
-/datum/modifier/trait/phobia/nyctophobe
+datum/modifier/trait/phobia/nyctophobe
 	name = "nyctophobia"
 	desc = "More commonly known as the fear of darkness.  The shadows can hide many dangers, which makes the prospect of going into the depths of Maintenance rather worrisome."
 	fear_decay_rate = 5
@@ -255,7 +255,7 @@
 		"<span class='danger'>The darkness is finally gone!</span>"
 		)
 
-/datum/modifier/trait/phobia/nyctophobe/should_fear()
+datum/modifier/trait/phobia/nyctophobe/should_fear()
 	if(holder.blinded)
 		return 5 // Unlike most other fears coded here, being blind when afraid of darkness is pretty bad, I imagine.
 
@@ -293,7 +293,7 @@
 
 	return fear_amount
 
-/datum/modifier/trait/phobia/claustrophobe
+datum/modifier/trait/phobia/claustrophobe
 	name = "claustrophobia"
 	desc = "Small spaces and tight quarters makes you feel distressed.  Unfortunately both are rather common when living in space."
 	fear_decay_rate = 2
@@ -332,7 +332,7 @@
 		"<span class='danger'>The walls seem to have stopped.</span>"
 		)
 
-/datum/modifier/trait/phobia/claustrophobe/should_fear()
+datum/modifier/trait/phobia/claustrophobe/should_fear()
 	if(holder.blinded)
 		return 0 // No idea if this is accurate.
 
@@ -360,7 +360,7 @@
 
 	return fear_amount
 
-/datum/modifier/trait/phobia/blennophobe
+datum/modifier/trait/phobia/blennophobe
 	name = "blennophobia"
 	desc = "Slimes are quite dangerous, but just the aspect of something being slimey is uncomfortable."
 	fear_decay_rate = 1
@@ -395,7 +395,7 @@
 		"<span class='danger'>No more of this slime, please....</span>"
 		)
 
-/datum/modifier/trait/phobia/blennophobe/should_fear()
+datum/modifier/trait/phobia/blennophobe/should_fear()
 	if(holder.blinded)
 		return 0 // Can't fear what cannot be seen.
 
@@ -447,7 +447,7 @@
 
 	return fear_amount
 
-/datum/modifier/trait/phobia/trypanophobe
+datum/modifier/trait/phobia/trypanophobe
 	name = "trypanophobia"
 	desc = "Syringes and needles make you very distressed. You really don't want to get sick..."
 	fear_decay_rate = 100
@@ -483,7 +483,7 @@
 		"<span class='danger'>No more needles, please...</span>"
 		)
 
-/datum/modifier/trait/phobia/trypanophobe/should_fear()
+datum/modifier/trait/phobia/trypanophobe/should_fear()
 	if(holder.blinded)
 		return 0 //Cannot feareth what cannot beest seen
 
@@ -541,7 +541,7 @@
 // As such, they are mechanically different than the fear-based phobias, in that instead of a buildup of fearful messages, it does intermittent messages specific to what holder sees.
 
 // This is the catch-all 'everyone but [my species] is up to no good' trait, as opposed to the other specialized variants.
-/datum/modifier/trait/phobia/xenophobia
+datum/modifier/trait/phobia/xenophobia
 	name = "xenophobia"
 	desc = "The mind of the Alien is unknowable, and as such, their intentions cannot be known.  You always watch the xenos closely, as they most certainly are watching you \
 	closely, waiting to strike."
@@ -552,14 +552,14 @@
 	var/last_message = null	// world.time we last did a message.
 	var/message_cooldown = 1 MINUTE
 
-/datum/modifier/trait/phobia/xenophobia/tick()
+datum/modifier/trait/phobia/xenophobia/tick()
 	if(holder.stat)
 		return // You got bigger problems.
 	if(last_message + message_cooldown <= world.time)
 		if(intermittent_message())
 			last_message = world.time
 
-/datum/modifier/trait/phobia/xenophobia/proc/intermittent_message()
+datum/modifier/trait/phobia/xenophobia/proc/intermittent_message()
 	var/list/xenos = get_xenos()
 
 	if(xenos.len)
@@ -569,16 +569,16 @@
 	else
 		return FALSE // No xenos in sight, so don't apply the cooldown.
 
-/datum/modifier/trait/phobia/xenophobia/proc/get_xenos()
+datum/modifier/trait/phobia/xenophobia/proc/get_xenos()
 	return list()
 
 
-/datum/modifier/trait/phobia/xenophobia/proc/make_message(var/mob/living/L)
+datum/modifier/trait/phobia/xenophobia/proc/make_message(var/mob/living/L)
 	return "Someone forgot to override this output message."
 
 
 // This is the catch-all 'everyone but [my species] is up to no good' trait, as opposed to the other specialized variants.
-/datum/modifier/trait/phobia/xenophobia/generic
+datum/modifier/trait/phobia/xenophobia/generic
 	name = "xenophobia"
 	desc = "The mind of the Alien is unknowable, and as such, their intentions cannot be known.  You always watch the xenos closely, as they most certainly are watching you \
 	closely, waiting to strike."
@@ -586,7 +586,7 @@
 	on_created_text = "<span class='warning'>You remain vigilant against the Alien.</span>"
 	on_expired_text = "<span class='notice'>Aliens aren't so bad afterall.</span>"
 
-/datum/modifier/trait/phobia/xenophobia/generic/get_xenos()
+datum/modifier/trait/phobia/xenophobia/generic/get_xenos()
 	var/list/xenos = list()
 	if(!ishuman(holder))
 		return
@@ -596,7 +596,7 @@
 			xenos += H
 	return xenos
 
-/datum/modifier/trait/phobia/xenophobia/generic/make_message(var/mob/living/carbon/human/H)
+datum/modifier/trait/phobia/xenophobia/generic/make_message(var/mob/living/carbon/human/H)
 	// Do special responses first if possible.
 //	if(H.stat == DEAD)
 //		return pick( list("Unsurprising to see a weak and inferior [H.species.name] fail to survive.", "If that [H.species.name] were a [holder.species.name], this wouldn't've have happened.") )
@@ -617,14 +617,14 @@
 // * Human *
 // *********
 
-/datum/modifier/trait/phobia/xenophobia/human
+datum/modifier/trait/phobia/xenophobia/human
 	name = "anti-human sentiment"
 	desc = "Humans are bound to get us all killed with their reckless use of technology..."
 
 	on_created_text = "<span class='warning'>You unfortunately are likely to have to deal with humans today.</span>"
 	on_expired_text = "<span class='notice'>Humans aren't so bad after all.</span>"
 
-/datum/modifier/trait/phobia/xenophobia/human/get_xenos()
+datum/modifier/trait/phobia/xenophobia/human/get_xenos()
 	var/list/humans = list()
 	for(var/mob/living/carbon/human/H in view(5, holder)) // See haemophobia for why this is 5.
 		if(H == holder)
@@ -633,7 +633,7 @@
 			humans += H
 	return humans
 
-/datum/modifier/trait/phobia/xenophobia/human/make_message(var/mob/living/carbon/human/H)
+datum/modifier/trait/phobia/xenophobia/human/make_message(var/mob/living/carbon/human/H)
 	// Do special responses first if possible.
 
 	// Generic responses if none of the above apply.
@@ -646,14 +646,14 @@
 // * Skrell *
 // **********
 
-/datum/modifier/trait/phobia/xenophobia/skrell
+datum/modifier/trait/phobia/xenophobia/skrell
 	name = "anti-skrell sentiment"
 	desc = "The Skrell pretend that they are Humanity's enlightened allies, but you can see past that."
 
 	on_created_text = "<span class='warning'>Hopefully no Skrell show up today.</span>"
 	on_expired_text = "<span class='notice'>Skrell aren't so bad after all.</span>"
 
-/datum/modifier/trait/phobia/xenophobia/skrell/get_xenos()
+datum/modifier/trait/phobia/xenophobia/skrell/get_xenos()
 	var/list/skrell = list()
 	for(var/mob/living/carbon/human/H in view(5, holder)) // See haemophobia for why this is 5.
 		if(H == holder)
@@ -662,7 +662,7 @@
 			skrell += H
 	return skrell
 
-/datum/modifier/trait/phobia/xenophobia/skrell/make_message(var/mob/living/carbon/human/H)
+datum/modifier/trait/phobia/xenophobia/skrell/make_message(var/mob/living/carbon/human/H)
 	// Do special responses first if possible.
 
 	// Generic responses if none of the above apply.

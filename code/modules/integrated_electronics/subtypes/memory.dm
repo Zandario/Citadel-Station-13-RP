@@ -1,4 +1,4 @@
-/obj/item/integrated_circuit/memory
+obj/item/integrated_circuit/memory
 	name = "memory chip"
 	desc = "This tiny chip can store one piece of data."
 	icon_state = "memory1"
@@ -11,14 +11,14 @@
 	power_draw_per_use = 1
 	var/number_of_pins = 1
 
-/obj/item/integrated_circuit/memory/Initialize(mapload)
+obj/item/integrated_circuit/memory/Initialize(mapload)
 	for(var/i = 1 to number_of_pins)
 		inputs["input [i]"] = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
 		outputs["output [i]"] = IC_PINTYPE_ANY
 	complexity = number_of_pins
 	. = ..()
 
-/obj/item/integrated_circuit/memory/examine(mob/user)
+obj/item/integrated_circuit/memory/examine(mob/user)
 	. = ..()
 	var/i
 	for(i = 1, i <= outputs.len, i++)
@@ -32,7 +32,7 @@
 			data = O.data
 		. += "\The [src] has [data] saved to address [i]."
 
-/obj/item/integrated_circuit/memory/do_work()
+obj/item/integrated_circuit/memory/do_work()
 	for(var/i = 1 to inputs.len)
 		var/datum/integrated_io/I = inputs[i]
 		var/datum/integrated_io/O = outputs[i]
@@ -40,21 +40,21 @@
 		push_data()
 	activate_pin(2)
 
-/obj/item/integrated_circuit/memory/tiny
+obj/item/integrated_circuit/memory/tiny
 	name = "small memory circuit"
 	desc = "This circuit can store two pieces of data."
 	icon_state = "memory2"
 	power_draw_per_use = 2
 	number_of_pins = 2
 
-/obj/item/integrated_circuit/memory/medium
+obj/item/integrated_circuit/memory/medium
 	name = "medium memory circuit"
 	desc = "This circuit can store four pieces of data."
 	icon_state = "memory4"
 	power_draw_per_use = 2
 	number_of_pins = 4
 
-/obj/item/integrated_circuit/memory/large
+obj/item/integrated_circuit/memory/large
 	name = "large memory circuit"
 	desc = "This big circuit can hold eight pieces of data."
 	icon_state = "memory8"
@@ -62,7 +62,7 @@
 	power_draw_per_use = 4
 	number_of_pins = 8
 
-/obj/item/integrated_circuit/memory/huge
+obj/item/integrated_circuit/memory/huge
 	name = "large memory stick"
 	desc = "This stick of memory can hold up up to sixteen pieces of data."
 	icon_state = "memory16"
@@ -72,7 +72,7 @@
 	power_draw_per_use = 8
 	number_of_pins = 16
 
-/obj/item/integrated_circuit/memory/constant
+obj/item/integrated_circuit/memory/constant
 	name = "constant chip"
 	desc = "This tiny chip can store one piece of data, which cannot be overwritten without disassembly."
 	complexity = 1
@@ -82,11 +82,11 @@
 	var/accepting_refs = 0
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/memory/constant/do_work()
+obj/item/integrated_circuit/memory/constant/do_work()
 	var/datum/integrated_io/O = outputs[1]
 	O.push_data()
 
-/obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
+obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -117,7 +117,7 @@
 			O.data = null
 			to_chat(user, "<span class='notice'>You set \the [src]'s memory to absolutely nothing.</span>")
 
-/obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
+obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
 	if(accepting_refs && proximity)
 		var/datum/integrated_io/O = outputs[1]
 		O.data = WEAKREF(target)

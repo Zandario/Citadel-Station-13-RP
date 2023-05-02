@@ -1,4 +1,4 @@
-/mob/living/carbon/human/gib()
+mob/living/carbon/human/gib()
 	//Drop the NIF, they're expensive, why not recover them? Also important for prometheans.
 	if(nif)
 		var/obj/item/nif/deadnif = nif //Unimplant removes the reference on the mob
@@ -39,7 +39,7 @@
 	..(species.gibbed_anim) // uses the default mob.dmi file for these, so we only need to specify the first argument
 	gibs(loc, dna, null, species.get_flesh_colour(src), species.get_blood_colour(src))
 
-/mob/living/carbon/human/dust()
+mob/living/carbon/human/dust()
 
 	//mirror should drop on dust
 	if(mirror)
@@ -51,7 +51,7 @@
 	else
 		return ..()
 
-/mob/living/carbon/human/ash()
+mob/living/carbon/human/ash()
 
 	//mirror should drop on ash
 	if(mirror)
@@ -62,7 +62,7 @@
 	else
 		..()
 
-/mob/living/carbon/human/death(gibbed)
+mob/living/carbon/human/death(gibbed)
 	if(stat == DEAD)
 		return
 
@@ -130,7 +130,7 @@
 
 	return ..(gibbed,species.get_death_message(src))
 
-/mob/living/carbon/human/proc/ChangeToHusk()
+mob/living/carbon/human/proc/ChangeToHusk()
 	if(MUTATION_HUSK in mutations)	return
 
 	if(f_style)
@@ -143,12 +143,12 @@
 	update_icons_body()
 	return
 
-/mob/living/carbon/human/proc/Drain()
+mob/living/carbon/human/proc/Drain()
 	ChangeToHusk()
 	mutations |= MUTATION_HUSK
 	return
 
-/mob/living/carbon/human/proc/ChangeToSkeleton()
+mob/living/carbon/human/proc/ChangeToSkeleton()
 	if(MUTATION_SKELETON in src.mutations)	return
 
 	if(f_style)

@@ -1,4 +1,4 @@
-/datum/asset/spritesheet/simple/paper
+datum/asset/spritesheet/simple/paper
 	name = "paper"
 	assets = list(
 		"stamp-clown" = 'icons/stamp_icons/large_stamp-clown.png',

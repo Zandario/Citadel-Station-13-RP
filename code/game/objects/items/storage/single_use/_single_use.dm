@@ -1,9 +1,9 @@
 
-/obj/item/storage/single_use
+obj/item/storage/single_use
 	var/opened = FALSE
 	var/tear_sound = "rip"
 
-/obj/item/storage/single_use/open(mob/user)
+obj/item/storage/single_use/open(mob/user)
 	if(!opened)
 		playsound(src.loc, src.tear_sound, 50, FALSE, -5)
 		user.visible_message(
@@ -21,13 +21,13 @@
 			robot.hud_used.toggle_show_robot_modules()
 	return ..(user, TRUE)
 
-/obj/item/storage/single_use/attack_self(mob/user)
+obj/item/storage/single_use/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	open(user)
 
-/obj/item/storage/single_use/update_icon()
+obj/item/storage/single_use/update_icon()
 	if(opened)
 		icon_state = "[initial(icon_state)][opened]"
 	. = ..()

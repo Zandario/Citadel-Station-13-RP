@@ -1,4 +1,4 @@
-/mob/living/start_pulling(atom/movable/AM, force = pull_force, suppress_message = FALSE)
+mob/living/start_pulling(atom/movable/AM, force = pull_force, suppress_message = FALSE)
 	if(!AM || !src)
 		return FALSE
 	if(!(AM.can_be_pulled(src)))
@@ -126,21 +126,21 @@
 				to_chat(src, "<font color='red'><B>Pulling \the [H] in their current condition would probably be a bad idea.</B></font>")
 		// vorecode end
 
-/mob/verb/stop_pulling_verb()
+mob/verb/stop_pulling_verb()
 	set name = "Stop Pulling"
 	set category = "IC"
 	stop_pulling()
 
-/mob/stop_pulling()
+mob/stop_pulling()
 	. = ..()
 	update_pull_hud_icon()
 
-/mob/proc/update_pull_hud_icon()
+mob/proc/update_pull_hud_icon()
 	pullin?.icon_state = pulling? "pull1" : "pull0"
 
-/mob/on_start_pulled_by(atom/movable/puller)
+mob/on_start_pulled_by(atom/movable/puller)
 	update_mobility()
 
-/mob/on_stop_pulled_by(atom/movable/puller)
+mob/on_stop_pulled_by(atom/movable/puller)
 	. = ..()
 	update_mobility()

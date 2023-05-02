@@ -7,7 +7,7 @@
 GLOBAL_LIST_EMPTY(asset_datums)
 
 /// Get an assetdatum or make a new one.
-/proc/get_asset_datum(type)
+proc/get_asset_datum(type)
 	var/datum/asset/loaded_asset = GLOB.asset_datums[type] || new type()
 	return loaded_asset.ensure_ready()
 
@@ -15,10 +15,10 @@ GLOBAL_LIST_EMPTY(asset_datums)
  * Get an assetdatum or make a new one.
  *! But does NOT ensure it's filled, if you want that use get_asset_datum()
  */
-/proc/load_asset_datum(type)
+proc/load_asset_datum(type)
 	return GLOB.asset_datums[type] || new type()
 
-/datum/asset
+datum/asset
 	var/_abstract = /datum/asset
 	var/cached_serialized_url_mappings
 	var/cached_serialized_url_mappings_transport_type
@@ -37,41 +37,41 @@ GLOBAL_LIST_EMPTY(asset_datums)
  * Stub that allows us to react to something trying to get us.
  * Not useful here, more handy for sprite sheets.
  */
-/datum/asset/proc/ensure_ready()
+datum/asset/proc/ensure_ready()
 	return src
 
 /// Stub to hook into if your asset is having its generation queued by SSasset_loading
-/datum/asset/proc/queued_generation()
+datum/asset/proc/queued_generation()
 	CRASH("[type] inserted into SSasset_loading despite not implementing /proc/queued_generation")
 
 
-/datum/asset/New()
+datum/asset/New()
 	GLOB.asset_datums[type] = src
 	register()
 
-/datum/asset/proc/get_url_mappings()
+datum/asset/proc/get_url_mappings()
 	return list()
 
 /// Returns a cached tgui message of URL mappings
-/datum/asset/proc/get_serialized_url_mappings()
+datum/asset/proc/get_serialized_url_mappings()
 	if (isnull(cached_serialized_url_mappings) || cached_serialized_url_mappings_transport_type != SSassets.transport.type)
 		cached_serialized_url_mappings = TGUI_CREATE_MESSAGE("asset/mappings", get_url_mappings())
 		cached_serialized_url_mappings_transport_type = SSassets.transport.type
 
 	return cached_serialized_url_mappings
 
-/datum/asset/proc/register()
+datum/asset/proc/register()
 	return
 
-/datum/asset/proc/send(client)
+datum/asset/proc/send(client)
 	return
 
 /// Returns whether or not the asset should attempt to read from cache
-/datum/asset/proc/should_refresh()
+datum/asset/proc/should_refresh()
 	return !cross_round_cachable || !CONFIG_GET(flag/cache_assets)
 
 /// If you don't need anything complicated.
-/datum/asset/simple
+datum/asset/simple
 	_abstract = /datum/asset/simple
 	/**
 	 * List of assets for this datum in the form of:
@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	/// TRUE for keeping local asset names when browse_rsc backend is used
 	var/keep_local_name = FALSE
 
-/datum/asset/simple/register()
+datum/asset/simple/register()
 	for(var/asset_name in assets)
 		var/datum/asset_cache_item/ACI = SSassets.transport.register_asset(asset_name, assets[asset_name])
 		if (!ACI)
@@ -99,29 +99,29 @@ GLOBAL_LIST_EMPTY(asset_datums)
 			ACI.keep_local_name = keep_local_name
 		assets[asset_name] = ACI
 
-/datum/asset/simple/send(client)
+datum/asset/simple/send(client)
 	. = SSassets.transport.send_assets(client, assets)
 
-/datum/asset/simple/get_url_mappings()
+datum/asset/simple/get_url_mappings()
 	. = list()
 	for (var/asset_name in assets)
 		.[asset_name] = SSassets.transport.get_asset_url(asset_name, assets[asset_name])
 
 // For registering or sending multiple others at once
-/datum/asset/group
+datum/asset/group
 	_abstract = /datum/asset/group
 	var/list/children
 
-/datum/asset/group/register()
+datum/asset/group/register()
 	for(var/type in children)
 		load_asset_datum(type)
 
-/datum/asset/group/send(client/C)
+datum/asset/group/send(client/C)
 	for(var/type in children)
 		var/datum/asset/A = get_asset_datum(type)
 		. = A.send(C) || .
 
-/datum/asset/group/get_url_mappings()
+datum/asset/group/get_url_mappings()
 	. = list()
 	for(var/type in children)
 		var/datum/asset/A = get_asset_datum(type)
@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 #define SPRSZ_ICON     2
 #define SPRSZ_STRIPPED 3
 
-/datum/asset/spritesheet
+datum/asset/spritesheet
 	_abstract = /datum/asset/spritesheet
 	var/name
 	/**
@@ -160,7 +160,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	 */
 	var/load_immediately = FALSE
 
-/datum/asset/spritesheet/should_refresh()
+datum/asset/spritesheet/should_refresh()
 	if (..())
 		return TRUE
 
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	return should_refresh
 
-/datum/asset/spritesheet/register()
+datum/asset/spritesheet/register()
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	if (!name)
@@ -192,7 +192,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	else
 		SSasset_loading.generate_queue += src
 
-/datum/asset/spritesheet/proc/realize_spritesheets(yield)
+datum/asset/spritesheet/proc/realize_spritesheets(yield)
 	if(fully_generated)
 		return
 	while(length(to_generate))
@@ -220,15 +220,15 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	// If we were ever in there, remove ourselves
 	SSasset_loading.generate_queue -= src
 
-/datum/asset/spritesheet/queued_generation()
+datum/asset/spritesheet/queued_generation()
 	realize_spritesheets(yield = TRUE)
 
-/datum/asset/spritesheet/ensure_ready()
+datum/asset/spritesheet/ensure_ready()
 	if(!fully_generated)
 		realize_spritesheets(yield = FALSE)
 	return ..()
 
-/datum/asset/spritesheet/send(client/client)
+datum/asset/spritesheet/send(client/client)
 	if (!name)
 		return
 
@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		all += "[name]_[size_id].png"
 	. = SSassets.transport.send_assets(client, all)
 
-/datum/asset/spritesheet/get_url_mappings()
+datum/asset/spritesheet/get_url_mappings()
 	if (!name)
 		return
 
@@ -251,7 +251,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	for(var/size_id in sizes)
 		.["[name]_[size_id].png"] = SSassets.transport.get_asset_url("[name]_[size_id].png")
 
-/datum/asset/spritesheet/proc/ensure_stripped(sizes_to_strip = sizes)
+datum/asset/spritesheet/proc/ensure_stripped(sizes_to_strip = sizes)
 	for(var/size_id in sizes_to_strip)
 		var/size = sizes[size_id]
 		if (size[SPRSZ_STRIPPED])
@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		size[SPRSZ_STRIPPED] = icon(fname)
 		fdel(fname)
 
-/datum/asset/spritesheet/proc/generate_css()
+datum/asset/spritesheet/proc/generate_css()
 	var/list/out = list()
 
 	for (var/size_id in sizes)
@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	return out.Join("\n")
 
-/datum/asset/spritesheet/proc/read_from_cache()
+datum/asset/spritesheet/proc/read_from_cache()
 	var/replaced_css = file2text("[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name].css")
 
 	var/regex/find_background_urls = regex(@"background:url\('%(.+?)%'\)", "g")
@@ -309,7 +309,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	return TRUE
 
-/datum/asset/spritesheet/proc/send_from_cache(client/client)
+datum/asset/spritesheet/proc/send_from_cache(client/client)
 	if (isnull(cached_spritesheets_needed))
 		stack_trace("cached_spritesheets_needed was null when sending assets from [type] from cache")
 		cached_spritesheets_needed = list()
@@ -317,13 +317,13 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	return SSassets.transport.send_assets(client, cached_spritesheets_needed + "spritesheet_[name].css")
 
 /// Returns the URL to put in the background:url of the CSS asset
-/datum/asset/spritesheet/proc/get_background_url(asset)
+datum/asset/spritesheet/proc/get_background_url(asset)
 	if (generating_cache)
 		return "%[asset]%"
 	else
 		return SSassets.transport.get_asset_url(asset)
 
-/datum/asset/spritesheet/proc/write_to_cache()
+datum/asset/spritesheet/proc/write_to_cache()
 	for (var/size_id in sizes)
 		fcopy(SSassets.cache["[name]_[size_id].png"].resource, "[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name]_[size_id].png")
 
@@ -333,7 +333,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	rustg_file_write(mock_css, "[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name].css")
 
-/datum/asset/spritesheet/proc/get_cached_url_mappings()
+datum/asset/spritesheet/proc/get_cached_url_mappings()
 	var/list/mappings = list()
 	mappings["spritesheet_[name].css"] = SSassets.transport.get_asset_url("spritesheet_[name].css")
 
@@ -346,11 +346,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
  *! Override this in order to start the creation of the spritehseet.
  *! This is where all your Insert, InsertAll, etc calls should be inside.
  */
-/datum/asset/spritesheet/proc/create_spritesheets()
+datum/asset/spritesheet/proc/create_spritesheets()
 	SHOULD_CALL_PARENT(FALSE)
 	CRASH("create_spritesheets() not implemented for [type]!")
 
-/datum/asset/spritesheet/proc/Insert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
+datum/asset/spritesheet/proc/Insert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
 	if(load_immediately)
 		queuedInsert(sprite_name, I, icon_state, dir, frame, moving)
 	else
@@ -362,7 +362,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
  * APPARENTLY IT MAKES ICONS IMMUTABLE
  * LOOK INTO USING THE MUTABLE APPEARANCE PATTERN HERE
  */
-/datum/asset/spritesheet/proc/queuedInsert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
+datum/asset/spritesheet/proc/queuedInsert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
 	I = icon(I, icon_state=icon_state, dir=dir, frame=frame, moving=moving)
 	if (!I || !length(icon_states(I))) // That direction or state doesn't exist!
 		return
@@ -392,10 +392,10 @@ GLOBAL_LIST_EMPTY(asset_datums)
  * Arguments:
  * * I: icon being turned into an asset
  */
-/datum/asset/spritesheet/proc/ModifyInserted(icon/pre_asset)
+datum/asset/spritesheet/proc/ModifyInserted(icon/pre_asset)
 	return pre_asset
 
-/datum/asset/spritesheet/proc/InsertAll(prefix, icon/I, list/directions)
+datum/asset/spritesheet/proc/InsertAll(prefix, icon/I, list/directions)
 	if (length(prefix))
 		prefix = "[prefix]-"
 
@@ -407,20 +407,20 @@ GLOBAL_LIST_EMPTY(asset_datums)
 			var/prefix2 = (directions.len > 1) ? "[dir2text(direction)]-" : ""
 			Insert("[prefix][prefix2][icon_state_name]", I, icon_state=icon_state_name, dir=direction)
 
-/datum/asset/spritesheet/proc/css_tag()
+datum/asset/spritesheet/proc/css_tag()
 	return {"<link rel="stylesheet" href="[css_filename()]" />"}
 
-/datum/asset/spritesheet/proc/css_filename()
+datum/asset/spritesheet/proc/css_filename()
 	return SSassets.transport.get_asset_url("spritesheet_[name].css")
 
-/datum/asset/spritesheet/proc/icon_tag(sprite_name)
+datum/asset/spritesheet/proc/icon_tag(sprite_name)
 	var/sprite = sprites[sprite_name]
 	if (!sprite)
 		return null
 	var/size_id = sprite[SPR_SIZE]
 	return {"<span class='[name][size_id] [sprite_name]'></span>"}
 
-/datum/asset/spritesheet/proc/icon_class_name(sprite_name)
+datum/asset/spritesheet/proc/icon_class_name(sprite_name)
 	var/sprite = sprites[sprite_name]
 	if (!sprite)
 		return null
@@ -433,7 +433,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
  * Arguments:
  * * sprite_name - The sprite to get the size of
  */
-/datum/asset/spritesheet/proc/icon_size_id(sprite_name)
+datum/asset/spritesheet/proc/icon_size_id(sprite_name)
 	var/sprite = sprites[sprite_name]
 	if (!sprite)
 		return null
@@ -447,34 +447,34 @@ GLOBAL_LIST_EMPTY(asset_datums)
 #undef SPRSZ_STRIPPED
 
 
-/datum/asset/changelog_item
+datum/asset/changelog_item
 	_abstract = /datum/asset/changelog_item
 	var/item_filename
 
-/datum/asset/changelog_item/New(date)
+datum/asset/changelog_item/New(date)
 	item_filename = SANITIZE_FILENAME("[date].yml")
 	SSassets.transport.register_asset(item_filename, file("html/changelogs/archive/" + item_filename))
 
-/datum/asset/changelog_item/send(client)
+datum/asset/changelog_item/send(client)
 	if (!item_filename)
 		return
 	. = SSassets.transport.send_assets(client, item_filename)
 
-/datum/asset/changelog_item/get_url_mappings()
+datum/asset/changelog_item/get_url_mappings()
 	if (!item_filename)
 		return
 	. = list("[item_filename]" = SSassets.transport.get_asset_url(item_filename))
 
-/datum/asset/spritesheet/simple
+datum/asset/spritesheet/simple
 	_abstract = /datum/asset/spritesheet/simple
 	var/list/assets
 
-/datum/asset/spritesheet/simple/create_spritesheets()
+datum/asset/spritesheet/simple/create_spritesheets()
 	for (var/key in assets)
 		Insert(key, assets[key])
 
 //Generates assets based on iconstates of a single icon
-/datum/asset/simple/icon_states
+datum/asset/simple/icon_states
 	_abstract = /datum/asset/simple/icon_states
 	var/icon
 	var/list/directions = list(SOUTH)
@@ -484,7 +484,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/prefix = "default" //asset_name = "[prefix].[icon_state_name].png"
 	var/generic_icon_names = FALSE //generate icon filenames using generate_asset_name() instead the above format
 
-/datum/asset/simple/icon_states/register(_icon = icon)
+datum/asset/simple/icon_states/register(_icon = icon)
 	for(var/icon_state_name in icon_states(_icon))
 		for(var/direction in directions)
 			var/asset = icon(_icon, icon_state_name, direction, frame, movement_states)
@@ -498,11 +498,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 			SSassets.transport.register_asset(asset_name, asset)
 
-/datum/asset/simple/icon_states/multiple_icons
+datum/asset/simple/icon_states/multiple_icons
 	_abstract = /datum/asset/simple/icon_states/multiple_icons
 	var/list/icons
 
-/datum/asset/simple/icon_states/multiple_icons/register()
+datum/asset/simple/icon_states/multiple_icons/register()
 	for(var/i in icons)
 		..(i)
 
@@ -511,13 +511,13 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /// Used to ensure css files can reference files by url() without having to generate the css at runtime, both the css file and the files it depends on must exist in the same namespace asset datum. (Also works for html)
 /// For example `blah.css` with asset `blah.png` will get loaded as `namespaces/a3d..14f/f12..d3c.css` and `namespaces/a3d..14f/blah.png`. allowing the css file to load `blah.png` by a relative url rather then compute the generated url with get_url_mappings().
 /// The namespace folder's name will change if any of the assets change. (excluding parent assets)
-/datum/asset/simple/namespaced
+datum/asset/simple/namespaced
 	_abstract = /datum/asset/simple/namespaced
 	/// parents - list of the parent asset or assets (in name = file assoicated format) for this namespace.
 	/// parent assets must be referenced by their generated url, but if an update changes a parent asset, it won't change the namespace's identity.
 	var/list/parents = list()
 
-/datum/asset/simple/namespaced/register()
+datum/asset/simple/namespaced/register()
 	if (legacy)
 		assets |= parents
 	var/list/hashlist = list()
@@ -552,24 +552,24 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /// Get a html string that will load a html asset.
 /// Needed because byond doesn't allow you to browse() to a url.
-/datum/asset/simple/namespaced/proc/get_htmlloader(filename)
+datum/asset/simple/namespaced/proc/get_htmlloader(filename)
 	return url2htmlloader(SSassets.transport.get_asset_url(filename, assets[filename]))
 
 /// A subtype to generate a JSON file from a list
-/datum/asset/json
+datum/asset/json
 	_abstract = /datum/asset/json
 	/// The filename, will be suffixed with ".json"
 	var/name
 
-/datum/asset/json/send(client)
+datum/asset/json/send(client)
 	return SSassets.transport.send_assets(client, "[name].json")
 
-/datum/asset/json/get_url_mappings()
+datum/asset/json/get_url_mappings()
 	return list(
 		"[name].json" = SSassets.transport.get_asset_url("[name].json"),
 	)
 
-/datum/asset/json/register()
+datum/asset/json/register()
 	var/filename = "data/[name].json"
 	fdel(filename)
 	text2file(json_encode(generate()), filename)
@@ -577,7 +577,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	fdel(filename)
 
 /// Returns the data that will be JSON encoded
-/datum/asset/json/proc/generate()
+datum/asset/json/proc/generate()
 	SHOULD_CALL_PARENT(FALSE)
 	CRASH("generate() not implemented for [type]!")
 

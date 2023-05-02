@@ -1,4 +1,4 @@
-/obj/machinery/gateway
+obj/machinery/gateway
 	name = "gateway"
 	desc = "A mysterious gateway built by unknown hands.  It allows for faster than light travel to far-flung locations and even alternate realities."
 	icon = 'icons/obj/machines/gateway.dmi'
@@ -8,13 +8,13 @@
 	var/active = 0
 
 
-/obj/machinery/gateway/Initialize(mapload)
+obj/machinery/gateway/Initialize(mapload)
 	update_icon()
 	if(dir == SOUTH)
 		density = 0
 	. = ..()
 
-/obj/machinery/gateway/update_icon()
+obj/machinery/gateway/update_icon()
 	if(active)
 		icon_state = "on"
 		return
@@ -23,7 +23,7 @@
 
 
 //this is da important part wot makes things go
-/obj/machinery/gateway/centerstation
+obj/machinery/gateway/centerstation
 	density = 1
 	icon_state = "offcenter"
 	use_power = USE_POWER_IDLE
@@ -34,20 +34,20 @@
 	var/wait = 0				//this just grabs world.time at world start
 	var/obj/machinery/gateway/centeraway/awaygate = null
 
-/obj/machinery/gateway/centerstation/Initialize(mapload)
+obj/machinery/gateway/centerstation/Initialize(mapload)
 	update_icon()
 	wait = world.time + config_legacy.gateway_delay	//+ thirty minutes default
 	awaygate = locate(/obj/machinery/gateway/centeraway)
 	. = ..()
 	density = TRUE
 
-/obj/machinery/gateway/centerstation/update_icon()
+obj/machinery/gateway/centerstation/update_icon()
 	if(active)
 		icon_state = "oncenter"
 		return
 	icon_state = "offcenter"
 
-/obj/machinery/gateway/centerstation/process(delta_time)
+obj/machinery/gateway/centerstation/process(delta_time)
 	if(machine_stat & (NOPOWER))
 		if(active) toggleoff()
 		return
@@ -56,7 +56,7 @@
 		use_power(5000)
 
 
-/obj/machinery/gateway/centerstation/proc/detect()
+obj/machinery/gateway/centerstation/proc/detect()
 	linked = list()	//clear the list
 	var/turf/T = loc
 
@@ -76,7 +76,7 @@
 		ready = 1
 
 
-/obj/machinery/gateway/centerstation/proc/toggleon(mob/user as mob)
+obj/machinery/gateway/centerstation/proc/toggleon(mob/user as mob)
 	if(!ready)			return
 	if(linked.len != 8)	return
 	if(!powered())		return
@@ -97,7 +97,7 @@
 	update_icon()
 
 
-/obj/machinery/gateway/centerstation/proc/toggleoff()
+obj/machinery/gateway/centerstation/proc/toggleoff()
 	for(var/obj/machinery/gateway/G in linked)
 		G.active = 0
 		G.update_icon()
@@ -105,7 +105,7 @@
 	update_icon()
 
 
-/obj/machinery/gateway/centerstation/attack_hand(mob/user, list/params)
+obj/machinery/gateway/centerstation/attack_hand(mob/user, list/params)
 	if(!ready)
 		detect()
 		return
@@ -116,7 +116,7 @@
 
 
 //okay, here's the good teleporting stuff
-/obj/machinery/gateway/centerstation/Bumped(atom/movable/M as mob|obj)
+obj/machinery/gateway/centerstation/Bumped(atom/movable/M as mob|obj)
 	if(!ready)		return
 	if(!active)		return
 	if(!awaygate)	return
@@ -135,7 +135,7 @@
 			M.setDir(SOUTH)
 		return
 
-/obj/machinery/gateway/centerstation/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/gateway/centerstation/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/multitool))
 		if(!awaygate)
 			awaygate = locate(/obj/machinery/gateway/centeraway)
@@ -150,7 +150,7 @@
 /////////////////////////////////////Away////////////////////////
 
 
-/obj/machinery/gateway/centeraway
+obj/machinery/gateway/centeraway
 	density = 1
 	icon_state = "offcenter"
 	use_power = USE_POWER_OFF
@@ -160,20 +160,20 @@
 	var/obj/machinery/gateway/centeraway/stationgate = null
 
 
-/obj/machinery/gateway/centeraway/Initialize(mapload)
+obj/machinery/gateway/centeraway/Initialize(mapload)
 	update_icon()
 	stationgate = locate(/obj/machinery/gateway/centerstation)
 	. = ..()
 	density = 1
 
 
-/obj/machinery/gateway/centeraway/update_icon()
+obj/machinery/gateway/centeraway/update_icon()
 	if(active)
 		icon_state = "oncenter"
 		return
 	icon_state = "offcenter"
 
-/obj/machinery/gateway/centeraway/proc/detect()
+obj/machinery/gateway/centeraway/proc/detect()
 	linked = list()	//clear the list
 	var/turf/T = loc
 
@@ -193,7 +193,7 @@
 		ready = 1
 
 
-/obj/machinery/gateway/centeraway/proc/toggleon(mob/user as mob)
+obj/machinery/gateway/centeraway/proc/toggleon(mob/user as mob)
 	if(!ready)			return
 	if(linked.len != 8)	return
 	if(!stationgate || !calibrated)
@@ -207,7 +207,7 @@
 	update_icon()
 
 
-/obj/machinery/gateway/centeraway/proc/toggleoff()
+obj/machinery/gateway/centeraway/proc/toggleoff()
 	for(var/obj/machinery/gateway/G in linked)
 		G.active = 0
 		G.update_icon()
@@ -215,7 +215,7 @@
 	update_icon()
 
 
-/obj/machinery/gateway/centeraway/attack_hand(mob/user, list/params)
+obj/machinery/gateway/centeraway/attack_hand(mob/user, list/params)
 	if(!ready)
 		detect()
 		return
@@ -225,7 +225,7 @@
 	toggleoff()
 
 
-/obj/machinery/gateway/centeraway/Bumped(atom/movable/M as mob|obj)
+obj/machinery/gateway/centeraway/Bumped(atom/movable/M as mob|obj)
 	if(!ready)	return
 	if(!active)	return
 	if(istype(M, /mob/living/carbon))
@@ -239,7 +239,7 @@
 	playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 
 
-/obj/machinery/gateway/centeraway/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/gateway/centeraway/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/multitool))
 		if(calibrated && stationgate)
 			to_chat(user, "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>")

@@ -1,4 +1,4 @@
-/obj/item/implanter
+obj/item/implanter
 	name = "implanter"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implanter0_1"
@@ -10,7 +10,7 @@
 	var/obj/item/implant/imp = null
 	var/active = 1
 
-/obj/item/implanter/attack_self(mob/user)
+obj/item/implanter/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -18,7 +18,7 @@
 	to_chat(user, "<span class='notice'>You [active ? "" : "de"]activate \the [src].</span>")
 	update()
 
-/obj/item/implanter/verb/remove_implant(var/mob/user)
+obj/item/implanter/verb/remove_implant(var/mob/user)
 	set category = "Object"
 	set name = "Remove Implant"
 	set src in usr
@@ -34,7 +34,7 @@
 
 	return
 
-/obj/item/implanter/proc/update()
+obj/item/implanter/proc/update()
 	if (src.imp)
 		src.icon_state = "implanter1"
 	else
@@ -42,7 +42,7 @@
 	src.icon_state += "_[active]"
 	return
 
-/obj/item/implanter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/implanter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if (!istype(target, /mob/living/carbon))
 		return ..()
 	if(active)
@@ -70,36 +70,36 @@
 	else
 		to_chat(user, "<span class='warning'>You need to activate \the [src.name] first.</span>")
 
-/obj/item/implanter/loyalty
+obj/item/implanter/loyalty
 	name = "implanter-loyalty"
 
-/obj/item/implanter/loyalty/Initialize(mapload)
+obj/item/implanter/loyalty/Initialize(mapload)
 	src.imp = new /obj/item/implant/loyalty( src )
 	return ..()
 
-/obj/item/implanter/explosive
+obj/item/implanter/explosive
 	name = "implanter (E)"
 
-/obj/item/implanter/explosive/Initialize(mapload)
+obj/item/implanter/explosive/Initialize(mapload)
 	src.imp = new /obj/item/implant/explosive( src )
 	return ..()
 
-/obj/item/implanter/adrenalin
+obj/item/implanter/adrenalin
 	name = "implanter-adrenalin"
 
-/obj/item/implanter/adrenalin/Initialize(mapload)
+obj/item/implanter/adrenalin/Initialize(mapload)
 	src.imp = new /obj/item/implant/adrenalin(src)
 	return ..()
 
-/obj/item/implanter/compressed
+obj/item/implanter/compressed
 	name = "implanter (C)"
 	icon_state = "cimplanter1"
 
-/obj/item/implanter/compressed/Initialize(mapload)
+obj/item/implanter/compressed/Initialize(mapload)
 	imp = new /obj/item/implant/compressed( src )
 	return ..()
 
-/obj/item/implanter/compressed/update()
+obj/item/implanter/compressed/update()
 	if (imp)
 		var/obj/item/implant/compressed/c = imp
 		if(!c.scanned)
@@ -110,7 +110,7 @@
 		icon_state = "cimplanter0"
 	return
 
-/obj/item/implanter/compressed/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/implanter/compressed/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/obj/item/implant/compressed/c = imp
 	if (!c)
 		return
@@ -119,7 +119,7 @@
 		return
 	return ..()
 
-/obj/item/implanter/compressed/afterattack(obj/item/I, mob/user as mob, proximity)
+obj/item/implanter/compressed/afterattack(obj/item/I, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(!active)
@@ -138,18 +138,18 @@
 		update()
 
 /// Universal translator implant.
-/obj/item/implanter/uni_translator
+obj/item/implanter/uni_translator
 	name = "implanter-language"
 
-/obj/item/implanter/uni_translator/Initialize(mapload)
+obj/item/implanter/uni_translator/Initialize(mapload)
 	. = ..()
 	imp = new /obj/item/implant/uni_translator( src )
 	update()
 
-/obj/item/implanter/restrainingbolt
+obj/item/implanter/restrainingbolt
 	name = "implanter (bolt)"
 
-/obj/item/implanter/restrainingbolt/New()
+obj/item/implanter/restrainingbolt/New()
 	src.imp = new /obj/item/implant/restrainingbolt( src )
 	..()
 	update()

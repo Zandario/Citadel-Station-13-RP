@@ -1,7 +1,7 @@
 // This is where the fun begins.
 // These are the main datums that emit light.
 
-/datum/light_source
+datum/light_source
 	/// The atom we're emitting light from (for example a mob if we're from a flashlight that's being held).
 	var/atom/top_atom
 	/// The atom that we belong to.
@@ -69,7 +69,7 @@
 #define ADD_SOURCE(TARGET) if (!TARGET.light_source_multi && !TARGET.light_source_solo) { TARGET.light_source_solo = src; } else if (TARGET.light_source_solo) { TARGET.light_source_multi = list(TARGET.light_source_solo, src); TARGET.light_source_solo = null; } else { TARGET.light_source_multi += src }
 #define REMOVE_SOURCE(TARGET) if (TARGET.light_source_solo == src) { TARGET.light_source_solo = null } else if (TARGET.light_source_multi) { TARGET.light_source_multi -= src; if (TARGET.light_source_multi.len == 1) { TARGET.light_source_solo = TARGET.light_source_multi[1]; TARGET.light_source_multi = null; } }
 
-/datum/light_source/New(atom/owner, atom/top)
+datum/light_source/New(atom/owner, atom/top)
 	SSlighting.total_lighting_sources += 1
 	source_atom = owner // Set our new owner.
 
@@ -91,7 +91,7 @@
 	update()
 
 // Kill ourselves.
-/datum/light_source/Destroy(force)
+datum/light_source/Destroy(force)
 	SSlighting.total_lighting_sources -= 1
 
 	remove_lum()
@@ -131,7 +131,7 @@
 #endif
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
-/datum/light_source/proc/update(atom/new_top_atom)
+datum/light_source/proc/update(atom/new_top_atom)
 	// This top atom is different.
 	if (new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom) // Remove ourselves from the light sources of that top atom.
@@ -145,15 +145,15 @@
 	INTELLIGENT_UPDATE(LIGHTING_CHECK_UPDATE)
 
 // Will force an update without checking if it's actually needed.
-/datum/light_source/proc/force_update()
+datum/light_source/proc/force_update()
 	INTELLIGENT_UPDATE(LIGHTING_FORCE_UPDATE)
 
 // Will cause the light source to recalculate turfs that were removed or added to visibility only.
-/datum/light_source/proc/vis_update()
+datum/light_source/proc/vis_update()
 	INTELLIGENT_UPDATE(LIGHTING_VIS_UPDATE)
 
 // Decompile the hexadecimal colour into lumcounts of each perspective.
-/datum/light_source/proc/parse_light_color()
+datum/light_source/proc/parse_light_color()
 	if (light_color)
 		var/list/parts = rgb2num(light_color)
 		ASSERT(parts.len == 3)
@@ -171,7 +171,7 @@
 #define MINMAX(NUM) ((NUM) < 0 ? -round(-(NUM)) : round(NUM))
 #define ARBITRARY_NUMBER 10
 
-/datum/light_source/proc/regenerate_angle(ndir)
+datum/light_source/proc/regenerate_angle(ndir)
 	old_direction = ndir
 
 	var/turf/front = get_step(source_turf, old_direction)
@@ -223,7 +223,7 @@
 #undef POLAR_TO_CART_Y
 #undef MINMAX
 
-/datum/light_source/proc/remove_lum(now = FALSE)
+datum/light_source/proc/remove_lum(now = FALSE)
 	applied = FALSE
 
 	var/thing
@@ -241,7 +241,7 @@
 
 	effect_str = null
 
-/datum/light_source/proc/recalc_corner(datum/lighting_corner/C, now = FALSE)
+datum/light_source/proc/recalc_corner(datum/lighting_corner/C, now = FALSE)
 	LAZYINITLIST(effect_str)
 	if (effect_str[C]) // Already have one.
 		REMOVE_CORNER(C,now)
@@ -258,7 +258,7 @@
 
 	UNSETEMPTY(effect_str)
 
-/datum/light_source/proc/update_corners(now = FALSE)
+datum/light_source/proc/update_corners(now = FALSE)
 	var/update = FALSE
 
 	if (QDELETED(source_atom))

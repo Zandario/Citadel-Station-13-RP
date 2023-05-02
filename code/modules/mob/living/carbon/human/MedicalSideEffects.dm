@@ -1,6 +1,6 @@
 // MEDICAL SIDE EFFECT BASE
 // ========================
-/datum/medical_effect
+datum/medical_effect
 	var/name = "None"
 	var/strength = 0
 	var/start = 0
@@ -8,7 +8,7 @@
 	var/list/cures
 	var/cure_message
 
-/datum/medical_effect/proc/manifest(mob/living/carbon/human/H)
+datum/medical_effect/proc/manifest(mob/living/carbon/human/H)
 	for(var/R in cures)
 		if(H.reagents.has_reagent(R))
 			return 0
@@ -17,10 +17,10 @@
 			return 1
 	return 0
 
-/datum/medical_effect/proc/on_life(mob/living/carbon/human/H, strength)
+datum/medical_effect/proc/on_life(mob/living/carbon/human/H, strength)
 	return
 
-/datum/medical_effect/proc/cure(mob/living/carbon/human/H)
+datum/medical_effect/proc/cure(mob/living/carbon/human/H)
 	for(var/R in cures)
 		if(H.reagents.has_reagent(R))
 			if (cure_message)
@@ -31,9 +31,9 @@
 
 // MOB HELPERS
 // ===========
-/mob/living/carbon/human/var/list/datum/medical_effect/side_effects = list()
-/mob/proc/add_side_effect(name, strength = 0)
-/mob/living/carbon/human/add_side_effect(name, strength = 0)
+mob/living/carbon/human/var/list/datum/medical_effect/side_effects = list()
+mob/proc/add_side_effect(name, strength = 0)
+mob/living/carbon/human/add_side_effect(name, strength = 0)
 	for(var/datum/medical_effect/M in src.side_effects)
 		if(M.name == name)
 			M.strength = max(M.strength, 10)
@@ -51,7 +51,7 @@
 		M.start = life_tick
 		side_effects += M
 
-/mob/living/carbon/human/proc/handle_medical_side_effects()
+mob/living/carbon/human/proc/handle_medical_side_effects()
 	//Going to handle those things only every few ticks.
 	if(life_tick % 15 != 0)
 		return 0
@@ -80,13 +80,13 @@
 
 // HEADACHE
 // ========
-/datum/medical_effect/headache
+datum/medical_effect/headache
 	name = "Headache"
 	triggers = list("cryoxadone" = 10, "bicaridine" = 15, "tricordrazine" = 15)
 	cures = list("alkysine", "tramadol", "paracetamol", "oxycodone")
 	cure_message = "Your head stops throbbing..."
 
-/datum/medical_effect/headache/on_life(mob/living/carbon/human/H, strength)
+datum/medical_effect/headache/on_life(mob/living/carbon/human/H, strength)
 	switch(strength)
 		if(1 to 10)
 			H.custom_pain("You feel a light pain in your head.",0)
@@ -97,13 +97,13 @@
 
 // BAD STOMACH
 // ===========
-/datum/medical_effect/bad_stomach
+datum/medical_effect/bad_stomach
 	name = "Bad Stomach"
 	triggers = list("kelotane" = 30, "dermaline" = 15)
 	cures = list("anti_toxin")
 	cure_message = "Your stomach feels a little better now..."
 
-/datum/medical_effect/bad_stomach/on_life(mob/living/carbon/human/H, strength)
+datum/medical_effect/bad_stomach/on_life(mob/living/carbon/human/H, strength)
 	switch(strength)
 		if(1 to 10)
 			H.custom_pain("You feel a bit light around the stomach.",0)
@@ -114,13 +114,13 @@
 
 // CRAMPS
 // ======
-/datum/medical_effect/cramps
+datum/medical_effect/cramps
 	name = "Cramps"
 	triggers = list("anti_toxin" = 30, "tramadol" = 15)
 	cures = list("inaprovaline")
 	cure_message = "The cramps let up..."
 
-/datum/medical_effect/cramps/on_life(mob/living/carbon/human/H, strength)
+datum/medical_effect/cramps/on_life(mob/living/carbon/human/H, strength)
 	switch(strength)
 		if(1 to 10)
 			H.custom_pain("The muscles in your body hurt a little.",0)
@@ -132,13 +132,13 @@
 
 // ITCH
 // ====
-/datum/medical_effect/itch
+datum/medical_effect/itch
 	name = "Itch"
 	triggers = list("space_drugs" = 10)
 	cures = list("inaprovaline")
 	cure_message = "The itching stops..."
 
-/datum/medical_effect/itch/on_life(mob/living/carbon/human/H, strength)
+datum/medical_effect/itch/on_life(mob/living/carbon/human/H, strength)
 	switch(strength)
 		if(1 to 10)
 			H.custom_pain("You feel a slight itch.",0)

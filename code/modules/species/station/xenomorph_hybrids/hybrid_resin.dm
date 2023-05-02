@@ -1,6 +1,6 @@
 //contains the relavant data for the xenohybrid resin, a more versitile, and legaly distinct material.
 
-/datum/material/hybrid_resin
+datum/material/hybrid_resin
 	id = "xenoresin_hybrid"
 	name = "resin compound"
 	icon_colour = "#321a49"
@@ -17,7 +17,7 @@
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	stack_type = /obj/item/stack/material/hybrid_resin
 
-/obj/item/stack/material/hybrid_resin
+obj/item/stack/material/hybrid_resin
 	name = "resin compound"
 	icon_state = "sheet-resin"
 	default_type = "resin compound"
@@ -26,7 +26,7 @@
 	pass_color = TRUE
 	strict_color_stacking = TRUE
 
-/datum/material/hybrid_resin/generate_recipes()
+datum/material/hybrid_resin/generate_recipes()
 	recipes = list()
 	recipes += new/datum/stack_recipe("[display_name] door", /obj/structure/simple_door/hybrid_resin, 10, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("[display_name] barricade", /obj/effect/alien/hybrid_resin/wall, 5, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE)
@@ -34,7 +34,7 @@
 	recipes += new/datum/stack_recipe("crude [display_name] bandage", /obj/item/stack/medical/crude_pack, 1, time = 2 SECONDS, pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("[display_name] membrane", /obj/effect/alien/hybrid_resin/membrane, 1, time = 2 SECONDS, pass_stack_color = TRUE)
 
-/mob/living/carbon/human/proc/hybrid_resin() //
+mob/living/carbon/human/proc/hybrid_resin() //
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
 	set category = "Abilities"
@@ -67,10 +67,10 @@
 
 	return
 
-/obj/structure/simple_door/hybrid_resin/Initialize(mapload, material_name)
+obj/structure/simple_door/hybrid_resin/Initialize(mapload, material_name)
 	return ..(mapload, "resin compound")
 
-/obj/structure/bed/hybrid_nest
+obj/structure/bed/hybrid_nest
 	name = "alien nest"
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
 	icon = 'icons/mob/alien.dmi'
@@ -80,10 +80,10 @@
 	padding_material = "resin compound"
 	var/health = 100
 
-/obj/structure/bed/hybrid_nest/update_icon()
+obj/structure/bed/hybrid_nest/update_icon()
 	return
 
-/obj/structure/bed/hybrid_nest/user_unbuckle_feedback(mob/M, flags, mob/user, semantic)
+obj/structure/bed/hybrid_nest/user_unbuckle_feedback(mob/M, flags, mob/user, semantic)
 	if(user != M)
 		user.visible_message(\
 			"<span class='notice'>[user.name] pulls [M.name] free from the sticky nest!</span>",\
@@ -96,7 +96,7 @@
 			SPAN_WARNING("You hear squelching...")
 		)
 
-/obj/structure/bed/hybrid_nest/user_buckle_mob(mob/M, flags, mob/user, semantic)
+obj/structure/bed/hybrid_nest/user_buckle_mob(mob/M, flags, mob/user, semantic)
 	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
@@ -109,13 +109,13 @@
 
 	return ..()
 
-/obj/structure/bed/hybrid_nest/user_buckle_feedback(mob/M, flags, mob/user, semantic)
+obj/structure/bed/hybrid_nest/user_buckle_feedback(mob/M, flags, mob/user, semantic)
 	user.visible_message(\
 		"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
 		"<span class='warning'>[user.name] drenches you in a foul-smelling resin, trapping you in the [src]!</span>",\
 		"<span class='notice'>You hear squelching...</span>")
 
-/obj/structure/bed/hybrid_nest/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/bed/hybrid_nest/attackby(obj/item/W as obj, mob/user as mob)
 	var/aforce = W.damage_force
 	health = max(0, health - aforce)
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
@@ -123,7 +123,7 @@
 		M.show_message("<span class='warning'>[user] hits [src] with [W]!</span>", 1)
 	healthcheck()
 
-/obj/structure/bed/hybrid_nest/proc/healthcheck()
+obj/structure/bed/hybrid_nest/proc/healthcheck()
 	if(health <=0)
 		density = 0
 		qdel(src)
@@ -132,7 +132,7 @@
 /*
  * Resin
  */
-/obj/effect/alien/hybrid_resin
+obj/effect/alien/hybrid_resin
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
 	icon_state = "resin"
@@ -144,41 +144,41 @@
 	var/health = 200
 	//var/mob/living/affecting = null
 
-/obj/effect/alien/hybrid_resin/wall
+obj/effect/alien/hybrid_resin/wall
 	name = "resin wall"
 	desc = "Purple slime solidified into a wall."
 	icon_state = "resinwall" //same as resin, but consistency ho!
 
-/obj/effect/alien/hybrid_resin/membrane
+obj/effect/alien/hybrid_resin/membrane
 	name = "resin membrane"
 	desc = "Purple slime just thin enough to let light pass through."
 	icon_state = "resinmembrane"
 	opacity = 0
 	health = 120
 
-/obj/effect/alien/hybrid_resin/Initialize(mapload)
+obj/effect/alien/hybrid_resin/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
-/obj/effect/alien/hybrid_resin/Destroy()
+obj/effect/alien/hybrid_resin/Destroy()
 	var/turf/T = get_turf(src)
 	T.thermal_conductivity = initial(T.thermal_conductivity)
 	..()
 
-/obj/effect/alien/hybrid_resin/proc/healthcheck()
+obj/effect/alien/hybrid_resin/proc/healthcheck()
 	if(health <=0)
 		density = 0
 		qdel(src)
 	return
 
-/obj/effect/alien/hybrid_resin/bullet_act(var/obj/projectile/Proj)
+obj/effect/alien/hybrid_resin/bullet_act(var/obj/projectile/Proj)
 	health -= Proj.damage
 	..()
 	healthcheck()
 	return
 
-/obj/effect/alien/hybrid_resin/attack_generic(var/mob/user, var/damage, var/attack_verb)
+obj/effect/alien/hybrid_resin/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 	user.do_attack_animation(src)
@@ -186,12 +186,12 @@
 	healthcheck()
 	return
 
-/obj/effect/alien/hybrid_resin/take_damage(var/damage)
+obj/effect/alien/hybrid_resin/take_damage(var/damage)
 	health -= damage
 	healthcheck()
 	return
 
-/obj/effect/alien/hybrid_resin/legacy_ex_act(severity)
+obj/effect/alien/hybrid_resin/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			health-=50
@@ -205,7 +205,7 @@
 	healthcheck()
 	return
 
-/obj/effect/alien/hybrid_resin/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+obj/effect/alien/hybrid_resin/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	for(var/mob/O in viewers(src, null))
 		O.show_message("<span class='danger'>[src] was hit by [AM].</span>", 1)
@@ -218,7 +218,7 @@
 	health = max(0, health - tforce)
 	healthcheck()
 
-/obj/effect/alien/hybrid_resin/attack_hand(mob/user, list/params)
+obj/effect/alien/hybrid_resin/attack_hand(mob/user, list/params)
 	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if (MUTATION_HULK in usr.mutations)
 		to_chat(usr, "<span class='notice'>You easily destroy the [name].</span>")
@@ -244,7 +244,7 @@
 	healthcheck()
 	return
 
-/obj/effect/alien/hybrid_resin/attackby(obj/item/W as obj, mob/user as mob)
+obj/effect/alien/hybrid_resin/attackby(obj/item/W as obj, mob/user as mob)
 
 	user.setClickCooldown(user.get_attack_speed(W))
 	var/aforce = W.damage_force
@@ -254,7 +254,7 @@
 	..()
 	return
 
-/obj/effect/alien/hybrid_resin/CanAllowThrough(atom/movable/mover, turf/target)
+obj/effect/alien/hybrid_resin/CanAllowThrough(atom/movable/mover, turf/target)
 	if(check_standard_flag_pass(mover))
 		return TRUE
 	return ..()
@@ -264,7 +264,7 @@
 #define WEED_EAST_EDGING "east"
 #define WEED_WEST_EDGING "west"
 
-/obj/effect/alien/weeds/hybrid
+obj/effect/alien/weeds/hybrid
 	name = "hybrid weeds"
 	desc = "A rubbery organic covering, you might know it from a Xenomorph Hybrid friend already."
 	icon_state = "weeds"

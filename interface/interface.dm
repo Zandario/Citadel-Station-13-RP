@@ -1,5 +1,5 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
-/client/verb/wiki(query as text)
+client/verb/wiki(query as text)
 	set name = "wiki"
 	set desc = "Type what you want to know about.  This will open the wiki on your web browser."
 	set category = "OOC"
@@ -16,7 +16,7 @@
 		to_chat(src, SPAN_WARNING("The wiki URL is not set in the server configuration."))
 		return
 
-/client/verb/forum()
+client/verb/forum()
 	set name = "forum"
 	set desc = "Visit the forum."
 	set hidden = 1
@@ -28,7 +28,7 @@
 		to_chat(src, SPAN_WARNING("The forum URL is not set in the server configuration."))
 		return
 
-/client/verb/rules()
+client/verb/rules()
 	set name = "Rules"
 	set desc = "Show Server Rules."
 	set hidden = 1
@@ -41,7 +41,7 @@
 		to_chat(src, SPAN_DANGER("The rules URL is not set in the server configuration."))
 	return
 
-/client/verb/map()
+client/verb/map()
 	set name = "Map"
 	set desc = "See the map."
 	set hidden = 1
@@ -54,7 +54,7 @@
 		to_chat(src, SPAN_DANGER("The map URL is not set in the server configuration."))
 	return
 
-/client/verb/github()
+client/verb/github()
 	set name = "GitHub"
 	set desc = "Visit the GitHub"
 	set hidden = 1
@@ -67,7 +67,7 @@
 		to_chat(src, SPAN_DANGER("The GitHub URL is not set in the server configuration."))
 	return
 
-/client/verb/reportissue()
+client/verb/reportissue()
 	set name = "report-issue"
 	set desc = "Report an issue"
 	set hidden = 1
@@ -89,7 +89,7 @@
 		to_chat(src, "<span class='danger'>The Github URL is not set in the server configuration.</span>")
 	return
 
-/client/verb/changelog()
+client/verb/changelog()
 	set name = "Changelog"
 	set category = "OOC"
 	if(!GLOB.changelog_tgui)
@@ -101,7 +101,7 @@
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
 
-/client/verb/hotkeys_help()
+client/verb/hotkeys_help()
 	set name = "hotkeys-help"
 	set category = "OOC"
 
@@ -223,12 +223,11 @@ Any-Mode: (hotkey doesn't need to be on)
 	if(holder)
 		to_chat(src, admin)
 
-/client/verb/skin_toggle_hotkeys()
+client/verb/skin_toggle_hotkeys()
 	set name = "Toggle Hotkeys"
 	set category = "Preferences"
 	set desc = "Toggle input control scheme"
 	set hidden = TRUE
-	
+
 	prefs.hotkeys = !prefs.hotkeys
 	set_macros()
-	

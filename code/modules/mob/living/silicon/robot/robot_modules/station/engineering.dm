@@ -1,4 +1,4 @@
-/obj/item/robot_module/robot/engineering
+obj/item/robot_module/robot/engineering
 	name = "engineering robot module"
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
@@ -31,13 +31,13 @@
 		"W02M" = "worm-engineering"
 	)
 
-/obj/item/robot_module/robot/engineering/construction
+obj/item/robot_module/robot/engineering/construction
 	name = "construction robot module"
 	no_slip = 1
 
 /* Merged back into engineering (Hell, it's about time.)
 
-/obj/item/robot_module/robot/engineering/construction/Initialize(mapload)
+obj/item/robot_module/robot/engineering/construction/Initialize(mapload)
 	. = ..()
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/rcd/borg(src)
@@ -78,7 +78,7 @@
 	src.modules += RG
 */
 
-/obj/item/robot_module/robot/engineering/general/get_modules()
+obj/item/robot_module/robot/engineering/general/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/borg/sight/meson,
@@ -103,7 +103,7 @@
 		/obj/item/pipe_dispenser
 	)
 
-/obj/item/robot_module/robot/engineering/general/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/engineering/general/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	MATTER_SYNTH(MATSYN_METAL, metal, 40000)
 	MATTER_SYNTH(MATSYN_GLASS, glass, 40000)
@@ -112,7 +112,7 @@
 	MATTER_SYNTH(MATSYN_PLASTIC, plastic, 40000)
 	MATTER_SYNTH(MATSYN_WIRE, wire)
 
-/obj/item/robot_module/robot/engineering/general/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/engineering/general/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	src.emag = new /obj/item/melee/baton/robot/arm(src)
@@ -133,7 +133,7 @@
 	CYBORG_STACK(material/cyborg/wood , MATSYN_WOOD)
 	CYBORG_STACK(material/cyborg/plastic, MATSYN_PLASTIC)
 
-/obj/item/robot_module/robot/quad/engi
+obj/item/robot_module/robot/quad/engi
 	name = "EngiQuad module"
 	sprites = list(
 		"Pupdozer" = "pupdozer",
@@ -151,7 +151,7 @@
 	can_be_pushed = 0
 	can_shred = TRUE
 
-/obj/item/robot_module/robot/quad/engi/get_modules()
+obj/item/robot_module/robot/quad/engi/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/borg/sight/meson,
@@ -176,7 +176,7 @@
 		/obj/item/gripper/circuit
 	)
 
-/obj/item/robot_module/robot/quad/engi/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/engi/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	//Painfully slow charger regen but high capacity. Also starts with low amount.
 	MATTER_SYNTH_WITH_NAME(MATSYN_METAL   , metal   , "Steel reserves"   , 40000)
@@ -186,7 +186,7 @@
 	MATTER_SYNTH_WITH_NAME(MATSYN_PLASTEEL, plasteel, "Plasteel reserves", 20000)
 	MATTER_SYNTH(MATSYN_WIRE, wire)
 
-/obj/item/robot_module/robot/quad/engi/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/engi/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	src.emag = new /obj/item/dogborg/pounce(src)

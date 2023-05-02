@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/bee
+datum/category_item/catalogue/fauna/bee
 	name = "Space Bumble Bee"
 	desc = "Unlike other attempts at modifying species for easier space transportation, \
 	bumble bee modification went off without a hitch. Space Bees are not capable of flight \
@@ -6,7 +6,7 @@
 	improved."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/bee
+mob/living/simple_mob/vore/bee
 	name = "space bumble bee"
 	desc = "Buzz buzz."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/bee)
@@ -50,15 +50,15 @@
 	var/poison_chance = 10			// Chance for injection to occur.
 	var/poison_per_bite = 1			// Amount added per injection.
 
-/mob/living/simple_mob/vore/bee/Process_Spacemove(var/check_drift = 0)
+mob/living/simple_mob/vore/bee/Process_Spacemove(var/check_drift = 0)
 	return 1	//No drifting in space for space bee!
 
 // Activate Noms!
-/mob/living/simple_mob/vore/bee
+mob/living/simple_mob/vore/bee
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/vore/bee/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/vore/bee/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -67,10 +67,10 @@
 				inject_poison(L, target_zone)
 
 // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/vore/bee/proc/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/vore/bee/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		L.custom_pain(SPAN_WARNING("You feel a tiny prick."), 1, TRUE)
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/datum/say_list/bee
+datum/say_list/bee
 	speak = list("Buzzzz")

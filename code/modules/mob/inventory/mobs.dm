@@ -1,6 +1,6 @@
 //? init
 
-/mob/proc/init_inventory()
+mob/proc/init_inventory()
 	return
 
 //? equip
@@ -16,7 +16,7 @@
  *
  * @return TRUE/FALSE
  */
-/mob/proc/equip_to_slot_if_possible(obj/item/I, slot, flags, mob/user)
+mob/proc/equip_to_slot_if_possible(obj/item/I, slot, flags, mob/user)
 	return _equip_item(I, flags, slot, user)
 
 /**
@@ -31,7 +31,7 @@
  *
  * @return TRUE/FALSE
  */
-/mob/proc/equip_to_slot_or_del(obj/item/I, slot, flags, mob/user)
+mob/proc/equip_to_slot_or_del(obj/item/I, slot, flags, mob/user)
 	. = equip_to_slot_if_possible(I, slot, flags, user)
 	if(!.)
 		qdel(I)
@@ -46,7 +46,7 @@
  *
  * @return TRUE/FALSE
  */
-/mob/proc/equip_to_appropriate_slot(obj/item/I, flags, mob/user)
+mob/proc/equip_to_appropriate_slot(obj/item/I, flags, mob/user)
 	for(var/slot in GLOB.slot_equipment_priority)
 		if(equip_to_slot_if_possible(I, slot, flags | INV_OP_SUPPRESS_WARNING, user))
 			return TRUE
@@ -67,7 +67,7 @@
  * @return TRUE/FALSE
  */
 
-/mob/proc/equip_to_appropriate_slot_or_del(obj/item/I, flags, mob/user)
+mob/proc/equip_to_appropriate_slot_or_del(obj/item/I, flags, mob/user)
 	if(!equip_to_appropriate_slot(I, flags, user))
 		qdel(I)
 
@@ -86,7 +86,7 @@
  *
  * @return TRUE/FALSE
  */
-/mob/proc/force_equip_to_slot(obj/item/I, slot, flags, mob/user)
+mob/proc/force_equip_to_slot(obj/item/I, slot, flags, mob/user)
 	return _equip_item(I, flags | INV_OP_FATAL, slot, user)
 
 /**
@@ -103,7 +103,7 @@
  *
  * @return TRUE/FALSE
  */
-/mob/proc/force_equip_to_slot_or_del(obj/item/I, slot, flags, mob/user)
+mob/proc/force_equip_to_slot_or_del(obj/item/I, slot, flags, mob/user)
 	if(!force_equip_to_slot(I, slot, flags, user))
 		qdel(I)
 		return FALSE
@@ -129,7 +129,7 @@
  * if the item is null, this returns true
  * if an item is not in us, this returns true
  */
-/mob/proc/drop_item_to_ground(obj/item/I, flags, mob/user = src)
+mob/proc/drop_item_to_ground(obj/item/I, flags, mob/user = src)
 	// destroyed IS allowed to call these procs
 	if(I && QDELETED(I) && !QDESTROYING(I))
 		to_chat(user, SPAN_DANGER("A deleted item [I] was used in drop_item_to_ground(). Report the entire line to coders. Debugging information: [I] ([REF(I)]) flags [flags] user [user]"))
@@ -147,7 +147,7 @@
  * if the item is null, this returns true
  * if an item is not in us, this crashes
  */
-/mob/proc/transfer_item_to_loc(obj/item/I, newloc, flags, mob/user)
+mob/proc/transfer_item_to_loc(obj/item/I, newloc, flags, mob/user)
 	if(!I)
 		return TRUE
 	ASSERT(newloc)
@@ -163,7 +163,7 @@
  * if the item is null, this returns true
  * if an item is not in us, this crashes
  */
-/mob/proc/transfer_item_to_nullspace(obj/item/I, flags, mob/user)
+mob/proc/transfer_item_to_nullspace(obj/item/I, flags, mob/user)
 	if(!I)
 		return TRUE
 	if(!is_in_inventory(I))
@@ -179,7 +179,7 @@
  * if the item is null, ths returns true
  * if an item is not in us, this returns true
  */
-/mob/proc/temporarily_remove_from_inventory(obj/item/I, flags, mob/user)
+mob/proc/temporarily_remove_from_inventory(obj/item/I, flags, mob/user)
 	if(!is_in_inventory(I))
 		return TRUE
 	return _unequip_item(I, flags | INV_OP_DIRECTLY_DROPPING, FALSE, user)

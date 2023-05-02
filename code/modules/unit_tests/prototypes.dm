@@ -1,4 +1,4 @@
-/datum/unit_test/prototypes/Run()
+datum/unit_test/prototypes/Run()
 	var/list/id_cache = list()
 	var/list/type_cache = list()
 	for(var/datum/prototype/instance as anything in subtypesof(/datum/prototype))
@@ -17,4 +17,3 @@
 			Fail("[instance.type]: collides on uid [instance.uid] with [id_cache[instance.uid]:type].")
 		else
 			id_cache[instance.uid] = instance
-

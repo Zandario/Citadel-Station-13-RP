@@ -10,7 +10,7 @@
 
 /* ///On request of Maintainer I am commenting this out for now. Maybe in the future we can find a new purpose for Talon -Bloop 2-17-2022
 
-/datum/department/talon
+datum/department/talon
 	name = DEPARTMENT_TALON
 	short_name = "Talon"
 	color = "#888888"
@@ -18,7 +18,7 @@
 	assignable = FALSE
 	visible = FALSE
 
-/datum/role/job/talon_captain
+datum/role/job/talon_captain
 	title = "Talon Captain"
 	flag = TALCAP
 	department_flag = TALON
@@ -39,10 +39,10 @@
 	minimal_access = list(ACCESS_FACTION_TALON)
 	alt_titles = list("Talon Commander" = /datum/prototype/alt_title/talon_commander)
 
-/datum/prototype/alt_title/talon_commander
+datum/prototype/alt_title/talon_commander
 	title = "Talon Commander"
 
-/datum/role/job/talon_doctor
+datum/role/job/talon_doctor
 	title = "Talon Doctor"
 	flag = TALDOC
 	department_flag = TALON
@@ -68,11 +68,11 @@
 	alt_titles = list("Talon Medic" = /datum/prototype/alt_title/talon_medic)
 >>>>>>> citrp/master
 
-/datum/prototype/alt_title/talon_medic
+datum/prototype/alt_title/talon_medic
 	title = "Talon Medic"
 
 
-/datum/role/job/talon_engineer
+datum/role/job/talon_engineer
 	title = "Talon Engineer"
 	flag = TALENG
 	department_flag = TALON
@@ -98,11 +98,11 @@
 	alt_titles = list("Talon Technician" = /datum/prototype/alt_title/talon_tech)
 >>>>>>> citrp/master
 
-/datum/prototype/alt_title/talon_tech
+datum/prototype/alt_title/talon_tech
 	title = "Talon Technician"
 
 
-/datum/role/job/talon_pilot
+datum/role/job/talon_pilot
 	title = "Talon Pilot"
 	flag = TALPIL
 	department_flag = TALON
@@ -128,11 +128,11 @@
 	alt_titles = list("Talon Helmsman" = /datum/prototype/alt_title/talon_helmsman)
 >>>>>>> citrp/master
 
-/datum/prototype/alt_title/talon_helmsman
+datum/prototype/alt_title/talon_helmsman
 	title = "Talon Helmsman"
 
 
-/datum/role/job/talon_guard
+datum/role/job/talon_guard
 	title = "Talon Guard"
 	flag = TALSEC
 	department_flag = TALON
@@ -158,11 +158,11 @@
 	alt_titles = list("Talon Security" = /datum/prototype/alt_title/talon_security)
 >>>>>>> citrp/master
 
-/datum/prototype/alt_title/talon_security
+datum/prototype/alt_title/talon_security
 	title = "Talon Security"
 
 
-/datum/outfit/job/talon_captain
+datum/outfit/job/talon_captain
 	name = OUTFIT_JOB_NAME("Talon Captain")
 
 	id_type = /obj/item/card/id/gold
@@ -177,7 +177,7 @@
 	satchel_one = /obj/item/storage/backpack/satchel/cap/talon
 	messenger_bag = /obj/item/storage/backpack/messenger/com/talon
 
-/datum/outfit/job/talon_pilot
+datum/outfit/job/talon_pilot
 	name = OUTFIT_JOB_NAME("Talon Pilot")
 
 	id_slot = SLOT_ID_WORN_ID
@@ -191,7 +191,7 @@
 	gloves = /obj/item/clothing/gloves/fingerless
 	glasses = /obj/item/clothing/glasses/fakesunglasses/aviator
 	uniform_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1 = 1)
-/datum/outfit/job/talon_doctor
+datum/outfit/job/talon_doctor
 	name = OUTFIT_JOB_NAME("Talon Doctor")
 	abstract_type = /datum/outfit/job
 
@@ -209,7 +209,7 @@
 	l_hand = /obj/item/storage/firstaid/regular
 	r_pocket = /obj/item/flashlight/pen
 
-/datum/outfit/job/talon_security
+datum/outfit/job/talon_security
 	name = OUTFIT_JOB_NAME("Talon Security")
 	abstract_type = /datum/outfit/job
 
@@ -227,7 +227,7 @@
 	uniform = /obj/item/clothing/under/rank/security
 	l_pocket = /obj/item/flash
 
-/datum/outfit/job/talon_engineer
+datum/outfit/job/talon_engineer
 	name = OUTFIT_JOB_NAME("Talon Engineer")
 	abstract_type = /datum/outfit/job
 

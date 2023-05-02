@@ -1,4 +1,4 @@
-/obj/structure/panic_button
+obj/structure/panic_button
 	name = "distress beacon trigger"
 	desc = "WARNING: Will deploy ship's distress beacon and request help. Misuse may result in fines and jail time."
 	description_info = "Using this device (smashing the glass on harm intent, and then pressing the button) will send a message to people on other z-levels requesting their aid. It may take them a while to come get you, as they'll need to prepare. You should only use this if you really need it."
@@ -10,12 +10,12 @@
 	var/launched = FALSE
 
 // In case we're annihilated by a meteor
-/obj/structure/panic_button/Destroy()
+obj/structure/panic_button/Destroy()
 	if(!launched)
 		launch()
 	return ..()
 
-/obj/structure/panic_button/update_icon()
+obj/structure/panic_button/update_icon()
 	if(launched)
 		icon_state = "[initial(icon_state)]_launched"
 	else if(!glass)
@@ -23,7 +23,7 @@
 	else
 		icon_state = "[initial(icon_state)]"
 
-/obj/structure/panic_button/attack_hand(mob/user, list/params)
+obj/structure/panic_button/attack_hand(mob/user, list/params)
 	if(!istype(user))
 		return ..()
 
@@ -50,7 +50,7 @@
 		playsound(src, get_sfx("button"))
 		update_icon()
 
-/obj/structure/panic_button/proc/launch(mob/living/user)
+obj/structure/panic_button/proc/launch(mob/living/user)
 	if(launched)
 		return
 	launched = TRUE

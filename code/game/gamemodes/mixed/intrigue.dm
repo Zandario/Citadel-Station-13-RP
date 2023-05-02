@@ -1,4 +1,4 @@
-/datum/game_mode/intrigue
+datum/game_mode/intrigue
 	name = "Traitors & Ninja"
 	round_description = "Crewmembers are contacted by external elements while another infiltrates the colony."
 	extended_round_description = "Traitors and a ninja spawn during this round."

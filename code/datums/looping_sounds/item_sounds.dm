@@ -2,7 +2,7 @@
 #define RAD_GEIGER_MEDIUM 500
 #define RAD_GEIGER_HIGH 1000
 
-/datum/looping_sound/geiger
+datum/looping_sound/geiger
 	mid_sounds = list(
 		list('sound/items/geiger/low1.ogg'=1, 'sound/items/geiger/low2.ogg'=1, 'sound/items/geiger/low3.ogg'=1, 'sound/items/geiger/low4.ogg'=1),
 		list('sound/items/geiger/med1.ogg'=1, 'sound/items/geiger/med2.ogg'=1, 'sound/items/geiger/med3.ogg'=1, 'sound/items/geiger/med4.ogg'=1),
@@ -13,7 +13,7 @@
 	volume = 25
 	var/last_radiation
 
-/datum/looping_sound/geiger/get_sound(starttime)
+datum/looping_sound/geiger/get_sound(starttime)
 	var/danger
 	switch(last_radiation)
 		if(RAD_BACKGROUND_RADIATION to RAD_GEIGER_LOW)
@@ -28,7 +28,7 @@
 			return null
 	return ..(starttime, mid_sounds[danger])
 
-/datum/looping_sound/geiger/stop()
+datum/looping_sound/geiger/stop()
 	. = ..()
 	last_radiation = 0
 

@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/repair_droid
+obj/item/mecha_parts/mecha_equipment/repair_droid
 	name = "repair droid"
 	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost any type of external or internal damage."
 	icon_state = "repair_droid"
@@ -15,41 +15,41 @@
 
 	equip_type = EQUIP_HULL
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/Initialize(mapload)
+obj/item/mecha_parts/mecha_equipment/repair_droid/Initialize(mapload)
 	. = ..()
 	pr_repair_droid = new /datum/global_iterator/mecha_repair_droid(list(src),0)
 	pr_repair_droid.set_delay(equip_cooldown)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/Destroy()
+obj/item/mecha_parts/mecha_equipment/repair_droid/Destroy()
 	qdel(pr_repair_droid)
 	pr_repair_droid = null
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/add_equip_overlay(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/repair_droid/add_equip_overlay(obj/mecha/M as obj)
 	..()
 	if(!droid_overlay)
 		droid_overlay = new(src.icon, icon_state = "repair_droid")
 	M.add_overlay(droid_overlay)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/destroy()
+obj/item/mecha_parts/mecha_equipment/repair_droid/destroy()
 	chassis.cut_overlay(droid_overlay)
 	..()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/detach()
+obj/item/mecha_parts/mecha_equipment/repair_droid/detach()
 	chassis.cut_overlay(droid_overlay)
 	pr_repair_droid.stop()
 	..()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/get_equip_info()
+obj/item/mecha_parts/mecha_equipment/repair_droid/get_equip_info()
 	if(!chassis) return
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
 
 
-/obj/item/mecha_parts/mecha_equipment/repair_droid/Topic(href, href_list)
+obj/item/mecha_parts/mecha_equipment/repair_droid/Topic(href, href_list)
 	..()
 	if(href_list["toggle_repairs"])
 		chassis.cut_overlay(droid_overlay)
@@ -65,9 +65,9 @@
 	return
 
 
-/datum/global_iterator/mecha_repair_droid
+datum/global_iterator/mecha_repair_droid
 
-/datum/global_iterator/mecha_repair_droid/process(var/obj/item/mecha_parts/mecha_equipment/repair_droid/RD as obj)
+datum/global_iterator/mecha_repair_droid/process(var/obj/item/mecha_parts/mecha_equipment/repair_droid/RD as obj)
 	if(!RD.chassis)
 		stop()
 		RD.set_ready_state(1)

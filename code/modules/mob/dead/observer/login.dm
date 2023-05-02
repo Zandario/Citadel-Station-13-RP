@@ -1,5 +1,5 @@
 //Nobody here anymore.
-/mob/observer/dead/Login()
+mob/observer/dead/Login()
 	..() //Creates the plane_holder lazily
 	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 	plane_holder.set_vis(VIS_FULLBRIGHT, !seedarkness)

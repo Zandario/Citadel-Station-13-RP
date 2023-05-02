@@ -1,4 +1,4 @@
-/datum/role/job/station/senior_researcher
+datum/role/job/station/senior_researcher
 	title = "Senior Researcher"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_SENIOR
 	id = JOB_ID_SENIOR_RESEARCHER
@@ -23,7 +23,7 @@
 	desc = "Lorem Ipsum"
 
 
-/datum/outfit/job/station/scientist/senior_researcher
+datum/outfit/job/station/scientist/senior_researcher
 	name = OUTFIT_JOB_NAME("Scientist")
 	uniform = /obj/item/clothing/under/rank/scientist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
@@ -39,6 +39,6 @@
 	messenger_bag = /obj/item/storage/backpack/messenger/tox
 	dufflebag = /obj/item/storage/backpack/dufflebag/sci
 
-/datum/outfit/job/station/scientist/xenobiologist
+datum/outfit/job/station/scientist/xenobiologist
 	name = OUTFIT_JOB_NAME("Xenobiologist")
 	id_type = /obj/item/card/id/science/xenobiologist

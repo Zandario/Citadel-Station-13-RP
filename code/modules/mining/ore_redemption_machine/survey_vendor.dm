@@ -1,4 +1,4 @@
-/obj/machinery/mineral/equipment_vendor/survey
+obj/machinery/mineral/equipment_vendor/survey
 	name = "exploration equipment vendor"
 	desc = "An equipment vendor for explorers, points collected with a survey scanner can be spent here."
 	icon = 'icons/obj/machines/mining_machines_vr.dmi'
@@ -59,7 +59,7 @@
 		new /datum/data/mining_equipment("Bar Shelter Capsule",			/obj/item/survivalcapsule/luxurybar,						1000)
 		)
 
-/obj/machinery/mineral/equipment_vendor/survey/interact(mob/user)
+obj/machinery/mineral/equipment_vendor/survey/interact(mob/user)
 	user.set_machine(src)
 
 	var/dat
@@ -77,7 +77,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/mineral/equipment_vendor/survey/Topic(href, href_list)
+obj/machinery/mineral/equipment_vendor/survey/Topic(href, href_list)
 	if(..())
 		return 1
 

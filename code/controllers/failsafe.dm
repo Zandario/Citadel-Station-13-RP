@@ -7,7 +7,7 @@
 var/datum/controller/failsafe/Failsafe
 
 /// This thing pretty much just keeps poking the master controller.
-/datum/controller/failsafe
+datum/controller/failsafe
 	name = "Failsafe"
 
 	/**
@@ -35,7 +35,7 @@ var/datum/controller/failsafe/Failsafe
 	var/running = TRUE
 
 
-/datum/controller/failsafe/New()
+datum/controller/failsafe/New()
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
 	if(Failsafe != src)
 		if(istype(Failsafe))
@@ -45,20 +45,20 @@ var/datum/controller/failsafe/Failsafe
 	Initialize()
 
 
-/datum/controller/failsafe/Initialize()
+datum/controller/failsafe/Initialize()
 	set waitfor = FALSE
 	Failsafe.Loop()
 	if(!QDELETED(src))
 		qdel(src) // When Loop() returns, we delete ourselves and let the mc recreate us.
 
 
-/datum/controller/failsafe/Destroy()
+datum/controller/failsafe/Destroy()
 	running = FALSE
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
 
-/datum/controller/failsafe/proc/Loop()
+datum/controller/failsafe/proc/Loop()
 	while(running)
 		lasttick = world.time
 		if(!Master)
@@ -121,9 +121,9 @@ var/datum/controller/failsafe/Failsafe
 			sleep(initial(processing_interval))
 
 
-/datum/controller/failsafe/proc/defcon_pretty()
+datum/controller/failsafe/proc/defcon_pretty()
 	return defcon
 
 
-/datum/controller/failsafe/stat_entry()
+datum/controller/failsafe/stat_entry()
 	return "Defcon: [defcon_pretty()] (Interval: [Failsafe.processing_interval] | Iteration: [Failsafe.master_iteration])"

@@ -1,4 +1,4 @@
-/proc/sql_poll_population()
+proc/sql_poll_population()
 	var/admincount = GLOB.admins.len
 	var/playercount = 0
 	for(var/mob/M in GLOB.player_list)
@@ -20,7 +20,7 @@
 			log_game("SQL ERROR during population polling. Error : \[[err]\]\n")
 		qdel(query)
 
-/proc/sql_report_death(mob/living/carbon/human/H)
+proc/sql_report_death(mob/living/carbon/human/H)
 	if(!H)
 		return
 	if(!H.key || !H.mind)
@@ -72,7 +72,7 @@
 			log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
 		qdel(query)
 
-/proc/sql_report_cyborg_death(mob/living/silicon/robot/H)
+proc/sql_report_cyborg_death(mob/living/silicon/robot/H)
 	if(!H)
 		return
 	if(!H.key || !H.mind)
@@ -123,13 +123,13 @@
 		qdel(query)
 
 
-/proc/statistic_cycle()
+proc/statistic_cycle()
 	while(1)
 		sql_poll_population()
 		sleep(6000)
 
 // This proc is used for feedback. It is executed at round end.
-/proc/sql_commit_feedback()
+proc/sql_commit_feedback()
 	if(!blackbox)
 		log_game("Round ended without a blackbox recorder. No feedback was sent to the database.")
 		return

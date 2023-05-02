@@ -12,10 +12,10 @@
  *! SQL sanitization
  */
 
-/proc/format_table_name(table)
+proc/format_table_name(table)
 	return CONFIG_GET(string/sql_server_prefix) + table
 
-/proc/format_unified_table_name(table)
+proc/format_unified_table_name(table)
 	return CONFIG_GET(string/sql_unified_prefix) + table
 
 /**
@@ -25,7 +25,7 @@
 // todo probably split this file into other files
 
 /// Used for preprocessing entered text.
-/proc/sanitize(input, max_length = MAX_MESSAGE_LEN, encode = TRUE, trim = TRUE, extra = TRUE)
+proc/sanitize(input, max_length = MAX_MESSAGE_LEN, encode = TRUE, trim = TRUE, extra = TRUE)
 	if(!input)
 		return
 
@@ -59,17 +59,17 @@
  *
  * disallows linebreaks, trims, encodes html.
  */
-/proc/sanitize_atom_name(str, max_len = 32)
+proc/sanitize_atom_name(str, max_len = 32)
 	return sanitize(str, max_len, TRUE, TRUE, FALSE)
 
 //TODO: Have to rewrite this sanitize code :djoy:
-/proc/sanitize_filename(t)
+proc/sanitize_filename(t)
 	return sanitize_simple_tg(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
 
 /**
  * Removes a few problematic characters. Renamed because namespace.
  */
-/proc/sanitize_simple_tg(t, list/repl_chars = list("\n"="#","\t"="#"))
+proc/sanitize_simple_tg(t, list/repl_chars = list("\n"="#","\t"="#"))
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)
@@ -83,13 +83,13 @@
  * If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
  * this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
  */
-/proc/sanitizeSafe(input, max_length = MAX_MESSAGE_LEN, encode = TRUE, trim = TRUE, extra = TRUE)
+proc/sanitizeSafe(input, max_length = MAX_MESSAGE_LEN, encode = TRUE, trim = TRUE, extra = TRUE)
 	return sanitize(replace_characters(input, list(">"=" ","<"=" ", "\""="'")), max_length, encode, trim, extra)
 
 /**
  * Filters out undesirable characters from names.
  */
-/proc/sanitizeName(input, max_length = MAX_NAME_LEN)
+proc/sanitizeName(input, max_length = MAX_NAME_LEN)
 	if(!input || length(input) > max_length)
 		return //Rejects the input if it is null or if it is longer then the max length allowed
 
@@ -161,7 +161,7 @@
 /**
  * Returns null if there is any bad text in the string.
  */
-/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE)
+proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE)
 	var/char_count = 0
 	var/non_whitespace = FALSE
 	var/lenbytes = length(text)
@@ -190,7 +190,7 @@
  * Used to get a properly sanitized input, of max_length
  * no_trim is self explanatory but it prevents the input from being trimed if you intend to parse newlines or whitespace.
  */
-/proc/stripped_input(mob/user, message = "", title = "", default = "", max_length = MAX_MESSAGE_LEN, no_trim = FALSE)
+proc/stripped_input(mob/user, message = "", title = "", default = "", max_length = MAX_MESSAGE_LEN, no_trim = FALSE)
 	var/name = input(user, message, title, default) as text|null
 	if(no_trim)
 		return copytext(html_encode(name), 1, max_length)
@@ -200,7 +200,7 @@
 /**
  * Used to get a properly sanitized multiline input, of max_length.
  */
-/proc/stripped_multiline_input(mob/user, message = "", title = "", default = "", max_length = MAX_MESSAGE_LEN, no_trim = FALSE)
+proc/stripped_multiline_input(mob/user, message = "", title = "", default = "", max_length = MAX_MESSAGE_LEN, no_trim = FALSE)
 	var/name = input(user, message, title, default) as message|null
 	if(isnull(name)) // Return null if canceled.
 		return null
@@ -212,7 +212,7 @@
 /**
  * Old variant. Haven't dared to replace in some places.
  */
-/proc/sanitize_old(var/t,var/list/repl_chars = list("\n"="#","\t"="#"))
+proc/sanitize_old(var/t,var/list/repl_chars = list("\n"="#","\t"="#"))
 	return html_encode(replace_characters(t,repl_chars))
 
 /**
@@ -223,7 +223,7 @@
  * Checks the beginning of a string for a specified sub-string.
  * Returns the position of the substring or 0 if it was not found.
  */
-/proc/dd_hasprefix(text, prefix)
+proc/dd_hasprefix(text, prefix)
 	var/start = 1
 	var/end = length(prefix) + 1
 	return findtext(text, prefix, start, end)
@@ -232,7 +232,7 @@
  * Checks the beginning of a string for a specified sub-string. This proc is case sensitive.
  * Returns the position of the substring or 0 if it was not found.
  */
-/proc/dd_hasprefix_case(text, prefix)
+proc/dd_hasprefix_case(text, prefix)
 	var/start = 1
 	var/end = length(prefix) + 1
 	return findtextEx(text, prefix, start, end)
@@ -241,7 +241,7 @@
  * Checks the end of a string for a specified substring.
  * Returns the position of the substring or 0 if it was not found.
  */
-/proc/dd_hassuffix(text, suffix)
+proc/dd_hassuffix(text, suffix)
 	var/start = length(text) - length(suffix)
 	if(start)
 		return findtext(text, suffix, start, null)
@@ -251,7 +251,7 @@
  * Checks the end of a string for a specified substring. This proc is case sensitive.
  * Returns the position of the substring or 0 if it was not found.
  */
-/proc/dd_hassuffix_case(text, suffix)
+proc/dd_hassuffix_case(text, suffix)
 	var/start = length(text) - length(suffix)
 	if(start)
 		return findtextEx(text, suffix, start, null)
@@ -259,7 +259,7 @@
 /**
  *! Text modification
  */
-/proc/replace_characters(t, list/repl_chars)
+proc/replace_characters(t, list/repl_chars)
 	for(var/char in repl_chars)
 		t = replacetext(t, char, repl_chars[char])
 	return t
@@ -267,7 +267,7 @@
 /**
  * Adds 'u' number of zeros ahead of the text 't'.
  */
-/proc/add_zero(t, u)
+proc/add_zero(t, u)
 	while (length(t) < u)
 		t = "0[t]"
 	return t
@@ -275,7 +275,7 @@
 /**
  * Adds 'u' number of spaces ahead of the text 't'.
  */
-/proc/add_lspace(t, u)
+proc/add_lspace(t, u)
 	while(length(t) < u)
 		t = " [t]"
 	return t
@@ -283,7 +283,7 @@
 /**
  * Adds 'u' number of spaces behind the text 't'.
  */
-/proc/add_tspace(t, u)
+proc/add_tspace(t, u)
 	while(length(t) < u)
 		t = "[t] "
 	return t
@@ -291,7 +291,7 @@
 /**
  * Returns a string with reserved characters and spaces before the first letter removed.
  */
-/proc/trim_left(text)
+proc/trim_left(text)
 	for (var/i = 1 to length(text))
 		if (text2ascii(text, i) > 32)
 			return copytext_char(text, i)
@@ -300,7 +300,7 @@
 /**
  * Returns a string with reserved characters and spaces after the last letter removed.
  */
-/proc/trim_right(text)
+proc/trim_right(text)
 	for (var/i = length(text), i > 0, i--)
 		if (text2ascii(text, i) > 32)
 			return copytext_char(text, 1, i + 1)
@@ -309,19 +309,19 @@
 /**
  * Returns a string with reserved characters and spaces before the first word and after the last word removed.
  */
-/proc/trim(text)
+proc/trim(text)
 	return trim_left(trim_right(text))
 
 /**
  * Returns a string with the first element of the string capitalized.
  */
-/proc/capitalize(t as text)
+proc/capitalize(t as text)
 	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
 
 /**
  * Syntax is "stringtoreplace"="stringtoreplacewith".
  */
-/proc/autocorrect(input as text)
+proc/autocorrect(input as text)
 	return input = replace_characters(input, list(
 		" i "      = " I ",
 		"i'm"      = "I'm",
@@ -357,7 +357,7 @@
  * This proc strips html properly, remove < > and all text between
  * for complete text sanitizing should be used sanitize()
  */
-/proc/strip_html_properly(input)
+proc/strip_html_properly(input)
 	if(!input)
 		return
 	var/opentag = 1 //These store the position of < and > respectively.
@@ -385,7 +385,7 @@
  * is in the other string at the same spot (assuming it is not a replace char).
  * This is used for fingerprints.
  */
-/proc/stringmerge(text, compare, replace = "*")
+proc/stringmerge(text, compare, replace = "*")
 	var/newtext = text
 	if(length(text) != length(compare))
 		return 0
@@ -407,7 +407,7 @@
  * This proc returns the number of chars of the string that is the character.
  * This is used for detective work to determine fingerprint completion.
  */
-/proc/stringpercent(text, character = "*")
+proc/stringpercent(text, character = "*")
 	if(!text || !character)
 		return 0
 	var/count = 0
@@ -417,13 +417,13 @@
 			count++
 	return count
 
-/proc/reverse_text(text = "")
+proc/reverse_text(text = "")
 	var/new_text = ""
 	for(var/i = length(text); i > 0; i--)
 		new_text += copytext(text, i, i+1)
 	return new_text
 
-/proc/text2charlist(text)
+proc/text2charlist(text)
 	var/char = ""
 	var/lentext = length(text)
 	. = list()
@@ -435,7 +435,7 @@
  * Used in preferences' SetFlavorText and human's set_flavor verb
  * Previews a string of len or less length
  */
-/proc/TextPreview(string, len=40)
+proc/TextPreview(string, len=40)
 	if(length(string) <= len)
 		if(!length(string))
 			return "\[...\]"
@@ -447,7 +447,7 @@
 /**
  * Alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
  */
-/proc/copytext_preserve_html(text, first, last)
+proc/copytext_preserve_html(text, first, last)
 	return html_encode(copytext(html_decode(text), first, last))
 
 /**
@@ -457,12 +457,12 @@
  */
 GLOBAL_VAR_INIT(text_tag_icons, new /icon('./icons/chattags.dmi'))
 
-/proc/create_text_tag(tagname, tagdesc = tagname, client/C)
+proc/create_text_tag(tagname, tagdesc = tagname, client/C)
 	if(!(C && C.is_preference_enabled(/datum/client_preference/chat_tags)))
 		return tagdesc
 	return icon2html(GLOB.text_tag_icons, C, tagname)
 
-/proc/contains_az09(input)
+proc/contains_az09(input)
 	for(var/i=1, i<=length(input), i++)
 		var/ascii_char = text2ascii(input,i)
 		switch(ascii_char)
@@ -484,10 +484,10 @@ GLOBAL_VAR_INIT(text_tag_icons, new /icon('./icons/chattags.dmi'))
  * Strip out the special beyond characters for \proper and \improper
  * from text that will be sent to the browser.
  */
-/proc/strip_improper(text)
+proc/strip_improper(text)
 	return replacetext(replacetext(text, "\proper", ""), "\improper", "")
 
-/proc/pencode2html(t)
+proc/pencode2html(t)
 	t = replacetext(t, "\n", "<BR>")
 	t = replacetext(t, "\[center\]", "<center>")
 	t = replacetext(t, "\[/center\]", "</center>")
@@ -530,7 +530,7 @@ GLOBAL_VAR_INIT(text_tag_icons, new /icon('./icons/chattags.dmi'))
 /**
  * Random password generator. // Could've just flustered a bottom.
  */
-/proc/GenerateKey()
+proc/GenerateKey()
 	// Feel free to move to Helpers.
 	var/newKey
 	newKey += pick("the", "if", "of", "as", "in", "a", "you", "from", "to", "an", "too", "little", "snow", "dead", "drunk", "rosebud", "duck", "al", "le")
@@ -541,7 +541,7 @@ GLOBAL_VAR_INIT(text_tag_icons, new /icon('./icons/chattags.dmi'))
 /**
  * Used for applying byonds text macros to strings that are loaded at runtime.
  */
-/proc/apply_text_macros(string)
+proc/apply_text_macros(string)
 	var/next_backslash = findtext(string, "\\")
 	if(!next_backslash)
 		return string
@@ -603,26 +603,26 @@ GLOBAL_LIST_INIT(zero_character_only, list("0"))
 GLOBAL_LIST_INIT(hex_characters, list("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"))
 GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"))
 GLOBAL_LIST_INIT(binary, list("0","1"))
-/proc/random_string(length, list/characters)
+proc/random_string(length, list/characters)
 	. = ""
 	for(var/i in 1 to length)
 		. += pick(characters)
 
-/proc/repeat_string(times, string="")
+proc/repeat_string(times, string="")
 	. = ""
 	for(var/i in 1 to times)
 		. += string
 
-/proc/random_short_color()
+proc/random_short_color()
 	return random_string(3, GLOB.hex_characters)
 
-/proc/random_color()
+proc/random_color()
 	return random_string(6, GLOB.hex_characters)
 
 /**
  * Readds quotes and apostrophes to HTML-encoded strings.
  */
-/proc/readd_quotes(t)
+proc/readd_quotes(t)
 	var/list/repl_chars = list("&#34;" = "\"","&#39;" = "'")
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
@@ -634,7 +634,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 /**
  * Adds 'char' ahead of 'text' until there are 'count' characters total.
  */
-/proc/add_leading(text, count, char = " ")
+proc/add_leading(text, count, char = " ")
 	text = "[text]"
 	var/charcount = count - length_char(text)
 	var/list/chars_to_add[max(charcount + 1, 0)]
@@ -643,7 +643,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 /**
  * Adds 'char' behind 'text' until there are 'count' characters total.
  */
-/proc/add_trailing(text, count, char = " ")
+proc/add_trailing(text, count, char = " ")
 	text = "[text]"
 	var/charcount = count - length_char(text)
 	var/list/chars_to_add[max(charcount + 1, 0)]
@@ -652,6 +652,6 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 /**
  * Removes all non-alphanumerics from the text, keep in mind this can lead to id conflicts.
  */
-/proc/sanitize_css_class_name(name)
+proc/sanitize_css_class_name(name)
 	var/static/regex/regex = new(@"[^a-zA-Z0-9]","g")
 	return replacetext(name, regex, "")

@@ -1,14 +1,14 @@
 
 //########################## CONTRABAND ;3333333333333333333 -Agouri ###################################################
 
-/obj/item/contraband
+obj/item/contraband
 	name = "contraband item"
 	desc = "You probably shouldn't be holding this."
 	icon = 'icons/obj/contraband.dmi'
 	damage_force = 0
 
 
-/obj/item/contraband/poster
+obj/item/contraband/poster
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
 	icon_state = "rolled_poster"
@@ -18,7 +18,7 @@
 
 	var/poster_type = /obj/structure/sign/poster
 
-/obj/item/contraband/poster/Initialize(mapload, given_serial = 0)
+obj/item/contraband/poster/Initialize(mapload, given_serial = 0)
 	. = ..()
 	if(!serial_number)
 		if(given_serial == 0)
@@ -28,7 +28,7 @@
 	name += " - No. [serial_number]"
 
 //Places the poster on a wall
-/obj/item/contraband/poster/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
+obj/item/contraband/poster/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
 	if (!adjacent)
 		return
 
@@ -80,11 +80,11 @@
 	qdel(oldsrc)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
 
 //NT subtype
-/obj/item/contraband/poster/nanotrasen
+obj/item/contraband/poster/nanotrasen
 	icon_state = "rolled_poster_nt"
 	poster_type = /obj/structure/sign/poster/nanotrasen
 
-/obj/item/contraband/poster/nanotrasen/Initialize(mapload, given_serial = 0)
+obj/item/contraband/poster/nanotrasen/Initialize(mapload, given_serial = 0)
 	if(given_serial == 0)
 		serial_number = rand(1, NT_poster_designs.len)
 	else
@@ -93,7 +93,7 @@
 
 //############################## THE ACTUAL DECALS ###########################
 
-/obj/structure/sign/poster
+obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband.dmi'
@@ -105,7 +105,7 @@
 	var/roll_type
 	var/poster_set = FALSE
 
-/obj/structure/sign/poster/Initialize(mapload, placement_dir, serial, itemtype = /obj/item/contraband/poster)
+obj/structure/sign/poster/Initialize(mapload, placement_dir, serial, itemtype = /obj/item/contraband/poster)
 	. = ..(mapload)
 
 	if(!serial)
@@ -133,21 +133,21 @@
 			pixel_x = -32
 			pixel_y = 0
 
-/obj/structure/sign/poster/Initialize(mapload)
+obj/structure/sign/poster/Initialize(mapload)
 	. = ..()
 	if (poster_type)
 		var/path = text2path(poster_type)
 		var/datum/poster/design = new path
 		set_poster(design)
 
-/obj/structure/sign/poster/proc/set_poster(var/datum/poster/design)
+obj/structure/sign/poster/proc/set_poster(var/datum/poster/design)
 	name = "[initial(name)] - [design.name]"
 	desc = "[initial(desc)] [design.desc]"
 	icon_state = design.icon_state // poster[serial_number]
 
 	poster_set = TRUE
 
-/obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wirecutter())
 		playsound(src.loc, W.tool_sound, 100, 1)
 		if(ruined)
@@ -158,7 +158,7 @@
 			roll_and_drop(user.loc)
 		return
 
-/obj/structure/sign/poster/attack_hand(mob/user, list/params)
+obj/structure/sign/poster/attack_hand(mob/user, list/params)
 
 	if(ruined)
 		return
@@ -176,11 +176,11 @@
 		desc = "You can't make out anything from the poster's original print. It's ruined."
 		add_fingerprint(user)
 
-/obj/structure/sign/poster/proc/roll_and_drop(turf/newloc)
+obj/structure/sign/poster/proc/roll_and_drop(turf/newloc)
 	new roll_type(newloc, serial_number)
 	qdel(src)
 
-/datum/poster
+datum/poster
 	// Name suffix. Poster - [name]
 	var/name=""
 	// Description suffix
@@ -188,10 +188,10 @@
 	var/icon_state=""
 
 // NT poster subtype.
-/obj/structure/sign/poster/nanotrasen
+obj/structure/sign/poster/nanotrasen
 	roll_type = /obj/item/contraband/poster/nanotrasen
 
-/obj/structure/sign/poster/nanotrasen/Initialize(mapload, placement_dir, serial, itemtype = /obj/item/contraband/poster/nanotrasen)
+obj/structure/sign/poster/nanotrasen/Initialize(mapload, placement_dir, serial, itemtype = /obj/item/contraband/poster/nanotrasen)
 	if(!serial)
 		serial = rand(1, NT_poster_designs.len)
 

@@ -1,4 +1,4 @@
-/obj/effect/plant/HasProximity(var/atom/movable/AM)
+obj/effect/plant/HasProximity(var/atom/movable/AM)
 
 	if(!is_mature() || seed.get_trait(TRAIT_SPREAD) != 2)
 		return
@@ -14,7 +14,7 @@
 			entangle(M)
 
 
-/obj/effect/plant/proc/attack_mob(mob/living/M,base_damage)
+obj/effect/plant/proc/attack_mob(mob/living/M,base_damage)
 	var/target_zone
 	if(M.lying)
 		target_zone = ran_zone()
@@ -34,20 +34,20 @@
 	if(!M.apply_damage(base_damage, BRUTE, target_zone, blocked, soaked, used_weapon=src))
 		return 0
 
-/obj/effect/plant/attack_hand(mob/user, list/params)
+obj/effect/plant/attack_hand(mob/user, list/params)
 	manual_unbuckle(user)
 
-/obj/effect/plant/attack_generic(var/mob/user)
+obj/effect/plant/attack_generic(var/mob/user)
 	manual_unbuckle(user)
 
-/obj/effect/plant/Crossed(atom/movable/O)
+obj/effect/plant/Crossed(atom/movable/O)
 	. = ..()
 	if(O.is_incorporeal())
 		return
 	if(isliving(O))
 		trodden_on(O)
 
-/obj/effect/plant/proc/trodden_on(var/mob/living/victim)
+obj/effect/plant/proc/trodden_on(var/mob/living/victim)
 	if(has_buckled_mobs())
 		return
 	else if(!is_mature())
@@ -68,12 +68,12 @@
 			attack_mob(victim,rand(1,3))
 
 
-/obj/effect/plant/proc/unbuckle()
+obj/effect/plant/proc/unbuckle()
 	if(!has_buckled_mobs())
 		return
 	unbuckle_all_mobs(BUCKLE_OP_FORCE)
 
-/obj/effect/plant/proc/manual_unbuckle(mob/user as mob)
+obj/effect/plant/proc/manual_unbuckle(mob/user as mob)
 	if(has_buckled_mobs())
 		var/chance = 20
 		if(seed)
@@ -103,7 +103,7 @@
 			check_health()
 			return
 
-/obj/effect/plant/proc/entangle(var/mob/living/victim)
+obj/effect/plant/proc/entangle(var/mob/living/victim)
 
 	if(has_buckled_mobs())
 		return

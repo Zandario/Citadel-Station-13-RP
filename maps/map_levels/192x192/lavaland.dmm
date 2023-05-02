@@ -1,455 +1,455 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ax" = (
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/unexplored)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/unexplored)
 "aN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "bG" = (
-/mob/living/simple_mob/animal/space/bats/surt,
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/unexplored)
+mob/living/simple_mob/animal/space/bats/surt,
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/unexplored)
 "bH" = (
-/obj/machinery/hyperpad/centre{
+obj/machinery/hyperpad/centre{
 	map_pad_id = "lavaland_away";
 	map_pad_link_id = "lavaland_station";
 	newcolor = "#fcba03"
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "ce" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "ci" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/camera/network/mining{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/camera/network/mining{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "cF" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "cR" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/purpledouble,
-/turf/simulated/floor/carpet/oracarpet,
-/area/lavaland/central/base/common)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/purpledouble,
+turf/simulated/floor/carpet/oracarpet,
+area/lavaland/central/base/common)
 "da" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
+obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
 	},
-/obj/structure/closet/firecloset,
-/obj/structure/closet/firecloset,
-/obj/machinery/camera/network/mining{
+obj/structure/closet/firecloset,
+obj/structure/closet/firecloset,
+obj/machinery/camera/network/mining{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "db" = (
-/turf/simulated/wall,
-/area/lavaland/central/base/common)
+turf/simulated/wall,
+area/lavaland/central/base/common)
 "dl" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+obj/machinery/atmospherics/pipe/tank/air{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "do" = (
-/obj/machinery/door/firedoor/multi_tile{
+obj/machinery/door/firedoor/multi_tile{
 	dir = 1;
 	req_one_access = list(48)
 	},
-/obj/machinery/door/airlock/multi_tile/glass{
+obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
 	name = "Dorms";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "dX" = (
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 8
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "ew" = (
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "eM" = (
-/obj/machinery/vending/snack,
-/obj/machinery/light/small{
+obj/machinery/vending/snack,
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "eY" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk,
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/explored)
 "fj" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk,
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "fm" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk,
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "fv" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk,
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "fw" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 1
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk,
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "fx" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 1
 	},
-/obj/structure/catwalk,
-/obj/structure/railing{
+obj/structure/catwalk,
+obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "fX" = (
-/obj/machinery/door/firedoor{
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced{
+obj/structure/grille,
+obj/structure/window/phoronreinforced{
 	dir = 1
 	},
-/obj/structure/window/phoronreinforced/full,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/structure/window/phoronreinforced/full,
+obj/machinery/atmospherics/pipe/simple/visible/yellow,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "gd" = (
-/obj/machinery/door/firedoor{
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced{
+obj/structure/grille,
+obj/structure/window/phoronreinforced{
 	dir = 1
 	},
-/obj/structure/window/phoronreinforced/full,
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+obj/structure/window/phoronreinforced/full,
+obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 5
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "gn" = (
-/obj/machinery/door/firedoor{
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced{
+obj/structure/grille,
+obj/structure/window/phoronreinforced{
 	dir = 1
 	},
-/obj/structure/window/phoronreinforced/full,
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+obj/structure/window/phoronreinforced/full,
+obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "gv" = (
-/obj/machinery/door/firedoor{
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced{
+obj/structure/grille,
+obj/structure/window/phoronreinforced{
 	dir = 1
 	},
-/obj/structure/window/phoronreinforced/full,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/structure/window/phoronreinforced/full,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "gy" = (
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/explored)
 "gE" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/visible/yellow,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "gF" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "gH" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/machinery/atmospherics/component/binary/passive_gate{
+obj/machinery/atmospherics/component/binary/passive_gate{
 	icon_state = "on";
 	target_pressure = 14900;
 	unlocked = 1
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "gR" = (
-/obj/machinery/atmospherics/component/binary/pump/high_power/on{
+obj/machinery/atmospherics/component/binary/pump/high_power/on{
 	dir = 8;
 	target_pressure = 15000
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "hf" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+obj/machinery/meter,
+obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "hi" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/portables_connector,
+obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "hp" = (
-/obj/effect/debris/cleanable/dirt,
-/turf/simulated/mineral/triumph/lavaland,
-/area/lavaland/central/explored)
+obj/effect/debris/cleanable/dirt,
+turf/simulated/mineral/triumph/lavaland,
+area/lavaland/central/explored)
 "hr" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/light/small{
+obj/machinery/atmospherics/portables_connector,
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "hw" = (
-/obj/machinery/power/smes/buildable/main{
+obj/machinery/power/smes/buildable/main{
 	charge = 4e+007;
 	input_attempt = 1;
 	inputting = 2
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "hx" = (
-/obj/structure/statue/bone{
+obj/structure/statue/bone{
 	anchored = 1;
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/explored)
 "hA" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 8
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "hU" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "ia" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+obj/machinery/meter,
+obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 5
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "ib" = (
-/obj/machinery/atmospherics/component/binary/circulator{
+obj/machinery/atmospherics/component/binary/circulator{
 	anchored = 1;
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "ig" = (
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 9
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "ip" = (
-/obj/machinery/atmospherics/component/binary/pump/high_power/on{
+obj/machinery/atmospherics/component/binary/pump/high_power/on{
 	target_pressure = 15000
 	},
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "is" = (
-/turf/simulated/floor/sandstone/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/sandstone/lavaland,
+area/lavaland/central/explored)
 "iu" = (
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	id = "mine_purp";
 	name = "Door Lock";
 	pixel_x = -25;
 	pixel_y = 26;
 	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/purcarpet,
+area/lavaland/central/base/common)
 "ix" = (
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/component/binary/pump/high_power/on{
+obj/machinery/atmospherics/component/binary/pump/high_power/on{
 	target_pressure = 15000
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "iA" = (
-/obj/machinery/door/airlock/maintenance{
+obj/machinery/door/airlock/maintenance{
 	name = "SMES Access";
 	req_access = list(48)
 	},
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "jk" = (
-/obj/machinery/power/terminal{
+obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "jO" = (
-/obj/structure/curtain/ashlander,
-/turf/simulated/floor/bone/lavaland,
-/area/lavaland/central/explored)
+obj/structure/curtain/ashlander,
+turf/simulated/floor/bone/lavaland,
+area/lavaland/central/explored)
 "jP" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 1;
 	pixel_y = -23;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/oracarpet,
+area/lavaland/central/base/common)
 "jR" = (
-/obj/machinery/atmospherics/component/binary/pump/high_power/on{
+obj/machinery/atmospherics/component/binary/pump/high_power/on{
 	dir = 1;
 	target_pressure = 15000
 	},
-/obj/machinery/camera/network/mining{
+obj/machinery/camera/network/mining{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "ki" = (
-/obj/machinery/atmospherics/component/binary/pump/high_power{
+obj/machinery/atmospherics/component/binary/pump/high_power{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "km" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/on,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/component/unary/vent_pump/on,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "kp" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/washing_machine,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "kq" = (
-/obj/machinery/power/generator{
+obj/machinery/power/generator{
 	anchored = 1
 	},
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "kr" = (
-/obj/structure/cable/green{
+obj/structure/cable/green{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "lm" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 8
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "ls" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 9
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "lx" = (
-/obj/machinery/button/remote/blast_door{
+obj/machinery/button/remote/blast_door{
 	dir = 4;
 	id = "surtstage";
 	name = "Staging Area Shutters";
@@ -457,45 +457,45 @@
 	pixel_y = -28;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/explored)
 "lA" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance{
+obj/machinery/door/airlock/maintenance{
 	name = "SMES Access";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "lD" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "lF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
+obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_external{
+obj/machinery/door/airlock/glass_external{
 	req_one_access = list(48)
 	},
-/obj/map_helper/airlock/door/int_door,
-/obj/machinery/access_button{
+obj/map_helper/airlock/door/int_door,
+obj/machinery/access_button{
 	dir = 4;
 	frequency = 1384;
 	master_tag = "mining_engine";
@@ -503,383 +503,383 @@
 	pixel_y = -25;
 	req_one_access = list(48)
 	},
-/obj/structure/fans/tiny,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/structure/fans/tiny,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "lT" = (
-/obj/effect/map_effect/portal/line/side_a{
+obj/effect/map_effect/portal/line/side_a{
 	dir = 8
 	},
-/turf/simulated/mineral/triumph/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/mineral/triumph/lavaland,
+area/lavaland/central/explored)
 "lX" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden,
-/obj/machinery/airlock_sensor{
+obj/machinery/atmospherics/pipe/manifold/hidden,
+obj/machinery/airlock_sensor{
 	frequency = 1384;
 	id_tag = "mining_engine";
 	pixel_y = -25
 	},
-/obj/map_helper/airlock/sensor/chamber_sensor,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/map_helper/airlock/sensor/chamber_sensor,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "mb" = (
-/obj/structure/table/bench/sandstone,
-/turf/simulated/floor/sandstone/lavaland,
-/area/lavaland/central/explored)
+obj/structure/table/bench/sandstone,
+turf/simulated/floor/sandstone/lavaland,
+area/lavaland/central/explored)
 "mh" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/high_volume{
+obj/machinery/atmospherics/component/unary/vent_pump/high_volume{
 	dir = 8;
 	frequency = 1384;
 	id_tag = "mining_engine";
 	power_rating = 20000
 	},
-/obj/map_helper/airlock/atmos/chamber_pump,
-/obj/machinery/camera/network/mining{
+obj/map_helper/airlock/atmos/chamber_pump,
+obj/machinery/camera/network/mining{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "mm" = (
-/obj/machinery/atmospherics/portables_connector{
+obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 4;
 	pixel_x = -27;
 	req_one_access = list(48)
 	},
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup{
+obj/machinery/portable_atmospherics/canister/phoron/engine_setup{
 	release_pressure = 1000;
 	start_pressure = 9000
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "mq" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/table/steel,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "mr" = (
-/obj/machinery/atmospherics/portables_connector{
+obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "mt" = (
-/obj/structure/table/standard,
-/obj/item/storage/toolbox/electrical,
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/structure/table/standard,
+obj/item/storage/toolbox/electrical,
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "mz" = (
-/obj/machinery/atmospherics/pipe/simple/visible/black{
+obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 6
 	},
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/meter,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "mN" = (
-/obj/machinery/atmospherics/component/binary/circulator{
+obj/machinery/atmospherics/component/binary/circulator{
 	anchored = 1;
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "mZ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 8
 	},
-/obj/machinery/meter,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/meter,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "nq" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/cyan,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/manifold4w/hidden/cyan,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "nr" = (
-/obj/machinery/atmospherics/component/unary/freezer{
+obj/machinery/atmospherics/component/unary/freezer{
 	dir = 8;
 	icon_state = "freezer_1";
 	set_temperature = 65;
 	use_power = 1
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "nu" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/obj/structure/catwalk,
-/obj/structure/railing{
+obj/structure/catwalk,
+obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "nx" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk,
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "nz" = (
-/obj/machinery/atmospherics/component/unary/outlet_injector{
+obj/machinery/atmospherics/component/unary/outlet_injector{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/base/common)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/base/common)
 "nC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "nE" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
 	},
-/obj/machinery/door/firedoor{
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced{
+obj/structure/grille,
+obj/structure/window/phoronreinforced{
 	dir = 8
 	},
-/obj/structure/window/phoronreinforced/full,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/structure/window/phoronreinforced/full,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "nZ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
 	},
-/obj/machinery/atmospherics/component/binary/pump/on{
+obj/machinery/atmospherics/component/binary/pump/on{
 	dir = 8;
 	name = "Waste"
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "oj" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal{
+obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "or" = (
-/obj/machinery/light/small,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/light/small,
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "oy" = (
-/obj/machinery/atmospherics/pipe/simple/visible/black{
+obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "oK" = (
-/obj/machinery/atmospherics/component/binary/pump/high_power/on{
+obj/machinery/atmospherics/component/binary/pump/high_power/on{
 	dir = 4;
 	target_pressure = 15000
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "oO" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "oX" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "pf" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 9
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "pi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "pk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "pn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "pq" = (
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/oracarpet,
+area/lavaland/central/base/common)
 "pz" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	dir = 4;
 	layer = 3.3;
 	pixel_x = 26
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "pE" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "pJ" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/tank/oxygen,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/tank/oxygen,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "pK" = (
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	dir = 8;
 	frequency = 1384;
 	id_tag = "mining_engine";
 	pixel_x = 25;
 	req_one_access = list(48)
 	},
-/obj/machinery/atmospherics/component/unary/vent_pump/high_volume{
+obj/machinery/atmospherics/component/unary/vent_pump/high_volume{
 	dir = 8;
 	frequency = 1384;
 	id_tag = "mining_engine";
 	power_rating = 20000
 	},
-/obj/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/map_helper/airlock/atmos/chamber_pump,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "pW" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "qb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/extinguisher_cabinet{
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "qc" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/reinforced/airmix,
-/area/lavaland/central/base/common)
+obj/machinery/portable_atmospherics/canister/air,
+turf/simulated/floor/reinforced/airmix,
+area/lavaland/central/base/common)
 "qd" = (
-/turf/simulated/floor/reinforced/airmix,
-/area/lavaland/central/base/common)
+turf/simulated/floor/reinforced/airmix,
+area/lavaland/central/base/common)
 "ql" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/greendouble,
-/turf/simulated/floor/carpet/purcarpet,
-/area/lavaland/central/base/common)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/greendouble,
+turf/simulated/floor/carpet/purcarpet,
+area/lavaland/central/base/common)
 "qp" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/obj/machinery/atmospherics/portables_connector{
+obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/portable_atmospherics/canister/oxygen,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "qw" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
+obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "qz" = (
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "qA" = (
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "qE" = (
-/obj/structure/curtain/ashlander,
-/turf/simulated/floor/sandstone/lavaland,
-/area/lavaland/central/explored)
+obj/structure/curtain/ashlander,
+turf/simulated/floor/sandstone/lavaland,
+area/lavaland/central/explored)
 "qF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/camera/network/mining{
+obj/machinery/camera/network/mining{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "qU" = (
-/obj/machinery/air_sensor{
+obj/machinery/air_sensor{
 	frequency = 1443;
 	id_tag = "air_sensor";
 	output = 7
 	},
-/turf/simulated/floor/reinforced/airmix,
-/area/lavaland/central/base/common)
+turf/simulated/floor/reinforced/airmix,
+area/lavaland/central/base/common)
 "ra" = (
-/obj/machinery/atmospherics/component/unary/vent_pump{
+obj/machinery/atmospherics/component/unary/vent_pump{
 	dir = 4;
 	external_pressure_bound = 0;
 	external_pressure_bound_default = 0;
@@ -893,553 +893,553 @@
 	pump_direction = 0;
 	use_power = 1
 	},
-/turf/simulated/floor/reinforced/airmix,
-/area/lavaland/central/base/common)
+turf/simulated/floor/reinforced/airmix,
+area/lavaland/central/base/common)
 "re" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
 	},
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/machinery/door/firedoor{
+obj/structure/grille,
+obj/structure/window/phoronreinforced/full,
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "rK" = (
-/obj/machinery/atmospherics/component/binary/pump/on{
+obj/machinery/atmospherics/component/binary/pump/on{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "rM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	dir = 4;
 	layer = 3.3;
 	pixel_x = 26
 	},
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "so" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/high/south_bump,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/power/apc/high/south_bump,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "sx" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
-/obj/structure/catwalk,
-/obj/structure/railing{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging,
+obj/structure/catwalk,
+obj/structure/railing{
 	dir = 1
 	},
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "sA" = (
-/turf/simulated/floor/bone/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/bone/lavaland,
+area/lavaland/central/explored)
 "sH" = (
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/washing_machine,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "sJ" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 9
 	},
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 1
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+obj/structure/window/reinforced/tinted/frosted{
 	dir = 8
 	},
-/obj/structure/curtain/open/shower/engineering,
-/turf/simulated/floor/tiled/white,
-/area/lavaland/central/base/common)
+obj/structure/curtain/open/shower/engineering,
+turf/simulated/floor/tiled/white,
+area/lavaland/central/base/common)
 "sN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "sP" = (
-/obj/structure/table/standard,
-/obj/item/towel/random,
-/obj/item/towel/random,
-/obj/item/towel/random,
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/structure/table/standard,
+obj/item/towel/random,
+obj/item/towel/random,
+obj/item/towel/random,
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 4;
 	pixel_x = -27;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "sQ" = (
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/sleeper{
+obj/machinery/sleeper{
 	dir = 8
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals5{
+obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals5{
+obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 8
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 1
 	},
-/obj/machinery/camera/network/mining{
+obj/machinery/camera/network/mining{
 	dir = 5
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "sV" = (
-/obj/machinery/door/firedoor{
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/obj/machinery/door/airlock/glass{
+obj/machinery/door/airlock/glass{
 	name = "Storage";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "sX" = (
-/obj/machinery/sleep_console,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/sleep_console,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "te" = (
-/obj/structure/sign/warning/lava,
-/turf/simulated/wall/r_wall,
-/area/lavaland/central/explored)
+obj/structure/sign/warning/lava,
+turf/simulated/wall/r_wall,
+area/lavaland/central/explored)
 "tn" = (
-/obj/structure/sink{
+obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/obj/structure/mirror{
+obj/structure/mirror{
 	pixel_x = -28
 	},
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "tv" = (
-/obj/structure/urinal{
+obj/structure/urinal{
 	pixel_y = 31
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "tz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 4;
 	pixel_x = -27;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "tU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "tV" = (
-/obj/effect/map_effect/portal/line/side_a{
+obj/effect/map_effect/portal/line/side_a{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "ub" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "uh" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+obj/effect/floor_decal/industrial/warning,
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "ui" = (
-/obj/structure/table/marble,
-/obj/machinery/chemical_dispenser/catering/bar_alc,
-/obj/effect/debris/cleanable/cobweb,
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+obj/structure/table/marble,
+obj/machinery/chemical_dispenser/catering/bar_alc,
+obj/effect/debris/cleanable/cobweb,
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "uk" = (
-/obj/structure/table/marble,
-/obj/machinery/chemical_dispenser/catering/bar_soft,
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+obj/structure/table/marble,
+obj/machinery/chemical_dispenser/catering/bar_soft,
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "ut" = (
-/obj/machinery/vending/coffee,
-/obj/machinery/light/small{
+obj/machinery/vending/coffee,
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/camera/network/mining{
+obj/machinery/camera/network/mining{
 	c_tag = "OPM - Mining Production Room";
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "uA" = (
-/obj/machinery/vending/boozeomat{
+obj/machinery/vending/boozeomat{
 	req_access = null;
 	req_log_access = null
 	},
-/obj/machinery/light{
+obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "uE" = (
-/obj/structure/closet/crate/bin,
-/obj/machinery/alarm/alarms_hidden{
+obj/structure/closet/crate/bin,
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 22;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "vl" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/structure/table/woodentable,
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/purcarpet,
+area/lavaland/central/base/common)
 "vm" = (
-/obj/structure/table/marble,
-/obj/machinery/microwave,
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+obj/structure/table/marble,
+obj/machinery/microwave,
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "vr" = (
-/obj/structure/table/bench/bone,
-/turf/simulated/floor/bone/lavaland,
-/area/lavaland/central/explored)
+obj/structure/table/bench/bone,
+turf/simulated/floor/bone/lavaland,
+area/lavaland/central/explored)
 "vt" = (
-/obj/structure/statue/bone{
+obj/structure/statue/bone{
 	anchored = 1;
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/explored)
 "vu" = (
-/obj/structure/mob_spawner/gutshank,
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/explored)
+obj/structure/mob_spawner/gutshank,
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/explored)
 "vz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/firealarm{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -26
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "vA" = (
-/obj/structure/table/standard,
-/obj/item/roller,
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/structure/table/standard,
+obj/item/roller,
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "vE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -26
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "vK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "vW" = (
-/obj/structure/table/standard,
-/obj/machinery/light/small,
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/structure/table/standard,
+obj/machinery/light/small,
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/storage/firstaid/regular{
+obj/item/storage/firstaid/regular{
 	pixel_x = -2;
 	pixel_y = -2
 	},
-/obj/item/storage/firstaid/regular{
+obj/item/storage/firstaid/regular{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "vX" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "ws" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "wE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/firealarm{
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -26
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "wN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "wW" = (
-/obj/structure/table/marble,
-/obj/item/storage/box/donkpockets,
-/obj/structure/extinguisher_cabinet{
+obj/structure/table/marble,
+obj/item/storage/box/donkpockets,
+obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "wX" = (
-/obj/structure/catwalk/ashlander,
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk/ashlander,
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "wY" = (
-/obj/machinery/door/airlock/maintenance{
+obj/machinery/door/airlock/maintenance{
 	name = "Mining Engine Room";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "xd" = (
-/turf/simulated/mineral/rich/triumph/lavaland,
-/area/lavaland/central/unexplored)
+turf/simulated/mineral/rich/triumph/lavaland,
+area/lavaland/central/unexplored)
 "xf" = (
-/obj/machinery/mech_recharger,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/mech_recharger,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "xh" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "xJ" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	name = "Showers";
 	req_one_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "xQ" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/structure/table/marble,
+obj/item/reagent_containers/food/drinks/shaker,
+obj/item/reagent_containers/glass/rag,
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "xV" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 1;
 	pixel_y = -23;
 	req_one_access = list(48)
 	},
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -26
 	},
-/obj/structure/ore_box,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/ore_box,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "yp" = (
-/obj/structure/table/marble,
-/obj/machinery/reagentgrinder,
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/structure/table/marble,
+obj/machinery/reagentgrinder,
+obj/item/reagent_containers/glass/rag,
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "yw" = (
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "yP" = (
-/turf/simulated/floor/carpet/purcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/purcarpet,
+area/lavaland/central/base/common)
 "yX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "za" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "zd" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "zf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	pixel_y = 24
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "zl" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "zm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "zt" = (
-/obj/machinery/vending/fitness,
-/obj/machinery/camera/network/mining{
+obj/machinery/vending/fitness,
+obj/machinery/camera/network/mining{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "zv" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/universal,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/visible/universal,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "zD" = (
-/obj/structure/bed/chair/sofa/right,
-/obj/effect/floor_decal/spline/fancy/wood{
+obj/structure/bed/chair/sofa/right,
+obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
-/mob/living/simple_mob/animal/passive/mouse/gray{
+mob/living/simple_mob/animal/passive/mouse/gray{
 	name = "Jerry"
 	},
-/obj/machinery/camera/network/mining{
+obj/machinery/camera/network/mining{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "zE" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "zO" = (
-/obj/machinery/door/airlock/glass_external{
+obj/machinery/door/airlock/glass_external{
 	req_one_access = list(48)
 	},
-/obj/map_helper/airlock/door/ext_door,
-/obj/machinery/access_button{
+obj/map_helper/airlock/door/ext_door,
+obj/machinery/access_button{
 	dir = 8;
 	frequency = 1384;
 	master_tag = "mining_engine";
@@ -1447,1107 +1447,1107 @@
 	pixel_y = 25;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Ak" = (
-/obj/structure/bed/chair/sofa/left,
-/obj/effect/floor_decal/spline/fancy/wood{
+obj/structure/bed/chair/sofa/left,
+obj/effect/floor_decal/spline/fancy/wood{
 	dir = 5
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "As" = (
-/obj/machinery/door/firedoor/multi_tile{
+obj/machinery/door/firedoor/multi_tile{
 	dir = 1;
 	req_one_access = list(48)
 	},
-/obj/machinery/door/airlock/multi_tile/glass{
+obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
 	name = "Lounge";
 	req_access = list(48)
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "Ay" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "AG" = (
-/obj/machinery/vending/cola,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/vending/cola,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "AO" = (
-/turf/simulated/wall/r_wall,
-/area/lavaland/central/base/common)
+turf/simulated/wall/r_wall,
+area/lavaland/central/base/common)
 "BY" = (
-/obj/spawner/window/reinforced/full/firelocks,
-/obj/structure/curtain/black,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/spawner/window/reinforced/full/firelocks,
+obj/structure/curtain/black,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Cg" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/structure/table/woodentable,
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Ci" = (
-/obj/structure/table/marble,
-/obj/effect/floor_decal/spline/fancy/wood{
+obj/structure/table/marble,
+obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
-/obj/structure/flora/pottedplant/small,
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+obj/structure/flora/pottedplant/small,
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "Cq" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/obj/structure/catwalk,
-/obj/structure/railing,
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk,
+obj/structure/railing,
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "CX" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "Du" = (
-/obj/structure/table/marble,
-/obj/effect/floor_decal/spline/fancy/wood{
+obj/structure/table/marble,
+obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "Dv" = (
-/obj/machinery/media/jukebox{
+obj/machinery/media/jukebox{
 	icon_state = "superjuke-nopower";
 	state_base = "superjuke"
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "Dx" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	name = "Custodial Supplies";
 	req_one_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "DG" = (
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "DW" = (
-/obj/structure/sign/warning/lava,
-/turf/simulated/wall/r_wall,
-/area/lavaland/central/base/common)
+obj/structure/sign/warning/lava,
+turf/simulated/wall/r_wall,
+area/lavaland/central/base/common)
 "Em" = (
-/obj/machinery/door/firedoor/multi_tile{
+obj/machinery/door/firedoor/multi_tile{
 	req_one_access = list(48)
 	},
-/obj/machinery/door/airlock/multi_tile/glass{
+obj/machinery/door/airlock/multi_tile/glass{
 	name = "Logistics";
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "EE" = (
-/obj/effect/floor_decal/spline/fancy/wood{
+obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
-/obj/structure/bed/chair/sofa/left{
+obj/structure/bed/chair/sofa/left{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "EX" = (
-/obj/structure/toilet{
+obj/structure/toilet{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "Fe" = (
-/obj/map_helper/airlock/sensor/ext_sensor,
-/obj/machinery/airlock_sensor/airlock_exterior{
+obj/map_helper/airlock/sensor/ext_sensor,
+obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 4;
 	frequency = 1384;
 	id_tag = "mining_engine";
 	pixel_x = 22;
 	pixel_y = 5
 	},
-/turf/simulated/floor/plating/lavaland,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating/lavaland,
+area/lavaland/central/base/common)
 "Fq" = (
-/obj/effect/floor_decal/spline/fancy/wood{
+obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/obj/structure/bed/chair/sofa/right{
+obj/structure/bed/chair/sofa/right{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "Ft" = (
-/obj/machinery/vending/cigarette,
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+obj/machinery/vending/cigarette,
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "FF" = (
-/obj/structure/sink/kitchen{
+obj/structure/sink/kitchen{
 	dir = 4;
 	pixel_x = -11
 	},
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "FI" = (
-/obj/structure/table/standard,
-/obj/item/storage/box/mousetraps,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/mop,
-/obj/machinery/light/small{
+obj/structure/table/standard,
+obj/item/storage/box/mousetraps,
+obj/item/reagent_containers/glass/bucket,
+obj/item/mop,
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 22;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Ga" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Go" = (
-/obj/structure/table/bone,
-/turf/simulated/floor/bone/lavaland,
-/area/lavaland/central/explored)
+obj/structure/table/bone,
+turf/simulated/floor/bone/lavaland,
+area/lavaland/central/explored)
 "GE" = (
-/obj/machinery/mineral/equipment_vendor,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/mineral/equipment_vendor,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "GT" = (
-/obj/effect/debris/cleanable/dirt,
-/obj/machinery/firealarm{
+obj/effect/debris/cleanable/dirt,
+obj/machinery/firealarm{
 	pixel_y = 24
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Hr" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/portable_atmospherics/canister/oxygen,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Hz" = (
-/obj/structure/dispenser/oxygen,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/dispenser/oxygen,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "HA" = (
-/obj/structure/closet/emcloset,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/closet/emcloset,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "HB" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/obj/structure/catwalk,
-/obj/structure/railing{
+obj/structure/catwalk,
+obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "HU" = (
-/obj/structure/closet/emcloset,
-/obj/machinery/light/small{
+obj/structure/closet/emcloset,
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/debris/cleanable/cobweb2,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/effect/debris/cleanable/cobweb2,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "If" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
+obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Il" = (
-/obj/machinery/camera/network/mining{
+obj/machinery/camera/network/mining{
 	dir = 4
 	},
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/table/steel,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Iq" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/sign/warning{
+obj/structure/sign/warning{
 	desc = "Warning: The PMD has confirmed multiple Memetic Hazards in this area. Please wear the appropriate protection.";
 	name = "\improper MEMETIC HAZARD";
 	pixel_x = -32
 	},
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/base/common)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/base/common)
 "Ir" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 1;
 	pixel_y = -23;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/purcarpet,
+area/lavaland/central/base/common)
 "Iy" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/structure/ore_box,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/ore_box,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "IR" = (
-/obj/machinery/door/firedoor/multi_tile{
+obj/machinery/door/firedoor/multi_tile{
 	req_one_access = list(48)
 	},
-/obj/machinery/door/airlock/multi_tile/glass{
+obj/machinery/door/airlock/multi_tile/glass{
 	name = "Lounge";
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/wood,
-/area/lavaland/central/base/common)
+turf/simulated/floor/wood,
+area/lavaland/central/base/common)
 "IV" = (
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/mining/brace{
+obj/machinery/mining/brace{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/dark,
+area/lavaland/central/base/common)
 "Jz" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/plating/lavaland,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating/lavaland,
+area/lavaland/central/base/common)
 "Ki" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
-/obj/structure/catwalk,
-/obj/structure/railing{
+obj/structure/catwalk,
+obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "Kj" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/recharge_station,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "KC" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "KG" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "KN" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/structure/closet/secure_closet/personal,
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/oracarpet,
+area/lavaland/central/base/common)
 "KX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "KZ" = (
-/obj/machinery/mech_recharger,
-/obj/machinery/camera/network/mining{
+obj/machinery/mech_recharger,
+obj/machinery/camera/network/mining{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "La" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Lc" = (
-/obj/structure/mob_spawner/goliath,
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/explored)
+obj/structure/mob_spawner/goliath,
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/explored)
 "Lg" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Lr" = (
-/obj/structure/table/standard,
-/obj/item/storage/toolbox/mechanical,
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/structure/table/standard,
+obj/item/storage/toolbox/mechanical,
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 1;
 	pixel_y = -23;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Md" = (
-/turf/unsimulated/mineral/triumph/lavaland,
-/area/lavaland/central/explored)
+turf/unsimulated/mineral/triumph/lavaland,
+area/lavaland/central/explored)
 "Mw" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "MV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospheric_field_generator/perma,
-/obj/machinery/door/blast/regular{
+obj/machinery/atmospheric_field_generator/perma,
+obj/machinery/door/blast/regular{
 	id = "surtstage";
 	name = "Staging Area Blast Door"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techfloor/grid,
+area/lavaland/central/base/common)
 "MX" = (
-/turf/simulated/mineral/triumph/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/mineral/triumph/lavaland,
+area/lavaland/central/explored)
 "ND" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "NW" = (
-/obj/spawner/window/reinforced/full/firelocks,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/spawner/window/reinforced/full/firelocks,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Ob" = (
-/obj/machinery/light/small,
-/obj/structure/ore_box,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/light/small,
+obj/structure/ore_box,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Og" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Oj" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+obj/structure/catwalk,
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "Op" = (
-/obj/structure/table/woodentable,
-/obj/machinery/recharger,
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/structure/table/woodentable,
+obj/machinery/recharger,
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/blucarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/blucarpet,
+area/lavaland/central/base/common)
 "Oq" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
-/obj/structure/catwalk,
-/obj/structure/railing{
+obj/structure/catwalk,
+obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "Ow" = (
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	id = "mine_orange";
 	name = "Door Lock";
 	pixel_x = 25;
 	pixel_y = 26;
 	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/oracarpet,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/carpet/oracarpet,
+area/lavaland/central/base/common)
 "OB" = (
-/obj/structure/undies_wardrobe,
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+obj/structure/undies_wardrobe,
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "ON" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
-/obj/structure/catwalk,
-/obj/structure/railing{
+obj/structure/catwalk,
+obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "Pk" = (
-/turf/simulated/wall/solidrock,
-/area/lavaland/central/explored)
+turf/simulated/wall/solidrock,
+area/lavaland/central/explored)
 "Pu" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 22;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/carpet/blucarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/blucarpet,
+area/lavaland/central/base/common)
 "Pv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "PM" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/structure/closet/secure_closet/personal,
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/blucarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/blucarpet,
+area/lavaland/central/base/common)
 "PP" = (
-/obj/structure/mob_spawner/goliath,
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/unexplored)
+obj/structure/mob_spawner/goliath,
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/unexplored)
 "PZ" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Qo" = (
-/obj/structure/bed/chair,
-/turf/simulated/floor/carpet/bcarpet,
-/area/lavaland/central/base/common)
+obj/structure/bed/chair,
+turf/simulated/floor/carpet/bcarpet,
+area/lavaland/central/base/common)
 "Qs" = (
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 22;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/bcarpet,
+area/lavaland/central/base/common)
 "Qu" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "QA" = (
-/obj/machinery/door/airlock/glass_external{
+obj/machinery/door/airlock/glass_external{
 	req_one_access = list(48)
 	},
-/obj/map_helper/airlock/door/int_door,
-/obj/structure/fans/tiny,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/map_helper/airlock/door/int_door,
+obj/structure/fans/tiny,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "QC" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/double,
-/turf/simulated/floor/carpet/bcarpet,
-/area/lavaland/central/base/common)
+obj/structure/bed/double/padded,
+obj/item/bedsheet/double,
+turf/simulated/floor/carpet/bcarpet,
+area/lavaland/central/base/common)
 "QN" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/mining/drill,
-/turf/simulated/floor/tiled/dark,
-/area/lavaland/central/base/common)
+obj/machinery/mining/drill,
+turf/simulated/floor/tiled/dark,
+area/lavaland/central/base/common)
 "QR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "QY" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/structure/table/woodentable,
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/button/windowtint{
+obj/machinery/button/windowtint{
 	id = "wind_orange";
 	pixel_y = -25
 	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/oracarpet,
+area/lavaland/central/base/common)
 "Ro" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "Ru" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "mine_orange";
 	name = "Dormitory";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/oracarpet,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/carpet/oracarpet,
+area/lavaland/central/base/common)
 "RE" = (
-/obj/machinery/atmospheric_field_generator/perma,
-/obj/machinery/door/blast/regular{
+obj/machinery/atmospheric_field_generator/perma,
+obj/machinery/door/blast/regular{
 	id = "surtstage";
 	name = "Staging Area Blast Door"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techfloor/grid,
+area/lavaland/central/base/common)
 "RK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "RL" = (
-/turf/simulated/mineral/rich/triumph/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/mineral/rich/triumph/lavaland,
+area/lavaland/central/explored)
 "RS" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "mine_purp";
 	name = "Dormitory";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/purcarpet,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/carpet/purcarpet,
+area/lavaland/central/base/common)
 "RX" = (
-/turf/simulated/mineral/triumph/lavaland,
-/area/lavaland/central/unexplored)
+turf/simulated/mineral/triumph/lavaland,
+area/lavaland/central/unexplored)
 "Sa" = (
-/obj/machinery/camera/network/mining{
+obj/machinery/camera/network/mining{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "SH" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/bed/chair{
+obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/machinery/button/windowtint{
+obj/machinery/button/windowtint{
 	id = "wind_blue";
 	pixel_y = -25
 	},
-/turf/simulated/floor/carpet/blucarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/blucarpet,
+area/lavaland/central/base/common)
 "SJ" = (
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	id = "mine_blue";
 	name = "Door Lock";
 	pixel_x = 25;
 	pixel_y = -26;
 	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/blucarpet,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/carpet/blucarpet,
+area/lavaland/central/base/common)
 "SL" = (
-/obj/structure/extinguisher_cabinet{
+obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/light/small,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "SM" = (
-/obj/structure/bed,
-/obj/item/bedsheet/red,
-/turf/simulated/floor/carpet/blucarpet,
-/area/lavaland/central/base/common)
+obj/structure/bed,
+obj/item/bedsheet/red,
+turf/simulated/floor/carpet/blucarpet,
+area/lavaland/central/base/common)
 "SN" = (
-/obj/structure/extinguisher_cabinet{
+obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "SZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "Ty" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/structure/table/woodentable,
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/bcarpet,
+area/lavaland/central/base/common)
 "TA" = (
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	id = "mine_black";
 	name = "Door Lock";
 	pixel_x = -25;
 	pixel_y = -26;
 	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/bcarpet,
+area/lavaland/central/base/common)
 "TJ" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
+obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "TK" = (
-/obj/machinery/door/airlock/glass_external{
+obj/machinery/door/airlock/glass_external{
 	req_one_access = list(48)
 	},
-/obj/map_helper/airlock/door/ext_door,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/map_helper/airlock/door/ext_door,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "TW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	pixel_y = 22;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Ui" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/machinery/light/small{
+obj/structure/closet/secure_closet/personal,
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/bcarpet,
+area/lavaland/central/base/common)
 "UV" = (
-/obj/machinery/mining/brace{
+obj/machinery/mining/brace{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/dark,
+area/lavaland/central/base/common)
 "Vv" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 1;
 	pixel_y = -23;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Vw" = (
-/obj/structure/flora/pottedplant/subterranean,
-/obj/machinery/camera/network/mining{
+obj/structure/flora/pottedplant/subterranean,
+obj/machinery/camera/network/mining{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "VA" = (
-/obj/structure/table/rack,
-/obj/item/storage/bag/ore,
-/obj/item/gun/energy/kinetic_accelerator,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/table/rack,
+obj/item/storage/bag/ore,
+obj/item/gun/energy/kinetic_accelerator,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "VC" = (
-/obj/structure/table/woodentable,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/structure/table/woodentable,
+obj/item/paper_bin,
+obj/item/pen,
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "VD" = (
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "VM" = (
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 4;
 	pixel_x = -27;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "VT" = (
-/obj/structure/sign/warning{
+obj/structure/sign/warning{
 	desc = "Warning: The PMD has confirmed multiple Memetic Hazards in this area. Please wear the appropriate protection.";
 	name = "\improper MEMETIC HAZARD";
 	pixel_x = 32
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/table/steel,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "VX" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 9
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+obj/structure/window/reinforced/tinted/frosted{
 	dir = 4
 	},
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 1
 	},
-/obj/structure/curtain/open/shower/engineering,
-/turf/simulated/floor/tiled/white,
-/area/lavaland/central/base/common)
+obj/structure/curtain/open/shower/engineering,
+turf/simulated/floor/tiled/white,
+area/lavaland/central/base/common)
 "VY" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/lavaland,
-/area/lavaland/central/base/common)
+turf/simulated/floor/outdoors/lavaland,
+area/lavaland/central/base/common)
 "Wd" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "mine_blue";
 	name = "Dormitory";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/blucarpet,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/carpet/blucarpet,
+area/lavaland/central/base/common)
 "We" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/light/small,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Wf" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	id_tag = "mine_black";
 	name = "Dormitory";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/carpet/bcarpet,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/carpet/bcarpet,
+area/lavaland/central/base/common)
 "Wh" = (
-/obj/machinery/door/firedoor{
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
-/area/lavaland/central/base/common)
+obj/structure/grille,
+obj/structure/window/reinforced/full,
+turf/simulated/floor/plating,
+area/lavaland/central/base/common)
 "Wj" = (
-/obj/machinery/door/firedoor{
+obj/machinery/door/firedoor{
 	req_one_access = list(48)
 	},
-/obj/machinery/door/airlock/glass{
+obj/machinery/door/airlock/glass{
 	name = "Transit";
 	req_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Wq" = (
-/turf/simulated/wall/sandstone/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/wall/sandstone/lavaland,
+area/lavaland/central/explored)
 "Wv" = (
-/obj/item/geiger_counter,
-/obj/item/geiger_counter,
-/obj/item/geiger_counter,
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/item/geiger_counter,
+obj/item/geiger_counter,
+obj/item/geiger_counter,
+obj/structure/table/steel,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Wy" = (
-/obj/structure/flora/pottedplant/smalltree{
+obj/structure/flora/pottedplant/smalltree{
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "WG" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "WK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "WM" = (
-/turf/simulated/wall/bone,
-/area/lavaland/central/explored)
+turf/simulated/wall/bone,
+area/lavaland/central/explored)
 "WR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "WV" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "WX" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "WZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Xi" = (
-/obj/effect/debris/cleanable/dirt,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/effect/debris/cleanable/dirt,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Xz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "XG" = (
-/obj/structure/closet/crate/medical,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/structure/closet/crate/medical,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "XQ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "XR" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
+obj/structure/closet/secure_closet/personal,
+obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/lavaland/central/base/common)
+turf/simulated/floor/carpet/purcarpet,
+area/lavaland/central/base/common)
 "XT" = (
-/obj/structure/closet/crate/ashlander,
-/turf/simulated/floor/sandstone/lavaland,
-/area/lavaland/central/explored)
+obj/structure/closet/crate/ashlander,
+turf/simulated/floor/sandstone/lavaland,
+area/lavaland/central/explored)
 "Yb" = (
-/obj/machinery/door/airlock/glass_medical{
+obj/machinery/door/airlock/glass_medical{
 	name = "Triage";
 	req_one_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+obj/machinery/atmospherics/pipe/simple/hidden/supply,
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Yn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/firealarm{
+obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "YJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "YS" = (
-/obj/effect/floor_decal/industrial/warning{
+obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/techmaint,
+area/lavaland/central/base/common)
 "Ze" = (
-/obj/structure/table/sandstone,
-/turf/simulated/floor/sandstone/lavaland,
-/area/lavaland/central/explored)
+obj/structure/table/sandstone,
+turf/simulated/floor/sandstone/lavaland,
+area/lavaland/central/explored)
 "Zg" = (
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10,
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+obj/effect/floor_decal/steeldecal/steel_decals10,
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "Zh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "Zw" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "ZG" = (
-/obj/structure/table/standard,
-/obj/structure/bedsheetbin,
-/obj/machinery/light/small{
+obj/structure/table/standard,
+obj/structure/bedsheetbin,
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/atmospherics/component/unary/vent_pump/on{
+obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "ZI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
+obj/machinery/alarm/alarms_hidden{
 	dir = 1;
 	pixel_y = -23;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "ZJ" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
-/obj/structure/catwalk,
-/obj/structure/railing{
+obj/machinery/atmospherics/pipe/simple/heat_exchanging,
+obj/structure/catwalk,
+obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/lava/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/floor/outdoors/lava/lavaland,
+area/lavaland/central/explored)
 "ZK" = (
-/obj/effect/map_effect/portal/master/side_a{
+obj/effect/map_effect/portal/master/side_a{
 	dir = 8;
 	name = "to_east";
 	portal_id = "eaststep"
 	},
-/turf/simulated/mineral/triumph/lavaland,
-/area/lavaland/central/explored)
+turf/simulated/mineral/triumph/lavaland,
+area/lavaland/central/explored)
 "ZO" = (
-/obj/structure/curtain/open/shower/engineering,
-/turf/simulated/floor/tiled/old_tile,
-/area/lavaland/central/base/common)
+obj/structure/curtain/open/shower/engineering,
+turf/simulated/floor/tiled/old_tile,
+area/lavaland/central/base/common)
 "ZY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/button/remote/blast_door{
+obj/machinery/button/remote/blast_door{
 	dir = 8;
 	id = "surtstage";
 	name = "Staging Area Shutters";
@@ -2555,17 +2555,17 @@
 	pixel_y = 26;
 	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 "ZZ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/lavaland/central/base/common)
+turf/simulated/floor/tiled,
+area/lavaland/central/base/common)
 
 (1,1,1) = {"
 Md

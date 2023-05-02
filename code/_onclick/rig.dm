@@ -4,10 +4,10 @@
 #define CTRL_CLICK 2
 #define MAX_HARDSUIT_CLICK_MODE 2
 
-/client
+client
 	var/hardsuit_click_mode = MIDDLE_CLICK
 
-/client/verb/toggle_hardsuit_mode()
+client/verb/toggle_hardsuit_mode()
 	set name = "Toggle Hardsuit Activation Mode"
 	set desc = "Switch between hardsuit activation modes."
 	set category = "OOC"
@@ -29,40 +29,40 @@
 			to_chat(src, "Somehow you bugged the system. Setting your hardsuit mode to middle-click.")
 			hardsuit_click_mode = MIDDLE_CLICK
 
-/mob/living/MiddleClickOn(atom/A)
+mob/living/MiddleClickOn(atom/A)
 	if(client && client.hardsuit_click_mode == MIDDLE_CLICK)
 		if(HardsuitClickOn(A))
 			return
 	..()
 
-/mob/living/AltClickOn(atom/A)
+mob/living/AltClickOn(atom/A)
 	if(client && client.hardsuit_click_mode == ALT_CLICK)
 		if(HardsuitClickOn(A))
 			return
 	..()
 
-/mob/living/CtrlClickOn(atom/A)
+mob/living/CtrlClickOn(atom/A)
 	if(client && client.hardsuit_click_mode == CTRL_CLICK)
 		if(HardsuitClickOn(A))
 			return
 	..()
 
-/mob/living/proc/can_use_rig()
+mob/living/proc/can_use_rig()
 	return 0
 
-/mob/living/carbon/human/can_use_rig()
+mob/living/carbon/human/can_use_rig()
 	return 1
 
-/mob/living/carbon/brain/can_use_rig()
+mob/living/carbon/brain/can_use_rig()
 	return istype(loc, /obj/item/mmi)
 
-/mob/living/silicon/ai/can_use_rig()
+mob/living/silicon/ai/can_use_rig()
 	return carded
 
-/mob/living/silicon/pai/can_use_rig()
+mob/living/silicon/pai/can_use_rig()
 	return loc == card
 
-/mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)
+mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)
 	if(!can_use_rig() || !canClick())
 		return 0
 	var/obj/item/rig/rig = get_rig(TRUE)

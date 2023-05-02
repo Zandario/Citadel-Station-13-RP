@@ -1,5 +1,5 @@
 ///SCI TELEPAD///
-/obj/machinery/telepad
+obj/machinery/telepad
 	name = "telepad"
 	desc = "A bluespace telepad used for teleporting objects to and from a location."
 	icon = 'icons/obj/telescience.dmi'
@@ -11,17 +11,17 @@
 	active_power_usage = 5000
 	var/efficiency
 
-/obj/machinery/telepad/Initialize(mapload)
+obj/machinery/telepad/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/machinery/telepad/RefreshParts()
+obj/machinery/telepad/RefreshParts()
 	var/E
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating
 	efficiency = E
 
-/obj/machinery/telepad/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/telepad/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
 	if(default_deconstruction_screwdriver(user, W))

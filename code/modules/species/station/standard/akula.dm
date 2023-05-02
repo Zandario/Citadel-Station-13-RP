@@ -1,4 +1,4 @@
-/datum/species/akula
+datum/species/akula
 	uid = SPECIES_ID_AKULA
 	id = SPECIES_ID_AKULA
 	name = SPECIES_AKULA
@@ -62,5 +62,5 @@
 		/mob/living/carbon/human/proc/tie_hair,
 	)
 
-/datum/species/akula/can_breathe_water()
+datum/species/akula/can_breathe_water()
 	return TRUE // Surprise, SHERKS.

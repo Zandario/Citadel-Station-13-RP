@@ -11,7 +11,7 @@
 #define TECHNOMANCER_INSTABILITY_PRECISION			0.1
 /// When above this number, the entity starts glowing, affecting others.
 #define TECHNOMANCER_INSTABILITY_MIN_GLOW			10
-/mob/living
+mob/living
 	var/instability = 0
 	var/last_instability = 0 // Used to calculate instability delta.
 	var/last_instability_event = null // most recent world.time that something bad happened due to instability.
@@ -21,20 +21,20 @@
 // Proc: adjust_instability()
 // Parameters: 0
 // Description: Does nothing, because inheritence.
-/mob/living/proc/adjust_instability(var/amount)
+mob/living/proc/adjust_instability(var/amount)
 	instability = between(0, round(instability + amount, TECHNOMANCER_INSTABILITY_PRECISION), 200)
 
 // Proc: adjust_instability()
 // Parameters: 1 (amount - how much instability to give)
 // Description: Adds or subtracks instability to the mob, then updates the hud.
-/mob/living/carbon/human/adjust_instability(var/amount)
+mob/living/carbon/human/adjust_instability(var/amount)
 	..()
 	instability_update_hud()
 
 // Proc: instability_update_hud()
 // Parameters: 0
 // Description: Sets the HUD icon to the correct state.
-/mob/living/carbon/human/proc/instability_update_hud()
+mob/living/carbon/human/proc/instability_update_hud()
 	if(client && hud_used)
 		switch(instability)
 			if(0 to 10)
@@ -48,7 +48,7 @@
 			if(100 to 200)
 				wiz_instability_display.icon_state = "instability3"
 
-/mob/living/PhysicalLife()
+mob/living/PhysicalLife()
 	if((. = ..()))
 		return
 	handle_instability()
@@ -57,7 +57,7 @@
 // Parameters: 0
 // Description: Makes instability decay.  instability_effects() handles the bad effects for having instability.  It will also hold back
 // from causing bad effects more than one every ten seconds, to prevent sudden death from angry RNG.
-/mob/living/proc/handle_instability()
+mob/living/proc/handle_instability()
 	instability = between(0, round(instability, TECHNOMANCER_INSTABILITY_PRECISION), 200)
 	last_instability = instability
 
@@ -71,7 +71,7 @@
 	adjust_instability(-instability_decayed)
 	radiate_instability(instability_decayed)
 
-/mob/living/carbon/human/handle_instability()
+mob/living/carbon/human/handle_instability()
 	..()
 	instability_update_hud()
 
@@ -88,7 +88,7 @@
 // Parameters: 0
 // Description: Does a variety of bad effects to the entity holding onto the instability, with more severe effects occuring if they have
 // a lot of instability.
-/mob/living/proc/instability_effects()
+mob/living/proc/instability_effects()
 	last_instability_event = world.time
 	spawn(1)
 		var/image/instability_flash = image('icons/obj/spells.dmi',"instability")
@@ -97,7 +97,7 @@
 		cut_overlay(instability_flash)
 		qdel(instability_flash)
 
-/mob/living/silicon/instability_effects()
+mob/living/silicon/instability_effects()
 	if(instability)
 		var/rng = 0
 		..()
@@ -162,7 +162,7 @@
 						adjustBruteLoss(instability * 0.4) //40 brute @ 100 instability
 						to_chat(src, "<span class='danger'>Your chassis makes the sound of metal groaning and tearing!</span>")
 
-/mob/living/carbon/human/instability_effects()
+mob/living/carbon/human/instability_effects()
 	if(instability)
 		var/rng = 0
 		..()
@@ -261,7 +261,7 @@
 					if(7)
 						adjustToxLoss(instability * 0.40) //40 tox @ 100 instability
 
-/mob/living/proc/radiate_instability(amount)
+mob/living/proc/radiate_instability(amount)
 	var/distance = round(sqrt(instability / 2))
 	if(instability < TECHNOMANCER_INSTABILITY_MIN_GLOW)
 		distance = 0
@@ -276,7 +276,7 @@
 			L.receive_radiated_instability(outgoing_instability)
 
 // This should only be used for EXTERNAL sources of instability, such as from someone or something glowing.
-/mob/living/proc/receive_radiated_instability(amount)
+mob/living/proc/receive_radiated_instability(amount)
 	// Energy armor like from the AMI RIG can protect from this.
 	var/armor = legacy_mob_armor(null, "energy")
 	var/armor_factor = abs( (armor - 100) / 100)

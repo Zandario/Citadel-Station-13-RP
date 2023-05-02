@@ -1,4 +1,4 @@
-/obj/machinery/computer/teleporter
+obj/machinery/computer/teleporter
 	name = "teleporter control console"
 	desc = "Used to control a linked teleportation Pad and Projector."
 	icon_keyboard = "teleport_key"
@@ -11,7 +11,7 @@
 	var/one_time_use = 0 //Used for one-time-use teleport cards (such as clown planet coordinates.)
 						 //Setting this to 1 will set locked to null after a player enters the portal and will not allow hand-teles to open portals to that location.
 
-/obj/machinery/computer/teleporter/Initialize(mapload)
+obj/machinery/computer/teleporter/Initialize(mapload)
 	id = "[rand(1000, 9999)]"
 	. = ..()
 
@@ -33,13 +33,13 @@
 		pad.com = src
 		pad.setDir(dir)
 
-/obj/machinery/computer/teleporter/examine(mob/user)
+obj/machinery/computer/teleporter/examine(mob/user)
 	. = ..()
 	if(locked)
 		var/turf/T = get_turf(locked)
 		to_chat(user, SPAN_NOTICE("The console is locked on to \[[T.loc.name]\]."))
 
-/obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
+obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/card/data))
 		var/obj/item/card/data/C = I
 		if(machine_stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
@@ -84,7 +84,7 @@
 
 	return
 
-/obj/machinery/computer/teleporter/attack_hand(mob/user, list/params)
+obj/machinery/computer/teleporter/attack_hand(mob/user, list/params)
 	if(..()) return
 
 	/* Ghosts can't use this one because it's a direct selection */
@@ -137,7 +137,7 @@
 		O.show_message(SPAN_NOTICE("Locked In"), 2)
 	return
 
-/obj/machinery/computer/teleporter/verb/set_id(t as text)
+obj/machinery/computer/teleporter/verb/set_id(t as text)
 	set category = "Object"
 	set name = "Set teleporter ID"
 	set src in oview(1)
@@ -149,7 +149,7 @@
 		id = t
 	return
 
-/proc/find_loc(obj/R)
+proc/find_loc(obj/R)
 	if(!R)	return null
 	var/turf/T = R.loc
 	while(!istype(T, /turf))

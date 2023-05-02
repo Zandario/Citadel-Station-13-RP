@@ -4,7 +4,7 @@ RSF
 
 */
 
-/obj/item/rsf
+obj/item/rsf
 	name = "\improper Rapid-Service-Fabricator"
 	desc = "A device used to rapidly deploy service items."
 	description_info = "Control Clicking on the device will allow you to choose the glass it dispenses when in the proper mode."
@@ -32,11 +32,11 @@ RSF
 
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/rsf/examine(mob/user)
+obj/item/rsf/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>It currently holds [stored_matter]/30 fabrication-units.</span>"
 
-/obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (istype(W, /obj/item/rcd_ammo))
 
@@ -51,7 +51,7 @@ RSF
 		to_chat(user,"<span class='notice'>The RSF now holds [stored_matter]/30 fabrication-units.</span>")
 		return
 
-/obj/item/rsf/CtrlClick(mob/living/user)
+obj/item/rsf/CtrlClick(mob/living/user)
 	if(!Adjacent(user) || !istype(user))
 		to_chat(user,"<span class='notice'>You are too far away.</span>")
 		return
@@ -62,7 +62,7 @@ RSF
 	else
 		glasstype = /obj/item/reagent_containers/food/drinks/metaglass
 
-/obj/item/rsf/attack_self(mob/user)
+obj/item/rsf/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -100,7 +100,7 @@ RSF
 		to_chat(user,"<span class='notice'>Changed dispensing mode to 'Cigarette'</span>")
 		return
 
-/obj/item/rsf/afterattack(atom/A, mob/user as mob, proximity)
+obj/item/rsf/afterattack(atom/A, mob/user as mob, proximity)
 
 	if(!proximity) return
 

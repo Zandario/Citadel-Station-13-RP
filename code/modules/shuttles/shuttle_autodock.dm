@@ -4,7 +4,7 @@
 // Consists of code pulled down from the old /datum/shuttle and up from /datum/shuttle/ferry
 // Note: Since all known shuttles extend this type, this really could just be built into /datum/shuttle
 // Why isn't it you ask? Eh, baystation did it this way and its convenient to keep the files smaller I guess.
-/datum/shuttle/autodock
+datum/shuttle/autodock
 	var/in_use = null	// Tells the controller whether this shuttle needs processing, also attempts to prevent double-use
 	var/last_dock_attempt_time = 0
 
@@ -23,7 +23,7 @@
 
 	var/list/obj/item/clothing/head/pilot/helmets
 
-/datum/shuttle/autodock/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
+datum/shuttle/autodock/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
 	..(_name, start_waypoint)
 
 	helmets = list()
@@ -43,7 +43,7 @@
 	if(landmark_transition)
 		landmark_transition = SSshuttle.get_landmark(landmark_transition)
 
-/datum/shuttle/autodock/Destroy()
+datum/shuttle/autodock/Destroy()
 	in_use = null
 	next_location = null
 	active_docking_controller = null
@@ -52,17 +52,17 @@
 
 	return ..()
 
-/datum/shuttle/autodock/proc/set_docking_codes(var/code)
+datum/shuttle/autodock/proc/set_docking_codes(var/code)
 	docking_codes = code
 	if(shuttle_docking_controller)
 		shuttle_docking_controller.docking_codes = code
 
-/datum/shuttle/autodock/perform_shuttle_move()
+datum/shuttle/autodock/perform_shuttle_move()
 	force_undock()	// Bye! Have a beautiful time!
 	..()
 
 // Despite the name this actually updates the SHUTTLE docking conroller, not the active.
-/datum/shuttle/autodock/proc/update_docking_target(var/obj/effect/shuttle_landmark/location)
+datum/shuttle/autodock/proc/update_docking_target(var/obj/effect/shuttle_landmark/location)
 	var/current_dock_target
 	if(location && location.special_dock_targets && location.special_dock_targets[name])
 		current_dock_target = location.special_dock_targets[name]
@@ -74,37 +74,37 @@
 /*
 	Docking stuff
 */
-/datum/shuttle/autodock/dock()
+datum/shuttle/autodock/dock()
 	if(active_docking_controller && shuttle_docking_controller)
 		shuttle_docking_controller.initiate_docking(active_docking_controller.id_tag)
 		last_dock_attempt_time = world.time
 
-/datum/shuttle/autodock/undock()
+datum/shuttle/autodock/undock()
 	if(shuttle_docking_controller)
 		shuttle_docking_controller.initiate_undocking()
 
-/datum/shuttle/autodock/force_undock()
+datum/shuttle/autodock/force_undock()
 	if(shuttle_docking_controller)
 		shuttle_docking_controller.force_undock()
 
-/datum/shuttle/autodock/check_docked()
+datum/shuttle/autodock/check_docked()
 	if(shuttle_docking_controller)
 		return shuttle_docking_controller.docked()
 	return TRUE
 
-/datum/shuttle/autodock/check_undocked()
+datum/shuttle/autodock/check_undocked()
 	if(shuttle_docking_controller)
 		return shuttle_docking_controller.can_launch()
 	return TRUE
 
 // You also could just directly reference active_docking_controller
-/datum/shuttle/autodock/proc/current_dock_target()
+datum/shuttle/autodock/proc/current_dock_target()
 	if(active_docking_controller)
 		return active_docking_controller.id_tag
 	return null
 
 // These checks are built into the check_docked() and check_undocked() procs
-/datum/shuttle/autodock/proc/skip_docking_checks()
+datum/shuttle/autodock/proc/skip_docking_checks()
 	if (!shuttle_docking_controller || !current_dock_target())
 		return TRUE	// Shuttles without docking controllers or at locations without docking ports act like old-style shuttles
 	return FALSE
@@ -114,7 +114,7 @@
 	Please ensure that long_jump() and short_jump() are only called from here. This applies to subtypes as well.
 	Doing so will ensure that multiple jumps cannot be initiated in parallel.
 */
-/datum/shuttle/autodock/process(delta_time)
+datum/shuttle/autodock/process(delta_time)
 	switch(process_state)
 		if (WAIT_LAUNCH)
 			if(check_undocked())
@@ -137,7 +137,7 @@
 				arrived()
 
 // Not to be confused with the arrived() proc
-/datum/shuttle/autodock/proc/process_arrived()
+datum/shuttle/autodock/proc/process_arrived()
 	active_docking_controller = next_location?.docking_controller
 	update_docking_target(next_location)
 	dock()
@@ -145,10 +145,10 @@
 	next_location = null
 	in_use = null	// Release lock
 
-/datum/shuttle/autodock/proc/get_travel_time()
+datum/shuttle/autodock/proc/get_travel_time()
 	return move_time
 
-/datum/shuttle/autodock/proc/process_launch()
+datum/shuttle/autodock/proc/process_launch()
 	if(!next_location || !next_location.is_valid(src) || current_location.cannot_depart(src))
 		process_state = IDLE_STATE
 		in_use = null
@@ -162,20 +162,20 @@
 /*
 	Guards - (These don't take docking status into account, just the state machine and move safety)
 */
-/datum/shuttle/autodock/proc/can_launch()
+datum/shuttle/autodock/proc/can_launch()
 	return (next_location && next_location.is_valid(src) && !current_location.cannot_depart(src) && moving_status == SHUTTLE_IDLE && !in_use)
 
-/datum/shuttle/autodock/proc/can_force()
+datum/shuttle/autodock/proc/can_force()
 	return (next_location && next_location.is_valid(src) && !current_location.cannot_depart(src) && moving_status == SHUTTLE_IDLE && process_state == WAIT_LAUNCH)
 
-/datum/shuttle/autodock/proc/can_cancel()
+datum/shuttle/autodock/proc/can_cancel()
 	return (moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH)
 
 /*
 	"Public" procs
 */
 // Queue shuttle for undock and launch by shuttle subsystem.
-/datum/shuttle/autodock/proc/launch(var/user)
+datum/shuttle/autodock/proc/launch(var/user)
 	if (!can_launch()) return
 
 	in_use = user	// Obtain an exclusive lock on the shuttle
@@ -184,7 +184,7 @@
 	undock()
 
 // Queue shuttle for forced undock and launch by shuttle subsystem.
-/datum/shuttle/autodock/proc/force_launch(var/user)
+datum/shuttle/autodock/proc/force_launch(var/user)
 	if (!can_force()) return
 
 	in_use = user	// Obtain an exclusive lock on the shuttle
@@ -192,7 +192,7 @@
 	process_state = FORCE_LAUNCH
 
 // Cancel queued launch.
-/datum/shuttle/autodock/cancel_launch(var/user)
+datum/shuttle/autodock/cancel_launch(var/user)
 	if (!can_cancel()) return
 
 	moving_status = SHUTTLE_IDLE
@@ -205,12 +205,12 @@
 		dock()
 
 // Returns 1 if the shuttle is getting ready to move, but is not in transit yet
-/datum/shuttle/autodock/proc/is_launching()
+datum/shuttle/autodock/proc/is_launching()
 	return (moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH)
 
 // /datum/shuttle/autodock/get_location_name() defined in shuttle.dm
 
-/datum/shuttle/autodock/proc/get_destination_name()
+datum/shuttle/autodock/proc/get_destination_name()
 	if(!next_location)
 		return "None"
 	return next_location.name
@@ -218,8 +218,8 @@
 // This gets called when the shuttle finishes arriving at it's destination
 // This can be used by subtypes to do things when the shuttle arrives.
 // Note that this is called when the shuttle leaves the WAIT_FINISHED state, the proc name is a little misleading
-/datum/shuttle/autodock/proc/arrived()
+datum/shuttle/autodock/proc/arrived()
 	return	// Do nothing for now
 
-/obj/effect/shuttle_landmark/transit
+obj/effect/shuttle_landmark/transit
 	shuttle_landmark_flags = SLANDMARK_FLAG_ZERO_G|SLANDMARK_FLAG_AUTOSET

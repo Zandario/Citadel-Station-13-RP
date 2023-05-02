@@ -1,7 +1,7 @@
 //TODO: Organize these into a "abilities" folder.
 // These should all be procs, you can add them to humans/subspecies by species.dm's inherent_verbs
 
-/mob/living/carbon/human/proc/tie_hair()
+mob/living/carbon/human/proc/tie_hair()
 	set name = "Tie Hair"
 	set desc = "Style your hair."
 	set category = "IC"
@@ -33,7 +33,7 @@
 		else
 			to_chat(src, SPAN_NOTICE("You're already using that style."))
 
-/mob/living/carbon/human/proc/tackle()
+mob/living/carbon/human/proc/tackle()
 	set category = "Abilities"
 	set name = "Tackle"
 	set desc = "Tackle someone down."
@@ -80,7 +80,7 @@
 		if ((O.client && !( O.blinded )))
 			O.show_message(text("<font color='red'><B>[] [failed ? "tried to tackle" : "has tackled"] down []!</font></B>", src, T), 1)
 
-/mob/living/carbon/human/proc/regurgitate()
+mob/living/carbon/human/proc/regurgitate()
 	set name = "Regurgitate"
 	set desc = "Empties the contents of your stomach"
 	set category = "Abilities"
@@ -93,7 +93,7 @@
 		src.visible_message(SPAN_BOLDDANGER("[src] hurls out the contents of their stomach!"))
 	return
 
-/mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
+mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
 	set name = "Psychic Whisper"
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities"
@@ -114,13 +114,13 @@
 				to_chat(src, SPAN_GREEN("You projected: \"[msg]\" to [M]"))
 	return
 
-/mob/living/carbon/human/proc/diona_split_nymph()
+mob/living/carbon/human/proc/diona_split_nymph()
 	set name = "Split"
 	set desc = "Split your humanoid form into its constituent nymphs."
 	set category = "Abilities"
 	diona_split_into_nymphs(5)	// Separate proc to void argments being supplied when used as a verb
 
-/mob/living/carbon/human/proc/diona_split_into_nymphs(var/number_of_resulting_nymphs)
+mob/living/carbon/human/proc/diona_split_into_nymphs(var/number_of_resulting_nymphs)
 	var/turf/T = get_turf(src)
 
 	var/mob/living/carbon/alien/diona/S = new(T)
@@ -173,7 +173,7 @@
 		visible_message(SPAN_WARNING("\The [src] quivers slightly, then splits apart with a wet slithering noise."))
 		qdel(src)
 
-/mob/living/carbon/human/proc/self_diagnostics()
+mob/living/carbon/human/proc/self_diagnostics()
 	set name = "Self-Diagnostics"
 	set desc = "Run an internal self-diagnostic to check for damage."
 	set category = "IC"
@@ -214,7 +214,7 @@
 
 		to_chat(src,output)
 
-/mob/living/carbon/human/proc/setmonitor_state()
+mob/living/carbon/human/proc/setmonitor_state()
 	set name = "Set monitor display"
 	set desc = "Set your monitor display"
 	set category = "IC"
@@ -241,9 +241,9 @@
 		to_chat(src, SPAN_WARNING("You set your monitor to display [choice]!"))
 		update_icons_body()
 
-/mob/living/carbon/human
+mob/living/carbon/human
 
-/mob/living/carbon/human/proc/sonar_ping()
+mob/living/carbon/human/proc/sonar_ping()
 	set name = "Sonar Pulse"
 	set desc = "Allows you to listen in to movement and noises around you."
 	set category = "Abilities"
@@ -274,7 +274,7 @@
 	sonar_automata.start()
 	addtimer(CALLBACK(plane_holder, /datum/plane_holder/proc/set_vis, VIS_SONAR, FALSE), 5 SECONDS, flags = TIMER_OVERRIDE|TIMER_UNIQUE)
 
-/mob/living/carbon/human/proc/regenerate()
+mob/living/carbon/human/proc/regenerate()
 	set name = "Regenerate"
 	set desc = "Allows you to regrow limbs and heal organs after a period of rest."
 	set category = "Abilities"
@@ -338,13 +338,13 @@
 		nutrition -= 75
 		active_regen = FALSE
 
-/mob/living/carbon/human/proc/get_charge(var/mob/living/carbon/human/H)
+mob/living/carbon/human/proc/get_charge(var/mob/living/carbon/human/H)
 	return H.nutrition
 
-/mob/living/carbon/human/proc/spend_charge(var/spent, var/mob/living/carbon/human/H)
+mob/living/carbon/human/proc/spend_charge(var/spent, var/mob/living/carbon/human/H)
 	H.nutrition = H.nutrition - spent
 
-/mob/living/carbon/human/verb/toggle_eyes_layer()
+mob/living/carbon/human/verb/toggle_eyes_layer()
 	set name = "Switch Eyes/Monitor Layer"
 	set desc = "Toggle rendering of eyes/monitor above markings."
 	set category = "IC"
@@ -366,7 +366,7 @@
 
 	return TRUE
 
-/mob/living/carbon/human/proc/shadekin_get_energy()
+mob/living/carbon/human/proc/shadekin_get_energy()
 	var/datum/species/shadekin/sk = species
 	var/datum/species/crew_shadekin/besk = species
 
@@ -376,7 +376,7 @@
 		return besk.get_energy(src)
 	return FALSE
 
-/mob/living/carbon/human/proc/shadekin_get_max_energy()
+mob/living/carbon/human/proc/shadekin_get_max_energy()
 	var/datum/species/shadekin/sk = species
 	var/datum/species/crew_shadekin/besk = species
 
@@ -386,7 +386,7 @@
 		return besk.get_max_energy(src)
 	return FALSE
 
-/mob/living/carbon/human/proc/shadekin_set_energy(new_energy)
+mob/living/carbon/human/proc/shadekin_set_energy(new_energy)
 	var/datum/species/shadekin/sk = species
 	var/datum/species/crew_shadekin/besk = species
 
@@ -396,7 +396,7 @@
 		sk.set_energy(src, new_energy)
 	return FALSE
 
-/mob/living/carbon/human/proc/shadekin_set_max_energy(new_max_energy)
+mob/living/carbon/human/proc/shadekin_set_max_energy(new_max_energy)
 	var/datum/species/shadekin/sk = species
 	var/datum/species/crew_shadekin/besk = species
 
@@ -408,7 +408,7 @@
 
 
 
-/mob/living/carbon/human/proc/shadekin_adjust_energy(amount)
+mob/living/carbon/human/proc/shadekin_adjust_energy(amount)
 	var/datum/species/shadekin/sk = species
 	var/datum/species/crew_shadekin/besk = species
 

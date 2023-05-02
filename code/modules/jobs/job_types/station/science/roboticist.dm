@@ -1,4 +1,4 @@
-/datum/role/job/station/roboticist
+datum/role/job/station/roboticist
 	id = JOB_ID_ROBOTICIST
 	title = "Roboticist"
 	flag = ROBOTICIST
@@ -23,29 +23,29 @@
 		"Artificer-Specialist" = /datum/prototype/alt_title/artificer_specialist
 		)
 
-/datum/prototype/alt_title/artificer_specialist
+datum/prototype/alt_title/artificer_specialist
 	title = "Artificer-Specialist"
 	background_allow = list(
 		/datum/lore/character_background/faction/naramadiguilds
 	)
 	background_enforce = TRUE
 
-/datum/prototype/alt_title/biomech
+datum/prototype/alt_title/biomech
 	title = "Biomechanical Engineer"
 	title_blurb = "A Biomechanical Engineer primarily works on prosthetics, and the organic parts attached to them. They may have some \
 					knowledge of the relatively simple surgical procedures used in making cyborgs and attaching prosthesis."
 
-/datum/prototype/alt_title/mech_tech
+datum/prototype/alt_title/mech_tech
 	title = "Mechatronic Engineer"
 	title_blurb = "A Mechatronic Engineer focuses on the construction and maintenance of Exosuits, and should be well versed in their use. \
 					They may also be called upon to work on synthetics and prosthetics, if needed."
 
-/datum/prototype/alt_title/prosthetists
+datum/prototype/alt_title/prosthetists
 	title = "Prosthetists"
 	title_blurb = "Prosthetists design and fabricate medical supportive devices and measure and fit patients for them. These devices \
 					include artificial limbs (arms, hands, legs, and feet), braces, and other medical or surgical devices."
 
-/datum/outfit/job/station/roboticist
+datum/outfit/job/station/roboticist
 	name = OUTFIT_JOB_NAME("Roboticist")
 	uniform = /obj/item/clothing/under/rank/roboticist
 	shoes = /obj/item/clothing/shoes/black

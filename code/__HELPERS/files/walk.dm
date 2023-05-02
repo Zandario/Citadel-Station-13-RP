@@ -5,7 +5,7 @@
  * - roots - a single or a list of roots. roots MUST end with /, or they won't work.
  * - maxdepth - maximum depth to walk. default is 5.
  */
-/proc/directory_walk(list/roots, maxdepth = 5)
+proc/directory_walk(list/roots, maxdepth = 5)
 	ASSERT(roots)
 	if(!islist(roots))
 		roots = list(roots)
@@ -19,7 +19,7 @@
  * - exts - a single or a list of extensions. do not including the ., e.g. pass in "txt", not ".txt".
  * - maxdepth - maximum depth to walk. default is 5.
  */
-/proc/directory_walk_exts(list/roots, list/exts, maxdepth = 5)
+proc/directory_walk_exts(list/roots, list/exts, maxdepth = 5)
 	ASSERT(roots)
 	if(!islist(roots))
 		roots = list(roots)
@@ -28,7 +28,7 @@
 		exts = list(exts)
 	return directory_walk_internal(islist(roots)? roots : list(roots), new /regex("\\.([exts.Join("|")])$", "i"), maxdepth)
 
-/proc/directory_walk_internal(list/roots, regex/R, depth_remaining)
+proc/directory_walk_internal(list/roots, regex/R, depth_remaining)
 	if(!length(roots))
 		return
 	if(!islist(roots))

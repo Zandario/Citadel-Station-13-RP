@@ -3,7 +3,7 @@
 //////////////////////////////////////
 
 // TODO: UNIFY WITH CYCLERS
-/obj/machinery/suit_storage_unit
+obj/machinery/suit_storage_unit
 	name = "Suit Storage Unit"
 	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
 	icon = 'icons/obj/suitstorage.dmi'
@@ -30,7 +30,7 @@
 	var/cycletime_left = 0
 
 
-/obj/machinery/suit_storage_unit/Initialize(mapload, newdir)
+obj/machinery/suit_storage_unit/Initialize(mapload, newdir)
 	. = ..()
 	update_icon()
 	if(suit_stored_TYPE)
@@ -42,7 +42,7 @@
 	if(boots_stored_TYPE)
 		boots_stored = new boots_stored_TYPE(src)
 
-/obj/machinery/suit_storage_unit/update_icon()
+obj/machinery/suit_storage_unit/update_icon()
 	var/hashelmet = 0
 	var/hassuit = 0
 	var/hashuman = 0
@@ -54,7 +54,7 @@
 		hashuman = 1
 	icon_state = text("suitstorage[][][][][][][][][]", hashelmet, hassuit, hashuman, isopen, islocked, isUV, ispowered, isbroken, issuperUV)
 
-/obj/machinery/suit_storage_unit/power_change()
+obj/machinery/suit_storage_unit/power_change()
 	..()
 	if(!(machine_stat & NOPOWER))
 		ispowered = 1
@@ -67,7 +67,7 @@
 			dump_everything()
 			update_icon()
 
-/obj/machinery/suit_storage_unit/legacy_ex_act(severity)
+obj/machinery/suit_storage_unit/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			if(prob(50))
@@ -78,7 +78,7 @@
 				dump_everything()
 				qdel(src)
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/user, list/params)
+obj/machinery/suit_storage_unit/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(machine_stat & NOPOWER)
@@ -87,16 +87,16 @@
 		return 0
 	ui_interact(user)
 
-/obj/machinery/suit_storage_unit/ui_state(mob/user, datum/tgui_module/module)
+obj/machinery/suit_storage_unit/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.notcontained_state
 
-/obj/machinery/suit_storage_unit/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/suit_storage_unit/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SuitStorageUnit", name)
 		ui.open()
 
-/obj/machinery/suit_storage_unit/ui_data()
+obj/machinery/suit_storage_unit/ui_data()
 	var/list/data = list()
 
 	data["broken"] = isbroken
@@ -130,7 +130,7 @@
 		data["occupied"] = FALSE
 	return data
 
-/obj/machinery/suit_storage_unit/ui_act(action, params) //I fucking HATE this proc
+obj/machinery/suit_storage_unit/ui_act(action, params) //I fucking HATE this proc
 	if(..() || isUV || isbroken)
 		return TRUE
 
@@ -171,7 +171,7 @@
 
 	update_icon()
 
-/obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
 //	var/protected = 0
 //	var/mob/living/carbon/human/H = user
 	if(!panelopen)
@@ -197,7 +197,7 @@
 		return
 
 
-/obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
 //	var/protected = 0
 //	var/mob/living/carbon/human/H = user
 	if(!panelopen) //Needed check due to bugs
@@ -218,7 +218,7 @@
 		safetieson = !safetieson
 
 
-/obj/machinery/suit_storage_unit/proc/dispense_helmet(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/dispense_helmet(mob/user as mob)
 	if(!helmet_stored)
 		return //Do I even need this sanity check? Nyoro~n
 	else
@@ -227,7 +227,7 @@
 		return
 
 
-/obj/machinery/suit_storage_unit/proc/dispense_suit(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/dispense_suit(mob/user as mob)
 	if(!suit_stored)
 		return
 	else
@@ -236,7 +236,7 @@
 		return
 
 
-/obj/machinery/suit_storage_unit/proc/dispense_mask(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/dispense_mask(mob/user as mob)
 	if(!mask_stored)
 		return
 	else
@@ -244,7 +244,7 @@
 		mask_stored = null
 		return
 
-/obj/machinery/suit_storage_unit/proc/dispense_boots(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/dispense_boots(mob/user as mob)
 	if(!boots_stored)
 		return
 	else
@@ -252,7 +252,7 @@
 		boots_stored = null
 		return
 
-/obj/machinery/suit_storage_unit/proc/dump_everything()
+obj/machinery/suit_storage_unit/proc/dump_everything()
 	islocked = 0 //locks go free
 	if(suit_stored)
 		suit_stored.loc = src.loc
@@ -271,7 +271,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
 	if(islocked || isUV)
 		to_chat(user, "<font color='red'>Unable to open unit.</font>")
 		return
@@ -282,7 +282,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user as mob)
 	if(occupant && safetieson)
 		to_chat(user, "<font color='red'>The Unit's safety protocols disallow locking when a biological form is detected inside its compartments.</font>")
 		return
@@ -292,7 +292,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)
 	if(isUV || isopen) //I'm bored of all these sanity checks
 		return
 	if(occupant && safetieson)
@@ -377,13 +377,13 @@
 	return*/
 
 
-/obj/machinery/suit_storage_unit/proc/cycletimeleft()
+obj/machinery/suit_storage_unit/proc/cycletimeleft()
 	if(cycletime_left >= 1)
 		cycletime_left--
 	return cycletime_left
 
 
-/obj/machinery/suit_storage_unit/proc/eject_occupant(mob/user as mob)
+obj/machinery/suit_storage_unit/proc/eject_occupant(mob/user as mob)
 	if(islocked)
 		return
 
@@ -407,7 +407,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/verb/get_out()
+obj/machinery/suit_storage_unit/verb/get_out()
 	set name = "Eject Suit Storage Unit"
 	set category = "Object"
 	set src in oview(1)
@@ -421,7 +421,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/verb/move_inside()
+obj/machinery/suit_storage_unit/verb/move_inside()
 	set name = "Hide in Suit Storage Unit"
 	set category = "Object"
 	set src in oview(1)
@@ -458,7 +458,7 @@
 	return
 
 
-/obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
+obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
 	if(!ispowered)
 		return
 	if(I.is_screwdriver())
@@ -555,5 +555,5 @@
 	update_icon()
 	updateUsrDialog()
 
-/obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
+obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
 	return attack_hand(user)

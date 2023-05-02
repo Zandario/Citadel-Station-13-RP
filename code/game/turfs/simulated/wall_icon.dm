@@ -1,7 +1,7 @@
 /**
  * generates damage overlays
  */
-/turf/simulated/wall/proc/generate_wall_damage_overlays()
+turf/simulated/wall/proc/generate_wall_damage_overlays()
 	var/alpha_inc = 256 / damage_overlays.len
 
 	for(var/i = 1; i <= damage_overlays.len; i++)
@@ -11,15 +11,15 @@
 		damage_overlays[i] = img
 
 
-/turf/simulated/wall/proc/get_wall_icon()
+turf/simulated/wall/proc/get_wall_icon()
 	. = (istype(material) && material.icon_base) || 'icons/turf/walls/solid.dmi'
 
 
-/turf/simulated/wall/proc/apply_reinf_overlay()
+turf/simulated/wall/proc/apply_reinf_overlay()
 	. = istype(reinf_material)
 
 
-/turf/simulated/wall/update_appearance(updates)
+turf/simulated/wall/update_appearance(updates)
 	. = ..()
 	if(!istype(material))
 		return
@@ -27,14 +27,14 @@
 	color = material.icon_colour
 
 
-/turf/simulated/wall/update_icon()
+turf/simulated/wall/update_icon()
 	. = ..()
 
 	if(icon == initial(icon))
 		icon = get_wall_icon()
 
 
-/turf/simulated/wall/update_icon_state()
+turf/simulated/wall/update_icon_state()
 	. = ..()
 
 	// handle fakewalls
@@ -46,7 +46,7 @@
 		icon_state = cached_wall_state
 
 
-/turf/simulated/wall/update_overlays()
+turf/simulated/wall/update_overlays()
 	. = ..()
 
 	if(!damage_overlays[1]) // Our list hasn't been populated yet.

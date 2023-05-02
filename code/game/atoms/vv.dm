@@ -9,7 +9,7 @@
   * Also, if GLOB.Debug2 is FALSE, it sets the ADMIN_SPAWNED_1 flag on flags_1, which signifies
   * the object has been admin edited
   */
-/atom/vv_edit_var(var_name, var_value)
+atom/vv_edit_var(var_name, var_value)
 	if(!GLOB.Debug2)
 		atom_flags |= ATOM_ADMINSPAWNED
 	switch(var_name)
@@ -52,7 +52,7 @@
 		if(NAMEOF(src, relative_layer))
 			set_relative_layer(var_value)
 
-/atom/vv_get_var(var_name)
+atom/vv_get_var(var_name)
 	switch(var_name)
 		if(NAMEOF(src, base_layer))
 			if(isnull(base_layer))
@@ -66,7 +66,7 @@
   *
   * Override in subtypes to add custom VV handling in the VV panel
   */
-/atom/vv_get_dropdown()
+atom/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
 	if(!ismovable(src))
@@ -81,7 +81,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EXPLOSION, "Explosion")
 	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EMP, "EMP Pulse")
 
-/atom/vv_do_topic(list/href_list)
+atom/vv_do_topic(list/href_list)
 	. = ..()
 	if(href_list[VV_HK_ADD_REAGENT] && check_rights(R_VAREDIT))
 		if(!reagents)
@@ -161,7 +161,7 @@
 		message_admins(SPAN_NOTICE("[key_name_admin(usr)] modified the armor on [src] ([type]) to [armor.log_string()]"))
 		// todo: proper tgui for armor mods
 
-/atom/vv_get_header()
+atom/vv_get_header()
 	. = ..()
 	if(!isliving(src))
 		var/refid = REF(src)

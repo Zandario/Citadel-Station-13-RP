@@ -7,7 +7,7 @@
  * data - arbitrary list or null
  * range - range from the current atom, defaults to ignoring.
  */
-/atom/SimpleNetworkSend(id, message, list/data, range = INFINITY)
+atom/SimpleNetworkSend(id, message, list/data, range = INFINITY)
 	if(range == INFINITY)
 		return ..()
 	var/list/devices = SSnetworks.GetSimpleDevicesRange(id, src, range)

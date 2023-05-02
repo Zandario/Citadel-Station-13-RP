@@ -1,4 +1,4 @@
-/obj/machinery/door/window
+obj/machinery/door/window
 	name = "interior door"
 	desc = "A strong door."
 	icon = 'icons/obj/doors/windoor.dmi'
@@ -17,20 +17,20 @@
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
-/obj/machinery/door/window/Initialize(mapload)
+obj/machinery/door/window/Initialize(mapload)
 	. = ..()
 	update_nearby_tiles()
 	if (src.req_access && src.req_access.len)
 		src.icon_state = "[src.icon_state]"
 		src.base_state = src.icon_state
 
-/obj/machinery/door/window/update_icon()
+obj/machinery/door/window/update_icon()
 	if(density)
 		icon_state = base_state
 	else
 		icon_state = "[base_state]open"
 
-/obj/machinery/door/window/proc/shatter(var/display_message = 1)
+obj/machinery/door/window/proc/shatter(var/display_message = 1)
 	new /obj/item/material/shard(src.loc)
 	new /obj/item/material/shard(src.loc)
 	new /obj/item/stack/cable_coil(src.loc, 1)
@@ -55,12 +55,12 @@
 		visible_message("[src] shatters!")
 	qdel(src)
 
-/obj/machinery/door/window/Destroy()
+obj/machinery/door/window/Destroy()
 	density = 0
 	update_nearby_tiles()
 	return ..()
 
-/obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
+obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
 	if (!( ismob(AM) ))
 		var/mob/living/bot/bot = AM
 		if(istype(bot))
@@ -82,29 +82,29 @@
 		open()
 		addtimer(CALLBACK(src, .proc/close), check_access(null)? 50 : 20)
 
-/obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
+obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
 	if(!(get_dir(mover, loc) & turn(dir, 180)))
 		return TRUE
 	return ..()
 
-/obj/machinery/door/window/CanAtmosPass(turf/T, d)
+obj/machinery/door/window/CanAtmosPass(turf/T, d)
 	if(d != dir)
 		return ATMOS_PASS_NOT_BLOCKED
 	return density? ATMOS_PASS_AIR_BLOCKED : ATMOS_PASS_ZONE_BLOCKED
 
 //used in the AStar algorithm to determinate if the turf the door is on is passable
 // todo: astar sucks
-/obj/machinery/door/window/CanAStarPass(obj/item/card/id/ID, to_dir)
+obj/machinery/door/window/CanAStarPass(obj/item/card/id/ID, to_dir)
 	return ..() || (check_access(ID) && inoperable()) || (dir != to_dir)
 
-/obj/machinery/door/window/CheckExit(atom/movable/AM, atom/newLoc)
+obj/machinery/door/window/CheckExit(atom/movable/AM, atom/newLoc)
 	if(!(get_dir(src, newLoc) & dir))
 		return TRUE
 	if(check_standard_flag_pass(AM))
 		return TRUE
 	return !density
 
-/obj/machinery/door/window/open()
+obj/machinery/door/window/open()
 	if (operating == 1 || !density) //doors can still open when emag-disabled
 		return 0
 	if (!operating) //in case of emag
@@ -122,7 +122,7 @@
 		operating = 0
 	return 1
 
-/obj/machinery/door/window/close()
+obj/machinery/door/window/close()
 	if(operating || density)
 		return FALSE
 	operating = TRUE
@@ -138,16 +138,16 @@
 	operating = FALSE
 	return TRUE
 
-/obj/machinery/door/window/take_damage(var/damage)
+obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
 	if (src.health <= 0)
 		shatter()
 		return
 
-/obj/machinery/door/window/attack_ai(mob/user as mob)
+obj/machinery/door/window/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/door/window/attack_hand(mob/user, list/params)
+obj/machinery/door/window/attack_hand(mob/user, list/params)
 	src.add_fingerprint(user)
 
 	if(istype(user,/mob/living/carbon/human))
@@ -171,7 +171,7 @@
 
 	return
 
-/obj/machinery/door/window/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/door/window/emag_act(var/remaining_charges, var/mob/user)
 	if (density && operable())
 		operating = -1
 		flick("[src.base_state]spark", src)
@@ -179,7 +179,7 @@
 		open()
 		return 1
 
-/obj/machinery/door/window/attackby(obj/item/I as obj, mob/user as mob)
+obj/machinery/door/window/attackby(obj/item/I as obj, mob/user as mob)
 
 	//If it's in the process of opening/closing, ignore the click
 	if (src.operating == 1)
@@ -271,7 +271,7 @@
 
 	return
 
-/obj/machinery/door/window/brigdoor
+obj/machinery/door/window/brigdoor
 	name = "secure door"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "leftsecure"
@@ -281,70 +281,70 @@
 	maxhealth = 300
 	health = 300.0 //Stronger doors for prison (regular window door health is 150)
 
-/obj/machinery/door/window/brigdoor/shatter()
+obj/machinery/door/window/brigdoor/shatter()
 	new /obj/item/stack/rods(src.loc, 2)
 	..()
 
-/obj/machinery/door/window/northleft
+obj/machinery/door/window/northleft
 	dir = NORTH
 
-/obj/machinery/door/window/eastleft
+obj/machinery/door/window/eastleft
 	dir = EAST
 
-/obj/machinery/door/window/westleft
+obj/machinery/door/window/westleft
 	dir = WEST
 
-/obj/machinery/door/window/southleft
+obj/machinery/door/window/southleft
 	dir = SOUTH
 
-/obj/machinery/door/window/northright
+obj/machinery/door/window/northright
 	dir = NORTH
 	icon_state = "right"
 	base_state = "right"
 
-/obj/machinery/door/window/eastright
+obj/machinery/door/window/eastright
 	dir = EAST
 	icon_state = "right"
 	base_state = "right"
 
-/obj/machinery/door/window/westright
+obj/machinery/door/window/westright
 	dir = WEST
 	icon_state = "right"
 	base_state = "right"
 
-/obj/machinery/door/window/southright
+obj/machinery/door/window/southright
 	dir = SOUTH
 	icon_state = "right"
 	base_state = "right"
 
-/obj/machinery/door/window/brigdoor/northleft
+obj/machinery/door/window/brigdoor/northleft
 	dir = NORTH
 
-/obj/machinery/door/window/brigdoor/eastleft
+obj/machinery/door/window/brigdoor/eastleft
 	dir = EAST
 
-/obj/machinery/door/window/brigdoor/westleft
+obj/machinery/door/window/brigdoor/westleft
 	dir = WEST
 
-/obj/machinery/door/window/brigdoor/southleft
+obj/machinery/door/window/brigdoor/southleft
 	dir = SOUTH
 
-/obj/machinery/door/window/brigdoor/northright
+obj/machinery/door/window/brigdoor/northright
 	dir = NORTH
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-/obj/machinery/door/window/brigdoor/eastright
+obj/machinery/door/window/brigdoor/eastright
 	dir = EAST
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-/obj/machinery/door/window/brigdoor/westright
+obj/machinery/door/window/brigdoor/westright
 	dir = WEST
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-/obj/machinery/door/window/brigdoor/southright
+obj/machinery/door/window/brigdoor/southright
 	dir = SOUTH
 	icon_state = "rightsecure"
 	base_state = "rightsecure"

@@ -1,4 +1,4 @@
-/datum/mob_descriptor/height
+datum/mob_descriptor/height
 	name = "height"
 	standalone_value_descriptors = list(
 		"very short",
@@ -23,7 +23,7 @@
 		"towering over you",
 	)
 
-/datum/mob_descriptor/build
+datum/mob_descriptor/build
 	name = "build"
 	comparative_value_descriptor_equivalent = "around the same build as you"
 	standalone_value_descriptors = list(

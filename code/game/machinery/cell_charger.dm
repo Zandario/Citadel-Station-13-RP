@@ -1,4 +1,4 @@
-/obj/machinery/cell_charger
+obj/machinery/cell_charger
 	name = "heavy-duty cell charger"
 	desc = "A much more powerful version of the standard recharger that is specially designed for charging power cells."
 	icon = 'icons/obj/power.dmi'
@@ -16,7 +16,7 @@
 	var/obj/item/cell/charging = null
 	circuit = /obj/item/circuitboard/cell_charger
 
-/obj/machinery/cell_charger/update_icon()
+obj/machinery/cell_charger/update_icon()
 	icon_state = "ccharger[charging ? 1 : 0]"
 
 	if(charging && !(machine_stat & (BROKEN|NOPOWER)))
@@ -33,13 +33,13 @@
 	else
 		cut_overlays()
 
-/obj/machinery/cell_charger/examine(mob/user)
+obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
 	. += SPAN_NOTICE("[charging ? "[charging]" : "Nothing"] is in [src].")
 	if(charging)
 		. += SPAN_NOTICE("Current charge: [charging.charge] / [charging.maxcharge]")
 
-/obj/machinery/cell_charger/attackby(obj/item/W, mob/user)
+obj/machinery/cell_charger/attackby(obj/item/W, mob/user)
 	if(machine_stat & BROKEN)
 		return
 
@@ -81,7 +81,7 @@
 	else if(default_part_replacement(user, W))
 		return
 
-/obj/machinery/cell_charger/attack_hand(mob/user, list/params)
+obj/machinery/cell_charger/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 
 	if(charging)
@@ -93,7 +93,7 @@
 		chargelevel = -1
 		update_icon()
 
-/obj/machinery/cell_charger/attack_ai(mob/user)
+obj/machinery/cell_charger/attack_ai(mob/user)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Borgs can remove the cell if they are near enough
 		if(charging)
 			user.visible_message("[user] removes [charging] from [src].", "You remove [charging] from [src].")
@@ -102,7 +102,7 @@
 			charging = null
 			update_icon()
 
-/obj/machinery/cell_charger/emp_act(severity)
+obj/machinery/cell_charger/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(charging)
@@ -110,7 +110,7 @@
 	..(severity)
 
 
-/obj/machinery/cell_charger/process(delta_time)
+obj/machinery/cell_charger/process(delta_time)
 	if((machine_stat & (BROKEN|NOPOWER)) || !anchored)
 		update_use_power(USE_POWER_OFF)
 		return
@@ -124,7 +124,7 @@
 		update_use_power(USE_POWER_IDLE)
 
 
-/obj/machinery/cell_charger/RefreshParts()
+obj/machinery/cell_charger/RefreshParts()
 	var/E = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating
@@ -132,7 +132,7 @@
 	efficiency = active_power_usage * RECHARGER_CHEAT_FACTOR
 
 //cit change starts
-/obj/item/cell_charger_kit
+obj/item/cell_charger_kit
 	name = "cell charger kit"
 	desc = "A box with the parts for a heavy-duty cell charger inside of it. Use it in-hand to deploy a cell charger."
 	icon = 'icons/obj/storage.dmi'
@@ -145,7 +145,7 @@
 	w_class = ITEMSIZE_NORMAL
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 1000)
 
-/obj/item/cell_charger_kit/attack_self(mob/user)
+obj/item/cell_charger_kit/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

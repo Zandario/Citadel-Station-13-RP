@@ -1,4 +1,4 @@
-/datum/power/changeling/DigitalCamoflague
+datum/power/changeling/DigitalCamoflague
 	name = "Digital Camoflauge"
 	desc = "We evolve the ability to distort our form and proprtions, defeating common altgorthms used to detect lifeforms on cameras."
 	helptext = "We cannot be tracked by camera while using this skill.  However, humans looking at us will find us.. uncanny.  We must constantly expend chemicals to maintain our form like this."
@@ -8,7 +8,7 @@
 	verbpath = /mob/proc/changeling_digitalcamo
 
 //Prevents AIs tracking you but makes you easily detectable to the human-eye.
-/mob/proc/changeling_digitalcamo()
+mob/proc/changeling_digitalcamo()
 	set category = "Changeling"
 	set name = "Toggle Digital Camoflague"
 	set desc = "The AI can no longer track us, but we will look different if examined.  Has a constant cost while active."

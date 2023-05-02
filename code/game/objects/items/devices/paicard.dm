@@ -1,6 +1,6 @@
 GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 
-/obj/item/paicard
+obj/item/paicard
 	name = "personal AI device"
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pai"
@@ -15,25 +15,25 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 
-/obj/item/paicard/relaymove(var/mob/user, var/direction)
+obj/item/paicard/relaymove(var/mob/user, var/direction)
 	if(!CHECK_MOBILITY(user, MOBILITY_CAN_MOVE))
 		return
 	var/obj/item/rig/rig = src.get_rig()
 	if(istype(rig))
 		rig.forced_move(direction, user)
 
-/obj/item/paicard/Initialize(mapload)
+obj/item/paicard/Initialize(mapload)
 	. = ..()
 	add_overlay("pai-off")
 
-/obj/item/paicard/Destroy()
+obj/item/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
 	if(!isnull(pai))
 		pai.death(0)
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/item/paicard/attack_self(mob/user)
+obj/item/paicard/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -231,7 +231,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	user << browse(dat, "window=paicard")
 	onclose(user, "paicard")
 
-/obj/item/paicard/Topic(href, href_list)
+obj/item/paicard/Topic(href, href_list)
 
 	if(!usr || usr.stat)
 		return
@@ -280,21 +280,21 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 //		WIRE_RECEIVE = 2
 //		WIRE_TRANSMIT = 4
 
-/obj/item/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
+obj/item/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	pai = personality
 	cut_overlays()
 	add_overlay("pai-happy")
 
-/obj/item/paicard/proc/removePersonality()
+obj/item/paicard/proc/removePersonality()
 	pai = null
 	cut_overlays()
 	add_overlay("pai-off")
 
-/obj/item/paicard
+obj/item/paicard
 	var/current_emotion = 1
 
 //! WHAT THE FUCK
-/obj/item/paicard/proc/setEmotion(emotion)
+obj/item/paicard/proc/setEmotion(emotion)
 	if(pai)
 		cut_overlays()
 		switch(emotion)
@@ -331,28 +331,28 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 
 		current_emotion = emotion
 
-/obj/item/paicard/proc/alertUpdate()
+obj/item/paicard/proc/alertUpdate()
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
 		M.show_message("<span class='notice'>\The [src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", 3, "<span class='notice'>\The [src] bleeps electronically.</span>", 2)
 
-/obj/item/paicard/emp_act(severity)
+obj/item/paicard/emp_act(severity)
 	for(var/mob/M in src)
 		M.emp_act(severity)
 
-/obj/item/paicard/legacy_ex_act(severity)
+obj/item/paicard/legacy_ex_act(severity)
 	if(pai)
 		LEGACY_EX_ACT(pai, severity, null)
 	else
 		qdel(src)
 
-/obj/item/paicard/see_emote(mob/living/M, text)
+obj/item/paicard/see_emote(mob/living/M, text)
 	if(pai && pai.client && (pai in contents))
 		var/rendered = "<span class='message'>[text]</span>"
 		pai.show_message(rendered, 2)
 	..()
 
-/obj/item/paicard/show_message(msg, type, alt, alt_type)
+obj/item/paicard/show_message(msg, type, alt, alt_type)
 	if(pai && pai.client)
 		var/rendered = "<span class='message'>[msg]</span>"
 		pai.show_message(rendered, type)

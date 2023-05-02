@@ -1,5 +1,5 @@
 /// Test that quick swap correctly swaps items and invalidates suit storage
-/datum/unit_test/quick_swap_sanity/Run()
+datum/unit_test/quick_swap_sanity/Run()
 	// Create a human with a medical winter coat and a health analyzer in suit storage
 	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
 

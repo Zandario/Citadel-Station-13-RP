@@ -1,7 +1,7 @@
 // Mostly for debugging table connections
 // This file is not #included in the .dme.
 
-/datum/material/debug
+datum/material/debug
 	name = "debugium"
 	id = "debug"
 
@@ -10,12 +10,12 @@
 	icon_reinf = "rdebug"
 	icon_colour = "#FFFFFF"
 
-/obj/item/stack/material/debug
+obj/item/stack/material/debug
 	name = "debugium"
 	icon = 'icons/obj/tables.dmi'
 	icon_state = "debugium"
 	default_type = "debugium"
 
-/obj/structure/table/debug/Initialize(mapload)
+obj/structure/table/debug/Initialize(mapload)
 	. = ..()
 	material = get_material_by_name("debugium")

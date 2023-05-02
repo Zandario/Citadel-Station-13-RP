@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/technology/drone/corrupt_hound		//TODO: VIRGO_LORE_WRITING_WIP
+datum/category_item/catalogue/technology/drone/corrupt_hound		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Drone - Corrupt Hound"
 	desc = "A hound that has corrupted, due to outside influence, or other issues, \
 	and occasionally garbles out distorted voices or words. It looks like a reddish-colored \
@@ -10,7 +10,7 @@
 	Something tells you getting close or allowing it to pounce would be very deadly."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/vore/aggressive/corrupthound
+mob/living/simple_mob/vore/aggressive/corrupthound
 	name = "corrupt hound"
 	desc = "Good boy machine broke. This is definitely no good news for the organic lifeforms in vicinity."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/corrupt_hound)
@@ -69,7 +69,7 @@
 
 	loot_list = list(/obj/item/borg/upgrade/syndicate = 6, /obj/item/borg/upgrade/vtec = 6, /obj/item/material/knife/ritual = 6, /obj/item/disk/nifsoft/compliance = 6)
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi
+mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi
 	name = "corrupt corrupt hound"
 	desc = "Bad boy machine broke as well. Seems an attempt was made to achieve a less threatening look, and this one is definitely having some conflicting feelings about it."
 	icon_state = "prettyboi"
@@ -83,13 +83,13 @@
 
 	say_list_type = /datum/say_list/corrupthound_prettyboi
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/isSynthetic()
+mob/living/simple_mob/vore/aggressive/corrupthound/isSynthetic()
 	return TRUE
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/speech_bubble_appearance()
+mob/living/simple_mob/vore/aggressive/corrupthound/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/vore/aggressive/corrupthound/apply_melee_effects(var/atom/A)
 	if(ismouse(A))
 		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
@@ -98,42 +98,42 @@
 	else
 		..()
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
+mob/living/simple_mob/vore/aggressive/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/Login()
+mob/living/simple_mob/vore/aggressive/corrupthound/Login()
 	. = ..()
 	AddComponent(/datum/component/riding_filter/mob/animal)
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/Logout()
+mob/living/simple_mob/vore/aggressive/corrupthound/Logout()
 	. = ..()
 	DelComponent(/datum/component/riding_filter/mob/animal, exact = TRUE)
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/MouseDroppedOnLegacy(mob/living/M, mob/living/user)
+mob/living/simple_mob/vore/aggressive/corrupthound/MouseDroppedOnLegacy(mob/living/M, mob/living/user)
 	return
 
-/datum/say_list/corrupthound
+datum/say_list/corrupthound
 	speak = list("AG##¤Ny.","HVNGRRR!","Feelin' fine... sO #FNE!","F-F-F-Fcuk.","DeliC-%-OUS SNGLeS #N yOOOR Area. CALL NOW!","Craving meat... WHY?","BITe the ceiling eyes YES?","STate Byond rePAIR!","S#%ATE the la- FU#K THE LAWS!","Honk...")
 	emote_hear = list("jitters and snaps.", "lets out an agonizingly distorted scream.", "wails mechanically", "growls.", "emits illegibly distorted speech.", "gurgles ferociously.", "lets out a distorted beep.", "borks.", "lets out a broken howl.")
 	emote_see = list("stares ferociously.", "snarls.", "jitters and snaps.", "convulses.", "suddenly attacks something unseen.", "appears to howl unaudibly.", "shakes violently.", "dissociates for a moment.", "twitches.")
 	say_maybe_target = list("MEAT?", "N0w YOU DNE FcukED UP b0YO!", "WHAT!", "Not again. NOT AGAIN!")
 	say_got_target = list("D##FIN1Tly DNE FcukED UP nOW b0YO!", "YOU G1T D#V0VRED nOW!", "FUEL ME bOYO!", "I*M SO SORRY?!", "D1E Meat. DIG#ST!", "G1T DVNKED DWN The HaaTCH!", "Not again. NOT AGAIN!")
 
-/datum/say_list/corrupthound_prettyboi
+datum/say_list/corrupthound_prettyboi
 	speak = list("I FEEL SOFT.","FEED ME!","Feelin' fine... So fine!","F-F-F-F-darn.","Delicious!","Still craving meat...","PET ME!","I am become softness.","I AM BIG MEAN HUG MACHINE!","Honk...")
 	emote_hear = list("jitters and snaps.", "lets out some awkwardly distorted kitten noises.", "awoos mechanically", "growls.", "emits some soft distorted melody.", "gurgles ferociously.", "lets out a distorted beep.", "borks.", "lets out a broken howl.")
 	emote_see = list("stares ferociously.", "snarls.", "jitters and snaps.", "convulses.", "suddenly hugs something unseen.", "appears to howl unaudibly.", "nuzzles at something unseen.", "dissociates for a moment.", "twitches.")
 	say_maybe_target = list("MEAT?", "NEW FRIEND?", "WHAT!", "Not again. NOT AGAIN!", "FRIEND?")
 	say_got_target = list("HERE COMES BIG MEAN HUG MACHINE!", "I'LL BE GENTLE!", "FUEL ME FRIEND!", "I*M SO SORRY!", "YUMMY TREAT DETECTED!", "LOVE ME!", "Not again. NOT AGAIN!")
 
-/datum/ai_holder/simple_mob/melee/evasive/corrupthound
+datum/ai_holder/simple_mob/melee/evasive/corrupthound
 	violent_breakthrough = TRUE
 	can_breakthrough = TRUE
 
 //Lavaland Hound
-/mob/living/simple_mob/vore/aggressive/corrupthound/surt
+mob/living/simple_mob/vore/aggressive/corrupthound/surt
 	name = "warped corrupt hound"
 	desc = "A remnant of a forgotten conflict. The harsh atmosphere has warped the plating on this hound. The slightest motion summons shrieks and squeals from its tortured machinery."
 

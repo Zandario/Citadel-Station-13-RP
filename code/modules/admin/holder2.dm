@@ -3,7 +3,7 @@ var/list/admin_datums = list()
 GLOBAL_VAR_INIT(href_token, GenerateToken())
 GLOBAL_PROTECT(href_token)
 
-/datum/admins
+datum/admins
 	var/rank			= "Temporary Admin"
 	var/client/owner	= null
 	var/rights = 0
@@ -20,7 +20,7 @@ GLOBAL_PROTECT(href_token)
 
 	var/datum/filter_editor/filteriffic
 
-/datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
+datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
 		log_world("Admin datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
@@ -32,21 +32,21 @@ GLOBAL_PROTECT(href_token)
 	if(rights & R_DEBUG) //grant profile access
 		world.SetConfig("APP/admin", ckey, "role=admin")
 
-/datum/admins/proc/associate(client/C)
+datum/admins/proc/associate(client/C)
 	if(istype(C))
 		owner = C
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO
 		GLOB.admins |= C
 
-/datum/admins/proc/disassociate()
+datum/admins/proc/disassociate()
 	if(owner)
 		GLOB.admins -= owner
 		owner.remove_admin_verbs()
 		owner.deadmin_holder = owner.holder
 		owner.holder = null
 
-/datum/admins/proc/reassociate()
+datum/admins/proc/reassociate()
 	if(owner)
 		GLOB.admins |= owner
 		owner.holder = src
@@ -65,7 +65,7 @@ proc/admin_proc()
 
 NOTE: It checks usr by default. Supply the "user" argument if you wish to check for a specific mob.
 */
-/proc/check_rights(rights_required, show_msg = TRUE, var/client/C = usr)
+proc/check_rights(rights_required, show_msg = TRUE, var/client/C = usr)
 	if(ismob(C))
 		var/mob/M = C
 		C = M.client
@@ -88,13 +88,13 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 	else
 		return TRUE
 
-/datum/admins/proc/check_for_rights(rights_required)
+datum/admins/proc/check_for_rights(rights_required)
 	if(rights_required && !(rights_required & rights))
 		return FALSE
 	return TRUE
 
 //probably a bit iffy - will hopefully figure out a better solution
-/proc/check_if_greater_rights_than(client/other)
+proc/check_if_greater_rights_than(client/other)
 	if(usr && usr.client)
 		if(usr.client.holder)
 			if(!other || !other.holder)
@@ -106,23 +106,23 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 	return 0
 
 //This proc checks whether subject has at least ONE of the rights specified in rights_required.
-/proc/check_rights_for(client/subject, rights_required)
+proc/check_rights_for(client/subject, rights_required)
 	if(subject?.holder)
 		return subject.holder.check_for_rights(rights_required)
 	return FALSE
 
-/client/proc/deadmin()
+client/proc/deadmin()
 	if(holder)
 		holder.disassociate()
 		//qdel(holder)
 	return 1
 
-/proc/GenerateToken()
+proc/GenerateToken()
 	. = ""
 	for(var/I in 1 to 32)
 		. += "[rand(10)]"
 
-/proc/RawHrefToken(forceGlobal = FALSE)
+proc/RawHrefToken(forceGlobal = FALSE)
 	var/tok = GLOB.href_token
 	if(!forceGlobal && usr)
 		var/client/C = usr.client
@@ -133,13 +133,13 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 			tok = holder.href_token
 	return tok
 
-/proc/HrefToken(forceGlobal = FALSE)
+proc/HrefToken(forceGlobal = FALSE)
 	return "admin_token=[RawHrefToken(forceGlobal)]"
 
-/proc/HrefTokenFormField(forceGlobal = FALSE)
+proc/HrefTokenFormField(forceGlobal = FALSE)
 	return "<input type='hidden' name='admin_token' value='[RawHrefToken(forceGlobal)]'>"
 
-/datum/admins/proc/CheckAdminHref(href, href_list)
+datum/admins/proc/CheckAdminHref(href, href_list)
 	return TRUE
 	/*			Disabled
 	var/auth = href_list["admin_token"]
@@ -155,7 +155,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 	log_admin_private("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
 	*/
 
-/datum/admins/vv_edit_var(var_name, var_value)
+datum/admins/vv_edit_var(var_name, var_value)
 #ifdef TESTING
 	return ..()
 #else

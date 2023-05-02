@@ -1,20 +1,20 @@
-/obj/machinery/smartfridge
+obj/machinery/smartfridge
 	var/expert_job = "Chef"
-/obj/machinery/smartfridge/seeds
+obj/machinery/smartfridge/seeds
 	expert_job = "Botanist"
-/obj/machinery/smartfridge/secure/extract
+obj/machinery/smartfridge/secure/extract
 	expert_job = "Xenobiologist"
-/obj/machinery/smartfridge/secure/medbay
+obj/machinery/smartfridge/secure/medbay
 	expert_job = "Chemist"
-/obj/machinery/smartfridge/secure/virology
+obj/machinery/smartfridge/secure/virology
 	expert_job = "Medical Doctor" //Virologist is an alt-title unfortunately
-/obj/machinery/smartfridge/chemistry
+obj/machinery/smartfridge/chemistry
 	expert_job = "Chemist" //Unsure what this one is used for, actually
-/obj/machinery/smartfridge/drinks
+obj/machinery/smartfridge/drinks
 	expert_job = "Bartender"
 
 // Allow thrown items into smartfridges
-/obj/machinery/smartfridge/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+obj/machinery/smartfridge/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	if(accept_check(AM) && TT.thrower)
 		//Try to find what job they are via ID

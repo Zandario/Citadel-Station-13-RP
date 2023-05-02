@@ -1,4 +1,4 @@
-/obj/structure/adherent_pylon
+obj/structure/adherent_pylon
 	name = "electron reservoir"
 	desc = "A tall, crystalline pylon that pulses with electricity."
 	icon = 'icons/obj/machines/adherent.dmi'
@@ -8,14 +8,14 @@
 	opacity = FALSE
 	var/next_use
 
-/obj/structure/adherent_pylon/attack_ai(var/mob/living/user)
+obj/structure/adherent_pylon/attack_ai(var/mob/living/user)
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/adherent_pylon/attack_hand(mob/user, list/params)
+obj/structure/adherent_pylon/attack_hand(mob/user, list/params)
 	charge_user(user)
 
-/obj/structure/adherent_pylon/proc/charge_user(var/mob/living/user)
+obj/structure/adherent_pylon/proc/charge_user(var/mob/living/user)
 	if(next_use > world.time) return
 	next_use = world.time + 10
 	var/mob/living/carbon/human/H = user
@@ -37,12 +37,12 @@
 		visible_message("<span class='danger'>\The [user] has been shocked by \the [src]!</span>")
 	user.throw_at_old(get_step(user,get_dir(src,user)), 5, 10)
 
-/obj/structure/adherent_pylon/Bumped(atom/AM)
+obj/structure/adherent_pylon/Bumped(atom/AM)
 	. = ..()
 	if(ishuman(AM))
 		charge_user(AM)
 
-/turf/simulated/floor/crystal
+turf/simulated/floor/crystal
 	name = "crystal floor"
 	icon = 'icons/turf/flooring/crystal.dmi'
 	icon_state = ""

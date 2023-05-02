@@ -8,7 +8,7 @@
  // Called by master controller.
 
  // Default shit.
-/datum/universal_state
+datum/universal_state
 	// Just for reference, for now.
 	// Might eventually add an observatory job.
  	var/name = "Normal"
@@ -25,7 +25,7 @@
  	var/decay_rate = 0
 
 // Actually decay the turf.
-/datum/universal_state/proc/DecayTurf(var/turf/T)
+datum/universal_state/proc/DecayTurf(var/turf/T)
 	if(istype(T,/turf/simulated/wall))
 		var/turf/simulated/wall/W=T
 		W.melt()
@@ -40,26 +40,26 @@
 		return
 
 // Return 0 to cause shuttle call to fail.
-/datum/universal_state/proc/OnShuttleCall(var/mob/user)
+datum/universal_state/proc/OnShuttleCall(var/mob/user)
 	return 1
 
 // Processed per tick
-/datum/universal_state/proc/OnTurfTick(var/turf/T)
+datum/universal_state/proc/OnTurfTick(var/turf/T)
 	if(decay_rate && prob(decay_rate))
 		DecayTurf(T)
 
 // Apply changes when exiting state
-/datum/universal_state/proc/OnExit()
+datum/universal_state/proc/OnExit()
  	// Does nothing by default
 
 // Apply changes when entering state
-/datum/universal_state/proc/OnEnter()
+datum/universal_state/proc/OnEnter()
  	// Does nothing by default
 
-/datum/universal_state/proc/OverlayAndAmbientSet()
+datum/universal_state/proc/OverlayAndAmbientSet()
 	return
 
-/proc/SetUniversalState(var/newstate,var/on_exit=1, var/on_enter=1)
+proc/SetUniversalState(var/newstate,var/on_exit=1, var/on_enter=1)
 	if(on_exit)
 		universe.OnExit()
 	universe = new newstate

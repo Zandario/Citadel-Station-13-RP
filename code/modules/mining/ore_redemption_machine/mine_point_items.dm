@@ -2,7 +2,7 @@
 
 /**********************Mining Equipment Voucher**********************/
 
-/obj/item/mining_voucher
+obj/item/mining_voucher
 	name = "mining voucher"
 	desc = "A token to redeem a piece of equipment. Use it on a mining equipment vendor."
 	icon = 'icons/obj/mining.dmi'
@@ -11,7 +11,7 @@
 
 /**********************Mining Point Card**********************/
 
-/obj/item/card/mining_point_card
+obj/item/card/mining_point_card
 	name = "mining point card"
 	desc = "A small card preloaded with mining points. Swipe your ID card over it to transfer the points, then discard."
 	icon_state = "data"
@@ -19,7 +19,7 @@
 	var/survey_points = 0
 	var/engineering_points
 
-/obj/item/card/mining_point_card/attackby(obj/item/I, mob/user, params)
+obj/item/card/mining_point_card/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		if(mine_points)
@@ -44,32 +44,32 @@
 			to_chat(user, "<span class='info'>There's no engineering points left on [src].</span>")
 	..()
 
-/obj/item/card/mining_point_card/examine(mob/user)
+obj/item/card/mining_point_card/examine(mob/user)
 	. = ..()
 	. += "There's [mine_points] excavation points on the card."
 	. += "There's [survey_points] survey points on the card."
 
-/obj/item/card/mining_point_card/onethou
+obj/item/card/mining_point_card/onethou
 	name = "deluxe mining point card"
 	mine_points = 1000
 
-/obj/item/card/mining_point_card/twothou
+obj/item/card/mining_point_card/twothou
 	name = "deluxe mining point card"
 	mine_points = 2000
 
-/obj/item/card/mining_point_card/threethou
+obj/item/card/mining_point_card/threethou
 	name = "deluxe mining point card"
 	mine_points = 3000
 
-/obj/item/card/mining_point_card/survey
+obj/item/card/mining_point_card/survey
 	mine_points = 0
 	survey_points = 50
 
-/obj/item/card/mining_point_card/survey/gimmick
+obj/item/card/mining_point_card/survey/gimmick
 	name = "exploration equipment voucher"
 	mine_points = 0
 	survey_points = 300
 
-/obj/item/card/mining_point_card/engineering
+obj/item/card/mining_point_card/engineering
 	mine_points = 0
 	engineering_points = 50

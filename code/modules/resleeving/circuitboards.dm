@@ -2,7 +2,7 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/transhuman_clonepod
+obj/item/circuitboard/transhuman_clonepod
 	name = T_BOARD("grower pod")
 	board_type = new /datum/frame/frame_types/machine
 	build_path = /obj/machinery/clonepod/transhuman
@@ -13,7 +13,7 @@
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/stock_parts/console_screen = 1)
 
-/obj/item/circuitboard/transhuman_synthprinter
+obj/item/circuitboard/transhuman_synthprinter
 	name = T_BOARD("SynthFab 3000")
 	board_type = new /datum/frame/frame_types/machine
 	build_path = /obj/machinery/transhuman/synthprinter
@@ -24,7 +24,7 @@
 							/obj/item/stock_parts/scanning_module = 1,
 							/obj/item/stock_parts/manipulator = 2)
 
-/obj/item/circuitboard/transhuman_resleever
+obj/item/circuitboard/transhuman_resleever
 	name = T_BOARD("resleeving pod")
 	board_type = new /datum/frame/frame_types/machine
 	build_path = /obj/machinery/transhuman/resleever
@@ -35,7 +35,7 @@
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/stock_parts/console_screen = 1)
 
-/obj/item/circuitboard/resleeving_control
+obj/item/circuitboard/resleeving_control
 	name = T_BOARD("resleeving control console")
 	build_path = /obj/machinery/computer/transhuman/resleeving
 	origin_tech = list(TECH_DATA = 5)

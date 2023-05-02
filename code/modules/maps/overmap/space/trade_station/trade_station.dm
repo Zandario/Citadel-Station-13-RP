@@ -1,5 +1,5 @@
 //Overmap Controller
-/obj/effect/overmap/visitable/sector/trade_post
+obj/effect/overmap/visitable/sector/trade_post
 	name = "Nebula Gas Food Mart"
 	desc = "A ubiquitous chain of traders common in this area of the Galaxy."
 	scanner_desc = @{"[i]Information[/i]: A trade post and fuel depot. Possible life signs detected."}
@@ -42,12 +42,12 @@
 ///////////////////////////
 //// Spawning and despawning
 
-/datum/spawnpoint/trade
+datum/spawnpoint/trade
 	display_name = "Beruang Trading Corp Cryo"
 	restrict_job = list("Trader")
 	announce_channel = "Trade"
 
-/obj/machinery/cryopod/trade
+obj/machinery/cryopod/trade
 	announce_channel = "Trade"
 	on_store_message = "has entered cryogenic storage."
 	on_store_name = "Beruang Trading Corp Cryo"
@@ -56,16 +56,16 @@
 	on_store_visible_message_1 = "hums and hisses as it moves"
 	on_store_visible_message_2 = "into cryogenic storage."
 
-/obj/machinery/cryopod/robot/trade
+obj/machinery/cryopod/robot/trade
 	announce_channel = "Trade"
 	on_store_name = "Beruang Trading Corp Storage"
 
-/obj/landmark/map_data/trade
+obj/landmark/map_data/trade
     height = 1
 
 // Their shuttle
 
-/datum/shuttle/autodock/overmap/trade
+datum/shuttle/autodock/overmap/trade
 	name = "Beruang Trade Ship"
 	warmup_time = 0
 	shuttle_area = list(/area/shuttle/trade_ship/cockpit, /area/shuttle/trade_ship/general)
@@ -75,31 +75,31 @@
 	fuel_consumption = 5
 	move_time = 10
 
-/obj/effect/overmap/visitable/ship/landable/trade
+obj/effect/overmap/visitable/ship/landable/trade
 	name = "Beruang Trade Ship"
 	desc = "You know our motto: 'We deliver!'"
 	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Beruang Trade Ship"
 
-/obj/machinery/computer/shuttle_control/explore/trade
+obj/machinery/computer/shuttle_control/explore/trade
 	name = "short jump console"
 	shuttle_tag = "Beruang Trade Ship"
 
 
-/area/shuttle/trade_ship
+area/shuttle/trade_ship
 	name = "Beruang Trade Ship"
 	icon_state = "shuttle"
 
-/area/shuttle/trade_ship/general
+area/shuttle/trade_ship/general
 	name = "\improper Beruang Trade Ship"
 
-/area/shuttle/trade_ship/cockpit
+area/shuttle/trade_ship/cockpit
 	name = "\improper Beruang Trade Ship Cockpit"
 
 // Shuttle landmarks. Need to be removed at some point and generic waypoints used
 
-/obj/effect/shuttle_landmark/triumph/trade
+obj/effect/shuttle_landmark/triumph/trade
 	name = "Near Nebula Gas Food Mart"
 	landmark_tag = "nebula_space_SW"
 	base_turf = /turf/space
@@ -107,31 +107,31 @@
 
 // EXCLUSIVE TRADE PORT NAV POINTS
 
-/obj/effect/shuttle_landmark/triumph/trade/mining
+obj/effect/shuttle_landmark/triumph/trade/mining
 	name = "Nebula Gas Landing Pad 2"
 	landmark_tag = "nebula_pad_2"
 	base_turf = /turf/simulated/shuttle/floor/black/airless
 	base_area = /area/tradeport/pads
 
-/obj/effect/shuttle_landmark/triumph/trade/excursion
+obj/effect/shuttle_landmark/triumph/trade/excursion
 	name = "Nebula Gas Landing Pad 3"
 	landmark_tag = "nebula_pad_3"
 	base_turf = /turf/simulated/shuttle/floor/black/airless
 	base_area = /area/tradeport/pads
 
-/obj/effect/shuttle_landmark/triumph/trade/pirate
+obj/effect/shuttle_landmark/triumph/trade/pirate
 	name = "Nebula Gas Landing Pad 4"
 	landmark_tag = "nebula_pad_4"
 	base_turf = /turf/simulated/shuttle/floor/black/airless
 	base_area = /area/tradeport/pads
 
-/obj/effect/shuttle_landmark/triumph/trade/emt
+obj/effect/shuttle_landmark/triumph/trade/emt
 	name = "Nebula Gas Landing Pad 5"
 	landmark_tag = "nebula_pad_5"
 	base_turf = /turf/simulated/shuttle/floor/black/airless
 	base_area = /area/tradeport/pads
 
-/obj/effect/shuttle_landmark/triumph/trade/civvie
+obj/effect/shuttle_landmark/triumph/trade/civvie
 	name = "Nebula Gas Landing Pad 6"
 	landmark_tag = "nebula_pad_6"
 	base_turf = /turf/simulated/shuttle/floor/black/airless
@@ -139,7 +139,7 @@
 
 // EXCLUSIVE TRADE PORT NAV POINT FOR DOCKING INSIDE
 
-/obj/effect/shuttle_landmark/triumph/trade/hangar
+obj/effect/shuttle_landmark/triumph/trade/hangar
 	name = "Beruang Hangar"
 	landmark_tag = "tradeport_hangar"
 	docking_controller = "tradeport_hangar_dock"
@@ -148,33 +148,32 @@
 
 // Todo
 /*
-/obj/machinery/camera/network/trade
+obj/machinery/camera/network/trade
 	network = list(NETWORK_TRADE_STATION)
 */
 
 // -- Objs -- //
 
-/obj/effect/step_trigger/teleporter/tradeport_loop/north/Initialize(mapload)
+obj/effect/step_trigger/teleporter/tradeport_loop/north/Initialize(mapload)
 	. = ..()
 	teleport_x = x
 	teleport_y = 2
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/tradeport_loop/south/Initialize(mapload)
+obj/effect/step_trigger/teleporter/tradeport_loop/south/Initialize(mapload)
 	. = ..()
 	teleport_x = x
 	teleport_y = world.maxy - 1
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/tradeport_loop/west/Initialize(mapload)
+obj/effect/step_trigger/teleporter/tradeport_loop/west/Initialize(mapload)
 	. = ..()
 	teleport_x = world.maxx - 1
 	teleport_y = y
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/tradeport_loop/east/Initialize(mapload)
+obj/effect/step_trigger/teleporter/tradeport_loop/east/Initialize(mapload)
 	. = ..()
 	teleport_x = 2
 	teleport_y = y
 	teleport_z = z
-

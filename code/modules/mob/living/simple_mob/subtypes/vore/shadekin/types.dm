@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////
-/mob/living/simple_mob/shadekin/red
+mob/living/simple_mob/shadekin/red
 	name = "red-eyed shadekin"
 	eye_state = RED_EYES
 	//hostile = TRUE
@@ -28,25 +28,25 @@
 	a brawl, but you barely generate any of your own energy. You can stand in a dark spot to gather scraps \
 	of energy in a pinch, but otherwise need to take it, by force if necessary."
 
-/mob/living/simple_mob/shadekin/red/white
+mob/living/simple_mob/shadekin/red/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/red/dark
+mob/living/simple_mob/shadekin/red/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/red/brown
+mob/living/simple_mob/shadekin/red/brown
 	icon_state = "brown"
 
-/mob/living/simple_mob/shadekin/red/ai
+mob/living/simple_mob/shadekin/red/ai
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/shadekin/red/ai/white
+mob/living/simple_mob/shadekin/red/ai/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/red/ai/dark
+mob/living/simple_mob/shadekin/red/ai/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/red/ai/brown
+mob/living/simple_mob/shadekin/red/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
-/mob/living/simple_mob/shadekin/blue
+mob/living/simple_mob/shadekin/blue
 	name = "blue-eyed shadekin"
 	eye_state = BLUE_EYES
 	health = 100
@@ -85,25 +85,25 @@
 	without doing so, albeit slowly. Dark and light are irrelevant to you, they are just different places to explore and \
 	discover new things and new people."
 
-/mob/living/simple_mob/shadekin/blue/white
+mob/living/simple_mob/shadekin/blue/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/blue/dark
+mob/living/simple_mob/shadekin/blue/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/blue/brown
+mob/living/simple_mob/shadekin/blue/brown
 	icon_state = "brown"
 
-/mob/living/simple_mob/shadekin/blue/ai
+mob/living/simple_mob/shadekin/blue/ai
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
-/mob/living/simple_mob/shadekin/blue/ai/white
+mob/living/simple_mob/shadekin/blue/ai/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/blue/ai/dark
+mob/living/simple_mob/shadekin/blue/ai/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/blue/ai/brown
+mob/living/simple_mob/shadekin/blue/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
-/mob/living/simple_mob/shadekin/purple
+mob/living/simple_mob/shadekin/purple
 	name = "purple-eyed shadekin"
 	eye_state = PURPLE_EYES
 	health = 150
@@ -137,25 +137,25 @@
 	areas is taxing on your energy. You can harvest energy from others in a fight, but since you don't need to, you may \
 	just choose to simply not fight."
 
-/mob/living/simple_mob/shadekin/purple/white
+mob/living/simple_mob/shadekin/purple/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/purple/dark
+mob/living/simple_mob/shadekin/purple/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/purple/brown
+mob/living/simple_mob/shadekin/purple/brown
 	icon_state = "brown"
 
-/mob/living/simple_mob/shadekin/purple/ai
+mob/living/simple_mob/shadekin/purple/ai
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
-/mob/living/simple_mob/shadekin/purple/ai/white
+mob/living/simple_mob/shadekin/purple/ai/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/purple/ai/dark
+mob/living/simple_mob/shadekin/purple/ai/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/purple/ai/brown
+mob/living/simple_mob/shadekin/purple/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
-/mob/living/simple_mob/shadekin/yellow
+mob/living/simple_mob/shadekin/yellow
 	name = "yellow-eyed shadekin"
 	eye_state = YELLOW_EYES
 	health = 100
@@ -187,35 +187,35 @@
 	area is very taxing on you, but you gain energy extremely fast in any very dark area. You're weaker than other \
 	shadekin, but your fast energy generation in the dark allows you to phase shift more often."
 
-/mob/living/simple_mob/shadekin/yellow/white
+mob/living/simple_mob/shadekin/yellow/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/yellow/dark
+mob/living/simple_mob/shadekin/yellow/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/yellow/brown
+mob/living/simple_mob/shadekin/yellow/brown
 	icon_state = "brown"
 
-/mob/living/simple_mob/shadekin/yellow/ai
+mob/living/simple_mob/shadekin/yellow/ai
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
 
-/mob/living/simple_mob/shadekin/yellow/ai/white
+mob/living/simple_mob/shadekin/yellow/ai/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/yellow/ai/dark
+mob/living/simple_mob/shadekin/yellow/ai/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/yellow/ai/brown
+mob/living/simple_mob/shadekin/yellow/ai/brown
 	icon_state = "brown"
 
-/mob/living/simple_mob/shadekin/yellow/ai/retaliate
+mob/living/simple_mob/shadekin/yellow/ai/retaliate
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
-/mob/living/simple_mob/shadekin/yellow/ai/retaliate/white
+mob/living/simple_mob/shadekin/yellow/ai/retaliate/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/yellow/ai/retaliate/dark
+mob/living/simple_mob/shadekin/yellow/ai/retaliate/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/yellow/ai/retaliate/brown
+mob/living/simple_mob/shadekin/yellow/ai/retaliate/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
-/mob/living/simple_mob/shadekin/green
+mob/living/simple_mob/shadekin/green
 	name = "green-eyed shadekin"
 	eye_state = GREEN_EYES
 	health = 125
@@ -247,25 +247,25 @@
 	have more experience than your yellow-eyed cousins. You gain energy decently fast in any very dark area. You're weaker than other \
 	shadekin, but your slight energy generation constnatly, and especially in the dark allows for a good mix of uses."
 
-/mob/living/simple_mob/shadekin/green/white
+mob/living/simple_mob/shadekin/green/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/green/dark
+mob/living/simple_mob/shadekin/green/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/green/brown
+mob/living/simple_mob/shadekin/green/brown
 	icon_state = "brown"
 
-/mob/living/simple_mob/shadekin/green/ai
+mob/living/simple_mob/shadekin/green/ai
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
-/mob/living/simple_mob/shadekin/green/ai/white
+mob/living/simple_mob/shadekin/green/ai/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/green/ai/dark
+mob/living/simple_mob/shadekin/green/ai/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/green/ai/brown
+mob/living/simple_mob/shadekin/green/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
-/mob/living/simple_mob/shadekin/orange
+mob/living/simple_mob/shadekin/orange
 	name = "orange-eyed shadekin"
 	eye_state = ORANGE_EYES
 	health = 175
@@ -294,26 +294,26 @@
 	You're stronger than most shadekin, faster, and more capable in a brawl, but you don't generate much of your own energy. \
 	You can stand in a dark spot to gather some energy, but otherwise need to take it, by force if necessary."
 
-/mob/living/simple_mob/shadekin/orange/white
+mob/living/simple_mob/shadekin/orange/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/orange/dark
+mob/living/simple_mob/shadekin/orange/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/orange/brown
+mob/living/simple_mob/shadekin/orange/brown
 	icon_state = "brown"
 
-/mob/living/simple_mob/shadekin/orange/ai
+mob/living/simple_mob/shadekin/orange/ai
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/shadekin/orange/ai/white
+mob/living/simple_mob/shadekin/orange/ai/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/orange/ai/dark
+mob/living/simple_mob/shadekin/orange/ai/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/orange/ai/brown
+mob/living/simple_mob/shadekin/orange/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
 //Fluffy specific fluffer
-/mob/living/simple_mob/shadekin/blue/rivyr
+mob/living/simple_mob/shadekin/blue/rivyr
 	name = "Rivyr"
 	desc = "She appears to be a fluffer of some sort. Deep blue eyes and curious attitude."
 	icon_state = "rivyr"

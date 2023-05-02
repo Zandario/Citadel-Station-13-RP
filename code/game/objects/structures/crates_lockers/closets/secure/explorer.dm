@@ -1,5 +1,5 @@
 //SC Exploration Secure Closets Port
-/obj/structure/closet/secure_closet/explorer
+obj/structure/closet/secure_closet/explorer
 	name = "explorer locker"
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "secureexp1"
@@ -32,7 +32,7 @@
 		/obj/item/reagent_containers/food/snacks/liquidprotein,
 		/obj/item/cataloguer)
 
-/obj/structure/closet/secure_closet/explorer/Initialize(mapload)
+obj/structure/closet/secure_closet/explorer/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack
 	else
@@ -40,7 +40,7 @@
 	return ..()
 
 //SC Misc_vr locker.
-/obj/structure/closet/secure_closet/sar
+obj/structure/closet/secure_closet/sar
 	name = "field medic locker"
 
 	starts_with = list(
@@ -79,11 +79,11 @@
 		/obj/item/cataloguer/compact)
 
 //Pilot Locker
-/obj/structure/closet/secure_closet/pilot
+obj/structure/closet/secure_closet/pilot
 	name = "pilot locker"
 	req_access = list(ACCESS_GENERAL_PILOT)
 
-/obj/structure/closet/secure_closet/pilot
+obj/structure/closet/secure_closet/pilot
 	starts_with = list(
 		/obj/item/storage/backpack/parachute,
 		/obj/item/storage/box/survival_knife,
@@ -108,7 +108,7 @@
 		/obj/item/gps/explorer,
 		/obj/item/cataloguer/compact)
 
-/obj/structure/closet/secure_closet/pilot/Initialize(mapload)
+obj/structure/closet/secure_closet/pilot/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack
 	else
@@ -116,7 +116,7 @@
 	return ..()
 
 //Pathfinder
-/obj/structure/closet/secure_closet/pathfinder
+obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "secureexp1"
@@ -157,7 +157,7 @@
 		/obj/item/card/mining_point_card/survey/gimmick,
 		/obj/item/cataloguer/compact/pathfinder)
 
-/obj/structure/closet/secure_closet/pathfinder/Initialize(mapload)
+obj/structure/closet/secure_closet/pathfinder/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack
 	else

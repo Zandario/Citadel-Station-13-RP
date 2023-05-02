@@ -1,6 +1,6 @@
 #define waypoint_sector(waypoint) get_overmap_sector(get_z(waypoint))
 
-/datum/shuttle/autodock/overmap
+datum/shuttle/autodock/overmap
 	warmup_time = 10
 
 	var/range = 0	//how many overmap tiles can shuttle go, for picking destinations and returning.
@@ -10,22 +10,22 @@
 
 	category = /datum/shuttle/autodock/overmap
 
-/datum/shuttle/autodock/overmap/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
+datum/shuttle/autodock/overmap/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
 	..(_name, start_waypoint)
 	refresh_fuel_ports_list()
 
-/datum/shuttle/autodock/overmap/Destroy()
+datum/shuttle/autodock/overmap/Destroy()
 	. = ..()
 	myship = null
 
-/datum/shuttle/autodock/overmap/proc/refresh_fuel_ports_list() //loop through all
+datum/shuttle/autodock/overmap/proc/refresh_fuel_ports_list() //loop through all
 	fuel_ports = list()
 	for(var/area/A in shuttle_area)
 		for(var/obj/structure/fuel_port/fuel_port_in_area in A)
 			fuel_port_in_area.parent_shuttle = src
 			fuel_ports += fuel_port_in_area
 
-/datum/shuttle/autodock/overmap/fuel_check()
+datum/shuttle/autodock/overmap/fuel_check()
 	if(!src.try_consume_fuel()) //insufficient fuel
 		for(var/area/A in shuttle_area)
 			for(var/mob/living/M in A)
@@ -34,7 +34,7 @@
 				return 0 //failure!
 	return 1 //sucess, continue with launch
 
-/datum/shuttle/autodock/overmap/proc/can_go()
+datum/shuttle/autodock/overmap/proc/can_go()
 	if(!next_location)
 		return FALSE
 	if(moving_status == SHUTTLE_INTRANSIT)
@@ -44,17 +44,17 @@
 		return TRUE //We're not on the overmap yet (admin spawned probably), and we're trying to hook up with our openspace sector
 	return get_dist(our_sector, waypoint_sector(next_location)) <= range
 
-/datum/shuttle/autodock/overmap/can_launch()
+datum/shuttle/autodock/overmap/can_launch()
 	return ..() && can_go()
 
-/datum/shuttle/autodock/overmap/can_force()
+datum/shuttle/autodock/overmap/can_force()
 	return ..() && can_go()
 
-/datum/shuttle/autodock/overmap/proc/set_destination(var/obj/effect/shuttle_landmark/A)
+datum/shuttle/autodock/overmap/proc/set_destination(var/obj/effect/shuttle_landmark/A)
 	if(A != current_location)
 		next_location = A
 
-/datum/shuttle/autodock/overmap/proc/get_possible_destinations()
+datum/shuttle/autodock/overmap/proc/get_possible_destinations()
 	var/list/res = list()
 	var/our_sector = waypoint_sector(current_location)
 	if(!our_sector && myship?.landmark)
@@ -67,17 +67,17 @@
 				res["[waypoints[LZ]] - [LZ.name]"] = LZ
 	return res
 
-/datum/shuttle/autodock/overmap/get_location_name()
+datum/shuttle/autodock/overmap/get_location_name()
 	if(moving_status == SHUTTLE_INTRANSIT)
 		return "In transit"
 	return "[waypoint_sector(current_location)] - [current_location]"
 
-/datum/shuttle/autodock/overmap/get_destination_name()
+datum/shuttle/autodock/overmap/get_destination_name()
 	if(!next_location)
 		return "None"
 	return "[waypoint_sector(next_location)] - [next_location]"
 
-/datum/shuttle/autodock/overmap/proc/try_consume_fuel() //returns 1 if sucessful, returns 0 if error (like insufficient fuel)
+datum/shuttle/autodock/overmap/proc/try_consume_fuel() //returns 1 if sucessful, returns 0 if error (like insufficient fuel)
 	if(!fuel_consumption)
 		return 1 //shuttles with zero fuel consumption are magic and can always launch
 	if(!fuel_ports.len)
@@ -107,7 +107,7 @@
 			fuel_to_consume -= fuel_available
 			FT.remove_air_by_flag(GAS_FLAG_FUEL, fuel_available)
 
-/obj/structure/fuel_port
+obj/structure/fuel_port
 	name = "fuel port"
 	desc = "The fuel input port of the shuttle. Holds one fuel tank. Use a crowbar to open and close it."
 	icon = 'icons/turf/shuttle_parts.dmi'
@@ -121,20 +121,20 @@
 	var/parent_shuttle
 	var/base_tank = /obj/item/tank/phoron
 
-/obj/structure/fuel_port/Initialize(mapload)
+obj/structure/fuel_port/Initialize(mapload)
 	. = ..()
 	if(base_tank)
 		new base_tank(src)
 
-/obj/structure/fuel_port/heavy
+obj/structure/fuel_port/heavy
 	base_tank = /obj/item/tank/phoron/pressurized
 
-/obj/structure/fuel_port/empty
+obj/structure/fuel_port/empty
 	base_tank = null	//oops, no gas!
 	opened = 1	//shows open so you can diagnose 'oops, no gas' easily
 	icon_state = "fuel_port_empty"	//set the default state just to be safe
 
-/obj/structure/fuel_port/attack_hand(mob/user, list/params)
+obj/structure/fuel_port/attack_hand(mob/user, list/params)
 	if(!opened)
 		to_chat(user, "<spawn class='notice'>The door is secured tightly. You'll need a crowbar to open it.")
 		return
@@ -142,7 +142,7 @@
 		user.put_in_hands(contents[1])
 	update_icon()
 
-/obj/structure/fuel_port/update_icon()
+obj/structure/fuel_port/update_icon()
 	if(opened)
 		if(contents.len > 0)
 			icon_state = icon_full
@@ -152,7 +152,7 @@
 		icon_state = icon_closed
 	..()
 
-/obj/structure/fuel_port/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/fuel_port/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_crowbar())
 		if(opened)
 			to_chat(user, "<spawn class='notice'>You tightly shut \the [src] door.")
@@ -173,5 +173,5 @@
 	update_icon()
 
 // Walls hide stuff inside them, but we want to be visible.
-/obj/structure/fuel_port/hide()
+obj/structure/fuel_port/hide()
 	return

@@ -1,6 +1,6 @@
 // Thermic spiders inject a special variant of thermite that burns someone from the inside.
 
-/datum/category_item/catalogue/fauna/giant_spider/thermic_spider
+datum/category_item/catalogue/fauna/giant_spider/thermic_spider
 	name = "Giant Spider - Thermic"
 	desc = "This specific spider has been catalogued as 'Thermic', \
 	and it belongs to the 'Guard' caste. \
@@ -15,7 +15,7 @@
 	the inside out."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/thermic
+mob/living/simple_mob/animal/giant_spider/thermic
 	desc = "Mirage-cloaked and orange, it makes you shudder to look at it. This one has simmering orange eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/thermic_spider)
 

@@ -1,4 +1,4 @@
-/obj/machinery/computer/bioscan
+obj/machinery/computer/bioscan
 	name = "Bioscan Control Console"
 	desc = "Used to pinpoint signatures, biological or otherwise, using a series of antennaes."
 	icon_keyboard = "tech_key"
@@ -14,23 +14,23 @@
 	/// scan cooldown
 	var/scan_delay = 10 SECONDS
 
-/obj/machinery/computer/bioscan/Initialize(mapload)
+obj/machinery/computer/bioscan/Initialize(mapload)
 	. = ..()
 	if(network_key_obfuscated)
 		network_key = SSmapping.subtly_obfuscated_id(network_key_obfuscated, "bioscan_network")
 
-/obj/machinery/computer/bioscan/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/machinery/computer/bioscan/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BioscanConsole")
 		ui.open()
 
-/obj/machinery/computer/bioscan/ui_static_data(mob/user)
+obj/machinery/computer/bioscan/ui_static_data(mob/user)
 	. = ..()
 	.["scan"] = buffer
 	.["antennas"] = ui_antenna_data()
 
-/obj/machinery/computer/bioscan/proc/ui_antenna_data()
+obj/machinery/computer/bioscan/proc/ui_antenna_data()
 	var/list/antennas = network_key && GLOB.bioscan_antenna_list[network_key]
 	. = list()
 	for(var/obj/machinery/bioscan_antenna/A as anything in antennas)
@@ -46,12 +46,12 @@
 			"y" = T.y,
 		))
 
-/obj/machinery/computer/bioscan/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/bioscan/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	.["scan_ready"] = !on_cooldown()
 	.["network"] = network_key || ""
 
-/obj/machinery/computer/bioscan/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/bioscan/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	switch(action)
 		if("scan")
@@ -70,18 +70,18 @@
 			set_network(what)
 			return TRUE
 
-/obj/machinery/computer/bioscan/proc/on_cooldown()
+obj/machinery/computer/bioscan/proc/on_cooldown()
 	return (world.time - last_scan) <= scan_delay
 
-/obj/machinery/computer/bioscan/proc/set_network(key)
+obj/machinery/computer/bioscan/proc/set_network(key)
 	network_key = key
 	void_scan()
 
-/obj/machinery/computer/bioscan/proc/void_scan()
+obj/machinery/computer/bioscan/proc/void_scan()
 	buffer = null
 	push_ui_data(data = list("scan" = null))
 
-/obj/machinery/computer/bioscan/proc/scan()
+obj/machinery/computer/bioscan/proc/scan()
 	var/list/new_data = list()
 	/// get relevant antennas
 	var/list/antennas = network_key && GLOB.bioscan_antenna_list[network_key]

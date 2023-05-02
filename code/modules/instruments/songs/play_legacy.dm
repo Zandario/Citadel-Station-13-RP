@@ -1,5 +1,5 @@
 /// Playing legacy instruments - None of the "advanced" like sound reservations and decay are invoked.
-/datum/song/proc/do_play_lines_legacy(mob/user)
+datum/song/proc/do_play_lines_legacy(mob/user)
 	while(repeat >= 0)
 		var/cur_oct[7]
 		var/cur_acc[7]
@@ -42,7 +42,7 @@
 // note is a number from 1-7 for A-G
 // acc is either "b", "n", or "#"
 // oct is 1-8 (or 9 for C)
-/datum/song/proc/playnote_legacy(note, acc as text, oct)
+datum/song/proc/playnote_legacy(note, acc as text, oct)
 	// handle accidental -> B<>C of E<>F
 	if(acc == "b" && (note == 3 || note == 6)) // C or F
 		if(note == 3)

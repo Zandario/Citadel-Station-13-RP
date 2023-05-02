@@ -1,4 +1,4 @@
-/datum/gm_action/manifest_malfunction
+datum/gm_action/manifest_malfunction
 	name = "manifest malfunction"
 	enabled = TRUE
 	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_SYNTHETIC, DEPARTMENT_EVERYONE)
@@ -8,7 +8,7 @@
 
 	var/recordtype
 
-/datum/gm_action/manifest_malfunction/set_up()
+datum/gm_action/manifest_malfunction/set_up()
 	severity = pickweight(list(EVENT_LEVEL_MUNDANE = 6,
 		EVENT_LEVEL_MODERATE = 2,
 		EVENT_LEVEL_MAJOR = 1
@@ -16,7 +16,7 @@
 
 	recordtype = pickweight(list("medical" = 10,"security" = (severity * 15)))
 
-/datum/gm_action/manifest_malfunction/get_weight()
+datum/gm_action/manifest_malfunction/get_weight()
 	. = -10
 
 	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
@@ -26,7 +26,7 @@
 
 	return .
 
-/datum/gm_action/manifest_malfunction/start()
+datum/gm_action/manifest_malfunction/start()
 	..()
 
 	var/manifest_cut_count = 1 * severity
@@ -43,7 +43,7 @@
 
 		qdel(R)
 
-/datum/gm_action/manifest_malfunction/announce()
+datum/gm_action/manifest_malfunction/announce()
 	if(prob(30 * severity))
 		spawn(rand(5 MINUTES, 10 MINUTES))
 			command_announcement.Announce("An ongoing mass upload of malware for [recordtype] record cores has been detected onboard  [station_name()]", "Data Breach Alert")

@@ -1,4 +1,4 @@
-/datum/armor/station/ablative
+datum/armor/station/ablative
 	melee = 0.2
 	bullet = 0.2
 	laser = 0.8
@@ -8,7 +8,7 @@
 	bio = 0.1
 	rad = 0.1
 
-/datum/armor/station/ballistic
+datum/armor/station/ballistic
 	melee = 0.2
 	bullet = 0.8
 	bullet_soak = 5
@@ -18,7 +18,7 @@
 	bio = 0.1
 	rad = 0.1
 
-/datum/armor/station/riot
+datum/armor/station/riot
 	melee = 0.8
 	melee_soak = 5
 	bullet = 0.2
@@ -28,7 +28,7 @@
 	bio = 0.1
 	rad = 0.1
 
-/datum/armor/station/combat
+datum/armor/station/combat
 	melee = 0.5
 	bullet = 0.5
 	laser = 0.5
@@ -37,7 +37,7 @@
 	bio = 0.1
 	rad = 0.1
 
-/datum/armor/station/tactical
+datum/armor/station/tactical
 	melee = 0.4
 	bullet = 0.4
 	laser = 0.6
@@ -46,7 +46,7 @@
 	bio = 0.1
 	rad = 0.1
 
-/datum/armor/station/bomb
+datum/armor/station/bomb
 	melee = 0.2
 	bullet = 0.1
 	laser = 0.1

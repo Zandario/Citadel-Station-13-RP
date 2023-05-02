@@ -1,4 +1,4 @@
-/datum/species/auril
+datum/species/auril
 	name = SPECIES_AURIL
 	name_plural = SPECIES_AURIL
 	uid = SPECIES_ID_AURIL
@@ -53,7 +53,7 @@
 		/mob/living/proc/glow_toggle,
 		/mob/living/proc/glow_color)
 
-/datum/species/dremachir
+datum/species/dremachir
 	uid = SPECIES_ID_DREMACHIR
 	name = SPECIES_DREMACHIR
 	name_plural = SPECIES_DREMACHIR

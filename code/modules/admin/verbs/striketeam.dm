@@ -1,7 +1,7 @@
 //STRIKE TEAMS
 var/const/commandos_possible = 6 //if more Commandos are needed in the future
 
-/client/proc/strike_team()
+client/proc/strike_team()
 	set category = "Fun"
 	set name = "Spawn Strike Team"
 	set desc = "Spawns a strike team if you want to run an admin event."

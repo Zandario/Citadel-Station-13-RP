@@ -1,4 +1,4 @@
-/obj/machinery/tele_projector
+obj/machinery/tele_projector
 	name = "projector"
 	desc = "This machine is capable of projecting a miniature wormhole leading directly to its provided target."
 	icon = 'icons/obj/machines/teleporter.dmi'
@@ -13,13 +13,13 @@
 	var/obj/machinery/tele_pad/pad
 	var/engaged = FALSE
 
-/obj/machinery/tele_projector/Initialize(mapload)
+obj/machinery/tele_projector/Initialize(mapload)
 	. = ..()
 	update_appearance()
 
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/tele_projector/LateInitialize()
+obj/machinery/tele_projector/LateInitialize()
 	. = ..()
 	for(var/target_dir in GLOB.cardinal)
 		var/obj/machinery/tele_pad/found_pad = locate() in get_step(src, target_dir)
@@ -27,7 +27,7 @@
 			setDir(get_dir(src, found_pad))
 			break
 
-/obj/machinery/tele_projector/update_icon()
+obj/machinery/tele_projector/update_icon()
 	cut_overlays()
 	if(engaged)
 		update_use_power(USE_POWER_ACTIVE)
@@ -43,19 +43,19 @@
 			I.layer = ABOVE_LIGHTING_LAYER
 			add_overlay(I)
 
-/obj/machinery/tele_projector/attackby(obj/item/W)
+obj/machinery/tele_projector/attackby(obj/item/W)
 	attack_hand()
 
-/obj/machinery/tele_projector/attack_ai()
+obj/machinery/tele_projector/attack_ai()
 	attack_hand()
 
-/obj/machinery/tele_projector/attack_hand(mob/user, list/params)
+obj/machinery/tele_projector/attack_hand(mob/user, list/params)
 	if(engaged)
 		disengage()
 	else
 		engage()
 
-/obj/machinery/tele_projector/proc/engage()
+obj/machinery/tele_projector/proc/engage()
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -71,7 +71,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/tele_projector/proc/disengage()
+obj/machinery/tele_projector/proc/disengage()
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -86,5 +86,5 @@
 	add_fingerprint(usr)
 	return
 
-/atom/proc/laserhit(obj/L)
+atom/proc/laserhit(obj/L)
 	return TRUE

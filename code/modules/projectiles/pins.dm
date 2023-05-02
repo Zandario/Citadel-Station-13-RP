@@ -1,4 +1,4 @@
-/obj/item/firing_pin
+obj/item/firing_pin
 	name = "electronic firing pin"
 	desc = "A small authentication device, to be inserted into a firearm receiver to allow operation. NT safety regulations require all new designs to incorporate one."
 	icon = 'icons/obj/device.dmi'
@@ -12,18 +12,18 @@
 	var/obj/item/gun/gun
 	var/emagged = 0
 
-/obj/item/firing_pin/Initialize(mapload)
+obj/item/firing_pin/Initialize(mapload)
 	. = ..()
 	if(istype(loc, /obj/item/gun))
 		gun = loc
 
-/obj/item/firing_pin/Destroy()
+obj/item/firing_pin/Destroy()
 	if(gun)
 		gun.pin = null
 		gun = null
 	return ..()
 
-/obj/item/firing_pin/afterattack(atom/target, mob/user, proximity_flag)
+obj/item/firing_pin/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(proximity_flag)
 		if(istype(target, /obj/item/gun))
@@ -42,20 +42,20 @@
 			else
 				to_chat(user, "<span class ='notice'>This firearm already has a firing pin installed.</span>")
 
-/obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
+obj/item/firing_pin/proc/gun_insert(mob/living/user, obj/item/gun/G)
 	if(!user.attempt_insert_item_for_installation(src, G))
 		return
 	G.pin = src
 	to_chat(user, "<span class ='notice'>You insert [src] into [G].</span>")
 
-/obj/item/firing_pin/proc/gun_remove(obj/item/gun/G)
+obj/item/firing_pin/proc/gun_remove(obj/item/gun/G)
 	G.pin = null
 	qdel(src)
 
-/obj/item/firing_pin/proc/pin_auth(mob/living/user)
+obj/item/firing_pin/proc/pin_auth(mob/living/user)
 	return TRUE
 
-/obj/item/firing_pin/proc/auth_fail(mob/living/user)
+obj/item/firing_pin/proc/auth_fail(mob/living/user)
 	if(user)
 		user.show_message(fail_message, 2)
 	if(selfdestruct)
@@ -66,17 +66,17 @@
 		if(gun)
 			qdel(gun)
 
-/obj/item/firing_pin/magic
+obj/item/firing_pin/magic
 	name = "magic crystal shard"
 	desc = "A small enchanted shard which allows magical weapons to fire."
 
 // Test pin, works only near firing range.
-/obj/item/firing_pin/test_range
+obj/item/firing_pin/test_range
 	name = "test-range firing pin"
 	desc = "This safety firing pin allows weapons to be fired within proximity to a firing range."
 	fail_message = "<span class='warning'>TEST RANGE CHECK FAILED.</span>"
 
-/obj/item/firing_pin/test_range/pin_auth(mob/living/user)
+obj/item/firing_pin/test_range/pin_auth(mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(istype(get_area(src), /area/rnd/research/testingrange) || istype(get_area(src), /area/security/range))
@@ -85,13 +85,13 @@
 
 
 // Implant pin, checks for implant
-/obj/item/firing_pin/implant
+obj/item/firing_pin/implant
 	name = "implant-keyed firing pin"
 	desc = "This is a security firing pin which only authorizes users who are implanted with a certain device."
 	fail_message = "<span class='warning'>IMPLANT CHECK FAILED.</span>"
 	var/obj/item/implant/req_implant = null
 
-/obj/item/firing_pin/implant/pin_auth(mob/living/carbon/human/user)
+obj/item/firing_pin/implant/pin_auth(mob/living/carbon/human/user)
 	if(user)
 		for(var/obj/item/organ/external/E in user.organs)
 			for(var/obj/item/implant/I in E.implants)
@@ -100,7 +100,7 @@
 						return TRUE
 	return FALSE
 
-/obj/item/firing_pin/implant/mindshield
+obj/item/firing_pin/implant/mindshield
 	name = "mindshield firing pin"
 	desc = "This Security firing pin authorizes the weapon for only loyalty-implanted users."
 	icon_state = "firing_pin_loyalty"
@@ -109,14 +109,14 @@
 // DNA-keyed pin.
 // When you want to keep your toys for yourself.
 //A bit obsolete since "/obj/item/dnalockingchip" already exists. Ported from main, maybe it'll be useful in future.
-/obj/item/firing_pin/dna
+obj/item/firing_pin/dna
 	name = "DNA-keyed firing pin"
 	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link."
 	icon_state = "firing_pin_dna"
 	fail_message = "<span class='warning'>DNA CHECK FAILED.</span>"
 	var/unique_enzymes = null
 
-/obj/item/firing_pin/dna/afterattack(atom/target, mob/user, proximity_flag)
+obj/item/firing_pin/dna/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(proximity_flag && iscarbon(target))
 		var/mob/living/carbon/M = target
@@ -124,13 +124,13 @@
 			unique_enzymes = M.dna.unique_enzymes
 			to_chat(user, "<span class='notice'>DNA-LOCK SET.</span>")
 
-/obj/item/firing_pin/dna/pin_auth(mob/living/carbon/user)
+obj/item/firing_pin/dna/pin_auth(mob/living/carbon/user)
 	if(user && user.dna && user.dna.unique_enzymes)
 		if(user.dna.unique_enzymes == unique_enzymes)
 			return TRUE
 	return FALSE
 
-/obj/item/firing_pin/dna/auth_fail(mob/living/carbon/user)
+obj/item/firing_pin/dna/auth_fail(mob/living/carbon/user)
 	if(!unique_enzymes)
 		if(user && user.dna && user.dna.unique_enzymes)
 			unique_enzymes = user.dna.unique_enzymes
@@ -138,19 +138,19 @@
 	else
 		..()
 
-/obj/item/firing_pin/dna/dredd
+obj/item/firing_pin/dna/dredd
 	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link. It has a small explosive charge on it."
 	selfdestruct = TRUE
 
 // Laser tag pins
-/obj/item/firing_pin/tag
+obj/item/firing_pin/tag
 	name = "laser tag firing pin"
 	desc = "A recreational firing pin, used in laser tag units to ensure users have their vests on."
 	fail_message = "<span class='warning'>SUIT CHECK FAILED.</span>"
 	var/obj/item/clothing/suit/suit_requirement = null
 	var/tagcolor = ""
 
-/obj/item/firing_pin/tag/pin_auth(mob/living/user)
+obj/item/firing_pin/tag/pin_auth(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/M = user
 		if(istype(M.wear_suit, suit_requirement))
@@ -158,20 +158,20 @@
 	to_chat(user, "<span class='warning'>You need to be wearing [tagcolor] laser tag armor!</span>")
 	return FALSE
 
-/obj/item/firing_pin/tag/red
+obj/item/firing_pin/tag/red
 	name = "red laser tag firing pin"
 	icon_state = "firing_pin_red"
 	suit_requirement = /obj/item/clothing/suit/redtag
 	tagcolor = "red"
 
-/obj/item/firing_pin/tag/blue
+obj/item/firing_pin/tag/blue
 	name = "blue laser tag firing pin"
 	icon_state = "firing_pin_blue"
 	suit_requirement = /obj/item/clothing/suit/bluetag
 	tagcolor = "blue"
 
 // Explorer Firing Pin- Prevents use on station Z-Level, so it's justifiable to give Explorers guns that don't suck.
-/obj/item/firing_pin/explorer
+obj/item/firing_pin/explorer
 	name = "explorer firing pin"
 	desc = "A firing pin used to prevent weapon discharge on the station."
 	icon_state = "firing_pin_explorer"
@@ -180,14 +180,14 @@
 	var/locked = 1
 
 // This checks that the user isn't on the station Z-level.
-/obj/item/firing_pin/explorer/pin_auth(mob/living/user)
+obj/item/firing_pin/explorer/pin_auth(mob/living/user)
 	var/turf/T = get_turf(src)
 	if(!locked)
 		return TRUE
 	return !onstation_weapon_locked(T.z)
 
 /// Checks for facility weapon safety interlocks. Returns TRUE if weapons should lock.
-/proc/onstation_weapon_locked(z)
+proc/onstation_weapon_locked(z)
 	if(!z)
 		return FALSE
 	var/lock_override = SSmapping.level_trait(z, ZTRAIT_FACILITY_SAFETY)
@@ -196,13 +196,13 @@
 	return lock_override
 
 //Allows swiping an armoury access ID on an explorer locked gun to unlock it
-/obj/item/gun/attackby(obj/item/I, mob/user)
+obj/item/gun/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/card/id)) && pin)
 		pin.attackby(I, user)
 	else
 		return ..()
 
-/obj/item/firing_pin/explorer/attackby(obj/item/card/ID, mob/user)
+obj/item/firing_pin/explorer/attackby(obj/item/card/ID, mob/user)
 	..()
 	if(check_access(ID))
 		locked = !locked
@@ -211,7 +211,7 @@
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 	user.visible_message("<span class='notice'>[user] swipes \the [ID] against \the [src].</span>")
 
-/obj/item/firing_pin/emag_act(var/remaining_charges, var/mob/user)
+obj/item/firing_pin/emag_act(var/remaining_charges, var/mob/user)
 	if(emagged)
 		to_chat(user, "<span class='notice'>It's already emagged.</span>")
 		return

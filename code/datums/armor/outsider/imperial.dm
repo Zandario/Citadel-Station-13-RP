@@ -1,6 +1,6 @@
-/datum/armor/imperial
+datum/armor/imperial
 
-/datum/armor/imperial/plate
+datum/armor/imperial/plate
 	melee = 0.6
 	bullet = 0.8
 	laser = 0.1
@@ -9,7 +9,7 @@
 	bio = 0.6
 	rad = 0.4
 
-/datum/armor/imperial/adamant
+datum/armor/imperial/adamant
 	melee = 0.5
 	bullet = 0.5
 	laser = 0.5

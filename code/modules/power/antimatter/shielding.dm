@@ -1,5 +1,5 @@
 /// Like orange but only checks north/south/east/west for one step.
-/proc/cardinalrange(var/center)
+proc/cardinalrange(var/center)
 	var/list/things = list()
 	for(var/direction in GLOB.cardinal)
 		var/turf/T = get_step(center, direction)
@@ -7,7 +7,7 @@
 		things += T.contents
 	return things
 
-/obj/machinery/am_shielding
+obj/machinery/am_shielding
 	name = "antimatter reactor section"
 	desc = "This device was built using a phoron life-form that seems to increase phoron's natural ability to react with neutrinos while reducing the combustibility."
 
@@ -26,15 +26,15 @@
 	var/efficiency = 1//How many cores this core counts for when doing power processing, phoron in the air and stability could affect this
 
 
-/obj/machinery/am_shielding/Initialize(mapload, newdir)
+obj/machinery/am_shielding/Initialize(mapload, newdir)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/am_shielding/LateInitialize()
+obj/machinery/am_shielding/LateInitialize()
 	. = ..()
 	controllerscan()
 
-/obj/machinery/am_shielding/proc/controllerscan(var/priorscan = 0)
+obj/machinery/am_shielding/proc/controllerscan(var/priorscan = 0)
 	//Make sure we are the only one here
 	if(!istype(src.loc, /turf))
 		qdel(src)
@@ -65,29 +65,29 @@
 			qdel(src)
 	return
 
-/obj/machinery/am_shielding/Destroy()
+obj/machinery/am_shielding/Destroy()
 	if(control_unit)	control_unit.remove_shielding(src)
 	if(processing)	shutdown_core()
 	visible_message("<font color='red'>The [src.name] melts!</font>")
 	//Might want to have it leave a mess on the floor but no sprites for now
 	return ..()
 
-/obj/machinery/am_shielding/CanAllowThrough(atom/movable/mover, turf/target)
+obj/machinery/am_shielding/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	return FALSE
 
-/obj/machinery/am_shielding/process(delta_time)
+obj/machinery/am_shielding/process(delta_time)
 	if(!processing) . = PROCESS_KILL
 	//TODO: core functions and stability
 	//TODO: think about checking the airmix for phoron and increasing power output
 	return
 
 
-/obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
+obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
 	return 0
 
 
-/obj/machinery/am_shielding/legacy_ex_act(severity)
+obj/machinery/am_shielding/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			stability -= 80
@@ -99,13 +99,13 @@
 	return
 
 
-/obj/machinery/am_shielding/bullet_act(var/obj/projectile/Proj)
+obj/machinery/am_shielding/bullet_act(var/obj/projectile/Proj)
 	if(Proj.damage_flag != "bullet")
 		stability -= Proj.damage/2
 	return 0
 
 
-/obj/machinery/am_shielding/update_icon()
+obj/machinery/am_shielding/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -123,7 +123,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/machinery/am_shielding/attackby(obj/item/W, mob/user)
+obj/machinery/am_shielding/attackby(obj/item/W, mob/user)
 	if(!istype(W) || !user) return
 	if(W.damage_force > 10)
 		stability -= W.damage_force/2
@@ -134,7 +134,7 @@
 
 
 //Call this to link a detected shilding unit to the controller
-/obj/machinery/am_shielding/proc/link_control(var/obj/machinery/power/am_control_unit/AMC)
+obj/machinery/am_shielding/proc/link_control(var/obj/machinery/power/am_control_unit/AMC)
 	if(!istype(AMC))	return 0
 	if(control_unit && control_unit != AMC) return 0//Already have one
 	control_unit = AMC
@@ -143,7 +143,7 @@
 
 
 //Scans cards for shields or the control unit and if all there it
-/obj/machinery/am_shielding/proc/core_check()
+obj/machinery/am_shielding/proc/core_check()
 	for(var/direction in GLOB.alldirs)
 		var/machine = locate(/obj/machinery, get_step(loc, direction))
 		if(!machine) return 0//Need all for a core
@@ -151,7 +151,7 @@
 	return 1
 
 
-/obj/machinery/am_shielding/proc/setup_core()
+obj/machinery/am_shielding/proc/setup_core()
 	processing = 1
 	START_MACHINE_PROCESSING(src)
 	if(!control_unit)	return
@@ -160,7 +160,7 @@
 	return
 
 
-/obj/machinery/am_shielding/proc/shutdown_core()
+obj/machinery/am_shielding/proc/shutdown_core()
 	processing = 0
 	if(!control_unit)	return
 	control_unit.linked_cores.Remove(src)
@@ -168,7 +168,7 @@
 	return
 
 
-/obj/machinery/am_shielding/proc/check_stability(var/injecting_fuel = 0)
+obj/machinery/am_shielding/proc/check_stability(var/injecting_fuel = 0)
 	if(stability > 0) return
 	if(injecting_fuel && control_unit)
 		control_unit.exploding = 1
@@ -177,7 +177,7 @@
 	return
 
 
-/obj/machinery/am_shielding/proc/recalc_efficiency(var/new_efficiency)//tbh still not 100% sure how I want to deal with efficiency so this is likely temp
+obj/machinery/am_shielding/proc/recalc_efficiency(var/new_efficiency)//tbh still not 100% sure how I want to deal with efficiency so this is likely temp
 	if(!control_unit || !processing) return
 	if(stability < 50)
 		new_efficiency /= 2
@@ -187,7 +187,7 @@
 
 
 
-/obj/item/am_shielding_container
+obj/item/am_shielding_container
 	name = "packaged antimatter reactor section"
 	desc = "A small storage unit containing an antimatter reactor section.  To use place near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
 	icon = 'icons/obj/machines/antimatter.dmi'
@@ -199,7 +199,7 @@
 	throw_range = 2
 	matter = list(MAT_STEEL = 100)
 
-/obj/item/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
+obj/item/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/multitool) && istype(src.loc,/turf))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)

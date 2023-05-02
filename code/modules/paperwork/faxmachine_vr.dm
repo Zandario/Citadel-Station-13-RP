@@ -1,4 +1,4 @@
-/obj/machinery/photocopier/faxmachine
+obj/machinery/photocopier/faxmachine
 	req_one_access = list()
 
 /**
@@ -6,7 +6,7 @@
  * If the fax is a paper_bundle, do so recursively for each page.
  * returns a random unique faxid.
  */
-/obj/machinery/photocopier/faxmachine/proc/export_fax(fax)
+obj/machinery/photocopier/faxmachine/proc/export_fax(fax)
 	var faxid = "[num2text(world.realtime,12)]_[rand(10000)]"
 	if (istype(fax, /obj/item/paper))
 		var/obj/item/paper/P = fax
@@ -35,7 +35,7 @@
 /**
  * Call the chat webhook to transmit a notification of an admin fax to the admin chat.
  */
-/obj/machinery/photocopier/faxmachine/proc/message_chat_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/faxid, font_colour="#006100")
+obj/machinery/photocopier/faxmachine/proc/message_chat_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/faxid, font_colour="#006100")
 	if (config_legacy.chat_webhook_url)
 		spawn(0)
 			var/query_string = "type=fax"
@@ -51,6 +51,6 @@
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
 // the object they are overriding. So all /mob/living together, etc.
 //
-/datum/configuration_legacy
+datum/configuration_legacy
 	var/chat_webhook_url = ""		// URL of the webhook for sending announcements/faxes to discord chat.
 	var/chat_webhook_key = ""		// Shared secret for authenticating to the chat webhook

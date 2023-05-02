@@ -2,7 +2,7 @@
 //		Proteon
 ////////////////////////////
 
-/datum/category_item/catalogue/fauna/construct/proteon
+datum/category_item/catalogue/fauna/construct/proteon
 	name = "Constructs - Proteon"
 	desc = "These curious Constructs, referred to as Proteons in captured texts, \
 	are considerably more fragile than other obsidian statues. Fielded in large numbers \
@@ -11,7 +11,7 @@
 	intelligent, or are more akin to Paranatural drones."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/construct/proteon //Weak Swarm Attacker can be safely dumped on players in large numbers without too many injuries
+mob/living/simple_mob/construct/proteon //Weak Swarm Attacker can be safely dumped on players in large numbers without too many injuries
 	name = "Proteon"
 	real_name = "proton"
 	construct_type = "artificer"
@@ -32,6 +32,6 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
-/mob/living/simple_mob/construct/proteon/Initialize(mapload)
+mob/living/simple_mob/construct/proteon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)

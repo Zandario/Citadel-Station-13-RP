@@ -1,4 +1,4 @@
-/datum/computer_file/program/camera_monitor/hacked
+datum/computer_file/program/camera_monitor/hacked
 	filename = "camcrypt"
 	filedesc = "Camera Decryption Tool"
 	tguimodule_path = /datum/tgui_module_old/camera/ntos/hacked
@@ -10,7 +10,7 @@
 	available_on_ntnet = 0
 	available_on_syndinet = 1
 
-/datum/computer_file/program/camera_monitor/hacked/process_tick()
+datum/computer_file/program/camera_monitor/hacked/process_tick()
 	..()
 	if(program_state != PROGRAM_STATE_ACTIVE) // Background programs won't trigger alarms.
 		return

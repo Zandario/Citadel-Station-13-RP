@@ -8,7 +8,7 @@
 
 #define RAD_GRACE_PERIOD 2
 
-/obj/item/geiger_counter
+obj/item/geiger_counter
 	name = "geiger counter"
 	desc = "A handheld device used for detecting and measuring radiation in an area."
 	icon = 'icons/obj/device.dmi'
@@ -28,7 +28,7 @@
 	var/fail_to_receive = 0
 	var/current_warning = 1
 
-/obj/item/geiger_counter/Initialize(mapload)
+obj/item/geiger_counter/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/z_radiation_listener)
 	AddComponent(/datum/component/radiation_listener)
@@ -36,7 +36,7 @@
 	if(scanning)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/geiger_counter/Destroy()
+obj/item/geiger_counter/Destroy()
 	if(scanning)
 		scanning = FALSE
 		STOP_PROCESSING(SSobj, src)
@@ -44,7 +44,7 @@
 		QDEL_NULL(soundloop)
 	return ..()
 
-/obj/item/geiger_counter/process(delta_time)
+obj/item/geiger_counter/process(delta_time)
 	if(!scanning)
 		current_tick_amount = 0
 		return PROCESS_KILL
@@ -66,7 +66,7 @@
 	update_appearance()
 	update_sound()
 
-/obj/item/geiger_counter/examine(mob/user)
+obj/item/geiger_counter/examine(mob/user)
 	. = ..()
 	if(!scanning)
 		return
@@ -90,7 +90,7 @@
 
 	. += SPAN_NOTICE("The last radiation amount detected was [last_tick_amount]")
 
-/obj/item/geiger_counter/update_icon_state()
+obj/item/geiger_counter/update_icon_state()
 	if(!scanning)
 		icon_state = "geiger_off"
 		return ..()
@@ -113,7 +113,7 @@
 			icon_state = "geiger_on_5"
 	return ..()
 
-/obj/item/geiger_counter/proc/update_sound()
+obj/item/geiger_counter/proc/update_sound()
 	var/datum/looping_sound/geiger/loop = soundloop
 	if(!scanning)
 		loop.stop()
@@ -124,14 +124,14 @@
 	loop.last_radiation = radiation_count
 	loop.start()
 
-/obj/item/geiger_counter/rad_act(amount)
+obj/item/geiger_counter/rad_act(amount)
 	. = ..()
 	if(amount <= RAD_BACKGROUND_RADIATION || !scanning)
 		return
 	current_tick_amount += amount
 	update_appearance()
 
-/obj/item/geiger_counter/attack_self(mob/user)
+obj/item/geiger_counter/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -143,7 +143,7 @@
 	update_appearance()
 	to_chat(user, SPAN_NOTICE("[icon2html(src, user)] You switch [scanning ? "on" : "off"] [src]."))
 
-/obj/item/geiger_counter/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+obj/item/geiger_counter/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(user.a_intent == INTENT_HELP)
 		if(!(obj_flags & EMAGGED))
@@ -155,7 +155,7 @@
 			radiation_count = 0
 		return TRUE
 
-/obj/item/geiger_counter/proc/scan(atom/A, mob/user)
+obj/item/geiger_counter/proc/scan(atom/A, mob/user)
 	var/rad_strength = 0
 	for(var/i in get_rad_contents(A)) // Yes it's intentional that you can't detect radioactive things under rad protection. Gives traitors a way to hide their glowing green rocks.
 		var/atom/thing = i
@@ -177,7 +177,7 @@
 	else
 		to_chat(user, SPAN_NOTICE("[icon2html(src, user)] Target is free of radioactive contamination."))
 
-/obj/item/geiger_counter/attackby(obj/item/I, mob/user, params)
+obj/item/geiger_counter/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER && (obj_flags & EMAGGED))
 		if(scanning)
 			to_chat(user, SPAN_WARNING("Turn off [src] before you perform this action!"))
@@ -193,7 +193,7 @@
 	else
 		return ..()
 
-/obj/item/geiger_counter/AltClick(mob/living/user)
+obj/item/geiger_counter/AltClick(mob/living/user)
 	if(!istype(user) || !user.default_can_use_topic(src))
 		return ..()
 	if(!scanning)
@@ -203,7 +203,7 @@
 	to_chat(usr, SPAN_NOTICE("You flush [src]'s radiation counts, resetting it to normal."))
 	update_appearance()
 
-/obj/item/geiger_counter/emag_act(mob/user)
+obj/item/geiger_counter/emag_act(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return
@@ -214,17 +214,17 @@
 	obj_flags |= EMAGGED
 	return TRUE
 
-/obj/item/geiger_counter/cyborg
+obj/item/geiger_counter/cyborg
 	var/mob/listeningTo
 
-/obj/item/geiger_counter/cyborg/unequipped(mob/user, slot, flags)
+obj/item/geiger_counter/cyborg/unequipped(mob/user, slot, flags)
 	. = ..()
 	if(!scanning)
 		return
 	scanning = FALSE
 	update_appearance()
 
-/obj/item/geiger_counter/cyborg/equipped(mob/user, slot, flags)
+obj/item/geiger_counter/cyborg/equipped(mob/user, slot, flags)
 	. = ..()
 	if(listeningTo == user)
 		return
@@ -233,11 +233,11 @@
 	RegisterSignal(user, COMSIG_ATOM_RAD_ACT, .proc/redirect_rad_act)
 	listeningTo = user
 
-/obj/item/geiger_counter/cyborg/proc/redirect_rad_act(datum/source, amount)
+obj/item/geiger_counter/cyborg/proc/redirect_rad_act(datum/source, amount)
 	SIGNAL_HANDLER
 	rad_act(amount)
 
-/obj/item/geiger_counter/cyborg/dropped(mob/user)
+obj/item/geiger_counter/cyborg/dropped(mob/user)
 	. = ..()
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_ATOM_RAD_ACT)

@@ -1,7 +1,7 @@
-/turf/simulated/wall/diona/Initialize(mapload)
+turf/simulated/wall/diona/Initialize(mapload)
 	..(mapload, "biomass")
 
-/turf/simulated/wall/diona/attack_generic(var/mob/user, var/damage, var/attack_message)
+turf/simulated/wall/diona/attack_generic(var/mob/user, var/damage, var/attack_message)
 	if(istype(user, /mob/living/carbon/alien/diona))
 		if(can_open == WALL_OPENING)
 			return
@@ -13,20 +13,20 @@
 	else
 		return ..(user, damage, attack_message)
 
-/obj/structure/diona
+obj/structure/diona
 	icon = 'icons/obj/diona.dmi'
 	anchored = 1
 	density = 1
 	opacity = 0
 	layer = TURF_LAYER + 0.01
 
-/obj/structure/diona/vines
+obj/structure/diona/vines
 	name = "alien vines"
 	desc = "Thick, heavy vines of some sort."
 	icon_state = "vines3"
 	var/growth = 0
 
-/obj/structure/diona/vines/proc/spread()
+obj/structure/diona/vines/proc/spread()
 	var/turf/origin = get_turf(src)
 	for(var/turf/T in range(src,2))
 		if(T.density || T == origin || istype(T, /turf/space))
@@ -43,19 +43,19 @@
 			existing.growth = new_growth
 			existing.update_icon()
 
-/obj/structure/diona/vines/update_icon()
+obj/structure/diona/vines/update_icon()
 	icon_state = "vines[growth]"
 
-/obj/structure/diona/bulb
+obj/structure/diona/bulb
 	name = "glow bulb"
 	desc = "A glowing bulb of some sort."
 	icon_state = "glowbulb"
 
-/obj/structure/diona/bulb/Initialize(mapload)
+obj/structure/diona/bulb/Initialize(mapload)
 	. = ..()
 	set_light(3,3,"#557733")
 
-/datum/random_map/automata/diona
+datum/random_map/automata/diona
 	iterations = 3
 	descriptor = "diona gestalt"
 	limit_x = 32
@@ -65,7 +65,7 @@
 	floor_type = /turf/simulated/floor/diona
 
 // This is disgusting.
-/datum/random_map/automata/diona/proc/search_neighbors_for(var/search_val, var/x, var/y)
+datum/random_map/automata/diona/proc/search_neighbors_for(var/search_val, var/x, var/y)
 	var/current_cell = get_map_cell(x-1,y-1)
 	if(current_cell && map[current_cell] == search_val) return 1
 	current_cell = get_map_cell(x-1,y)
@@ -84,7 +84,7 @@
 	if(current_cell && map[current_cell] == search_val) return 1
 	return 0
 
-/datum/random_map/automata/diona/cleanup()
+datum/random_map/automata/diona/cleanup()
 
 	// Hollow out the interior spaces.
 	for(var/x = 1, x <= limit_x, x++)
@@ -142,14 +142,14 @@
 				nymph_count--
 	return
 
-/datum/random_map/automata/diona/get_appropriate_path(var/value)
+datum/random_map/automata/diona/get_appropriate_path(var/value)
 	switch(value)
 		if(EMPTY_CHAR, DOOR_CHAR, MONSTER_CHAR, ARTIFACT_CHAR)
 			return floor_type
 		if(WALL_CHAR)
 			return wall_type
 
-/datum/random_map/automata/diona/get_additional_spawns(var/value, var/turf/T)
+datum/random_map/automata/diona/get_additional_spawns(var/value, var/turf/T)
 
 	if(value != FLOOR_CHAR)
 		for(var/thing in T)

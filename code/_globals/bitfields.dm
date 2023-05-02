@@ -1,19 +1,19 @@
 GLOBAL_LIST_INIT(bitfields, generate_bitfields())
 
-/datum/bitfield
+datum/bitfield
 	/// An associative list of the readable flag and its true value
 	var/list/flags
 
-/datum/bitfield/single
+datum/bitfield/single
 	/// The variable name that contains the bitfield
 	var/variable
 
-/datum/bitfield/multi
+datum/bitfield/multi
 	/// our variable names
 	var/list/variables
 
 /// Turns /datum/bitfield subtypes into a list for use in debugging
-/proc/generate_bitfields()
+proc/generate_bitfields()
 	var/list/bitfields = list()
 	for (var/_bitfield in subtypesof(/datum/bitfield/single))
 		var/datum/bitfield/single/bitfield = new _bitfield

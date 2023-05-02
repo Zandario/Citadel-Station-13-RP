@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/obj/structure/closet/crate
+obj/structure/closet/crate
 	name = "crate"
 	desc = "A rectangular steel crate."
 	icon = 'icons/obj/storage.dmi'
@@ -12,20 +12,20 @@
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
 	var/rigged = 0
 
-/obj/structure/closet/crate/CanPass(atom/movable/AM, turf/T)
+obj/structure/closet/crate/CanPass(atom/movable/AM, turf/T)
 	. = ..()
 	if(. || !istype(AM, /obj/item))
 		return
 	var/obj/item/I = AM
 	return I.throwing
 
-/obj/structure/closet/crate/can_open()
+obj/structure/closet/crate/can_open()
 	return 1
 
-/obj/structure/closet/crate/can_close()
+obj/structure/closet/crate/can_close()
 	return 1
 
-/obj/structure/closet/crate/open()
+obj/structure/closet/crate/open()
 	if(src.opened)
 		return 0
 	if(!src.can_open())
@@ -51,7 +51,7 @@
 		structure_shaken()
 	return 1
 
-/obj/structure/closet/crate/close()
+obj/structure/closet/crate/close()
 	if(!src.opened)
 		return 0
 	if(!src.can_close())
@@ -75,7 +75,7 @@
 	src.opened = 0
 	return 1
 
-/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(opened)
 		if(isrobot(user))
 			return
@@ -111,7 +111,7 @@
 
 	else return attack_hand(user)
 
-/obj/structure/closet/crate/legacy_ex_act(severity)
+obj/structure/closet/crate/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			for(var/obj/O in src.contents)
@@ -131,7 +131,7 @@
 		else
 	return
 
-/obj/structure/closet/crate/secure
+obj/structure/closet/crate/secure
 	desc = "A secure crate."
 	name = "Secure crate"
 	icon_state = "securecrate"
@@ -145,7 +145,7 @@
 	var/locked = 1
 	var/tamper_proof = 0
 
-/obj/structure/closet/crate/secure/Initialize(mapload)
+obj/structure/closet/crate/secure/Initialize(mapload)
 	. = ..()
 
 	if(locked)
@@ -153,10 +153,10 @@
 	else
 		set_overlays(greenlight)
 
-/obj/structure/closet/crate/secure/can_open()
+obj/structure/closet/crate/secure/can_open()
 	return !locked
 
-/obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
+obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
 	if(src.opened)
 		to_chat(user, "<span class='notice'>Close the crate first.</span>")
 		return
@@ -168,7 +168,7 @@
 	else
 		to_chat(user, "<span class='notice'>Access Denied</span>")
 
-/obj/structure/closet/crate/secure/proc/set_locked(var/newlocked, mob/user = null)
+obj/structure/closet/crate/secure/proc/set_locked(var/newlocked, mob/user = null)
 	if(locked == newlocked)
 		return
 
@@ -179,7 +179,7 @@
 
 	set_overlays(locked ? redlight : greenlight)
 
-/obj/structure/closet/crate/secure/verb/verb_togglelock()
+obj/structure/closet/crate/secure/verb/verb_togglelock()
 	set src in oview(1) // One square distance
 	set category = "Object"
 	set name = "Toggle Lock"
@@ -193,14 +193,14 @@
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
-/obj/structure/closet/crate/secure/attack_hand(mob/user, list/params)
+obj/structure/closet/crate/secure/attack_hand(mob/user, list/params)
 	src.add_fingerprint(user)
 	if(locked)
 		src.togglelock(user)
 	else
 		src.toggle(user)
 
-/obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/tool/wirecutters)))
 		return ..()
 	if(istype(W, /obj/item/melee/energy/blade))
@@ -210,7 +210,7 @@
 		return
 	return ..()
 
-/obj/structure/closet/crate/secure/emag_act(remaining_charges, mob/user)
+obj/structure/closet/crate/secure/emag_act(remaining_charges, mob/user)
 	if(!broken)
 		cut_overlays()
 		var/list/overlays_to_add = list()
@@ -227,7 +227,7 @@
 		to_chat(user, "<span class='notice'>You unlock \the [src].</span>")
 		return 1
 
-/obj/structure/closet/crate/secure/emp_act(severity)
+obj/structure/closet/crate/secure/emp_act(severity)
 	for(var/obj/O in src)
 		O.emp_act(severity)
 	if(!broken && !opened  && prob(50/severity))
@@ -251,7 +251,7 @@
 			req_access += pick(get_all_station_access())
 	..()
 
-/obj/structure/closet/crate/secure/bullet_act(var/obj/projectile/Proj)
+obj/structure/closet/crate/secure/bullet_act(var/obj/projectile/Proj)
 	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
 		return
 
@@ -284,7 +284,7 @@
 	return
 
 
-/obj/structure/closet/crate/plastic
+obj/structure/closet/crate/plastic
 	name = "plastic crate"
 	desc = "A rectangular plastic crate."
 	icon_state = "plasticcrate"
@@ -292,14 +292,14 @@
 	icon_closed = "plasticcrate"
 	points_per_crate = 1	//5 crates per ordered crate, +5 for the crate it comes in.
 
-/obj/structure/closet/crate/internals
+obj/structure/closet/crate/internals
 	name = "internals crate"
 	desc = "A internals crate."
 	icon_state = "o2crate"
 	icon_opened = "o2crateopen"
 	icon_closed = "o2crate"
 
-/obj/structure/closet/crate/trashcart
+obj/structure/closet/crate/trashcart
 	name = "trash cart"
 	desc = "A heavy, metal trashcart with wheels."
 	icon_state = "trashcart"
@@ -307,14 +307,14 @@
 	icon_closed = "trashcart"
 
 /*these aren't needed anymore
-/obj/structure/closet/crate/hat
+obj/structure/closet/crate/hat
 	desc = "A crate filled with Valuable Collector's Hats!."
 	name = "Hat Crate"
 	icon_state = "crate"
 	icon_opened = "crateopen"
 	icon_closed = "crate"
 
-/obj/structure/closet/crate/contraband
+obj/structure/closet/crate/contraband
 	name = "Poster crate"
 	desc = "A random assortment of posters manufactured by providers NOT listed under NanoTrasen's whitelist."
 	icon_state = "crate"
@@ -322,14 +322,14 @@
 	icon_closed = "crate"
 */
 
-/obj/structure/closet/crate/medical
+obj/structure/closet/crate/medical
 	name = "medical crate"
 	desc = "A medical crate."
 	icon_state = "medicalcrate"
 	icon_opened = "medicalcrateopen"
 	icon_closed = "medicalcrate"
 
-/obj/structure/closet/crate/rcd
+obj/structure/closet/crate/rcd
 	name = "\improper RCD crate"
 	desc = "A crate with rapid construction device."
 	icon_state = "engi_crate"
@@ -340,7 +340,7 @@
 		/obj/item/rcd_ammo = 3,
 		/obj/item/rcd)
 
-/obj/structure/closet/crate/solar
+obj/structure/closet/crate/solar
 	name = "solar pack crate"
 	icon_state = "engi_crate"
 	icon_opened = "engi_crateopen"
@@ -352,7 +352,7 @@
 		/obj/item/tracker_electronics,
 		/obj/item/paper/solar)
 
-/obj/structure/closet/crate/freezer
+obj/structure/closet/crate/freezer
 	name = "freezer"
 	desc = "A freezer."
 	icon_state = "freezer"
@@ -361,7 +361,7 @@
 	var/target_temp = T0C - 40
 	var/cooling_power = 40
 
-/obj/structure/closet/crate/freezer/return_air()
+obj/structure/closet/crate/freezer/return_air()
 	var/datum/gas_mixture/gas = (..())
 	if(!gas)	return null
 	var/datum/gas_mixture/newgas = new/datum/gas_mixture()
@@ -374,30 +374,30 @@
 		newgas.temperature = target_temp
 	return newgas
 
-/obj/structure/closet/crate/freezer/Entered(var/atom/movable/AM)
+obj/structure/closet/crate/freezer/Entered(var/atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserve(CRATE_FREEZER_TRAIT)
 	..()
 
-/obj/structure/closet/crate/freezer/Exited(var/atom/movable/AM)
+obj/structure/closet/crate/freezer/Exited(var/atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.unpreserve(CRATE_FREEZER_TRAIT)
 	..()
 
-/obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
+obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
 	name = "emergency rations"
 	desc = "A crate of emergency rations."
 
 	starts_with = list(
 		/obj/random/mre = 6)
 
-/obj/structure/closet/crate/freezer/centauri
+obj/structure/closet/crate/freezer/centauri
 	name = "centauri co freezer"
 	desc = "A box of various sodas."
 
-/obj/structure/closet/crate/bin
+obj/structure/closet/crate/bin
 	name = "large bin"
 	desc = "A large bin."
 	icon = 'icons/obj/storage.dmi'
@@ -405,7 +405,7 @@
 	icon_opened = "largebinopen"
 	icon_closed = "largebin"
 
-/obj/structure/closet/crate/bin/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/closet/crate/bin/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench() && !src.opened)
 		if(anchored)
 			user.show_message(text("<span class='notice'>[src] can now be moved.</span>"))
@@ -419,7 +419,7 @@
 	else
 		..()
 
-/obj/structure/closet/crate/radiation
+obj/structure/closet/crate/radiation
 	name = "radioactive gear crate"
 	desc = "A crate with a radiation sign on it."
 	icon_state = "radiation"
@@ -431,7 +431,7 @@
 		/obj/item/clothing/head/radiation = 4)
 
 
-/obj/structure/closet/crate/secure/weapon
+obj/structure/closet/crate/secure/weapon
 	name = "weapons crate"
 	desc = "A secure weapons crate."
 	icon_state = "weaponcrate"
@@ -439,7 +439,7 @@
 	icon_closed = "weaponcrate"
 
 
-/obj/structure/closet/crate/secure/phoron
+obj/structure/closet/crate/secure/phoron
 	name = "phoron crate"
 	desc = "A secure phoron crate."
 	icon_state = "phoroncrate"
@@ -447,7 +447,7 @@
 	icon_closed = "phoroncrate"
 
 
-/obj/structure/closet/crate/secure/gear
+obj/structure/closet/crate/secure/gear
 	name = "gear crate"
 	desc = "A secure gear crate."
 	icon_state = "secgearcrate"
@@ -455,7 +455,7 @@
 	icon_closed = "secgearcrate"
 
 
-/obj/structure/closet/crate/secure/hydrosec
+obj/structure/closet/crate/secure/hydrosec
 	name = "secure hydroponics crate"
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	icon_state = "hydrosecurecrate"
@@ -463,7 +463,7 @@
 	icon_closed = "hydrosecurecrate"
 
 
-/obj/structure/closet/crate/secure/engineering
+obj/structure/closet/crate/secure/engineering
 	desc = "A crate with a lock on it, painted in the scheme of the station's engineers."
 	name = "secure engineering crate"
 	icon_state = "engi_secure_crate"
@@ -471,7 +471,7 @@
 	icon_closed = "engi_secure_crate"
 
 
-/obj/structure/closet/crate/secure/science
+obj/structure/closet/crate/secure/science
 	name = "secure science crate"
 	desc = "A crate with a lock on it, painted in the scheme of the station's scientists."
 	icon_state = "scisecurecrate"
@@ -479,7 +479,7 @@
 	icon_closed = "scisecurecrate"
 
 
-/obj/structure/closet/crate/secure/bin
+obj/structure/closet/crate/secure/bin
 	name = "secure bin"
 	desc = "A secure bin."
 	icon = 'icons/obj/storage.dmi'
@@ -492,7 +492,7 @@
 	emag = "largebinemag"
 
 
-/obj/structure/closet/crate/large
+obj/structure/closet/crate/large
 	name = "large crate"
 	desc = "A hefty metal crate."
 	icon = 'icons/obj/storage.dmi'
@@ -501,7 +501,7 @@
 	icon_closed = "largemetal"
 
 
-/obj/structure/closet/crate/large/close()
+obj/structure/closet/crate/large/close()
 	. = ..()
 	if (.)//we can hold up to one large item
 		var/found = 0
@@ -520,7 +520,7 @@
 	return
 
 
-/obj/structure/closet/crate/secure/large
+obj/structure/closet/crate/secure/large
 	name = "large crate"
 	desc = "A hefty metal crate with an electronic locking system."
 	icon = 'icons/obj/storage.dmi'
@@ -531,7 +531,7 @@
 	greenlight = "largemetalg"
 
 
-/obj/structure/closet/crate/secure/large/close()
+obj/structure/closet/crate/secure/large/close()
 	. = ..()
 	if (.)//we can hold up to one large item
 		var/found = 0
@@ -551,30 +551,30 @@
 
 
 //fluff variant
-/obj/structure/closet/crate/secure/large/reinforced
+obj/structure/closet/crate/secure/large/reinforced
 	desc = "A hefty, reinforced metal crate with an electronic locking system."
 	icon_state = "largermetal"
 	icon_opened = "largermetalopen"
 	icon_closed = "largermetal"
 
-/obj/structure/closet/crate/engineering
+obj/structure/closet/crate/engineering
 	name = "engineering crate"
 	icon_state = "engi_crate"
 	icon_opened = "engi_crateopen"
 	icon_closed = "engi_crate"
 
-/obj/structure/closet/crate/engineering/electrical
+obj/structure/closet/crate/engineering/electrical
 	icon_state = "engi_e_crate"
 	icon_opened = "engi_crateopen"
 	icon_closed = "engi_e_crate"
 
-/obj/structure/closet/crate/science
+obj/structure/closet/crate/science
 	name = "science crate"
 	icon_state = "scicrate"
 	icon_opened = "scicrateopen"
 	icon_closed = "scicrate"
 
-/obj/structure/closet/crate/hydroponics
+obj/structure/closet/crate/hydroponics
 	name = "hydroponics crate"
 	desc = "All you need to destroy those pesky weeds and pests."
 	icon_state = "hydrocrate"
@@ -582,12 +582,12 @@
 	icon_closed = "hydrocrate"
 
 
-/obj/structure/closet/crate/hydroponics/prespawned
+obj/structure/closet/crate/hydroponics/prespawned
 	starts_with = list(
 		/obj/item/reagent_containers/spray/plantbgone = 2,
 		/obj/item/material/minihoe)
 
-/obj/structure/closet/crate/hydroponics/exotic
+obj/structure/closet/crate/hydroponics/exotic
 	name = "exotic seeds crate"
 	desc = "All you need to destroy that pesky planet."
 
@@ -599,7 +599,7 @@
 		/obj/item/seeds/libertymycelium,
 		/obj/item/seeds/reishimycelium)
 
-/obj/structure/closet/crate/medical/blood
+obj/structure/closet/crate/medical/blood
 	icon_state = "blood"
 	icon_opened = "bloodopen"
 	icon_closed = "blood"
@@ -607,97 +607,97 @@
 //TSCs
 //Add in icons instead of this declare thing? Sort out what's causing this.
 
-/obj/structure/closet/crate/aether
+obj/structure/closet/crate/aether
 	desc = "A crate painted in the colours of Aether Atmospherics and Recycling."
 	icon_state = "aether"
 	icon_opened = "aetheropen"
 	icon_closed = "aether"
 
-/obj/structure/closet/crate/centauri
+obj/structure/closet/crate/centauri
 	desc = "A crate decorated with the logo of Centauri Provisions."
 	icon_state = "centauri"
 	icon_opened = "centauriopen"
 	icon_closed = "centauri"
 
-/obj/structure/closet/crate/einstein
+obj/structure/closet/crate/einstein
 	desc = "A crate labelled with an Einstein Engines sticker, the company has since been bought out by Hephaestus Industries."
 	icon_state = "ee"
 	icon_opened = "eeopen"
 	icon_closed = "ee"
 
-/obj/structure/closet/crate/focalpoint
+obj/structure/closet/crate/focalpoint
 	desc = "A crate marked with the decal of Focal Point Energistics, now a subsidiary of Aether Atmospherics and Recycling."
 	icon_state = "fp"
 	icon_opened = "fpopen"
 	icon_closed = "fp"
 
-/obj/structure/closet/crate/gilthari
+obj/structure/closet/crate/gilthari
 	desc = "A crate embossed with the logo of Gilthari Exports."
 	icon_state = "gilthari"
 	icon_opened = "gilthariopen"
 	icon_closed = "gilthari"
 
-/obj/structure/closet/crate/grayson
+obj/structure/closet/crate/grayson
 	desc = "A bare metal crate spraypainted with the decals of Grayson Manufactories an NT subsidiary. The purchase of Grayson by NT helped them secure their phoron monoply."
 	icon_state = "grayson"
 	icon_opened = "graysonopen"
 	icon_closed = "grayson"
 
-/obj/structure/closet/crate/heph
+obj/structure/closet/crate/heph
 	desc = "A sturdy crate marked with the logo of Hephaestus Industries."
 	icon_state = "heph"
 	icon_opened = "hephopen"
 	icon_closed = "heph"
 
-/obj/structure/closet/crate/morpheus
+obj/structure/closet/crate/morpheus
 	desc = "A crate crudely imprinted with 'MORPHEUS CYBERKINETICS' 'primier' off brand prosthetics manufactuer."
 	icon_state = "morpheus"
 	icon_opened = "morpheusopen"
 	icon_closed = "morpheus"
 
-/obj/structure/closet/crate/nanotrasen
+obj/structure/closet/crate/nanotrasen
 	desc = "A crate emblazoned with the standard NanoTrasen livery."
 	icon_state = "nt"
 	icon_opened = "ntopen"
 	icon_closed = "nt"
 
-/obj/structure/closet/crate/nanothreads
+obj/structure/closet/crate/nanothreads
 	desc = "A crate emblazoned with the NanoThreads Garments livery, a subsidary of the NanoTrasen Corporation."
 	icon_state = "nt"
 	icon_opened = "ntopen"
 	icon_closed = "nt"
 
-/obj/structure/closet/crate/nanomed
+obj/structure/closet/crate/nanomed
 	desc = "A crate emblazoned with the NanoMed Medical livery, a subsidary of the NanoTrasen Corporation."
 	icon_state = "ntmed"
 	icon_opened = "ntmedopen"
 	icon_closed = "ntmed"
 
-/obj/structure/closet/crate/oculum
+obj/structure/closet/crate/oculum
 	desc = "A crate minimally decorated with the logo of media giant Oculum Broadcast."
 	icon_state = "oculum"
 	icon_opened = "oculumopen"
 	icon_closed = "oculum"
 
-/obj/structure/closet/crate/veymed
+obj/structure/closet/crate/veymed
 	desc = "A sterile crate extensively detailed in Veymed colours."
 	icon_state = "vmed"
 	icon_opened = "vmedopen"
 	icon_closed = "vmed"
 
-/obj/structure/closet/crate/ward
+obj/structure/closet/crate/ward
 	desc = "A crate decaled with the logo of Ward-Takahashi."
 	icon_state = "wt"
 	icon_opened = "wtopen"
 	icon_closed = "wt"
 
-/obj/structure/closet/crate/xion
+obj/structure/closet/crate/xion
 	desc = "A crate painted in the orange of the former Xion Manufacturing Group, now a subsidiary of Aether Atmospherics and Recycling."
 	icon_state = "xion"
 	icon_opened = "xionopen"
 	icon_closed = "xion"
 
-/obj/structure/closet/crate/zenghu
+obj/structure/closet/crate/zenghu
 	desc = "A sterile crate marked with the logo of Zeng-Hu Pharmaceuticals."
 	icon_state = "zh"
 	icon_opened = "zhopen"
@@ -705,38 +705,38 @@
 
 // Brands/subsidiaries
 
-/obj/structure/closet/crate/allico
+obj/structure/closet/crate/allico
 	desc = "A crate painted in the distinctive cheerful colours of AlliCo. Ltd."
 	icon_state = "allico"
 	icon_opened = "allicoopen"
 	icon_closed = "allico"
 
-/obj/structure/closet/crate/carp
+obj/structure/closet/crate/carp
 	desc = "A crate painted with the garish livery of Consolidated Agricultural Resources Plc. Centauri Provisions (in)famous space carp ranching subsidairy."
 	icon_state = "carp"
 	icon_opened = "carpopen"
 	icon_closed = "carp"
 
-/obj/structure/closet/crate/hedberg
+obj/structure/closet/crate/hedberg
 	name = "weapons crate"
 	desc = "A weapons crate stamped with the logo of Hedberg-Hammarstrom and the lock conspicuously absent."
 
-/obj/structure/closet/crate/galaksi
+obj/structure/closet/crate/galaksi
 	desc = "A crate printed with the markings of Ward-Takahashi's Galaksi Appliance branding."
 	icon_state = "wt"
 	icon_opened = "wtopen"
 	icon_closed = "wt"
 
-/obj/structure/closet/crate/thinktronic
+obj/structure/closet/crate/thinktronic
 	desc = "A crate printed with the markings of Thinktronic Systems."
 	icon_state = "wt"
 	icon_opened = "wtopen"
 	icon_closed = "wt"
 
-/obj/structure/closet/crate/ummarcar
+obj/structure/closet/crate/ummarcar
 	desc = "A flimsy crate marked labelled 'UmMarcar Office Supply'."
 
-/obj/structure/closet/crate/unathi
+obj/structure/closet/crate/unathi
 	name = "import crate"
 	desc = "A crate painted with the markings of Moghes Imported Sissalik Jerky, currently distributed by the Naramadi megacorporation Onkhera Synthetic Solutions."
 	icon_state = "oss"
@@ -744,7 +744,7 @@
 	icon_closed = "oss"
 
 //Ashie Crate - Sprite isn't stellar, maybe some day we can do a better one.
-/obj/structure/closet/crate/ashlander
+obj/structure/closet/crate/ashlander
 	name = "bonemold crate"
 	desc = "A crate shaped out of fused bone plates. It is held shut by a sturdy hide strap."
 	icon_state = "ashcrate"
@@ -753,112 +753,112 @@
 
 //Secure crates
 
-/obj/structure/closet/crate/secure/aether
+obj/structure/closet/crate/secure/aether
 	desc = "A secure crate painted in the colours of Aether Atmospherics and Recycling."
 	icon_state = "aethersecure"
 	icon_opened = "aethersecureopen"
 	icon_closed = "aethersecure"
 
-/obj/structure/closet/crate/secure/bishop
+obj/structure/closet/crate/secure/bishop
 	desc = "A secure crate finely decorated with the emblem of Bishop Cybernetics, former Vey-Med rival now Vey-Med subsidiary."
 	icon_state = "bishopsecure"
 	icon_opened = "bishopsecureopen"
 	icon_closed = "bishopsecure"
 
-/obj/structure/closet/crate/secure/cybersolutions
+obj/structure/closet/crate/secure/cybersolutions
 	desc = "An unadorned secure metal crate labelled 'Cyber Solutions'."
 
-/obj/structure/closet/crate/secure/einstein
+obj/structure/closet/crate/secure/einstein
 	desc = "A secure crate labelled with an Einstein Engines sticker, the company has since been bought out by Hephaestus Industries."
 	icon_state = "eesecure"
 	icon_opened = "eesecureopen"
 	icon_closed = "eesecure"
 
-/obj/structure/closet/crate/secure/focalpoint
+obj/structure/closet/crate/secure/focalpoint
 	desc = "A secure crate marked with the decal of Focal Point Energistics, now a subsidiary of Aether Atmospherics and Recycling."
 	icon_state = "fpsecure"
 	icon_opened = "fpsecureopen"
 	icon_closed = "fpsecure"
 
-/obj/structure/closet/crate/secure/gilthari
+obj/structure/closet/crate/secure/gilthari
 	desc = "A secure crate embossed with the logo of Gilthari Exports."
 	icon_state = "giltharisecure"
 	icon_opened = "giltharisecureopen"
 	icon_closed = "giltharisecure"
 
-/obj/structure/closet/crate/secure/grayson
+obj/structure/closet/crate/secure/grayson
 	desc = "A secure bare metal crate spraypainted with decals of Grayson Manufactories an NT subsidiary. The purchase of Grayson by NT helped them secure their phoron monoply."
 	icon_state = "graysonsecure"
 	icon_opened = "graysonsecureopen"
 	icon_closed = "graysonsecure"
 
-/obj/structure/closet/crate/secure/hedberg
+obj/structure/closet/crate/secure/hedberg
 	name = "weapons crate"
 	desc = "A secure weapons crate stamped with the logo of Hedberg-Hammarstrom."
 
-/obj/structure/closet/crate/secure/heph
+obj/structure/closet/crate/secure/heph
 	name = "weapons crate"
 	desc = "A secure weapons crate marked with the logo of Hephaestus Industries."
 	icon_state = "hephsecure"
 	icon_opened = "hephsecureopen"
 	icon_closed = "hephsecure"
 
-/obj/structure/closet/crate/secure/lawson
+obj/structure/closet/crate/secure/lawson
 	name = "weapons crate"
 	desc = "A secure weapons crate marked with the logo of Lawson Arms."
 
-/obj/structure/closet/crate/secure/morpheus
+obj/structure/closet/crate/secure/morpheus
 	desc = "A secure crate crudely imprinted with 'MORPHEUS CYBERKINETICS', 'primier' off brand prosthetics manufactuer."
 	icon_state = "morpheussecure"
 	icon_opened = "morpheussecureopen"
 	icon_closed = "morpheussecure"
 
 
-/obj/structure/closet/crate/secure/nanotrasen
+obj/structure/closet/crate/secure/nanotrasen
 	desc = "A secure crate emblazoned with the standard NanoTrasen livery."
 	icon_state = "ntsecure"
 	icon_opened = "ntsecureopen"
 	icon_closed = "ntsecure"
 
-/obj/structure/closet/crate/secure/nanomed
+obj/structure/closet/crate/secure/nanomed
 	desc = "A secure crate emblazoned with the NanoMed Medical livery, a subsidary of the NanoTrasen Corporation."
 	icon_state = "ntmedsecure"
 	icon_opened = "ntmedsecureopen"
 	icon_closed = "ntmedsecure"
 
-/obj/structure/closet/crate/secure/oricon
+obj/structure/closet/crate/secure/oricon
 	name = "weapons crate"
 	desc = "A secure crate in the official colours of the Orion Confederation."
 	icon_state = "oriconsecure"
 	icon_opened = "oriconsecureopen"
 	icon_closed = "oriconsecure"
 
-/obj/structure/closet/crate/secure/saare
+obj/structure/closet/crate/secure/saare
 	desc = "A secure weapons crate plainly stamped with the logo of Stealth Assault Enterprises. A Blackstar Legion susidiary that is one of the few groups that still transport \
 	hard currency."
 	icon_state = "saaresecure"
 	icon_opened = "saaresecureopen"
 	icon_closed = "saaresecure"
 
-/obj/structure/closet/crate/secure/veymed
+obj/structure/closet/crate/secure/veymed
 	desc = "A secure sterile crate extensively detailed in Veymed colours."
 	icon_state = "vmedsecure"
 	icon_opened = "vmedsecureopen"
 	icon_closed = "vmedsecure"
 
-/obj/structure/closet/crate/secure/ward
+obj/structure/closet/crate/secure/ward
 	desc = "A secure crate decaled with the logo of Ward-Takahashi."
 	icon_state = "wtsecure"
 	icon_opened = "wtsecureopen"
 	icon_closed = "wtsecure"
 
-/obj/structure/closet/crate/secure/xion
+obj/structure/closet/crate/secure/xion
 	desc = "A secure crate painted in the orange of the former Xion Manufacturing Group, now a subsidiary of Aether Atmospherics and Recycling."
 	icon_state = "xionsecure"
 	icon_opened = "xionsecureopen"
 	icon_closed = "xionsecure"
 
-/obj/structure/closet/crate/secure/zenghu
+obj/structure/closet/crate/secure/zenghu
 	desc = "A secure sterile crate marked with the logo of Zeng-Hu Pharmaceuticals."
 	icon_state = "zhsecure"
 	icon_opened = "zhsecureopen"

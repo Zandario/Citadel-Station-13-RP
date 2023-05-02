@@ -1,4 +1,4 @@
-/datum/computer_file/program/revelation
+datum/computer_file/program/revelation
 	filename = "revelation"
 	filedesc = "Revelation"
 	program_icon_state = "hostile"
@@ -12,12 +12,12 @@
 	nanomodule_path = /datum/nano_module/program/revelation/
 	var/armed = 0
 
-/datum/computer_file/program/revelation/run_program(var/mob/living/user)
+datum/computer_file/program/revelation/run_program(var/mob/living/user)
 	. = ..(user)
 	if(armed)
 		activate()
 
-/datum/computer_file/program/revelation/proc/activate()
+datum/computer_file/program/revelation/proc/activate()
 	if(!computer)
 		return
 
@@ -37,7 +37,7 @@
 	if(computer.tesla_link && prob(50))
 		qdel(computer.tesla_link)
 
-/datum/computer_file/program/revelation/Topic(href, href_list)
+datum/computer_file/program/revelation/Topic(href, href_list)
 	if(..())
 		return 1
 	else if(href_list["PRG_arm"])
@@ -56,15 +56,15 @@
 				break
 	return 1
 
-/datum/computer_file/program/revelation/clone()
+datum/computer_file/program/revelation/clone()
 	var/datum/computer_file/program/revelation/temp = ..()
 	temp.armed = armed
 	return temp
 
-/datum/nano_module/program/revelation
+datum/nano_module/program/revelation
 	name = "Revelation Virus"
 
-/datum/nano_module/program/revelation/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/revelation/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = list()
 	var/datum/computer_file/program/revelation/PRG = program
 	if(!istype(PRG))
@@ -81,4 +81,3 @@
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
-

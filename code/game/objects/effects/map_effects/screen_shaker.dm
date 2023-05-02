@@ -1,5 +1,5 @@
 // Makes the screen shake for nearby players every so often.
-/obj/effect/map_effect/interval/screen_shaker
+obj/effect/map_effect/interval/screen_shaker
 	name = "screen shaker"
 	icon_state = "screen_shaker"
 
@@ -10,7 +10,7 @@
 	var/shake_duration = 2 // How long the shaking lasts.
 	var/shake_strength = 1 // How much it shakes.
 
-/obj/effect/map_effect/interval/screen_shaker/trigger()
+obj/effect/map_effect/interval/screen_shaker/trigger()
 	for(var/A in GLOB.player_list)
 		var/mob/M = A
 		if(M.z == src.z && get_dist(src, M) <= shake_radius)

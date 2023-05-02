@@ -10,7 +10,7 @@
 // UPDATE 06.04.2018
 // The emag thing wasn't working as intended, manually overwrote it.
 
-/obj/machinery/door/blast
+obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
@@ -38,17 +38,17 @@
 	var/id = 1.0
 
 
-/obj/machinery/door/blast/Initialize(mapload)
+obj/machinery/door/blast/Initialize(mapload)
 	. = ..()
 	implicit_material = get_material_by_name("plasteel")
 
-/obj/machinery/door/blast/get_material()
+obj/machinery/door/blast/get_material()
 	return implicit_material
 
 // Proc: Bumped()
 // Parameters: 1 (AM - Atom that tried to walk through this object)
 // Description: If we are open returns zero, otherwise returns result of parent function.
-/obj/machinery/door/blast/Bumped(atom/AM)
+obj/machinery/door/blast/Bumped(atom/AM)
 	if(!density)
 		return ..()
 	else
@@ -57,24 +57,24 @@
 // Proc: update_icon()
 // Parameters: None
 // Description: Updates icon of this object. Uses icon state variables.
-/obj/machinery/door/blast/update_icon()
+obj/machinery/door/blast/update_icon()
 	if(density)
 		icon_state = icon_state_closed
 	else
 		icon_state = icon_state_open
 
 // Has to be in here, comment at the top is older than the emag_act code on doors proper
-/obj/machinery/door/blast/emag_act()
+obj/machinery/door/blast/emag_act()
 	return -1
 
 // Blast doors are triggered remotely, so nobody is allowed to physically influence it.
-/obj/machinery/door/blast/allowed(mob/M)
+obj/machinery/door/blast/allowed(mob/M)
 	return FALSE
 
 // Proc: force_open()
 // Parameters: None
 // Description: Opens the door. No checks are done inside this proc.
-/obj/machinery/door/blast/proc/force_open()
+obj/machinery/door/blast/proc/force_open()
 	src.operating = 1
 	flick(icon_state_opening, src)
 	src.density = 0
@@ -89,7 +89,7 @@
 // Proc: force_close()
 // Parameters: None
 // Description: Closes the door. No checks are done inside this proc.
-/obj/machinery/door/blast/proc/force_close()
+obj/machinery/door/blast/proc/force_close()
 	src.operating = 1
 	src.layer = closed_layer
 	flick(icon_state_closing, src)
@@ -104,7 +104,7 @@
 // Proc: force_toggle()
 // Parameters: None
 // Description: Opens or closes the door, depending on current state. No checks are done inside this proc.
-/obj/machinery/door/blast/proc/force_toggle(var/forced = 0, mob/user as mob)
+obj/machinery/door/blast/proc/force_toggle(var/forced = 0, mob/user as mob)
 	if (forced)
 		playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
 
@@ -115,7 +115,7 @@
 
 //Proc: attack_hand
 //Description: Attacked with empty hand. Only to allow special attack_bys.
-/obj/machinery/door/blast/attack_hand(mob/user, list/params)
+obj/machinery/door/blast/attack_hand(mob/user, list/params)
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
@@ -128,7 +128,7 @@
 // Parameters: 2 (C - Item this object was clicked with, user - Mob which clicked this object)
 // Description: If we are clicked with crowbar, wielded fire axe, or armblade, try to manually open the door.
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
-/obj/machinery/door/blast/attackby(obj/item/C as obj, mob/user as mob)
+obj/machinery/door/blast/attackby(obj/item/C as obj, mob/user as mob)
 	src.add_fingerprint(user, 0, C)
 	if(istype(C, /obj/item)) // For reasons unknown, sometimes C is actually not what it is advertised as, like a mob.
 		if(C.pry == 1 && (user.a_intent != INTENT_HARM || (machine_stat & BROKEN))) // Can we pry it open with something, like a crowbar/fireaxe/lingblade?
@@ -193,7 +193,7 @@
 // Proc: attack_alien()
 // Parameters: Attacking Xeno mob.
 // Description: Forces open the door after a delay.
-/obj/machinery/door/blast/attack_alien(var/mob/user) //Familiar, right? Doors.
+obj/machinery/door/blast/attack_alien(var/mob/user) //Familiar, right? Doors.
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
@@ -217,7 +217,7 @@
 // Proc: attack_generic()
 // Parameters: Attacking simple mob, incoming damage.
 // Description: Checks the power or integrity of the blast door, if either have failed, chekcs the damage to determine if the creature would be able to open the door by force. Otherwise, super.
-/obj/machinery/door/blast/attack_generic(mob/living/user, damage)
+obj/machinery/door/blast/attack_generic(mob/living/user, damage)
 	if(machine_stat & (BROKEN|NOPOWER))
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
@@ -240,7 +240,7 @@
 // Proc: open()
 // Parameters: None
 // Description: Opens the door. Does necessary checks. Automatically closes if autoclose is true
-/obj/machinery/door/blast/open(var/forced = 0)
+obj/machinery/door/blast/open(var/forced = 0)
 	if(forced)
 		force_open()
 		return 1
@@ -257,7 +257,7 @@
 // Proc: close()
 // Parameters: None
 // Description: Closes the door. Does necessary checks.
-/obj/machinery/door/blast/close()
+obj/machinery/door/blast/close()
 	if (src.operating || (machine_stat & BROKEN || machine_stat & NOPOWER))
 		return
 	force_close()
@@ -266,7 +266,7 @@
 // Proc: repair()
 // Parameters: None
 // Description: Fully repairs the blast door.
-/obj/machinery/door/blast/proc/repair()
+obj/machinery/door/blast/proc/repair()
 	health = maxhealth
 	if(machine_stat & BROKEN)
 		machine_stat &= ~BROKEN
@@ -274,7 +274,7 @@
 /*
 // This replicates the old functionality coded into CanPass() for this object, however it appeared to have made blast doors not airtight.
 // If for some reason this is actually needed for something important, uncomment this.
-/obj/machinery/door/blast/CanZASPass(turf/T, is_zone)
+obj/machinery/door/blast/CanZASPass(turf/T, is_zone)
 	if(is_zone)
 		return ATMOS_PASS_YES
 	return ..()
@@ -282,7 +282,7 @@
 
 // SUBTYPE: Regular
 // Your classical blast door, found almost everywhere.
-/obj/machinery/door/blast/regular
+obj/machinery/door/blast/regular
 	icon_state_open = "pdoor0"
 	icon_state_opening = "pdoorc0"
 	icon_state_closed = "pdoor1"
@@ -290,14 +290,14 @@
 	icon_state = "pdoor1"
 	maxhealth = 600
 
-/obj/machinery/door/blast/regular/open
+obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"
 	density = 0
 	opacity = 0
 
 // SUBTYPE: Shutters
 // Nicer looking, and also weaker, shutters. Found in kitchen and similar areas.
-/obj/machinery/door/blast/shutters
+obj/machinery/door/blast/shutters
 	icon_state_open = "shutter0"
 	icon_state_opening = "shutterc0"
 	icon_state_closed = "shutter1"

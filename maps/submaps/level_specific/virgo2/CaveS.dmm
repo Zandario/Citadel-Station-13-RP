@@ -1,143 +1,143 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/template_noop,
-/area/submap/virgo2/CaveS)
+turf/template_noop,
+area/submap/virgo2/CaveS)
 "c" = (
-/obj/item/ammo_casing/a45,
-/turf/template_noop,
-/area/submap/virgo2/CaveS)
+obj/item/ammo_casing/a45,
+turf/template_noop,
+area/submap/virgo2/CaveS)
 "d" = (
-/turf/simulated/mineral/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
+turf/simulated/mineral/ignore_mapgen/virgo2,
+area/submap/virgo2/CaveS)
 "f" = (
-/obj/tether_away_spawner/aerostat_surface,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
+obj/tether_away_spawner/aerostat_surface,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/CaveS)
 "g" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
+obj/effect/spider/stickyweb,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/CaveS)
 "h" = (
-/obj/item/ammo_casing/a45,
-/obj/item/ammo_casing/a45,
-/turf/template_noop,
-/area/submap/virgo2/CaveS)
+obj/item/ammo_casing/a45,
+obj/item/ammo_casing/a45,
+turf/template_noop,
+area/submap/virgo2/CaveS)
 "j" = (
-/obj/item/clothing/accessory/storage/webbing,
-/obj/item/material/knife/tacknife/combatknife,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
+obj/item/clothing/accessory/storage/webbing,
+obj/item/material/knife/tacknife/combatknife,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/CaveS)
 "k" = (
-/obj/tether_away_spawner/aerostat_surface,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+obj/tether_away_spawner/aerostat_surface,
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "l" = (
-/obj/effect/debris/cleanable/cobweb,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
+obj/effect/debris/cleanable/cobweb,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/CaveS)
 "n" = (
-/obj/effect/debris/cleanable/cobweb2,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
+obj/effect/debris/cleanable/cobweb2,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/CaveS)
 "o" = (
-/obj/effect/mine,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
+obj/effect/mine,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/CaveS)
 "p" = (
-/obj/structure/loot_pile/surface/drone,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+obj/structure/loot_pile/surface/drone,
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "r" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/CaveS)
 "u" = (
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "v" = (
-/obj/structure/closet/crate,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/storage/toolbox,
-/obj/random/toolbox,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+obj/structure/closet/crate,
+obj/item/stack/cable_coil,
+obj/item/stack/cable_coil,
+obj/item/storage/toolbox,
+obj/random/toolbox,
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "w" = (
-/obj/structure/loot_pile/surface/medicine_cabinet,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+obj/structure/loot_pile/surface/medicine_cabinet,
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "x" = (
-/obj/structure/table/woodentable,
-/obj/item/survivalcapsule,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+obj/structure/table/woodentable,
+obj/item/survivalcapsule,
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "y" = (
-/obj/machinery/power/port_gen/pacman,
-/obj/structure/cable{
+obj/machinery/power/port_gen/pacman,
+obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "z" = (
-/turf/simulated/wall,
-/area/submap/virgo2/CaveS)
+turf/simulated/wall,
+area/submap/virgo2/CaveS)
 "A" = (
-/obj/structure/closet/crate,
-/obj/item/reagent_containers/hypospray,
-/obj/item/reagent_containers/glass/bottle/stoxin,
-/obj/item/reagent_containers/glass/bottle/antitoxin,
-/obj/item/reagent_containers/pill/antitox,
-/obj/item/reagent_containers/pill/antitox,
-/obj/item/reagent_containers/pill/antitox,
-/obj/item/reagent_containers/pill/paracetamol,
-/obj/random/firstaid,
-/obj/item/storage/firstaid/combat,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+obj/structure/closet/crate,
+obj/item/reagent_containers/hypospray,
+obj/item/reagent_containers/glass/bottle/stoxin,
+obj/item/reagent_containers/glass/bottle/antitoxin,
+obj/item/reagent_containers/pill/antitox,
+obj/item/reagent_containers/pill/antitox,
+obj/item/reagent_containers/pill/antitox,
+obj/item/reagent_containers/pill/paracetamol,
+obj/random/firstaid,
+obj/item/storage/firstaid/combat,
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "B" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "C" = (
-/obj/structure/closet/crate,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/energy,
-/obj/item/material/star,
-/obj/item/material/star,
-/obj/item/material/star,
-/obj/item/material/star,
-/obj/item/material/star,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+obj/structure/closet/crate,
+obj/random/contraband,
+obj/random/contraband,
+obj/random/contraband,
+obj/random/energy,
+obj/item/material/star,
+obj/item/material/star,
+obj/item/material/star,
+obj/item/material/star,
+obj/item/material/star,
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "E" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "F" = (
-/obj/structure/cable{
+obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "G" = (
-/obj/machinery/computer/communications,
-/obj/structure/cable{
+obj/machinery/computer/communications,
+obj/structure/cable{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 "I" = (
-/obj/structure/loot_pile/surface/bones,
-/turf/simulated/floor,
-/area/submap/virgo2/CaveS)
+obj/structure/loot_pile/surface/bones,
+turf/simulated/floor,
+area/submap/virgo2/CaveS)
 
 (1,1,1) = {"
 a

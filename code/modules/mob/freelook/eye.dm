@@ -3,7 +3,7 @@
 // A mob that another mob controls to look around the station with.
 // It streams chunks as it moves around, which will show it what the controller can and cannot see.
 
-/mob/observer/eye
+mob/observer/eye
 	name = "Eye"
 	icon = 'icons/mob/eye.dmi'
 	icon_state = "default-eye"
@@ -25,40 +25,40 @@
 	var/ghostimage = null
 	var/datum/visualnet/visualnet
 
-/mob/observer/eye/Destroy()
+mob/observer/eye/Destroy()
 	if(owner)
 		if(owner.eyeobj == src)
 			owner.eyeobj = null
 		owner = null
 	. = ..()
 
-/mob/observer/eye/Move(n, direct)
+mob/observer/eye/Move(n, direct)
 	if(owner == src)
 		return EyeMove(n, direct)
 	return 0
 
-/mob/observer/eye/airflow_hit(atom/A)
+mob/observer/eye/airflow_hit(atom/A)
 	airflow_speed = 0
 	airflow_dest = null
 
-/mob/observer/eye/examinate()
+mob/observer/eye/examinate()
 	set popup_menu = 0
 	set src = usr.contents
 	return 0
 
-/mob/observer/eye/pointed()
+mob/observer/eye/pointed()
 	set popup_menu = 0
 	set src = usr.contents
 	return 0
 
-/mob/observer/eye/examine(mob/user)
+mob/observer/eye/examine(mob/user)
 	return list(
 		"An eye object belonging to [owner || "no one in particular."]"
 	)
 
 // Use this when setting the eye's location.
 // It will also stream the chunk that the new loc is in.
-/mob/observer/eye/proc/setLoc(var/T)
+mob/observer/eye/proc/setLoc(var/T)
 	if(owner)
 		T = get_turf(T)
 		if(T != loc)
@@ -69,21 +69,21 @@
 			return 1
 	return 0
 
-/mob/observer/eye/proc/getLoc()
+mob/observer/eye/proc/getLoc()
 	if(owner)
 		if(!isturf(owner.loc) || !owner.client)
 			return
 		return loc
 
-/mob/observer/eye/make_perspective()
+mob/observer/eye/make_perspective()
 	var/datum/perspective/P = ..()
 	// we see everything by default
 	P.SetSight(SEE_TURFS | SEE_MOBS | SEE_OBJS)
 
-/mob
+mob
 	var/mob/observer/eye/eyeobj
 
-/mob/proc/EyeMove(n, direct)
+mob/proc/EyeMove(n, direct)
 	if(!eyeobj)
 		return
 
@@ -92,7 +92,7 @@
 
 	return eyeobj.EyeMove(n, direct)
 
-/mob/observer/eye/EyeMove(n, direct)
+mob/observer/eye/EyeMove(n, direct)
 	var/initial = initial(sprint)
 	var/max_sprint = 50
 

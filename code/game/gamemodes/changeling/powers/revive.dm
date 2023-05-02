@@ -1,5 +1,5 @@
 //Revive from revival stasis
-/mob/proc/changeling_revive()
+mob/proc/changeling_revive()
 	set category = "Changeling"
 	set name = "Revive"
 	set desc = "We are ready to revive ourselves on command."

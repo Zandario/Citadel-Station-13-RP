@@ -1,14 +1,14 @@
-/obj/effect/projectile
+obj/effect/projectile
 	icon = 'icons/effects/projectiles.dmi'
 	icon_state = "bolt"
 	plane = ABOVE_PLANE
 	mouse_opacity = 0
 
-/obj/effect/projectile/proc/set_transform(var/matrix/M)
+obj/effect/projectile/proc/set_transform(var/matrix/M)
 	if(istype(M))
 		transform = M
 
-/obj/effect/projectile/proc/activate(var/kill_delay = 5)
+obj/effect/projectile/proc/activate(var/kill_delay = 5)
 	update_light()
 	spawn(kill_delay)
 		qdel(src)	//see effect_system.dm - sets loc to null and lets GC handle removing these effects
@@ -18,19 +18,19 @@
 //----------------------------
 // Laser beam
 //----------------------------
-/obj/effect/projectile/laser/tracer
+obj/effect/projectile/laser/tracer
 	icon_state = "beam"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FF0D00"
 
-/obj/effect/projectile/laser/muzzle
+obj/effect/projectile/laser/muzzle
 	icon_state = "muzzle_laser"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FF0D00"
 
-/obj/effect/projectile/laser/impact
+obj/effect/projectile/laser/impact
 	icon_state = "impact_laser"
 	light_range = 2
 	light_power = 0.5
@@ -39,19 +39,19 @@
 //----------------------------
 // Blue laser beam
 //----------------------------
-/obj/effect/projectile/laser_blue/tracer
+obj/effect/projectile/laser_blue/tracer
 	icon_state = "beam_blue"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#0066FF"
 
-/obj/effect/projectile/laser_blue/muzzle
+obj/effect/projectile/laser_blue/muzzle
 	icon_state = "muzzle_blue"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#0066FF"
 
-/obj/effect/projectile/laser_blue/impact
+obj/effect/projectile/laser_blue/impact
 	icon_state = "impact_blue"
 	light_range = 2
 	light_power = 0.5
@@ -60,19 +60,19 @@
 //----------------------------
 // Omni laser beam
 //----------------------------
-/obj/effect/projectile/laser_omni/tracer
+obj/effect/projectile/laser_omni/tracer
 	icon_state = "beam_omni"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00C6FF"
 
-/obj/effect/projectile/laser_omni/muzzle
+obj/effect/projectile/laser_omni/muzzle
 	icon_state = "muzzle_omni"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00C6FF"
 
-/obj/effect/projectile/laser_omni/impact
+obj/effect/projectile/laser_omni/impact
 	icon_state = "impact_omni"
 	light_range = 2
 	light_power = 0.5
@@ -81,19 +81,19 @@
 //----------------------------
 // Xray laser beam
 //----------------------------
-/obj/effect/projectile/xray/tracer
+obj/effect/projectile/xray/tracer
 	icon_state = "xray"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
 
-/obj/effect/projectile/xray/muzzle
+obj/effect/projectile/xray/muzzle
 	icon_state = "muzzle_xray"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
 
-/obj/effect/projectile/xray/impact
+obj/effect/projectile/xray/impact
 	icon_state = "impact_xray"
 	light_range = 2
 	light_power = 0.5
@@ -102,19 +102,19 @@
 //----------------------------
 // Heavy laser beam
 //----------------------------
-/obj/effect/projectile/laser_heavy/tracer
+obj/effect/projectile/laser_heavy/tracer
 	icon_state = "beam_heavy"
 	light_range = 3
 	light_power = 1
 	light_color = "#FF0D00"
 
-/obj/effect/projectile/laser_heavy/muzzle
+obj/effect/projectile/laser_heavy/muzzle
 	icon_state = "muzzle_beam_heavy"
 	light_range = 3
 	light_power = 1
 	light_color = "#FF0D00"
 
-/obj/effect/projectile/laser_heavy/impact
+obj/effect/projectile/laser_heavy/impact
 	icon_state = "impact_beam_heavy"
 	light_range = 3
 	light_power = 1
@@ -123,19 +123,19 @@
 //----------------------------
 // Pulse laser beam
 //----------------------------
-/obj/effect/projectile/laser_pulse/tracer
+obj/effect/projectile/laser_pulse/tracer
 	icon_state = "u_laser"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#0066FF"
 
-/obj/effect/projectile/laser_pulse/muzzle
+obj/effect/projectile/laser_pulse/muzzle
 	icon_state = "muzzle_u_laser"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#0066FF"
 
-/obj/effect/projectile/laser_pulse/impact
+obj/effect/projectile/laser_pulse/impact
 	icon_state = "impact_u_laser"
 	light_range = 2
 	light_power = 0.5
@@ -144,7 +144,7 @@
 //----------------------------
 // Pulse muzzle effect only
 //----------------------------
-/obj/effect/projectile/pulse/muzzle
+obj/effect/projectile/pulse/muzzle
 	icon_state = "muzzle_pulse"
 	light_range = 2
 	light_power = 0.5
@@ -153,19 +153,19 @@
 //----------------------------
 // Emitter beam
 //----------------------------
-/obj/effect/projectile/emitter/tracer
+obj/effect/projectile/emitter/tracer
 	icon_state = "emitter"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
 
-/obj/effect/projectile/emitter/muzzle
+obj/effect/projectile/emitter/muzzle
 	icon_state = "muzzle_emitter"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00CC33"
 
-/obj/effect/projectile/emitter/impact
+obj/effect/projectile/emitter/impact
 	icon_state = "impact_emitter"
 	light_range = 2
 	light_power = 0.5
@@ -174,19 +174,19 @@
 //----------------------------
 // Stun beam
 //----------------------------
-/obj/effect/projectile/stun/tracer
+obj/effect/projectile/stun/tracer
 	icon_state = "stun"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FFFFFF"
 
-/obj/effect/projectile/stun/muzzle
+obj/effect/projectile/stun/muzzle
 	icon_state = "muzzle_stun"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FFFFFF"
 
-/obj/effect/projectile/stun/impact
+obj/effect/projectile/stun/impact
 	icon_state = "impact_stun"
 	light_range = 2
 	light_power = 0.5
@@ -195,7 +195,7 @@
 //----------------------------
 // Bullet
 //----------------------------
-/obj/effect/projectile/bullet/muzzle
+obj/effect/projectile/bullet/muzzle
 	icon_state = "muzzle_bullet"
 	light_range = 2
 	light_power = 0.5
@@ -204,19 +204,19 @@
 //----------------------------
 // Lightning beam
 //----------------------------
-/obj/effect/projectile/lightning/tracer
+obj/effect/projectile/lightning/tracer
 	icon_state = "lightning"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00C6FF"
 
-/obj/effect/projectile/lightning/muzzle
+obj/effect/projectile/lightning/muzzle
 	icon_state = "muzzle_lightning"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#00C6FF"
 
-/obj/effect/projectile/lightning/impact
+obj/effect/projectile/lightning/impact
 	icon_state = "impact_lightning"
 	light_range = 2
 	light_power = 0.5
@@ -226,19 +226,19 @@
 // Dark matter stun
 //----------------------------
 
-/obj/effect/projectile/darkmatterstun/tracer
+obj/effect/projectile/darkmatterstun/tracer
 	icon_state = "darkt"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#8837A3"
 
-/obj/effect/projectile/darkmatterstun/muzzle
+obj/effect/projectile/darkmatterstun/muzzle
 	icon_state = "muzzle_darkt"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#8837A3"
 
-/obj/effect/projectile/darkmatterstun/impact
+obj/effect/projectile/darkmatterstun/impact
 	icon_state = "impact_darkt"
 	light_range = 2
 	light_power = 0.5
@@ -248,19 +248,19 @@
 // Dark matter
 //----------------------------
 
-/obj/effect/projectile/darkmatter/tracer
+obj/effect/projectile/darkmatter/tracer
 	icon_state = "darkb"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#8837A3"
 
-/obj/effect/projectile/darkmatter/muzzle
+obj/effect/projectile/darkmatter/muzzle
 	icon_state = "muzzle_darkb"
 	light_range = 2
 	light_power = 0.5
 	light_color = "#8837A3"
 
-/obj/effect/projectile/darkmatter/impact
+obj/effect/projectile/darkmatter/impact
 	icon_state = "impact_darkb"
 	light_range = 2
 	light_power = 0.5
@@ -269,19 +269,19 @@
 //----------------------------
 // Inversion / Cult
 //----------------------------
-/obj/effect/projectile/inversion/tracer
+obj/effect/projectile/inversion/tracer
 	icon_state = "invert"
 	light_range = 2
 	light_power = -2
 	light_color = "#FFFFFF"
 
-/obj/effect/projectile/inversion/muzzle
+obj/effect/projectile/inversion/muzzle
 	icon_state = "muzzle_invert"
 	light_range = 2
 	light_power = -2
 	light_color = "#FFFFFF"
 
-/obj/effect/projectile/inversion/impact
+obj/effect/projectile/inversion/impact
 	icon_state = "impact_invert"
 	light_range = 2
 	light_power = -2

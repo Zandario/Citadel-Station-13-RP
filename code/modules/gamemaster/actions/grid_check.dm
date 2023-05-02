@@ -4,15 +4,15 @@
 // it will reboot itself after a few minutes, just like the old one.  Bad things happen if there is no grid checker machine protecting
 // the powernet when this event fires.
 
-/datum/gm_action/grid_check
+datum/gm_action/grid_check
 	name = "grid check"
 	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_EVERYONE)
 	chaotic = 20
 
-/datum/gm_action/grid_check/get_weight()
+datum/gm_action/grid_check/get_weight()
 	return 50 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 30)
 
-/datum/gm_action/grid_check/start()
+datum/gm_action/grid_check/start()
 	..()
 	// This sets off a chain of events that lead to the actual grid check (or perhaps worse).
 	// First, the Supermatter engine makes a power spike.

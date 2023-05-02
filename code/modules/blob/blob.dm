@@ -1,5 +1,5 @@
 //I will need to recode parts of this but I am way too tired atm
-/obj/effect/blob
+obj/effect/blob
 	name = "blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob"
@@ -17,15 +17,15 @@
 	var/fire_resist = 1
 	var/expandType = /obj/effect/blob
 
-/obj/effect/blob/Initialize(mapload)
+obj/effect/blob/Initialize(mapload)
 	. = ..()
 	health = maxHealth
 	update_icon()
 
-/obj/effect/blob/CanAllowThrough(atom/movable/mover, turf/target)
+obj/effect/blob/CanAllowThrough(atom/movable/mover, turf/target)
 	return FALSE
 
-/obj/effect/blob/legacy_ex_act(severity)
+obj/effect/blob/legacy_ex_act(severity)
 	switch(severity)
 		if(1)
 			take_damage(rand(100, 120) / brute_resist)
@@ -34,13 +34,13 @@
 		if(3)
 			take_damage(rand(20, 60) / brute_resist)
 
-/obj/effect/blob/update_icon()
+obj/effect/blob/update_icon()
 	if(health > maxHealth / 2)
 		icon_state = "blob"
 	else
 		icon_state = "blob_damaged"
 
-/obj/effect/blob/take_damage(damage)
+obj/effect/blob/take_damage(damage)
 	health -= damage
 	if(health < 0)
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
@@ -48,11 +48,11 @@
 	else
 		update_icon()
 
-/obj/effect/blob/proc/regen()
+obj/effect/blob/proc/regen()
 	health = min(health + 1, maxHealth)
 	update_icon()
 
-/obj/effect/blob/proc/expand(var/turf/T)
+obj/effect/blob/proc/expand(var/turf/T)
 	if(istype(T, /turf/unsimulated/) || istype(T, /turf/space) || (istype(T, /turf/simulated/mineral) && T.density))
 		return
 	if(istype(T, /turf/simulated/wall))
@@ -108,7 +108,7 @@
 		return
 	new expandType(T, min(health, 30))
 
-/obj/effect/blob/proc/pulse(var/forceLeft, var/list/dirs)
+obj/effect/blob/proc/pulse(var/forceLeft, var/list/dirs)
 	regen()
 	animate(src, color = "#FF0000", time=1)
 	animate(color = "#FFFFFF", time=4, easing=ELASTIC_EASING)
@@ -122,7 +122,7 @@
 		return
 	B.pulse(forceLeft - 1, dirs)
 
-/obj/effect/blob/bullet_act(var/obj/projectile/Proj)
+obj/effect/blob/bullet_act(var/obj/projectile/Proj)
 	if(!Proj)
 		return
 
@@ -133,7 +133,7 @@
 			take_damage(Proj.get_final_damage(src))
 	return 0
 
-/obj/effect/blob/attackby(var/obj/item/W, var/mob/user)
+obj/effect/blob/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
@@ -149,7 +149,7 @@
 	take_damage(damage)
 	return
 
-/obj/effect/blob/core
+obj/effect/blob/core
 	name = "blob core"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_core"
@@ -161,24 +161,24 @@
 
 	expandType = /obj/effect/blob/shield
 
-/obj/effect/blob/core/update_icon()
+obj/effect/blob/core/update_icon()
 	return
 
-/obj/effect/blob/core/Initialize(mapload)
+obj/effect/blob/core/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/blob/core/Destroy()
+obj/effect/blob/core/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/blob/core/process(delta_time)
+obj/effect/blob/core/process(delta_time)
 	pulse(20, list(NORTH, EAST))
 	pulse(20, list(NORTH, WEST))
 	pulse(20, list(SOUTH, EAST))
 	pulse(20, list(SOUTH, WEST))
 
-/obj/effect/blob/shield
+obj/effect/blob/shield
 	name = "strong blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_idle"
@@ -188,16 +188,16 @@
 	brute_resist = 1
 	fire_resist = 2
 
-/obj/effect/blob/shield/Initialize(mapload)
+obj/effect/blob/shield/Initialize(mapload)
 	. = ..()
 	update_nearby_tiles()
 
-/obj/effect/blob/shield/Destroy()
+obj/effect/blob/shield/Destroy()
 	density = 0
 	update_nearby_tiles()
 	..()
 
-/obj/effect/blob/shield/update_icon()
+obj/effect/blob/shield/update_icon()
 	if(health > maxHealth * 2 / 3)
 		icon_state = "blob_idle"
 	else if(health > maxHealth / 3)
@@ -205,6 +205,6 @@
 	else
 		icon_state = "blob_damaged"
 
-/obj/effect/blob/shield/CanAllowThrough(var/atom/movable/mover, var/turf/target)
+obj/effect/blob/shield/CanAllowThrough(var/atom/movable/mover, var/turf/target)
 	. = ..()
 	return !density

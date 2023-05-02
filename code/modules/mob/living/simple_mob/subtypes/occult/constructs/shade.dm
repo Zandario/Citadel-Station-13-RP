@@ -2,13 +2,13 @@
 //			Shade
 ////////////////////////////
 
-/datum/category_item/catalogue/fauna/construct/shade
+datum/category_item/catalogue/fauna/construct/shade
 	name = "%#ERROR#%"
 	desc = "%ERROR% SCAN DATA REDACTED. RETURN SCANNER TO A \
 	CENTRAL ADMINISTRATOR FOR IMMEDIATE MAINTENANCE. %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/construct/shade
+mob/living/simple_mob/construct/shade
 	name = "Shade"
 	real_name = "Shade"
 	desc = "A bound spirit"
@@ -38,18 +38,18 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/construct/shade/Initialize(mapload)
+mob/living/simple_mob/construct/shade/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/weak)
 
-/mob/living/simple_mob/construct/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)
+mob/living/simple_mob/construct/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/soulstone))
 		var/obj/item/soulstone/S = O;
 		S.transfer_soul("SHADE", src, user)
 		return
 	..()
 
-/mob/living/simple_mob/construct/shade/death()
+mob/living/simple_mob/construct/shade/death()
 	..()
 	for(var/mob/M in viewers(src, null))
 		if((M.client && !( M.blinded )))
@@ -60,7 +60,7 @@
 	return
 
 //Lavaland Shades
-/mob/living/simple_mob/construct/shade/surt
+mob/living/simple_mob/construct/shade/surt
 	name = "Lingering Shade"
 	real_name = "Lingering Shade"
 	desc = "This spirit was bound to this planet ages ago. Its masters have long since passed, and the war it served in has been forgotten. The energies binding it remain."

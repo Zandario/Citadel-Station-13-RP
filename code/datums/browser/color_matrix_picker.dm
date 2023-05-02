@@ -1,7 +1,7 @@
-/datum/browser/modal/color_matrix_picker
+datum/browser/modal/color_matrix_picker
 	var/color_matrix
 
-/datum/browser/modal/color_matrix_picker/New(mob/user, message, title, button1 = "Ok", button2, button3, stealfocus = TRUE, timeout = 0, list/values)
+datum/browser/modal/color_matrix_picker/New(mob/user, message, title, button1 = "Ok", button2, button3, stealfocus = TRUE, timeout = 0, list/values)
 	if(!user)
 		return
 	if(!values)
@@ -44,7 +44,7 @@
 	..(user, ckey("[user]-[message]-[title]-[world.time]-[rand(1,10000)]"), title, 800, 400, src, stealfocus, timeout)
 	set_content(output.Join(""))
 
-/datum/browser/modal/color_matrix_picker/Topic(href, list/href_list)
+datum/browser/modal/color_matrix_picker/Topic(href, list/href_list)
 	if(href_list["close"] || !user)
 		opentime = 0
 		return
@@ -71,7 +71,7 @@
 	opentime = 0
 	close()
 
-/proc/color_matrix_picker(mob/user, message, title, button1 = "Ok", button2, button3, stealfocus, timeout = 10 MINUTES, list/values)
+proc/color_matrix_picker(mob/user, message, title, button1 = "Ok", button2, button3, stealfocus, timeout = 10 MINUTES, list/values)
 	if(!istype(user))
 		if(istype(user, /client))
 			var/client/C = user

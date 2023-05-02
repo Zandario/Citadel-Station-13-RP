@@ -1,4 +1,4 @@
-/obj/mecha/combat/honker
+obj/mecha/combat/honker
 	name = "H.O.N.K."
 	desc = "The H.O.N.K. mecha is sometimes crafted by deranged Roboticists with a grudge, and is illegal in thirty six different sectors."
 	icon_state = "honker"
@@ -34,7 +34,7 @@
 	icon_scale_x = 1.35
 	icon_scale_y = 1.35
 
-/obj/mecha/combat/honker/cluwne
+obj/mecha/combat/honker/cluwne
 	name = "C.L.U.W.N.E."
 	desc = "The C.L.U.W.N.E. mecha is an up-armored cousin of the H.O.N.K. mech. Still in service on the borders of the Clown Planet, this unit is not typically commercially available."
 	icon = 'icons/mecha/mecha_vr.dmi'
@@ -64,7 +64,7 @@
 		/obj/item/mecha_parts/mecha_equipment/teleporter
 		)
 
-/obj/mecha/combat/honker/cluwne/add_cell(var/obj/item/cell/C=null)
+obj/mecha/combat/honker/cluwne/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C

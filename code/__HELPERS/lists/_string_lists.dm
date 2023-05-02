@@ -14,7 +14,7 @@ GLOBAL_VAR(string_filename_current_key)
  * * @param directory The directory to load from.
  * * @return Nothing.
  */
-/proc/load_strings_file(filepath, directory = STRING_DIRECTORY)
+proc/load_strings_file(filepath, directory = STRING_DIRECTORY)
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -38,7 +38,7 @@ GLOBAL_VAR(string_filename_current_key)
  * * @param key The key to search for.
  * * @return The value of the key, or null if not found.
  */
-/proc/strings(filepath as text, key as text, directory = STRING_DIRECTORY)
+proc/strings(filepath as text, key as text, directory = STRING_DIRECTORY)
 	if(IsAdminAdvancedProcCall())
 		return
 
@@ -52,7 +52,7 @@ GLOBAL_VAR(string_filename_current_key)
 /**
  * Macro Proc for /proc/strings_replacement(filepath, key)
  */
-/proc/strings_subkey_lookup(match, group1)
+proc/strings_subkey_lookup(match, group1)
 	return pick_list(GLOB.string_filename_current_key, group1)
 
 /**
@@ -67,7 +67,7 @@ GLOBAL_VAR(string_filename_current_key)
  *- Find and replaces all the @pick(VALUE) with a random string from the VALUE array.
  *- Return final string.
  */
-/proc/strings_replacement(filepath, key)
+proc/strings_replacement(filepath, key)
 	filepath = sanitize_filepath(filepath)
 	load_strings_file(filepath)
 

@@ -1,4 +1,4 @@
-/datum/role/job/station/lawyer
+datum/role/job/station/lawyer
 	id = JOB_ID_LAWYER
 	title = "Internal Affairs Agent"
 	flag = LAWYER
@@ -19,17 +19,17 @@
 						handle complaints against crew members, and can have issues brought to the attention of Central Command, \
 						assuming their paperwork is in order."
 
-/datum/prototype/alt_title/iaa/regulator
+datum/prototype/alt_title/iaa/regulator
 	title = "Regulatory Affairs Agent"
 
 /*
-/datum/role/job/station/lawyer/equip(var/mob/living/carbon/human/H)
+datum/role/job/station/lawyer/equip(var/mob/living/carbon/human/H)
 	. = ..()
 	if(.)
 		H.implant_loyalty(H)
 */
 
-/datum/outfit/job/station/internal_affairs_agent
+datum/outfit/job/station/internal_affairs_agent
 	name = OUTFIT_JOB_NAME("Internal affairs agent")
 	l_ear = /obj/item/radio/headset/ia
 	uniform = /obj/item/clothing/under/rank/internalaffairs

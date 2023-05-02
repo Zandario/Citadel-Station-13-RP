@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/bar
+obj/structure/closet/secure_closet/bar
 	name = "booze closet"
 	req_access = list(ACCESS_GENERAL_BAR)
 	icon_state = "cabinetdetective_locked"
@@ -11,7 +11,7 @@
 	starts_with = list(
 		/obj/item/reagent_containers/food/drinks/bottle/small/beer = 10)
 
-/obj/structure/closet/secure_closet/bar/update_icon()
+obj/structure/closet/secure_closet/bar/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else

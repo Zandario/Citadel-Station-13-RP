@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/medical1
+obj/structure/closet/secure_closet/medical1
 	name = "medicine closet"
 	desc = "Filled with medical junk."
 	icon_state = "medical1"
@@ -18,7 +18,7 @@
 		/obj/item/reagent_containers/glass/bottle/antitoxin = 2)
 
 
-/obj/structure/closet/secure_closet/medical2
+obj/structure/closet/secure_closet/medical2
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
 	icon_state = "medical1"
@@ -34,7 +34,7 @@
 		/obj/item/clothing/mask/breath/medical = 3)
 
 
-/obj/structure/closet/secure_closet/medical3
+obj/structure/closet/secure_closet/medical3
 	name = "medical doctor's locker"
 	req_access = list(ACCESS_MEDICAL_EQUIPMENT)
 	icon_state = "securemed1"
@@ -61,7 +61,7 @@
 		/obj/item/gps/medical,
 		/obj/item/storage/box/freezer = 3)
 
-/obj/structure/closet/secure_closet/medical3/Initialize(mapload)
+obj/structure/closet/secure_closet/medical3/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/medic
 	else
@@ -103,7 +103,7 @@
 	return ..()
 
 
-/obj/structure/closet/secure_closet/paramedic
+obj/structure/closet/secure_closet/paramedic
 	name = "paramedic locker"
 	desc = "Supplies for a first responder."
 	icon_state = "medical1"
@@ -143,11 +143,11 @@
 		/obj/item/barrier_tape_roll/medical,
 		/obj/item/storage/lockbox/limb_plate/emt)
 
-/obj/structure/closet/secure_closet/paramedic/Initialize(mapload)
+obj/structure/closet/secure_closet/paramedic/Initialize(mapload)
 	starts_with += /obj/item/gps/medical
 	return ..()
 
-/obj/structure/closet/secure_closet/CMO
+obj/structure/closet/secure_closet/CMO
 	name = "chief medical officer's locker"
 	req_access = list(ACCESS_MEDICAL_CMO)
 	icon_state = "cmosecure1"
@@ -182,7 +182,7 @@
 		/obj/item/reagent_containers/glass/beaker/vial,
 		/obj/item/clothing/under/rank/chief_medical_officer/turtleneck)
 
-/obj/structure/closet/secure_closet/CMO/Initialize(mapload)
+obj/structure/closet/secure_closet/CMO/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/medic
 	else
@@ -208,7 +208,7 @@
 	return ..()
 
 
-/obj/structure/closet/secure_closet/animal
+obj/structure/closet/secure_closet/animal
 	name = "animal control closet"
 	req_access = list(ACCESS_MEDICAL_SURGERY)
 
@@ -217,7 +217,7 @@
 		/obj/item/radio/electropack = 3)
 
 
-/obj/structure/closet/secure_closet/chemical
+obj/structure/closet/secure_closet/chemical
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
 	icon_state = "medical1"
@@ -239,7 +239,7 @@
 		/obj/item/storage/fancy/vials)
 
 
-/obj/structure/closet/secure_closet/psych
+obj/structure/closet/secure_closet/psych
 	name = "psychiatric closet"
 	desc = "Store psychology tools and medicines in here."
 	icon_state = "medical1"
@@ -266,7 +266,7 @@
 		/obj/item/toy/plushie/therapy/blue)
 
 
-/obj/structure/closet/secure_closet/medical_wall
+obj/structure/closet/secure_closet/medical_wall
 	name = "first aid closet"
 	desc = "It's a secure wall-mounted storage unit for first aid supplies."
 	icon_state = "medical_wall_locked"
@@ -282,7 +282,7 @@
 	wall_mounted = 1
 	req_access = list(ACCESS_MEDICAL_EQUIPMENT)
 
-/obj/structure/closet/secure_closet/medical_wall/update_icon()
+obj/structure/closet/secure_closet/medical_wall/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -294,7 +294,7 @@
 		else
 			icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/medical_wall/pills
+obj/structure/closet/secure_closet/medical_wall/pills
 	name = "pill cabinet"
 
 	starts_with = list(
@@ -304,7 +304,7 @@
 		/obj/random/medical/pillbottle)
 
 
-/obj/structure/closet/secure_closet/medical_wall/anesthetics
+obj/structure/closet/secure_closet/medical_wall/anesthetics
 	name = "anesthetics wall closet"
 	desc = "Used to knock people out."
 	req_access = list(ACCESS_MEDICAL_SURGERY)
@@ -313,7 +313,7 @@
 		/obj/item/tank/anesthetic = 3,
 		/obj/item/clothing/mask/breath/medical = 3)
 
-/obj/structure/closet/secure_closet/medical_wall/synth_anesthetics
+obj/structure/closet/secure_closet/medical_wall/synth_anesthetics
 	name = "robotics anesthetics wall closet"
 	desc = "Used to knock people out."
 	req_access = list(ACCESS_SCIENCE_ROBOTICS)

@@ -1,4 +1,4 @@
-/obj/structure/dogbed
+obj/structure/dogbed
 	name = "dog bed"
 	desc = "A bed made especially for dogs, or other similarly sized pets."
 	icon = 'icons/obj/furniture.dmi'

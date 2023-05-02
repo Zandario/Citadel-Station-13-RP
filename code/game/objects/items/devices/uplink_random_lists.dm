@@ -1,28 +1,28 @@
 var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_random_selection/default()
 var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random_selection/all()
 
-/datum/uplink_random_item
+datum/uplink_random_item
 	var/uplink_item				// The uplink item
 	var/keep_probability		// The probability we'll decide to keep this item if selected
 	var/reselect_probability	// Probability that we'll decide to keep this item if previously selected.
 								// Is done together with the keep_probability check. Being selected more than once does not affect this probability.
 
-/datum/uplink_random_item/New(uplink_item, keep_probability = 100, reselect_propbability = 33)
+datum/uplink_random_item/New(uplink_item, keep_probability = 100, reselect_propbability = 33)
 	..()
 	src.uplink_item = uplink_item
 	src.keep_probability = keep_probability
 	src.reselect_probability = reselect_probability
 
-/datum/uplink_random_selection
+datum/uplink_random_selection
 	var/list/datum/uplink_random_item/items
 	var/list/datum/uplink_random_item/all_items
 
-/datum/uplink_random_selection/New()
+datum/uplink_random_selection/New()
 	..()
 	items = list()
 	all_items = list()
 
-/datum/uplink_random_selection/proc/get_random_item(telecrystals, obj/item/uplink/U, list/bought_items, items_override = 0)
+datum/uplink_random_selection/proc/get_random_item(telecrystals, obj/item/uplink/U, list/bought_items, items_override = 0)
 	var/const/attempts = 50
 
 	for(var/i = 0; i < attempts; i++)
@@ -42,7 +42,7 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 			continue
 		return I
 
-/datum/uplink_random_selection/all/New()
+datum/uplink_random_selection/all/New()
 	..()
 	for(var/datum/uplink_item/item in uplink.items)
 		if(item.blacklisted)
@@ -50,7 +50,7 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 		else
 			all_items += new/datum/uplink_random_item(item.type)
 
-/datum/uplink_random_selection/default/New()
+datum/uplink_random_selection/default/New()
 	..()
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/silenced_45)
@@ -108,12 +108,12 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/hardsuit_modules/laser_canon, reselect_propbability = 5)
 
 #ifdef DEBUG
-/proc/debug_uplink_purchage_log()
+proc/debug_uplink_purchage_log()
 	for(var/antag_type in GLOB.all_antag_types)
 		var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
 		A.print_player_summary()
 
-/proc/debug_uplink_item_assoc_list()
+proc/debug_uplink_item_assoc_list()
 	for(var/key in uplink.items_assoc)
 		to_chat(world, "[key] - [uplink.items_assoc[key]]")
 #endif

@@ -1,4 +1,4 @@
-/obj/machinery/bodyscanner
+obj/machinery/bodyscanner
 	description_info = "The advanced scanner detects and reports internal injuries such as bone fractures, internal bleeding, and organ damage. \
 	This is useful if you are about to perform surgery.<br>\
 	<br>\
@@ -6,7 +6,7 @@
 	Right-click the scanner and click 'Eject Occupant' to remove them.  You can enter the scanner yourself in a similar way, using the 'Enter Body Scanner' \
 	verb."
 
-/obj/machinery/atmospherics/component/unary/cryo_cell
+obj/machinery/atmospherics/component/unary/cryo_cell
 	description_info = "The cryogenic chamber, or 'cryo', treats most damage types, most notably genetic damage. It also stabilizes patients \
 	in critical condition by placing them in stasis, so they can be treated at a later time.<br>\
 	<br>\
@@ -23,13 +23,13 @@
 	Press the button on the menu to activate it. Once they have reached 100 health, right-click the cell and click 'Eject Occupant' to remove them. \
 	Remember to turn it off, once you've finished, to save power and chemicals!"
 
-/obj/machinery/optable
+obj/machinery/optable
 	description_info = "Click your target with Grab intent, then click on the table with an empty hand, to place them on it."
 
-/obj/machinery/computer/operating
+obj/machinery/computer/operating
 	description_info = "This console gives information on the status of the patient on the adjacent operating table, notably their consciousness."
 
-/obj/machinery/sleeper
+obj/machinery/sleeper
 	description_info = "The sleeper allows you to clean the blood by means of dialysis, and to administer medication in a controlled environment.<br>\
 	<br>\
 	Click your target with Grab intent, then click on the sleeper to place them in it. Click the green console, with an empty hand, to open the menu. \
@@ -41,7 +41,7 @@
 	Right-click the cell and click 'Eject Occupant' to remove them.  You can enter the cell yourself by right clicking and selecting 'Enter Sleeper'. \
 	Note that you cannot control the sleeper while inside of it."
 
-/obj/item/bodybag/cryobag
+obj/item/bodybag/cryobag
 	description_info = "This stasis bag will preserve the occupant, stopping most forms of harm from occuring, such as from oxygen \
 	deprivation, irradiation, shock, and chemicals inside the occupant, at least until the bag is opened again.<br>\
 	<br>\
@@ -52,7 +52,7 @@
 	<br>\
 	You can use a health analyzer to scan the occupant's vitals without opening the bag by clicking the occupied bag with the analyzer."
 
-/obj/structure/closet/body_bag/cryobag
+obj/structure/closet/body_bag/cryobag
 	description_info = "This stasis bag will preserve the occupant, stopping most forms of harm from occuring, such as from oxygen \
 	deprivation, irradiation, shock, and chemicals inside the occupant, at least until the bag is opened again.<br>\
 	<br>\

@@ -2,37 +2,37 @@
 // Tether custom shuttle implemnetations
 ////////////////////////////////////////
 
-/obj/machinery/computer/shuttle_control/tether_backup
+obj/machinery/computer/shuttle_control/tether_backup
 	name = "tether backup shuttle control console"
 	shuttle_tag = "Tether Backup"
 	req_one_access = list(ACCESS_COMMAND_BRIDGE,ACCESS_GENERAL_PILOT)
 
-/obj/machinery/computer/shuttle_control/multi/mercenary
+obj/machinery/computer/shuttle_control/multi/mercenary
 	name = "vessel control console"
 	shuttle_tag = "Mercenary"
 	req_one_access = list(ACCESS_FACTION_SYNDICATE)
 
-/obj/machinery/computer/shuttle_control/multi/ninja
+obj/machinery/computer/shuttle_control/multi/ninja
 	name = "vessel control console"
 	shuttle_tag = "Ninja"
 	//req_one_access = list()
 
-/obj/machinery/computer/shuttle_control/multi/skipjack
+obj/machinery/computer/shuttle_control/multi/skipjack
 	name = "vessel control console"
 	shuttle_tag = "Skipjack"
 	//req_one_access = list()
 
-/obj/machinery/computer/shuttle_control/multi/specops
+obj/machinery/computer/shuttle_control/multi/specops
 	name = "vessel control console"
 	shuttle_tag = "NDV Phantom"
 	req_one_access = list(ACCESS_CENTCOM_ERT)
 
-/obj/machinery/computer/shuttle_control/multi/trade
+obj/machinery/computer/shuttle_control/multi/trade
 	name = "vessel control console"
 	shuttle_tag = "Trade"
 	req_one_access = list(ACCESS_FACTION_TRADER)
 
-/obj/machinery/computer/shuttle_control/surface_mining_outpost
+obj/machinery/computer/shuttle_control/surface_mining_outpost
 	name = "surface mining outpost shuttle control console"
 	shuttle_tag = "Mining Outpost"
 	req_one_access = list(ACCESS_SUPPLY_MINE)
@@ -40,18 +40,18 @@
 // "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.
 // Just open the gosh darn doors!  Also we avoid having a physical docking controller obj for gameplay reasons.
-/datum/shuttle/autodock/ferry/emergency
+datum/shuttle/autodock/ferry/emergency
 	var/tag_door_station = "escape_shuttle_hatch_station"
 	var/tag_door_offsite = "escape_shuttle_hatch_offsite"
 	var/frequency = 1380 // Why this frequency? BECAUSE! Thats what someone decided once.
 	var/datum/radio_frequency/radio_connection
 	move_direction = NORTH
 
-/datum/shuttle/autodock/ferry/emergency/New()
+datum/shuttle/autodock/ferry/emergency/New()
 	radio_connection = radio_controller.add_object(src, frequency, null)
 	..()
 
-/datum/shuttle/autodock/ferry/emergency/dock()
+datum/shuttle/autodock/ferry/emergency/dock()
 	..()
 	// Open Doorsunes
 	var/datum/signal/signal = new
@@ -59,7 +59,7 @@
 	signal.data["command"] = "secure_open"
 	post_signal(signal)
 
-/datum/shuttle/autodock/ferry/emergency/undock()
+datum/shuttle/autodock/ferry/emergency/undock()
 	..()
 	// Close Doorsunes
 	var/datum/signal/signal = new
@@ -67,7 +67,7 @@
 	signal.data["command"] = "secure_close"
 	post_signal(signal)
 
-/datum/shuttle/autodock/ferry/emergency/proc/post_signal(datum/signal/signal, var/filter = null)
+datum/shuttle/autodock/ferry/emergency/proc/post_signal(datum/signal/signal, var/filter = null)
 	signal.transmission_method = TRANSMISSION_RADIO
 	if(radio_connection)
 		return radio_connection.post_signal(src, signal, filter)
@@ -78,13 +78,13 @@
 // The backup tether shuttle uses experimental engines and can degrade and/or crash!
 //
 /* //Disabling the crash mechanics per request
-/datum/shuttle/ferry/tether_backup
+datum/shuttle/ferry/tether_backup
 	crash_message = "Tether shuttle distress signal received. Shuttle location is approximately 200 meters from tether base."
 	category = /datum/shuttle/ferry/tether_backup // So shuttle_controller.dm doesn't try and instantiate this type as an acutal mapped in shuttle.
 	var/list/engines = list()
 	var/obj/machinery/computer/shuttle_control/tether_backup/computer
 
-/datum/shuttle/ferry/tether_backup/New()
+datum/shuttle/ferry/tether_backup/New()
 	..()
 	var/area/current_area = get_location_area(location)
 	for(var/obj/structure/shuttle/engine/propulsion/E in current_area)
@@ -92,7 +92,7 @@
 	for(var/obj/machinery/computer/shuttle_control/tether_backup/comp in current_area)
 		computer = comp
 
-/datum/shuttle/ferry/tether_backup/process_longjump(var/area/origin, var/area/intended_destination)
+datum/shuttle/ferry/tether_backup/process_longjump(var/area/origin, var/area/intended_destination)
 	var/failures = engines.len
 	for(var/engine in engines)
 		var/obj/structure/shuttle/engine/E = engine
@@ -144,17 +144,17 @@
 // The repairable engines
 // TODO - These need a more advanced fixing sequence.
 //
-/obj/structure/shuttle/engine
+obj/structure/shuttle/engine
 	var/wear = 0
 
-/obj/structure/shuttle/engine/proc/jump()
+obj/structure/shuttle/engine/proc/jump()
 	. = !prob(wear)
 	if(!.)
 		wear = 100
 	else
 		wear += rand(5,20)
 
-/obj/structure/shuttle/engine/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/shuttle/engine/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(repair_welder(user, W))
 		return
@@ -162,7 +162,7 @@
 
 //TODO require a multitool to diagnose and open engine panels or something
 
-/obj/structure/shuttle/engine/proc/repair_welder(var/mob/user, var/obj/item/weldingtool/WT)
+obj/structure/shuttle/engine/proc/repair_welder(var/mob/user, var/obj/item/weldingtool/WT)
 	if(!istype(WT))
 		return 0
 	if(wear <= 20)
@@ -187,7 +187,7 @@
 //////// Excursion Shuttle /////////////
 ////////////////////////////////////////
 // The 'shuttle' of the excursion shuttle
-/datum/shuttle/autodock/overmap/excursion
+datum/shuttle/autodock/overmap/excursion
 	name = "Excursion Shuttle"
 	warmup_time = 0
 	current_location = "tether_excursion_hangar"
@@ -197,14 +197,14 @@
 	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
-/obj/effect/overmap/visitable/ship/landable/excursion
+obj/effect/overmap/visitable/ship/landable/excursion
 	name = "Excursion Shuttle"
 	desc = "The traditional Excursion Shuttle. NT Approved!"
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Excursion Shuttle"
 
-/obj/machinery/computer/shuttle_control/explore/excursion
+obj/machinery/computer/shuttle_control/explore/excursion
 	name = "short jump console"
 	shuttle_tag = "Excursion Shuttle"
 	req_one_access = list(ACCESS_GENERAL_PILOT)
@@ -212,7 +212,7 @@
 ////////////////////////////////////////
 ////////      Tour Bus     /////////////
 ////////////////////////////////////////
-/datum/shuttle/autodock/overmap/tourbus
+datum/shuttle/autodock/overmap/tourbus
 	name = "Tour Bus"
 	warmup_time = 0
 	current_location = "tourbus_dock"
@@ -222,14 +222,14 @@
 	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
-/obj/effect/overmap/visitable/ship/landable/tourbus
+obj/effect/overmap/visitable/ship/landable/tourbus
 	name = "Tour Bus"
 	desc = "A small 'space bus', if you will."
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Tour Bus"
 
-/obj/machinery/computer/shuttle_control/explore/tourbus
+obj/machinery/computer/shuttle_control/explore/tourbus
 	name = "short jump console"
 	shuttle_tag = "Tour Bus"
 	req_one_access = list(ACCESS_GENERAL_PILOT)
@@ -237,7 +237,7 @@
 ////////////////////////////////////////
 ////////      Medivac      /////////////
 ////////////////////////////////////////
-/datum/shuttle/autodock/overmap/medivac
+datum/shuttle/autodock/overmap/medivac
 	name = "Medivac Shuttle"
 	warmup_time = 0
 	current_location = "tether_medivac_dock"
@@ -247,7 +247,7 @@
 	move_direction = EAST
 
 // The 'ship' of the excursion shuttle
-/obj/effect/overmap/visitable/ship/landable/medivac
+obj/effect/overmap/visitable/ship/landable/medivac
 	name = "Medivac Shuttle"
 	desc = "A medical evacuation shuttle."
 	vessel_mass = 4000
@@ -255,14 +255,14 @@
 	shuttle = "Medivac Shuttle"
 	fore_dir = EAST
 
-/obj/machinery/computer/shuttle_control/explore/medivac
+obj/machinery/computer/shuttle_control/explore/medivac
 	name = "short jump console"
 	shuttle_tag = "Medivac Shuttle"
 
 ////////////////////////////////////////
 ////////      Securiship   /////////////
 ////////////////////////////////////////
-/datum/shuttle/autodock/overmap/securiship
+datum/shuttle/autodock/overmap/securiship
 	name = "Securiship Shuttle"
 	warmup_time = 0
 	current_location = "tether_securiship_dock"
@@ -272,7 +272,7 @@
 	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
-/obj/effect/overmap/visitable/ship/landable/securiship
+obj/effect/overmap/visitable/ship/landable/securiship
 	name = "Securiship Shuttle"
 	desc = "A security transport ship."
 	vessel_mass = 4000
@@ -280,6 +280,6 @@
 	shuttle = "Securiship Shuttle"
 	fore_dir = EAST
 
-/obj/machinery/computer/shuttle_control/explore/securiship
+obj/machinery/computer/shuttle_control/explore/securiship
 	name = "short jump console"
 	shuttle_tag = "Securiship Shuttle"

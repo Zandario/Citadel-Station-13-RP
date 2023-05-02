@@ -5,7 +5,7 @@
  *
  * WARNING: All atoms recorded are stored to turf! This does not yet support things like loading into inventories. This is mostly for on-floor objects.
  */
-/datum/element/persistence
+datum/element/persistence
 	element_flags = ELEMENT_DETACH
 
 	/// List of persistent atoms. Associated list to their GUID
@@ -15,7 +15,7 @@
  * Serializes all objects into a list for json encode or anything else needed.
  * Includes data the datum includes in serialize_list(), the GUID of the datum's entry, and its turf location.
  */
-/datum/element/persistence/proc/SerializeAll()
+datum/element/persistence/proc/SerializeAll()
 	. = list()
 	var/atom/A
 	var/guid
@@ -33,7 +33,7 @@
 /**
  * Instantiates all objects from a data list and attaches to them.
  */
-/datum/element/persistence/proc/DeserializeAndInstantiateAll(list/data)
+datum/element/persistence/proc/DeserializeAndInstantiateAll(list/data)
 	for(var/i in data)
 		var/list/L = i
 		if(!istype(L) || (length(L) < 4))
@@ -51,7 +51,7 @@
 		A.deserialize_list(datumdata)
 		Attach(A, guid)
 
-/datum/element/persistence/Attach(datum/D, guid = GUID())
+datum/element/persistence/Attach(datum/D, guid = GUID())
 	if(!isatom(D))
 		return ELEMENT_INCOMPATIBLE
 	. = ..()
@@ -59,6 +59,6 @@
 		return
 	objects[D] = guid
 
-/datum/element/persistence/Detach(datum/D)
+datum/element/persistence/Detach(datum/D)
 	. = ..()
 	objects -= D

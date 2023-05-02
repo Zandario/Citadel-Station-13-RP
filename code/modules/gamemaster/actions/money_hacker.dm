@@ -1,6 +1,6 @@
-/var/global/account_hack_attempted = 0
+var/global/account_hack_attempted = 0
 
-/datum/gm_action/money_hacker
+datum/gm_action/money_hacker
 	name = "bank account hacker"
 	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
@@ -9,7 +9,7 @@
 	var/activeFor
 	var/end_time
 
-/datum/gm_action/money_hacker/set_up()
+datum/gm_action/money_hacker/set_up()
 	active = TRUE
 	end_time = world.time + 6000
 	if(GLOB.all_money_accounts.len)
@@ -17,7 +17,7 @@
 
 		account_hack_attempted = 1
 
-/datum/gm_action/money_hacker/announce()
+datum/gm_action/money_hacker/announce()
 	var/message = "A brute force hack has been detected (in progress since [stationtime2text()]). The target of the attack is: Financial account #[affected_account.account_number], \
 	without intervention this attack will succeed in approximately 10 minutes. Required intervention: temporary suspension of affected accounts until the attack has ceased. \
 	Notifications will be sent as updates occur.<br>"
@@ -28,7 +28,7 @@
 		MS.send_rc_message("Head of Personnel's Desk", my_department, message, "", "", 2)
 
 
-/datum/gm_action/money_hacker/start()
+datum/gm_action/money_hacker/start()
 	..()
 	spawn(0)
 		while(active)
@@ -39,7 +39,7 @@
 			else
 				length = activeFor + 10
 
-/datum/gm_action/money_hacker/end()
+datum/gm_action/money_hacker/end()
 	active = FALSE
 	var/message
 	if(affected_account && !affected_account.suspended)
@@ -75,5 +75,5 @@
 		if(!MS.active) continue
 		MS.send_rc_message("Head of Personnel's Desk", my_department, message, "", "", 2)
 
-/datum/gm_action/money_hacker/get_weight()
+datum/gm_action/money_hacker/get_weight()
 	return 30 * GLOB.all_money_accounts.len

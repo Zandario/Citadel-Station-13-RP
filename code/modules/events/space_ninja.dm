@@ -1,1 +1,1 @@
-/datum/event/space_ninja/setup()
+datum/event/space_ninja/setup()

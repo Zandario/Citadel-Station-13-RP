@@ -1,11 +1,11 @@
 GLOBAL_DATUM_INIT(no_ceiling_image, /image, generate_no_ceiling_image())
 
-/proc/generate_no_ceiling_image()
+proc/generate_no_ceiling_image()
 	var/image/I = image(icon = 'icons/turf/open_space.dmi', icon_state = "no_ceiling")
 	I.plane = PLANE_MESONS
 	return I
 
-/turf/simulated/floor/calculate_adjacencies()
+turf/simulated/floor/calculate_adjacencies()
 	if (smoothing_flags & SMOOTH_CUSTOM)
 		return NONE
 	return ..()
@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 
 var/list/flooring_cache = list()
 
-/turf/simulated/floor/update_appearance(updates)
+turf/simulated/floor/update_appearance(updates)
 	cut_overlays()
 
 	// Re-apply floor decals
@@ -30,7 +30,7 @@ var/list/flooring_cache = list()
 
 	. = ..()
 
-/turf/simulated/floor/custom_smooth()
+turf/simulated/floor/custom_smooth()
 	if(flooring)
 		// Set initial icon and strings.
 		name = flooring.name
@@ -102,7 +102,7 @@ var/list/flooring_cache = list()
  * 2. if you want a floor to spill onto a wall, go ahead and reconsider your life/design choices
  * 3. i can think of a reason but honestly performance is better than some niche case of floor resin creeping onto walls or something, use objs for that.
  */
-/turf/simulated/floor/proc/update_border_spillover()
+turf/simulated/floor/proc/update_border_spillover()
 	if(!edge_blending_priority)
 		return		// not us
 	for(var/d in GLOB.cardinal)
@@ -116,7 +116,7 @@ var/list/flooring_cache = list()
 			add_overlay(GLOB.turf_edge_cache[key] || generate_border_cache_for(icon_state || edge_icon_state, d))
 
 // todo: better system
-/proc/generate_border_cache_for(state, dir)
+proc/generate_border_cache_for(state, dir)
 	// make it
 	var/static/list/states = icon_states('icons/turf/outdoors_edge.dmi')
 	var/actual
@@ -142,7 +142,7 @@ var/list/flooring_cache = list()
 
 //Tests whether this flooring will smooth with the specified turf
 //You can override this if you want a flooring to have super special snowflake smoothing behaviour
-/singleton/flooring/proc/test_link(var/turf/origin, var/turf/T, var/countercheck = FALSE)
+singleton/flooring/proc/test_link(var/turf/origin, var/turf/T, var/countercheck = FALSE)
 
 	var/is_linked = FALSE
 	if (countercheck)
@@ -288,7 +288,7 @@ var/list/flooring_cache = list()
 
 	return is_linked
 
-/turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
+turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer

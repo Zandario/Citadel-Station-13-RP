@@ -5,7 +5,7 @@ FLOOR SAFES
 */
 
 //SAFES
-/obj/structure/safe
+obj/structure/safe
 	name = "safe"
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
 	icon = 'icons/obj/structures.dmi'
@@ -22,7 +22,7 @@ FLOOR SAFES
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
 
-/obj/structure/safe/Initialize(mapload)
+obj/structure/safe/Initialize(mapload)
 	. = ..()
 	tumbler_1_pos = rand(0, 72)
 	tumbler_1_open = rand(0, 72)
@@ -37,7 +37,7 @@ FLOOR SAFES
 			space += I.w_class
 			I.forceMove(src)
 
-/obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
+obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
 	if(user && canhear)
 		if(tumbler_1_pos == tumbler_1_open)
 			to_chat(user, "<span class='notice'>You hear a [pick("tonk", "krunk", "plunk")] from \the [src].</span>")
@@ -49,28 +49,28 @@ FLOOR SAFES
 	return 0
 
 
-/obj/structure/safe/proc/decrement(num)
+obj/structure/safe/proc/decrement(num)
 	num -= 1
 	if(num < 0)
 		num = 71
 	return num
 
 
-/obj/structure/safe/proc/increment(num)
+obj/structure/safe/proc/increment(num)
 	num += 1
 	if(num > 71)
 		num = 0
 	return num
 
 
-/obj/structure/safe/update_icon()
+obj/structure/safe/update_icon()
 	if(open)
 		icon_state = "[initial(icon_state)]-open"
 	else
 		icon_state = initial(icon_state)
 
 
-/obj/structure/safe/attack_hand(mob/user, list/params)
+obj/structure/safe/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	var/dat = "<center>"
 	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a> | <a href='?src=\ref[src];decrement=1'>-</a> [dial * 5] <a href='?src=\ref[src];increment=1'>+</a>"
@@ -83,7 +83,7 @@ FLOOR SAFES
 	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=safe;size=350x300")
 
 
-/obj/structure/safe/Topic(href, href_list)
+obj/structure/safe/Topic(href, href_list)
 	if(!ishuman(usr))	return
 	var/mob/living/carbon/human/user = usr
 
@@ -143,7 +143,7 @@ FLOOR SAFES
 				updateUsrDialog()
 
 
-/obj/structure/safe/attackby(obj/item/I as obj, mob/user as mob)
+obj/structure/safe/attackby(obj/item/I as obj, mob/user as mob)
 	if(open)
 		if(I.w_class + space <= maxspace)
 			if(!user.attempt_insert_item_for_installation(I, src))
@@ -161,11 +161,11 @@ FLOOR SAFES
 			return
 
 
-/obj/structure/safe/legacy_ex_act(severity)
+obj/structure/safe/legacy_ex_act(severity)
 	return
 
 //FLOOR SAFES
-/obj/structure/safe/floor
+obj/structure/safe/floor
 	name = "floor safe"
 	icon_state = "floorsafe"
 	density = 0
@@ -173,15 +173,15 @@ FLOOR SAFES
 	plane = TURF_PLANE
 	layer = BELOW_TURF_LAYER
 
-/obj/structure/safe/floor/Initialize(mapload)
+obj/structure/safe/floor/Initialize(mapload)
 	. = ..()
 	var/turf/T = loc
 	if(istype(T) && !T.is_plating())
 		hide(1)
 	update_icon()
 
-/obj/structure/safe/floor/hide(var/intact)
+obj/structure/safe/floor/hide(var/intact)
 	invisibility = intact ? 101 : 0
 
-/obj/structure/safe/floor/hides_under_flooring()
+obj/structure/safe/floor/hides_under_flooring()
 	return 1

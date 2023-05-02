@@ -1,14 +1,14 @@
-/area
+area
 	luminosity = TRUE
 	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
-/area/Initialize()
+area/Initialize()
 	. = ..()
 
 	if (dynamic_lighting)
 		luminosity = FALSE
 
-/area/proc/set_dynamic_lighting(new_dynamic_lighting = DYNAMIC_LIGHTING_ENABLED)
+area/proc/set_dynamic_lighting(new_dynamic_lighting = DYNAMIC_LIGHTING_ENABLED)
 	if (new_dynamic_lighting == dynamic_lighting)
 		return FALSE
 
@@ -26,7 +26,7 @@
 
 	return TRUE
 
-/area/vv_edit_var(var_name, var_value)
+area/vv_edit_var(var_name, var_value)
 	switch(var_name)
 		if(NAMEOF(src, dynamic_lighting))
 			set_dynamic_lighting(var_value)

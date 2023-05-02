@@ -1,4 +1,4 @@
-/obj/mecha/medical/odysseus
+obj/mecha/medical/odysseus
 	desc = "These exosuits are developed and produced by Vey-Med. (&copy; All rights reserved)."
 	name = "Odysseus"
 	catalogue_data = list(
@@ -20,11 +20,11 @@
 	icon_scale_x = 1.2
 	icon_scale_y = 1.2
 
-/obj/mecha/medical/odysseus/Initialize(mapload)
+obj/mecha/medical/odysseus/Initialize(mapload)
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 
-/obj/mecha/medical/odysseus/moved_inside(var/mob/living/carbon/human/H as mob)
+obj/mecha/medical/odysseus/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())
 		if(H.glasses)
 			occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
@@ -35,7 +35,7 @@
 	else
 		return 0
 
-/obj/mecha/medical/odysseus/go_out()
+obj/mecha/medical/odysseus/go_out()
 	if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 		if(H.glasses == hud)
@@ -68,7 +68,7 @@
 */
 
 //TODO - Check documentation for client.eye and client.perspective...
-/obj/item/clothing/glasses/hud/health/mech
+obj/item/clothing/glasses/hud/health/mech
 	name = "Integrated Medical Hud"
 
 
@@ -125,7 +125,7 @@
 
 			C.images += holder
 */
-/obj/mecha/medical/odysseus/loaded/Initialize(mapload)
+obj/mecha/medical/odysseus/loaded/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/sleeper
 	ME.attach(src)
@@ -135,10 +135,10 @@
 	ME.attach(src)
 
 //Meant for random spawns.
-/obj/mecha/medical/odysseus/old
+obj/mecha/medical/odysseus/old
 	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/medical/odysseus/old/Initialize(mapload)
+obj/mecha/medical/odysseus/old/Initialize(mapload)
 	. = ..()
 	health = 25
 	maxhealth = 50	//Just slightly worse.

@@ -2,22 +2,22 @@
  * basic proxfields, automatically attaches to parent if it's a datum
  * safe to juggle around with Attach() so we don't provide init param for attach.
  */
-/datum/proxfield/basic
+datum/proxfield/basic
 	/// our objects
 	VAR_PRIVATE/list/atom/movable/proximity_checker/checkers
 
-/datum/proxfield/basic/Init()
+datum/proxfield/basic/Init()
 	if(isatom(parent))
 		Attach(parent)
 	return ..()
 
-/datum/proxfield/basic/proc/Turfs()
+datum/proxfield/basic/proc/Turfs()
 	return list()
 
-/datum/proxfield/basic/Build()
+datum/proxfield/basic/Build()
 	checkers = list()
 
-/datum/proxfield/basic/Update()
+datum/proxfield/basic/Update()
 	var/list/turf/creating = Turfs()
 	var/needed = length(creating)
 	var/has = length(checkers)
@@ -34,25 +34,25 @@
 			qdel(checkers[i])
 		checkers.Cut(needed + 1)
 
-/datum/proxfield/basic/on_z_transit(datum/source, old_z, new_z)
+datum/proxfield/basic/on_z_transit(datum/source, old_z, new_z)
 	. = ..()
 	Update()
 
-/datum/proxfield/basic/on_move(datum/source, atom/movable/oldLoc, dir, forced)
+datum/proxfield/basic/on_move(datum/source, atom/movable/oldLoc, dir, forced)
 	. = ..()
 	Update()
 
-/datum/proxfield/basic/Teardown()
+datum/proxfield/basic/Teardown()
 	QDEL_LIST(checkers)
 
-/datum/proxfield/basic/Detect(atom/movable/AM)
+datum/proxfield/basic/Detect(atom/movable/AM)
 	parent.Proximity(src, AM)
 
-/datum/proxfield/basic/square
+datum/proxfield/basic/square
 	/// radius
 	var/radius = 3
 
-/datum/proxfield/basic/square/Init(radius)
+datum/proxfield/basic/square/Init(radius)
 	if(isnum(radius))
 		if(radius < 0 || radius > 7)
 			stack_trace("invalid radius")
@@ -62,12 +62,12 @@
 		stack_trace("no radius number")
 	return ..()
 
-/datum/proxfield/basic/square/Turfs()
+datum/proxfield/basic/square/Turfs()
 	var/turf/center = Anchor()
 	return RANGE_TURFS_OR_EMPTY(radius, center)
 
-/atom/movable/proximity_checker/basic
+atom/movable/proximity_checker/basic
 
-/atom/movable/proximity_checker/basic/Crossed(atom/movable/AM)
+atom/movable/proximity_checker/basic/Crossed(atom/movable/AM)
 	SHOULD_CALL_PARENT(FALSE) // we don't care about parent
 	field.Detect(AM)

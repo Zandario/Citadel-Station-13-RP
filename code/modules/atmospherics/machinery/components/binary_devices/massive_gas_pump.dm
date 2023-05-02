@@ -3,7 +3,7 @@
  *  do the job of normal gas pumps
  */
 #define MAX_POWER_FOR_MASSIVE 100000000
-/obj/machinery/atmospherics/component/binary/massive_gas_pump
+obj/machinery/atmospherics/component/binary/massive_gas_pump
 	name = "High performance gas pump"
 
 
@@ -29,7 +29,7 @@
 	//if its not null the machine attempts to draw from the grid the power machinery is connected to
 	//see examples in the file "code\modules\atmospherics\components\binary_devices\massive_gas_pump.dm"
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/Initialize(mapload)
+obj/machinery/atmospherics/component/binary/massive_gas_pump/Initialize(mapload)
 	. = ..()
 	power_machine = new(src)
 
@@ -49,11 +49,11 @@
 	overlays_to_add += I
 	add_overlay(overlays_to_add)
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/Destroy()
+obj/machinery/atmospherics/component/binary/massive_gas_pump/Destroy()
 	. = ..()
 	qdel(power_machine)
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/process(delta_time)
+obj/machinery/atmospherics/component/binary/massive_gas_pump/process(delta_time)
 	if(!network1 || !network2)
 		build_network()//built networks if we are missing them
 		network1?.update = 1
@@ -96,7 +96,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/atmospherics/component/binary/massive_gas_pump/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -108,7 +108,7 @@
 		to_chat(user, SPAN_NOTICE("You cannot insert this item into \the [src]!"))
 		return
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/update_icon()
+obj/machinery/atmospherics/component/binary/massive_gas_pump/update_icon()
 	if(inoperable() || !anchored || !power_machine.powernet)
 		icon_state = "pump"
 	else if(use_power)
@@ -123,7 +123,7 @@
 		icon_state = "pump"
 	return TRUE
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/atmospherics/component/binary/massive_gas_pump/ui_interact(mob/user, datum/tgui/ui)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -132,7 +132,7 @@
 		ui.open()
 
 //This is the data which will be sent to the ui
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/ui_data(mob/user)
+obj/machinery/atmospherics/component/binary/massive_gas_pump/ui_data(mob/user)
 	var/list/data = list()
 
 	data = list(
@@ -147,7 +147,7 @@
 
 	return data
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/attack_hand(mob/user, list/params)
+obj/machinery/atmospherics/component/binary/massive_gas_pump/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	add_fingerprint(usr)
@@ -156,7 +156,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/ui_act(action, params)
+obj/machinery/atmospherics/component/binary/massive_gas_pump/ui_act(action, params)
 	if(..())
 		return TRUE
 

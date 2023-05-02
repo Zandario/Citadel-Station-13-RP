@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
+obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	name = "\improper Ultra AC 2"
 	desc = "A superior version of the standard Hephaestus Autocannon MK2 design."
 	icon_state = "mecha_uac2"
@@ -11,7 +11,7 @@
 	projectile_energy_cost = 20
 	fire_cooldown = 2
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg/rigged
+obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg/rigged
 	name = "jury-rigged machinegun"
 	desc = "The cross between a jackhammer and a whole lot of zipguns."
 	icon_state = "mecha_uac2-rig"

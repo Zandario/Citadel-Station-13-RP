@@ -1,4 +1,4 @@
-/datum/species/werebeast
+datum/species/werebeast
 	uid = SPECIES_ID_WEREBEAST
 	id = SPECIES_ID_WEREBEAST
 	name = SPECIES_WEREBEAST

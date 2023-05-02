@@ -2,7 +2,7 @@ GLOBAL_VAR_INIT(sound_extrarange_multiplier, 3)
 GLOBAL_VAR_INIT(sound_env_wet, -1500)
 GLOBAL_VAR_INIT(sound_env_dry, 0)
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, preference = null, soundenvwet, soundenvdry)
+proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, preference = null, soundenvwet, soundenvdry)
 	if(!soundin)
 		return
 	if(isnull(soundenvwet))
@@ -47,7 +47,7 @@ GLOBAL_VAR_INIT(sound_pressure_environment, FALSE)
 GLOBAL_VAR_INIT(sound_offscreen_falloff_factor, 5)
 GLOBAL_VAR_INIT(sound_distance_offscreen, 7)
 
-/mob/proc/playsound_local(
+mob/proc/playsound_local(
 		turf/turf_source,
 		soundin,
 		vol,
@@ -175,25 +175,25 @@ GLOBAL_VAR_INIT(sound_distance_offscreen, 7)
 
 }
 
-/proc/sound_to_playing_players(sound, volume = 100, vary)
+proc/sound_to_playing_players(sound, volume = 100, vary)
 	sound = get_sfx(sound)
 	for(var/M in GLOB.player_list)
 		if(ismob(M) && !isnewplayer(M))
 			var/mob/MO = M
 			MO.playsound_local(get_turf(MO), sound, volume, vary, pressure_affected = FALSE)
 
-/mob/proc/stop_sound_channel(chan)
+mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
 
-/mob/proc/set_sound_channel_volume(channel, volume)
+mob/proc/set_sound_channel_volume(channel, volume)
 	var/sound/S = sound(null, FALSE, FALSE, channel, volume)
 	S.status = SOUND_UPDATE
 	SEND_SOUND(src, S)
 
-/proc/get_rand_frequency()
+proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
 
-/client/proc/playtitlemusic()
+client/proc/playtitlemusic()
 	if(!SSticker || !all_lobby_tracks.len || !media)	return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
 		var/datum/track/T = pick(all_lobby_tracks)
@@ -204,7 +204,7 @@ GLOBAL_VAR_INIT(sound_distance_offscreen, 7)
  * Directly returns an ogg for a given id.
  * todo: convert ALL of these to soundbytes.
  */
-/proc/get_sfx(soundin)
+proc/get_sfx(soundin)
 	if(istext(soundin))
 		switch(soundin)
 			if ("shatter")

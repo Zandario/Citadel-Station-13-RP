@@ -8,18 +8,18 @@
 //Movable Screen Object
 //Not tied to the grid, places it's center where the cursor is
 
-/atom/movable/screen/movable
+atom/movable/screen/movable
 	var/snap2grid = FALSE
 	var/moved = FALSE
 
 //Snap Screen Object
 //Tied to the grid, snaps to the nearest turf
 
-/atom/movable/screen/movable/snap
+atom/movable/screen/movable/snap
 	snap2grid = TRUE
 
 
-/atom/movable/screen/movable/OnMouseDropLegacy(over_object, src_location, over_location, src_control, over_control, params)
+atom/movable/screen/movable/OnMouseDropLegacy(over_object, src_location, over_location, src_control, over_control, params)
 	var/list/PM = params2list(params)
 
 	//No screen-loc information? abort.
@@ -44,7 +44,7 @@
 		var/pix_Y = text2num(screen_loc_Y[2]) - 16
 		screen_loc = "[screen_loc_X[1]]:[pix_X],[screen_loc_Y[1]]:[pix_Y]"
 
-/atom/movable/screen/movable/proc/encode_screen_X(X)
+atom/movable/screen/movable/proc/encode_screen_X(X)
 	var/view_dist = world.view
 	if(view_dist)
 		view_dist = view_dist
@@ -55,7 +55,7 @@
 	else
 		. = "CENTER"
 
-/atom/movable/screen/movable/proc/decode_screen_X(X)
+atom/movable/screen/movable/proc/decode_screen_X(X)
 	var/view_dist = world.view
 	if(view_dist)
 		view_dist = view_dist
@@ -73,7 +73,7 @@
 	else if(findtext(X,"CENTER"))
 		. = view_dist+1
 
-/atom/movable/screen/movable/proc/encode_screen_Y(Y)
+atom/movable/screen/movable/proc/encode_screen_Y(Y)
 	var/view_dist = world.view
 	if(view_dist)
 		view_dist = view_dist
@@ -84,7 +84,7 @@
 	else
 		. = "CENTER"
 
-/atom/movable/screen/movable/proc/decode_screen_Y(Y)
+atom/movable/screen/movable/proc/decode_screen_Y(Y)
 	var/view_dist = world.view
 	if(view_dist)
 		view_dist = view_dist
@@ -102,7 +102,7 @@
 		. = view_dist+1
 
 //Debug procs
-/client/proc/test_movable_UI()
+client/proc/test_movable_UI()
 	set category = "Debug"
 	set name = "Spawn Movable UI Object"
 
@@ -121,7 +121,7 @@
 	screen += M
 
 
-/client/proc/test_snap_UI()
+client/proc/test_snap_UI()
 	set category = "Debug"
 	set name = "Spawn Snap UI Object"
 

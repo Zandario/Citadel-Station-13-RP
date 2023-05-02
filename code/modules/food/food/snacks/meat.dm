@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/snacks/meat
+obj/item/reagent_containers/food/snacks/meat
 	name = "meat"
 	desc = "A slab of meat."
 	icon_state = "meat"
@@ -6,13 +6,13 @@
 	filling_color = "#FF1C1C"
 	center_of_mass = list("x"=16, "y"=14)
 
-/obj/item/reagent_containers/food/snacks/meat/Initialize(mapload)
+obj/item/reagent_containers/food/snacks/meat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("protein", 6)
 	reagents.add_reagent("triglyceride", 2)
 	src.bitesize = 1.5
 
-/obj/item/reagent_containers/food/snacks/meat/cook()
+obj/item/reagent_containers/food/snacks/meat/cook()
 
 	if (!isnull(cooked_icon))
 		icon_state = cooked_icon
@@ -22,7 +22,7 @@
 	if (name == initial(name))
 		name = "cooked [name]"
 
-/obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/material/knife))
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
@@ -32,36 +32,36 @@
 	else
 		..()
 
-/obj/item/reagent_containers/food/snacks/meat/syntiflesh
+obj/item/reagent_containers/food/snacks/meat/syntiflesh
 	name = "synthetic meat"
 	desc = "A synthetic slab of flesh."
 
 // Seperate definitions because some food likes to know if it's human.
 // TODO: rewrite kitchen code to check a var on the meat item so we can remove
 // all these sybtypes.
-/obj/item/reagent_containers/food/snacks/meat/human
+obj/item/reagent_containers/food/snacks/meat/human
 	name = "suspicious meat"
 	desc = "Tastes vaguely like pork."
 
-/obj/item/reagent_containers/food/snacks/meat/monkey
+obj/item/reagent_containers/food/snacks/meat/monkey
 	//same as plain meat
 
-/obj/item/reagent_containers/food/snacks/meat/corgi
+obj/item/reagent_containers/food/snacks/meat/corgi
 	name = "Corgi meat"
 	desc = "Tastes like... well, you know."
 
-/obj/item/reagent_containers/food/snacks/meat/chicken
+obj/item/reagent_containers/food/snacks/meat/chicken
 	icon = 'icons/obj/food.dmi'
 	icon_state = "chickenbreast"
 	cooked_icon = "chickenbreast_cooked"
 	filling_color = "#BBBBAA"
 
-/obj/item/reagent_containers/food/snacks/meat/chicken/Initialize(mapload)
+obj/item/reagent_containers/food/snacks/meat/chicken/Initialize(mapload)
 		..()
 		reagents.remove_reagent("triglyceride", INFINITY)
 		//Chicken is low fat. Less total calories than other meats
 
-/obj/item/reagent_containers/food/snacks/meat/chicken/penguin
+obj/item/reagent_containers/food/snacks/meat/chicken/penguin
 	name = "meat"
 	desc = "Tastes like chicken? Or fish? Fishy chicken? Strange."
 	icon = 'icons/obj/food.dmi'
@@ -69,18 +69,18 @@
 	cooked_icon = "chickenbreast_cooked"
 	filling_color = "#BBBBAA"
 
-/obj/item/reagent_containers/food/snacks/meat/chicken/teshari
+obj/item/reagent_containers/food/snacks/meat/chicken/teshari
 	name = "meat"
 	desc = "Tastes like a really fast chicken. Who'd have guessed?"
 
-/obj/item/reagent_containers/food/snacks/meat/vox
+obj/item/reagent_containers/food/snacks/meat/vox
 	name = "Vox meat"
 	desc = "Tough and sinewy. Don't eat it raw."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "voxmeat"
 	cooked_icon = "voxmeat_cooked"
 
-/obj/item/reagent_containers/food/snacks/meat/vox/Initialize(mapload)
+obj/item/reagent_containers/food/snacks/meat/vox/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("protein", 6)
 	reagents.add_reagent("triglyceride", 2)

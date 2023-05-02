@@ -4,13 +4,13 @@
 
 #define NORMAL_LAYER 3
 
-/obj/item/hoist_kit
+obj/item/hoist_kit
 	name = "hoist kit"
 	desc = "A setup kit for a hoist that can be used to lift things. The hoist will deploy in the direction you're facing."
 	icon = 'icons/obj/hoists.dmi'
 	icon_state = "hoist_case"
 
-/obj/item/hoist_kit/attack_self(mob/user)
+obj/item/hoist_kit/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -18,7 +18,7 @@
 	user.visible_message(SPAN_WARNING( "[user] deploys the hoist kit!"), SPAN_NOTICE("You deploy the hoist kit!"), SPAN_NOTICE("You hear the sound of parts snapping into place."))
 	qdel(src)
 
-/obj/effect/hoist_hook
+obj/effect/hoist_hook
 	name = "hoist clamp"
 	desc = "A clamp used to lift people or things."
 	icon = 'icons/obj/hoists.dmi'
@@ -28,10 +28,10 @@
 	var/obj/structure/hoist/source_hoist
 	description_info = "Click and drag someone (or any object) to this to attach them to the clamp. If you are within reach, when you click and drag this to a turf adjacent to you, it will move the attached object there and release it."
 
-/obj/effect/hoist_hook/attack_hand(mob/user, list/params)
+obj/effect/hoist_hook/attack_hand(mob/user, list/params)
 	return // This has to be overridden so that it works properly.
 
-/obj/effect/hoist_hook/MouseDroppedOnLegacy(atom/movable/AM,mob/user)
+obj/effect/hoist_hook/MouseDroppedOnLegacy(atom/movable/AM,mob/user)
 	if (use_check(user, USE_DISALLOW_SILICONS))
 		return
 
@@ -44,7 +44,7 @@
 	source_hoist.attach_hoistee(AM)
 	user.visible_message(SPAN_DANGER("[user] attaches \the [AM] to \the [src]."), SPAN_DANGER("You attach \the [AM] to \the [src]."), SPAN_DANGER("You hear something clamp into place."))
 
-/obj/structure/hoist/proc/attach_hoistee(atom/movable/AM)
+obj/structure/hoist/proc/attach_hoistee(atom/movable/AM)
 	if (get_turf(AM) != get_turf(source_hook))
 		AM.forceMove(get_turf(source_hook))
 	hoistee = AM
@@ -53,7 +53,7 @@
 	AM.anchored = 1 // why isn't this being set by buckle_mob for silicons?
 	source_hook.layer = AM.layer + 0.1
 
-/obj/effect/hoist_hook/OnMouseDropLegacy(atom/dest)
+obj/effect/hoist_hook/OnMouseDropLegacy(atom/dest)
 	..()
 	if(!Adjacent(usr) || !dest.Adjacent(usr)) return // carried over from the default proc
 
@@ -83,13 +83,13 @@
 	source_hoist.release_hoistee()
 
 // This will handle mobs unbuckling themselves.
-/obj/effect/hoist_hook/mob_unbuckled(mob/M, flags, mob/user, semantic)
+obj/effect/hoist_hook/mob_unbuckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	if(source_hoist && source_hoist.hoistee == M)
 		source_hoist.hoistee = null
 	M.fall()
 
-/obj/structure/hoist
+obj/structure/hoist
 	icon = 'icons/obj/hoists.dmi'
 	icon_state = "hoist_base"
 	var/broken = 0
@@ -102,31 +102,31 @@
 	var/obj/effect/hoist_hook/source_hook
 	description_info = "Click this to raise or lower the hoist, or to switch directions if it can't move any further. It can also be collapsed into a hoist kit."
 
-/obj/structure/hoist/Initialize(mapload, ndir)
+obj/structure/hoist/Initialize(mapload, ndir)
 	. = ..()
 	dir = ndir
 	var/turf/newloc = get_step(src, dir)
 	source_hook = new(newloc)
 	source_hook.source_hoist = src
 
-/obj/structure/hoist/Destroy()
+obj/structure/hoist/Destroy()
 	if(hoistee)
 		release_hoistee()
 	QDEL_NULL(src.source_hook)
 	return ..()
 
-/obj/effect/hoist_hook/Destroy()
+obj/effect/hoist_hook/Destroy()
 	source_hoist = null
 	return ..()
 
-/obj/structure/hoist/proc/check_consistency()
+obj/structure/hoist/proc/check_consistency()
 	if (!hoistee)
 		return
 	if (hoistee.z != source_hook.z)
 		release_hoistee()
 		return
 
-/obj/structure/hoist/proc/release_hoistee()
+obj/structure/hoist/proc/release_hoistee()
 	if(ismob(hoistee))
 		source_hook.unbuckle_mob(hoistee)
 	else
@@ -134,7 +134,7 @@
 	hoistee = null
 	layer = NORMAL_LAYER
 
-/obj/structure/hoist/proc/break_hoist()
+obj/structure/hoist/proc/break_hoist()
 	if(broken)
 		return
 	broken = 1
@@ -143,7 +143,7 @@
 		release_hoistee()
 	QDEL_NULL(source_hook)
 
-/obj/structure/hoist/legacy_ex_act(severity)
+obj/structure/hoist/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -160,7 +160,7 @@
 				break_hoist()
 			return
 
-/obj/effect/hoist_hook/legacy_ex_act(severity)
+obj/effect/hoist_hook/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			source_hoist.break_hoist()
@@ -175,7 +175,7 @@
 			return
 
 
-/obj/structure/hoist/attack_hand(mob/user, list/params)
+obj/structure/hoist/attack_hand(mob/user, list/params)
 	if (!ishuman(user))
 		return
 
@@ -216,11 +216,11 @@
 	if (do_after(user, (1 SECONDS) * size / 4, target = src))
 		move_dir(movedir, 1)
 
-/obj/structure/hoist/proc/collapse_kit()
+obj/structure/hoist/proc/collapse_kit()
 	new /obj/item/hoist_kit(get_turf(src))
 	qdel(src)
 
-/obj/structure/hoist/verb/collapse_hoist()
+obj/structure/hoist/verb/collapse_hoist()
 	set name = "Collapse Hoist"
 	set category = "Object"
 	set src in range(1)
@@ -239,7 +239,7 @@
 		return
 	collapse_kit()
 
-/obj/structure/hoist/proc/can_move_dir(direction)
+obj/structure/hoist/proc/can_move_dir(direction)
 	var/turf/dest = direction == UP ? GetAbove(source_hook) : GetBelow(source_hook)
 	switch(direction)
 		if (UP)
@@ -254,7 +254,7 @@
 		return 0
 	return 1
 
-/obj/structure/hoist/proc/move_dir(direction, ishoisting)
+obj/structure/hoist/proc/move_dir(direction, ishoisting)
 	var/can = can_move_dir(direction)
 	if (!can)
 		return 0
@@ -265,7 +265,7 @@
 	hoistee.hoist_act(move_dest)
 	return 1
 
-/atom/movable/proc/hoist_act(turf/dest)
+atom/movable/proc/hoist_act(turf/dest)
 	forceMove(dest)
 	return TRUE
 

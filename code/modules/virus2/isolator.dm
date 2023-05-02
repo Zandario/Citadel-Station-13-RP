@@ -1,4 +1,4 @@
-/obj/machinery/disease2/isolator/
+obj/machinery/disease2/isolator/
 	name = "pathogenic isolator"
 	density = 1
 	anchored = 1
@@ -8,7 +8,7 @@
 	var/datum/disease2/disease/virus2 = null
 	var/obj/item/reagent_containers/syringe/sample = null
 
-/obj/machinery/disease2/isolator/update_icon()
+obj/machinery/disease2/isolator/update_icon()
 	if (machine_stat & (BROKEN|NOPOWER))
 		icon_state = "isolator"
 		return
@@ -20,7 +20,7 @@
 	else
 		icon_state = "isolator"
 
-/obj/machinery/disease2/isolator/attackby(var/obj/O as obj, var/mob/user)
+obj/machinery/disease2/isolator/attackby(var/obj/O as obj, var/mob/user)
 	if(default_unfasten_wrench(user, O, 20))
 		return
 
@@ -41,18 +41,18 @@
 
 	src.attack_hand(user)
 
-/obj/machinery/disease2/isolator/attack_hand(mob/user, list/params)
+obj/machinery/disease2/isolator/attack_hand(mob/user, list/params)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	ui_interact(user)
 
-/obj/machinery/disease2/isolator/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/disease2/isolator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PathogenicIsolator", name)
 		ui.open()
 
-/obj/machinery/disease2/isolator/ui_data(mob/user)
+obj/machinery/disease2/isolator/ui_data(mob/user)
 	var/list/data = list()
 	data["syringe_inserted"] = !!sample
 	data["isolating"] = isolating
@@ -87,7 +87,7 @@
 	data["modal"] = ui_modal_data(src)
 	return data
 
-/obj/machinery/disease2/isolator/process(delta_time)
+obj/machinery/disease2/isolator/process(delta_time)
 	if (isolating > 0)
 		isolating -= 1
 		if (isolating == 0)
@@ -100,7 +100,7 @@
 			SStgui.update_uis(src)
 			update_icon()
 
-/obj/machinery/disease2/isolator/ui_act(action, list/params)
+obj/machinery/disease2/isolator/ui_act(action, list/params)
 	if(..())
 		return TRUE
 
@@ -140,7 +140,7 @@
 			update_icon()
 			return TRUE
 
-/obj/machinery/disease2/isolator/proc/print(mob/user, list/params)
+obj/machinery/disease2/isolator/proc/print(mob/user, list/params)
 	var/obj/item/paper/P = new /obj/item/paper(loc)
 
 	switch(params["type"])

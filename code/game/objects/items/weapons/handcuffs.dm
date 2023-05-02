@@ -1,4 +1,4 @@
-/obj/item/handcuffs
+obj/item/handcuffs
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
@@ -20,7 +20,7 @@
 	var/cuff_type = "handcuffs"
 	var/use_time = 30
 
-/obj/item/handcuffs/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/handcuffs/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/carbon/C = target
 	if(!istype(C))
 		return
@@ -43,7 +43,7 @@
 		else
 			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
 
-/obj/item/handcuffs/proc/can_place(var/mob/target, var/mob/user)
+obj/item/handcuffs/proc/can_place(var/mob/target, var/mob/user)
 	if(user == target)
 		return 1
 	if(istype(user, /mob/living/silicon/robot))
@@ -55,7 +55,7 @@
 				return 1
 	return 0
 
-/obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
@@ -97,14 +97,14 @@
 		forceMove(user.drop_location())
 	return 1
 
-/obj/item/handcuffs/equipped(mob/living/user, slot, accessory)
+obj/item/handcuffs/equipped(mob/living/user, slot, accessory)
 	. = ..()
 	if(slot == SLOT_ID_HANDCUFFED)
 		user.drop_all_held_items()
 		user.stop_pulling()
 
 var/last_chew = 0
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	if (A != src) return ..()
 	if (last_chew + 26 > world.time) return
 
@@ -129,19 +129,19 @@ var/last_chew = 0
 
 	last_chew = world.time
 
-/obj/item/handcuffs/fuzzy
+obj/item/handcuffs/fuzzy
 	name = "fuzzy cuffs"
 	icon_state = "fuzzycuff"
 	desc = "Use this to keep... 'prisoners' in line."
 	breakouttime = 30 //3sec breakout time. why did this not exist before. bruh moment.
 
-/obj/item/handcuffs/sinew
+obj/item/handcuffs/sinew
 	name = "sinew cuffs"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sinewcuff"
 	desc = "A complex weave of sinew repurposed as handcuffs."
 
-/obj/item/handcuffs/cable
+obj/item/handcuffs/cable
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "cuff_white"
@@ -150,31 +150,31 @@ var/last_chew = 0
 	cuff_type = "cable restraints"
 	elastic = 0 //citadel change, why would cable be better than actual handcuffs? who knows.
 
-/obj/item/handcuffs/cable/red
+obj/item/handcuffs/cable/red
 	color = "#DD0000"
 
-/obj/item/handcuffs/cable/yellow
+obj/item/handcuffs/cable/yellow
 	color = "#DDDD00"
 
-/obj/item/handcuffs/cable/blue
+obj/item/handcuffs/cable/blue
 	color = "#0000DD"
 
-/obj/item/handcuffs/cable/green
+obj/item/handcuffs/cable/green
 	color = "#00DD00"
 
-/obj/item/handcuffs/cable/pink
+obj/item/handcuffs/cable/pink
 	color = "#DD00DD"
 
-/obj/item/handcuffs/cable/orange
+obj/item/handcuffs/cable/orange
 	color = "#DD8800"
 
-/obj/item/handcuffs/cable/cyan
+obj/item/handcuffs/cable/cyan
 	color = "#00DDDD"
 
-/obj/item/handcuffs/cable/white
+obj/item/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
+obj/item/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
 	..()
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
@@ -185,10 +185,10 @@ var/last_chew = 0
 			qdel(src)
 			update_icon(user)
 
-/obj/item/handcuffs/cyborg
+obj/item/handcuffs/cyborg
 	dispenser = 1
 
-/obj/item/handcuffs/cable/tape
+obj/item/handcuffs/cable/tape
 	name = "tape restraints"
 	desc = "DIY!"
 	icon_state = "tape_cross"
@@ -197,21 +197,21 @@ var/last_chew = 0
 	breakouttime = 200
 	cuff_type = "duct tape"
 
-/obj/item/handcuffs/cable/tape/cyborg
+obj/item/handcuffs/cable/tape/cyborg
 	dispenser = TRUE
 
-/obj/item/handcuffs/disruptor
+obj/item/handcuffs/disruptor
 	name = "disruptor cuffs"
 	icon_state = "disruptorcuff"
 	desc = "These cutting edge handcuffs were originally designed by the PMD. Commonly deployed to restrain anomalous lifeforms, disruptor cuffs employ a form of acausal logic engine disruption, in tandem with morphogenic resonance, to neutralize the abilities of technological and biological threats."
 
-/obj/item/handcuffs/disruptor/equipped(var/mob/living/user,var/slot)
+obj/item/handcuffs/disruptor/equipped(var/mob/living/user,var/slot)
 	. = ..()
 	if(slot == SLOT_ID_HANDCUFFED)
 		ADD_TRAIT(user, TRAIT_DISRUPTED, CLOTHING_TRAIT)
 
 //Legcuffs. Not /really/ handcuffs, but its close enough.
-/obj/item/handcuffs/legcuffs
+obj/item/handcuffs/legcuffs
 	name = "legcuffs"
 	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
@@ -225,7 +225,7 @@ var/last_chew = 0
 	elastic = 0
 	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
 
-/obj/item/handcuffs/legcuffs/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/handcuffs/legcuffs/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/carbon/C = target
 	if(!istype(C))
 		return
@@ -248,7 +248,7 @@ var/last_chew = 0
 		else
 			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
 
-/obj/item/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+obj/item/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src.loc, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
@@ -289,7 +289,7 @@ var/last_chew = 0
 		forceMove(user.drop_location())
 	return 1
 
-/obj/item/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
+obj/item/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
 	. = ..()
 	if(slot == SLOT_ID_LEGCUFFED)
 		if(user.m_intent != "walk")
@@ -297,7 +297,7 @@ var/last_chew = 0
 			if(user.hud_used && user.hud_used.move_intent)
 				user.hud_used.move_intent.icon_state = "walking"
 
-/obj/item/handcuffs/legcuffs/fuzzy
+obj/item/handcuffs/legcuffs/fuzzy
 	name = "fuzzy legcuffs"
 	desc = "Use this to keep... 'prisoners' in line."
 	icon = 'icons/obj/items_vr.dmi'
@@ -305,7 +305,7 @@ var/last_chew = 0
 	breakouttime = 30 //3sec
 
 
-/obj/item/handcuffs/legcuffs/bola
+obj/item/handcuffs/legcuffs/bola
 	name = "bola"
 	desc = "A ranged snare used to tangle up a target's legs."
 	icon_state = "bola"
@@ -314,15 +314,15 @@ var/last_chew = 0
 	breakouttime = 30
 	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
 
-/obj/item/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
+obj/item/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
 
-/obj/item/handcuffs/legcuffs/bola/throw_impact(var/atom/target, var/mob/user)
+obj/item/handcuffs/legcuffs/bola/throw_impact(var/atom/target, var/mob/user)
 	var/mob/living/L = target
 	place_legcuffs(L, user)
 
-/obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src.loc, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
@@ -341,25 +341,25 @@ var/last_chew = 0
 
 	return TRUE
 
-/obj/item/handcuffs/legcuffs/bola/tactical
+obj/item/handcuffs/legcuffs/bola/tactical
 	name = "reinforced bola"
 	desc = "A strong bola, made with a long steel chain. It looks heavy, enough so that it could trip somebody."
 	icon_state = "bola_r"
 	breakouttime = 70
 
-/obj/item/handcuffs/legcuffs/bola/cult
+obj/item/handcuffs/legcuffs/bola/cult
 	name = "\improper paranatural bola"
 	desc = "A strong bola, bound with dark magic that allows it to pass harmlessly through allied cultists. Throw it to trip and slow your victim."
 	icon_state = "bola_cult"
 	breakouttime = 60
 
-/obj/item/handcuffs/legcuffs/bola/cult/pickup(mob/user, flags, atom/oldLoc)
+obj/item/handcuffs/legcuffs/bola/cult/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	if(!iscultist(user))
 		to_chat(user, "<span class='warning'>The bola seems to take on a life of its own!</span>")
 		place_legcuffs(user)
 
-/obj/item/handcuffs/legcuffs/bola/cult/throw_impact(var/atom/target, var/mob/user, mob/living/carbon/human/H)
+obj/item/handcuffs/legcuffs/bola/cult/throw_impact(var/atom/target, var/mob/user, mob/living/carbon/human/H)
 	if(iscultist(user))
 		return
 	if(H.mind.isholy)

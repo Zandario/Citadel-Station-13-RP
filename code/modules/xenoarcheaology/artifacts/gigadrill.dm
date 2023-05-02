@@ -1,4 +1,4 @@
-/obj/machinery/giga_drill
+obj/machinery/giga_drill
 	name = "alien drill"
 	desc = "A giant, alien drill mounted on long treads."
 	icon = 'icons/obj/mining.dmi'
@@ -9,7 +9,7 @@
 	density = 1
 	layer = ABOVE_JUNK_LAYER
 
-/obj/machinery/giga_drill/attack_hand(mob/user, list/params)
+obj/machinery/giga_drill/attack_hand(mob/user, list/params)
 	if(active)
 		active = 0
 		icon_state = "gigadrill"
@@ -19,7 +19,7 @@
 		icon_state = "gigadrill_mov"
 		to_chat(user, "<span class='notice'>You press a button and \the [src] shudders to life.</span>")
 
-/obj/machinery/giga_drill/Bump(atom/A)
+obj/machinery/giga_drill/Bump(atom/A)
 	if(active && !drilling_turf)
 		if(istype(A,/turf/simulated/mineral))
 			var/turf/simulated/mineral/M = A

@@ -4,7 +4,7 @@
 
 var/list/nuke_disks = list()
 
-/datum/game_mode/nuclear
+datum/game_mode/nuclear
 	name = "Mercenary"
 	round_description = "A mercenary strike force is approaching the station!"
 	extended_round_description = "The Company's majority control of phoron in the system has marked the \
@@ -21,18 +21,18 @@ var/list/nuke_disks = list()
 	antag_tags = list(MODE_MERCENARY)
 
 //delete all nuke disks not on a station zlevel
-/datum/game_mode/nuclear/proc/check_nuke_disks()
+datum/game_mode/nuclear/proc/check_nuke_disks()
 	for(var/obj/item/disk/nuclear/N in nuke_disks)
 		if(isNotStationLevel(N.z)) qdel(N)
 
 //checks if L has a nuke disk on their person
-/datum/game_mode/nuclear/proc/check_mob(mob/living/L)
+datum/game_mode/nuclear/proc/check_mob(mob/living/L)
 	for(var/obj/item/disk/nuclear/N in nuke_disks)
 		if(N.storage_depth(L) >= 0)
 			return 1
 	return 0
 
-/datum/game_mode/nuclear/declare_completion()
+datum/game_mode/nuclear/declare_completion()
 	if(config_legacy.objectives_disabled)
 		..()
 		return

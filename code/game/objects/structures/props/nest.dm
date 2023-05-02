@@ -1,4 +1,4 @@
-/obj/structure/prop/nest
+obj/structure/prop/nest
 	name = "diyaab den"
 	desc = "A den of some creature."
 	icon = 'icons/obj/structures.dmi'
@@ -19,7 +19,7 @@
 	var/tally = 0				//The counter referenced against total_creature_max, or just to see how many mobs it has spawned.
 	var/total_creature_max	//If set, it can spawn this many creatures, total, ever.
 
-/obj/structure/prop/nest/Initialize(mapload)
+obj/structure/prop/nest/Initialize(mapload)
 	. = ..()
 	den_mobs = list()
 	START_PROCESSING(SSobj, src)
@@ -29,22 +29,22 @@
 		var/delayshift = rand(delayshift_clamp, -1 * delayshift_clamp)
 		spawn_delay += delayshift
 
-/obj/structure/prop/nest/Destroy()
+obj/structure/prop/nest/Destroy()
 	den_mobs = null
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/structure/prop/nest/attack_hand(mob/user, list/params) // Used to tell the player that this isn't useful for anything.
+obj/structure/prop/nest/attack_hand(mob/user, list/params) // Used to tell the player that this isn't useful for anything.
 	..()
 	if(user && prob(disturbance_spawn_chance))
 		spawn_creature(get_turf(src))
 
-/obj/structure/prop/nest/process(delta_time)
+obj/structure/prop/nest/process(delta_time)
 	update_creatures()
 	if(world.time > last_spawn + spawn_delay)
 		spawn_creature(get_turf(src))
 
-/obj/structure/prop/nest/proc/spawn_creature(var/turf/spawnpoint)
+obj/structure/prop/nest/proc/spawn_creature(var/turf/spawnpoint)
 	update_creatures() //Paranoia.
 	if(total_creature_max && tally >= total_creature_max)
 		return
@@ -58,10 +58,10 @@
 		den_mobs += L
 		tally++
 
-/obj/structure/prop/nest/proc/remove_creature(var/mob/target)
+obj/structure/prop/nest/proc/remove_creature(var/mob/target)
 	den_mobs -= target
 
-/obj/structure/prop/nest/proc/update_creatures()
+obj/structure/prop/nest/proc/update_creatures()
 	for(var/mob/living/L in den_mobs)
 		if(L.stat == 2)
 			remove_creature(L)

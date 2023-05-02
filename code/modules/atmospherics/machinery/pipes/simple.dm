@@ -1,7 +1,7 @@
 //
 // Simple Pipes - Just a tube, maybe bent
 //
-/obj/machinery/atmospherics/pipe/simple
+obj/machinery/atmospherics/pipe/simple
 	icon = 'icons/atmos/pipes.dmi'
 	icon_state = ""
 	var/pipe_icon = "" //what kind of pipe it is and from which dmi is the icon manager getting its icons, "" for simple pipes, "hepipe" for HE pipes, "hejunction" for HE junctions
@@ -26,7 +26,7 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/pipe/simple/Initialize(mapload)
+obj/machinery/atmospherics/pipe/simple/Initialize(mapload)
 	. = ..()
 
 	// Pipe colors and icon states are handled by an image cache - so color and icon should
@@ -34,7 +34,7 @@
 	icon = null
 	alpha = 255
 
-/obj/machinery/atmospherics/pipe/simple/check_pressure(pressure)
+obj/machinery/atmospherics/pipe/simple/check_pressure(pressure)
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	var/pressure_difference = pressure - environment.return_pressure()
@@ -49,7 +49,7 @@
 
 	else return 1
 
-/obj/machinery/atmospherics/pipe/simple/init_dir()
+obj/machinery/atmospherics/pipe/simple/init_dir()
 	switch(dir)
 		if(SOUTH)
 			initialize_directions = SOUTH|NORTH
@@ -68,7 +68,7 @@
 		if(SOUTHWEST)
 			initialize_directions = SOUTH|WEST
 
-/obj/machinery/atmospherics/pipe/simple/proc/burst()
+obj/machinery/atmospherics/pipe/simple/proc/burst()
 	src.visible_message("<span class='danger'>\The [src] bursts!</span>");
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect_system/smoke_spread/smoke = new
@@ -76,13 +76,13 @@
 	smoke.start()
 	qdel(src)
 
-/obj/machinery/atmospherics/pipe/simple/proc/normalize_dir()
+obj/machinery/atmospherics/pipe/simple/proc/normalize_dir()
 	if(dir==3)
 		setDir(1)
 	else if(dir==12)
 		setDir(4)
 
-/obj/machinery/atmospherics/pipe/simple/Destroy()
+obj/machinery/atmospherics/pipe/simple/Destroy()
 	if(node1)
 		node1.disconnect(src)
 		node1 = null
@@ -92,10 +92,10 @@
 
 	. = ..()
 
-/obj/machinery/atmospherics/pipe/simple/pipeline_expansion()
+obj/machinery/atmospherics/pipe/simple/pipeline_expansion()
 	return list(node1, node2)
 
-/obj/machinery/atmospherics/pipe/simple/change_color(var/new_color)
+obj/machinery/atmospherics/pipe/simple/change_color(var/new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
 	if(node1)
@@ -103,7 +103,7 @@
 	if(node2)
 		node2.update_underlays()
 
-/obj/machinery/atmospherics/pipe/simple/update_icon(safety = 0)
+obj/machinery/atmospherics/pipe/simple/update_icon(safety = 0)
 	if(!check_icon_cache())
 		return
 
@@ -116,10 +116,10 @@
 	else
 		add_overlay(icon_manager.get_atmos_icon("pipe", , pipe_color, "[pipe_icon]exposed[node1?1:0][node2?1:0][icon_connect_type]"))
 
-/obj/machinery/atmospherics/pipe/simple/update_underlays()
+obj/machinery/atmospherics/pipe/simple/update_underlays()
 	return
 
-/obj/machinery/atmospherics/pipe/simple/atmos_init()
+obj/machinery/atmospherics/pipe/simple/atmos_init()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -148,7 +148,7 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
 			qdel(parent)
@@ -163,11 +163,11 @@
 
 	return null
 
-/obj/machinery/atmospherics/pipe/simple/visible
+obj/machinery/atmospherics/pipe/simple/visible
 	icon_state = "intact"
 	level = 2
 
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers
+obj/machinery/atmospherics/pipe/simple/visible/scrubbers
 	name = "Scrubbers pipe"
 	desc = "A one meter section of scrubbers pipe"
 	icon_state = "intact-scrubbers"
@@ -177,7 +177,7 @@
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/simple/visible/supply
+obj/machinery/atmospherics/pipe/simple/visible/supply
 	name = "Air supply pipe"
 	desc = "A one meter section of supply pipe"
 	icon_state = "intact-supply"
@@ -187,7 +187,7 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/simple/visible/fuel
+obj/machinery/atmospherics/pipe/simple/visible/fuel
 	name = "Fuel pipe"
 	desc = "A one meter section of fuel pipe"
 	icon_state = "intact-fuel"
@@ -197,7 +197,7 @@
 	icon_connect_type = "-fuel"
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/simple/visible/aux
+obj/machinery/atmospherics/pipe/simple/visible/aux
 	name = "Aux pipe"
 	desc = "A one meter section of aux pipe"
 	icon_state = "intact-aux"
@@ -207,32 +207,32 @@
 	icon_connect_type = "-aux"
 	color = PIPE_COLOR_CYAN
 
-/obj/machinery/atmospherics/pipe/simple/visible/yellow
+obj/machinery/atmospherics/pipe/simple/visible/yellow
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/simple/visible/cyan
+obj/machinery/atmospherics/pipe/simple/visible/cyan
 	color = PIPE_COLOR_CYAN
 
-/obj/machinery/atmospherics/pipe/simple/visible/green
+obj/machinery/atmospherics/pipe/simple/visible/green
 	color = PIPE_COLOR_GREEN
 
-/obj/machinery/atmospherics/pipe/simple/visible/black
+obj/machinery/atmospherics/pipe/simple/visible/black
 	color = PIPE_COLOR_BLACK
 
-/obj/machinery/atmospherics/pipe/simple/visible/red
+obj/machinery/atmospherics/pipe/simple/visible/red
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/simple/visible/blue
+obj/machinery/atmospherics/pipe/simple/visible/blue
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/simple/visible/purple
+obj/machinery/atmospherics/pipe/simple/visible/purple
 	color = PIPE_COLOR_PURPLE
 
-/obj/machinery/atmospherics/pipe/simple/hidden
+obj/machinery/atmospherics/pipe/simple/hidden
 	icon_state = "intact"
 	level = 1
 
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers
+obj/machinery/atmospherics/pipe/simple/hidden/scrubbers
 	name = "Scrubbers pipe"
 	icon_state = "intact-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
@@ -241,7 +241,7 @@
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/simple/hidden/supply
+obj/machinery/atmospherics/pipe/simple/hidden/supply
 	name = "Air supply pipe"
 	icon_state = "intact-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
@@ -250,7 +250,7 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/simple/hidden/fuel
+obj/machinery/atmospherics/pipe/simple/hidden/fuel
 	name = "Fuel pipe"
 	icon_state = "intact-fuel"
 	connect_types = CONNECT_TYPE_FUEL
@@ -259,7 +259,7 @@
 	icon_connect_type = "-fuel"
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/simple/hidden/aux
+obj/machinery/atmospherics/pipe/simple/hidden/aux
 	name = "Aux pipe"
 	icon_state = "intact-aux"
 	connect_types = CONNECT_TYPE_AUX
@@ -268,28 +268,28 @@
 	icon_connect_type = "-aux"
 	color = PIPE_COLOR_CYAN
 
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow
+obj/machinery/atmospherics/pipe/simple/hidden/yellow
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan
+obj/machinery/atmospherics/pipe/simple/hidden/cyan
 	color = PIPE_COLOR_CYAN
 
-/obj/machinery/atmospherics/pipe/simple/hidden/green
+obj/machinery/atmospherics/pipe/simple/hidden/green
 	color = PIPE_COLOR_GREEN
 
-/obj/machinery/atmospherics/pipe/simple/hidden/black
+obj/machinery/atmospherics/pipe/simple/hidden/black
 	color = PIPE_COLOR_BLACK
 
-/obj/machinery/atmospherics/pipe/simple/hidden/red
+obj/machinery/atmospherics/pipe/simple/hidden/red
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/simple/hidden/blue
+obj/machinery/atmospherics/pipe/simple/hidden/blue
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/simple/hidden/purple
+obj/machinery/atmospherics/pipe/simple/hidden/purple
 	color = PIPE_COLOR_PURPLE
 
-/obj/machinery/atmospherics/pipe/simple/insulated
+obj/machinery/atmospherics/pipe/simple/insulated
 	icon = 'icons/obj/atmospherics/red_pipe.dmi'
 	icon_state = "intact"
 

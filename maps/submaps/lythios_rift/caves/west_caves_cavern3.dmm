@@ -1,32 +1,32 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "c" = (
-/turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
-/area/rift/surfacebase/outside/west_caves)
+turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
+area/rift/surfacebase/outside/west_caves)
 "l" = (
-/obj/structure/largecrate,
-/obj/random/triumph,
-/turf/simulated/mineral/floor/ignore_cavegen/lythios43c,
-/area/rift/surfacebase/outside/west_caves)
+obj/structure/largecrate,
+obj/random/triumph,
+turf/simulated/mineral/floor/ignore_cavegen/lythios43c,
+area/rift/surfacebase/outside/west_caves)
 "o" = (
-/turf/simulated/mineral/floor/ignore_cavegen/lythios43c,
-/area/rift/surfacebase/outside/west_caves)
+turf/simulated/mineral/floor/ignore_cavegen/lythios43c,
+area/rift/surfacebase/outside/west_caves)
 "p" = (
-/obj/random/outcrop,
-/turf/simulated/mineral/floor/ignore_cavegen/lythios43c,
-/area/rift/surfacebase/outside/west_caves)
+obj/random/outcrop,
+turf/simulated/mineral/floor/ignore_cavegen/lythios43c,
+area/rift/surfacebase/outside/west_caves)
 "w" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
-/area/rift/surfacebase/outside/west_caves)
+obj/machinery/crystal/ice,
+turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
+area/rift/surfacebase/outside/west_caves)
 "P" = (
-/turf/simulated/mineral/icerock/ignore_cavegen/lythios43c,
-/area/rift/surfacebase/outside/west_caves)
+turf/simulated/mineral/icerock/ignore_cavegen/lythios43c,
+area/rift/surfacebase/outside/west_caves)
 "Z" = (
-/turf/simulated/mineral/ignore_cavegen/lythios43c,
-/area/rift/surfacebase/outside/west_caves)
+turf/simulated/mineral/ignore_cavegen/lythios43c,
+area/rift/surfacebase/outside/west_caves)
 
 (1,1,1) = {"
 c

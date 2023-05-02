@@ -1,4 +1,4 @@
-/obj/effect/baseturf_helper //Set the baseturfs of every turf in the /area/ it is placed.
+obj/effect/baseturf_helper //Set the baseturfs of every turf in the /area/ it is placed.
 	name = "baseturf editor"
 	icon = 'icons/mapping/helpers/mapping_helpers.dmi'
 	icon_state = ""
@@ -8,11 +8,11 @@
 
 	layer = ABOVE_WINDOW_LAYER
 
-/obj/effect/baseturf_helper/Initialize(mapload)
+obj/effect/baseturf_helper/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/baseturf_helper/LateInitialize()
+obj/effect/baseturf_helper/LateInitialize()
 	if(!baseturf_to_replace)
 		baseturf_to_replace = typecacheof(list(/turf/space, /turf/baseturf_bottom))
 	else if(!length(baseturf_to_replace))
@@ -29,7 +29,7 @@
 
 	qdel(src)
 
-/obj/effect/baseturf_helper/proc/replace_baseturf(turf/thing)
+obj/effect/baseturf_helper/proc/replace_baseturf(turf/thing)
 	var/list/baseturf_cache = thing.baseturfs
 	// todo: this is janky as fuck and at the very least need comments
 	if(length(baseturf_cache))
@@ -45,7 +45,7 @@
 	else
 		thing.PlaceOnBottom(null, baseturf)
 
-/obj/effect/baseturf_helper/space
+obj/effect/baseturf_helper/space
 	name = "space baseturf editor"
 	baseturf = /turf/space
 
@@ -80,4 +80,3 @@
 // /obj/effect/baseturf_helper/lava_land/surface
 // 	name = "lavaland baseturf editor"
 // 	baseturf = /turf/open/lava/smooth/lava_land_surface
-

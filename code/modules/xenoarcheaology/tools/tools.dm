@@ -1,4 +1,4 @@
-/obj/item/measuring_tape
+obj/item/measuring_tape
 	name = "measuring tape"
 	desc = "A coiled metallic tape used to check dimensions and lengths."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -7,7 +7,7 @@
 	matter = list(MAT_STEEL = 100)
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/storage/bag/fossils
+obj/item/storage/bag/fossils
 	name = "Fossil Satchel"
 	desc = "Transports delicate fossils in suspension so they don't break during transit."
 	icon = 'icons/obj/mining.dmi'
@@ -19,18 +19,18 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/fossil)
 
-/obj/item/storage/box/samplebags
+obj/item/storage/box/samplebags
 	name = "sample bag box"
 	desc = "A box claiming to contain sample bags."
 
-/obj/item/storage/box/samplebags/PopulateContents()
+obj/item/storage/box/samplebags/PopulateContents()
 	. = ..()
 	for(var/i = 1 to 7)
 		var/obj/item/evidencebag/S = new(src)
 		S.name = "sample bag"
 		S.desc = "a bag for holding research samples."
 
-/obj/item/ano_scanner
+obj/item/ano_scanner
 	name = "Alden-Saraspova counter"
 	desc = "Aids in triangulation of exotic particles."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -44,13 +44,13 @@
 	var/last_scan_time = 0
 	var/scan_delay = 25
 
-/obj/item/ano_scanner/attack_self(mob/user)
+obj/item/ano_scanner/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	interact(user)
 
-/obj/item/ano_scanner/interact(var/mob/living/user)
+obj/item/ano_scanner/interact(var/mob/living/user)
 	if(world.time - last_scan_time >= scan_delay)
 		last_scan_time = world.time
 
@@ -89,9 +89,9 @@
 	else
 		to_chat(user, "Scanning array is recharging.")
 
-/obj/item/ano_scanner/integrated
+obj/item/ano_scanner/integrated
 
-/obj/item/depth_scanner
+obj/item/depth_scanner
 	name = "depth analysis scanner"
 	desc = "Used to check spatial depth and density of rock outcroppings."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -104,7 +104,7 @@
 	var/list/positive_locations = list()
 	var/datum/depth_scan/current
 
-/datum/depth_scan
+datum/depth_scan
 	var/time = ""
 	var/coords = ""
 	var/depth = ""
@@ -113,7 +113,7 @@
 	var/dissonance_spread = 1
 	var/material = "unknown"
 
-/obj/item/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
+obj/item/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
 	user.visible_message("<span class='notice'>\The [user] scans \the [A], the air around them humming gently.</span>")
 
 	if(istype(A, /turf/simulated/mineral))
@@ -156,22 +156,22 @@
 
 			to_chat(user, "<span class='notice'>[icon2html(thing = src, target = world)] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
 
-/obj/item/depth_scanner/attack_self(mob/user)
+obj/item/depth_scanner/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/obj/item/depth_scanner/ui_state(mob/user, datum/tgui_module/module)
+obj/item/depth_scanner/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.deep_inventory_state
 
-/obj/item/depth_scanner/ui_interact(mob/user, datum/tgui/ui)
+obj/item/depth_scanner/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchDepthScanner", name)
 		ui.open()
 
-/obj/item/depth_scanner/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/depth_scanner/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["current"] = list()
@@ -202,7 +202,7 @@
 
 	return data
 
-/obj/item/depth_scanner/ui_act(action, list/params, datum/tgui/ui)
+obj/item/depth_scanner/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -225,7 +225,7 @@
 				QDEL_NULL(current)
 			return TRUE
 
-/obj/item/beacon_locator
+obj/item/beacon_locator
 	name = "locater device"
 	desc = "Used to scan and locate signals on a particular frequency."
 	icon = 'icons/obj/device.dmi'
@@ -237,15 +237,15 @@
 	var/scan_ticks = 0
 	var/obj/item/radio/target_radio
 
-/obj/item/beacon_locator/Initialize(mapload)
+obj/item/beacon_locator/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/beacon_locator/Destroy()
+obj/item/beacon_locator/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/beacon_locator/process(delta_time)
+obj/item/beacon_locator/process(delta_time)
 	if(target_radio)
 		setDir(get_dir(src,target_radio))
 		switch(get_dist(src,target_radio))
@@ -283,22 +283,22 @@
 		else
 			icon_state = "pinoff"
 
-/obj/item/beacon_locator/attack_self(mob/user)
+obj/item/beacon_locator/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	return ui_interact(user)
 
-/obj/item/beacon_locator/ui_state(mob/user, datum/tgui_module/module)
+obj/item/beacon_locator/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/beacon_locator/ui_interact(mob/user, datum/tgui/ui)
+obj/item/beacon_locator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BeaconLocator", name)
 		ui.open()
 
-/obj/item/beacon_locator/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/beacon_locator/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["scan_ticks"] = scan_ticks
@@ -312,7 +312,7 @@
 
 	return data
 
-/obj/item/beacon_locator/ui_act(action, list/params, datum/tgui/ui)
+obj/item/beacon_locator/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -327,7 +327,7 @@
 			frequency = new_frequency
 			return TRUE
 
-/obj/item/xenoarch_multi_tool
+obj/item/xenoarch_multi_tool
 	name = "xenoarcheology multitool"
 	desc = "Has the features of the Alden-Saraspova counter, a measuring tape, and a depth analysis scanner all in one!"
 	icon_state = "ano_scanner2"
@@ -341,18 +341,18 @@
 	var/obj/item/ano_scanner/anomaly_scanner = null
 	var/obj/item/depth_scanner/depth_scanner = null
 
-/obj/item/xenoarch_multi_tool/Initialize(mapload)
+obj/item/xenoarch_multi_tool/Initialize(mapload)
 	. = ..()
 	anomaly_scanner = new/obj/item/ano_scanner/integrated(src)
 	depth_scanner = new/obj/item/depth_scanner(src)
 
-/obj/item/xenoarch_multi_tool/attack_self(mob/user)
+obj/item/xenoarch_multi_tool/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	depth_scanner.interact(usr)
 
-/obj/item/xenoarch_multi_tool/verb/swap_settings()
+obj/item/xenoarch_multi_tool/verb/swap_settings()
 	set name = "Swap Functionality"
 	set desc = "Swap between the scanning and measuring functionality.."
 	if(!(src in usr))
@@ -363,7 +363,7 @@
 	else
 		to_chat(usr, "The device will now measure depth dug.")
 
-/obj/item/xenoarch_multi_tool/verb/scan_for_anomalies()
+obj/item/xenoarch_multi_tool/verb/scan_for_anomalies()
 	set name = "Scan for Anomalies"
 	set desc = "Scan for artifacts and anomalies within your vicinity."
 	if(!(src in usr))

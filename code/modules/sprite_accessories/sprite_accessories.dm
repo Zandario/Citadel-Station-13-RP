@@ -20,7 +20,7 @@
 // TODO: actual better way to do these
 // TODO: actual better way to do "can we use this" checks because one whitelist list and a var is fucking horrible to maintain what the fuck
 
-/datum/sprite_accessory
+datum/sprite_accessory
 
 	/// The icon file the accessory is located in.
 	var/icon

@@ -5,7 +5,7 @@
  * Please exercise caution when editing the subsystem and the root of /datum/character_data.
  * Use and abuse subtypes to do what you need to do for persistence features.
  */
-/datum/controller/subsystem/persistence
+datum/controller/subsystem/persistence
 	/// loaded characters - "[id]" = /datum/character_data instance
 	var/list/character_cache = list()
 
@@ -17,7 +17,7 @@
  * * char - character datum
  * * persisting - update persistence info if mob is given
  */
-/datum/controller/subsystem/persistence/proc/save_character(datum/character_data/char, mob/persisting)
+datum/controller/subsystem/persistence/proc/save_character(datum/character_data/char, mob/persisting)
 	// pause admin proccall guard
 	var/__oldusr = usr
 	usr = null
@@ -72,7 +72,7 @@
  * * id - character id
  * * force - reload from sql if it's in cache
  */
-/datum/controller/subsystem/persistence/proc/fetch_character(id, force = FALSE)
+datum/controller/subsystem/persistence/proc/fetch_character(id, force = FALSE)
 	ASSERT(isnum(id))
 
 	// pause admin proccall guard
@@ -132,7 +132,7 @@
  * * fetch - fetch the character datums in the process
  * * force - forcefully fetch the character even if it's cached
  */
-/datum/controller/subsystem/persistence/proc/query_characters(playerid, fetch = FALSE, force = FALSE)
+datum/controller/subsystem/persistence/proc/query_characters(playerid, fetch = FALSE, force = FALSE)
 	ASSERT(isnum(playerid))
 
 	// pause admin proccall guard
@@ -166,7 +166,7 @@
  * @params
  * * id - character id
  */
-/datum/controller/subsystem/persistence/proc/character_played(id)
+datum/controller/subsystem/persistence/proc/character_played(id)
 	ASSERT(isnum(id))
 
 	// pause admin proccall guard
@@ -188,12 +188,12 @@
 /**
  * hardcoded switch: what character type string corrosponds to what /datum/character_data
  */
-/datum/controller/subsystem/persistence/proc/character_type_to_datum_path(what)
+datum/controller/subsystem/persistence/proc/character_type_to_datum_path(what)
 	switch(what)
 		if(OBJECT_PERSISTENCE_CHARACTER_TYPE_HUMAN)
 			return /datum/character_data/human
 
-/datum/character_data
+datum/character_data
 	abstract_type = /datum/character_data
 	/// our character id, if we're already in the sql database
 	var/character_id
@@ -215,7 +215,7 @@
  *
  * this *is* allowed to touch the mob's /datum/mind!
  */
-/datum/character_data/proc/read_from(mob/M)
+datum/character_data/proc/read_from(mob/M)
 	return
 
 /**
@@ -223,7 +223,7 @@
  *
  * this *is* allowed to touch the mob's /datum/mind!
  */
-/datum/character_data/proc/write_to(mob/M)
+datum/character_data/proc/write_to(mob/M)
 	return
 
 /**
@@ -231,22 +231,22 @@
  *
  * @return list of k-v entries
  */
-/datum/character_data/proc/make_persist_data(mob/M)
+datum/character_data/proc/make_persist_data(mob/M)
 	return list()
 
 /**
  * loads fields from persisting data
  */
-/datum/character_data/proc/read_persist_data(list/data)
+datum/character_data/proc/read_persist_data(list/data)
 	return
 
 /**
  * changes the name of this character
  * only ever change names this way, this'll handle the necessary updates, within the subsystem and on /datum/player's.
  */
-/datum/character_data/proc/immediate_rename(new_name)
+datum/character_data/proc/immediate_rename(new_name)
 	canonical_name = ckey(new_name)
 	SSpersistence.save_character(src)
 
-/datum/character_data/human
+datum/character_data/human
 	character_type = OBJECT_PERSISTENCE_CHARACTER_TYPE_HUMAN

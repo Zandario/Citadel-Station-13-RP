@@ -1,4 +1,4 @@
-/obj/spawner/window
+obj/spawner/window
 	icon = 'icons/mapping/spawners/windows.dmi'
 	icon_state = "window_grille_pane"
 	late = TRUE
@@ -16,18 +16,18 @@
 	/// spawn firedoors? fulltile and non-hidden only for now
 	var/firelocks = FALSE
 
-/obj/spawner/window/Initialize(mapload)
+obj/spawner/window/Initialize(mapload)
 	if(!full_window)
 		find_dirs()
 	return ..()
 
-/obj/spawner/window/proc/find_dirs()
+obj/spawner/window/proc/find_dirs()
 	for(var/d in GLOB.cardinal)
 		var/obj/spawner/window/WS = locate() in get_step(src, d)
 		if(WS)
 			found_dirs |= d
 
-/obj/spawner/window/Spawn()
+obj/spawner/window/Spawn()
 	if(spawn_grille)
 		new /obj/structure/grille(loc)
 	if(full_window)
@@ -43,64 +43,64 @@
 	if(firelocks)
 		new /obj/machinery/door/firedoor(loc)
 
-/obj/spawner/window/firelocks
+obj/spawner/window/firelocks
 	icon_state = "window_grille_pane_fire"
 
-/obj/spawner/window/full
+obj/spawner/window/full
 	full_window = TRUE
 	icon_state = "window_grille_full"
 
-/obj/spawner/window/full/firelocks
+obj/spawner/window/full/firelocks
 	icon_state = "window_grille_full_fire"
 	firelocks = TRUE
 
-/obj/spawner/window/reinforced
+obj/spawner/window/reinforced
 	icon_state = "rwindow_grille_pane"
 	window_pane_path = /obj/structure/window/reinforced
 	window_full_path = /obj/structure/window/reinforced/full
 
-/obj/spawner/window/reinforced/firelocks
+obj/spawner/window/reinforced/firelocks
 	icon_state = "rwindow_grille_pane_fire"
 	firelocks = TRUE
 
-/obj/spawner/window/reinforced/full
+obj/spawner/window/reinforced/full
 	icon_state = "rwindow_grille_full"
 	full_window = TRUE
 
-/obj/spawner/window/reinforced/full/firelocks
+obj/spawner/window/reinforced/full/firelocks
 	icon_state = "rwindow_grille_full_fire"
 	firelocks = TRUE
 
-/obj/spawner/window/borosillicate
+obj/spawner/window/borosillicate
 	icon_state = "phoron_grille_pane"
 	window_pane_path = /obj/structure/window/phoronbasic
 	window_full_path = /obj/structure/window/phoronbasic/full
 
-/obj/spawner/window/borosillicate/firelocks
+obj/spawner/window/borosillicate/firelocks
 	icon_state = "phoron_grille_pane_fire"
 	firelocks = TRUE
 
-/obj/spawner/window/borosillicate/full
+obj/spawner/window/borosillicate/full
 	icon_state = "phoron_grille_full"
 	full_window = TRUE
 
-/obj/spawner/window/borosillicate/full/firelocks
+obj/spawner/window/borosillicate/full/firelocks
 	icon_state = "phoron_grille_full"
 	firelocks = TRUE
 
-/obj/spawner/window/borosillicate/reinforced
+obj/spawner/window/borosillicate/reinforced
 	icon_state = "rphoron_grille_pane"
 	window_pane_path = /obj/structure/window/phoronreinforced
 	window_full_path = /obj/structure/window/phoronreinforced/full
 
-/obj/spawner/window/borosillicate/reinforced/firelocks
+obj/spawner/window/borosillicate/reinforced/firelocks
 	icon_state = "rphoron_grille_pane_fire"
 	firelocks = TRUE
 
-/obj/spawner/window/borosillicate/reinforced/full
+obj/spawner/window/borosillicate/reinforced/full
 	icon_state = "rphoron_grille_full"
 	full_window = TRUE
 
-/obj/spawner/window/borosillicate/reinforced/full/firelocks
+obj/spawner/window/borosillicate/reinforced/full/firelocks
 	icon_state = "rphoron_grille_full_fire"
 	firelocks = TRUE

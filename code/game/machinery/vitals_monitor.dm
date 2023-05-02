@@ -1,4 +1,4 @@
-/obj/item/circuitboard/machine/vitals_monitor
+obj/item/circuitboard/machine/vitals_monitor
 	name = "circuit board (vitals monitor)"
 	build_path = /obj/machinery/vitals_monitor
 	board_type = new /datum/frame/frame_types/machine
@@ -8,7 +8,7 @@
 		/obj/item/cell/high = 1
 	)
 
-/obj/machinery/vitals_monitor
+obj/machinery/vitals_monitor
 	name = "vitals monitor"
 	desc = "A bulky yet mobile machine, showing some odd graphs."
 	icon = 'icons/obj/heartmonitor.dmi'
@@ -21,11 +21,11 @@
 	var/mob/living/carbon/human/victim
 	var/beep = TRUE
 
-/obj/machinery/vitals_monitor/Destroy()
+obj/machinery/vitals_monitor/Destroy()
 	victim = null
 	. = ..()
 
-/obj/machinery/vitals_monitor/examine(mob/user)
+obj/machinery/vitals_monitor/examine(mob/user)
 	. = ..()
 	if(victim)
 		if(machine_stat & NOPOWER)
@@ -60,7 +60,7 @@
 		. += "<span class='notice'>Brain activity: [brain_activity]</span>"
 		. += "<span class='notice'>Breathing: [breathing]</span>"
 
-/obj/machinery/vitals_monitor/process()
+obj/machinery/vitals_monitor/process()
 	if(QDELETED(victim))
 		victim = null
 		update_icon()
@@ -74,7 +74,7 @@
 	if(beep && victim && victim.pulse)
 		playsound(src, 'sound/machines/quiet_beep.ogg')
 
-/obj/machinery/vitals_monitor/OnMouseDropLegacy(over_object, src_location, over_location)
+obj/machinery/vitals_monitor/OnMouseDropLegacy(over_object, src_location, over_location)
 	if(!CanMouseDrop(over_object))
 		return
 	if(victim)
@@ -85,7 +85,7 @@
 		update_use_power(USE_POWER_ACTIVE)
 		visible_message("<span class='notice'>\The [src] is now showing data for [victim].</span>")
 
-/obj/machinery/vitals_monitor/update_icon()
+obj/machinery/vitals_monitor/update_icon()
 	cut_overlays()
 	if(machine_stat & NOPOWER)
 		return
@@ -131,7 +131,7 @@
 	else
 		add_overlay("breathing_warning")
 
-/obj/machinery/vitals_monitor/verb/toggle_beep()
+obj/machinery/vitals_monitor/verb/toggle_beep()
 	set name = "Toggle Monitor Beeping"
 	set category = "Object"
 	set src in view(1)

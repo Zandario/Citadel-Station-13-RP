@@ -1,10 +1,10 @@
 //todo
-/datum/artifact_effect/cellcharge
+datum/artifact_effect/cellcharge
 	name = "cell charge"
 	effect_type = EFFECT_ELECTRO
 	var/last_message
 
-/datum/artifact_effect/cellcharge/DoEffectTouch(var/mob/user)
+datum/artifact_effect/cellcharge/DoEffectTouch(var/mob/user)
 	if(user)
 		if(isrobot(user))
 			var/mob/living/silicon/robot/R = user
@@ -13,7 +13,7 @@
 				to_chat(R, "<font color=#4F49AF>SYSTEM ALERT: Large energy boost detected!</font>")
 			return 1
 
-/datum/artifact_effect/cellcharge/DoEffectAura()
+datum/artifact_effect/cellcharge/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)
@@ -41,7 +41,7 @@
 					last_message = world.time
 		return 1
 
-/datum/artifact_effect/cellcharge/DoEffectPulse()
+datum/artifact_effect/cellcharge/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)

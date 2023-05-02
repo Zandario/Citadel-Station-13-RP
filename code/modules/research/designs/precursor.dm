@@ -1,17 +1,17 @@
 //Anomaly
 
-/datum/design/item/anomaly/AssembleDesignName()
+datum/design/item/anomaly/AssembleDesignName()
 	..()
 	name = "Anomalous prototype ([item_name])"
 
-/datum/design/item/anomaly/AssembleDesignDesc()
+datum/design/item/anomaly/AssembleDesignDesc()
 	if(!desc)
 		if(build_path)
 			var/obj/item/I = build_path
 			desc = initial(I.desc)
 		..()
 
-/datum/design/item/anomaly/camotrap
+datum/design/item/anomaly/camotrap
 	name = "Chameleon Trap"
 	desc = "A self-miraging mechanical trap, capable of producing short bursts of electric current when triggered."
 	id = "hunt_trap"
@@ -22,18 +22,18 @@
 
 // Precursor
 
-/datum/design/item/precursor/AssembleDesignName()
+datum/design/item/precursor/AssembleDesignName()
 	..()
 	name = "Alien prototype ([item_name])"
 
-/datum/design/item/precursor/AssembleDesignDesc()
+datum/design/item/precursor/AssembleDesignDesc()
 	if(!desc)
 		if(build_path)
 			var/obj/item/I = build_path
 			desc = initial(I.desc)
 		..()
 
-/datum/design/item/precursor/crowbar
+datum/design/item/precursor/crowbar
 	name = "Hybrid Crowbar"
 	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
 	id = "hybridcrowbar"
@@ -42,7 +42,7 @@
 	build_path = /obj/item/tool/crowbar/hybrid
 	sort_string = "ZBAAA"
 
-/datum/design/item/precursor/wrench
+datum/design/item/precursor/wrench
 	name = "Hybrid Wrench"
 	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
 	id = "hybridwrench"
@@ -51,7 +51,7 @@
 	build_path = /obj/item/tool/wrench/hybrid
 	sort_string = "ZBAAB"
 
-/datum/design/item/precursor/screwdriver
+datum/design/item/precursor/screwdriver
 	name = "Hybrid Screwdriver"
 	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
 	id = "hybridscrewdriver"
@@ -60,7 +60,7 @@
 	build_path = /obj/item/tool/screwdriver/hybrid
 	sort_string = "ZBAAC"
 
-/datum/design/item/precursor/wirecutters
+datum/design/item/precursor/wirecutters
 	name = "Hybrid Wirecutters"
 	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
 	id = "hybridwirecutters"
@@ -69,7 +69,7 @@
 	build_path = /obj/item/tool/wirecutters/hybrid
 	sort_string = "ZBAAD"
 
-/datum/design/item/precursor/welder
+datum/design/item/precursor/welder
 	name = "Hybrid Welding Tool"
 	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
 	id = "hybridwelder"
@@ -79,7 +79,7 @@
 	sort_string = "ZBAAE"
 
 
-/datum/design/item/precursor/janusmodule
+datum/design/item/precursor/janusmodule
 	name = "Blackbox Circuit Datamass"
 	desc = "A design that seems to be in a constantly shifting superposition."
 	id = "janus_module"

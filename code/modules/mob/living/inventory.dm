@@ -1,29 +1,29 @@
-/mob/living/init_inventory()
+mob/living/init_inventory()
 	inventory = new(src)
 
-/mob/living/get_active_held_item()
+mob/living/get_active_held_item()
 	RETURN_TYPE(/obj/item)
 	return hand? l_hand : r_hand
 
-/mob/living/get_inactive_held_item()
+mob/living/get_inactive_held_item()
 	RETURN_TYPE(/obj/item)
 	return hand? r_hand : l_hand
 
-/mob/living/get_left_held_item()
+mob/living/get_left_held_item()
 	RETURN_TYPE(/obj/item)
 	return l_hand
 
-/mob/living/get_right_held_item()
+mob/living/get_right_held_item()
 	RETURN_TYPE(/obj/item)
 	return r_hand
 
-/mob/living/get_held_index(obj/item/I)
+mob/living/get_held_index(obj/item/I)
 	if(l_hand == I)
 		return 1
 	else if(r_hand == I)
 		return 2
 
-/mob/living/get_held_items()
+mob/living/get_held_items()
 	RETURN_TYPE(/list)
 	. = list()
 	if(l_hand)
@@ -31,16 +31,16 @@
 	if(r_hand)
 		. += r_hand
 
-/mob/living/hands_full()
+mob/living/hands_full()
 	return l_hand && r_hand
 
-/mob/living/put_in_active_hand(obj/item/I, flags)
+mob/living/put_in_active_hand(obj/item/I, flags)
 	return hand? put_in_left_hand(I, flags) : put_in_right_hand(I, flags)
 
-/mob/living/put_in_inactive_hand(obj/item/I, flags)
+mob/living/put_in_inactive_hand(obj/item/I, flags)
 	return hand? put_in_right_hand(I, flags) : put_in_left_hand(I, flags)
 
-/mob/living/get_held_item_of_index(index)
+mob/living/get_held_item_of_index(index)
 	RETURN_TYPE(/obj/item)
 	switch(index)
 		if(1)
@@ -48,10 +48,10 @@
 		if(2)
 			return r_hand
 
-/mob/living/get_number_of_hands()
+mob/living/get_number_of_hands()
 	return 2
 
-/mob/living/put_in_left_hand(obj/item/I, flags)
+mob/living/put_in_left_hand(obj/item/I, flags)
 	if(!I)
 		return TRUE
 	if(!has_hands)
@@ -72,7 +72,7 @@
 	update_inv_l_hand()
 	return TRUE
 
-/mob/living/put_in_right_hand(obj/item/I, flags)
+mob/living/put_in_right_hand(obj/item/I, flags)
 	if(!I)
 		return TRUE
 	if(!has_hands)
@@ -93,7 +93,7 @@
 	update_inv_r_hand()
 	return TRUE
 
-/mob/living/proc/_common_handle_put_in_hand(obj/item/I, flags)
+mob/living/proc/_common_handle_put_in_hand(obj/item/I, flags)
 	// let's not do that if it's deleted!
 	if(I && QDELETED(I))
 		to_chat(src, SPAN_DANGER("A deleted item [I] ([REF(I)]) was sent into inventory hand procs with flags [flags]. Report this line to coders immediately."))
@@ -117,7 +117,7 @@
 	I.equipped(src, SLOT_ID_HANDS, flags)
 	return TRUE
 
-/mob/living/put_in_hand(obj/item/I, index, flags)
+mob/living/put_in_hand(obj/item/I, index, flags)
 	// TODO: WHEN MULTIHAND IS DONE, BESURE TO MAKE THIS HAVE THE LOGIC I PUT INI PUT IN L/R HANDS!!
 	switch(index)
 		if(1)
@@ -125,7 +125,7 @@
 		if(2)
 			return put_in_right_hand(I, flags)
 
-/mob/living/_unequip_held(obj/item/I, flags)
+mob/living/_unequip_held(obj/item/I, flags)
 	if(l_hand == I)
 		l_hand = null
 	else if(r_hand == I)
@@ -133,14 +133,14 @@
 	if(!(flags & INV_OP_NO_UPDATE_ICONS))
 		update_inv_hands()
 
-/mob/living/_slot_by_item(obj/item/I)
+mob/living/_slot_by_item(obj/item/I)
 	if(back == I)
 		return SLOT_ID_BACK
 	else if(wear_mask == I)
 		return SLOT_ID_MASK
 	return ..()
 
-/mob/living/_item_by_slot(slot)
+mob/living/_item_by_slot(slot)
 	switch(slot)
 		if(SLOT_ID_MASK)
 			return wear_mask
@@ -149,7 +149,7 @@
 		else
 			return ..()
 
-/mob/living/_set_inv_slot(slot, obj/item/I, flags)
+mob/living/_set_inv_slot(slot, obj/item/I, flags)
 	switch(slot)
 		if(SLOT_ID_BACK)
 			back = I
@@ -172,20 +172,20 @@
 		else
 			return ..()
 
-/mob/living/_get_all_slots(include_restraints)
+mob/living/_get_all_slots(include_restraints)
 	. = ..()
 	if(back)
 		. += back._inv_return_attached()
 	if(wear_mask)
 		. += wear_mask._inv_return_attached()
 
-/mob/living/_get_inventory_slot_ids()
+mob/living/_get_inventory_slot_ids()
 	return ..() + list(
 		SLOT_ID_BACK,
 		SLOT_ID_MASK
 	)
 
-/mob/living/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
+mob/living/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
 	if ((!( istype(l_hand, /obj/item/grab) ) && !( istype(r_hand, /obj/item/grab) )))
 		if (!( L ))
 			return null
@@ -219,7 +219,7 @@
 				return L.container
 	return
 
-/mob/living/mode()
+mob/living/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
 	set src = usr
@@ -234,7 +234,7 @@
 
 	get_active_held_item()?.attack_self(src)
 
-/mob/living/abiotic(full_body)
+mob/living/abiotic(full_body)
 	if(full_body)
 		if(item_considered_abiotic(wear_mask))
 			return TRUE
@@ -247,11 +247,11 @@
 
 	return FALSE
 
-/mob/living/get_number_of_hands()
+mob/living/get_number_of_hands()
 	return has_hands? 2 : 0
 
-/mob/living/has_hands()
+mob/living/has_hands()
 	return has_hands
 
-/mob/living/has_free_hand()
+mob/living/has_free_hand()
 	return !l_hand || !r_hand

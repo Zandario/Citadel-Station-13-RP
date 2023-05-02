@@ -1,4 +1,4 @@
-/obj/item/robot_module/robot/quad/stray
+obj/item/robot_module/robot/quad/stray
 	name = "stray robot module"
 	hide_on_manifest = 1
 	sprites = list(
@@ -6,7 +6,7 @@
 	)
 	can_shred = TRUE
 
-/obj/item/robot_module/robot/quad/stray/get_modules()
+obj/item/robot_module/robot/quad/stray/get_modules()
 	. = ..()
 	. |= list(
 		// Sec
@@ -28,7 +28,7 @@
 		/obj/item/multitool
 	)
 
-/obj/item/robot_module/robot/quad/stray/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/stray/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	// Boof
 	src.emag 	 = new /obj/item/gun/energy/retro/mounted(src)

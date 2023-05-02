@@ -1,4 +1,4 @@
-/obj/machinery/power/tesla_coil
+obj/machinery/power/tesla_coil
 	name = "tesla coil"
 	desc = "For the union!"
 	icon = 'icons/obj/tesla_engine/tesla_coil.dmi'
@@ -18,18 +18,18 @@
 	var/last_zap = 0
 	var/datum/wires/tesla_coil/wires = null
 
-/obj/machinery/power/tesla_coil/pre_mapped
+obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/Initialize(mapload)
+obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
 	wires = new(src)
 
-/obj/machinery/power/tesla_coil/Destroy()
+obj/machinery/power/tesla_coil/Destroy()
 	QDEL_NULL(wires)
 	return ..()
 
-/obj/machinery/power/tesla_coil/RefreshParts()
+obj/machinery/power/tesla_coil/RefreshParts()
 	var/power_multiplier = 0
 	zap_cooldown = 100
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
@@ -37,13 +37,13 @@
 		zap_cooldown -= (C.rating * 20)
 	input_power_multiplier = power_multiplier
 
-/obj/machinery/power/tesla_coil/update_icon()
+obj/machinery/power/tesla_coil/update_icon()
 	if(panel_open)
 		icon_state = "coil_open[anchored]"
 	else
 		icon_state = "coil[anchored]"
 
-/obj/machinery/power/tesla_coil/attackby(obj/item/W, mob/user)
+obj/machinery/power/tesla_coil/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 
 	//if(default_deconstruction_screwdriver(user, "coil_open[anchored]", "coil[anchored]", W))
@@ -59,12 +59,12 @@
 		return wires.Interact(user)
 	return ..()
 
-/obj/machinery/power/tesla_coil/attack_hand(mob/user, list/params)
+obj/machinery/power/tesla_coil/attack_hand(mob/user, list/params)
 	if(user.a_intent == INTENT_GRAB && user_buckle_mob(user.pulling, user))
 		return
 	..()
 
-/obj/machinery/power/tesla_coil/tesla_act(var/power)
+obj/machinery/power/tesla_coil/tesla_act(var/power)
 	if(anchored && !panel_open)
 		being_shocked = TRUE
 		//don't lose arc power when it's not connected to anything
@@ -79,7 +79,7 @@
 	else
 		..()
 
-/obj/machinery/power/tesla_coil/proc/zap()
+obj/machinery/power/tesla_coil/proc/zap()
 	if((last_zap + zap_cooldown) > world.time || !powernet)
 		return FALSE
 	last_zap = world.time
@@ -93,7 +93,7 @@
 	tesla_zap(src, 10, power/(coeff/2))
 
 //TFF 3/6/19 - Port Cit RP fix for infinite frames
-/obj/machinery/power/grounding_rod
+obj/machinery/power/grounding_rod
 	name = "grounding rod"
 	desc = "Keep an area from being fried from Edison's Bane."
 	icon = 'icons/obj/tesla_engine/tesla_coil.dmi'
@@ -104,16 +104,16 @@
 	buckle_lying = 0
 	circuit = /obj/item/circuitboard/grounding_rod
 
-/obj/machinery/power/grounding_rod/pre_mapped
+obj/machinery/power/grounding_rod/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/grounding_rod/update_icon()
+obj/machinery/power/grounding_rod/update_icon()
 	if(panel_open)
 		icon_state = "grounding_rod_open[anchored]"
 	else
 		icon_state = "grounding_rod[anchored]"
 
-/obj/machinery/power/grounding_rod/attackby(obj/item/W, mob/user)
+obj/machinery/power/grounding_rod/attackby(obj/item/W, mob/user)
 	//if(default_deconstruction_screwdriver(user, "grounding_rod_open[anchored]", "grounding_rod[anchored]", W))
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -125,12 +125,12 @@
 		return
 	return ..()
 
-/obj/machinery/power/grounding_rod/attack_hand(mob/user, list/params)
+obj/machinery/power/grounding_rod/attack_hand(mob/user, list/params)
 	if(user.a_intent == INTENT_GRAB && user_buckle_mob(user.pulling, user))
 		return
 	..()
 
-/obj/machinery/power/grounding_rod/tesla_act(var/power)
+obj/machinery/power/grounding_rod/tesla_act(var/power)
 	if(anchored && !panel_open)
 		flick("grounding_rodhit", src)
 	else

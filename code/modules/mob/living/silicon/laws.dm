@@ -1,42 +1,42 @@
-/mob/living/silicon
+mob/living/silicon
 	var/datum/ai_laws/laws = null
 	var/list/additional_law_channels = list("State" = "")
 	var/last_law_notification = null // Avoids receiving 5+ of them at once.
 
-/mob/living/silicon/proc/laws_sanity_check()
+mob/living/silicon/proc/laws_sanity_check()
 	if (!src.laws)
 		laws = new GLOB.using_map.default_law_type
 
-/mob/living/silicon/proc/has_zeroth_law()
+mob/living/silicon/proc/has_zeroth_law()
 	return laws.zeroth_law != null
 
-/mob/living/silicon/proc/set_zeroth_law(var/law, var/law_borg, notify = TRUE)
+mob/living/silicon/proc/set_zeroth_law(var/law, var/law_borg, notify = TRUE)
 	laws_sanity_check()
 	laws.set_zeroth_law(law, law_borg)
 	if(notify)
 		notify_of_law_change(law||law_borg ? "NEW ZEROTH LAW: <b>[istype(src, /mob/living/silicon/robot) && law_borg ? law_borg : law]</b>" : null)
 	log_and_message_admins("has given [src] the zeroth laws: [law]/[law_borg ? law_borg : "N/A"]")
 
-/mob/living/silicon/robot/set_zeroth_law(var/law, var/law_borg, notify = TRUE)
+mob/living/silicon/robot/set_zeroth_law(var/law, var/law_borg, notify = TRUE)
 	..()
 	if(tracking_entities)
 		to_chat(src, "<span class='warning'>Internal camera is currently being accessed.</span>")
 
-/mob/living/silicon/proc/add_ion_law(var/law, notify = TRUE)
+mob/living/silicon/proc/add_ion_law(var/law, notify = TRUE)
 	laws_sanity_check()
 	laws.add_ion_law(law)
 	if(notify)
 		notify_of_law_change("NEW \[!ERROR!\] LAW: <b>[law]</b>")
 	log_and_message_admins("has given [src] the ion law: [law]")
 
-/mob/living/silicon/proc/add_inherent_law(var/law, notify = TRUE)
+mob/living/silicon/proc/add_inherent_law(var/law, notify = TRUE)
 	laws_sanity_check()
 	laws.add_inherent_law(law)
 	if(notify)
 		notify_of_law_change("NEW CORE LAW: <b>[law]</b>")
 	log_and_message_admins("has given [src] the inherent law: [law]")
 
-/mob/living/silicon/proc/add_supplied_law(var/number, var/law, notify = TRUE)
+mob/living/silicon/proc/add_supplied_law(var/number, var/law, notify = TRUE)
 	laws_sanity_check()
 	laws.add_supplied_law(number, law)
 	log_and_message_admins("has given [src] the supplied law: [law]")
@@ -44,14 +44,14 @@
 		var/th = uppertext("[number]\th")
 		notify_of_law_change("NEW \[[th]\] LAW: <b>[law]</b>")
 
-/mob/living/silicon/proc/delete_law(var/datum/ai_law/law, notify = TRUE)
+mob/living/silicon/proc/delete_law(var/datum/ai_law/law, notify = TRUE)
 	laws_sanity_check()
 	laws.delete_law(law)
 	if(notify)
 		notify_of_law_change("LAW DELETED: <b>[law.law]</b>")
 	log_and_message_admins("has deleted a law belonging to [src]: [law.law]")
 
-/mob/living/silicon/proc/clear_inherent_laws(var/silent = 0, notify = TRUE)
+mob/living/silicon/proc/clear_inherent_laws(var/silent = 0, notify = TRUE)
 	laws_sanity_check()
 	laws.clear_inherent_laws()
 	if(notify)
@@ -59,7 +59,7 @@
 	if(!silent)
 		log_and_message_admins("cleared the inherent laws of [src]")
 
-/mob/living/silicon/proc/clear_ion_laws(var/silent = 0, notify = TRUE)
+mob/living/silicon/proc/clear_ion_laws(var/silent = 0, notify = TRUE)
 	laws_sanity_check()
 	laws.clear_ion_laws()
 	if(notify)
@@ -67,7 +67,7 @@
 	if(!silent)
 		log_and_message_admins("cleared the ion laws of [src]")
 
-/mob/living/silicon/proc/clear_supplied_laws(var/silent = 0, notify = TRUE)
+mob/living/silicon/proc/clear_supplied_laws(var/silent = 0, notify = TRUE)
 	laws_sanity_check()
 	laws.clear_supplied_laws()
 	if(notify)
@@ -75,7 +75,7 @@
 	if(!silent)
 		log_and_message_admins("cleared the supplied laws of [src]")
 
-/mob/living/silicon/proc/notify_of_law_change(message)
+mob/living/silicon/proc/notify_of_law_change(message)
 	if((last_law_notification + 1 SECOND) > world.time)
 		return
 	last_law_notification = world.time
@@ -83,7 +83,7 @@
 	window_flash(client)
 	to_chat(src, SPAN_WARNING( message))
 
-/mob/living/silicon/proc/statelaws(var/datum/ai_laws/laws)
+mob/living/silicon/proc/statelaws(var/datum/ai_laws/laws)
 	var/prefix = ""
 	if(MAIN_CHANNEL == lawchannel)
 		prefix = ";"
@@ -94,7 +94,7 @@
 
 	dostatelaws(lawchannel, prefix, laws)
 
-/mob/living/silicon/proc/dostatelaws(var/method, var/prefix, var/datum/ai_laws/laws)
+mob/living/silicon/proc/dostatelaws(var/method, var/prefix, var/datum/ai_laws/laws)
 	if(stating_laws[prefix])
 		to_chat(src, "<span class='notice'>[method]: Already stating laws using this communication method.</span>")
 		return
@@ -112,26 +112,26 @@
 		to_chat(src, "<span class='danger'>[method]: Unable to state laws. Communication method unavailable.</span>")
 	stating_laws[prefix] = 0
 
-/mob/living/silicon/proc/statelaw(var/law)
+mob/living/silicon/proc/statelaw(var/law)
 	if(src.say(law))
 		sleep(10)
 		return 1
 
 	return 0
 
-/mob/living/silicon/proc/law_channels()
+mob/living/silicon/proc/law_channels()
 	var/list/channels = new()
 	channels += MAIN_CHANNEL
 	channels += common_radio.channels
 	channels += additional_law_channels
 	return channels
 
-/mob/living/silicon/proc/lawsync()
+mob/living/silicon/proc/lawsync()
 	laws_sanity_check()
 	laws.sort_laws()
 
 // Ripped out from events.
-/mob/living/silicon/proc/generate_ion_law(var/exclude_crew_names = FALSE)
+mob/living/silicon/proc/generate_ion_law(var/exclude_crew_names = FALSE)
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)

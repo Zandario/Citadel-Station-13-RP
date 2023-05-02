@@ -1,5 +1,5 @@
 // verb for admins to set custom event
-/client/proc/cmd_admin_change_custom_event()
+client/proc/cmd_admin_change_custom_event()
 	set category = "Fun"
 	set name = "Change Custom Event"
 
@@ -27,7 +27,7 @@
 	to_chat(world, "<br>")
 
 // normal verb for players to view info
-/client/verb/cmd_view_custom_event()
+client/verb/cmd_view_custom_event()
 	set category = "OOC"
 	set name = "Custom Event Info"
 

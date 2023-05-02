@@ -1,5 +1,5 @@
 // This doesn't inherit from /outdoors/ so that the pool can use it as well.
-/turf/simulated/floor/water
+turf/simulated/floor/water
 	name = "shallow water"
 	desc = "A body of water.  It seems shallow enough to walk through, if needed."
 	icon = 'icons/turf/outdoors.dmi'
@@ -18,20 +18,20 @@
 
 	var/reagent_type = "water"
 
-/turf/simulated/floor/water/Initialize(mapload)
+turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
 	var/singleton/flooring/F = get_flooring_data(/singleton/flooring/water)
 	footstep_sounds = F?.footstep_sounds
 	update_icon()
 
-/turf/simulated/floor/water/update_icon()
+turf/simulated/floor/water/update_icon()
 	..() // To get the edges.
 
 	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
 	var/image/water_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = water_state, layer = WATER_LAYER)
 	add_overlay(water_sprite)
 
-/turf/simulated/floor/water/attackby(obj/item/O as obj, mob/user as mob)
+turf/simulated/floor/water/attackby(obj/item/O as obj, mob/user as mob)
 	var/obj/item/reagent_containers/RG = O
 	if (istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent(reagent_type, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
@@ -46,7 +46,7 @@
 
 	else return ..()
 
-/turf/simulated/floor/water/return_air_for_internal_lifeform(var/mob/living/L)
+turf/simulated/floor/water/return_air_for_internal_lifeform(var/mob/living/L)
 	if(L && L.lying)
 		if(L.can_breathe_water()) // For squid.
 			var/datum/gas_mixture/water_breath = new()
@@ -68,7 +68,7 @@
 			return water_breath
 	return return_air() // Otherwise their head is above the water, so get the air from the atmosphere instead.
 
-/turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
+turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		L.update_water()
@@ -79,7 +79,7 @@
 	AM.water_act(5)
 	..()
 
-/turf/simulated/floor/water/Exited(atom/movable/AM, atom/newloc)
+turf/simulated/floor/water/Exited(atom/movable/AM, atom/newloc)
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		L.update_water()
@@ -89,14 +89,14 @@
 			to_chat(L, "<span class='warning'>You climb out of \the [src].</span>")
 	..()
 
-/turf/simulated/floor/water/pre_fishing_query(obj/item/fishing_rod/rod, mob/user)
+turf/simulated/floor/water/pre_fishing_query(obj/item/fishing_rod/rod, mob/user)
 	. = ..()
 	if(.)
 		return
 	if(!GetComponent(/datum/component/fishing_spot))
 		AddComponent(/datum/component/fishing_spot, /datum/fish_source/ocean)
 
-/turf/simulated/floor/water/deep
+turf/simulated/floor/water/deep
 	name = "deep water"
 	desc = "A body of water.  It seems quite deep."
 	icon_state = "seadeep" // So it shows up in the map editor as water.
@@ -104,29 +104,29 @@
 	slowdown = 8
 	depth = 2
 
-/turf/simulated/floor/water/deep/indoors
+turf/simulated/floor/water/deep/indoors
 	outdoors = FALSE
-	
-/turf/simulated/floor/water/pool
+
+turf/simulated/floor/water/pool
 	name = "pool"
 	desc = "Don't worry, it's not closed."
 	under_state = "pool"
 	outdoors = FALSE
 
-/turf/simulated/floor/water/deep/pool
+turf/simulated/floor/water/deep/pool
 	name = "deep pool"
 	desc = "Don't worry, it's not closed."
 	outdoors = FALSE
 
-/mob/living/proc/can_breathe_water()
+mob/living/proc/can_breathe_water()
 	return FALSE
 
-/mob/living/carbon/human/can_breathe_water()
+mob/living/carbon/human/can_breathe_water()
 	if(species)
 		return species.can_breathe_water()
 	return ..()
 
-/mob/living/proc/check_submerged()
+mob/living/proc/check_submerged()
 	if(buckled)
 		return 0
 	if(hovering)
@@ -139,10 +139,10 @@
 	return 0
 
 // Use this to have things react to having water applied to them.
-/atom/movable/proc/water_act(amount)
+atom/movable/proc/water_act(amount)
 	return
 
-/mob/living/water_act(amount)
+mob/living/water_act(amount)
 	adjust_fire_stacks(-amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
@@ -151,7 +151,7 @@
 
 var/list/shoreline_icon_cache = list()
 
-/turf/simulated/floor/water/beach
+turf/simulated/floor/water/beach
 	name = "beach shoreline"
 	desc = "The waves look calm and inviting."
 	icon_state = "beach"
@@ -159,24 +159,24 @@ var/list/shoreline_icon_cache = list()
 	//smoothing_groups = null
 	edge_blending_priority = 0
 
-/turf/simulated/floor/water/beach/update_icon()
+turf/simulated/floor/water/beach/update_icon()
 	return
 
-/turf/simulated/floor/water/beach/corner
+turf/simulated/floor/water/beach/corner
 	icon_state = "beachcorner"
 
-/turf/simulated/floor/water/shoreline
+turf/simulated/floor/water/shoreline
 	name = "shoreline"
 	desc = "The waves look calm and inviting."
 	icon_state = "shoreline"
 	water_state = "rock" // Water gets generated as an overlay in update_icon()
 	depth = 0
 
-/turf/simulated/floor/water/shoreline/corner
+turf/simulated/floor/water/shoreline/corner
 	icon_state = "shorelinecorner"
 
 // Water sprites are really annoying, so let BYOND sort it out.
-/turf/simulated/floor/water/shoreline/update_icon()
+turf/simulated/floor/water/shoreline/update_icon()
 	underlays.Cut()
 	cut_overlays()
 	..() // Get the underlay first.
@@ -193,16 +193,16 @@ var/list/shoreline_icon_cache = list()
 		shoreline_icon_cache[cache_string] = final
 		add_overlay(shoreline_icon_cache[cache_string])
 
-/turf/simulated/floor/water/is_safe_to_enter(mob/living/L)
+turf/simulated/floor/water/is_safe_to_enter(mob/living/L)
 	if(L.get_water_protection() < 1)
 		return FALSE
 	return ..()
 
-/turf/simulated/floor/water/contaminated
+turf/simulated/floor/water/contaminated
 	desc = "This water smells pretty acrid."
 	var/poisonlevel = 10
 
-/turf/simulated/floor/water/contaminated/Entered(atom/movable/AM, atom/oldloc)
+turf/simulated/floor/water/contaminated/Entered(atom/movable/AM, atom/oldloc)
 	..()
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
@@ -212,12 +212,12 @@ var/list/shoreline_icon_cache = list()
 		if(poisonlevel > 0)
 			L.adjustToxLoss(poisonlevel)
 
-/turf/simulated/floor/water/indoors
+turf/simulated/floor/water/indoors
 	outdoors = FALSE
 
 //Supernatural/Horror Pool Turfs
 
-/turf/simulated/floor/water/acid
+turf/simulated/floor/water/acid
 	name = "hissing pool"
 	desc = "A sickly green liquid. It emanates an acrid stench. It seems shallow enough to walk through, if needed."
 	icon = 'icons/turf/outdoors.dmi'
@@ -228,14 +228,14 @@ var/list/shoreline_icon_cache = list()
 	depth = 4
 	layer = WATER_FLOOR_LAYER
 
-/turf/simulated/floor/water/acid/update_icon()
+turf/simulated/floor/water/acid/update_icon()
 	..() // To get the edges.
 
 	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
 	var/image/acid_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = acid_state, layer = WATER_LAYER)
 	add_overlay(acid_sprite)
 
-/turf/simulated/floor/water/acid/return_air_for_internal_lifeform(var/mob/living/L)
+turf/simulated/floor/water/acid/return_air_for_internal_lifeform(var/mob/living/L)
 	if(L && L.lying)
 		if(L.can_breathe_water()) // For squid.
 			var/datum/gas_mixture/water_breath = new()
@@ -257,21 +257,21 @@ var/list/shoreline_icon_cache = list()
 			return water_breath
 	return return_air() // Otherwise their head is above the water, so get the air from the atmosphere instead.
 
-/turf/simulated/floor/water/acid/Entered(atom/movable/AM)
+turf/simulated/floor/water/acid/Entered(atom/movable/AM)
 	..()
 	if(burn_stuff(AM))
 		START_PROCESSING(SSobj, src)
 
-/turf/simulated/floor/water/acid/throw_landed(atom/movable/AM, datum/thrownthing/TT)
+turf/simulated/floor/water/acid/throw_landed(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	if(burn_stuff(AM))
 		START_PROCESSING(SSobj, src)
 
-/turf/simulated/floor/water/acid/process(delta_time)
+turf/simulated/floor/water/acid/process(delta_time)
 	if(!burn_stuff())
 		STOP_PROCESSING(SSobj, src)
 
-/turf/simulated/floor/water/acid/proc/burn_stuff(atom/movable/AM)
+turf/simulated/floor/water/acid/proc/burn_stuff(atom/movable/AM)
 	. = FALSE
 
 	var/thing_to_check = src
@@ -294,12 +294,12 @@ var/list/shoreline_icon_cache = list()
 			L.acid_act()
 
 // Tells AI mobs to not suicide by pathing into acid if it would hurt them.
-/turf/simulated/floor/water/acid/is_safe_to_enter(mob/living/L)
+turf/simulated/floor/water/acid/is_safe_to_enter(mob/living/L)
 	if(!L.hovering)
 		return FALSE
 	return ..()
 
-/turf/simulated/floor/water/acid/Entered(atom/movable/AM, atom/oldloc)
+turf/simulated/floor/water/acid/Entered(atom/movable/AM, atom/oldloc)
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		L.update_acidsub()
@@ -309,7 +309,7 @@ var/list/shoreline_icon_cache = list()
 			to_chat(L, "<span class='warning'>You get soaked in acid from entering \the [src]!</span>")
 	AM.acid_act(5)
 
-/turf/simulated/floor/water/acid/Exited(atom/movable/AM, atom/newloc)
+turf/simulated/floor/water/acid/Exited(atom/movable/AM, atom/newloc)
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		L.update_acidsub()
@@ -319,7 +319,7 @@ var/list/shoreline_icon_cache = list()
 			to_chat(L, "<span class='warning'>You climb out of \the [src].</span>")
 	..()
 
-/turf/simulated/floor/water/acid/deep
+turf/simulated/floor/water/acid/deep
 	name = "deep hissing pool"
 	desc = "A body of sickly green liquid. It emanates an acrid stench.  It seems quite deep."
 	icon_state = "acid_deep"
@@ -328,7 +328,7 @@ var/list/shoreline_icon_cache = list()
 	depth = 5
 
 //Blood
-/turf/simulated/floor/water/blood
+turf/simulated/floor/water/blood
 	name = "coagulating pool"
 	desc = "A body of boiling crimson fluid. It smells like pennies and gasoline. It seems shallow enough to walk through, if needed."
 	icon = 'icons/turf/outdoors.dmi'
@@ -339,13 +339,13 @@ var/list/shoreline_icon_cache = list()
 	layer = WATER_FLOOR_LAYER
 	depth = 6
 
-/turf/simulated/floor/water/blood/update_icon()
+turf/simulated/floor/water/blood/update_icon()
 	..()
 	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
 	var/image/blood_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = blood_state, layer = WATER_LAYER)
 	add_overlay(blood_sprite)
 
-/turf/simulated/floor/water/blood/return_air_for_internal_lifeform(var/mob/living/L)
+turf/simulated/floor/water/blood/return_air_for_internal_lifeform(var/mob/living/L)
 	if(L && L.lying)
 		if(L.can_breathe_water()) // For squid.
 			var/datum/gas_mixture/water_breath = new()
@@ -368,21 +368,21 @@ var/list/shoreline_icon_cache = list()
 	return return_air() // Otherwise their head is above the water, so get the air from the atmosphere instead.
 
 //! this entire file needs refactored, jesus christ
-/turf/simulated/floor/water/blood/Entered(atom/movable/AM)
+turf/simulated/floor/water/blood/Entered(atom/movable/AM)
 	..()
 	if(blood_wade(AM))
 		START_PROCESSING(SSobj, src)
 
-/turf/simulated/floor/water/blood/throw_landed(atom/movable/AM, datum/thrownthing/TT)
+turf/simulated/floor/water/blood/throw_landed(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	if(blood_wade(AM))
 		START_PROCESSING(SSobj, src)
 
-/turf/simulated/floor/water/blood/process(delta_time)
+turf/simulated/floor/water/blood/process(delta_time)
 	if(!blood_wade())
 		STOP_PROCESSING(SSobj, src)
 
-/turf/simulated/floor/water/blood/proc/blood_wade(var/mob/living/carbon/human/L, atom/movable/AM)
+turf/simulated/floor/water/blood/proc/blood_wade(var/mob/living/carbon/human/L, atom/movable/AM)
 	. = FALSE
 
 	if(ishuman(L))
@@ -390,12 +390,12 @@ var/list/shoreline_icon_cache = list()
 		L.bloody_hands(src)
 
 // Tells AI mobs to not suicide by pathing into lava if it would hurt them.
-/turf/simulated/floor/water/blood/is_safe_to_enter(mob/living/L)
+turf/simulated/floor/water/blood/is_safe_to_enter(mob/living/L)
 	if(!L.hovering)
 		return FALSE
 	return ..()
 
-/turf/simulated/floor/water/blood/Entered(atom/movable/AM, atom/oldloc)
+turf/simulated/floor/water/blood/Entered(atom/movable/AM, atom/oldloc)
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		L.update_bloodsub()
@@ -405,7 +405,7 @@ var/list/shoreline_icon_cache = list()
 			to_chat(L, "<span class='warning'>You get covered in blood from entering \the [src]!</span>")
 	AM.blood_act(1)
 
-/turf/simulated/floor/water/blood/Exited(atom/movable/AM, atom/newloc)
+turf/simulated/floor/water/blood/Exited(atom/movable/AM, atom/newloc)
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		L.update_bloodsub()
@@ -415,7 +415,7 @@ var/list/shoreline_icon_cache = list()
 			to_chat(L, "<span class='warning'>You climb out of \the [src].</span>")
 	..()
 
-/turf/simulated/floor/water/blood/deep
+turf/simulated/floor/water/blood/deep
 	name = "deep coagulating pool"
 	desc = "A body of crimson fluid. It smells like pennies and gasoline.  It seems quite deep."
 	icon_state = "acidb_deep"

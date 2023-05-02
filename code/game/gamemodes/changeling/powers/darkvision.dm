@@ -1,4 +1,4 @@
-/datum/power/changeling/darksight
+datum/power/changeling/darksight
 	name = "Dark Sight"
 	desc = "We change the composition of our eyes, banishing the shadows from our vision."
 	helptext = "We will be able to see in the dark."
@@ -6,7 +6,7 @@
 	genomecost = 0
 	verbpath = /mob/proc/changeling_darksight
 
-/mob/proc/changeling_darksight()
+mob/proc/changeling_darksight()
 	set category = "Changeling"
 	set name = "Toggle Darkvision"
 	set desc = "We are able see in the dark."

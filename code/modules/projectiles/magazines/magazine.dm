@@ -1,5 +1,5 @@
 //An item that holds casings and can be used to put them inside guns
-/obj/item/ammo_magazine
+obj/item/ammo_magazine
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
 	icon_state = ".357"
@@ -29,7 +29,7 @@
 	var/list/ammo_states = list()	//values
 	var/ammo_mark = null			//Used for overlays simulated paint or tape bands on magazines. Cuts down on bloat.
 
-/obj/item/ammo_magazine/Initialize(mapload)
+obj/item/ammo_magazine/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
@@ -44,7 +44,7 @@
 			stored_ammo += new ammo_type(src)
 	update_icon()
 
-/obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(C.caliber != caliber)
@@ -77,7 +77,7 @@
 	update_icon()
 
 // This dumps all the bullets right on the floor
-/obj/item/ammo_magazine/attack_self(mob/user)
+obj/item/ammo_magazine/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -101,7 +101,7 @@
 		return
 
 // This puts one bullet from the magazine into your hand
-/obj/item/ammo_magazine/attack_hand(mob/user, list/params)
+obj/item/ammo_magazine/attack_hand(mob/user, list/params)
 	if(can_remove_ammo)	// For Smart Magazines
 		if(user.get_inactive_held_item() == src)
 			if(stored_ammo.len)
@@ -113,7 +113,7 @@
 				return
 	..()
 
-/obj/item/ammo_magazine/update_icon()
+obj/item/ammo_magazine/update_icon()
 	if(multiple_sprites)
 		//find the lowest key greater than or equal to stored_ammo.len
 		var/new_state = null
@@ -126,7 +126,7 @@
 	if(ammo_mark)
 		add_overlay("[initial(icon_state)]_[ammo_mark]")
 
-/obj/item/ammo_magazine/examine(mob/user)
+obj/item/ammo_magazine/examine(mob/user)
 	. = ..()
 	. += "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!"
 
@@ -134,7 +134,7 @@
  * puts a round into us, if possible
  * does not update icon by default!
  */
-/obj/item/ammo_magazine/proc/load_casing(obj/item/ammo_casing/casing, replace_spent, update_icon)
+obj/item/ammo_magazine/proc/load_casing(obj/item/ammo_casing/casing, replace_spent, update_icon)
 	if(caliber)
 		if(casing.caliber != caliber)
 			return FALSE
@@ -179,7 +179,7 @@
  *
  * @return number of rounds gathered
  */
-/obj/item/ammo_magazine/proc/quick_gather(turf/where, mob/user)
+obj/item/ammo_magazine/proc/quick_gather(turf/where, mob/user)
 	. = 0
 	if(full())
 		user?.action_feedback(SPAN_WARNING("[src] is full."), src)
@@ -198,20 +198,20 @@
 	else
 		user?.action_feedback(SPAN_WARNING("You fail to collect anything."), src)
 
-/obj/item/ammo_magazine/proc/full()
+obj/item/ammo_magazine/proc/full()
 	return length(stored_ammo) >= max_ammo
 
-/obj/item/ammo_magazine/proc/remaining()
+obj/item/ammo_magazine/proc/remaining()
 	return length(stored_ammo)
 
-/obj/item/ammo_magazine/proc/missing()
+obj/item/ammo_magazine/proc/missing()
 	return max_ammo - length(stored_ammo)
 
 //magazine icon state caching
-/var/global/list/magazine_icondata_keys = list()
-/var/global/list/magazine_icondata_states = list()
+var/global/list/magazine_icondata_keys = list()
+var/global/list/magazine_icondata_states = list()
 
-/proc/initialize_magazine_icondata(var/obj/item/ammo_magazine/M)
+proc/initialize_magazine_icondata(var/obj/item/ammo_magazine/M)
 	var/typestr = "[M.type]"
 	if(!(typestr in magazine_icondata_keys) || !(typestr in magazine_icondata_states))
 		magazine_icondata_cache_add(M)
@@ -219,7 +219,7 @@
 	M.icon_keys = magazine_icondata_keys[typestr]
 	M.ammo_states = magazine_icondata_states[typestr]
 
-/proc/magazine_icondata_cache_add(var/obj/item/ammo_magazine/M)
+proc/magazine_icondata_cache_add(var/obj/item/ammo_magazine/M)
 	var/list/icon_keys = list()
 	var/list/ammo_states = list()
 	var/list/states = icon_states(M.icon)

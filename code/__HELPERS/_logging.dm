@@ -17,13 +17,13 @@
 #endif
 // Print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
-/proc/warning(msg)
+proc/warning(msg)
 	msg = "## WARNING: [msg]"
 	log_world(msg)
 
 // Not an error or a warning, but worth to mention on the world log, just in case.
 #define NOTICE(MSG) notice(MSG)
-/proc/notice(msg)
+proc/notice(msg)
 	msg = "## NOTICE: [msg]"
 	log_world(msg)
 
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 #define testing_profile_local_output_all testing_profile_output_all(_timer_system)
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
-/proc/log_test(text)
+proc/log_test(text)
 	WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
 #endif
@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 #if defined(REFERENCE_DOING_IT_LIVE)
 #define log_reftracker(msg) log_harddel("## REF SEARCH [msg]")
 
-/proc/log_harddel(text)
+proc/log_harddel(text)
 	WRITE_LOG(GLOB.harddel_log, text)
 
 #elif defined(REFERENCE_TRACKING) // Doing it locally
@@ -78,32 +78,32 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /**
  * Items with ADMINPRIVATE prefixed are stripped from public logs.
  */
-/proc/log_admin(text)
+proc/log_admin(text)
 	admin_log.Add(text)
 	if (config_legacy.log_admin)
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: [text]")
 
-/proc/log_admin_private(text)
+proc/log_admin_private(text)
 	admin_log.Add(text)
 	if (config_legacy.log_admin)
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: [text]")
 
-/proc/log_adminsay(text, mob/speaker)
+proc/log_adminsay(text, mob/speaker)
 	if (config_legacy.log_adminchat)
 		if(speaker)
 			WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: ASAY: [speaker.simple_info_line()]: [text]")
 		else
 			WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: ASAY: [text]")
 
-/proc/log_modsay(text, mob/speaker)
+proc/log_modsay(text, mob/speaker)
 	if (config_legacy.log_adminchat)
 		WRITE_LOG(GLOB.world_game_log, "MODSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
-/proc/log_eventsay(text, mob/speaker)
+proc/log_eventsay(text, mob/speaker)
 	if (config_legacy.log_adminchat)
 		WRITE_LOG(GLOB.world_game_log, "EVENTSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
-/proc/log_adminpm(text, client/source, client/dest)
+proc/log_adminpm(text, client/source, client/dest)
 	admin_log.Add(text)
 	if (config_legacy.log_admin)
 		WRITE_LOG(GLOB.world_game_log, "ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)]")
@@ -111,33 +111,33 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /**
  * All other items are public.
  */
-/proc/log_game(text)
+proc/log_game(text)
 	if (config_legacy.log_game)
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 
-/proc/log_asset(text)
+proc/log_asset(text)
 	WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
 
-/proc/log_access(text)
+proc/log_access(text)
 	WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 
 /// <VStation_specific>
-/proc/log_access_in(client/new_client)
+proc/log_access_in(client/new_client)
 	if (config_legacy.log_access)
 		var/message = "[key_name(new_client)] - IP:[new_client.address] - CID:[new_client.computer_id] - BYOND v[new_client.byond_version]"
 		WRITE_LOG(GLOB.world_game_log, "ACCESS IN: [message]")
 
-/proc/log_access_out(mob/last_mob)
+proc/log_access_out(mob/last_mob)
 	if (config_legacy.log_access)
 		var/message = "[key_name(last_mob)] - IP:[last_mob.lastKnownIP] - CID:Logged Out - BYOND Logged Out"
 		WRITE_LOG(GLOB.world_game_log, "ACCESS OUT: [message]")
 /// </VStation_specific>
 
-/proc/log_attack(attacker, defender, message)
+proc/log_attack(attacker, defender, message)
 	if (config_legacy.log_attack)
 		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [attacker] against [defender]: [message]")
 
-/proc/log_say(text, mob/speaker)
+proc/log_say(text, mob/speaker)
 	if (config_legacy.log_say)
 		WRITE_LOG(GLOB.world_game_log, "SAY: [speaker.simple_info_line()]: [html_decode(text)]")
 
@@ -146,13 +146,13 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>SAY:</u> - <span style='color:#32cd32'>[text]</span>"
 		GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>SAY:</u> - <span style='color:#32cd32'>[text]</span>"
 
-/proc/log_ooc(text, client/user)
+proc/log_ooc(text, client/user)
 	if (config_legacy.log_ooc)
 		WRITE_LOG(GLOB.world_game_log, "OOC: [user.simple_info_line()]: [html_decode(text)]")
 
 	GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[user]</b>) <u>OOC:</u> - <span style='color:blue'><b>[text]</b></span>"
 
-/proc/log_whisper(text, mob/speaker)
+proc/log_whisper(text, mob/speaker)
 	if (config_legacy.log_whisper)
 		WRITE_LOG(GLOB.world_game_log, "WHISPER: [speaker.simple_info_line()]: [html_decode(text)]")
 
@@ -160,7 +160,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>SAY:</u> - <span style='color:gray'><i>[text]</i></span>"
 		GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>SAY:</u> - <span style='color:gray'><i>[text]</i></span>"
 
-/proc/log_emote(text, mob/speaker)
+proc/log_emote(text, mob/speaker)
 	if (config_legacy.log_emote)
 		WRITE_LOG(GLOB.world_game_log, "EMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
 
@@ -168,52 +168,52 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 		speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>EMOTE:</u> - <span style='color:#CCBADC'>[text]</span>"
 		GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>EMOTE:</u> - <span style='color:#CCBADC'>[text]</span>"
 
-/proc/log_subtle(text, mob/speaker)
+proc/log_subtle(text, mob/speaker)
 	if (config_legacy.log_emote)
 		WRITE_LOG(GLOB.world_game_log, "SUBTLE: [speaker.simple_info_line()]: [html_decode(text)]")
 
-/proc/log_subtle_anti_ghost(text, mob/speaker)
+proc/log_subtle_anti_ghost(text, mob/speaker)
 	if (config_legacy.log_emote)
 		WRITE_LOG(GLOB.world_game_log, "SUBTLER: [speaker.simple_info_line()]: [html_decode(text)]")
 
-/proc/log_aooc(text, client/user)
+proc/log_aooc(text, client/user)
 	if (config_legacy.log_ooc)
 		WRITE_LOG(GLOB.world_game_log, "AOOC: [user.simple_info_line()]: [html_decode(text)]")
 
 	GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[user]</b>) <u>AOOC:</u> - <span style='color:red'><b>[text]</b></span>"
 
-/proc/log_looc(text, client/user)
+proc/log_looc(text, client/user)
 	if (config_legacy.log_ooc)
 		WRITE_LOG(GLOB.world_game_log, "LOOC: [user.simple_info_line()]: [html_decode(text)]")
 
 	GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[user]</b>) <u>LOOC:</u> - <span style='color:orange'><b>[text]</b></span>"
 
-/proc/log_vote(text)
+proc/log_vote(text)
 	if (config_legacy.log_vote)
 		WRITE_LOG(GLOB.world_game_log, "VOTE: [text]")
 
-/proc/log_topic(text)
+proc/log_topic(text)
 	WRITE_LOG(GLOB.world_game_log, "TOPIC: [text]")
 
-/proc/log_href(text)
+proc/log_href(text)
 	WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
 
-/proc/log_sql(text)
+proc/log_sql(text)
 	WRITE_LOG(GLOB.sql_error_log, "SQL: [text]")
 
-/proc/log_query_debug(text)
+proc/log_query_debug(text)
 	// does nothing right now, sorry
 
-/proc/log_qdel(text)
+proc/log_qdel(text)
 	WRITE_LOG(GLOB.world_qdel_log, "QDEL: [text]")
 
-/proc/log_subsystem(subsystem, text)
+proc/log_subsystem(subsystem, text)
 	WRITE_LOG(GLOB.subsystem_log, "[subsystem]: [text]")
 
 /**
  * Log to both DD and the logfile.
  */
-/proc/log_world(text)
+proc/log_world(text)
 #ifdef USE_CUSTOM_ERROR_HANDLER
 	WRITE_LOG(GLOB.world_runtime_log, text)
 #endif
@@ -222,30 +222,30 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /**
  * Log to the logfile only.
  */
-/proc/log_runtime(text)
+proc/log_runtime(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
 
 /**
  * Rarely gets called; just here in case the config breaks.
  */
-/proc/log_config(text)
+proc/log_config(text)
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
 
-/proc/log_mapping(text)
+proc/log_mapping(text)
 	WRITE_LOG(GLOB.world_map_error_log, text)
 
 /**
  * For logging round startup.
  */
-/proc/start_log(log)
+proc/start_log(log)
 	WRITE_LOG(log, "Starting up round ID [GLOB.round_id].\n-------------------------")
 
 /**
  * Appends a tgui-related log entry.
  * All arguments are optional.
  */
-/proc/log_tgui(user, message, context,
+proc/log_tgui(user, message, context,
 		datum/tgui_window/window,
 		datum/src_object)
 	var/entry = ""
@@ -278,7 +278,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
  * Close open log handles.
  * This should be called as late as possible, and no logging should hapen after.
  */
-/proc/shutdown_logging()
+proc/shutdown_logging()
 #ifdef EXTOOLS_LOGGING
 	extools_finalize_logging()
 #else
@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /**
  * Helper procs for building detailed log lines
  */
-/proc/key_name(whom, include_link = null, include_name = TRUE, highlight_special_characters = TRUE)
+proc/key_name(whom, include_link = null, include_name = TRUE, highlight_special_characters = TRUE)
 	var/mob/M
 	var/client/C
 	var/key
@@ -375,10 +375,10 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 
 	return .
 
-/proc/key_name_admin(whom, include_name = TRUE)
+proc/key_name_admin(whom, include_name = TRUE)
 	return key_name(whom, TRUE, include_name)
 
-/proc/loc_name(atom/A)
+proc/loc_name(atom/A)
 	if(!istype(A))
 		return "(INVALID LOCATION)"
 
@@ -391,14 +391,14 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
 
-/proc/ref_name(atom/A)
+proc/ref_name(atom/A)
 	return "[A] ([REF(A)])"
 
-/proc/ref_name_path(atom/A)
+proc/ref_name_path(atom/A)
 	return "[A] ([REF(A)]) \[[A.type]\]"
 
 /// VSTATION SPECIFIC LOGGING. ///
-/proc/log_debug(text)
+proc/log_debug(text)
 	if (config_legacy.log_debug)
 		WRITE_LOG(GLOB.world_runtime_log, "DEBUG: [text]")
 
@@ -410,51 +410,51 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 				confidential = TRUE,
 			)
 
-/proc/log_ghostsay(text, mob/speaker)
+proc/log_ghostsay(text, mob/speaker)
 	if (config_legacy.log_say)
 		WRITE_LOG(GLOB.world_game_log, "DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>DEADSAY:</u> - <span style='color:green'>[text]</span>"
 	GLOB.round_text_log += "<font size=1><span style='color:#7e668c'><b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>DEADSAY:</u> - [text]</span></font>"
 
-/proc/log_ghostemote(text, mob/speaker)
+proc/log_ghostemote(text, mob/speaker)
 	if (config_legacy.log_emote)
 		WRITE_LOG(GLOB.world_game_log, "DEADEMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
 
-/proc/log_adminwarn(text)
+proc/log_adminwarn(text)
 	if (config_legacy.log_adminwarn)
 		WRITE_LOG(GLOB.world_game_log, "ADMINWARN: [html_decode(text)]")
 
-/proc/log_pda(text, mob/speaker)
+proc/log_pda(text, mob/speaker)
 	if (config_legacy.log_pda)
 		WRITE_LOG(GLOB.world_game_log, "PDA: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>MSG:</u> - <span style='color:green'>[text]</span>"
 	GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>MSG:</u> - <span style='color:green'>[text]</span>"
 
-/proc/error(msg)
+proc/error(msg)
 	log_world("## ERROR: [msg]")
 
 /// DEPRICATED. USE log_runtime(text) INSTEAD.
-/proc/log_error(text)
+proc/log_error(text)
 	log_runtime(text)
 	world.log << text
 
-/proc/log_misc(text)
+proc/log_misc(text)
 	WRITE_LOG(GLOB.world_game_log, "MISC: [text]")
 
-/proc/log_unit_test(text)
+proc/log_unit_test(text)
 	log_world("## UNIT_TEST: [text]")
 
-/proc/report_progress(progress_message)
+proc/report_progress(progress_message)
 	admin_notice(SPAN_BOLDANNOUNCE("[progress_message]"), R_DEBUG)
 	log_world(progress_message)
 
-/proc/log_nsay(text, inside, mob/speaker)
+proc/log_nsay(text, inside, mob/speaker)
 	if (config_legacy.log_say)
 		WRITE_LOG(GLOB.world_game_log, "NSAY (NIF:[inside]): [speaker.simple_info_line()]: [html_decode(text)]")
 
-/proc/log_nme(text, inside, mob/speaker)
+proc/log_nme(text, inside, mob/speaker)
 	if (config_legacy.log_emote)
 		WRITE_LOG(GLOB.world_game_log, "NME (NIF:[inside]): [speaker.simple_info_line()]: [html_decode(text)]")
 
@@ -464,7 +464,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /**
  * Pretty print a direction bitflag, can be useful for debugging.
  */
-/proc/print_dir(dir)
+proc/print_dir(dir)
 	var/list/comps = list()
 	if(dir & NORTH)
 		comps += "NORTH"
@@ -485,10 +485,10 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /**
  * Helper procs for building detailed log lines.
  */
-/datum/proc/log_info_line()
+datum/proc/log_info_line()
 	return "[src] ([type])"
 
-/atom/log_info_line()
+atom/log_info_line()
 	var/turf/t = get_turf(src)
 	if(istype(t))
 		return "([t]) ([t.x],[t.y],[t.z]) ([t.type])"
@@ -497,20 +497,20 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	else
 		return "(NULL) (0,0,0) (NULL)"
 
-/mob/log_info_line()
+mob/log_info_line()
 	return "[..()] ([ckey])"
 
-/proc/log_info_line(datum/datum)
+proc/log_info_line(datum/datum)
 	if(!datum)
 		return "*null*"
 	if(!istype(datum))
 		return json_encode(datum)
 	return datum.log_info_line()
 
-/mob/proc/simple_info_line()
+mob/proc/simple_info_line()
 	return "[key_name(src)] ([AREACOORD(src)])"
 
-/client/proc/simple_info_line()
+client/proc/simple_info_line()
 	return "[key_name(src)] ([AREACOORD(mob)])"
 
 /**
@@ -520,7 +520,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
  * Mirrors this log entry to log_access when access_log_mirror is TRUE, so this proc
  * doesn't need to be used alongside log_access and can replace it where appropriate.
  */
-/proc/log_suspicious_login(text, access_log_mirror = TRUE)
+proc/log_suspicious_login(text, access_log_mirror = TRUE)
 	if (CONFIG_GET(flag/log_suspicious_login))
 		WRITE_LOG(GLOB.world_suspicious_login_log, "SUSPICIOUS_ACCESS: [text]")
 	if(access_log_mirror)

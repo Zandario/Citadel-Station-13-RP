@@ -1,4 +1,4 @@
-/obj/mecha/combat/fighter
+obj/mecha/combat/fighter
 	starting_components = list(
 		/obj/item/mecha_parts/component/hull/lightweight,
 		/obj/item/mecha_parts/component/actuator,

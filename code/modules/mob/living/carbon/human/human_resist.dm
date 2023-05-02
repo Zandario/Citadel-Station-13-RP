@@ -1,4 +1,4 @@
-/mob/living/carbon/human/resist_restraints()
+mob/living/carbon/human/resist_restraints()
 	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
 		return escape_straight_jacket()
 	return ..()
@@ -7,7 +7,7 @@
 #define RESIST_ATTACK_CLAWS		1
 #define RESIST_ATTACK_BITE		2
 
-/mob/living/carbon/human/proc/escape_straight_jacket()
+mob/living/carbon/human/proc/escape_straight_jacket()
 	setClickCooldown(100)
 
 	if(can_break_straight_jacket())
@@ -64,12 +64,12 @@
 #undef RESIST_ATTACK_CLAWS
 #undef RESIST_ATTACK_BITE
 
-/mob/living/carbon/human/proc/can_break_straight_jacket()
+mob/living/carbon/human/proc/can_break_straight_jacket()
 	if((MUTATION_HULK in mutations) || species.can_shred(src,1))
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/human/proc/break_straight_jacket()
+mob/living/carbon/human/proc/break_straight_jacket()
 	visible_message(
 		"<span class='danger'>[src] is trying to rip \the [wear_suit]!</span>",
 		"<span class='warning'>You attempt to rip your [wear_suit.name] apart. (This will take around 5 seconds and you need to stand still)</span>"
@@ -90,7 +90,7 @@
 		wear_suit = null
 		buckled?.buckled_reconsider_restraints(src)
 
-/mob/living/carbon/human/can_break_cuffs()
+mob/living/carbon/human/can_break_cuffs()
 	if(species.can_shred(src,1))
 		return 1
 	return ..()

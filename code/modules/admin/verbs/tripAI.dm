@@ -1,4 +1,4 @@
-/client/proc/triple_ai()
+client/proc/triple_ai()
 	set category = "Fun"
 	set name = "Create AI Triumvirate"
 

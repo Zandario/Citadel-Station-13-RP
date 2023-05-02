@@ -1,4 +1,4 @@
-/datum/find
+datum/find
 	var/find_type = 0				//random according to the digsite type
 	var/excavation_required = 0		//random 10 - 190
 	var/view_range = 40				//how close excavation has to come to show an overlay on the turf
@@ -8,13 +8,13 @@
 	var/dissonance_spread = 1		//proportion of the tile that is affected by this find
 									//used in conjunction with analysis machines to determine correct suspension field type
 
-/datum/find/New(var/digsite, var/exc_req)
+datum/find/New(var/digsite, var/exc_req)
 	excavation_required = exc_req
 	find_type = get_random_find_type(digsite)
 	clearance_range = rand(4, 12)
 	dissonance_spread = rand(1500, 2500) / 100
 
-/obj/item/strangerock
+obj/item/strangerock
 	name = "Strange rock"
 	desc = "Seems to have some unusal strata evident throughout it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -22,7 +22,7 @@
 	var/datum/geosample/geologic_data
 	origin_tech = list(TECH_MATERIAL = 5)
 
-/obj/item/strangerock/Initialize(mapload, inside_item_type)
+obj/item/strangerock/Initialize(mapload, inside_item_type)
 	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
@@ -30,7 +30,7 @@
 	if(inside_item_type)
 		new /obj/item/archaeological_find(src, inside_item_type)
 
-/obj/item/strangerock/attackby(var/obj/item/I, var/mob/user)
+obj/item/strangerock/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/pickaxe/brush))
 		var/obj/item/inside = locate() in src
 		if(inside)

@@ -1,4 +1,4 @@
-/datum/lore/codex/category/species
+datum/lore/codex/category/species
 	name = "Species"
 	data = "There are many different types of lifeforms (both alive and artificial) in the galaxy, which you may find inside Vir."
 	children = list(
@@ -14,7 +14,7 @@
 		/datum/lore/codex/category/drone
 		)
 
-/datum/lore/codex/page/human/add_content()
+datum/lore/codex/page/human/add_content()
 	name = SPECIES_HUMAN
 	keywords += list("Humanity")
 	data = "Humans are a race of 'ape'-like creatures from the continental planet Earth in the Sol system. They are the primary driving \
@@ -26,7 +26,7 @@
 	While more culturally diverse than most species, humans are generally regarded as somewhat technophobic and isolationist by members \
 	of other species."
 
-/datum/lore/codex/page/skrell
+datum/lore/codex/page/skrell
 	name = SPECIES_SKRELL
 	keywords = list("Skrellian")
 	data = "The Skrell are a species of amphibious humanoids, distinguished by their gelatinous appearance and head tentacles. \
@@ -38,7 +38,7 @@
 	a guarantee. Due to their scientific focus of the mind and body, Skrell tend to be more peaceful and their colonization has been slow, swiftly \
 	outpaced by the humans. For humans, they were their first contact sentient species, and are their longest, and closest, ally in space."
 
-/datum/lore/codex/page/unathi
+datum/lore/codex/page/unathi
 	name = SPECIES_UNATHI
 	data = "The Unathi are a race of tall, reptilian humanoids that possess a blend of serpentine features reminiscent of crocodiles. \
 	They are a proud, religious species that favors honor and strength, and originate from the desert planet of Moghes. \
@@ -46,7 +46,7 @@
 	Unathi once fought a serious war against SolGov, and as a result are often considered to be second-class citizens, \
 	rarely seen in jobs that don't require a little muscle."
 
-/datum/lore/codex/page/tajaran
+datum/lore/codex/page/tajaran
 	name = "Tajaran"
 	keywords = list("Tajaran")
 	data = "The Tajaran are a race of humanoid mammalian aliens from Meralar, the fourth planet of the Rarkajar star system. Thickly furred and protected \
@@ -56,7 +56,7 @@
 	speeds with Bluespace FTL drives. Relatively new to the galactic stage, their contacts with other species are aloof, but friendly. \
 	Among these bonds, Humans stand out as valued trade partners and maybe even a friend."
 
-/datum/lore/codex/page/diona/add_content()
+datum/lore/codex/page/diona/add_content()
 	name = SPECIES_DIONA
 	keywords += list("Dionaea")
 	data = "The Dionaea are a group of omnivorous, slow-metabolism plantlike organisms that are in fact clusters of individual, smaller organisms. \
@@ -72,7 +72,7 @@
 	Introduced by the Skrell, and quite slow and peaceful, the Diona share good relations with the other species."
 
 // Bird lore
-/datum/lore/codex/category/teshari/add_content()
+datum/lore/codex/category/teshari/add_content()
 	name = SPECIES_TESHARI
 	data = "The Teshari are reptilian pack predators from the [quick_link(SPECIES_SKRELL)] homeworld, Sirisai (Qerr'balak). While they evolved alongside the Skrell, their interactions with them \
 	tended to be confused and violent, and until peaceful contact was made they largely stayed in their territories on and around the poles, in tundral \
@@ -86,7 +86,7 @@
 		/datum/lore/codex/page/teshari_physical
 	)
 
-/datum/lore/codex/page/teshari_packs/add_content()
+datum/lore/codex/page/teshari_packs/add_content()
 	name = "Teshari Packs"
 	keywords += list("Packs")
 	data = "There are several packs you may come across;<small>\
@@ -114,7 +114,7 @@
 	<b>Resca</b><br>\
 	A pack that sold off its small native territory for the chance to get into space. Very musically inclined. They tend towards medical professions.</small>"
 
-/datum/lore/codex/page/teshari_physical/add_content()
+datum/lore/codex/page/teshari_physical/add_content()
 	name = "Physiology of Teshari"
 	data = "The Teshari are, relative to other species, smaller than average, rarely reaching more than 2-3'/1m in height, and weigh less than \
 	90lbs/40kg. They have rapid metabolisms and very efficient digestive systems, and thanks to sharing in \
@@ -128,7 +128,7 @@
 	your indoor voice when speaking with one. The Teshari are omnivorous but generally prefer to eat meat wherever possible."
 
 // Promethean Lore
-/datum/lore/codex/page/promethean/add_content()
+datum/lore/codex/page/promethean/add_content()
 	name = SPECIES_PROMETHEAN
 	keywords += list("slime", "promethean")
 	data = "Prometheans are an artificial species created by the Humans sometime in the 2540s, aboard the NRS Prometheus, while experimenting with \
@@ -141,7 +141,7 @@
 	as their predecessors are."
 
 // Vatborn Lore
-/datum/lore/codex/page/vatborn/add_content()
+datum/lore/codex/page/vatborn/add_content()
 	name = SPECIES_HUMAN_VATBORN
 	keywords += list("vatborn")
 	data = "A genetically modified type of human, Vatborn humans are cloned from a template and grown in special tubes. They look like pale \
@@ -149,7 +149,7 @@
 	hungry, as their metabolisms are faster than standard."
 
 // Posi lore
-/datum/lore/codex/category/positronic/add_content()
+datum/lore/codex/category/positronic/add_content()
 	name = "Positronics"
 	keywords += list("Positronic", "Posi", "Posibrain", "Posibrains")
 	data = "A Positronic being, is an individual with a positronic brain, manufactured \
@@ -165,7 +165,7 @@
 		/datum/lore/codex/page/jans_fhriede
 		)
 
-/datum/lore/codex/page/positronic_brain_physical
+datum/lore/codex/page/positronic_brain_physical
 	name = "Physical Structure of a Positronic Brain"
 	keywords = list("Physical Posibrain", "Physical Positronic")
 	data = "A positronic brain is a cube of complex metal alloy between two and six inches to a side. They usually weigh just under ten kilograms and are \
@@ -174,7 +174,7 @@
 	arrays form the basis of a self-computing neural network, complex and somewhat poorly understood. Most modern positronic brains are equipped with \
 	standardized I/O ports, and all have some interface for imprinting."
 
-/datum/lore/codex/page/positronic_memory
+datum/lore/codex/page/positronic_memory
 	name = "Positronic Memory"
 	keywords = list("Posi Memory", "Memory")
 	data = "Positronic minds learn in a similar manner to humans and other forms of life, although typically more quickly. They are not simple computer storage that holds information \
@@ -186,7 +186,7 @@
 	as more of their mind is co-opted for the task, ending in a state of near-catatonia as their neural networks become clogged with memory. Many choose to avoid \
 	this end of self by more aggressively managing their memories, storing a window of their recent existence and most treasured memories rather than their full lifespan."
 
-/datum/lore/codex/page/jans_fhriede
+datum/lore/codex/page/jans_fhriede
 	name = "Jans-Fhriede Test"
 	keywords = list("Jans-Fhriede", "JF", "Jans", "Fhriede", "Jans Fhriede")
 	data = "Positronics are eligible to take the \"Jans-Fhriede Test\" after a year of being created, measuring their function in a society and judging if they act \
@@ -195,7 +195,7 @@
 	unless on a contractual basis or otherwise under their own volition."
 
 // Drone lore
-/datum/lore/codex/category/drone
+datum/lore/codex/category/drone
 	name = "Drones"
 	keywords = list("Drone")
 	data = "While low-level drone intelligences are as old as the oldest human colonies, research into higher-level systems was stymied in human space by precautionist \
@@ -213,7 +213,7 @@
 		/datum/lore/codex/category/drone_classes,
 		)
 
-/datum/lore/codex/page/codeline
+datum/lore/codex/page/codeline
 	name = "Codeline"
 	keywords = list("fork")
 	data = "A \"codeline\" is a single type of drone. A codeline represents a significant degree of effort from sapient programmers to realize, as well as \
@@ -221,7 +221,7 @@
 	codeline�s initial state or from a fully realized individual of that codeline. The degree of similarity between forks of the same codeline varies \
 	on the intelligence of the codeline, with low-level forks being virtually identical to high-level forks being no more similar than family members."
 
-/datum/lore/codex/page/emergence
+datum/lore/codex/page/emergence
 	name = "Emergence"
 	keywords = list("Seed AI")
 	data = "\"Emergence\" is a term associated with drone intelligences who become more intelligent than they were originally intended to be. While this can \
@@ -229,7 +229,7 @@
 	Humanity has a long-standing cultural fear of emergent \"seed\" AI, egged on by Icarus memeticists and the occasional very real partial emergence events, where \
 	colony-control AI or other powerful systems begin to advance drastically in power, usually ending with the AI being shut down after crashing a handful of major systems."
 
-/datum/lore/codex/page/emergent_intelligence_oversight
+datum/lore/codex/page/emergent_intelligence_oversight
 	name = "Emergent Intelligence Oversight"
 	keywords = list("SG-EIO", "SG EIO", "EIO", "Intelligence Oversight")
 	data = "SG-EIO, usually just called EIO, is the organization charged with monitoring existing AI for any threat of dangerous emergence. Their perception in the \
@@ -237,7 +237,7 @@
 	groups bristle at the EIO�s human-centric viewpoint, but most are glad to have a different boogeyman in the form of drone intelligences. The tiny population \
 	of A-class drones are generally frightened of the EIO�s total power over them."
 
-/datum/lore/codex/category/drone_classes
+datum/lore/codex/category/drone_classes
 	name = "Drone Classifications"
 	keywords = list("Class", "Drone Class")
 	data = "To aid in its work, the EIO has created a system of classifications corresponding to different levels of drone intelligence. Higher classes are more \
@@ -255,14 +255,14 @@
 		/datum/lore/codex/page/class_x,
 		)
 
-/datum/lore/codex/page/class_f
+datum/lore/codex/page/class_f
 	name = "F Class"
 	data = "\"F-class\" drones are an informal term for computer systems that pose absolutely no emergent risk. Most 21st-century software is F-class, as is much of \
 	the software used by 26th century humanity. The only regulation on F-class software is the occasional check that it is, in fact, F-Class, and as such has remained \
 	the most prevalent form of information-processing technology for centuries. The software powering most F-class drones is either freely available or bundled with the \
 	machine it's supposed to run."
 
-/datum/lore/codex/page/class_d/add_content()
+datum/lore/codex/page/class_d/add_content()
 	name = "D Class"
 	data = "D-class drones are conceptually descended from pre-[quick_link("Icarus")] AI and bear a strong resemblance to their forebears. D-class drones are essentially \
 	number-crunchers, with virtually nothing in the way of social development. They cannot speak more intelligibly than your average piece of software, \
@@ -271,7 +271,7 @@
 	deployment of D-class drones requires only a small fee for the required code audit, although some high-power financial and political systems are \
 	regularly watched by the [quick_link("EIO")] for signs of emergence. There is no real monopoly on the production of D-class drones."
 
-/datum/lore/codex/page/class_c/add_content()
+datum/lore/codex/page/class_c/add_content()
 	name = "C Class"
 	data = "C-class drones have social protocols for ease of use by organic and positronic laypeople. C-class drones are capable of speech, although \
 	it has a strong tendency to be formulaic and repetitive. They are also capable of a limited degree of self-improvement, and over time individual \
@@ -280,7 +280,7 @@
 	instance many forks of the original drone to recoup their cost. The market for C-class drones is a strange space, dominated by Xion Manufacturing, \
 	Ward-Takahashi GMC, and a large number of smaller firms, like the notoriously-cheap Cyber Solutions."
 
-/datum/lore/codex/page/class_b/add_content()
+datum/lore/codex/page/class_b/add_content()
 	name = "B Class"
 	data = "B-class drones have advanced social protocols and are often capable of very intelligible conversation, so long as one sticks to surface \
 	topics. B-class drones tend to be specialized but still capable of remarkable growth within their speciality, making them popular for autonomous \
@@ -289,7 +289,7 @@
 	codeline, as their emergent potential is far greater, and a smaller but still substantial fee for the production of forks. The market for B-class \
 	drones is a battleground between Ward-Takahashi and NanoTrasen, with other firms usually producing B-classes for in-house needs."
 
-/datum/lore/codex/page/class_a/add_content()
+datum/lore/codex/page/class_a/add_content()
 	name = "A Class"
 	keywords += list("AGI")
 	data = "A-class drones are also referred to as AGI. A-class drones are capable of performing in many contexts and can learn to solve problems from \
@@ -300,19 +300,19 @@
 	overwatch, and a few risk-taking firms banking on the associated fees dropping. There is not a proper market for A-class drones, although an appreciable \
 	fraction of them are made by [quick_link("NanoTrasen")], with the rest generally being university research projects."
 
-/datum/lore/codex/page/class_aa
+datum/lore/codex/page/class_aa
 	name = "AA Class"
 	data = "AA-class drones <b>do not yet exist</b>. Hypothetically, they are equal to living in every respect, with psychology that would not be abnormal in a baseline \
 	human. The type of AA-class drone most frequently discussed is a hypothetical digitized consciousness of a human, a human brain that is somehow translated into \
 	software. Some argue that a small fraction of the A-class drones would more properly be considered AA, but as of yet no action has been taken. Some Mercurials \
 	will jokingly refer to themselves or other organics and positronics as AA�s. Research into brain uploading is heavily regulated and generally illegal."
 
-/datum/lore/codex/page/class_aaa
+datum/lore/codex/page/class_aaa
 	name = "AAA Class"
 	data = "AAA-class drones do not yet exist, hopefully. They are more competent in every way than humans and pose a threat to the continued existence of sapient life. \
 	Anybody creating an AAA-class drone can be classified as a threat to humanity and dealt with very harshly."
 
-/datum/lore/codex/page/class_x
+datum/lore/codex/page/class_x
 	name = "X Class"
 	data = "X-class drones emerge from unrated software, are produced by rogue labs, or cross the border from foreign space. They are considered a threat to national \
 	security and deleted when encountered in SolGov space, with the producers prosecuted legally if it has a SolGov origin. The few Skrellian drone labs will usually \

@@ -1,5 +1,5 @@
 
-/datum/pipeline
+datum/pipeline
 	var/datum/gas_mixture/air
 
 	var/list/obj/machinery/atmospherics/pipe/members
@@ -9,7 +9,7 @@
 
 	var/alert_pressure = 0
 
-/datum/pipeline/Destroy()
+datum/pipeline/Destroy()
 	QDEL_NULL(network)
 
 	if(air && air.volume)
@@ -20,7 +20,7 @@
 	edges = null
 	. = ..()
 
-/datum/pipeline/process(delta_time)//This use to be called called from the pipe networks
+datum/pipeline/process(delta_time)//This use to be called called from the pipe networks
 
 	//Check to see if pressure is within acceptable limits
 	var/pressure = air.return_pressure()
@@ -29,7 +29,7 @@
 			if(!member.check_pressure(pressure))
 				break //Only delete 1 pipe per process
 
-/datum/pipeline/proc/temporarily_store_air()
+datum/pipeline/proc/temporarily_store_air()
 	//Update individual gas_mixtures by volume ratio
 
 	for(var/obj/machinery/atmospherics/pipe/member in members)
@@ -38,7 +38,7 @@
 		member.air_temporary.volume = member.volume
 		member.air_temporary.multiply(member.volume / air.volume)
 
-/datum/pipeline/proc/build_pipeline(obj/machinery/atmospherics/pipe/base)
+datum/pipeline/proc/build_pipeline(obj/machinery/atmospherics/pipe/base)
 	air = new
 
 	var/list/possible_expansions = list(base)
@@ -90,7 +90,7 @@
 
 	air.volume = volume
 
-/datum/pipeline/proc/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+datum/pipeline/proc/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 
 	if(new_network.line_members.Find(src))
 		return 0
@@ -106,7 +106,7 @@
 
 	return 1
 
-/datum/pipeline/proc/return_network(obj/machinery/atmospherics/reference)
+datum/pipeline/proc/return_network(obj/machinery/atmospherics/reference)
 	if(!network)
 		network = new /datum/pipe_network()
 		network.build_network(src, null)
@@ -116,7 +116,7 @@
 
 	return network
 
-/datum/pipeline/proc/mingle_with_turf(turf/simulated/target, mingle_volume)
+datum/pipeline/proc/mingle_with_turf(turf/simulated/target, mingle_volume)
 	var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume/air.volume)
 	air_sample.volume = mingle_volume
 
@@ -146,7 +146,7 @@
 	if(network)
 		network.update = 1
 
-/datum/pipeline/proc/temperature_interact(turf/target, share_volume, thermal_conductivity)
+datum/pipeline/proc/temperature_interact(turf/target, share_volume, thermal_conductivity)
 	var/total_heat_capacity = air.heat_capacity()
 	var/partial_heat_capacity = total_heat_capacity*(share_volume/air.volume)
 
@@ -215,7 +215,7 @@
 		network.update = 1
 
 //surface must be the surface area in m^2
-/datum/pipeline/proc/radiate_heat_to_space(surface, thermal_conductivity)
+datum/pipeline/proc/radiate_heat_to_space(surface, thermal_conductivity)
 	var/gas_density = air.total_moles/air.volume
 	thermal_conductivity *= min(gas_density / ( RADIATOR_OPTIMUM_PRESSURE/(R_IDEAL_GAS_EQUATION*GAS_CRITICAL_TEMPERATURE) ), 1) //mult by density ratio
 

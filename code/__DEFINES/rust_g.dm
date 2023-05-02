@@ -18,7 +18,7 @@
 
 /* This comment bypasses grep checks */ /var/__rust_g
 
-/proc/__detect_rust_g()
+proc/__detect_rust_g()
 	if (world.system_type == UNIX)
 		if (fexists("./librust_g.so"))
 			// No need for LD_LIBRARY_PATH badness.
@@ -46,7 +46,7 @@
 #endif
 
 /// Gets the version of rust_g
-/proc/rustg_get_version() return RUSTG_CALL(RUST_G, "get_version")()
+proc/rustg_get_version() return RUSTG_CALL(RUST_G, "get_version")()
 
 
 /**
@@ -143,7 +143,7 @@
 #define rustg_json_is_valid(text) (RUSTG_CALL(RUST_G, "json_is_valid")(text) == "true")
 
 #define rustg_log_write(fname, text, format) RUSTG_CALL(RUST_G, "log_write")(fname, text, format)
-/proc/rustg_log_close_all() return RUSTG_CALL(RUST_G, "log_close_all")()
+proc/rustg_log_close_all() return RUSTG_CALL(RUST_G, "log_close_all")()
 
 #define rustg_noise_get_at_coordinates(seed, x, y) RUSTG_CALL(RUST_G, "noise_get_at_coordinates")(seed, x, y)
 
@@ -158,12 +158,12 @@
 #define rustg_time_milliseconds(id) text2num(RUSTG_CALL(RUST_G, "time_milliseconds")(id))
 #define rustg_time_reset(id) RUSTG_CALL(RUST_G, "time_reset")(id)
 
-/proc/rustg_unix_timestamp()
+proc/rustg_unix_timestamp()
 	return text2num(RUSTG_CALL(RUST_G, "unix_timestamp")())
 
 #define rustg_raw_read_toml_file(path) json_decode(RUSTG_CALL(RUST_G, "toml_file_to_json")(path) || "null")
 
-/proc/rustg_read_toml_file(path)
+proc/rustg_read_toml_file(path)
 	var/list/output = rustg_raw_read_toml_file(path)
 	if (output["success"])
 		return json_decode(output["content"])
@@ -172,7 +172,7 @@
 
 #define rustg_raw_toml_encode(value) json_decode(RUSTG_CALL(RUST_G, "toml_encode")(json_encode(value)))
 
-/proc/rustg_toml_encode(value)
+proc/rustg_toml_encode(value)
 	var/list/output = rustg_raw_toml_encode(value)
 	if (output["success"])
 		return output["content"]

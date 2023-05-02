@@ -5,55 +5,55 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 // Ported from TG
 
-/atom/movable/screen/radial
+atom/movable/screen/radial
 	icon = 'icons/mob/radial.dmi'
 	layer = LAYER_HUD_ABOVE
 	plane = PLANE_PLAYER_HUD_ABOVE
 	var/datum/radial_menu/parent
 
-/atom/movable/screen/radial/slice
+atom/movable/screen/radial/slice
 	icon_state = "radial_slice"
 	var/choice
 	var/next_page = FALSE
 	var/tooltips = FALSE
 
-/atom/movable/screen/radial/slice/MouseEntered(location, control, params)
+atom/movable/screen/radial/slice/MouseEntered(location, control, params)
 	. = ..()
 	icon_state = "radial_slice_focus"
 	if(tooltips)
 		openToolTip(usr, src, params, title = name)
 
-/atom/movable/screen/radial/slice/MouseExited(location, control, params)
+atom/movable/screen/radial/slice/MouseExited(location, control, params)
 	. = ..()
 	icon_state = "radial_slice"
 	if(tooltips)
 		closeToolTip(usr)
 
-/atom/movable/screen/radial/slice/Click(location, control, params)
+atom/movable/screen/radial/slice/Click(location, control, params)
 	if(usr.client == parent.current_user)
 		if(next_page)
 			parent.next_page()
 		else
 			parent.element_chosen(choice,usr)
 
-/atom/movable/screen/radial/center
+atom/movable/screen/radial/center
 	name = "Close Menu"
 	icon_state = "radial_center"
 
-/atom/movable/screen/radial/center/MouseEntered(location, control, params)
+atom/movable/screen/radial/center/MouseEntered(location, control, params)
 	. = ..()
 	icon_state = "radial_center_focus"
 
-/atom/movable/screen/radial/center/MouseExited(location, control, params)
+atom/movable/screen/radial/center/MouseExited(location, control, params)
 	. = ..()
 	icon_state = "radial_center"
 
-/atom/movable/screen/radial/center/Click(location, control, params)
+atom/movable/screen/radial/center/Click(location, control, params)
 	if(usr.client == parent.current_user)
 		parent.hide()
 		parent.finished = TRUE
 
-/datum/radial_menu
+datum/radial_menu
 	var/list/choices = list() //List of choice id's
 	var/list/choices_icons = list() //choice_id -> icon
 	var/list/choices_values = list() //choice_id -> choice
@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/entry_animation = TRUE
 
 //If we swap to vis_contens inventory these will need a redo
-/datum/radial_menu/proc/check_screen_border(mob/user)
+datum/radial_menu/proc/check_screen_border(mob/user)
 	var/atom/movable/AM = anchor
 	if(!istype(AM) || !AM.screen_loc)
 		return
@@ -98,7 +98,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 //Sets defaults
 //These assume 45 deg min_angle
-/datum/radial_menu/proc/restrict_to_dir(dir)
+datum/radial_menu/proc/restrict_to_dir(dir)
 	switch(dir)
 		if(NORTH)
 			starting_angle = 270
@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			starting_angle = 180
 			ending_angle = 45
 
-/datum/radial_menu/proc/setup_menu(use_tooltips)
+datum/radial_menu/proc/setup_menu(use_tooltips)
 	if(ending_angle > starting_angle)
 		zone = ending_angle - starting_angle
 	else
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	current_page = 1
 	update_screen_objects(anim = entry_animation)
 
-/datum/radial_menu/proc/update_screen_objects(anim = FALSE)
+datum/radial_menu/proc/update_screen_objects(anim = FALSE)
 	var/list/page_choices = page_data[current_page]
 	var/angle_per_element = round(zone / page_choices.len)
 	for(var/i in 1 to elements.len)
@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		else
 			SetElement(E,page_choices[i],angle,anim = anim,anim_order = i)
 
-/datum/radial_menu/proc/HideElement(atom/movable/screen/radial/slice/E)
+datum/radial_menu/proc/HideElement(atom/movable/screen/radial/slice/E)
 	E.cut_overlays()
 	E.alpha = 0
 	E.name = "None"
@@ -172,7 +172,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.choice = null
 	E.next_page = FALSE
 
-/datum/radial_menu/proc/SetElement(atom/movable/screen/radial/slice/E,choice_id,angle,anim,anim_order)
+datum/radial_menu/proc/SetElement(atom/movable/screen/radial/slice/E,choice_id,angle,anim,anim_order)
 	//Position
 	var/py = round(cos(angle) * radius) + py_shift
 	var/px = round(sin(angle) * radius)
@@ -209,23 +209,23 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			E.add_overlay(choices_icons[choice_id])
 			E.compile_overlays()
 
-/datum/radial_menu/New()
+datum/radial_menu/New()
 	close_button = new
 	close_button.parent = src
 
-/datum/radial_menu/proc/Reset()
+datum/radial_menu/proc/Reset()
 	choices.Cut()
 	choices_icons.Cut()
 	choices_values.Cut()
 	current_page = 1
 
-/datum/radial_menu/proc/element_chosen(choice_id,mob/user)
+datum/radial_menu/proc/element_chosen(choice_id,mob/user)
 	selected_choice = choices_values[choice_id]
 
-/datum/radial_menu/proc/get_next_id()
+datum/radial_menu/proc/get_next_id()
 	return "c_[choices.len]"
 
-/datum/radial_menu/proc/set_choices(list/new_choices, use_tooltips)
+datum/radial_menu/proc/set_choices(list/new_choices, use_tooltips)
 	if(choices.len)
 		Reset()
 	for(var/E in new_choices)
@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	setup_menu(use_tooltips)
 
 
-/datum/radial_menu/proc/extract_image(E)
+datum/radial_menu/proc/extract_image(E)
 	var/mutable_appearance/MA = new /mutable_appearance(E)
 	if(MA)
 		MA.layer = LAYER_HUD_ABOVE
@@ -247,12 +247,12 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	return MA
 
 
-/datum/radial_menu/proc/next_page()
+datum/radial_menu/proc/next_page()
 	if(pages > 1)
 		current_page = WRAP(current_page + 1,1,pages+1)
 		update_screen_objects()
 
-/datum/radial_menu/proc/show_to(mob/M)
+datum/radial_menu/proc/show_to(mob/M)
 	if(current_user)
 		hide()
 	if(!M.client || !anchor)
@@ -264,11 +264,11 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	menu_holder.vis_contents += elements + close_button
 	current_user.images += menu_holder
 
-/datum/radial_menu/proc/hide()
+datum/radial_menu/proc/hide()
 	if(current_user)
 		current_user.images -= menu_holder
 
-/datum/radial_menu/proc/wait(atom/user, atom/anchor, require_near = FALSE)
+datum/radial_menu/proc/wait(atom/user, atom/anchor, require_near = FALSE)
 	while (current_user && !finished && !selected_choice)
 		if(require_near && !in_range(anchor, user))
 			return
@@ -279,7 +279,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 				next_check = world.time + check_delay
 		stoplag(1)
 
-/datum/radial_menu/Destroy()
+datum/radial_menu/Destroy()
 	Reset()
 	hide()
 	. = ..()
@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	Choices should be a list where list keys are movables or text used for element names and return value
 	and list values are movables/icons/images used for element icons
 */
-/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE)
+proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE)
 	if(!user || !anchor || !length(choices))
 		return
 	if(!uniqueid)

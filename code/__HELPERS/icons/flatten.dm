@@ -14,7 +14,7 @@
  * - A - appearancelike object.
  * - no_anim - flatten out animations
  */
-/proc/get_compound_icon(atom/A, no_anim)
+proc/get_compound_icon(atom/A, no_anim)
 	var/mutable_appearance/N = new
 	N.appearance = A
 	N.dir = NORTH
@@ -38,7 +38,7 @@
 	qdel(west)
 	return full
 
-/proc/get_flat_icon(appearance/appearancelike, dir, no_anim)
+proc/get_flat_icon(appearance/appearancelike, dir, no_anim)
 	if(!dir && isloc(appearancelike))
 		dir = appearancelike.dir
 	return _get_flat_icon(appearancelike, dir, no_anim, null, TRUE)
@@ -51,7 +51,7 @@
  * * deficon - (optional) default icon to use instead of using the host appearance's
  * * start - is this the first call in the recurse? this is important
  */
-/proc/_get_flat_icon(image/A, defdir, no_anim, deficon, start)
+proc/_get_flat_icon(image/A, defdir, no_anim, deficon, start)
 	// start with blank image
 	var/static/icon/template = icon('icons/system/blank_32x32.dmi', "")
 

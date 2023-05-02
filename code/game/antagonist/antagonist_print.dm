@@ -1,4 +1,4 @@
-/datum/antagonist/proc/print_player_summary()
+datum/antagonist/proc/print_player_summary()
 
 	if(!current_antagonists.len)
 		return 0
@@ -38,7 +38,7 @@
 	// Display the results.
 	to_chat(world, text)
 
-/datum/antagonist/proc/print_objective(var/datum/objective/O, var/num, var/append_success)
+datum/antagonist/proc/print_objective(var/datum/objective/O, var/num, var/append_success)
 	var/text = "<br><b>Objective [num]:</b> [O.explanation_text] "
 	if(append_success)
 		if(O.check_completion())
@@ -47,7 +47,7 @@
 			text += "<font color='red'>Fail.</font>"
 	return text
 
-/datum/antagonist/proc/print_player_lite(var/datum/mind/ply)
+datum/antagonist/proc/print_player_lite(var/datum/mind/ply)
 	var/role = ply.assigned_role ? "\improper[ply.assigned_role]" : "\improper[ply.special_role]"
 	var/text = "<br><b>[ply.name]</b> (<b>[ply.ckey]</b>) as \a <b>[role]</b> ("
 	if(ply.current)
@@ -65,7 +65,7 @@
 
 	return text
 
-/datum/antagonist/proc/print_player_full(var/datum/mind/ply)
+datum/antagonist/proc/print_player_full(var/datum/mind/ply)
 	var/text = print_player_lite(ply)
 
 	var/TC_uses = 0
@@ -83,7 +83,7 @@
 
 	return text
 
-/proc/print_ownerless_uplinks()
+proc/print_ownerless_uplinks()
 	var/has_printed = 0
 	for(var/obj/item/uplink/H in world_uplinks)
 		if(isnull(H.uplink_owner) && H.used_TC)
@@ -93,7 +93,7 @@
 			to_chat(world, "[H.loc] (used [H.used_TC] TC)")
 			to_chat(world, get_uplink_purchases(H))
 
-/proc/get_uplink_purchases(var/obj/item/uplink/H)
+proc/get_uplink_purchases(var/obj/item/uplink/H)
 	var/list/refined_log = new()
 	for(var/datum/uplink_item/UI in H.purchase_log)
 		refined_log.Add("[H.purchase_log[UI]]x[UI.log_icon()][UI.name]")

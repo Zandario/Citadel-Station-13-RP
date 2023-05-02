@@ -51,7 +51,7 @@
  *	.dmm files. Errors in the .dmm format will cause runtime errors.
  *
 */
-/dmm_suite
+dmm_suite
 
 /**
  * dmm_file: A .dmm file to load (Required).
@@ -60,4 +60,4 @@
  * measureOnly: When true, no changes will be made to the world (Optional).
  * no_changeturf: When true, turf/AfterChange won't be called on loaded turfs
  */
-/dmm_suite/verb/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num)
+dmm_suite/verb/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num)

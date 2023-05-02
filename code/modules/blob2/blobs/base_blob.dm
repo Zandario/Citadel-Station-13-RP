@@ -1,6 +1,6 @@
 var/list/blobs = list()
 
-/obj/structure/blob
+obj/structure/blob
 	name = "blob"
 	icon = 'icons/mob/blob.dmi'
 	desc = "A thick wall of writhing tendrils."
@@ -19,7 +19,7 @@ var/list/blobs = list()
 	var/mob/observer/blob/overmind = null
 	var/base_name = "blob" // The name that gets appended along with the blob_type's name.
 
-/obj/structure/blob/Initialize(mapload, new_overmind)
+obj/structure/blob/Initialize(mapload, new_overmind)
 	. = ..()
 	if(new_overmind)
 		overmind = new_overmind
@@ -30,13 +30,13 @@ var/list/blobs = list()
 	blobs += src
 	consume_tile()
 
-/obj/structure/blob/Destroy()
+obj/structure/blob/Destroy()
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Expand() is no longer broken, no check necessary.
 	blobs -= src
 	overmind = null
 	return ..()
 
-/obj/structure/blob/update_icon() //Updates color based on overmind color if we have an overmind.
+obj/structure/blob/update_icon() //Updates color based on overmind color if we have an overmind.
 	if(overmind)
 		name = "[overmind.blob_type.name] [base_name]" // This is in update_icon() because inert blobs can turn into other blobs with magic if another blob core claims it with pulsing.
 		color = overmind.blob_type.color
@@ -47,7 +47,7 @@ var/list/blobs = list()
 		set_light(0)
 
 // Blob tiles are not actually dense so we need Special Code(tm).
-/obj/structure/blob/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/blob/CanAllowThrough(atom/movable/mover, turf/target)
 	// density is false, can't trust parent procs
 	if(check_standard_flag_pass(mover))
 		return TRUE
@@ -61,23 +61,23 @@ var/list/blobs = list()
 			return TRUE
 	return FALSE
 
-/obj/structure/blob/examine(mob/user)
+obj/structure/blob/examine(mob/user)
 	. = ..()
 	if(!overmind)
 		. += "It seems inert." // Dead blob.
 	else
 		. += overmind.blob_type.desc
 
-/obj/structure/blob/get_description_info()
+obj/structure/blob/get_description_info()
 	if(overmind)
 		return overmind.blob_type.effect_desc
 	return ..()
 
-/obj/structure/blob/emp_act(severity)
+obj/structure/blob/emp_act(severity)
 	if(overmind)
 		overmind.blob_type.on_emp(src, severity)
 
-/obj/structure/blob/proc/pulsed()
+obj/structure/blob/proc/pulsed()
 	if(pulse_timestamp <= world.time)
 		consume_tile()
 		if(heal_timestamp <= world.time)
@@ -90,7 +90,7 @@ var/list/blobs = list()
 		return TRUE //we did it, we were pulsed!
 	return FALSE //oh no we failed
 
-/obj/structure/blob/proc/pulse_area(pulsing_overmind = overmind, claim_range = 10, pulse_range = 3, expand_range = 2)
+obj/structure/blob/proc/pulse_area(pulsing_overmind = overmind, claim_range = 10, pulse_range = 3, expand_range = 2)
 	src.pulsed()
 	var/expanded = FALSE
 	if(prob(70) && expand())
@@ -129,7 +129,7 @@ var/list/blobs = list()
 		if(distance <= pulse_range)
 			B.pulsed()
 
-/obj/structure/blob/proc/expand(turf/T = null, controller = null, expand_reaction = 1)
+obj/structure/blob/proc/expand(turf/T = null, controller = null, expand_reaction = 1)
 	if(!T)
 		var/list/dirs = GLOB.cardinal.Copy()
 		for(var/i = 1 to 4)
@@ -185,16 +185,16 @@ var/list/blobs = list()
 		blob_attack_animation(T, controller) //if we can't, animate that we attacked
 	return null
 
-/obj/structure/blob/proc/consume_tile()
+obj/structure/blob/proc/consume_tile()
 	for(var/atom/A in loc)
 		A.blob_act(src)
 	if(loc && loc.density)
 		loc.blob_act(src) //don't ask how a wall got on top of the core, just eat it
 
-/obj/structure/blob/proc/blob_glow_animation()
+obj/structure/blob/proc/blob_glow_animation()
 	flick("[icon_state]_glow", src)
 
-/obj/structure/blob/proc/blob_attack_animation(atom/A = null, controller) //visually attacks an atom
+obj/structure/blob/proc/blob_attack_animation(atom/A = null, controller) //visually attacks an atom
 	var/obj/effect/temporary_effect/blob_attack/O = new /obj/effect/temporary_effect/blob_attack(src.loc)
 	O.setDir(dir)
 	if(controller)
@@ -207,7 +207,7 @@ var/list/blobs = list()
 		O.do_attack_animation(A) //visually attack the whatever
 	return O //just in case you want to do something to the animation.
 
-/obj/structure/blob/proc/change_to(type, controller)
+obj/structure/blob/proc/change_to(type, controller)
 	if(!ispath(type))
 		throw EXCEPTION("change_to(): invalid type for blob")
 		return
@@ -219,7 +219,7 @@ var/list/blobs = list()
 	qdel(src)
 	return B
 
-/obj/structure/blob/attackby(var/obj/item/W, var/mob/user)
+obj/structure/blob/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
@@ -250,7 +250,7 @@ var/list/blobs = list()
 	adjust_integrity(-damage)
 	return
 
-/obj/structure/blob/bullet_act(var/obj/projectile/P)
+obj/structure/blob/bullet_act(var/obj/projectile/P)
 	if(!P)
 		return
 
@@ -276,11 +276,11 @@ var/list/blobs = list()
 
 	return ..()
 
-/obj/structure/blob/water_act(amount)
+obj/structure/blob/water_act(amount)
 	if(overmind)
 		overmind.blob_type.on_water(src, amount)
 
-/obj/structure/blob/proc/adjust_integrity(amount)
+obj/structure/blob/proc/adjust_integrity(amount)
 	integrity = clamp( integrity + amount, 0,  max_integrity)
 	if(integrity == 0)
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
@@ -290,7 +290,7 @@ var/list/blobs = list()
 	else
 		update_icon()
 
-/obj/effect/temporary_effect/blob_attack
+obj/effect/temporary_effect/blob_attack
 	name = "blob"
 	desc = "The blob lashing out at something."
 	icon_state = "blob_attack"
@@ -300,8 +300,8 @@ var/list/blobs = list()
 	alpha = 140
 	mouse_opacity = 0
 
-/obj/structure/grille/blob_act()
+obj/structure/grille/blob_act()
 	qdel(src)
 
-/turf/simulated/wall/blob_act()
+turf/simulated/wall/blob_act()
 	take_damage(100)

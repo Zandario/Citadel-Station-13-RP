@@ -1,5 +1,5 @@
 
-/obj/machinery/computer/aiupload
+obj/machinery/computer/aiupload
 	name = "\improper AI upload console"
 	desc = "Used to upload laws to the AI."
 	icon_keyboard = "rd_key"
@@ -9,7 +9,7 @@
 	var/opened = 0
 
 
-/obj/machinery/computer/aiupload/verb/AccessInternals()
+obj/machinery/computer/aiupload/verb/AccessInternals()
 	set category = "Object"
 	set name = "Access Computer's Internals"
 	set src in oview(1)
@@ -24,7 +24,7 @@
 	return
 
 
-/obj/machinery/computer/aiupload/attackby(obj/item/O, mob/user)
+obj/machinery/computer/aiupload/attackby(obj/item/O, mob/user)
 	if (GLOB.using_map && !(user.z in GLOB.using_map.contact_levels))
 		to_chat(user, "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!")
 		return
@@ -35,7 +35,7 @@
 		..()
 
 
-/obj/machinery/computer/aiupload/attack_hand(mob/user, list/params)
+obj/machinery/computer/aiupload/attack_hand(mob/user, list/params)
 	if(machine_stat & NOPOWER)
 		to_chat(user, "The upload computer has no power!")
 		return
@@ -51,11 +51,11 @@
 		to_chat(user, "[src.current.name] selected for law changes.")
 	return
 
-/obj/machinery/computer/aiupload/attack_ghost(mob/user)
+obj/machinery/computer/aiupload/attack_ghost(mob/user)
 	. = ..()
 	return TRUE
 
-/obj/machinery/computer/borgupload
+obj/machinery/computer/borgupload
 	name = "cyborg upload console"
 	desc = "Used to upload laws to Cyborgs."
 	icon_keyboard = "rd_key"
@@ -64,14 +64,14 @@
 	var/mob/living/silicon/robot/current = null
 
 
-/obj/machinery/computer/borgupload/attackby(obj/item/aiModule/module, mob/user)
+obj/machinery/computer/borgupload/attackby(obj/item/aiModule/module, mob/user)
 	if(istype(module, /obj/item/aiModule))
 		module.install(src, user)
 	else
 		return ..()
 
 
-/obj/machinery/computer/borgupload/attack_hand(mob/user, list/params)
+obj/machinery/computer/borgupload/attack_hand(mob/user, list/params)
 	if(machine_stat& NOPOWER)
 		to_chat(user, "The upload computer has no power!")
 		return
@@ -87,6 +87,6 @@
 		to_chat(user, "[src.current.name] selected for law changes.")
 	return
 
-/obj/machinery/computer/borgupload/attack_ghost(mob/user)
+obj/machinery/computer/borgupload/attack_ghost(mob/user)
 	. = ..()
 	return 1

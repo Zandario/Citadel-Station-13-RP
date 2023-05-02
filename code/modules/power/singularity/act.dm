@@ -1,18 +1,18 @@
-/atom/proc/singularity_act(obj/singularity/S, current_size)
+atom/proc/singularity_act(obj/singularity/S, current_size)
 	return
 
-/atom/proc/singularity_pull(obj/singularity/S, current_size)
+atom/proc/singularity_pull(obj/singularity/S, current_size)
 	return
 
-/mob/living/singularity_act()
+mob/living/singularity_act()
 	investigate_log("has been consumed by a singularity", INVESTIGATE_SINGULO)
 	gib()
 	return 20
 
-/mob/living/singularity_pull(S, current_size)
+mob/living/singularity_pull(S, current_size)
 	step_towards(src, S)
 
-/mob/living/carbon/human/singularity_act()
+mob/living/carbon/human/singularity_act()
 	var/gain = 20
 	if(mind)
 		if((mind.assigned_role == "Station Engineer") || (mind.assigned_role == "Chief Engineer"))
@@ -23,7 +23,7 @@
 	gib()
 	return gain
 
-/mob/living/carbon/human/singularity_pull(S, current_size)
+mob/living/carbon/human/singularity_pull(S, current_size)
 	if(current_size >= STAGE_THREE)
 		for(var/obj/item/hand in get_held_items())
 			if(prob(current_size*5) && hand.w_class >= ((11-current_size)/2) && drop_item_to_ground(hand))
@@ -35,7 +35,7 @@
 		afflict_paralyze(20 * current_size)
 	..()
 
-/obj/singularity_act()
+obj/singularity_act()
 	if(atom_flags & ATOM_ABSTRACT)
 		return
 	legacy_ex_act(1)
@@ -43,7 +43,7 @@
 		qdel(src)
 	return 2
 
-/obj/singularity_pull(S, current_size)
+obj/singularity_pull(S, current_size)
 	if(atom_flags & ATOM_ABSTRACT)
 		return
 	if(anchored)
@@ -52,13 +52,13 @@
 	else
 		step_towards(src, S)
 
-/obj/effect/beam/singularity_pull()
+obj/effect/beam/singularity_pull()
 	return
 
-/obj/effect/overlay/singularity_pull()
+obj/effect/overlay/singularity_pull()
 	return
 
-/obj/item/singularity_pull(S, current_size)
+obj/item/singularity_pull(S, current_size)
 	spawn(0) //this is needed or multiple items will be thrown sequentially and not simultaneously
 		if(current_size >= STAGE_FOUR)
 			//throw_at_old(S, 14, 3)
@@ -69,14 +69,14 @@
 			step_towards(src,S)
 		else ..()
 
-/obj/machinery/atmospherics/pipe/singularity_pull()
+obj/machinery/atmospherics/pipe/singularity_pull()
 	return
 
-/obj/machinery/power/supermatter/shard/singularity_act()
+obj/machinery/power/supermatter/shard/singularity_act()
 	qdel(src)
 	return 5000
 
-/obj/machinery/power/supermatter/singularity_act()
+obj/machinery/power/supermatter/singularity_act()
 	if(!src.loc)
 		return
 
@@ -90,22 +90,22 @@
 	qdel(src)
 	return 50000
 
-/obj/projectile/beam/emitter/singularity_pull()
+obj/projectile/beam/emitter/singularity_pull()
 	return
 
-/obj/effect/projectile/emitter/singularity_pull()
+obj/effect/projectile/emitter/singularity_pull()
 	return
 
-/obj/item/storage/backpack/holding/singularity_act(S, current_size)
+obj/item/storage/backpack/holding/singularity_act(S, current_size)
 	var/dist = max((current_size - 2), 1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	return 1000
 
-/turf/singularity_act(S, current_size)
+turf/singularity_act(S, current_size)
 	ScrapeAway()
 	return 2
 
-/turf/simulated/floor/singularity_pull(S, current_size)
+turf/simulated/floor/singularity_pull(S, current_size)
 	if(flooring && current_size >= STAGE_THREE)
 		if(prob(current_size / 2))
 			var/leave_tile = TRUE
@@ -114,7 +114,7 @@
 			playsound(src, 'sound/items/crowbar.ogg', 50, 1)
 			make_plating(leave_tile)
 
-/turf/simulated/wall/singularity_pull(S, current_size)
+turf/simulated/wall/singularity_pull(S, current_size)
 
 	if(!reinf_material)
 		if(current_size >= STAGE_FIVE)
@@ -129,20 +129,20 @@
 			if(prob(30))
 				dismantle_wall()
 
-/turf/space/singularity_act()
+turf/space/singularity_act()
 	return
 
-/turf/simulated/open/singularity_act()
+turf/simulated/open/singularity_act()
 	return
 
 /*******************
 * Nar-Sie Act/Pull *
 *******************/
-/atom/proc/singuloCanEat()
+atom/proc/singuloCanEat()
 	return 1
 
-/mob/observer/singuloCanEat()
+mob/observer/singuloCanEat()
 	return 0
 
-/mob/new_player/singuloCanEat()
+mob/new_player/singuloCanEat()
 	return 0

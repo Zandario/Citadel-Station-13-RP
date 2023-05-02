@@ -3,7 +3,7 @@
  *
  * A grouping of tiles into a logical space, mostly used by map editors
  */
-/area
+area
 	level = null
 	name = "Unknown"
 	icon = 'icons/turf/areas.dmi'
@@ -101,7 +101,7 @@
  *
  *  Adds the item to the GLOB.areas_by_type list based on area type
  */
-/area/New()
+area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
 	if (unique)
@@ -127,7 +127,7 @@
  *
  * returns INITIALIZE_HINT_LATELOAD
  */
-/area/Initialize(mapload)
+area/Initialize(mapload)
 	icon_state = ""
 
 	if(requires_power)
@@ -159,7 +159,7 @@
 /**
  * Sets machine power levels in the area
  */
-/area/LateInitialize()
+area/LateInitialize()
 	power_change() // all machines set to current power level, also updates lighting icon
 
 /**
@@ -167,7 +167,7 @@
  *
  * Ensures the item is added to the SSmapping.areas_in_z list for this z
  */
-/area/proc/reg_in_areas_in_z()
+area/proc/reg_in_areas_in_z()
 	if(!length(contents))
 		return
 	var/list/areas_in_z = SSmapping.areas_in_z
@@ -187,7 +187,7 @@
  * This is despite the fact that no code appears to put it on SSobj, but
  * who am I to argue with old coders
  */
-/area/Destroy()
+area/Destroy()
 	if(GLOB.areas_by_type[type] == src)
 		GLOB.areas_by_type[type] = null
 /*
@@ -212,7 +212,7 @@
  * Changes the area of T to A. Do not do this manually.
  * Area is expected to be a non-null instance.
  */
-/proc/ChangeArea(turf/T, area/A)
+proc/ChangeArea(turf/T, area/A)
 	if(!istype(A))
 		CRASH("Area change attempt failed: invalid area supplied.")
 	var/area/old_area = get_area(T)
@@ -241,19 +241,19 @@
 	// 	T.update_weather()
 
 // compatibility wrapper, remove posthaste by making sure nothing checks area has_gravity.
-/area/has_gravity()
+area/has_gravity()
 	return has_gravity
 
-/area/proc/get_contents()
+area/proc/get_contents()
 	return contents
 
-/area/proc/get_cameras()
+area/proc/get_cameras()
 	var/list/cameras = list()
 	for (var/obj/machinery/camera/C in src)
 		cameras += C
 	return cameras
 
-/area/proc/atmosalert(danger_level, var/alarm_source)
+area/proc/atmosalert(danger_level, var/alarm_source)
 	if (danger_level == 0)
 		atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
@@ -283,7 +283,7 @@
 	return 0
 
 /// Either close or open firedoors depending on current alert statuses
-/area/proc/firedoors_update()
+area/proc/firedoors_update()
 	if(fire || party || atmosalm)
 		firedoors_close()
 		arfgs_activate()
@@ -300,7 +300,7 @@
 			L.reset_alert()
 
 /// Close all firedoors in the area
-/area/proc/firedoors_close()
+area/proc/firedoors_close()
 	if(!firedoors_closed)
 		firedoors_closed = TRUE
 		if(!all_doors)
@@ -314,7 +314,7 @@
 						E.close()
 
 /// Open all firedoors in the area
-/area/proc/firedoors_open()
+area/proc/firedoors_open()
 	if(firedoors_closed)
 		firedoors_closed = FALSE
 		if(!all_doors)
@@ -328,7 +328,7 @@
 						E.open()
 
 /// Activate all retention fields!
-/area/proc/arfgs_activate()
+area/proc/arfgs_activate()
 	if(!arfgs_active)
 		arfgs_active = TRUE
 		if(!all_arfgs)
@@ -338,7 +338,7 @@
 			E.wasactive = TRUE
 
 /// Deactivate retention fields!
-/area/proc/arfgs_deactivate()
+area/proc/arfgs_deactivate()
 	if(arfgs_active)
 		arfgs_active = FALSE
 		if(!all_arfgs)
@@ -348,45 +348,45 @@
 			E.wasactive = FALSE
 
 
-/area/proc/fire_alert()
+area/proc/fire_alert()
 	if(!fire)
 		fire = 1	//used for firedoor checks
 		updateicon()
 		firedoors_update()
 
-/area/proc/fire_reset()
+area/proc/fire_reset()
 	if (fire)
 		fire = 0	//used for firedoor checks
 		updateicon()
 		firedoors_update()
 
-/area/proc/readyalert()
+area/proc/readyalert()
 	if(!eject)
 		eject = 1
 		updateicon()
 	return
 
-/area/proc/readyreset()
+area/proc/readyreset()
 	if(eject)
 		eject = 0
 		updateicon()
 	return
 
-/area/proc/partyalert()
+area/proc/partyalert()
 	if (!( party ))
 		party = 1
 		updateicon()
 		firedoors_update()
 	return
 
-/area/proc/partyreset()
+area/proc/partyreset()
 	if (party)
 		party = 0
 		updateicon()
 		firedoors_update()
 	return
 
-/area/proc/updateicon()
+area/proc/updateicon()
 	if ((fire || eject || party) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire && !eject && !party)
 			icon_state = null // Let lights take care of it
@@ -416,7 +416,7 @@
  * evalutes a mixture of variables mappers can set, requires_power, always_unpowered and then
  * per channel power_equip, power_light, power_environ
  */
-/area/proc/powered(chan) // return true if the area has power to given channel
+area/proc/powered(chan) // return true if the area has power to given channel
 
 	if(!requires_power)
 		return 1
@@ -437,13 +437,13 @@
  *
  * Updates the area icon, calls power change on all machinees in the area, and sends the `COMSIG_AREA_POWER_CHANGE` signal.
  */
-/area/proc/power_change()
+area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change() // reverify power status (to update icons etc.)
 	if (fire || eject || party)
 		update_appearance()
 
-/area/proc/usage(var/chan, var/include_static = TRUE)
+area/proc/usage(var/chan, var/include_static = TRUE)
 	var/used = 0
 	switch(chan)
 		if(LIGHT)
@@ -463,7 +463,7 @@
  *
  * Clears all power used for the dynamic equipment, light and environment channels
  */
-/area/proc/clear_usage()
+area/proc/clear_usage()
 	oneoff_equip = 0
 	oneoff_light = 0
 	oneoff_environ = 0
@@ -471,7 +471,7 @@
 /**
  * Add a power value amount to the stored used_x variables
  */
-/area/proc/use_power_oneoff(var/amount, var/chan)
+area/proc/use_power_oneoff(var/amount, var/chan)
 	switch(chan)
 		if(EQUIP)
 			oneoff_equip += amount
@@ -482,11 +482,11 @@
 	return amount
 
 /// This is used by machines to properly update the area of power changes.
-/area/proc/power_use_change(old_amount, new_amount, chan)
+area/proc/power_use_change(old_amount, new_amount, chan)
 	use_power_static(new_amount - old_amount, chan) // Simultaneously subtract old_amount and add new_amount.
 
 /// Not a proc you want to use directly unless you know what you are doing; see use_power_oneoff above instead.
-/area/proc/use_power_static(var/amount, var/chan)
+area/proc/use_power_static(var/amount, var/chan)
 	switch(chan)
 		if(EQUIP)
 			static_equip += amount
@@ -496,7 +496,7 @@
 			static_environ += amount
 
 /// This recomputes the continued power usage; can be used for testing or error recovery, but is not called every tick.
-/area/proc/retally_power()
+area/proc/retally_power()
 	static_equip = 0
 	static_light = 0
 	static_environ = 0
@@ -512,11 +512,11 @@
 
 //////////////////////////////////////////////////////////////////
 
-/area/vv_get_dropdown()
+area/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("check_static_power", "Check Static Power")
 
-/area/vv_do_topic(list/href_list)
+area/vv_do_topic(list/href_list)
 	. = ..()
 	if(href_list["check_static_power"])
 		if(!check_rights(R_DEBUG))
@@ -525,7 +525,7 @@
 		href_list["datumrefresh"] = "\ref[src]"
 
 /// Debugging proc to report if static power is correct or not.
-/area/proc/check_static_power(var/user)
+area/proc/check_static_power(var/user)
 	set name = "Check Static Power"
 	var/actual_static_equip = static_equip
 	var/actual_static_light = static_light
@@ -543,7 +543,7 @@
 
 GLOBAL_LIST_EMPTY(forced_ambiance_list)
 
-/area/proc/play_ambience(var/mob/living/L)
+area/proc/play_ambience(var/mob/living/L)
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!L?.is_preference_enabled(/datum/client_preference/play_ambiance))
 		return
@@ -568,7 +568,7 @@ GLOBAL_LIST_EMPTY(forced_ambiance_list)
 			SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 50, channel = CHANNEL_AMBIENCE))
 			L.client.time_last_ambience_played = world.time
 
-/area/proc/gravitychange(var/gravitystate = 0, var/area/A)
+area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 	A?.has_gravity = gravitystate
 
 	for(var/mob/M in A)
@@ -576,7 +576,7 @@ GLOBAL_LIST_EMPTY(forced_ambiance_list)
 			thunk(M)
 		M.update_floating( M.Check_Dense_Object() )
 
-/area/proc/thunk(mob)
+area/proc/thunk(mob)
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
 
@@ -597,7 +597,7 @@ GLOBAL_LIST_EMPTY(forced_ambiance_list)
 		to_chat(mob, "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>")
 		playsound(get_turf(src), "bodyfall", 50, 1)
 
-/area/proc/prison_break()
+area/proc/prison_break()
 	var/obj/machinery/power/apc/theAPC = get_apc()
 	if(theAPC.operating)
 		for(var/obj/machinery/power/apc/temp_apc in src)
@@ -607,22 +607,22 @@ GLOBAL_LIST_EMPTY(forced_ambiance_list)
 		for(var/obj/machinery/door/window/temp_windoor in src)
 			temp_windoor.open()
 
-/area/proc/shuttle_arrived()
+area/proc/shuttle_arrived()
 	for(var/obj/machinery/power/apc/A in contents)
 		A.update_area()
 	return TRUE
 
-/area/proc/shuttle_departed()
+area/proc/shuttle_departed()
 	return TRUE
 
-/area/AllowDrop()
+area/AllowDrop()
 	CRASH("Bad op: area/AllowDrop() called")
 
-/area/drop_location()
+area/drop_location()
 	CRASH("Bad op: area/drop_location() called")
 
 // A hook so areas can modify the incoming args
-/area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
+area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	return flags
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
@@ -632,7 +632,7 @@ GLOBAL_LIST_EMPTY(forced_ambiance_list)
 // "i am far too lazy" WELL GUESS WHAT IM DEALING WITH YOUR STUPID SHIT NOW
 var/list/teleportlocs = list()
 
-/proc/setupTeleportLocs()
+proc/setupTeleportLocs()
 	for(var/area/AR in GLOB.sortedAreas)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station))
 			continue
@@ -654,7 +654,7 @@ var/list/teleportlocs = list()
 
 var/list/ghostteleportlocs = list()
 
-/hook/startup/proc/setupGhostTeleportLocs()
+hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area/AR in GLOB.sortedAreas)
 		if(ghostteleportlocs.Find(AR.name)) continue
 		if(istype(AR, /area/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))

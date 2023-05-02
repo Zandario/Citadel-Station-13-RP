@@ -1,4 +1,4 @@
-/client/proc/recipe_dump()
+client/proc/recipe_dump()
 	set name = "Generate Recipe Dump"
 	set category = "Server"
 	set desc = "Dumps food and drink recipe info and images for wiki or other use."

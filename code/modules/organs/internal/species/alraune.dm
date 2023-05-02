@@ -1,30 +1,30 @@
-/obj/item/organ/internal/brain/alraune
+obj/item/organ/internal/brain/alraune
 	icon = 'icons/mob/clothing/species/alraune/organs.dmi'
 	icon_state = "neurostroma"
 	name = "neuro-stroma"
 	desc = "A knot of fibrous plant matter."
 	parent_organ = BP_TORSO // brains in their core
 
-/obj/item/organ/internal/eyes/alraune
+obj/item/organ/internal/eyes/alraune
 	icon = 'icons/mob/clothing/species/alraune/organs.dmi'
 	icon_state = "photoreceptors"
 	name = "photoreceptors"
 	desc = "Bulbous and fleshy plant matter."
 
-/obj/item/organ/internal/kidneys/alraune
+obj/item/organ/internal/kidneys/alraune
 	icon = 'icons/mob/clothing/species/alraune/organs.dmi'
 	icon_state = "rhyzofilter"
 	name = "rhyzofilter"
 	desc = "A tangle of root nodules."
 
-/obj/item/organ/internal/liver/alraune
+obj/item/organ/internal/liver/alraune
 	icon = 'icons/mob/clothing/species/alraune/organs.dmi'
 	icon_state = "phytoextractor"
 	name = "enzoretector"
 	desc = "A bulbous gourd-like structure."
 
 //Begin fruit gland and its code.
-/obj/item/organ/internal/fruitgland //Amazing name, I know.
+obj/item/organ/internal/fruitgland //Amazing name, I know.
 	icon = 'icons/mob/clothing/species/alraune/organs.dmi'
 	icon_state = "phytoextractor"
 	name = "fruit gland"
@@ -43,11 +43,11 @@
 	var/fruit_type = "apple"
 	var/gen_cost = 0.5
 
-/obj/item/organ/internal/fruitgland/Initialize(mapload)
+obj/item/organ/internal/fruitgland/Initialize(mapload)
 	. = ..()
 	create_reagents(usable_volume)
 
-/obj/item/organ/internal/fruitgland/tick_life(dt)
+obj/item/organ/internal/fruitgland/tick_life(dt)
 	. = ..()
 	var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
 	var/before_gen
@@ -63,7 +63,7 @@
 		else if(reagents.total_volume == reagents.maximum_volume && before_gen < reagents.maximum_volume)
 			to_chat(owner, SPAN_WARNING("[pick(full_message)]"))
 
-/obj/item/organ/internal/fruitgland/proc/do_generation()
+obj/item/organ/internal/fruitgland/proc/do_generation()
 	owner.nutrition -= gen_cost
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])

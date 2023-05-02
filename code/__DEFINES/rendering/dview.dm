@@ -16,7 +16,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	GLOB.dview_mob.loc = null;
 
 /// Version of view() which ignores darkness, because BYOND doesn't have it (I actually suggested it but it was tagged redundant, BUT HEARERS IS A T- /rant).
-/proc/dview(range = world.view, center, invis_flags = 0)
+proc/dview(range = world.view, center, invis_flags = 0)
 	if(!center)
 		return
 
@@ -27,7 +27,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	. = view(range, GLOB.dview_mob)
 	GLOB.dview_mob.loc = null
 
-/mob/dview
+mob/dview
 	name = "INTERNAL DVIEW MOB"
 	invisibility = INVISIBILITY_ABSTRACT
 	density = FALSE
@@ -41,14 +41,14 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 
 /// Properly prevents this mob from gaining huds or joining any global lists.
-/mob/dview/Initialize(mapload)
+mob/dview/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
 	if(atom_flags & ATOM_INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	atom_flags |= ATOM_INITIALIZED
 	return INITIALIZE_HINT_NORMAL
 
-/mob/dview/Destroy(force = FALSE)
+mob/dview/Destroy(force = FALSE)
 	if(!ready_to_die)
 		stack_trace("ALRIGHT WHICH FUCKER TRIED TO DELETE *MY* DVIEW?")
 

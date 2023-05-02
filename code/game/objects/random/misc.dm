@@ -3,13 +3,13 @@
 // But this is where all of the "Loot" goes. Anything fun or useful that doesn't deserve its own file, pile in.
 */
 
-/obj/random/tool
+obj/random/tool
 	name = "random tool"
 	desc = "This is a random tool"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 
-/obj/random/tool/item_to_spawn()
+obj/random/tool/item_to_spawn()
 	return pick(/obj/item/tool/screwdriver,
 				/obj/item/tool/wirecutters,
 				/obj/item/weldingtool,
@@ -19,36 +19,36 @@
 				/obj/item/flashlight,
 				/obj/item/multitool)
 
-/obj/random/tool/powermaint
+obj/random/tool/powermaint
 	name = "random powertool"
 	desc = "This is a random rare powertool for maintenance"
 	icon_state = "jaws_pry"
 
-/obj/random/tool/powermaint/item_to_spawn()
+obj/random/tool/powermaint/item_to_spawn()
 	return pick(prob(320);/obj/random/tool,
 				prob(1);/obj/item/tool/screwdriver/power,
 				prob(1);/obj/item/tool/wirecutters/power,
 				prob(15);/obj/item/weldingtool/electric,
 				prob(5);/obj/item/weldingtool/experimental)
 
-/obj/random/tool/power
+obj/random/tool/power
 	name = "random powertool"
 	desc = "This is a random powertool"
 	icon_state = "jaws_pry"
 
-/obj/random/tool/power/item_to_spawn()
+obj/random/tool/power/item_to_spawn()
 	return pick(/obj/item/tool/screwdriver/power,
 				/obj/item/tool/wirecutters/power,
 				/obj/item/weldingtool/electric,
 				/obj/item/weldingtool/experimental)
 
-/obj/random/tool/alien
+obj/random/tool/alien
 	name = "random alien tool"
 	desc = "This is a random tool"
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "welder"
 
-/obj/random/tool/alien/item_to_spawn()
+obj/random/tool/alien/item_to_spawn()
 	return pick(/obj/item/tool/screwdriver/alien,
 				/obj/item/tool/wirecutters/alien,
 				/obj/item/weldingtool/alien,
@@ -57,24 +57,24 @@
 				/obj/item/stack/cable_coil/alien,
 				/obj/item/multitool/alien)
 
-/obj/random/technology_scanner
+obj/random/technology_scanner
 	name = "random scanner"
 	desc = "This is a random technology scanner."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "atmos"
 
-/obj/random/technology_scanner/item_to_spawn()
+obj/random/technology_scanner/item_to_spawn()
 	return pick(prob(5);/obj/item/t_scanner,
 				prob(2);/obj/item/radio,
 				prob(5);/obj/item/analyzer)
 
-/obj/random/powercell
+obj/random/powercell
 	name = "random powercell"
 	desc = "This is a random powercell."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 
-/obj/random/powercell/item_to_spawn()
+obj/random/powercell/item_to_spawn()
 	return pick(prob(40);/obj/item/cell,
 				prob(25);/obj/item/cell/device,
 				prob(25);/obj/item/cell/high,
@@ -82,13 +82,13 @@
 				prob(1);/obj/item/cell/hyper)
 
 
-/obj/random/bomb_supply
+obj/random/bomb_supply
 	name = "bomb supply"
 	desc = "This is a random bomb supply."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "signaller"
 
-/obj/random/bomb_supply/item_to_spawn()
+obj/random/bomb_supply/item_to_spawn()
 	return pick(/obj/item/assembly/igniter,
 				/obj/item/assembly/prox_sensor,
 				/obj/item/assembly/signaler,
@@ -96,31 +96,31 @@
 				/obj/item/multitool)
 
 
-/obj/random/toolbox
+obj/random/toolbox
 	name = "random toolbox"
 	desc = "This is a random toolbox."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "red"
 
-/obj/random/toolbox/item_to_spawn()
+obj/random/toolbox/item_to_spawn()
 	return pick(prob(6);/obj/item/storage/toolbox/mechanical,
 				prob(6);/obj/item/storage/toolbox/electrical,
 				prob(2);/obj/item/storage/toolbox/emergency,
 				prob(1);/obj/item/storage/toolbox/syndicate)
 
 
-/obj/random/tech_supply
+obj/random/tech_supply
 	name = "random tech supply"
 	desc = "This is a random piece of technology supplies."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	spawn_nothing_percentage = 25
 
-/obj/random/tech_supply/nofail
+obj/random/tech_supply/nofail
 	name = "guaranteed random tech supply"
 	spawn_nothing_percentage = 0
 
-/obj/random/tech_supply/item_to_spawn()
+obj/random/tech_supply/item_to_spawn()
 	return pick(prob(3);/obj/random/powercell,
 				prob(2);/obj/random/technology_scanner,
 				prob(1);/obj/item/packageWrap,
@@ -137,17 +137,17 @@
 				prob(1);/obj/item/barrier_tape_roll/atmos,
 				prob(1);/obj/item/flashlight/maglight)
 
-/obj/random/tech_supply/component
+obj/random/tech_supply/component
 	name = "random tech component"
 	desc = "This is a random machine component."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "portable_analyzer"
 
-/obj/random/tech_supply/component/nofail
+obj/random/tech_supply/component/nofail
 	name = "guaranteed random tech supply"
 	spawn_nothing_percentage = 0
 
-/obj/random/tech_supply/component/item_to_spawn()
+obj/random/tech_supply/component/item_to_spawn()
 	return pick(prob(3);/obj/item/stock_parts/gear,
 		prob(2);/obj/item/stock_parts/console_screen,
 		prob(1);/obj/item/stock_parts/spring,
@@ -164,13 +164,13 @@
 		prob(2);/obj/item/stock_parts/scanning_module/adv,
 		prob(1);/obj/item/stock_parts/scanning_module/phasic)
 
-/obj/random/medical
+obj/random/medical
 	name = "Random Medicine"
 	desc = "This is a random medical item."
 	icon = 'icons/obj/stacks.dmi'
 	icon_state = "traumakit"
 
-/obj/random/medical/item_to_spawn()
+obj/random/medical/item_to_spawn()
 	return pick(prob(21);/obj/random/medical/lite,
 				prob(5);/obj/random/medical/pillbottle,
 				prob(1);/obj/item/storage/pill_bottle/tramadol,
@@ -184,27 +184,27 @@
 				prob(1);/obj/item/storage/box/freezer,
 				prob(2);/obj/item/stack/nanopaste)
 
-/obj/random/medical/pillbottle
+obj/random/medical/pillbottle
 	name = "Random Pill Bottle"
 	desc = "This is a random pill bottle."
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "pill_canister"
 
-/obj/random/medical/pillbottle/item_to_spawn()
+obj/random/medical/pillbottle/item_to_spawn()
 	return pick(prob(1);/obj/item/storage/pill_bottle/spaceacillin,
 				prob(1);/obj/item/storage/pill_bottle/dermaline,
 				prob(1);/obj/item/storage/pill_bottle/dexalin_plus,
 				prob(1);/obj/item/storage/pill_bottle/bicaridine,
 				prob(1);/obj/item/storage/pill_bottle/iron)
 
-/obj/random/medical/lite
+obj/random/medical/lite
 	name = "Random Medicine"
 	desc = "This is a random simple medical item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "brutepack"
 	spawn_nothing_percentage = 25
 
-/obj/random/medical/lite/item_to_spawn()
+obj/random/medical/lite/item_to_spawn()
 	return pick(prob(4);/obj/item/stack/medical/bruise_pack,
 				prob(4);/obj/item/stack/medical/ointment,
 				prob(2);/obj/item/stack/medical/advanced/bruise_pack,
@@ -216,13 +216,13 @@
 				prob(2);/obj/item/storage/pill_bottle/kelotane,
 				prob(2);/obj/item/storage/pill_bottle/antitox)
 
-/obj/random/firstaid
+obj/random/firstaid
 	name = "Random First Aid Kit"
 	desc = "This is a random first aid kit."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "firstaid"
 
-/obj/random/firstaid/item_to_spawn()
+obj/random/firstaid/item_to_spawn()
 	return pick(prob(10);/obj/item/storage/firstaid/regular,
 				prob(8);/obj/item/storage/firstaid/toxin,
 				prob(8);/obj/item/storage/firstaid/o2,
@@ -230,13 +230,13 @@
 				prob(8);/obj/item/storage/firstaid/fire,
 				prob(1);/obj/item/storage/firstaid/combat)
 
-/obj/random/contraband
+obj/random/contraband
 	name = "Random Illegal Item"
 	desc = "Hot Stuff."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "purplecomb"
 	spawn_nothing_percentage = 50
-/obj/random/contraband/item_to_spawn()
+obj/random/contraband/item_to_spawn()
 	return pick(prob(6);/obj/item/storage/pill_bottle/tramadol,
 				prob(8);/obj/item/haircomb,
 				prob(4);/obj/item/storage/pill_bottle/happy,
@@ -256,13 +256,13 @@
 				prob(2);/obj/item/reagent_containers/syringe/drugs,
 				prob(1);/obj/item/reagent_containers/syringe/steroid)
 
-/obj/random/cash
+obj/random/cash
 	name = "random currency"
 	desc = "LOADSAMONEY!"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash1"
 
-/obj/random/cash/item_to_spawn()
+obj/random/cash/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(12);/obj/item/spacecash/c1,
 				prob(8);/obj/item/spacecash/c10,
@@ -270,26 +270,26 @@
 				prob(1);/obj/item/spacecash/c50,
 				prob(1);/obj/item/spacecash/c100)
 
-/obj/random/soap
+obj/random/soap
 	name = "Random Soap"
 	desc = "This is a random bar of soap."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
 
-/obj/random/soap/item_to_spawn()
+obj/random/soap/item_to_spawn()
 	return pick(prob(3);/obj/item/soap,
 				prob(2);/obj/item/soap/nanotrasen,
 				prob(2);/obj/item/soap/deluxe,
 				prob(1);/obj/item/soap/syndie)
 
 
-/obj/random/drinkbottle
+obj/random/drinkbottle
 	name = "random drink"
 	desc = "This is a random drink."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "whiskeybottle"
 
-/obj/random/drinkbottle/item_to_spawn()
+obj/random/drinkbottle/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 				/obj/item/reagent_containers/food/drinks/bottle/gin,
 				/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
@@ -301,13 +301,13 @@
 				/obj/item/reagent_containers/food/drinks/bottle/rum,
 				/obj/item/reagent_containers/food/drinks/bottle/patron)
 
-/obj/random/meat
+obj/random/meat
 	name = "random meat"
 	desc = "This is a random slab of meat."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "meat"
 
-/obj/random/meat/item_to_spawn()
+obj/random/meat/item_to_spawn()
 	return pick(prob(60);/obj/item/reagent_containers/food/snacks/meat,
 				prob(20);/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
 				prob(10);/obj/item/reagent_containers/food/snacks/carpmeat,
@@ -318,13 +318,13 @@
 				prob(1);/obj/item/reagent_containers/food/snacks/meat/corgi,
 				prob(1);/obj/item/reagent_containers/food/snacks/xenomeat)
 
-/obj/random/material //Random materials for building stuff
+obj/random/material //Random materials for building stuff
 	name = "random material"
 	desc = "This is a random material."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "sheet-metal"
 
-/obj/random/material/item_to_spawn()
+obj/random/material/item_to_spawn()
 	return pick(/obj/item/stack/material/steel{amount = 10},
 				/obj/item/stack/material/glass{amount = 10},
 				/obj/item/stack/material/glass/reinforced{amount = 10},
@@ -334,13 +334,13 @@
 				/obj/item/stack/rods{amount = 10},
 				/obj/item/stack/material/plasteel{amount = 10})
 
-/obj/random/tank
+obj/random/tank
 	name = "random tank"
 	desc = "This is a tank."
 	icon = 'icons/obj/tank.dmi'
 	icon_state = "canister"
 
-/obj/random/tank/item_to_spawn()
+obj/random/tank/item_to_spawn()
 	return pick(prob(5);/obj/item/tank/oxygen,
 				prob(4);/obj/item/tank/oxygen/yellow,
 				prob(4);/obj/item/tank/oxygen/red,
@@ -350,13 +350,13 @@
 				prob(2);/obj/item/tank/emergency/oxygen/double,
 				prob(1);/obj/item/suit_cooling_unit)
 
-/obj/random/cigarettes
+obj/random/cigarettes
 	name = "random cigarettes"
 	desc = "This is a cigarette."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
 
-/obj/random/cigarettes/item_to_spawn()
+obj/random/cigarettes/item_to_spawn()
 	return pick(prob(5);/obj/item/storage/fancy/cigarettes,
 				prob(4);/obj/item/storage/fancy/cigarettes/dromedaryco,
 				prob(3);/obj/item/storage/fancy/cigarettes/killthroat,
@@ -372,13 +372,13 @@
 				prob(1);/obj/item/clothing/mask/smokable/cigarette/cigar/taj,
 				prob(1);/obj/item/clothing/mask/smokable/cigarette/cigar/taj/premium)
 
-/obj/random/coin
+obj/random/coin
 	name = "random coin"
 	desc = "This is a coin spawn."
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "rup"
 
-/obj/random/coin/item_to_spawn()
+obj/random/coin/item_to_spawn()
 	return pick(prob(5);/obj/item/coin/silver,
 				prob(3);/obj/item/coin/iron,
 				prob(4);/obj/item/coin/gold,
@@ -388,13 +388,13 @@
 				prob(1);/obj/item/coin/durasteel,
 				prob(1);/obj/item/coin/diamond)
 
-/obj/random/action_figure
+obj/random/action_figure
 	name = "random action figure"
 	desc = "This is a random action figure."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "assistant"
 
-/obj/random/action_figure/item_to_spawn()
+obj/random/action_figure/item_to_spawn()
 	return pick(/obj/item/toy/figure/cmo,
 				/obj/item/toy/figure/assistant,
 				/obj/item/toy/figure/atmos,
@@ -434,13 +434,13 @@
 				/obj/item/toy/figure/paramedic,
 				/obj/item/toy/figure/ert)
 
-/obj/random/plushie
+obj/random/plushie
 	name = "random plushie"
 	desc = "This is a random plushie."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
 
-/obj/random/plushie/item_to_spawn()
+obj/random/plushie/item_to_spawn()
 	return pick(/obj/item/toy/plushie/nymph,
 				/obj/item/toy/plushie/mouse,
 				/obj/item/toy/plushie/kitten,
@@ -469,25 +469,25 @@
 				/obj/item/toy/plushie/tuxedo_cat,
 				/obj/item/toy/plushie/white_cat)
 
-/obj/random/plushielarge
+obj/random/plushielarge
 	name = "random large plushie"
 	desc = "This is a randomn large plushie."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "droneplushie"
 
-/obj/random/plushielarge/item_to_spawn()
+obj/random/plushielarge/item_to_spawn()
 	return pick(/obj/structure/plushie/ian,
 				/obj/structure/plushie/drone,
 				/obj/structure/plushie/carp,
 				/obj/structure/plushie/beepsky)
 
-/obj/random/toy
+obj/random/toy
 	name = "random toy"
 	desc = "This is a random toy."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ship"
 
-/obj/random/toy/item_to_spawn()
+obj/random/toy/item_to_spawn()
 	return pick(/obj/item/toy/bosunwhistle,
 				/obj/item/toy/plushie/therapy/red,
 				/obj/item/toy/plushie/therapy/purple,
@@ -517,13 +517,13 @@
 				/obj/item/toy/prize/odysseus,
 				/obj/item/toy/prize/phazon)
 
-/obj/random/mouseremains
+obj/random/mouseremains
 	name = "random mouseremains"
 	desc = "For use with mouse spawners."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "mousetrap"
 
-/obj/random/mouseremains/item_to_spawn()
+obj/random/mouseremains/item_to_spawn()
 	return pick(/obj/item/assembly/mousetrap,
 				/obj/item/assembly/mousetrap/armed,
 				/obj/effect/debris/cleanable/spiderling_remains,
@@ -532,13 +532,13 @@
 				/obj/item/cigbutt/cigarbutt,
 				/obj/effect/decal/remains/mouse)
 
-/obj/random/alcohol //cit change starts
+obj/random/alcohol //cit change starts
 	name = "random booze"
 	desc = "This is a random booze object."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "shaker"
 
-/obj/random/alcohol/item_to_spawn()
+obj/random/alcohol/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/drinks/bottle/gin,
 	/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 	/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
@@ -561,36 +561,36 @@
 	/obj/item/reagent_containers/food/drinks/bottle/victory_gin,
 	/obj/item/reagent_containers/food/drinks/bottle/messa_mead)
 
-/obj/random/janusmodule
+obj/random/janusmodule
 	name = "random janus circuit"
 	desc = "A random (possibly broken) Janus module."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "circuit_damaged"
 
-/obj/random/janusmodule/item_to_spawn()
+obj/random/janusmodule/item_to_spawn()
 	return pick(subtypesof(/obj/item/circuitboard/mecha/imperion))
 
-/obj/random/curseditem
+obj/random/curseditem
 	name = "random cursed item"
 	desc = "For use in dungeons."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "red"
 
-/obj/random/curseditem/item_to_spawn()
+obj/random/curseditem/item_to_spawn()
 	var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
 	possible_object_paths |= subtypesof(/obj/item/clothing/head/psy_crown)
 	return pick(possible_object_paths)
 
 //Random MRE stuff
 
-/obj/random/mre
+obj/random/mre
 	name = "random MRE"
 	desc = "This is a random single MRE."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "mre"
 	drop_get_turf = FALSE
 
-/obj/random/mre/item_to_spawn()
+obj/random/mre/item_to_spawn()
 	return pick(
 		/obj/item/storage/single_use/mre,
 		/obj/item/storage/single_use/mre/menu2,
@@ -605,13 +605,13 @@
 	)
 
 
-/obj/random/mre/main
+obj/random/mre/main
 	name = "random MRE main course"
 	desc = "This is a random main course for MREs."
 	icon_state = "pouch"
 	drop_get_turf = FALSE
 
-/obj/random/mre/main/item_to_spawn()
+obj/random/mre/main/item_to_spawn()
 	return pick(
 		/obj/item/storage/single_use/mrebag,
 		/obj/item/storage/single_use/mrebag/menu2,
@@ -623,26 +623,26 @@
 		/obj/item/storage/single_use/mrebag/menu8,
 	)
 
-/obj/random/mre/side
+obj/random/mre/side
 	name = "random MRE side dish"
 	desc = "This is a random side dish for MREs."
 	icon_state = "pouch"
 	drop_get_turf = FALSE
 
-/obj/random/mre/side/item_to_spawn()
+obj/random/mre/side/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/snacks/tossedsalad,
 				/obj/item/reagent_containers/food/snacks/boiledrice,
 				/obj/item/reagent_containers/food/snacks/poppypretzel,
 				/obj/item/reagent_containers/food/snacks/twobread,
 				/obj/item/reagent_containers/food/snacks/jelliedtoast)
 
-/obj/random/mre/dessert
+obj/random/mre/dessert
 	name = "random MRE dessert"
 	desc = "This is a random dessert for MREs."
 	icon_state = "pouch"
 	drop_get_turf = FALSE
 
-/obj/random/mre/dessert/item_to_spawn()
+obj/random/mre/dessert/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/snacks/candy,
 				/obj/item/reagent_containers/food/snacks/candy/proteinbar,
 				/obj/item/reagent_containers/food/snacks/donut/normal,
@@ -650,23 +650,23 @@
 				/obj/item/reagent_containers/food/snacks/chocolatebar,
 				/obj/item/reagent_containers/food/snacks/cookie)
 
-/obj/random/mre/dessert/vegan
+obj/random/mre/dessert/vegan
 	name = "random vegan MRE dessert"
 	desc = "This is a random vegan dessert for MREs."
 
-/obj/random/mre/dessert/vegan/item_to_spawn()
+obj/random/mre/dessert/vegan/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/snacks/candy,
 				/obj/item/reagent_containers/food/snacks/chocolatebar,
 				/obj/item/reagent_containers/food/snacks/donut/cherryjelly,
 				/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit)
 
-/obj/random/mre/drink
+obj/random/mre/drink
 	name = "random MRE drink"
 	desc = "This is a random drink for MREs."
 	icon_state = "packet"
 	drop_get_turf = FALSE
 
-/obj/random/mre/drink/item_to_spawn()
+obj/random/mre/drink/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/condiment/small/packet/coffee,
 				/obj/item/reagent_containers/food/condiment/small/packet/tea,
 				/obj/item/reagent_containers/food/condiment/small/packet/cocoa,
@@ -675,30 +675,30 @@
 				/obj/item/reagent_containers/food/condiment/small/packet/watermelon,
 				/obj/item/reagent_containers/food/condiment/small/packet/apple)
 
-/obj/random/mre/spread
+obj/random/mre/spread
 	name = "random MRE spread"
 	desc = "This is a random spread packet for MREs."
 	icon_state = "packet"
 	drop_get_turf = FALSE
 
-/obj/random/mre/spread/item_to_spawn()
+obj/random/mre/spread/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/condiment/small/packet/jelly,
 				/obj/item/reagent_containers/food/condiment/small/packet/honey)
 
-/obj/random/mre/spread/vegan
+obj/random/mre/spread/vegan
 	name = "random vegan MRE spread"
 	desc = "This is a random vegan spread packet for MREs"
 
-/obj/random/mre/spread/vegan/item_to_spawn()
+obj/random/mre/spread/vegan/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/condiment/small/packet/jelly)
 
-/obj/random/mre/sauce
+obj/random/mre/sauce
 	name = "random MRE sauce"
 	desc = "This is a random sauce packet for MREs."
 	icon_state = "packet"
 	drop_get_turf = FALSE
 
-/obj/random/mre/sauce/item_to_spawn()
+obj/random/mre/sauce/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/condiment/small/packet/salt,
 				/obj/item/reagent_containers/food/condiment/small/packet/pepper,
 				/obj/item/reagent_containers/food/condiment/small/packet/sugar,
@@ -707,13 +707,13 @@
 				/obj/item/reagent_containers/food/condiment/small/packet/mayo,
 				/obj/item/reagent_containers/food/condiment/small/packet/soy)
 
-/obj/random/mre/sauce/vegan/item_to_spawn()
+obj/random/mre/sauce/vegan/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/condiment/small/packet/salt,
 				/obj/item/reagent_containers/food/condiment/small/packet/pepper,
 				/obj/item/reagent_containers/food/condiment/small/packet/sugar,
 				/obj/item/reagent_containers/food/condiment/small/packet/soy)
 
-/obj/random/mre/sauce/sugarfree/item_to_spawn()
+obj/random/mre/sauce/sugarfree/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/condiment/small/packet/salt,
 				/obj/item/reagent_containers/food/condiment/small/packet/pepper,
 				/obj/item/reagent_containers/food/condiment/small/packet/capsaicin,
@@ -721,7 +721,7 @@
 				/obj/item/reagent_containers/food/condiment/small/packet/mayo,
 				/obj/item/reagent_containers/food/condiment/small/packet/soy)
 
-/obj/random/mre/sauce/crayon/item_to_spawn()
+obj/random/mre/sauce/crayon/item_to_spawn()
 	return pick(/obj/item/reagent_containers/food/condiment/small/packet/crayon/generic,
 				/obj/item/reagent_containers/food/condiment/small/packet/crayon/red,
 				/obj/item/reagent_containers/food/condiment/small/packet/crayon/orange,
@@ -732,14 +732,14 @@
 				/obj/item/reagent_containers/food/condiment/small/packet/crayon/grey,
 				/obj/item/reagent_containers/food/condiment/small/packet/crayon/brown)
 
-/obj/random/weapon // For Gateway maps and Syndicate. Can possibly spawn almost any gun in the game.
+obj/random/weapon // For Gateway maps and Syndicate. Can possibly spawn almost any gun in the game.
 	name = "Random Illegal Weapon"
 	desc = "This is a random illegal weapon."
 	icon = 'icons/obj/gun/ballistic.dmi'
 	icon_state = "p08"
 	spawn_nothing_percentage = 50
 
-/obj/random/weapon/item_to_spawn()
+obj/random/weapon/item_to_spawn()
 	return pick(
 		prob(11);/obj/random/ammo_all,
 		prob(11);/obj/item/gun/energy/laser,
@@ -835,16 +835,16 @@
 		prob(1);/obj/item/material/sword/katana,
 	)
 
-/obj/random/weapon/guarenteed
+obj/random/weapon/guarenteed
 	spawn_nothing_percentage = 0
 
-/obj/random/ammo_all
+obj/random/ammo_all
 	name = "Random Ammunition (All)"
 	desc = "This is random ammunition. Spawns all ammo types."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "666"
 
-/obj/random/ammo_all/item_to_spawn()
+obj/random/ammo_all/item_to_spawn()
 	return pick(
 		prob(5);/obj/item/storage/box/shotgunammo,
 		prob(5);/obj/item/storage/box/shotgunshells,
@@ -886,13 +886,13 @@
 		prob(1);/obj/item/ammo_magazine/m45tommydrum,
 	)
 
-/obj/random/cargopod
+obj/random/cargopod
 	name = "Random Cargo Item"
 	desc = "Hot Stuff."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "purplecomb"
 
-/obj/random/cargopod/item_to_spawn()
+obj/random/cargopod/item_to_spawn()
 	return pick(prob(10);/obj/item/contraband/poster,\
 				prob(8);/obj/item/haircomb,\
 				prob(6);/obj/item/material/wirerod,\
@@ -913,13 +913,13 @@
 				prob(1);/obj/item/reagent_containers/syringe/steroid)
 
 //Just overriding this here, no more super medkit so those can be reserved for PoIs and such
-/obj/random/tetheraid
+obj/random/tetheraid
 	name = "Random First Aid Kit"
 	desc = "This is a random first aid kit. Does not include Combat Kits."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "firstaid"
 
-/obj/random/tetheraid/item_to_spawn()
+obj/random/tetheraid/item_to_spawn()
 	return pick(prob(4);/obj/item/storage/firstaid/regular,
 				prob(3);/obj/item/storage/firstaid/toxin,
 				prob(3);/obj/item/storage/firstaid/o2,
@@ -927,7 +927,7 @@
 				prob(3);/obj/item/storage/firstaid/fire)
 
 //Override from maintenance.dm to prevent combat kits from spawning in Tether maintenance
-/obj/random/maintenance/item_to_spawn()
+obj/random/maintenance/item_to_spawn()
 	return pick(prob(300);/obj/random/tech_supply,
 				prob(200);/obj/random/medical,
 				prob(100);/obj/random/tetheraid,
@@ -942,17 +942,17 @@
 				prob(60);/obj/random/drinkbottle,
 				prob(500);/obj/random/maintenance/clean)
 
-/obj/random/action_figure/supplypack
+obj/random/action_figure/supplypack
 	drop_get_turf = FALSE
 
-/obj/random/roguemineloot
+obj/random/roguemineloot
 	name = "Random Rogue Mines Item"
 	desc = "Hot Stuff. Hopefully"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spickaxe"
 	spawn_nothing_percentage = 0
 
-/obj/random/roguemineloot/item_to_spawn()
+obj/random/roguemineloot/item_to_spawn()
 	return pick(prob(5);/obj/random/mre,
 				prob(5);/obj/random/maintenance,
 				prob(4);/obj/random/firstaid,
@@ -962,13 +962,13 @@
 				prob(1);/obj/random/drinkbottle,
 				prob(1);/obj/random/tool/alien)
 
-/obj/random/slimecore
+obj/random/slimecore
 	name = "random slime core"
 	desc = "Random slime core."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "rainbow slime extract"
 
-/obj/random/slimecore/item_to_spawn()
+obj/random/slimecore/item_to_spawn()
 	return pick(prob(3);/obj/item/slime_extract/metal,
 				prob(3);/obj/item/slime_extract/blue,
 				prob(3);/obj/item/slime_extract/purple,
@@ -992,27 +992,27 @@
 				prob(1);/obj/item/slime_extract/grey,
 				prob(1);/obj/item/slime_extract/rainbow)
 
-/obj/random/triumph
+obj/random/triumph
 	name = "random triumph loot"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spickaxe"
 
-/obj/random/triumph/item_to_spawn()
+obj/random/triumph/item_to_spawn()
 	return pick(prob(3);/obj/random/multiple/miningdrills,
 				prob(3);/obj/random/multiple/ores,
 				prob(2);/obj/random/multiple/treasure,
 				prob(1);/obj/random/multiple/mechtool)
 
-/obj/random/triumph/uncertain
+obj/random/triumph/uncertain
 	icon_state = "upickaxe"
 	spawn_nothing_percentage = 65	//only 33% to spawn loot
 
-/obj/random/multiple/miningdrills
+obj/random/multiple/miningdrills
 	name = "random mining tool loot"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spickaxe"
 
-/obj/random/multiple/miningdrills/item_to_spawn()
+obj/random/multiple/miningdrills/item_to_spawn()
 	return pick(
 				prob(10);list(/obj/item/pickaxe/silver),
 				prob(8);list(/obj/item/pickaxe/drill),
@@ -1023,12 +1023,12 @@
 				prob(1);list(/obj/item/pickaxe/diamonddrill)
 				)
 
-/obj/random/multiple/ores
+obj/random/multiple/ores
 	name = "random mining ore loot"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
 
-/obj/random/multiple/ores/item_to_spawn()
+obj/random/multiple/ores/item_to_spawn()
 	return pick(
 				prob(9);list(
 							/obj/item/storage/bag/ore,
@@ -1112,12 +1112,12 @@
 							)
 				)
 
-/obj/random/multiple/treasure
+obj/random/multiple/treasure
 	name = "random treasure"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "cashbag"
 
-/obj/random/multiple/treasure/item_to_spawn()
+obj/random/multiple/treasure/item_to_spawn()
 	return pick(
 				prob(5);list(
 							/obj/random/coin,
@@ -1156,12 +1156,12 @@
 							)
 				)
 
-/obj/random/multiple/mechtool
+obj/random/multiple/mechtool
 	name = "random mech equipment"
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = "mecha_clamp"
 
-/obj/random/multiple/mechtool/item_to_spawn()
+obj/random/multiple/mechtool/item_to_spawn()
 	return pick(
 				prob(12);list(/obj/item/mecha_parts/mecha_equipment/tool/drill),
 				prob(10);list(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp),
@@ -1175,13 +1175,13 @@
 				)
 
 //Random Bedsheet Spawner
-/obj/random/bedsheet
+obj/random/bedsheet
 	name = "random bedsheet"
 	desc = "Used to spawn a random bedsheet."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "sheet"
 
-/obj/random/bedsheet/item_to_spawn()
+obj/random/bedsheet/item_to_spawn()
 	return pick(/obj/item/bedsheet/red,
 				/obj/item/bedsheet/orange,
 				/obj/item/bedsheet/yellow,
@@ -1201,12 +1201,12 @@
 				/obj/item/bedsheet/mime,
 				/obj/item/bedsheet/cosmos)
 
-/obj/random/bedsheet/double
+obj/random/bedsheet/double
 	name = "random double bedsheet"
 	desc = "Used to spawn a random double-bedsheet."
 	icon_state = "doublesheet"
 
-/obj/random/bedsheet/double/item_to_spawn()
+obj/random/bedsheet/double/item_to_spawn()
 	return pick(/obj/item/bedsheet/reddouble,
 				/obj/item/bedsheet/orangedouble,
 				/obj/item/bedsheet/yellowdouble,
@@ -1225,13 +1225,13 @@
 				/obj/item/bedsheet/mimedouble,
 				/obj/item/bedsheet/cosmosdouble)
 
-/obj/random/paintkit
+obj/random/paintkit
 	name = "random paint kit (APLU)"
 	desc = "Used to spawn a random APLU paint kit."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "modkit"
 
-/obj/random/paintkit/item_to_spawn()
+obj/random/paintkit/item_to_spawn()
 	return pick(/obj/item/kit/paint/ripley,
 				/obj/item/kit/paint/ripley/death,
 				/obj/item/kit/paint/ripley/flames_red,
@@ -1245,13 +1245,13 @@
 				/obj/item/kit/paint/ripley/clown,
 				/obj/item/kit/paint/ripley/dreadnought)
 
-/obj/random/paintkit/gygax
+obj/random/paintkit/gygax
 	name = "random paint kit (Gygax)"
 	desc = "Used to spawn a random Gygax paint kit."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "modkit"
 
-/obj/random/paintkit/gygax/item_to_spawn()
+obj/random/paintkit/gygax/item_to_spawn()
 	return pick(/obj/item/kit/paint/gygax,
 				/obj/item/kit/paint/gygax/blue,
 				/obj/item/kit/paint/gygax/green,
@@ -1260,13 +1260,13 @@
 				/obj/item/kit/paint/gygax/osbourne,
 				/obj/item/kit/paint/gygax/carp)
 
-/obj/random/paintkit/durand
+obj/random/paintkit/durand
 	name = "random paint kit (Durand)"
 	desc = "Used to spawn a random Durand paint kit."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "modkit"
 
-/obj/random/paintkit/durand/item_to_spawn()
+obj/random/paintkit/durand/item_to_spawn()
 	return pick(/obj/item/kit/paint/durand,
 				/obj/item/kit/paint/durand/paladin,
 				/obj/item/kit/paint/durand/turtle)

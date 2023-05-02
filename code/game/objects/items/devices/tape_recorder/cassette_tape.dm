@@ -2,9 +2,9 @@
  * this is a horror
  * we use the typepaths as enums...
  */
-/datum/cassette_opcode
-/datum/cassette_opcode/next_is_audible_emote
-/datum/cassette_opcode/next_is_direct_broadcast
+datum/cassette_opcode
+datum/cassette_opcode/next_is_audible_emote
+datum/cassette_opcode/next_is_direct_broadcast
 
 /**
  * cassette tapes; capable of storing spoken audio and their languages
@@ -12,7 +12,7 @@
  * all access must be through getters/setters due to how ridiculously synchronized
  * and packed this has to be to store player speech.
  */
-/obj/item/cassette_tape
+obj/item/cassette_tape
 	name = "tape"
 	desc = "A magnetic tape that can hold up to ten minutes of content."
 	icon = 'icons/obj/device.dmi'
@@ -73,11 +73,11 @@
 	/// did someone ruin this tape by unraveling the tape?
 	var/ruined = FALSE
 
-/obj/item/cassette_tape/Destroy()
+obj/item/cassette_tape/Destroy()
 	kill_iterators()
 	return ..()
 
-/obj/item/cassette_tape/proc/wipe()
+obj/item/cassette_tape/proc/wipe()
 	kill_iterators()
 	reel = null
 	metadata = null
@@ -89,15 +89,15 @@
 	language_lookup = null
 	name_lookup = null
 
-/obj/item/cassette_tape/update_overlays()
+obj/item/cassette_tape/update_overlays()
 	. = ..()
 	if(ruined)
 		. += "ribbonoverlay"
 
-/obj/item/cassette_tape/fire_act()
+obj/item/cassette_tape/fire_act()
 	ruin()
 
-/obj/item/cassette_tape/attack_self(mob/user)
+obj/item/cassette_tape/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -108,15 +108,15 @@
 		to_chat(user, "<span class='notice'>You pull out all the tape!</span>")
 		ruin()
 
-/obj/item/cassette_tape/proc/ruin()
+obj/item/cassette_tape/proc/ruin()
 	ruined = TRUE
 	update_icon()
 
-/obj/item/cassette_tape/proc/fix()
+obj/item/cassette_tape/proc/fix()
 	ruined = FALSE
 	update_icon()
 
-/obj/item/cassette_tape/attackby(obj/item/I, mob/user, params)
+obj/item/cassette_tape/attackby(obj/item/I, mob/user, params)
 	if(ruined && I.is_screwdriver())
 		to_chat(user, "<span class='notice'>You start winding the tape back in...</span>")
 		playsound(src, I.tool_sound, 50, 1)
@@ -144,7 +144,7 @@
  * returns an iterator for reading
  * returns null on fail, otherwise a read iterator
  */
-/obj/item/cassette_tape/proc/iterator()
+obj/item/cassette_tape/proc/iterator()
 	if(translation_lock)
 		return
 	var/datum/cassette_tape_iterator/I = new
@@ -153,11 +153,11 @@
 	I._init()	// to first pos
 	return I
 
-/obj/item/cassette_tape/proc/kill_iterators()
+obj/item/cassette_tape/proc/kill_iterators()
 	QDEL_LIST_NULL(iterators)
 	QDEL_NULL(recording_lock)
 
-/obj/item/cassette_tape/proc/iterator_killed(datum/cassette_tape_iterator/I)
+obj/item/cassette_tape/proc/iterator_killed(datum/cassette_tape_iterator/I)
 	if(I == recording_lock)
 		recording_lock = null
 	if(iterators)
@@ -167,7 +167,7 @@
  * try to lock this tape for recording
  * returns null on fail, otherwise a write-capable iterator
  */
-/obj/item/cassette_tape/proc/obtain_recording_lock()
+obj/item/cassette_tape/proc/obtain_recording_lock()
 	if(translation_lock)
 		return
 	if(recording_lock)
@@ -189,7 +189,7 @@
  * kicks off all read/write iterators
  * return null on fail, otherwise a translation iterator
  */
-/obj/item/cassette_tape/proc/lock_for_translation()
+obj/item/cassette_tape/proc/lock_for_translation()
 	kill_iterators()
 	if(translation_lock)
 		return
@@ -197,10 +197,10 @@
 	translation_lock.tape = src
 	return translation_lock
 
-/obj/item/cassette_tape/proc/full()
+obj/item/cassette_tape/proc/full()
 	return used_messages >= capacity_messages || used_time >= capacity_time
 
-/obj/item/cassette_tape/proc/increment_messages()
+obj/item/cassette_tape/proc/increment_messages()
 	++used_messages
 	if(full())
 		kill_iterators()
@@ -209,7 +209,7 @@
 /**
  * returns index in metadata
  */
-/obj/item/cassette_tape/proc/inject_latest_name(name)
+obj/item/cassette_tape/proc/inject_latest_name(name)
 	var/index = name_lookup[name]
 	if(!index)
 		metadata += "^[name]"
@@ -220,7 +220,7 @@
 /**
  * returns index in metadata
  */
-/obj/item/cassette_tape/proc/inject_latest_language(id)
+obj/item/cassette_tape/proc/inject_latest_language(id)
 	var/index = language_lookup[id]
 	if(!index)
 		metadata += "%[id]"
@@ -229,11 +229,11 @@
 	reel += -index
 
 //Random colour tapes
-/obj/item/cassette_tape/random/Initialize(mapload)
+obj/item/cassette_tape/random/Initialize(mapload)
 	. = ..()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
 
-/obj/item/cassette_tape/premade
+obj/item/cassette_tape/premade
 	/**
 	 * JSON: [[message, delay, speaker name, language id, opcode], ...]
 	 * message mandatory, rest can be skipped
@@ -242,12 +242,12 @@
 	 */
 	var/list/preformatted_data
 
-/obj/item/cassette_tape/premade/Initialize(mapload)
+obj/item/cassette_tape/premade/Initialize(mapload)
 	. = ..()
 	inject(preformatted_data)
 	preformatted_data = null
 
-/obj/item/cassette_tape/premade/proc/inject(str)
+obj/item/cassette_tape/premade/proc/inject(str)
 	wipe()
 	var/list/decoded
 	if(!str)

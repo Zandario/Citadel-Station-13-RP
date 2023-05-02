@@ -1,6 +1,6 @@
 /* Toxins, poisons, venoms */
 
-/datum/reagent/toxin
+datum/reagent/toxin
 	name = "toxin"
 	id = "toxin"
 	description = "A toxic chemical."
@@ -13,7 +13,7 @@
 	var/strength = 4 // How much damage it deals per unit
 	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
 
-/datum/reagent/toxin/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/affect_blood(mob/living/carbon/M, alien, removed)
 	if(strength && alien != IS_DIONA)
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 		if(alien == IS_SLIME)
@@ -24,10 +24,10 @@
 				M.heal_organ_damage((10/strength) * removed, (10/strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
 		M.adjustToxLoss(strength * removed)
 
-/datum/reagent/toxin/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/affect_touch(mob/living/carbon/M, alien, removed)
 	affect_blood(M, alien, removed * 0.2)
 
-/datum/reagent/toxin/plasticide
+datum/reagent/toxin/plasticide
 	name = "Plasticide"
 	id = "plasticide"
 	description = "Liquid plastic, do not eat."
@@ -36,7 +36,7 @@
 	color = "#CF3600"
 	strength = 5
 
-/datum/reagent/toxin/amatoxin
+datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
 	id = "amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
@@ -45,7 +45,7 @@
 	color = "#792300"
 	strength = 10
 
-/datum/reagent/toxin/carpotoxin
+datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	id = "carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded space carp."
@@ -54,7 +54,7 @@
 	color = "#003333"
 	strength = 10
 
-/datum/reagent/toxin/neurotoxic_protein
+datum/reagent/toxin/neurotoxic_protein
 	name = "toxic protein"
 	id = "neurotoxic_protein"
 	description = "A weak neurotoxic chemical commonly found in Sivian fish meat."
@@ -64,7 +64,7 @@
 	strength = 8
 	skin_danger = 0.4
 
-/datum/reagent/toxin/neurotoxic_protein/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/neurotoxic_protein/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	if(alien != IS_DIONA)
 		if(CHECK_MOBILITY(M, MOBILITY_CAN_MOVE) && istype(M.loc, /turf/space))
@@ -76,23 +76,23 @@
 
 //R-UST port
 // Produced during deuterium synthesis. Super poisonous, SUPER flammable (doesn't need oxygen to burn).
-/datum/reagent/toxin/hydrophoron
+datum/reagent/toxin/hydrophoron
 	name = "Hydrophoron"
 	id = "hydrophoron"
 	description = "An exceptionally flammable molecule formed from deuterium synthesis."
 	strength = 80
 	var/fire_mult = 30
 
-/datum/reagent/toxin/hydrophoron/touch_mob(mob/living/L, amount)
+datum/reagent/toxin/hydrophoron/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / fire_mult)
 
-/datum/reagent/toxin/hydrophoron/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/hydrophoron/affect_touch(mob/living/carbon/M, alien, removed)
 	M.take_organ_damage(0, removed * 0.1) //being splashed directly with hydrophoron causes minor chemical burns
 	if(prob(10 * fire_mult))
 		M.pl_effects()
 
-/datum/reagent/toxin/hydrophoron/touch_turf(turf/simulated/T)
+datum/reagent/toxin/hydrophoron/touch_turf(turf/simulated/T)
 	if(!istype(T))
 		return
 	T.assume_gas(/datum/gas/phoron, CEILING(volume/2, 1), T20C)
@@ -101,7 +101,7 @@
 		spawn (0) target_tile.hotspot_expose(700, 400)
 	remove_self(volume)
 
-/datum/reagent/toxin/hydrophoron/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/hydrophoron/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	if(alien == IS_SLIME)
 		M.adjust_fire_stacks(removed * 10)
@@ -110,14 +110,14 @@
 			spawn(rand(30, 60))
 				M.IgniteMob()
 
-/datum/reagent/toxin/spidertoxin
+datum/reagent/toxin/spidertoxin
 	name = "Spidertoxin"
 	id = "spidertoxin"
 	description = "A liquifying toxin produced by giant spiders."
 	color = "#2CE893"
 	strength = 5
 
-/datum/reagent/toxin/phoron
+datum/reagent/toxin/phoron
 	name = "Phoron"
 	id = "phoron"
 	description = "Phoron in its liquid form."
@@ -128,11 +128,11 @@
 	touch_met = 5
 	skin_danger = 1
 
-/datum/reagent/toxin/phoron/touch_mob(mob/living/L, amount)
+datum/reagent/toxin/phoron/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/toxin/phoron/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/phoron/affect_touch(mob/living/carbon/M, alien, removed)
 	..()
 	M.adjust_fire_stacks(removed / 5)
 	if(alien == IS_VOX || alien == IS_XENOHYBRID)
@@ -141,7 +141,7 @@
 	if(prob(50))
 		M.pl_effects()
 
-/datum/reagent/toxin/phoron/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/phoron/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_VOX)
 		M.adjustOxyLoss(-100 * removed) //5 oxyloss healed per tick.
 		return //You're wasting plasma (a semi-limited chemical) to save someone, so it might as well be somewhat strong.
@@ -151,13 +151,13 @@
 		M.adjust_fire_stacks(removed * 3) //Not quite 'converting' it. It's like mixing fuel into a jelly. You get explosive, or at least combustible, jelly.
 	..()
 
-/datum/reagent/toxin/phoron/touch_turf(turf/simulated/T, amount)
+datum/reagent/toxin/phoron/touch_turf(turf/simulated/T, amount)
 	if(!istype(T))
 		return
 	T.assume_gas(/datum/gas/volatile_fuel, amount, T20C)
 	remove_self(amount)
 
-/datum/reagent/toxin/cyanide //Fast and Lethal
+datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
 	id = "cyanide"
 	description = "A highly toxic chemical."
@@ -168,12 +168,12 @@
 	strength = 20
 	metabolism = REM * 2
 
-/datum/reagent/toxin/cyanide/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/cyanide/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	M.adjustOxyLoss(20 * removed)
 	M.afflict_sleeping(20 * 1)
 
-/datum/reagent/toxin/mold
+datum/reagent/toxin/mold
 	name = "Mold"
 	id = "mold"
 	description = "A mold is a fungus that causes biodegradation of natural materials. This variant contains mycotoxins, and is dangerous to humans."
@@ -181,13 +181,13 @@
 	reagent_state = REAGENT_SOLID
 	strength = 5
 
-/datum/reagent/toxin/mold/affect_ingest(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/mold/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	M.adjustToxLoss(strength * removed)
 	if(prob(5))
 		M.vomit()
 
-/datum/reagent/toxin/mold/miasma
+datum/reagent/toxin/mold/miasma
 	name = "Miasma"
 	id = "miasma"
 	description = "A toxic cloud of decay, caused by the rotting of corpses."
@@ -196,7 +196,7 @@
 	color = "#006000"
 	strength = 10
 
-/datum/reagent/toxin/expired_medicine
+datum/reagent/toxin/expired_medicine
 	name = "Expired Medicine"
 	id = "expired_medicine"
 	description = "Some form of liquid medicine that is well beyond its shelf date. Administering it now would cause illness."
@@ -205,16 +205,16 @@
 	strength = 5
 	filtered_organs = list(O_SPLEEN)
 
-/datum/reagent/toxin/expired_medicine/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/expired_medicine/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	if(prob(5))
 		M.vomit()
 
-/datum/reagent/toxin/expired_medicine/affect_ingest(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/expired_medicine/affect_ingest(mob/living/carbon/M, alien, removed)
 	affect_blood(M, alien, removed * 0.66)
 
 
-/datum/reagent/toxin/stimm	//Homemade Hyperzine
+datum/reagent/toxin/stimm	//Homemade Hyperzine
 	name = "Stimm"
 	id = "stimm"
 	description = "A homemade stimulant with some serious side-effects."
@@ -225,7 +225,7 @@
 	overdose = 10
 	strength = 3
 
-/datum/reagent/toxin/stimm/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/stimm/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_TAJARA)
 		removed *= 1.25
 	..()
@@ -236,7 +236,7 @@
 		M.take_organ_damage(6 * removed, 0)
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 
-/datum/reagent/toxin/potassium_chloride
+datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
 	id = "potassium_chloride"
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
@@ -247,12 +247,12 @@
 	overdose = REAGENTS_OVERDOSE
 	filtered_organs = list(O_SPLEEN, O_KIDNEYS)
 
-/datum/reagent/toxin/potassium_chloride/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/potassium_chloride/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	if(alien == IS_SLIME)
 		M.adjustFireLoss(removed * 2)
 
-/datum/reagent/toxin/potassium_chloride/overdose(mob/living/carbon/M, alien)
+datum/reagent/toxin/potassium_chloride/overdose(mob/living/carbon/M, alien)
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -262,7 +262,7 @@
 			H.adjustOxyLoss(2)
 			H.afflict_paralyze(20 * 10)
 
-/datum/reagent/toxin/potassium_chlorophoride
+datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
 	id = "potassium_chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
@@ -273,7 +273,7 @@
 	overdose = 20
 	filtered_organs = list(O_SPLEEN, O_KIDNEYS)
 
-/datum/reagent/toxin/potassium_chlorophoride/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/potassium_chlorophoride/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -285,7 +285,7 @@
 	if(alien == IS_SLIME)
 		M.adjustFireLoss(removed * 3)
 
-/datum/reagent/toxin/zombiepowder
+datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
 	id = "zombiepowder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
@@ -296,7 +296,7 @@
 	strength = 3
 	mrate_static = TRUE
 
-/datum/reagent/toxin/zombiepowder/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/zombiepowder/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	if(alien == IS_DIONA)
 		return
@@ -306,13 +306,13 @@
 	M.silent = max(M.silent, 10)
 	M.tod = stationtime2text()
 
-/datum/reagent/toxin/zombiepowder/Destroy()
+datum/reagent/toxin/zombiepowder/Destroy()
 	if(holder && holder.my_atom && ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~STATUS_FAKEDEATH
 	return ..()
 
-/datum/reagent/toxin/lichpowder
+datum/reagent/toxin/lichpowder
 	name = "Lich Powder"
 	id = "lichpowder"
 	description = "A stablized nerve agent that puts the subject into a strange state of un-death."
@@ -322,7 +322,7 @@
 	strength = 2
 	mrate_static = TRUE
 
-/datum/reagent/toxin/lichpowder/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/lichpowder/affect_touch(mob/living/carbon/M, alien, removed)
 	..()
 	if(alien == IS_DIONA)
 		return
@@ -335,13 +335,13 @@
 		M.visible_message("[M] wheezes.", "You wheeze sharply... it's cold.")
 		M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, T0C - 10)
 
-/datum/reagent/toxin/lichpowder/Destroy()
+datum/reagent/toxin/lichpowder/Destroy()
 	if(holder && holder.my_atom && ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~STATUS_FAKEDEATH
 	return ..()
 
-/datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
+datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
 	name = "fertilizer"
 	id = "fertilizer"
 	description = "A chemical mix good for growing plants with."
@@ -351,26 +351,26 @@
 	strength = 0.5 // It's not THAT poisonous.
 	color = "#664330"
 
-/datum/reagent/toxin/fertilizer/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/fertilizer/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_ALRAUNE) //cit change: fertilizer is full of natural easily digestible plant fats
 		if(prob(5))
 			to_chat(M, "<span class='vox'>You feel a rush of nutrients fill your body.</span>")
 		M.nutrition += removed * 5
 		return
 
-/datum/reagent/toxin/fertilizer/eznutrient
+datum/reagent/toxin/fertilizer/eznutrient
 	name = "EZ Nutrient"
 	id = "eznutrient"
 
-/datum/reagent/toxin/fertilizer/left4zed
+datum/reagent/toxin/fertilizer/left4zed
 	name = "Left-4-Zed"
 	id = "left4zed"
 
-/datum/reagent/toxin/fertilizer/robustharvest
+datum/reagent/toxin/fertilizer/robustharvest
 	name = "Robust Harvest"
 	id = "robustharvest"
 
-/datum/reagent/toxin/plantbgone
+datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	id = "plantbgone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
@@ -379,7 +379,7 @@
 	color = "#49002E"
 	strength = 4
 
-/datum/reagent/toxin/plantbgone/touch_turf(turf/T)
+datum/reagent/toxin/plantbgone/touch_turf(turf/T)
 	if(istype(T, /turf/simulated/wall))
 		var/turf/simulated/wall/W = T
 		if(locate(/obj/effect/overlay/wallrot) in W)
@@ -387,7 +387,7 @@
 				qdel(E)
 			W.visible_message("<span class='notice'>The fungi are completely dissolved by the solution!</span>")
 
-/datum/reagent/toxin/plantbgone/touch_obj(obj/O, volume)
+datum/reagent/toxin/plantbgone/touch_obj(obj/O, volume)
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
 	else if(istype(O, /obj/effect/alien/weeds/))
@@ -395,15 +395,15 @@
 		alien_weeds.health -= rand(15, 35)
 		alien_weeds.healthcheck()
 
-/datum/reagent/toxin/plantbgone/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/plantbgone/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_ALRAUNE)
 		M.adjustToxLoss(50 * removed)
 
-/datum/reagent/toxin/plantbgone/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/plantbgone/affect_touch(mob/living/carbon/M, alien, removed)
 	if(alien == IS_ALRAUNE)
 		M.adjustToxLoss(50 * removed)
 
-/datum/reagent/toxin/pestbgone
+datum/reagent/toxin/pestbgone
 	name = "Pest-B-Gone"
 	id = "pestbgone"
 	description = "A harmful toxic mixture designed to kill insects and pests. Do not ingest!"
@@ -412,21 +412,21 @@
 	color = "#8FB97C"
 	strength = 4
 
-/datum/reagent/toxin/pestbgone/touch_obj(mob/living/simple_mob/animal/A, removed)
+datum/reagent/toxin/pestbgone/touch_obj(mob/living/simple_mob/animal/A, removed)
 	if(istype(A, /mob/living/simple_mob/animal/roach))
 		A.adjustToxLoss(10 * removed)
 	else if(istype(A, /mob/living/simple_mob/animal/giant_spider))
 		A.adjustToxLoss(5 * removed)
 
-/datum/reagent/toxin/pestbgone/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/pestbgone/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_APIDAEN)
 		M.adjustToxLoss(50 * removed)
 
-/datum/reagent/toxin/pestbgone/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/pestbgone/affect_touch(mob/living/carbon/M, alien, removed)
 	if(alien == IS_APIDAEN)
 		M.adjustToxLoss(50 * removed)
 
-/datum/reagent/toxin/sifslurry
+datum/reagent/toxin/sifslurry
 	name = "Sivian Sap"
 	id = "sifsap"
 	description = "A natural slurry comprised of fluorescent bacteria native to Sif, in the Vir system."
@@ -436,7 +436,7 @@
 	strength = 2
 	overdose = 20
 
-/datum/reagent/toxin/sifslurry/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/sifslurry/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA) // Symbiotic bacteria.
 		M.nutrition += strength * removed
 		return
@@ -444,7 +444,7 @@
 		M.add_modifier(/datum/modifier/slow_pulse, 30 SECONDS)
 	..()
 
-/datum/reagent/toxin/sifslurry/overdose(mob/living/carbon/M, alien, removed) // Overdose effect.
+datum/reagent/toxin/sifslurry/overdose(mob/living/carbon/M, alien, removed) // Overdose effect.
 	if(alien == IS_DIONA)
 		return
 	if(ishuman(M))
@@ -453,10 +453,10 @@
 	M.afflict_radiation(RAD_MOB_AFFLICT_STRENGTH_SIFSLURRY_OD(removed))
 	M.apply_effect(5 * removed, DROWSY, 0, 0)
 
-/datum/reagent/toxin/sifslurry/affect_ingest(mob/living/carbon/M, alien, removed)
+datum/reagent/toxin/sifslurry/affect_ingest(mob/living/carbon/M, alien, removed)
 	affect_blood(M, alien, removed * 0.7)
 
-/datum/reagent/acid/polyacid
+datum/reagent/acid/polyacid
 	name = "Polytrinic acid"
 	id = "pacid"
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
@@ -466,7 +466,7 @@
 	power = 10
 	meltdose = 4
 
-/datum/reagent/acid/digestive
+datum/reagent/acid/digestive
 	name = "Digestive acid"
 	id = "stomacid"
 	description = "Some form of digestive slurry."
@@ -476,7 +476,7 @@
 	power = 2
 	meltdose = 30
 
-/datum/reagent/thermite/venom
+datum/reagent/thermite/venom
 	name = "Pyrotoxin"
 	id = "thermite_v"
 	description = "A biologically produced compound capable of melting steel or other metals, similarly to thermite."
@@ -485,7 +485,7 @@
 	color = "#673910"
 	touch_met = 50
 
-/datum/reagent/thermite/venom/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/thermite/venom/affect_blood(mob/living/carbon/M, alien, removed)
 	M.adjustFireLoss(3 * removed)
 	if(M.fire_stacks <= 1.5)
 		M.adjust_fire_stacks(0.15)
@@ -498,7 +498,7 @@
 		M.IgniteMob()
 		to_chat(M,"<span class='critical'>Some of your veins rupture, the exposed blood igniting!</span>")
 
-/datum/reagent/condensedcapsaicin/venom
+datum/reagent/condensedcapsaicin/venom
 	name = "Irritant toxin"
 	id = "condensedcapsaicin_v"
 	description = "A biological agent that acts similarly to pepperspray. This compound seems to be particularly cruel, however, capable of permeating the barriers of blood vessels."
@@ -506,7 +506,7 @@
 	color = "#B31008"
 	filtered_organs = list(O_SPLEEN)
 
-/datum/reagent/condensedcapsaicin/venom/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/condensedcapsaicin/venom/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(prob(50))
@@ -520,7 +520,7 @@
 	else
 		M.eye_blurry = max(M.eye_blurry, 10)
 
-/datum/reagent/lexorin
+datum/reagent/lexorin
 	name = "Lexorin"
 	id = "lexorin"
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
@@ -529,7 +529,7 @@
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lexorin/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/lexorin/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(alien == IS_SLIME)
@@ -548,7 +548,7 @@
 		if(M.losebreath < 15)
 			M.AdjustLosebreath(1)
 
-/datum/reagent/mutagen
+datum/reagent/mutagen
 	name = "Unstable mutagen"
 	id = "mutagen"
 	description = "Might cause unpredictable mutations. Keep away from children."
@@ -557,15 +557,15 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/mutagen/affect_touch(mob/living/carbon/M, alien, removed)
+datum/reagent/mutagen/affect_touch(mob/living/carbon/M, alien, removed)
 	if(prob(33))
 		affect_blood(M, alien, removed)
 
-/datum/reagent/mutagen/affect_ingest(mob/living/carbon/M, alien, removed)
+datum/reagent/mutagen/affect_ingest(mob/living/carbon/M, alien, removed)
 	if(prob(67))
 		affect_blood(M, alien, removed)
 
-/datum/reagent/mutagen/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/mutagen/affect_blood(mob/living/carbon/M, alien, removed)
 
 	if(M.isSynthetic())
 		return
@@ -642,7 +642,7 @@
 			to_chat(M, "<span class='warning'>You feel odd!</span>")
 	M.afflict_radiation(RAD_MOB_AFFLICT_STRENGTH_MUTAGEN(removed))
 
-/datum/reagent/slimejelly
+datum/reagent/slimejelly
 	name = "Slime Jelly"
 	id = "slimejelly"
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
@@ -651,7 +651,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#801E28"
 
-/datum/reagent/slimejelly/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/slimejelly/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(alien == IS_SLIME) //Partially made of the stuff. Why would it hurt them?
@@ -667,14 +667,14 @@
 		else if(prob(40))
 			M.heal_organ_damage(25 * removed, 0)
 
-/datum/reagent/advmutationtoxin
+datum/reagent/advmutationtoxin
 	name = "Advanced Mutation Toxin"
 	id = "advmutationtoxin"
 	description = "A corruptive toxin produced by slimes. Turns the subject of the chemical into a Promethean."
 	reagent_state = REAGENT_LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/advmutationtoxin/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/advmutationtoxin/affect_blood(mob/living/carbon/M, alien, removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.get_species_id() != SPECIES_ID_PROMETHEAN)
@@ -698,7 +698,7 @@
 					torso.implants += BI
 
 
-/datum/reagent/soporific
+datum/reagent/soporific
 	name = "Soporific"
 	id = "stoxin"
 	description = "An effective hypnotic used to treat insomnia."
@@ -709,7 +709,7 @@
 	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/soporific/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/soporific/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 
@@ -746,7 +746,7 @@
 			M.afflict_sleeping(20 * 20)
 		M.drowsyness = max(M.drowsyness, 60)
 
-/datum/reagent/chloralhydrate
+datum/reagent/chloralhydrate
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
 	description = "A powerful sedative."
@@ -758,7 +758,7 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 	overdose_mod = 5	//For that good, lethal feeling
 
-/datum/reagent/chloralhydrate/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/chloralhydrate/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 
@@ -792,12 +792,12 @@
 	if(effective_dose > 1 * threshold)
 		M.adjustToxLoss(removed)
 
-/datum/reagent/chloralhydrate/overdose(mob/living/carbon/M, alien, removed)
+datum/reagent/chloralhydrate/overdose(mob/living/carbon/M, alien, removed)
 	..()
 	M.SetLosebreath(10)
 	M.adjustOxyLoss(removed * overdose_mod)
 
-/datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
+datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"
 	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
@@ -810,7 +810,7 @@
 
 /* Drugs */
 
-/datum/reagent/space_drugs
+datum/reagent/space_drugs
 	name = "Space drugs"
 	id = "space_drugs"
 	description = "An illegal chemical compound used as drug."
@@ -821,7 +821,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/space_drugs/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/space_drugs/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 
@@ -838,7 +838,7 @@
 	if(prob(7))
 		M.emote(pick("twitch", "drool", "moan", "giggle"))
 
-/datum/reagent/serotrotium
+datum/reagent/serotrotium
 	name = "Serotrotium"
 	id = "serotrotium"
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
@@ -848,21 +848,21 @@
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/serotrotium/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/serotrotium/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(prob(7))
 		M.emote(pick("twitch", "drool", "moan", "gasp"))
 	return
 
-/datum/reagent/serotrotium/venom
+datum/reagent/serotrotium/venom
 	name = "Serotropic venom"
 	id = "serotrotium_v"
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans. This appears to be a biologically produced form, resulting in a specifically toxic nature."
 	taste_description = "chalky bitterness"
 	filtered_organs = list(O_SPLEEN)
 
-/datum/reagent/serotrotium/venom/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/serotrotium/venom/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(prob(30))
@@ -871,7 +871,7 @@
 		M.adjustBrainLoss(0.2 * removed)
 	return ..()
 
-/datum/reagent/cryptobiolin
+datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
 	id = "cryptobiolin"
 	description = "Cryptobiolin causes confusion and dizzyness."
@@ -881,7 +881,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/cryptobiolin/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/cryptobiolin/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	var/drug_strength = 4
@@ -895,7 +895,7 @@
 	M.make_dizzy(drug_strength)
 	M.Confuse(drug_strength * 5)
 
-/datum/reagent/impedrezene
+datum/reagent/impedrezene
 	name = "Impedrezene"
 	id = "impedrezene"
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
@@ -905,7 +905,7 @@
 	overdose = REAGENTS_OVERDOSE
 	filtered_organs = list(O_SPLEEN)
 
-/datum/reagent/impedrezene/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/impedrezene/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	M.jitteriness = max(M.jitteriness - 5, 0)
@@ -916,7 +916,7 @@
 	if(prob(10))
 		M.emote("drool")
 
-/datum/reagent/mindbreaker
+datum/reagent/mindbreaker
 	name = "Mindbreaker Toxin"
 	id = "mindbreaker"
 	description = "A powerful hallucinogen, it can cause fatal effects in users."
@@ -926,7 +926,7 @@
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/mindbreaker/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/mindbreaker/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 
@@ -940,7 +940,7 @@
 
 	M.hallucination = max(M.hallucination, drug_strength)
 
-/datum/reagent/psilocybin
+datum/reagent/psilocybin
 	name = "Psilocybin"
 	id = "psilocybin"
 	description = "A strong psycotropic derived from certain species of mushroom."
@@ -949,7 +949,7 @@
 	overdose = REAGENTS_OVERDOSE
 	metabolism = REM * 0.5
 
-/datum/reagent/psilocybin/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/psilocybin/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 
@@ -984,7 +984,7 @@
 		if(prob(15))
 			M.emote(pick("twitch", "giggle"))
 
-/datum/reagent/nicotine
+datum/reagent/nicotine
 	name = "Nicotine"
 	id = "nicotine"
 	description = "A highly addictive stimulant extracted from the tobacco plant."
@@ -992,7 +992,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#181818"
 
-/datum/reagent/talum_quem
+datum/reagent/talum_quem
 	name = "Talum-quem"
 	id = "talum_quem"
 	description = " A very carefully tailored hallucinogen, for use of the Talum-Katish."
@@ -1003,7 +1003,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/talum_quem/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/talum_quem/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 
@@ -1021,7 +1021,7 @@
 
 /* Transformations */
 
-/datum/reagent/slimetoxin
+datum/reagent/slimetoxin
 	name = "Mutation Toxin"
 	id = "mutationtoxin"
 	description = "A corruptive toxin produced by slimes."
@@ -1029,7 +1029,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#13BC5E"
 
-/datum/reagent/slimetoxin/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/slimetoxin/affect_blood(mob/living/carbon/M, alien, removed)
 	if(M.isSynthetic())
 		return
 
@@ -1051,7 +1051,7 @@
 			to_chat(M, "<span class='warning'>You feel odd!</span>")
 	M.afflict_radiation(RAD_MOB_AFFLICT_STRENGTH_SLIMETOXIN(removed))
 
-/datum/reagent/aslimetoxin
+datum/reagent/aslimetoxin
 	name = "Docility Toxin"
 	id = "docilitytoxin"
 	description = "A corruptive toxin produced by slimes."
@@ -1059,7 +1059,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#FF69B4"
 
-/datum/reagent/aslimetoxin/affect_blood(mob/living/carbon/M, alien, removed) // TODO: check if there's similar code anywhere else
+datum/reagent/aslimetoxin/affect_blood(mob/living/carbon/M, alien, removed) // TODO: check if there's similar code anywhere else
 	if(M.isSynthetic())
 		return
 
@@ -1086,7 +1086,7 @@
  * Unscannable, and commonly all look the same.
  */
 
-/datum/reagent/shredding_nanites
+datum/reagent/shredding_nanites
 	name = "Restorative Nanites"
 	id = "shredding_nanites"
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
@@ -1096,11 +1096,11 @@
 	metabolism = REM * 4 // Nanomachines. Fast.
 	affects_robots = TRUE
 
-/datum/reagent/shredding_nanites/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/shredding_nanites/affect_blood(mob/living/carbon/M, alien, removed)
 	M.adjustBruteLoss(4 * removed)
 	M.adjustOxyLoss(4 * removed)
 
-/datum/reagent/irradiated_nanites
+datum/reagent/irradiated_nanites
 	name = "Restorative Nanites"
 	id = "irradiated_nanites"
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
@@ -1110,7 +1110,7 @@
 	metabolism = REM * 4
 	affects_robots = TRUE
 
-/datum/reagent/irradiated_nanites/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/irradiated_nanites/affect_blood(mob/living/carbon/M, alien, removed)
 	// todo: this should be more brutal on people around the person without being too brutal on the person
 	// new radiation just kind of scales pretty badly
 	/// rads to everyone around you
@@ -1118,7 +1118,7 @@
 	/// radiate the person a bit just in case they're armored
 	M.rad_act(RAD_INTENSITY_CHEM_IRRADIATED_NANITES_SELF)
 
-/datum/reagent/neurophage_nanites
+datum/reagent/neurophage_nanites
 	name = "Restorative Nanites"
 	id = "neurophage_nanites"
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be completely hostile."
@@ -1129,13 +1129,13 @@
 	filtered_organs = list(O_SPLEEN)
 	affects_robots = TRUE
 
-/datum/reagent/neurophage_nanites/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/neurophage_nanites/affect_blood(mob/living/carbon/M, alien, removed)
 	M.adjustBrainLoss(2 * removed)	// Their job is to give you a bad time.
 	M.adjustBruteLoss(2 * removed)
 
 //Special toxins for solargrubs
 //Moved from Chemistry-Reagents-Vore_vr.dm
-/datum/reagent/grubshock
+datum/reagent/grubshock
 	name = "200 V" //in other words a painful shock
 	id = "shockchem"
 	description = "A liquid that quickly dissapates to deliver a painful shock."
@@ -1145,5 +1145,5 @@
 	var/power = 9
 	affects_robots = TRUE
 
-/datum/reagent/grubshock/affect_blood(mob/living/carbon/M, alien, removed)
+datum/reagent/grubshock/affect_blood(mob/living/carbon/M, alien, removed)
 	M.take_organ_damage(0, removed * power * 0.2)

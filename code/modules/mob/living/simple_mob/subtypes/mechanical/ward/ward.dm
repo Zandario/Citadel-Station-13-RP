@@ -3,7 +3,7 @@
 	Generally they are helpless by themselves and are fragile, but can do very useful things if protected. This makes them a high priority target.
 */
 
-/mob/living/simple_mob/mechanical/ward
+mob/living/simple_mob/mechanical/ward
 	name = "ward"
 	desc = "A small floating machine. This one seems rather useless..."
 	icon = 'icons/mob/critter.dmi'
@@ -28,15 +28,15 @@
 	ai_holder_type = null
 	var/mob/living/owner = null // The mob that made the ward, if any. Used to ensure the ward does not interfere with its creator.
 
-/mob/living/simple_mob/mechanical/ward/death()
+mob/living/simple_mob/mechanical/ward/death()
 	..(null,"is smashed into pieces!")
 	qdel(src)
 
-/mob/living/simple_mob/mechanical/ward/Destroy()
+mob/living/simple_mob/mechanical/ward/Destroy()
 	owner = null
 	return ..()
 
-/mob/living/simple_mob/mechanical/ward/IIsAlly(mob/living/L)
+mob/living/simple_mob/mechanical/ward/IIsAlly(mob/living/L)
 	if(owner == L)
 		return TRUE
 	return ..()

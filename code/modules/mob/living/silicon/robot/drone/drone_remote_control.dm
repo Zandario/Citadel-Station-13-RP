@@ -1,10 +1,10 @@
-/mob/living/silicon/ai
+mob/living/silicon/ai
 	var/mob/living/silicon/robot/drone/controlling_drone
 
-/mob/living/silicon/robot/drone
+mob/living/silicon/robot/drone
 	var/mob/living/silicon/ai/controlling_ai
 
-/mob/living/silicon/robot/drone/attack_ai(var/mob/living/silicon/ai/user)
+mob/living/silicon/robot/drone/attack_ai(var/mob/living/silicon/ai/user)
 
 	if(!istype(user) || controlling_ai || !config_legacy.allow_drone_spawn || !config_legacy.allow_ai_drones)
 		return
@@ -33,7 +33,7 @@
 	updatename()
 	to_chat(src, "<span class='notice'><b>You have shunted your primary control loop into \a [initial(name)].</b> Use the <b>Release Control</b> verb to return to your core.</span>")
 
-/obj/machinery/drone_fabricator/attack_ai(var/mob/living/silicon/ai/user as mob)
+obj/machinery/drone_fabricator/attack_ai(var/mob/living/silicon/ai/user as mob)
 
 	if(!istype(user) || user.controlling_drone || !config_legacy.allow_drone_spawn || !config_legacy.allow_ai_drones)
 		return
@@ -72,14 +72,14 @@
 
 	to_chat(new_drone, "<span class='notice'><b>You have shunted your primary control loop into \a [initial(new_drone.name)].</b> Use the <b>Release Control</b> verb to return to your core.</span>")
 
-/mob/living/silicon/robot/drone/proc/release_ai_control_verb()
+mob/living/silicon/robot/drone/proc/release_ai_control_verb()
 	set name = "Release Control"
 	set desc = "Release control of a remote drone."
 	set category = "Silicon Commands"
 
 	release_ai_control("Remote session terminated.")
 
-/mob/living/silicon/robot/drone/proc/release_ai_control(var/message = "Connection terminated.")
+mob/living/silicon/robot/drone/proc/release_ai_control(var/message = "Connection terminated.")
 
 	if(controlling_ai)
 		if(mind)

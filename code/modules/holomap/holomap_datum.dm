@@ -1,10 +1,10 @@
 // Simple datum to keep track of a running holomap. Each machine capable of displaying the holomap will have one.
-/datum/station_holomap
+datum/station_holomap
 	var/image/station_map
 	var/image/cursor
 	var/image/legend
 
-/datum/station_holomap/proc/initialize_holomap(var/turf/T, var/isAI = null, var/mob/user = null, var/reinit = FALSE)
+datum/station_holomap/proc/initialize_holomap(var/turf/T, var/isAI = null, var/mob/user = null, var/reinit = FALSE)
 	if(!station_map || reinit)
 		station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[T.z]"])
 	if(!cursor || reinit)
@@ -23,7 +23,7 @@
 	station_map.add_overlay(cursor)
 	station_map.add_overlay(legend)
 
-/datum/station_holomap/proc/initialize_holomap_bogus()
+datum/station_holomap/proc/initialize_holomap_bogus()
 	station_map = image('icons/480x480.dmi', "stationmap")
 	legend = image('icons/effects/64x64.dmi', "notfound")
 	legend.pixel_x = 7 * WORLD_ICON_SIZE

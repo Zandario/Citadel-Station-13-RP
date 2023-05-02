@@ -1,20 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/template_noop,
-/area/submap/PascalB)
+turf/template_noop,
+area/submap/PascalB)
 "c" = (
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/PascalB)
+turf/simulated/floor/outdoors/dirt,
+area/submap/PascalB)
 "d" = (
-/turf/simulated/floor/outdoors/rocks,
-/area/submap/PascalB)
+turf/simulated/floor/outdoors/rocks,
+area/submap/PascalB)
 "e" = (
-/obj/item/poi/pascalb,
-/turf/simulated/floor/outdoors/rocks,
-/area/submap/PascalB)
+obj/item/poi/pascalb,
+turf/simulated/floor/outdoors/rocks,
+area/submap/PascalB)
 
 (1,1,1) = {"
 a

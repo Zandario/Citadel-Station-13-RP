@@ -1,4 +1,4 @@
-/datum/computer_file/program/email_client
+datum/computer_file/program/email_client
 	filename = "emailc"
 	filedesc = "Email Client"
 	extended_desc = "This program may be used to log in into your email account."
@@ -14,7 +14,7 @@
 	nanomodule_path = /datum/nano_module/email_client
 
 // Persistency. Unless you log out, or unless your password changes, this will pre-fill the login data when restarting the program
-/datum/computer_file/program/email_client/kill_program()
+datum/computer_file/program/email_client/kill_program()
 	if(NM)
 		var/datum/nano_module/email_client/NME = NM
 		if(NME.current_account)
@@ -25,7 +25,7 @@
 			stored_password = ""
 	. = ..()
 
-/datum/computer_file/program/email_client/run_program()
+datum/computer_file/program/email_client/run_program()
 	. = ..()
 	if(NM)
 		var/datum/nano_module/email_client/NME = NM
@@ -35,10 +35,10 @@
 		NME.error = ""
 		NME.check_for_new_messages(1)
 
-/datum/computer_file/program/email_client/proc/new_mail_notify()
+datum/computer_file/program/email_client/proc/new_mail_notify()
 	computer.visible_message("\The [computer] beeps softly, indicating a new email has been received.", 1)
 
-/datum/computer_file/program/email_client/process_tick()
+datum/computer_file/program/email_client/process_tick()
 	..()
 	var/datum/nano_module/email_client/NME = NM
 	if(!istype(NME))
@@ -53,7 +53,7 @@
 	else
 		ui_header = "ntnrc_idle.gif"
 
-/datum/nano_module/email_client/
+datum/nano_module/email_client/
 	name = "Email Client"
 	var/stored_login = ""
 	var/stored_password = ""
@@ -77,7 +77,7 @@
 	var/datum/computer_file/data/email_account/current_account = null
 	var/datum/computer_file/data/email_message/current_message = null
 
-/datum/nano_module/email_client/proc/log_in()
+datum/nano_module/email_client/proc/log_in()
 	for(var/datum/computer_file/data/email_account/account in ntnet_global.email_accounts)
 		if(!account.can_login)
 			continue
@@ -96,7 +96,7 @@
 
 // Returns 0 if no new messages were received, 1 if there is an unread message but notification has already been sent.
 // and 2 if there is a new message that appeared in this tick (and therefore notification should be sent by the program).
-/datum/nano_module/email_client/proc/check_for_new_messages(var/messages_read = FALSE)
+datum/nano_module/email_client/proc/check_for_new_messages(var/messages_read = FALSE)
 	if(!current_account)
 		return 0
 
@@ -114,14 +114,14 @@
 		read_message_count = allmails.len
 
 
-/datum/nano_module/email_client/proc/log_out()
+datum/nano_module/email_client/proc/log_out()
 	current_account = null
 	downloading = null
 	download_progress = 0
 	last_message_count = 0
 	read_message_count = 0
 
-/datum/nano_module/email_client/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/email_client/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	// Password has been changed by other client connected to this email account
@@ -212,7 +212,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/email_client/proc/find_message_by_fuid(var/fuid)
+datum/nano_module/email_client/proc/find_message_by_fuid(var/fuid)
 	if(!istype(current_account))
 		return
 
@@ -224,7 +224,7 @@
 		if(message.uid == fuid)
 			return message
 
-/datum/nano_module/email_client/proc/clear_message()
+datum/nano_module/email_client/proc/clear_message()
 	new_message = FALSE
 	msg_title = ""
 	msg_body = ""
@@ -232,7 +232,7 @@
 	msg_attachment = null
 	current_message = null
 
-/datum/nano_module/email_client/proc/relayed_process(var/netspeed)
+datum/nano_module/email_client/proc/relayed_process(var/netspeed)
 	download_speed = netspeed
 	if(!downloading)
 		return
@@ -254,7 +254,7 @@
 	return 1
 
 
-/datum/nano_module/email_client/Topic(href, href_list)
+datum/nano_module/email_client/Topic(href, href_list)
 	if(..())
 		return 1
 	var/mob/living/user = usr

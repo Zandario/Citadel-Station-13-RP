@@ -1,6 +1,6 @@
 var/list/overminds = list()
 
-/mob/observer/blob
+mob/observer/blob
 	name = "Blob Overmind"
 	real_name = "Blob Overmind"
 	desc = "The overmind. It controls the blob."
@@ -23,7 +23,7 @@ var/list/overminds = list()
 	var/ai_controlled = TRUE
 	var/auto_pilot = FALSE // If true, and if a client is attached, the AI routine will continue running.
 
-/mob/observer/blob/Initialize(mapload, pre_placed = FALSE, starting_points = 60, desired_blob_type)
+mob/observer/blob/Initialize(mapload, pre_placed = FALSE, starting_points = 60, desired_blob_type)
 
 	blob_points = starting_points
 	if(pre_placed) //we already have a core!
@@ -45,7 +45,7 @@ var/list/overminds = list()
 
 	return ..(mapload)
 
-/mob/observer/blob/Destroy()
+mob/observer/blob/Destroy()
 	for(var/BL in blobs)
 		var/obj/structure/blob/B = BL
 		if(B && B.overmind == src)
@@ -61,7 +61,7 @@ var/list/overminds = list()
 	overminds -= src
 	return ..()
 
-/mob/observer/blob/statpanel_data(client/C)
+mob/observer/blob/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		STATPANEL_DATA_LINE("")
@@ -70,7 +70,7 @@ var/list/overminds = list()
 		STATPANEL_DATA_LINE("Power Stored: [blob_points]/[max_blob_points]")
 		STATPANEL_DATA_LINE("Total Blobs: [blobs.len]")
 
-/mob/observer/blob/Move(NewLoc, Dir = 0)
+mob/observer/blob/Move(NewLoc, Dir = 0)
 	if(placed)
 		var/obj/structure/blob/B = locate() in range("3x3", NewLoc)
 		if(B)
@@ -85,10 +85,10 @@ var/list/overminds = list()
 		forceMove(NewLoc)
 		return TRUE
 
-/mob/observer/blob/proc/add_points(points)
+mob/observer/blob/proc/add_points(points)
 	blob_points = clamp( blob_points + points, 0,  max_blob_points)
 
-/mob/observer/blob/Life(seconds, times_fired)
+mob/observer/blob/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 

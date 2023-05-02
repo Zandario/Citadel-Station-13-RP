@@ -5,7 +5,7 @@
 //////////////////////////////
 var/datum/controller/rogue/rm_controller
 
-/datum/controller/rogue
+datum/controller/rogue
 	var/list/datum/rogue/zonemaster/all_zones = list()
 	var/list/datum/rogue/zonemaster/clean_zones = list()
 	var/list/datum/rogue/zonemaster/ready_zones = list()
@@ -102,13 +102,13 @@ var/datum/controller/rogue/rm_controller
 						/mob/living/simple_mob/animal/space/carp/large/huge/roguemines = 1)
 	)
 
-/datum/controller/rogue/New()
+datum/controller/rogue/New()
 	//How many zones are we working with here
 	for(var/area/asteroid/rogue/A in world)
 		all_zones += new /datum/rogue/zonemaster(A)
 	//decay() //Decay removed for now, since people aren't getting high scores as it is.
 
-/datum/controller/rogue/proc/decay(var/manual = 0)
+datum/controller/rogue/proc/decay(var/manual = 0)
 	to_chat(world.log, "RM(stats): DECAY on controller from [difficulty] to [difficulty+(RM_DIFF_DECAY_AMT)] min 100.") //DEBUG code for playtest stats gathering.
 	adjust_difficulty(RM_DIFF_DECAY_AMT)
 
@@ -117,12 +117,12 @@ var/datum/controller/rogue/rm_controller
 			decay()
 	return difficulty
 
-/datum/controller/rogue/proc/dbg(var/message)
+datum/controller/rogue/proc/dbg(var/message)
 	ASSERT(message) //I want a stack trace if there's no message
 	if(debugging)
 		to_chat(world.log, "[message]")
 
-/datum/controller/rogue/proc/adjust_difficulty(var/amt)
+datum/controller/rogue/proc/adjust_difficulty(var/amt)
 	ASSERT(amt)
 
 	difficulty = max(difficulty+amt, diffstep_nums[1]) //Can't drop below the lowest level.
@@ -133,7 +133,7 @@ var/datum/controller/rogue/rm_controller
 		if(difficulty >= diffstep_nums[diffstep+1])
 			diffstep++
 
-/datum/controller/rogue/proc/get_oldest_zone()
+datum/controller/rogue/proc/get_oldest_zone()
 	var/oldest_time = world.time
 	var/oldest_zone
 
@@ -144,7 +144,7 @@ var/datum/controller/rogue/rm_controller
 
 	return oldest_zone
 
-/datum/controller/rogue/proc/mark_clean(var/datum/rogue/zonemaster/ZM)
+datum/controller/rogue/proc/mark_clean(var/datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
 		rm_controller.dbg("RMC(mc): Some unknown zone asked to be listed.")
 
@@ -153,7 +153,7 @@ var/datum/controller/rogue/rm_controller
 
 	clean_zones += ZM
 
-/datum/controller/rogue/proc/mark_ready(var/datum/rogue/zonemaster/ZM)
+datum/controller/rogue/proc/mark_ready(var/datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
 		rm_controller.dbg("RMC(mr): Some unknown zone asked to be listed.")
 
@@ -162,7 +162,7 @@ var/datum/controller/rogue/rm_controller
 
 	ready_zones += ZM
 
-/datum/controller/rogue/proc/unmark_clean(var/datum/rogue/zonemaster/ZM)
+datum/controller/rogue/proc/unmark_clean(var/datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
 		rm_controller.dbg("RMC(umc): Some unknown zone asked to be listed.")
 
@@ -171,7 +171,7 @@ var/datum/controller/rogue/rm_controller
 
 	clean_zones -= ZM
 
-/datum/controller/rogue/proc/unmark_ready(var/datum/rogue/zonemaster/ZM)
+datum/controller/rogue/proc/unmark_ready(var/datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
 		rm_controller.dbg("RMC(umr): Some unknown zone asked to be listed.")
 
@@ -180,7 +180,7 @@ var/datum/controller/rogue/rm_controller
 
 	ready_zones -= ZM
 
-/datum/controller/rogue/proc/prepare_new_zone()
+datum/controller/rogue/proc/prepare_new_zone()
 	var/datum/rogue/zonemaster/ZM_target
 
 	if(clean_zones.len)

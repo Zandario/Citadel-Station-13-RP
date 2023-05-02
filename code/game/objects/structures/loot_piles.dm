@@ -12,7 +12,7 @@ buddies, to get more chances at getting cool things instead of someone going sol
 Loot piles can be depleted, if loot_depleted is turned on.  Note that players who searched the pile already won't deplete the loot furthers when searching again.
 */
 
-/obj/structure/loot_pile
+obj/structure/loot_pile
 	name = "base loot pile"
 	desc = "If you can read me, this is bugged"
 	description_info = "This can be searched by clicking on it and waiting a few seconds.  You might find valuable treasures or worthless junk. \
@@ -42,7 +42,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	var/list/rare_loot = list()		// Rare is powerful, or somewhat unique items.
 	var/list/very_rare_loot = list()// Very Rare really powerful, or at least unique items.
 
-/obj/structure/loot_pile/attack_hand(mob/user, list/params)
+obj/structure/loot_pile/attack_hand(mob/user, list/params)
 	//Human mob
 	if(isliving(user))
 		var/mob/living/L = user
@@ -109,29 +109,29 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	else
 		return ..()
 
-/obj/structure/loot_pile/proc/produce_common_item()
+obj/structure/loot_pile/proc/produce_common_item()
 	var/path = pick(common_loot)
 	return new path(drop_location())
 
-/obj/structure/loot_pile/proc/produce_uncommon_item()
+obj/structure/loot_pile/proc/produce_uncommon_item()
 	var/path = pick(uncommon_loot)
 	return new path(drop_location())
 
-/obj/structure/loot_pile/proc/produce_rare_item()
+obj/structure/loot_pile/proc/produce_rare_item()
 	var/path = pick(rare_loot)
 	return new path(drop_location())
 
-/obj/structure/loot_pile/proc/produce_very_rare_item()
+obj/structure/loot_pile/proc/produce_very_rare_item()
 	var/path = pick(very_rare_loot)
 	return new path(drop_location())
 
-/obj/structure/loot_pile/Initialize(mapload)
+obj/structure/loot_pile/Initialize(mapload)
 	if(icon_states_to_use && icon_states_to_use.len)
 		icon_state = pick(icon_states_to_use)
 	. = ..()
 
 // Has large amounts of possible items, most of which may or may not be useful.
-/obj/structure/loot_pile/maint/junk
+obj/structure/loot_pile/maint/junk
 	name = "pile of junk"
 	desc = "Lots of junk lying around.  They say one man's trash is another man's treasure."
 	icon_states_to_use = list("junk_pile1", "junk_pile2", "junk_pile3", "junk_pile4", "junk_pile5")
@@ -225,7 +225,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 // Contains mostly useless garbage.
-/obj/structure/loot_pile/maint/trash
+obj/structure/loot_pile/maint/trash
 	name = "pile of trash"
 	desc = "Lots of garbage in one place.  Might be able to find something if you're in the mood for dumpster diving."
 	icon_states_to_use = list("trash_pile1", "trash_pile2")
@@ -290,7 +290,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 // Contains loads of different types of boxes, which may have items inside!
-/obj/structure/loot_pile/maint/boxfort
+obj/structure/loot_pile/maint/boxfort
 	name = "pile of boxes"
 	desc = "A large pile of boxes sits here."
 	density = TRUE
@@ -339,7 +339,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 // One of the more useful maint piles, contains electrical components.
-/obj/structure/loot_pile/maint/technical
+obj/structure/loot_pile/maint/technical
 	name = "broken machine"
 	desc = "A destroyed machine with unknown purpose, and doesn't look like it can be fixed.  It might still have some functional components?"
 	density = TRUE
@@ -458,7 +458,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 
 
 // Surface base type
-/obj/structure/loot_pile/surface
+obj/structure/loot_pile/surface
 	// Surface loot piles are considerably harder and more dangerous to reach, so you're more likely to get rare things.
 	chance_uncommon = 20
 	chance_rare = 5
@@ -466,18 +466,18 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	loot_left = 5 // This is to prevent people from asking the whole station to go down to some alien ruin to get massive amounts of phat lewt.
 
 // Base type for alien piles.
-/obj/structure/loot_pile/surface/alien
+obj/structure/loot_pile/surface/alien
 	name = "alien pod"
 	desc = "A pod which looks bigger on the inside. Something quite shiny might be inside?"
 	icon_state = "alien_pile1"
 
-/obj/structure/loot_pile/surface/alien
+obj/structure/loot_pile/surface/alien
 	common_loot = list(
 		/obj/item/prop/alien/junk
 	)
 
 // May contain alien tools.
-/obj/structure/loot_pile/surface/alien/engineering
+obj/structure/loot_pile/surface/alien/engineering
 	uncommon_loot = list(
 		/obj/item/multitool/alien,
 		/obj/item/stack/cable_coil/alien,
@@ -492,7 +492,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 // May contain alien surgery equipment or powerful medication.
-/obj/structure/loot_pile/surface/alien/medical
+obj/structure/loot_pile/surface/alien/medical
 	uncommon_loot = list(
 		/obj/item/surgical/FixOVein/alien,
 		/obj/item/surgical/bone_clamp/alien,
@@ -508,7 +508,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 // May contain powercells or alien weaponry.
-/obj/structure/loot_pile/surface/alien/security
+obj/structure/loot_pile/surface/alien/security
 	uncommon_loot = list(
 		/obj/item/cell/device/weapon/recharge/alien,
 		/obj/item/clothing/suit/armor/alien,
@@ -520,7 +520,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 // The pile found at the very end, and as such has the best loot.
-/obj/structure/loot_pile/surface/alien/end
+obj/structure/loot_pile/surface/alien/end
 	chance_uncommon = 30
 	chance_rare = 10
 
@@ -552,7 +552,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/clothing/head/helmet/alien/tank,
 	)
 
-/obj/structure/loot_pile/surface/bones
+obj/structure/loot_pile/surface/bones
     name = "bone pile"
     desc = "A pile of various dusty bones. Your graverobbing instincts tell you there might be valuables here."
     icon = 'icons/obj/bones.dmi'
@@ -599,7 +599,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
     )
 
 // Subtype for mecha and mecha accessories. These might not always be on the surface.
-/obj/structure/loot_pile/mecha
+obj/structure/loot_pile/mecha
 	name = "pod wreckage"
 	desc = "The ruins of some unfortunate pod. Perhaps something is salvageable."
 	icon = 'icons/mecha/mecha.dmi'
@@ -644,7 +644,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		)
 
 //Stuff you may find attached to a ripley.
-/obj/structure/loot_pile/mecha/ripley
+obj/structure/loot_pile/mecha/ripley
 	name = "ripley wreckage"
 	desc = "The ruins of some unfortunate ripley. Perhaps something is salvageable."
 	icon_state = "ripley-broken"
@@ -681,17 +681,17 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged
 		)
 
-/obj/structure/loot_pile/mecha/ripley/firefighter
+obj/structure/loot_pile/mecha/ripley/firefighter
 	icon_state = "firefighter-broken"
 
-/obj/structure/loot_pile/mecha/ripley/pirate
+obj/structure/loot_pile/mecha/ripley/pirate
 	icon_state = "pirate-broken"
 
-/obj/structure/loot_pile/mecha/ripley/random_sprite
+obj/structure/loot_pile/mecha/ripley/random_sprite
 	icon_states_to_use = list("ripley-broken", "firefighter-broken", "ripley-broken-old")
 
 //Death-Ripley, same common, but more combat-exosuit-based
-/obj/structure/loot_pile/mecha/deathripley
+obj/structure/loot_pile/mecha/deathripley
 	name = "strange ripley wreckage"
 	icon_state = "deathripley-broken"
 
@@ -725,7 +725,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged
 		)
 
-/obj/structure/loot_pile/mecha/odysseus
+obj/structure/loot_pile/mecha/odysseus
 	name = "odysseus wreckage"
 	desc = "The ruins of some unfortunate odysseus. Perhaps something is salvageable."
 	icon_state = "odysseus-broken"
@@ -760,15 +760,15 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/shocker
 		)
 
-/obj/structure/loot_pile/mecha/odysseus/murdysseus
+obj/structure/loot_pile/mecha/odysseus/murdysseus
 	icon_state = "murdysseus-broken"
 
-/obj/structure/loot_pile/mecha/hoverpod
+obj/structure/loot_pile/mecha/hoverpod
 	name = "hoverpod wreckage"
 	desc = "The ruins of some unfortunate hoverpod. Perhaps something is salvageable."
 	icon_state = "engineering_pod"
 
-/obj/structure/loot_pile/mecha/gygax
+obj/structure/loot_pile/mecha/gygax
 	name = "gygax wreckage"
 	desc = "The ruins of some unfortunate gygax. Perhaps something is salvageable."
 	icon_state = "gygax-broken"
@@ -807,20 +807,20 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 		)
 
-/obj/structure/loot_pile/mecha/gygax/dark
+obj/structure/loot_pile/mecha/gygax/dark
 	icon_state = "darkgygax-broken"
 
 // Todo: Better loot.
-/obj/structure/loot_pile/mecha/gygax/dark/adv
+obj/structure/loot_pile/mecha/gygax/dark/adv
 	icon_state = "darkgygax_adv-broken"
 	icon_scale_x = 1.5
 	icon_scale_y = 1.5
 	pixel_y = 8
 
-/obj/structure/loot_pile/mecha/gygax/medgax
+obj/structure/loot_pile/mecha/gygax/medgax
 	icon_state = "medgax-broken"
 
-/obj/structure/loot_pile/mecha/durand
+obj/structure/loot_pile/mecha/durand
 	name = "durand wreckage"
 	desc = "The ruins of some unfortunate durand. Perhaps something is salvageable."
 	icon_state = "durand-broken"
@@ -859,23 +859,23 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 		)
 
-/obj/structure/loot_pile/mecha/marauder
+obj/structure/loot_pile/mecha/marauder
 	name = "marauder wreckage"
 	desc = "The ruins of some unfortunate marauder. Perhaps something is salvagable."
 	icon_state = "marauder-broken"
 	// Todo: Better loot.
 
-/obj/structure/loot_pile/mecha/marauder/seraph
+obj/structure/loot_pile/mecha/marauder/seraph
 	name = "seraph wreckage"
 	desc = "The ruins of some unfortunate seraph. Perhaps something is salvagable."
 	icon_state = "seraph-broken"
 
-/obj/structure/loot_pile/mecha/marauder/mauler
+obj/structure/loot_pile/mecha/marauder/mauler
 	name = "mauler wreckage"
 	desc = "The ruins of some unfortunate mauler. Perhaps something is salvagable."
 	icon_state = "mauler-broken"
 
-/obj/structure/loot_pile/mecha/phazon
+obj/structure/loot_pile/mecha/phazon
 	name = "phazon wreckage"
 	desc = "The ruins of some unfortunate phazon. Perhaps something is salvageable."
 	icon_state = "phazon-broken"
@@ -907,7 +907,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/teleporter
 		)
 
-/obj/structure/loot_pile/mecha/honker
+obj/structure/loot_pile/mecha/honker
 	name = "H.O.N.K. wreckage"
 	desc = "The ruins of a H.O.N.K mech. It is thankfully beyond repair. Perhaps something is salvageable."
 	icon_state = "honker-broken"
@@ -941,12 +941,12 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/repair_droid
 		)
 
-/obj/structure/loot_pile/mecha/honker/cluwne
+obj/structure/loot_pile/mecha/honker/cluwne
 	name = "C.L.U.W.N.E. wreckage"
 	desc = "The ruins of a C.L.U.W.N.E. mech. It is thankfully beyond repair. Perhaps something is salvageable."
 	icon_state = "cluwne-broken"
 
-/obj/structure/loot_pile/mecha/reticent
+obj/structure/loot_pile/mecha/reticent
 	name = "Reticent wreckage"
 	desc = "The ruins of a Reticent mech. The wreckage emanates a silent tragedy. Perhaps something is salvageable."
 	icon_state = "reticent-broken"
@@ -979,13 +979,13 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/cloak
 		)
 
-/obj/structure/loot_pile/mecha/reticent/reticence
+obj/structure/loot_pile/mecha/reticent/reticence
 	name = "Reticence wreckage"
 	desc = "The ruins of a Reticence mech. The wreckage emanates a silent tragedy. Perhaps something is salvageable."
 	icon_state = "reticence-broken"
 
 //Micro mecha loot.
-/obj/structure/loot_pile/mecha/mouse_tank
+obj/structure/loot_pile/mecha/mouse_tank
 	name = "\improper Whisker wreckage"
 	desc = "The ruins of a small tank. Perhaps some child's toy?"
 	icon = 'icons/mecha/micro.dmi'
@@ -1020,7 +1020,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/generator/nuclear
 		)
 
-/obj/structure/loot_pile/mecha/mouse_tank/livewire
+obj/structure/loot_pile/mecha/mouse_tank/livewire
 	name = "\improper Livewire wreckage"
 	desc = "The smoldering ruins of a small tank. Perhaps some child's toy?"
 	icon = 'icons/mecha/micro.dmi'
@@ -1055,7 +1055,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/generator
 		)
 
-/obj/structure/loot_pile/mecha/mouse_tank/eraticator
+obj/structure/loot_pile/mecha/mouse_tank/eraticator
 	name = "\improper Eraticator wreckage"
 	desc = "The blasted ruins of a small tank. Perhaps some child's toy?"
 	icon = 'icons/mecha/micro.dmi'
@@ -1092,7 +1092,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		)
 
 //Drone loot
-/obj/structure/loot_pile/surface/drone
+obj/structure/loot_pile/surface/drone
 	name = "drone wreckage"
 	desc = "The ruins of some unfortunate drone. Perhaps something is salvageable."
 	icon = 'icons/mob/animal.dmi'
@@ -1132,7 +1132,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		)
 
 // Contains old mediciation, most of it unidentified and has a good chance of being useless.
-/obj/structure/loot_pile/surface/medicine_cabinet
+obj/structure/loot_pile/surface/medicine_cabinet
 	name = "abandoned medicine cabinet"
 	desc = "An old cabinet, it might still have something of use inside."
 	icon_state = "medicine_cabinet"
@@ -1145,7 +1145,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 // Like the above but has way better odds, in exchange for being in a place still inhabited (or was recently).
-/obj/structure/loot_pile/surface/medicine_cabinet/fresh
+obj/structure/loot_pile/surface/medicine_cabinet/fresh
 	name = "medicine cabinet"
 	desc = "A cabinet designed to hold medicine, it might still have something of use inside."
 	icon_state = "medicine_cabinet"

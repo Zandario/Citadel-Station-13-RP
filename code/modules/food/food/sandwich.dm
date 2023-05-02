@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/snacks/slice/bread/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/reagent_containers/food/snacks/slice/bread/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/material/shard) || istype(W,/obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/csandwich/S = new(get_turf(src))
@@ -6,7 +6,7 @@
 		qdel(src)
 	..()
 
-/obj/item/reagent_containers/food/snacks/csandwich
+obj/item/reagent_containers/food/snacks/csandwich
 	name = "sandwich"
 	desc = "The best thing since sliced bread."
 	icon_state = "breadslice"
@@ -15,7 +15,7 @@
 
 	var/list/ingredients = list()
 
-/obj/item/reagent_containers/food/snacks/csandwich/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/reagent_containers/food/snacks/csandwich/attackby(obj/item/W as obj, mob/user as mob)
 
 	var/sandwich_limit = 4
 	for(var/obj/item/O in ingredients)
@@ -42,7 +42,7 @@
 		return
 	..()
 
-/obj/item/reagent_containers/food/snacks/csandwich/proc/update()
+obj/item/reagent_containers/food/snacks/csandwich/proc/update()
 	var/fullname = "" //We need to build this from the contents of the var.
 	var/i = 0
 
@@ -77,17 +77,17 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/item/reagent_containers/food/snacks/csandwich/Destroy()
+obj/item/reagent_containers/food/snacks/csandwich/Destroy()
 	for(var/obj/item/O in ingredients)
 		qdel(O)
 	return ..()
 
-/obj/item/reagent_containers/food/snacks/csandwich/examine(mob/user)
+obj/item/reagent_containers/food/snacks/csandwich/examine(mob/user)
 	. = ..()
 	var/obj/item/O = pick(contents)
 	. += "<font color=#4F49AF>You think you can see [O.name] in there.</font>"
 
-/obj/item/reagent_containers/food/snacks/csandwich/attempt_feed(mob/living/M, mob/living/user)
+obj/item/reagent_containers/food/snacks/csandwich/attempt_feed(mob/living/M, mob/living/user)
 	var/obj/item/shard
 	for(var/obj/item/O in contents)
 		if(istype(O,/obj/item/material/shard))

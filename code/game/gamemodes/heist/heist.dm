@@ -4,7 +4,7 @@ VOX HEIST ROUNDTYPE
 
 var/global/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' objective. Clumsy, rewrite sometime.
 
-/datum/game_mode/heist
+datum/game_mode/heist
 	name = "Heist"
 	config_tag = "heist"
 	required_players = 12

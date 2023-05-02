@@ -1,5 +1,5 @@
 // Used to deploy the bacon.
-/obj/item/supply_beacon
+obj/item/supply_beacon
 	name = "inactive supply beacon"
 	icon = 'icons/obj/supplybeacon.dmi'
 	desc = "An inactive, hacked supply beacon stamped with the local system's Rapid Fabrication logo. Good for one (1) ballistic supply pod shipment."
@@ -7,11 +7,11 @@
 	var/deploy_path = /obj/machinery/power/supply_beacon
 	var/deploy_time = 30
 
-/obj/item/supply_beacon/supermatter
+obj/item/supply_beacon/supermatter
 	name = "inactive supermatter supply beacon"
 	deploy_path = /obj/machinery/power/supply_beacon/supermatter
 
-/obj/item/supply_beacon/attack_self(mob/user)
+obj/item/supply_beacon/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -22,7 +22,7 @@
 	user.visible_message("<span class='notice'>\The [user] deploys \the [S].</span>")
 	qdel(src)
 
-/obj/machinery/power/supply_beacon
+obj/machinery/power/supply_beacon
 	name = "supply beacon"
 	desc = "A bulky moonshot supply beacon. Someone has been messing with the wiring."
 	icon = 'icons/obj/supplybeacon.dmi'
@@ -37,16 +37,16 @@
 	var/expended
 	var/drop_type
 
-/obj/machinery/power/supply_beacon/Initialize(mapload, newdir)
+obj/machinery/power/supply_beacon/Initialize(mapload, newdir)
 	. = ..()
 	if(!drop_type)
 		drop_type = pick(supply_drop_random_loot_types())
 
-/obj/machinery/power/supply_beacon/supermatter
+obj/machinery/power/supply_beacon/supermatter
 	name = "supermatter supply beacon"
 	drop_type = "supermatter"
 
-/obj/machinery/power/supply_beacon/attackby(obj/item/W, mob/user)
+obj/machinery/power/supply_beacon/attackby(obj/item/W, mob/user)
 	if(!use_power && W.is_wrench())
 		if(!anchored && !connect_to_network())
 			to_chat(user, "<span class='warning'>This device must be placed over an exposed cable.</span>")
@@ -57,7 +57,7 @@
 		return
 	return ..()
 
-/obj/machinery/power/supply_beacon/attack_hand(mob/user, list/params)
+obj/machinery/power/supply_beacon/attack_hand(mob/user, list/params)
 
 	if(expended)
 		update_use_power(USE_POWER_OFF)
@@ -70,11 +70,11 @@
 		to_chat(user, "<span class='warning'>You need to secure the beacon with a wrench first!</span>")
 		return
 
-/obj/machinery/power/supply_beacon/attack_ai(mob/user)
+obj/machinery/power/supply_beacon/attack_ai(mob/user)
 	if(user.Adjacent(src))
 		attack_hand(user)
 
-/obj/machinery/power/supply_beacon/proc/activate(mob/user)
+obj/machinery/power/supply_beacon/proc/activate(mob/user)
 	if(expended)
 		return
 	// 0.5 kw
@@ -86,7 +86,7 @@
 	use_power = USE_POWER_IDLE
 	if(user) to_chat(user, "<span class='notice'>You activate the beacon. The supply drop will be dispatched soon.</span>")
 
-/obj/machinery/power/supply_beacon/proc/deactivate(mob/user, permanent)
+obj/machinery/power/supply_beacon/proc/deactivate(mob/user, permanent)
 	if(permanent)
 		expended = 1
 		icon_state = "beacon_depleted"
@@ -97,12 +97,12 @@
 	target_drop_time = null
 	if(user) to_chat(user, "<span class='notice'>You deactivate the beacon.</span>")
 
-/obj/machinery/power/supply_beacon/Destroy()
+obj/machinery/power/supply_beacon/Destroy()
 	if(use_power)
 		deactivate()
 	..()
 
-/obj/machinery/power/supply_beacon/process(delta_time)
+obj/machinery/power/supply_beacon/process(delta_time)
 	if(expended)
 		return PROCESS_KILL
 	if(!use_power)

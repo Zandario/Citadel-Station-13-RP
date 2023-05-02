@@ -6,7 +6,7 @@
 	with a HUB, the only other machine that can send/receive pass Z levels.
 */
 
-/obj/machinery/telecomms/relay
+obj/machinery/telecomms/relay
 	name = "Telecommunication Relay"
 	icon_state = "relay"
 	desc = "A mighty piece of hardware used to send massive amounts of data far away."
@@ -22,11 +22,11 @@
 	var/broadcasting = 1
 	var/receiving = 1
 
-/obj/machinery/telecomms/relay/on_changed_z_level(old_z, new_z)
+obj/machinery/telecomms/relay/on_changed_z_level(old_z, new_z)
 	. = ..()
 	listening_level = z
 
-/obj/machinery/telecomms/relay/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+obj/machinery/telecomms/relay/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 
 	// Add our level and send it back
 	if(can_send(signal))
@@ -34,19 +34,19 @@
 
 // Checks to see if it can send/receive.
 
-/obj/machinery/telecomms/relay/proc/can(datum/signal/signal)
+obj/machinery/telecomms/relay/proc/can(datum/signal/signal)
 	if(!on)
 		return 0
 	if(!is_freq_listening(signal))
 		return 0
 	return 1
 
-/obj/machinery/telecomms/relay/proc/can_send(datum/signal/signal)
+obj/machinery/telecomms/relay/proc/can_send(datum/signal/signal)
 	if(!can(signal))
 		return 0
 	return broadcasting
 
-/obj/machinery/telecomms/relay/proc/can_receive(datum/signal/signal)
+obj/machinery/telecomms/relay/proc/can_receive(datum/signal/signal)
 	if(!can(signal))
 		return 0
 	return receiving

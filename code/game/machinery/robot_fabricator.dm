@@ -1,4 +1,4 @@
-/obj/machinery/robotic_fabricator //Does this stille even need to exist?
+obj/machinery/robotic_fabricator //Does this stille even need to exist?
 	name = "robotic fabricator"
 	icon = 'icons/obj/machines/fabricators/robotics.dmi'
 	icon_state = "mechfab"
@@ -11,7 +11,7 @@
 	idle_power_usage = 40
 	active_power_usage = 10000
 
-/obj/machinery/robotic_fabricator/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/robotic_fabricator/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/stack/material) && O.get_material_name() == MAT_STEEL)
 		var/obj/item/stack/M = O
 		if(metal_amount < 150000.0)
@@ -32,7 +32,7 @@
 		else
 			to_chat(user, "The robot part maker is full. Please remove metal from the robot part maker in order to insert more.")
 
-/obj/machinery/robotic_fabricator/attack_hand(mob/user, list/params)
+obj/machinery/robotic_fabricator/attack_hand(mob/user, list/params)
 	var/dat
 	if(..())
 		return
@@ -60,7 +60,7 @@ Please wait until completion...</TT><BR>
 	onclose(user, "robot_fabricator")
 	return
 
-/obj/machinery/robotic_fabricator/Topic(href, href_list)
+obj/machinery/robotic_fabricator/Topic(href, href_list)
 	if(..())
 		return
 

@@ -1,5 +1,5 @@
 
-/obj/machinery/computer/pod
+obj/machinery/computer/pod
 	name = "pod launch control console"
 	desc = "A control console for launching pods. Some people prefer firing Mechas."
 	icon_screen = "mass_driver"
@@ -11,13 +11,13 @@
 	var/time = 3 SECONDS
 	var/title = "Mass Driver Controls"
 
-/obj/machinery/computer/pod/Initialize(mapload)
+obj/machinery/computer/pod/Initialize(mapload)
 	. = ..()
 	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == id)
 			connected = M
 
-/obj/machinery/computer/pod/proc/alarm()
+obj/machinery/computer/pod/proc/alarm()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -43,10 +43,10 @@
 			return
 	return
 
-/obj/machinery/computer/pod/attack_ai(var/mob/user as mob)
+obj/machinery/computer/pod/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/pod/attack_hand(mob/user, list/params)
+obj/machinery/computer/pod/attack_hand(mob/user, list/params)
 	if(..())
 		return
 
@@ -77,7 +77,7 @@
 	return
 
 
-/obj/machinery/computer/pod/process(delta_time)
+obj/machinery/computer/pod/process(delta_time)
 	if(!..())
 		return
 	if(timing)
@@ -91,7 +91,7 @@
 	return
 
 
-/obj/machinery/computer/pod/Topic(href, href_list)
+obj/machinery/computer/pod/Topic(href, href_list)
 	if(..())
 		return 1
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (istype(usr, /mob/living/silicon)))
@@ -127,7 +127,7 @@
 
 
 
-/obj/machinery/computer/pod/old
+obj/machinery/computer/pod/old
 	icon_state = "oldcomp"
 	icon_keyboard = null
 	icon_screen = "library"
@@ -136,19 +136,19 @@
 
 
 
-/obj/machinery/computer/pod/old/syndicate
+obj/machinery/computer/pod/old/syndicate
 	name = "ProComp Executive IIc"
 	desc = "Criminals often operate on a tight budget. Operates external airlocks."
 	title = "External Airlock Controls"
 	req_access = list(ACCESS_FACTION_SYNDICATE)
 
-/obj/machinery/computer/pod/old/syndicate/attack_hand(mob/user, list/params)
+obj/machinery/computer/pod/old/syndicate/attack_hand(mob/user, list/params)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied</span>")
 		return
 	else
 		..()
 
-/obj/machinery/computer/pod/old/swf
+obj/machinery/computer/pod/old/swf
 	name = "Magix System IV"
 	desc = "An arcane artifact that holds much magic. Running E-Knock 2.2: Sorceror's Edition"

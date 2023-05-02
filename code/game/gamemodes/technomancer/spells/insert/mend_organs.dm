@@ -1,4 +1,4 @@
-/datum/technomancer/spell/mend_organs
+datum/technomancer/spell/mend_organs
 	name = "Great Mend Wounds"
 	desc = "Greatly heals the target's wounds, both external and internal.  Restores internal organs to functioning states, even if \
 	robotic, reforms bones, patches internal bleeding, and restores missing blood."
@@ -8,7 +8,7 @@
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/insert/mend_organs
+obj/item/spell/insert/mend_organs
 	name = "great mend wounds"
 	desc = "A walking medbay is now you!"
 	icon_state = "mend_wounds"
@@ -17,7 +17,7 @@
 	light_color = "#FF5C5C"
 	inserting = /obj/item/inserted_spell/mend_organs
 
-/obj/item/inserted_spell/mend_organs/on_insert()
+obj/item/inserted_spell/mend_organs/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host

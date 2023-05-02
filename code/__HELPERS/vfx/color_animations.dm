@@ -3,7 +3,7 @@
  * you can choose easing
  * color should be rgb or rgba, or matrices
  */
-/proc/animate_color_shift(atom/A, color1 = "#ffffff", color2 = "#000000", time1 = 1 SECONDS, time2 = 1 SECONDS, easing = LINEAR_EASING, loop = -1)
+proc/animate_color_shift(atom/A, color1 = "#ffffff", color2 = "#000000", time1 = 1 SECONDS, time2 = 1 SECONDS, easing = LINEAR_EASING, loop = -1)
 	var/original_color
 	var/target_color
 	if(!islist(color1))

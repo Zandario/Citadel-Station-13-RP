@@ -1,87 +1,87 @@
 // Gloves
-/datum/gear/gloves
+datum/gear/gloves
 	name = "Gloves - Black"
 	path = /obj/item/clothing/gloves/black
 	slot = SLOT_ID_GLOVES
 	sort_category = "Gloves and Handwear"
 
-/datum/gear/gloves/blue
+datum/gear/gloves/blue
 	name = "Gloves - Blue"
 	path = /obj/item/clothing/gloves/blue
 
-/datum/gear/gloves/brown
+datum/gear/gloves/brown
 	name = "Gloves - Brown"
 	path = /obj/item/clothing/gloves/brown
 
-/datum/gear/gloves/light_brown
+datum/gear/gloves/light_brown
 	name = "Gloves - Light-Brown"
 	path = /obj/item/clothing/gloves/light_brown
 
-/datum/gear/gloves/green
+datum/gear/gloves/green
 	name = "Gloves - Green"
 	path = /obj/item/clothing/gloves/green
 
-/datum/gear/gloves/grey
+datum/gear/gloves/grey
 	name = "Gloves - Grey"
 	path = /obj/item/clothing/gloves/grey
 
-/datum/gear/gloves/latex
+datum/gear/gloves/latex
 	name = "Gloves - Latex"
 	path = /obj/item/clothing/gloves/sterile/latex
 
-/datum/gear/gloves/nitrile
+datum/gear/gloves/nitrile
 	name = "Gloves - Nitrile"
 	path = /obj/item/clothing/gloves/sterile/nitrile
 
-/datum/gear/gloves/orange
+datum/gear/gloves/orange
 	name = "Gloves - Orange"
 	path = /obj/item/clothing/gloves/orange
 
-/datum/gear/gloves/purple
+datum/gear/gloves/purple
 	name = "Gloves - Purple"
 	path = /obj/item/clothing/gloves/purple
 
-/datum/gear/gloves/rainbow
+datum/gear/gloves/rainbow
 	name = "Gloves - Rainbow"
 	path = /obj/item/clothing/gloves/rainbow
 
-/datum/gear/gloves/red
+datum/gear/gloves/red
 	name = "Gloves - Red"
 	path = /obj/item/clothing/gloves/red
 
-/datum/gear/gloves/white
+datum/gear/gloves/white
 	name = "Gloves - White"
 	path = /obj/item/clothing/gloves/white
 
-/datum/gear/gloves/evening
+datum/gear/gloves/evening
 	name = "Evening Gloves"
 	path = /obj/item/clothing/gloves/evening
 
-/datum/gear/gloves/evening/New()
+datum/gear/gloves/evening/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/gloves/duty
+datum/gear/gloves/duty
 	name = "Gloves - Work"
 	path = /obj/item/clothing/gloves/duty
 	cost = 3
 
-/datum/gear/gloves/forensic
+datum/gear/gloves/forensic
 	name = "Detective Gloves - Forensic"
 	path = /obj/item/clothing/gloves/forensic
 	allowed_roles = list("Detective")
 
-/datum/gear/gloves/fingerless
+datum/gear/gloves/fingerless
 	name = "Gloves - Fingerless"
 	path = /obj/item/clothing/gloves/fingerless
 
-/datum/gear/gloves/ring
+datum/gear/gloves/ring
 	name = "Ring Selection"
 	description = "Choose from a number of rings."
 	path = /obj/item/clothing/gloves/ring
 	cost = 1
 
-/datum/gear/gloves/ring/New()
+datum/gear/gloves/ring/New()
 	..()
 	var/ringtype = list()
 	ringtype["CTI Ring"] = /obj/item/clothing/gloves/ring/cti
@@ -104,47 +104,47 @@
 	gear_tweaks += new/datum/gear_tweak/path(ringtype)
 
 
-/datum/gear/gloves/circuitry
+datum/gear/gloves/circuitry
 	name = "Gloves - Circuitry"
 	path = /obj/item/clothing/gloves/circuitry
 
-/datum/gear/gloves/goldring
+datum/gear/gloves/goldring
 	name = "Wedding Ring - Gold"
 	path = /obj/item/clothing/gloves/ring/wedding
 
-/datum/gear/gloves/silverring
+datum/gear/gloves/silverring
 	name = "Wedding Ring - Silver"
 	path = /obj/item/clothing/gloves/ring/wedding/silver
 
-/datum/gear/gloves/colored
+datum/gear/gloves/colored
 	name = "Gloves - Colorable"
 	path = /obj/item/clothing/gloves/color
 
-/datum/gear/gloves/colored/New()
+datum/gear/gloves/colored/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 
-/datum/gear/gloves/latex/colorable
+datum/gear/gloves/latex/colorable
 	name = "Gloves - Latex - Colorable"
 	path = /obj/item/clothing/gloves/sterile/latex
 
-/datum/gear/gloves/latex/colorable/New()
+datum/gear/gloves/latex/colorable/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/gloves/siren
+datum/gear/gloves/siren
 	name = "Gloves - Siren"
 	path = /obj/item/clothing/gloves/fluff/siren
 
-/datum/gear/gloves/bountyskin
+datum/gear/gloves/bountyskin
 	name = "Bounty Hunters Gloves"
 	path = /obj/item/clothing/gloves/bountyskin
 
-/datum/gear/gloves/hasie
+datum/gear/gloves/hasie
 	name = "Hasie Fingerless Gloves"
 	path = /obj/item/clothing/gloves/hasie
 
-/datum/gear/gloves/utility_fur_gloves
+datum/gear/gloves/utility_fur_gloves
 	name = "Utility Fur Gloves"
 	path = /obj/item/clothing/gloves/utility_fur_gloves

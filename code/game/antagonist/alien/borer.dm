@@ -1,6 +1,6 @@
 var/datum/antagonist/borer/borers
 
-/datum/antagonist/borer
+datum/antagonist/borer
 	id = MODE_BORER
 	role_type = BE_ALIEN
 	role_text = "Cortical Borer"
@@ -25,21 +25,21 @@ var/datum/antagonist/borer/borers
 	spawn_announcement_sound = 'sound/AI/aliens.ogg'
 	spawn_announcement_delay = 5000
 
-/datum/antagonist/borer/New()
+datum/antagonist/borer/New()
 	..(1)
 	borers = src
 
-/datum/antagonist/xenos/borer/get_extra_panel_options(var/datum/mind/player)
+datum/antagonist/xenos/borer/get_extra_panel_options(var/datum/mind/player)
 	return "<a href='?src=\ref[src];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
 
-/datum/antagonist/borer/create_objectives(var/datum/mind/player)
+datum/antagonist/borer/create_objectives(var/datum/mind/player)
 	if(!..())
 		return
 	player.objectives += new /datum/objective/borer_survive()
 	player.objectives += new /datum/objective/borer_reproduce()
 	player.objectives += new /datum/objective/escape()
 
-/datum/antagonist/borer/place_mob(var/mob/living/mob)
+datum/antagonist/borer/place_mob(var/mob/living/mob)
 	var/mob/living/simple_mob/animal/borer/borer = mob
 	if(istype(borer))
 		var/mob/living/carbon/human/host
@@ -62,10 +62,10 @@ var/datum/antagonist/borer/borers
 		 // Place them at a vent if they can't get a host.
 		borer.forceMove(get_turf(pick(get_vents())))
 
-/datum/antagonist/borer/attempt_random_spawn()
+datum/antagonist/borer/attempt_random_spawn()
 	if(config_legacy.aliens_allowed) ..()
 
-/datum/antagonist/borer/proc/get_vents()
+datum/antagonist/borer/proc/get_vents()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/component/unary/vent_pump/temp_vent in GLOB.machines)
 		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in GLOB.using_map.station_levels))

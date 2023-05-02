@@ -1,7 +1,7 @@
 #define DEFAULT_SEED "glowshroom"
 #define VINE_GROWTH_STAGES 5
 
-/proc/spacevine_infestation(var/potency_min=40, var/potency_max=80, var/maturation_min=5, var/maturation_max=15)
+proc/spacevine_infestation(var/potency_min=40, var/potency_max=80, var/maturation_min=5, var/maturation_max=15)
 	spawn() //to stop the secrets panel hanging
 		var/list/turf/simulated/floor/turfs = get_area_turfs(typesof(/area/hallway)) //list of all the empty floor turfs in the hallway areas
 		for(var/i in turfs)
@@ -28,22 +28,22 @@
 			return
 		message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
 
-/obj/effect/dead_plant
+obj/effect/dead_plant
 	anchored = 1
 	opacity = 0
 	density = 0
 	color = DEAD_PLANT_COLOUR
 
-/obj/effect/dead_plant/attack_hand(mob/user, list/params)
+obj/effect/dead_plant/attack_hand(mob/user, list/params)
 	qdel(src)
 
-/obj/effect/dead_plant/attackby()
+obj/effect/dead_plant/attackby()
 	..()
 	for(var/obj/effect/plant/neighbor in range(1))
 		neighbor.update_neighbors()
 	qdel(src)
 
-/obj/effect/plant
+obj/effect/plant
 	name = "plant"
 	anchored = TRUE
 	buckle_allowed = TRUE
@@ -71,7 +71,7 @@
 	var/last_tick = 0
 	var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/plant
 
-/obj/effect/plant/Destroy()
+obj/effect/plant/Destroy()
 	plant = null
 	parent = null
 	SSplants.remove_plant(src)
@@ -79,10 +79,10 @@
 		SSplants.add_plant(neighbor)
 	return ..()
 
-/obj/effect/plant/single
+obj/effect/plant/single
 	spread_chance = 0
 
-/obj/effect/plant/Initialize(mapload, datum/seed/newseed, obj/effect/plant/newparent)
+obj/effect/plant/Initialize(mapload, datum/seed/newseed, obj/effect/plant/newparent)
 	. = ..()
 	if(!newparent)
 		parent = src
@@ -115,7 +115,7 @@
 	update_icon()
 
 // Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
-/obj/effect/plant/proc/finish_spreading()
+obj/effect/plant/proc/finish_spreading()
 	setDir(calc_dir())
 	update_icon()
 	SSplants.add_plant(src)
@@ -125,7 +125,7 @@
 		var/P = prob(80)? 3 : 2
 		LEGACY_EX_ACT(T, P, null)
 
-/obj/effect/plant/update_icon()
+obj/effect/plant/update_icon()
 	//TODO: should really be caching this.
 	refresh_icon()
 	if(growth_type == 0 && !floor)
@@ -154,7 +154,7 @@
 	else
 		set_light(0)
 
-/obj/effect/plant/proc/refresh_icon()
+obj/effect/plant/proc/refresh_icon()
 	var/growth = min(max_growth,round(health/growth_threshold))
 	var/at_fringe = get_dist(src,parent)
 	if(spread_distance > 5)
@@ -185,7 +185,7 @@
 		set_base_layer(initial(layer))
 		density = 0
 
-/obj/effect/plant/proc/calc_dir()
+obj/effect/plant/proc/calc_dir()
 	set background = 1
 	var/turf/T = get_turf(src)
 	if(!istype(T)) return
@@ -221,7 +221,7 @@
 	floor = 1
 	return 1
 
-/obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
+obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
 
 	user.setClickCooldown(user.get_attack_speed(W))
 	SSplants.add_plant(src)
@@ -251,7 +251,7 @@
 	check_health()
 
 //handles being overrun by vines - note that attacker_parent may be null in some cases
-/obj/effect/plant/proc/vine_overrun(datum/seed/attacker_seed, obj/effect/plant/attacker_parent)
+obj/effect/plant/proc/vine_overrun(datum/seed/attacker_seed, obj/effect/plant/attacker_parent)
 	var/aggression = 0
 	aggression += (attacker_seed.get_trait(TRAIT_CARNIVOROUS) - seed.get_trait(TRAIT_CARNIVOROUS))
 	aggression += (attacker_seed.get_trait(TRAIT_SPREAD) - seed.get_trait(TRAIT_SPREAD))
@@ -276,7 +276,7 @@
 		health -= aggression*5
 		check_health()
 
-/obj/effect/plant/legacy_ex_act(severity)
+obj/effect/plant/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			die_off()
@@ -292,9 +292,9 @@
 		else
 	return
 
-/obj/effect/plant/proc/check_health()
+obj/effect/plant/proc/check_health()
 	if(health <= 0)
 		die_off()
 
-/obj/effect/plant/proc/is_mature()
+obj/effect/plant/proc/is_mature()
 	return (health >= (max_health/3) && world.time > mature_time)

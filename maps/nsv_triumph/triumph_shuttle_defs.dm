@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////
 // Escape shuttle and pods
-/datum/shuttle/autodock/ferry/emergency/escape
+datum/shuttle/autodock/ferry/emergency/escape
 	name = "Escape"
 	location = FERRY_LOCATION_OFFSITE
 	shuttle_area = /area/shuttle/escape
@@ -13,7 +13,7 @@
 //////////////////////////////////////////////////////////////
 //Old Escape Pod
 /*
-/datum/shuttle/autodock/ferry/escape_pod/large_escape_pod1
+datum/shuttle/autodock/ferry/escape_pod/large_escape_pod1
 	name = "Large Escape Pod 1"
 	location = FERRY_LOCATION_STATION
 	shuttle_area = /area/shuttle/large_escape_pod1
@@ -26,7 +26,7 @@
 */
 //////////////////////////////////////////////////////////////
 // Supply shuttle
-/datum/shuttle/autodock/ferry/supply/cargo
+datum/shuttle/autodock/ferry/supply/cargo
 	name = "Supply"
 	location = FERRY_LOCATION_OFFSITE
 	shuttle_area = /area/shuttle/supply
@@ -40,7 +40,7 @@
 // RogueMiner "Belter: Shuttle
 // TODO - Not implemented yet on new map
 
-/datum/shuttle/autodock/ferry/belter
+datum/shuttle/autodock/ferry/belter
 	name = "Belter"
 	location = FERRY_LOCATION_STATION
 	warmup_time = 6
@@ -51,8 +51,6 @@
 	landmark_transition = "belter_transit"
 	docking_controller_tag = "belter_docking"
 
-/datum/shuttle/autodock/ferry/belter/New()
+datum/shuttle/autodock/ferry/belter/New()
 	move_time = move_time + rand(-5, 10) //30s max, 15s min, probably leaning towards higher values.
 	..()
-
-

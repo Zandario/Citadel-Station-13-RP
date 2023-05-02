@@ -1,5 +1,5 @@
 //The one that works safely.
-/obj/machinery/power/smes/batteryrack
+obj/machinery/power/smes/batteryrack
 	name = "power cell rack PSU"
 	desc = "A rack of power cells working as a PSU."
 	charge = 0 //you dont really want to make a potato PSU which already is overloaded
@@ -16,11 +16,11 @@
 
 // TODO: maybe actually use the cell power??
 
-/obj/machinery/power/smes/batteryrack/Initialize(mapload, newdir)
+obj/machinery/power/smes/batteryrack/Initialize(mapload, newdir)
 	. = ..()
 	RefreshParts()
 
-/obj/machinery/power/smes/batteryrack/RefreshParts()
+obj/machinery/power/smes/batteryrack/RefreshParts()
 	capacitors_amount = 0
 	cells_amount = 0
 	var/max_level = 0 //for both input and output
@@ -36,7 +36,7 @@
 		cells_amount++
 	capacity = KJ_TO_KWM(DYNAMIC_CELL_UNITS_TO_KJ(C))
 
-/obj/machinery/power/smes/batteryrack/update_overlays()
+obj/machinery/power/smes/batteryrack/update_overlays()
 	. = ..()
 	if(output_attempt)
 		. += "gsmes_outputting"
@@ -46,10 +46,10 @@
 	if(clevel > 0)
 		. += "gsmes_og[clevel]"
 
-/obj/machinery/power/smes/batteryrack/chargedisplay()
+obj/machinery/power/smes/batteryrack/chargedisplay()
 	return round(4 * charge/(capacity ? capacity : 5e6))
 
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
+obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
 	if(open_hatch)
 		if(W.is_crowbar())
@@ -86,13 +86,13 @@
 			return 1
 
 //The shitty one that will blow up.
-/obj/machinery/power/smes/batteryrack/makeshift
+obj/machinery/power/smes/batteryrack/makeshift
 	name = "makeshift PSU"
 	desc = "A rack of batteries connected by a mess of wires posing as a PSU."
 	circuit = /obj/item/circuitboard/ghettosmes
 	var/overcharge_percent = 0
 
-/obj/machinery/power/smes/batteryrack/makeshift/update_overlays()
+obj/machinery/power/smes/batteryrack/makeshift/update_overlays()
 	. = ..()
 	if(machine_stat & BROKEN)
 		return
@@ -114,7 +114,7 @@
 //[1.2M-2.4M]: 6% ion_act from 120%. 1% of EMP from 140%.
 //(2.4M-3.6M] :7% ion_act from 115%. 1% of EMP from 130%. 1% of non-hull-breaching explosion at 150%.
 //(3.6M-INFI): 8% ion_act from 115%. 2% of EMP from 125%. 1% of Hull-breaching explosion from 140%.
-/obj/machinery/power/smes/batteryrack/makeshift/proc/overcharge_consequences()
+obj/machinery/power/smes/batteryrack/makeshift/proc/overcharge_consequences()
 	switch (capacity)
 		if (0 to (1.2e6-1))
 			if (overcharge_percent >= 125)
@@ -159,7 +159,7 @@
 // TODO: overcharging doesn't work
 // TODO: maybe don't have it require rewriting a proc, holy hell.
 /*
-/obj/machinery/power/smes/batteryrack/makeshift/process(delta_time)
+obj/machinery/power/smes/batteryrack/makeshift/process(delta_time)
 	if(machine_stat & BROKEN)
 		return
 	#warn FUCK YOU

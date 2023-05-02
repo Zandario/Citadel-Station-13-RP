@@ -2,7 +2,7 @@
  * Copies a list, and all lists inside it recusively.
  * Does not copy any other reference type.
  */
-/proc/deep_copy_list(list/l)
+proc/deep_copy_list(list/l)
 	if(!islist(l))
 		return l
 	. = l.Copy()

@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/medigun
+obj/item/mecha_parts/mecha_equipment/weapon/energy/medigun
 	equip_cooldown = 6
 	name = "\improper BL-3 \"Phoenix\" directed restoration system"
 	desc = "The BL-3 'Phoenix' is a portable medical system used to treat external injuries from afar."

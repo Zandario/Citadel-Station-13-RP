@@ -1,5 +1,5 @@
 // todo: can element this by usign 3 signals instead of 2, one to receive a keybind signal.
-/datum/component/wielding
+datum/component/wielding
 	/// hands needed
 	var/hands
 	/// lazylist
@@ -11,7 +11,7 @@
 	/// callback on unwield
 	var/datum/callback/on_unwield
 
-/datum/component/wielding/Initialize(hands = 2, datum/callback/on_wield, datum/callback/on_unwield)
+datum/component/wielding/Initialize(hands = 2, datum/callback/on_wield, datum/callback/on_unwield)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	if((. = ..()) & COMPONENT_INCOMPATIBLE)
@@ -20,12 +20,12 @@
 	src.on_wield = on_wield
 	src.on_unwield = on_unwield
 
-/datum/component/wielding/RegisterWithParent()
+datum/component/wielding/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/signal_examine)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/signal_dropped)
 
-/datum/component/wielding/UnregisterFromParent()
+datum/component/wielding/UnregisterFromParent()
 	unwield()
 	. = ..()
 	UnregisterSignal(parent, list(
@@ -33,14 +33,14 @@
 		COMSIG_ITEM_DROPPED
 	))
 
-/datum/component/wielding/proc/signal_examine(datum/source, mob/user, list/examine_list)
+datum/component/wielding/proc/signal_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	examine_list += SPAN_NOTICE("[parent] seems to be able to be used with [hands] hands. Press your \"Wield Item\" keybind to toggle wielding.")
 
-/datum/component/wielding/proc/signal_dropped(datum/source, mob/user, flags, atom/newloc)
+datum/component/wielding/proc/signal_dropped(datum/source, mob/user, flags, atom/newloc)
 	unwield()
 
-/datum/component/wielding/proc/wield(mob/wielder)
+datum/component/wielding/proc/wield(mob/wielder)
 	if(src.wielder)
 		return
 	var/possible = wielder.get_number_of_hands()
@@ -60,13 +60,13 @@
 	to_chat(src.wielder, SPAN_WARNING("You start wielding [parent] with [hands == 2? "both" : "[hands]"] hands."))
 	post_wield(src.wielder, hands)
 
-/datum/component/wielding/proc/post_wield(mob/user, hands)
+datum/component/wielding/proc/post_wield(mob/user, hands)
 	if(on_wield)
 		on_wield.Invoke(user, hands)
 	var/obj/item/I = parent
 	I.on_wield(user, hands)
 
-/datum/component/wielding/proc/unwield(gcing)
+datum/component/wielding/proc/unwield(gcing)
 	if(!wielder)
 		return
 	if(offhands)
@@ -81,29 +81,29 @@
 	wielder = null
 	post_unwield(unwielding, hands)
 
-/datum/component/wielding/proc/post_unwield(mob/user, hands)
+datum/component/wielding/proc/post_unwield(mob/user, hands)
 	if(on_unwield)
 		on_unwield.Invoke(user, hands)
 	var/obj/item/I = parent
 	I.on_unwield(user, hands)
 
-/datum/component/wielding/proc/offhand_destroyed(obj/item/offhand/wielding/I)
+datum/component/wielding/proc/offhand_destroyed(obj/item/offhand/wielding/I)
 	unwield()
-/obj/item/offhand/wielding
+obj/item/offhand/wielding
 	name = "wielding offhand"
 	desc = "You shouldn't be able to see this."
 	/// host
 	var/datum/component/wielding/host
 
-/obj/item/offhand/wielding/Destroy()
+obj/item/offhand/wielding/Destroy()
 	if(host)
 		host.offhand_destroyed(src)
 		host = null
 	return ..()
 
 // item procs
-/obj/item/proc/on_wield(mob/user, hands)
+obj/item/proc/on_wield(mob/user, hands)
 	return
 
-/obj/item/proc/on_unwield(mob/user, hands)
+obj/item/proc/on_unwield(mob/user, hands)
 	return

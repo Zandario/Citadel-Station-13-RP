@@ -1,5 +1,5 @@
 //Custom vendors
-/obj/machinery/vending/nifsoft_shop
+obj/machinery/vending/nifsoft_shop
 	name = "NIFSoft Shop"
 	desc = "For all your mindware and mindware accessories."
 	product_ads = "Let us get into your head!;Looking for an upgrade?;Surpass Humanity!;Why be normal when you can be SUPERnormal?;Jack in with NIFSoft!"
@@ -23,7 +23,7 @@
 	density = 0
 	opacity = 0
 
-/obj/machinery/vending/nifsoft_shop/Initialize(mapload)
+obj/machinery/vending/nifsoft_shop/Initialize(mapload)
 	. = ..()
 	if(wires)
 		qdel(wires)
@@ -32,11 +32,11 @@
 	A.icon_state = "beacon"
 	ar_image_holder = new(null, src, A)
 
-/obj/machinery/vending/nifsoft_shop/Destroy()
+obj/machinery/vending/nifsoft_shop/Destroy()
 	QDEL_NULL(ar_image_holder)
 	return ..()
 
-/obj/machinery/vending/nifsoft_shop/power_change()
+obj/machinery/vending/nifsoft_shop/power_change()
 	..()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
@@ -50,13 +50,13 @@
 				icon_state = "[initial(icon_state)]-off"
 				ar_image_holder.alpha = 0
 
-/obj/machinery/vending/nifsoft_shop/malfunction()
+obj/machinery/vending/nifsoft_shop/malfunction()
 	machine_stat |= BROKEN
 	icon_state = "[initial(icon_state)]-broken"
 	ar_image_holder.alpha = 0
 
 // Special Treatment!
-/obj/machinery/vending/nifsoft_shop/build_inventory()
+obj/machinery/vending/nifsoft_shop/build_inventory()
 	//Firsties
 	if(!starting_legal_nifsoft)
 		starting_legal_nifsoft = list()
@@ -100,7 +100,7 @@
 
 			product_records.Add(product)
 
-/obj/machinery/vending/nifsoft_shop/allowed(mob/user)
+obj/machinery/vending/nifsoft_shop/allowed(mob/user)
 	if(!ishuman(user))
 		return FALSE
 
@@ -113,7 +113,7 @@
 	return ..()
 
 //Had to override this too
-/obj/machinery/vending/nifsoft_shop/Topic(href, href_list)
+obj/machinery/vending/nifsoft_shop/Topic(href, href_list)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.stat || usr.restrained())
@@ -179,7 +179,7 @@
 		SSnanoui.update_uis(src)
 
 // Also special treatment!
-/obj/machinery/vending/nifsoft_shop/vend(datum/stored_item/vending_product/R, mob/user)
+obj/machinery/vending/nifsoft_shop/vend(datum/stored_item/vending_product/R, mob/user)
 	var/mob/living/carbon/human/H = user
 	if((!allowed(usr)) && !emagged && scan_id && istype(H))	//For SECURE VENDING MACHINES YEAH
 		to_chat(usr, "<span class='warning'>Purchase not allowed.</span>")	//Unless emagged of course
@@ -228,17 +228,17 @@
 	return 1
 
 //Can't throw intangible software at people.
-/obj/machinery/vending/nifsoft_shop/throw_item()
+obj/machinery/vending/nifsoft_shop/throw_item()
 	//TODO: Make it throw disks at people with random software? That might be fun. EVEN THE ILLEGAL ONES? ;o
 	return 0
 
-/datum/wires/vending/no_contraband
+datum/wires/vending/no_contraband
 
-/datum/wires/vending/no_contraband/on_pulse(index) //Can't hack for contraband, need emag.
+datum/wires/vending/no_contraband/on_pulse(index) //Can't hack for contraband, need emag.
 	if(index != WIRE_CONTRABAND)
 		..(index)
 
-/obj/machinery/vending/nifsoft_shop/emag_act(remaining_charges, mob/user) //Yeees, YEEES! Give me that black market tech.
+obj/machinery/vending/nifsoft_shop/emag_act(remaining_charges, mob/user) //Yeees, YEEES! Give me that black market tech.
 	if(!emagged || !(categories & CAT_HIDDEN))
 		emagged = 1
 		categories |= CAT_HIDDEN

@@ -1,4 +1,4 @@
-/mob/living/carbon/resist_fire()
+mob/living/carbon/resist_fire()
 	if(!on_fire)
 		return FALSE
 	adjust_fire_stacks(-1.2)
@@ -17,7 +17,7 @@
 		ExtinguishMob()
 	return TRUE
 
-/mob/living/carbon/resist_restraints()
+mob/living/carbon/resist_restraints()
 	var/obj/item/I = null
 	if(handcuffed)
 		I = handcuffed
@@ -29,10 +29,10 @@
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/mob/living/carbon, cuff_resist), I, cuff_break = can_break_cuffs())
 	return TRUE
 
-/mob/living/carbon/proc/reduce_cuff_time()
+mob/living/carbon/proc/reduce_cuff_time()
 	return FALSE
 
-/mob/living/carbon/proc/cuff_resist(obj/item/handcuffs/I, breakouttime = 1200, cuff_break = 0)
+mob/living/carbon/proc/cuff_resist(obj/item/handcuffs/I, breakouttime = 1200, cuff_break = 0)
 
 	if(istype(I))
 		breakouttime = I.breakouttime
@@ -80,6 +80,6 @@
 			SPAN_NOTICE("You successfully remove [I]."))
 		drop_item_to_ground(I, INV_OP_FORCE)
 
-/mob/living/carbon/proc/can_break_cuffs()
+mob/living/carbon/proc/can_break_cuffs()
 	if(MUTATION_HULK in mutations)
 		return TRUE

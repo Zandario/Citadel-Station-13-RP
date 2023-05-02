@@ -1,5 +1,5 @@
 //Suit
-/obj/item/clothing/suit
+obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits.dmi'
 	inhand_default_type = INHAND_DEFAULT_ICON_SUITS
 	name = "suit"
@@ -18,7 +18,7 @@
 	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
 
 //taurized suit support
-/obj/item/clothing/suit/equipped(mob/user, slot, flags)
+obj/item/clothing/suit/equipped(mob/user, slot, flags)
 	var/normalize = TRUE
 
 	//Pyramid of doom-y. Improve somehow?
@@ -38,7 +38,7 @@
 
 	return ..()
 
-/obj/item/clothing/suit/render_apply_custom(mob/M, mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used, align_y)
+obj/item/clothing/suit/render_apply_custom(mob/M, mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used, align_y)
 	. = ..()
 	if(taurized)
 		MA.pixel_x = -16

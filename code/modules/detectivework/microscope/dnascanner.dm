@@ -1,5 +1,5 @@
 //DNA machine
-/obj/machinery/dnaforensics
+obj/machinery/dnaforensics
 	name = "DNA analyzer"
 	desc = "A high tech machine that is designed to read DNA samples properly."
 	icon = 'icons/obj/forensics.dmi'
@@ -15,7 +15,7 @@
 	var/last_process_worldtime = 0
 	var/report_num = 0
 
-/obj/machinery/dnaforensics/Initialize(mapload, newdir)
+obj/machinery/dnaforensics/Initialize(mapload, newdir)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/console_screen(src)
@@ -24,7 +24,7 @@
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	RefreshParts()
 
-/obj/machinery/dnaforensics/attackby(obj/item/W, mob/user)
+obj/machinery/dnaforensics/attackby(obj/item/W, mob/user)
 	if(bloodsamp)
 		to_chat(user, SPAN_WARNING("There is a sample in the machine."))
 		return
@@ -50,7 +50,7 @@
 		to_chat(user, SPAN_WARNING("\The [src] only accepts used swabs."))
 		return
 
-/obj/machinery/dnaforensics/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/dnaforensics/ui_interact(mob/user, datum/tgui/ui)
 	if(machine_stat & (NOPOWER))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -59,7 +59,7 @@
 		ui.open()
 
 
-/obj/machinery/dnaforensics/ui_data(mob/user)
+obj/machinery/dnaforensics/ui_data(mob/user)
 	var/list/data = ..()
 
 	data["scan_progress"] = round(scanner_progress)
@@ -70,7 +70,7 @@
 	return data
 
 
-/obj/machinery/dnaforensics/ui_act(action, list/params)
+obj/machinery/dnaforensics/ui_act(action, list/params)
 	if(..())
 		return TRUE
 
@@ -100,7 +100,7 @@
 				scanning = FALSE
 				update_icon()
 
-/obj/machinery/dnaforensics/process(delta_time)
+obj/machinery/dnaforensics/process(delta_time)
 	if(scanning)
 		if(!bloodsamp || bloodsamp.loc != src)
 			bloodsamp = null
@@ -114,7 +114,7 @@
 			scanner_progress = min(100, scanner_progress + scanner_rate * deltaT)
 	last_process_worldtime = world.time
 
-/obj/machinery/dnaforensics/proc/complete_scan()
+obj/machinery/dnaforensics/proc/complete_scan()
 	visible_message(SPAN_NOTICE("[icon2html(thing = src, target = world)] makes an insistent chime."), 2)
 	update_icon()
 	if(bloodsamp)
@@ -139,13 +139,13 @@
 		update_icon()
 	return
 
-/obj/machinery/dnaforensics/attack_ai(mob/user)
+obj/machinery/dnaforensics/attack_ai(mob/user)
 	ui_interact(user)
 
-/obj/machinery/dnaforensics/attack_hand(mob/user, list/params)
+obj/machinery/dnaforensics/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/obj/machinery/dnaforensics/update_icon()
+obj/machinery/dnaforensics/update_icon()
 	..()
 	if(!(machine_stat & NOPOWER) && scanning)
 		icon_state = "dnaworking"

@@ -9,7 +9,7 @@ fundamental differences
 4. They do combining mode only. And will always combine the entire contents of the container into an output
 */
 
-/obj/machinery/appliance/mixer
+obj/machinery/appliance/mixer
 	max_contents = 1
 	machine_stat = POWEROFF
 	cooking_power = 0.4
@@ -17,11 +17,11 @@ fundamental differences
 	idle_power_usage = 50
 	var/datum/looping_sound/mixer/mixer_loop
 
-/obj/machinery/appliance/mixer/examine(var/mob/user)
+obj/machinery/appliance/mixer/examine(var/mob/user)
 	. = ..()
 	. += "<span class = 'notice'>It is currently set to make a [selected_option].</span>"
 
-/obj/machinery/appliance/mixer/Initialize(mapload, newdir)
+obj/machinery/appliance/mixer/Initialize(mapload, newdir)
 	. = ..()
 	cooking_objs += new /datum/cooking_item(new /obj/item/reagent_containers/cooking_container(src))
 	cooking = 0
@@ -29,13 +29,13 @@ fundamental differences
 
 	mixer_loop = new(list(src), FALSE)
 
-/obj/machinery/appliance/mixer/Destroy()
+obj/machinery/appliance/mixer/Destroy()
 	. = ..()
 
 	QDEL_NULL(mixer_loop)
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
-/obj/machinery/appliance/mixer/choose_output()
+obj/machinery/appliance/mixer/choose_output()
 	set src in oview(1)
 	set name = "Choose output"
 	set category = "Object"
@@ -58,7 +58,7 @@ fundamental differences
 			CI.combine_target = selected_option
 
 
-/obj/machinery/appliance/mixer/has_space(var/obj/item/I)
+obj/machinery/appliance/mixer/has_space(var/obj/item/I)
 	var/datum/cooking_item/CI = cooking_objs[1]
 	if (!CI || !CI.container)
 		return 0
@@ -69,14 +69,14 @@ fundamental differences
 	return 0
 
 
-/obj/machinery/appliance/mixer/can_remove_items(mob/user)
+obj/machinery/appliance/mixer/can_remove_items(mob/user)
 	if(machine_stat)
 		return TRUE
 	else
 		to_chat(user, SPAN_WARNING( "You can't remove ingredients while it's turned on! Turn it off first or wait for it to finish."))
 
 //Container is not removable
-/obj/machinery/appliance/mixer/removal_menu(var/mob/user)
+obj/machinery/appliance/mixer/removal_menu(var/mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
 		for (var/a in cooking_objs)
@@ -99,7 +99,7 @@ fundamental differences
 	return 0
 
 
-/obj/machinery/appliance/mixer/toggle_power()
+obj/machinery/appliance/mixer/toggle_power()
 	set src in view()
 	set name = "Toggle Power"
 	set category = "Object"
@@ -123,14 +123,14 @@ fundamental differences
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
-/obj/machinery/appliance/mixer/can_insert(var/obj/item/I, var/mob/user)
+obj/machinery/appliance/mixer/can_insert(var/obj/item/I, var/mob/user)
 	if (!machine_stat)
 		user << SPAN_WARNING("You can't add items while \the [src] is running. Wait for it to finish or turn the power off to abort.")
 		return 0
 	else
 		return ..()
 
-/obj/machinery/appliance/mixer/finish_cooking(var/datum/cooking_item/CI)
+obj/machinery/appliance/mixer/finish_cooking(var/datum/cooking_item/CI)
 	..()
 	machine_stat |= POWEROFF
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
@@ -138,7 +138,7 @@ fundamental differences
 	CI.reset()
 	update_icon()
 
-/obj/machinery/appliance/mixer/update_icon()
+obj/machinery/appliance/mixer/update_icon()
 	if (!machine_stat)
 		icon_state = on_icon
 		if(mixer_loop)
@@ -149,7 +149,7 @@ fundamental differences
 			mixer_loop.stop(src)
 
 
-/obj/machinery/appliance/mixer/process(delta_time)
+obj/machinery/appliance/mixer/process(delta_time)
 	if (!machine_stat)
 		for (var/i in cooking_objs)
 			do_cooking_tick(i)

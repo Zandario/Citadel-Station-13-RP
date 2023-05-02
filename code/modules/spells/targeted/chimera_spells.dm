@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //			These are spells meant to be used by the Xenochimera species			 			 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/spell/targeted/chimera
+spell/targeted/chimera
 	name = "A Chimera Spell"
 	desc = "You shouldn't be seeing this."
 
@@ -19,7 +19,7 @@
 	var/nutrition_cost_minimum = 50
 	var/nutrition_cost_proportional = 20 //percentage of nutriment it should cost if it's higher than the minimum
 
-/spell/targeted/chimera/cast(list/targets, mob/user)
+spell/targeted/chimera/cast(list/targets, mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/nut = (H.nutrition * nutrition_cost_proportional) / 100
@@ -41,7 +41,7 @@
 //Revive spell//
 ////////////////
 //Will incapacitate you for 10 minutes, and then you can revive.
-/spell/targeted/chimera/hatch
+spell/targeted/chimera/hatch
 	name = "Hatch Stasis"
 	desc = "We attempt to grow an entirely new body from scratch, or death."
 
@@ -55,7 +55,7 @@
 	nutrition_cost_proportional = 1
 
 
-/spell/targeted/chimera/hatch/cast_check(skipcharge, mob/user = usr)
+spell/targeted/chimera/hatch/cast_check(skipcharge, mob/user = usr)
 	if(..())
 		if(!ishuman(user))
 			to_chat(user,"Non-humans can't use this!")
@@ -67,7 +67,7 @@
 			return FALSE
 		else return TRUE
 
-/spell/targeted/chimera/hatch/cast(list/targets, mob/user = usr)
+spell/targeted/chimera/hatch/cast(list/targets, mob/user = usr)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.stat == DEAD)
@@ -89,7 +89,7 @@
 
 		addtimer(CALLBACK(src, .proc/add_pop,H,), 10 MINUTES)
 
-/spell/targeted/chimera/hatch/proc/add_pop(mob/user = usr)
+spell/targeted/chimera/hatch/proc/add_pop(mob/user = usr)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.visible_message("<span class = 'warning'> <b>[H] looks ready to burst!</b></span>")
@@ -103,7 +103,7 @@
 //Actual Revive Spell//
 ///////////////////////
 //Not to be used normally. Given by the 'hatch' spell
-/spell/targeted/chimera/hatch_pop
+spell/targeted/chimera/hatch_pop
 	name = "Emerge"
 	desc = "We emerge in our new form."
 
@@ -116,7 +116,7 @@
 	nutrition_cost_minimum = 1
 	nutrition_cost_proportional = 1
 
-/spell/targeted/chimera/hatch_pop/cast(list/targets, mob/user = usr)
+spell/targeted/chimera/hatch_pop/cast(list/targets, mob/user = usr)
 	var/mob/living/carbon/human/H = user
 
 	var/braindamage = (H.brainloss * 0.6) //Can only heal half brain damage.
@@ -140,8 +140,7 @@
 	new /obj/effect/gibspawner/human(T, H.dna,H.dna.blood_color,H.dna.blood_color)
 	playsound(T, 'sound/effects/splat.ogg')
 
-/spell/targeted/chimera/hatch_pop/after_cast(list/targets, mob/user = usr)
+spell/targeted/chimera/hatch_pop/after_cast(list/targets, mob/user = usr)
 	var/mob/living/carbon/human/H = user
 	H.remove_spell(src)
 	qdel(src)
-

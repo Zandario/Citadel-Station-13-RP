@@ -1,7 +1,7 @@
 var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega")
 
 /// Stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind).
-/datum/changeling
+datum/changeling
 	var/list/datum/absorbed_dna/absorbed_dna = list()
 	/// Necessary because of set_species stuff.
 	var/list/absorbed_languages = list()
@@ -33,7 +33,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	/// world.time when the ling can next use Escape Restraints.
 	var/next_escape = 0
 
-/datum/changeling/New(gender = FEMALE)
+datum/changeling/New(gender = FEMALE)
 	..()
 	if(possible_changeling_IDs.len)
 		changelingID = pick(possible_changeling_IDs)
@@ -42,16 +42,16 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	else
 		changelingID = "[rand(1,999)]"
 
-/datum/changeling/proc/regenerate()
+datum/changeling/proc/regenerate()
 	chem_charges = min(max(0, chem_charges+chem_recharge_rate), chem_storage)
 	geneticdamage = max(0, geneticdamage-1)
 
-/datum/changeling/proc/GetDNA(dna_owner)
+datum/changeling/proc/GetDNA(dna_owner)
 	for(var/datum/absorbed_dna/DNA in absorbed_dna)
 		if(dna_owner == DNA.name)
 			return DNA
 
-/mob/proc/absorbDNA(datum/absorbed_dna/newDNA)
+mob/proc/absorbDNA(datum/absorbed_dna/newDNA)
 	var/datum/changeling/changeling = null
 	if(src.mind && src.mind.changeling)
 		changeling = src.mind.changeling
@@ -67,7 +67,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		changeling.absorbed_dna += newDNA
 
 /// Restores our verbs. It will only restore verbs allowed during lesser (monkey) form if we are not human.
-/mob/proc/make_changeling()
+mob/proc/make_changeling()
 
 	if(!mind)
 		return
@@ -118,7 +118,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	return 1
 
 /// Removes our changeling verbs.
-/mob/proc/remove_changeling_powers()
+mob/proc/remove_changeling_powers()
 	if(!mind || !mind.changeling)
 		return
 	for(var/datum/power/changeling/P in mind.changeling.purchased_powers)
@@ -130,7 +130,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 
 /// Helper proc. Does all the checks and stuff for us to avoid copypasta.
-/mob/proc/changeling_power(required_chems = 0, required_dna = 0, max_genetic_damage = 100, max_stat = 0)
+mob/proc/changeling_power(required_chems = 0, required_dna = 0, max_genetic_damage = 100, max_stat = 0)
 
 	if(!src.mind)
 		return
@@ -161,7 +161,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	return changeling
 
 /// Used to dump the languages from the changeling datum into the actual mob.
-/mob/proc/changeling_update_languages(updated_languages)
+mob/proc/changeling_update_languages(updated_languages)
 	languages = list()
 	for(var/language in updated_languages)
 		languages += language
@@ -173,7 +173,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	//STINGS//	//They get a pretty header because there's just so fucking many of them ;_;
 	//////////
 
-/turf/proc/AdjacentTurfsRangedSting()
+turf/proc/AdjacentTurfsRangedSting()
 	//Yes this is snowflakey, but I couldn't get it to work any other way.. -Luke
 	var/list/allowed = list(
 		/mob,
@@ -214,7 +214,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	return L
 
 
-/mob/proc/sting_can_reach(mob/M as mob, sting_range = 1)
+mob/proc/sting_can_reach(mob/M as mob, sting_range = 1)
 	if(M.loc == src.loc)
 		return 1 //target and source are in the same thing
 	if(!isturf(src.loc) || !isturf(M.loc))
@@ -227,7 +227,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	return 1
 
 /// Handles the general sting code to reduce on copypasta (seeming as somebody decided to make SO MANY dumb abilities).
-/mob/proc/changeling_sting(required_chems = 0, verb_path)
+mob/proc/changeling_sting(required_chems = 0, verb_path)
 
 	var/datum/changeling/changeling = changeling_power(required_chems)
 	if(!changeling)

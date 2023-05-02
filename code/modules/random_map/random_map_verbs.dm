@@ -1,4 +1,4 @@
-/client/proc/print_random_map()
+client/proc/print_random_map()
 	set category = "Debug"
 	set name = "Display Random Map"
 	set desc = "Show the contents of a random map."
@@ -12,7 +12,7 @@
 	if(istype(M))
 		M.display_map(usr)
 
-/client/proc/delete_random_map()
+client/proc/delete_random_map()
 	set category = "Debug"
 	set name = "Delete Random Map"
 	set desc = "Delete a random map."
@@ -29,7 +29,7 @@
 		log_admin("[key_name(usr)] has deleted [M.name].")
 		qdel(M)
 
-/client/proc/create_random_map()
+client/proc/create_random_map()
 	set category = "Debug"
 	set name = "Create Random Map"
 	set desc = "Create a random map."
@@ -53,7 +53,7 @@
 		message_admins("[key_name_admin(usr)] has created [M.name].")
 		log_admin("[key_name(usr)] has created [M.name].")
 
-/client/proc/apply_random_map()
+client/proc/apply_random_map()
 	set category = "Debug"
 	set name = "Apply Random Map"
 	set desc = "Apply a map to the game world."
@@ -78,7 +78,7 @@
 		M.set_origins(tx,ty,tz)
 		M.apply_to_map()
 
-/client/proc/overlay_random_map()
+client/proc/overlay_random_map()
 	set category = "Debug"
 	set name = "Overlay Random Map"
 	set desc = "Apply a map to another map."

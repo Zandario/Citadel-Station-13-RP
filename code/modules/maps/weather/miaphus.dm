@@ -1,12 +1,12 @@
-/datum/time/miaphus
+datum/time/miaphus
 	seconds_in_day = 24 HOURS
 
-/datum/planet/miaphus
+datum/planet/miaphus
 	name = "Miaphus'irra"
 	desc = "Former Tajaran Penal Colony. Scorching hot with little rain and planet covering deserts,"
 	planetary_wall_type = /turf/unsimulated/wall/planetary/normal
 
-/datum/planet/miaphus/update_sun()
+datum/planet/miaphus/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
@@ -85,7 +85,7 @@
 	update_sun_deferred(new_brightness, new_color)
 
 
-/datum/weather_holder/miaphus
+datum/weather_holder/miaphus
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_CLEAR		= new /datum/weather/miaphus/clear(),
@@ -107,12 +107,12 @@
 		WEATHER_RAIN		= 1
 		)
 
-/datum/weather/miaphus
+datum/weather/miaphus
 	name = "miaphus"
 	temp_high = 313.15 // 40c
 	temp_low = 303.15  // 30c
 
-/datum/weather/miaphus/clear
+datum/weather/miaphus/clear
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR = 60,
@@ -125,7 +125,7 @@
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
 
-/datum/weather/miaphus/overcast
+datum/weather/miaphus/overcast
 	name = "overcast"
 	temp_high = 308.15 // 35c
 	temp_low = 	298.15 // 25c
@@ -142,7 +142,7 @@
 		"It's very cloudy."
 		)
 
-/datum/weather/miaphus/light_snow
+datum/weather/miaphus/light_snow
 	name = "light snow"
 	icon_state = "snowfall_light"
 	temp_high = 273.15 // 0
@@ -157,7 +157,7 @@
 		"It begins to snow lightly.",
 		)
 
-/datum/weather/miaphus/snow
+datum/weather/miaphus/snow
 	name = "moderate snow"
 	icon_state = "snowfall_med"
 	temp_high = 268.15 // -5c
@@ -178,7 +178,7 @@
 	indoor_sounds_type = /datum/looping_sound/weather/inside_snow
 
 /*
-/datum/weather/miaphus/snow/process_effects()
+datum/weather/miaphus/snow/process_effects()
 	..()
 	for(var/turf/simulated/floor/outdoors/snow/S as anything in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
@@ -189,7 +189,7 @@
 						T.chill()
 */
 
-/datum/weather/miaphus/blizzard
+datum/weather/miaphus/blizzard
 	name = "blizzard"
 	icon_state = "snowfall_heavy"
 	temp_high = 268.15 // -5c
@@ -210,7 +210,7 @@
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
 /*
-/datum/weather/miaphus/blizzard/process_effects()
+datum/weather/miaphus/blizzard/process_effects()
 	..()
 	for(var/turf/simulated/floor/outdoors/snow/S as anything in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
@@ -221,7 +221,7 @@
 						T.chill()
 */
 
-/datum/weather/miaphus/rain
+datum/weather/miaphus/rain
 	name = "rain"
 	icon_state = "rain"
 	temp_high = 303.15 // 30c
@@ -240,7 +240,7 @@
 		"The sky is dark, and rain falls down upon you."
 	)
 
-/datum/weather/miaphus/rain/process_effects()
+datum/weather/miaphus/rain/process_effects()
 	..()
 	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -262,7 +262,7 @@
 			if(show_message)
 				to_chat(L, effect_message)
 
-/datum/weather/miaphus/storm
+datum/weather/miaphus/storm
 	name = "storm"
 	icon_state = "storm"
 	temp_high = 298.15 // 25c
@@ -288,7 +288,7 @@
 		WEATHER_STORM = 100
 		)
 
-/datum/weather/miaphus/storm/process_effects()
+datum/weather/miaphus/storm/process_effects()
 	..()
 	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -315,14 +315,14 @@
 
 // This gets called to do lightning periodically.
 // There is a seperate function to do the actual lightning strike, so that badmins can play with it.
-/datum/weather/miaphus/storm/proc/handle_lightning()
+datum/weather/miaphus/storm/proc/handle_lightning()
 	if(world.time < next_lightning_strike)
 		return // It's too soon to strike again.
 	next_lightning_strike = world.time + rand(min_lightning_cooldown, max_lightning_cooldown)
 	var/turf/T = pick(holder.our_planet.planet_floors) // This has the chance to 'strike' the sky, but that might be a good thing, to scare reckless pilots.
 	lightning_strike(T)
 
-/datum/weather/miaphus/hail
+datum/weather/miaphus/hail
 	name = "hail"
 	icon_state = "hail"
 	temp_high = 298.15 // 25c
@@ -343,7 +343,7 @@
 		"An intense chill is felt, and chunks of ice start to fall from the sky, towards you."
 	)
 
-/datum/weather/miaphus/hail/process_effects()
+datum/weather/miaphus/hail/process_effects()
 	..()
 	for(var/mob/living/carbon/H as anything in human_mob_list)
 		if(H.z in holder.our_planet.expected_z_levels)
@@ -378,7 +378,7 @@
 			if(show_message)
 				to_chat(H, effect_message)
 
-/datum/weather/miaphus/blood_moon
+datum/weather/miaphus/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"
@@ -396,7 +396,7 @@
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
 // Ash and embers fall forever, such as from a volcano or something.
-/datum/weather/miaphus/emberfall
+datum/weather/miaphus/emberfall
 	name = "emberfall"
 	icon_state = "ashfall_light"
 	light_modifier = 0.7
@@ -415,7 +415,7 @@
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
 // Like the above but a lot more harmful.
-/datum/weather/miaphus/ash_storm
+datum/weather/miaphus/ash_storm
 	name = "ash storm"
 	icon_state = "ashfall_heavy"
 	light_modifier = 0.1
@@ -436,7 +436,7 @@
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
-/datum/weather/miaphus/ash_storm/process_effects()
+datum/weather/miaphus/ash_storm/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -449,7 +449,7 @@
 
 
 // Totally radical.
-/datum/weather/miaphus/fallout
+datum/weather/miaphus/fallout
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
@@ -473,7 +473,7 @@
 	var/fallout_rad_low = RAD_INTENSITY_FALLOUT_INDIRECT_LOW
 	var/fallout_rad_high = RAD_INTENSITY_FALLOUT_INDIRECT_HIGH
 
-/datum/weather/miaphus/fallout/process_effects()
+datum/weather/miaphus/fallout/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -487,7 +487,7 @@
 
 // This makes random tiles near people radioactive for awhile.
 // Tiles far away from people are left alone, for performance.
-/datum/weather/miaphus/fallout/proc/irradiate_nearby_turf(mob/living/L)
+datum/weather/miaphus/fallout/proc/irradiate_nearby_turf(mob/living/L)
 	if(!istype(L))
 		return
 	var/list/turfs = RANGE_TURFS(world.view, L)
@@ -497,11 +497,11 @@
 	if(T.outdoors)
 		radiation_pulse(T, rand(fallout_rad_low, fallout_rad_high))
 
-/turf/unsimulated/wall/planetary/normal/miaphus
+turf/unsimulated/wall/planetary/normal/miaphus
 	name = "deep ocean"
 	alpha = 0
 
-/obj/machinery/power/smes/buildable/offmap_spawn/empty/New()
+obj/machinery/power/smes/buildable/offmap_spawn/empty/New()
 	..(1)
 	charge = 0
 	RCon = TRUE

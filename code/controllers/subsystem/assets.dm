@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(assets)
 	var/list/preload = list()
 	var/datum/asset_transport/transport = new()
 
-/datum/controller/subsystem/assets/OnConfigLoad()
+datum/controller/subsystem/assets/OnConfigLoad()
 	var/newtransporttype = /datum/asset_transport
 	switch (CONFIG_GET(string/asset_transport))
 		if ("webroot")
@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(assets)
 		transport = newtransport
 	transport.Load()
 
-/datum/controller/subsystem/assets/Initialize(timeofday)
+datum/controller/subsystem/assets/Initialize(timeofday)
 	for(var/type in typesof(/datum/asset))
 		var/datum/asset/A = type
 		if (type != initial(A._abstract))
@@ -30,6 +30,6 @@ SUBSYSTEM_DEF(assets)
 
 	return ..()
 
-/datum/controller/subsystem/assets/Recover()
+datum/controller/subsystem/assets/Recover()
 	cache = SSassets.cache
 	preload = SSassets.preload

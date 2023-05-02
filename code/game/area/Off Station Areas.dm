@@ -8,508 +8,508 @@
 //Triumph specific Areas
 
 
-/area/triumph/surfacebase
+area/triumph/surfacebase
 	name = "Surface Base"
 
-/area/triumph/surfacebase/outside
+area/triumph/surfacebase/outside
 	name = "Outside - Surface"
 	sound_env = MOUNTAINS
 	is_outside = OUTSIDE_YES
 
-/area/triumph/surfacebase/outside/outside1
+area/triumph/surfacebase/outside/outside1
 	icon_state = "outside1"
 
-/area/triumph/surfacebase/outside/outside2
+area/triumph/surfacebase/outside/outside2
 	icon_state = "outside2"
 
-/area/triumph/surfacebase/outside/outside3
+area/triumph/surfacebase/outside/outside3
 	icon_state = "outside3"
 
-/area/triumph/surfacebase/outside/empty
+area/triumph/surfacebase/outside/empty
 	name = "Outside - Empty Area"
 
-/area/triumph/surfacebase/outside/wilderness
+area/triumph/surfacebase/outside/wilderness
 	name = "Outside - Wilderness"
 	icon_state = "invi"
 
-/area/triumph/surfacebase/temple
+area/triumph/surfacebase/temple
 	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
 	icon_state = "red"
-/area/triumph/surfacebase/crash
+area/triumph/surfacebase/crash
 	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
 	icon_state = "yellow"
-/area/triumph/surfacebase/tram
+area/triumph/surfacebase/tram
 	name = "\improper Tram Station"
 	icon_state = "dk_yellow"
-/area/triumph/surfacebase/atrium_one
+area/triumph/surfacebase/atrium_one
 	name = "\improper Atrium First Floor"
 	icon_state = "dk_yellow"
-/area/triumph/surfacebase/atrium_two
+area/triumph/surfacebase/atrium_two
 	name = "\improper Atrium Second Floor"
 	icon_state = "dk_yellow"
-/area/triumph/surfacebase/atrium_three
+area/triumph/surfacebase/atrium_three
 	name = "\improper Atrium Third Floor"
 	icon_state = "dk_yellow"
-/area/triumph/surfacebase/north_stairs_one
+area/triumph/surfacebase/north_stairs_one
 	name = "\improper North Stairwell First Floor"
 	icon_state = "dk_yellow"
-/area/triumph/surfacebase/north_staires_two
+area/triumph/surfacebase/north_staires_two
 	name = "\improper North Stairwell Second Floor"
 	icon_state = "dk_yellow"
-/area/triumph/surfacebase/north_stairs_three
+area/triumph/surfacebase/north_stairs_three
 	name = "\improper North Stairwell Third Floor"
 	icon_state = "dk_yellow"
-/area/triumph/surfacebase/public_garden_one
+area/triumph/surfacebase/public_garden_one
 	name = "\improper Public Garden First Floor"
 	icon_state = "green"
-/area/triumph/surfacebase/public_garden_two
+area/triumph/surfacebase/public_garden_two
 	name = "\improper Public Garden Second Floor"
 	icon_state = "green"
-/area/triumph/surfacebase/public_garden_three
+area/triumph/surfacebase/public_garden_three
 	name = "\improper Public Garden Third Floor"
 	icon_state = "green"
-/area/triumph/surfacebase/public_garden
+area/triumph/surfacebase/public_garden
 	name = "\improper Public Garden"
 	icon_state = "purple"
-/area/triumph/surfacebase/bar_backroom
+area/triumph/surfacebase/bar_backroom
 	name = "\improper Bar Backroom"
 	icon_state = "red"
 	sound_env = SMALL_SOFTFLOOR
-/area/triumph/surfacebase/fishing_garden
+area/triumph/surfacebase/fishing_garden
 	name = "\improper Fish Pond"
 	icon_state = "blue"
-/area/triumph/surfacebase/sauna
+area/triumph/surfacebase/sauna
 	name = "\improper Public Sauna"
 	icon_state = "green"
-/area/triumph/surfacebase/lounge
+area/triumph/surfacebase/lounge
 	name = "\improper Station Lounge"
 	icon_state = "purple"
 // /area/triumph/surfacebase/east_stairs_one //This is just part of a lower hallway
-/area/triumph/surfacebase/east_stairs_two
+area/triumph/surfacebase/east_stairs_two
 	name = "\improper East Stairwell Second Floor"
 	icon_state = "dk_yellow"
 // /area/triumph/surfacebase/east_stairs_three //This is just part of an upper hallway
-/area/triumph/surfacebase/emergency_storage
+area/triumph/surfacebase/emergency_storage
 	icon_state = "emergencystorage"
-/area/triumph/surfacebase/emergency_storage/panic_shelter
+area/triumph/surfacebase/emergency_storage/panic_shelter
 	name = "\improper Panic Shelter Emergency Storage"
-/area/triumph/surfacebase/emergency_storage/rnd
+area/triumph/surfacebase/emergency_storage/rnd
 	name = "\improper RnD Emergency Storage"
-/area/triumph/surfacebase/emergency_storage/atmos
+area/triumph/surfacebase/emergency_storage/atmos
 	name = "\improper Atmospherics Emergency Storage"
-/area/triumph/surfacebase/emergency_storage/atrium
+area/triumph/surfacebase/emergency_storage/atrium
 	name = "\improper Atrium Emergency Storage"
 // Main mining area
-/area/triumph/surfacebase/mining_main
+area/triumph/surfacebase/mining_main
 	icon_state = "outpost_mine_main"
-/area/triumph/surfacebase/mining_main/airlock
+area/triumph/surfacebase/mining_main/airlock
 	name = "\improper Mining Airlock"
-/area/triumph/surfacebase/mining_main/storage
+area/triumph/surfacebase/mining_main/storage
 	name = "\improper Mining Gear Storage"
-/area/triumph/surfacebase/mining_main/uxstorage
+area/triumph/surfacebase/mining_main/uxstorage
 	name = "\improper Mining Secondary Storage"
-/area/triumph/surfacebase/mining_main/ore
+area/triumph/surfacebase/mining_main/ore
 	name = "\improper Mining Ore Storage"
-/area/triumph/surfacebase/mining_main/eva
+area/triumph/surfacebase/mining_main/eva
 	name = "\improper Mining EVA"
-/area/triumph/surfacebase/mining_main/break_room
+area/triumph/surfacebase/mining_main/break_room
 	name = "\improper Mining Crew Area"
-/area/triumph/surfacebase/mining_main/refinery
+area/triumph/surfacebase/mining_main/refinery
 	name = "\improper Mining Refinery"
-/area/triumph/surfacebase/mining_main/external
+area/triumph/surfacebase/mining_main/external
 	name = "\improper Mining Refinery"
-/area/triumph/surfacebase/mining_main/bathroom
+area/triumph/surfacebase/mining_main/bathroom
 	name = "\improper Mining Bathroom"
-/area/triumph/surfacebase/mining_main/lobby
+area/triumph/surfacebase/mining_main/lobby
 	name = "\improper Mining Lobby"
 // Solars map areas
-/area/triumph/outpost/solars_outside
+area/triumph/outpost/solars_outside
 	name = "\improper Solar Farm"
 	is_outside = OUTSIDE_YES
-/area/triumph/outpost/solars_shed
+area/triumph/outpost/solars_shed
 	name = "\improper Solar Farm Shed"
 //Surface med
-/area/triumph/surfacebase/medical
+area/triumph/surfacebase/medical
 	icon_state = "medical"
-/area/triumph/surfacebase/medical/lobby
+area/triumph/surfacebase/medical/lobby
 	name = "\improper Surface Medical Lobby"
-/area/triumph/surfacebase/medical/triage
+area/triumph/surfacebase/medical/triage
 	name = "\improper Surface Triage"
-/area/triumph/surfacebase/medical/first_aid_west
+area/triumph/surfacebase/medical/first_aid_west
 	name = "\improper First Aid West"
 //Surface sec
-/area/triumph/surfacebase/security
+area/triumph/surfacebase/security
 	icon_state = "security"
-/area/triumph/surfacebase/security/breakroom
+area/triumph/surfacebase/security/breakroom
 	name = "\improper Surface Security Break Room"
-/area/triumph/surfacebase/security/lobby
+area/triumph/surfacebase/security/lobby
 	name = "\improper Surface Security Lobby"
-/area/triumph/surfacebase/security/common
+area/triumph/surfacebase/security/common
 	name = "\improper Surface Security Room"
-/area/triumph/surfacebase/security/armory
+area/triumph/surfacebase/security/armory
 	name = "\improper Surface Armory"
-/area/triumph/surfacebase/security/checkpoint
+area/triumph/surfacebase/security/checkpoint
 	name = "\improper Surface Checkpoint Office"
-/area/triumph/surfacebase/security/hallway
+area/triumph/surfacebase/security/hallway
 	name = "\improper Surface Checkpoint Hallway"
 //Misc
-/area/triumph/surfacebase/shuttle_pad
+area/triumph/surfacebase/shuttle_pad
 	name = "\improper Triumph Shuttle Pad"
-/area/triumph/surfacebase/reading_room
+area/triumph/surfacebase/reading_room
 	name = "\improper Reading Room"
-/area/triumph/surfacebase/vacant_site
+area/triumph/surfacebase/vacant_site
 	name = "\improper Vacant Site"
 //Shuttle crashes
-/area/shuttle/triumph/crash1
+area/shuttle/triumph/crash1
 	name = "\improper Crash Site 1"
 	icon_state = "shuttle2"
-/area/shuttle/triumph/crash2
+area/shuttle/triumph/crash2
 	name = "\improper Crash Site 2"
 	icon_state = "shuttle2"
 
 // Class D world areas
-/area/class_d
+area/class_d
 	name = "Class D World"
 	icon_state = "away"
 	requires_power = 1
 	dynamic_lighting = 1
 
-/area/class_d/explored
+area/class_d/explored
 	name = "Class D World - Explored (E)"
 	icon_state = "explored"
 
-/area/class_d/unexplored
+area/class_d/unexplored
 	name = "Class D World - Unexplored (UE)"
 	icon_state = "unexplored"
 
-/area/class_d/unexplored/underground // Caves would be protected from weather. Still valid for POI generation do to being a dependent of /area/poi_d/unexplored
+area/class_d/unexplored/underground // Caves would be protected from weather. Still valid for POI generation do to being a dependent of /area/poi_d/unexplored
 
-/area/class_d/explored/underground
+area/class_d/explored/underground
 
-/area/class_d/wildcat_mining_base
+area/class_d/wildcat_mining_base
 	name = "Abandoned Facility"
 	icon_state = "blue"
 	requires_power = TRUE
 
-/area/class_d/wildcat_mining_base/exterior_power
+area/class_d/wildcat_mining_base/exterior_power
 	name = "Exterior Power"
 
-/area/class_d/wildcat_mining_base/refueling_outbuilding
+area/class_d/wildcat_mining_base/refueling_outbuilding
 	name = "Refueling Outbuilding"
 
-/area/class_d/wildcat_mining_base/warehouse
+area/class_d/wildcat_mining_base/warehouse
 	name = "Warehouse"
 
-/area/class_d/wildcat_mining_base/exterior_workshop
+area/class_d/wildcat_mining_base/exterior_workshop
 	name = "Exterior Workshop"
 
-/area/class_d/wildcat_mining_base/interior
+area/class_d/wildcat_mining_base/interior
 
-/area/class_d/wildcat_mining_base/interior/main_room
+area/class_d/wildcat_mining_base/interior/main_room
 	name = "Main Room"
 
-/area/class_d/wildcat_mining_base/interior/utility_room
+area/class_d/wildcat_mining_base/interior/utility_room
 	name = "Utility Room"
 
-/area/class_d/wildcat_mining_base/interior/bunk_room
+area/class_d/wildcat_mining_base/interior/bunk_room
 	name = "Bunk Room"
 
-/area/class_d/wildcat_mining_base/interior/bathroom
+area/class_d/wildcat_mining_base/interior/bathroom
 	name = "Bathroom"
 
-/area/class_d/POIs/ship
+area/class_d/POIs/ship
 	name = "Crashed Ship Fragment"
 
-/area/class_d/plains
+area/class_d/plains
 	name = "Plains"
 
-/area/class_d/crater
+area/class_d/crater
 	name = "Crater"
 
-/area/class_d/Mountain
+area/class_d/Mountain
 	name = "Mountain"
 
-/area/class_d/Crevices
+area/class_d/Crevices
 	name = "Crevices"
 
-/area/class_d/POIs/solar_farm
+area/class_d/POIs/solar_farm
 	name = "Prefab Solar Farm"
 
-/area/class_d/POIs/landing_pad
+area/class_d/POIs/landing_pad
 	name = "Prefab Homestead"
 	requires_power = FALSE
 
-/area/class_d/POIs/reactor
+area/class_d/POIs/reactor
 	name = "Prefab Reactor"
 
 // Class G world areas
-/area/class_g
+area/class_g
 	name = "Class G World"
 	icon_state = "away"
 	requires_power = 1
 	dynamic_lighting = 1
 
-/area/class_g/explored
+area/class_g/explored
 	name = "Class G World - Explored (E)"
 	icon_state = "red"
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')
 
-/area/class_g/unexplored
+area/class_g/unexplored
 	name = "Class G World - Unexplored (UE)"
 	icon_state = "yellow"
 
 // Desert Planet world areas
-/area/class_h
+area/class_h
 	name = "Class H World"
 	requires_power = 1
 	dynamic_lighting = 1
 	icon_state = "away"
 
-/area/class_h/POIs/WW_Town
+area/class_h/POIs/WW_Town
 	name = "Ghost Town"
 
-/area/class_h/POIs/landing_pad
+area/class_h/POIs/landing_pad
 	name = "Prefab Homestead"
 
-/area/class_h/POIs/solar_farm
+area/class_h/POIs/solar_farm
 	name = "Prefab Solar Farm"
 
-/area/class_h/POIs/dirt_farm
+area/class_h/POIs/dirt_farm
 	name = "Abandoned Farmstead"
 
-/area/class_h/POIs/graveyard
+area/class_h/POIs/graveyard
 	name = "Desert Graveyard"
 
-/area/class_h/POIs/goldmine
+area/class_h/POIs/goldmine
 	name = "Desert Goldmine"
 
-/area/class_h/POIs/ranch
+area/class_h/POIs/ranch
 	name = "Abandoned Ranch"
 
-/area/class_h/POIs/saloon
+area/class_h/POIs/saloon
 	name = "Saloon"
 
-/area/class_h/POIs/temple
+area/class_h/POIs/temple
 	name = "Old Temple"
 
-/area/class_h/POIs/tomb
+area/class_h/POIs/tomb
 	name = "Old Tomb"
 
-/area/class_h/POIs/AuxiliaryResearchFacility
+area/class_h/POIs/AuxiliaryResearchFacility
 	name = "Research Facility"
 
-/area/class_h/POIs/vault
+area/class_h/POIs/vault
 	name = "Desert Bunker"
 
-/area/class_h/POIs/covert_post
+area/class_h/POIs/covert_post
 	name = "Clown Listening Post"
 
-/area/class_h/explored
+area/class_h/explored
 	name = "Class H World - Explored (E)"
 	icon_state = "explored"
 
-/area/class_h/unexplored
+area/class_h/unexplored
 	name = "Class H World - Unexplored (UE)"
 	icon_state = "unexplored"
 
 //Gaia planet world areas
-/area/class_m
+area/class_m
 	name = "Class M World"
 	icon_state = "away"
 	requires_power = 1
 	dynamic_lighting = 1
 
-/area/class_m/inside
+area/class_m/inside
 	name = "Class M World - Inside (E)"
 	icon_state = "red"
 
-/area/class_m/inside/main
+area/class_m/inside/main
 	name = "Class M World - Main Facility"
 
-/area/class_m/inside/dorms
+area/class_m/inside/dorms
 	name = "Class M World - Dormitories"
 	icon_state = "green"
 
-/area/class_m/inside/bathroom
+area/class_m/inside/bathroom
 	name = "Class M World - Bathrooms"
 	icon_state = "green"
 
-/area/class_m/inside/cabin
+area/class_m/inside/cabin
 	name = "Class M World - Cabin"
 
-/area/class_m/inside/islandbeachhouse
+area/class_m/inside/islandbeachhouse
 	name = "Class M World - Island Beach House"
 
-/area/class_m/inside/sauna
+area/class_m/inside/sauna
 	name = "Class M World - Main Sauna"
 
-/area/class_m/inside/sauna2
+area/class_m/inside/sauna2
 	name = "Class M World - Beach Sauna"
 
-/area/class_m/inside/sauna3
+area/class_m/inside/sauna3
 	name = "Class M World - Island Sauna"
 
-/area/class_m/inside/garage
+area/class_m/inside/garage
 	name = "Class M World - Garage"
 
-/area/class_m/inside/hotspringcaves
+area/class_m/inside/hotspringcaves
 	name = "Class M World - Hotspring Caves"
 
-/area/class_m/outside
+area/class_m/outside
 	name = "Class M World - Outside (UE)"
 	icon_state = "bluenew"
 	is_outside = OUTSIDE_YES
 
-/area/class_m/outside/beach
+area/class_m/outside/beach
 	name = "Class M World - Beach"
 	icon_state = "yellow"
-/area/class_m/outside/beachmiddle
+area/class_m/outside/beachmiddle
 	name = "Class M World - Beach Center"
 	icon_state = "purple"
 
-/area/class_m/outside/island
+area/class_m/outside/island
 	name = "Class M World - Island"
 	icon_state = "purple"
 
-/area/class_m/outside/island2
+area/class_m/outside/island2
 	name = "Class M World - Island"
 	icon_state = "blue"
 
-/area/class_m/outside/docks
+area/class_m/outside/docks
 	name = "Class M World - Docks"
 
 // Frozen planet world areas
-/area/class_p
+area/class_p
 	name = "Class P World"
 	icon_state = "away"
 	requires_power = 1
 	dynamic_lighting = 1
 
-/area/class_p/facility
+area/class_p/facility
 	name = "Facility"
 	icon_state = "red"
 
-/area/class_p/ruins
+area/class_p/ruins
 	name = "Ruins"
 	icon_state = "green"
 
-/area/class_p/explored
+area/class_p/explored
 	name = "Class P World - Explored (E)"
 	icon_state = "yellow"
 
-/area/class_p/unexplored
+area/class_p/unexplored
 	name = "Class P World - Unexplored (UE)"
 	icon_state = "red"
 
-/area/class_p/POIs/archaic_temple
+area/class_p/POIs/archaic_temple
 	name = "Archaic Temple"
 	icon_state = "purple"
 
 //Debris field
-/area/shuttle/excursion/debrisfield
+area/shuttle/excursion/debrisfield
 	name = "\improper Excursion Shuttle - Debris Field"
 
-/area/debrisfield
+area/debrisfield
 	name = "Away Mission - Debris Field"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "dark"
 
-/area/space/debrisfield/explored
+area/space/debrisfield/explored
 	icon_state = "debrisexplored"
 
-/area/space/debrisfield/unexplored
+area/space/debrisfield/unexplored
 	icon_state = "debrisunexplored"
 
-/area/debrisfield/derelict
+area/debrisfield/derelict
 	name = "POI - Alien Derelict"
 	icon_state = "debrisexplored"
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')
 
-/area/space/debrisfield/asteroids
+area/space/debrisfield/asteroids
 	icon_state = "debrisexplored"
 
-/area/space/debrisfield/asteroids/rocks
+area/space/debrisfield/asteroids/rocks
 	icon_state = "debrisexplored"
 
-/area/space/debrisfield/oldshuttle
+area/space/debrisfield/oldshuttle
 	name = "POI - Old Shuttle"
 	icon_state = "debrisexplored"
 
-/area/space/debrisfield/medshuttlecrash
+area/space/debrisfield/medshuttlecrash
 	name = "POI - Medical Shuttle Crash"
 	icon_state = "debrisexplored"
 
-/area/space/debrisfield/scioverrun
+area/space/debrisfield/scioverrun
 	name = "POI - Overrun Science Ship"
 	icon_state = "debrisexplored"
 
-/area/space/debrisfield/explodedship
+area/space/debrisfield/explodedship
 	name = "POI - Exploded Ship"
 	icon_state = "debrisexplored"
 
-/area/space/debrisfield/foodstand
+area/space/debrisfield/foodstand
 	name = "POI - Foodstand"
 	icon_state = "debrisexplored"
 
-/area/space/debrisfield/misc_debris
+area/space/debrisfield/misc_debris
 	name = "Debris"
 	icon_state = "debrisexplored"
 
 //Pirate base
-/area/shuttle/excursion/piratebase
+area/shuttle/excursion/piratebase
 	name = "\improper Excursion Shuttle - Pirate Base"
 
-/area/piratebase
+area/piratebase
 	name = "Pirate Base"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "dark"
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')
 
-/area/piratebase/dock
+area/piratebase/dock
 	name = "Pirate Base - Dock"
 	icon_state = "debrisexplored"
 
-/area/piratebase/sickbay
+area/piratebase/sickbay
 	name = "Pirate Base - Sickbay"
 	icon_state = "debrisexplored"
 
-/area/piratebase/mess
+area/piratebase/mess
 	name = "Pirate Base - Mess Hall"
 	icon_state = "debrisexplored"
 
-/area/piratebase/bunks
+area/piratebase/bunks
 	name = "Pirate Base - Bunks"
 	icon_state = "debrisexplored"
 
-/area/piratebase/captain
+area/piratebase/captain
 	name = "Pirate Base - Captain's Quarters"
 	icon_state = "debrisexplored"
 
-/area/piratebase/vault
+area/piratebase/vault
 	name = "Pirate Base - Vault"
 	icon_state = "debrisexplored"
 
-/area/piratebase/atmospherics
+area/piratebase/atmospherics
 	name = "Pirate Base - Atmospherics"
 	icon_state = "debrisexplored"
 
-/area/piratebase/construction
+area/piratebase/construction
 	name = "Pirate Base - Construction Zone"
 	icon_state = "debrisexplored"
 
-/area/piratebase/mining
+area/piratebase/mining
 	name = "Pirate Base - Mining Operations"
 	icon_state = "debrisexplored"
 
-/area/piratebase/power
+area/piratebase/power
 	name = "Pirate Base - Power Management"
 	icon_state = "debrisexplored"
 
-/area/piratebase/halls
+area/piratebase/halls
 	name = "Pirate Base - Halls"
 	icon_state = "debrisexplored"
 
-/area/piratebase/brig
+area/piratebase/brig
 	name = "Pirate Base - Brig"
 	icon_state = "debrisexplored"
 
@@ -519,21 +519,21 @@
 
 // Mining Underdark
 
-/area/mine/unexplored/underdark
+area/mine/unexplored/underdark
 	name = "\improper Mining Underdark"
-/area/mine/explored/underdark
+area/mine/explored/underdark
 	name = "\improper Mining Underdark"
 
 // Mining outpost areas
-/area/outpost/mining_main/passage
+area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
 
 
 //Trade Port areas
-/area/shuttle/excursion/trader
+area/shuttle/excursion/trader
 	name = "\improper Beruang Trade Shuttle"
 
-/area/tradeport
+area/tradeport
 	name = "Away Mission - Trade Port"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "dark"
@@ -541,337 +541,337 @@
 	requires_power = 1
 	ambience = AMBIENCE_GENERIC
 
-/area/tradeport/facility
+area/tradeport/facility
 	icon_state = "red"
 
-/area/tradeport/engineering
+area/tradeport/engineering
 	icon_state = "yellow"
 	ambience = AMBIENCE_ENGINEERING
 
-/area/tradeport/commons
+area/tradeport/commons
 	icon_state = "green"
 
-/area/tradeport/dock
+area/tradeport/dock
 	icon_state = "blue"
 	ambience = AMBIENCE_HANGAR
 	sound_env = LARGE_ENCLOSED
 
-/area/tradeport/pads
+area/tradeport/pads
 	icon_state = "purple"
 	ambience = AMBIENCE_HANGAR
 	sound_env = LARGE_ENCLOSED
 
-/area/tradeport/spine
+area/tradeport/spine
 	name = "\improper Commerce Spine"
 	icon_state = "red"
 
-/area/tradeport/commhall
+area/tradeport/commhall
 	name = "\improper Commerce Hall"
 	icon_state = "yellow"
 
-/area/tradeport/safari
+area/tradeport/safari
 	name = "\improper Safari Shop"
 	icon_state = "green"
 
-/area/tradeport/safarizoo
+area/tradeport/safarizoo
 	name = "\improper Safari Zone"
 	icon_state = "blue"
 
-/area/tradeport/cyndi
+area/tradeport/cyndi
 	name = "\improper C&K Floor"
 	icon_state = "purple"
 
-/area/tradeport/cyndishow
+area/tradeport/cyndishow
 	name = "\improper C&K Showroom"
 	icon_state = "red"
 
-/area/tradeport/medical
+area/tradeport/medical
 	icon_state = "blue"
 	sound_env = SMALL_ENCLOSED
 
-/area/tradeport/atmospherics
+area/tradeport/atmospherics
 	icon_state = "yellow"
 	ambience = AMBIENCE_ATMOS
 
-/area/tradeport/exterior
+area/tradeport/exterior
 
-/area/tradeport/cafeteria
+area/tradeport/cafeteria
 	icon_state = "green"
 
-/area/tradeport/expansion
+area/tradeport/expansion
 
 
 //////// Mothership areas ////////
-/area/mothership
+area/mothership
 	requires_power = 1
 	area_flags = AREA_RAD_SHIELDED
 	icon_state = "blue-red2"
-/area/mothership/breakroom
+area/mothership/breakroom
 	name = "Warship - Breakroom"
-/area/mothership/hydroponics
+area/mothership/hydroponics
 	name = "Warship - Hydroponics"
-/area/mothership/kitchen
+area/mothership/kitchen
 	name = "Warship - Kitchen"
-/area/mothership/eva
+area/mothership/eva
 	name = "Warship - EVA"
-/area/mothership/bathroom1
+area/mothership/bathroom1
 	name = "Warship - Bathroom 1"
-/area/mothership/bathroom2
+area/mothership/bathroom2
 	name = "Warship - Bathroom 2"
-/area/mothership/dorm1
+area/mothership/dorm1
 	name = "Warship - Dorm 1"
-/area/mothership/dorm2
+area/mothership/dorm2
 	name = "Warship - Dorm 2"
-/area/mothership/dorm3
+area/mothership/dorm3
 	name = "Warship - Dorm 3"
-/area/mothership/dorm4
+area/mothership/dorm4
 	name = "Warship - Dorm 4"
-/area/mothership/dorm5
+area/mothership/dorm5
 	name = "Warship - Dorm 5"
-/area/mothership/dorm6
+area/mothership/dorm6
 	name = "Warship - Dorm 6"
-/area/mothership/chemistry
+area/mothership/chemistry
 	name = "Warship - Chemistry"
-/area/mothership/surgery
+area/mothership/surgery
 	name = "Warship - Surgery"
-/area/mothership/vault
+area/mothership/vault
 	name = "Warship - Vault"
 	area_flags = AREA_RAD_SHIELDED | AREA_FLAG_BLUE_SHIELDED
-/area/mothership/teleporter
+area/mothership/teleporter
 	name = "Warship - Teleporter Room"
-/area/mothership/security
+area/mothership/security
 	name = "Warship - Security Equipment"
-/area/mothership/treatment
+area/mothership/treatment
 	name = "Warship - Treatment Center"
-/area/mothership/medical
+area/mothership/medical
 	name = "Warship - Medical Equipment"
-/area/mothership/resleeving
+area/mothership/resleeving
 	name = "Warship - Resleeving"
-/area/mothership/morgue
+area/mothership/morgue
 	name = "Warship - Morgue"
-/area/mothership/rnd
+area/mothership/rnd
 	name = "Warship - Research"
-/area/mothership/robotics
+area/mothership/robotics
 	name = "Warship - Robotics"
-/area/mothership/sechallway
+area/mothership/sechallway
 	name = "Warship - Security Hallway"
-/area/mothership/processing
+area/mothership/processing
 	name = "Warship - Processing"
-/area/mothership/warden
+area/mothership/warden
 	name = "Warship - Warden"
-/area/mothership/armory
+area/mothership/armory
 	name = "Warship - Armory"
 	area_flags = AREA_RAD_SHIELDED | AREA_FLAG_BLUE_SHIELDED
-/area/mothership/bridge
+area/mothership/bridge
 	name = "Warship - Bridge"
-/area/mothership/holodeck
+area/mothership/holodeck
 	name = "Warship - Holodeck Controls"
-/area/mothership/holodeck/holo
+area/mothership/holodeck/holo
 	name = "Warship - Holodeck"
 	icon_state = "dk_yellow"
-/area/mothership/cryotube
+area/mothership/cryotube
 	name = "Warship - Cryo chamber"
-/area/mothership/engineering
+area/mothership/engineering
 	name = "Warship - Engineering"
-/area/mothership/hallway
+area/mothership/hallway
 	name = "Warship - Main Hallway"
-/area/mothership/telecomms1
+area/mothership/telecomms1
 	name = "Warship - Telecommunications Main"
-/area/mothership/telecomms2
+area/mothership/telecomms2
 	name = "Warship - Telecommunications Relay"
 
 
 // Skipjack
-/area/skipjack_station
+area/skipjack_station
 	name = "Raider Outpost"
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 0
 	area_flags = AREA_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
-/area/skipjack_station/transit
+area/skipjack_station/transit
 	name = "transit"
 	icon_state = "shuttlered"
-/area/skipjack_station/orbit
+area/skipjack_station/orbit
 	name = "near the Tether"
 	icon_state = "northwest"
-/area/skipjack_station/arrivals_dock
+area/skipjack_station/arrivals_dock
 	name = "\improper docked with Tether"
 	icon_state = "shuttle"
 
 
 // Ninja areas
-/area/ninja_dojo
+area/ninja_dojo
 	name = "\improper Ninja Base"
 	icon_state = "green"
 	requires_power = 0
 	area_flags = AREA_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
-/area/ninja_dojo/dojo
+area/ninja_dojo/dojo
 	name = "\improper Clan Dojo"
 	dynamic_lighting = 0
-/area/ninja_dojo/start
+area/ninja_dojo/start
 	name = "\improper Clan Dojo"
 	icon_state = "shuttlered"
-/area/ninja_dojo/orbit
+area/ninja_dojo/orbit
 	name = "near the Tether"
 	icon_state = "south"
-/area/ninja_dojo/transit
+area/ninja_dojo/transit
 	name = "transit"
 	icon_state = "shuttlered"
-/area/ninja_dojo/arrivals_dock
+area/ninja_dojo/arrivals_dock
 	name = "\improper docked with Tether"
 	icon_state = "shuttle"
 	dynamic_lighting = 0
 
 
 // Lavaland
-/area/shuttle/excursion/lavaland
+area/shuttle/excursion/lavaland
 	name = "Shuttle Landing Point"
 	area_flags = AREA_RAD_SHIELDED
 
-/area/lavaland
+area/lavaland
 	name = "Lava Land"
 	icon_state = "away"
 	requires_power = 1
 	dynamic_lighting = 1
 
-/area/lavaland/horrors
+area/lavaland/horrors
 	name = "Lava Land - Horrors"
 
-/area/lavaland/dogs
+area/lavaland/dogs
 	name = "Lava Land - Dogs"
 
-/area/lavaland/idleruins
+area/lavaland/idleruins
 	name = "Lava Land - Idle Ruins"
 
-/area/lavaland/ashlander_camp
+area/lavaland/ashlander_camp
 	name = "Lava Land - Ashlander Camp"
 
-/area/lavaland/bosses
+area/lavaland/bosses
 	name = "Lava Land - Boss"
 	requires_power = 0
 
-/area/lavaland/central/base
+area/lavaland/central/base
 	name = "Lava Land (Center) - Mining Base"
 	icon_state = "green"
 
-/area/lavaland/central/base/common
+area/lavaland/central/base/common
 	name = "Lava Land (Center) - Mining Base"
 	icon_state = "blue"
 
-/area/lavaland/central/explored
+area/lavaland/central/explored
 	name = "Lava Land (Center) - Thoroughfare"
 	icon_state = "red"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/central/unexplored
+area/lavaland/central/unexplored
 	name = "Lava Land (Center) - Unknown"
 	icon_state = "yellow"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/central/transit
+area/lavaland/central/transit
 	name = "Lava Land (Center) - Transit"
 	icon_state = "blue"
 
-/area/lavaland/north/explored
+area/lavaland/north/explored
 	name = "Lava Land (North) - Thoroughfare"
 	icon_state = "red"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/north/unexplored
+area/lavaland/north/unexplored
 	name = "Lava Land (North) - Unknown"
 	icon_state = "yellow"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/south/explored
+area/lavaland/south/explored
 	name = "Lava Land (South) - Thoroughfare"
 	icon_state = "red"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/south/unexplored
+area/lavaland/south/unexplored
 	name = "Lava Land (South) - Unknown"
 	icon_state = "yellow"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/east/explored
+area/lavaland/east/explored
 	name = "Lava Land (East) - Thoroughfare"
 	icon_state = "red"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/east/unexplored
+area/lavaland/east/unexplored
 	name = "Lava Land (East) - Unknown"
 	icon_state = "yellow"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/east/transit
+area/lavaland/east/transit
 	name = "Lava Land (East) - Transit"
 	icon_state = "blue"
 
-/area/lavaland/east/ashlander_village
+area/lavaland/east/ashlander_village
 	name = "Lava Land (East) - Ashlander Village"
 	icon_state = "blue"
 
-/area/lavaland/west/explored
+area/lavaland/west/explored
 	name = "Lava Land (West) - Thoroughfare"
 	icon_state = "red"
 	ambience = AMBIENCE_LAVA
 
 //These were from the Colony Event. Just holding onto them for now.
 /*
-/area/lavaland/east/colony
+area/lavaland/east/colony
 	name = "Lava Land (East) - Colony"
 	icon_state = "blue"
 
-/area/lavaland/east/lab
+area/lavaland/east/lab
 	name = "Lava Land (East) - S4"
 
-/area/lavaland/east/lab/core
+area/lavaland/east/lab/core
 	name = "Lava Land (East) - S4"
 	icon_state = "blue"
 
-/area/lavaland/east/lab/containment
+area/lavaland/east/lab/containment
 	name = "Lava Land (East) - S4 Containment"
 	icon_state = "blue"
 
-/area/lavaland/east/lab/bunker
+area/lavaland/east/lab/bunker
 	name = "Lava Land (East) - S4 Bunker"
 	icon_state = "blue"
 */
 
-/area/lavaland/west/unexplored
+area/lavaland/west/unexplored
 	name = "Lava Land (West) - Unknown"
 	icon_state = "yellow"
 	ambience = AMBIENCE_LAVA
 
-/area/lavaland/dungeon/exterior
+area/lavaland/dungeon/exterior
 	name = "Lava Land (Dungeon) - Unknown"
 	icon_state = "yellow"
 
-/area/lavaland/dungeon/facility
+area/lavaland/dungeon/facility
 	name = "Lava Land (Dungeon) - Pump Facility"
 	icon_state = "blue"
 
 // Aerostat
-/area/shuttle/excursion/away_aerostat
+area/shuttle/excursion/away_aerostat
 	name = "\improper Excursion Shuttle - Aerostat"
 
 // The aerostat shuttle
-/area/shuttle/aerostat/docked
+area/shuttle/aerostat/docked
 	name = "\improper Aerostat Shuttle - Dock"
 
-/area/shuttle/aerostat/landed
+area/shuttle/aerostat/landed
 	name = "\improper Aerostat Shuttle - Surface"
 
 // The aerostat itself
-/area/aerostat
+area/aerostat
 	name = "\improper Away Mission - Aerostat Outside"
 	icon_state = "away"
 	requires_power = FALSE
 	dynamic_lighting = FALSE
 	is_outside = OUTSIDE_YES
 
-/area/aerostat/inside
+area/aerostat/inside
 	name = "\improper Away Mission - Aerostat Inside"
 	icon_state = "crew_quarters"
 	requires_power = TRUE
@@ -879,150 +879,150 @@
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/argitoth.ogg', 'sound/ambience/tension/burning_terror.ogg')
 	is_outside = OUTSIDE_NO
 
-/area/aerostat/solars
+area/aerostat/solars
 	name = "\improper Away Mission - Aerostat Solars"
 	icon_state = "crew_quarters"
 	dynamic_lighting = TRUE
 	is_outside = OUTSIDE_NO
 
-/area/aerostat/surface
+area/aerostat/surface
 	area_flags = AREA_RAD_SHIELDED
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
 
-/area/aerostat/surface/explored
+area/aerostat/surface/explored
 	name = "Away Mission - Aerostat Surface (E)"
 	icon_state = "explored"
 
-/area/aerostat/surface/unexplored
+area/aerostat/surface/unexplored
 	name = "Away Mission - Aerostat Surface (UE)"
 	icon_state = "unexplored"
 
 
 
 // Away Missions
-/area/awaymission
+area/awaymission
 	name = "\improper Strange Location"
 	icon_state = "away"
 	ambience = AMBIENCE_FOREBODING
 
-/area/awaymission/gateway
+area/awaymission/gateway
 	name = "\improper Gateway"
 	icon_state = "teleporter"
 	music = "signal"
 
-/area/awaymission/example
+area/awaymission/example
 	name = "\improper Strange Station"
 	icon_state = "away"
 
-/area/awaymission/wwmines
+area/awaymission/wwmines
 	name = "\improper Wild West Mines"
 	icon_state = "away1"
 	luminosity = 1
 	requires_power = 0
 
-/area/awaymission/wwgov
+area/awaymission/wwgov
 	name = "\improper Wild West Mansion"
 	icon_state = "away2"
 	luminosity = 1
 	requires_power = 0
 
-/area/awaymission/wwrefine
+area/awaymission/wwrefine
 	name = "\improper Wild West Refinery"
 	icon_state = "away3"
 	luminosity = 1
 	requires_power = 0
 
-/area/awaymission/wwvault
+area/awaymission/wwvault
 	name = "\improper Wild West Vault"
 	icon_state = "away3"
 	luminosity = 0
 
-/area/awaymission/wwvaultdoors
+area/awaymission/wwvaultdoors
 	name = "\improper Wild West Vault Doors"  // this is to keep the vault area being entirely lit because of requires_power
 	icon_state = "away2"
 	requires_power = 0
 	luminosity = 0
 
-/area/awaymission/desert
+area/awaymission/desert
 	name = "Mars"
 	icon_state = "away"
 
-/area/awaymission/BMPship1
+area/awaymission/BMPship1
 	name = "\improper Aft Block"
 	icon_state = "away1"
 
-/area/awaymission/BMPship2
+area/awaymission/BMPship2
 	name = "\improper Midship Block"
 	icon_state = "away2"
 
-/area/awaymission/BMPship3
+area/awaymission/BMPship3
 	name = "\improper Fore Block"
 	icon_state = "away3"
 
-/area/awaymission/spacebattle
+area/awaymission/spacebattle
 	name = "\improper Space Battle"
 	icon_state = "away"
 	requires_power = 0
 
-/area/awaymission/spacebattle/cruiser
+area/awaymission/spacebattle/cruiser
 	name = "\improper NanoTrasen Cruiser"
 
-/area/awaymission/spacebattle/syndicate1
+area/awaymission/spacebattle/syndicate1
 	name = "\improper Syndicate Assault Ship 1"
 
-/area/awaymission/spacebattle/syndicate2
+area/awaymission/spacebattle/syndicate2
 	name = "\improper Syndicate Assault Ship 2"
 
-/area/awaymission/spacebattle/syndicate3
+area/awaymission/spacebattle/syndicate3
 	name = "\improper Syndicate Assault Ship 3"
 
-/area/awaymission/spacebattle/syndicate4
+area/awaymission/spacebattle/syndicate4
 	name = "\improper Syndicate War Sphere 1"
 
-/area/awaymission/spacebattle/syndicate5
+area/awaymission/spacebattle/syndicate5
 	name = "\improper Syndicate War Sphere 2"
 
-/area/awaymission/spacebattle/syndicate6
+area/awaymission/spacebattle/syndicate6
 	name = "\improper Syndicate War Sphere 3"
 
-/area/awaymission/spacebattle/syndicate7
+area/awaymission/spacebattle/syndicate7
 	name = "\improper Syndicate Fighter"
 
-/area/awaymission/spacebattle/secret
+area/awaymission/spacebattle/secret
 	name = "\improper Hidden Chamber"
 
-/area/awaymission/listeningpost
+area/awaymission/listeningpost
 	name = "\improper Listening Post"
 	icon_state = "away"
 	requires_power = 0
 
-/area/awaymission/beach
+area/awaymission/beach
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
 	dynamic_lighting = 0
 	requires_power = 0
 
-/area/awaymission/carpfarm
+area/awaymission/carpfarm
 	icon_state = "blank"
 	requires_power = 0
 
-/area/awaymission/carpfarm/arrival
+area/awaymission/carpfarm/arrival
 	icon_state = "away"
 	requires_power = 0
 
-/area/awaymission/carpfarm/base
+area/awaymission/carpfarm/base
 	icon_state = "away"
 
-/area/awaymission/carpfarm/base/entry
+area/awaymission/carpfarm/base/entry
 	icon_state = "blue"
 
-/area/awaymission/snow_outpost
+area/awaymission/snow_outpost
 	icon_state = "blank"
 	requires_power = 0
 	ambience = list('sound/music/main.ogg', 'sound/ambience/maintenance/maintenance4.ogg', 'sound/ambience/sif/sif1.ogg', 'sound/ambience/ruins/ruins1.ogg')
 
-/area/awaymission/snow_outpost/outside
+area/awaymission/snow_outpost/outside
 	icon_state = "away1"
 	requires_power = 1
 	always_unpowered = 1
@@ -1041,7 +1041,7 @@
 					/obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/ausbushes/genericbush, /obj/structure/flora/ausbushes/pointybush,
 					/obj/structure/flora/ausbushes/lavendergrass, /obj/structure/flora/ausbushes/sparsegrass, /obj/structure/flora/ausbushes/fullgrass)
 
-/area/awaymission/snow_outpost/restricted // No mob spawns!
+area/awaymission/snow_outpost/restricted // No mob spawns!
 	icon_state = "red"
 	mobcountmax = 1 // Hacky fix.
 	floracountmax = 100
@@ -1052,16 +1052,16 @@
 					/obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/ausbushes/genericbush, /obj/structure/flora/ausbushes/pointybush,
 					/obj/structure/flora/ausbushes/lavendergrass, /obj/structure/flora/ausbushes/sparsegrass, /obj/structure/flora/ausbushes/fullgrass)
 
-/area/awaymission/snow_outpost/outpost
+area/awaymission/snow_outpost/outpost
 	icon_state = "away"
 	ambience = list('sound/ambience/chapel/chapel1.ogg', 'sound/ambience/ruins/ruins5.ogg', 'sound/ambience/ruins/ruins1.ogg')  // Rykka was here. <3
 
-/area/awaymission/snowfield
+area/awaymission/snowfield
 	icon_state = "blank"
 //	requires_power = 0
 	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
 
-/area/awaymission/snowfield/outside
+area/awaymission/snowfield/outside
 	icon_state = "green"
 	requires_power = 1
 	always_unpowered = 1
@@ -1082,7 +1082,7 @@
 					/obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/ausbushes/genericbush, /obj/structure/flora/ausbushes/pointybush,
 					/obj/structure/flora/ausbushes/lavendergrass, /obj/structure/flora/ausbushes/sparsegrass, /obj/structure/flora/ausbushes/fullgrass)
 
-/area/awaymission/snowfield/restricted // No mob spawns!
+area/awaymission/snowfield/restricted // No mob spawns!
 	icon_state = "red"
 	mobcountmax = 1 // Hacky fix.
 	floracountmax = 120
@@ -1093,137 +1093,137 @@
 					/obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/ausbushes/genericbush, /obj/structure/flora/ausbushes/pointybush,
 					/obj/structure/flora/ausbushes/lavendergrass, /obj/structure/flora/ausbushes/sparsegrass, /obj/structure/flora/ausbushes/fullgrass)
 
-/area/awaymission/snowfield/base
+area/awaymission/snowfield/base
 	icon_state = "away"
 	ambience = null // Todo: Add better ambience.
 
-/area/awaymission/zoo
+area/awaymission/zoo
 	icon_state = "green"
 	requires_power = 0
 	dynamic_lighting = 0
 	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
 
-/area/awaymission/zoo/solars
+area/awaymission/zoo/solars
 	icon_state = "yellow"
 
-/area/awaymission/zoo/tradeship
+area/awaymission/zoo/tradeship
 	icon_state = "purple"
 
-/area/awaymission/zoo/syndieship
+area/awaymission/zoo/syndieship
 	icon_state = "red"
 
-/area/awaymission/zoo/pirateship
+area/awaymission/zoo/pirateship
 	icon_state = "bluenew"
 
 //Jungle Areas
-/area/jungle/temple_one
+area/jungle/temple_one
 	icon_state = "red"
-/area/jungle/temple_two
+area/jungle/temple_two
 	icon_state = "yellow"
-/area/jungle/temple_three
+area/jungle/temple_three
 	icon_state = "green"
-/area/jungle/temple_four
+area/jungle/temple_four
 	icon_state = "blue"
-/area/jungle/temple_five
+area/jungle/temple_five
 	icon_state = "purple"
-/area/jungle/temple_six
+area/jungle/temple_six
 	icon_state = "away"
-/area/jungle/crash_ship_one
+area/jungle/crash_ship_one
 	icon_state = "red"
-/area/jungle/crash_ship_two
+area/jungle/crash_ship_two
 	icon_state = "yellow"
-/area/jungle/crash_ship_three
+area/jungle/crash_ship_three
 	icon_state = "green"
-/area/jungle/crash_ship_four
+area/jungle/crash_ship_four
 	icon_state = "blue"
-/area/jungle/crash_ship_source
+area/jungle/crash_ship_source
 	icon_state = "purple"
-/area/jungle/crash_ship_clean
+area/jungle/crash_ship_clean
 	icon_state = "away"
 
 //Challenge
-/area/awaymission/challenge/start
+area/awaymission/challenge/start
 	icon_state = "red"
-/area/awaymission/challenge/laser_retro
+area/awaymission/challenge/laser_retro
 	icon_state = "yellow"
-/area/awaymission/challenge/main
+area/awaymission/challenge/main
 	icon_state = "green"
-/area/awaymission/challenge/end
+area/awaymission/challenge/end
 	icon_state = "blue"
 
 //Labyrinth
-/area/awaymission/labyrinth/temple/north_west
+area/awaymission/labyrinth/temple/north_west
 	icon_state = "red"
-/area/awaymission/labyrinth/temple/north
+area/awaymission/labyrinth/temple/north
 	icon_state = "yellow"
-/area/awaymission/labyrinth/temple/north_east
+area/awaymission/labyrinth/temple/north_east
 	icon_state = "green"
-/area/awaymission/labyrinth/temple/center
+area/awaymission/labyrinth/temple/center
 	icon_state = "blue"
-/area/awaymission/labyrinth/temple/east
+area/awaymission/labyrinth/temple/east
 	icon_state = "red"
-/area/awaymission/labyrinth/temple/west
+area/awaymission/labyrinth/temple/west
 	icon_state = "yellow"
-/area/awaymission/labyrinth/temple/south_east
+area/awaymission/labyrinth/temple/south_east
 	icon_state = "green"
-/area/awaymission/labyrinth/temple/south
+area/awaymission/labyrinth/temple/south
 	icon_state = "blue"
-/area/awaymission/labyrinth/temple/south_west
+area/awaymission/labyrinth/temple/south_west
 	icon_state = "red"
-/area/awaymission/labyrinth/arrival
+area/awaymission/labyrinth/arrival
 	icon_state = "yellow"
-/area/awaymission/labyrinth/temple/entry
+area/awaymission/labyrinth/temple/entry
 	icon_state = "green"
-/area/awaymission/labyrinth/boss
+area/awaymission/labyrinth/boss
 	icon_state = "blue"
-/area/awaymission/labyrinth/cave
+area/awaymission/labyrinth/cave
 	icon_state = "red"
 //Station Collison
-/area/awaymission/northblock
+area/awaymission/northblock
 	icon_state = "red"
-/area/awaymission/syndishuttle
+area/awaymission/syndishuttle
 	icon_state = "yellow"
-/area/awaymission/research
+area/awaymission/research
 	icon_state = "green"
-/area/awaymission/midblock
+area/awaymission/midblock
 	icon_state = "blue"
-/area/awaymission/arrivalblock
+area/awaymission/arrivalblock
 	icon_state = "purple"
-/area/awaymission/southblock
+area/awaymission/southblock
 	icon_state = "red"
-/area/awaymission/gateroom
+area/awaymission/gateroom
 	icon_state = "yellow"
 //ZResearch
-/area/awaymission/labs/cave
+area/awaymission/labs/cave
 	icon_state = "red"
-/area/awaymission/labs/researchdivision
+area/awaymission/labs/researchdivision
 	icon_state = "yellow"
-/area/awaymission/labs/gateway
+area/awaymission/labs/gateway
 	icon_state = "green"
-/area/awaymission/labs/militarydivision
+area/awaymission/labs/militarydivision
 	icon_state = "blue"
-/area/awaymission/labs/solars
+area/awaymission/labs/solars
 	icon_state = "purple"
-/area/awaymission/labs/command
+area/awaymission/labs/command
 	icon_state = "red"
-/area/awaymission/labs/cargo
+area/awaymission/labs/cargo
 	icon_state = "yellow"
-/area/awaymission/labs/civilian
+area/awaymission/labs/civilian
 	icon_state = "green"
-/area/awaymission/labs/security
+area/awaymission/labs/security
 	icon_state = "blue"
-/area/awaymission/labs/medical
+area/awaymission/labs/medical
 	icon_state = "purple"
 //Academy
-/area/awaymission/academy
+area/awaymission/academy
 	icon_state = "red"
-/area/awaymission/academy/headmaster
+area/awaymission/academy/headmaster
 	icon_state = "yellow"
-/area/awaymission/academy/classrooms
+area/awaymission/academy/classrooms
 	icon_state = "green"
-/area/awaymission/academy/academyaft
+area/awaymission/academy/academyaft
 	icon_state = "blue"
-/area/awaymission/academy/academygate
+area/awaymission/academy/academygate
 	icon_state = "purple"
 
 // The Frozen Temple POI

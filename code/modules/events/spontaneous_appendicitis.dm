@@ -1,4 +1,4 @@
-/datum/event/spontaneous_appendicitis/start()
+datum/event/spontaneous_appendicitis/start()
 	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
 		var/area/A = get_area(H)
 		if(!A)

@@ -1,5 +1,5 @@
 //Dance pole
-/obj/structure/dancepole
+obj/structure/dancepole
 	name = "dance pole"
 	desc = "Engineered for your entertainment"
 	icon = 'icons/obj/objects.dmi'
@@ -7,7 +7,7 @@
 	density = 0
 	anchored = 1
 
-/obj/structure/dancepole/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/structure/dancepole/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.is_wrench())
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -25,7 +25,7 @@
 			new /obj/item/stack/material/steel(loc)
 			qdel(src)
 
-/obj/structure/dancepole/get_description_interaction(mob/user)
+obj/structure/dancepole/get_description_interaction(mob/user)
 	var/list/results = list()
 	results += "[desc_panel_image("welder", user)] to deconstruct."
 	if(anchored)

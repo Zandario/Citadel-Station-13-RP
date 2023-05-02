@@ -11,7 +11,7 @@
 
 GLOBAL_LIST_EMPTY(smeses)
 
-/obj/machinery/power/smes
+obj/machinery/power/smes
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
@@ -58,20 +58,20 @@ GLOBAL_LIST_EMPTY(smeses)
 	var/should_be_mapped = 0 		// If this is set to 0 it will send out warning on New()
 	var/grid_check = FALSE 			// If true, suspends all I/O.
 
-/obj/machinery/power/smes/drain_energy(datum/actor, amount, flags)
+obj/machinery/power/smes/drain_energy(datum/actor, amount, flags)
 	var/wanted = min(charge, KJ_TO_KWM(amount))
 	charge -= wanted
 	return KWM_TO_KJ(wanted)
 
-/obj/machinery/power/smes/can_drain_energy(datum/actor, amount)
+obj/machinery/power/smes/can_drain_energy(datum/actor, amount)
 	return TRUE
 
-/obj/machinery/power/smes/Initialize(mapload, newdir)
+obj/machinery/power/smes/Initialize(mapload, newdir)
 	. = ..()
 	GLOB.smeses += src
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/power/smes/LateInitialize()
+obj/machinery/power/smes/LateInitialize()
 	. = ..()
 	if(!powernet)
 		connect_to_network()
@@ -93,18 +93,18 @@ GLOBAL_LIST_EMPTY(smeses)
 	if(!should_be_mapped)
 		warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
 
-/obj/machinery/power/smes/Destroy()
+obj/machinery/power/smes/Destroy()
 	GLOB.smeses -= src
 	return ..()
 
-/obj/machinery/power/smes/disconnect_terminal()
+obj/machinery/power/smes/disconnect_terminal()
 	if(terminal)
 		terminal.master = null
 		terminal = null
 		return 1
 	return 0
 
-/obj/machinery/power/smes/update_icon()
+obj/machinery/power/smes/update_icon()
 	cut_overlays()
 	if(machine_stat & BROKEN)
 		return
@@ -130,10 +130,10 @@ GLOBAL_LIST_EMPTY(smeses)
 	return
 
 
-/obj/machinery/power/smes/proc/chargedisplay()
+obj/machinery/power/smes/proc/chargedisplay()
 	return round(5.5*charge/(capacity ? capacity : 5e6))
 
-/obj/machinery/power/smes/process(delta_time)
+obj/machinery/power/smes/process(delta_time)
 	if(machine_stat & BROKEN)
 		return
 
@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(smeses)
 
 // called after all power processes are finished
 // restores charge level to smes if there was excess this ptick
-/obj/machinery/power/smes/proc/restore()
+obj/machinery/power/smes/proc/restore()
 	if(machine_stat & BROKEN)
 		return
 
@@ -202,7 +202,7 @@ GLOBAL_LIST_EMPTY(smeses)
 		update_icon()
 
 //Will return 1 on failure
-/obj/machinery/power/smes/proc/make_terminal(const/mob/user)
+obj/machinery/power/smes/proc/make_terminal(const/mob/user)
 	if (user.loc == loc)
 		to_chat(user, "<span class='warning'>You must not be on the same tile as the [src].</span>")
 		return 1
@@ -231,20 +231,20 @@ GLOBAL_LIST_EMPTY(smeses)
 		return 0
 	return 1
 
-/obj/machinery/power/smes/draw_power(var/amount)
+obj/machinery/power/smes/draw_power(var/amount)
 	if(terminal && terminal.powernet)
 		return terminal.powernet.draw_power(amount)
 	return 0
 
-/obj/machinery/power/smes/attack_ai(mob/user)
+obj/machinery/power/smes/attack_ai(mob/user)
 	add_hiddenprint(user)
 	ui_interact(user)
 
-/obj/machinery/power/smes/attack_hand(mob/user, list/params)
+obj/machinery/power/smes/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.is_screwdriver())
 		if(!open_hatch)
 			open_hatch = 1
@@ -305,13 +305,13 @@ GLOBAL_LIST_EMPTY(smeses)
 		return 0
 	return 1
 
-/obj/machinery/power/smes/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/power/smes/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Smes", name)
 		ui.open()
 
-/obj/machinery/power/smes/ui_data()
+obj/machinery/power/smes/ui_data()
 	var/list/data = list(
 		"capacity" = capacity,
 		"capacityPercent" = round(100.0*charge/capacity, 0.1),
@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	)
 	return data
 
-/obj/machinery/power/smes/ui_act(action, params)
+obj/machinery/power/smes/ui_act(action, params)
 	if(..())
 		return TRUE
 	switch(action)
@@ -377,7 +377,7 @@ GLOBAL_LIST_EMPTY(smeses)
 				output_level = clamp(target, 0, output_level_max)
 
 /*
-/obj/machinery/power/smes/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/power/smes/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
 	if(machine_stat & BROKEN)
 		return
@@ -421,7 +421,7 @@ GLOBAL_LIST_EMPTY(smeses)
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
-/obj/machinery/power/smes/buildable/main/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/power/smes/buildable/main/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
 	if (!ui)
 		ui = new(user, src, ui_key, "smesmain.tmpl", "SMES Unit", 540, 405)
@@ -432,17 +432,17 @@ GLOBAL_LIST_EMPTY(smeses)
 /**
  * returns available terminal power in watts
  */
-/obj/machinery/power/smes/proc/getTerminalPower()
+obj/machinery/power/smes/proc/getTerminalPower()
 	if (terminal && terminal.powernet)//checks if the SMES has a terminal, and if that terminal has a powernet.
 		. = round(terminal.powernet.avail, 0.1)
 	else
 		. = 0
 	return .
 
-/obj/machinery/power/smes/proc/Percentage()
+obj/machinery/power/smes/proc/Percentage()
 	return round(100.0*charge/capacity, 0.1)
 
-/obj/machinery/power/smes/Topic(href, href_list)
+obj/machinery/power/smes/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -478,7 +478,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	return 1
 
 
-/obj/machinery/power/smes/proc/ion_act()
+obj/machinery/power/smes/proc/ion_act()
 	if(src.z in GLOB.using_map.station_levels)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
@@ -509,17 +509,17 @@ GLOBAL_LIST_EMPTY(smeses)
 			smoke.attach(src)
 			smoke.start()
 
-/obj/machinery/power/smes/proc/inputting(var/do_input)
+obj/machinery/power/smes/proc/inputting(var/do_input)
 	input_attempt = do_input
 	if(!input_attempt)
 		inputting = 0
 
-/obj/machinery/power/smes/proc/outputting(var/do_output)
+obj/machinery/power/smes/proc/outputting(var/do_output)
 	output_attempt = do_output
 	if(!output_attempt)
 		outputting = 0
 
-/obj/machinery/power/smes/emp_act(severity)
+obj/machinery/power/smes/emp_act(severity)
 	inputting(rand(0,1))
 	outputting(rand(0,1))
 	output_level = rand(0, output_level_max)
@@ -530,25 +530,25 @@ GLOBAL_LIST_EMPTY(smeses)
 	update_icon()
 	..()
 
-/obj/machinery/power/smes/magical
+obj/machinery/power/smes/magical
 	name = "magical power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
 	capacity = 5000
 	output_level = 250
 	should_be_mapped = 1
 
-/obj/machinery/power/smes/magical/process(delta_time)
+obj/machinery/power/smes/magical/process(delta_time)
 	charge = 5000
 	..()
 
-/obj/machinery/power/smes/buildable/main
+obj/machinery/power/smes/buildable/main
 	name = "main smes"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. This is the main one for facility power."
 	charge = KWH_TO_KWM(SMES_COIL_STORAGE_BASIC * 4 * 0.8)
 	input_level = 500
 	output_level = 1000
 
-/obj/machinery/power/smes/buildable/engine
+obj/machinery/power/smes/buildable/engine
 	name = "engine smes"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. This is the one dedicated to the engine."
 	charge = KWH_TO_KWM(SMES_COIL_STORAGE_BASIC * 1 * 0.8)
@@ -558,7 +558,7 @@ GLOBAL_LIST_EMPTY(smeses)
 #define SMES_UI_INPUT 1
 #define SMES_UI_OUTPUT 2
 
-/obj/machinery/power/smes/proc/ui_set_io(io, target, adjust)
+obj/machinery/power/smes/proc/ui_set_io(io, target, adjust)
 	if(target == "min")
 		target = 0
 		. = TRUE

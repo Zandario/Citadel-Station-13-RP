@@ -1,4 +1,4 @@
-/datum/atmosphere/planet/classp
+datum/atmosphere/planet/classp
 	base_gases = list(
 	/datum/gas/oxygen = 0.23,
 	/datum/gas/nitrogen = 0.77
@@ -11,15 +11,15 @@
 
 
 
-/datum/time/classp
+datum/time/classp
 	seconds_in_day = 2 HOURS
 
-/datum/planet/classp
+datum/planet/classp
 	name = "Class-P Frozen Planet"
 	desc = "A frosted world that seems stuck in time."
 	current_time = new /datum/time/classp()
 
-/datum/planet/classp/update_sun()
+datum/planet/classp/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
@@ -98,7 +98,7 @@
 	update_sun_deferred(new_brightness, new_color)
 
 
-/datum/weather_holder/classp
+datum/weather_holder/classp
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_LIGHT_SNOW	= new /datum/weather/classp/light_snow(),
@@ -111,12 +111,12 @@
 		WEATHER_BLIZZARD	= 25
 		)
 
-/datum/weather/classp
+datum/weather/classp
 	name = "classp base"
 	temp_high = 225.3 // -48c
 	temp_low = 230.3  // -13c
 
-/datum/weather/classp/light_snow
+datum/weather/classp/light_snow
 	name = "light snow"
 	icon_state = "snowfall_light"
 	temp_high = 225.3
@@ -133,7 +133,7 @@
 		"It begins to snow lightly.",
 		)
 
-/datum/weather/classp/snow
+datum/weather/classp/snow
 	name = "moderate snow"
 	icon_state = "snowfall_med"
 	temp_high = 220.3
@@ -157,7 +157,7 @@
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_snow
 	indoor_sounds_type = /datum/looping_sound/weather/inside_snow
 
-/datum/weather/classp/snow/process_effects()
+datum/weather/classp/snow/process_effects()
 	..()
 	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
@@ -167,7 +167,7 @@
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(33))
 						T.chill()
 
-/datum/weather/classp/blizzard
+datum/weather/classp/blizzard
 	name = "blizzard"
 	icon_state = "snowfall_heavy"
 	temp_high = 215.3
@@ -189,7 +189,7 @@
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
-/datum/weather/classp/blizzard/process_effects()
+datum/weather/classp/blizzard/process_effects()
 	..()
 	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
@@ -200,7 +200,7 @@
 						T.chill()
 
 //Base Turf to determine the fancy treegen.
-/turf/simulated/floor/outdoors/snow/classp
+turf/simulated/floor/outdoors/snow/classp
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
 	icon = 'icons/turf/snow_new.dmi'
@@ -210,7 +210,7 @@
 	var/deadtree_chance = 5
 	initial_gas_mix = ATMOSPHERE_ID_FROZEN
 
-/turf/simulated/floor/outdoors/snow/classp/Initialize(mapload)
+turf/simulated/floor/outdoors/snow/classp/Initialize(mapload)
 	if(tree_chance && prob(tree_chance) && !check_density())
 		new /obj/structure/flora/tree/pine(src)
 	if(deadtree_chance && prob(deadtree_chance) && !check_density())

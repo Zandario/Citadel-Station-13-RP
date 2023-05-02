@@ -1,21 +1,21 @@
-/datum/antagonist/proc/create_global_objectives()
+datum/antagonist/proc/create_global_objectives()
 	if(config_legacy.objectives_disabled)
 		return 0
 	if(global_objectives && global_objectives.len)
 		return 0
 	return 1
 
-/datum/antagonist/proc/create_objectives(var/datum/mind/player)
+datum/antagonist/proc/create_objectives(var/datum/mind/player)
 	if(config_legacy.objectives_disabled)
 		return 0
 	if(create_global_objectives() || global_objectives.len)
 		player.objectives |= global_objectives
 	return 1
 
-/datum/antagonist/proc/get_special_objective_text()
+datum/antagonist/proc/get_special_objective_text()
 	return ""
 
-/datum/antagonist/proc/check_victory()
+datum/antagonist/proc/check_victory()
 	var/result = 1
 	if(config_legacy.objectives_disabled)
 		return 1
@@ -30,7 +30,7 @@
 			to_chat(world, "<span class='danger'><font size = 3>[loss_text]</font></span>")
 			if(loss_feedback_tag) feedback_set_details("round_end_result","[loss_feedback_tag]")
 
-/mob/living/proc/write_ambition()
+mob/living/proc/write_ambition()
 	set name = "Set Ambition"
 	set category = "IC"
 	set src = usr

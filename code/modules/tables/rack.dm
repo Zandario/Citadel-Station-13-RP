@@ -1,4 +1,4 @@
-/obj/structure/table/rack
+obj/structure/table/rack
 	name = "rack"
 	desc = "Different from the Middle Ages version."
 	icon = 'icons/obj/objects.dmi'
@@ -8,22 +8,22 @@
 	flipped = -1
 	item_pixel_place = FALSE
 
-/obj/structure/table/rack/Initialize(mapload)
+obj/structure/table/rack/Initialize(mapload)
 	. = ..()
 	remove_obj_verb(src, /obj/structure/table/verb/do_flip)
 	remove_obj_verb(src, /obj/structure/table/proc/do_put)
 
-/obj/structure/table/rack/update_connections()
+obj/structure/table/rack/update_connections()
 	return
 
-/obj/structure/table/rack/update_desc()
+obj/structure/table/rack/update_desc()
 	return
 
-/obj/structure/table/rack/update_icon()
+obj/structure/table/rack/update_icon()
 	if(material)
 		color = material.icon_colour
 	return
 
-/obj/structure/table/rack/holorack/dismantle(obj/item/tool/wrench/W, mob/user)
+obj/structure/table/rack/holorack/dismantle(obj/item/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return

@@ -1,4 +1,4 @@
-/datum/armor/cult/robes
+datum/armor/cult/robes
 	melee = 0.5
 	bullet = 0.3
 	laser = 0.5
@@ -7,7 +7,7 @@
 	bio = 0.2
 	rad = 0.3
 
-/datum/armor/cult/space
+datum/armor/cult/space
 	melee = 0.65
 	bullet = 0.5
 	laser = 0.4
@@ -17,7 +17,7 @@
 	rad = 0.3
 
 // he's got that drip
-/datum/armor/cult/coat
+datum/armor/cult/coat
 	melee = 0.4
 	bullet = 0.45
 	laser = 0.4

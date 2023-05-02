@@ -1,30 +1,30 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/template_noop,
-/area/submap/Rocky1)
+turf/template_noop,
+area/submap/Rocky1)
 "c" = (
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/Rocky1)
+turf/simulated/floor/outdoors/dirt,
+area/submap/Rocky1)
 "d" = (
-/obj/structure/boulder,
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/Rocky1)
+obj/structure/boulder,
+turf/simulated/floor/outdoors/dirt,
+area/submap/Rocky1)
 "e" = (
-/turf/simulated/mineral,
-/area/submap/Rocky1)
+turf/simulated/mineral,
+area/submap/Rocky1)
 "f" = (
-/obj/structure/flora/tree/sif,
-/turf/template_noop,
-/area/submap/Rocky1)
+obj/structure/flora/tree/sif,
+turf/template_noop,
+area/submap/Rocky1)
 "g" = (
-/obj/random/handgun/sec,
-/obj/effect/decal/remains/human,
-/obj/item/spacecash/c200,
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/Rocky1)
+obj/random/handgun/sec,
+obj/effect/decal/remains/human,
+obj/item/spacecash/c200,
+turf/simulated/floor/outdoors/dirt,
+area/submap/Rocky1)
 
 (1,1,1) = {"
 a

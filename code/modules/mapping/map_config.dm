@@ -3,7 +3,7 @@
 //defaults to box
 //  -Cyberboss
 
-/datum/map_config
+datum/map_config
 	// Metadata
 	var/config_filename = "_mapload/triumph.json"
 	var/defaulted = TRUE  // set to FALSE by LoadConfig() succeeding
@@ -62,7 +62,7 @@
 	/// Orientation to load in by default.
 	var/orientation = SOUTH		//byond defaults to placing everyting SOUTH.
 
-/proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
+proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
 	if (default_to_box)
 		return config
@@ -74,7 +74,7 @@
 	return config
 
 #define CHECK_EXISTS(X) if(!istext(json[X])) { log_world("[##X] missing from json!"); return; }
-/datum/map_config/proc/LoadConfig(filename, error_if_missing)
+datum/map_config/proc/LoadConfig(filename, error_if_missing)
 	if(!fexists(filename))
 		if(error_if_missing)
 			log_world("map_config not found: [filename]")
@@ -195,18 +195,18 @@
 	return TRUE
 #undef CHECK_EXISTS
 
-/datum/map_config/proc/GetFullMapPaths()
+datum/map_config/proc/GetFullMapPaths()
 	if (istext(map_file))
 		return list("maps/[map_path]/[map_file]")
 	. = list()
 	for (var/file in map_file)
 		. += "maps/[map_path]/[file]"
 
-/datum/map_config/proc/MakeNextMap()
+datum/map_config/proc/MakeNextMap()
 	return config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
 
 /// badmin moments. Keep up to date with LoadConfig()!
-/datum/map_config/proc/WriteNextMap()
+datum/map_config/proc/WriteNextMap()
 	var/list/jsonlist = list()
 	jsonlist["map_name"] = map_name
 	jsonlist["map_path"] = map_path

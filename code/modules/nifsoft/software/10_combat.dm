@@ -1,4 +1,4 @@
-/datum/nifsoft/brute_armor
+datum/nifsoft/brute_armor
 	name = "Bullhide Mod"
 	desc = "A difficult-to-produce thickening of the dermis and skeletal structure, allowing a user to absorb more external trauma from physical sources."
 	list_pos = NIF_BRUTEARMOR
@@ -10,7 +10,7 @@
 	activates = FALSE //It's armor.
 	combat_flags = (NIF_C_BRUTEARMOR) // Default on when installed, clear when uninstalled
 
-/datum/nifsoft/burn_armor
+datum/nifsoft/burn_armor
 	name = "Dragon's Skin"
 	desc = "A thin layer of material under the skin provides heat disappation for burns, reducing the trauma from lasers and fire. Not effective against ongoing environmental heat."
 	list_pos = NIF_BURNARMOR
@@ -22,7 +22,7 @@
 	activates = FALSE //It's armor.
 	combat_flags = (NIF_C_BURNARMOR) // Default on when installed, clear when uninstalled
 
-/datum/nifsoft/painkillers
+datum/nifsoft/painkillers
 	name = "Nova Shock"
 	desc = "A constant stream of high-grade painkillers numb the user's body to all pain. Generally results in extreme addiction or overdose."
 	list_pos = NIF_PAINKILLERS
@@ -34,12 +34,12 @@
 	tick_flags = NIF_ACTIVETICK
 	combat_flags = (NIF_C_PAINKILLERS)
 
-/datum/nifsoft/painkillers/on_life()
+datum/nifsoft/painkillers/on_life()
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
 		H.bloodstr.add_reagent("numbenzyme",0.5)
 
-/datum/nifsoft/hardclaws
+datum/nifsoft/hardclaws
 	name = "Bloodletters"
 	desc = "Generates monofilament wires from one's fingertips, allowing one to slash through almost any armor with relative ease. The monofilaments need to be replaced constantly, though, which does use power."
 	list_pos = NIF_HARDCLAWS
@@ -52,7 +52,7 @@
 
 // The unarmed attack to go with the hardclaws
 var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
-/datum/unarmed_attack/hardclaws
+datum/unarmed_attack/hardclaws
 	attack_verb = list("claws")
 	attack_noun = list("talons")
 	damage = 15
@@ -62,7 +62,7 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 	edge = 1
 	sparring_variant_type = /datum/unarmed_attack/hardclaws
 
-/datum/nifsoft/hidelaser
+datum/nifsoft/hidelaser
 	name = "Dazzle"
 	desc = "Fabricates a 2-shot holdout laser inside your body, which can be deployed (somewhat painfully) on demand. Only enough materials to generate one."
 	list_pos = NIF_HIDDENLASER
@@ -74,7 +74,7 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 	var/used = FALSE
 	combat_flags = (NIF_C_HIDELASER)
 
-/datum/nifsoft/hidelaser/activate()
+datum/nifsoft/hidelaser/activate()
 	if((. = ..()))
 		if(used)
 			nif.notify("You do not have a hidden weapon to deploy anymore!",TRUE)
@@ -95,7 +95,7 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 			uninstall()
 
 //The gun to go with this implant
-/obj/item/gun/energy/gun/martin/dazzle
+obj/item/gun/energy/gun/martin/dazzle
 	name = "Microlaser"
 	desc = "A tiny nanofabricated laser."
 

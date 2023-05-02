@@ -9,12 +9,12 @@
 
 var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_RED, "blue" = PIPE_COLOR_BLUE, "cyan" = PIPE_COLOR_CYAN, "green" = PIPE_COLOR_GREEN, "yellow" = PIPE_COLOR_YELLOW, "black" = PIPE_COLOR_BLACK, "purple" = PIPE_COLOR_PURPLE)
 
-/proc/pipe_color_lookup(var/color)
+proc/pipe_color_lookup(var/color)
 	for(var/C in pipe_colors)
 		if(color == pipe_colors[C])
 			return "[C]"
 
-/proc/pipe_color_check(var/color)
+proc/pipe_color_check(var/color)
 	if(!color)
 		return 1
 	for(var/C in pipe_colors)
@@ -26,7 +26,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 // Icon cache generation
 //--------------------------------------------
 
-/datum/pipe_icon_manager
+datum/pipe_icon_manager
 	var/list/pipe_icons[]
 	var/list/manifold_icons[]
 	var/list/device_icons[]
@@ -38,10 +38,10 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 	//var/list/pipe_underlays_intact[]
 	var/list/omni_icons[]
 
-/datum/pipe_icon_manager/New()
+datum/pipe_icon_manager/New()
 	check_icons()
 
-/datum/pipe_icon_manager/proc/get_atmos_icon(var/device, var/dir, var/color, var/state)
+datum/pipe_icon_manager/proc/get_atmos_icon(var/device, var/dir, var/color, var/state)
 	check_icons()
 
 	device = "[device]"
@@ -71,7 +71,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 	//	if("pipe_underlay_intact")
 	//		return pipe_underlays_intact[state + dir + color]
 
-/datum/pipe_icon_manager/proc/check_icons()
+datum/pipe_icon_manager/proc/check_icons()
 	if(!pipe_icons)
 		gen_pipe_icons()
 	if(!manifold_icons)
@@ -84,7 +84,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 	if(!underlays)
 		gen_underlay_icons()
 
-/datum/pipe_icon_manager/proc/gen_pipe_icons()
+datum/pipe_icon_manager/proc/gen_pipe_icons()
 	if(!pipe_icons)
 		pipe_icons = new()
 
@@ -116,7 +116,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 		pipe_icons["hejunction" + state] = image('icons/atmos/junction.dmi', icon_state = state)
 
 
-/datum/pipe_icon_manager/proc/gen_manifold_icons()
+datum/pipe_icon_manager/proc/gen_manifold_icons()
 	if(!manifold_icons)
 		manifold_icons = new()
 
@@ -136,7 +136,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 				I.color = pipe_colors[pipe_color]
 				manifold_icons[state + pipe_colors[pipe_color]] = I
 
-/datum/pipe_icon_manager/proc/gen_device_icons()
+datum/pipe_icon_manager/proc/gen_device_icons()
 	if(!device_icons)
 		device_icons = new()
 
@@ -154,7 +154,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 			continue
 		device_icons["scrubber" + state] = image('icons/atmos/vent_scrubber.dmi', icon_state = state)
 
-/datum/pipe_icon_manager/proc/gen_omni_icons()
+datum/pipe_icon_manager/proc/gen_omni_icons()
 	if(!omni_icons)
 		omni_icons = new()
 
@@ -166,7 +166,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 		omni_icons[state] = image('icons/atmos/omni_devices_vr.dmi', icon_state = state)
 
 
-/datum/pipe_icon_manager/proc/gen_underlay_icons()
+datum/pipe_icon_manager/proc/gen_underlay_icons()
 
 	if(!underlays)
 		underlays = new()
@@ -193,7 +193,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 */
 
 /*
-/datum/pipe_icon_manager/proc/gen_underlay_icons()
+datum/pipe_icon_manager/proc/gen_underlay_icons()
 	if(!underlays_intact)
 		underlays_intact = new()
 	if(!underlays_exposed)

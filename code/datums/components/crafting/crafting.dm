@@ -1,8 +1,8 @@
-/datum/component/personal_crafting/Initialize()
+datum/component/personal_crafting/Initialize()
 	if(ismob(parent))
 		RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
 
-/datum/component/personal_crafting/proc/create_mob_button(mob/user, client/CL)
+datum/component/personal_crafting/proc/create_mob_button(mob/user, client/CL)
 	// SIGNAL_HANDLER
 
 	var/datum/hud/H = user.hud_used
@@ -14,7 +14,7 @@
 	CL.screen += C
 	RegisterSignal(C, COMSIG_CLICK, .proc/component_ui_interact)
 
-/datum/component/personal_crafting
+datum/component/personal_crafting
 	var/busy
 	var/viewing_category = 1 //typical powergamer starting on the Weapons tab
 	var/viewing_subcategory = 1
@@ -76,7 +76,7 @@
   * R: The /datum/crafting_recipe being attempted.
   * contents: List of items to search for R's reqs.
   */
-/datum/component/personal_crafting/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents)
+datum/component/personal_crafting/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents)
 	var/list/item_instances = contents["instances"]
 	contents = contents["other"]
 
@@ -112,7 +112,7 @@
 
 	return R.check_requirements(a, requirements_list)
 
-/datum/component/personal_crafting/proc/get_environment(atom/a, list/blacklist = null, radius_range = 1)
+datum/component/personal_crafting/proc/get_environment(atom/a, list/blacklist = null, radius_range = 1)
 	. = list()
 
 	if(!isturf(a.loc))
@@ -123,7 +123,7 @@
 			continue
 		. += AM
 
-/datum/component/personal_crafting/proc/get_surroundings(atom/a)
+datum/component/personal_crafting/proc/get_surroundings(atom/a)
 	. = list()
 	.["tool_behaviour"] = list()
 	.["other"] = list()
@@ -149,7 +149,7 @@
 						.["other"][A.type] += A.volume
 			.["other"][I.type] += 1
 
-/datum/component/personal_crafting/proc/check_tools(atom/a, datum/crafting_recipe/R, list/contents)
+datum/component/personal_crafting/proc/check_tools(atom/a, datum/crafting_recipe/R, list/contents)
 	if(!R.tools.len)
 		return TRUE
 	var/list/possible_tools = list()
@@ -180,7 +180,7 @@
 			return FALSE
 	return TRUE
 
-/datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
+datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
 	var/list/contents = get_surroundings(a)
 	var/send_feedback = 1
 	if(check_contents(a, R, contents))
@@ -222,7 +222,7 @@
 	del_reqs return the list of parts resulting object will receive as argument of CheckParts proc, on the atom level it will add them all to the contents, on all other levels it calls ..() and does whatever is needed afterwards but from contents list already
 */
 
-/datum/component/personal_crafting/proc/del_reqs(datum/crafting_recipe/R, atom/a)
+datum/component/personal_crafting/proc/del_reqs(datum/crafting_recipe/R, atom/a)
 	var/list/surroundings
 	var/list/Deletion = list()
 	. = list()
@@ -320,17 +320,17 @@
 		Deletion.Cut(Deletion.len)
 		qdel(DL)
 
-/datum/component/personal_crafting/proc/component_ui_interact(source, location, control, params, user)
+datum/component/personal_crafting/proc/component_ui_interact(source, location, control, params, user)
 	// SIGNAL_HANDLER
 
 	if(user == parent)
 		INVOKE_ASYNC(src, .proc/ui_interact, user)
 
-/datum/component/personal_crafting/ui_state(mob/user, datum/tgui_module/module)
+datum/component/personal_crafting/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.not_incapacitated_turf_state
 
 //For the UI related things we're going to assume the user is a mob rather than typesetting it to an atom as the UI isn't generated if the parent is an atom
-/datum/component/personal_crafting/ui_interact(mob/user, datum/tgui/ui = null)
+datum/component/personal_crafting/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		cur_category = categories[1]
@@ -342,7 +342,7 @@
 		ui = new(user, src, "PersonalCrafting")
 		ui.open()
 
-/datum/component/personal_crafting/ui_data(mob/user)
+datum/component/personal_crafting/ui_data(mob/user)
 	var/list/data = list()
 	data["busy"] = busy
 	data["category"] = cur_category
@@ -366,7 +366,7 @@
 	data["craftability"] = craftability
 	return data
 
-/datum/component/personal_crafting/ui_static_data(mob/user)
+datum/component/personal_crafting/ui_static_data(mob/user)
 	var/list/data = list()
 
 	var/list/crafting_recipes = list()
@@ -393,7 +393,7 @@
 	data["crafting_recipes"] = crafting_recipes
 	return data
 
-/datum/component/personal_crafting/ui_act(action, params)
+datum/component/personal_crafting/ui_act(action, params)
 	if(..())
 		return
 	switch(action)
@@ -423,7 +423,7 @@
 			cur_subcategory = params["subcategory"] || ""
 			. = TRUE
 
-/datum/component/personal_crafting/proc/build_recipe_data(datum/crafting_recipe/R)
+datum/component/personal_crafting/proc/build_recipe_data(datum/crafting_recipe/R)
 	var/list/data = list()
 	data["name"] = R.name
 	data["ref"] = "[REF(R)]"
@@ -458,7 +458,7 @@
 
 //Mind helpers
 
-/datum/mind/proc/teach_crafting_recipe(R)
+datum/mind/proc/teach_crafting_recipe(R)
 	if(!learned_recipes)
 		learned_recipes = list()
 	learned_recipes |= R

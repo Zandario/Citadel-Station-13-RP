@@ -2,12 +2,12 @@
 #define UT_VACUUM 2
 #define UT_NORMAL_COLD 3
 
-/datum/unit_test/zas_area_test
+datum/unit_test/zas_area_test
 	name = "ZAS: Area Test Template"
 	var/area_path = null
 	var/expectation = UT_NORMAL
 
-/datum/unit_test/zas_area_test/proc/test_air_in_area(var/test_area, var/expectation = UT_NORMAL)
+datum/unit_test/zas_area_test/proc/test_air_in_area(var/test_area, var/expectation = UT_NORMAL)
 	var/test_result = list("result" = 0, "msg" = "")
 
 	var/area/A = locate(test_area)
@@ -65,7 +65,7 @@
 
 	return test_result
 
-/datum/unit_test/zas_area_test/Run()
+datum/unit_test/zas_area_test/Run()
 	var/list/test = test_air_in_area(area_path, expectation)
 
 	if(isnull(test))
@@ -74,15 +74,15 @@
 	if(test["result"] != 1)
 		Fail(test["msg"])
 
-/datum/unit_test/zas_area_test/supply_centcomm
+datum/unit_test/zas_area_test/supply_centcomm
 	name = "ZAS: Supply Shuttle"
 	area_path = /area/shuttle/supply
 
-/datum/unit_test/zas_area_test/SSemergencyshuttle
+datum/unit_test/zas_area_test/SSemergencyshuttle
 	name = "ZAS: Emergency Shuttle"
 	area_path = /area/shuttle/escape
 
-/datum/unit_test/zas_area_test/ai_chamber
+datum/unit_test/zas_area_test/ai_chamber
 	name = "ZAS: AI Chamber"
 	area_path = /area/ai
 
@@ -91,7 +91,7 @@
 // 	name = "ZAS: Mining Shuttle (Station)"
 // 	area_path = /area/shuttle/mining/station
 
-/datum/unit_test/zas_area_test/cargo_maint
+datum/unit_test/zas_area_test/cargo_maint
 	name = "ZAS: Cargo Maintenance"
 	area_path = /area/maintenance/cargo
 
@@ -100,11 +100,11 @@
 // 	name = "ZAS: Construction Site Shuttle (Station)"
 // 	area_path = /area/shuttle/constructionsite/station
 
-/datum/unit_test/zas_area_test/virology
+datum/unit_test/zas_area_test/virology
 	name = "ZAS: Virology"
 	area_path = /area/medical/virology
 
-/datum/unit_test/zas_area_test/xenobio
+datum/unit_test/zas_area_test/xenobio
 	name = "ZAS: Xenobiology"
 	area_path = /area/rnd/xenobiology
 
@@ -114,6 +114,6 @@
 //	area_path = /area/mine/explored
 //	expectation = UT_VACUUM
 
-/datum/unit_test/zas_area_test/cargo_bay
+datum/unit_test/zas_area_test/cargo_bay
 	name = "ZAS: Cargo Bay"
 	area_path = /area/quartermaster/storage

@@ -1,16 +1,16 @@
 var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 
-/datum/preferences
+datum/preferences
 	var/equip_preview_mob = EQUIP_PREVIEW_ALL
 
 	var/icon/bgstate = "000"
 	var/list/bgstate_options = list("000", "midgrey", "FFF", "white", "steel", "techmaint", "dark", "plating", "reinforced")
 
-/datum/category_item/player_setup_item/general/body
+datum/category_item/player_setup_item/general/body
 	name = "Body"
 	sort_order = 3
 
-/datum/category_item/player_setup_item/general/body/load_character(var/savefile/S)
+datum/category_item/player_setup_item/general/body/load_character(var/savefile/S)
 	S["hair_red"]			>> pref.r_hair
 	S["hair_green"]			>> pref.g_hair
 	S["hair_blue"]			>> pref.b_hair
@@ -47,7 +47,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["body_descriptors"]	>> pref.body_descriptors
 	S["s_base"]				>> pref.s_base
 
-/datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
+datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
 	S["hair_red"]			<< pref.r_hair
 	S["hair_green"]			<< pref.g_hair
 	S["hair_blue"]			<< pref.b_hair
@@ -83,7 +83,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["body_descriptors"]	<< pref.body_descriptors
 	S["s_base"]				<< pref.s_base
 
-/datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
+datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	pref.r_hair			= sanitize_integer(pref.r_hair, 0, 255, initial(pref.r_hair))
 	pref.g_hair			= sanitize_integer(pref.g_hair, 0, 255, initial(pref.g_hair))
 	pref.b_hair			= sanitize_integer(pref.b_hair, 0, 255, initial(pref.b_hair))
@@ -118,7 +118,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.bgstate = "000"
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/body/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/general/body/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -247,7 +247,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	return TRUE
 
-/datum/category_item/player_setup_item/general/body/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/general/body/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 
 	var/datum/species/mob_species = pref.real_species_datum()
@@ -418,10 +418,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/general/body/proc/has_flag(var/datum/species/mob_species, var/flag)
+datum/category_item/player_setup_item/general/body/proc/has_flag(var/datum/species/mob_species, var/flag)
 	return mob_species && (mob_species.species_appearance_flags & flag)
 
-/datum/category_item/player_setup_item/general/body/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/general/body/OnTopic(var/href,var/list/href_list, var/mob/user)
 	var/datum/species/mob_species = pref.real_species_datum()
 
 	if(href_list["random"])
@@ -833,7 +833,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	return ..()
 
-/datum/preferences/proc/reset_limbs()
+datum/preferences/proc/reset_limbs()
 	for(var/organ in organ_data)
 		organ_data[organ] = null
 	while(null in organ_data)

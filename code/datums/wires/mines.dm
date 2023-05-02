@@ -1,21 +1,21 @@
-/datum/wires/mines
+datum/wires/mines
 	randomize = TRUE
 	wire_count = 6
 	holder_type = /obj/effect/mine
 	proper_name = "Explosive Wires"
 
-/datum/wires/mines/New(atom/_holder)
+datum/wires/mines/New(atom/_holder)
 	wires = list(WIRE_EXPLODE, WIRE_EXPLODE_DELAY, WIRE_DISARM, WIRE_BADDISARM)
 	return ..()
 
-/datum/wires/mines/get_status()
+datum/wires/mines/get_status()
 	. = ..()
 	. += "\[Warning: detonation may occur even with proper equipment.]"
 
-/datum/wires/mines/proc/explode()
+datum/wires/mines/proc/explode()
 	return
 
-/datum/wires/mines/on_cut(wire, mend)
+datum/wires/mines/on_cut(wire, mend)
 	var/obj/effect/mine/C = holder
 
 	switch(wire)
@@ -39,7 +39,7 @@
 				C.explode()
 	..()
 
-/datum/wires/mines/on_pulse(wire)
+datum/wires/mines/on_pulse(wire)
 	var/obj/effect/mine/C = holder
 	if(is_cut(wire))
 		return
@@ -59,6 +59,6 @@
 			C.visible_message("[icon2html(thing = C, target = world)] *ping*", "[icon2html(thing = C, target = world)] *ping*")
 	..()
 
-/datum/wires/mines/interactable(mob/user)
+datum/wires/mines/interactable(mob/user)
 	var/obj/effect/mine/M = holder
 	return M.panel_open

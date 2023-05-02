@@ -1,4 +1,4 @@
-/datum/sprite_accessory/tail
+datum/sprite_accessory/tail
 	abstract_type = /datum/sprite_accessory/tail
 	name = "You should not see this..."
 	icon = 'icons/mob/sprite_accessories/tails.dmi'
@@ -16,13 +16,13 @@
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
 	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
 
-/datum/sprite_accessory/tail/New()
+datum/sprite_accessory/tail/New()
 	. = ..()
 	if(clip_mask_icon && clip_mask_state)
 		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
 
 //For all species tails. Includes haircolored tails.
-/datum/sprite_accessory/tail/special
+datum/sprite_accessory/tail/special
 	abstract_type = /datum/sprite_accessory/tail/special
 	icon = 'icons/effects/species_tails_vr.dmi'
 
@@ -45,7 +45,7 @@
 
 //? PLEASE HELP WITH THIS.
 
-/datum/sprite_accessory/tail/invisible
+datum/sprite_accessory/tail/invisible
 	name = "Invisible (hide species-sprite tail)"
 	id = "tail_abstract"
 	icon = null

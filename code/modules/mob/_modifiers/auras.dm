@@ -4,10 +4,10 @@ Note: The source is defined as an argument in New(), and if not specified, it is
 making it not expire ever, which is likely not what you want.
 */
 
-/datum/modifier/aura
+datum/modifier/aura
 	var/aura_max_distance = 5 // If more than this many tiles away from the source, the modifier expires next tick.
 
-/datum/modifier/aura/check_if_valid()
+datum/modifier/aura/check_if_valid()
 	if(!origin)
 		expire()
 	var/atom/A = origin.resolve()

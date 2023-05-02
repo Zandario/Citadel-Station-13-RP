@@ -1,4 +1,4 @@
-/datum/computer_file/program/suit_sensors
+datum/computer_file/program/suit_sensors
 	filename = "sensormonitor"
 	filedesc = "Suit Sensors Monitoring"
 	tguimodule_path = /datum/tgui_module_old/crew_monitor/ntos

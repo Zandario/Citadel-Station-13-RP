@@ -1,6 +1,6 @@
 //This is mostly translated and ready to go here, minus correcting a few things in other areas of the code. I just don't want to refactor meat harvesting at the moment. Maybe later.
 
-/datum/component/butchering
+datum/component/butchering
 	var/speed = 80 //time in deciseconds taken to butcher something
 	var/effectiveness = 100 //percentage effectiveness; numbers above 100 yield extra drops
 	var/bonus_modifier = 0 //percentage increase to bonus item chance
@@ -8,7 +8,7 @@
 	var/butchering_enabled = TRUE
 	var/can_be_blunt = FALSE
 
-/datum/component/butchering/Initialize(_speed, _effectiveness, _bonus_modifier, _butcher_sound, disabled, _can_be_blunt)
+datum/component/butchering/Initialize(_speed, _effectiveness, _bonus_modifier, _butcher_sound, disabled, _can_be_blunt)
 	if(_speed)
 		speed = _speed
 	if(_effectiveness)
@@ -24,19 +24,19 @@
 	if(isitem(parent))
 		RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/onItemAttack)
 
-/datum/component/butchering/proc/onItemAttack(obj/item/source, mob/living/M, mob/living/user)
+datum/component/butchering/proc/onItemAttack(obj/item/source, mob/living/M, mob/living/user)
 	if(user.a_intent == INTENT_HARM && M.stat == DEAD && (M.butcher_results || M.guaranteed_butcher_results)) //can we butcher it?
 		if(butchering_enabled && (can_be_blunt || source.sharp))
 			INVOKE_ASYNC(src, .proc/startButcher, source, M, user)
 			return COMPONENT_ITEM_NO_ATTACK
 
-/datum/component/butchering/proc/startButcher(obj/item/source, mob/living/M, mob/living/user)
+datum/component/butchering/proc/startButcher(obj/item/source, mob/living/M, mob/living/user)
 	to_chat(user, "<span class='notice'>You begin to butcher [M]...</span>")
 	playsound(M.loc, butcher_sound, 50, TRUE, -1)
 	if(do_mob(user, M, speed) && M.Adjacent(source))
 		Butcher(user, M)
 
-/datum/component/butchering/proc/Butcher(mob/living/butcher, mob/living/meat)
+datum/component/butchering/proc/Butcher(mob/living/butcher, mob/living/meat)
 	var/turf/T = meat.drop_location()
 	var/final_effectiveness = effectiveness - meat.butcher_difficulty
 	var/bonus_chance = max(0, (final_effectiveness - 100) + bonus_modifier) //so 125 total effectiveness = 25% extra chance
@@ -68,14 +68,14 @@
 	meat.harvest(butcher)
 	meat.gib(FALSE, FALSE, TRUE)
 
-/datum/component/butchering/proc/ButcherEffects(mob/living/meat) //extra effects called on butchering, override this via subtypes
+datum/component/butchering/proc/ButcherEffects(mob/living/meat) //extra effects called on butchering, override this via subtypes
 	return
 
 /* I believe I want this for disposals eventually? Commenting out for now to silence its errors.
 ///Special snowflake component only used for the recycler.
-/datum/component/butchering/recycler
+datum/component/butchering/recycler
 
-/datum/component/butchering/recycler/Initialize(_speed, _effectiveness, _bonus_modifier, _butcher_sound, disabled, _can_be_blunt)
+datum/component/butchering/recycler/Initialize(_speed, _effectiveness, _bonus_modifier, _butcher_sound, disabled, _can_be_blunt)
 	if(!istype(parent, /obj/machinery/recycler)) //EWWW
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
@@ -83,7 +83,7 @@
 		return
 	RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, .proc/onCrossed)
 
-/datum/component/butchering/recycler/proc/onCrossed(datum/source, mob/living/L)
+datum/component/butchering/recycler/proc/onCrossed(datum/source, mob/living/L)
 	if(!istype(L))
 		return
 	var/obj/machinery/recycler/eater = parent

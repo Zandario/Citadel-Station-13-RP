@@ -1,6 +1,6 @@
 /* Simple object type, calls a proc when "stepped" on by something */
 
-/obj/effect/step_trigger
+obj/effect/step_trigger
 	var/affect_ghosts = 0
 	var/stopper = 1 // stops throwers
 	invisibility = 99 // nope cant see this shit
@@ -9,10 +9,10 @@
 	icon = 'icons/mob/screen1.dmi' //VS Edit
 	icon_state = "centermarker" //VS Edit
 
-/obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
+obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
 	return 0
 
-/obj/effect/step_trigger/Crossed(atom/movable/H as mob|obj)
+obj/effect/step_trigger/Crossed(atom/movable/H as mob|obj)
 	if(H.is_incorporeal())
 		return
 	..()
@@ -26,7 +26,7 @@
 
 /* Tosses things in a certain direction */
 
-/obj/effect/step_trigger/thrower
+obj/effect/step_trigger/thrower
 	/// The direction of throw.
 	var/direction = SOUTH
 	/// If 0: forever until atom hits a stopper.
@@ -41,7 +41,7 @@
 	var/nostop = 0
 	var/list/affecting = list()
 
-/obj/effect/step_trigger/thrower/Trigger(atom/A)
+obj/effect/step_trigger/thrower/Trigger(atom/A)
 	if(!A || !istype(A, /atom/movable) || isobserver(A))
 		return
 	var/atom/movable/AM = A
@@ -97,22 +97,22 @@
 
 /* Stops things thrown by a thrower, doesn't do anything */
 
-/obj/effect/step_trigger/stopper
+obj/effect/step_trigger/stopper
 
 /* Instant teleporter */
 
-/obj/effect/step_trigger/teleporter
+obj/effect/step_trigger/teleporter
 	var/teleport_x = 0	// teleportation coordinates (if one is null, then no teleport!)
 	var/teleport_y = 0
 	var/teleport_z = 0
 
-/obj/effect/step_trigger/teleporter/Trigger(atom/movable/AM)
+obj/effect/step_trigger/teleporter/Trigger(atom/movable/AM)
 	if(teleport_x && teleport_y && teleport_z)
 		var/turf/T = locate(teleport_x, teleport_y, teleport_z)
 		move_object(AM, T)
 
 
-/obj/effect/step_trigger/teleporter/proc/move_object(atom/movable/AM, turf/T)
+obj/effect/step_trigger/teleporter/proc/move_object(atom/movable/AM, turf/T)
 	if(AM.anchored && !istype(AM, /obj/mecha))
 		return
 
@@ -130,24 +130,24 @@
 		AM.forceMove(T)
 
 /* Moves things by an offset, useful for 'Bridges'. Uses dir and a distance var to work with maploader direction changes. */
-/obj/effect/step_trigger/teleporter/offset
+obj/effect/step_trigger/teleporter/offset
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "arrow"
 	var/distance = 3
 
-/obj/effect/step_trigger/teleporter/offset/north
+obj/effect/step_trigger/teleporter/offset/north
 	dir = NORTH
 
-/obj/effect/step_trigger/teleporter/offset/south
+obj/effect/step_trigger/teleporter/offset/south
 	dir = SOUTH
 
-/obj/effect/step_trigger/teleporter/offset/east
+obj/effect/step_trigger/teleporter/offset/east
 	dir = EAST
 
-/obj/effect/step_trigger/teleporter/offset/west
+obj/effect/step_trigger/teleporter/offset/west
 	dir = WEST
 
-/obj/effect/step_trigger/teleporter/offset/Trigger(atom/movable/AM)
+obj/effect/step_trigger/teleporter/offset/Trigger(atom/movable/AM)
 	var/turf/T = get_turf(src)
 	for(var/i = 1 to distance)
 		T = get_step(T, dir)
@@ -159,12 +159,12 @@
 
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
-/obj/effect/step_trigger/teleporter/random
+obj/effect/step_trigger/teleporter/random
 	var/teleport_x_offset = 0
 	var/teleport_y_offset = 0
 	var/teleport_z_offset = 0
 
-/obj/effect/step_trigger/teleporter/random/Trigger(atom/movable/A)
+obj/effect/step_trigger/teleporter/random/Trigger(atom/movable/A)
 	if(teleport_x && teleport_y && teleport_z)
 		if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
 			var/turf/T = locate(rand(teleport_x, teleport_x_offset), rand(teleport_y, teleport_y_offset), rand(teleport_z, teleport_z_offset))
@@ -172,45 +172,45 @@
 
 /* Teleporter that sends objects stepping on it to a specific landmark. */
 
-/obj/effect/step_trigger/teleporter/landmark
+obj/effect/step_trigger/teleporter/landmark
 	var/obj/landmark/the_landmark = null
 	var/landmark_id = null
 
-/obj/effect/step_trigger/teleporter/landmark/Initialize(mapload)
+obj/effect/step_trigger/teleporter/landmark/Initialize(mapload)
 	. = ..()
 	for(var/obj/landmark/teleport_mark/mark in tele_landmarks)
 		if(mark.landmark_id == landmark_id)
 			the_landmark = mark
 			return
 
-/obj/effect/step_trigger/teleporter/landmark/Trigger(var/atom/movable/A)
+obj/effect/step_trigger/teleporter/landmark/Trigger(var/atom/movable/A)
 	if(the_landmark)
 		A.forceMove(get_turf(the_landmark))
 
 
 var/global/list/tele_landmarks = list() // Terrible, but the alternative is looping through world.
 
-/obj/landmark/teleport_mark
+obj/landmark/teleport_mark
 	var/landmark_id = null
 
-/obj/landmark/teleport_mark/Initialize(mapload)
+obj/landmark/teleport_mark/Initialize(mapload)
 	. = ..()
 	tele_landmarks += src
 
-/obj/landmark/teleport_mark/Destroy()
+obj/landmark/teleport_mark/Destroy()
 	tele_landmarks -= src
 	return ..()
 
 /* Teleporter which simulates falling out of the sky. */
 
-/obj/effect/step_trigger/teleporter/planetary_fall
+obj/effect/step_trigger/teleporter/planetary_fall
 	var/datum/planet/planet = null
 
 // First time setup, which planet are we aiming for?
-/obj/effect/step_trigger/teleporter/planetary_fall/proc/find_planet()
+obj/effect/step_trigger/teleporter/planetary_fall/proc/find_planet()
 	return
 
-/obj/effect/step_trigger/teleporter/planetary_fall/Trigger(var/atom/movable/A)
+obj/effect/step_trigger/teleporter/planetary_fall/Trigger(var/atom/movable/A)
 	if(!planet)
 		find_planet()
 

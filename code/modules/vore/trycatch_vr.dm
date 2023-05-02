@@ -12,7 +12,7 @@ if(attempt_vr(object,proc to call,args)) return
 The proc you're attemping should return nonzero values on success.
 */
 
-/proc/attempt_vr(callon, procname, list/args=null)
+proc/attempt_vr(callon, procname, list/args=null)
 	return call(callon,procname)(arglist(args))
 
 /*
@@ -29,7 +29,7 @@ if(hook_vr(proc,args)) return
 
 The hooks you're calling should return nonzero values on success.
 */
-/proc/hook_vr(hook, list/args=null)
+proc/hook_vr(hook, list/args=null)
 	var/hook_path = text2path("/hook/[hook]")
 	if(!hook_path)
 		CRASH("hook_vr: Invalid hook '/hook/[hook]' called.")

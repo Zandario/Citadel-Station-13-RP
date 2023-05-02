@@ -1,6 +1,6 @@
 /// Animation delay for non-living objects moving up/down stairs
 #define STAIR_MOVE_DELAY 10
-/obj/structure/stairs
+obj/structure/stairs
 	name = "Stairs"
 	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
 	icon = 'icons/obj/structures/multiz.dmi'
@@ -10,12 +10,12 @@
 	anchored = 1
 	layer = STAIRS_LAYER
 
-/obj/structure/stairs/Initialize(mapload)
+obj/structure/stairs/Initialize(mapload)
 	. = ..()
 	if(check_integrity())
 		update_icon()
 
-/obj/structure/stairs/prevent_z_fall(atom/movable/victim, levels = 0, fall_flags)
+obj/structure/stairs/prevent_z_fall(atom/movable/victim, levels = 0, fall_flags)
 	return fall_flags | FALL_TERMINATED
 
 // Returns TRUE if the stairs are a complete and connected unit, FALSE if a piece is missing or obstructed
@@ -25,7 +25,7 @@
 //  - B2: Loc of middle stair
 //  - T1: Openspace over bottom stair
 //  - T2: Loc of top stair, over middle stair
-/obj/structure/stairs/proc/check_integrity(var/obj/structure/stairs/bottom/B = null,
+obj/structure/stairs/proc/check_integrity(var/obj/structure/stairs/bottom/B = null,
 										   var/obj/structure/stairs/middle/M = null,
 										   var/obj/structure/stairs/top/T = null,
 										   var/turf/simulated/open/O = null)
@@ -61,18 +61,18 @@
 	return TRUE
 
 // Used to actually move stuff up/down stairs. Removed from Crossed for special cases
-/obj/structure/stairs/proc/use_stairs(var/atom/movable/AM, var/atom/oldloc)
+obj/structure/stairs/proc/use_stairs(var/atom/movable/AM, var/atom/oldloc)
 	return
 
-/obj/structure/stairs/proc/use_stairs_instant(var/atom/movable/AM)
+obj/structure/stairs/proc/use_stairs_instant(var/atom/movable/AM)
 	return
 
 // todo: what the fuck are the above and why is one instant rofl
 
-/obj/structure/stairs/proc/get_destination_turf()
+obj/structure/stairs/proc/get_destination_turf()
 	return null
 
-/obj/structure/stairs/proc/common_prechecks(atom/movable/AM, atom/oldLoc)
+obj/structure/stairs/proc/common_prechecks(atom/movable/AM, atom/oldLoc)
 	if(!isturf(AM.loc))		// maybe don't yank things out that're being picked up huh
 		return
 	if(oldLoc && ((get_turf(oldLoc) == get_destination_turf()) || (get_turf(oldLoc) == GetBelow(src))))
@@ -85,14 +85,14 @@
 			return FALSE
 	return TRUE
 
-/obj/structure/stairs/proc/common_redirect(atom/movable/AM)
+obj/structure/stairs/proc/common_redirect(atom/movable/AM)
 	if(ismob(AM))
 		var/mob/M = AM
 		if(M.buckled)
 			return M.buckled
 	return AM
 
-/obj/structure/stairs/proc/transition_atom(atom/movable/AM, turf/newLoc = get_destination_turf())
+obj/structure/stairs/proc/transition_atom(atom/movable/AM, turf/newLoc = get_destination_turf())
 	if(!isturf(newLoc))
 		return
 	AM.locationTransitForceMove(newLoc, 2)
@@ -100,18 +100,18 @@
 //////////////////////////////////////////////////////////////////////
 // Bottom piece that you step ontor //////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-/obj/structure/stairs/bottom
+obj/structure/stairs/bottom
 	icon_state = "stair_l"
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/middle/middle = null
 
-/obj/structure/stairs/bottom/Initialize(mapload)
+obj/structure/stairs/bottom/Initialize(mapload)
 	. = ..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 
-/obj/structure/stairs/bottom/Destroy()
+obj/structure/stairs/bottom/Destroy()
 	if(top)
 		top.bottom = null
 	if(middle)
@@ -119,7 +119,7 @@
 	..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
-/obj/structure/stairs/bottom/check_integrity(var/obj/structure/stairs/bottom/B = null,
+obj/structure/stairs/bottom/check_integrity(var/obj/structure/stairs/bottom/B = null,
 											 var/obj/structure/stairs/middle/M = null,
 											 var/obj/structure/stairs/top/T = null,
 											 var/turf/simulated/open/O = null)
@@ -168,7 +168,7 @@
 	// Out of the dir check, we have no valid neighbors, and thus are not complete.
 	return FALSE
 
-/obj/structure/stairs/bottom/use_stairs(atom/movable/AM, atom/oldloc)
+obj/structure/stairs/bottom/use_stairs(atom/movable/AM, atom/oldloc)
 	if(!common_prechecks(AM, oldloc))
 		return
 	AM = common_redirect(AM)
@@ -176,19 +176,19 @@
 		return
 	transition_atom(AM)
 
-/obj/structure/stairs/bottom/use_stairs_instant(var/atom/movable/AM)
+obj/structure/stairs/bottom/use_stairs_instant(var/atom/movable/AM)
 	if(!common_prechecks(AM))
 		return
 	AM = common_redirect(AM)
 	transition_atom(AM)
 
-/obj/structure/stairs/bottom/get_destination_turf()
+obj/structure/stairs/bottom/get_destination_turf()
 	return get_turf(top)
 
 //////////////////////////////////////////////////////////////////////
 // Middle piece that you are animated onto/off of ////////////////////
 //////////////////////////////////////////////////////////////////////
-/obj/structure/stairs/middle
+obj/structure/stairs/middle
 	icon_state = "stair_u"
 	opacity   = TRUE
 	density   = TRUE // Too high to simply step up on
@@ -197,13 +197,13 @@
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/bottom/bottom = null
 
-/obj/structure/stairs/middle/Initialize(mapload)
+obj/structure/stairs/middle/Initialize(mapload)
 	. = ..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 
-/obj/structure/stairs/middle/Destroy()
+obj/structure/stairs/middle/Destroy()
 	if(top)
 		top.middle = null
 	if(bottom)
@@ -211,7 +211,7 @@
 	..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
-/obj/structure/stairs/middle/check_integrity(var/obj/structure/stairs/bottom/B = null,
+obj/structure/stairs/middle/check_integrity(var/obj/structure/stairs/bottom/B = null,
 											 var/obj/structure/stairs/middle/M = null,
 											 var/obj/structure/stairs/top/T = null,
 											 var/turf/simulated/open/O = null)
@@ -262,31 +262,31 @@
 	src.dir = T.dir
 	return TRUE
 
-/obj/structure/stairs/middle/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/structure/stairs/middle/MouseDroppedOnLegacy(mob/target, mob/user)
 	. = ..()
 	if(check_integrity())
 		do_climb(user)
 		transition_atom(user, get_turf(top)) // You can't really drag things when you have to climb up the gap in the stairs yourself
 
-/obj/structure/stairs/middle/Bumped(mob/user)
+obj/structure/stairs/middle/Bumped(mob/user)
 	if(check_integrity() && bottom && (bottom in get_turf(user))) // Bottom must be enforced because the middle stairs don't actually need the bottom
 		bottom.use_stairs_instant(user)
 
 //////////////////////////////////////////////////////////////////////
 // Top piece that you step onto //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-/obj/structure/stairs/top
+obj/structure/stairs/top
 	icon_state = "stair_l" // Darker, marginally less contrast w/ openspace
 	var/obj/structure/stairs/middle/middle = null
 	var/obj/structure/stairs/bottom/bottom = null
 
-/obj/structure/stairs/top/Initialize(mapload)
+obj/structure/stairs/top/Initialize(mapload)
 	. = ..()
 	if(!GetBelow(src))
 		warning("Stair created without level below: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 
-/obj/structure/stairs/top/Destroy()
+obj/structure/stairs/top/Destroy()
 	if(middle)
 		middle.top = null
 	if(bottom)
@@ -294,7 +294,7 @@
 	..()
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
-/obj/structure/stairs/top/check_integrity(var/obj/structure/stairs/bottom/B = null,
+obj/structure/stairs/top/check_integrity(var/obj/structure/stairs/bottom/B = null,
 										  var/obj/structure/stairs/middle/M = null,
 										  var/obj/structure/stairs/top/T = null,
 										  var/turf/simulated/open/O = null)
@@ -342,10 +342,10 @@
 	// Out of the dir check, we have no valid neighbors, and thus are not complete. `.` was set by ..()
 	return
 
-/obj/structure/stairs/top/get_destination_turf()
+obj/structure/stairs/top/get_destination_turf()
 	return get_turf(bottom)
 
-/obj/structure/stairs/top/use_stairs(var/atom/movable/AM, var/atom/oldloc)
+obj/structure/stairs/top/use_stairs(var/atom/movable/AM, var/atom/oldloc)
 	if(!common_prechecks(AM, oldloc))
 		return
 	AM = common_redirect(AM)
@@ -355,7 +355,7 @@
 	transition_atom(AM)
 	AM.setDir(turn(dir, 180))
 
-/obj/structure/stairs/top/use_stairs_instant(atom/movable/AM)
+obj/structure/stairs/top/use_stairs_instant(atom/movable/AM)
 	if(!common_prechecks(AM))
 		return
 	AM = common_redirect(AM)
@@ -363,12 +363,12 @@
 	AM.setDir(turn(dir, 180))
 
 // Mapping pieces, placed at the bottommost part of the stairs
-/obj/structure/stairs/spawner
+obj/structure/stairs/spawner
 	name = "Stairs spawner"
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
 
-/obj/structure/stairs/spawner/Initialize(mapload)
+obj/structure/stairs/spawner/Initialize(mapload)
 	..()
 	var/turf/B1 = get_step(get_turf(src), turn(dir, 180))
 	var/turf/B2 = get_turf(src)
@@ -399,22 +399,22 @@
 	return INITIALIZE_HINT_QDEL
 
 // For ease of spawning. While you *can* spawn the base type and set its dir, this is useful for adminbus and a little bit quicker to map in
-/obj/structure/stairs/spawner/north
+obj/structure/stairs/spawner/north
 	dir = NORTH
 	bound_height = 64
 	bound_y = -32
 	pixel_y = -32
 
-/obj/structure/stairs/spawner/south
+obj/structure/stairs/spawner/south
 	dir = SOUTH
 	bound_height = 64
 
-/obj/structure/stairs/spawner/east
+obj/structure/stairs/spawner/east
 	dir = EAST
 	bound_width = 64
 	bound_x = -32
 	pixel_x = -32
 
-/obj/structure/stairs/spawner/west
+obj/structure/stairs/spawner/west
 	dir = WEST
 	bound_width = 64

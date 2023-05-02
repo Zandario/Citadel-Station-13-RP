@@ -1,4 +1,4 @@
-/obj/item/modular_computer/tablet/preset/custom_loadout/cheap/install_default_hardware()
+obj/item/modular_computer/tablet/preset/custom_loadout/cheap/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
@@ -7,7 +7,7 @@
 	battery_module = new/obj/item/computer_hardware/battery_module/nano(src)
 	battery_module.charge_to_full()
 
-/obj/item/modular_computer/tablet/preset/custom_loadout/advanced/install_default_hardware()
+obj/item/modular_computer/tablet/preset/custom_loadout/advanced/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
@@ -18,7 +18,7 @@
 	battery_module = new/obj/item/computer_hardware/battery_module(src)
 	battery_module.charge_to_full()
 
-/obj/item/modular_computer/tablet/preset/custom_loadout/standard/install_default_hardware()
+obj/item/modular_computer/tablet/preset/custom_loadout/standard/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/computer_hardware/processor_unit/small(src)
 	tesla_link = new/obj/item/computer_hardware/tesla_link(src)

@@ -1,23 +1,23 @@
-/datum/seed_pile
+datum/seed_pile
 	var/name
 	var/amount
 	var/datum/seed/seed_type // Keeps track of what our seed is
 	var/list/obj/item/seeds/seeds = list() // Tracks actual objects contained in the pile
 	var/ID
 
-/datum/seed_pile/New(var/obj/item/seeds/O, var/ID)
+datum/seed_pile/New(var/obj/item/seeds/O, var/ID)
 	name = O.name
 	amount = 1
 	seed_type = O.seed
 	seeds += O
 	src.ID = ID
 
-/datum/seed_pile/proc/matches(var/obj/item/seeds/O)
+datum/seed_pile/proc/matches(var/obj/item/seeds/O)
 	if (O.seed == seed_type)
 		return 1
 	return 0
 
-/obj/machinery/seed_storage
+obj/machinery/seed_storage
 	name = "Seed storage"
 	desc = "It stores, sorts, and dispenses seeds."
 	icon = 'icons/obj/vending.dmi'
@@ -39,7 +39,7 @@
 	var/lockdown = 0
 	var/datum/wires/seedstorage/wires = null
 
-/obj/machinery/seed_storage/Initialize(mapload, newdir)
+obj/machinery/seed_storage/Initialize(mapload, newdir)
 	. = ..()
 	wires = new(src)
 	if(!contraband_seeds.len)
@@ -80,18 +80,18 @@
 			))
 	return
 
-/obj/machinery/seed_storage/process(delta_time)
+obj/machinery/seed_storage/process(delta_time)
 	..()
 	if(seconds_electrified > 0)
 		seconds_electrified--
 	return
 
-/obj/machinery/seed_storage/random // This is mostly for testing, but I guess admins could spawn it
+obj/machinery/seed_storage/random // This is mostly for testing, but I guess admins could spawn it
 	name = "Random seed storage"
 	scanner = list("stats", "produce", "soil", "temperature", "light", "pressure")
 	starting_seeds = list(/obj/item/seeds/random = 50)
 
-/obj/machinery/seed_storage/garden
+obj/machinery/seed_storage/garden
 	name = "Garden seed storage"
 	scanner = list("stats")
 	starting_seeds = list(
@@ -145,7 +145,7 @@
 		/obj/item/seeds/wabback = 2
 )
 
-/obj/machinery/seed_storage/xenobotany
+obj/machinery/seed_storage/xenobotany
 	name = "Xenobotany seed storage"
 	scanner = list("stats", "produce", "soil", "temperature", "light", "pressure")
 	smart = 1
@@ -206,7 +206,7 @@
 		/obj/item/seeds/whitebeetseed = 3
 )
 
-/obj/machinery/seed_storage/attack_hand(mob/user, list/params)
+obj/machinery/seed_storage/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -221,7 +221,7 @@
 	user.set_machine(src)
 	ui_interact(user)
 
-/obj/machinery/seed_storage/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/seed_storage/ui_interact(mob/user, datum/tgui/ui)
 	if(!seeds_initialized)
 		for(var/typepath in starting_seeds)
 			var/amount = starting_seeds[typepath]
@@ -244,7 +244,7 @@
 		ui = new(user, src, "SeedStorage", name)
 		ui.open()
 
-/obj/machinery/seed_storage/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/seed_storage/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	if(smart)
@@ -355,7 +355,7 @@
 
 	return data
 
-/obj/machinery/seed_storage/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/seed_storage/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	var/ID = text2num(params["id"])
@@ -387,7 +387,7 @@
 				return TRUE
 			break
 
-/obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/seeds) && !lockdown)
 		add(O)
 		user.visible_message("[user] puts \the [O.name] into \the [src].", "You put \the [O] into \the [src].")
@@ -417,7 +417,7 @@
 	else if((O.is_wirecutter() || istype(O, /obj/item/multitool)) && panel_open)
 		wires.Interact(user)
 
-/obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)
 	if(!src.emagged)
 		emagged = 1
 		if(lockdown)
@@ -434,7 +434,7 @@
 			qdel(sparks)
 		return 1
 
-/obj/machinery/seed_storage/proc/add(var/obj/item/seeds/O as obj, var/contraband = 0)
+obj/machinery/seed_storage/proc/add(var/obj/item/seeds/O as obj, var/contraband = 0)
 	O.forceMove(src)
 	var/newID = 0
 

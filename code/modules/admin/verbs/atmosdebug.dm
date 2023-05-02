@@ -1,4 +1,4 @@
-/client/proc/atmosscan()
+client/proc/atmosscan()
 	set category = "Mapping"
 	set name = "Check Piping"
 	set background = 1
@@ -40,7 +40,7 @@
 							continue next_turf
 	to_chat(usr, "Done")
 
-/client/proc/powerdebug()
+client/proc/powerdebug()
 	set category = "Mapping"
 	set name = "Check Power"
 	if(!src.holder)

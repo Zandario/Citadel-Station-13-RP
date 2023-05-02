@@ -1,4 +1,4 @@
-/datum/powernet
+datum/powernet
 	var/list/cables = list()	// all cables & junctions
 	var/list/nodes = list()		// all connected machines
 
@@ -19,11 +19,11 @@
 
 	var/problem = 0				// If this is not 0 there is some sort of issue in the powernet. Monitors will display warnings.
 
-/datum/powernet/New()
+datum/powernet/New()
 	START_PROCESSING_POWERNET(src)
 	..()
 
-/datum/powernet/Destroy()
+datum/powernet/Destroy()
 	for(var/obj/structure/cable/C in cables)
 		cables -= C
 		C.powernet = null
@@ -35,21 +35,21 @@
 
 //Returns the amount of excess power (before refunding to SMESs) from last tick.
 //This is for machines that might adjust their power consumption using this data.
-/datum/powernet/proc/last_surplus()
+datum/powernet/proc/last_surplus()
 	return max(avail - load, 0)
 
-/datum/powernet/proc/draw_power(var/amount)
+datum/powernet/proc/draw_power(var/amount)
 	var/draw = clamp( amount, 0,  avail - load)
 	load += draw
 	return draw
 
-/datum/powernet/proc/is_empty()
+datum/powernet/proc/is_empty()
 	return !cables.len && !nodes.len
 
 //remove a cable from the current powernet
 //if the powernet is then empty, delete it
 //Warning : this proc DON'T check if the cable exists
-/datum/powernet/proc/remove_cable(var/obj/structure/cable/C)
+datum/powernet/proc/remove_cable(var/obj/structure/cable/C)
 	cables -= C
 	C.powernet = null
 	if(is_empty())//the powernet is now empty...
@@ -57,7 +57,7 @@
 
 //add a cable to the current powernet
 //Warning : this proc DON'T check if the cable exists
-/datum/powernet/proc/add_cable(var/obj/structure/cable/C)
+datum/powernet/proc/add_cable(var/obj/structure/cable/C)
 	if(C.powernet)// if C already has a powernet...
 		if(C.powernet == src)
 			return
@@ -69,7 +69,7 @@
 //remove a power machine from the current powernet
 //if the powernet is then empty, delete it
 //Warning : this proc DON'T check if the machine exists
-/datum/powernet/proc/remove_machine(var/obj/machinery/power/M)
+datum/powernet/proc/remove_machine(var/obj/machinery/power/M)
 	nodes -=M
 	M.powernet = null
 	if(is_empty())//the powernet is now empty...
@@ -78,7 +78,7 @@
 
 //add a power machine to the current powernet
 //Warning : this proc DON'T check if the machine exists
-/datum/powernet/proc/add_machine(var/obj/machinery/power/M)
+datum/powernet/proc/add_machine(var/obj/machinery/power/M)
 	if(M.powernet)// if M already has a powernet...
 		if(M.powernet == src)
 			return
@@ -88,12 +88,12 @@
 	nodes[M] = M
 
 // Triggers warning for certain amount of ticks
-/datum/powernet/proc/trigger_warning(var/duration_ticks = 20)
+datum/powernet/proc/trigger_warning(var/duration_ticks = 20)
 	problem = max(duration_ticks, problem)
 
 //handles the power changes in the powernet
 //called every ticks by the powernet controller
-/datum/powernet/proc/reset()
+datum/powernet/proc/reset()
 	var/numapc = 0
 
 	if(problem > 0)
@@ -130,7 +130,7 @@
 	avail = newavail
 	newavail = 0
 
-/datum/powernet/proc/get_electrocute_damage()
+datum/powernet/proc/get_electrocute_damage()
 	switch(avail)
 		if (1000 to INFINITY)
 			return min(rand(50,160),rand(50,160))
@@ -145,7 +145,7 @@
 		else
 			return 0
 
-/datum/powernet/proc/drain_energy_handler(datum/actor, amount, flags)
+datum/powernet/proc/drain_energy_handler(datum/actor, amount, flags)
 	// amount is in kj so no conversion needed
 	. = draw_power(amount)
 	if(flags & ENERGY_DRAIN_SURGE)
@@ -158,7 +158,7 @@
 
 // return a knot cable (O-X) if one is present in the turf
 // null if there's none
-/turf/proc/get_cable_node()
+turf/proc/get_cable_node()
 	if(!istype(src, /turf/simulated/floor))
 		return null
 	for(var/obj/structure/cable/C in src)
@@ -167,5 +167,5 @@
 	return null
 
 
-/area/proc/get_apc()
+area/proc/get_apc()
 	return apc

@@ -1,4 +1,4 @@
-/datum/role/job/station/emergency_responder //For staff managing/leading ERTs
+datum/role/job/station/emergency_responder //For staff managing/leading ERTs
 	id = JOB_ID_EMERGENCY_RESPONDER
 	title = "Emergency Responder"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_ADMIN
@@ -21,10 +21,10 @@
 
 	pto_type = PTO_CIVILIAN
 
-/datum/role/job/station/emergency_responder/get_access()
+datum/role/job/station/emergency_responder/get_access()
 	return get_all_accesses().Copy()
 
-/datum/outfit/job/station/emergency_responder
+datum/outfit/job/station/emergency_responder
 	name = OUTFIT_JOB_NAME("Emergency Responder")
 	id_type = /obj/item/card/id/centcom/ERT
 	pda_type = /obj/item/pda/centcom
@@ -39,6 +39,6 @@
 	belt = /obj/item/gun/energy/pulse_pistol
 	flags = OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
-/datum/outfit/job/station/emergency_responder/post_equip(var/mob/living/carbon/human/H)
+datum/outfit/job/station/emergency_responder/post_equip(var/mob/living/carbon/human/H)
 	..()
 	ert.add_antagonist(H.mind)

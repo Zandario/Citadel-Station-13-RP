@@ -1,44 +1,44 @@
 
 
 //The mercenary base's areas
-/area/mercbase/
+area/mercbase/
 	name = "\improper Asteroid Base"
 	lightswitch = 1
 	icon_state = "red"
 
-/area/mercbase/roid
+area/mercbase/roid
 	name = "\improper Mercenary Base Exterior"
-/area/mercbase/hall
+area/mercbase/hall
 	name = "\improper Mercenary Base Hallway"
-/area/mercbase/eqroom
+area/mercbase/eqroom
 	name = "\improper Mercenary Base Equipment Room"
-/area/mercbase/barracks
+area/mercbase/barracks
 	name = "\improper Mercenary Base Barracks"
-/area/mercbase/solar
+area/mercbase/solar
 	name = "\improper Mercenary Base Solar Control"
-/area/mercbase/medical
+area/mercbase/medical
 	name = "\improper Mercenary Base Medical"
-/area/mercbase/medicalOR
+area/mercbase/medicalOR
 	name = "\improper Mercenary Base Medical - Operating Room"
-/area/mercbase/medicalstorage
+area/mercbase/medicalstorage
 	name = "\improper Mercenary Base Medical Storage"
-/area/mercbase/airlock1
+area/mercbase/airlock1
 	name = "\improper Mercenary Base Airlock"
-/area/mercbase/airlock
+area/mercbase/airlock
 	name = "\improper Mercenary Base Airlock"
-/area/mercbase/atmos
+area/mercbase/atmos
 	name = "\improper Mercenary Base Atmospherics"
-/area/mercbase/command
+area/mercbase/command
 	name = "\improper Mercenary Base Command Center"
-/area/mercbase/panels
+area/mercbase/panels
 	name = "\improper Mercenary Base Solar Panels"
-/area/mercbase/power
+area/mercbase/power
 	name = "\improper Mercenary Base SMES Room"
-/area/mercbase/engineering
+area/mercbase/engineering
 	name = "\improper Mercenary Base Engineering"
-/area/mercbase/fuel
+area/mercbase/fuel
 	name = "\improper Mercenary Base Fuel Storage"
-/area/mercbase/dock
+area/mercbase/dock
 	name = "\improper Mercenary Base Boat Dock"
-/area/mercbase/cafeteria
+area/mercbase/cafeteria
 	name = "\improper Mercenary Base Boat Cafeteria"

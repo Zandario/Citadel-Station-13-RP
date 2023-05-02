@@ -1,11 +1,11 @@
-/datum/component/archaeology
+datum/component/archaeology
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/list/archdrops = list(/obj/item/bikehorn = list(ARCH_PROB = 100, ARCH_MAXDROP = 1)) // honk~
 	var/prob2drop
 	var/dug
 	var/datum/callback/callback
 
-/datum/component/archaeology/Initialize(list/_archdrops = list(), datum/callback/_callback)
+datum/component/archaeology/Initialize(list/_archdrops = list(), datum/callback/_callback)
 	archdrops = _archdrops
 	for(var/i in archdrops)
 		if(isnull(archdrops[i][ARCH_MAXDROP]))
@@ -19,13 +19,13 @@
 	RegisterSignal(parent, COMSIG_ATOM_EX_ACT, .proc/BombDig)
 	RegisterSignal(parent, COMSIG_ATOM_SING_PULL, .proc/SingDig)
 
-/datum/component/archaeology/InheritComponent(datum/component/archaeology/A, i_am_original)
+datum/component/archaeology/InheritComponent(datum/component/archaeology/A, i_am_original)
 	var/list/other_archdrops = A.archdrops
 	var/list/_archdrops = archdrops
 	for(var/I in other_archdrops)
 		_archdrops[I] += other_archdrops[I]
 
-/datum/component/archaeology/proc/Dig(datum/source, obj/item/I, mob/living/user)
+datum/component/archaeology/proc/Dig(datum/source, obj/item/I, mob/living/user)
 	if(dug)
 		to_chat(user, "<span class='notice'>Looks like someone has dug here already.</span>")
 		return
@@ -43,7 +43,7 @@
 			SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
 			return COMPONENT_NO_AFTERATTACK
 
-/datum/component/archaeology/proc/gets_dug()
+datum/component/archaeology/proc/gets_dug()
 	if(dug)
 		return
 	else
@@ -72,7 +72,7 @@
 	if(callback)
 		callback.Invoke()
 
-/datum/component/archaeology/proc/SingDig(datum/source, S, current_size)
+datum/component/archaeology/proc/SingDig(datum/source, S, current_size)
 	switch(current_size)
 		if(STAGE_THREE)
 			if(prob(30))
@@ -84,7 +84,7 @@
 			if(current_size >= STAGE_FIVE && prob(70))
 				gets_dug()
 
-/datum/component/archaeology/proc/BombDig(datum/source, severity, target)
+datum/component/archaeology/proc/BombDig(datum/source, severity, target)
 	switch(severity)
 		if(3)
 			return

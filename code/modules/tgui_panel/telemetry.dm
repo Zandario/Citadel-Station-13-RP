@@ -15,18 +15,18 @@
 #define TGUI_TELEMETRY_RESPONSE_WINDOW 30 SECONDS
 
 /// Time of telemetry request
-/datum/tgui_panel/var/telemetry_requested_at
+datum/tgui_panel/var/telemetry_requested_at
 /// Time of telemetry analysis completion
-/datum/tgui_panel/var/telemetry_analyzed_at
+datum/tgui_panel/var/telemetry_analyzed_at
 /// List of previous client connections
-/datum/tgui_panel/var/list/telemetry_connections
+datum/tgui_panel/var/list/telemetry_connections
 
 /**
  * private
  *
  * Requests some telemetry from the client.
  */
-/datum/tgui_panel/proc/request_telemetry()
+datum/tgui_panel/proc/request_telemetry()
 	telemetry_requested_at = world.time
 	telemetry_analyzed_at = null
 	window.send_message("telemetry/request", list(
@@ -42,7 +42,7 @@
  *
  * Is currently only useful for detecting ban evasion attempts.
  */
-/datum/tgui_panel/proc/analyze_telemetry(payload)
+datum/tgui_panel/proc/analyze_telemetry(payload)
 	if(world.time > telemetry_requested_at + TGUI_TELEMETRY_RESPONSE_WINDOW)
 		message_admins("[key_name(client)] sent telemetry outside of the allocated time window.")
 		return

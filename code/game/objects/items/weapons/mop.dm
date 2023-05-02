@@ -2,7 +2,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 #define MOPMODE_TILE 1
 #define MOPMODE_SWEEP 2
 
-/obj/item/mop
+obj/item/mop
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
@@ -21,12 +21,12 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	var/mopmode = MOPMODE_TILE
 	var/sweep_time = 7
 
-/obj/item/mop/Initialize(mapload)
+obj/item/mop/Initialize(mapload)
 	. = ..()
 	create_reagents(30)
 
 
-/obj/item/mop/attack_self(mob/user)
+obj/item/mop/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -38,7 +38,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 		mopmode = MOPMODE_TILE
 		to_chat(user, "<span class='warning'>You will now thoroughly clean a single tile at a time</span>")
 
-/obj/item/mop/afterattack(atom/A, mob/user, proximity)
+obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/debris/cleanable) || istype(A, /obj/effect/overlay))
 		if(reagents.total_volume < 1)
@@ -64,7 +64,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 
 // TO DO : MAKE SWEEPING WORK
 
-/obj/item/mop/proc/sweep(var/mob/user, var/turf/target)
+obj/item/mop/proc/sweep(var/mob/user, var/turf/target)
 	user.setClickCooldown(sweep_time)
 	var/direction = get_dir(get_turf(src),target)
 	var/list/turfs
@@ -120,7 +120,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 			to_chat(user, "<span class='warning'>There's not enough space for broad sweeps here!</span>")
 			return
 
-/obj/item/mop/proc/makeWet(atom/A, mob/user)
+obj/item/mop/proc/makeWet(atom/A, mob/user)
 	if(A.is_open_container())
 		if(A.reagents)
 			if(A.reagents.total_volume < 1)
@@ -135,12 +135,12 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 
 
 
-/obj/effect/attackby(obj/item/I, mob/user)
+obj/effect/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
 		return
 	..()
 
-/obj/item/mop/advanced
+obj/item/mop/advanced
 	desc = "The most advanced tool in a custodian's arsenal, with a cleaner synthesizer to boot! Just think of all the viscera you will clean up with this!"
 	name = "advanced mop"
 	icon_state = "advmop"
@@ -152,11 +152,11 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	var/refill_rate = 1 //Rate per process() tick mop refills itself
 	var/refill_reagent = "cleaner" //Determins what reagent to use for refilling, just in case someone wanted to make a HOLY MOP OF PURGING
 
-/obj/item/mop/advanced/Initialize()
+obj/item/mop/advanced/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/mop/advanced/AltClick(var/mob/user)
+obj/item/mop/advanced/AltClick(var/mob/user)
 	refill_enabled = !refill_enabled
 	if(refill_enabled)
 		START_PROCESSING(SSobj, src)
@@ -165,15 +165,15 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	to_chat(user, "<span class='notice'>You set the condenser switch to the '[refill_enabled ? "ON" : "OFF"]' position.</span>")
 	playsound(user, 'sound/machines/click.ogg', 30, 1)
 
-/obj/item/mop/advanced/process(delta_time)
+obj/item/mop/advanced/process(delta_time)
 	if(reagents.total_volume < 30)
 		reagents.add_reagent(refill_reagent, refill_rate)
 
-/obj/item/mop/advanced/examine(mob/user)
+obj/item/mop/advanced/examine(mob/user)
 	. = ..()
 	. += "The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b>."
 
-/obj/item/mop/advanced/Destroy()
+obj/item/mop/advanced/Destroy()
 	if(refill_enabled)
 		STOP_PROCESSING(SSobj, src)
 	return ..()

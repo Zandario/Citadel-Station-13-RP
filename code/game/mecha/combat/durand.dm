@@ -1,4 +1,4 @@
-/obj/mecha/combat/durand
+obj/mecha/combat/durand
 	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms."
 	name = "Durand"
 	icon_state = "durand"
@@ -37,7 +37,7 @@
 	icon_scale_y = 1.5
 
 /*
-/obj/mecha/combat/durand/New()
+obj/mecha/combat/durand/New()
 	..()
 	weapons += new /datum/mecha_weapon/ballistic/lmg(src)
 	weapons += new /datum/mecha_weapon/ballistic/scattershot(src)
@@ -48,7 +48,7 @@
 
 
 //This is for the Mech stats / Menu system. To be moved later on.
-/obj/mecha/combat/durand/get_commands()
+obj/mecha/combat/durand/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
@@ -62,7 +62,7 @@
 
 //Not needed anymore but left for reference.
 /*
-/obj/mecha/combat/durand/get_stats_part()
+obj/mecha/combat/durand/get_stats_part()
 	var/output = ..()
 	output += "<b>Defence mode: [defence?"on":"off"]</b>"
 	return output
@@ -70,7 +70,7 @@
 
 /*
 
-/obj/mecha/combat/durand/Topic(href, href_list)
+obj/mecha/combat/durand/Topic(href, href_list)
 	..()
 	if (href_list["toggle_defence_mode"])
 		src.defence_mode()
@@ -78,10 +78,10 @@
 */
 
 //Meant for random spawns.
-/obj/mecha/combat/durand/old
+obj/mecha/combat/durand/old
 	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/combat/durand/old/Initialize(mapload)
+obj/mecha/combat/durand/old/Initialize(mapload)
 	. = ..()
 	health = 25
 	maxhealth = 250	//Just slightly worse.

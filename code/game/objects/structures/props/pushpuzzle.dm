@@ -1,6 +1,6 @@
 //Pushable but not pullable objects.
 
-/obj/structure/girder/puzzle
+obj/structure/girder/puzzle
 	name = "perfectly smooth glass pillar"
 	desc = "A pillar made of a strange glass tough looking glass. You can't seem to pull it no matter how hard you try, though perhaps you could push?"
 	icon_state = "puzzle-glass"
@@ -11,17 +11,17 @@
 
 	pull_resist = MOVE_RESIST_ABSOLUTE
 
-/obj/structure/girder/puzzle/update_icon()
+obj/structure/girder/puzzle/update_icon()
 	if(anchored)
 		icon_state = initial(icon_state)
 	else
 		icon_state = initial(icon_state)
 
 
-/obj/structure/girder/puzzle
+obj/structure/girder/puzzle
 	material = /datum/material/alienalloy/dungeonium
 
-/obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench() && state == 0)
 		to_chat(user, "<span class='notice'>You find no bolts to dissamble the pillar...</span>")
 		return
@@ -49,7 +49,7 @@
 	else
 		return ..()
 
-/obj/structure/girder/puzzle/block
+obj/structure/girder/puzzle/block
 	name = "perfectly smooth metal block"
 	desc = "A sturdy metal pillar that is smooth all around. You can't seem to get a grip on it."
 	icon_state = "puzzle-block"

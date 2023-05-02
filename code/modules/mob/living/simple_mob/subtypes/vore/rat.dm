@@ -1,11 +1,11 @@
-/datum/category_item/catalogue/fauna/rat		//TODO: VIRGO_LORE_WRITING_WIP
+datum/category_item/catalogue/fauna/rat		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Creature - Rat"
 	desc = "A massive rat, some sort of mutated descendant of normal Earth rats. These ones seem particularly hungry, \
 	and are able to pounce and stun their targets - presumably to eat them. Their bodies are long and greyfurred, \
 	with a pink nose and large teeth, just like their regular-sized counterparts."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/vore/aggressive/rat
+mob/living/simple_mob/vore/aggressive/rat
 	name = "giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king."
 	tt_desc = "Mus muscular"
@@ -46,13 +46,13 @@
 	say_list_type = /datum/say_list/rat
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/rat
 
-/mob/living/simple_mob/vore/aggressive/rat/tame		//not quite tame but does not attack on sight
+mob/living/simple_mob/vore/aggressive/rat/tame		//not quite tame but does not attack on sight
 	name = "curious giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king. It seems to be more interested on scavenging."
 	var/mob/living/carbon/human/food
 	var/hunger = 0
 
-/mob/living/simple_mob/vore/aggressive/rat/maurice
+mob/living/simple_mob/vore/aggressive/rat/maurice
 	name = "Maurice"
 	desc = "The station's resident vermin supreme, he makes the rules for all maintnence rodents. \
 	He appears to have grown quite chubby off gifts of trash and cheese from the crew."
@@ -61,11 +61,11 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
-/mob/living/simple_mob/vore/aggressive/rat/death()
+mob/living/simple_mob/vore/aggressive/rat/death()
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/vore/aggressive/rat/phoron
+mob/living/simple_mob/vore/aggressive/rat/phoron
 	name = "phoron rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is alien overlord."
 	tt_desc = "Mus muscular phoronis"
@@ -91,12 +91,12 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/datum/say_list/rat
+datum/say_list/rat
 	speak = list("Squeek!","SQUEEK!","Squeek?")
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 	say_maybe_target = list("Squeek?")
 	say_got_target = list("SQUEEK!")
 
-/datum/ai_holder/simple_mob/melee/rat
+datum/ai_holder/simple_mob/melee/rat
 	speak_chance = 3

@@ -9,7 +9,7 @@
 #define COMM_MSGLEN_MINIMUM 6
 #define COMM_CCMSGLEN_MINIMUM 20
 
-/datum/tgui_module_old/communications
+datum/tgui_module_old/communications
 	name = "Command & Communications"
 	tgui_id = "CommunicationsConsole"
 
@@ -37,19 +37,19 @@
 
 	var/list/req_access = list()
 
-/datum/tgui_module_old/communications/New(host)
+datum/tgui_module_old/communications/New(host)
 	. = ..()
 	ATC = atc
 	crew_announcement = new()
 	crew_announcement.newscast = TRUE
 
-/datum/tgui_module_old/communications/ui_interact(mob/user, datum/tgui/ui)
+datum/tgui_module_old/communications/ui_interact(mob/user, datum/tgui/ui)
 	if(GLOB.using_map && !(get_z(user) in GLOB.using_map.contact_levels))
 		to_chat(user, SPAN_DANGER("Unable to establish a connection: You're too far away from the station!"))
 		return FALSE
 	. = ..()
 
-/datum/tgui_module_old/communications/proc/is_authenticated(mob/user, message = TRUE)
+datum/tgui_module_old/communications/proc/is_authenticated(mob/user, message = TRUE)
 	if(authenticated == COMM_AUTHENTICATION_MAX)
 		return COMM_AUTHENTICATION_MAX
 	else if(isobserver(user))
@@ -63,7 +63,7 @@
 			to_chat(user, SPAN_WARNING("Access denied."))
 		return COMM_AUTHENTICATION_NONE
 
-/datum/tgui_module_old/communications/proc/change_security_level(new_level)
+datum/tgui_module_old/communications/proc/change_security_level(new_level)
 	tmp_alertlevel = new_level
 	var/old_level = GLOB.security_level
 	if(!tmp_alertlevel) tmp_alertlevel = SEC_LEVEL_GREEN
@@ -87,7 +87,7 @@
 				feedback_inc("alert_comms_blue",1)
 	tmp_alertlevel = 0
 
-/datum/tgui_module_old/communications/ui_data(mob/user)
+datum/tgui_module_old/communications/ui_data(mob/user)
 	var/list/data = ..()
 	data["is_ai"]         = isAI(user) || isrobot(user)
 	data["menu_state"]    = data["is_ai"] ? ai_menu_state : menu_state
@@ -155,7 +155,7 @@
 		data["esc_status"] += " [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 	return data
 
-/datum/tgui_module_old/communications/proc/setCurrentMessage(mob/user, value)
+datum/tgui_module_old/communications/proc/setCurrentMessage(mob/user, value)
 	current_viewing_message_id = value
 
 	var/datum/comm_message_listener/l = obtain_message_listener()
@@ -163,19 +163,19 @@
 		if(m["id"] == current_viewing_message_id)
 			current_viewing_message = m
 
-/datum/tgui_module_old/communications/proc/setMenuState(mob/user, value)
+datum/tgui_module_old/communications/proc/setMenuState(mob/user, value)
 	if(isAI(user) || isrobot(user))
 		ai_menu_state = value
 	else
 		menu_state = value
 
-/datum/tgui_module_old/communications/proc/obtain_message_listener()
+datum/tgui_module_old/communications/proc/obtain_message_listener()
 	if(istype(host, /datum/computer_file/program/comm))
 		var/datum/computer_file/program/comm/P = host
 		return P.message_core
 	return global_message_listener
 
-/proc/post_status(atom/source, command, data1, data2, mob/user = null)
+proc/post_status(atom/source, command, data1, data2, mob/user = null)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 
 	if(!frequency)
@@ -197,7 +197,7 @@
 
 	frequency.post_signal(null, status_signal)
 
-/datum/tgui_module_old/communications/ui_act(action, params)
+datum/tgui_module_old/communications/ui_act(action, params)
 	if(..())
 		return TRUE
 	if(using_map && !(get_z(usr) in using_map.contact_levels))
@@ -374,15 +374,15 @@
 			emagged = FALSE
 			setMenuState(usr, COMM_SCREEN_MAIN)
 
-/datum/tgui_module_old/communications/ntos
+datum/tgui_module_old/communications/ntos
 	ntos = TRUE
 
 /* Etc global procs */
-/proc/enable_prison_shuttle(var/mob/user)
+proc/enable_prison_shuttle(var/mob/user)
 	for(var/obj/machinery/computer/prison_shuttle/PS in GLOB.machines)
 		PS.allowedtocall = !(PS.allowedtocall)
 
-/proc/call_shuttle_proc(var/mob/user)
+proc/call_shuttle_proc(var/mob/user)
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
 
@@ -421,7 +421,7 @@
 
 	return
 
-/proc/init_shift_change(var/mob/user, var/force = 0)
+proc/init_shift_change(var/mob/user, var/force = 0)
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
 
@@ -468,7 +468,7 @@
 
 	return
 
-/proc/cancel_call_proc(var/mob/user)
+proc/cancel_call_proc(var/mob/user)
 	if (!( ticker ) || !emergency_shuttle.can_recall())
 		return
 	if((ticker.mode.name == "blob")||(ticker.mode.name == "Meteor"))
@@ -480,7 +480,7 @@
 		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
 	return
 
-/proc/is_relay_online()
+proc/is_relay_online()
 	for(var/obj/machinery/telecomms/relay/M in world)
 		if(M.stat == 0)
 			return 1

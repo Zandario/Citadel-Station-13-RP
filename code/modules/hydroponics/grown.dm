@@ -1,5 +1,5 @@
 //Grown foods.
-/obj/item/reagent_containers/food/snacks/grown
+obj/item/reagent_containers/food/snacks/grown
 
 	name = "fruit"
 	icon = 'icons/obj/hydroponics_products.dmi'
@@ -14,7 +14,7 @@
 	var/datum/seed/seed
 	var/potency = -1
 
-/obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, planttype)
+obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, planttype)
 	. = ..()
 	if(!dried_type)
 		dried_type = type
@@ -61,7 +61,7 @@
 		damage_force = 1
 	catalogue_data = seed.catalog_data_grown
 
-/obj/item/reagent_containers/food/snacks/grown/update_desc()
+obj/item/reagent_containers/food/snacks/grown/update_desc()
 	. = ..()
 	if(!seed)
 		return
@@ -122,7 +122,7 @@
 		SSplants.product_descs["[seed.uid]"] = desc
 	desc += ". Delicious! Probably."
 
-/obj/item/reagent_containers/food/snacks/grown/update_icon()
+obj/item/reagent_containers/food/snacks/grown/update_icon()
 	if(!seed || !SSplants || !SSplants.plant_icon_cache)
 		return
 	cut_overlays()
@@ -142,7 +142,7 @@
 		SSplants.plant_icon_cache[icon_key] = plant_icon
 	add_overlay(plant_icon)
 
-/obj/item/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
+obj/item/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
 	. = ..()
 	if(M.is_incorporeal())
 		return
@@ -165,11 +165,11 @@
 			qdel(src)
 			return
 
-/obj/item/reagent_containers/food/snacks/grown/throw_impact(atom/hit_atom)
+obj/item/reagent_containers/food/snacks/grown/throw_impact(atom/hit_atom)
 	if(seed) seed.thrown_at(src,hit_atom)
 	..()
 
-/obj/item/reagent_containers/food/snacks/grown/attackby(var/obj/item/W, var/mob/living/user)
+obj/item/reagent_containers/food/snacks/grown/attackby(var/obj/item/W, var/mob/living/user)
 
 	if(seed)
 		if(seed.get_trait(TRAIT_PRODUCES_POWER) && istype(W, /obj/item/stack/cable_coil))
@@ -240,7 +240,7 @@
 					return
 	..()
 
-/obj/item/reagent_containers/food/snacks/grown/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/reagent_containers/food/snacks/grown/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 	var/mob/living/L = target
 	if(!istype(L))
@@ -258,7 +258,7 @@
 				to_chat(user, "<span class='danger'>\The [src] has fallen to bits.</span>")
 				qdel(src)
 
-/obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user)
+obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -310,7 +310,7 @@
 				return
 	*/
 
-/obj/item/reagent_containers/food/snacks/grown/pickup(mob/user, flags, atom/oldLoc)
+obj/item/reagent_containers/food/snacks/grown/pickup(mob/user, flags, atom/oldLoc)
 	..()
 	if(!seed)
 		return
@@ -327,13 +327,13 @@
 
 // Predefined types for placing on the map.
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
+obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
 	plantname = "libertycap"
 
-/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
+obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
 	plantname = "ambrosia"
 
-/obj/item/reagent_containers/food/snacks/fruit_slice
+obj/item/reagent_containers/food/snacks/fruit_slice
 	name = "fruit slice"
 	desc = "A slice of some tasty fruit."
 	icon = 'icons/obj/hydroponics_misc.dmi'
@@ -341,7 +341,7 @@
 
 var/list/fruit_icon_cache = list()
 
-/obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, datum/seed/S)
+obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, datum/seed/S)
 	. = ..()
 	// Need to go through and make a general image caching controller. Todo.
 	if(!istype(S))

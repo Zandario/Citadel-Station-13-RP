@@ -1,4 +1,4 @@
-/proc/getbrokeninhands()
+proc/getbrokeninhands()
 	var/icon/IL = new('icons/mob/items/lefthand.dmi')
 	var/list/Lstates = IL.IconStates()
 	var/icon/IR = new('icons/mob/items/righthand.dmi')
@@ -32,5 +32,3 @@
 		fdel(F)
 		F << text
 		to_chat(world, "Completeled successfully and written to [F]")
-
-

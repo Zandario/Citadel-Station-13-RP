@@ -2,7 +2,7 @@
 // for someone who may not be as experienced in coding. When making changes, please try to keep it this way.
 
 // An actual program definition.
-/datum/computer_file/program/game
+datum/computer_file/program/game
 	filename = "arcadec"					// File name, as shown in the file browser program.
 	filedesc = "Unknown Game"				// User-Friendly name. In this case, we will generate a random name in constructor.
 	program_icon_state = "game"				// Icon state of this program's screen.
@@ -15,25 +15,25 @@
 	var/picked_enemy_name
 
 // Blatantly stolen and shortened version from arcade machines. Generates a random enemy name
-/datum/computer_file/program/game/proc/random_enemy_name()
+datum/computer_file/program/game/proc/random_enemy_name()
 	var/name_part1 = pick("the Automatic ", "Farmer ", "Lord ", "Professor ", "the Cuban ", "the Evil ", "the Dread King ", "the Space ", "Lord ", "the Great ", "Duke ", "General ")
 	var/name_part2 = pick("Melonoid", "Murdertron", "Sorcerer", "Ruin", "Jeff", "Ectoplasm", "Crushulon", "Uhangoid", "Vhakoid", "Peteoid", "Slime", "Lizard Man", "Unicorn")
 	return "[name_part1] [name_part2]"
 
 // When the program is first created, we generate a new enemy name and name ourselves accordingly.
-/datum/computer_file/program/game/New()
+datum/computer_file/program/game/New()
 	..()
 	picked_enemy_name = random_enemy_name()
 	filedesc = "Defeat [picked_enemy_name]"
 
 // Important in order to ensure that copied versions will have the same enemy name.
-/datum/computer_file/program/game/clone()
+datum/computer_file/program/game/clone()
 	var/datum/computer_file/program/game/G = ..()
 	G.picked_enemy_name = picked_enemy_name
 	return G
 
 // When running the program, we also want to pass our enemy name to the nano module.
-/datum/computer_file/program/game/run_program()
+datum/computer_file/program/game/run_program()
 	. = ..()
 	if(. && NM)
 		var/datum/nano_module/arcade_classic/NMC = NM
@@ -43,7 +43,7 @@
 // Nano module the program uses.
 // This can be either /datum/nano_module/ or /datum/nano_module/program. The latter is intended for nano modules that are suposed to be exclusively used with modular computers,
 // and should generally not be used, as such nano modules are hard to use on other places.
-/datum/nano_module/arcade_classic/
+datum/nano_module/arcade_classic/
 	name = "Classic Arcade"
 	var/player_mana			// Various variables specific to the nano module. In this case, the nano module is a simple arcade game, so the variables store health and other stats.
 	var/player_health
@@ -53,13 +53,13 @@
 	var/gameover
 	var/information
 
-/datum/nano_module/arcade_classic/New()
+datum/nano_module/arcade_classic/New()
 	..()
 	new_game()
 
 // nano_ui_interact handles transfer of data to NanoUI. Keep in mind that data you pass from here is actually sent to the client. In other words, don't send anything you don't want a client
 // to see, and don't send unnecessarily large amounts of data (due to laginess).
-/datum/nano_module/arcade_classic/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/arcade_classic/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	data["player_health"] = player_health
@@ -79,7 +79,7 @@
 		ui.open()
 
 // Three helper procs i've created. These are unique to this particular nano module. If you are creating your own nano module, you'll most likely create similar procs too.
-/datum/nano_module/arcade_classic/proc/enemy_play()
+datum/nano_module/arcade_classic/proc/enemy_play()
 	if((enemy_mana < 5) && prob(60))
 		var/steal = rand(2, 3)
 		player_mana -= steal
@@ -95,7 +95,7 @@
 		player_health -= dam
 		information += "[enemy_name] attacks for [dam] damage!"
 
-/datum/nano_module/arcade_classic/proc/check_gameover()
+datum/nano_module/arcade_classic/proc/check_gameover()
 	if((player_health <= 0) || player_mana <= 0)
 		if(enemy_health <= 0)
 			information += "You have defeated [enemy_name], but you have died in the fight!"
@@ -109,7 +109,7 @@
 		return TRUE
 	return FALSE
 
-/datum/nano_module/arcade_classic/proc/new_game()
+datum/nano_module/arcade_classic/proc/new_game()
 	player_mana = 10
 	player_health = 30
 	enemy_mana = 20
@@ -119,7 +119,7 @@
 
 
 
-/datum/nano_module/arcade_classic/Topic(href, href_list)
+datum/nano_module/arcade_classic/Topic(href, href_list)
 	if(..())		// Always begin your Topic() calls with a parent call!
 		return 1
 	if(href_list["new_game"])

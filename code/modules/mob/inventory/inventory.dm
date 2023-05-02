@@ -1,7 +1,7 @@
 /**
  * mob inventory data goes in here.
  */
-/datum/inventory
+datum/inventory
 	//? basics
 	/// owning mob
 	var/mob/owner
@@ -10,19 +10,19 @@
 
 	//? caches
 
-/datum/inventory/New(mob/M)
+datum/inventory/New(mob/M)
 	if(!istype(M))
 		CRASH("no mob")
 	owner = M
 
-/datum/inventory/Destroy()
+datum/inventory/Destroy()
 	owner = null
 	return ..()
 
 /**
  * returns list() of items with body_cover_flags
  */
-/datum/inventory/proc/items_that_cover(cover_flags)
+datum/inventory/proc/items_that_cover(cover_flags)
 	if(cover_flags == NONE)
 		return list()
 	. = list()
@@ -38,7 +38,7 @@
  *
  * @return true/false based on if it worked
  */
-/mob/proc/handle_abstract_slot_insertion(obj/item/I, slot, flags)
+mob/proc/handle_abstract_slot_insertion(obj/item/I, slot, flags)
 	if(!ispath(slot, /datum/inventory_slot_meta/abstract))
 		slot = resolve_inventory_slot_meta(slot)?.type
 		if(!ispath(slot, /datum/inventory_slot_meta/abstract))
@@ -93,7 +93,7 @@
  *
  * @return TRUE/FALSE for success
  */
-/mob/proc/_unequip_item(obj/item/I, flags, newloc, mob/user = src)
+mob/proc/_unequip_item(obj/item/I, flags, newloc, mob/user = src)
 	PROTECTED_PROC(TRUE)
 	if(!I)
 		return TRUE
@@ -144,7 +144,7 @@
 
 	update_action_buttons()
 
-/mob/proc/handle_item_denesting(obj/item/I, old_slot, flags, mob/user)
+mob/proc/handle_item_denesting(obj/item/I, old_slot, flags, mob/user)
 	// if the item was inside something,
 	if(I.worn_inside)
 		var/obj/item/over = I.worn_over
@@ -191,7 +191,7 @@
  * - flags - inventory operation hint bitfield, see defines
  * - user - stripper - can be null
  */
-/mob/proc/can_unequip(obj/item/I, slot, flags, mob/user = src)
+mob/proc/can_unequip(obj/item/I, slot, flags, mob/user = src)
 	// destroyed IS allowed to call these procs
 	if(I && QDELETED(I) && !QDESTROYING(I))
 		to_chat(user, SPAN_DANGER("A deleted [I] was checked in can_unequip(). Report this entire line to coders immediately. Debug data: [I] ([REF(I)]) slot [slot] flags [flags] user [user]"))
@@ -234,7 +234,7 @@
  *
  * todo: refactor nesting to not require this shit
  */
-/mob/proc/can_equip(obj/item/I, slot, flags, mob/user, denest_to)
+mob/proc/can_equip(obj/item/I, slot, flags, mob/user, denest_to)
 	// let's NOT.
 	if(I && QDELETED(I))
 		to_chat(user, SPAN_DANGER("A deleted [I] was checked in can_equip(). Report this entire line to coders immediately. Debug data: [I] ([REF(I)]) slot [slot] flags [flags] user [user]"))
@@ -346,13 +346,13 @@
  *
  * this proc should give the feedback of what's missing!
  */
-/mob/proc/inventory_slot_bodypart_check(obj/item/I, slot, mob/user, flags)
+mob/proc/inventory_slot_bodypart_check(obj/item/I, slot, mob/user, flags)
 	return TRUE
 
 /**
  * drop items if a bodypart is missing
  */
-/mob/proc/reconsider_inventory_slot_bodypart(bodypart)
+mob/proc/reconsider_inventory_slot_bodypart(bodypart)
 	// todo: this and the above function should be on the slot datums.
 	var/list/obj/item/affected
 	switch(bodypart)
@@ -395,7 +395,7 @@
 /**
  * checks for slot conflict
  */
-/mob/proc/inventory_slot_conflict_check(obj/item/I, slot)
+mob/proc/inventory_slot_conflict_check(obj/item/I, slot)
 	if(_item_by_slot(slot))
 		return CAN_EQUIP_SLOT_CONFLICT_HARD
 	switch(slot)
@@ -409,7 +409,7 @@
  * checks if you can reach a slot
  * return null or the first item blocking
  */
-/mob/proc/inventory_slot_reachability_conflict(obj/item/I, slot, mob/user)
+mob/proc/inventory_slot_reachability_conflict(obj/item/I, slot, mob/user)
 	return null
 
 /**
@@ -417,7 +417,7 @@
  *
  * return TRUE if conflicting, otherwise FALSE
  */
-/mob/proc/inventory_slot_semantic_conflict(obj/item/I, datum/inventory_slot_meta/slot, mob/user)
+mob/proc/inventory_slot_semantic_conflict(obj/item/I, datum/inventory_slot_meta/slot, mob/user)
 	. = FALSE
 	slot = resolve_inventory_slot_meta(slot)
 	return slot._equip_check(I, src, user)
@@ -433,7 +433,7 @@
  *
  * @return TRUE/FALSE on success
  */
-/mob/proc/_equip_item(obj/item/I, flags, slot, mob/user = src)
+mob/proc/_equip_item(obj/item/I, flags, slot, mob/user = src)
 	PROTECTED_PROC(TRUE)
 
 	if(!I)		// how tf would we put on "null"?
@@ -491,7 +491,7 @@
  *
  * return true/false based on if we succeeded
  */
-/mob/proc/_handle_item_reequip(obj/item/I, slot, old_slot, flags, mob/user = src)
+mob/proc/_handle_item_reequip(obj/item/I, slot, old_slot, flags, mob/user = src)
 	ASSERT(slot)
 	if(!old_slot)
 		// DO NOT USE _slot_by_item - at this point, the item has already been var-set into the new slot!
@@ -550,7 +550,7 @@
  *
  * some things call us from outside inventory code. this is shitcode and shouldn't be propageted.
  */
-/mob/proc/_handle_inventory_hud_remove(obj/item/I)
+mob/proc/_handle_inventory_hud_remove(obj/item/I)
 	if(client)
 		client.screen -= I
 	I.screen_loc = null
@@ -558,7 +558,7 @@
 /**
  * handles adding an item or updating an item to our hud
  */
-/mob/proc/_handle_inventory_hud_update(obj/item/I, slot)
+mob/proc/_handle_inventory_hud_update(obj/item/I, slot)
 	var/datum/inventory_slot_meta/meta = resolve_inventory_slot_meta(slot)
 	I.screen_loc = meta.hud_position
 	if(client)
@@ -571,7 +571,7 @@
  * include_inhands - include held items too?
  * include_restraints - include restraints too?
  */
-/mob/proc/get_equipped_items(include_inhands, include_restraints)
+mob/proc/get_equipped_items(include_inhands, include_restraints)
 	return get_held_items() + _get_all_slots(include_restraints)
 
 /**
@@ -581,7 +581,7 @@
  * include_inhands - include held items too?
  * include_restraints - include restraints too?
  */
-/mob/proc/delete_inventory(include_inhands = TRUE, include_restraints = TRUE)
+mob/proc/delete_inventory(include_inhands = TRUE, include_restraints = TRUE)
 	for(var/obj/item/I as anything in get_equipped_items(include_inhands, include_restraints))
 		qdel(I)
 
@@ -593,7 +593,7 @@
  * - include_restraints - include restraints too?
  * - force - ignore nodrop and all that
  */
-/mob/proc/drop_inventory(include_inhands = TRUE, include_restraints = TRUE, force = TRUE)
+mob/proc/drop_inventory(include_inhands = TRUE, include_restraints = TRUE, force = TRUE)
 	for(var/obj/item/I as anything in get_equipped_items(include_inhands, include_restraints))
 		drop_item_to_ground(I, INV_OP_SILENT | INV_OP_FLUFFLESS | (force? INV_OP_FORCE : NONE))
 
@@ -601,7 +601,7 @@
 	// e.g. dropping jumpsuit makes it impossible to transfer a belt since it
 	// de-equipped from the jumpsuit
 
-/mob/proc/transfer_inventory_to_loc(atom/newLoc, include_inhands = TRUE, include_restraints = TRUE, force = TRUE)
+mob/proc/transfer_inventory_to_loc(atom/newLoc, include_inhands = TRUE, include_restraints = TRUE, force = TRUE)
 	for(var/obj/item/I as anything in get_equipped_items(include_inhands, include_restraints))
 		transfer_item_to_loc(I, newLoc, INV_OP_SILENT | INV_OP_FLUFFLESS | (force? INV_OP_FORCE : NONE))
 	// todo: handle what happens if dropping something requires a logic thing
@@ -612,7 +612,7 @@
  * gets the primary item in a slot
  * null if not in inventory. inhands don't count as inventory here, use held item procs.
  */
-/mob/proc/item_by_slot(slot)
+mob/proc/item_by_slot(slot)
 	return _item_by_slot(slot)	// why the needless indirection? so people don't override this for slots!
 
 /**
@@ -620,7 +620,7 @@
  * null if not in inventory, otherwise list
  * inhands do not count as inventory
  */
-/mob/proc/items_by_slot(slot)
+mob/proc/items_by_slot(slot)
 	var/obj/item/I = _item_by_slot(slot)
 	if(!I)
 		return list()
@@ -632,7 +632,7 @@
  *
  * SLOT_ID_HANDS if in hands
  */
-/mob/proc/is_in_inventory(obj/item/I)
+mob/proc/is_in_inventory(obj/item/I)
 	return (I?.worn_mob() == src) && I.worn_slot
 	// we use entirely cached vars for speed.
 	// if this returns bad data well fuck you, don't break equipped()/unequipped().
@@ -640,7 +640,7 @@
 /**
  * returns if an item is in inventory (equipped) rather than hands
  */
-/mob/proc/is_wearing(obj/item/I)
+mob/proc/is_wearing(obj/item/I)
 	var/slot = is_in_inventory(I)
 	return slot && (slot != SLOT_ID_HANDS)
 
@@ -648,31 +648,31 @@
  * get slot of item if it's equipped.
  * null if not in inventory. SLOT_HANDS if held.
  */
-/mob/proc/slot_by_item(obj/item/I)
+mob/proc/slot_by_item(obj/item/I)
 	return is_in_inventory(I) || null		// short circuited to that too
 									// if equipped/unequipped didn't set worn_slot well jokes on you lmfao
 
-/mob/proc/_equip_slot(obj/item/I, slot, flags)
+mob/proc/_equip_slot(obj/item/I, slot, flags)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	. = _set_inv_slot(slot, I, flags) != INVENTORY_SLOT_DOES_NOT_EXIST
 
-/mob/proc/_unequip_slot(slot, flags)
+mob/proc/_unequip_slot(slot, flags)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	. = _set_inv_slot(slot, null, flags) != INVENTORY_SLOT_DOES_NOT_EXIST
 
-/mob/proc/_unequip_held(obj/item/I, flags)
+mob/proc/_unequip_held(obj/item/I, flags)
 	return
 
-/mob/proc/has_slot(id)
+mob/proc/has_slot(id)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return _item_by_slot(id) != INVENTORY_SLOT_DOES_NOT_EXIST
 
 // todo: both of these below procs needs optimization for when we need the datum anyways, to avoid two lookups
 
-/mob/proc/semantically_has_slot(id)
+mob/proc/semantically_has_slot(id)
 	return has_slot(id) && _semantic_slot_id_check(id)
 
-/mob/proc/get_inventory_slot_ids(semantic, sorted)
+mob/proc/get_inventory_slot_ids(semantic, sorted)
 	// get all
 	if(sorted)
 		. = list()
@@ -717,7 +717,7 @@
  * update_icons - update icons immediately?
  * logic - apply logic like dropping stuff from pockets when unequippiing a jumpsuit imemdiately?
  */
-/mob/proc/_set_inv_slot(slot, obj/item/I, flags)
+mob/proc/_set_inv_slot(slot, obj/item/I, flags)
 	PROTECTED_PROC(TRUE)
 	. = INVENTORY_SLOT_DOES_NOT_EXIST
 	CRASH("Attempting to set inv slot of [slot] to [I] went to base /mob. You probably had someone assigning to a nonexistant slot!")
@@ -726,7 +726,7 @@
  * ""expensive"" proc that scans for the real slot of an item
  * usually used when safety checks detect something is amiss
  */
-/mob/proc/_slot_by_item(obj/item/I)
+mob/proc/_slot_by_item(obj/item/I)
 	PROTECTED_PROC(TRUE)
 
 /**
@@ -734,18 +734,18 @@
  * returns -1 if no slot
  * YES, MAGIC VALUE BUT SOLE USER IS 20 LINES ABOVE, SUE ME.
  */
-/mob/proc/_item_by_slot(slot)
+mob/proc/_item_by_slot(slot)
 	PROTECTED_PROC(TRUE)
 	return INVENTORY_SLOT_DOES_NOT_EXIST
 
-/mob/proc/_get_all_slots(include_restraints)
+mob/proc/_get_all_slots(include_restraints)
 	PROTECTED_PROC(TRUE)
 	return list()
 
 /**
  * return all slot ids we implement
  */
-/mob/proc/_get_inventory_slot_ids()
+mob/proc/_get_inventory_slot_ids()
 	PROTECTED_PROC(TRUE)
 	return list()
 
@@ -753,6 +753,6 @@
  * override this if you need to make a slot not semantically exist
  * useful for other species that don't have a slot so you don't have jumpsuit requirements apply
  */
-/mob/proc/_semantic_slot_id_check(id)
+mob/proc/_semantic_slot_id_check(id)
 	PROTECTED_PROC(TRUE)
 	return TRUE

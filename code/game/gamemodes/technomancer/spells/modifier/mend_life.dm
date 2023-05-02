@@ -1,4 +1,4 @@
-/datum/technomancer/spell/mend_life
+datum/technomancer/spell/mend_life
 	name = "Mend Life"
 	desc = "Heals minor wounds, such as cuts, bruises, burns, and other non-lifethreatening injuries.  \
 	Instability is split between the target and technomancer, if seperate.  The function will end prematurely \
@@ -9,7 +9,7 @@
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/modifier/mend_life
+obj/item/spell/modifier/mend_life
 	name = "mend life"
 	desc = "Watch your wounds close up before your eyes."
 	icon_state = "mend_life"
@@ -19,7 +19,7 @@
 	modifier_type = /datum/modifier/technomancer/mend_life
 	modifier_duration = 10 SECONDS
 
-/datum/modifier/technomancer/mend_life
+datum/modifier/technomancer/mend_life
 	name = "mend life"
 	desc = "You feel rather refreshed."
 	mob_overlay_state = "green_sparkles"
@@ -28,7 +28,7 @@
 	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel healthier than before.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/technomancer/mend_life/tick()
+datum/modifier/technomancer/mend_life/tick()
 	if(holder.isSynthetic()) // Don't heal synths!
 		expire()
 		return

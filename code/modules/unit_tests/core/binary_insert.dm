@@ -1,5 +1,5 @@
 /// A test to ensure the sanity of BINARY_INSERT
-/datum/unit_test/binary_insert/Run()
+datum/unit_test/binary_insert/Run()
 	var/list/datum/binary_insert_node/nodes = list()
 
 	var/datum/binary_insert_node/node_a = new /datum/binary_insert_node(10)
@@ -19,8 +19,8 @@
 	TEST_ASSERT_EQUAL(nodes[2].x, 10, "The second node should be the one with 10")
 	TEST_ASSERT_EQUAL(nodes[3].x, 15, "The third node should be the one with 15")
 
-/datum/binary_insert_node
+datum/binary_insert_node
 	var/x
 
-/datum/binary_insert_node/New(_x)
+datum/binary_insert_node/New(_x)
 	x = _x

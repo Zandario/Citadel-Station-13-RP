@@ -1,4 +1,4 @@
-/obj/structure/trash_pile
+obj/structure/trash_pile
 	name = "trash pile"
 	desc = "A heap of garbage, but maybe there's something interesting inside?"
 	icon = 'icons/obj/trash_piles.dmi'
@@ -29,7 +29,7 @@
 
 	var/global/list/allocated_gamma = list()
 
-/obj/structure/trash_pile/Initialize(mapload)
+obj/structure/trash_pile/Initialize(mapload)
 	. = ..()
 	icon_state = pick(
 		"pile1",
@@ -45,12 +45,12 @@
 		"brokecomp")
 	pest_nest = new(src)
 
-/obj/structure/trash_pile/Destroy()
+obj/structure/trash_pile/Destroy()
 	qdel(pest_nest)
 	pest_nest = null
 	return ..()
 
-/obj/structure/trash_pile/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/trash_pile/attackby(obj/item/W as obj, mob/user as mob)
 	var/w_type = W.type
 	if(w_type in allocated_gamma)
 		if(!user.attempt_insert_item_for_installation(W, src))
@@ -63,7 +63,7 @@
 	else
 		return ..()
 
-/obj/structure/trash_pile/attack_generic(mob/user)
+obj/structure/trash_pile/attack_generic(mob/user)
 	//Simple Animal
 	if(isanimal(user))
 		var/mob/living/L = user
@@ -82,7 +82,7 @@
 	else
 		return ..()
 
-/obj/structure/trash_pile/attack_hand(mob/user, list/params)
+obj/structure/trash_pile/attack_hand(mob/user, list/params)
 	//Human mob
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -125,7 +125,7 @@
 		return ..()
 
 //Random lists
-/obj/structure/trash_pile/proc/produce_alpha_item()
+obj/structure/trash_pile/proc/produce_alpha_item()
 	var/path = pick(prob(5);/obj/item/clothing/gloves/rainbow,
 					prob(5);/obj/item/clothing/gloves/white,
 					prob(5);/obj/item/storage/backpack,
@@ -219,7 +219,7 @@
 	var/obj/item/I = new path()
 	return I
 
-/obj/structure/trash_pile/proc/produce_beta_item()
+obj/structure/trash_pile/proc/produce_beta_item()
 	var/path = pick(prob(6);/obj/item/storage/pill_bottle/tramadol,
 					prob(4);/obj/item/storage/pill_bottle/happy,
 					prob(4);/obj/item/storage/pill_bottle/zoom,
@@ -256,7 +256,7 @@
 	var/obj/item/I = new path()
 	return I
 
-/obj/structure/trash_pile/proc/produce_gamma_item()
+obj/structure/trash_pile/proc/produce_gamma_item()
 	var/path = pick_n_take(unique_gamma)
 	if(!path) //Tapped out, reallocate?
 		for(var/P in allocated_gamma)
@@ -273,7 +273,7 @@
 	else
 		return produce_beta_item()
 
-/obj/structure/mob_spawner/pest_nest
+obj/structure/mob_spawner/pest_nest
 	name = "trash"
 	desc = "A small heap of trash, perfect for vermin to nest in."
 	icon = 'icons/obj/trash_piles.dmi'
@@ -283,7 +283,7 @@
 	destructible = 1
 	spawn_delay = 1 HOUR
 
-/obj/structure/mob_spawner/pest_nest/Initialize(mapload)
+obj/structure/mob_spawner/pest_nest/Initialize(mapload)
 	. = ..()
 	last_spawn = rand(world.time - spawn_delay, world.time)
 	icon_state = pick(
@@ -299,11 +299,11 @@
 		"trashbag",
 		"brokecomp")
 
-/obj/structure/mob_spawner/pest_nest/do_spawn(var/mob_path)
+obj/structure/mob_spawner/pest_nest/do_spawn(var/mob_path)
 	. = ..()
 	var/atom/A = get_holder_at_turf_level(src)
 	A.visible_message("[.] crawls out of \the [src].")
 
-/obj/structure/mob_spawner/pest_nest/get_death_report(var/mob/living/L)
+obj/structure/mob_spawner/pest_nest/get_death_report(var/mob/living/L)
 	..()
 	last_spawn = rand(world.time - spawn_delay, world.time)

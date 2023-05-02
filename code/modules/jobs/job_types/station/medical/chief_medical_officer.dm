@@ -1,4 +1,4 @@
-/datum/role/job/station/chief_medical_officer
+datum/role/job/station/chief_medical_officer
 	id = JOB_ID_CHIEF_MEDICAL_OFFICER
 	title = "Chief Medical Officer"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_COMMAND
@@ -56,16 +56,16 @@
 		"Chief Surgeon" = /datum/prototype/alt_title/cmo/surgeon
 	)
 
-/datum/prototype/alt_title/cmo/physician
+datum/prototype/alt_title/cmo/physician
 	title = "Chief Physician"
 
-/datum/prototype/alt_title/cmo/director
+datum/prototype/alt_title/cmo/director
 	title = "Director of Medicine"
 
-/datum/prototype/alt_title/cmo/surgeon
+datum/prototype/alt_title/cmo/surgeon
 	title = "Chief Surgeon"
 
-/datum/outfit/job/station/chief_medical_officer
+datum/outfit/job/station/chief_medical_officer
 	name = OUTFIT_JOB_NAME("Chief Medical Officer")
 	l_ear  =/obj/item/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer

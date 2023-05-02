@@ -1,4 +1,4 @@
-/datum/borrow
+datum/borrow
 	var/broker = ""
 	var/borrower = ""
 	var/datum/stock/stock = null
@@ -11,7 +11,7 @@
 	var/deposit = 0
 	var/offer_expires = 0
 
-/datum/stock
+datum/stock
 	var/name = "Stock"
 	var/short_name = "STK"
 	var/desc = "A company that does not exist."
@@ -50,30 +50,30 @@
 	var/fluctuation_counter = 0
 	var/datum/industry/industry = null
 
-/datum/stock/proc/addEvent(datum/stockEvent/E)
+datum/stock/proc/addEvent(datum/stockEvent/E)
 	events |= E
 
-/datum/stock/proc/addArticle(datum/article/A)
+datum/stock/proc/addArticle(datum/article/A)
 	if(!(A in articles))
 		articles.Insert(1, A)
 	A.ticks = world.time
 
-/datum/stock/proc/generateEvents()
+datum/stock/proc/generateEvents()
 	var/list/types = typesof(/datum/stockEvent) - /datum/stockEvent
 	for(var/T in types)
 		generateEvent(T)
 
-/datum/stock/proc/generateEvent(T)
+datum/stock/proc/generateEvent(T)
 	var/datum/stockEvent/E = new T(src)
 	addEvent(E)
 
-/datum/stock/proc/affectPublicOpinion(boost)
+datum/stock/proc/affectPublicOpinion(boost)
 	optimism += rand(0, 500) / 500 * boost
 	average_optimism += rand(0, 150) / 5000 * boost
 	speculation += rand(-1, 50) / 10 * boost
 	performance += rand(0, 150) / 100 * boost
 
-/datum/stock/proc/generateIndustry()
+datum/stock/proc/generateIndustry()
 	if(findtext(name, "Farms"))
 		industry = new /datum/industry/agriculture
 	else if(findtext(name, "Software") || findtext(name, "Programming")  || findtext(name, "IT Group") || findtext(name, "Electronics") || findtext(name, "Electric") || findtext(name, "Nanotechnology"))
@@ -91,7 +91,7 @@
 	for(var/i = 0, i < rand(2, 5), i++)
 		products += industry.generateProductName(name)
 
-/datum/stock/proc/frc(amt)
+datum/stock/proc/frc(amt)
 	var/shares = available_shares + outside_shareholders * average_shares
 	var/fr = amt / 100 / shares * fluctuational_coefficient * fluctuation_rate * max(-(current_trend / 100), 1)
 	if((fr < 0 && speculation < 0) || (fr > 0 && speculation > 0))
@@ -100,17 +100,17 @@
 		fr /= max(abs(speculation) / 5, 1)
 	return fr
 
-/datum/stock/proc/supplyGrowth(amt)
+datum/stock/proc/supplyGrowth(amt)
 	var/fr = frc(amt)
 	available_shares += amt
 	if(abs(fr) < 0.0001)
 		return
 	current_value -= fr * current_value
 
-/datum/stock/proc/supplyDrop(amt)
+datum/stock/proc/supplyDrop(amt)
 	supplyGrowth(-amt)
 
-/datum/stock/proc/fluctuate()
+datum/stock/proc/fluctuate()
 	var/change = rand(-100, 100) / 10 + optimism * rand(200) / 10
 	optimism -= (optimism - average_optimism) * (rand(10,80) / 1000)
 	var/shift_score = change + current_trend
@@ -164,7 +164,7 @@
 	last_trend = current_trend
 	current_trend += rand(-200, 200) / 100 + optimism * rand(200) / 10 + max(50 - abs(speculation), 0) / 50 * rand(0, 200) / 1000 * (-current_trend) + max(speculation - 50, 0) * rand(0, 200) / 1000 * speculation / 400
 
-/datum/stock/proc/unifyShares()
+datum/stock/proc/unifyShares()
 	for(var/I in shareholders)
 		var/shr = shareholders[I]
 		if(shr % 2)
@@ -184,7 +184,7 @@
 	current_value *= 2
 	last_unification = world.time
 
-/datum/stock/process()
+datum/stock/process()
 	for(var/B in borrows)
 		var/datum/borrow/borrow = B
 		if(world.time > borrow.grace_expires)
@@ -226,7 +226,7 @@
 		fluctuation_counter = 0
 		fluctuate()
 
-/datum/stock/proc/generateBrokers()
+datum/stock/proc/generateBrokers()
 	if(borrow_brokers.len > 2)
 		return
 	if(!GLOB.stockExchange.stockBrokers.len)
@@ -243,7 +243,7 @@
 	B.offer_expires = rand(5, 10) * 600 + world.time
 	borrow_brokers += B
 
-/datum/stock/proc/modifyAccount(whose, by, force=0)
+datum/stock/proc/modifyAccount(whose, by, force=0)
 	if(SSsupply.points)
 		if(by < 0 && SSsupply.points + by < 0 && !force)
 			return 0
@@ -252,7 +252,7 @@
 		return 1
 	return 0
 
-/datum/stock/proc/borrow(datum/borrow/B, who)
+datum/stock/proc/borrow(datum/borrow/B, who)
 	if(B.lease_expires)
 		return 0
 	B.lease_expires = world.time + B.lease_time
@@ -277,7 +277,7 @@
 		GLOB.FrozenAccounts[who] += B
 	return 1
 
-/datum/stock/proc/buyShares(who, howmany)
+datum/stock/proc/buyShares(who, howmany)
 	if(howmany <= 0)
 		return
 	howmany = round(howmany)
@@ -293,7 +293,7 @@
 		return 1
 	return 0
 
-/datum/stock/proc/sellShares(whose, howmany)
+datum/stock/proc/sellShares(whose, howmany)
 	if(howmany < 0)
 		return
 	howmany = round(howmany)
@@ -308,5 +308,5 @@
 		return 1
 	return 0
 
-/datum/stock/proc/displayValues(mob/user)
+datum/stock/proc/displayValues(mob/user)
 	user << browse(plotBarGraph(values, "[name] share value per share"), "window=stock_[name];size=450x450")

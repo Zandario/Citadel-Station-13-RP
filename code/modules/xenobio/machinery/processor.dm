@@ -1,7 +1,7 @@
 // This is specifically for slimes since we don't have a 'normal' processor now.
 // Feel free to rename it if that ever changes.
 
-/obj/machinery/processor
+obj/machinery/processor
 	name = "slime processor"
 	desc = "An industrial grinder used to automate the process of slime core extraction.  It can also recycle biomatter."
 	icon = 'icons/obj/kitchen.dmi'
@@ -15,16 +15,16 @@
 	var/monkeys_recycled = 0
 	description_info = "Clickdrag dead slimes or monkeys to it to insert them.  It will make a new monkey cube for every four monkeys it processes. Alt click to enable auto-intake."
 
-/obj/item/circuitboard/processor
+obj/item/circuitboard/processor
 	name = T_BOARD("slime processor")
 	build_path = /obj/machinery/processor
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 
-/obj/machinery/processor/examine(mob/user)
+obj/machinery/processor/examine(mob/user)
 	. = ..()
 	. += "<span class='boldnotice'>The automatic intake switch is in the [auto_mode? "On" : "Off"] position.</span>"
 
-/obj/machinery/processor/attack_hand(mob/user, list/params)
+obj/machinery/processor/attack_hand(mob/user, list/params)
 	if(processing)
 		to_chat(user, "<span class='warning'>The processor is in the process of processing!</span>")
 		return
@@ -36,7 +36,7 @@
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
 
-/obj/machinery/processor/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
+obj/machinery/processor/attackby(obj/item/I, mob/living/user, list/params, clickchain_flags, damage_multiplier)
 	if(default_unfasten_wrench(user, I, 40))
 		return
 	if(istype(I, /obj/item/holder))
@@ -56,7 +56,7 @@
 	return ..()
 
 // Verb to remove everything.
-/obj/machinery/processor/verb/eject()
+obj/machinery/processor/verb/eject()
 	set category = "Object"
 	set name = "Eject Processor"
 	set src in oview(1)
@@ -67,7 +67,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/processor/AltClick(mob/user)
+obj/machinery/processor/AltClick(mob/user)
 	. = ..()
 	if(user.stat || user.incapacitated(INCAPACITATION_DISABLED) || !Adjacent(user))
 		return
@@ -79,13 +79,13 @@
 		STOP_PROCESSING(SSobj, src)
 
 // Ejects all the things out of the machine.
-/obj/machinery/processor/proc/empty()
+obj/machinery/processor/proc/empty()
 	for(var/atom/movable/AM in to_be_processed)
 		to_be_processed.Remove(AM)
 		AM.forceMove(get_turf(src))
 
 // Ejects all the things out of the machine.
-/obj/machinery/processor/proc/insert(var/atom/movable/AM, var/mob/living/user)
+obj/machinery/processor/proc/insert(var/atom/movable/AM, var/mob/living/user)
 	if((!Adjacent(user) && !Adjacent(AM)) || !user.Adjacent(AM))
 		return FALSE
 	if(!can_insert(AM))
@@ -97,14 +97,14 @@
 	visible_message("<span class='notice'>\the [user] places [AM] inside \the [src].</span>")
 	return TRUE
 
-/obj/machinery/processor/proc/auto_insert(atom/movable/AM)
+obj/machinery/processor/proc/auto_insert(atom/movable/AM)
 	if(!can_insert(AM) || !isturf(AM.loc))
 		return
 	to_be_processed.Add(AM)
 	AM.forceMove(src)
 	visible_message("<span class='notice'>[src] sucks up [AM].</span>")
 
-/obj/machinery/processor/process(delta_time)
+obj/machinery/processor/process(delta_time)
 	if(!auto_mode)
 		return PROCESS_KILL
 	for(var/mob/living/simple_mob/slime/AM in range(1, src))
@@ -112,7 +112,7 @@
 	for(var/mob/living/carbon/human/AM in range(1, src))
 		auto_insert(AM)
 
-/obj/machinery/processor/proc/begin_processing()
+obj/machinery/processor/proc/begin_processing()
 	if(processing)
 		return // Already doing it.
 	processing = TRUE
@@ -130,7 +130,7 @@
 	processing = FALSE
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 
-/obj/machinery/processor/proc/extract(var/atom/movable/AM)
+obj/machinery/processor/proc/extract(var/atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
@@ -149,7 +149,7 @@
 		monkeys_recycled++
 		sleep(1 SECOND)
 
-/obj/machinery/processor/proc/can_insert(var/atom/movable/AM)
+obj/machinery/processor/proc/can_insert(var/atom/movable/AM)
 	if(AM.loc == src)
 		return FALSE
 	if(istype(AM, /mob/living/simple_mob/slime))
@@ -166,7 +166,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/processor/MouseDroppedOnLegacy(var/atom/movable/AM, var/mob/living/user)
+obj/machinery/processor/MouseDroppedOnLegacy(var/atom/movable/AM, var/mob/living/user)
 	if(user.stat || user.incapacitated(INCAPACITATION_DISABLED) || !istype(user))
 		return
 	insert(AM, user)

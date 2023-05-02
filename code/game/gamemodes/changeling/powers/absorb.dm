@@ -1,4 +1,4 @@
-/datum/power/changeling/absorb_dna
+datum/power/changeling/absorb_dna
 	name = "Absorb DNA"
 	desc = "Permits us to syphon the DNA from a human. They become one with us, and we become stronger if they were of our kind."
 	ability_icon_state = "ling_absorb_dna"
@@ -7,7 +7,7 @@
 
 //Absorbs the victim's DNA. Requires a strong grip on the victim.
 //Doesn't cost anything as it's the most basic ability.
-/mob/proc/changeling_absorb_dna()
+mob/proc/changeling_absorb_dna()
 	set category = "Changeling"
 	set name = "Absorb DNA"
 

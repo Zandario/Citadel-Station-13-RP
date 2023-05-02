@@ -10,13 +10,13 @@
  * - neighbor - what we're trying to reach
  * - recurse - levels we're allowed to recurse up if we're not on a turf
  */
-/atom/proc/Adjacent(atom/neighbor, recurse)
+atom/proc/Adjacent(atom/neighbor, recurse)
 	return FALSE
 
-/area/Adjacent(atom/neighbor, recurse)
+area/Adjacent(atom/neighbor, recurse)
 	CRASH("Call to /area/Adjacent; this is wrong.")
 
-/atom/movable/Adjacent(atom/neighbor, recurse)
+atom/movable/Adjacent(atom/neighbor, recurse)
 	if(neighbor == loc)
 		return TRUE
 	var/turf/T = loc
@@ -29,7 +29,7 @@
 			return TRUE
 	return FALSE
 
-/turf/Adjacent(atom/neighbor, recurse)
+turf/Adjacent(atom/neighbor, recurse)
 	return TurfAdjacency(get_turf(neighbor), neighbor, null)
 
 /**
@@ -39,7 +39,7 @@
  * - If you're vertically/horizontally adjacent, ensure there's no border obects
  * - If you're diagonally adjacent, ensure you can pass to it with mutually adjacent squares
  */
-/turf/proc/TurfAdjacency(turf/neighbor_turf, atom/target, atom/movable/mover)
+turf/proc/TurfAdjacency(turf/neighbor_turf, atom/target, atom/movable/mover)
 	if(neighbor_turf == src)
 		return TRUE
 	if(get_dist(src, neighbor_turf) > 1 || z != neighbor_turf.z)
@@ -84,7 +84,7 @@
  * Interrputions:
  * Dense objects without ATOM_PASS_CLICK
  */
-/turf/proc/ClickCross(d, border_only, atom/target, atom/movable/mover)
+turf/proc/ClickCross(d, border_only, atom/target, atom/movable/mover)
 	var/turf/going_to = get_step(src, d)
 	if(border_only)
 		for(var/obj/O in src)

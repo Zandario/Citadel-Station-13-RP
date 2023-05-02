@@ -3,7 +3,7 @@
  * Can be tube or bulb subtypes.
  * Will fit into empty /obj/machinery/light of the corresponding type.
  */
-/obj/item/light
+obj/item/light
 	icon = 'icons/obj/lighting.dmi'
 	damage_force = 2
 	throw_force = 5
@@ -29,7 +29,7 @@
 	var/nightshift_power = 0.4
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
 
-/obj/item/light/tube
+obj/item/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
 	icon_state = "ltube"
@@ -43,7 +43,7 @@
 	nightshift_range = 6
 	nightshift_power = 0.4
 
-/obj/item/light/tube/large
+obj/item/light/tube/large
 	w_class = ITEMSIZE_SMALL
 	name = "large light tube"
 	brightness_range = 8
@@ -52,52 +52,52 @@
 //! ## Colored Light Tubes
 
 //! Standard Rainbow
-/obj/item/light/tube/red
+obj/item/light/tube/red
 	color = LIGHT_COLOR_RED
 	brightness_color = LIGHT_COLOR_RED
 
-/obj/item/light/tube/orange
+obj/item/light/tube/orange
 	color = LIGHT_COLOR_ORANGE
 	brightness_color = LIGHT_COLOR_ORANGE
 
-/obj/item/light/tube/yellow
+obj/item/light/tube/yellow
 	color = LIGHT_COLOR_YELLOW
 	brightness_color = LIGHT_COLOR_YELLOW
 
-/obj/item/light/tube/green
+obj/item/light/tube/green
 	color = LIGHT_COLOR_GREEN
 	brightness_color = LIGHT_COLOR_GREEN
 
-/obj/item/light/tube/blue
+obj/item/light/tube/blue
 	color = LIGHT_COLOR_BLUE
 	brightness_color = LIGHT_COLOR_BLUE
 
-/obj/item/light/tube/purple
+obj/item/light/tube/purple
 	color = LIGHT_COLOR_PURPLE
 	brightness_color = LIGHT_COLOR_PURPLE
 
 //! Neons
-/obj/item/light/tube/neon_pink
+obj/item/light/tube/neon_pink
 	color = "#e00f8e"
 	brightness_color = "#e00f8e"
 
-/obj/item/light/tube/neon_blue
+obj/item/light/tube/neon_blue
 	color = "#0fa7e0"
 	brightness_color = "#0fa7e0"
 
-/obj/item/light/tube/neon_green
+obj/item/light/tube/neon_green
 	color = "#91ff00"
 	brightness_color = "#91ff00"
 
-/obj/item/light/tube/neon_yellow
+obj/item/light/tube/neon_yellow
 	color = "#fbff00"
 	brightness_color = "#fbff00"
 
-/obj/item/light/tube/neon_white
+obj/item/light/tube/neon_white
 	color = "#ffffff"
 	brightness_color = "#ffffff"
 
-/obj/item/light/bulb
+obj/item/light/bulb
 	name = "light bulb"
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
@@ -111,7 +111,7 @@
 	nightshift_range = 4
 	nightshift_power = 0.4
 
-/obj/item/light/bulb/strong
+obj/item/light/bulb/strong
 	name = "light bulb"
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
@@ -125,59 +125,59 @@
 	nightshift_range = 8
 	nightshift_power = 0.8
 
-/obj/item/light/throw_impact(atom/hit_atom)
+obj/item/light/throw_impact(atom/hit_atom)
 	..()
 	shatter()
 
 //! ## Colored Light Bulbs
 
 //! Standard Rainbow
-/obj/item/light/bulb/red
+obj/item/light/bulb/red
 	color = "#da0205"
 	brightness_color = "#da0205"
 
-/obj/item/light/bulb/orange
+obj/item/light/bulb/orange
 	color = "#da7c02"
 	brightness_color = "#da7c02"
 
-/obj/item/light/bulb/yellow
+obj/item/light/bulb/yellow
 	color = "#e0d100"
 	brightness_color = "#e0d100"
 
-/obj/item/light/bulb/green
+obj/item/light/bulb/green
 	color = "#1db100"
 	brightness_color = "#1db100"
 
-/obj/item/light/bulb/blue
+obj/item/light/bulb/blue
 	color = "#0011ff"
 	brightness_color = "#0011ff"
 
-/obj/item/light/bulb/purple
+obj/item/light/bulb/purple
 	color = "#7902da"
 	brightness_color = "#7902da"
 
 //! Neons
-/obj/item/light/bulb/neon_pink
+obj/item/light/bulb/neon_pink
 	color = "#e00f8e"
 	brightness_color = "#e00f8e"
 
-/obj/item/light/bulb/neon_blue
+obj/item/light/bulb/neon_blue
 	color = "#0fa7e0"
 	brightness_color = "#0fa7e0"
 
-/obj/item/light/bulb/neon_green
+obj/item/light/bulb/neon_green
 	color = "#91ff00"
 	brightness_color = "#91ff00"
 
-/obj/item/light/bulb/neon_yellow
+obj/item/light/bulb/neon_yellow
 	color = "#fbff00"
 	brightness_color = "#fbff00"
 
-/obj/item/light/bulb/neon_white
+obj/item/light/bulb/neon_white
 	color = "#ffffff"
 	brightness_color = "#ffffff"
 
-/obj/item/light/bulb/fire
+obj/item/light/bulb/fire
 	name = "fire bulb"
 	desc = "A replacement fire bulb."
 	icon_state = "fbulb"
@@ -186,7 +186,7 @@
 	matter = list(MAT_GLASS = 100)
 
 /// Fairylights
-/obj/item/light/bulb/fairy
+obj/item/light/bulb/fairy
 	name = "fairy light bulb"
 	desc = "A tiny replacement light bulb."
 	icon_state = "fbulb"
@@ -195,7 +195,7 @@
 	brightness_range = 5
 
 // update the icon state and description of the light
-/obj/item/light/update_icon()
+obj/item/light/update_icon()
 	switch(status)
 		if(LIGHT_OK)
 			icon_state = base_icon_state
@@ -208,7 +208,7 @@
 			desc = "A broken [name]."
 
 
-/obj/item/light/Initialize(mapload, obj/machinery/light/fixture)
+obj/item/light/Initialize(mapload, obj/machinery/light/fixture)
 	. = ..()
 	if(fixture)
 		status = fixture.status
@@ -225,7 +225,7 @@
 
 // attack bulb/tube with object
 // if a syringe, can inject phoron to make it explode
-/obj/item/light/attackby(obj/item/I, mob/user)
+obj/item/light/attackby(obj/item/I, mob/user)
 	..()
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
@@ -247,7 +247,7 @@
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
-/obj/item/light/afterattack(atom/target, mob/user, proximity)
+obj/item/light/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target, /obj/machinery/light))
 		return
@@ -256,7 +256,7 @@
 
 	shatter()
 
-/obj/item/light/proc/shatter()
+obj/item/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
 		src.visible_message(
 			SPAN_DANGER("[name] shatters."),
@@ -271,13 +271,13 @@
 
 
 //? Used for some shuttles.
-/obj/machinery/light/small/readylight
+obj/machinery/light/small/readylight
 	brightness_range = 5
 	brightness_power = 1
 	brightness_color = "#DA0205"
 	var/state = 0
 
-/obj/machinery/light/small/readylight/proc/set_state(new_state)
+obj/machinery/light/small/readylight/proc/set_state(new_state)
 	state = new_state
 	if(state)
 		brightness_color = "00FF00"

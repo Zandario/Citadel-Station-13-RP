@@ -16,7 +16,7 @@ var/list/marker_beacon_colors = list(
 "Green" = LIGHT_COLOR_GREEN,
 )
 
-/obj/item/stack/marker_beacon
+obj/item/stack/marker_beacon
 	name = "marker beacons"
 	singular_name = "marker beacon"
 	desc = "Prismatic path illumination devices. Used by explorers and miners to mark paths and warn of danger."
@@ -29,28 +29,28 @@ var/list/marker_beacon_colors = list(
 	w_class = ITEMSIZE_SMALL
 	var/picked_color = "random"
 
-/obj/item/stack/marker_beacon/ten
+obj/item/stack/marker_beacon/ten
 	amount = 10
 
-/obj/item/stack/marker_beacon/thirty
+obj/item/stack/marker_beacon/thirty
 	amount = 30
 
-/obj/item/stack/marker_beacon/hundred
+obj/item/stack/marker_beacon/hundred
 	amount = 100
 
-/obj/item/stack/marker_beacon/Initialize(mapload)
+obj/item/stack/marker_beacon/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/stack/marker_beacon/examine(mob/user)
+obj/item/stack/marker_beacon/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Use in-hand to place a [singular_name].</span>"
 	. += "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>"
 
-/obj/item/stack/marker_beacon/update_icon()
+obj/item/stack/marker_beacon/update_icon()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]"
 
-/obj/item/stack/marker_beacon/attack_self(mob/user)
+obj/item/stack/marker_beacon/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -66,7 +66,7 @@ var/list/marker_beacon_colors = list(
 		var/obj/structure/marker_beacon/M = new(user.loc, picked_color)
 		transfer_fingerprints_to(M)
 
-/obj/item/stack/marker_beacon/AltClick(mob/living/user)
+obj/item/stack/marker_beacon/AltClick(mob/living/user)
 	if(user.incapacitated() || !istype(user))
 		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
 		return
@@ -79,7 +79,7 @@ var/list/marker_beacon_colors = list(
 		picked_color = input_color
 		update_icon()
 
-/obj/structure/marker_beacon
+obj/structure/marker_beacon
 	name = "marker beacon"
 	desc = "A prismatic path illumination device. It is anchored in place and glowing steadily."
 	icon = 'icons/obj/lighting.dmi'
@@ -91,22 +91,22 @@ var/list/marker_beacon_colors = list(
 	var/remove_speed = 15
 	var/picked_color
 
-/obj/structure/marker_beacon/Initialize(mapload, set_color)
+obj/structure/marker_beacon/Initialize(mapload, set_color)
 	. = ..()
 	picked_color = set_color
 	update_icon()
 
-/obj/structure/marker_beacon/examine(mob/user)
+obj/structure/marker_beacon/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>"
 
-/obj/structure/marker_beacon/update_icon()
+obj/structure/marker_beacon/update_icon()
 	while(!picked_color || !marker_beacon_colors[picked_color])
 		picked_color = pick(marker_beacon_colors)
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])
 
-/obj/structure/marker_beacon/attack_hand(mob/user, list/params)
+obj/structure/marker_beacon/attack_hand(mob/user, list/params)
 	to_chat(user, "<span class='notice'>You start picking [src] up...</span>")
 	if(do_after(user, remove_speed, target = src))
 		var/obj/item/stack/marker_beacon/M = new(loc)
@@ -117,7 +117,7 @@ var/list/marker_beacon_colors = list(
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			qdel(src) //otherwise delete us
 
-/obj/structure/marker_beacon/attackby(obj/item/I, mob/user, params)
+obj/structure/marker_beacon/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/stack/marker_beacon))
 		var/obj/item/stack/marker_beacon/M = I
 		to_chat(user, "<span class='notice'>You start picking [src] up...</span>")
@@ -128,7 +128,7 @@ var/list/marker_beacon_colors = list(
 	else
 		return ..()
 
-/obj/structure/marker_beacon/AltClick(mob/living/user)
+obj/structure/marker_beacon/AltClick(mob/living/user)
 	..()
 	if(user.incapacitated() || !istype(user))
 		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
@@ -142,25 +142,25 @@ var/list/marker_beacon_colors = list(
 		picked_color = input_color
 		update_icon()
 
-/obj/structure/marker_beacon/red
+obj/structure/marker_beacon/red
 	picked_color = "Burgundy"
 
-/obj/structure/marker_beacon/red/update_icon()
+obj/structure/marker_beacon/red/update_icon()
 	while(!picked_color || !marker_beacon_colors[picked_color])
 		picked_color = "Burgundy"
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])
 
-/obj/structure/marker_beacon/yellow
+obj/structure/marker_beacon/yellow
 	picked_color = "Yellow"
 
-/obj/structure/marker_beacon/yellow/update_icon()
+obj/structure/marker_beacon/yellow/update_icon()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])
 
-/obj/structure/marker_beacon/green
+obj/structure/marker_beacon/green
 	picked_color = "Green"
 
-/obj/structure/marker_beacon/green/update_icon()
+obj/structure/marker_beacon/green/update_icon()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])

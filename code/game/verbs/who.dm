@@ -1,4 +1,4 @@
-/client/verb/who()
+client/verb/who()
 	set name = "Who"
 	set category = "OOC"
 
@@ -62,7 +62,7 @@
 	msg += "<b>Total Players: [length(Lines)]</b>"
 	to_chat(src, msg)
 
-/client/verb/staffwho()
+client/verb/staffwho()
 	set category = "Admin"
 	set name = "Staffwho"
 

@@ -1,9 +1,9 @@
 
-/hook/startup/proc/createDatacore()
+hook/startup/proc/createDatacore()
 	data_core = new /datum/datacore()
 	return 1
 
-/datum/datacore
+datum/datacore
 	var/name = "datacore"
 	//For general station crew
 	var/static/list/medical = list()
@@ -17,7 +17,7 @@
 	var/static/list/locked = list()
 
 
-/datum/datacore/proc/get_manifest(monochrome, OOC)
+datum/datacore/proc/get_manifest(monochrome, OOC)
 	var/list/heads = new()
 	var/list/sec = new()
 	var/list/eng = new()
@@ -189,7 +189,7 @@ using /datum/datacore/proc/manifest_inject( ), or manifest_insert( )
 
 GLOBAL_LIST_EMPTY(PDA_Manifest)
 
-/datum/datacore/proc/get_manifest_list()
+datum/datacore/proc/get_manifest_list()
 	if(GLOB.PDA_Manifest.len)
 		return
 	var/list/heads = list()
@@ -291,13 +291,13 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		)
 	return
 
-/datum/datacore/proc/manifest()
+datum/datacore/proc/manifest()
 	spawn()
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			manifest_inject(H)
 		return
 
-/datum/datacore/proc/manifest_modify(var/name, var/assignment, var/rank)
+datum/datacore/proc/manifest_modify(var/name, var/assignment, var/rank)
 	ResetPDAManifest()
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
-/datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
+datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
 	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1))
 		var/assignment = GetAssignment(H)
 		var/hidden
@@ -423,10 +423,10 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		locked += L
 	return
 
-/proc/generate_record_id()
+proc/generate_record_id()
 	return add_zero(num2hex(rand(1, 65535)), 4)	//no point generating higher numbers because of the limitations of num2hex
 
-/datum/datacore/proc/CreateGeneralRecord(mob/living/carbon/human/H, id, hidden)
+datum/datacore/proc/CreateGeneralRecord(mob/living/carbon/human/H, id, hidden)
 	ResetPDAManifest()
 	var/icon/front
 	var/icon/side
@@ -469,7 +469,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 
 	return G
 
-/datum/datacore/proc/CreateSecurityRecord(var/name, var/id, var/hidden)
+datum/datacore/proc/CreateSecurityRecord(var/name, var/id, var/hidden)
 	ResetPDAManifest()
 	var/datum/data/record/R = new /datum/data/record()
 	R.name = "Security Record #[id]"
@@ -490,7 +490,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 
 	return R
 
-/datum/datacore/proc/CreateMedicalRecord(var/name, var/id, var/hidden)
+datum/datacore/proc/CreateMedicalRecord(var/name, var/id, var/hidden)
 	ResetPDAManifest()
 	var/datum/data/record/M = new()
 	M.name = "Medical Record #[id]"
@@ -516,25 +516,25 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 
 	return M
 
-/datum/datacore/proc/ResetPDAManifest()
+datum/datacore/proc/ResetPDAManifest()
 	if(GLOB.PDA_Manifest.len)
 		GLOB.PDA_Manifest.Cut()
 
-/proc/find_general_record(field, value)
+proc/find_general_record(field, value)
 	return find_record(field, value, data_core.general)
 
-/proc/find_medical_record(field, value)
+proc/find_medical_record(field, value)
 	return find_record(field, value, data_core.medical)
 
-/proc/find_security_record(field, value)
+proc/find_security_record(field, value)
 	return find_record(field, value, data_core.security)
 
-/proc/find_record(field, value, list/L)
+proc/find_record(field, value, list/L)
 	for(var/datum/data/record/R in L)
 		if(R.fields[field] == value)
 			return R
 
-/proc/GetAssignment(var/mob/living/carbon/human/H)
+proc/GetAssignment(var/mob/living/carbon/human/H)
 	. = "Unassigned"
 	var/faction = H.mind?.original_background_faction()?.id
 	if((faction && !(faction == "nanotrasen")) || !H.mind.role_alt_title)
@@ -543,4 +543,3 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		. = H.mind.role_alt_title
 	else if(H.job)
 		. =  H.job
-

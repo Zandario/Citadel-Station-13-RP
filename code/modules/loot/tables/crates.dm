@@ -1,4 +1,4 @@
-/datum/prototype/loot_table/abandoned_crate
+datum/prototype/loot_table/abandoned_crate
 	identifier = "AbandonedCrate"
 	contents = list(
 		/datum/prototype/loot_pack/ore/valuable = 5,

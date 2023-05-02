@@ -1,4 +1,4 @@
-/mob/living/silicon/decoy/death(gibbed)
+mob/living/silicon/decoy/death(gibbed)
 	if(stat == DEAD)
 		return
 	icon_state = "ai-crash"

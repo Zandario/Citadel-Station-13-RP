@@ -1,2 +1,2 @@
-/obj/mecha/working/ripley
+obj/mecha/working/ripley
 	minimum_penetration = 0

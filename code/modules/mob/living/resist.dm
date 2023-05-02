@@ -1,4 +1,4 @@
-/mob/living/verb/resist()
+mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
 
@@ -8,7 +8,7 @@
 		if(CHECK_MOBILITY(src, MOBILITY_CAN_RESIST))
 			process_resist()
 
-/mob/living/proc/process_resist()
+mob/living/proc/process_resist()
 	if(!CHECK_MOBILITY(src, MOBILITY_CAN_RESIST))
 		return
 
@@ -40,7 +40,7 @@
 	if(resist_a_rest())
 		return
 
-/mob/living/proc/resist_grab()
+mob/living/proc/resist_grab()
 	var/resisting = 0
 	for(var/obj/item/grab/G in grabbed_by)
 		resisting++
@@ -48,8 +48,8 @@
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
 
-/mob/living/proc/resist_fire()
+mob/living/proc/resist_fire()
 	return
 
-/mob/living/proc/resist_restraints()
+mob/living/proc/resist_restraints()
 	return

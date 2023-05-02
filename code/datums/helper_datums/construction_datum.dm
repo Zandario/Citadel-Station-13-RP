@@ -3,13 +3,13 @@
 
 
 // As of August 4th, 2018, these datums are only used in Mech construction.
-/datum/construction
+datum/construction
 	var/list/steps
 	var/atom/holder
 	var/result
 	var/list/steps_desc
 
-/datum/construction/New(atom)
+datum/construction/New(atom)
 	..()
 	holder = atom
 	if(!holder) //don't want this without a holder
@@ -18,7 +18,7 @@
 	set_desc(steps.len)
 	return
 
-/datum/construction/proc/next_step()
+datum/construction/proc/next_step()
 	steps.len--
 	if(!steps.len)
 		spawn_result()
@@ -26,10 +26,10 @@
 		set_desc(steps.len)
 	return
 
-/datum/construction/proc/action(var/obj/item/I,mob/user as mob)
+datum/construction/proc/action(var/obj/item/I,mob/user as mob)
 	return
 
-/datum/construction/proc/check_step(var/obj/item/I,mob/user as mob) //check last step only
+datum/construction/proc/check_step(var/obj/item/I,mob/user as mob) //check last step only
 	var/valid_step = is_right_key(I)
 	if(valid_step)
 		if(custom_action(valid_step, I, user))
@@ -37,7 +37,7 @@
 			return 1
 	return 0
 
-/datum/construction/proc/is_right_key(var/obj/item/I) // returns current step num if I is of the right type.
+datum/construction/proc/is_right_key(var/obj/item/I) // returns current step num if I is of the right type.
 	var/list/L = steps[steps.len]
 	switch(L["key"])
 		if(IS_SCREWDRIVER)
@@ -57,10 +57,10 @@
 		return steps.len
 	return 0
 
-/datum/construction/proc/custom_action(step, I, user)
+datum/construction/proc/custom_action(step, I, user)
 	return 1
 
-/datum/construction/proc/check_all_steps(var/obj/item/I,mob/user as mob) //check all steps, remove matching one.
+datum/construction/proc/check_all_steps(var/obj/item/I,mob/user as mob) //check all steps, remove matching one.
 	for(var/i=1;i<=steps.len;i++)
 		var/list/L = steps[i];
 		if(istype(I, L["key"]))
@@ -73,29 +73,29 @@
 	return 0
 
 
-/datum/construction/proc/spawn_result()
+datum/construction/proc/spawn_result()
 	if(result)
 		new result(get_turf(holder))
 		spawn()
 			qdel(holder)
 	return
 
-/datum/construction/proc/set_desc(index as num)
+datum/construction/proc/set_desc(index as num)
 	var/list/step = steps[index]
 	holder.desc = step["desc"]
 	return
 
 
 // Reversible
-/datum/construction/reversible
+datum/construction/reversible
 	var/index
 
-/datum/construction/reversible/New(atom)
+datum/construction/reversible/New(atom)
 	..()
 	index = steps.len
 	return
 
-/datum/construction/reversible/proc/update_index(diff as num)
+datum/construction/reversible/proc/update_index(diff as num)
 	index+=diff
 	if(index==0)
 		spawn_result()
@@ -103,7 +103,7 @@
 		set_desc(index)
 	return
 
-/datum/construction/reversible/is_right_key(var/obj/item/I) // returns index step
+datum/construction/reversible/is_right_key(var/obj/item/I) // returns index step
 	var/list/L = steps[index]
 
 	switch(L["key"])
@@ -140,7 +140,7 @@
 		return BACKWARD //to the last step -> backwards
 	return 0
 
-/datum/construction/reversible/check_step(var/obj/item/I,mob/user as mob)
+datum/construction/reversible/check_step(var/obj/item/I,mob/user as mob)
 	var/diff = is_right_key(I)
 	if(diff)
 		if(custom_action(index, diff, I, user))
@@ -148,5 +148,5 @@
 			return 1
 	return 0
 
-/datum/construction/reversible/custom_action(index, diff, I, user)
+datum/construction/reversible/custom_action(index, diff, I, user)
 	return 1

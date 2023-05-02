@@ -1,32 +1,32 @@
 /**
  * sets a character data key to a value
  */
-/datum/preferences/proc/set_character_data(key, value)
+datum/preferences/proc/set_character_data(key, value)
 	character[key] = value
 
 /**
  * reads a character data key
  */
-/datum/preferences/proc/get_character_data(key)
+datum/preferences/proc/get_character_data(key)
 	return character[key]
 
 /**
  * sets a global options data key to a value
  */
-/datum/preferences/proc/set_global_data(key, value)
+datum/preferences/proc/set_global_data(key, value)
 	options[key] = value
 
 /**
  * reads a global options data key
  */
-/datum/preferences/proc/get_global_data(key)
+datum/preferences/proc/get_global_data(key)
 	return options[key]
 
 /**
  * checked read of a global options key;
  * use when accessing from an outside datum to that key
  */
-/datum/preferences/proc/checked_get_global_data(key)
+datum/preferences/proc/checked_get_global_data(key)
 	var/datum/category_item/player_setup_item/I = preference_by_key[key]
 	if(!I.is_global)
 		CRASH("tried to get character key")
@@ -36,7 +36,7 @@
  * checked write of a global options key;
  * use when accessing from an outside datum to that key
  */
-/datum/preferences/proc/checked_set_global_data(key, value)
+datum/preferences/proc/checked_set_global_data(key, value)
 	var/datum/category_item/player_setup_item/I = preference_by_key[key]
 	if(!I.is_global)
 		CRASH("tried to set character key")
@@ -46,7 +46,7 @@
  * checked read of a character key;
  * use when accessing from an outside datum to that key
  */
-/datum/preferences/proc/checked_get_character_data(key)
+datum/preferences/proc/checked_get_character_data(key)
 	var/datum/category_item/player_setup_item/I = preference_by_key[key]
 	if(!I.is_global)
 		CRASH("tried to get global key")
@@ -56,7 +56,7 @@
  * checked write of a character key;
  * use when accessing from an outside datum to that key
  */
-/datum/preferences/proc/checked_set_character_data(key, value)
+datum/preferences/proc/checked_set_character_data(key, value)
 	var/datum/category_item/player_setup_item/I = preference_by_key[key]
 	if(I.is_global)
 		CRASH("tried to set global key")
@@ -65,7 +65,7 @@
 /**
  * flush character data to disk
  */
-/datum/preferences/proc/write_character_data(savefile/S, slot, list/errors)
+datum/preferences/proc/write_character_data(savefile/S, slot, list/errors)
 	var/old_cd = S.cd
 	S.cd = "/"
 	var/list/transformed = list()
@@ -87,7 +87,7 @@
 /**
  * load character data from disk
  */
-/datum/preferences/proc/read_character_data(savefile/S, slot, list/errors)
+datum/preferences/proc/read_character_data(savefile/S, slot, list/errors)
 	character = list()
 	var/old_cd = S.cd
 	S.cd = "/"
@@ -112,7 +112,7 @@
 /**
  * flush global data to disk
  */
-/datum/preferences/proc/write_global_data(savefile/S, list/errors)
+datum/preferences/proc/write_global_data(savefile/S, list/errors)
 	var/old_cd = S.cd
 	S.cd = "/"
 	var/list/transformed = list()
@@ -132,7 +132,7 @@
 /**
  * load global data from disk
  */
-/datum/preferences/proc/read_global_data(savefile/S, list/errors)
+datum/preferences/proc/read_global_data(savefile/S, list/errors)
 	options = list()
 	var/old_cd = S.cd
 	S.cd = "/"
@@ -155,7 +155,7 @@
 /**
  * checked set preference data
  */
-/datum/preferences/proc/set_preference(pref, value)
+datum/preferences/proc/set_preference(pref, value)
 	var/datum/category_item/player_setup_item/preference = preference_by_type[pref]
 	value = preference.filter_data(src, value)
 	if(preference.is_global)
@@ -166,7 +166,7 @@
 /**
  * checked get preference data
  */
-/datum/preferences/proc/get_preference(pref)
+datum/preferences/proc/get_preference(pref)
 	var/datum/category_item/player_setup_item/preference = preference_by_type[pref]
 	if(preference.is_global)
 		return options[preference.save_key]
@@ -176,7 +176,7 @@
 /**
  * sanitize prefs data
  */
-/datum/preferences/proc/sanitize_preference(pref, list/errors)
+datum/preferences/proc/sanitize_preference(pref, list/errors)
 	var/datum/category_item/player_setup_item/preference = preference_by_type[pref]
 	if(preference.is_global)
 		return options[preference.save_key] = preference.filter_data(src, options[preference.save_key], errors)
@@ -186,19 +186,19 @@
 /**
  * resanitize everything
  */
-/datum/preferences/proc/sanitize_everything(list/errors)
+datum/preferences/proc/sanitize_everything(list/errors)
 	for(var/key in preference_by_key)
 		var/datum/category_item/player_setup_item/I = preference_by_key[key]
 		I.sanitize_data(src, errors)
 
-/datum/preferences/proc/sanitize_character(list/errors)
+datum/preferences/proc/sanitize_character(list/errors)
 	for(var/key in preference_by_key)
 		var/datum/category_item/player_setup_item/I = preference_by_key[key]
 		if(I.is_global)
 			continue
 		I.sanitize_data(src, errors)
 
-/datum/preferences/proc/sanitize_global(list/errors)
+datum/preferences/proc/sanitize_global(list/errors)
 	for(var/key in preference_by_key)
 		var/datum/category_item/player_setup_item/I = preference_by_key[key]
 		if(!I.is_global)
@@ -208,7 +208,7 @@
 /**
  * default everything that has save keys
  */
-/datum/preferences/proc/reset_everything_to_default()
+datum/preferences/proc/reset_everything_to_default()
 	character = list()
 	options = list()
 	for(var/key in preference_by_key)
@@ -218,7 +218,7 @@
 		else
 			set_character_data(key, I.informed_default_value(src))
 
-/datum/preferences/proc/reset_character_to_default()
+datum/preferences/proc/reset_character_to_default()
 	character = list()
 	for(var/key in preference_by_key)
 		var/datum/category_item/player_setup_item/I = preference_by_key[key]
@@ -226,7 +226,7 @@
 			continue
 		set_character_data(key, I.informed_default_value(src))
 
-/datum/preferences/proc/reset_options_to_default()
+datum/preferences/proc/reset_options_to_default()
 	options = list()
 	for(var/key in preference_by_key)
 		var/datum/category_item/player_setup_item/I = preference_by_key[key]
@@ -237,7 +237,7 @@
 /**
  * json export
  */
-/datum/preferences/proc/json_export_character(list/errors)
+datum/preferences/proc/json_export_character(list/errors)
 	var/list/transformed = list()
 	for(var/key in character)
 		var/datum/category_item/player_setup_item/I = preference_by_key[key]
@@ -247,7 +247,7 @@
 /**
  * json import
  */
-/datum/preferences/proc/json_import_character(list/json, list/errors)
+datum/preferences/proc/json_import_character(list/json, list/errors)
 	if(!islist(json))
 		json = safe_json_decode(json)
 	if(!islist(json))
@@ -270,9 +270,9 @@
 	return TRUE
 
 //! Skin stuff
-/datum/preferences/proc/set_skin_data(key, value)
+datum/preferences/proc/set_skin_data(key, value)
 	skin[key] = value
 	save_skin()
 
-/datum/preferences/proc/get_skin_data(key)
+datum/preferences/proc/get_skin_data(key)
 	return skin[key]

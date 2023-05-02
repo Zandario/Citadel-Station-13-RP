@@ -1,6 +1,6 @@
 var/datum/antagonist/raider/raiders
 
-/datum/antagonist/raider
+datum/antagonist/raider
 	id = MODE_RAIDER
 	role_type = BE_RAIDER
 	role_text = "Raider"
@@ -105,18 +105,18 @@ var/datum/antagonist/raider/raiders
 		/obj/item/clothing/accessory/holster/hip
 		)
 
-/datum/antagonist/raider/New()
+datum/antagonist/raider/New()
 	..()
 	raiders = src
 
-/datum/antagonist/raider/update_access(var/mob/living/player)
+datum/antagonist/raider/update_access(var/mob/living/player)
 	for(var/obj/item/storage/wallet/W in player.contents)
 		for(var/obj/item/card/id/id in W.contents)
 			id.name = "[player.real_name]'s Passport"
 			id.registered_name = player.real_name
 			W.name = "[initial(W.name)] ([id.name])"
 
-/datum/antagonist/raider/create_global_objectives()
+datum/antagonist/raider/create_global_objectives()
 
 	if(!..())
 		return 0
@@ -144,7 +144,7 @@ var/datum/antagonist/raider/raiders
 	global_objectives |= new /datum/objective/heist/preserve_crew
 	return 1
 
-/datum/antagonist/raider/check_victory()
+datum/antagonist/raider/check_victory()
 	// Totally overrides the base proc.
 	var/win_type = "Major"
 	var/win_group = "Crew"
@@ -190,7 +190,7 @@ var/datum/antagonist/raider/raiders
 	to_chat(world, "[win_msg]")
 	feedback_set_details("round_end_result","heist - [win_type] [win_group]")
 
-/datum/antagonist/raider/proc/is_raider_crew_safe()
+datum/antagonist/raider/proc/is_raider_crew_safe()
 
 	if(!current_antagonists || current_antagonists.len == 0)
 		return 0
@@ -200,7 +200,7 @@ var/datum/antagonist/raider/raiders
 			return 0
 	return 1
 
-/datum/antagonist/raider/equip(var/mob/living/carbon/human/player)
+datum/antagonist/raider/equip(var/mob/living/carbon/human/player)
 
 	if(!..())
 		return 0
@@ -237,7 +237,7 @@ var/datum/antagonist/raider/raiders
 
 	return 1
 
-/datum/antagonist/raider/proc/equip_weapons(var/mob/living/carbon/human/player)
+datum/antagonist/raider/proc/equip_weapons(var/mob/living/carbon/human/player)
 	var/new_gun = pick(raider_guns)
 	var/new_holster = pick(raider_holster) //raiders don't start with any backpacks, so let's be nice and give them a holster if they can use it.
 	var/turf/T = get_turf(player)
@@ -276,7 +276,7 @@ var/datum/antagonist/raider/raiders
 		else
 			player.put_in_hands(holster)
 
-/datum/antagonist/raider/proc/equip_ammo(var/mob/living/carbon/human/player, var/obj/item/gun/gun)
+datum/antagonist/raider/proc/equip_ammo(var/mob/living/carbon/human/player, var/obj/item/gun/gun)
 	if(istype(gun, /obj/item/gun/ballistic))
 		var/obj/item/gun/ballistic/bullet_thrower = gun
 		if(bullet_thrower.magazine_type)
@@ -301,7 +301,7 @@ var/datum/antagonist/raider/raiders
 			new grenade_type(ammobox)
 		player.put_in_hands(ammobox)
 
-/datum/antagonist/raider/proc/equip_vox(var/mob/living/carbon/human/player)
+datum/antagonist/raider/proc/equip_vox(var/mob/living/carbon/human/player)
 
 	var/uniform_type = pick(list(/obj/item/clothing/under/vox/vox_robes,/obj/item/clothing/under/vox/vox_casual))
 

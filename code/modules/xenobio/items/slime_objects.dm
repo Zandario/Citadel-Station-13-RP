@@ -1,5 +1,5 @@
 // Slime cube lives here.  Makes Prometheans.
-/obj/item/slime_cube
+obj/item/slime_cube
 	name = "slimy monkey cube"
 	desc = "Wonder what might come out of this."
 	icon = 'icons/mob/slime2.dmi'
@@ -7,7 +7,7 @@
 	description_info = "Use in your hand to attempt to create a Promethean.  It functions similarly to a positronic brain, in that a ghost is needed to become the Promethean."
 	var/searching = 0
 
-/obj/item/slime_cube/attack_self(mob/user)
+obj/item/slime_cube/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -20,7 +20,7 @@
 			reset_search()
 
 // Sometime down the road it would be great to make all of these 'ask ghosts if they want to be X' procs into a generic datum.
-/obj/item/slime_cube/proc/request_player()
+obj/item/slime_cube/proc/request_player()
 	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
@@ -28,7 +28,7 @@
 			if(O.client.prefs.be_special & BE_ALIEN)
 				question(O.client)
 
-/obj/item/slime_cube/proc/question(var/client/C)
+obj/item/slime_cube/proc/question(var/client/C)
 	spawn(0)
 		if(!C)
 			return
@@ -42,7 +42,7 @@
 		else if(response == "Never for this round")
 			C.prefs.be_special ^= BE_ALIEN
 
-/obj/item/slime_cube/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
+obj/item/slime_cube/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 	icon_state = "slime cube"
 	if(searching == 1)
 		searching = 0
@@ -50,7 +50,7 @@
 		for (var/mob/M in viewers(T))
 			M.show_message("<span class='warning'>The activity in the cube dies down. Maybe it will spark another time.</span>")
 
-/obj/item/slime_cube/proc/transfer_personality(var/mob/candidate)
+obj/item/slime_cube/proc/transfer_personality(var/mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are a promethean now.")
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))
@@ -72,7 +72,7 @@
 
 
 // More or less functionally identical to the telecrystal tele.
-/obj/item/slime_crystal
+obj/item/slime_crystal
 	name = "lesser slime cystal"
 	desc = "A small, gooy crystal."
 	description_info = "This will teleport you to a mostly 'safe' tile when used in-hand, consuming the slime crystal.  \
@@ -83,7 +83,7 @@
 	origin_tech = list(TECH_MAGNET = 6, TECH_BLUESPACE = 3)
 	damage_force = 1 //Needs a token damage_force to ensure you can attack because for some reason you can't attack with 0 damage_force things
 
-/obj/item/slime_crystal/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slime_crystal/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 	var/mob/living/L = target
 	if(!istype(L))
@@ -93,7 +93,7 @@
 	qdel(src)
 	return . | CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/item/slime_crystal/attack_self(mob/user)
+obj/item/slime_crystal/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -101,7 +101,7 @@
 	safe_blink(user, 14)
 	qdel(src)
 
-/obj/item/slime_crystal/throw_impact(atom/movable/AM)
+obj/item/slime_crystal/throw_impact(atom/movable/AM)
 	if(!istype(AM))
 		return
 
@@ -112,7 +112,7 @@
 	safe_blink(AM, 14)
 	qdel(src)
 
-/obj/item/disposable_teleporter/slime
+obj/item/disposable_teleporter/slime
 	name = "greater slime crystal"
 	desc = "A larger, gooier crystal."
 	description_info = "This will teleport you to a specific area once, when used in-hand."
@@ -125,7 +125,7 @@
 
 
 // Very filling food.
-/obj/item/reagent_containers/food/snacks/slime
+obj/item/reagent_containers/food/snacks/slime
 	name = "slimy clump"
 	desc = "A glob of slime that is thick as honey.  For the brave Xenobiologist."
 	icon_state = "honeycomb"
@@ -134,6 +134,6 @@
 	nutriment_amt = 25 // Very filling.
 	nutriment_desc = list("slime" = 10, "sweetness" = 10, "bliss" = 5)
 
-/obj/item/reagent_containers/food/snacks/slime/Initialize(mapload)
+obj/item/reagent_containers/food/snacks/slime/Initialize(mapload)
 	. = ..()
 	bitesize = 5

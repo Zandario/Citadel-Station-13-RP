@@ -2,7 +2,7 @@
  * /data/ files store data in string format.
  * They don't contain other logic for now.
  */
-/datum/computer_file/data/news_article
+datum/computer_file/data/news_article
 	filetype = "XNML"
 	filename = "Unknown News Entry"
 	/// Results in smaller files.
@@ -16,7 +16,7 @@
 	/// Filename of cover.
 	var/cover
 
-/datum/computer_file/data/news_article/New(var/load_FROM_FILE = 0)
+datum/computer_file/data/news_article/New(var/load_FROM_FILE = 0)
 	..()
 	if(server_file_path && load_FROM_FILE)
 		stored_data = file2text(server_file_path)
@@ -25,7 +25,7 @@
 
 //! ## NEWS DEFINITIONS BELOW THIS LINE
 /* KEPT HERE AS AN EXAMPLE
-/datum/computer_file/data/news_article/space/vol_one
+datum/computer_file/data/news_article/space/vol_one
 	filename = "SPACE Magazine vol. 1"
 	server_file_path = 'news_articles/space_magazine_1.html'
 */

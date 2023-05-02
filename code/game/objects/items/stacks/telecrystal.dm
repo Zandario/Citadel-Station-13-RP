@@ -1,4 +1,4 @@
-/obj/item/stack/telecrystal
+obj/item/stack/telecrystal
 	name = "telecrystal"
 	desc = "It seems to be pulsing with suspiciously enticing energies."
 	description_antag = "Telecrystals can be activated by utilizing them on devices with an actively running uplink. They will not activate on unactivated uplinks."
@@ -10,7 +10,7 @@
 	origin_tech = list(TECH_MATERIAL = 6, TECH_BLUESPACE = 4)
 	damage_force = 1 //Needs a token force to ensure you can attack because for some reason you can't attack with 0 force things
 
-/obj/item/stack/telecrystal/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/stack/telecrystal/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/L = target
 	if(!istype(L))
 		return
@@ -23,7 +23,7 @@
 		to_chat(user, "<span class='warning'>There are not enough telecrystals to do that.</span>")
 	return NONE
 
-/obj/item/stack/telecrystal/attack_self(mob/user)
+obj/item/stack/telecrystal/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return

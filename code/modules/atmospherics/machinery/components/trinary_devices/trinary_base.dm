@@ -1,4 +1,4 @@
-/obj/machinery/atmospherics/component/trinary
+obj/machinery/atmospherics/component/trinary
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|WEST
 	use_power = USE_POWER_OFF
@@ -17,17 +17,17 @@
 	var/datum/pipe_network/network2
 	var/datum/pipe_network/network3
 
-/obj/machinery/atmospherics/component/trinary/Initialize(mapload)
+obj/machinery/atmospherics/component/trinary/Initialize(mapload)
 	air1 = new(200)
 	air2 = new(200)
 	air3 = new(200)
 
 	return ..()
 
-/obj/machinery/atmospherics/component/trinary/init_dir()
+obj/machinery/atmospherics/component/trinary/init_dir()
 	initialize_directions = get_initialize_directions_trinary(dir, mirrored, tee)
 
-/obj/machinery/atmospherics/component/trinary/update_underlays()
+obj/machinery/atmospherics/component/trinary/update_underlays()
 	if(..())
 		underlays.Cut()
 		var/turf/T = get_turf(src)
@@ -38,16 +38,16 @@
 		add_underlay(T, node2, node_connects[2])
 		add_underlay(T, node3, node_connects[3])
 
-/obj/machinery/atmospherics/component/trinary/hide(var/i)
+obj/machinery/atmospherics/component/trinary/hide(var/i)
 	update_underlays()
 
-/obj/machinery/atmospherics/component/trinary/power_change()
+obj/machinery/atmospherics/component/trinary/power_change()
 	var/old_stat = machine_stat
 	. = ..()
 	if(old_stat != machine_stat)
 		update_icon()
 
-/obj/machinery/atmospherics/component/trinary/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/atmospherics/component/trinary/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
 	if(unsafe_pressure())
@@ -63,10 +63,10 @@
 		deconstruct()
 
 // Housekeeping and pipe network stuff below
-/obj/machinery/atmospherics/component/trinary/get_neighbor_nodes_for_init()
+obj/machinery/atmospherics/component/trinary/get_neighbor_nodes_for_init()
 	return list(node1, node2, node3)
 
-/obj/machinery/atmospherics/component/trinary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+obj/machinery/atmospherics/component/trinary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	if(reference == node1)
 		network1 = new_network
 
@@ -83,7 +83,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/component/trinary/Destroy()
+obj/machinery/atmospherics/component/trinary/Destroy()
 	. = ..()
 
 	if(node1)
@@ -102,10 +102,10 @@
 
 // Get the direction each node is facing to connect.
 // It now returns as a list so it can be fetched nicely, each entry corresponds to node of same number.
-/obj/machinery/atmospherics/component/trinary/get_node_connect_dirs()
+obj/machinery/atmospherics/component/trinary/get_node_connect_dirs()
 	return get_node_connect_dirs_trinary(dir, mirrored, tee)
 
-/obj/machinery/atmospherics/component/trinary/atmos_init()
+obj/machinery/atmospherics/component/trinary/atmos_init()
 	if(node1 && node2 && node3)
 		return
 
@@ -118,7 +118,7 @@
 	update_icon()
 	update_underlays()
 
-/obj/machinery/atmospherics/component/trinary/build_network()
+obj/machinery/atmospherics/component/trinary/build_network()
 	if(!network1 && node1)
 		network1 = new /datum/pipe_network()
 		network1.normal_members += src
@@ -135,7 +135,7 @@
 		network3.build_network(node3, src)
 
 
-/obj/machinery/atmospherics/component/trinary/return_network(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/component/trinary/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
 	if(reference==node1)
@@ -149,7 +149,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/component/trinary/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
+obj/machinery/atmospherics/component/trinary/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 	if(network1 == old_network)
 		network1 = new_network
 	if(network2 == old_network)
@@ -159,7 +159,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/component/trinary/return_network_air(datum/pipe_network/reference)
+obj/machinery/atmospherics/component/trinary/return_network_air(datum/pipe_network/reference)
 	var/list/results = list()
 
 	if(network1 == reference)
@@ -171,7 +171,7 @@
 
 	return results
 
-/obj/machinery/atmospherics/component/trinary/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/component/trinary/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node1)
 		qdel(network1)
 		node1 = null
@@ -190,7 +190,7 @@
 
 // Trinary init_dir() logic in a separate proc so it can be referenced from "trinary-ish" places like T-Valves
 // TODO - Someday refactor those places under atmospherics/trinary
-/proc/get_initialize_directions_trinary(var/dir, var/mirrored = FALSE, var/tee = FALSE)
+proc/get_initialize_directions_trinary(var/dir, var/mirrored = FALSE, var/tee = FALSE)
 	if(tee)
 		switch(dir)
 			if(NORTH)
@@ -223,7 +223,7 @@
 				return WEST|NORTH|EAST
 
 // Trinary get_node_connect_dirs() logic in a separate proc so it can be referenced from "trinary-ish" places like T-Valves
-/proc/get_node_connect_dirs_trinary(var/dir, var/mirrored = FALSE, var/tee = FALSE)
+proc/get_node_connect_dirs_trinary(var/dir, var/mirrored = FALSE, var/tee = FALSE)
 	var/node1_connect
 	var/node2_connect
 	var/node3_connect

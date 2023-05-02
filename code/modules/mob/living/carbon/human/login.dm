@@ -1,4 +1,4 @@
-/mob/living/carbon/human/Login()
+mob/living/carbon/human/Login()
 	..()
 	update_hud()
 	if(species)

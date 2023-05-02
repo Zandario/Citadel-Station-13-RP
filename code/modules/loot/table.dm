@@ -1,7 +1,7 @@
 /**
  * holder datum for loot
  */
-/datum/prototype/loot_table
+datum/prototype/loot_table
 	anonymous = TRUE
 	namespace = "LootTable"
 
@@ -18,7 +18,7 @@
  *
  * returns typepaths, loot table typepaths, or identifiers, associated to amount.
  */
-/datum/prototype/loot_table/proc/draw(amount)
+datum/prototype/loot_table/proc/draw(amount)
 	if(amount == 1)
 		return list(draw_single() = 1)
 	return draw_multi(amount)
@@ -26,7 +26,7 @@
 /**
  * draw amount, converts to typepaths for spawning
  */
-/datum/prototype/loot_table/proc/draw_and_resolve(amount)
+datum/prototype/loot_table/proc/draw_and_resolve(amount)
 	. = list()
 	var/list/drawn = draw(amount)
 	for(var/thing in drawn)
@@ -41,13 +41,13 @@
 		else if(ispath(thing, /atom/movable))
 			.[thing] = drawn[thing] + .[thing]
 
-/datum/prototype/loot_table/proc/cache_tally()
+datum/prototype/loot_table/proc/cache_tally()
 	. = 0
 	for(var/thing in contents)
 		. += contents[thing] || 1
 	cached_tally = .
 
-/datum/prototype/loot_table/proc/draw_single()
+datum/prototype/loot_table/proc/draw_single()
 	var/total = cached_tally || cache_tally()
 	var/rng = rand(1, total)
 	for(var/thing in contents)
@@ -55,7 +55,7 @@
 		if(rng <= 0)
 			return thing
 
-/datum/prototype/loot_table/proc/draw_multi(amt)
+datum/prototype/loot_table/proc/draw_multi(amt)
 	if(amt <= 5)
 		// too small to justify the binary insert
 		. = list()
@@ -104,7 +104,7 @@
 /**
  * spawn contents at
  */
-/datum/prototype/loot_table/proc/instantiate(atom/location, amt)
+datum/prototype/loot_table/proc/instantiate(atom/location, amt)
 	var/list/got = draw(amt)
 	var/safety = 75 // there's no way you need more than this
 	for(var/thing in got)

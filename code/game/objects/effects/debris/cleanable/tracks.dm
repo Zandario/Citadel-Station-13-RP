@@ -16,7 +16,7 @@
 // color-dir-dry
 var/global/list/image/fluidtrack_cache=list()
 
-/datum/fluidtrack
+datum/fluidtrack
 	var/direction=0
 	var/basecolor="#A10808"
 	var/wet=0
@@ -24,12 +24,12 @@ var/global/list/image/fluidtrack_cache=list()
 	var/crusty=0
 	var/image/overlay
 
-/datum/fluidtrack/New(_direction, _color, _wet)
+datum/fluidtrack/New(_direction, _color, _wet)
 	src.direction=_direction
 	src.basecolor=_color
 	src.wet=_wet
 
-/obj/effect/debris/cleanable/blood/tracks/reveal_blood()
+obj/effect/debris/cleanable/blood/tracks/reveal_blood()
 	if(!fluorescent)
 		if(stack && stack.len)
 			for(var/datum/fluidtrack/track in stack)
@@ -37,7 +37,7 @@ var/global/list/image/fluidtrack_cache=list()
 		..()
 
 // Footprints, tire trails...
-/obj/effect/debris/cleanable/blood/tracks
+obj/effect/debris/cleanable/blood/tracks
 	amount = 0
 	random_icon_states = null
 	var/dirs=0
@@ -70,7 +70,7 @@ var/global/list/image/fluidtrack_cache=list()
  * @param goingdir Direction tracks are going to (or 0).
  * @param bloodcolor Color of the blood when wet.
 */
-/obj/effect/debris/cleanable/blood/tracks/proc/AddTracks(list/DNA, comingdir, goingdir, bloodcolor="#A10808")
+obj/effect/debris/cleanable/blood/tracks/proc/AddTracks(list/DNA, comingdir, goingdir, bloodcolor="#A10808")
 	var/updated=0
 	// Shift our goingdir 4 spaces to the left so it's in the GOING bitblock.
 	var/realgoing=goingdir<<4
@@ -126,7 +126,7 @@ var/global/list/image/fluidtrack_cache=list()
 	if(updated)
 		update_icon()
 
-/obj/effect/debris/cleanable/blood/tracks/update_icon()
+obj/effect/debris/cleanable/blood/tracks/update_icon()
 	cut_overlays()
 	color = "#FFFFFF"
 	var/truedir=0
@@ -151,7 +151,7 @@ var/global/list/image/fluidtrack_cache=list()
 		add_overlay(I)
 	updatedtracks=0 // Clear our memory of updated tracks.
 
-/obj/effect/debris/cleanable/blood/tracks/footprints
+obj/effect/debris/cleanable/blood/tracks/footprints
 	name = "wet footprints"
 	dryname = "dried footprints"
 	desc = "They look like still wet tracks left by footwear."
@@ -160,7 +160,7 @@ var/global/list/image/fluidtrack_cache=list()
 	going_state  = "human2"
 	amount = 0
 
-/obj/effect/debris/cleanable/blood/tracks/snake
+obj/effect/debris/cleanable/blood/tracks/snake
 	name = "wet tracks"
 	dryname = "dried tracks"
 	desc = "They look like still wet tracks left by a giant snake."
@@ -170,7 +170,7 @@ var/global/list/image/fluidtrack_cache=list()
 	random_icon_states = null
 	amount = 0
 
-/obj/effect/debris/cleanable/blood/tracks/paw
+obj/effect/debris/cleanable/blood/tracks/paw
 	name = "wet tracks"
 	dryname = "dried tracks"
 	desc = "They look like still wet tracks left by a mammal."
@@ -180,7 +180,7 @@ var/global/list/image/fluidtrack_cache=list()
 	random_icon_states = null
 	amount = 0
 
-/obj/effect/debris/cleanable/blood/tracks/claw
+obj/effect/debris/cleanable/blood/tracks/claw
 	name = "wet tracks"
 	dryname = "dried tracks"
 	desc = "They look like still wet tracks left by a reptile."
@@ -190,7 +190,7 @@ var/global/list/image/fluidtrack_cache=list()
 	random_icon_states = null
 	amount = 0
 
-/obj/effect/debris/cleanable/blood/tracks/wheels
+obj/effect/debris/cleanable/blood/tracks/wheels
 	name = "wet tracks"
 	dryname = "dried tracks"
 	desc = "They look like still wet tracks left by wheels."

@@ -1,13 +1,13 @@
-/datum/component/decal/blood
+datum/component/decal/blood
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 
-/datum/component/decal/blood/Initialize(_icon, _icon_state, _dir, _cleanable=CLEAN_STRENGTH_BLOOD, _color, _layer=ABOVE_OBJ_LAYER)
+datum/component/decal/blood/Initialize(_icon, _icon_state, _dir, _cleanable=CLEAN_STRENGTH_BLOOD, _color, _layer=ABOVE_OBJ_LAYER)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_GET_EXAMINE_NAME, .proc/get_examine_name)
 
-/datum/component/decal/blood/generate_appearance(_icon, _icon_state, _dir, _layer, _color)
+datum/component/decal/blood/generate_appearance(_icon, _icon_state, _dir, _layer, _color)
 	var/obj/item/I = parent
 	if(!_icon)
 		_icon = 'icons/effects/blood.dmi'
@@ -32,7 +32,7 @@
 		blood_splatter_appearances[index] = pic
 	return TRUE
 
-/datum/component/decal/blood/proc/get_examine_name(datum/source, mob/user, list/override)
+datum/component/decal/blood/proc/get_examine_name(datum/source, mob/user, list/override)
 	var/atom/A = parent
 	override[EXAMINE_POSITION_ARTICLE] = A.gender == PLURAL? "some" : "a"
 	override[EXAMINE_POSITION_BEFORE] = " blood-stained "

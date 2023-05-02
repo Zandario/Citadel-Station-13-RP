@@ -24,26 +24,26 @@ var/intercom_range_display_status = 0
 
 GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 
-/obj/effect/debugging/camera_range
+obj/effect/debugging/camera_range
 	icon = 'icons/480x480.dmi'
 	icon_state = "25percent"
 
-/obj/effect/debugging/camera_range/New()
+obj/effect/debugging/camera_range/New()
 	src.pixel_x = -224
 	src.pixel_y = -224
 
-/obj/effect/debugging/marker
+obj/effect/debugging/marker
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "yellow"
 
-/obj/effect/debugging/marker/Move()
+obj/effect/debugging/marker/Move()
 	return 0
 
-/client/proc/do_not_use_these()
+client/proc/do_not_use_these()
 	set category = "Mapping"
 	set name = "-None of these are for ingame use!!"
 
-/client/proc/camera_view()
+client/proc/camera_view()
 	set category = "Mapping"
 	set name = "Camera Range Display"
 
@@ -66,7 +66,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 GLOBAL_LIST_EMPTY(dirty_vars)
 
 
-/client/proc/see_dirty_varedits()
+client/proc/see_dirty_varedits()
 	set category = "Mapping"
 	set name = "Dirty Varedits"
 
@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	popup.open()
 #endif
 
-/client/proc/sec_camera_report()
+client/proc/sec_camera_report()
 	set category = "Mapping"
 	set name = "Camera Report"
 
@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	usr << browse(output,"window=airreport;size=1000x500")
 	feedback_add_details("admin_verb","mCRP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/intercom_view()
+client/proc/intercom_view()
 	set category = "Mapping"
 	set name = "Intercom Range Display"
 
@@ -173,7 +173,7 @@ var/list/debug_verbs = list (
 )
 
 
-/client/proc/enable_debug_verbs()
+client/proc/enable_debug_verbs()
 	set category = "Debug"
 	set name = "Debug verbs"
 
@@ -184,7 +184,7 @@ var/list/debug_verbs = list (
 
 	feedback_add_details("admin_verb","mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/hide_debug_verbs()
+client/proc/hide_debug_verbs()
 	set category = "Debug"
 	set name = "Hide Debug verbs"
 
@@ -196,12 +196,12 @@ var/list/debug_verbs = list (
 	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/var/list/testZAScolors_turfs = list()
-/client/var/list/testZAScolors_zones = list()
-/client/var/usedZAScolors = 0
-/client/var/list/image/ZAScolors = list()
+client/var/list/testZAScolors_turfs = list()
+client/var/list/testZAScolors_zones = list()
+client/var/usedZAScolors = 0
+client/var/list/image/ZAScolors = list()
 
-/client/proc/recurse_zone(var/datum/zas_zone/Z, var/recurse_level =1)
+client/proc/recurse_zone(var/datum/zas_zone/Z, var/recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
 		return
@@ -217,7 +217,7 @@ var/list/debug_verbs = list (
 		recurse_zone(connected,recurse_level+1)
 
 
-/client/proc/testZAScolors()
+client/proc/testZAScolors()
 	set category = "ZAS"
 	set name = "Check ZAS connections"
 
@@ -270,7 +270,7 @@ var/list/debug_verbs = list (
 		images += image(red, T, "zasdebug", TURF_LAYER)
 		testZAScolors_turfs += T
 
-/client/proc/testZAScolors_remove()
+client/proc/testZAScolors_remove()
 	set category = "ZAS"
 	set name = "Remove ZAS connection colors"
 
@@ -282,14 +282,14 @@ var/list/debug_verbs = list (
 			if(i.icon_state == "zasdebug")
 				images.Remove(i)
 
-/client/proc/rebootAirMaster()
+client/proc/rebootAirMaster()
 	set category = "ZAS"
 	set name = "Reboot ZAS"
 
 	if(alert("This will destroy and remake all zone geometry on the whole map.","Reboot ZAS","Reboot ZAS","Nevermind") == "Reboot ZAS")
 		SSair.RebootZAS()
 
-/client/proc/count_objects_on_z_level()
+client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"
 	var/level = input("Which z-level?","Level?") as text
@@ -332,7 +332,7 @@ var/list/debug_verbs = list (
 	to_chat(world, "There are [count] objects of type [type_path] on z-level [num_level]")
 	feedback_add_details("admin_verb","mOBJZ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/count_objects_all()
+client/proc/count_objects_all()
 	set category = "Mapping"
 	set name = "Count Objects All"
 

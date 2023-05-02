@@ -1,10 +1,10 @@
 //////////////////
 // AR HUD Overlays
-/datum/nifsoft/hud
+datum/nifsoft/hud
 	abstract_type = /datum/nifsoft/hud
 	var/list/data_huds = list()
 
-/datum/nifsoft/hud/activate(force)
+datum/nifsoft/hud/activate(force)
 	. = ..()
 	if(.)
 		// i'd refactor nifsofts but i have a personal goddamn vendetta against nifs
@@ -12,14 +12,14 @@
 			var/datum/atom_hud/H = GLOB.huds[i]
 			H.add_hud_to(nif.human)
 
-/datum/nifsoft/hud/deactivate(force)
+datum/nifsoft/hud/deactivate(force)
 	. = ..()
 	if(.)
 		for(var/i in data_huds)
 			var/datum/atom_hud/H = GLOB.huds[i]
 			H.remove_hud_from(nif.human)
 
-/datum/nifsoft/hud/ar_civ
+datum/nifsoft/hud/ar_civ
 	name = "AR Overlay (Civ)"
 	desc = "Provides a general identification and health status overlay on your vision with no frills."
 	list_pos = NIF_CIVILIAN_AR
@@ -30,7 +30,7 @@
 	data_huds = list(DATA_HUD_ID_JOB)
 	incompatible_with = list(NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
-/datum/nifsoft/hud/ar_med
+datum/nifsoft/hud/ar_med
 	name = "AR Overlay (Med)"
 	desc = "Like the civilian model, but provides medical records access and virus database lookup."
 	list_pos = NIF_MEDICAL_AR
@@ -42,7 +42,7 @@
 	vision_flags = (NIF_V_AR_MEDICAL)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
-/datum/nifsoft/hud/ar_sec
+datum/nifsoft/hud/ar_sec
 	name = "AR Overlay (Sec)"
 	desc = "Like the civilian model, but provides access to arrest status and security records."
 	list_pos = NIF_SECURITY_AR
@@ -54,7 +54,7 @@
 	vision_flags = (NIF_V_AR_SECURITY)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_ENGINE_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
-/datum/nifsoft/hud/ar_eng
+datum/nifsoft/hud/ar_eng
 	name = "AR Overlay (Eng)"
 	desc = "Like the civilian model, but provides station alert notices."
 	list_pos = NIF_ENGINE_AR
@@ -66,7 +66,7 @@
 	vision_flags = (NIF_V_AR_ENGINE)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_SCIENCE_AR,NIF_OMNI_AR)
 
-/datum/nifsoft/hud/ar_science
+datum/nifsoft/hud/ar_science
 	name = "AR Overlay (Sci)"
 	desc = "Like the civilian model, but provides ... well, nothing. For now."
 	list_pos = NIF_SCIENCE_AR
@@ -78,7 +78,7 @@
 	vision_flags = (NIF_V_AR_SCIENCE)
 	incompatible_with = list(NIF_CIVILIAN_AR,NIF_MEDICAL_AR,NIF_SECURITY_AR,NIF_ENGINE_AR,NIF_OMNI_AR)
 
-/datum/nifsoft/hud/ar_omni
+datum/nifsoft/hud/ar_omni
 	name = "AR Overlay (Omni)"
 	desc = "Like the civilian model, but provides most of the features of the medical and security overlays as well."
 	list_pos = NIF_OMNI_AR
@@ -92,7 +92,7 @@
 
 //////////////
 // Misc Vision
-/datum/nifsoft/corrective
+datum/nifsoft/corrective
 	name = "Corrective AR"
 	desc = "Subtly alters perception to compensate for cataracts and retinal misalignment, among other common disabilities."
 	list_pos = NIF_CORRECTIVE_GLASS
@@ -100,7 +100,7 @@
 	a_drain = 0.025
 	vision_flags = (NIF_V_CORRECTIVE)
 
-/datum/nifsoft/uvblocker
+datum/nifsoft/uvblocker
 	name = "Nictating Membrane"
 	desc = "A synthetic nictating membrane (aka 'third eyelid') that protects the eyes from UV or hostile atmospheres. Does not protect from photonic stun weapons."
 	list_pos = NIF_UVFILTER
@@ -108,7 +108,7 @@
 	a_drain = 0.2
 	vision_flags = (NIF_V_UVFILTER)
 
-/datum/nifsoft/flashprot
+datum/nifsoft/flashprot
 	name = "Responsive Filter"
 	desc = "Enables a high-speed shielding response to intense light, such as flashes, to block them."
 	list_pos = NIF_FLASHPROT
@@ -119,7 +119,7 @@
 
 ////////////////
 // Goggle-alikes
-/datum/nifsoft/mesons
+datum/nifsoft/mesons
 	name = "Meson Scanner"
 	desc = "Similar to the worn Optical Meson Scanner Goggles, these allow you to see the base structure and terrain through walls."
 	list_pos = NIF_MESONS
@@ -133,7 +133,7 @@
 	incompatible_with = list(NIF_MATERIAL,NIF_THERMALS,NIF_NIGHTVIS)
 	vision_exclusive = TRUE
 
-/datum/nifsoft/material
+datum/nifsoft/material
 	name = "Material Scanner"
 	desc = "Similar to the worn Optical Material Scanner Goggles, these allow you to see objects through walls."
 	list_pos = NIF_MATERIAL
@@ -147,7 +147,7 @@
 	incompatible_with = list(NIF_MESONS,NIF_THERMALS,NIF_NIGHTVIS)
 	vision_exclusive = TRUE
 
-/datum/nifsoft/thermals
+datum/nifsoft/thermals
 	name = "Thermal Scanner"
 	desc = "Similar to the worn Thermal Goggles, these allow you to see heat-emitting creatures through walls."
 	list_pos = NIF_THERMALS
@@ -162,7 +162,7 @@
 	incompatible_with = list(NIF_MESONS,NIF_MATERIAL,NIF_NIGHTVIS)
 	vision_exclusive = TRUE
 
-/datum/nifsoft/nightvis
+datum/nifsoft/nightvis
 	name = "Low-Light Amp"
 	desc = "Similar to the worn Night Vision Goggles, these allow you to see in complete darkness."
 	list_pos = NIF_NIGHTVIS

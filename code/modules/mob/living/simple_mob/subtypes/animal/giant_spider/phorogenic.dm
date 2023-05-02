@@ -1,7 +1,7 @@
 // Phorogenic spiders explode when they die.
 // You really shouldn't melee them.
 
-/datum/category_item/catalogue/fauna/giant_spider/phorogenic_spider
+datum/category_item/catalogue/fauna/giant_spider/phorogenic_spider
 	name = "Giant Spider - Phorogenic"
 	desc = "This specific spider has been catalogued as 'Phorogenic', \
 	and it belongs to the 'Guard' caste. \
@@ -23,7 +23,7 @@
 	the result is the same, oftening ending a fight with both sides dead."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/phorogenic
+mob/living/simple_mob/animal/giant_spider/phorogenic
 	desc = "Crystalline and purple, it makes you shudder to look at it. This one has haunting purple eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/phorogenic_spider)
 
@@ -54,11 +54,11 @@
 	var/explosion_delay_lower	= 1 SECOND	// Lower bound for explosion delay.
 	var/explosion_delay_upper	= 2 SECONDS	// Upper bound.
 
-/mob/living/simple_mob/animal/giant_spider/phorogenic/Initialize(mapload)
+mob/living/simple_mob/animal/giant_spider/phorogenic/Initialize(mapload)
 	adjust_scale(1.25)
 	return ..()
 
-/mob/living/simple_mob/animal/giant_spider/phorogenic/death()
+mob/living/simple_mob/animal/giant_spider/phorogenic/death()
 	visible_message(SPAN_CRITICAL("\The [src]'s body begins to rupture!"))
 	var/delay = rand(explosion_delay_lower, explosion_delay_upper)
 	spawn(0)
@@ -79,7 +79,7 @@
 	return ..()
 
 // Weakened version of Phoron spiders
-/mob/living/simple_mob/animal/giant_spider/phorogenic/weak
+mob/living/simple_mob/animal/giant_spider/phorogenic/weak
 	maxHealth = 100
 	health = 100
 

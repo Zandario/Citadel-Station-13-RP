@@ -1,5 +1,5 @@
 // checks hardcoded only (duh!!)
-/datum/unit_test/materials_shall_have_ids/Run()
+datum/unit_test/materials_shall_have_ids/Run()
 	var/list/ids = list()
 	for(var/path in subtypesof(/datum/material))
 		var/datum/material/M = path

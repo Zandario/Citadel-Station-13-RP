@@ -1,4 +1,4 @@
-/obj/machinery/disease2/diseaseanalyser
+obj/machinery/disease2/diseaseanalyser
 	name = "disease analyser"
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "analyser"
@@ -10,7 +10,7 @@
 
 	var/obj/item/virusdish/dish = null
 
-/obj/machinery/disease2/diseaseanalyser/attackby(var/obj/O as obj, var/mob/user as mob)
+obj/machinery/disease2/diseaseanalyser/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(default_unfasten_wrench(user, O, 20))
 		return
 
@@ -26,7 +26,7 @@
 
 	user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
 
-/obj/machinery/disease2/diseaseanalyser/process(delta_time)
+obj/machinery/disease2/diseaseanalyser/process(delta_time)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 

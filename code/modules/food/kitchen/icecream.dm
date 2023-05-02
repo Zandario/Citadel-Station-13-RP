@@ -7,7 +7,7 @@
 
 // Ported wholesale from Apollo Station.
 
-/obj/machinery/icecream_vat
+obj/machinery/icecream_vat
 	name = "icecream vat"
 	desc = "Ding-aling ding dong. Get your NanoTrasen-approved ice cream!"
 	icon = 'icons/obj/kitchen.dmi'
@@ -21,7 +21,7 @@
 	var/dispense_flavour = ICECREAM_VANILLA
 	var/flavour_name = "vanilla"
 
-/obj/machinery/icecream_vat/proc/get_ingredient_list(var/type)
+obj/machinery/icecream_vat/proc/get_ingredient_list(var/type)
 	switch(type)
 		if(ICECREAM_CHOCOLATE)
 			return list("milk", "ice", "coco")
@@ -36,7 +36,7 @@
 		else
 			return list("milk", "ice")
 
-/obj/machinery/icecream_vat/proc/get_flavour_name(var/flavour_type)
+obj/machinery/icecream_vat/proc/get_flavour_name(var/flavour_type)
 	switch(flavour_type)
 		if(ICECREAM_CHOCOLATE)
 			return "chocolate"
@@ -51,7 +51,7 @@
 		else
 			return "vanilla"
 
-/obj/machinery/icecream_vat/Initialize(mapload)
+obj/machinery/icecream_vat/Initialize(mapload)
 	. = ..()
 	create_reagents(100)
 	while(product_types.len < 6)
@@ -61,11 +61,11 @@
 	reagents.add_reagent("sugar", 5)
 	reagents.add_reagent("ice", 5)
 
-/obj/machinery/icecream_vat/attack_hand(mob/user, list/params)
+obj/machinery/icecream_vat/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/icecream_vat/interact(mob/user as mob)
+obj/machinery/icecream_vat/interact(mob/user as mob)
 	var/dat
 	dat += "<b>ICECREAM</b><br><div class='statusDisplay'>"
 	dat += "<b>Dispensing: [flavour_name] icecream </b> <br><br>"
@@ -87,7 +87,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/icecream_vat/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/icecream_vat/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/icecream))
 		var/obj/item/reagent_containers/food/snacks/icecream/I = O
 		if(!I.ice_creamed)
@@ -109,7 +109,7 @@
 	else
 		..()
 
-/obj/machinery/icecream_vat/proc/make(var/mob/user, var/make_type, var/amount)
+obj/machinery/icecream_vat/proc/make(var/mob/user, var/make_type, var/amount)
 	for(var/R in get_ingredient_list(make_type))
 		if(reagents.has_reagent(R, amount))
 			continue
@@ -127,7 +127,7 @@
 	else
 		to_chat(user, "<span class='warning'>You don't have the ingredients to make this.</span>")
 
-/obj/machinery/icecream_vat/Topic(href, href_list)
+obj/machinery/icecream_vat/Topic(href, href_list)
 
 	if(..())
 		return
@@ -168,7 +168,7 @@
 		usr << browse(null,"window=icecreamvat")
 	return
 
-/obj/item/reagent_containers/food/snacks/icecream
+obj/item/reagent_containers/food/snacks/icecream
 	name = "ice cream cone"
 	desc = "Delicious waffle cone, but no ice cream."
 	icon_state = "icecream_cone_waffle" //default for admin-spawned cones, href_list["cone"] should overwrite this all the time
@@ -177,12 +177,12 @@
 	var/ice_creamed = 0
 	var/cone_type
 
-/obj/item/reagent_containers/food/snacks/icecream/Initialize(mapload)
+obj/item/reagent_containers/food/snacks/icecream/Initialize(mapload)
 	. = ..()
 	create_reagents(20)
 	reagents.add_reagent("nutriment", 5)
 
-/obj/item/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)
+obj/item/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)
 	name = "[flavour_name] icecream"
 	add_overlay("icecream_[flavour_name]")
 	desc = "Delicious [cone_type] cone with a dollop of [flavour_name] ice cream."

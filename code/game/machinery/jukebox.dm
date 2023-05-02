@@ -12,7 +12,7 @@
 /// Play, then stop.
 #define JUKEMODE_PLAY_ONCE   4
 
-/obj/machinery/media/jukebox/
+obj/machinery/media/jukebox/
 	name = "space jukebox"
 	icon = 'icons/obj/jukebox.dmi'
 	icon_state = "jukebox2-nopower"
@@ -66,13 +66,13 @@
 	)
 
 
-/obj/machinery/media/jukebox/Destroy()
+obj/machinery/media/jukebox/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
 // On initialization, copy our tracks from the global list
-/obj/machinery/media/jukebox/Initialize(mapload)
+obj/machinery/media/jukebox/Initialize(mapload)
 	. = ..()
 	wires = new/datum/wires/jukebox(src)
 	update_icon()
@@ -92,7 +92,7 @@
 	else if(!LAZYLEN(tracks)) //We don't even have default tracks
 		machine_stat |= BROKEN // No tracks configured this round!
 
-/obj/machinery/media/jukebox/process(delta_time)
+obj/machinery/media/jukebox/process(delta_time)
 	if(!playing)
 		return
 	if(inoperable())
@@ -128,7 +128,7 @@
 	start_stop_song()
 
 // Tells the media manager to start or stop playing based on current settings.
-/obj/machinery/media/jukebox/proc/start_stop_song()
+obj/machinery/media/jukebox/proc/start_stop_song()
 	if(current_track && playing)
 		media_url = current_track.url
 		media_start_time = world.time
@@ -138,7 +138,7 @@
 		media_start_time = 0
 	update_music()
 
-/obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
+obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
 	if (hacked == newhacked) return
 	hacked = newhacked
 	if (hacked)
@@ -147,7 +147,7 @@
 		tracks.Remove(secret_tracks)
 	updateDialog()
 
-/obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
@@ -176,7 +176,7 @@
 		return
 	return ..()
 
-/obj/machinery/media/jukebox/power_change()
+obj/machinery/media/jukebox/power_change()
 	if(!powered(power_channel) || !anchored)
 		machine_stat |= NOPOWER
 	else
@@ -186,7 +186,7 @@
 		StopPlaying()
 	update_icon()
 
-/obj/machinery/media/jukebox/update_icon()
+obj/machinery/media/jukebox/update_icon()
 	cut_overlays()
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		if(machine_stat & BROKEN)
@@ -203,7 +203,7 @@
 	if (panel_open)
 		add_overlay("panel_open")
 
-/obj/machinery/media/jukebox/Topic(href, href_list)
+obj/machinery/media/jukebox/Topic(href, href_list)
 	if(..() || !(Adjacent(usr) || istype(usr, /mob/living/silicon)))
 		return
 
@@ -257,13 +257,13 @@
 
 	return 1
 
-/obj/machinery/media/jukebox/interact(mob/user)
+obj/machinery/media/jukebox/interact(mob/user)
 	if(inoperable())
 		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/media/jukebox/nano_ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/media/jukebox/nano_ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/title = "RetroBox - Space Style"
 	var/data[0]
 
@@ -296,13 +296,13 @@
 		ui.open()
 		ui.set_auto_update(playing)
 
-/obj/machinery/media/jukebox/attack_ai(mob/user)
+obj/machinery/media/jukebox/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/media/jukebox/attack_hand(mob/user, list/params)
+obj/machinery/media/jukebox/attack_hand(mob/user, list/params)
 	interact(user)
 
-/obj/machinery/media/jukebox/proc/explode()
+obj/machinery/media/jukebox/proc/explode()
 	walk_to(src,0)
 	src.visible_message(SPAN_DANGER("\The [src] blows apart!"), 1)
 
@@ -315,7 +315,7 @@
 	new /obj/effect/debris/cleanable/blood/oil(src.loc)
 	qdel(src)
 
-/obj/machinery/media/jukebox/attackby(obj/item/W, mob/user)
+obj/machinery/media/jukebox/attackby(obj/item/W, mob/user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
@@ -335,7 +335,7 @@
 		return
 	return ..()
 
-/obj/machinery/media/jukebox/emag_act(remaining_charges, mob/user)
+obj/machinery/media/jukebox/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		StopPlaying()
@@ -349,13 +349,13 @@
 		update_icon()
 		return 1
 
-/obj/machinery/media/jukebox/proc/StopPlaying()
+obj/machinery/media/jukebox/proc/StopPlaying()
 	playing = FALSE
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 	start_stop_song()
 
-/obj/machinery/media/jukebox/proc/StartPlaying()
+obj/machinery/media/jukebox/proc/StartPlaying()
 	if(!current_track)
 		return
 	playing = TRUE
@@ -365,7 +365,7 @@
 	updateDialog()
 
 // Advance to the next track - Don't start playing it unless we were already playing
-/obj/machinery/media/jukebox/proc/NextTrack()
+obj/machinery/media/jukebox/proc/NextTrack()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
 	var/newTrackIndex = (curTrackIndex % tracks.len) + 1  // Loop back around if past end
@@ -375,7 +375,7 @@
 	updateDialog()
 
 // Advance to the next track - Don't start playing it unless we were already playing
-/obj/machinery/media/jukebox/proc/PrevTrack()
+obj/machinery/media/jukebox/proc/PrevTrack()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
 	var/newTrackIndex = curTrackIndex == 1 ? tracks.len : curTrackIndex - 1

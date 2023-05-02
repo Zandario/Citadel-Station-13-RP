@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(pipe_layers, list(
 // 	every pipe type has a datum instance which describes its name, placement rules and construction method, dispensing etc.
 // The advantages are obvious, mostly in simplifying the code of the dispenser, and the ability to add new pipes without hassle.
 //
-/datum/pipe_info
+datum/pipe_info
 	var/name = "Abstract Pipe (fixme)"		// Recipe name
 	var/pipe_type							// The type PATH of what actual pipe the fitting becomes, used by RCD to print the pipe.
 	var/icon = 'icons/obj/pipe-item.dmi'	// This tells the RPD which icon file to look for preview images in.
@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(pipe_layers, list(
 	var/all_layers
 
 // Get preview for UIs
-/datum/pipe_info/proc/get_preview(selected_dir)
+datum/pipe_info/proc/get_preview(selected_dir)
 	var/list/dirs
 
 	switch(dirtype)
@@ -154,10 +154,10 @@ GLOBAL_LIST_INIT(pipe_layers, list(
 //
 // Subtype for actual pipes
 //
-/datum/pipe_info/pipe
+datum/pipe_info/pipe
 	var/obj/item/pipe/construction_type //The type PATH to the type of pipe fitting object the recipe makes.
 
-/datum/pipe_info/pipe/New(label, obj/machinery/atmospherics/path, var/use_five_layers, var/colorable=FALSE)
+datum/pipe_info/pipe/New(label, obj/machinery/atmospherics/path, var/use_five_layers, var/colorable=FALSE)
 	name = label
 	pipe_type = path
 	all_layers = use_five_layers
@@ -171,21 +171,21 @@ GLOBAL_LIST_INIT(pipe_layers, list(
 //
 // Subtype for meters
 //
-/datum/pipe_info/meter
+datum/pipe_info/meter
 	dirtype = PIPE_ONEDIR
 	icon_state = "meter"
 	pipe_type = /obj/item/pipe_meter
 
-/datum/pipe_info/meter/New(label)
+datum/pipe_info/meter/New(label)
 	name = label
 
 //
 // Subtype for disposal pipes
 //
-/datum/pipe_info/disposal
+datum/pipe_info/disposal
 	icon = 'icons/obj/pipes/disposal.dmi'
 
-/datum/pipe_info/disposal/New(var/label, var/path, var/state, dt=PIPE_DIRECTIONAL, var/state_mirror=0, var/sort=0)
+datum/pipe_info/disposal/New(var/label, var/path, var/state, dt=PIPE_DIRECTIONAL, var/state_mirror=0, var/sort=0)
 	name = label
 	icon_state = state
 	pipe_type = path

@@ -1,4 +1,4 @@
-/obj/item/assembly/shock_kit
+obj/item/assembly/shock_kit
 	name = "electrohelmet assembly"
 	desc = "This appears to be made from both an electropack and a helmet."
 	icon_state = "shock_kit"
@@ -7,13 +7,13 @@
 	var/status = 0
 	w_class = ITEMSIZE_HUGE
 
-/obj/item/assembly/shock_kit/Destroy()
+obj/item/assembly/shock_kit/Destroy()
 	qdel(part1)
 	qdel(part2)
 	..()
 	return
 
-/obj/item/assembly/shock_kit/attackby(var/obj/item/W, var/mob/user)
+obj/item/assembly/shock_kit/attackby(var/obj/item/W, var/mob/user)
 	if(W.is_wrench() && !status)
 		var/turf/T = loc
 		if(ismob(T))
@@ -33,7 +33,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/assembly/shock_kit/attack_self(mob/user)
+obj/item/assembly/shock_kit/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -42,7 +42,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/assembly/shock_kit/receive_signal()
+obj/item/assembly/shock_kit/receive_signal()
 	if(istype(loc, /obj/structure/bed/chair/e_chair))
 		var/obj/structure/bed/chair/e_chair/C = loc
 		C.shock()

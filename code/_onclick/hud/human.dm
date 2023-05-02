@@ -1,7 +1,7 @@
-/mob/living/carbon/human/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
+mob/living/carbon/human/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
 	HUD.human_hud(ui_style, ui_color, ui_alpha, src)
 
-/datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/carbon/human/target)
+datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/carbon/human/target)
 	var/datum/hud_data/hud_data
 	if(!istype(target))
 		hud_data = new()
@@ -381,7 +381,7 @@
 	return
 
 
-/mob/living/carbon/human/verb/toggle_hotkey_verbs()
+mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"
 	set name = "Toggle hotkey buttons"
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
@@ -394,38 +394,38 @@
 		hud_used.hotkey_ui_hidden = 1
 
 //Used for new human mobs created by cloning/goleming/etc.
-/mob/living/carbon/human/proc/set_cloned_appearance()
+mob/living/carbon/human/proc/set_cloned_appearance()
 	f_style = "Shaved"
 	if(dna.species == SPECIES_HUMAN) //no more xenos losing ears/tentacles
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 	all_underwear.Cut()
 	regenerate_icons()
 
-/atom/movable/screen/ling
+atom/movable/screen/ling
 	invisibility = 101
 
-/atom/movable/screen/ling/chems
+atom/movable/screen/ling/chems
 	name = "chemical storage"
 	icon_state = "power_display"
 
-/atom/movable/screen/wizard
+atom/movable/screen/wizard
 	invisibility = 101
 
-/atom/movable/screen/wizard/instability
+atom/movable/screen/wizard/instability
 	name = "instability"
 	icon_state = "instability-1"
 	invisibility = 0
 
-/atom/movable/screen/wizard/energy
+atom/movable/screen/wizard/energy
 	name = "energy"
 	icon_state = "wiz_energy"
 
-/atom/movable/screen/healths/Click_vr()
+atom/movable/screen/healths/Click_vr()
 	if(istype(usr) && iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		C.help_shake_act(C)
 
-/atom/movable/screen/food/Click_vr()
+atom/movable/screen/food/Click_vr()
 	if(istype(usr) && usr.nutrition_icon == src)
 		switch(icon_state)
 			if("nutrition0")
@@ -439,7 +439,7 @@
 			if("nutrition4")
 				to_chat(usr, SPAN_DANGER("You are starving!"))
 
-/atom/movable/screen/drink/Click_vr()
+atom/movable/screen/drink/Click_vr()
 	if(istype(usr) && usr.hydration_icon == src)
 		switch(icon_state)
 			if("hydration0")
@@ -453,7 +453,7 @@
 			if("hydration4")
 				to_chat(usr, SPAN_DANGER("You are dying of thirst!"))
 
-/atom/movable/screen/bodytemperature/Click_vr()
+atom/movable/screen/bodytemperature/Click_vr()
 	if(istype(usr) && usr.bodytemp == src)
 		switch(icon_state)
 			if("temp4")
@@ -475,7 +475,7 @@
 			else
 				to_chat(usr, SPAN_NOTICE("Your body is at a comfortable temperature."))
 
-/atom/movable/screen/pressure/Click_vr()
+atom/movable/screen/pressure/Click_vr()
 	if(istype(usr) && usr.pressure == src)
 		switch(icon_state)
 			if("pressure2")
@@ -489,14 +489,14 @@
 			else
 				to_chat(usr, SPAN_NOTICE("The local air pressure is comfortable."))
 
-/atom/movable/screen/toxins/Click_vr()
+atom/movable/screen/toxins/Click_vr()
 	if(istype(usr) && usr.toxin == src)
 		if(icon_state == "tox0")
 			to_chat(usr, SPAN_NOTICE("The air is clear of toxins."))
 		else
 			to_chat(usr, SPAN_DANGER("The air is eating away at your skin!"))
 
-/atom/movable/screen/oxygen/Click_vr()
+atom/movable/screen/oxygen/Click_vr()
 	if(istype(usr) && usr.oxygen == src)
 		if(icon_state == "oxy0")
 			to_chat(usr, SPAN_NOTICE("You are breathing easy."))

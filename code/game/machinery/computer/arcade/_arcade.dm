@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/stickhorse						= 2
 		))
 
-/obj/machinery/computer/arcade
+obj/machinery/computer/arcade
 	name = "random arcade"
 	desc = "random arcade machine"
 	icon_state = "arcade1"
@@ -38,14 +38,14 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	light_color = LIGHT_COLOR_GREEN
 	var/list/prize_override
 
-/obj/machinery/computer/arcade/proc/Reset()
+obj/machinery/computer/arcade/proc/Reset()
 	return
 
-/obj/machinery/computer/arcade/Initialize(mapload)
+obj/machinery/computer/arcade/Initialize(mapload)
 	. = ..()
 	Reset()
 
-/obj/machinery/computer/arcade/proc/prizevend(mob/user, prizes = 1)
+obj/machinery/computer/arcade/proc/prizevend(mob/user, prizes = 1)
 	if(user)
 		SEND_SIGNAL(user, COMSIG_ARCADE_PRIZEVEND, user, prizes)
 /*
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			SPAN_NOTICE("[src] dispenses [the_prize]!"), \
 			SPAN_NOTICE("You hear a chime and a clunk."))
 
-/obj/machinery/computer/arcade/emp_act(severity)
+obj/machinery/computer/arcade/emp_act(severity)
 	. = ..()
 	var/override = FALSE
 	if(prize_override)
@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		new empprize(loc)
 	explosion(loc, -1, 0, 1+num_of_prizes/*, flame_range = 1+num_of_prizes*/)
 
-/obj/machinery/computer/arcade/attackby(obj/item/O, mob/user, params)
+obj/machinery/computer/arcade/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/stack/arcadeticket))
 		var/obj/item/stack/arcadeticket/T = O
 		var/amount = T.get_amount()

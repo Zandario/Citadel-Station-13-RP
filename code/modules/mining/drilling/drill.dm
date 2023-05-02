@@ -1,11 +1,11 @@
-/obj/machinery/mining
+obj/machinery/mining
 	icon = 'icons/obj/mining_drill.dmi'
 	anchored = 0
 	use_power = USE_POWER_OFF //The drill takes power directly from a cell.
 	density = 1
 	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
 
-/obj/machinery/mining/drill
+obj/machinery/mining/drill
 	name = "mining drill head"
 	desc = "An enormous drill."
 	icon_state = "mining_drill"
@@ -43,7 +43,7 @@
 	var/need_update_field = 0
 	var/need_player_check = 0
 
-/obj/machinery/mining/drill/Initialize(mapload)
+obj/machinery/mining/drill/Initialize(mapload)
 	. = ..()
 	component_parts = list(
 		new /obj/item/stock_parts/matter_bin(src),
@@ -53,10 +53,10 @@
 	)
 	RefreshParts()
 
-/obj/machinery/mining/drill/get_cell()
+obj/machinery/mining/drill/get_cell()
 	return cell
 
-/obj/machinery/mining/drill/process(delta_time)
+obj/machinery/mining/drill/process(delta_time)
 
 	if(need_player_check)
 		return
@@ -143,10 +143,10 @@
 		update_icon()
 		system_error("Resources depleted.")
 
-/obj/machinery/mining/drill/attack_ai(var/mob/user as mob)
+obj/machinery/mining/drill/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
+obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
 	if(!active)
 		if(istype(O, /obj/item/multitool))
 			var/newtag = text2num(sanitizeSafe(input(user, "Enter new ID number or leave empty to cancel.", "Assign ID number") as text, 4))
@@ -174,7 +174,7 @@
 		return
 	..()
 
-/obj/machinery/mining/drill/attack_hand(mob/user, list/params)
+obj/machinery/mining/drill/attack_hand(mob/user, list/params)
 	check_supports()
 
 	if (panel_open && cell && user.Adjacent(src))
@@ -205,7 +205,7 @@
 
 	update_icon()
 
-/obj/machinery/mining/drill/update_icon()
+obj/machinery/mining/drill/update_icon()
 	if(need_player_check)
 		icon_state = "mining_drill_error"
 	else if(active)
@@ -216,7 +216,7 @@
 		icon_state = "mining_drill"
 	return
 
-/obj/machinery/mining/drill/RefreshParts()
+obj/machinery/mining/drill/RefreshParts()
 	..()
 	harvest_speed = 0
 	capacity = 0
@@ -232,7 +232,7 @@
 	charge_use = max(charge_use, 0)
 	cell = locate(/obj/item/cell) in component_parts
 
-/obj/machinery/mining/drill/proc/check_supports()
+obj/machinery/mining/drill/proc/check_supports()
 
 	supported = 0
 
@@ -248,7 +248,7 @@
 
 	update_icon()
 
-/obj/machinery/mining/drill/proc/system_error(var/error)
+obj/machinery/mining/drill/proc/system_error(var/error)
 
 	if(error)
 		src.visible_message("<span class='notice'>\The [src] flashes a '[error]' warning.</span>")
@@ -257,7 +257,7 @@
 	active = 0
 	update_icon()
 
-/obj/machinery/mining/drill/proc/get_resource_field()
+obj/machinery/mining/drill/proc/get_resource_field()
 
 	resource_field = list()
 	need_update_field = 0
@@ -274,14 +274,14 @@
 	if(!resource_field.len)
 		system_error("Resources depleted.")
 
-/obj/machinery/mining/drill/proc/use_cell_power()
+obj/machinery/mining/drill/proc/use_cell_power()
 	if(!cell) return 0
 	if(cell.charge >= charge_use)
 		cell.use(charge_use)
 		return 1
 	return 0
 
-/obj/machinery/mining/drill/verb/unload()
+obj/machinery/mining/drill/verb/unload()
 	set name = "Unload Drill"
 	set category = "Object"
 	set src in oview(1)
@@ -297,18 +297,18 @@
 		to_chat(usr, "<span class='notice'>You must move an ore box up to the drill before you can unload it.</span>")
 
 
-/obj/machinery/mining/brace
+obj/machinery/mining/brace
 	name = "mining drill brace"
 	desc = "A machinery brace for an industrial drill. It looks easily two feet thick."
 	icon_state = "mining_brace"
 	circuit = /obj/item/circuitboard/miningdrillbrace
 	var/obj/machinery/mining/drill/connected
 
-/obj/machinery/mining/brace/Initialize(mapload, newdir)
+obj/machinery/mining/brace/Initialize(mapload, newdir)
 	. = ..()
 	component_parts = list()
 
-/obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
 	if(connected && connected.active)
 		to_chat(user, "<span class='notice'>You can't work with the brace of a running drill!</span>")
 		return
@@ -333,7 +333,7 @@
 		else
 			disconnect()
 
-/obj/machinery/mining/brace/proc/connect()
+obj/machinery/mining/brace/proc/connect()
 
 	var/turf/T = get_step(get_turf(src), src.dir)
 
@@ -353,7 +353,7 @@
 	connected.supports += src
 	connected.check_supports()
 
-/obj/machinery/mining/brace/proc/disconnect()
+obj/machinery/mining/brace/proc/disconnect()
 
 	if(!connected) return
 
@@ -365,7 +365,7 @@
 	connected.check_supports()
 	connected = null
 
-/obj/machinery/mining/brace/verb/rotate_clockwise()
+obj/machinery/mining/brace/verb/rotate_clockwise()
 	set name = "Rotate Brace Clockwise"
 	set category = "Object"
 	set src in oview(1)

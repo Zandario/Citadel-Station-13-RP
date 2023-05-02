@@ -1,4 +1,4 @@
-/datum/outfit/spec_op_officer
+datum/outfit/spec_op_officer
 	name = "Special Ops - Officer"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	suit = /obj/item/clothing/suit/armor/swat/officer
@@ -16,7 +16,7 @@
 	id_desc = "Special operations ID."
 	id_pda_assignment = "Special Operations Officer"
 
-/datum/outfit/spec_op_officer/space
+datum/outfit/spec_op_officer/space
 	name = "Special Ops - Officer in Space"
 	suit = /obj/item/clothing/suit/armor/swat	//obj/item/clothing/suit/space/void/swat
 	back = /obj/item/tank/jetpack/oxygen
@@ -24,7 +24,7 @@
 
 	flags = OUTFIT_HAS_JETPACK
 
-/datum/outfit/ert
+datum/outfit/ert
 	name = "Spec Ops - Emergency Response Team"
 	uniform = /obj/item/clothing/under/ert
 	shoes = /obj/item/clothing/shoes/boots/swat
@@ -37,21 +37,21 @@
 	id_slot = SLOT_ID_WORN_ID
 	id_type = /obj/item/card/id/centcom/ERT
 
-/datum/outfit/death_command
+datum/outfit/death_command
 	name = "Spec Ops - Death Commando"
 
-/datum/outfit/death_command/equip(var/mob/living/carbon/human/H)
+datum/outfit/death_command/equip(var/mob/living/carbon/human/H)
 	deathsquad.equip(H)
 	return 1
 
-/datum/outfit/syndicate_command
+datum/outfit/syndicate_command
 	name = "Spec ops - Syndicate Commando"
 
-/datum/outfit/syndicate_command/equip(var/mob/living/carbon/human/H)
+datum/outfit/syndicate_command/equip(var/mob/living/carbon/human/H)
 	commandos.equip(H)
 	return 1
 
-/datum/outfit/mercenary
+datum/outfit/mercenary
 	name = "Spec Ops - Mercenary"
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/boots/combat
@@ -68,7 +68,7 @@
 
 	flags = OUTFIT_HAS_BACKPACK
 
-/datum/outfit/PARA
+datum/outfit/PARA
 	name = "Spec Ops - PARA"
 	uniform = /obj/item/clothing/under/para
 	suit = /obj/item/clothing/suit/armor/vest/para
@@ -84,7 +84,7 @@
 	id_slot = SLOT_ID_WORN_ID
 	id_type = /obj/item/card/id/centcom/ERT/PARA
 
-/datum/outfit/PARA/equip(var/mob/living/carbon/human/H)
+datum/outfit/PARA/equip(var/mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind)
 		H.mind.isholy = TRUE

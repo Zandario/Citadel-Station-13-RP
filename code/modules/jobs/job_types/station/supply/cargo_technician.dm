@@ -1,4 +1,4 @@
-/datum/role/job/station/cargo_tech
+datum/role/job/station/cargo_tech
 	id = JOB_ID_CARGO_TECHNICIAN
 	title = "Cargo Technician"
 	flag = CARGOTECH
@@ -21,24 +21,24 @@
 		"Logisticai" = /datum/prototype/alt_title/logisticai
 		)
 
-/datum/prototype/alt_title/logisticai_apprentice
+datum/prototype/alt_title/logisticai_apprentice
 	title = "Logisticai-Apprentice"
 	background_allow = list(
 		/datum/lore/character_background/faction/naramadiguilds
 	)
 	background_enforce = TRUE
 
-/datum/prototype/alt_title/logisticai
+datum/prototype/alt_title/logisticai
 	title = "Logisticai"
 	background_allow = list(
 		/datum/lore/character_background/faction/naramadiguilds
 	)
 	background_enforce = TRUE
 
-/datum/prototype/alt_title/logi_spec
+datum/prototype/alt_title/logi_spec
 	title = "Logistics Specialist"
 
-/datum/outfit/job/station/cargo_technician
+datum/outfit/job/station/cargo_technician
 	name = OUTFIT_JOB_NAME("Cargo technician")
 	uniform = /obj/item/clothing/under/rank/cargotech
 	l_ear = /obj/item/radio/headset/headset_cargo

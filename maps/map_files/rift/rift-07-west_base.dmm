@@ -1,1022 +1,1022 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aw" = (
-/turf/simulated/wall/r_wall,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/wall/r_wall,
+area/rift/surfacebase/outside/west_base)
 "az" = (
-/turf/simulated/floor/outdoors/gravsnow/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/gravsnow/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "aY" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 9
 	},
-/obj/structure/table/steel_reinforced,
-/obj/item/storage/fancy/cigar/taj/premium,
-/obj/item/reagent_containers/food/drinks/bottle/victory_gin,
-/obj/item/reagent_containers/food/drinks/bottle/victory_gin,
-/obj/item/reagent_containers/food/drinks/bottle/victory_gin,
-/obj/item/reagent_containers/food/drinks/bottle/messa_mead,
-/obj/item/reagent_containers/food/drinks/bottle/messa_mead,
-/obj/item/reagent_containers/food/drinks/bottle/messa_mead,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/structure/table/steel_reinforced,
+obj/item/storage/fancy/cigar/taj/premium,
+obj/item/reagent_containers/food/drinks/bottle/victory_gin,
+obj/item/reagent_containers/food/drinks/bottle/victory_gin,
+obj/item/reagent_containers/food/drinks/bottle/victory_gin,
+obj/item/reagent_containers/food/drinks/bottle/messa_mead,
+obj/item/reagent_containers/food/drinks/bottle/messa_mead,
+obj/item/reagent_containers/food/drinks/bottle/messa_mead,
+obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "bd" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/obj/structure/table/steel_reinforced,
-/obj/machinery/light/small{
+obj/structure/table/steel_reinforced,
+obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/paper{
+obj/item/paper{
 	info = "This was all we could salvage from the Outsiders Division before we had to permanently seal that section of the facility. It is to be kept in this safe at all times until someone comes to collect it. If it for any reason needs to be moved then it only be done by personal in the most protective of anti anomaly gear. I don't want the tragedy that happened at Outsiders to repeat itself.\[br]\[i]- Colonel Lii'jar. \[/i]\[/center]";
 	name = "Notice"
 	},
-/obj/item/flame/lighter/zippo/taj,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/item/flame/lighter/zippo/taj,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "be" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/bed,
+obj/item/bedsheet,
+obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "bh" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 5
 	},
-/obj/structure/anomaly_container,
-/obj/machinery/artifact,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/structure/anomaly_container,
+obj/machinery/artifact,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "bk" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/lythios43c,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel/lythios43c,
+area/rift/facility/interior/barracks)
 "bC" = (
-/turf/simulated/mineral/ignore_cavegen,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/mineral/ignore_cavegen,
+area/rift/surfacebase/outside/west_base)
 "bP" = (
-/obj/effect/floor_decal/borderfloor/corner{
+obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/beige/bordercorner{
+obj/effect/floor_decal/corner/beige/bordercorner{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "bX" = (
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
-/area/turbolift/rwest_mining/base)
+turf/simulated/shuttle/wall/voidcraft/hard_corner,
+area/turbolift/rwest_mining/base)
 "cE" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "cH" = (
-/obj/effect/floor_decal/techfloor/orange/corner{
+obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "dj" = (
-/obj/effect/overlay/snow/floor,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "dk" = (
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "dU" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/machinery/light/small,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "dY" = (
-/turf/simulated/shuttle/wall/voidcraft,
-/area/turbolift/rwest_mining/base)
+turf/simulated/shuttle/wall/voidcraft,
+area/turbolift/rwest_mining/base)
 "eM" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "eY" = (
-/turf/simulated/mineral/icerock/airmix,
-/area/rift/surfacebase/outside/west_base/submap_seedzone)
+turf/simulated/mineral/icerock/airmix,
+area/rift/surfacebase/outside/west_base/submap_seedzone)
 "fd" = (
-/turf/simulated/mineral/cave,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/mineral/cave,
+area/rift/surfacebase/outside/west_base)
 "gJ" = (
-/obj/effect/overlay/snow/floor/edges{
+obj/effect/overlay/snow/floor/edges{
 	dir = 8
 	},
-/obj/effect/overlay/snow/floor,
-/obj/random/junk,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+obj/random/junk,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "hg" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "hl" = (
-/obj/random/trash,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/random/trash,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "hQ" = (
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/effect/map_effect/radiation_emitter/chernobyl,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "hS" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/tajaran/furs,
-/obj/item/clothing/head/tajaran/scarf,
-/obj/item/flame/lighter/random,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/closet,
+obj/item/clothing/suit/tajaran/furs,
+obj/item/clothing/head/tajaran/scarf,
+obj/item/flame/lighter/random,
+obj/random/contraband,
+obj/random/contraband,
+obj/random/contraband,
+obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "ig" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/obj/structure/closet/crate,
-/obj/item/fuelrod/plutonium,
-/obj/item/fuelrod/plutonium,
-/obj/item/fuelrod/plutonium,
-/obj/item/fuelrod/plutonium,
-/obj/item/fuelrod/plutonium,
-/obj/item/fuelrod/plutonium,
-/obj/item/fuelrod/uranium,
-/obj/item/fuelrod/uranium,
-/obj/item/fuelrod/uranium,
-/obj/item/fuelrod/uranium,
-/obj/item/fuelrod/uranium,
-/obj/item/fuelrod/uranium,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/structure/closet/crate,
+obj/item/fuelrod/plutonium,
+obj/item/fuelrod/plutonium,
+obj/item/fuelrod/plutonium,
+obj/item/fuelrod/plutonium,
+obj/item/fuelrod/plutonium,
+obj/item/fuelrod/plutonium,
+obj/item/fuelrod/uranium,
+obj/item/fuelrod/uranium,
+obj/item/fuelrod/uranium,
+obj/item/fuelrod/uranium,
+obj/item/fuelrod/uranium,
+obj/item/fuelrod/uranium,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "iu" = (
-/obj/effect/overlay/snow/floor/edges{
+obj/effect/overlay/snow/floor/edges{
 	dir = 1
 	},
-/obj/effect/overlay/snow/floor,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "iB" = (
-/turf/simulated/mineral/icerock/ignore_cavegen/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/mineral/icerock/ignore_cavegen/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "jp" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
-/obj/structure/table/rack/shelf/steel,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/structure/table/rack/shelf/steel,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+obj/random/mre,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "jJ" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 10
 	},
-/obj/structure/closet/crate,
-/obj/random/firstaid,
-/obj/random/firstaid,
-/obj/random/firstaid,
-/obj/random/firstaid,
-/obj/random/firstaid,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/structure/closet/crate,
+obj/random/firstaid,
+obj/random/firstaid,
+obj/random/firstaid,
+obj/random/firstaid,
+obj/random/firstaid,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "kC" = (
-/obj/effect/floor_decal/techfloor/orange/corner{
+obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "kH" = (
-/obj/structure/girder/reinforced,
-/obj/effect/floor_decal/techfloor/orange{
+obj/structure/girder/reinforced,
+obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "kL" = (
-/turf/unsimulated/mineral,
-/area/rift/surfacebase/outside/west_base/submap_seedzone)
+turf/unsimulated/mineral,
+area/rift/surfacebase/outside/west_base/submap_seedzone)
 "kN" = (
-/obj/structure/girder/reinforced,
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/structure/girder/reinforced,
+obj/effect/map_effect/radiation_emitter/chernobyl,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/core)
 "kQ" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/tajaran/furs,
-/obj/item/clothing/head/tajaran/scarf,
-/obj/item/flame/lighter/random,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/closet,
+obj/item/clothing/suit/tajaran/furs,
+obj/item/clothing/head/tajaran/scarf,
+obj/item/flame/lighter/random,
+obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "lK" = (
-/turf/simulated/floor/water/deep/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/water/deep/indoors,
+area/rift/surfacebase/outside/west_base)
 "lL" = (
-/obj/structure/sign/warning/falling,
-/turf/simulated/wall,
-/area/rift/surfacebase/outside/west_base)
+obj/structure/sign/warning/falling,
+turf/simulated/wall,
+area/rift/surfacebase/outside/west_base)
 "mb" = (
-/obj/effect/map_effect/portal/master/side_b{
+obj/effect/map_effect/portal/master/side_b{
 	dir = 8;
 	name = "westbase_to_center";
 	portal_id = "westbasestep"
 	},
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "my" = (
-/obj/structure/stairs/spawner/south,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/structure/stairs/spawner/south,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "mz" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/tajaran/furs,
-/obj/item/clothing/head/tajaran/scarf,
-/obj/item/storage/single_use/mre/random,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/closet,
+obj/item/clothing/suit/tajaran/furs,
+obj/item/clothing/head/tajaran/scarf,
+obj/item/storage/single_use/mre/random,
+obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/steel/lythios43c,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel/lythios43c,
+area/rift/facility/interior/barracks)
 "mA" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 6
 	},
-/obj/structure/table/rack/shelf/steel,
-/obj/random/tool/power,
-/obj/random/tool/power,
-/obj/random/tool/power,
-/obj/random/tool/power,
-/obj/random/tool/power,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/structure/table/rack/shelf/steel,
+obj/random/tool/power,
+obj/random/tool/power,
+obj/random/tool/power,
+obj/random/tool/power,
+obj/random/tool/power,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "mI" = (
-/turf/simulated/mineral/floor/ignore_cavegen/has_air,
-/area/rift/surfacebase/outside/west_base/submap_seedzone)
+turf/simulated/mineral/floor/ignore_cavegen/has_air,
+area/rift/surfacebase/outside/west_base/submap_seedzone)
 "nk" = (
-/obj/machinery/fusion_fuel_injector/mapped{
+obj/machinery/fusion_fuel_injector/mapped{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "nm" = (
-/turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/mineral/floor/icerock/lythios43c/indoors/ignore_cavegen,
+area/rift/surfacebase/outside/west_base)
 "ns" = (
-/obj/effect/map_effect/portal/line/side_b{
+obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "nO" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "nQ" = (
-/obj/random/junk,
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+obj/random/junk,
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "ok" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
-/obj/random/trash,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/random/trash,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "oo" = (
-/obj/structure/girder/reinforced,
-/obj/effect/floor_decal/techfloor/orange,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/structure/girder/reinforced,
+obj/effect/floor_decal/techfloor/orange,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "py" = (
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "pJ" = (
-/obj/effect/floor_decal/techfloor/orange/corner,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/effect/floor_decal/techfloor/orange/corner,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "pS" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/tajaran/furs,
-/obj/item/clothing/head/tajaran/scarf,
-/obj/item/storage/single_use/mre/random,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/beige/border,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+obj/structure/closet,
+obj/item/clothing/suit/tajaran/furs,
+obj/item/clothing/head/tajaran/scarf,
+obj/item/storage/single_use/mre/random,
+obj/effect/floor_decal/borderfloor,
+obj/effect/floor_decal/corner/beige/border,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "qd" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/obj/random/trash,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/random/trash,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "qK" = (
-/obj/effect/floor_decal/borderfloor/corner{
+obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/beige/bordercorner{
+obj/effect/floor_decal/corner/beige/bordercorner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "qS" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/effect/map_effect/radiation_emitter/chernobyl,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "rn" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "rp" = (
-/obj/effect/floor_decal/techfloor/orange,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/effect/floor_decal/techfloor/orange,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "rq" = (
-/obj/structure/fence{
+obj/structure/fence{
 	dir = 4
 	},
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "rt" = (
-/obj/effect/map_effect/interval/effect_emitter/steam,
-/turf/simulated/floor/water/deep/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/effect/map_effect/interval/effect_emitter/steam,
+turf/simulated/floor/water/deep/indoors,
+area/rift/surfacebase/outside/west_base)
 "rB" = (
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/effect/map_effect/radiation_emitter/chernobyl,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "rM" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/fence{
+obj/structure/fence{
 	dir = 4
 	},
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "sk" = (
-/obj/structure/girder/reinforced,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/structure/girder/reinforced,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/core)
 "sR" = (
-/obj/structure/stairs/spawner/west,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/structure/stairs/spawner/west,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "sY" = (
-/obj/effect/overlay/snow/floor/edges{
+obj/effect/overlay/snow/floor/edges{
 	dir = 6
 	},
-/obj/effect/overlay/snow/floor,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "tI" = (
-/turf/simulated/wall/r_wall,
-/area/rift/facility/interior/vault)
+turf/simulated/wall/r_wall,
+area/rift/facility/interior/vault)
 "ut" = (
-/obj/effect/overlay/snow/floor/edges{
+obj/effect/overlay/snow/floor/edges{
 	dir = 8
 	},
-/obj/effect/overlay/snow/floor,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "uB" = (
-/obj/effect/overlay/snow/floor,
-/obj/random/junk,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+obj/random/junk,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "uQ" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/tajaran/furs,
-/obj/item/clothing/head/tajaran/scarf,
-/obj/item/storage/single_use/mre/random,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/closet,
+obj/item/clothing/suit/tajaran/furs,
+obj/item/clothing/head/tajaran/scarf,
+obj/item/storage/single_use/mre/random,
+obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "vc" = (
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "vp" = (
-/turf/simulated/mineral/cave,
-/area/rift/surfacebase/outside/west_base/submap_seedzone)
+turf/simulated/mineral/cave,
+area/rift/surfacebase/outside/west_base/submap_seedzone)
 "wc" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/stairs/spawner/south,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/structure/stairs/spawner/south,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "wf" = (
-/turf/unsimulated/wall/planetary/lythios43c{
+turf/unsimulated/wall/planetary/lythios43c{
 	desc = "Glacial permafrost, compacted harder than stone.";
 	icon_state = "icerock-dark";
 	name = "glacier wall"
 	},
-/area/rift/surfacebase/outside/west_base/submap_seedzone)
+area/rift/surfacebase/outside/west_base/submap_seedzone)
 "ws" = (
-/obj/effect/blocker,
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+obj/effect/blocker,
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "wP" = (
-/obj/turbolift_map_holder/rift_west_base,
-/turf/simulated/shuttle/floor/voidcraft/lythios43c,
-/area/turbolift/rwest_mining/base)
+obj/turbolift_map_holder/rift_west_base,
+turf/simulated/shuttle/floor/voidcraft/lythios43c,
+area/turbolift/rwest_mining/base)
 "xf" = (
-/obj/random/obstruction,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/random/obstruction,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "xU" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "yE" = (
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/lythios43c,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel/lythios43c,
+area/rift/facility/interior/barracks)
 "yJ" = (
-/turf/simulated/shuttle/wall/voidcraft,
-/area/rift/facility/interior/elevator)
+turf/simulated/shuttle/wall/voidcraft,
+area/rift/facility/interior/elevator)
 "yP" = (
-/turf/simulated/floor/plating,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/plating,
+area/rift/surfacebase/outside/west_base)
 "yR" = (
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/obj/machinery/power/fusion_core/mapped,
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+obj/effect/map_effect/radiation_emitter/chernobyl,
+obj/machinery/power/fusion_core/mapped,
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "yY" = (
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/core)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/core)
 "zh" = (
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/effect/map_effect/radiation_emitter/chernobyl,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "zo" = (
-/obj/structure/fence,
-/obj/effect/floor_decal/techfloor/orange{
+obj/structure/fence,
+obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "zF" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "Ad" = (
-/turf/simulated/mineral/icerock/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/mineral/icerock/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "Ae" = (
-/turf/unsimulated/mineral,
-/area/rift/surfacebase/outside/west_base)
+turf/unsimulated/mineral,
+area/rift/surfacebase/outside/west_base)
 "Az" = (
-/obj/machinery/door/airlock/lift,
-/turf/simulated/shuttle/floor/voidcraft/lythios43c,
-/area/turbolift/rwest_mining/base)
+obj/machinery/door/airlock/lift,
+turf/simulated/shuttle/floor/voidcraft/lythios43c,
+area/turbolift/rwest_mining/base)
 "AH" = (
-/turf/simulated/wall/r_wall,
-/area/rift/facility/interior/undergound3)
+turf/simulated/wall/r_wall,
+area/rift/facility/interior/undergound3)
 "AV" = (
-/obj/machinery/fusion_fuel_injector/mapped{
+obj/machinery/fusion_fuel_injector/mapped{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "Cb" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "Cc" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/bed,
+obj/item/bedsheet,
+obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "CC" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "CO" = (
-/obj/effect/overlay/snow/floor/edges{
+obj/effect/overlay/snow/floor/edges{
 	dir = 8
 	},
-/obj/effect/overlay/snow/floor/surround{
+obj/effect/overlay/snow/floor/surround{
 	dir = 1
 	},
-/obj/effect/overlay/snow/floor,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "DD" = (
-/turf/simulated/floor/outdoors/gravsnow/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/gravsnow/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "DE" = (
-/turf/unsimulated/wall/planetary/lythios43c{
+turf/unsimulated/wall/planetary/lythios43c{
 	desc = "Glacial permafrost, compacted harder than stone.";
 	icon_state = "icerock-dark";
 	name = "glacier wall"
 	},
-/area/rift/surfacebase/outside/west_base)
+area/rift/surfacebase/outside/west_base)
 "Eb" = (
-/obj/random/obstruction,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/random/obstruction,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/core)
 "Ei" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/effect/floor_decal/rust,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Ex" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "EM" = (
-/obj/structure/girder/reinforced,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+obj/structure/girder/reinforced,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "EP" = (
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+obj/effect/map_effect/radiation_emitter/chernobyl,
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "ET" = (
-/turf/simulated/wall/dungeon,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/wall/dungeon,
+area/rift/surfacebase/outside/west_base)
 "EZ" = (
-/obj/structure/girder/reinforced,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/structure/girder/reinforced,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Fo" = (
-/turf/simulated/wall,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/wall,
+area/rift/surfacebase/outside/west_base)
 "FI" = (
-/obj/effect/overlay/snow/floor,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/effect/overlay/snow/floor,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "Gb" = (
-/turf/simulated/floor/outdoors/snow/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/snow/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Hl" = (
-/obj/effect/floor_decal/borderfloor/corner,
-/obj/effect/floor_decal/corner/beige/bordercorner,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+obj/effect/floor_decal/borderfloor/corner,
+obj/effect/floor_decal/corner/beige/bordercorner,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "HA" = (
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Id" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 9
 	},
-/obj/random/trash,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/random/trash,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "Il" = (
-/turf/simulated/floor/outdoors/lava/indoors,
-/area/rift/surfacebase/outside/west_base/submap_seedzone)
+turf/simulated/floor/outdoors/lava/indoors,
+area/rift/surfacebase/outside/west_base/submap_seedzone)
 "It" = (
-/obj/random/obstruction,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+obj/random/obstruction,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "IF" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/beige/border,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+obj/structure/bed,
+obj/item/bedsheet,
+obj/effect/floor_decal/borderfloor,
+obj/effect/floor_decal/corner/beige/border,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "Jq" = (
-/obj/effect/floor_decal/techfloor/orange/corner{
+obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "Jt" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/power/apc/alarms_hidden{
+obj/structure/bed,
+obj/item/bedsheet,
+obj/machinery/power/apc/alarms_hidden{
 	cell_type = null;
 	chargelevel = 0;
 	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "JZ" = (
-/obj/effect/overlay/snow/floor/edges{
+obj/effect/overlay/snow/floor/edges{
 	dir = 1
 	},
-/obj/effect/overlay/snow/floor,
-/obj/random/junk,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+obj/random/junk,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "Kh" = (
-/turf/simulated/shuttle/floor/voidcraft/lythios43c,
-/area/turbolift/rwest_mining/base)
+turf/simulated/shuttle/floor/voidcraft/lythios43c,
+area/turbolift/rwest_mining/base)
 "KC" = (
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "Lh" = (
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
-/area/rift/facility/interior/elevator)
+turf/simulated/shuttle/wall/voidcraft/hard_corner,
+area/rift/facility/interior/elevator)
 "Lw" = (
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "Ly" = (
-/obj/random/obstruction,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/random/obstruction,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "LA" = (
-/obj/item/barrier_tape_segment/engineering,
-/obj/random/obstruction,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/elevator)
+obj/item/barrier_tape_segment/engineering,
+obj/random/obstruction,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/elevator)
 "LE" = (
-/obj/structure/fence,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/structure/fence,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "LZ" = (
-/obj/structure/girder,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/elevator)
+obj/structure/girder,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/elevator)
 "Me" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/tajaran/furs,
-/obj/item/clothing/head/tajaran/scarf,
-/obj/random/alcohol,
-/obj/item/paper{
+obj/structure/closet,
+obj/item/clothing/suit/tajaran/furs,
+obj/item/clothing/head/tajaran/scarf,
+obj/random/alcohol,
+obj/item/paper{
 	info = "There is going to be another accident I can feel it. Colonel Lii'jar seems certain of it and now these latest tests will push the ractors to its limits. I can only hope it holds, at least after last time we know what to do when it fails.";
 	name = "torn diary page"
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "Mo" = (
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "MP" = (
-/obj/random/junk,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/random/junk,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Nf" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/girder/reinforced,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/effect/floor_decal/rust,
+obj/structure/girder/reinforced,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Nr" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/girder/reinforced,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/structure/girder/reinforced,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "NF" = (
-/turf/simulated/mineral/floor/ignore_cavegen/has_air,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/mineral/floor/ignore_cavegen/has_air,
+area/rift/surfacebase/outside/west_base)
 "NI" = (
-/obj/random/junk,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/random/junk,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "NS" = (
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "NV" = (
-/obj/effect/overlay/snow/floor/edges{
+obj/effect/overlay/snow/floor/edges{
 	dir = 4
 	},
-/obj/effect/overlay/snow/floor,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/core)
+obj/effect/overlay/snow/floor,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/core)
 "Om" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/bed,
+obj/item/bedsheet,
+obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "OB" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Pb" = (
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/elevator)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/elevator)
 "Pt" = (
-/obj/machinery/door/airlock{
+obj/machinery/door/airlock{
 	name = "Barracks"
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "Px" = (
-/obj/machinery/fusion_fuel_injector/mapped{
+obj/machinery/fusion_fuel_injector/mapped{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "PM" = (
-/obj/machinery/door/airlock/lift,
-/turf/simulated/floor/plating,
-/area/rift/surfacebase/outside/west_base)
+obj/machinery/door/airlock/lift,
+turf/simulated/floor/plating,
+area/rift/surfacebase/outside/west_base)
 "PN" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/tajaran/furs,
-/obj/item/clothing/head/tajaran/scarf,
-/obj/item/storage/single_use/mre/random,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/closet,
+obj/item/clothing/suit/tajaran/furs,
+obj/item/clothing/head/tajaran/scarf,
+obj/item/storage/single_use/mre/random,
+obj/random/contraband,
+obj/random/contraband,
+obj/random/contraband,
+obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "QC" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/effect/floor_decal/rust,
+obj/effect/map_effect/radiation_emitter/chernobyl,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "QO" = (
-/obj/random/trash,
-/obj/effect/floor_decal/techfloor/orange/corner{
+obj/random/trash,
+obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "QU" = (
-/obj/machinery/door/firedoor/glass,
-/obj/spawner/window/reinforced/full,
-/turf/simulated/floor,
-/area/turbolift/rwest_mining/base)
+obj/machinery/door/firedoor/glass,
+obj/spawner/window/reinforced/full,
+turf/simulated/floor,
+area/turbolift/rwest_mining/base)
 "Rw" = (
-/obj/effect/map_effect/radiation_emitter/chernobyl,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/effect/map_effect/radiation_emitter/chernobyl,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "RD" = (
-/obj/item/bone/leg,
-/obj/item/bone/leg,
-/obj/item/bone/arm,
-/obj/item/bone/arm,
-/obj/item/bone/ribs,
-/obj/item/bone/skull/tajaran,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/elevator)
+obj/item/bone/leg,
+obj/item/bone/leg,
+obj/item/bone/arm,
+obj/item/bone/arm,
+obj/item/bone/ribs,
+obj/item/bone/skull/tajaran,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/elevator)
 "RE" = (
-/turf/simulated/floor/outdoors/lava/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/lava/indoors,
+area/rift/surfacebase/outside/west_base)
 "RJ" = (
-/obj/effect/floor_decal/borderfloor/corner{
+obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/beige/bordercorner{
+obj/effect/floor_decal/corner/beige/bordercorner{
 	dir = 8
 	},
-/obj/effect/map_effect/radiation_emitter/strong,
-/turf/simulated/floor/tiled/steel/lythios43c,
-/area/rift/facility/interior/barracks)
+obj/effect/map_effect/radiation_emitter/strong,
+turf/simulated/floor/tiled/steel/lythios43c,
+area/rift/facility/interior/barracks)
 "Sk" = (
-/obj/effect/floor_decal/rust,
-/obj/random/junk,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/effect/floor_decal/rust,
+obj/random/junk,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "So" = (
-/obj/structure/fence,
-/obj/effect/floor_decal/techfloor/orange,
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/structure/fence,
+obj/effect/floor_decal/techfloor/orange,
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "Su" = (
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "Sx" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/bioscan_antenna/permanent{
+obj/machinery/bioscan_antenna/permanent{
 	network_key_obfuscated = "rift_bioscanners"
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "SE" = (
-/turf/simulated/floor/tiled/steel/lythios43c,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel/lythios43c,
+area/rift/facility/interior/barracks)
 "SW" = (
-/turf/simulated/wall/r_wall,
-/area/rift/facility/interior/barracks)
+turf/simulated/wall/r_wall,
+area/rift/facility/interior/barracks)
 "SZ" = (
-/turf/simulated/wall/r_lead,
-/area/rift/facility/interior/core)
+turf/simulated/wall/r_lead,
+area/rift/facility/interior/core)
 "Te" = (
-/obj/structure/fence{
+obj/structure/fence{
 	dir = 4
 	},
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "TM" = (
-/obj/effect/map_effect/portal/line/side_b{
+obj/effect/map_effect/portal/line/side_b{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/gravsnow/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/gravsnow/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "TT" = (
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "Um" = (
-/obj/structure/ladder/snake_eater/up,
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+obj/structure/ladder/snake_eater/up,
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Up" = (
-/obj/machinery/fusion_fuel_injector/mapped,
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+obj/machinery/fusion_fuel_injector/mapped,
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "UC" = (
-/obj/structure/girder/reinforced,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/structure/girder/reinforced,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "Vv" = (
-/turf/simulated/mineral/icerock/airmix,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/mineral/icerock/airmix,
+area/rift/surfacebase/outside/west_base)
 "VN" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "VR" = (
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/surfacebase/outside/west_base)
 "Wi" = (
-/obj/effect/overlay/snow/floor/grav_surround{
+obj/effect/overlay/snow/floor/grav_surround{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/surfacebase/outside/west_base)
 "WD" = (
-/obj/structure/girder/reinforced,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+obj/structure/girder/reinforced,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "Xw" = (
-/obj/machinery/power/fusion_core/mapped,
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/facility/interior/core)
+obj/machinery/power/fusion_core/mapped,
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/facility/interior/core)
 "XG" = (
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/vault)
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/vault)
 "XH" = (
-/obj/effect/floor_decal/techfloor/orange{
+obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+turf/simulated/floor/tiled/techfloor/grid/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "XU" = (
-/obj/machinery/light/small{
+obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/floor_decal/borderfloor{
+obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/lythios43c,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel/lythios43c,
+area/rift/facility/interior/barracks)
 "Yy" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/effect/floor_decal/borderfloor{
+obj/structure/bed,
+obj/item/bedsheet,
+obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
-/obj/effect/floor_decal/corner/beige/border{
+obj/effect/floor_decal/corner/beige/border{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
-/area/rift/facility/interior/barracks)
+turf/simulated/floor/tiled/steel_dirty/lythios43c/indoors,
+area/rift/facility/interior/barracks)
 "Zb" = (
-/obj/random/obstruction,
-/turf/simulated/floor/lythios43c/indoors,
-/area/rift/facility/interior/undergound3)
+obj/random/obstruction,
+turf/simulated/floor/lythios43c/indoors,
+area/rift/facility/interior/undergound3)
 "ZF" = (
-/obj/machinery/light/flamp/noshade,
-/turf/simulated/floor/outdoors/snow/lythios43c,
-/area/rift/surfacebase/outside/west_base)
+obj/machinery/light/flamp/noshade,
+turf/simulated/floor/outdoors/snow/lythios43c,
+area/rift/surfacebase/outside/west_base)
 
 (1,1,1) = {"
 DE

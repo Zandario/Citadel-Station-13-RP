@@ -1,7 +1,7 @@
 //
 // Pipe Cap - They go on the end
 //
-/obj/machinery/atmospherics/pipe/cap
+obj/machinery/atmospherics/pipe/cap
 	name = "pipe endcap"
 	desc = "An endcap for pipes"
 	icon = 'icons/atmos/pipes.dmi'
@@ -18,20 +18,20 @@
 
 	var/obj/machinery/atmospherics/node
 
-/obj/machinery/atmospherics/pipe/cap/init_dir()
+obj/machinery/atmospherics/pipe/cap/init_dir()
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/pipe/cap/pipeline_expansion()
+obj/machinery/atmospherics/pipe/cap/pipeline_expansion()
 	return list(node)
 
-/obj/machinery/atmospherics/pipe/cap/Destroy()
+obj/machinery/atmospherics/pipe/cap/Destroy()
 	if(node)
 		node.disconnect(src)
 		node = null
 
 	. = ..()
 
-/obj/machinery/atmospherics/pipe/cap/disconnect(obj/machinery/atmospherics/reference)
+obj/machinery/atmospherics/pipe/cap/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node)
 		if(istype(node, /obj/machinery/atmospherics/pipe))
 			qdel(parent)
@@ -41,13 +41,13 @@
 
 	..()
 
-/obj/machinery/atmospherics/pipe/cap/change_color(var/new_color)
+obj/machinery/atmospherics/pipe/cap/change_color(var/new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
 	if(node)
 		node.update_underlays()
 
-/obj/machinery/atmospherics/pipe/cap/update_icon(safety = 0)
+obj/machinery/atmospherics/pipe/cap/update_icon(safety = 0)
 	if(!check_icon_cache())
 		return
 
@@ -55,7 +55,7 @@
 
 	set_overlays(icon_manager.get_atmos_icon("pipe", null, pipe_color, "cap[icon_connect_type]"))
 
-/obj/machinery/atmospherics/pipe/cap/atmos_init()
+obj/machinery/atmospherics/pipe/cap/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
 		if (can_be_node(target, 1))
 			node = target
@@ -65,11 +65,11 @@
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/cap/visible
+obj/machinery/atmospherics/pipe/cap/visible
 	level = 2
 	icon_state = "cap"
 
-/obj/machinery/atmospherics/pipe/cap/visible/scrubbers
+obj/machinery/atmospherics/pipe/cap/visible/scrubbers
 	name = "scrubbers pipe endcap"
 	desc = "An endcap for scrubbers pipes"
 	icon_state = "cap-scrubbers"
@@ -79,7 +79,7 @@
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/cap/visible/supply
+obj/machinery/atmospherics/pipe/cap/visible/supply
 	name = "supply pipe endcap"
 	desc = "An endcap for supply pipes"
 	icon_state = "cap-supply"
@@ -89,7 +89,7 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/cap/visible/fuel
+obj/machinery/atmospherics/pipe/cap/visible/fuel
 	name = "fuel pipe endcap"
 	desc = "An endcap for fuel pipes"
 	icon_state = "cap-fuel"
@@ -99,7 +99,7 @@
 	icon_connect_type = "-fuel"
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/cap/visible/aux
+obj/machinery/atmospherics/pipe/cap/visible/aux
 	name = "aux pipe endcap"
 	desc = "An endcap for aux pipes"
 	icon_state = "cap-aux"
@@ -111,11 +111,11 @@
 
 
 
-/obj/machinery/atmospherics/pipe/cap/hidden
+obj/machinery/atmospherics/pipe/cap/hidden
 	level = 1
 	icon_state = "cap"
 
-/obj/machinery/atmospherics/pipe/cap/hidden/scrubbers
+obj/machinery/atmospherics/pipe/cap/hidden/scrubbers
 	name = "scrubbers pipe endcap"
 	desc = "An endcap for scrubbers pipes"
 	icon_state = "cap-f-scrubbers"
@@ -125,7 +125,7 @@
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
-/obj/machinery/atmospherics/pipe/cap/hidden/supply
+obj/machinery/atmospherics/pipe/cap/hidden/supply
 	name = "supply pipe endcap"
 	desc = "An endcap for supply pipes"
 	icon_state = "cap-f-supply"
@@ -135,7 +135,7 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/cap/visible/fuel
+obj/machinery/atmospherics/pipe/cap/visible/fuel
 	name = "fuel pipe endcap"
 	desc = "An endcap for fuel pipes"
 	icon_state = "cap-f-fuel"
@@ -145,7 +145,7 @@
 	icon_connect_type = "-fuel"
 	color = PIPE_COLOR_YELLOW
 
-/obj/machinery/atmospherics/pipe/cap/hidden/aux
+obj/machinery/atmospherics/pipe/cap/hidden/aux
 	name = "aux pipe endcap"
 	desc = "An endcap for aux pipes"
 	icon_state = "cap-f-aux"

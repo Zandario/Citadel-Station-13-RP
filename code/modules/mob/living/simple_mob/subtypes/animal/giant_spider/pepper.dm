@@ -1,6 +1,6 @@
 // Pepper spiders inject condensed capsaicin into their victims.
 
-/datum/category_item/catalogue/fauna/giant_spider/pepper_spider
+datum/category_item/catalogue/fauna/giant_spider/pepper_spider
 	name = "Giant Spider - Pepper"
 	desc = "This specific spider has been catalogued as 'Pepper', \
 	and it belongs to the 'Guard' caste. \
@@ -11,7 +11,7 @@
 	they share a similar level of endurance with the other spiders in their caste, making them difficult to put down."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/pepper
+mob/living/simple_mob/animal/giant_spider/pepper
 	desc = "Red and brown, it makes you shudder to look at it. This one has glinting red eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/pepper_spider)
 
@@ -29,6 +29,6 @@
 	poison_per_bite = 5
 	poison_type = "condensedcapsaicin_v"
 
-/mob/living/simple_mob/animal/giant_spider/pepper/Initialize(mapload)
+mob/living/simple_mob/animal/giant_spider/pepper/Initialize(mapload)
 	adjust_scale(1.1)
 	return ..()

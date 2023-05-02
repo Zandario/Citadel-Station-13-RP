@@ -1,5 +1,5 @@
 //Uses a couple different services
-/client/update_ip_reputation()
+client/update_ip_reputation()
 	var/scores[] = list("GII" = ipr_getipintel(), "IPQS" = ipr_ipqualityscore())
 
 	var/log_output = "IP Reputation [key] from [address]"
@@ -16,7 +16,7 @@
 	return TRUE
 
 //Service returns a single float in html body
-/client/proc/ipr_getipintel()
+client/proc/ipr_getipintel()
 	if(!config_legacy.ipr_email)
 		return -1
 
@@ -70,7 +70,7 @@
 		return score
 
 //Service returns JSON in html body
-/client/proc/ipr_ipqualityscore()
+client/proc/ipr_ipqualityscore()
 	if(!config_legacy.ipqualityscore_apikey)
 		return -1
 

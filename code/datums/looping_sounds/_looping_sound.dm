@@ -17,7 +17,7 @@
 	opacity_check	(bool)					If true, things behind walls/opaque things won't hear the sounds.
 	pref_check		(type)					If set to a /datum/client_preference type, will check if the hearer has that preference active before playing it to them.
 */
-/datum/looping_sound
+datum/looping_sound
 	var/list/atom/output_atoms
 	var/mid_sounds
 	var/mid_length
@@ -37,7 +37,7 @@
 
 	var/timerid
 
-/datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
+datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
 	if(!mid_sounds)
 		WARNING("A looping sound datum was created without sounds to play.")
 		return
@@ -50,19 +50,19 @@
 	if(start_immediately)
 		start()
 
-/datum/looping_sound/Destroy()
+datum/looping_sound/Destroy()
 	stop()
 	output_atoms = null
 	return ..()
 
-/datum/looping_sound/proc/start(atom/add_thing)
+datum/looping_sound/proc/start(atom/add_thing)
 	if(add_thing)
 		output_atoms |= add_thing
 	if(timerid)
 		return
 	on_start()
 
-/datum/looping_sound/proc/stop(atom/remove_thing)
+datum/looping_sound/proc/stop(atom/remove_thing)
 	if(remove_thing)
 		output_atoms -= remove_thing
 	if(!timerid)
@@ -71,7 +71,7 @@
 	deltimer(timerid)
 	timerid = null
 
-/datum/looping_sound/proc/sound_loop(starttime)
+datum/looping_sound/proc/sound_loop(starttime)
 	if(max_loops && (world.time >= (starttime + mid_length * max_loops)))
 		stop()
 		return
@@ -80,7 +80,7 @@
 	if(!timerid)
 		timerid = addtimer(CALLBACK(src, .proc/sound_loop, world.time), mid_length, TIMER_STOPPABLE | TIMER_LOOP)
 
-/datum/looping_sound/proc/play(soundfile)
+datum/looping_sound/proc/play(soundfile)
 	var/list/atoms_cache = output_atoms
 	var/sound/S = sound(soundfile)
 	if(direct)
@@ -97,7 +97,7 @@
 		else
 			playsound(thing, S, volume, vary, extra_range, ignore_walls = !opacity_check, preference = pref_check)
 
-/datum/looping_sound/proc/get_sound(starttime, _mid_sounds)
+datum/looping_sound/proc/get_sound(starttime, _mid_sounds)
 	if(!_mid_sounds)
 		. = mid_sounds
 	else
@@ -105,13 +105,13 @@
 	while(!isfile(.) && !isnull(.))
 		. = pickweight(.)
 
-/datum/looping_sound/proc/on_start()
+datum/looping_sound/proc/on_start()
 	var/start_wait = 1 // On TG this is 0, however it needs to be 1 to work around an issue.
 	if(start_sound)
 		play(start_sound)
 		start_wait = start_length
 	addtimer(CALLBACK(src, .proc/sound_loop), start_wait)
 
-/datum/looping_sound/proc/on_stop()
+datum/looping_sound/proc/on_stop()
 	if(end_sound)
 		play(end_sound)

@@ -1,6 +1,6 @@
 var/datum/antagonist/stowaway/stowaways
 
-/datum/antagonist/STOWAWAY
+datum/antagonist/STOWAWAY
 	id = MODE_STOWAWAY
 	role_type = BE_RENEGADE
 	role_text = "Stowaway"

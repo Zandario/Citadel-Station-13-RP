@@ -8,7 +8,7 @@ obj/machinery/scanner
 	anchored = TRUE
 	var/lastuser = null
 
-/obj/machinery/scanner/Initialize(mapload)
+obj/machinery/scanner/Initialize(mapload)
 	. = ..()
 	if(!outputdir)
 		switch(dir)
@@ -23,12 +23,12 @@ obj/machinery/scanner
 		if(!outputdir)
 			outputdir = 8
 
-/obj/machinery/scanner/process(delta_time)
+obj/machinery/scanner/process(delta_time)
 	if(stat & NOPOWER)
 		return
 	use_power(50)
 
-/obj/machinery/scanner/power_change()
+obj/machinery/scanner/power_change()
 	..()
 	if(stat & NOPOWER)
 		spawn(rand(0, 15))

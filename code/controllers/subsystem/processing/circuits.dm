@@ -17,15 +17,15 @@ PROCESSING_SUBSYSTEM_DEF(circuit)
 	var/list/circuit_fabricator_recipe_list = list()				// Associative list of [category_name]:[list_of_circuit_paths] pairs
 //	var/cost_multiplier = MINERAL_MATERIAL_AMOUNT / 10 // Each circuit cost unit is 200cm3
 
-/datum/controller/subsystem/processing/circuit/Recover()
+datum/controller/subsystem/processing/circuit/Recover()
 	subsystem_flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 
-/datum/controller/subsystem/processing/circuit/Initialize(timeofday)
+datum/controller/subsystem/processing/circuit/Initialize(timeofday)
 	SScircuit.cipherkey = uppertext(random_string(2000+rand(0,10), GLOB.alphabet))
 	circuits_init()
 	return ..()
 
-/datum/controller/subsystem/processing/circuit/proc/circuits_init()
+datum/controller/subsystem/processing/circuit/proc/circuits_init()
 	//Cached lists for free performance
 	for(var/path in typesof(/obj/item/integrated_circuit))
 		var/obj/item/integrated_circuit/IC = path

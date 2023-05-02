@@ -3,13 +3,13 @@
  *
  * Allows for generating arbitrary obfuscation IDs from static mapload time IDs, that are deterministic within a round.
  */
-/datum/controller/subsystem/mapping
+datum/controller/subsystem/mapping
 	/// "secret" key
 	var/obfuscation_secret
 	/// subtly obfuscated id lookup
 	var/list/obfuscation_cache
 
-/datum/controller/subsystem/mapping/PreInit(recovering)
+datum/controller/subsystem/mapping/PreInit(recovering)
 	. = ..()
 	if(!obfuscation_secret)
 		obfuscation_secret = md5(GUID())
@@ -22,7 +22,7 @@
  *
  * Both original and id_type are CASE INSENSITIVE.
  */
-/datum/controller/subsystem/mapping/proc/get_obfuscated_id(original, id_type = "$any")
+datum/controller/subsystem/mapping/proc/get_obfuscated_id(original, id_type = "$any")
 	if(!original)
 		return	// no.
 	return md5("[obfuscation_secret]%[lowertext(original)]%[lowertext(id_type)]")
@@ -34,7 +34,7 @@
  *
  * use in cases where you want a player-readable id that can be recovered
  */
-/datum/controller/subsystem/mapping/proc/subtly_obfuscated_id(original, id_type = "$any")
+datum/controller/subsystem/mapping/proc/subtly_obfuscated_id(original, id_type = "$any")
 	if(isnull(obfuscation_cache[id_type]?[original]))
 		LAZYINITLIST(obfuscation_cache[id_type])
 		obfuscation_cache[id_type][original] = "[original]_[num2text(rand(0, (16 ** 4) - 1), 4, 16)]"

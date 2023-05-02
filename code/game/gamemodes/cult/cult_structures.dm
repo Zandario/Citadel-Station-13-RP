@@ -1,23 +1,23 @@
-/obj/structure/cult
+obj/structure/cult
 	density = 1
 	anchored = 1
 	icon = 'icons/obj/cult.dmi'
 
-/obj/structure/cult/cultify()
+obj/structure/cult/cultify()
 	return
 
-/obj/structure/cult/talisman
+obj/structure/cult/talisman
 	name = "Altar"
 	desc = "A bloodstained altar dedicated to Nar-Sie."
 	icon_state = "talismanaltar"
 
 
-/obj/structure/cult/forge
+obj/structure/cult/forge
 	name = "Daemon forge"
 	desc = "A forge used in crafting the unholy weapons used by the armies of Nar-Sie."
 	icon_state = "forge"
 
-/obj/structure/cult/pylon
+obj/structure/cult/pylon
 	name = "Pylon"
 	desc = "A floating crystal that hums with an unearthly energy."
 	icon_state = "pylon"
@@ -33,26 +33,26 @@
 	var/activation_cooldown = 30 SECONDS
 	var/last_activation = 0
 
-/obj/structure/cult/pylon/Initialize(mapload)
+obj/structure/cult/pylon/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/structure/cult/pylon/attack_hand(mob/user, list/params)
+obj/structure/cult/pylon/attack_hand(mob/user, list/params)
 	attackpylon(user, 5)
 
-/obj/structure/cult/pylon/attack_generic(var/mob/user, var/damage)
+obj/structure/cult/pylon/attack_generic(var/mob/user, var/damage)
 	attackpylon(user, damage)
 
-/obj/structure/cult/pylon/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/cult/pylon/attackby(obj/item/W as obj, mob/user as mob)
 	attackpylon(user, W.damage_force)
 
-/obj/structure/cult/pylon/take_damage(var/damage)
+obj/structure/cult/pylon/take_damage(var/damage)
 	pylonhit(damage)
 
-/obj/structure/cult/pylon/bullet_act(var/obj/projectile/Proj)
+obj/structure/cult/pylon/bullet_act(var/obj/projectile/Proj)
 	pylonhit(Proj.get_structure_damage())
 
-/obj/structure/cult/pylon/proc/pylonhit(var/damage)
+obj/structure/cult/pylon/proc/pylonhit(var/damage)
 	if(!isbroken)
 		if(prob(1+ damage * 5))
 			visible_message("<span class='danger'>[shatter_message]</span>")
@@ -63,7 +63,7 @@
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
-/obj/structure/cult/pylon/proc/attackpylon(mob/user as mob, var/damage)
+obj/structure/cult/pylon/proc/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
 		if(prob(1+ damage * 5))
 			user.visible_message(
@@ -89,7 +89,7 @@
 			to_chat(user, "You hit \the [src]!")
 		playsound(get_turf(src),impact_sound, 75, 1)
 
-/obj/structure/cult/pylon/proc/repair(mob/user as mob)
+obj/structure/cult/pylon/proc/repair(mob/user as mob)
 	if(isbroken)
 		START_PROCESSING(SSobj, src)
 		to_chat(user, "You repair \the [src].")
@@ -99,15 +99,15 @@
 		set_light(5)
 
 // Returns 1 if the pylon does something special.
-/obj/structure/cult/pylon/proc/pylon_unique()
+obj/structure/cult/pylon/proc/pylon_unique()
 	last_activation = world.time
 	return 0
 
-/obj/structure/cult/pylon/process(delta_time)
+obj/structure/cult/pylon/process(delta_time)
 	if(!isbroken && (last_activation < world.time + activation_cooldown) && pylon_unique())
 		flick("[initial(icon_state)]-surge",src)
 
-/obj/structure/cult/tome
+obj/structure/cult/tome
 	name = "Desk"
 	desc = "A desk covered in arcane manuscripts and tomes in unknown languages. Looking at the text makes your skin crawl."
 	icon_state = "tomealtar"
@@ -115,14 +115,14 @@
 //sprites for this no longer exist	-Pete
 //(they were stolen from another game anyway)
 /*
-/obj/structure/cult/pillar
+obj/structure/cult/pillar
 	name = "Pillar"
 	desc = "This should not exist"
 	icon_state = "pillar"
 	icon = 'magic_pillar.dmi'
 */
 
-/obj/effect/gateway
+obj/effect/gateway
 	name = "gateway"
 	desc = "You're pretty sure that abyss is staring back."
 	icon = 'icons/obj/cult.dmi'
@@ -132,7 +132,7 @@
 	anchored = 1.0
 	var/spawnable = null
 
-/obj/effect/gateway/active
+obj/effect/gateway/active
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
@@ -141,7 +141,7 @@
 		/mob/living/simple_mob/faithless
 	)
 
-/obj/effect/gateway/active/cult
+obj/effect/gateway/active/cult
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
@@ -150,14 +150,14 @@
 		/mob/living/simple_mob/faithless/cult
 	)
 
-/obj/effect/gateway/active/cult/cultify()
+obj/effect/gateway/active/cult/cultify()
 	return
 
-/obj/effect/gateway/active/Initialize(mapload)
+obj/effect/gateway/active/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/spawn_things), rand(30, 60) SECONDS)
 
-/obj/effect/gateway/active/proc/spawn_things()
+obj/effect/gateway/active/proc/spawn_things()
 	var/t = pick(spawnable)
 	new t(drop_location())
 	qdel(src)

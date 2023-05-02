@@ -1,4 +1,4 @@
-/obj/item/melee/chainofcommand
+obj/item/melee/chainofcommand
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
@@ -10,12 +10,12 @@
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 
-/obj/item/melee/chainofcommand/suicide_act(mob/user)
+obj/item/melee/chainofcommand/suicide_act(mob/user)
 	var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 	user.visible_message(SPAN_DANGER("\The [user] [T.is] strangling [T.himself] with \the [src]! It looks like [T.he] [T.is] trying to commit suicide."), SPAN_DANGER("You start to strangle yourself with \the [src]!"), SPAN_DANGER("You hear the sound of someone choking!"))
 	return (OXYLOSS)
 
-/obj/item/melee/sabre
+obj/item/melee/sabre
 	name = "officer's sabre"
 	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
 	hitsound = "swing_hit"
@@ -27,12 +27,12 @@
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/melee/sabre/suicide_act(mob/user)
+obj/item/melee/sabre/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	visible_message(SPAN_DANGER("[user] is slitting [TU.his] stomach open with \the [src.name]! It looks like [TU.hes] trying to commit seppuku."), SPAN_DANGER("You slit your stomach open with \the [src.name]!"), SPAN_DANGER("You hear the sound of flesh tearing open.")) // gory, but it gets the point across
 	return(BRUTELOSS)
 
-/obj/item/melee/umbrella
+obj/item/melee/umbrella
 	name = "umbrella"
 	desc = "To keep the rain off you. Use with caution on windy days."
 	icon = 'icons/obj/items.dmi'
@@ -44,17 +44,17 @@
 	w_class = ITEMSIZE_NORMAL
 	var/open = FALSE
 
-/obj/item/melee/umbrella/Initialize(mapload)
+obj/item/melee/umbrella/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/melee/umbrella/attack_self(mob/user)
+obj/item/melee/umbrella/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	src.toggle_umbrella()
 
-/obj/item/melee/umbrella/proc/toggle_umbrella()
+obj/item/melee/umbrella/proc/toggle_umbrella()
 	open = !open
 	icon_state = "umbrella_[open ? "open" : "closed"]"
 	addblends = icon_state + "_a"
@@ -66,11 +66,11 @@
 		H.update_inv_r_hand()
 
 // Randomizes color
-/obj/item/melee/umbrella/random/Initialize(mapload)
+obj/item/melee/umbrella/random/Initialize(mapload)
 	add_atom_colour("#"+get_random_colour(), FIXED_COLOUR_PRIORITY)
 	return ..()
 
-/obj/item/melee/cursedblade
+obj/item/melee/cursedblade
 	name = "crystal blade"
 	desc = "The red crystal blade's polished surface glints in the light, giving off a faint glow."
 	icon_state = "soulblade"
@@ -86,14 +86,14 @@
 	var/list/voice_mobs = list() //The curse of the sword is that it has someone trapped inside.
 
 
-/obj/item/melee/cursedblade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/melee/cursedblade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
-/obj/item/melee/cursedblade/proc/ghost_inhabit(var/mob/candidate)
+obj/item/melee/cursedblade/proc/ghost_inhabit(var/mob/candidate)
 	if(!isobserver(candidate))
 		return
 	//Handle moving the ghost into the new shell.
@@ -107,7 +107,7 @@
 	voice_mobs.Add(new_voice)
 	listening_objects |= src
 
-/obj/item/melee/skateboard
+obj/item/melee/skateboard
 	name = "skaetbord"
 	desc = "You shouldn't be seeing this. Contact an Admin."
 	icon_state = "skateboard"
@@ -118,14 +118,14 @@
 	throw_force = 7
 	var/board_item_type = null
 
-/obj/item/melee/skateboard/dropped(mob/user, flags, atom/newLoc)
+obj/item/melee/skateboard/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(!isturf(newLoc))
 		return
 	new board_item_type(newLoc)
 	qdel(src)
 
-/obj/item/melee/skateboard/improv
+obj/item/melee/skateboard/improv
 	name = "improvised skateboard"
 	desc = "A skateboard. It can be placed on its wheels and ridden, or used as a radical weapon."
 	icon_state = "skateboard"
@@ -135,31 +135,31 @@
 	board_item_type = /obj/vehicle_old/skateboard/improv
 	throw_force = 7
 
-/obj/item/melee/skateboard/beginner
+obj/item/melee/skateboard/beginner
 	name = "skateboard"
 	desc = "A XTREME SPORTZ brand skateboard for beginners. Ages 8 and up."
 	icon_state = "skateboard"
 	board_item_type = /obj/vehicle_old/skateboard/beginner
 
-/obj/item/melee/skateboard/pro
+obj/item/melee/skateboard/pro
 	name = "skateboard"
 	desc = "A RaDSTORMz brand professional skateboard. Looks a lot more stable than the average board."
 	icon_state = "skateboard2"
 	board_item_type = /obj/vehicle_old/skateboard/pro
 
-/obj/item/melee/skateboard/hoverboard
+obj/item/melee/skateboard/hoverboard
 	name = "hoverboard"
 	desc = "A blast from the past, so retro!"
 	icon_state = "hoverboard_red"
 	board_item_type = /obj/vehicle_old/skateboard/hoverboard
 
-/obj/item/melee/skateboard/hoverboard/admin
+obj/item/melee/skateboard/hoverboard/admin
 	name = "Board of Directors"
 	desc = "The engineering complexity of a spaceship concentrated inside of a board. Just as expensive, too."
 	icon_state = "hoverboard_nt"
 	board_item_type = /obj/vehicle_old/skateboard/hoverboard/admin
 
-/obj/item/melee/skateboard/scooter
+obj/item/melee/skateboard/scooter
 	name = "scooter"
 	desc = "A fun way to get around."
 	icon = 'icons/obj/vehicles.dmi'
@@ -167,7 +167,7 @@
 	board_item_type = /obj/vehicle_old/skateboard/scooter
 
 //Clown Halberd
-/obj/item/melee/clownstaff
+obj/item/melee/clownstaff
 	name = "clown halberd"
 	desc = "This deadly halberd is wielded by Columbina's melee specialists. The curved blade at the end has been painted to look like a banana, disguising its deadly edge."
 	icon_state = "clownstaff"
@@ -181,19 +181,19 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/items/bikehorn.ogg'
 
-/obj/item/melee/clownstaff/Initialize(mapload, material_key)
+obj/item/melee/clownstaff/Initialize(mapload, material_key)
 	. = ..()
 	AddComponent(/datum/component/jousting)
 
 //Clown Dagger
-/obj/item/melee/clownop
+obj/item/melee/clownop
 	name = "clown knife"
 	desc = "This curved blade is painted to look like a banana, disguising its deadly edge."
 	icon_state = "clownrender"
 	item_state = "clown_dagger"
 
 //Lalilulelo?
-/obj/item/melee/nanite_knife
+obj/item/melee/nanite_knife
 	name = "writhing blade"
 	desc = "A jagged blade made out of a strangely shimmering metal. Its wicked shape splits and curls in on itself with cold mutability."
 	icon_state = "writhing"
@@ -211,7 +211,7 @@
 	var/poison_amount = 5
 	var/poison_type = "shredding_nanites"
 
-/obj/item/melee/nanite_knife/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/nanite_knife/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 	var/mob/living/L = target
 	if(!istype(L))
@@ -222,12 +222,12 @@
 		inject_poison(L, target_zone)
 
  // Does actual poison injection, after all checks passed.
-/obj/item/melee/nanite_knife/proc/inject_poison(mob/living/M, target_zone)
+obj/item/melee/nanite_knife/proc/inject_poison(mob/living/M, target_zone)
 	if(prob(poison_chance))
 		to_chat(M, "<span class='warning'>You feel nanites digging into your skin!</span>")
 		M.reagents.add_reagent(poison_type, poison_amount)
 
-/obj/item/melee/nanite_knife/suicide_act(mob/user)
+obj/item/melee/nanite_knife/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	user.visible_message(pick("<span class='danger'>\The [user] is shoving \the [src] into [TU.is] chest! It looks like [TU.he] [TU.is] trying to commit suicide.</span>",\
 		"<span class='danger'>\The [user] is stabbing themselves with \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"))
@@ -237,7 +237,7 @@
 	return
 
 //Interestingly, a magic flame sword has a lot in common with the thermal cutter Tech and I made for Goblins. So I decided it should share some of that code.
-/obj/item/melee/ashlander
+obj/item/melee/ashlander
 	name = "bone sword"
 	desc = "A sharp sword crafted from knapped bone. In spite of its primitive appearance, it is still incredibly deadly."
 	icon_state = "bonesword"
@@ -250,7 +250,7 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/melee/ashlander/elder
+obj/item/melee/ashlander/elder
 	name = "elder bone sword"
 	desc = "These swords are crafted from one solid piece of a gigantic bone. Carried by the Ashlander priesthood, these weapons are considered holy relics and are often preserved over the lives of their wielders."
 	icon_state = "elderbonesword"
@@ -260,17 +260,17 @@
 	var/SA_bonus_damage = 25 // 50 total against demons and aberrations.
 	var/SA_vulnerability = MOB_CLASS_DEMONIC | MOB_CLASS_ABERRATION
 
-/obj/item/melee/ashlander/elder/Initialize(mapload)
+obj/item/melee/ashlander/elder/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
-/obj/item/melee/ashlander/elder/afterattack(atom/A, mob/user)
+obj/item/melee/ashlander/elder/afterattack(atom/A, mob/user)
 	if(isliving(A))
 		var/mob/living/tm = A // targeted mob
 		if(SA_vulnerability & tm.mob_class)
 			tm.apply_damage(SA_bonus_damage) // fuck em
 
-/obj/item/melee/ashlander/elder/attack_self(mob/user)
+obj/item/melee/ashlander/elder/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -279,7 +279,7 @@
 	else if(active)
 		deactivate()
 
-/obj/item/melee/ashlander/elder/update_icon()
+obj/item/melee/ashlander/elder/update_icon()
 	..()
 	if(active)
 		icon_state = "[initial(icon_state)]_1"
@@ -297,7 +297,7 @@
 		M.update_inv_l_hand()
 		M.update_inv_r_hand()
 
-/obj/item/melee/ashlander/elder/proc/activate(mob/living/user)
+obj/item/melee/ashlander/elder/proc/activate(mob/living/user)
 	to_chat(user, "<span class='notice'>You ignite the [src]'s sacred flame.</span>")
 	playsound(loc, 'sound/weapons/gun_flamethrower3.ogg', 50, 1)
 	src.damage_force = 20
@@ -307,7 +307,7 @@
 	active = 1
 	update_icon()
 
-/obj/item/melee/ashlander/elder/proc/deactivate(mob/living/user)
+obj/item/melee/ashlander/elder/proc/deactivate(mob/living/user)
 	to_chat(user, "<span class='notice'>You douse \the [src]'s sacred flame.</span>")
 	playsound(loc, 'sound/weapons/gun_flamethrower1.ogg', 50, 1)
 	src.damage_force = 20
@@ -317,13 +317,13 @@
 	src.active = 0
 	update_icon()
 
-/obj/item/melee/ashlander/elder/proc/isOn()
+obj/item/melee/ashlander/elder/proc/isOn()
 	return active
 
-/obj/item/melee/ashlander/elder/is_hot()
+obj/item/melee/ashlander/elder/is_hot()
 	return isOn()
 
-/obj/item/melee/shiv
+obj/item/melee/shiv
 	name = "shiv"
 	desc = "A crude improvised weapon. Although visually frightening, shivs are usually more effective for maiming than killing."
 	icon_state = "shiv"
@@ -336,7 +336,7 @@
 	sharp = 1
 
 //I would like two-handed weapons that don't use our annoying material system, resulting in a "Steel Mjollnir". Drives me crazy.
-/obj/item/melee/twohanded
+obj/item/melee/twohanded
 	name = "Two Handed Weapon"
 	desc = "You shouldn't be seeing this. Report to a Maintainer."
 	w_class = ITEMSIZE_LARGE
@@ -347,14 +347,14 @@
 	var/unwieldsound = null
 
 //Allow a small chance of parrying melee attacks when wielded - maybe generalize this to other weapons someday
-/obj/item/melee/twohanded/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/melee/twohanded/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(wielded && default_parry_check(user, attacker, damage_source) && prob(15))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
-/obj/item/melee/twohanded/attack_self(mob/user)
+obj/item/melee/twohanded/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -365,7 +365,7 @@
 		wielded = 0
 	update_icon()
 
-/obj/item/melee/twohanded/update_icon()
+obj/item/melee/twohanded/update_icon()
 	..()
 	if(wielded)
 		icon_state = "[icon_state]_1"
@@ -374,7 +374,7 @@
 		icon_state = initial(icon_state)
 		item_state = icon_state
 
-/obj/item/melee/twohanded/mjollnir
+obj/item/melee/twohanded/mjollnir
 	name = "Mjollnir"
 	desc = "A long, heavy hammer. This weapons crackles with barely contained energy."
 	icon_state = "mjollnir"
@@ -391,7 +391,7 @@
 
 //This currently just kills the user. lol
 /*
-/obj/item/melee/twohanded/mjollnir/afterattack(atom/target, mob/living/G, mob/user)
+obj/item/melee/twohanded/mjollnir/afterattack(atom/target, mob/living/G, mob/user)
 	..()
 
 	if(wielded || isliving(target))
@@ -411,7 +411,7 @@
 
 //The Tyrmalin equivalent of the plasma cutter. I'm not making it a plasma cutter subtype because it has to be snowflaked. It should match most cutter stats, otherwise.
 #define FUEL_BURN_INTERVAL 15
-/obj/item/melee/thermalcutter
+obj/item/melee/thermalcutter
 	name = "thermal cutter"
 	desc = "Used by Tyrmalin scrappers to slice trough old space-hulks and robots alike."
 	icon_state = "thermalcutter"
@@ -428,7 +428,7 @@
 	var/excavation_amount = 200
 	var/destroy_artefacts = FALSE // some mining tools will destroy artefacts completely while avoiding side-effects.
 
-/obj/item/melee/thermalcutter/Initialize(mapload)
+obj/item/melee/thermalcutter/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
@@ -436,17 +436,17 @@
 	R.add_reagent("fuel", max_fuel)
 	update_icon()
 
-/obj/item/melee/thermalcutter/Destroy()
+obj/item/melee/thermalcutter/Destroy()
 	if(active)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/melee/thermalcutter/examine(mob/user)
+obj/item/melee/thermalcutter/examine(mob/user)
 	. = ..()
 	if(max_fuel)
 		. += "[icon2html(thing = src, target = world)] The [src.name] contains [get_fuel()]/[src.max_fuel] units of fuel!"
 
-/obj/item/melee/thermalcutter/process(delta_time)
+obj/item/melee/thermalcutter/process(delta_time)
 	if(active)
 		++burned_fuel_for
 		if(burned_fuel_for >= FUEL_BURN_INTERVAL)
@@ -462,7 +462,7 @@
 			if (istype(location, /turf))
 				location.hotspot_expose(700, 5)
 
-/obj/item/melee/thermalcutter/afterattack(obj/O as obj, mob/user as mob, proximity)
+obj/item/melee/thermalcutter/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
@@ -490,20 +490,20 @@
 		if (istype(location, /turf))
 			location.hotspot_expose(700, 50, 1)
 
-/obj/item/melee/thermalcutter/attack_self(mob/user)
+obj/item/melee/thermalcutter/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	activate()
 
 //Returns the amount of fuel in the welder
-/obj/item/melee/thermalcutter/proc/get_fuel()
+obj/item/melee/thermalcutter/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
-/obj/item/melee/thermalcutter/proc/get_max_fuel()
+obj/item/melee/thermalcutter/proc/get_max_fuel()
 	return max_fuel
 
-/obj/item/melee/thermalcutter/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+obj/item/melee/thermalcutter/proc/remove_fuel(var/amount = 1, var/mob/M = null)
 	if(!active)
 		return 0
 	if(amount)
@@ -518,10 +518,10 @@
 		update_icon()
 		return 0
 
-/obj/item/melee/thermalcutter/proc/isOn()
+obj/item/melee/thermalcutter/proc/isOn()
 	return active
 
-/obj/item/melee/thermalcutter/update_icon()
+obj/item/melee/thermalcutter/update_icon()
 	..()
 	if(active)
 		icon_state = "[initial(icon_state)]_1"
@@ -541,7 +541,7 @@
 		M.update_inv_l_hand()
 		M.update_inv_r_hand()
 
-/obj/item/melee/thermalcutter/proc/activate(var/mob/M)
+obj/item/melee/thermalcutter/proc/activate(var/mob/M)
 	var/turf/T = get_turf(src)
 	if(!active)
 		if (get_fuel() > 0)
@@ -578,7 +578,7 @@
 		src.hitsound = initial(src.hitsound)
 		update_icon()
 
-/obj/item/melee/thermalcutter/is_hot()
+obj/item/melee/thermalcutter/is_hot()
 	return isOn()
 
 #undef FUEL_BURN_INTERVAL

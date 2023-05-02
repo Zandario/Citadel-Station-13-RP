@@ -1,11 +1,11 @@
 // Different types of fish! They are all subtypes of this tho
-/datum/category_item/catalogue/fauna/invasive_fish
+datum/category_item/catalogue/fauna/invasive_fish
 	name = "Invasive Fauna - Fish"
 	desc = "This fish is considered an invasive species according \
 	to Sivian wildlife regulations. Removal or relocation is advised."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/fish
+mob/living/simple_mob/animal/passive/fish
 	name = "fish"
 	desc = "Its a fishy. No touchy fishy."
 	icon = 'icons/mob/fish.dmi'
@@ -35,13 +35,13 @@
 	)
 
 // Makes the AI unable to willingly go on land.
-/mob/living/simple_mob/animal/passive/fish/IMove(turf/newloc, safety = TRUE)
+mob/living/simple_mob/animal/passive/fish/IMove(turf/newloc, safety = TRUE)
 	if(is_type_in_list(newloc, suitable_turf_types))
 		return ..() // Procede as normal.
 	return MOVEMENT_FAILED // Don't leave the water!
 
 // Take damage if we are not in water
-/mob/living/simple_mob/animal/passive/fish/handle_breathing()
+mob/living/simple_mob/animal/passive/fish/handle_breathing()
 	var/turf/T = get_turf(src)
 	if(T && !is_type_in_list(T, suitable_turf_types))
 		if(prob(50))
@@ -49,60 +49,60 @@
 		adjustBruteLoss(unsuitable_atoms_damage)
 
 // Subtypes.
-/mob/living/simple_mob/animal/passive/fish/bass
+mob/living/simple_mob/animal/passive/fish/bass
 	name = "bass"
 	tt_desc = "E Micropterus notius"
 	icon_state = "bass-swim"
 	icon_living = "bass-swim"
 	icon_dead = "bass-dead"
 
-/mob/living/simple_mob/animal/passive/fish/trout
+mob/living/simple_mob/animal/passive/fish/trout
 	name = "trout"
 	tt_desc = "E Salmo trutta"
 	icon_state = "trout-swim"
 	icon_living = "trout-swim"
 	icon_dead = "trout-dead"
 
-/mob/living/simple_mob/animal/passive/fish/salmon
+mob/living/simple_mob/animal/passive/fish/salmon
 	name = "salmon"
 	tt_desc = "E Oncorhynchus nerka"
 	icon_state = "salmon-swim"
 	icon_living = "salmon-swim"
 	icon_dead = "salmon-dead"
 
-/mob/living/simple_mob/animal/passive/fish/perch
+mob/living/simple_mob/animal/passive/fish/perch
 	name = "perch"
 	tt_desc = "E Perca flavescens"
 	icon_state = "perch-swim"
 	icon_living = "perch-swim"
 	icon_dead = "perch-dead"
 
-/mob/living/simple_mob/animal/passive/fish/pike
+mob/living/simple_mob/animal/passive/fish/pike
 	name = "pike"
 	tt_desc = "E Esox aquitanicus"
 	icon_state = "pike-swim"
 	icon_living = "pike-swim"
 	icon_dead = "pike-dead"
 
-/mob/living/simple_mob/animal/passive/fish/koi
+mob/living/simple_mob/animal/passive/fish/koi
 	name = "koi"
 	tt_desc = "E Cyprinus rubrofuscus"
 	icon_state = "koi-swim"
 	icon_living = "koi-swim"
 	icon_dead = "koi-dead"
 
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous
+mob/living/simple_mob/animal/passive/fish/koi/poisonous
 	desc = "A genetic marvel, combining the docility and aesthetics of the koi with some of the resiliency and cunning of the noble space carp."
 	health = 50
 	maxHealth = 50
 
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous/Initialize(mapload)
+mob/living/simple_mob/animal/passive/fish/koi/poisonous/Initialize(mapload)
 	. = ..()
 	create_reagents(60)
 	reagents.add_reagent("toxin", 45)
 	reagents.add_reagent("impedrezene", 15)
 
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/animal/passive/fish/koi/poisonous/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -110,7 +110,7 @@
 		var/obj/belly/B = loc
 		sting(B.owner)
 
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous/attack_hand(mob/user, list/params)
+mob/living/simple_mob/animal/passive/fish/koi/poisonous/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
@@ -134,14 +134,14 @@
 				break
 			sleep(3)
 
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous/proc/sting(var/mob/living/M)
+mob/living/simple_mob/animal/passive/fish/koi/poisonous/proc/sting(var/mob/living/M)
 	if(!M.reagents)
 		return 0
 	M.reagents.add_reagent("toxin", 2)
 	M.reagents.add_reagent("impedrezene", 1)
 	return 1
 
-/datum/category_item/catalogue/fauna/javelin
+datum/category_item/catalogue/fauna/javelin
 	name = "Sivian Fauna - Javelin Shark"
 	desc = "Classification: S Cetusan minimalix\
 	<br><br>\
@@ -157,7 +157,7 @@
 	up-to-date license to be hunted."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/passive/fish/javelin
+mob/living/simple_mob/animal/passive/fish/javelin
 	name = "javelin"
 	tt_desc = "S Cetusan minimalix"
 	icon_state = "javelin-swim"
@@ -168,7 +168,7 @@
 
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
 
-/datum/category_item/catalogue/fauna/icebass
+datum/category_item/catalogue/fauna/icebass
 	name = "Sivian Fauna - Glitter Bass"
 	desc = "Classification: X Micropterus notius crotux\
 	<br><br>\
@@ -184,7 +184,7 @@
 	Despite their beauty, they are considered an invasive species."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/passive/fish/icebass
+mob/living/simple_mob/animal/passive/fish/icebass
 	name = "glitter bass"
 	tt_desc = "X Micropterus notius crotux"
 	icon_state = "sifbass-swim"
@@ -210,13 +210,13 @@
 	var/image/dorsal_image
 	var/image/belly_image
 
-/mob/living/simple_mob/animal/passive/fish/icebass/Initialize(mapload)
+mob/living/simple_mob/animal/passive/fish/icebass/Initialize(mapload)
 	. = ..()
 	dorsal_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
 	belly_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
 	update_icon()
 
-/mob/living/simple_mob/animal/passive/fish/icebass/update_icon()
+mob/living/simple_mob/animal/passive/fish/icebass/update_icon()
 	cut_overlays()
 	..()
 	if(!dorsal_image)
@@ -231,7 +231,7 @@
 	overlays_to_add += belly_image
 	add_overlay(overlays_to_add)
 
-/datum/category_item/catalogue/fauna/rockfish
+datum/category_item/catalogue/fauna/rockfish
 	name = "Sivian Fauna - Rock Puffer"
 	desc = "Classification: S Tetraodontidae scopulix\
 	<br><br>\
@@ -248,7 +248,7 @@
 	attempts to find a mate."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/passive/fish/rockfish
+mob/living/simple_mob/animal/passive/fish/rockfish
 	name = "rock-fish"
 	tt_desc = "S Tetraodontidae scopulix"
 	icon_state = "rockfish-swim"
@@ -281,11 +281,11 @@
 
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
 
-/mob/living/simple_mob/animal/passive/fish/rockfish/Initialize(mapload)
+mob/living/simple_mob/animal/passive/fish/rockfish/Initialize(mapload)
 	. = ..()
 	head_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
 
-/mob/living/simple_mob/animal/passive/fish/rockfish/update_icon()
+mob/living/simple_mob/animal/passive/fish/rockfish/update_icon()
 	cut_overlays()
 	..()
 	if(!head_image)
@@ -295,7 +295,7 @@
 
 	add_overlay(head_image)
 
-/datum/category_item/catalogue/fauna/solarfish
+datum/category_item/catalogue/fauna/solarfish
 	name = "Sivian Fauna - Solar Fin"
 	desc = "Classification: S Exocoetidae solarin\
 	<br><br>\
@@ -312,7 +312,7 @@
 	up-to-date license to be hunted."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/passive/fish/solarfish
+mob/living/simple_mob/animal/passive/fish/solarfish
 	name = "sun-fin"
 	tt_desc = "S Exocoetidae solarin"
 	icon_state = "solarfin-swim"
@@ -325,7 +325,7 @@
 
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
 
-/datum/category_item/catalogue/fauna/murkin
+datum/category_item/catalogue/fauna/murkin
 	name = "Sivian Fauna - Murkfish"
 	desc = "Classification: S Perca lutux\
 	<br><br>\
@@ -340,7 +340,7 @@
 	protect the species from predation."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/fish/murkin
+mob/living/simple_mob/animal/passive/fish/murkin
 	name = "murkin"
 	tt_desc = "S Perca lutux"
 

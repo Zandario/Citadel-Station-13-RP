@@ -1,5 +1,5 @@
 /// Any floor or wall. What makes up the station and the rest of the map.
-/turf
+turf
 	abstract_type = /turf
 
 	icon = 'icons/turf/floors.dmi'
@@ -121,7 +121,7 @@
 	// var/tmp/obj/abstract/weather_system/weather
 	var/tmp/is_outside = OUTSIDE_AREA
 
-/turf/vv_edit_var(var_name, new_value)
+turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list(
 		NAMEOF_STATIC(src, x),
 		NAMEOF_STATIC(src, y),
@@ -136,7 +136,7 @@
  *
  * Doesn't call parent, see [/atom/proc/Initialize]
  */
-/turf/Initialize(mapload, ...)
+turf/Initialize(mapload, ...)
 	SHOULD_CALL_PARENT(FALSE)
 	if(atom_flags & ATOM_INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
@@ -180,7 +180,7 @@
 
 	return INITIALIZE_HINT_NORMAL
 
-/turf/Destroy(force)
+turf/Destroy(force)
 	. = QDEL_HINT_IWILLGC
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
@@ -227,26 +227,26 @@
 /// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
 /// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
 /// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
-/turf/clear_signal_refs()
+turf/clear_signal_refs()
 	return
 
-/turf/legacy_ex_act(severity)
+turf/legacy_ex_act(severity)
 	return FALSE
 
-/turf/proc/is_space()
+turf/proc/is_space()
 	return FALSE
 
-/turf/proc/is_open()
+turf/proc/is_open()
 	return FALSE
 
-/turf/proc/is_intact()
+turf/proc/is_intact()
 	return FALSE
 
 // Used by shuttle code to check if this turf is empty enough to not crush want it lands on.
-/turf/proc/is_solid_structure()
+turf/proc/is_solid_structure()
 	return TRUE
 
-/turf/attack_hand(mob/user, list/params)
+turf/attack_hand(mob/user, list/params)
 	. = ..()
 	//QOL feature, clicking on turf can toggle doors, unless pulling something
 	if(!user.pulling)
@@ -275,7 +275,7 @@
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return 1
 
-/turf/attackby(obj/item/W as obj, mob/user as mob)
+turf/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		if(S.use_to_pickup && S.collection_mode)
@@ -283,7 +283,7 @@
 	return ..()
 
 // Hits a mob on the tile.
-/turf/proc/attack_tile(obj/item/W, mob/living/user)
+turf/proc/attack_tile(obj/item/W, mob/living/user)
 	if(!istype(W))
 		return FALSE
 
@@ -310,7 +310,7 @@
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	return success
 
-/turf/MouseDroppedOnLegacy(atom/movable/O as mob|obj, mob/user as mob)
+turf/MouseDroppedOnLegacy(atom/movable/O as mob|obj, mob/user as mob)
 	var/turf/T = get_turf(user)
 	var/area/A = T.loc
 	if(!ismob(O))
@@ -343,17 +343,17 @@
 		M.update_transform()
 
 
-/turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
+turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
 	return
 
-/turf/proc/is_plating()
+turf/proc/is_plating()
 	return 0
 
-/turf/proc/levelupdate()
+turf/proc/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
 
-/turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
+turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
 	. = list()
 	for(var/t in (trange(1,src) - src))
 		var/turf/T = t
@@ -364,14 +364,14 @@
 		else
 			. += t
 
-/turf/proc/CardinalTurfs(var/check_blockage = TRUE)
+turf/proc/CardinalTurfs(var/check_blockage = TRUE)
 	. = list()
 	for(var/ad in AdjacentTurfs(check_blockage))
 		var/turf/T = ad
 		if(T.x == src.x || T.y == src.y)
 			. += T
 
-/turf/proc/Distance(turf/t)
+turf/proc/Distance(turf/t)
 	if(get_dist(src,t) == 1)
 		var/cost = (src.x - t.x) * (src.x - t.x) + (src.y - t.y) * (src.y - t.y)
 		cost *= ((isnull(pathweight)? slowdown : pathweight) + (isnull(t.pathweight)? t.slowdown : t.pathweight))/2
@@ -379,7 +379,7 @@
 	else
 		return get_dist(src,t)
 
-/turf/proc/AdjacentTurfsSpace()
+turf/proc/AdjacentTurfsSpace()
 	var/L[] = new()
 	for(var/turf/t in oview(src,1))
 		if(!t.density)
@@ -387,7 +387,7 @@
 				L.Add(t)
 	return L
 
-/turf/proc/contains_dense_objects()
+turf/proc/contains_dense_objects()
 	if(density)
 		return 1
 	for(var/atom/A in src)
@@ -396,7 +396,7 @@
 	return 0
 
 // Expects an atom containing the reagents used to clean the turf
-/turf/proc/clean(atom/source, mob/user)
+turf/proc/clean(atom/source, mob/user)
 	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
 		clean_blood()
 		if(istype(src, /turf/simulated))
@@ -409,11 +409,11 @@
 		to_chat(user, "<span class='warning'>\The [source] is too dry to wash that.</span>")
 	source.reagents.trans_to_turf(src, 1, 10)	// 10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 
-/turf/proc/update_blood_overlays()
+turf/proc/update_blood_overlays()
 	return
 
 // Called when turf is hit by a thrown object
-/turf/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+turf/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	if(src.density)
 		spawn(2)
@@ -422,11 +422,11 @@
 			var/mob/living/M = AM
 			M.turf_collision(src, TT.speed)
 
-/turf/AllowDrop()
+turf/AllowDrop()
 	return TRUE
 
 // Returns false if stepping into a tile would cause harm (e.g. open space while unable to fly, water tile while a slime, lava, etc).
-/turf/proc/is_safe_to_enter(mob/living/L)
+turf/proc/is_safe_to_enter(mob/living/L)
 	if(LAZYLEN(dangerous_objects))
 		for(var/obj/O in dangerous_objects)
 			if(!O.is_safe_to_step(L))
@@ -435,14 +435,14 @@
 
 // Tells the turf that it currently contains something that automated movement should consider if planning to enter the tile.
 // This uses lazy list macros to reduce memory footprint, since for 99% of turfs the list would've been empty anyways.
-/turf/proc/register_dangerous_object(obj/O)
+turf/proc/register_dangerous_object(obj/O)
 	if(!istype(O))
 		return FALSE
 	LAZYADD(dangerous_objects, O)
 //	color = "#FF0000"
 
 // Similar to above, for when the dangerous object stops being dangerous/gets deleted/moved/etc.
-/turf/proc/unregister_dangerous_object(obj/O)
+turf/proc/unregister_dangerous_object(obj/O)
 	if(!istype(O))
 		return FALSE
 	LAZYREMOVE(dangerous_objects, O)
@@ -452,7 +452,7 @@
 // This is all the way up here since its the common ancestor for things that need to get replaced with a floor when an RCD is used on them.
 // More specialized turfs like walls should instead override this.
 // The code for applying lattices/floor tiles onto lattices could also utilize something similar in the future.
-/turf/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+turf/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	if(density || !can_build_into_floor)
 		return FALSE
 	if(passed_mode == RCD_FLOORWALL)
@@ -467,7 +467,7 @@
 			)
 	return FALSE
 
-/turf/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+turf/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	if(passed_mode == RCD_FLOORWALL)
 		to_chat(user, SPAN_NOTICE("You build a floor."))
 		PlaceOnTop(/turf/simulated/floor, flags = CHANGETURF_INHERIT_AIR|CHANGETURF_PRESERVE_OUTDOORS)
@@ -475,19 +475,19 @@
 	return FALSE
 
 // We're about to be the A-side in a turf translation
-/turf/proc/pre_translate_A(var/turf/B)
+turf/proc/pre_translate_A(var/turf/B)
 	return
 // We're about to be the B-side in a turf translation
-/turf/proc/pre_translate_B(var/turf/A)
+turf/proc/pre_translate_B(var/turf/A)
 	return
 // We were the the A-side in a turf translation
-/turf/proc/post_translate_A(var/turf/B)
+turf/proc/post_translate_A(var/turf/B)
 	return
 // We were the the B-side in a turf translation
-/turf/proc/post_translate_B(var/turf/A)
+turf/proc/post_translate_B(var/turf/A)
 	return
 
-/turf/has_gravity()
+turf/has_gravity()
 	if(loc.has_gravity(src))
 		return TRUE
 /*
@@ -500,7 +500,7 @@
 	return SSmapping.level_trait(z, ZTRAIT_GRAVITY)
 
 /* // TODO: Implement this. @Zandario
-/turf/proc/update_weather(obj/abstract/weather_system/new_weather, force_update_below = FALSE)
+turf/proc/update_weather(obj/abstract/weather_system/new_weather, force_update_below = FALSE)
 
 	if(isnull(new_weather))
 		new_weather = global.weather_by_z["[z]"]
@@ -527,7 +527,7 @@
 			below.update_weather(new_weather)
 */
 
-/turf/proc/is_outside()
+turf/proc/is_outside()
 
 	// Can't rain inside or through solid walls.
 	// TODO: dense structures like full windows should probably also block weather.
@@ -555,7 +555,7 @@
 			if(top_of_stack.is_open() != . || (top_of_stack.is_outside != OUTSIDE_AREA && top_of_stack.is_outside != .))
 				return !.
 
-/turf/proc/set_outside(new_outside, skip_weather_update = FALSE)
+turf/proc/set_outside(new_outside, skip_weather_update = FALSE)
 	if(is_outside != new_outside)
 		is_outside = new_outside
 		// if(!skip_weather_update)
@@ -566,24 +566,24 @@
 
 //? Radiation
 
-/turf/proc/update_rad_insulation()
+turf/proc/update_rad_insulation()
 	rad_insulation_contents = 1
 
 //? atom color - we don't use the expensive system.
 
-/turf/get_atom_colour()
+turf/get_atom_colour()
 	return color
 
-/turf/add_atom_colour(coloration, colour_priority)
+turf/add_atom_colour(coloration, colour_priority)
 	color = coloration
 
-/turf/remove_atom_colour(colour_priority, coloration)
+turf/remove_atom_colour(colour_priority, coloration)
 	color = null
 
-/turf/update_atom_colour()
+turf/update_atom_colour()
 	return
 
-/turf/copy_atom_colour(atom/other, colour_priority)
+turf/copy_atom_colour(atom/other, colour_priority)
 	if(isnull(other.color))
 		return
 	color = other.color

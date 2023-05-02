@@ -38,18 +38,18 @@
 
 // Also added 'exclude' turf to avoid travelling over; defaults to null
 
-/PriorityQueue
+PriorityQueue
 	var/list/queue
 	var/comparison_function
 
-/PriorityQueue/New(compare)
+PriorityQueue/New(compare)
 	queue = list()
 	comparison_function = compare
 
-/PriorityQueue/proc/IsEmpty()
+PriorityQueue/proc/IsEmpty()
 	return !queue.len
 
-/PriorityQueue/proc/Enqueue(data)
+PriorityQueue/proc/Enqueue(data)
 	queue.Add(data)
 	var/index = queue.len
 
@@ -58,12 +58,12 @@
 		queue.Swap(index, index / 2)
 		index /= 2
 
-/PriorityQueue/proc/Dequeue()
+PriorityQueue/proc/Dequeue()
 	if(!queue.len)
 		return 0
 	return Remove(1)
 
-/PriorityQueue/proc/Remove(index)
+PriorityQueue/proc/Remove(index)
 	if(index > queue.len)
 		return 0
 
@@ -74,7 +74,7 @@
 		FixQueue(index)
 	return thing
 
-/PriorityQueue/proc/FixQueue(index)
+PriorityQueue/proc/FixQueue(index)
 	var/child = 2 * index
 	var/item = queue[index]
 
@@ -89,18 +89,18 @@
 		child = 2 * index
 	queue[index] = item
 
-/PriorityQueue/proc/List()
+PriorityQueue/proc/List()
 	return queue.Copy()
 
-/PriorityQueue/proc/Length()
+PriorityQueue/proc/Length()
 	return queue.len
 
-/PriorityQueue/proc/RemoveItem(data)
+PriorityQueue/proc/RemoveItem(data)
 	var/index = queue.Find(data)
 	if(index)
 		return Remove(index)
 
-/PathNode
+PathNode
 	var/datum/position
 	var/PathNode/previous_node
 
@@ -110,7 +110,7 @@
 	var/cost
 	var/nodes_traversed
 
-/PathNode/New(_position, _previous_node, _known_cost, _cost, _nodes_traversed)
+PathNode/New(_position, _previous_node, _known_cost, _cost, _nodes_traversed)
 	position = _position
 	previous_node = _previous_node
 
@@ -121,10 +121,10 @@
 	best_estimated_cost = estimated_cost
 	nodes_traversed = _nodes_traversed
 
-/proc/PathWeightCompare(PathNode/a, PathNode/b)
+proc/PathWeightCompare(PathNode/a, PathNode/b)
 	return a.estimated_cost - b.estimated_cost
 
-/proc/AStar(start, end, adjacent, dist, max_nodes, max_node_depth = 30, min_target_dist = 0, min_node_dist, id, datum/exclude)
+proc/AStar(start, end, adjacent, dist, max_nodes, max_node_depth = 30, min_target_dist = 0, min_node_dist, id, datum/exclude)
 	var/PriorityQueue/open = new /PriorityQueue(/proc/PathWeightCompare)
 	var/list/closed = list()
 	var/list/path

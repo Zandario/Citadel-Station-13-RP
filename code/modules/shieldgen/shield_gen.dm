@@ -1,4 +1,4 @@
-/obj/machinery/shield_gen
+obj/machinery/shield_gen
 	name = "bubble shield generator"
 	desc = "A machine that generates a field of energy optimized for blocking meteorites when activated."
 	icon = 'icons/obj/machines/shielding.dmi'
@@ -25,12 +25,12 @@
 	var/z_range = 0 // How far 'up and or down' to extend the shield to, in z-levels.  Only works on MultiZ supported z-levels.
 	use_power = USE_POWER_OFF	//doesn't use APC power
 
-/obj/machinery/shield_gen/advanced
+obj/machinery/shield_gen/advanced
 	name = "advanced bubble shield generator"
 	desc = "A machine that generates a field of energy optimized for blocking meteorites when activated.  This version comes with a more efficent shield matrix."
 	energy_conversion_rate = 0.0012
 
-/obj/machinery/shield_gen/Initialize(mapload)
+obj/machinery/shield_gen/Initialize(mapload)
 	if(anchored)
 		for(var/obj/machinery/shield_capacitor/cap in range(1, src))
 			if(!cap.anchored)
@@ -42,11 +42,11 @@
 				cap.owned_gen = src
 	return ..()
 
-/obj/machinery/shield_gen/Destroy()
+obj/machinery/shield_gen/Destroy()
 	QDEL_LIST_NULL(field)
 	return ..()
 
-/obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
 	if(prob(75))
 		src.locked = !src.locked
 		to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
@@ -56,7 +56,7 @@
 	s.set_up(5, 1, src)
 	s.start()
 
-/obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
+obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
 			to_chat(user, "<span class='warning'>The lock seems to be broken.</span>")
@@ -91,15 +91,15 @@
 	else
 		..()
 
-/obj/machinery/shield_gen/attack_ai(user as mob)
+obj/machinery/shield_gen/attack_ai(user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/shield_gen/attack_hand(mob/user, list/params)
+obj/machinery/shield_gen/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN))
 		return
 	interact(user)
 
-/obj/machinery/shield_gen/interact(mob/user)
+obj/machinery/shield_gen/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN)) )
 		if (!istype(user, /mob/living/silicon))
 			user.unset_machine()
@@ -151,7 +151,7 @@
 	user << browse(t, "window=shield_generator;size=500x400")
 	user.set_machine(src)
 
-/obj/machinery/shield_gen/process(delta_time)
+obj/machinery/shield_gen/process(delta_time)
 	if (!anchored && active)
 		toggle()
 
@@ -208,7 +208,7 @@
 	else
 		average_field_strength = 0
 
-/obj/machinery/shield_gen/Topic(href, href_list[])
+obj/machinery/shield_gen/Topic(href, href_list[])
 	..()
 	if( href_list["close"] )
 		usr << browse(null, "window=shield_generator")
@@ -230,13 +230,13 @@
 
 	updateDialog()
 
-/obj/machinery/shield_gen/legacy_ex_act(var/severity)
+obj/machinery/shield_gen/legacy_ex_act(var/severity)
 
 	if(active)
 		toggle()
 	return ..()
 
-/obj/machinery/shield_gen/proc/toggle()
+obj/machinery/shield_gen/proc/toggle()
 	set background = 1
 	active = !active
 	update_icon()
@@ -263,7 +263,7 @@
 		for(var/mob/M in view(5,src))
 			to_chat(M, "[icon2html(thing = src, target = M)] You hear heavy droning fade out.")
 
-/obj/machinery/shield_gen/update_icon()
+obj/machinery/shield_gen/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "broke"
 		set_light(0)
@@ -276,7 +276,7 @@
 			set_light(0)
 
 //grab the border tiles in a circle around this machine
-/obj/machinery/shield_gen/proc/get_shielded_turfs()
+obj/machinery/shield_gen/proc/get_shielded_turfs()
 	var/list/out = list()
 
 	var/turf/T = get_turf(src)
@@ -304,7 +304,7 @@
 
 	return out
 
-/obj/machinery/shield_gen/proc/get_shielded_turfs_on_z_level(var/turf/gen_turf)
+obj/machinery/shield_gen/proc/get_shielded_turfs_on_z_level(var/turf/gen_turf)
 	var/list/out = list()
 
 	if (!gen_turf)

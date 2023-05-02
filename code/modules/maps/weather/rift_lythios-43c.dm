@@ -1,4 +1,4 @@
-/datum/atmosphere/planet/lythios43c
+datum/atmosphere/planet/lythios43c
 	base_gases = list(
 	/datum/gas/nitrogen = 0.66,
 	/datum/gas/oxygen = 0.34
@@ -10,10 +10,10 @@
 	maximum_temp = 241.72
 
 
-/datum/time/lythios43c
+datum/time/lythios43c
 	seconds_in_day = 10 HOURS
 
-/datum/planet/lythios43c
+datum/planet/lythios43c
 	name = "Lythios-43c"
 	desc = "A freezing ball of ice,"
 	current_time = new /datum/time/lythios43c()
@@ -23,7 +23,7 @@
 /* // These need to be defined in your map's define folders
 var/datum/planet/lythios43c/planet_lythios43c = null
 
-/datum/planet/lythios43c
+datum/planet/lythios43c
 	expected_z_levels = list(
 						Z_LEVEL_UNDERGROUND_FLOOR,
 						Z_LEVEL_UNDERGROUND_DEEP,
@@ -39,12 +39,12 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 */
 
 
-/datum/planet/lythios43c/New()
+datum/planet/lythios43c/New()
 	..()
 	planet_lythios43c = src
 	weather_holder = new /datum/weather_holder/lythios43c(src)
 
-/datum/planet/lythios43c/update_sun()
+datum/planet/lythios43c/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60
@@ -123,7 +123,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 	update_sun_deferred(new_brightness, new_color)
 
 
-/datum/weather_holder/lythios43c
+datum/weather_holder/lythios43c
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_CLEAR		= new /datum/weather/lythios43c/clear(),
@@ -144,12 +144,12 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 		WEATHER_HAIL		= 2.5
 		)
 
-/datum/weather/lythios43c
+datum/weather/lythios43c
 	name = "lythios-43c base"
 	temp_low = 220.14
 	temp_high = 241.72
 
-/datum/weather/lythios43c/clear
+datum/weather/lythios43c/clear
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR = 60,
@@ -163,7 +163,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
 
-/datum/weather/lythios43c/overcast
+datum/weather/lythios43c/overcast
 	name = "overcast"
 	light_modifier = 0.8
 	transition_chances = list(
@@ -180,7 +180,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 		"It's very cloudy."
 		)
 
-/datum/weather/lythios43c/light_snow
+datum/weather/lythios43c/light_snow
 	name = "light snow"
 	icon_state = "snowfall_light"
 	temp_low = 218.14
@@ -200,7 +200,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 		"<I>Blanketed cold envelops you as the wind carries its chilled embrace.</I>"
 	)
 
-/datum/weather/lythios43c/snow
+datum/weather/lythios43c/snow
 	name = "moderate snow"
 	icon_state = "snowfall_med"
 	temp_low = 215.14
@@ -224,7 +224,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_snow
 	indoor_sounds_type = /datum/looping_sound/weather/inside_snow
 
-/datum/weather/lythios43c/snow/process_effects()
+datum/weather/lythios43c/snow/process_effects()
 	..()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -243,7 +243,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(33))
 						T.chill()
 
-/datum/weather/lythios43c/blizzard
+datum/weather/lythios43c/blizzard
 	name = "blizzard"
 	icon_state = "snowfall_heavy"
 	temp_low = 200.14
@@ -269,7 +269,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
-/datum/weather/lythios43c/blizzard/process_effects()
+datum/weather/lythios43c/blizzard/process_effects()
 	..()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -288,7 +288,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(50))
 						T.chill()
 
-/datum/weather/lythios43c/storm
+datum/weather/lythios43c/storm
 	name = "storm"
 	icon_state = "storm"
 	light_modifier = 0.3
@@ -319,7 +319,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 		WEATHER_OVERCAST = 5
 		)
 
-/datum/weather/lythios43c/storm/process_effects()
+datum/weather/lythios43c/storm/process_effects()
 	..()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -370,14 +370,14 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 
 // This gets called to do lightning periodically.
 // There is a seperate function to do the actual lightning strike, so that badmins can play with it.
-/datum/weather/lythios43c/storm/proc/handle_lightning()
+datum/weather/lythios43c/storm/proc/handle_lightning()
 	if(world.time < next_lightning_strike)
 		return // It's too soon to strike again.
 	next_lightning_strike = world.time + rand(min_lightning_cooldown, max_lightning_cooldown)
 	var/turf/T = pick(holder.our_planet.planet_floors) // This has the chance to 'strike' the sky, but that might be a good thing, to scare reckless pilots.
 	lightning_strike(T)
 
-/datum/weather/lythios43c/hail
+datum/weather/lythios43c/hail
 	name = "hail"
 	icon_state = "hail"
 	light_modifier = 0.3
@@ -405,7 +405,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 		"An intense chill washes over you as chunks of ice start to fall from the sky."
 	)
 
-/datum/weather/lythios43c/hail/process_effects()
+datum/weather/lythios43c/hail/process_effects()
 	..()
 	for(var/humie in living_mob_list)
 		var/mob/living/H = humie
@@ -430,7 +430,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 			if(show_message)
 				to_chat(H, pick(effect_message))
 
-/datum/weather/lythios43c/blood_moon
+datum/weather/lythios43c/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"
@@ -443,7 +443,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 		"The sky turns blood red!"
 	)
 
-/datum/weather/lythios43c/fallout
+datum/weather/lythios43c/fallout
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
@@ -467,7 +467,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 	var/fallout_rad_low = RAD_INTENSITY_FALLOUT_INDIRECT_LOW
 	var/fallout_rad_high = RAD_INTENSITY_FALLOUT_INDIRECT_HIGH
 
-/datum/weather/lythios43c/fallout/process_effects()
+datum/weather/lythios43c/fallout/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -481,7 +481,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 
 // This makes random tiles near people radioactive for awhile.
 // Tiles far away from people are left alone, for performance.
-/datum/weather/lythios43c/fallout/proc/irradiate_nearby_turf(mob/living/L)
+datum/weather/lythios43c/fallout/proc/irradiate_nearby_turf(mob/living/L)
 	if(!istype(L))
 		return
 	var/list/turfs = RANGE_TURFS(world.view, L)

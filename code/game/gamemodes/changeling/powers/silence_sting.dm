@@ -1,4 +1,4 @@
-/datum/power/changeling/silence_sting
+datum/power/changeling/silence_sting
 	name = "Silence Sting"
 	desc = "We silently sting a human, completely silencing them for a short time."
 	helptext = "Does not provide a warning to a victim that they have been stung, until they try to speak and cannot."
@@ -8,7 +8,7 @@
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_silence_sting
 
-/mob/proc/changeling_silence_sting()
+mob/proc/changeling_silence_sting()
 	set category = "Changeling"
 	set name = "Silence sting (10)"
 	set desc="Sting target"

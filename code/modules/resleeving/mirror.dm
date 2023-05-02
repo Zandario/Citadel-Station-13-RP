@@ -2,7 +2,7 @@
 ////////////////////////Mirror Implants//////////////////////
 ////////////////////////////////////////////////////////////
 
-/obj/item/implant/mirror
+obj/item/implant/mirror
 	name = "Mirror"
 	desc = "A small implanted disk that stores a copy of ones conciousness, updated at times of rest."
 	catalogue_data = /datum/category_item/catalogue/technology/resleeving
@@ -12,12 +12,12 @@
 	var/tmp/mob/living/carbon/human/human
 	item_flags = ITEM_NOBLUDGEON
 //holder to prevent having to find it each time
-/mob/living/carbon/human/var/obj/item/implant/mirror/mirror
+mob/living/carbon/human/var/obj/item/implant/mirror/mirror
 
-/obj/item/implant/mirror/digest_act(var/atom/movable/item_storage = null)
+obj/item/implant/mirror/digest_act(var/atom/movable/item_storage = null)
     return FALSE
 
-/obj/item/implant/get_data()
+obj/item/implant/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Galactic Immortality Initiative Mirror Implant<BR>
@@ -30,7 +30,7 @@
 <b>Integrity:</b> Extremely sturdy, at risk of damage through sustained high frequency or direct energy attacks."}
 	return dat
 
-/obj/item/implant/mirror/post_implant(var/mob/living/carbon/human/H)
+obj/item/implant/mirror/post_implant(var/mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 	spawn(20)
@@ -44,12 +44,12 @@
 		human = H
 		human.mirror = src
 
-/obj/item/implant/mirror/afterattack(var/obj/machinery/computer/transhuman/resleeving/target, mob/user)
+obj/item/implant/mirror/afterattack(var/obj/machinery/computer/transhuman/resleeving/target, mob/user)
 	if (!istype(target))
 		return
 	target.active_mr = stored_mind
 
-/obj/item/implant/mirror/attackby(obj/item/I, mob/user)
+obj/item/implant/mirror/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mirrorscanner))
 		if(stored_mind == null)
 			to_chat(usr, "No consciousness found.")
@@ -78,11 +78,11 @@
 				forceMove(MT)
 				MT.imp = src
 
-/obj/item/implant/mirror/positronic
+obj/item/implant/mirror/positronic
 	name = "Synthetic Mirror"
 	desc = "An altered form of the common mirror designed to work with synthetic brains."
 
-/obj/item/implant/mirror/positronic/post_implant(var/mob/living/carbon/human/H)
+obj/item/implant/mirror/positronic/post_implant(var/mob/living/carbon/human/H)
 	spawn(20)
 	if((H.client.prefs.organ_data[O_BRAIN] != null))
 		stored_mind = SStranscore.m_backupE(H.mind, one_time = TRUE)
@@ -92,7 +92,7 @@
 		to_chat(usr, "<span class='warning'>WARNING: WRONG MIRROR TYPE DETECTED, PLEASE RECTIFY IMMEDIATELY TO AVOID REAL DEATH.</span>")
 		H.mirror = src
 
-/obj/item/mirrorscanner
+obj/item/mirrorscanner
 	name = "Mirror Scanner"
 	desc = "A handheld scanner that will display the name of the currently stored consciousness in a mirror."
 	icon = 'icons/obj/device_alt.dmi'
@@ -107,7 +107,7 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	item_flags = ITEM_NOBLUDGEON
 
-/obj/item/mirrortool
+obj/item/mirrortool
 	name = "Mirror Installation Tool"
 	desc = "A tool for the installation and removal of Mirrors. The tool has a set of barbs for removing Mirrors from a body, and a slot for depositing it directly into a resleeving console."
 	icon = 'icons/obj/mirror.dmi'
@@ -123,7 +123,7 @@
 	item_flags = ITEM_NOBLUDGEON
 	var/obj/item/implant/mirror/imp = null
 
-/obj/item/mirrortool/afterattack(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/mirrortool/afterattack(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
 		return
@@ -168,7 +168,7 @@
 		to_chat(usr, "You must target the torso.")
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/item/mirrortool/attack_self(mob/user)
+obj/item/mirrortool/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -179,21 +179,21 @@
 		imp = null
 		update_icon()
 
-/obj/item/mirrortool/attack_hand(mob/user as mob)
+obj/item/mirrortool/attack_hand(mob/user as mob)
 	if(user.get_inactive_held_item() == src)
 		user.put_in_hands_or_drop(imp)
 		imp = null
 		update_icon()
 	. = ..()
 
-/obj/item/mirrortool/update_icon() //uwu
+obj/item/mirrortool/update_icon() //uwu
 	..()
 	if(imp == null)
 		icon_state = "mirrortool"
 	else
 		icon_state = "mirrortool_loaded"
 
-/obj/item/mirrortool/attackby(obj/item/I as obj, mob/user as mob)
+obj/item/mirrortool/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/implant/mirror))
 		if(imp)
 			to_chat(usr, "This mirror tool already contains a mirror.")

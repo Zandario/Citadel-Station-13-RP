@@ -1,4 +1,4 @@
-/datum/gm_action/nanotrasen_budget_allocation
+datum/gm_action/nanotrasen_budget_allocation
 	name = "supply point to cargo budget"
 	enabled = TRUE
 	departments = list(DEPARTMENT_CARGO)
@@ -11,12 +11,12 @@
 
 	var/thaler_earned
 
-/datum/gm_action/nanotrasen_budget_allocation/set_up()
+datum/gm_action/nanotrasen_budget_allocation/set_up()
 	SC = SSsupply
 	running = TRUE
 	return
 
-/datum/gm_action/nanotrasen_budget_allocation/get_weight()
+datum/gm_action/nanotrasen_budget_allocation/get_weight()
 	. = round(SC.points / 15)
 
 	var/cargo = metric.count_people_in_department(DEPARTMENT_CARGO)
@@ -29,7 +29,7 @@
 
 	return .
 
-/datum/gm_action/nanotrasen_budget_allocation/start()
+datum/gm_action/nanotrasen_budget_allocation/start()
 	. = ..()
 
 	last_run = world.time
@@ -51,12 +51,12 @@
 	if(point_difference > 0)
 		thaler_earned = round(point_difference / SC.points_per_money)
 
-/datum/gm_action/nanotrasen_budget_allocation/end()
+datum/gm_action/nanotrasen_budget_allocation/end()
 	spawn(5 MINUTES)
 		running = FALSE
 	return
 
-/datum/gm_action/nanotrasen_budget_allocation/announce()
+datum/gm_action/nanotrasen_budget_allocation/announce()
 	spawn(rand(1 MINUTE, 5 MINUTES))
 		command_announcement.Announce("[station_name()] Supply Department has earned a converted thaler budget of [thaler_earned] due to their backlogged daily requisition tokens.", "Supply Budget Conversion")
 	return

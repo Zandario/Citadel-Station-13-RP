@@ -1,4 +1,4 @@
-/obj/structure/droppod_door
+obj/structure/droppod_door
 	name = "pod door"
 	desc = "A drop pod door. Opens rapidly using explosive bolts."
 	icon = 'icons/obj/structures.dmi'
@@ -10,26 +10,26 @@
 	var/deploying
 	var/deployed
 
-/obj/structure/droppod_door/Initialize(mapload, autoopen = FALSE)
+obj/structure/droppod_door/Initialize(mapload, autoopen = FALSE)
 	. = ..()
 	if(autoopen)
 		addtimer(CALLBACK(src, .proc/deploy), 10 SECONDS)
 
-/obj/structure/droppod_door/attack_ai(var/mob/user)
+obj/structure/droppod_door/attack_ai(var/mob/user)
 	if(!user.Adjacent(src))
 		return
 	attack_hand(user)
 
-/obj/structure/droppod_door/attack_generic(var/mob/user)
+obj/structure/droppod_door/attack_generic(var/mob/user)
 	attack_hand(user)
 
-/obj/structure/droppod_door/attack_hand(mob/user, list/params)
+obj/structure/droppod_door/attack_hand(mob/user, list/params)
 	if(deploying) return
 	to_chat(user, "<span class='danger'>You prime the explosive bolts. Better get clear!</span>")
 	sleep(30)
 	deploy()
 
-/obj/structure/droppod_door/proc/deploy()
+obj/structure/droppod_door/proc/deploy()
 	if(deployed)
 		return
 

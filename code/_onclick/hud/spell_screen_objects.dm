@@ -1,6 +1,6 @@
 // TODO: KILL THIS SHIT FOR ACTION BUTTONS
 // TODO: NEW SCREEN LOC DECODING PROCS.
-/atom/movable/screen/movable/spell_master
+atom/movable/screen/movable/spell_master
 	name = "Spells"
 	icon = 'icons/mob/screen_spells.dmi'
 	icon_state = "wiz_spell_ready"
@@ -16,7 +16,7 @@
 
 	var/mob/spell_holder
 
-/atom/movable/screen/movable/spell_master/Destroy()
+atom/movable/screen/movable/spell_master/Destroy()
 	. = ..()
 	for(var/atom/movable/screen/spell/spells in spell_objects)
 		spells.spellmaster = null
@@ -27,20 +27,20 @@
 			spell_holder.client.screen -= src
 		spell_holder = null
 
-/atom/movable/screen/movable/spell_master/OnMouseDropLegacy()
+atom/movable/screen/movable/spell_master/OnMouseDropLegacy()
 	if(showing)
 		return
 
 	return ..()
 
-/atom/movable/screen/movable/spell_master/Click()
+atom/movable/screen/movable/spell_master/Click()
 	if(!spell_objects.len)
 		qdel(src)
 		return
 
 	toggle_open()
 
-/atom/movable/screen/movable/spell_master/proc/toggle_open(forced_state = 0)
+atom/movable/screen/movable/spell_master/proc/toggle_open(forced_state = 0)
 	cut_overlays()
 	if(showing && (forced_state != 2))
 		for(var/atom/movable/screen/spell/O in spell_objects)
@@ -55,7 +55,7 @@
 		showing = 1
 		add_overlay(open_state)
 
-/atom/movable/screen/movable/spell_master/proc/open_spellmaster()
+atom/movable/screen/movable/spell_master/proc/open_spellmaster()
 	var/list/screen_loc_xy = splittext(screen_loc,",")
 
 	//Create list of X offsets
@@ -79,7 +79,7 @@
 			spell_holder.client.screen += S
 			S.handle_icon_updates = 1
 
-/atom/movable/screen/movable/spell_master/proc/add_spell(var/spell/spell)
+atom/movable/screen/movable/spell_master/proc/add_spell(var/spell/spell)
 	if(!spell) return
 
 	if(spell.connected_button) //we have one already, for some reason
@@ -113,7 +113,7 @@
 	if(spell_holder.client)
 		toggle_open(2) //forces the icons to refresh on screen
 
-/atom/movable/screen/movable/spell_master/proc/remove_spell(var/spell/spell)
+atom/movable/screen/movable/spell_master/proc/remove_spell(var/spell/spell)
 	qdel(spell.connected_button)
 
 	spell.connected_button = null
@@ -123,19 +123,19 @@
 	else
 		qdel(src)
 
-/atom/movable/screen/movable/spell_master/proc/silence_spells(var/amount)
+atom/movable/screen/movable/spell_master/proc/silence_spells(var/amount)
 	for(var/atom/movable/screen/spell/spell in spell_objects)
 		spell.spell.silenced = amount
 		spell.update_charge(1)
 
-/atom/movable/screen/movable/spell_master/proc/update_spells(forced = 0, mob/user)
+atom/movable/screen/movable/spell_master/proc/update_spells(forced = 0, mob/user)
 	if(user && user.client)
 		if(!(src in user.client.screen))
 			user.client.screen += src
 	for(var/atom/movable/screen/spell/spell in spell_objects)
 		spell.update_charge(forced)
 
-/atom/movable/screen/movable/spell_master/genetic
+atom/movable/screen/movable/spell_master/genetic
 	name = "Mutant Powers"
 	icon_state = "genetic_spell_ready"
 
@@ -144,7 +144,7 @@
 
 	screen_loc = ui_genetic_master
 
-/atom/movable/screen/movable/spell_master/swarm
+atom/movable/screen/movable/spell_master/swarm
 	name = "Swarm Abilities"
 	icon_state = "nano_spell_ready"
 
@@ -154,7 +154,7 @@
 //////////////ACTUAL SPELLS//////////////
 //This is what you click to cast things//
 /////////////////////////////////////////
-/atom/movable/screen/spell
+atom/movable/screen/spell
 	icon = 'icons/mob/screen_spells.dmi'
 	icon_state = "wiz_spell_base"
 	var/spell_base = "wiz"
@@ -166,7 +166,7 @@
 
 	var/icon/last_charged_icon
 
-/atom/movable/screen/spell/Destroy()
+atom/movable/screen/spell/Destroy()
 	. = ..()
 	spell = null
 	last_charged_icon = null
@@ -178,7 +178,7 @@
 		qdel(spellmaster)
 	spellmaster = null
 
-/atom/movable/screen/spell/proc/update_charge(var/forced_update = 0)
+atom/movable/screen/spell/proc/update_charge(var/forced_update = 0)
 	if(!spell)
 		qdel(src)
 		return
@@ -216,7 +216,7 @@
 	if(spell.silenced)
 		add_overlay("silence")
 
-/atom/movable/screen/spell/Click()
+atom/movable/screen/spell/Click()
 	if(!usr || !spell)
 		qdel(src)
 		return
@@ -227,7 +227,7 @@
 
 
 //Xenochimera, literally just different icons
-/atom/movable/screen/movable/spell_master/chimera
+atom/movable/screen/movable/spell_master/chimera
 	name = "Chimera Abilities"
 	icon_state = "cult_spell_ready"
 	open_state = "genetics_open"

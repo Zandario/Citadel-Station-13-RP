@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 	name = "Emergency Shuttle"
 	wait = 20
 
-/datum/controller/subsystem/emergencyshuttle
+datum/controller/subsystem/emergencyshuttle
 	var/datum/shuttle/autodock/ferry/emergency/shuttle	// Set in shuttle_emergency.dm TODO - is it really?
 	var/list/escape_pods
 
@@ -20,10 +20,10 @@ SUBSYSTEM_DEF(emergencyshuttle)
 	var/datum/legacy_announcement/priority/emergency_shuttle_called = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
 	var/datum/legacy_announcement/priority/emergency_shuttle_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))
 
-/datum/controller/subsystem/emergencyshuttle/PreInit(recovering)
+datum/controller/subsystem/emergencyshuttle/PreInit(recovering)
 	escape_pods = list()
 
-/datum/controller/subsystem/emergencyshuttle/fire()
+datum/controller/subsystem/emergencyshuttle/fire()
 	if (wait_for_launch)
 		if (evac && auto_recall && world.time >= auto_recall_time)
 			recall()
@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 
 //called when the shuttle has arrived.
 
-/datum/controller/subsystem/emergencyshuttle/proc/shuttle_arrived()
+datum/controller/subsystem/emergencyshuttle/proc/shuttle_arrived()
 	if (!shuttle.location)	//at station
 		if (autopilot)
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
@@ -69,15 +69,15 @@ SUBSYSTEM_DEF(emergencyshuttle)
 					pod.arming_controller.arm()
 
 //begins the launch countdown and sets the amount of time left until launch
-/datum/controller/subsystem/emergencyshuttle/proc/set_launch_countdown(var/seconds)
+datum/controller/subsystem/emergencyshuttle/proc/set_launch_countdown(var/seconds)
 	wait_for_launch = 1
 	launch_time = world.time + seconds*10
 
-/datum/controller/subsystem/emergencyshuttle/proc/stop_launch_countdown()
+datum/controller/subsystem/emergencyshuttle/proc/stop_launch_countdown()
 	wait_for_launch = 0
 
 //calls the shuttle for an emergency evacuation
-/datum/controller/subsystem/emergencyshuttle/proc/call_evac()
+datum/controller/subsystem/emergencyshuttle/proc/call_evac()
 	if(!can_call()) return
 
 	//set the launch timer
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 		GLOB.lore_atc.toggle_broadcast()
 
 //calls the shuttle for a routine crew transfer
-/datum/controller/subsystem/emergencyshuttle/proc/call_transfer()
+datum/controller/subsystem/emergencyshuttle/proc/call_transfer()
 	if(!can_call()) return
 
 	//set the launch timer
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 	GLOB.lore_atc.shift_ending()
 
 //recalls the shuttle
-/datum/controller/subsystem/emergencyshuttle/proc/recall()
+datum/controller/subsystem/emergencyshuttle/proc/recall()
 	if (!can_recall()) return
 
 	wait_for_launch = 0
@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 	else
 		priority_announcement.Announce(GLOB.using_map.shuttle_recall_message)
 
-/datum/controller/subsystem/emergencyshuttle/proc/can_call()
+datum/controller/subsystem/emergencyshuttle/proc/can_call()
 	if (!universe.OnShuttleCall(null))
 		return 0
 	if (deny_shuttle)
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 //this only returns 0 if it would absolutely make no sense to recall
 //e.g. the shuttle is already at the station or wasn't called to begin with
 //other reasons for the shuttle not being recallable should be handled elsewhere
-/datum/controller/subsystem/emergencyshuttle/proc/can_recall()
+datum/controller/subsystem/emergencyshuttle/proc/can_recall()
 	if (shuttle.moving_status == SHUTTLE_INTRANSIT)	//if the shuttle is already in transit then it's too late
 		return 0
 	if (!shuttle.location)	//already at the station.
@@ -153,7 +153,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 		return 0
 	return 1
 
-/datum/controller/subsystem/emergencyshuttle/proc/get_shuttle_prep_time()
+datum/controller/subsystem/emergencyshuttle/proc/get_shuttle_prep_time()
 	// During mutiny rounds, the shuttle takes twice as long.
 	if(SSticker && SSticker.mode)
 		return SHUTTLE_PREPTIME * SSticker.mode.shuttle_delay
@@ -166,19 +166,19 @@ SUBSYSTEM_DEF(emergencyshuttle)
 */
 
 //returns 1 if the shuttle is docked at the station and waiting to leave
-/datum/controller/subsystem/emergencyshuttle/proc/waiting_to_leave()
+datum/controller/subsystem/emergencyshuttle/proc/waiting_to_leave()
 	if (shuttle.location)
 		return 0	//not at station
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_INTRANSIT)
 
 //so we don't have emergencyshuttleshuttle.location everywhere
-/datum/controller/subsystem/emergencyshuttle/proc/location()
+datum/controller/subsystem/emergencyshuttle/proc/location()
 	if (!shuttle)
 		return 1 	//if we dont have a shuttle datum, just act like it's at centcom
 	return shuttle.location
 
 //returns the time left until the shuttle arrives at it's destination, in seconds
-/datum/controller/subsystem/emergencyshuttle/proc/estimate_arrival_time()
+datum/controller/subsystem/emergencyshuttle/proc/estimate_arrival_time()
 	var/eta
 	if (shuttle.has_arrive_time())
 		//we are in transition and can get an accurate ETA
@@ -189,19 +189,19 @@ SUBSYSTEM_DEF(emergencyshuttle)
 	return (eta - world.time)/10
 
 //returns the time left until the shuttle launches, in seconds
-/datum/controller/subsystem/emergencyshuttle/proc/estimate_launch_time()
+datum/controller/subsystem/emergencyshuttle/proc/estimate_launch_time()
 	return (launch_time - world.time)/10
 
-/datum/controller/subsystem/emergencyshuttle/proc/has_eta()
+datum/controller/subsystem/emergencyshuttle/proc/has_eta()
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)
 
 //returns 1 if the shuttle has gone to the station and come back at least once,
 //used for game completion checking purposes
-/datum/controller/subsystem/emergencyshuttle/proc/returned()
+datum/controller/subsystem/emergencyshuttle/proc/returned()
 	return (departed && shuttle.moving_status == SHUTTLE_IDLE && shuttle.location)	//we've gone to the station at least once, no longer in transit and are idle back at centcom
 
 //returns 1 if the shuttle is not idle at centcom
-/datum/controller/subsystem/emergencyshuttle/proc/online()
+datum/controller/subsystem/emergencyshuttle/proc/online()
 	if(!shuttle)
 		return FALSE
 	if (!shuttle.location)	//not at centcom
@@ -211,15 +211,15 @@ SUBSYSTEM_DEF(emergencyshuttle)
 	return 0
 
 //returns 1 if the shuttle is currently in transit (or just leaving) to the station
-/datum/controller/subsystem/emergencyshuttle/proc/going_to_station()
+datum/controller/subsystem/emergencyshuttle/proc/going_to_station()
 	return shuttle && (!shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
 //returns 1 if the shuttle is currently in transit (or just leaving) to centcom
-/datum/controller/subsystem/emergencyshuttle/proc/going_to_centcom()
+datum/controller/subsystem/emergencyshuttle/proc/going_to_centcom()
 	return shuttle && (shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
 
-/datum/controller/subsystem/emergencyshuttle/proc/get_status_panel_eta()
+datum/controller/subsystem/emergencyshuttle/proc/get_status_panel_eta()
 	if (online())
 		if (shuttle.has_arrive_time())
 			var/timeleft = estimate_arrival_time()
@@ -239,14 +239,14 @@ SUBSYSTEM_DEF(emergencyshuttle)
 	until they reach a starender.
 */
 
-/obj/effect/bgstar
+obj/effect/bgstar
 	name = "star"
 	var/speed = 10
 	var/direction = SOUTH
 	layer = TURF_LAYER
 	plane = TURF_PLANE
 
-/obj/effect/bgstar/Initialize(mapload)
+obj/effect/bgstar/Initialize(mapload)
 	. = ..()
 	pixel_x += rand(-2,30)
 	pixel_y += rand(-2,30)
@@ -256,7 +256,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 
 	speed = rand(2, 5)
 
-/obj/effect/bgstar/proc/startmove()
+obj/effect/bgstar/proc/startmove()
 
 	while(src)
 		sleep(speed)
@@ -265,18 +265,18 @@ SUBSYSTEM_DEF(emergencyshuttle)
 			qdel(src)
 			return
 
-/obj/effect/starender
+obj/effect/starender
 	invisibility = 101
 
-/obj/effect/starspawner
+obj/effect/starspawner
 	invisibility = 101
 	var/spawndir = SOUTH
 	var/spawning = 0
 
-/obj/effect/starspawner/West
+obj/effect/starspawner/West
 	spawndir = WEST
 
-/obj/effect/starspawner/proc/startspawn()
+obj/effect/starspawner/proc/startspawn()
 	spawning = 1
 	while(spawning)
 		sleep(rand(2, 30))

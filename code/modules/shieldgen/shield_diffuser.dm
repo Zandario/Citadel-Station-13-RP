@@ -1,4 +1,4 @@
-/obj/machinery/shield_diffuser
+obj/machinery/shield_diffuser
 	name = "shield diffuser"
 	desc = "A small underfloor device specifically designed to disrupt energy barriers."
 	description_info = "This device disrupts shields on directly adjacent tiles (in a + shaped pattern). They are commonly installed around exterior airlocks to prevent shields from blocking EVA access."
@@ -14,22 +14,22 @@
 	var/alarm = FALSE
 	var/enabled = TRUE
 
-/obj/machinery/shield_diffuser/Initialize(mapload)
+obj/machinery/shield_diffuser/Initialize(mapload)
 	. = ..()
 
 	var/turf/T = get_turf(src)
 	hide(!T.is_plating())
 
 //If underfloor, hide the cable^H^H diffuser
-/obj/machinery/shield_diffuser/hide(var/i)
+obj/machinery/shield_diffuser/hide(var/i)
 	if(istype(loc, /turf))
 		invisibility = i ? 101 : 0
 	update_icon()
 
-/obj/machinery/shield_diffuser/hides_under_flooring()
+obj/machinery/shield_diffuser/hides_under_flooring()
 	return TRUE
 
-/obj/machinery/shield_diffuser/process(delta_time)
+obj/machinery/shield_diffuser/process(delta_time)
 	if(alarm)
 		alarm--
 		if(!alarm)
@@ -46,7 +46,7 @@
 		for(var/obj/effect/energy_field/S in shielded_tile)
 			qdel(S)
 
-/obj/machinery/shield_diffuser/update_icon()
+obj/machinery/shield_diffuser/update_icon()
 	if(alarm)
 		icon_state = "fdiffuser_emergency"
 		return
@@ -55,7 +55,7 @@
 	else
 		icon_state = "fdiffuser_on"
 
-/obj/machinery/shield_diffuser/attack_hand(mob/user, list/params)
+obj/machinery/shield_diffuser/attack_hand(mob/user, list/params)
 	if((. = ..()))
 		return
 	if(alarm)
@@ -68,7 +68,7 @@
 	update_icon()
 	to_chat(user, "You turn \the [src] [enabled ? "on" : "off"].")
 
-/obj/machinery/shield_diffuser/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/shield_diffuser/attackby(var/obj/item/W, var/mob/user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
@@ -77,13 +77,13 @@
 		return
 	return ..()
 
-/obj/machinery/shield_diffuser/proc/meteor_alarm(var/duration)
+obj/machinery/shield_diffuser/proc/meteor_alarm(var/duration)
 	if(!duration)
 		return
 	alarm = round(max(alarm, duration))
 	update_icon()
 
-/obj/machinery/shield_diffuser/examine(var/mob/user)
+obj/machinery/shield_diffuser/examine(var/mob/user)
 	. = ..()
 	to_chat(user, "It is [enabled ? "enabled" : "disabled"].")
 	if(alarm)

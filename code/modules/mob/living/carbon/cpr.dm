@@ -9,7 +9,7 @@
  *
  * return true to break the rest of the interaction chain (aka don't try to hug, etc)
  */
-/mob/living/carbon/proc/attempt_cpr_interaction(mob/user)
+mob/living/carbon/proc/attempt_cpr_interaction(mob/user)
 	. = TRUE
 	// must be in crit or dead
 	// crit isn't a stat value so..
@@ -44,7 +44,7 @@
 		return
 	INVOKE_ASYNC(src, .proc/attempt_cpr, user)
 
-/mob/living/carbon/proc/attempt_cpr(atom/actor, delay_mod = 1)
+mob/living/carbon/proc/attempt_cpr(atom/actor, delay_mod = 1)
 	actor.visible_message(SPAN_NOTICE("[actor] is trying to perform CPR on [src]!"))
 
 	ADD_TRAIT(src, TRAIT_CPR_IN_PROGRESS, GENERIC_TRAIT)
@@ -60,19 +60,19 @@
 
 	cpr_act(actor)
 
-/mob/living/carbon/proc/__cpr_ventilation_end()
+mob/living/carbon/proc/__cpr_ventilation_end()
 	REMOVE_TRAIT(src, TRAIT_MECHANICAL_VENTILATION, CPR_TRAIT)
 
-/mob/living/carbon/proc/__cpr_organ_stasis_end()
+mob/living/carbon/proc/__cpr_organ_stasis_end()
 	REMOVE_TRAIT(src, TRAIT_PRESERVE_ALL_ORGANS, CPR_TRAIT)
 
-/mob/living/carbon/proc/__cpr_off_cooldown()
+mob/living/carbon/proc/__cpr_off_cooldown()
 	REMOVE_TRAIT(src, TRAIT_CPR_COOLDOWN, CPR_TRAIT)
 
-/mob/living/carbon/proc/__cpr_circulation_end()
+mob/living/carbon/proc/__cpr_circulation_end()
 	REMOVE_TRAIT(src, TRAIT_MECHANICAL_CIRCULATION, CPR_TRAIT)
 
-/mob/living/carbon/proc/__cpr_forced_metabolism(strength = 1)
+mob/living/carbon/proc/__cpr_forced_metabolism(strength = 1)
 	if(stat != DEAD)
 		// nah we're still breathin'
 		return
@@ -82,7 +82,7 @@
 	touching?.metabolize(strength, TRUE)
 
 
-/mob/living/carbon/proc/cpr_act(atom/actor)
+mob/living/carbon/proc/cpr_act(atom/actor)
 	var/clipping = HAS_TRAIT(src, TRAIT_CPR_COOLDOWN)
 
 	ADD_TRAIT(src, TRAIT_CPR_COOLDOWN, CPR_TRAIT)

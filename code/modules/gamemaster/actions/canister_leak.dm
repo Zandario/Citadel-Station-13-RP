@@ -2,15 +2,15 @@
 // This event chooses a random canister on player levels and breaks it, releasing its contents!
 //
 
-/datum/gm_action/canister_leak
+datum/gm_action/canister_leak
 	name = "Canister Leak"
 	departments = list(DEPARTMENT_ENGINEERING)
 	chaotic = 20
 
-/datum/gm_action/canister_leak/get_weight()
+datum/gm_action/canister_leak/get_weight()
 	return metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 30
 
-/datum/gm_action/canister_leak/start()
+datum/gm_action/canister_leak/start()
 	..()
 	// List of all non-destroyed canisters on station levels
 	var/list/all_canisters = list()

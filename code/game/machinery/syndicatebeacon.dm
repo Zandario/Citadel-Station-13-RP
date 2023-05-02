@@ -4,7 +4,7 @@
 //	If he accepts there is a random chance he will be accepted, rejected, or rejected and killed
 //	Bringing certain items can help improve the chance to become a traitor
 
-/obj/machinery/syndicate_beacon
+obj/machinery/syndicate_beacon
 	name = "ominous beacon"
 	desc = "This looks suspicious..."
 	icon = 'icons/obj/device.dmi'
@@ -15,7 +15,7 @@
 	var/selfdestructing = FALSE
 	var/charges = 1
 
-/obj/machinery/syndicate_beacon/attack_hand(mob/user, list/params)
+obj/machinery/syndicate_beacon/attack_hand(mob/user, list/params)
 	usr.set_machine(src)
 	var/dat = "<font color=#005500><i>Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br></i></font>"
 	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
@@ -34,7 +34,7 @@
 	user << browse(dat, "window=syndbeacon")
 	onclose(user, "syndbeacon")
 
-/obj/machinery/syndicate_beacon/Topic(href, href_list)
+obj/machinery/syndicate_beacon/Topic(href, href_list)
 	if(..())
 		return
 	if(href_list["betraitor"])
@@ -62,14 +62,14 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/syndicate_beacon/proc/selfdestruct()
+obj/machinery/syndicate_beacon/proc/selfdestruct()
 	selfdestructing = 1
 	spawn() explosion(src.loc, 1, rand(1,3), rand(3,8), 10)
 
 ////////////////////////////////////////
 //Singularity beacon
 ////////////////////////////////////////
-/obj/machinery/power/singularity_beacon
+obj/machinery/power/singularity_beacon
 	name = "ominous beacon"
 	desc = "This looks suspicious..."
 	icon = 'icons/obj/singularity.dmi'
@@ -82,7 +82,7 @@
 	var/active = FALSE
 	var/icontype = "beacon"
 
-/obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
+obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
 	if(surplus() < 1.5)
 		if(user)
 			to_chat(user, "<span class='notice'>The connected wire doesn't have enough current.</span>")
@@ -96,7 +96,7 @@
 	if(user)
 		to_chat(user, "<span class='notice'>You activate the beacon.</span>")
 
-/obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
+obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
 	for(var/obj/singularity/singulo in GLOB.all_singularities)
 		if(singulo.target == src)
 			singulo.target = null
@@ -105,17 +105,17 @@
 	if(user)
 		to_chat(user, "<span class='notice'>You deactivate the beacon.</span>")
 
-/obj/machinery/power/singularity_beacon/attack_ai(mob/user)
+obj/machinery/power/singularity_beacon/attack_ai(mob/user)
 	return
 
-/obj/machinery/power/singularity_beacon/attack_hand(mob/user, list/params)
+obj/machinery/power/singularity_beacon/attack_hand(mob/user, list/params)
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else
 		to_chat(user, "<span class='danger'>You need to screw the beacon to the floor first!</span>")
 		return
 
-/obj/machinery/power/singularity_beacon/attackby(obj/item/W, mob/user)
+obj/machinery/power/singularity_beacon/attackby(obj/item/W, mob/user)
 	if(W.is_screwdriver())
 		if(active)
 			to_chat(user, "<span class='danger'>You need to deactivate the beacon first!</span>")
@@ -138,13 +138,13 @@
 	..()
 	return
 
-/obj/machinery/power/singularity_beacon/Destroy()
+obj/machinery/power/singularity_beacon/Destroy()
 	if(active)
 		Deactivate()
 	..()
 
 //stealth direct power usage
-/obj/machinery/power/singularity_beacon/process(delta_time)
+obj/machinery/power/singularity_beacon/process(delta_time)
 	if(!active)
 		return PROCESS_KILL
 	else
@@ -152,14 +152,14 @@
 		if(draw_power(1.5) < 1.5)
 			Deactivate()
 
-/obj/machinery/power/singularity_beacon/syndicate
+obj/machinery/power/singularity_beacon/syndicate
 	icontype = "beaconsynd"
 	icon_state = "beaconsynd0"
 
 //! ## VR FILE MERGE ## !//
 //  Virgo modified syndie beacon, does not give objectives
 
-/obj/machinery/syndicate_beacon/virgo/attack_hand(mob/user, list/params)
+obj/machinery/syndicate_beacon/virgo/attack_hand(mob/user, list/params)
 	usr.set_machine(src)
 	var/dat = "<font color=#005500><i>Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br></i></font>"
 	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
@@ -178,7 +178,7 @@
 	user << browse(dat, "window=syndbeacon")
 	onclose(user, "syndbeacon")
 
-/obj/machinery/syndicate_beacon/virgo/Topic(href, href_list)
+obj/machinery/syndicate_beacon/virgo/Topic(href, href_list)
 	if(href_list["betraitor"])
 		if(charges < 1)
 			updateUsrDialog()

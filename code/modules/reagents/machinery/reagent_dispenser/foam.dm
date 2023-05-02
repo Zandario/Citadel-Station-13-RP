@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers/foam
+obj/structure/reagent_dispensers/foam
 	name = "foamtank"
 	desc = "A foam tank."
 	icon = 'icons/obj/objects_vr.dmi'

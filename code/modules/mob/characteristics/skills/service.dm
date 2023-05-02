@@ -1,4 +1,4 @@
-/datum/characteristic_skill/service
+datum/characteristic_skill/service
 	abstract_type = /datum/characteristic_skill/service
 	category = "Service"
 
@@ -7,7 +7,7 @@
  *
  * Implementation status: Not started
  */
-/datum/characteristic_skill/service/cooking
+datum/characteristic_skill/service/cooking
 	id = "cooking"
 	name = "Cooking"
 	desc = "How good you are at cooking."
@@ -26,7 +26,7 @@
  *
  * Implementation status: Not started
  */
-/datum/characteristic_skill/service/botany
+datum/characteristic_skill/service/botany
 	id = "botany"
 	name = "Botany"
 	desc = "How good you are at growing plants."

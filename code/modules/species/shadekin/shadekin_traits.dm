@@ -1,4 +1,4 @@
-/datum/trait/kintype
+datum/trait/kintype
 	allowed_species = list(SPECIES_SHADEKIN)
 	var/color = BLUE_EYES
 	name = "Shadekin Blue Adaptation"
@@ -18,7 +18,7 @@
 		)
 	)
 
-/datum/trait/kintype/red
+datum/trait/kintype/red
 	name = "Shadekin Red Adaptation"
 	color =	RED_EYES
 	desc = "Makes your shadekin adapted as a Red eyed kin! This gives you minimal energy regeneration in darkness, good regeneration in the light and increased health!"
@@ -35,7 +35,7 @@
 		)
 	)
 
-/datum/trait/kintype/purple
+datum/trait/kintype/purple
 	name = "Shadekin Purple Adaptation"
 	color = PURPLE_EYES
 	desc = "Makes your shadekin adapted as a Purple eyed kin! This gives you very good energy regeneration in darkness, minor degeneration in the light and increased health!"
@@ -52,7 +52,7 @@
 		)
 	)
 
-/datum/trait/kintype/yellow
+datum/trait/kintype/yellow
 	name = "Shadekin Yellow Adaptation"
 	color = YELLOW_EYES
 	desc = "Makes your shadekin adapted as a Yellow eyed kin! This gives you the highest energy regeneration in darkness, high degeneration in the light and unchanged health!"
@@ -69,7 +69,7 @@
 		)
 	)
 
-/datum/trait/kintype/green
+datum/trait/kintype/green
 	name = "Shadekin Green Adaptation"
 	color = GREEN_EYES
 	desc = "Makes your shadekin adapted as a Green eyed kin! This gives you high energy regeneration in darkness, minor regeneration in the light and unchanged health!"
@@ -86,7 +86,7 @@
 		)
 	)
 
-/datum/trait/kintype/orange
+datum/trait/kintype/orange
 	name = "Shadekin Orange Adaptation"
 	color = ORANGE_EYES
 	desc = "Makes your shadekin adapted as a Orange eyed kin! This gives you good energy regeneration in darkness, small degeneration in the light and increased health!"
@@ -103,7 +103,7 @@
 		)
 	)
 
-/datum/trait/kintype/apply(datum/species/shadekin/S, mob/living/carbon/human/H)
+datum/trait/kintype/apply(datum/species/shadekin/S, mob/living/carbon/human/H)
 	if (istype(S))
 		..(S,H)
 		if(color) //Sanity check to see if they're actually a shadekin, otherwise just don't do anything. They shouldn't be able to spawn with the trait.
@@ -123,14 +123,14 @@
 					H.shapeshifter_set_eye_color("FFA500")
 
 
-/datum/unarmed_attack/shadekinharmbap
+datum/unarmed_attack/shadekinharmbap
 	attack_name = "syphon strike"
 	attack_verb = list("hit", "clawed", "slashed", "scratched")
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	shredding = FALSE
 
-/datum/unarmed_attack/shadekinharmbap/apply_effects(mob/living/carbon/human/shadekin/user, mob/living/carbon/human/target, armour, attack_damage, zone)
+datum/unarmed_attack/shadekinharmbap/apply_effects(mob/living/carbon/human/shadekin/user, mob/living/carbon/human/target, armour, attack_damage, zone)
 	..()
 	if(user == target) //Prevent self attack to gain energy
 		return

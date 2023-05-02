@@ -1,7 +1,7 @@
 #define ENERGY_KW_PER_K 20
 #define MINIMUM_PLASMA_TEMPERATURE 10000
 
-/obj/machinery/power/hydromagnetic_trap
+obj/machinery/power/hydromagnetic_trap
 	name = "\improper hydromagnetic trap"
 	desc = "A device for extracting power from high-energy plasma in toroidal fields."
 	icon = 'icons/obj/machines/power/fusion.dmi'
@@ -13,14 +13,14 @@
 	var/active = 0 //are we even on?
 	var/id_tag //needed for !!rasins!!
 
-/obj/machinery/power/hydromagnetic_trap/process(delta_time)
+obj/machinery/power/hydromagnetic_trap/process(delta_time)
 	if(!powernet && anchored == 1)
 		return
 	spawn(1)
 		Active()
 		Search()
 
-/obj/machinery/power/hydromagnetic_trap/proc/Search()//let's not have +100 instances of the same field in active_field.
+obj/machinery/power/hydromagnetic_trap/proc/Search()//let's not have +100 instances of the same field in active_field.
 	things_in_range = range(7, src)
 	var/obj/effect/fusion_em_field/FFF
 	for (FFF in things_in_range)
@@ -32,7 +32,7 @@
 			Link()
 	return
 
-/obj/machinery/power/hydromagnetic_trap/proc/Link() //discover our EM field
+obj/machinery/power/hydromagnetic_trap/proc/Link() //discover our EM field
 	var/obj/effect/fusion_em_field/FFF
 	for(FFF in fields_in_range)
 		if (FFF.id_tag != id_tag)
@@ -41,7 +41,7 @@
 		active = 1
 	return
 
-/obj/machinery/power/hydromagnetic_trap/proc/Active()//POWERRRRR
+obj/machinery/power/hydromagnetic_trap/proc/Active()//POWERRRRR
 	var/obj/effect/fusion_em_field/FF
 	if (active == 0)
 		return

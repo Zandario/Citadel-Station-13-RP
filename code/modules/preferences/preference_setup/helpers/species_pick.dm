@@ -1,6 +1,6 @@
 // todo: proper tgui preferences
 
-/datum/preferences/proc/species_pick(mob/user)
+datum/preferences/proc/species_pick(mob/user)
 	if(GLOB.species_picker_active[REF(user)])
 		return
 	var/current_species_id = character_species_id()
@@ -9,7 +9,7 @@
 /**
  * gets list of species we can play of those who are whitelisted
  */
-/datum/preferences/proc/resolve_whitelisted_species()
+datum/preferences/proc/resolve_whitelisted_species()
 	var/list/ids = config.all_alien_whitelists_for(client_ckey)
 	. = list()
 	for(var/datum/character_species/CS as anything in SScharacters.all_character_species())
@@ -19,16 +19,16 @@
 /**
  * check if we can play a species
  */
-/datum/preferences/proc/check_character_species(datum/character_species/CS)
+datum/preferences/proc/check_character_species(datum/character_species/CS)
 	if((CS.species_spawn_flags & SPECIES_SPAWN_SECRET) && !(config.check_alien_whitelist(ckey(CS.name), client_ckey)))
 		return FALSE
 	return TRUE
 
-/datum/preferences/proc/route_species_pick(uid, mob/user)
+datum/preferences/proc/route_species_pick(uid, mob/user)
 	// return true to close window
 	return species_pick_finalize(uid, user)
 
-/datum/preferences/proc/species_pick_finalize(uid, mob/user)
+datum/preferences/proc/species_pick_finalize(uid, mob/user)
 	var/datum/character_species/CS = SScharacters.resolve_character_species(uid)
 	if(!CS)
 		to_chat(user, SPAN_WARNING("No species by id [uid] found; this is likely a bug!"))
@@ -39,7 +39,7 @@
 	refresh(user, TRUE)
 	return TRUE	// yay done
 
-/datum/preferences/proc/set_character_species(datum/character_species/CS, mob/user)
+datum/preferences/proc/set_character_species(datum/character_species/CS, mob/user)
 	// first set their vars
 	set_preference(/datum/category_item/player_setup_item/background/real_species, CS.real_species_uid())
 	set_preference(/datum/category_item/player_setup_item/background/char_species, CS.uid)
@@ -75,7 +75,7 @@
 	GLOB.join_menu?.update_static_data(user)
 
 GLOBAL_LIST_EMPTY(species_picker_active)
-/datum/tgui_species_picker
+datum/tgui_species_picker
 	/// user ref
 	var/user_ref
 	/// whitelisted uids
@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(species_picker_active)
 	/// preferences
 	var/datum/preferences/prefs
 
-/datum/tgui_species_picker/New(mob/user, list/whitelisted_for = list(), default_id, datum/preferences/prefs)
+datum/tgui_species_picker/New(mob/user, list/whitelisted_for = list(), default_id, datum/preferences/prefs)
 	if(!istype(user) || !istype(prefs))
 		qdel(src)
 		CRASH("what?")
@@ -96,27 +96,27 @@ GLOBAL_LIST_EMPTY(species_picker_active)
 	GLOB.species_picker_active[user_ref] = src
 	open()
 
-/datum/tgui_species_picker/Destroy()
+datum/tgui_species_picker/Destroy()
 	SStgui.close_uis(src)
 	GLOB.species_picker_active -= user_ref
 	return ..()
 
-/datum/tgui_species_picker/proc/open()
+datum/tgui_species_picker/proc/open()
 	var/mob/M = locate(user_ref)
 	ASSERT(M)
 	ui_interact(M)
 
-/datum/tgui_species_picker/ui_interact(mob/user, datum/tgui/ui)
+datum/tgui_species_picker/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SpeciesPicker", "Choose Species")
 		ui.autoupdate = FALSE			// why the fuck are you updating species data??
 		ui.open()
 
-/datum/tgui_species_picker/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
+datum/tgui_species_picker/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
 	return UI_INTERACTIVE
 
-/datum/tgui_species_picker/ui_static_data(mob/user)
+datum/tgui_species_picker/ui_static_data(mob/user)
 	var/list/data = ..()
 	data["whitelisted"] = whitelisted
 	data["species"] = SScharacters.character_species_cache
@@ -124,12 +124,12 @@ GLOBAL_LIST_EMPTY(species_picker_active)
 	data["admin"] = !!admin_datums[user.ckey]
 	return data
 
-/datum/tgui_species_picker/ui_close(mob/user, datum/tgui_module/module)
+datum/tgui_species_picker/ui_close(mob/user, datum/tgui_module/module)
 	. = ..()
 	if(!QDELING(src))
 		qdel(src)
 
-/datum/tgui_species_picker/ui_act(action, list/params, datum/tgui/ui)
+datum/tgui_species_picker/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	switch(action)
 		if("pick")

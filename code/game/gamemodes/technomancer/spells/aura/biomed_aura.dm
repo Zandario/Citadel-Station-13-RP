@@ -1,4 +1,4 @@
-/datum/technomancer/spell/biomed_aura
+datum/technomancer/spell/biomed_aura
 	name = "Restoration Aura"
 	desc = "Heals you and your allies (or everyone, if you want) of trauma and burns slowly, as long as they remain within four meters."
 	spell_power_desc = "Increases the radius and healing amount of the aura."
@@ -7,7 +7,7 @@
 	ability_icon_state = "tech_biomedaura"
 	category = SUPPORT_SPELLS
 
-/obj/item/spell/aura/biomed
+obj/item/spell/aura/biomed
 	name = "restoration aura"
 	desc = "Allows everyone, or just your allies, to slowly regenerate."
 	icon_state = "generic"
@@ -17,7 +17,7 @@
 	var/regen_tick = 0
 	var/heal_allies_only = 1
 
-/obj/item/spell/aura/biomed/process(delta_time)
+obj/item/spell/aura/biomed/process(delta_time)
 	if(!pay_energy(75))
 		qdel(src)
 	regen_tick++
@@ -35,6 +35,6 @@
 			L.adjustFireLoss(calculate_spell_power(-5))
 		adjust_instability(2)
 
-/obj/item/spell/aura/biomed/on_use_cast(mob/living/user)
+obj/item/spell/aura/biomed/on_use_cast(mob/living/user)
 	heal_allies_only = !heal_allies_only
 	to_chat(user, "Your aura will now heal [heal_allies_only ? "your allies" : "everyone"] near you.")

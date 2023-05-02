@@ -1,12 +1,12 @@
-/datum/preferences
+datum/preferences
 	var/list/all_underwear
 	var/list/all_underwear_metadata
 
-/datum/category_item/player_setup_item/general/equipment
+datum/category_item/player_setup_item/general/equipment
 	name = "Clothing"
 	sort_order = 4
 
-/datum/category_item/player_setup_item/general/equipment/load_character(var/savefile/S)
+datum/category_item/player_setup_item/general/equipment/load_character(var/savefile/S)
 	S["all_underwear"] >> pref.all_underwear
 	S["all_underwear_metadata"] >> pref.all_underwear_metadata
 	S["backbag"]	>> pref.backbag
@@ -14,7 +14,7 @@
 	S["communicator_visibility"]	>> pref.communicator_visibility
 	S["ringtone"]	>> pref.ringtone
 
-/datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
+datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
 	S["all_underwear"] << pref.all_underwear
 	S["all_underwear_metadata"] << pref.all_underwear_metadata
 	S["backbag"]	<< pref.backbag
@@ -23,7 +23,7 @@
 	S["ringtone"]	<< pref.ringtone
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/equipment/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/general/equipment/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -51,7 +51,7 @@
 	character.pdachoice = pref.pdachoice
 	return TRUE
 
-/datum/category_item/player_setup_item/general/equipment/sanitize_character()
+datum/category_item/player_setup_item/general/equipment/sanitize_character()
 	if(!islist(pref.gear)) pref.gear = list()
 
 	if(!istype(pref.all_underwear))
@@ -82,7 +82,7 @@
 	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
 	pref.ringtone	= sanitize(pref.ringtone, 20)
 
-/datum/category_item/player_setup_item/general/equipment/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/general/equipment/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	. += "<b>Equipment:</b><br>"
 	for(var/datum/category_group/underwear/UWC in GLOB.global_underwear.categories)
@@ -101,7 +101,7 @@
 
 	return jointext(.,null)
 
-/datum/category_item/player_setup_item/general/equipment/proc/get_metadata(var/underwear_category, var/datum/gear_tweak/gt)
+datum/category_item/player_setup_item/general/equipment/proc/get_metadata(var/underwear_category, var/datum/gear_tweak/gt)
 	var/metadata = pref.all_underwear_metadata[underwear_category]
 	if(!metadata)
 		metadata = list()
@@ -113,12 +113,12 @@
 		metadata["[gt]"] = tweak_data
 	return tweak_data
 
-/datum/category_item/player_setup_item/general/equipment/proc/set_metadata(var/underwear_category, var/datum/gear_tweak/gt, var/new_metadata)
+datum/category_item/player_setup_item/general/equipment/proc/set_metadata(var/underwear_category, var/datum/gear_tweak/gt, var/new_metadata)
 	var/list/metadata = pref.all_underwear_metadata[underwear_category]
 	metadata["[gt]"] = new_metadata
 
 
-/datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_backpack"])
 		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag:", "Character Preference", backbaglist, backbaglist[pref.backbag])
 		if(!isnull(new_backbag) && CanUseTopic(user))

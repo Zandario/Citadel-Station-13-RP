@@ -2,7 +2,7 @@
 ////////////////////SUBTLE COMMAND////////////////////
 //////////////////////////////////////////////////////
 
-/mob/verb/me_verb_subtle(message as message) //This would normally go in say.dm
+mob/verb/me_verb_subtle(message as message) //This would normally go in say.dm
 	set name = "Subtle"
 	set category = "IC"
 	set desc = "Emote to nearby people (and your pred/prey)"
@@ -17,7 +17,7 @@
 	else
 		usr.emote_vr(message)
 
-/mob/proc/custom_emote_vr(var/m_type=1,var/message = null) //This would normally go in emote.dm
+mob/proc/custom_emote_vr(var/m_type=1,var/message = null) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
 		to_chat(src, "You are unable to emote.")
 		return
@@ -58,13 +58,13 @@
 			spawn(0)
 				O.see_emote(src, message, 2)
 
-/mob/proc/emote_vr(var/act, var/type, var/message) //This would normally go in say.dm
+mob/proc/emote_vr(var/act, var/type, var/message) //This would normally go in say.dm
 	if(act == "me")
 		return custom_emote_vr(type, message)
 
 //////// SHIT COPYPASTE CODE FOR SUBTLER ANTI GHOST
 
-/mob/verb/subtler_anti_ghost(message as message) //This would normally go in say.dm
+mob/verb/subtler_anti_ghost(message as message) //This would normally go in say.dm
 	set name = "Subtler Anti Ghost"
 	set category = "IC"
 	set desc = "Emote to nearby people (and your pred/prey), but ghosts can't see it."
@@ -76,7 +76,7 @@
 	set_typing_indicator(FALSE)
 	run_subtler(message)
 
-/mob/proc/run_subtler(message)
+mob/proc/run_subtler(message)
 	if(stat || !use_me && usr == src)
 		to_chat(src, "You are unable to emote.")
 		return
@@ -119,7 +119,7 @@
 
 #define MAX_HUGE_MESSAGE_LEN 8192
 #define POST_DELIMITER_STR "\<\>"
-/proc/sanitize_or_reflect(message,user)
+proc/sanitize_or_reflect(message,user)
 	//Way too long to send
 	if(length_char(message) > MAX_HUGE_MESSAGE_LEN)
 		fail_to_chat(user)
@@ -134,7 +134,7 @@
 	else
 		return message
 
-/proc/fail_to_chat(user,message)
+proc/fail_to_chat(user,message)
 	if(!message)
 		to_chat(user,"<span class='danger'>Your message was NOT SENT, either because it was FAR too long, or sanitized to nothing at all.</span>")
 		return

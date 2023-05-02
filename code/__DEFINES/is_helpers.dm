@@ -99,7 +99,7 @@
 
 #define issimple(A) istype(A, /mob/living/simple_mob)
 
-/proc/is_species_type(atom/A, path)
+proc/is_species_type(atom/A, path)
 	if(!istype(A, /mob/living/carbon/human))
 		return FALSE
 	var/mob/living/carbon/human/H = A

@@ -1,12 +1,12 @@
-/datum/design/item/weapon/AssembleDesignName()
+datum/design/item/weapon/AssembleDesignName()
 	..()
 	name = "Weapon prototype ([item_name])"
 
-/datum/design/item/weapon/ammo/AssembleDesignName()
+datum/design/item/weapon/ammo/AssembleDesignName()
 	..()
 	name = "Weapon ammo prototype ([item_name])"
 
-/datum/design/item/weapon/AssembleDesignDesc()
+datum/design/item/weapon/AssembleDesignDesc()
 	if(!desc)
 		if(build_path)
 			var/obj/item/I = build_path
@@ -15,32 +15,32 @@
 
 // Energy weapons
 
-/datum/design/item/weapon/energy/AssembleDesignName()
+datum/design/item/weapon/energy/AssembleDesignName()
 	..()
 	name = "Energy weapon prototype ([item_name])"
 
-/datum/design/item/weapon/energy/stunrevolver
+datum/design/item/weapon/energy/stunrevolver
 	id = "stunrevolver"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 4000)
 	build_path = /obj/item/gun/energy/stunrevolver
 	sort_string = "MAAAA"
 
-/datum/design/item/weapon/energy/nuclear_gun
+datum/design/item/weapon/energy/nuclear_gun
 	id = "nuclear_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000, MAT_URANIUM = 500)
 	build_path = /obj/item/gun/energy/gun/nuclear
 	sort_string = "MAAAB"
 
-/datum/design/item/weapon/energy/phoronpistol
+datum/design/item/weapon/energy/phoronpistol
 	id = "ppistol"
 	req_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000, MAT_PHORON = 3000)
 	build_path = /obj/item/gun/energy/toxgun
 	sort_string = "MAAAC"
 
-/datum/design/item/weapon/energy/lasercannon
+datum/design/item/weapon/energy/lasercannon
 	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
 	id = "lasercannon"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
@@ -48,14 +48,14 @@
 	build_path = /obj/item/gun/energy/lasercannon
 	sort_string = "MAAAD"
 
-/datum/design/item/weapon/energy/decloner
+datum/design/item/weapon/energy/decloner
 	id = "decloner"
 	req_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_BIO = 5, TECH_POWER = 6)
 	materials = list(MAT_GOLD = 5000,MAT_URANIUM = 10000)
 	build_path = /obj/item/gun/energy/decloner
 	sort_string = "MAAAE"
 
-/datum/design/item/weapon/energy/temp_gun
+datum/design/item/weapon/energy/temp_gun
 	desc = "A gun that shoots high-powered glass-encased energy temperature bullets."
 	id = "temp_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 2)
@@ -63,7 +63,7 @@
 	build_path = /obj/item/gun/energy/temperature
 	sort_string = "MAAAF"
 
-/datum/design/item/weapon/energy/flora_gun
+datum/design/item/weapon/energy/flora_gun
 	id = "flora_gun"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 500, MAT_URANIUM = 500)
@@ -72,11 +72,11 @@
 
 // Ballistic weapons
 
-/datum/design/item/weapon/ballistic/AssembleDesignName()
+datum/design/item/weapon/ballistic/AssembleDesignName()
 	..()
 	name = "Ballistic weapon prototype ([item_name])"
 
-/datum/design/item/weapon/ballistic/advanced_smg
+datum/design/item/weapon/ballistic/advanced_smg
 	id = "smg"
 	desc = "An advanced 9mm SMG with a reflective laser optic."
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
@@ -84,7 +84,7 @@
 	build_path = /obj/item/gun/ballistic/automatic/advanced_smg
 	sort_string = "MABAA"
 
-/datum/design/item/weapon/ballistic/p90
+datum/design/item/weapon/ballistic/p90
 	id = "p90"
 	desc = "The H90K is a compact, large capacity submachine gun produced by Hephaestus Industries. Despite its fierce reputation, it still manages to feel like a toy. Uses 9mm rounds."
 	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4)
@@ -94,11 +94,11 @@
 
 // Ballistic ammo
 
-/datum/design/item/weapon/ballistic/ammo/AssembleDesignName()
+datum/design/item/weapon/ballistic/ammo/AssembleDesignName()
 	..()
 	name = "Ballistic weapon ammo prototype ([name])"
 
-/datum/design/item/weapon/ballistic/ammo/ammo_9mmAdvanced
+datum/design/item/weapon/ballistic/ammo/ammo_9mmAdvanced
 	name = "9mm magazine"
 	id = "ammo_9mm"
 	desc = "A 21 round magazine for an advanced 9mm SMG."
@@ -107,7 +107,7 @@
 	build_path = /obj/item/ammo_magazine/m9mmAdvanced
 	sort_string = "MABBA"
 
-/datum/design/item/weapon/ballistic/ammo/techshell
+datum/design/item/weapon/ballistic/ammo/techshell
 	name = "unloaded tech shell"
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
 	id = "techshell"
@@ -116,7 +116,7 @@
 	build_path = /obj/item/ammo_casing/a12g/techshell
 	sort_string = "MABBB"
 
-/datum/design/item/weapon/ballistic/ammo/stunshell
+datum/design/item/weapon/ballistic/ammo/stunshell
 	name = "stun shell"
 	desc = "A stunning shell for a shotgun."
 	id = "stunshell"
@@ -125,7 +125,7 @@
 	build_path = /obj/item/ammo_casing/a12g/stunshell
 	sort_string = "MABBC"
 
-/datum/design/item/weapon/ballistic/ammo/m57x28mmp90
+datum/design/item/weapon/ballistic/ammo/m57x28mmp90
 	name = "H90K magazine"
 	desc = "A large capacity top mounted magazine (5.7x28mm armor-piercing)."
 	id = "m57x28mmp90"
@@ -134,7 +134,7 @@
 	build_path = /obj/item/ammo_magazine/m57x28mmp90
 	sort_string = "MABBD"
 
-/datum/design/item/weapon/ballistic/ammo/m57x28mm
+datum/design/item/weapon/ballistic/ammo/m57x28mm
 	name = "5.7 magazine"
 	desc = "A standard capacity sidearm magazine (5.7x28mm)."
 	id = "m57x28mm"
@@ -143,7 +143,7 @@
 	build_path = /obj/item/ammo_magazine/m57x28mm
 	sort_string = "MABCA"
 
-/datum/design/item/weapon/ballistic/ammo/m57x28mm/ap
+datum/design/item/weapon/ballistic/ammo/m57x28mm/ap
 	name = "5.7 magazine (AP)"
 	desc = "A standard capacity sidearm magazine (5.7x28mm armor-piercing)."
 	id = "m57x28mmap"
@@ -151,7 +151,7 @@
 	build_path = /obj/item/ammo_magazine/m57x28mm/ap
 	sort_string = "MABCB"
 
-/datum/design/item/weapon/ballistic/ammo/m57x28mm/hp
+datum/design/item/weapon/ballistic/ammo/m57x28mm/hp
 	name = "5.7 magazine (HP)"
 	desc = "A standard capacity sidearm magazine (5.7x28mm hollow point)."
 	id = "m57x28mmhp"
@@ -159,7 +159,7 @@
 	build_path = /obj/item/ammo_magazine/m57x28mm/hp
 	sort_string = "MABCC"
 
-/datum/design/item/weapon/ballistic/ammo/m57x28mm/hunter
+datum/design/item/weapon/ballistic/ammo/m57x28mm/hunter
 	name = "5.7 magazine (Hunter)"
 	desc = "A standard capacity sidearm magazine (5.7x28mm hunter)."
 	id = "m57x28mmhunter"
@@ -169,32 +169,32 @@
 
 // Phase weapons
 
-/datum/design/item/weapon/phase/AssembleDesignName()
+datum/design/item/weapon/phase/AssembleDesignName()
 	..()
 	name = "Phase weapon prototype ([item_name])"
 
-/datum/design/item/weapon/phase/phase_pistol
+datum/design/item/weapon/phase/phase_pistol
 	id = "phasepistol"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 4000)
 	build_path = /obj/item/gun/energy/phasegun/pistol
 	sort_string = "MACAA"
 
-/datum/design/item/weapon/phase/phase_carbine
+datum/design/item/weapon/phase/phase_carbine
 	id = "phasecarbine"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 1500)
 	build_path = /obj/item/gun/energy/phasegun
 	sort_string = "MACAB"
 
-/datum/design/item/weapon/phase/phase_rifle
+datum/design/item/weapon/phase/phase_rifle
 	id = "phaserifle"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	materials = list(MAT_STEEL = 7000, MAT_GLASS = 2000, MAT_SILVER = 500)
 	build_path = /obj/item/gun/energy/phasegun/rifle
 	sort_string = "MACAC"
 
-/datum/design/item/weapon/phase/phase_cannon
+datum/design/item/weapon/phase/phase_cannon
 	id = "phasecannon"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4, TECH_POWER = 4)
 	materials = list(MAT_STEEL = 10000, MAT_GLASS = 2000, MAT_SILVER = 1000, MAT_DIAMOND = 750)
@@ -203,14 +203,14 @@
 
 // Other weapons
 
-/datum/design/item/weapon/rapidsyringe
+datum/design/item/weapon/rapidsyringe
 	id = "rapidsyringe"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000)
 	build_path = /obj/item/gun/launcher/syringe/rapid
 	sort_string = "MADAA"
 
-/datum/design/item/weapon/dartgun
+datum/design/item/weapon/dartgun
 	desc = "A gun that fires small hollow chemical-payload darts."
 	id = "dartgun_r"
 	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_BIO = 4, TECH_MAGNET = 3, TECH_ILLEGAL = 1)
@@ -218,7 +218,7 @@
 	build_path = /obj/item/gun/ballistic/dartgun/research
 	sort_string = "MADAB"
 
-/datum/design/item/weapon/chemsprayer
+datum/design/item/weapon/chemsprayer
 	desc = "An advanced chem spraying device."
 	id = "chemsprayer"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
@@ -226,7 +226,7 @@
 	build_path = /obj/item/reagent_containers/spray/chemsprayer
 	sort_string = "MADAC"
 
-/datum/design/item/weapon/fuelrod
+datum/design/item/weapon/fuelrod
 	id = "fuelrod_gun"
 	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ILLEGAL = 5, TECH_MAGNET = 5)
 	materials = list(MAT_STEEL = 10000, MAT_GLASS = 2000, MAT_GOLD = 500, MAT_SILVER = 500, MAT_URANIUM = 1000, MAT_PHORON = 3000, MAT_DIAMOND = 1000)
@@ -235,28 +235,28 @@
 
 // Ammo for those
 
-/datum/design/item/weapon/ammo/dartgunmag_small
+datum/design/item/weapon/ammo/dartgunmag_small
 	id = "dartgun_mag_s"
 	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
 	materials = list(MAT_STEEL = 300, MAT_GOLD = 100, MAT_SILVER = 100, MAT_GLASS = 300)
 	build_path = /obj/item/ammo_magazine/chemdart/small
 	sort_string = "MADBA"
 
-/datum/design/item/weapon/ammo/dartgun_ammo_small
+datum/design/item/weapon/ammo/dartgun_ammo_small
 	id = "dartgun_ammo_s"
 	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
 	materials = list(MAT_STEEL = 50, MAT_GOLD = 30, MAT_SILVER = 30, MAT_GLASS = 50)
 	build_path = /obj/item/ammo_casing/chemdart/small
 	sort_string = "MADBB"
 
-/datum/design/item/weapon/ammo/dartgunmag_med
+datum/design/item/weapon/ammo/dartgunmag_med
 	id = "dartgun_mag_m"
 	req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
 	materials = list(MAT_STEEL = 500, MAT_GOLD = 150, MAT_SILVER = 150, MAT_DIAMOND = 200, MAT_GLASS = 400)
 	build_path = /obj/item/ammo_magazine/chemdart
 	sort_string = "MADBC"
 
-/datum/design/item/weapon/ammo/dartgun_ammo_med
+datum/design/item/weapon/ammo/dartgun_ammo_med
 	id = "dartgun_ammo_m"
 	req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
 	materials = list(MAT_STEEL = 80, MAT_GOLD = 40, MAT_SILVER = 40, MAT_GLASS = 60)
@@ -265,11 +265,11 @@
 
 // Melee weapons
 
-/datum/design/item/weapon/melee/AssembleDesignName()
+datum/design/item/weapon/melee/AssembleDesignName()
 	..()
 	name = "Melee weapon prototype ([item_name])"
 
-/datum/design/item/weapon/melee/esword
+datum/design/item/weapon/melee/esword
 	name = "Portable Energy Blade"
 	id = "chargesword"
 	req_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 4, TECH_ENGINEERING = 5, TECH_ILLEGAL = 4, TECH_ARCANE = 1)
@@ -277,7 +277,7 @@
 	build_path = /obj/item/melee/energy/sword/charge
 	sort_string = "MBAAA"
 
-/datum/design/item/weapon/melee/eaxe
+datum/design/item/weapon/melee/eaxe
 	name = "Energy Axe"
 	id = "chargeaxe"
 	req_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 5, TECH_ENGINEERING = 4, TECH_ILLEGAL = 4)
@@ -286,11 +286,11 @@
 	sort_string = "MBAAB"
 
 // Grenade stuff
-/datum/design/item/weapon/grenade/AssembleDesignName()
+datum/design/item/weapon/grenade/AssembleDesignName()
 	..()
 	name = "Grenade casing prototype ([item_name])"
 
-/datum/design/item/weapon/grenade/large_grenade
+datum/design/item/weapon/grenade/large_grenade
 	id = "large_Grenade"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	materials = list(MAT_STEEL = 3000)
@@ -312,7 +312,7 @@
 
 //Commenting this weapon out pending further review.
 /*
-/datum/design/item/weapon/energy/protector
+datum/design/item/weapon/energy/protector
 	name = "\'Myrmidon\' code-locked e-gun"
 	desc = "The 'Myrmidon' is a common energy gun that cannot fired lethally on Code Green, requiring Code Blue or higher to unlock its deadly capabilities."
 	id = "protector"
@@ -322,7 +322,7 @@
 	sort_string = "MAAAH"
 */
 
-/datum/design/item/weapon/energy/netgun
+datum/design/item/weapon/energy/netgun
 	name = "\'Retiarius\' capture gun"
 	id = "netgun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
@@ -330,7 +330,7 @@
 	build_path = /obj/item/gun/energy/netgun
 	sort_string = "MAAAI"
 
-/datum/design/item/weapon/energy/sickshot
+datum/design/item/weapon/energy/sickshot
 	desc = "The 'Discombobulator' is a 4-shot energy revolver that causes nausea and confusion."
 	id = "sickshot"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 2)
@@ -340,7 +340,7 @@
 
 // Misc weapons
 
-/datum/design/item/weapon/pummeler
+datum/design/item/weapon/pummeler
 	desc = "With the 'Pummeler', punt anyone you don't like out of the room!"
 	id = "pummeler"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 5)
@@ -350,11 +350,11 @@
 
 // Anti-particle stuff
 
-/datum/design/item/weapon/particle/AssembleDesignName()
+datum/design/item/weapon/particle/AssembleDesignName()
 	..()
 	name = "Anti-particle weapon prototype ([item_name])"
 
-/datum/design/item/weapon/particle/advparticle
+datum/design/item/weapon/particle/advparticle
 	name = "Advanced anti-particle rifle"
 	id = "advparticle"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 5, TECH_POWER = 3, TECH_MAGNET = 3)
@@ -362,7 +362,7 @@
 	build_path = /obj/item/gun/energy/particle/advanced
 	sort_string = "MAAUA"
 
-/datum/design/item/weapon/particle/particlecannon
+datum/design/item/weapon/particle/particlecannon
 	name = "Anti-particle cannon"
 	id = "particlecannon"
 	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_POWER = 4, TECH_MAGNET = 4)
@@ -370,7 +370,7 @@
 	build_path = /obj/item/gun/energy/particle/cannon
 	sort_string = "MAAUB"
 
-/datum/design/item/weapon/particle/pressureinterlock
+datum/design/item/weapon/particle/pressureinterlock
 	name = "APP pressure interlock"
 	id = "pressureinterlock"
 	req_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
@@ -379,11 +379,11 @@
 	sort_string = "MAAUC"
 
 // NSFW gun and cells
-/datum/design/item/weapon/cell_based/AssembleDesignName()
+datum/design/item/weapon/cell_based/AssembleDesignName()
 	..()
 	name = "Cell-based weapon prototype ([item_name])"
 
-/datum/design/item/weapon/cell_based/prototype_nsfw
+datum/design/item/weapon/cell_based/prototype_nsfw
 	name = "cell-loaded revolver"
 	id = "nsfw_prototype"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
@@ -391,7 +391,7 @@
 	build_path = /obj/item/gun/ballistic/cell_loaded/combat/prototype
 	sort_string = "MAVAA"
 
-/datum/design/item/weapon/cell_based/prototype_nsfw_mag
+datum/design/item/weapon/cell_based/prototype_nsfw_mag
 	name = "combat cell magazine"
 	id = "nsfw_mag_prototype"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
@@ -399,11 +399,11 @@
 	build_path = /obj/item/ammo_magazine/cell_mag/combat/prototype
 	sort_string = "MAVBA"
 
-/datum/design/item/nsfw_cell/AssembleDesignName()
+datum/design/item/nsfw_cell/AssembleDesignName()
 	..()
 	name = "Microbattery prototype ([name])"
 
-/datum/design/item/nsfw_cell/stun
+datum/design/item/nsfw_cell/stun
 	name = "STUN"
 	id = "nsfw_cell_stun"
 	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_POWER = 3, TECH_COMBAT = 3)
@@ -411,7 +411,7 @@
 	build_path = /obj/item/ammo_casing/microbattery/combat/stun
 	sort_string = "MAVCA"
 
-/datum/design/item/nsfw_cell/lethal
+datum/design/item/nsfw_cell/lethal
 	name = "LETHAL"
 	id = "nsfw_cell_lethal"
 	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 5)
@@ -419,7 +419,7 @@
 	build_path = /obj/item/ammo_casing/microbattery/combat/lethal
 	sort_string = "MAVCB"
 
-/datum/design/item/nsfw_cell/net
+datum/design/item/nsfw_cell/net
 	name = "NET"
 	id = "nsfw_cell_net"
 	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 4)
@@ -427,7 +427,7 @@
 	build_path = /obj/item/ammo_casing/microbattery/combat/net
 	sort_string = "MAVCC"
 
-/datum/design/item/nsfw_cell/ion
+datum/design/item/nsfw_cell/ion
 	name = "ION"
 	id = "nsfw_cell_ion"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 5, TECH_COMBAT = 5)
@@ -435,7 +435,7 @@
 	build_path = /obj/item/ammo_casing/microbattery/combat/ion
 	sort_string = "MAVCD"
 
-/datum/design/item/nsfw_cell/shotstun
+datum/design/item/nsfw_cell/shotstun
 	name = "SCATTERSTUN"
 	id = "nsfw_cell_shotstun"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 6, TECH_COMBAT = 6)
@@ -443,7 +443,7 @@
 	build_path = /obj/item/ammo_casing/microbattery/combat/shotstun
 	sort_string = "MAVCE"
 
-/datum/design/item/nsfw_cell/xray
+datum/design/item/nsfw_cell/xray
 	name = "XRAY"
 	id = "nsfw_cell_xray"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 5, TECH_COMBAT = 7)
@@ -451,7 +451,7 @@
 	build_path = /obj/item/ammo_casing/microbattery/combat/xray
 	sort_string = "MAVCF"
 
-/datum/design/item/nsfw_cell/stripper
+datum/design/item/nsfw_cell/stripper
 	name = "STRIPPER"
 	id = "nsfw_cell_stripper"
 	req_tech = list(TECH_MATERIAL = 7, TECH_BIO = 4, TECH_POWER = 4, TECH_COMBAT = 4, TECH_ILLEGAL = 5)
@@ -460,11 +460,11 @@
 	sort_string = "MAVCG"
 
 
-/datum/design/item/modweapon/AssembleDesignName()
+datum/design/item/modweapon/AssembleDesignName()
 	..()
 	name = "Modular weapon prototype ([name])"
 
-/datum/design/item/modweapon/basic
+datum/design/item/modweapon/basic
 	name = "modular energy pistol"
 	id = "modpistol"
 	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 3)
@@ -474,7 +474,7 @@
 
 /*
 
-/datum/design/item/modweapon/adv
+datum/design/item/modweapon/adv
 	name = "advanced modular energy pistol"
 	id = "advmodpistol"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 5, TECH_POWER = 5, TECH_COMBAT = 5)
@@ -484,7 +484,7 @@
 
 */
 
-/datum/design/item/modweapon/carbine
+datum/design/item/modweapon/carbine
 	name = "modular energy carbine"
 	id = "modcarbine"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 5, TECH_POWER = 5, TECH_COMBAT = 5)
@@ -492,7 +492,7 @@
 	build_path = /obj/item/gun/energy/modular/carbine
 	sort_string = "MAVDC"
 
-/datum/design/item/modweapon/rifle
+datum/design/item/modweapon/rifle
 	name = "modular energy rifle"
 	id = "modrifle"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 5, TECH_POWER = 5, TECH_COMBAT = 5)
@@ -500,7 +500,7 @@
 	build_path = /obj/item/gun/energy/modular/rifle
 	sort_string = "MAVDD"
 
-/datum/design/item/modweapon/tririfle
+datum/design/item/modweapon/tririfle
 	name = "tri-core modular energy rifle"
 	id = "threemodrifle"
 	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_POWER = 5, TECH_COMBAT = 5)
@@ -510,7 +510,7 @@
 
 /*
 
-/datum/design/item/modweapon/compact
+datum/design/item/modweapon/compact
 	name = "compact modular energy pistol"
 	id = "modcompact"
 	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 6, TECH_COMBAT = 5)
@@ -518,7 +518,7 @@
 	build_path = /obj/item/gun/energy/modular/compact
 	sort_string = "MAVDF"
 
-/datum/design/item/modweapon/scatter
+datum/design/item/modweapon/scatter
 	name = "modular energy scattergun"
 	id = "modscatter"
 	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 6, TECH_COMBAT = 5, TECH_ILLEGAL = 4)
@@ -526,7 +526,7 @@
 	build_path = /obj/item/gun/energy/modular/rifle/scatter
 	sort_string = "MAVDG"
 
-/datum/design/item/modweapon/cannon
+datum/design/item/modweapon/cannon
 	name = "modular energy cannon"
 	id = "modcannon"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 6, TECH_POWER = 6, TECH_COMBAT = 6, TECH_ENGINEERING = 6)
@@ -536,7 +536,7 @@
 
 */
 
-/datum/design/item/modweapon/nuclear
+datum/design/item/modweapon/nuclear
 	name = "modular AEG"
 	id = "modAEG"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 6, TECH_POWER = 6, TECH_COMBAT = 6, TECH_ENGINEERING = 6, TECH_BLUESPACE = 4)
@@ -544,11 +544,11 @@
 	build_path = /obj/item/gun/energy/modular/nuke
 	sort_string = "MAVDG"
 
-/datum/design/item/modweaponnodule/AssembleDesignName()
+datum/design/item/modweaponnodule/AssembleDesignName()
 	..()
 	name = "Modular weapon module design ([name])"
 
-/datum/design/item/modweaponnodule/stunmedium
+datum/design/item/modweaponnodule/stunmedium
 	name = "stun medium"
 	id = "stunmedium"
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 2)
@@ -556,7 +556,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/stun
 	sort_string = "MAVEA"
 
-/datum/design/item/modweaponnodule/stunweak
+datum/design/item/modweaponnodule/stunweak
 	name = "weak stun medium"
 	id = "stunweak"
 	req_tech = list(TECH_MAGNET = 1, TECH_POWER = 2, TECH_COMBAT = 1)
@@ -566,7 +566,7 @@
 
 /*
 
-/datum/design/item/modweaponnodule/netmedium
+datum/design/item/modweaponnodule/netmedium
 	name = "net projector medium"
 	id = "netmedium"
 	req_tech =  list(TECH_MAGNET = 5, TECH_POWER = 5, TECH_COMBAT = 5)
@@ -576,7 +576,7 @@
 
 */
 
-/datum/design/item/modweaponnodule/electrode
+datum/design/item/modweaponnodule/electrode
 	name = "electrode projector tube"
 	id =	"electrodetube"
 	req_tech =  list(TECH_MAGNET = 2, TECH_POWER = 3, TECH_COMBAT = 2)
@@ -584,7 +584,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/electrode
 	sort_string = "MAVED"
 
-/datum/design/item/modweaponnodule/laser
+datum/design/item/modweaponnodule/laser
 	name = "laser medium"
 	id = "lasermedium"
 	req_tech =  list(TECH_MAGNET = 5, TECH_POWER = 5, TECH_COMBAT = 2)
@@ -592,7 +592,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/laser
 	sort_string = "MAVEE"
 
-/datum/design/item/modweaponnodule/weaklaser
+datum/design/item/modweaponnodule/weaklaser
 	name = "low-power laser medium"
 	id = "weaklaser"
 	req_tech =  list(TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 2)
@@ -602,7 +602,7 @@
 
 /*
 
-/datum/design/item/modweaponnodule/sniper
+datum/design/item/modweaponnodule/sniper
 	name = "laser sniper medium"
 	id = "sniperlaser"
 	req_tech =  list(TECH_MAGNET = 5, TECH_POWER = 6, TECH_COMBAT = 4)
@@ -610,7 +610,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/laser/sniper
 	sort_string = "MAVEG"
 
-/datum/design/item/modweaponnodule/heavylaser
+datum/design/item/modweaponnodule/heavylaser
 	name = "heavy laser medium"
 	id = "heavylasermedium"
 	req_tech =  list(TECH_MAGNET = 6, TECH_POWER = 6, TECH_COMBAT = 5, TECH_ILLEGAL = 2)
@@ -618,7 +618,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/laser/heavy
 	sort_string = "MAVEH"
 
-/datum/design/item/modweaponnodule/cannonmedium
+datum/design/item/modweaponnodule/cannonmedium
 	name = "cannon beam medium"
 	id = "cannonmedium"
 	req_tech = list(TECH_MAGNET = 5, TECH_POWER = 5, TECH_COMBAT = 5, TECH_ILLEGAL = 5)
@@ -628,7 +628,7 @@
 
 */
 
-/datum/design/item/modweaponnodule/xraser
+datum/design/item/modweaponnodule/xraser
 	name = "xraser medium"
 	id = "xraser"
 	req_tech = list(TECH_MAGNET = 5, TECH_POWER = 5, TECH_COMBAT = 5, TECH_ILLEGAL = 5)
@@ -636,7 +636,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/laser/xray
 	sort_string = "MAVEJ"
 
-/datum/design/item/modweaponnodule/dig
+datum/design/item/modweaponnodule/dig
 	name = "excavation beam medium"
 	id = "digbeam"
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 2)
@@ -644,7 +644,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/dig
 	sort_string = "MAVEK"
 
-/datum/design/item/modweaponnodule/lightning
+datum/design/item/modweaponnodule/lightning
 	name = "lightning arc tube"
 	id = "lightning"
 	req_tech = list(TECH_MAGNET = 6, TECH_POWER = 7)
@@ -652,7 +652,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/lightning
 	sort_string = "MAVEL"
 
-/datum/design/item/modweaponnodule/hook
+datum/design/item/modweaponnodule/hook
 	name = "graviton grapple tube"
 	id = "hook"
 	req_tech = list(TECH_ARCANE = 4, TECH_POWER = 2)
@@ -660,7 +660,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/hook
 	sort_string = "MAVEM"
 
-/datum/design/item/modweaponnodule/phasemedium
+datum/design/item/modweaponnodule/phasemedium
 	name = "phase projector tube"
 	id = "phasemedium"
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 2)
@@ -668,7 +668,7 @@
 	build_path = /obj/item/modularlaser/lasermedium/phase
 	sort_string = "MAVEN"
 
-/datum/design/item/modweaponnodule/basiclens
+datum/design/item/modweaponnodule/basiclens
 	name = "basic lens"
 	id = "basiclens"
 	req_tech = list(TECH_MATERIAL = 3)
@@ -676,7 +676,7 @@
 	build_path = /obj/item/modularlaser/lens/basic
 	sort_string = "MAVEO"
 
-/datum/design/item/modweaponnodule/advlens
+datum/design/item/modweaponnodule/advlens
 	name = "advanced lens"
 	id = "advlens"
 	req_tech = list(TECH_MATERIAL = 6)
@@ -684,7 +684,7 @@
 	build_path = /obj/item/modularlaser/lens/advanced
 	sort_string = "MAVEQ"
 
-/datum/design/item/modweaponnodule/superlens
+datum/design/item/modweaponnodule/superlens
 	name = "superior lens"
 	id = "superlens"
 	req_tech =  list(TECH_MATERIAL = 9)
@@ -694,7 +694,7 @@
 
 /*
 
-/datum/design/item/modweaponnodule/scatterlens
+datum/design/item/modweaponnodule/scatterlens
 	name = "scatter lens"
 	id = "scatterlens"
 	req_tech = list(TECH_MATERIAL = 6)
@@ -702,7 +702,7 @@
 	build_path = /obj/item/modularlaser/lens/scatter
 	sort_string = "MAVES"
 
-/datum/design/item/modweaponnodule/advscatterlens
+datum/design/item/modweaponnodule/advscatterlens
 	name = "advanced scatter lens"
 	id = "advscatterlens"
 	req_tech = list(TECH_MATERIAL = 9)
@@ -712,7 +712,7 @@
 
 */
 
-/datum/design/item/modweaponnodule/basiccap
+datum/design/item/modweaponnodule/basiccap
 	name = "basic capacitor"
 	id = "basiccap"
 	req_tech = list(TECH_POWER = 2)
@@ -720,7 +720,7 @@
 	build_path = /obj/item/modularlaser/capacitor/basic
 	sort_string = "MAVEV"
 
-/datum/design/item/modweaponnodule/ecocap
+datum/design/item/modweaponnodule/ecocap
 	name = "efficient capacitor"
 	id = "ecocap"
 	req_tech = list(TECH_POWER = 4)
@@ -728,7 +728,7 @@
 	build_path = /obj/item/modularlaser/capacitor/eco
 	sort_string = "MAVEW"
 
-/datum/design/item/modweaponnodule/supereco
+datum/design/item/modweaponnodule/supereco
 	name = "economical capacitor"
 	id = "superecocap"
 	req_tech = list(TECH_POWER = 6)
@@ -738,7 +738,7 @@
 
 /*
 
-/datum/design/item/modweaponnodule/quickcap
+datum/design/item/modweaponnodule/quickcap
 	name = "high throughput capactior"
 	id = "quickcap"
 	req_tech = list(TECH_POWER = 8)
@@ -746,7 +746,7 @@
 	build_path = /obj/item/modularlaser/capacitor/speed
 	sort_string = "MAVEY"
 
-/datum/design/item/modweaponnodule/advqcap
+datum/design/item/modweaponnodule/advqcap
 	name = "very high throughput capactior"
 	id = "advqcap"
 	req_tech = list(TECH_POWER = 8)
@@ -756,7 +756,7 @@
 
 */
 
-/datum/design/item/modweaponnodule/basicac
+datum/design/item/modweaponnodule/basicac
 	name = "cooling system"
 	id = "basicac"
 	req_tech = list(TECH_ENGINEERING = 2)
@@ -764,7 +764,7 @@
 	build_path = /obj/item/modularlaser/cooling/basic
 	sort_string = "MAVFA"
 
-/datum/design/item/modweaponnodule/recoverac
+datum/design/item/modweaponnodule/recoverac
 	name = "regenerative cooling system"
 	id = "recoverac"
 	req_tech = list(TECH_ENGINEERING = 4)
@@ -772,7 +772,7 @@
 	build_path = /obj/item/modularlaser/cooling/efficient
 	sort_string = "MAVFB"
 
-/datum/design/item/modweaponnodule/fastac
+datum/design/item/modweaponnodule/fastac
 	name = "high-power regenerative cooling system"
 	id = "fastac"
 	req_tech = list(TECH_ENGINEERING = 7)
@@ -782,7 +782,7 @@
 
 /*
 
-/datum/design/item/modweaponnodule/superac
+datum/design/item/modweaponnodule/superac
 	name = "supercharged cooling system"
 	id = "superac"
 	req_tech = list(TECH_ENGINEERING = 4)
@@ -790,7 +790,7 @@
 	build_path = /obj/item/modularlaser/cooling/speed
 	sort_string = "MAVFD"
 
-/datum/design/item/modweaponnodule/bestac
+datum/design/item/modweaponnodule/bestac
 	name = "hypercharged cooling system"
 	id = "hyperac"
 	req_tech = list(TECH_ENGINEERING = 7)
@@ -800,7 +800,7 @@
 
 */
 
-/datum/design/item/modweaponnodule/modcontrol
+datum/design/item/modweaponnodule/modcontrol
 	name = "controller"
 	id = "modcontrol"
 	req_tech = list(TECH_DATA = 2)
@@ -810,7 +810,7 @@
 
 /*
 
-/datum/design/item/modweaponnodule/an94
+datum/design/item/modweaponnodule/an94
 	name = "AN-94 patterned fire controller"
 	id = "an94"
 	req_tech = list(TECH_DATA = 5, TECH_COMBAT = 3)
@@ -820,7 +820,7 @@
 
 */
 
-/datum/design/item/modweaponnodule/threecontrol
+datum/design/item/modweaponnodule/threecontrol
 	name = "burst FCU"
 	id = "threecontrol"
 	req_tech = list(TECH_DATA = 5, TECH_COMBAT = 3)
@@ -830,7 +830,7 @@
 
 /*
 
-/datum/design/item/modweaponnodule/fivecontrol
+datum/design/item/modweaponnodule/fivecontrol
 	name = "quintburst FCU"
 	id = "fivecontrol"
 	req_tech = list(TECH_DATA = 5, TECH_COMBAT = 4)
@@ -841,11 +841,11 @@
 */
 
 //Firing pins to shoot your guns with
-/datum/design/item/pin/AssembleDesignName()
+datum/design/item/pin/AssembleDesignName()
 	..()
 	name = "Weapon firing pin ([item_name])"
 
-/datum/design/item/pin/test
+datum/design/item/pin/test
 	name = "Testing range"
 	id = "test_range_pin"
 	req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_COMBAT = 2)
@@ -853,7 +853,7 @@
 	build_path = /obj/item/firing_pin/test_range
 	sort_string = "MAVGA"
 
-/datum/design/item/pin/explorer
+datum/design/item/pin/explorer
 	name = "Exploration"
 	id = "explorer_pin"
 	req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_COMBAT = 2)

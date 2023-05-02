@@ -11,7 +11,7 @@
  * You can add more special effects to the beam itself by changing what the drawn beam effects do. For example you can make a vine that pricks people by making the beam_type
  * include a crossed proc that damages the crosser. Examples in venus_human_trap.dm
 */
-/datum/beam
+datum/beam
 	///where the beam goes from
 	var/atom/origin = null
 	///where the beam goes to
@@ -41,7 +41,7 @@
 	/// If set will be used instead of targets's pixel_y in offset calculations
 	var/override_target_pixel_y = null
 
-/datum/beam/New(origin, target,	icon = 'icons/effects/beam.dmi', icon_state = "b_beam",	time = INFINITY, max_distance = INFINITY, beam_type = /obj/effect/ebeam, beam_color = null, emissive = TRUE, override_origin_pixel_x = null,	override_origin_pixel_y = null, override_target_pixel_x = null, override_target_pixel_y = null)
+datum/beam/New(origin, target,	icon = 'icons/effects/beam.dmi', icon_state = "b_beam",	time = INFINITY, max_distance = INFINITY, beam_type = /obj/effect/ebeam, beam_color = null, emissive = TRUE, override_origin_pixel_x = null,	override_origin_pixel_y = null, override_target_pixel_x = null, override_target_pixel_y = null)
 	src.origin = origin
 	src.target = target
 	src.icon = icon
@@ -60,7 +60,7 @@
 /**
  * Proc called by the atom Beam() proc. Sets up signals, and draws the beam for the first time.
  */
-/datum/beam/proc/Start()
+datum/beam/proc/Start()
 	visuals = new beam_type()
 	visuals.icon = icon
 	visuals.icon_state = icon_state
@@ -81,7 +81,7 @@
  * oldloc: from where mover moved.
  * direction: in what direction mover moved from.
  */
-/datum/beam/proc/redrawing(atom/movable/mover, atom/oldloc, direction)
+datum/beam/proc/redrawing(atom/movable/mover, atom/oldloc, direction)
 	SIGNAL_HANDLER
 	if(origin && target && get_dist(origin,target)<max_distance && origin.z == target.z)
 		QDEL_LIST(elements)
@@ -89,7 +89,7 @@
 	else
 		qdel(src)
 
-/datum/beam/Destroy()
+datum/beam/Destroy()
 	QDEL_LIST(elements)
 	QDEL_NULL(visuals)
 	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
@@ -101,7 +101,7 @@
 /**
  * Creates the beam effects and places them in a line from the origin to the target. Sets their rotation to make the beams face the target, too.
  */
-/datum/beam/proc/Draw()
+datum/beam/proc/Draw()
 	if(SEND_SIGNAL(src, COMSIG_BEAM_BEFORE_DRAW) & BEAM_CANCEL_DRAW)
 		return
 	var/origin_px = isnull(override_origin_pixel_x) ? origin.pixel_x : override_origin_pixel_x
@@ -164,17 +164,17 @@
 		segment.pixel_y = origin_py + Pixel_y
 		CHECK_TICK
 
-/obj/effect/ebeam
+obj/effect/ebeam
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 	var/emissive = TRUE
 	var/datum/beam/owner
 
-/obj/effect/ebeam/Initialize(mapload, beam_owner)
+obj/effect/ebeam/Initialize(mapload, beam_owner)
 	owner = beam_owner
 	return ..()
 
-/obj/effect/ebeam/update_overlays()
+obj/effect/ebeam/update_overlays()
 	. = ..()
 	if(!emissive)
 		return
@@ -182,46 +182,46 @@
 	emissive_overlay.transform = transform
 	. += emissive_overlay
 
-/obj/effect/ebeam/Destroy()
+obj/effect/ebeam/Destroy()
 	owner = null
 	return ..()
 
-/obj/effect/ebeam/singularity_pull()
+obj/effect/ebeam/singularity_pull()
 	return
 
-/obj/effect/ebeam/singularity_act()
+obj/effect/ebeam/singularity_act()
 	return
 
 // 'Reactive' beam parts do something when touched or stood in.
-/obj/effect/ebeam/reactive
+obj/effect/ebeam/reactive
 
-/obj/effect/ebeam/reactive/Initialize(mapload)
+obj/effect/ebeam/reactive/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/ebeam/reactive/Destroy()
+obj/effect/ebeam/reactive/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/ebeam/reactive/Crossed(atom/A)
+obj/effect/ebeam/reactive/Crossed(atom/A)
 	if(A.is_incorporeal())
 		return
 	..()
 	on_contact(A)
 
-/obj/effect/ebeam/reactive/process(delta_time)
+obj/effect/ebeam/reactive/process(delta_time)
 	for(var/A in loc)
 		on_contact(A)
 
 // Override for things to do when someone touches the beam.
-/obj/effect/ebeam/reactive/proc/on_contact(atom/movable/AM)
+obj/effect/ebeam/reactive/proc/on_contact(atom/movable/AM)
 	return
 
 // Shocks things that touch it.
-/obj/effect/ebeam/reactive/electric
+obj/effect/ebeam/reactive/electric
 	var/shock_amount = 25 // Be aware that high numbers may stun and result in dying due to not being able to get out of the beam.
 
-/obj/effect/ebeam/reactive/electric/on_contact(atom/movable/AM)
+obj/effect/ebeam/reactive/electric/on_contact(atom/movable/AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		L.inflict_shock_damage(shock_amount)
@@ -238,9 +238,7 @@
  * maxdistance: how far the beam will go before stopping itself. Used mainly for two things: preventing lag if the beam may go in that direction and setting a range to abilities that use beams.
  * beam_type: The type of your custom beam. This is for adding other wacky stuff for your beam only. Most likely, you won't (and shouldn't) change it.
  */
-/atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=INFINITY,maxdistance=INFINITY,beam_type=/obj/effect/ebeam, beam_color = null, emissive = TRUE, override_origin_pixel_x = null, override_origin_pixel_y = null, override_target_pixel_x = null, override_target_pixel_y = null)
+atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=INFINITY,maxdistance=INFINITY,beam_type=/obj/effect/ebeam, beam_color = null, emissive = TRUE, override_origin_pixel_x = null, override_origin_pixel_y = null, override_target_pixel_x = null, override_target_pixel_y = null)
 	var/datum/beam/newbeam = new(src,BeamTarget,icon,icon_state,time,maxdistance,beam_type, beam_color, emissive, override_origin_pixel_x, override_origin_pixel_y, override_target_pixel_x, override_target_pixel_y )
 	INVOKE_ASYNC(newbeam, TYPE_PROC_REF(/datum/beam/, Start))
 	return newbeam
-
-

@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet
+obj/structure/closet/secure_closet
 	name = "secure locker"
 	desc = "It's an immobile card-locked storage unit."
 	icon = 'icons/obj/closet.dmi'
@@ -16,12 +16,12 @@
 	wall_mounted = 0 //never solid (You can always pass over it)
 	health = 200
 
-/obj/structure/closet/secure_closet/can_open()
+obj/structure/closet/secure_closet/can_open()
 	if(src.locked)
 		return 0
 	return ..()
 
-/obj/structure/closet/secure_closet/close()
+obj/structure/closet/secure_closet/close()
 	if(..())
 		if(broken)
 			icon_state = src.icon_off
@@ -29,7 +29,7 @@
 	else
 		return 0
 
-/obj/structure/closet/secure_closet/emp_act(severity)
+obj/structure/closet/secure_closet/emp_act(severity)
 	for(var/obj/O in src)
 		O.emp_act(severity)
 	if(!broken)
@@ -44,7 +44,7 @@
 				src.req_access += pick(get_all_station_access())
 	..()
 
-/obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
+obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
 	if(src.opened)
 		to_chat(user, "<span class='notice'>Close the locker first.</span>")
 		return
@@ -64,7 +64,7 @@
 	else
 		to_chat(user, "<span class='notice'>Access Denied</span>")
 
-/obj/structure/closet/secure_closet/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/closet/secure_closet/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/storage/laundry_basket))
 			return ..(W,user)
@@ -102,7 +102,7 @@
 	else
 		togglelock(user)
 
-/obj/structure/closet/secure_closet/emag_act(var/remaining_charges, var/mob/user, var/emag_source, var/visual_feedback = "", var/audible_feedback = "")
+obj/structure/closet/secure_closet/emag_act(var/remaining_charges, var/mob/user, var/emag_source, var/visual_feedback = "", var/audible_feedback = "")
 	if(!broken)
 		broken = 1
 		locked = 0
@@ -118,18 +118,18 @@
 			visible_message("<span class='warning'>\The [src] sparks and breaks open!</span>", "You hear a faint electrical spark.")
 		return 1
 
-/obj/structure/closet/secure_closet/attack_hand(mob/user, list/params)
+obj/structure/closet/secure_closet/attack_hand(mob/user, list/params)
 	src.add_fingerprint(user)
 	if(src.locked)
 		src.togglelock(user)
 	else
 		src.toggle(user)
 
-/obj/structure/closet/secure_closet/AltClick()
+obj/structure/closet/secure_closet/AltClick()
 	..()
 	verb_togglelock()
 
-/obj/structure/closet/secure_closet/verb/verb_togglelock()
+obj/structure/closet/secure_closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance
 	set category = "Object"
 	set name = "Toggle Lock"
@@ -143,7 +143,7 @@
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
-/obj/structure/closet/secure_closet/update_icon()//Putting the sealed stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
+obj/structure/closet/secure_closet/update_icon()//Putting the sealed stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	cut_overlays()
 
 	if(!opened)
@@ -158,12 +158,12 @@
 	else
 		icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/req_breakout()
+obj/structure/closet/secure_closet/req_breakout()
 	if(!opened && locked)
 		return 1
 	return ..() //It's a secure closet, but isn't locked.
 
-/obj/structure/closet/secure_closet/break_open()
+obj/structure/closet/secure_closet/break_open()
 	desc += " It appears to be broken."
 	broken = 1
 	locked = 0

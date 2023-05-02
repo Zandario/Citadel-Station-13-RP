@@ -1,25 +1,25 @@
 // Stuff worn on the ears. Items here go in the "ears" sort_category but they must not use
 // the SLOT_ID_RIGHT_EAR or SLOT_ID_LEFT_EAR as the slot, or else players will spawn with no headset.
-/datum/gear/ears
+datum/gear/ears
 	name = "Earmuffs"
 	path = /obj/item/clothing/ears/earmuffs
 	sort_category = "Earwear"
 
-/datum/gear/ears/headphones
+datum/gear/ears/headphones
 	name = "Headphones"
 	path = /obj/item/clothing/ears/earmuffs/headphones
 
-/datum/gear/ears/circuitry
+datum/gear/ears/circuitry
 	name = "Earwear - Circuitry"
 	path = /obj/item/clothing/ears/circuitry
 
 
-/datum/gear/ears/earrings
+datum/gear/ears/earrings
 	name = "Earring Selection"
 	description = "A selection of eye-catching earrings."
 	path = /obj/item/clothing/ears/earring
 
-/datum/gear/ears/earrings/New()
+datum/gear/ears/earrings/New()
 	..()
 	var/earrings = list()
 	earrings["Stud - Pearl"] = /obj/item/clothing/ears/earring/stud
@@ -42,12 +42,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(earrings)
 
 
-/datum/gear/ears/laurel
+datum/gear/ears/laurel
 	name = "Laurel Wreath Selection"
 	description = "A selection of leaf-like headwear."
 	path = /obj/item/clothing/ears/laurel
 
-/datum/gear/ears/laurel/New()
+datum/gear/ears/laurel/New()
 	..()
 	var/laurel = list()
 	laurel["Laurel Wreath - Leaf"] = /obj/item/clothing/ears/laurel

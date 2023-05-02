@@ -16,7 +16,7 @@
 ** TODO - Implement phase 2 by adding cardboard boxes
 */
 
-/obj/machinery/partslathe
+obj/machinery/partslathe
 	name = "parts lathe"
 	icon = 'icons/obj/partslathe_vr.dmi'
 	icon_state = "partslathe-idle"
@@ -47,12 +47,12 @@
 	/// type -> /datum/category_item/partslathe/
 	var/static/list/partslathe_recipies
 
-/obj/machinery/partslathe/Initialize(mapload)
+obj/machinery/partslathe/Initialize(mapload)
 	. = ..()
 	update_icon()
 	update_recipe_list()
 
-/obj/machinery/partslathe/proc/getHighestOriginTechLevel(obj/item/I)
+obj/machinery/partslathe/proc/getHighestOriginTechLevel(obj/item/I)
 	if(!istype(I) || !I.origin_tech)
 		return FALSE
 	var/highest = 0
@@ -60,7 +60,7 @@
 		highest = max(highest, I.origin_tech[tech])
 	return highest
 
-/obj/machinery/partslathe/RefreshParts()
+obj/machinery/partslathe/RefreshParts()
 	var/mb_rating = 0
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		mb_rating += M.rating
@@ -72,12 +72,12 @@
 	mat_efficiency = 6 / T // Ranges from 3.0 to 1.0
 	speed = T / 2 // Ranges from 1.0 to 3.0
 
-/obj/machinery/partslathe/dismantle()
+obj/machinery/partslathe/dismantle()
 	for(var/f in materials)
 		eject_materials(f, -1)
 	..()
 
-/obj/machinery/partslathe/update_icon()
+obj/machinery/partslathe/update_icon()
 	if(panel_open)
 		icon_state = "partslathe-open"
 	else if(inoperable())
@@ -89,7 +89,7 @@
 			flick("partslathe-lidopen", src)
 		icon_state = "partslathe-idle"
 
-/obj/machinery/partslathe/attackby(obj/item/O, mob/user)
+obj/machinery/partslathe/attackby(obj/item/O, mob/user)
 	if(busy)
 		to_chat(user, SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation."))
 		return TRUE
@@ -121,7 +121,7 @@
 		return
 
 // Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
-/obj/machinery/partslathe/proc/try_load_materials(mob/user, obj/item/stack/material/S)
+obj/machinery/partslathe/proc/try_load_materials(mob/user, obj/item/stack/material/S)
 	if(!istype(S))
 		return FALSE
 	if(!(S.material.name in materials))
@@ -146,7 +146,7 @@
 		to_chat(user, SPAN_WARNING("\The [src] cannot hold more [S.name]."))
 	return TRUE
 
-/obj/machinery/partslathe/process(delta_time)
+obj/machinery/partslathe/process(delta_time)
 	..()
 	if(machine_stat)
 		update_icon()
@@ -174,21 +174,21 @@
 		update_icon()
 		playsound(src.loc, 'sound/machines/chime.ogg', 50, FALSE)
 
-/obj/machinery/partslathe/proc/addToQueue(datum/category_item/partslathe/D)
+obj/machinery/partslathe/proc/addToQueue(datum/category_item/partslathe/D)
 	queue += D
 	return
 
-/obj/machinery/partslathe/proc/removeFromQueue(index)
+obj/machinery/partslathe/proc/removeFromQueue(index)
 	queue.Cut(index, index + 1)
 	return
 
-/obj/machinery/partslathe/proc/canBuild(datum/category_item/partslathe/D)
+obj/machinery/partslathe/proc/canBuild(datum/category_item/partslathe/D)
 	for(var/M in D.resources)
 		if(materials[M] < CEILING((D.resources[M] * mat_efficiency), 1))
 			return FALSE
 	return TRUE
 
-/obj/machinery/partslathe/proc/getLackingMaterials(datum/category_item/partslathe/D)
+obj/machinery/partslathe/proc/getLackingMaterials(datum/category_item/partslathe/D)
 	var/ret = ""
 	for(var/M in D.resources)
 		if(materials[M] < CEILING((D.resources[M] * mat_efficiency), 1))
@@ -197,7 +197,7 @@
 			ret += "[CEILING((D.resources[M] * mat_efficiency), 1) - materials[M]] [M]"
 	return ret
 
-/obj/machinery/partslathe/proc/build(datum/category_item/partslathe/D)
+obj/machinery/partslathe/proc/build(datum/category_item/partslathe/D)
 	for(var/M in D.resources)
 		materials[M] = max(0, materials[M] - CEILING((D.resources[M] * mat_efficiency), 1))
 	var/obj/new_item = D.build(loc);
@@ -208,26 +208,26 @@
 				for(var/i in new_item.matter)
 					new_item.matter[i] = CEILING((new_item.matter[i] * mat_efficiency), 1)
 
-/obj/machinery/partslathe/attack_ai(mob/user)
+obj/machinery/partslathe/attack_ai(mob/user)
 	src.attack_hand(user)
 
-/obj/machinery/partslathe/attack_hand(mob/user, list/params)
+obj/machinery/partslathe/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	ui_interact(user)
 
-/obj/machinery/partslathe/ui_assets(mob/user)
+obj/machinery/partslathe/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
 	)
 
-/obj/machinery/partslathe/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/machinery/partslathe/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PartsLathe", name)
 		ui.open()
 
-/obj/machinery/partslathe/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/partslathe/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["panelOpen"] = panel_open
 
@@ -276,7 +276,7 @@
 
 	return data
 
-/obj/machinery/partslathe/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/partslathe/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -333,7 +333,7 @@
 			return
 
 ///Builds a list of recipies to include all tech level 1 stock parts.
-/obj/machinery/partslathe/proc/update_recipe_list()
+obj/machinery/partslathe/proc/update_recipe_list()
 	if(!partslathe_recipies)
 		partslathe_recipies = list()
 		var/list/paths = typesof(/obj/item/stock_parts)-/obj/item/stock_parts
@@ -359,13 +359,13 @@
 * Parts Lathe Recipie Type *
 ***************************/
 
-/datum/category_item/partslathe
+datum/category_item/partslathe
 	var/path
 	var/list/resources
 	var/time = 2 // In machine controller ticks, so about 4 seconds.
 
-/datum/category_item/partslathe/dd_SortValue()
+datum/category_item/partslathe/dd_SortValue()
 	return name
 
-/datum/category_item/partslathe/proc/build(loc)
+datum/category_item/partslathe/proc/build(loc)
 	return new path(loc)

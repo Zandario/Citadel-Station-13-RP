@@ -9,28 +9,28 @@
 
 // BEGIN RESEARCH DATUMS
 
-/datum/malf_research_ability/interdiction/recall_shuttle
+datum/malf_research_ability/interdiction/recall_shuttle
 	ability = new/datum/game_mode/malfunction/verb/recall_shuttle()
 	price = 75
 	next = new/datum/malf_research_ability/interdiction/unlock_cyborg()
 	name = "Recall Shuttle"
 
 
-/datum/malf_research_ability/interdiction/unlock_cyborg
+datum/malf_research_ability/interdiction/unlock_cyborg
 	ability = new/datum/game_mode/malfunction/verb/unlock_cyborg()
 	price = 1200
 	next = new/datum/malf_research_ability/interdiction/hack_cyborg()
 	name = "Unlock Cyborg"
 
 
-/datum/malf_research_ability/interdiction/hack_cyborg
+datum/malf_research_ability/interdiction/hack_cyborg
 	ability = new/datum/game_mode/malfunction/verb/hack_cyborg()
 	price = 3000
 	next = new/datum/malf_research_ability/interdiction/hack_ai()
 	name = "Hack Cyborg"
 
 
-/datum/malf_research_ability/interdiction/hack_ai
+datum/malf_research_ability/interdiction/hack_ai
 	ability = new/datum/game_mode/malfunction/verb/hack_ai()
 	price = 7500
 	name = "Hack AI"
@@ -38,7 +38,7 @@
 // END RESEARCH DATUMS
 // BEGIN ABILITY VERBS
 
-/datum/game_mode/malfunction/verb/recall_shuttle()
+datum/game_mode/malfunction/verb/recall_shuttle()
 	set name = "Recall Shuttle"
 	set desc = "25 CPU - Sends termination signal to quantum relay aborting current shuttle call."
 	set category = "Software"
@@ -56,7 +56,7 @@
 	cancel_call_proc(user)
 
 
-/datum/game_mode/malfunction/verb/unlock_cyborg(var/mob/living/silicon/robot/target = null as mob in get_linked_cyborgs(usr))
+datum/game_mode/malfunction/verb/unlock_cyborg(var/mob/living/silicon/robot/target = null as mob in get_linked_cyborgs(usr))
 	set name = "Unlock Cyborg"
 	set desc = "125 CPU - Bypasses firewalls on Cyborg lock mechanism, allowing you to override lock command from robotics control console."
 	set category = "Software"
@@ -126,7 +126,7 @@
 		user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/hack_cyborg(var/mob/living/silicon/robot/target as mob in get_unlinked_cyborgs(usr))
+datum/game_mode/malfunction/verb/hack_cyborg(var/mob/living/silicon/robot/target as mob in get_unlinked_cyborgs(usr))
 	set name = "Hack Cyborg"
 	set desc = "350 CPU - Allows you to hack cyborgs which are not slaved to you, bringing them under your control."
 	set category = "Software"
@@ -191,7 +191,7 @@
 			user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/hack_ai(var/mob/living/silicon/ai/target as mob in get_other_ais(usr))
+datum/game_mode/malfunction/verb/hack_ai(var/mob/living/silicon/ai/target as mob in get_other_ais(usr))
 	set name = "Hack AI"
 	set desc = "600 CPU - Allows you to hack other AIs, slaving them under you."
 	set category = "Software"

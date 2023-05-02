@@ -8,7 +8,7 @@
 /*
  * Classic Baton
  */
-/obj/item/melee/classic_baton
+obj/item/melee/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."
 	icon = 'icons/obj/weapons.dmi'
@@ -19,7 +19,7 @@
 	drop_sound = 'sound/items/drop/crowbar.ogg'
 	pickup_sound = 'sound/items/pickup/crowbar.ogg'
 
-/obj/item/melee/classic_baton/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/classic_baton/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if ((MUTATION_CLUMSY in user.mutations) && prob(50) && isliving(user))
 		var/mob/living/L = user
 		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
@@ -32,7 +32,7 @@
 		return
 	return ..()
 
-/obj/item/melee/classic_baton/tonfa
+obj/item/melee/classic_baton/tonfa
 	name = "tonfa"
 	desc = "A versatile wooden baton from Old Earth, designed for both attack and defense."
 	icon_state = "tonfa"
@@ -41,7 +41,7 @@
 	defend_chance = 15
 
 //Telescopic baton
-/obj/item/melee/telebaton
+obj/item/melee/telebaton
 	name = "telescopic baton"
 	desc = "A compact yet rebalanced personal defense weapon. Can be concealed when folded."
 	icon = 'icons/obj/weapons.dmi'
@@ -56,7 +56,7 @@
 	drop_sound = 'sound/items/drop/crowbar.ogg'
 	pickup_sound = 'sound/items/pickup/crowbar.ogg'
 
-/obj/item/melee/telebaton/attack_self(mob/user)
+obj/item/melee/telebaton/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -95,7 +95,7 @@
 		add_overlay(blood_overlay)
 	return
 
-/obj/item/melee/telebaton/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/melee/telebaton/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(on)
 		if ((MUTATION_CLUMSY in user.mutations) && prob(50))
 			to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
@@ -121,7 +121,7 @@
 	else
 		return ..()
 
-/obj/item/melee/telebaton/newspaper
+obj/item/melee/telebaton/newspaper
 	name = "The Daily Whiplash"
 	desc = "A newspaper wrapped around a telescopic baton in such a way that it looks like you're beating people with a rolled up newspaper."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -132,7 +132,7 @@
 			SLOT_ID_RIGHT_HAND = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-/obj/item/melee/disruptor
+obj/item/melee/disruptor
 	name = "disruptor blade"
 	desc = "A long, machete-like blade, designed to mount onto the arm or some rough equivalent. Electricity courses through it."
 	description_info = "This blade deals bonus damage against animals (space bears, carp) and aberrations (xenomorphs)."
@@ -150,17 +150,17 @@
 	var/SA_bonus_damage = 35 // 50 total against animals and aberrations.
 	var/SA_vulnerability = MOB_CLASS_ANIMAL | MOB_CLASS_ABERRATION
 
-/obj/item/melee/disruptor/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+obj/item/melee/disruptor/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/tm = target // targeted mob
 		if(SA_vulnerability & tm.mob_class)
 			tm.apply_damage(SA_bonus_damage) // fuck em
 
-/obj/item/melee/disruptor/borg
+obj/item/melee/disruptor/borg
 	desc = "A long, machete-like blade, designed to mount onto a facility-bound synthetic's chassis."
 
-/obj/item/melee/spike
+obj/item/melee/spike
 	name = "jagged spike"
 	desc = "A polished spike with miniscule edges all over its surface. You won't be holding onto it for long if you stab someone with it."
 	embed_chance = 100 // these should probably come in a bandolier or have some sort of fabricator, tbf
@@ -179,7 +179,7 @@
 //DONATOR ITEM
 //okay I know making a stool a weapon is real cringe but the chair material code is fucking bad and I'm tired of fucking with it
 
-/obj/item/melee/stool/faiza
+obj/item/melee/stool/faiza
 	name = "Faiza's Stool"
 	desc = "Apply munchkin cat."
 	icon = 'icons/obj/furniture.dmi'
@@ -192,7 +192,7 @@
 	damage_force = 0
 	hitsound = "sound/items/bikehorn.ogg"
 
-/obj/item/melee/stool/faiza/attack_self(mob/user)
+obj/item/melee/stool/faiza/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -210,7 +210,7 @@
 
 	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 
-/obj/item/melee/bokken // parrying stick
+obj/item/melee/bokken // parrying stick
 	name = "bokken"
 	desc = "A training sword made of wood and shaped like a katana."
 	icon_state = "bokken"
@@ -224,7 +224,7 @@
 	var/burnt = FALSE
 	var/burned_in
 
-/obj/item/melee/bokken/attackby(obj/item/I, mob/living/user, params)
+obj/item/melee/bokken/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/pen))
 		var/new_name = stripped_input(user, "What do you wish to name [src]?", "New Name", "bokken", 30)
 		if(new_name)
@@ -247,58 +247,58 @@
 		else
 			to_chat(user, "<span class='notice'>[src] already has a weight slid into the hilt.")
 
-/obj/item/melee/bokken/examine(mob/user)
+obj/item/melee/bokken/examine(mob/user)
 	. = ..()
 	if(reinforced)
 		. += "There's a metal rod shoved into the base."
 	if(burnt)
 		. += "Burned into the \"blade\" is [burned_in]."
 
-/obj/item/melee/bokken/hardwood
+obj/item/melee/bokken/hardwood
 	name = "hardwood bokken"
 	desc = "A blunt katana made from hardwood, a dense organic wood."
 	icon_state = "bokken_hard"
 	damage_force = 10
 
-/obj/item/melee/bokken/waki
+obj/item/melee/bokken/waki
 	name = "wakizashi bokken"
 	desc = "A space-Japanese training sword made of wood and shaped like a wakizashi."
 	icon_state = "wakibokken"
 	slot_flags = SLOT_BELT
 	damage_force = 5
 
-/obj/item/melee/bokken/waki/hardwood
+obj/item/melee/bokken/waki/hardwood
 	name = "wakizashi hardwood bokken"
 	desc = "A blunt wakizashi made from hardwood, a dense organic wood."
 	icon_state = "wakibokken_hard"
 	damage_force = 10
 
-/obj/item/bokken_hilt
+obj/item/bokken_hilt
 	name = "bokken hilt"
 	desc = "A wooden hilt wrapped in grip tape."
 	icon_state = "bokken_hilt"
 
-/obj/item/bokken_blade
+obj/item/bokken_blade
 	name = "bokken blade"
 	desc = "A wooden katana blade, used for training on old Terra."
 	icon_state = "bokken_blade"
 
-/obj/item/wakibokken_blade
+obj/item/wakibokken_blade
 	name = "wakibokken blade"
 	desc = "A wooden wakizashi blade, used for training on old Terra."
 	icon_state = "wakibokken_blade"
 
-/obj/item/bokken_blade/hardwood
+obj/item/bokken_blade/hardwood
 	name = "hardwood bokken blade"
 	desc = "A sturdy wooden katana blade, used for training on old Terra."
 	icon_state = "bokken_blade_h"
 
-/obj/item/wakibokken_blade/hardwood
+obj/item/wakibokken_blade/hardwood
 	name = "hardwood wakibokken blade"
 	desc = "A sturdy wooden wakizashi blade, used for training on old Terrae."
 	icon_state = "wakibokken_blade_h"
 
-/obj/item/bo_staff
+obj/item/bo_staff
 	name = "stave"
 	desc = "A thick rod of hardened wood, useful as a walking stick, as much as a defensive tool."
 	icon = 'icons/obj/weapons.dmi'
@@ -313,14 +313,14 @@
 	var/defend_chance = 40
 	var/projectile_parry_chance = 0
 
-/obj/item/bo_staff/proc/jedi_spin(mob/living/user)
+obj/item/bo_staff/proc/jedi_spin(mob/living/user)
 	for(var/i in list(NORTH,SOUTH,EAST,WEST,EAST,SOUTH,NORTH,SOUTH,EAST,WEST,EAST,SOUTH))
 		user.setDir(i)
 		if(i == WEST)
 			user.emote("flip")
 		sleep(1)
 
-/obj/item/bo_staff/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/bo_staff/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 	var/mob/living/L = target
 	if(!istype(L))
@@ -339,7 +339,7 @@
 		INVOKE_ASYNC(src, .proc/jedi_spin, user)
 
 //Kanabo
-/obj/item/melee/kanabo // parrying stick
+obj/item/melee/kanabo // parrying stick
 	name = "kanabo"
 	desc = "A heavy wooden club reinforced with metal studs. Ancient Terran Oni were often depicted carrying this weapon."
 	icon_state = "kanabo"
@@ -350,18 +350,18 @@
 	attack_verb = list("battered", "hammered", "struck")
 	hitsound = 'sound/weapons/genhit3.ogg'
 
-/obj/item/melee/kanabo/attackby(obj/item/I, mob/living/user, params)
+obj/item/melee/kanabo/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/pen))
 		var/new_name = stripped_input(user, "What do you wish to name [src]?", "New Name", "bokken", 30)
 		if(new_name)
 			name = new_name
 
-/obj/item/kanabo_shaft
+obj/item/kanabo_shaft
 	name = "kanabo shaft"
 	desc = "A hefty wooden club, not dissimilar to an oversized baseball bat."
 	icon_state = "kanabo_shaft"
 
-/obj/item/kanabo_studs
+obj/item/kanabo_studs
 	name = "kanabo studs"
 	desc = "A handful of octahedral studs. Fashioned out of steel, these studs are designed to be driven into solid wood."
 	icon_state = "kanabo_studs"

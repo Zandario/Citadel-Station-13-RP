@@ -1,4 +1,4 @@
-/obj/item/robot_module/robot/security
+obj/item/robot_module/robot/security
 	name = "security robot module"
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -7,7 +7,7 @@
 	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
 	is_the_law = TRUE
 
-/obj/item/robot_module/robot/security/general
+obj/item/robot_module/robot/security/general
 	sprites = list(
 		"M-USE NanoTrasen" = "robotSecy",
 		"Cabeiri" = "eyebot-security",
@@ -34,7 +34,7 @@
 		"W02M" = "worm-security"
 	)
 
-/obj/item/robot_module/robot/security/general/get_modules()
+obj/item/robot_module/robot/security/general/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/handcuffs/cyborg,
@@ -45,11 +45,11 @@
 		/obj/item/gripper/security
 	)
 
-/obj/item/robot_module/robot/security/general/handle_special_module_init(mapload)
+obj/item/robot_module/robot/security/general/handle_special_module_init(mapload)
 	. = ..()
 	src.emag = new /obj/item/gun/energy/laser/mounted(src)
 
-/obj/item/robot_module/robot/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+obj/item/robot_module/robot/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
@@ -64,7 +64,7 @@
 	else
 		T.charge_tick = 0
 
-/obj/item/robot_module/robot/security/combat
+obj/item/robot_module/robot/security/combat
 	name = "combat robot module"
 	hide_on_manifest = 1
 	sprites = list(
@@ -76,7 +76,7 @@
 		"ZOOM-BA" = "zoomba-combat"
 	)
 
-/obj/item/robot_module/robot/security/combat/get_modules()
+obj/item/robot_module/robot/security/combat/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/flash,
@@ -87,11 +87,11 @@
 		/obj/item/borg/combat/mobility,
 	)
 
-/obj/item/robot_module/robot/security/combat/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/security/combat/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	src.emag = new /obj/item/gun/energy/lasercannon/mounted(src)
 
-/obj/item/robot_module/robot/quad/sec
+obj/item/robot_module/robot/quad/sec
 	name = "SecuriQuad module"
 	sprites = list(
 		"K9 hound" = "k9",
@@ -109,7 +109,7 @@
 	can_shred = TRUE
 	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
 
-/obj/item/robot_module/robot/quad/sec/get_modules()
+obj/item/robot_module/robot/quad/sec/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/handcuffs/cyborg, //You need cuffs to be a proper sec borg!
@@ -120,7 +120,7 @@
 		/obj/item/dogborg/pounce //Pounce
 	)
 
-/obj/item/robot_module/robot/quad/sec/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/sec/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	src.emag = new /obj/item/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 
@@ -128,7 +128,7 @@
 	B.water = synths_by_kind[MATSYN_WATER]
 	src.modules += B
 
-/obj/item/robot_module/robot/quad/sec/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+obj/item/robot_module/robot/quad/sec/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
@@ -146,7 +146,7 @@
 	if(B && B.bcell)
 		B.bcell.give(amount)*/
 
-/obj/item/robot_module/robot/quad/ert
+obj/item/robot_module/robot/quad/ert
 	name = "Emergency Response module"
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -159,7 +159,7 @@
 
 	can_shred = TRUE
 
-/obj/item/robot_module/robot/quad/ert/get_modules()
+obj/item/robot_module/robot/quad/ert/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/handcuffs/cyborg,
@@ -170,7 +170,7 @@
 		/obj/item/dogborg/swordtail
 	)
 
-/obj/item/robot_module/robot/quad/ert/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/ert/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	src.emag = new /obj/item/gun/energy/laser/mounted(src)

@@ -1,6 +1,6 @@
 var/datum/antagonist/technomancer/technomancers
 
-/datum/antagonist/technomancer
+datum/antagonist/technomancer
 	id = MODE_TECHNOMANCER
 	role_type = BE_WIZARD
 	role_text = "Technomancer"
@@ -22,17 +22,17 @@ var/datum/antagonist/technomancer/technomancers
 
 	id_type = /obj/item/card/id/syndicate
 
-/datum/antagonist/technomancer/New()
+datum/antagonist/technomancer/New()
 	..()
 	technomancers = src
 
-/datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)
+datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)
 	..()
 	technomancer.store_memory("<B>Remember:</B> Do not forget to purchase the functions and equipment you need.")
 	technomancer.current.real_name = "[pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)]"
 	technomancer.current.name = technomancer.current.real_name
 
-/datum/antagonist/technomancer/equip(var/mob/living/carbon/human/technomancer_mob)
+datum/antagonist/technomancer/equip(var/mob/living/carbon/human/technomancer_mob)
 
 	if(!..())
 		return 0
@@ -50,7 +50,7 @@ var/datum/antagonist/technomancer/technomancers
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/master(technomancer_mob), SLOT_ID_HEAD)
 	return 1
 
-/datum/antagonist/technomancer/proc/equip_apprentice(var/mob/living/carbon/human/technomancer_mob)
+datum/antagonist/technomancer/proc/equip_apprentice(var/mob/living/carbon/human/technomancer_mob)
 
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/under/technomancer/apprentice(technomancer_mob), SLOT_ID_UNIFORM)
 	create_id("Techno-apprentice", technomancer_mob)
@@ -69,7 +69,7 @@ var/datum/antagonist/technomancer/technomancers
 	technomancer_mob.equip_to_slot_or_del(new /obj/item/clothing/head/technomancer/apprentice(technomancer_mob), SLOT_ID_HEAD)
 	return 1
 
-/datum/antagonist/technomancer/check_victory()
+datum/antagonist/technomancer/check_victory()
 	var/survivor
 	for(var/datum/mind/player in current_antagonists)
 		if(!player.current || player.current.stat == DEAD)
@@ -80,7 +80,7 @@ var/datum/antagonist/technomancer/technomancers
 		feedback_set_details("round_end_result","loss - technomancer killed")
 		to_chat(world, "<span class='danger'><font size = 3>The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed!</font></span>")
 
-/datum/antagonist/technomancer/print_player_summary()
+datum/antagonist/technomancer/print_player_summary()
 	..()
 	for(var/obj/item/technomancer_core/core in technomancer_belongings)
 		if(core.wearer)
@@ -89,7 +89,7 @@ var/datum/antagonist/technomancer/technomancers
 			continue // Cores containing spells only.
 		to_chat(world, "Abandoned [core] had [english_list(core.spells)].<br>")
 
-/datum/antagonist/technomancer/print_player_full(var/datum/mind/player)
+datum/antagonist/technomancer/print_player_full(var/datum/mind/player)
 	var/text = print_player_lite(player)
 
 	var/obj/item/technomancer_core/core

@@ -1,290 +1,290 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
-/area/awaymission/wwmines)
+turf/space,
+area/awaymission/wwmines)
 "ab" = (
-/obj/structure/table/bench/wooden,
-/turf/simulated/floor/beach/sand,
-/area/awaymission/wwmines)
+obj/structure/table/bench/wooden,
+turf/simulated/floor/beach/sand,
+area/awaymission/wwmines)
 "ac" = (
-/turf/simulated/floor/outdoors/rocks,
-/area/awaymission/wwmines)
+turf/simulated/floor/outdoors/rocks,
+area/awaymission/wwmines)
 "ad" = (
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "ae" = (
-/turf/simulated/floor/water/deep,
-/area/awaymission/wwmines)
+turf/simulated/floor/water/deep,
+area/awaymission/wwmines)
 "af" = (
-/turf/simulated/floor/beach/sand,
-/area/awaymission/wwmines)
+turf/simulated/floor/beach/sand,
+area/awaymission/wwmines)
 "ag" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/beach/sand,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+turf/simulated/floor/beach/sand,
+area/awaymission/wwmines)
 "ah" = (
-/turf/unsimulated/wall,
-/area/awaymission/wwmines)
+turf/unsimulated/wall,
+area/awaymission/wwmines)
 "ai" = (
-/turf/simulated/wall/wood,
-/area/awaymission/wwmines)
+turf/simulated/wall/wood,
+area/awaymission/wwmines)
 "aj" = (
-/obj/structure/closet{
+obj/structure/closet{
 	icon_closed = "cabinet_closed";
 	icon_opened = "cabinet_open";
 	icon_state = "cabinet_closed"
 	},
-/obj/item/clothing/accessory/jacket,
-/obj/item/clothing/accessory/jacket,
-/obj/item/clothing/head/beanie,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/item/clothing/accessory/jacket,
+obj/item/clothing/accessory/jacket,
+obj/item/clothing/head/beanie,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "ak" = (
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "al" = (
-/obj/structure/closet{
+obj/structure/closet{
 	icon_closed = "cabinet_closed";
 	icon_opened = "cabinet_open";
 	icon_state = "cabinet_closed"
 	},
-/obj/item/gun/ballistic/shotgun/doublebarrel,
-/obj/item/storage/box/beanbags,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/item/gun/ballistic/shotgun/doublebarrel,
+obj/item/storage/box/beanbags,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "am" = (
-/turf/simulated/floor/carpet/turcarpet,
-/area/awaymission/wwmines)
+turf/simulated/floor/carpet/turcarpet,
+area/awaymission/wwmines)
 "an" = (
-/obj/structure/table/woodentable,
-/obj/item/storage/toolbox/mechanical,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/storage/toolbox/mechanical,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "ao" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/railing,
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+obj/structure/railing,
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "ap" = (
-/obj/structure/railing,
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+obj/structure/railing,
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "aq" = (
-/obj/item/stool/padded,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/item/stool/padded,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "ar" = (
-/obj/structure/table/woodentable,
-/obj/item/deck/cards,
-/turf/simulated/floor/carpet/turcarpet,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/deck/cards,
+turf/simulated/floor/carpet/turcarpet,
+area/awaymission/wwmines)
 "as" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/chips,
-/turf/simulated/floor/carpet/turcarpet,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/reagent_containers/food/snacks/chips,
+turf/simulated/floor/carpet/turcarpet,
+area/awaymission/wwmines)
 "at" = (
-/obj/structure/table/woodentable,
-/obj/item/trash/candle,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/trash/candle,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "au" = (
-/obj/item/stool,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/item/stool,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "av" = (
-/turf/simulated/floor/wood{
+turf/simulated/floor/wood{
 	icon_state = "wood_broken6"
 	},
-/area/awaymission/wwmines)
+area/awaymission/wwmines)
 "aw" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "ax" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-/turf/simulated/floor/carpet/turcarpet,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/reagent_containers/food/drinks/bottle/whiskey,
+turf/simulated/floor/carpet/turcarpet,
+area/awaymission/wwmines)
 "ay" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/glass2/shot,
-/turf/simulated/floor/carpet/turcarpet,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/reagent_containers/food/drinks/glass2/shot,
+turf/simulated/floor/carpet/turcarpet,
+area/awaymission/wwmines)
 "az" = (
-/obj/structure/table/woodentable,
-/obj/item/duct_tape_roll,
-/obj/random/firstaid,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/duct_tape_roll,
+obj/random/firstaid,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aA" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/glass2/shot,
-/obj/item/reagent_containers/food/drinks/glass2/shot,
-/obj/item/reagent_containers/food/drinks/glass2/shot,
-/turf/simulated/floor/carpet/turcarpet,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/reagent_containers/food/drinks/glass2/shot,
+obj/item/reagent_containers/food/drinks/glass2/shot,
+obj/item/reagent_containers/food/drinks/glass2/shot,
+turf/simulated/floor/carpet/turcarpet,
+area/awaymission/wwmines)
 "aB" = (
-/turf/simulated/floor/wood{
+turf/simulated/floor/wood{
 	icon_state = "wood_broken2"
 	},
-/area/awaymission/wwmines)
+area/awaymission/wwmines)
 "aC" = (
-/obj/structure/railing{
+obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 1
 	},
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "aD" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 1
 	},
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "aE" = (
-/obj/vehicle/ridden/boat/sifwood,
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+obj/vehicle/ridden/boat/sifwood,
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "aF" = (
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/window/reinforced/full,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aG" = (
-/obj/structure/table/woodentable,
-/obj/item/oar,
-/obj/item/oar,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/oar,
+obj/item/oar,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aH" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 8
 	},
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "aI" = (
-/obj/structure/table/woodentable,
-/obj/random/powercell,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/random/powercell,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aJ" = (
-/turf/simulated/floor/wood{
+turf/simulated/floor/wood{
 	icon_state = "wood_broken4"
 	},
-/area/awaymission/wwmines)
+area/awaymission/wwmines)
 "aK" = (
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 8
 	},
-/obj/structure/railing{
+obj/structure/railing{
 	icon_state = "railing0";
 	dir = 1
 	},
-/turf/simulated/floor/water,
-/area/awaymission/wwmines)
+turf/simulated/floor/water,
+area/awaymission/wwmines)
 "aL" = (
-/obj/structure/simple_door/wood,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/simple_door/wood,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aM" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/fruitsalad,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/closet/secure_closet/freezer/fridge,
+obj/item/reagent_containers/food/snacks/meat,
+obj/item/reagent_containers/food/snacks/meat,
+obj/item/reagent_containers/food/snacks/meat,
+obj/item/reagent_containers/food/snacks/meat,
+obj/item/reagent_containers/food/snacks/meat,
+obj/item/reagent_containers/food/snacks/fruitsalad,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aN" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aO" = (
-/turf/simulated/floor/carpet/bcarpet,
-/area/awaymission/wwmines)
+turf/simulated/floor/carpet/bcarpet,
+area/awaymission/wwmines)
 "aP" = (
-/obj/structure/table/woodentable,
-/obj/item/material/knife,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/material/knife,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aQ" = (
-/obj/structure/bookcase,
-/turf/simulated/floor/carpet/bcarpet,
-/area/awaymission/wwmines)
+obj/structure/bookcase,
+turf/simulated/floor/carpet/bcarpet,
+area/awaymission/wwmines)
 "aR" = (
-/obj/structure/table/woodentable,
-/obj/item/storage/bag/trash,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/storage/bag/trash,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aS" = (
-/obj/structure/table/woodentable,
-/obj/item/flame/lighter,
-/obj/item/storage/fancy/candle_box,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/flame/lighter,
+obj/item/storage/fancy/candle_box,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aT" = (
-/obj/structure/bed/chair/wood,
-/turf/simulated/floor/carpet/bcarpet,
-/area/awaymission/wwmines)
+obj/structure/bed/chair/wood,
+turf/simulated/floor/carpet/bcarpet,
+area/awaymission/wwmines)
 "aU" = (
-/obj/structure/table/rack,
-/obj/item/clothing/accessory/poncho/blue,
-/obj/item/clothing/accessory/poncho/blue,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/rack,
+obj/item/clothing/accessory/poncho/blue,
+obj/item/clothing/accessory/poncho/blue,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aV" = (
-/obj/structure/coatrack,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/coatrack,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aW" = (
-/obj/structure/table/rack,
-/obj/item/clothing/suit/storage/hooded/wintercoat,
-/obj/item/clothing/suit/storage/hooded/wintercoat,
-/obj/item/clothing/head/hood/winter,
-/obj/item/clothing/shoes/boots/winter,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/rack,
+obj/item/clothing/suit/storage/hooded/wintercoat,
+obj/item/clothing/suit/storage/hooded/wintercoat,
+obj/item/clothing/head/hood/winter,
+obj/item/clothing/shoes/boots/winter,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aX" = (
-/obj/structure/table/rack,
-/obj/item/clothing/accessory/storage,
-/obj/item/clothing/accessory/storage,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
+obj/structure/table/rack,
+obj/item/clothing/accessory/storage,
+obj/item/clothing/accessory/storage,
+turf/simulated/floor/wood,
+area/awaymission/wwmines)
 "aY" = (
-/obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
-/turf/simulated/floor/carpet/bcarpet,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+obj/item/flashlight/lamp,
+turf/simulated/floor/carpet/bcarpet,
+area/awaymission/wwmines)
 "aZ" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/bcarpet,
-/area/awaymission/wwmines)
+obj/structure/table/woodentable,
+turf/simulated/floor/carpet/bcarpet,
+area/awaymission/wwmines)
 "ba" = (
-/turf/simulated/floor/outdoors/dirt,
-/area/awaymission/wwmines)
+turf/simulated/floor/outdoors/dirt,
+area/awaymission/wwmines)
 "bb" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/beach/sand,
-/area/awaymission/wwmines)
+obj/structure/flora/tree/sif,
+turf/simulated/floor/beach/sand,
+area/awaymission/wwmines)
 "bc" = (
-/obj/effect/shuttle_landmark/automatic,
-/turf/simulated/floor/beach/sand,
-/area/awaymission/wwmines)
+obj/effect/shuttle_landmark/automatic,
+turf/simulated/floor/beach/sand,
+area/awaymission/wwmines)
 "bd" = (
-/obj/effect/overmap/visitable/sector/citadel_minitest/beach,
-/turf/space,
-/area/awaymission/wwmines)
+obj/effect/overmap/visitable/sector/citadel_minitest/beach,
+turf/space,
+area/awaymission/wwmines)
 
 (1,1,1) = {"
 aa

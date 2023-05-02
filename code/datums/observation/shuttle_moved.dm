@@ -20,13 +20,13 @@
 
 GLOBAL_DATUM_INIT(shuttle_moved_event, /singleton/observ/shuttle_moved, new)
 
-/singleton/observ/shuttle_moved
+singleton/observ/shuttle_moved
 	name = "Shuttle Moved"
 	expected_type = /datum/shuttle
 
 GLOBAL_DATUM_INIT(shuttle_pre_move_event, /singleton/observ/shuttle_pre_move, new)
 
-/singleton/observ/shuttle_pre_move
+singleton/observ/shuttle_pre_move
 	name = "Shuttle Pre Move"
 	expected_type = /datum/shuttle
 

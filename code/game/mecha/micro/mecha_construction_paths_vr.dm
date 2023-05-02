@@ -1,4 +1,4 @@
-/datum/construction/mecha/polecat_chassis
+datum/construction/mecha/polecat_chassis
 	steps = list(
 		list("key"=/obj/item/mecha_parts/micro/part/polecat_torso),//1
 		list("key"=/obj/item/mecha_parts/micro/part/polecat_left_arm),//2
@@ -7,16 +7,16 @@
 		list("key"=/obj/item/mecha_parts/micro/part/polecat_right_leg),//5
 	)
 
-/datum/construction/mecha/polecat_chassis/custom_action(step, atom/used_atom, mob/user)
+datum/construction/mecha/polecat_chassis/custom_action(step, atom/used_atom, mob/user)
 	user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
 	holder.add_overlay("[used_atom.icon_state]+o")
 	qdel(used_atom)
 	return 1
 
-/datum/construction/mecha/polecat_chassis/action(atom/used_atom,mob/user as mob)
+datum/construction/mecha/polecat_chassis/action(atom/used_atom,mob/user as mob)
 	return check_all_steps(used_atom,user)
 
-/datum/construction/mecha/polecat_chassis/spawn_result()
+datum/construction/mecha/polecat_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/polecat(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction_vr.dmi'
@@ -28,7 +28,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/polecat
+datum/construction/reversible/mecha/polecat
 	result = "/obj/mecha/micro/sec/polecat"
 	steps = list(
 		//1
@@ -113,10 +113,10 @@
 	)
 
 
-/datum/construction/reversible/mecha/polecat/action(atom/used_atom, mob/user)
+datum/construction/reversible/mecha/polecat/action(atom/used_atom, mob/user)
 	return check_step(used_atom,user)
 
-/datum/construction/reversible/mecha/polecat/custom_action(index, diff, atom/used_atom, mob/user)
+datum/construction/reversible/mecha/polecat/custom_action(index, diff, atom/used_atom, mob/user)
 	if(!..())
 		return 0
 	//TODO: better messages.
@@ -274,12 +274,12 @@
 				holder.icon_state = "polecat18"
 	return 1
 
-/datum/construction/reversible/mecha/polecat/spawn_result()
+datum/construction/reversible/mecha/polecat/spawn_result()
 	..()
 	feedback_inc("mecha_polecat_created",1)
 	return
 
-/datum/construction/mecha/gopher_chassis
+datum/construction/mecha/gopher_chassis
 	steps = list(
 		list("key"=/obj/item/mecha_parts/micro/part/gopher_torso),//1
 		list("key"=/obj/item/mecha_parts/micro/part/gopher_left_arm),//2
@@ -288,16 +288,16 @@
 		list("key"=/obj/item/mecha_parts/micro/part/gopher_right_leg),//5
 	)
 
-/datum/construction/mecha/gopher_chassis/custom_action(step, atom/used_atom, mob/user)
+datum/construction/mecha/gopher_chassis/custom_action(step, atom/used_atom, mob/user)
 	user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
 	holder.add_overlay("[used_atom.icon_state]+o")
 	qdel(used_atom)
 	return 1
 
-/datum/construction/mecha/gopher_chassis/action(atom/used_atom,mob/user)
+datum/construction/mecha/gopher_chassis/action(atom/used_atom,mob/user)
 	return check_all_steps(used_atom,user)
 
-/datum/construction/mecha/gopher_chassis/spawn_result()
+datum/construction/mecha/gopher_chassis/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/gopher(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction_vr.dmi'
@@ -309,7 +309,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/gopher
+datum/construction/reversible/mecha/gopher
 	result = "/obj/mecha/micro/utility/gopher"
 	steps = list(
 		//1
@@ -369,10 +369,10 @@
 			"desc"="The hydraulic systems are disconnected."),
 	)
 
-/datum/construction/reversible/mecha/gopher/action(atom/used_atom,mob/user)
+datum/construction/reversible/mecha/gopher/action(atom/used_atom,mob/user)
 	return check_step(used_atom,user)
 
-/datum/construction/reversible/mecha/gopher/custom_action(index, diff, atom/used_atom, mob/user)
+datum/construction/reversible/mecha/gopher/custom_action(index, diff, atom/used_atom, mob/user)
 	if(!..())
 		return FALSE
 
@@ -483,12 +483,12 @@
 				holder.icon_state = "gopher12"
 	return 1
 
-/datum/construction/reversible/mecha/gopher/spawn_result()
+datum/construction/reversible/mecha/gopher/spawn_result()
 	..()
 	feedback_inc("mecha_gopher_created",1)
 	return
 
-/datum/construction/mecha/weasel_chassis
+datum/construction/mecha/weasel_chassis
 	steps = list(
 		list("key"=/obj/item/mecha_parts/micro/part/weasel_torso),//1
 		list("key"=/obj/item/mecha_parts/micro/part/weasel_head),//2
@@ -497,16 +497,16 @@
 		list("key"=/obj/item/mecha_parts/micro/part/weasel_tri_leg),//5
 	)
 
-/datum/construction/reversible/mecha/gopher/custom_action(step, atom/used_atom, mob/user)
+datum/construction/reversible/mecha/gopher/custom_action(step, atom/used_atom, mob/user)
 	user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
 	holder.add_overlay("[used_atom.icon_state]+o")
 	qdel(used_atom)
 	return 1
 
-/datum/construction/reversible/mecha/gopher/action(atom/used_atom, mob/user)
+datum/construction/reversible/mecha/gopher/action(atom/used_atom, mob/user)
 	return check_all_steps(used_atom,user)
 
-/datum/construction/reversible/mecha/gopher/spawn_result()
+datum/construction/reversible/mecha/gopher/spawn_result()
 	var/obj/item/mecha_parts/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/weasel(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction_vr.dmi'
@@ -518,7 +518,7 @@
 	return
 
 
-/datum/construction/reversible/mecha/weasel
+datum/construction/reversible/mecha/weasel
 	result = "/obj/mecha/micro/sec/weasel"
 	steps = list(
 		//1
@@ -603,10 +603,10 @@
 	)
 
 
-/datum/construction/reversible/mecha/gopher/action(atom/used_atom, mob/user)
+datum/construction/reversible/mecha/gopher/action(atom/used_atom, mob/user)
 		return check_step(used_atom,user)
 
-/datum/construction/reversible/mecha/gopher/custom_action(index, diff, atom/used_atom, mob/user)
+datum/construction/reversible/mecha/gopher/custom_action(index, diff, atom/used_atom, mob/user)
 	if(!..())
 		return FALSE
 	//TODO: better messages.
@@ -764,7 +764,7 @@
 				holder.icon_state = "weasel18"
 	return 1
 
-/datum/construction/reversible/mecha/gopher/spawn_result()
+datum/construction/reversible/mecha/gopher/spawn_result()
 	..()
 	feedback_inc("mecha_weasel_created",1)
 	return

@@ -1,5 +1,5 @@
 
-/obj/structure/closet/walllocker/autolok_wall
+obj/structure/closet/walllocker/autolok_wall
 	name = "autolok suit storage"
 	desc = "It's wall-mounted storage unit for an AutoLok suit."
 	store_mobs = FALSE
@@ -10,7 +10,7 @@
 		/obj/item/suit_cooling_unit/emergency
 	)
 
-/obj/structure/closet/walllocker/emergsuit_wall
+obj/structure/closet/walllocker/emergsuit_wall
 	name = "emergency suit storage"
 	desc = "It's wall-mounted storage unit for an emergency suit."
 	store_mobs = FALSE

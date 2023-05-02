@@ -1,6 +1,6 @@
 //Merged Doohl's and the existing ticklag as they both had good elements about them ~Carn
 
-/client/proc/ticklag()
+client/proc/ticklag()
 	set category = "Debug"
 	set name = "Set Ticklag"
 	set desc = "Sets a new tick lag. Recommend you don't mess with this too much! Stable, time-tested ticklag value is 0.9"
@@ -20,5 +20,3 @@
 			else		config_legacy.Tickcomp = 0
 	else
 		to_chat(src, "<font color='red'>Error: ticklag(): Invalid world.ticklag value. No changes made.</font>")
-
-

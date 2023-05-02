@@ -1,5 +1,5 @@
 //Repopulates sortedAreas list
-/proc/repopulate_sorted_areas()
+proc/repopulate_sorted_areas()
 	GLOB.sortedAreas = list()
 
 	for(var/area/A in world)
@@ -8,20 +8,20 @@
 	tim_sort(GLOB.sortedAreas, /proc/cmp_name_asc)
 	setupTeleportLocs()		// shitcode patch to make vorecode work until we get rid of this shit meme or refactor it entirely
 
-/area/proc/addSorted()
+area/proc/addSorted()
 	GLOB.sortedAreas.Add(src)
 	tim_sort(GLOB.sortedAreas, /proc/cmp_name_asc)
 
 //Takes: Area type as a text string from a variable.
 //Returns: Instance for the area in the world.
-/proc/get_area_instance_from_text(areatext)
+proc/get_area_instance_from_text(areatext)
 	if(istext(areatext))
 		areatext = text2path(areatext)
 	return GLOB.areas_by_type[areatext]
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype, subtypes=TRUE)
+proc/get_areas(areatype, subtypes=TRUE)
 	if(istext(areatype))
 		areatype = text2path(areatype)
 	else if(isarea(areatype))
@@ -46,7 +46,7 @@
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(areatype, target_z = 0, subtypes=FALSE)
+proc/get_area_turfs(areatype, target_z = 0, subtypes=FALSE)
 	if(istext(areatype))
 		areatype = text2path(areatype)
 	else if(isarea(areatype))

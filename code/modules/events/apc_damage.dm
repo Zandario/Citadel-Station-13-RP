@@ -1,7 +1,7 @@
-/datum/event/apc_damage
+datum/event/apc_damage
 	var/apcSelectionRange	= 25
 
-/datum/event/apc_damage/start()
+datum/event/apc_damage/start()
 	var/obj/machinery/power/apc/A = acquire_random_apc()
 
 	var/severity_range = 0
@@ -19,7 +19,7 @@
 			apc.locked = 0		//but most people ignored it. Now it has an actual effect on the round and opens
 			apc.update_icon()	//a small possibility for traitors. To fix, remove power cell and apply multitool.
 
-/datum/event/apc_damage/proc/acquire_random_apc()
+datum/event/apc_damage/proc/acquire_random_apc()
 	var/list/possibleEpicentres = list()
 	var/list/apcs = list()
 
@@ -45,6 +45,6 @@
 
 	return pick(apcs)
 
-/datum/event/apc_damage/proc/is_valid_apc(var/obj/machinery/power/apc/apc)
+datum/event/apc_damage/proc/is_valid_apc(var/obj/machinery/power/apc/apc)
 	var/turf/T = get_turf(apc)
 	return !apc.is_critical && !apc.emagged && T && (T.z in GLOB.using_map.player_levels)

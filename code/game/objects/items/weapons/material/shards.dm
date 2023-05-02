@@ -1,6 +1,6 @@
 // Glass shards
 
-/obj/item/material/shard
+obj/item/material/shard
 	name = "shard"
 	icon = 'icons/obj/shards.dmi'
 	desc = "Made of nothing. How does this even exist?" // set based on material, if this desc is visible it's a bug (shards default to being made of glass)
@@ -16,13 +16,13 @@
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
 
-/obj/item/material/shard/suicide_act(mob/user)
+obj/item/material/shard/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	viewers(user) << pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>",
 	                      "<span class='danger'>\The [user] is slitting [TU.his] throat with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>")
 	return (BRUTELOSS)
 
-/obj/item/material/shard/set_material(var/new_material)
+obj/item/material/shard/set_material(var/new_material)
 	..(new_material)
 	if(!istype(material))
 		return
@@ -43,7 +43,7 @@
 	else
 		qdel(src)
 
-/obj/item/material/shard/update_icon()
+obj/item/material/shard/update_icon()
 	if(material)
 		color = material.icon_colour
 		// 1-(1-x)^2, so that glass shards with 0.3 opacity end up somewhat visible at 0.51 opacity
@@ -52,7 +52,7 @@
 		color = "#ffffff"
 		alpha = 255
 
-/obj/item/material/shard/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/material/shard/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weldingtool) && material.shard_can_repair)
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
@@ -61,7 +61,7 @@
 			return
 	return ..()
 
-/obj/item/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob)
+obj/item/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob)
 	var/active_hand //hand the shard is in
 	var/will_break = FALSE
 	var/protected_hands = FALSE //this is a fucking mess
@@ -106,7 +106,7 @@
 		qdel(src)
 	return
 
-/obj/item/material/shard/Crossed(atom/movable/AM as mob|obj)
+obj/item/material/shard/Crossed(atom/movable/AM as mob|obj)
 	..()
 	if(AM.is_incorporeal())
 		return
@@ -148,11 +148,11 @@
 			return
 
 // Preset types - left here for the code that uses them
-/obj/item/material/shard/shrapnel/Initialize(mapload, material_key)
+obj/item/material/shard/shrapnel/Initialize(mapload, material_key)
 	. = ..(mapload, "steel")
 
-/obj/item/material/shard/phoron/Initialize(mapload, material_key)
+obj/item/material/shard/phoron/Initialize(mapload, material_key)
 	. = ..(mapload, "phglass")
 
-/obj/item/material/shard/wood/Initialize(mapload, material_key)
+obj/item/material/shard/wood/Initialize(mapload, material_key)
 	. = ..(mapload, "wood")

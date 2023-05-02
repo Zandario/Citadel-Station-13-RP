@@ -1,12 +1,12 @@
 //todo
-/datum/artifact_effect/sleepy
+datum/artifact_effect/sleepy
 	name = "sleepy"
 
-/datum/artifact_effect/sleepy/New()
+datum/artifact_effect/sleepy/New()
 	..()
 	effect_type = pick(EFFECT_PSIONIC, EFFECT_ORGANIC)
 
-/datum/artifact_effect/sleepy/DoEffectTouch(var/mob/toucher)
+datum/artifact_effect/sleepy/DoEffectTouch(var/mob/toucher)
 	if(toucher)
 		var/weakness = GetAnomalySusceptibility(toucher)
 		if(ishuman(toucher) && prob(weakness * 100))
@@ -19,7 +19,7 @@
 			to_chat(toucher, "<font color='red'>SYSTEM ALERT: CPU cycles slowing down.</font>")
 			return 1
 
-/datum/artifact_effect/sleepy/DoEffectAura()
+datum/artifact_effect/sleepy/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
@@ -33,7 +33,7 @@
 			to_chat(R, "<font color='red'>SYSTEM ALERT: CPU cycles slowing down.</font>")
 		return 1
 
-/datum/artifact_effect/sleepy/DoEffectPulse()
+datum/artifact_effect/sleepy/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/carbon/human/H in range(src.effectrange, T))

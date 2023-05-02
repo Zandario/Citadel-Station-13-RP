@@ -3,7 +3,7 @@
 // They keep attacking until the stun ends, then retreat to stealth again and repeat the cycle.
 // Hitting the spider before it does its ambush attack will break the stealth and make the spider flee.
 
-/datum/category_item/catalogue/fauna/giant_spider/lurker_spider
+datum/category_item/catalogue/fauna/giant_spider/lurker_spider
 	name = "Giant Spider - Lurker"
 	desc = "This specific spider has been catalogued as 'Lurker', \
 	and it belongs to the 'Hunter' caste. \
@@ -20,7 +20,7 @@
 	The venom from this spider can cause confusion to those afflicted."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/lurker
+mob/living/simple_mob/animal/giant_spider/lurker
 	desc = "Translucent and white, it makes you shudder to look at it. This one has incandescent red eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/lurker_spider)
 
@@ -58,14 +58,14 @@
 	mod_max = 110
 
 
-/mob/living/simple_mob/animal/giant_spider/lurker/proc/stealth()
+mob/living/simple_mob/animal/giant_spider/lurker/proc/stealth()
 	if(stealthed)
 		return
 	animate(src, alpha = stealthed_alpha, time = 1 SECOND)
 	stealthed = TRUE
 
 
-/mob/living/simple_mob/animal/giant_spider/lurker/proc/unstealth()
+mob/living/simple_mob/animal/giant_spider/lurker/proc/unstealth()
 	last_unstealth = world.time // This is assigned even if it isn't stealthed already, to 'reset' the timer if the spider is continously getting attacked.
 	if(!stealthed)
 		return
@@ -74,7 +74,7 @@
 
 
 // Check if stealthing if possible.
-/mob/living/simple_mob/animal/giant_spider/lurker/proc/can_stealth()
+mob/living/simple_mob/animal/giant_spider/lurker/proc/can_stealth()
 	if(stat)
 		return FALSE
 	if(last_unstealth + stealth_cooldown > world.time)
@@ -84,28 +84,28 @@
 
 
 // Called by things that break stealths, like Technomancer wards.
-/mob/living/simple_mob/animal/giant_spider/lurker/break_cloak()
+mob/living/simple_mob/animal/giant_spider/lurker/break_cloak()
 	unstealth()
 
 
-/mob/living/simple_mob/animal/giant_spider/lurker/is_cloaked()
+mob/living/simple_mob/animal/giant_spider/lurker/is_cloaked()
 	return stealthed
 
 
 // Cloaks the spider automatically, if possible.
-/mob/living/simple_mob/animal/giant_spider/lurker/handle_special()
+mob/living/simple_mob/animal/giant_spider/lurker/handle_special()
 	if(!stealthed && can_stealth())
 		stealth()
 
 
 // Applies bonus base damage if stealthed.
-/mob/living/simple_mob/animal/giant_spider/lurker/apply_bonus_melee_damage(atom/A, damage_amount)
+mob/living/simple_mob/animal/giant_spider/lurker/apply_bonus_melee_damage(atom/A, damage_amount)
 	if(stealthed)
 		return damage_amount + stealthed_bonus_damage
 	return ..()
 
 // Applies stun, then unstealths.
-/mob/living/simple_mob/animal/giant_spider/lurker/apply_melee_effects(atom/A)
+mob/living/simple_mob/animal/giant_spider/lurker/apply_melee_effects(atom/A)
 	if(stealthed)
 		if(isliving(A))
 			var/mob/living/L = A
@@ -116,10 +116,10 @@
 	..() // For the poison.
 
 // Force unstealthing if attacked.
-/mob/living/simple_mob/animal/giant_spider/lurker/bullet_act(obj/projectile/P)
+mob/living/simple_mob/animal/giant_spider/lurker/bullet_act(obj/projectile/P)
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/animal/giant_spider/lurker/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
+mob/living/simple_mob/animal/giant_spider/lurker/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 	. = ..()
 	break_cloak()

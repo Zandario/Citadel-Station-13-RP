@@ -3,7 +3,7 @@
 //  and basic splits/joins (no routing logic).
 // Mappers: you can use "Generate Instances from Icon-states"
 //  to get the different pieces.
-/obj/structure/transit_tube
+obj/structure/transit_tube
 	name = "transit tube"
 	icon = 'icons/obj/pipes/transit_tube.dmi'
 	icon_state = "E-W"
@@ -21,7 +21,7 @@
 	var/global/list/tube_dir_list = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 
 //People are complaining the basic tube is too slow, but I don't want ALL tubes to be super fast. So here's the trick, I think.
-/obj/structure/transit_tube/high_velocity
+obj/structure/transit_tube/high_velocity
 	inertia_move_delay = 0
 	exit_delay = 0.5
 	enter_delay = 0.5
@@ -29,7 +29,7 @@
 // A place where tube pods stop, and people can get in or out.
 // Mappers: use "Generate Instances from Directions" for this
 //  one.
-/obj/structure/transit_tube/station
+obj/structure/transit_tube/station
 	name = "Transit Tube Station"
 	icon = 'icons/obj/pipes/transit_tube_station.dmi'
 	icon_state = "closed"
@@ -41,7 +41,7 @@
 	var/const/OPEN_DURATION = 6
 	var/const/CLOSE_DURATION = 6
 
-/obj/structure/transit_tube_pod
+obj/structure/transit_tube_pod
 	icon = 'icons/obj/pipes/transit_tube_pod.dmi'
 	icon_state = "pod"
 	animate_movement = FORWARD_STEPS
@@ -51,7 +51,7 @@
 	var/datum/gas_mixture/air_contents = new(CELL_VOLUME)
 
 
-/obj/structure/transit_tube_pod/Destroy()
+obj/structure/transit_tube_pod/Destroy()
 	for(var/atom/movable/AM in contents)
 		AM.loc = loc
 
@@ -60,7 +60,7 @@
 
 
 // When destroyed by explosions, properly handle contents.
-/obj/structure/transit_tube_pod/legacy_ex_act(severity)
+obj/structure/transit_tube_pod/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/AM in contents)
@@ -80,7 +80,7 @@
 		if(3.0)
 			return
 
-/obj/structure/transit_tube_pod/Initialize(mapload)
+obj/structure/transit_tube_pod/Initialize(mapload)
 	. = ..()
 
 	air_contents.adjust_multi(/datum/gas/oxygen, MOLES_O2STANDARD * 2, /datum/gas/nitrogen, MOLES_N2STANDARD)
@@ -89,17 +89,17 @@
 	// Give auto tubes time to align before trying to start moving
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/structure/transit_tube_pod/LateInitialize()
+obj/structure/transit_tube_pod/LateInitialize()
 	. = ..()
 	follow_tube()
 
-/obj/structure/transit_tube/Initialize(mapload)
+obj/structure/transit_tube/Initialize(mapload)
 	. = ..()
 
 	if(tube_dirs == null)
 		init_dirs()
 
-/obj/structure/transit_tube/Bumped(mob/AM as mob|obj)
+obj/structure/transit_tube/Bumped(mob/AM as mob|obj)
 	var/obj/structure/transit_tube/T = locate() in AM.loc
 	if(T)
 		to_chat(AM, "<span class='warning'>The tube's support pylons block your way.</span>")
@@ -108,7 +108,7 @@
 		AM.loc = src.loc
 		to_chat(AM, "<span class='info'>You slip under the tube.</span>")
 
-/obj/structure/transit_tube/station/Bumped(mob/AM as mob|obj)
+obj/structure/transit_tube/station/Bumped(mob/AM as mob|obj)
 	if(!pod_moving && icon_state == "open" && istype(AM, /mob))
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(pod.contents.len)
@@ -119,7 +119,7 @@
 				return
 
 
-/obj/structure/transit_tube/station/attack_hand(mob/user, list/params)
+obj/structure/transit_tube/station/attack_hand(mob/user, list/params)
 	if(!pod_moving)
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(!pod.moving && (pod.dir in directions()))
@@ -131,7 +131,7 @@
 
 
 
-/obj/structure/transit_tube/station/proc/open_animation()
+obj/structure/transit_tube/station/proc/open_animation()
 	if(icon_state == "closed")
 		icon_state = "opening"
 		spawn(OPEN_DURATION)
@@ -140,7 +140,7 @@
 
 
 
-/obj/structure/transit_tube/station/proc/close_animation()
+obj/structure/transit_tube/station/proc/close_animation()
 	if(icon_state == "open")
 		icon_state = "closing"
 		spawn(CLOSE_DURATION)
@@ -149,7 +149,7 @@
 
 
 
-/obj/structure/transit_tube/station/proc/launch_pod()
+obj/structure/transit_tube/station/proc/launch_pod()
 	for(var/obj/structure/transit_tube_pod/pod in loc)
 		if(!pod.moving && (pod.dir in directions()))
 			spawn(5)
@@ -177,23 +177,23 @@
 
 
 // Called to check if a pod should stop upon entering this tube.
-/obj/structure/transit_tube/proc/should_stop_pod(pod, from_dir)
+obj/structure/transit_tube/proc/should_stop_pod(pod, from_dir)
 	return 0
 
 
 
-/obj/structure/transit_tube/station/should_stop_pod(pod, from_dir)
+obj/structure/transit_tube/station/should_stop_pod(pod, from_dir)
 	return 1
 
 
 
 // Called when a pod stops in this tube section.
-/obj/structure/transit_tube/proc/pod_stopped(pod, from_dir)
+obj/structure/transit_tube/proc/pod_stopped(pod, from_dir)
 	return
 
 
 
-/obj/structure/transit_tube/station/pod_stopped(obj/structure/transit_tube_pod/pod, from_dir)
+obj/structure/transit_tube/station/pod_stopped(obj/structure/transit_tube_pod/pod, from_dir)
 	pod_moving = 1
 	spawn(5)
 		open_animation()
@@ -218,12 +218,12 @@
 // Returns a /list of directions this tube section can connect to.
 //  Tubes that have some sort of logic or changing direction might
 //  override it with additional logic.
-/obj/structure/transit_tube/proc/directions()
+obj/structure/transit_tube/proc/directions()
 	return tube_dirs
 
 
 
-/obj/structure/transit_tube/proc/has_entrance(from_dir)
+obj/structure/transit_tube/proc/has_entrance(from_dir)
 	from_dir = turn(from_dir, 180)
 
 	for(var/direction in directions())
@@ -234,7 +234,7 @@
 
 
 
-/obj/structure/transit_tube/proc/has_exit(in_dir)
+obj/structure/transit_tube/proc/has_exit(in_dir)
 	for(var/direction in directions())
 		if(direction == in_dir)
 			return 1
@@ -245,7 +245,7 @@
 
 // Searches for an exit direction within 45 degrees of the
 //  specified dir. Returns that direction, or 0 if none match.
-/obj/structure/transit_tube/proc/get_exit(in_dir)
+obj/structure/transit_tube/proc/get_exit(in_dir)
 	var/near_dir = 0
 	var/in_dir_cw = turn(in_dir, -45)
 	var/in_dir_ccw = turn(in_dir, 45)
@@ -269,15 +269,15 @@
 //  a var, which wouldn't need a proc, but it makes it possible
 //  for later tube types to interact in more interesting ways
 //  such as being very fast in one direction, but slow in others
-/obj/structure/transit_tube/proc/exit_delay(pod, to_dir)
+obj/structure/transit_tube/proc/exit_delay(pod, to_dir)
 	return exit_delay
 
-/obj/structure/transit_tube/proc/enter_delay(pod, to_dir)
+obj/structure/transit_tube/proc/enter_delay(pod, to_dir)
 	return enter_delay
 
 
 
-/obj/structure/transit_tube_pod/proc/follow_tube()
+obj/structure/transit_tube_pod/proc/follow_tube()
 	if(moving)
 		return
 
@@ -348,13 +348,13 @@
 
 		moving = 0
 
-/obj/structure/transit_tube_pod/return_air()
+obj/structure/transit_tube_pod/return_air()
 	return air_contents
 
 // Called when a pod arrives at, and before a pod departs from a station,
 //  giving it a chance to mix its internal air supply with the turf it is
 //  currently on.
-/obj/structure/transit_tube_pod/proc/mix_air()
+obj/structure/transit_tube_pod/proc/mix_air()
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	//note that share_ratio assumes both gas mixes have the same volume,
@@ -365,7 +365,7 @@
 //  if it is, check the direction. If the direction matches the direction of
 //  the station, try to exit. If the direction matches one of the station's
 //  tube directions, launch the pod in that direction.
-/obj/structure/transit_tube_pod/relaymove(mob/mob, direction)
+obj/structure/transit_tube_pod/relaymove(mob/mob, direction)
 	if(istype(mob, /mob) && mob.client)
 		// If the pod is not in a tube at all, you can get out at any time.
 		if(!(locate(/obj/structure/transit_tube) in loc))
@@ -406,7 +406,7 @@
 //  "Generate Instances from Icon-states" option to get all
 //  variations. Additionally, as a separate proc, sub-types
 //  can handle it more intelligently.
-/obj/structure/transit_tube/proc/init_dirs()
+obj/structure/transit_tube/proc/init_dirs()
 	if(icon_state == "auto")
 		// Additional delay, for map loading.
 		spawn(1)
@@ -422,7 +422,7 @@
 
 // Tube station directions are simply 90 to either side of
 //  the exit.
-/obj/structure/transit_tube/station/init_dirs()
+obj/structure/transit_tube/station/init_dirs()
 	tube_dirs = list(turn(dir, 90), turn(dir, -90))
 
 
@@ -431,7 +431,7 @@
 //  on nearby turfs. Create corner pieces if nessecary.
 // Pick two directions, preferring tubes that already connect
 //  to loc, or other auto tubes if there aren't enough connections.
-/obj/structure/transit_tube/proc/init_dirs_automatic()
+obj/structure/transit_tube/proc/init_dirs_automatic()
 	var/list/connected = list()
 	var/list/connected_auto = list()
 
@@ -461,7 +461,7 @@
 // Given a list of directions, look a pair that forms a 180 or
 //  135 degree angle, and return a list containing the pair.
 //  If none exist, return list(connected[1], turn(connected[1], 180)
-/obj/structure/transit_tube/proc/select_automatic_dirs(connected)
+obj/structure/transit_tube/proc/select_automatic_dirs(connected)
 	if(length(connected) < 1)
 		return list()
 
@@ -477,14 +477,14 @@
 
 
 
-/obj/structure/transit_tube/proc/select_automatic_icon_state(directions)
+obj/structure/transit_tube/proc/select_automatic_icon_state(directions)
 	if(length(directions) == 2)
 		icon_state = "[dir2text_short(directions[1])]-[dir2text_short(directions[2])]"
 
 
 
 // Look for diagonal directions, generate the decorative corners in each.
-/obj/structure/transit_tube/proc/generate_automatic_corners(directions)
+obj/structure/transit_tube/proc/generate_automatic_corners(directions)
 	for(var/direction in directions)
 		if(direction == 5 || direction == 6 || direction == 9 || direction == 10)
 			if(direction & NORTH)
@@ -502,7 +502,7 @@
 
 
 // Generate a corner, if one doesn't exist for the direction on the turf.
-/obj/structure/transit_tube/proc/create_automatic_decorative_corner(location, direction)
+obj/structure/transit_tube/proc/create_automatic_decorative_corner(location, direction)
 	var/state = "D-[dir2text_short(direction)]"
 
 	for(var/obj/structure/transit_tube/tube in location)
@@ -522,7 +522,7 @@
 //  In reality, I don't know if that is quite how BYOND works,
 //  but it is probably safer to assume the existence of, and
 //  rely on, a sufficiently smart compiler/optimizer.
-/obj/structure/transit_tube/proc/parse_dirs(text)
+obj/structure/transit_tube/proc/parse_dirs(text)
 	var/global/list/direction_table = list()
 
 	if(text in direction_table)
@@ -552,7 +552,7 @@
 
 // A copy of text2dir, extended to accept one and two letter
 //  directions, and to clearly return 0 otherwise.
-/obj/structure/transit_tube/proc/text2dir_extended(direction)
+obj/structure/transit_tube/proc/text2dir_extended(direction)
 	switch(uppertext(direction))
 		if("NORTH", "N")
 			return 1
@@ -577,7 +577,7 @@
 
 // A copy of dir2text, which returns the short one or two letter
 //  directions used in tube icon states.
-/obj/structure/transit_tube/proc/dir2text_short(direction)
+obj/structure/transit_tube/proc/dir2text_short(direction)
 	switch(direction)
 		if(1)
 			return "N"
@@ -602,12 +602,12 @@
 
 /// Z level transit tubes. I dont know how to get these to work why is all the movement based off the fucking pod itself
 /*
-/obj/structure/transit_tube/ender
+obj/structure/transit_tube/ender
 	//Will look like a regular transit tube
 	unacidable = 1
 	var/id = null
 
-/obj/structure/transit_tube/ender/init_dirs_automatic()
+obj/structure/transit_tube/ender/init_dirs_automatic()
 	. = ..()
 	if(id)
 		for(var/obj/structure/transit_tube/ender/target in world)	//Having this check in world is prolly the wrong way of doing this @ktoma36

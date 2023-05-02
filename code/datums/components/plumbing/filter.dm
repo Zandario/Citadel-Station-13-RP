@@ -1,14 +1,14 @@
 ///The magical plumbing component used by the chemical filters. The different supply connects behave differently depending on the filters set on the chemical filter
-/datum/component/plumbing/filter
+datum/component/plumbing/filter
 	demand_connects = NORTH
 	supply_connects = SOUTH | EAST | WEST //SOUTH is straight, EAST is left and WEST is right. We look from the perspective of the insert
 
-/datum/component/plumbing/filter/Initialize()
+datum/component/plumbing/filter/Initialize()
 	. = ..()
 	if(!istype(parent, /obj/machinery/plumbing/filter))
 		return COMPONENT_INCOMPATIBLE
 
-/datum/component/plumbing/filter/can_give(amount, reagent, datum/ductnet/net)
+datum/component/plumbing/filter/can_give(amount, reagent, datum/ductnet/net)
 	. = ..()
 	if(.)
 		var/direction
@@ -22,7 +22,7 @@
 			if(!can_give_in_direction(direction, reagent))
 				return FALSE
 
-/datum/component/plumbing/filter/transfer_to(datum/component/plumbing/target, amount, reagent, datum/ductnet/net)
+datum/component/plumbing/filter/transfer_to(datum/component/plumbing/target, amount, reagent, datum/ductnet/net)
 	if(!reagents || !target || !target.reagents)
 		return FALSE
 	var/direction
@@ -45,7 +45,7 @@
 			if(amount <= 0)
 				break
 ///We check if the direction and reagent are valid to give. Needed for filters since different outputs have different behaviours
-/datum/component/plumbing/filter/proc/can_give_in_direction(dir, reagent)
+datum/component/plumbing/filter/proc/can_give_in_direction(dir, reagent)
 	var/obj/machinery/plumbing/filter/F = parent
 	switch(dir)
 		if(SOUTH) //straight

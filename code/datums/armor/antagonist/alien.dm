@@ -1,8 +1,8 @@
-/datum/armor/alien
+datum/armor/alien
 
-/datum/armor/alien/light
+datum/armor/alien/light
 
-/datum/armor/alien/medium
+datum/armor/alien/medium
 	melee = 0.5
 	bullet = 0.5
 	laser = 0.5
@@ -10,7 +10,7 @@
 	bomb = 0.5
 	rad = 0.4
 
-/datum/armor/alien/heavy
+datum/armor/alien/heavy
 	melee = 0.7
 	bullet = 0.7
 	laser = 0.7

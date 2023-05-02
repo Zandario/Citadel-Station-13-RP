@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/alien
+datum/category_item/catalogue/fauna/alien
 	name = SPECIES_XENO
 	desc = "Xenomorphs are a widely recognized and rightfully feared scourge \
 	across the Frontier. Although the origin of these creatures remains unknown, \
@@ -8,7 +8,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/alien)
 
 // Obtained by scanning all Aliens.
-/datum/category_item/catalogue/fauna/all_aliens
+datum/category_item/catalogue/fauna/all_aliens
 	name = "Collection - Xenomorphs"
 	desc = "You have scanned a large array of different types of Xenomorph, \
 	and therefore you have been granted a large sum of points, through this \
@@ -19,7 +19,7 @@
 		/datum/category_item/catalogue/fauna/alien/drone
 		)
 
-/datum/category_item/catalogue/fauna/alien/drone
+datum/category_item/catalogue/fauna/alien/drone
 	name = "Xenomorph - Drone"
 	desc = "The adult form of the Xenomorph, the drone's iconic \
 	morphology and biological traits make it easily identifiable across \
@@ -27,7 +27,7 @@
 	larger threat is present: a Xenomorph Hive. Kill on sight."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/carbon/alien
+mob/living/carbon/alien
 
 	name = "alien"
 	desc = "What IS that?"
@@ -50,7 +50,7 @@
 	var/adult_name
 	var/instance_num
 
-/mob/living/carbon/alien/Initialize(mapload)
+mob/living/carbon/alien/Initialize(mapload)
 	time_of_birth = world.time
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -68,16 +68,16 @@
 
 	return ..()
 
-/mob/living/carbon/alien/statpanel_data(client/C)
+mob/living/carbon/alien/statpanel_data(client/C)
 	. = ..()
 	STATPANEL_DATA_LINE("")
 	STATPANEL_DATA_LINE("Progress: [amount_grown]/[max_grown]")
 
-/mob/living/carbon/alien/restrained()
+mob/living/carbon/alien/restrained()
 	return 0
 
-/mob/living/carbon/alien/request_strip_menu(mob/user, ignore_adjacency = FALSE, ignore_incapacitation = FALSE)
+mob/living/carbon/alien/request_strip_menu(mob/user, ignore_adjacency = FALSE, ignore_incapacitation = FALSE)
 	return FALSE
 
-/mob/living/carbon/alien/cannot_use_vents()
+mob/living/carbon/alien/cannot_use_vents()
 	return

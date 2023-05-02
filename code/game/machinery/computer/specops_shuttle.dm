@@ -14,7 +14,7 @@ var/specops_shuttle_can_send = 1
 var/specops_shuttle_time = 0
 var/specops_shuttle_timeleft = 0
 
-/obj/machinery/computer/specops_shuttle
+obj/machinery/computer/specops_shuttle
 	name = "special operations shuttle control console"
 	icon_keyboard = "security_key"
 	icon_screen = "syndishuttle"
@@ -26,7 +26,7 @@ var/specops_shuttle_timeleft = 0
 	var/allowedtocall = 0
 	var/specops_shuttle_timereset = 0
 
-/proc/specops_return()
+proc/specops_return()
 	var/obj/item/radio/intercom/announcer = new /obj/item/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 
@@ -100,7 +100,7 @@ var/specops_shuttle_timeleft = 0
 
 	qdel(announcer)
 
-/proc/specops_process()
+proc/specops_process()
 	var/area/centcom/specops/special_ops = locate()//Where is the specops area located?
 	var/obj/item/radio/intercom/announcer = new /obj/item/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
@@ -241,7 +241,7 @@ var/specops_shuttle_timeleft = 0
 
 	qdel(announcer)
 
-/proc/specops_can_move()
+proc/specops_can_move()
 	if(specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom)
 		return 0
 	for(var/obj/machinery/computer/specops_shuttle/S in GLOB.machines)
@@ -249,13 +249,13 @@ var/specops_shuttle_timeleft = 0
 			return 0
 	return 1
 
-/obj/machinery/computer/specops_shuttle/attack_ai(var/mob/user as mob)
+obj/machinery/computer/specops_shuttle/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/specops_shuttle/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/specops_shuttle/emag_act(var/remaining_charges, var/mob/user)
 	to_chat(user, "<span class='notice'>The electronic systems in this console are far too advanced for your primitive hacking peripherals.</span>")
 
-/obj/machinery/computer/specops_shuttle/attack_hand(mob/user, list/params)
+obj/machinery/computer/specops_shuttle/attack_hand(mob/user, list/params)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
@@ -277,7 +277,7 @@ var/specops_shuttle_timeleft = 0
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/specops_shuttle/Topic(href, href_list)
+obj/machinery/computer/specops_shuttle/Topic(href, href_list)
 	if(..())
 		return 1
 

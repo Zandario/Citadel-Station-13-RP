@@ -1,4 +1,4 @@
-/datum/outfit/tunnel_clown
+datum/outfit/tunnel_clown
 	name = "Tunnel Clown"
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -15,7 +15,7 @@
 	id_type = /obj/item/card/id/syndicate/station_access
 	id_pda_assignment = "Tunnel Clown!"
 
-/datum/outfit/masked_killer
+datum/outfit/masked_killer
 	name = "Masked Killer"
 	uniform = /obj/item/clothing/under/overalls
 	shoes = /obj/item/clothing/shoes/white
@@ -29,12 +29,12 @@
 	r_pocket = /obj/item/surgical/scalpel
 	r_hand = /obj/item/material/twohanded/fireaxe
 
-/datum/outfit/masked_killer/post_equip(var/mob/living/carbon/human/H)
+datum/outfit/masked_killer/post_equip(var/mob/living/carbon/human/H)
 	var/victim = get_mannequin(H.ckey)
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
 		carried_item.add_blood(victim) //Oh yes, there will be blood.. just not blood from the killer because that's odd
 
-/datum/outfit/professional
+datum/outfit/professional
 	name = "Professional"
 	uniform = /obj/item/clothing/under/suit_jacket{ starting_accessories=list(/obj/item/clothing/accessory/wcoat) }
 	shoes = /obj/item/clothing/shoes/black
@@ -49,7 +49,7 @@
 	pda_slot = SLOT_ID_BELT
 	pda_type = /obj/item/pda/heads
 
-/datum/outfit/professional/post_equip(var/mob/living/carbon/human/H)
+datum/outfit/professional/post_equip(var/mob/living/carbon/human/H)
 	var/obj/item/storage/secure/briefcase/sec_briefcase = new(H)
 	for(var/obj/item/briefcase_item in sec_briefcase)
 		qdel(briefcase_item)
@@ -61,7 +61,7 @@
 	sec_briefcase.contents += new /obj/item/plastique
 	H.equip_to_slot_or_del(sec_briefcase, /datum/inventory_slot_meta/abstract/hand/left)
 
-/datum/outfit/samurai
+datum/outfit/samurai
 	name = "Vengeful Samurai"
 	uniform = /obj/item/clothing/under/color/black
 	shoes = /obj/item/clothing/shoes/boots/duty
@@ -72,13 +72,13 @@
 	r_hand = /obj/item/material/sword/katana
 
 /* //Can you tell I commented these out in reverse?
-/datum/outfit/samurai/equip(var/mob/living/carbon/human/H)
+datum/outfit/samurai/equip(var/mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind)
 		H.add_spell(list(/spell/targeted/ethereal_jaunt, /spell/noclothes))
 */
 
-/datum/outfit/mummy
+datum/outfit/mummy
 	name = "Restless Mummy"
 	uniform = /obj/item/clothing/under/mummy
 	shoes = /obj/item/clothing/shoes/sandal
@@ -88,13 +88,13 @@
 	r_hand = /obj/item/nullrod/egyptian
 
 /* //Sort out adding spells sometime.
-/datum/outfit/mummy/equip(var/mob/living/carbon/human/H)
+datum/outfit/mummy/equip(var/mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind)
 		H.add_spell(list(/spell/aoe_turf/disable_tech, /spell/noclothes))
 */
 
-/datum/outfit/scarecrow
+datum/outfit/scarecrow
 	name = "Menacing Scarecrow"
 	uniform = /obj/item/clothing/under/scarecrow
 	shoes = /obj/item/clothing/shoes/boots/workboots
@@ -105,13 +105,13 @@
 	r_hand = /obj/item/material/twohanded/fireaxe/scythe
 
 /* //Come back and figure out spells later.
-/datum/outfit/mummy/equip(var/mob/living/carbon/human/H)
+datum/outfit/mummy/equip(var/mob/living/carbon/human/H)
 	. = ..()
 	if(H.mind)
 		H.add_spell(list(/datum/technomancer/spell/blink, /spell/noclothes))
 */
 
-/datum/outfit/animegirl
+datum/outfit/animegirl
 	name = "Spurned Classmate"
 	uniform = /obj/item/clothing/under/schoolgirl
 	shoes = /obj/item/clothing/shoes/hitops/black
@@ -123,7 +123,7 @@
 	r_pocket = /obj/item/material/knife/machete/hatchet
 	r_hand = /obj/item/material/knife/plasteel
 
-/datum/outfit/animegirl/post_equip(var/mob/living/carbon/human/H)
+datum/outfit/animegirl/post_equip(var/mob/living/carbon/human/H)
 	var/victim = get_mannequin(H.ckey)
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
 		carried_item.add_blood(victim)

@@ -1,15 +1,15 @@
-/datum/mini_hud
+datum/mini_hud
 	var/datum/hud/main_hud
 	var/list/screenobjs = list()
 	var/list/types_to_instantiate
 	var/needs_processing = FALSE
 
-/datum/mini_hud/New(var/datum/hud/other)
+datum/mini_hud/New(var/datum/hud/other)
 	apply_to_hud(other)
 	if(needs_processing)
 		START_PROCESSING(SSprocessing, src)
 
-/datum/mini_hud/Destroy()
+datum/mini_hud/Destroy()
 	main_hud?.remove_minihud(src)
 	main_hud = null
 	if(needs_processing)
@@ -17,26 +17,26 @@
 	return ..()
 
 // Apply to a real /datum/hud
-/datum/mini_hud/proc/apply_to_hud(var/datum/hud/other)
+datum/mini_hud/proc/apply_to_hud(var/datum/hud/other)
 	if(main_hud)
 		unapply_to_hud(main_hud)
 	main_hud = other
 	main_hud.apply_minihud(src)
 
 // Remove from a real /datum/hud
-/datum/mini_hud/proc/unapply_to_hud(var/datum/hud/other)
+datum/mini_hud/proc/unapply_to_hud(var/datum/hud/other)
 	main_hud.remove_minihud(src)
 
 // Update the hud
-/datum/mini_hud/process(delta_time)
+datum/mini_hud/process(delta_time)
 	return PROCESS_KILL // You shouldn't be here!
 
 // Return a list of screen objects we use
-/datum/mini_hud/proc/get_screen_objs(var/mob/M)
+datum/mini_hud/proc/get_screen_objs(var/mob/M)
 	return screenobjs
 
 // Specific types
-/datum/mini_hud/rig
+datum/mini_hud/rig
 	var/obj/item/rig/owner_rig
 	var/atom/movable/screen/rig/power/power
 	var/atom/movable/screen/rig/health/health
@@ -45,7 +45,7 @@
 
 	needs_processing = TRUE
 
-/datum/mini_hud/rig/New(var/datum/hud/other, var/obj/item/rig/owner)
+datum/mini_hud/rig/New(var/datum/hud/other, var/obj/item/rig/owner)
 	owner_rig = owner
 	power = new ()
 	health = new ()
@@ -63,13 +63,13 @@
 		S.master = owner_rig
 	..()
 
-/datum/mini_hud/rig/Destroy()
+datum/mini_hud/rig/Destroy()
 	if(owner_rig)
 		//owner_rig.minihud = null
 		owner_rig = null
 	return ..()
 
-/datum/mini_hud/rig/process(delta_time)
+datum/mini_hud/rig/process(delta_time)
 	if(!owner_rig)
 		qdel(src)
 		return
@@ -86,7 +86,7 @@
 	health.icon_state = owner_rig.malfunctioning ? "health1" : "health5"
 	airtoggle.icon_state = "airon[air_on]"
 
-/datum/mini_hud/mech
+datum/mini_hud/mech
 	var/obj/mecha/owner_mech
 	var/atom/movable/screen/mech/power/power
 	var/atom/movable/screen/mech/health/health
@@ -95,7 +95,7 @@
 
 	needs_processing = TRUE
 
-/datum/mini_hud/mech/New(var/datum/hud/other, var/obj/mecha/owner)
+datum/mini_hud/mech/New(var/datum/hud/other, var/obj/mecha/owner)
 	owner_mech = owner
 	power = new ()
 	health = new ()
@@ -113,13 +113,13 @@
 		S.master = owner_mech
 	..()
 
-/datum/mini_hud/mech/Destroy()
+datum/mini_hud/mech/Destroy()
 	if(owner_mech)
 		owner_mech.minihud = null
 		owner_mech = null
 	return ..()
 
-/datum/mini_hud/mech/process(delta_time)
+datum/mini_hud/mech/process(delta_time)
 	if(!owner_mech)
 		qdel(src)
 		return
@@ -138,50 +138,50 @@
 	airtoggle.icon_state = "airon[air_on]"
 
 // Screen objects
-/atom/movable/screen/rig
+atom/movable/screen/rig
 	icon = 'icons/mob/screen_rigmech.dmi'
 
-/atom/movable/screen/rig/deco1
+atom/movable/screen/rig/deco1
 	name = "RIG Status"
 	icon_state = "frame1_1"
 	screen_loc = ui_rig_deco1
 
-/atom/movable/screen/rig/deco2
+atom/movable/screen/rig/deco2
 	name = "RIG Status"
 	icon_state = "frame1_2"
 	screen_loc = ui_rig_deco2
 
-/atom/movable/screen/rig/deco1_f
+atom/movable/screen/rig/deco1_f
 	name = "RIG Status"
 	icon_state = "frame1_1_far"
 	screen_loc = ui_rig_deco1_f
 
-/atom/movable/screen/rig/deco2_f
+atom/movable/screen/rig/deco2_f
 	name = "RIG Status"
 	icon_state = "frame1_2_far"
 	screen_loc = ui_rig_deco2_f
 
-/atom/movable/screen/rig/power
+atom/movable/screen/rig/power
 	name = "Charge Level"
 	icon_state = "pwr5"
 	screen_loc = ui_rig_pwr
 
-/atom/movable/screen/rig/health
+atom/movable/screen/rig/health
 	name = "Integrity Level"
 	icon_state = "health5"
 	screen_loc = ui_rig_health
 
-/atom/movable/screen/rig/air
+atom/movable/screen/rig/air
 	name = "Air Storage"
 	icon_state = "air5"
 	screen_loc = ui_rig_air
 
-/atom/movable/screen/rig/airtoggle
+atom/movable/screen/rig/airtoggle
 	name = "Toggle Air"
 	icon_state = "airoff"
 	screen_loc = ui_rig_airtoggle
 
-/atom/movable/screen/rig/airtoggle/Click()
+atom/movable/screen/rig/airtoggle/Click()
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat || user.incapacitated())
 		return
@@ -190,50 +190,50 @@
 		return
 	user.toggle_internals()
 
-/atom/movable/screen/mech
+atom/movable/screen/mech
 	icon = 'icons/mob/screen_rigmech.dmi'
 
-/atom/movable/screen/mech/deco1
+atom/movable/screen/mech/deco1
 	name = "Mech Status"
 	icon_state = "frame1_1"
 	screen_loc = ui_mech_deco1
 
-/atom/movable/screen/mech/deco2
+atom/movable/screen/mech/deco2
 	name = "Mech Status"
 	icon_state = "frame1_2"
 	screen_loc = ui_mech_deco2
 
-/atom/movable/screen/mech/deco1_f
+atom/movable/screen/mech/deco1_f
 	name = "Mech Status"
 	icon_state = "frame1_1_far"
 	screen_loc = ui_mech_deco1_f
 
-/atom/movable/screen/mech/deco2_f
+atom/movable/screen/mech/deco2_f
 	name = "Mech Status"
 	icon_state = "frame1_2_far"
 	screen_loc = ui_mech_deco2_f
 
-/atom/movable/screen/mech/power
+atom/movable/screen/mech/power
 	name = "Charge Level"
 	icon_state = "pwr5"
 	screen_loc = ui_mech_pwr
 
-/atom/movable/screen/mech/health
+atom/movable/screen/mech/health
 	name = "Integrity Level"
 	icon_state = "health5"
 	screen_loc = ui_mech_health
 
-/atom/movable/screen/mech/air
+atom/movable/screen/mech/air
 	name = "Air Storage"
 	icon_state = "air5"
 	screen_loc = ui_mech_air
 
-/atom/movable/screen/mech/airtoggle
+atom/movable/screen/mech/airtoggle
 	name = "Toggle Air"
 	icon_state = "airoff"
 	screen_loc = ui_mech_airtoggle
 
-/atom/movable/screen/mech/airtoggle/Click()
+atom/movable/screen/mech/airtoggle/Click()
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat || user.incapacitated())
 		return
@@ -243,7 +243,7 @@
 	owner_mech.toggle_internal_tank()
 
 /*
-/mob/observer/dead/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
+mob/observer/dead/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
 	var/list/adding = list()
 	HUD.adding = adding

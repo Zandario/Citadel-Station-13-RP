@@ -1,4 +1,4 @@
-/obj/machinery/computer/transhuman/resleeving
+obj/machinery/computer/transhuman/resleeving
 	name = "resleeving control console"
 	desc = "A control console for the resleeving and grower pods. It has a small slot for inserting a mirror tool for direct transfer of mirrors."
 	catalogue_data = list(///datum/category_item/catalogue/information/organization/vey_med,
@@ -20,19 +20,19 @@
 	var/obj/item/disk/transcore/disk
 	var/hasmirror = null
 
-/obj/machinery/computer/transhuman/resleeving/Initialize(mapload)
+obj/machinery/computer/transhuman/resleeving/Initialize(mapload)
 	. = ..()
 	updatemodules()
 
-/obj/machinery/computer/transhuman/resleeving/Destroy()
+obj/machinery/computer/transhuman/resleeving/Destroy()
 	releasepods()
 	return ..()
 
-/obj/machinery/computer/transhuman/resleeving/proc/updatemodules()
+obj/machinery/computer/transhuman/resleeving/proc/updatemodules()
 	releasepods()
 	findpods()
 
-/obj/machinery/computer/transhuman/resleeving/proc/releasepods()
+obj/machinery/computer/transhuman/resleeving/proc/releasepods()
 	for(var/obj/machinery/clonepod/transhuman/P in pods)
 		P.connected = null
 		P.name = initial(P.name)
@@ -46,7 +46,7 @@
 		P.name = initial(P.name)
 	sleevers.Cut()
 
-/obj/machinery/computer/transhuman/resleeving/proc/findpods()
+obj/machinery/computer/transhuman/resleeving/proc/findpods()
 	var/num = 1
 	var/area/A = get_area(src)
 	for(var/obj/machinery/clonepod/transhuman/P in A.get_contents())
@@ -65,7 +65,7 @@
 			P.connected = src
 			P.name = "[initial(P.name)] #[num++]"
 
-/obj/machinery/computer/transhuman/resleeving/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/computer/transhuman/resleeving/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool))
 		var/obj/item/multitool/M = W
 		var/obj/machinery/clonepod/transhuman/P = M.connecting
@@ -119,7 +119,7 @@
 
 	return ..()
 
-/obj/machinery/computer/transhuman/resleeving/verb/eject_mirror()
+obj/machinery/computer/transhuman/resleeving/verb/eject_mirror()
 	set category = "Object"
 	set name = "Eject Mirror"
 	set src in oview(1)
@@ -132,10 +132,10 @@
 	else
 		to_chat(usr, "There is no mirror to eject.")
 
-/obj/machinery/computer/transhuman/resleeving/attack_ai(mob/user as mob)
+obj/machinery/computer/transhuman/resleeving/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/transhuman/resleeving/attack_hand(mob/user, list/params)
+obj/machinery/computer/transhuman/resleeving/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	add_fingerprint(user)
 
@@ -146,7 +146,7 @@
 
 	nano_ui_interact(user)
 
-/obj/machinery/computer/transhuman/resleeving/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/computer/transhuman/resleeving/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
 	var/data[0]
@@ -247,7 +247,7 @@
 		ui.open()
 		ui.set_auto_update(5)
 
-/obj/machinery/computer/transhuman/resleeving/Topic(href, href_list)
+obj/machinery/computer/transhuman/resleeving/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -423,7 +423,7 @@
 	add_fingerprint(usr)
 
 // In here because only relevant to computer
-/obj/item/cmo_disk_holder
+obj/item/cmo_disk_holder
 	name = "cmo emergency packet"
 	desc = "A small paper packet with printing on one side. \"Tear open in case of Code Delta or Emergency Evacuation ONLY. Use in any other case is UNLAWFUL.\""
 	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
@@ -431,7 +431,7 @@
 	icon_state = "cmoemergency"
 	item_state = "card-id"
 
-/obj/item/cmo_disk_holder/attack_self(mob/user)
+obj/item/cmo_disk_holder/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -442,7 +442,7 @@
 	user.put_in_hands_or_drop(newdisk)
 	qdel(src)
 
-/obj/item/disk/transcore
+obj/item/disk/transcore
 	name = "TransCore Dump Disk"
 	desc = "It has a small label. \n\
 	\"1.INSERT DISK INTO RESLEEVING CONSOLE\n\

@@ -1,6 +1,6 @@
 // A mob which only moves when it isn't being watched by living beings.
 
-/mob/living/simple_mob/living_statue
+mob/living/simple_mob/living_statue
 	name = "statue"
 	desc = "An incredibly lifelike marble carving. Its eyes seem to follow you.."
 	icon = 'icons/obj/statue.dmi'
@@ -46,7 +46,7 @@
 
 //# Statue Subtypes
 
-/mob/living/simple_mob/living_statue/female
+mob/living/simple_mob/living_statue/female
 	name = "statue"
 	desc = "An incredibly lifelike marble carving. Its eyes seem to follow you.."
 	icon = 'icons/obj/statue.dmi'
@@ -57,7 +57,7 @@
 
 //# Mob AI Code.
 
-/datum/ai_holder/simple_mob/statue
+datum/ai_holder/simple_mob/statue
 	hostile = TRUE
 	retaliate = FALSE
 	cooperative = FALSE
@@ -70,7 +70,7 @@
 
 //# Mob Code.
 
-/mob/living/simple_mob/living_statue/Initialize(mapload)
+mob/living/simple_mob/living_statue/Initialize(mapload)
 	. = ..()
 
 	AddComponent(/datum/component/unobserved_actor, unobserved_flags = NO_OBSERVED_MOVEMENT | NO_OBSERVED_ATTACKS)
@@ -82,12 +82,12 @@
 
 
 //? Cannot talk
-/mob/living/simple_mob/living_statue/say(whispering = FALSE)
+mob/living/simple_mob/living_statue/say(whispering = FALSE)
 	return FALSE
 
 
 // Turn to dust when gibbed
-/mob/living/simple_mob/living_statue/gib()
+mob/living/simple_mob/living_statue/gib()
 	dust()
 
 
@@ -95,7 +95,7 @@
 //# Statue powers
 
 /// Flicker lights AOE Spell
-/spell/aoe_turf/flicker_lights
+spell/aoe_turf/flicker_lights
 	name = "Flicker Lights"
 	desc = "You will trigger a large amount of lights around you to flicker."
 
@@ -107,7 +107,7 @@
 	range = 14
 
 
-/spell/aoe_turf/flicker_lights/choose_targets(mob/user = usr)
+spell/aoe_turf/flicker_lights/choose_targets(mob/user = usr)
 	var/list/things = list()
 	var/turf/center = get_turf(user)
 	for(var/obj/machinery/light/nearby_light in range(center, range))
@@ -118,13 +118,13 @@
 
 	return things
 
-/spell/aoe_turf/flicker_lights/cast(list/targets, mob/user = usr)
+spell/aoe_turf/flicker_lights/cast(list/targets, mob/user = usr)
 	for(var/obj/machinery/light/victim as anything in targets)
 		victim.flicker()
 
 
 /// Blind AOE Spell
-/spell/aoe_turf/blindness
+spell/aoe_turf/blindness
 	name = "Blindness"
 	desc = "Your prey will be momentarily blind for you to advance on them."
 
@@ -136,7 +136,7 @@
 	cooldown_min = 2 MINUTE // Overkill but by request.
 	range = 10
 
-/spell/aoe_turf/blindness/choose_targets(mob/user = usr)
+spell/aoe_turf/blindness/choose_targets(mob/user = usr)
 	var/list/things = list()
 	var/turf/center = get_turf(user)
 	for(var/mob/living/nearby_mob in range(center, range))
@@ -148,6 +148,6 @@
 	return things
 
 
-/spell/aoe_turf/blindness/cast(list/targets, mob/user = usr)
+spell/aoe_turf/blindness/cast(list/targets, mob/user = usr)
 	for(var/mob/living/victim as anything in targets)
 		victim.Blind(4)

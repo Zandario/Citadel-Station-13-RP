@@ -1,4 +1,4 @@
-/datum/event/portalstorm
+datum/event/portalstorm
 
 	Announce()
 		command_alert("Subspace disruption detected around the vessel", "Anomaly Alert")

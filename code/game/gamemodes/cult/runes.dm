@@ -1,9 +1,9 @@
 var/list/sacrificed = list()
 
-/obj/effect/rune/cultify()
+obj/effect/rune/cultify()
 	return
 
-/obj/effect/rune
+obj/effect/rune
 
 /*
  * Use as a general guideline for this and related files:
@@ -14,7 +14,7 @@ var/list/sacrificed = list()
 
 
 //! FIRST RUNE
-/obj/effect/rune/proc/teleport(key)
+obj/effect/rune/proc/teleport(key)
 	var/mob/living/user = usr
 	var/allrunesloc[]
 	allrunesloc = new/list()
@@ -49,7 +49,7 @@ var/list/sacrificed = list()
 		return
 
 
-/obj/effect/rune/proc/itemport(key)
+obj/effect/rune/proc/itemport(key)
 	// var/allrunesloc[]
 	// allrunesloc = new/list()
 	// var/index = 0
@@ -88,7 +88,7 @@ var/list/sacrificed = list()
 
 
 //! SECOND RUNE
-/obj/effect/rune/proc/tomesummon()
+obj/effect/rune/proc/tomesummon()
 	if(istype(src,/obj/effect/rune))
 		usr.say("N[pick("'","`")]ath reth sh'yro eth d'raggathnor!")
 	else
@@ -105,7 +105,7 @@ var/list/sacrificed = list()
 
 
 //! THIRD RUNE
-/obj/effect/rune/proc/convert()
+obj/effect/rune/proc/convert()
 	var/mob/attacker = usr
 	var/mob/living/carbon/target = null
 	for(var/mob/living/carbon/M in src.loc)
@@ -188,7 +188,7 @@ var/list/sacrificed = list()
 
 
 //! FOURTH RUNE
-/obj/effect/rune/proc/tearreality()
+obj/effect/rune/proc/tearreality()
 	if(!cult.allow_narsie)
 		return fizzle()
 
@@ -220,7 +220,7 @@ var/list/sacrificed = list()
 
 
 //! FIFTH RUNE
-/obj/effect/rune/proc/emp(var/U,var/range_red) //range_red - var which determines by which number to reduce the default emp range, U is the source loc, needed because of talisman emps which are held in hand at the moment of using and that apparently messes things up -- Urist
+obj/effect/rune/proc/emp(var/U,var/range_red) //range_red - var which determines by which number to reduce the default emp range, U is the source loc, needed because of talisman emps which are held in hand at the moment of using and that apparently messes things up -- Urist
 	log_and_message_admins("activated an EMP rune.")
 	if(istype(src,/obj/effect/rune))
 		usr.say("Ta'gh fara[pick("'","`")]qha fel d'amar det!")
@@ -237,7 +237,7 @@ var/list/sacrificed = list()
 
 
 //!SIXTH RUNE
-/obj/effect/rune/proc/drain()
+obj/effect/rune/proc/drain()
 	var/drain = 0
 	for(var/obj/effect/rune/R in rune_list)
 		if(R.word1==cultwords["travel"] && R.word2==cultwords["blood"] && R.word3==cultwords["self"])
@@ -290,7 +290,7 @@ var/list/sacrificed = list()
 				affected.cure_specific_wound(/datum/wound/internal_bleeding, all = TRUE)
 
 //! SEVENTH RUNE
-/obj/effect/rune/proc/seer()
+obj/effect/rune/proc/seer()
 	if(usr.loc==src.loc)
 		if(usr.seer==1)
 			usr.say("Rash'tla sektath mal[pick("'","`")]zua. Zasan therium viortia.")
@@ -311,7 +311,7 @@ var/list/sacrificed = list()
 
 //! EIGHTH RUNE
 
-/obj/effect/rune/proc/raise()
+obj/effect/rune/proc/raise()
 	var/mob/living/carbon/human/corpse_to_raise
 	var/mob/living/carbon/human/body_to_sacrifice
 
@@ -391,7 +391,7 @@ var/list/sacrificed = list()
 
 
 //! NINETH RUNE
-/obj/effect/rune/proc/obscure(rad)
+obj/effect/rune/proc/obscure(rad)
 	var/S=0
 	for(var/obj/effect/rune/R in orange(rad,src))
 		if(R!=src)
@@ -419,7 +419,7 @@ var/list/sacrificed = list()
 
 //! TENTH RUNE
 
-/obj/effect/rune/proc/ajourney() //some bits copypastaed from admin tools - Urist
+obj/effect/rune/proc/ajourney() //some bits copypastaed from admin tools - Urist
 	if(usr.loc==src.loc)
 		var/mob/living/carbon/human/L = usr
 		var/datum/gender/TU = GLOB.gender_datums[L.get_visible_gender()]
@@ -440,7 +440,7 @@ var/list/sacrificed = list()
 
 
 //! ELEVENTH RUNE
-/obj/effect/rune/proc/manifest()
+obj/effect/rune/proc/manifest()
 	var/obj/effect/rune/this_rune = src
 	src = null
 	if(usr.loc!=this_rune.loc)
@@ -502,7 +502,7 @@ var/list/sacrificed = list()
 
 
 //! TWELFTH RUNE
-/obj/effect/rune/proc/talisman()//only hide, emp, teleport, deafen, blind and tome runes can be imbued atm
+obj/effect/rune/proc/talisman()//only hide, emp, teleport, deafen, blind and tome runes can be imbued atm
 	var/obj/item/paper/newtalisman
 	var/unsuitable_newtalisman = 0
 	for(var/obj/item/paper/P in src.loc)
@@ -582,7 +582,7 @@ var/list/sacrificed = list()
 		return fizzle()
 
 //! THIRTEENTH RUNE
-/obj/effect/rune/proc/mend()
+obj/effect/rune/proc/mend()
 	var/mob/living/user = usr
 	var/datum/gender/TU = GLOB.gender_datums[usr.get_visible_gender()]
 	src = null
@@ -602,7 +602,7 @@ var/list/sacrificed = list()
 
 //!FOURTEETH RUNE
 /// returns 0 if the rune is not used. returns 1 if the rune is used.
-/obj/effect/rune/proc/communicate()
+obj/effect/rune/proc/communicate()
 	. = 1 // Default output is 1. If the rune is deleted it will return 1
 	var/input = input(usr, "Please choose a message to tell to the other acolytes.", "Voice of Blood", "")//sanitize() below, say() and whisper() have their own
 	if(!input)
@@ -628,7 +628,7 @@ var/list/sacrificed = list()
 	return 1
 
 //! FIFTEENTH RUNE
-/obj/effect/rune/proc/sacrifice()
+obj/effect/rune/proc/sacrifice()
 	var/list/mob/living/carbon/human/cultsinrange = list()
 	var/list/mob/living/carbon/human/victims = list()
 	for(var/mob/living/carbon/human/V in src.loc)//Checks for non-cultist humans to sacrifice
@@ -746,7 +746,7 @@ var/list/sacrificed = list()
 						H.gib()
 
 //! SIXTEENTH RUNE
-/obj/effect/rune/proc/revealrunes(obj/W)
+obj/effect/rune/proc/revealrunes(obj/W)
 	var/go=0
 	var/rad
 	var/S=0
@@ -789,7 +789,7 @@ var/list/sacrificed = list()
 		return
 
 //! SEVENTEENTH RUNE
-/obj/effect/rune/proc/wall()
+obj/effect/rune/proc/wall()
 	usr.say("Khari[pick("'","`")]d! Eske'te tannin!")
 	src.density = !src.density
 	var/mob/living/user = usr
@@ -801,7 +801,7 @@ var/list/sacrificed = list()
 	return
 
 //! EIGHTTEENTH RUNE
-/obj/effect/rune/proc/freedom()
+obj/effect/rune/proc/freedom()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
 	for(var/datum/mind/H in cult.current_antagonists)
@@ -851,7 +851,7 @@ var/list/sacrificed = list()
 
 //! NINETEENTH RUNE
 
-/obj/effect/rune/proc/cultsummon()
+obj/effect/rune/proc/cultsummon()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
 	for(var/datum/mind/H in cult.current_antagonists)
@@ -891,7 +891,7 @@ var/list/sacrificed = list()
 	return fizzle()
 
 //! TWENTIETH RUNES
-/obj/effect/rune/proc/deafen()
+obj/effect/rune/proc/deafen()
 	if(istype(src,/obj/effect/rune))
 		var/list/affected = new()
 		for(var/mob/living/carbon/C in range(7,src))
@@ -934,7 +934,7 @@ var/list/sacrificed = list()
 	return
 
 //! TWENTY-FIRST RUNE
-/obj/effect/rune/proc/blind()
+obj/effect/rune/proc/blind()
 	if(istype(src,/obj/effect/rune))
 		var/list/affected = new()
 		for(var/mob/living/carbon/C in viewers(src))
@@ -979,7 +979,7 @@ var/list/sacrificed = list()
 
 //! TWENTY-SECOND RUNE
 /// Cultists need at least one DANGEROUS rune. Even if they're all stealthy.
-/obj/effect/rune/proc/bloodboil()
+obj/effect/rune/proc/bloodboil()
 
 	// var/list/mob/living/carbon/cultists = new
 	// for(var/datum/mind/H in SSticker.mode.cult)
@@ -1020,7 +1020,7 @@ var/list/sacrificed = list()
 
 //! TWENTY-THIRD RUNE
 // WIP rune, I'll wait for Rastaf0 to add limited blood.
-/obj/effect/rune/proc/burningblood()
+obj/effect/rune/proc/burningblood()
 	var/culcount = 0
 	for(var/mob/living/carbon/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
@@ -1047,7 +1047,7 @@ var/list/sacrificed = list()
 		qdel(src)
 
 //! TWENTY-FOURTH RUNE
-/obj/effect/rune/proc/runestun(var/mob/living/T as mob)
+obj/effect/rune/proc/runestun(var/mob/living/T as mob)
 	if(istype(src,/obj/effect/rune)) // When invoked as rune, flash and stun everyone around.
 		usr.say("Fuu ma[pick("'","`")]jin!")
 		for(var/mob/living/L in viewers(src))
@@ -1091,7 +1091,7 @@ var/list/sacrificed = list()
 		return
 
 //! TWENTY-FIFTH RUNE
-/obj/effect/rune/proc/armor()
+obj/effect/rune/proc/armor()
 	var/mob/living/carbon/human/user = usr
 	if(istype(src,/obj/effect/rune))
 		usr.say("N'ath reth sh'yro eth d[pick("'","`")]raggathnor!")

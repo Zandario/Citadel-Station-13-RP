@@ -1,20 +1,20 @@
-/datum/lore/character_background/citizenship
+datum/lore/character_background/citizenship
 	abstract_type = /datum/lore/character_background/citizenship
 
-/datum/lore/character_background/citizenship/check_character_species(datum/character_species/S)
+datum/lore/character_background/citizenship/check_character_species(datum/character_species/S)
 	if(S.species_fluff_flags & SPECIES_FLUFF_PICKY_CITIZENSHIP)
 		. = (S.uid in allow_species) || (subspecies_included && S.is_subspecies && (S.superspecies_id in allow_species))
 		if(!.)
 			return
 	return ..()
 
-/datum/lore/character_background/citizenship/custom
+datum/lore/character_background/citizenship/custom
 	name = "Other"
 	id = "custom"
 	desc = "Some individuals are nomadic, or simply, for one reason or another, don't belong to any one government's citizenry. Whatever the case for you, you don't identify with any of the standing governments."
 	category = "Misc"
 
-/datum/lore/character_background/citizenship/orionconfederation
+datum/lore/character_background/citizenship/orionconfederation
 	name = "Orion Confederation"
 	id = "oricon"
 	desc = "Born from the cradle of humanity, the Orion Confederation is a coalition of human worlds spanning much of the space of the Orion Spur. \
@@ -26,7 +26,7 @@
 	The Orion Confederation's hold on it's native megacorps is always tenuous; these major entities are almost left to their own affairs, \
 	especially in the aftermath of the Phoron Wars, in regards to one of it's flagship corporations: NanoTrasen."
 
-/datum/lore/character_background/citizenship/naramadiascendancy
+datum/lore/character_background/citizenship/naramadiascendancy
 	name = "Naramadi Ascendancy"
 	id = "narasc"
 	desc = "What began as a minor galactic power quickly grew to a major player on the galactic scene; the Naramadi Ascendancy. \
@@ -38,7 +38,7 @@
 	While the Ascendancy might be one of the three founding fathers of the Hegemony, they have always put a high emphasis on self-governance - \
 	keeping the same rules for their current allies as they do for everyone else."
 
-/datum/lore/character_background/citizenship/vikaracombine
+datum/lore/character_background/citizenship/vikaracombine
 	name = "Vikara Combine"
 	id = "vikaracom"
 	desc = "Formed initially as an alliance between the Skrell and Teshari of the Vikara System, the Vikara Combine is \
@@ -49,27 +49,27 @@
 	galaxy's Perseus Arm. The Combine's flagship corporation is Vey-Med, one of the largest and most well-known medical megacorporations in the \
 	galaxy, which was founded and is primarily run by the Skrell."
 
-/datum/lore/character_background/citizenship/moghes
+datum/lore/character_background/citizenship/moghes
 	name = "Moghes Kingdom"
 	id = "mogheskingdom"
 	desc = "One of the various nations and Clans that inhabit the wider Moghes Hegemony. Bound together only by the Pact, these different \
 	peoples are often at odds with each other. Their territories include many planets, some of which humans can only speculate on how to \
 	safely colonize."
 
-/datum/lore/character_background/citizenship/zaddatmigrantfleet
+datum/lore/character_background/citizenship/zaddatmigrantfleet
  	name = "Zaddat Migrant Fleet"
  	id = "zaddatmigrantfleet"
  	desc = "One of several Zaddat communities finding common ground, often literally. These fleets include Shoal, Or'e, and Jzull. \
 	The politics within these fleets are intense, meaning the contracts that they take may be for a myriad of reasons. \
 	Overall their goal is to find a new homeworld."
 
-/datum/lore/character_background/citizenship/guwandi
+datum/lore/character_background/citizenship/guwandi
 	name = "Guwandi"
 	id = "guwandi"
 	desc = "Exiles from Unathi Clans. They are unwelcome in Unathi society by and large, and often resort to crime. Those who are not killed \
 	often flee to the Frontier, where they may find opportunities for a new life."
 
-/datum/lore/character_background/citizenship/custom
+datum/lore/character_background/citizenship/custom
 	name = "Other"
 	id = "custom"
 	desc = "Some individuals are nomadic, or simply, for one reason or another, don't belong to any one government's citizenry. Whatever the case for you, you don't identify with any of the standing governments."

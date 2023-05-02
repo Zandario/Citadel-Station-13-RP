@@ -1,35 +1,35 @@
-/obj/effect/step_trigger/teleporter/roguemine_loop/north/Initialize(mapload)
+obj/effect/step_trigger/teleporter/roguemine_loop/north/Initialize(mapload)
 	. = ..()
 	teleport_x = x
 	teleport_y = 16
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/roguemine_loop/south/Initialize(mapload)
+obj/effect/step_trigger/teleporter/roguemine_loop/south/Initialize(mapload)
 	. = ..()
 	teleport_x = x
 //	teleport_y = world.maxy - 16	// Causes step triggers to teleport base off of world's maximum y distance which if map sizes are increased again will cause issues.
 	teleport_y = 177	// Future proofing this for any map size changes (aka bigger maps so we dont have people teleporting into unused map space)
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/roguemine_loop/west/Initialize(mapload)
+obj/effect/step_trigger/teleporter/roguemine_loop/west/Initialize(mapload)
 	. = ..()
 //	teleport_x = world.maxx - 16	// Same as with the world's maxiumum y
 	teleport_x = 177	// Future proofing this for any map size changes (aka bigger maps so we dont have people teleporting into unused map space)
 	teleport_y = y
 	teleport_z = z
 
-/obj/effect/step_trigger/teleporter/roguemine_loop/east/Initialize(mapload)
+obj/effect/step_trigger/teleporter/roguemine_loop/east/Initialize(mapload)
 	. = ..()
 	teleport_x = 16
 	teleport_y = y
 	teleport_z = z
 
 /*
-/obj/effect/step_trigger/teleporter/random/rogue
+obj/effect/step_trigger/teleporter/random/rogue
 	teleport_z = 15
 	teleport_z_offset = 0
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour
 	var/margin = 15 //How far from the side should we teleport? Make sure to place the opposite
 					//side's wrappers at less than this far from the hard boundary
 					//else people will get stuck in the margins
@@ -47,7 +47,7 @@
 	var/rel_x
 	var/rel_y
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/Initialize(mapload)
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/Initialize(mapload)
 	. = ..()
 
 
@@ -84,28 +84,28 @@
 		return
 
 //These are placed ON the side they are named after.
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onleft/Initialize(mapload)
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onleft/Initialize(mapload)
 	. = ..()
 	teleport_x = quad_R - margin
 	teleport_x_offset = quad_R - margin
 	teleport_y = quad_D + margin
 	teleport_y_offset = quad_U - margin
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onright/Initialize(mapload)
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onright/Initialize(mapload)
 	. = ..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_L + margin
 	teleport_y = quad_D + margin
 	teleport_y_offset = quad_U - margin
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop/Initialize(mapload)
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop/Initialize(mapload)
 	. = ..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_R - margin
 	teleport_y = quad_D + margin
 	teleport_y_offset = quad_D + margin
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onbottom/Initialize(mapload)
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onbottom/Initialize(mapload)
 	. = ..()
 	teleport_x = quad_L + margin
 	teleport_x_offset = quad_R - margin
@@ -132,100 +132,100 @@ S|       A1       |       A2       |
 */
 /*
 //////////// AREA 1
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A1S1
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A1S1
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A1S2
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A1S2
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A1S3
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A1S3
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A1S4
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A1S4
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
 //////////// AREA 2
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A2S1
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A2S1
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A2S2
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A2S2
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A2S3
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A2S3
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A2S4
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A2S4
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
 //////////// AREA 3
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A3S1
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A3S1
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A3S2
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A3S2
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A3S3
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A3S3
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A3S4
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A3S4
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
 //////////// AREA 4
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A4S1
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A4S1
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A4S2
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A4S2
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A4S3
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A4S3
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =
 	teleport_y_offset =
 
-/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A4S4
+obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/A4S4
 	teleport_x =
 	teleport_y =
 	teleport_x_offset =

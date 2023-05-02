@@ -1,5 +1,5 @@
 ///Returns a list with all the adjacent open turfs. Clears the list of nulls in the end.
-/proc/get_adjacent_open_turfs(atom/center)
+proc/get_adjacent_open_turfs(atom/center)
 	var/list/hand_back = list()
 	// Inlined get_open_turf_in_dir, just to be fast
 	var/turf/new_turf = get_step(center, NORTH)

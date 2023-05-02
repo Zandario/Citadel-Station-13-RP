@@ -1,4 +1,4 @@
-/spell/targeted/projectile/dumbfire/fireball
+spell/targeted/projectile/dumbfire/fireball
 	name = "Fireball"
 	desc = "This spell fires a fireball at a target and does not require wizard garb."
 
@@ -27,13 +27,13 @@
 
 	hud_state = "wiz_fireball"
 
-/spell/targeted/projectile/dumbfire/fireball/prox_cast(var/list/targets, spell_holder)
+spell/targeted/projectile/dumbfire/fireball/prox_cast(var/list/targets, spell_holder)
 	for(var/mob/living/M in targets)
 		apply_spell_damage(M)
 	explosion(get_turf(spell_holder), ex_severe, ex_heavy, ex_light, ex_flash)
 
 //PROJECTILE
 
-/obj/projectile/spell_projectile/fireball
+obj/projectile/spell_projectile/fireball
 	name = "fireball"
 	icon_state = "fireball"

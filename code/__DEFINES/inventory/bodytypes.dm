@@ -113,7 +113,7 @@
 #define BODYTYPE_STRING_WEREBEAST "werebeast"
 #define BODYTYPE_STRING_XENOHYBRID "xenohybrid"
 
-/proc/bodytype_to_string(bodytype)
+proc/bodytype_to_string(bodytype)
 	// todo: assoc list lookup
 	switch(bodytype)
 		if(BODYTYPE_DEFAULT)

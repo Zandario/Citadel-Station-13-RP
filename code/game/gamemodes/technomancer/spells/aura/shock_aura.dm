@@ -1,4 +1,4 @@
-/datum/technomancer/spell/shock_aura
+datum/technomancer/spell/shock_aura
 	name = "Electric Aura"
 	desc = "Repeatively electrocutes enemies within four meters of you, as well as nearby electronics."
 	enhancement_desc = "Aura does twice as much damage."
@@ -8,7 +8,7 @@
 	ability_icon_state = "tech_shockaura"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/aura/shock
+obj/item/spell/aura/shock
 	name = "electric aura"
 	desc = "Now you are a walking electrical storm."
 	icon_state = "generic"
@@ -16,7 +16,7 @@
 	aspect = ASPECT_SHOCK
 	glow_color = "#0000FF" //TODO
 
-/obj/item/spell/aura/shock/process(delta_time)
+obj/item/spell/aura/shock/process(delta_time)
 	if(!pay_energy(500))
 		qdel(src)
 	var/list/nearby_mobs = range(calculate_spell_power(4),owner)

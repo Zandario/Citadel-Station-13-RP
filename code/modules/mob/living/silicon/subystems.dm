@@ -1,4 +1,4 @@
-/mob/living/silicon
+mob/living/silicon
 	var/register_alarms = 1
 	var/datum/tgui_module_old/alarm_monitor/all/robot/alarm_monitor
 	var/datum/tgui_module_old/atmos_control/robot/atmos_control
@@ -7,13 +7,13 @@
 	var/datum/tgui_module_old/power_monitor/robot/power_monitor
 	var/datum/tgui_module_old/rcon/robot/rcon
 
-/mob/living/silicon
+mob/living/silicon
 	var/list/silicon_subsystems = list(
 		/mob/living/silicon/proc/subsystem_alarm_monitor,
 		/mob/living/silicon/proc/subsystem_law_manager
 	)
 
-/mob/living/silicon/ai
+mob/living/silicon/ai
 	silicon_subsystems = list(
 		/mob/living/silicon/proc/subsystem_alarm_monitor,
 		/mob/living/silicon/proc/subsystem_atmos_control,
@@ -23,11 +23,11 @@
 		/mob/living/silicon/proc/subsystem_rcon
 	)
 
-/mob/living/silicon/robot/syndicate
+mob/living/silicon/robot/syndicate
 	register_alarms = 0
 	silicon_subsystems = list(/mob/living/silicon/proc/subsystem_law_manager)
 
-/mob/living/silicon/proc/init_subsystems()
+mob/living/silicon/proc/init_subsystems()
 	alarm_monitor 	= new(src)
 	atmos_control 	= new(src)
 	crew_monitor 	= new(src)
@@ -45,7 +45,7 @@
 /********************
 *	Alarm Monitor	*
 ********************/
-/mob/living/silicon/proc/subsystem_alarm_monitor()
+mob/living/silicon/proc/subsystem_alarm_monitor()
 	set name = "Alarm Monitor"
 	set category = "Subystems"
 
@@ -54,7 +54,7 @@
 /********************
 *	Atmos Control	*
 ********************/
-/mob/living/silicon/proc/subsystem_atmos_control()
+mob/living/silicon/proc/subsystem_atmos_control()
 	set category = "Subystems"
 	set name = "Atmospherics Control"
 
@@ -63,7 +63,7 @@
 /********************
 *	Crew Monitor	*
 ********************/
-/mob/living/silicon/proc/subsystem_crew_monitor()
+mob/living/silicon/proc/subsystem_crew_monitor()
 	set category = "Subystems"
 	set name = "Crew Monitor"
 
@@ -72,7 +72,7 @@
 /****************
 *	Law Manager	*
 ****************/
-/mob/living/silicon/proc/subsystem_law_manager()
+mob/living/silicon/proc/subsystem_law_manager()
 	set name = "Law Manager"
 	set category = "Subystems"
 
@@ -81,7 +81,7 @@
 /********************
 *	Power Monitor	*
 ********************/
-/mob/living/silicon/proc/subsystem_power_monitor()
+mob/living/silicon/proc/subsystem_power_monitor()
 	set category = "Subystems"
 	set name = "Power Monitor"
 
@@ -90,7 +90,7 @@
 /************
 *	RCON	*
 ************/
-/mob/living/silicon/proc/subsystem_rcon()
+mob/living/silicon/proc/subsystem_rcon()
 	set category = "Subystems"
 	set name = "RCON"
 

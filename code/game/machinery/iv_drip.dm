@@ -6,7 +6,7 @@
 
 
 /// Universal IV that can drain blood or feed reagents over a period of time from or to a replaceable container.
-/obj/machinery/iv_drip
+obj/machinery/iv_drip
 	name = "\improper IV drip"
 	icon = 'icons/obj/medical/iv_drip.dmi'
 	icon_state = "iv_drip"
@@ -32,23 +32,23 @@
 	///! Not Used.
 	var/inject_only = FALSE
 
-/obj/machinery/iv_drip/Initialize(mapload)
+obj/machinery/iv_drip/Initialize(mapload)
 	. = ..()
 	update_appearance()
 	interaction_flags_machine |= INTERACT_MACHINE_OFFLINE
 
-/obj/machinery/iv_drip/Destroy()
+obj/machinery/iv_drip/Destroy()
 	attached_victim = null
 	QDEL_NULL(reagent_container)
 	return ..()
 
-/obj/machinery/iv_drip/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/iv_drip/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "IVDrip", name)
 		ui.open()
 
-/obj/machinery/iv_drip/ui_data(mob/user)
+obj/machinery/iv_drip/ui_data(mob/user)
 	var/list/data = list()
 	data["transferRate"] = transfer_rate
 	data["maxInjectRate"] = MAX_IV_TRANSFER_RATE
@@ -58,7 +58,7 @@
 	data["beakerAttached"] = reagent_container ? TRUE : FALSE
 	return data
 
-/obj/machinery/iv_drip/ui_act(action, params)
+obj/machinery/iv_drip/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -77,14 +77,14 @@
 				. = TRUE
 	update_appearance()
 
-/obj/machinery/iv_drip/update_icon_state()
+obj/machinery/iv_drip/update_icon_state()
 	if(attached_victim)
 		icon_state = "[base_icon_state]_[injection_mode ? "injecting" : "donating"]"
 	else
 		icon_state = "[base_icon_state]_[injection_mode ? "injectidle" : "donateidle"]"
 	return ..()
 
-/obj/machinery/iv_drip/update_overlays()
+obj/machinery/iv_drip/update_overlays()
 	. = ..()
 
 	if(!reagent_container)
@@ -116,7 +116,7 @@
 	filling_overlay.color = mix_color_from_reagents(target_reagents.reagent_list)
 	. += filling_overlay
 
-/obj/machinery/iv_drip/OnMouseDropLegacy(mob/living/target)
+obj/machinery/iv_drip/OnMouseDropLegacy(mob/living/target)
 	. = ..()
 	if(!ishuman(usr) || !usr.canUseTopic(src, be_close = TRUE) || !isliving(target))
 		return
@@ -137,7 +137,7 @@
 		else
 			to_chat(usr, SPAN_WARNING("There's nothing attached to the IV drip!"))
 
-/obj/machinery/iv_drip/attackby(obj/item/W, mob/user, params)
+obj/machinery/iv_drip/attackby(obj/item/W, mob/user, params)
 	if(is_type_in_typecache(W, drip_containers))
 		if(reagent_container)
 			to_chat(user, SPAN_WARNING("[reagent_container] is already loaded on [src]!"))
@@ -166,7 +166,7 @@
 	else
 		return ..()
 
-/obj/machinery/iv_drip/attack_hand(mob/user, list/params)
+obj/machinery/iv_drip/attack_hand(mob/user, list/params)
 	if(reagent_container)
 		reagent_container.loc = get_turf(src)
 		reagent_container = null
@@ -174,7 +174,7 @@
 	else
 		return ..()
 
-/obj/machinery/iv_drip/process(delta_time)
+obj/machinery/iv_drip/process(delta_time)
 	if(!attached_victim)
 		return PROCESS_KILL
 
@@ -218,7 +218,7 @@
 			update_appearance()
 
 /// Called when an IV is attached.
-/obj/machinery/iv_drip/proc/attach_iv(mob/living/target, mob/user)
+obj/machinery/iv_drip/proc/attach_iv(mob/living/target, mob/user)
 	user.visible_message(
 		SPAN_WARNING("[usr] begins attaching [src] to [target]..."),
 		SPAN_WARNING("You begin attaching [src] to [target]."),
@@ -246,16 +246,16 @@
  * Called when an iv is detached.
  * doesn't include chat stuff because there's multiple options and its better handled by the caller.
  */
-/obj/machinery/iv_drip/proc/detach_iv()
+obj/machinery/iv_drip/proc/detach_iv()
 	//! Plumbing Signal
 	// SEND_SIGNAL(src, COMSIG_IV_DETACH, attached_victim)
 	attached_victim = null
 	update_appearance()
 
-/obj/machinery/iv_drip/proc/get_reagent_holder()
+obj/machinery/iv_drip/proc/get_reagent_holder()
 	return reagent_container?.reagents
 
-/obj/machinery/iv_drip/verb/eject_beaker()
+obj/machinery/iv_drip/verb/eject_beaker()
 	set category = "Object"
 	set name = "Remove IV Container"
 	set src in oview(1)
@@ -275,7 +275,7 @@
 		reagent_container = null
 		update_appearance()
 
-/obj/machinery/iv_drip/verb/toggle_mode()
+obj/machinery/iv_drip/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Mode"
 	set src in oview(1)
@@ -291,7 +291,7 @@
 	to_chat(usr, SPAN_NOTICE("The IV drip is now [injection_mode ? "injecting" : "taking blood"]."))
 	update_appearance()
 
-/obj/machinery/iv_drip/examine(mob/user)
+obj/machinery/iv_drip/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) > 2)
 		return
@@ -307,7 +307,7 @@
 	. += SPAN_NOTICE("[attached_victim ? attached_victim : "No one"] is attached_victim.")
 
 /*
-/obj/machinery/iv_drip/saline
+obj/machinery/iv_drip/saline
 	name = "saline drip"
 	desc = "An all-you-can-drip saline canister designed to supply a hospital without running out, with a scary looking pump rigged to inject saline into containers, but filling people directly might be a bad idea."
 	icon_state = "saline"
@@ -315,14 +315,14 @@
 	density = TRUE
 	inject_only = TRUE
 
-/obj/machinery/iv_drip/saline/Initialize(mapload)
+obj/machinery/iv_drip/saline/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	reagent_container = new /obj/item/reagent_containers/cup/saline(src)
 
-/obj/machinery/iv_drip/saline/eject_beaker()
+obj/machinery/iv_drip/saline/eject_beaker()
 	return
 
-/obj/machinery/iv_drip/saline/toggle_mode()
+obj/machinery/iv_drip/saline/toggle_mode()
 	return
 */

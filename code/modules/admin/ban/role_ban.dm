@@ -13,7 +13,7 @@
  *
  * @return TRUE / FALSE for if they are banned right now
  */
-/proc/is_role_banned_ckey(ckey, character_id, role)
+proc/is_role_banned_ckey(ckey, character_id, role)
 	// sanitize just in case
 	ckey = ckey(ckey)
 
@@ -50,7 +50,7 @@
  *
  * @return TRUE / FALSE on success / failure
  */
-/proc/role_ban_ckey(ckey, character_id, role, minutes, reason, datum/admins/admin)
+proc/role_ban_ckey(ckey, character_id, role, minutes, reason, datum/admins/admin)
 	ASSERT(isnull(minutes) || (isnum(minutes) && minutes > 0))
 	// sanitize just in case
 	ckey = ckey(ckey)

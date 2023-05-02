@@ -1,13 +1,13 @@
-/datum/artifact_effect/forcefield
+datum/artifact_effect/forcefield
 	name = "force field"
 	var/list/created_field = list()
 	effect_type = EFFECT_PARTICLE
 
-/datum/artifact_effect/forcefield/New()
+datum/artifact_effect/forcefield/New()
 	..()
 	trigger = TRIGGER_TOUCH
 
-/datum/artifact_effect/forcefield/ToggleActivate()
+datum/artifact_effect/forcefield/ToggleActivate()
 	..()
 	if(created_field.len)
 		for(var/obj/effect/energy_field/F in created_field)
@@ -25,7 +25,7 @@
 		UpdateMove()
 	return 1
 
-/datum/artifact_effect/forcefield/process(delta_time)
+datum/artifact_effect/forcefield/process(delta_time)
 	..()
 	for(var/obj/effect/energy_field/E in created_field)
 		if(E.strength < 2)
@@ -33,7 +33,7 @@
 		else if(E.strength < 10)
 			E.adjust_strength(0.25, 0)
 
-/datum/artifact_effect/forcefield/UpdateMove()
+datum/artifact_effect/forcefield/UpdateMove()
 	if(created_field.len && holder)
 		var/turf/T = get_turf(holder)
 		while(created_field.len < 16)

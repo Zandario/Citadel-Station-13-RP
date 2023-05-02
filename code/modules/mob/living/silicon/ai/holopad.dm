@@ -1,22 +1,22 @@
-/mob/living/silicon/ai/proc/initiate_holopad_connection(obj/machinery/holopad/pad)
+mob/living/silicon/ai/proc/initiate_holopad_connection(obj/machinery/holopad/pad)
 	if(holopad)
 		terminate_holopad_connection()
 	pad.initiate_ai_hologram(src)
 
 
-/mob/living/silicon/ai/proc/terminate_holopad_connection()
+mob/living/silicon/ai/proc/terminate_holopad_connection()
 	holopad?.kill_ai_hologram(src)
 
-/mob/living/silicon/ai/proc/move_active_hologram(turf/target)
+mob/living/silicon/ai/proc/move_active_hologram(turf/target)
 	hologram?.move_to_target(target, TRUE)
 
-/mob/living/silicon/ai/proc/stop_moving_hologram()
+mob/living/silicon/ai/proc/stop_moving_hologram()
 	hologram?.stop_moving()
 
 /**
  * get something we can feed into from_appearance() on a hologram
  */
-/mob/living/silicon/ai/proc/hologram_appearance()
+mob/living/silicon/ai/proc/hologram_appearance()
 	// pre transform
 	if(ispath(holomodel, /datum/hologram))
 		var/datum/hologram/model = holomodel
@@ -39,7 +39,7 @@
 		return fallback_hologram
 
 //I am the icon meister. Bow fefore me.	//>fefore
-/mob/living/silicon/ai/proc/ai_hologram_change()
+mob/living/silicon/ai/proc/ai_hologram_change()
 	set name = "Change Hologram"
 	set desc = "Change the default hologram available to AI to something else."
 	set category = "AI Settings"

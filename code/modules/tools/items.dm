@@ -6,7 +6,7 @@
  * ! 	of values; not to obey original variables like tool_behaviour and tool_override.
  * ! 	This is a necessary drawback of optimizaiton.
  */
-/obj/item
+obj/item
 	/// static tool behavior
 	var/tool_behaviour
 	/// static tool quality
@@ -33,7 +33,7 @@
  * - flags - tool operation flags
  * - usage - what we're being used for, bitfield
  */
-/obj/item/proc/tool_query(mob/user, atom/target, flags, usage)
+obj/item/proc/tool_query(mob/user, atom/target, flags, usage)
 	RETURN_TYPE(/list)
 	. = list()
 	// if normal tool behavior
@@ -59,7 +59,7 @@
  * - flags - tool operation flags
  * - usage - what we're being used for, bitfield
  */
-/obj/item/proc/tool_check(function, mob/user, atom/target, flags, usage)
+obj/item/proc/tool_check(function, mob/user, atom/target, flags, usage)
 	ASSERT(function)
 	if(tool_override && tool_override[function])
 		return tool_quality_transform(tool_override[function], user, target, flags, usage)
@@ -76,7 +76,7 @@
  * - flags - tool operation flags
  * - usage - what we're being used for, bitfield
  */
-/obj/item/proc/tool_quality_transform(original, user, target, flags, usage)
+obj/item/proc/tool_quality_transform(original, user, target, flags, usage)
 	return original
 
 /**
@@ -93,7 +93,7 @@
  * - flags - tool operation flags
  * - usage - what we're being used for, bitfield
  */
-/obj/item/proc/tool_speed(function, mob/user, atom/target, flags, usage)
+obj/item/proc/tool_speed(function, mob/user, atom/target, flags, usage)
 	SHOULD_CALL_PARENT(TRUE)
 	return (flags & TOOL_OP_INSTANT)? 0 : tool_speed
 
@@ -104,7 +104,7 @@
  *
  * some dynamic tools will return the locked-in behaviour if locking is enabled
  */
-/obj/item/proc/tool_behaviour()
+obj/item/proc/tool_behaviour()
 	return tool_behaviour
 
 /**
@@ -118,7 +118,7 @@
  * - flags - tool operation flags
  * - usage - what we're being used for
  */
-/obj/item/proc/tool_quality(function = tool_behaviour(), mob/user, atom/target, flags, usage)
+obj/item/proc/tool_quality(function = tool_behaviour(), mob/user, atom/target, flags, usage)
 	// this is just a wrapper, the only difference is function is automatically provided.
 	return tool_check(function, user, target, flags, usage)
 
@@ -135,7 +135,7 @@
  * - cost - cost multiplier
  * - usage - usage flags, if any
  */
-/obj/item/proc/using_as_tool(function, flags, mob/user, atom/target, time, cost, usage)
+obj/item/proc/using_as_tool(function, flags, mob/user, atom/target, time, cost, usage)
 	SHOULD_CALL_PARENT(TRUE)
 	return TRUE
 
@@ -153,7 +153,7 @@
  * - usage - usage flags, if any
  * - success - was it successful?
  */
-/obj/item/proc/used_as_tool(function, flags, mob/user, atom/target, time, cost, usage, success)
+obj/item/proc/used_as_tool(function, flags, mob/user, atom/target, time, cost, usage, success)
 	SHOULD_CALL_PARENT(TRUE)
 	return TRUE
 
@@ -170,7 +170,7 @@
  * - usage - usage flags, if any
  * - volume - volume for sounds
  */
-/obj/item/proc/tool_feedback_start(function, flags, mob/user, atom/target, time, cost, usage, volume)
+obj/item/proc/tool_feedback_start(function, flags, mob/user, atom/target, time, cost, usage, volume)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!(flags & TOOL_OP_NO_STANDARD_AUDIO))
 		standard_tool_feedback_sound(function, flags, user, target, time, cost, usage, volume)
@@ -189,7 +189,7 @@
  * - success - was it successful?
  * - volume - volume for sounds
  */
-/obj/item/proc/tool_feedback_end(function, flags, mob/user, atom/target, time, cost, usage, success, volume)
+obj/item/proc/tool_feedback_end(function, flags, mob/user, atom/target, time, cost, usage, success, volume)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!(flags & TOOL_OP_NO_STANDARD_AUDIO))
 		standard_tool_feedback_sound(function, flags, user, target, time, cost, usage, success)
@@ -208,7 +208,7 @@
  * - success - was it successful? null if we're just starting
  * - volume - volume for sounds
  */
-/obj/item/proc/standard_tool_feedback_sound(function, flags, mob/user, atom/target, time, cost, usage, success, volume = 50)
+obj/item/proc/standard_tool_feedback_sound(function, flags, mob/user, atom/target, time, cost, usage, success, volume = 50)
 	if(isnull(success))
 		// starting
 		playsound(src, tool_sound(function, flags, user, target, time, cost, usage, success), volume, TRUE)
@@ -230,7 +230,7 @@
  * - usage - usage flags, if any
  * - success - was it successful? null if we're just starting
  */
-/obj/item/proc/tool_sound(function, flags, mob/user, atom/target, time, cost, usage, success)
+obj/item/proc/tool_sound(function, flags, mob/user, atom/target, time, cost, usage, success)
 	if(tool_sound)
 		return tool_sound
 	// return default

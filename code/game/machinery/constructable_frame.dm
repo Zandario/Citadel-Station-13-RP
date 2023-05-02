@@ -1,6 +1,6 @@
 //Circuit boards are in /code/game/objects/items/weapons/circuitboards/machinery/
 
-/obj/machinery/constructable_frame //Made into a seperate type to make future revisions easier.
+obj/machinery/constructable_frame //Made into a seperate type to make future revisions easier.
 	name = "machine frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
@@ -23,7 +23,7 @@
 			D = "Requires [english_list(component_list)]."
 		desc = D
 
-/obj/machinery/constructable_frame/machine_frame
+obj/machinery/constructable_frame/machine_frame
 	attackby(obj/item/P as obj, mob/user as mob)
 		switch(state)
 			if(1)

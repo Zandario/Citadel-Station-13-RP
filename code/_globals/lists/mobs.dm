@@ -33,7 +33,7 @@ GLOBAL_LIST(legacy_facial_hair_lookup)
 // by name
 GLOBAL_LIST(legacy_marking_lookup)
 
-/proc/all_hair_styles()
+proc/all_hair_styles()
 	. = list()
 	var/list/by_name = list()
 	for(var/path in subtypesof(/datum/sprite_accessory/hair))
@@ -56,7 +56,7 @@ GLOBAL_LIST(legacy_marking_lookup)
 	GLOB.legacy_hair_lookup = by_name
 	tim_sort(., /proc/cmp_name_asc, associative = TRUE)
 
-/proc/all_ear_styles()
+proc/all_ear_styles()
 	. = list()
 	var/list/by_type = list()
 	for(var/path in subtypesof(/datum/sprite_accessory/ears))
@@ -76,7 +76,7 @@ GLOBAL_LIST(legacy_marking_lookup)
 	GLOB.legacy_ears_lookup = by_type
 	tim_sort(., /proc/cmp_name_asc, associative = TRUE)
 
-/proc/all_wing_styles()
+proc/all_wing_styles()
 	. = list()
 	var/list/by_type = list()
 	for(var/path in subtypesof(/datum/sprite_accessory/wing))
@@ -96,7 +96,7 @@ GLOBAL_LIST(legacy_marking_lookup)
 	GLOB.legacy_wing_lookup = by_type
 	tim_sort(., /proc/cmp_name_asc, associative = TRUE)
 
-/proc/all_tail_styles()
+proc/all_tail_styles()
 	. = list()
 	var/list/by_type = list()
 	for(var/path in subtypesof(/datum/sprite_accessory/tail))
@@ -116,7 +116,7 @@ GLOBAL_LIST(legacy_marking_lookup)
 	GLOB.legacy_tail_lookup = by_type
 	tim_sort(., /proc/cmp_name_asc, associative = TRUE)
 
-/proc/all_facial_hair_styles()
+proc/all_facial_hair_styles()
 	. = list()
 	var/list/by_name = list()
 	for(var/path in subtypesof(/datum/sprite_accessory/facial_hair))
@@ -139,7 +139,7 @@ GLOBAL_LIST(legacy_marking_lookup)
 	GLOB.legacy_facial_hair_lookup = by_name
 	tim_sort(., /proc/cmp_name_asc, associative = TRUE)
 
-/proc/all_marking_styles()
+proc/all_marking_styles()
 	. = list()
 	var/list/by_name = list()
 	for(var/path in subtypesof(/datum/sprite_accessory/marking))

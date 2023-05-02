@@ -1,4 +1,4 @@
-/obj/item/anobattery
+obj/item/anobattery
 	name = "Anomaly power battery"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anobattery0"
@@ -7,19 +7,19 @@
 	var/stored_charge = 0
 	var/effect_id = ""
 
-/obj/item/anobattery/Initialize(mapload)
+obj/item/anobattery/Initialize(mapload)
 	. = ..()
 	battery_effect = new
 
-/obj/item/anobattery/proc/UpdateSprite()
+obj/item/anobattery/proc/UpdateSprite()
 	var/p = (stored_charge/capacity)*100
 	p = min(p, 100)
 	icon_state = "anobattery[round(p,25)]"
 
-/obj/item/anobattery/proc/use_power(var/amount)
+obj/item/anobattery/proc/use_power(var/amount)
 	stored_charge = max(0, stored_charge - amount)
 
-/obj/item/anodevice
+obj/item/anodevice
 	name = "Anomaly power utilizer"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anodev"
@@ -33,11 +33,11 @@
 	var/turf/archived_loc
 	var/energy_consumed_on_touch = 100
 
-/obj/item/anodevice/Initialize(mapload)
+obj/item/anodevice/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/anodevice/attackby(var/obj/I as obj, var/mob/user as mob)
+obj/item/anodevice/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/anobattery))
 		if(!inserted_battery)
 			if(!user.attempt_insert_item_for_installation(I, src))
@@ -48,22 +48,22 @@
 	else
 		return ..()
 
-/obj/item/anodevice/attack_self(mob/user)
+obj/item/anodevice/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	return ui_interact(user)
 
-/obj/item/anodevice/ui_state(mob/user, datum/tgui_module/module)
+obj/item/anodevice/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/anodevice/ui_interact(mob/user, datum/tgui/ui)
+obj/item/anodevice/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchHandheldPowerUtilizer", name)
 		ui.open()
 
-/obj/item/anodevice/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/anodevice/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["inserted_battery"] = inserted_battery
@@ -85,7 +85,7 @@
 
 	return data
 
-/obj/item/anodevice/ui_act(action, list/params, datum/tgui/ui)
+obj/item/anodevice/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -120,7 +120,7 @@
 			shutdown_emission()
 			return TRUE
 
-/obj/item/anodevice/process(delta_time)
+obj/item/anodevice/process(delta_time)
 	if(activated)
 		if(inserted_battery && inserted_battery.battery_effect && (inserted_battery.stored_charge > 0) )
 			//make sure the effect is active
@@ -182,13 +182,13 @@
 			shutdown_emission()
 		last_process = world.time
 
-/obj/item/anodevice/proc/shutdown_emission()
+obj/item/anodevice/proc/shutdown_emission()
 	if(activated)
 		activated = FALSE
 		if(inserted_battery?.battery_effect?.activated)
 			inserted_battery.battery_effect.ToggleActivate(1)
 
-/obj/item/anodevice/proc/UpdateSprite()
+obj/item/anodevice/proc/UpdateSprite()
 	if(!inserted_battery)
 		icon_state = "anodev"
 		return
@@ -196,11 +196,11 @@
 	p = min(p, 100)
 	icon_state = "anodev[round(p,25)]"
 
-/obj/item/anodevice/Destroy()
+obj/item/anodevice/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/anodevice/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/anodevice/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE

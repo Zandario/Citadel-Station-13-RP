@@ -1,4 +1,4 @@
-/datum/power/changeling/blind_sting
+datum/power/changeling/blind_sting
 	name = "Blind Sting"
 	desc = "We silently sting a human, completely blinding them for a short time."
 	enhancedtext = "Duration is extended."
@@ -7,7 +7,7 @@
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_blind_sting
 
-/mob/proc/changeling_blind_sting()
+mob/proc/changeling_blind_sting()
 	set category = "Changeling"
 	set name = "Blind sting (20)"
 	set desc="Sting target"

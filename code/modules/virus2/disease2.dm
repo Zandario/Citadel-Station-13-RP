@@ -1,4 +1,4 @@
-/datum/disease2/disease
+datum/disease2/disease
 	var/infectionchance = 70
 	var/speed = 1
 	var/spreadtype = "Blood" // Can also be "Contact" or "Airborne"
@@ -13,11 +13,11 @@
 	var/list/affected_species = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_SKRELL,SPECIES_TAJ)
 	var/resistance = 10 // % chance a disease will resist cure, up to 100
 
-/datum/disease2/disease/New()
+datum/disease2/disease/New()
 	uniqueID = rand(0,10000)
 	..()
 
-/datum/disease2/disease/proc/makerandom(var/severity=1)
+datum/disease2/disease/proc/makerandom(var/severity=1)
 	var/list/excludetypes = list()
 	for(var/i=1 ; i <= max_stage ; i++ )
 		var/datum/disease2/effectholder/holder = new /datum/disease2/effectholder
@@ -45,7 +45,7 @@
 	affected_species = get_infectable_species()
 
 // todo: this is not great, viruses should check on infect attempt if possible with good performance
-/proc/get_infectable_species()
+proc/get_infectable_species()
 	var/list/meat = list()
 	var/list/res = list()
 
@@ -65,7 +65,7 @@
 				res |= picked.primitive_form
 	return res
 
-/datum/disease2/disease/proc/activate(var/mob/living/carbon/mob)
+datum/disease2/disease/proc/activate(var/mob/living/carbon/mob)
 	if(dead)
 		cure(mob)
 		return
@@ -136,19 +136,19 @@
 	mob.bodytemperature = max(mob.bodytemperature, min(310+5*min(stage,max_stage) ,mob.bodytemperature+5*min(stage,max_stage)))
 	clicks+=speed
 
-/datum/disease2/disease/proc/cure(var/mob/living/carbon/mob)
+datum/disease2/disease/proc/cure(var/mob/living/carbon/mob)
 	for(var/datum/disease2/effectholder/e in effects)
 		e.effect.deactivate(mob)
 	mob.virus2.Remove("[uniqueID]")
 	mob.update_hud_med_status()
 
-/datum/disease2/disease/proc/minormutate()
+datum/disease2/disease/proc/minormutate()
 	//uniqueID = rand(0,10000)
 	var/datum/disease2/effectholder/holder = pick(effects)
 	holder.minormutate()
 	//infectionchance = min(50,infectionchance + rand(0,10))
 
-/datum/disease2/disease/proc/majormutate()
+datum/disease2/disease/proc/majormutate()
 	uniqueID = rand(0,10000)
 	var/datum/disease2/effectholder/holder = pick(effects)
 	var/list/exclude = list()
@@ -166,7 +166,7 @@
 		if(resistance > 90 && resistance < 100)
 			resistance = 90
 
-/datum/disease2/disease/proc/getcopy()
+datum/disease2/disease/proc/getcopy()
 	var/datum/disease2/disease/disease = new /datum/disease2/disease
 	disease.infectionchance = infectionchance
 	disease.spreadtype = spreadtype
@@ -186,7 +186,7 @@
 		disease.effects += newholder
 	return disease
 
-/datum/disease2/disease/proc/issame(var/datum/disease2/disease/disease)
+datum/disease2/disease/proc/issame(var/datum/disease2/disease/disease)
 	var/list/types = list()
 	var/list/types2 = list()
 	for(var/datum/disease2/effectholder/d in effects)
@@ -204,7 +204,7 @@
 		equal = 0
 	return equal
 
-/proc/virus_copylist(var/list/datum/disease2/disease/viruses)
+proc/virus_copylist(var/list/datum/disease2/disease/viruses)
 	var/list/res = list()
 	for (var/ID in viruses)
 		var/datum/disease2/disease/V = viruses[ID]
@@ -214,19 +214,19 @@
 
 var/global/list/virusDB = list()
 
-/datum/disease2/disease/proc/name()
+datum/disease2/disease/proc/name()
 	.= "stamm #[add_zero("[uniqueID]", 4)]"
 	if ("[uniqueID]" in virusDB)
 		var/datum/data/record/V = virusDB["[uniqueID]"]
 		.= V.fields["name"]
 
-/datum/disease2/disease/proc/get_basic_info()
+datum/disease2/disease/proc/get_basic_info()
 	var/t = ""
 	for(var/datum/disease2/effectholder/E in effects)
 		t += ", [E.effect.name]"
 	return "[name()] ([copytext(t,3)])"
 
-/datum/disease2/disease/proc/get_info()
+datum/disease2/disease/proc/get_info()
 	var/r = {"
 	<small>Analysis determined the existence of a GNAv2-based viral lifeform.</small><br>
 	<u>Designation:</u> [name()]<br>
@@ -245,7 +245,7 @@ var/global/list/virusDB = list()
 
 	return r
 
-/datum/disease2/disease/proc/get_tgui_info()
+datum/disease2/disease/proc/get_tgui_info()
 	. = list(
 		"name" = name(),
 		"spreadtype" = spreadtype,
@@ -267,7 +267,7 @@ var/global/list/virusDB = list()
 	.["symptoms"] = symptoms
 
 
-/datum/disease2/disease/proc/addToDB()
+datum/disease2/disease/proc/addToDB()
 	if ("[uniqueID]" in virusDB)
 		return 0
 	var/datum/data/record/v = new()
@@ -281,7 +281,7 @@ var/global/list/virusDB = list()
 	virusDB["[uniqueID]"] = v
 	return 1
 
-/proc/virus2_lesser_infection()
+proc/virus2_lesser_infection()
 	var/list/candidates = list()	//list of candidate keys
 
 	for(var/mob/living/carbon/human/G in GLOB.player_list)
@@ -294,7 +294,7 @@ var/global/list/virusDB = list()
 
 	infect_mob_random_lesser(candidates[1])
 
-/proc/virus2_greater_infection()
+proc/virus2_greater_infection()
 	var/list/candidates = list()	//list of candidate keys
 
 	for(var/mob/living/carbon/human/G in GLOB.player_list)
@@ -306,14 +306,14 @@ var/global/list/virusDB = list()
 
 	infect_mob_random_greater(candidates[1])
 
-/proc/virology_letterhead(var/report_name)
+proc/virology_letterhead(var/report_name)
 	return {"
 		<center><h1><b>[report_name]</b></h1></center>
 		<center><small><i>[station_name()] Virology Lab</i></small></center>
 		<hr>
 "}
 
-/datum/disease2/disease/proc/can_add_symptom(type)
+datum/disease2/disease/proc/can_add_symptom(type)
 	for(var/datum/disease2/effectholder/H in effects)
 		if(H.effect.type == type)
 			return 0

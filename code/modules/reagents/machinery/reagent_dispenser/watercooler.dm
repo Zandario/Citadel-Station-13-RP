@@ -1,4 +1,4 @@
-/obj/structure/reagent_dispensers/water_cooler
+obj/structure/reagent_dispensers/water_cooler
 	name = "Water-Cooler"
 	desc = "A machine that dispenses water to drink."
 	amount_per_transfer_from_this = 5
@@ -10,23 +10,23 @@
 	var/cups = 0
 	var/cupholder = 0
 
-/obj/structure/reagent_dispensers/water_cooler/full
+obj/structure/reagent_dispensers/water_cooler/full
 	bottle = 1
 	cupholder = 1
 	cups = 10
 
-/obj/structure/reagent_dispensers/water_cooler/Initialize(mapload)
+obj/structure/reagent_dispensers/water_cooler/Initialize(mapload)
 	. = ..()
 	if(bottle)
 		reagents.add_reagent(/datum/reagent/water, 120)
 	update_icon()
 
-/obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
+obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	. = ..()
 	if(cupholder)
 		. += "<span class='notice'>There are [cups] cups in the cup dispenser.</span>"
 
-/obj/structure/reagent_dispensers/water_cooler/verb/rotate_clockwise()
+obj/structure/reagent_dispensers/water_cooler/verb/rotate_clockwise()
 	set name = "Rotate Cooler Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -37,7 +37,7 @@
 	setDir(turn(dir, 270))
 	return 1
 
-/obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
+obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_wrench())
 		src.add_fingerprint(user)
 		if(bottle)
@@ -122,14 +122,14 @@
 			to_chat(user, "<span class='warning'>There is already a cup dispenser there!</span>")
 		return
 
-/obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/user)
+obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/user)
 	if(cups)
 		new /obj/item/reagent_containers/food/drinks/sillycup(src.loc)
 		cups--
 		flick("[icon_state]-vend", src)
 		return
 
-/obj/structure/reagent_dispensers/water_cooler/update_icon()
+obj/structure/reagent_dispensers/water_cooler/update_icon()
 	icon_state = "water_cooler"
 	cut_overlays()
 	var/image/I

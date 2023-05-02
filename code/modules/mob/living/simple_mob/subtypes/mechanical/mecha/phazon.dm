@@ -1,6 +1,6 @@
 // Phazons are weird.
 
-/datum/category_item/catalogue/technology/phazon
+datum/category_item/catalogue/technology/phazon
 	name = "Exosuit - Phazon"
 	desc = "The Phazon exosuit is the result of a heavily classified NanoTrasen research initiative. \
 	Designed to serve as a reconnaissance, infiltration, and flanking mecha, the Phazon possesses an \
@@ -12,7 +12,7 @@
 	remain closely guarded corporate secrets."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/phazon
+mob/living/simple_mob/mechanical/mecha/combat/phazon
 	name = "phazon"
 	desc = "An extremly enigmatic exosuit."
 	icon_state = "phazon"
@@ -32,4 +32,3 @@
 				"rad"		= 100
 				)
 	projectiletype = /obj/projectile/energy/declone
-

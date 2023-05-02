@@ -1,4 +1,4 @@
-/datum/game_mode/mercwiz
+datum/game_mode/mercwiz
 	name = "Mercenaries & Technomancer"
 	round_description = "A mercenary team and a wizard have invaded the station!"
 	extended_round_description = "Mercenaries and wizard spawn during this round."

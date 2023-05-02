@@ -1,2 +1,2 @@
-/datum/map_template/shuttle/overmap/generic
+datum/map_template/shuttle/overmap/generic
 	prefix = "maps/templates/shuttles/overmaps/generic/"

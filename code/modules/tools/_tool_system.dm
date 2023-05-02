@@ -48,11 +48,11 @@
  * - hint - forced hint - used in automation
  * - reachability_check - a callback used for reachability checks. if none, defaults to mob.Reachability when in clickcode, can always reach otherwise.
  */
-/atom/proc/tool_interaction(obj/item/I, mob/user, clickchain_flags, function, hint, datum/callback/reachability_check)
+atom/proc/tool_interaction(obj/item/I, mob/user, clickchain_flags, function, hint, datum/callback/reachability_check)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return _tool_interaction_entrypoint(I, user, clickchain_flags, function, hint, reachability_check)
 
-/atom/proc/_tool_interaction_entrypoint(obj/item/provided_item, mob/user, clickchain_flags, function, hint, datum/callback/reachability_check)
+atom/proc/_tool_interaction_entrypoint(obj/item/provided_item, mob/user, clickchain_flags, function, hint, datum/callback/reachability_check)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(isnull(reachability_check))
@@ -153,7 +153,7 @@
 		return NONE
 
 //! Primary Tool API
-/atom/proc/_tool_act(obj/item/I, mob/user, function, flags, hint)
+atom/proc/_tool_act(obj/item/I, mob/user, function, flags, hint)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT, I, user, function, flags, hint)
@@ -177,7 +177,7 @@
  * - flags - tool operation flags
  * - hint - the operation hint, if the calling system is the dynamic tool system.
  */
-/atom/proc/tool_act(obj/item/I, mob/user, function, flags, hint)
+atom/proc/tool_act(obj/item/I, mob/user, function, flags, hint)
 	switch(function)
 		if(TOOL_CROWBAR)
 			return crowbar_act(I, user, flags, hint)? CLICKCHAIN_DO_NOT_PROPAGATE : NONE
@@ -207,7 +207,7 @@
  * - cost - optional; cost multiplier to the default cost of 1 per second.
  * - usage - optional; usage flags for tool speed/quality checks.
  */
-/atom/proc/use_tool_standard(function, obj/item/I, mob/user, flags, delay, cost, usage)
+atom/proc/use_tool_standard(function, obj/item/I, mob/user, flags, delay, cost, usage)
 	return use_tool(function, I, user, flags, delay, cost, usage)
 
 /**
@@ -223,7 +223,7 @@
  * - usage - optional; usage flags for tool speed/quality checks.
  * - volume - optional; volume override
  */
-/atom/proc/use_tool(function, obj/item/I, mob/user, flags, delay, cost = 1, usage, volume)
+atom/proc/use_tool(function, obj/item/I, mob/user, flags, delay, cost = 1, usage, volume)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	var/quality = I.tool_check(function, user, src, flags, usage)
 	if(!quality)
@@ -261,11 +261,11 @@
  * - I - the tool used, if any
  * - user - the user, if any
  */
-/atom/proc/dynamic_tool_functions(obj/item/I, mob/user)
+atom/proc/dynamic_tool_functions(obj/item/I, mob/user)
 	// todo: signal
 	return list()
 
-/atom/proc/_dynamic_tool_act(obj/item/I, mob/user, function, flags, hint)
+atom/proc/_dynamic_tool_act(obj/item/I, mob/user, function, flags, hint)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	flags |= TOOL_OP_DYNAMIC
@@ -285,7 +285,7 @@
  * - flags - tool operation flags
  * - hint - the hint of what operation to do
  */
-/atom/proc/dynamic_tool_act(obj/item/I, mob/user, function, flags, hint)
+atom/proc/dynamic_tool_act(obj/item/I, mob/user, function, flags, hint)
 	return tool_act(I, user, function, flags, hint)
 
 /**
@@ -297,15 +297,15 @@
  * - function - the tool behaviour
  * - hint - the context provided when you want to implement multiple actions for a tool
  */
-/atom/proc/dynamic_tool_image(function, hint)
+atom/proc/dynamic_tool_image(function, hint)
 	return dyntool_image_neutral(function)
 
 //! Dynamic Tools - default images
-/proc/dyntool_image_neutral(function)
+proc/dyntool_image_neutral(function)
 	return image('icons/screen/radial/tools/generic.dmi', icon_state = _dyntool_image_states[function] || "unknown")
 
-/proc/dyntool_image_forward(function)
+proc/dyntool_image_forward(function)
 	return image('icons/screen/radial/tools/generic.dmi', icon_state = "[_dyntool_image_states[function] || "unknown"]_up")
 
-/proc/dyntool_image_backward(function)
+proc/dyntool_image_backward(function)
 	return image('icons/screen/radial/tools/generic.dmi', icon_state = "[_dyntool_image_states[function] || "unknown"]_down")

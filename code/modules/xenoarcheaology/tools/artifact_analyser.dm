@@ -1,4 +1,4 @@
-/obj/machinery/artifact_analyser
+obj/machinery/artifact_analyser
 	name = "Anomaly Analyser"
 	desc = "Studies the emissions of anomalous materials to discover their uses."
 	icon = 'icons/obj/virology.dmi'
@@ -14,23 +14,23 @@
 	var/obj/scanned_object
 	var/report_num = 0
 
-/obj/machinery/artifact_analyser/Initialize(mapload)
+obj/machinery/artifact_analyser/Initialize(mapload)
 	. = ..()
 	reconnect_scanner()
 
-/obj/machinery/artifact_analyser/proc/reconnect_scanner()
+obj/machinery/artifact_analyser/proc/reconnect_scanner()
 	//connect to a nearby scanner pad
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
 	if(!owned_scanner)
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
-/obj/machinery/artifact_analyser/attack_hand(mob/user, list/params)
+obj/machinery/artifact_analyser/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	if(machine_stat & (NOPOWER|BROKEN) || get_dist(src, user) > 1)
 		return
 	ui_interact(user)
 
-/obj/machinery/artifact_analyser/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/artifact_analyser/ui_interact(mob/user, datum/tgui/ui)
 	if(!owned_scanner)
 		reconnect_scanner()
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -38,7 +38,7 @@
 		ui = new(user, src, "XenoarchArtifactAnalyzer", name)
 		ui.open()
 
-/obj/machinery/artifact_analyser/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/artifact_analyser/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["owned_scanner"] = owned_scanner
@@ -46,7 +46,7 @@
 
 	return data
 
-/obj/machinery/artifact_analyser/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/artifact_analyser/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -85,7 +85,7 @@
 					atom_say("Unable to isolate scan target.")
 			return TRUE
 
-/obj/machinery/artifact_analyser/process(delta_time)
+obj/machinery/artifact_analyser/process(delta_time)
 	if(scan_in_progress && world.time > scan_completion_time)
 		scan_in_progress = FALSE
 		updateDialog()
@@ -116,7 +116,7 @@
 			scanned_object = null
 
 //hardcoded responses, oh well
-/obj/machinery/artifact_analyser/proc/get_scan_info(var/obj/scanned_obj)
+obj/machinery/artifact_analyser/proc/get_scan_info(var/obj/scanned_obj)
 	switch(scanned_obj.type)
 		if(/obj/machinery/auto_cloner)
 			return "Automated cloning pod - appears to rely on an artificial ecosystem formed by semi-organic nanomachines and the contained liquid.<br>The liquid resembles protoplasmic residue supportive of unicellular organism developmental conditions.<br>The structure is composed of a titanium alloy."

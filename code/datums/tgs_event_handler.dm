@@ -1,7 +1,7 @@
-/datum/tgs_event_handler/impl
+datum/tgs_event_handler/impl
 	var/datum/timedevent/reattach_timer
 
-/datum/tgs_event_handler/impl/HandleEvent(event_code, ...)
+datum/tgs_event_handler/impl/HandleEvent(event_code, ...)
 	switch(event_code)
 		if(TGS_EVENT_REBOOT_MODE_CHANGE)
 			var/list/reboot_mode_lookup = list ("[TGS_REBOOT_MODE_NORMAL]" = "be normal", "[TGS_REBOOT_MODE_SHUTDOWN]" = "shutdown the server", "[TGS_REBOOT_MODE_RESTART]" = "hard restart the server")
@@ -35,5 +35,5 @@
 				deltimer(reattach_timer)
 				reattach_timer = null
 
-/datum/tgs_event_handler/impl/proc/LateOnReattach()
+datum/tgs_event_handler/impl/proc/LateOnReattach()
 	message_admins("Warning: TGS hasn't notified us of it coming back for a full minute! Is there a problem?")

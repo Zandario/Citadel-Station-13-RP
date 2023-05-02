@@ -1,7 +1,7 @@
 // TODO: Refactor do_mob, add actionspeed support to do_mob, do_after, do_self.
 // (or don't for actionspeed, why are we checking it in the proc anyways...)
 
-/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE)
+proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE)
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
@@ -68,7 +68,7 @@
  * * max_distance - if not null, the user is required to be get_dist() <= max_distance from target.
  * * additional_checks - a callback that allows for custom checks. this is invoked with our args directly, allowing us to modify delay.
  */
-/proc/do_after(mob/user, delay, atom/target, flags, mobility_flags = MOBILITY_CAN_USE, max_distance, datum/callback/additional_checks)
+proc/do_after(mob/user, delay, atom/target, flags, mobility_flags = MOBILITY_CAN_USE, max_distance, datum/callback/additional_checks)
 	if(isnull(user))
 		return FALSE
 	if(!delay)
@@ -185,7 +185,7 @@
  * * mobility_flags - required mobility flags
  * * additional_checks - a callback that allows for custom checks. this is invoked with our args directly, allowing us to modify delay.
  */
-/proc/do_self(mob/user, delay, flags, mobility_flags = MOBILITY_CAN_USE, datum/callback/additional_checks)
+proc/do_self(mob/user, delay, flags, mobility_flags = MOBILITY_CAN_USE, datum/callback/additional_checks)
 	return do_after(
 		user,
 		delay,

@@ -1,4 +1,4 @@
-/datum/technomancer/spell/shield
+datum/technomancer/spell/shield
 	name = "Shield"
 	desc = "Emits a protective shield fron your hand in front of you, which will protect you from almost anything able to harm \
 	you, so long as you can power it.  Stronger attacks blocked cost more energy to sustain.  \
@@ -9,7 +9,7 @@
 	ability_icon_state = "tech_shield"
 	category = DEFENSIVE_SPELLS
 
-/obj/item/spell/shield
+obj/item/spell/shield
 	name = "\proper energy shield"
 	icon_state = "shield"
 	desc = "A very protective combat shield that'll stop almost anything from hitting you, at least from the front."
@@ -18,17 +18,17 @@
 	var/damage_to_energy_multiplier = 30.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 600 energy cost
 	var/datum/effect_system/spark_spread/spark_system = null
 
-/obj/item/spell/shield/Initialize(mapload)
+obj/item/spell/shield/Initialize(mapload)
 	. = ..()
 	set_light(3, 2, l_color = "#006AFF")
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 
-/obj/item/spell/shield/Destroy()
+obj/item/spell/shield/Destroy()
 	spark_system = null
 	return ..()
 
-/obj/item/spell/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+obj/item/spell/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 

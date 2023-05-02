@@ -4,7 +4,7 @@
 //These items are pouches and cases made to be kept in belts or pockets to quickly draw objects from
 //Largely inspired by the vest pouches on Colonial Marines
 
-/obj/item/storage/quickdraw
+obj/item/storage/quickdraw
 	name = "quickdraw"
 	desc = "This object should not appear"
 	icon = 'icons/obj/storage.dmi'
@@ -14,7 +14,7 @@
 	//When set to 1, a click while it is equipped will instead move the first item inside it to your hand
 	var/quickmode = 0
 
-/obj/item/storage/quickdraw/attack_hand(mob/user, list/params)
+obj/item/storage/quickdraw/attack_hand(mob/user, list/params)
 	if(src.loc == user) //If they aren't holding us, we do nothing special
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -33,7 +33,7 @@
 	..() //Nothing special happened, go call the other proc
 
 
-/obj/item/storage/quickdraw/verb/toggle_quickdraw()
+obj/item/storage/quickdraw/verb/toggle_quickdraw()
 	set name = "Switch Quickdraw Mode"
 	set category = "Object"
 
@@ -44,7 +44,7 @@
 		if(0)
 			to_chat(usr, "[src] now opens as a container.")
 
-/obj/item/storage/quickdraw/AltClick(mob/user)
+obj/item/storage/quickdraw/AltClick(mob/user)
 	..()
 	if(src.loc == user) //Are they carrying us?
 		toggle_quickdraw()
@@ -56,7 +56,7 @@
 //       Syringe case
 // -----------------------------
 
-/obj/item/storage/quickdraw/syringe_case
+obj/item/storage/quickdraw/syringe_case
 	name = "syringe case"
 	desc = "A small case for safely carrying sharps around."
 	icon_state = "syringe_case"

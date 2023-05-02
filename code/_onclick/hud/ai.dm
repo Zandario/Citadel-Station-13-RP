@@ -1,4 +1,4 @@
-/datum/hud/proc/ai_hud()
+datum/hud/proc/ai_hud()
 	adding = list()
 	other = list()
 

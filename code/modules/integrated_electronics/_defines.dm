@@ -68,6 +68,6 @@
 var/list/all_integrated_circuits = list()
 
 //Mostly deprecated, currently only used for circuit bags in integrated_electronics\core\tools.dm
-/proc/initialize_integrated_circuits_list()
+proc/initialize_integrated_circuits_list()
 	for(var/thing in typesof(/obj/item/integrated_circuit))
 		all_integrated_circuits += new thing()

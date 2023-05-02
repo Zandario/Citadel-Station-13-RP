@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(turbolifts)
 	wait = 10
 	var/static/list/moving_lifts = list()
 
-/datum/controller/subsystem/turbolifts/fire(resumed)
+datum/controller/subsystem/turbolifts/fire(resumed)
 	for(var/liftref in moving_lifts)
 		if(world.time < moving_lifts[liftref])
 			continue
@@ -24,5 +24,5 @@ SUBSYSTEM_DEF(turbolifts)
 				lift_is_moving(lift,floor_delay)
 			lift.busy = 0
 
-/datum/controller/subsystem/turbolifts/proc/lift_is_moving(var/datum/turbolift/lift,var/floor_delay)
+datum/controller/subsystem/turbolifts/proc/lift_is_moving(var/datum/turbolift/lift,var/floor_delay)
 	moving_lifts["\ref[lift]"] = world.time + floor_delay

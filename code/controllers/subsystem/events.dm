@@ -16,13 +16,13 @@ SUBSYSTEM_DEF(events)
 
 	var/datum/event_meta/new_event = new
 
-/datum/controller/subsystem/events/PreInit(recovering)
+datum/controller/subsystem/events/PreInit(recovering)
 	// unfortunately, character setup server startup hooks fire before /Initialize so :/
 	// SScharactersetup but not shit when :)
 	InitializeHolidays(force = TRUE)
 	return ..()
 
-/datum/controller/subsystem/events/Initialize()
+datum/controller/subsystem/events/Initialize()
 	SSticker.OnRoundstart(CALLBACK(src, .proc/HolidayRoundstart))
 	allEvents = typesof(/datum/event) - /datum/event
 	event_containers = list(
@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(events)
 	InitializeHolidays()
 	return ..()
 
-/datum/controller/subsystem/events/fire(resumed)
+datum/controller/subsystem/events/fire(resumed)
 	if (!resumed)
 		src.currentrun = active_events.Copy()
 
@@ -54,16 +54,16 @@ SUBSYSTEM_DEF(events)
 		var/datum/event_container/EC = event_containers[i]
 		EC.process(dt)
 
-/datum/controller/subsystem/events/stat_entry()
+datum/controller/subsystem/events/stat_entry()
 	return ..() + " E:[active_events.len]"
 
-/datum/controller/subsystem/events/Recover()
+datum/controller/subsystem/events/Recover()
 	if(SSevents.active_events)
 		active_events |= SSevents.active_events
 	if(SSevents.finished_events)
 		finished_events |= SSevents.finished_events
 
-/datum/controller/subsystem/events/proc/event_complete(var/datum/event/E)
+datum/controller/subsystem/events/proc/event_complete(var/datum/event/E)
 	active_events -= E
 
 	if(!E.event_meta || !E.severity)	// datum/event is used here and there for random reasons, maintaining "backwards compatibility"
@@ -80,11 +80,11 @@ SUBSYSTEM_DEF(events)
 
 	log_debug(SPAN_DEBUG("Event '[EM.name]' has completed at [worldtime2stationtime(world.time)]."))
 
-/datum/controller/subsystem/events/proc/delay_events(var/severity, var/delay)
+datum/controller/subsystem/events/proc/delay_events(var/severity, var/delay)
 	var/datum/event_container/EC = event_containers[severity]
 	EC.next_event_time += delay
 
-/datum/controller/subsystem/events/proc/RoundEnd()
+datum/controller/subsystem/events/proc/RoundEnd()
 	if(!report_at_round_end)
 		return
 
@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(events)
 
 
 //sets up the holidays and holidays list
-/datum/controller/subsystem/events/proc/InitializeHolidays(force = FALSE)
+datum/controller/subsystem/events/proc/InitializeHolidays(force = FALSE)
 	if(holidays)
 		QDEL_LIST_ASSOC_VAL(holidays)
 	holidays = list()
@@ -151,10 +151,10 @@ SUBSYSTEM_DEF(events)
 	// set_station_name(new_station_name())
 	// world.update_status()
 
-/datum/controller/subsystem/events/proc/HolidayRoundstart()
+datum/controller/subsystem/events/proc/HolidayRoundstart()
 	for(var/name in holidays)
 		var/datum/holiday/holiday = holidays[name]
 		holiday.OnRoundstart()
 
-/proc/IsHoliday(name)
+proc/IsHoliday(name)
 	return SSevents.holidays[name]? TRUE : FALSE

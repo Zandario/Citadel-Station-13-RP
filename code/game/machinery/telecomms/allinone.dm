@@ -4,7 +4,7 @@
 	NOTE: This AIO device listens on *every* zlevel (it does not even check)
 */
 
-/obj/machinery/telecomms/allinone
+obj/machinery/telecomms/allinone
 	name = "Telecommunications Mainframe"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "allinone"
@@ -20,12 +20,12 @@
 
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/allinone/proc/link_radio(var/obj/item/radio/R)
+obj/machinery/telecomms/allinone/proc/link_radio(var/obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
 
-/obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
+obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
 
 	// Has to be on to receive messages
 	if(!on)
@@ -97,11 +97,11 @@
 		)
 
 //Antag version with unlimited range (doesn't even check) and uses no power, to enable antag comms to work anywhere.
-/obj/machinery/telecomms/allinone/antag
+obj/machinery/telecomms/allinone/antag
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 
-/obj/machinery/telecomms/allinone/antag/receive_signal(datum/signal/signal)
+obj/machinery/telecomms/allinone/antag/receive_signal(datum/signal/signal)
 	if(!on) // has to be on to receive messages
 		return
 
@@ -153,11 +153,11 @@
 							  signal.data["verb"], signal.data["language"], forced_radios)
 
 //ERT version with unlimited range (doesn't even check) and uses no power, to enable ert comms to work anywhere.
-/obj/machinery/telecomms/allinone/ert
+obj/machinery/telecomms/allinone/ert
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 
-/obj/machinery/telecomms/allinone/ert/receive_signal(datum/signal/signal)
+obj/machinery/telecomms/allinone/ert/receive_signal(datum/signal/signal)
 	if(!on) // has to be on to receive messages
 		return
 

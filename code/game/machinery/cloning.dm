@@ -4,7 +4,7 @@
 //Potential replacement for genetics revives or something I dunno (?)
 
 //Find a dead mob with a brain and client.
-/proc/find_dead_player(var/find_key)
+proc/find_dead_player(var/find_key)
 	if(isnull(find_key))
 		return
 
@@ -24,7 +24,7 @@
 	return selected
 
 #define CLONE_BIOMASS 30
-/obj/machinery/clonepod
+obj/machinery/clonepod
 	name = "cloning pod"
 	desc = "An electronically-lockable pod for growing organic tissue."
 	density = TRUE
@@ -51,16 +51,16 @@
 	/// How many beakers can the machine hold?
 	var/container_limit = 3
 
-/obj/machinery/clonepod/Initialize(mapload)
+obj/machinery/clonepod/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/machinery/clonepod/attack_ai(mob/user)
+obj/machinery/clonepod/attack_ai(mob/user)
 
 	add_hiddenprint(user)
 	return attack_hand(user)
 
-/obj/machinery/clonepod/attack_hand(mob/user, list/params)
+obj/machinery/clonepod/attack_hand(mob/user, list/params)
 	if((isnull(occupant)) || (machine_stat & NOPOWER))
 		return
 	if((!isnull(occupant)) && (occupant.stat != 2))
@@ -69,7 +69,7 @@
 	return
 
 /// Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(var/datum/dna2/record/R)
+obj/machinery/clonepod/proc/growclone(var/datum/dna2/record/R)
 	if(mess || attempting)
 		return FALSE
 	var/datum/mind/clonemind = locate(R.mind)
@@ -171,7 +171,7 @@
 	return 1
 
 /// Grow clones to maturity then kick them out.  FREELOADERS
-/obj/machinery/clonepod/process(delta_time)
+obj/machinery/clonepod/process(delta_time)
 	if(machine_stat & NOPOWER) // Autoeject if power is lost
 		if(occupant)
 			locked = 0
@@ -221,7 +221,7 @@
 	return
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
-/obj/machinery/clonepod/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/clonepod/attackby(obj/item/W as obj, mob/user as mob)
 	if(isnull(occupant))
 		if(default_deconstruction_screwdriver(user, W))
 			return
@@ -274,7 +274,7 @@
 	else
 		..()
 
-/obj/machinery/clonepod/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/clonepod/emag_act(var/remaining_charges, var/mob/user)
 	if(isnull(occupant))
 		return
 	to_chat(user, "You force an emergency ejection.")
@@ -283,7 +283,7 @@
 	return 1
 
 /// Put messages in the connected computer's temp var for display.
-/obj/machinery/clonepod/proc/connected_message(var/message)
+obj/machinery/clonepod/proc/connected_message(var/message)
 	if((isnull(connected)) || (!istype(connected, /obj/machinery/computer/cloning)))
 		return FALSE
 	if(!message)
@@ -293,7 +293,7 @@
 	connected.updateUsrDialog()
 	return 1
 
-/obj/machinery/clonepod/RefreshParts()
+obj/machinery/clonepod/RefreshParts()
 	..()
 	var/rating = 0
 	for(var/obj/item/stock_parts/P in component_parts)
@@ -303,7 +303,7 @@
 	heal_level = rating * 10 - 20
 	heal_rate = round(rating / 4)
 
-/obj/machinery/clonepod/verb/eject()
+obj/machinery/clonepod/verb/eject()
 	set name = "Eject Cloner"
 	set category = "Object"
 	set src in oview(1)
@@ -314,7 +314,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/clonepod/proc/go_out()
+obj/machinery/clonepod/proc/go_out()
 	if(locked)
 		return
 
@@ -343,7 +343,7 @@
 	return
 
 // Returns the total amount of biomass reagent in all of the pod's stored containers
-/obj/machinery/clonepod/proc/get_biomass()
+obj/machinery/clonepod/proc/get_biomass()
 	var/biomass_count = 0
 	if(LAZYLEN(containers))
 		for(var/obj/item/reagent_containers/glass/G in containers)
@@ -354,7 +354,7 @@
 	return biomass_count
 
 // Removes [amount] biomass, spread across all containers. Doesn't have any check that you actually HAVE enough biomass, though.
-/obj/machinery/clonepod/proc/remove_biomass(var/amount = CLONE_BIOMASS)		//Just in case it doesn't get passed a new amount, assume one clone
+obj/machinery/clonepod/proc/remove_biomass(var/amount = CLONE_BIOMASS)		//Just in case it doesn't get passed a new amount, assume one clone
 	var/to_remove = 0	// Tracks how much biomass has been found so far
 	if(LAZYLEN(containers))
 		for(var/obj/item/reagent_containers/glass/G in containers)
@@ -375,7 +375,7 @@
 	return 0
 
 // Empties all of the beakers from the cloning pod, used to refill it
-/obj/machinery/clonepod/verb/empty_beakers()
+obj/machinery/clonepod/verb/empty_beakers()
 	set name = "Eject Beakers"
 	set category = "Object"
 	set src in oview(1)
@@ -389,7 +389,7 @@
 
 // Actually does all of the beaker dropping
 // Returns 1 if it succeeds, 0 if it fails. Added in case someone wants to add messages to the user.
-/obj/machinery/clonepod/proc/drop_beakers()
+obj/machinery/clonepod/proc/drop_beakers()
 	if(LAZYLEN(containers))
 		var/turf/T = get_turf(src)
 		if(T)
@@ -399,7 +399,7 @@
 		return	1
 	return 0
 
-/obj/machinery/clonepod/proc/malfunction()
+obj/machinery/clonepod/proc/malfunction()
 	if(occupant)
 		connected_message("Critical Error!")
 		mess = 1
@@ -409,18 +409,18 @@
 			qdel(occupant)
 	return
 
-/obj/machinery/clonepod/relaymove(mob/user as mob)
+obj/machinery/clonepod/relaymove(mob/user as mob)
 	if(user.stat)
 		return
 	go_out()
 	return
 
-/obj/machinery/clonepod/emp_act(severity)
+obj/machinery/clonepod/emp_act(severity)
 	if(prob(100/severity))
 		malfunction()
 	..()
 
-/obj/machinery/clonepod/legacy_ex_act(severity)
+obj/machinery/clonepod/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
@@ -445,7 +445,7 @@
 		else
 	return
 
-/obj/machinery/clonepod/update_icon()
+obj/machinery/clonepod/update_icon()
 	..()
 	icon_state = "pod_0"
 	if(occupant && !(machine_stat & NOPOWER))
@@ -454,17 +454,17 @@
 		icon_state = "pod_g"
 
 
-/obj/machinery/clonepod/full/Initialize(mapload, newdir)
+obj/machinery/clonepod/full/Initialize(mapload, newdir)
 	. = ..()
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)
 
 /// Health Tracker Implant
-/obj/item/implant/health
+obj/item/implant/health
 	name = "health implant"
 	var/healthstring = ""
 
-/obj/item/implant/health/proc/sensehealth()
+obj/item/implant/health/proc/sensehealth()
 	if(!implanted)
 		return "ERROR"
 	else
@@ -478,7 +478,7 @@
 ///Disk stuff.
 ///The return of data disks?? Just for transferring between genetics machine/cloning machine.
 ///TODO: Make the genetics machine accept them.
-/obj/item/disk/data
+obj/item/disk/data
 	name = "Cloning Data Disk"
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
@@ -487,15 +487,15 @@
 	var/datum/dna2/record/buf = null
 	var/read_only = 0 //Well,it's still a floppy disk
 
-/obj/item/disk/data/proc/initializeDisk()
+obj/item/disk/data/proc/initializeDisk()
 	buf = new
 	buf.dna=new
 
-/obj/item/disk/data/demo
+obj/item/disk/data/demo
 	name = "data disk - 'God Emperor of Mankind'"
 	read_only = 1
 
-/obj/item/disk/data/demo/New()
+obj/item/disk/data/demo/New()
 	initializeDisk()
 	buf.types=DNA2_BUF_UE|DNA2_BUF_UI
 	//data = "066000033000000000AF00330660FF4DB002690"
@@ -506,11 +506,11 @@
 	//buf.dna.UI=list(0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x000,0x000,0x000,0x000,0x161,0xFBD,0xDEF) // Farmer Jeff
 	buf.dna.UpdateUI()
 
-/obj/item/disk/data/monkey
+obj/item/disk/data/monkey
 	name = "data disk - 'Mr. Muggles'"
 	read_only = 1
 
-/obj/item/disk/data/monkey/New()
+obj/item/disk/data/monkey/New()
 	..()
 	initializeDisk()
 	buf.types=DNA2_BUF_SE
@@ -520,19 +520,19 @@
 	buf.dna.SE=new_SE
 	buf.dna.SetSEValueRange(DNABLOCK_MONKEY,0xDAC, 0xFFF)
 
-/obj/item/disk/data/Initialize(mapload)
+obj/item/disk/data/Initialize(mapload)
 	. = ..()
 	var/diskcolor = pick(0,1,2)
 	icon_state = "datadisk[diskcolor]"
 
-/obj/item/disk/data/attack_self(mob/user)
+obj/item/disk/data/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	read_only = !read_only
 	to_chat(user, "You flip the write-protect tab to [read_only ? "protected" : "unprotected"].")
 
-/obj/item/disk/data/examine(mob/user)
+obj/item/disk/data/examine(mob/user)
 	. = ..()
 	. += "<span class = 'notice'>The write-protect tab is set to [read_only ? "protected" : "unprotected"].</span>"
 
@@ -540,11 +540,11 @@
  *	Diskette Box
  */
 
-/obj/item/storage/box/disks
+obj/item/storage/box/disks
 	name = "Diskette Box"
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/disks/PopulateContents()
+obj/item/storage/box/disks/PopulateContents()
 	new /obj/item/disk/data(src)
 	new /obj/item/disk/data(src)
 	new /obj/item/disk/data(src)
@@ -557,7 +557,7 @@
  *	Manual -- A big ol' manual.
  */
 
-/obj/item/paper/Cloning
+obj/item/paper/Cloning
 	name = "H-87 Cloning Apparatus Manual"
 	info = {"<h4>Getting Started</h4>
 	Congratulations, your station has purchased the H-87 industrial cloning device!<br>

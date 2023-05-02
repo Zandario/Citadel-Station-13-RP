@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/weapon/whisperblade
+obj/item/mecha_parts/mecha_equipment/weapon/whisperblade
 	name = "whisper blade"
 	desc = "This blade's fractal edging allows it to slice through heavy armor plating like butter without a sound."
 	icon_state = "mecha_whisper"
@@ -9,7 +9,7 @@
 
 	equip_type = EQUIP_SPECIAL
 
-/obj/item/mecha_parts/mecha_equipment/weapon/whisperblade/action(atom/target)
+obj/item/mecha_parts/mecha_equipment/weapon/whisperblade/action(atom/target)
 	if(!action_checks(target)) return
 
 	if(istype(target,/mob/living))
@@ -42,7 +42,7 @@
 
 //Recode using the drill, in case I want that later?
 /*
-/obj/item/mecha_parts/mecha_equipment/weapon/whisperblade/proc/slice_mob(mob/living/target, mob/user)
+obj/item/mecha_parts/mecha_equipment/weapon/whisperblade/proc/slice_mob(mob/living/target, mob/user)
 	add_attack_logs(user, target, "attacked", "[name]", "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	var/blade_force = force	//Couldn't manage it otherwise.
 	if(ishuman(target))
@@ -63,7 +63,7 @@
 			return
 */
 
-/obj/item/mecha_parts/mecha_equipment/weapon/infernoblade
+obj/item/mecha_parts/mecha_equipment/weapon/infernoblade
 	name = "inferno blade"
 	desc = "This blade's edge has been replaced with a rapid-activation heating element designed for industrial cutting."
 	icon_state = "mecha_inferno"
@@ -74,7 +74,7 @@
 
 	equip_type = EQUIP_SPECIAL
 
-/obj/item/mecha_parts/mecha_equipment/weapon/infernoblade/action(atom/target)
+obj/item/mecha_parts/mecha_equipment/weapon/infernoblade/action(atom/target)
 	if(!action_checks(target)) return
 
 	if(istype(target,/mob/living))
@@ -109,19 +109,19 @@
 //Equipment
 
 //Reticent Linear Projector
-/obj/item/mecha_parts/mecha_equipment/combat_shield/reticent
+obj/item/mecha_parts/mecha_equipment/combat_shield/reticent
 	name = "linear combat shield"
 	desc = "A Silencium infused linear combat shield. Its faint presence cannot be easily detected."
 	icon_state = "shield_mime"
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/reticent/add_equip_overlay(obj/mecha/M)
+obj/item/mecha_parts/mecha_equipment/combat_shield/reticent/add_equip_overlay(obj/mecha/M)
 	if(!drone_overlay)
 		drone_overlay = new(src.icon, icon_state = "shield_droid_mime")
 	M.add_overlay(drone_overlay)
 	return
 
 //The shield effect.
-/obj/item/shield_projector/line/exosuit/reticent //Special Mime Exosuit design.
+obj/item/shield_projector/line/exosuit/reticent //Special Mime Exosuit design.
 	name = "faint linear shield projector"
 	offset_from_center = 1 //Snug against the exosuit.
 	max_shield_health = 250
@@ -130,13 +130,13 @@
 	low_color = "#FFC2C2"
 
 //Reticence Rectangular Projector
-/obj/item/mecha_parts/mecha_equipment/omni_shield/reticence
+obj/item/mecha_parts/mecha_equipment/omni_shield/reticence
 	name = "faint omni shield"
 	desc = "A perfected Silencium combat shield. The manner by which it distorts the air is the only way to tell it's there at all."
 	shield_type = /obj/item/shield_projector/rectangle/mecha/reticence
 
 //The shield effect.
-/obj/item/shield_projector/rectangle/mecha/reticence
+obj/item/shield_projector/rectangle/mecha/reticence
 	shield_health = 300
 	max_shield_health = 300
 	color = "#CFCFCF"

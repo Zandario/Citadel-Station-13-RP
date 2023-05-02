@@ -1,4 +1,4 @@
-/datum/holiday/halloween
+datum/holiday/halloween
 	name = HALLOWEEN
 	desc = "Originating from Earth, Halloween is also known as All Saints' Eve, and \
 					is celebrated by some by attending costume parties, trick-or-treating, carving faces in pumpkins, or visiting \

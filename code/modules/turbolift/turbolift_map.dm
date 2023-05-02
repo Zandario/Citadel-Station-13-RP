@@ -1,5 +1,5 @@
 // Map object.
-/obj/turbolift_map_holder
+obj/turbolift_map_holder
 	name = "turbolift map placeholder"
 	icon = 'icons/obj/turbolift_preview_3x3.dmi'
 	dir = SOUTH         // Direction of the holder determines the placement of the lift control panel and doors.
@@ -14,7 +14,7 @@
 
 	var/list/areas_to_use = list()
 
-/obj/turbolift_map_holder/Initialize(mapload)
+obj/turbolift_map_holder/Initialize(mapload)
 	. = ..()
 	// Create our system controller.
 	var/datum/turbolift/lift = new()

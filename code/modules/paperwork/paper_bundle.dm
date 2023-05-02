@@ -1,4 +1,4 @@
-/obj/item/paper_bundle
+obj/item/paper_bundle
 	name = "paper bundle"
 	gender = NEUTER
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -18,7 +18,7 @@
 	var/list/pages = list()  // Ordered list of pages as they are to be displayed. Can be different order than src.contents.
 
 
-/obj/item/paper_bundle/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/paper_bundle/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if (istype(W, /obj/item/paper/carbon))
@@ -56,7 +56,7 @@
 	attack_self(usr) //Update the browsed page.
 	add_fingerprint(usr)
 
-/obj/item/paper_bundle/proc/insert_sheet_at(mob/user, var/index, obj/item/sheet)
+obj/item/paper_bundle/proc/insert_sheet_at(mob/user, var/index, obj/item/sheet)
 	if(!user.attempt_insert_item_for_installation(sheet, src))
 		return
 	if(istype(sheet, /obj/item/paper))
@@ -69,7 +69,7 @@
 	if(index <= page)
 		page++
 
-/obj/item/paper_bundle/proc/burnpaper(obj/item/flame/P, mob/user)
+obj/item/paper_bundle/proc/burnpaper(obj/item/flame/P, mob/user)
 	var/class = "warning"
 
 	if(P.lit && !user.restrained())
@@ -93,7 +93,7 @@
 			else
 				to_chat(user, "<font color='red'>You must hold \the [P] steady to burn \the [src].</font>")
 
-/obj/item/paper_bundle/examine(mob/user)
+obj/item/paper_bundle/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		src.show_content(user)
@@ -101,7 +101,7 @@
 		. += "<span class='notice'>It is too far away.</span>"
 	return
 
-/obj/item/paper_bundle/proc/show_content(mob/user as mob)
+obj/item/paper_bundle/proc/show_content(mob/user as mob)
 	var/dat
 	var/obj/item/W = pages[page]
 
@@ -137,7 +137,7 @@
 		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
 		+ "</body></html>", "window=[name]")
 
-/obj/item/paper_bundle/attack_self(mob/user)
+obj/item/paper_bundle/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -146,7 +146,7 @@
 	update_icon()
 	return
 
-/obj/item/paper_bundle/Topic(href, href_list)
+obj/item/paper_bundle/Topic(href, href_list)
 	..()
 	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)))
 		usr.set_machine(src)
@@ -187,7 +187,7 @@
 	else
 		to_chat(usr, "<span class='notice'>You need to hold it in hands!</span>")
 
-/obj/item/paper_bundle/verb/rename()
+obj/item/paper_bundle/verb/rename()
 	set name = "Rename bundle"
 	set category = "Object"
 	set src in usr
@@ -199,7 +199,7 @@
 	return
 
 
-/obj/item/paper_bundle/verb/remove_all()
+obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
 	set category = "Object"
 	set src in usr
@@ -211,7 +211,7 @@
 		O.add_fingerprint(usr)
 	qdel(src)
 
-/obj/item/paper_bundle/update_icon()
+obj/item/paper_bundle/update_icon()
 	var/obj/item/paper/P = pages[1]
 	icon_state = P.icon_state
 	copy_overlays(P)

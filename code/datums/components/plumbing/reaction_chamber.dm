@@ -1,19 +1,19 @@
-/datum/component/plumbing/reaction_chamber
+datum/component/plumbing/reaction_chamber
 	demand_connects = WEST
 	supply_connects = EAST
 
-/datum/component/plumbing/reaction_chamber/Initialize(start=TRUE, _turn_connects=TRUE)
+datum/component/plumbing/reaction_chamber/Initialize(start=TRUE, _turn_connects=TRUE)
 	. = ..()
 	if(!istype(parent, /obj/machinery/plumbing/reaction_chamber))
 		return COMPONENT_INCOMPATIBLE
 
-/datum/component/plumbing/reaction_chamber/can_give(amount, reagent)
+datum/component/plumbing/reaction_chamber/can_give(amount, reagent)
 	. = ..()
 	var/obj/machinery/plumbing/reaction_chamber/RC = parent
 	if(!. || !RC.emptying)
 		return FALSE
 
-/datum/component/plumbing/reaction_chamber/send_request(dir)
+datum/component/plumbing/reaction_chamber/send_request(dir)
 	var/obj/machinery/plumbing/reaction_chamber/RC = parent
 	if(RC.emptying || !LAZYLEN(RC.required_reagents))
 		return
@@ -32,12 +32,8 @@
 	reagents.flags &= ~NO_REACT
 	RC.emptying = TRUE
 
-/datum/component/plumbing/reaction_chamber/can_give(amount, reagent, datum/ductnet/net)
+datum/component/plumbing/reaction_chamber/can_give(amount, reagent, datum/ductnet/net)
 	. = ..()
 	var/obj/machinery/plumbing/reaction_chamber/RC = parent
 	if(!. || !RC.emptying)
 		return FALSE
-
-
-
-

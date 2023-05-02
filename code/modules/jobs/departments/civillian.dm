@@ -1,4 +1,4 @@
-/datum/department/civilian
+datum/department/civilian
 	name = DEPARTMENT_CIVILIAN
 	short_name = "Civ"
 	color = "#A32800"

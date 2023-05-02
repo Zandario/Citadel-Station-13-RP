@@ -1,4 +1,4 @@
-/datum/controller/subsystem/characters
+datum/controller/subsystem/characters
 	/// species by id
 	var/list/species_lookup
 	/// species by type
@@ -17,7 +17,7 @@
 	/// default species path
 	var/default_species_path = /datum/species/human
 
-/datum/controller/subsystem/characters/proc/rebuild_species()
+datum/controller/subsystem/characters/proc/rebuild_species()
 	species_lookup = list()
 	species_paths = list()
 	species_names = list()
@@ -52,40 +52,40 @@
 	tim_sort(playable_species, /proc/cmp_auto_compare)
 	tim_sort(custom_species_bases, /proc/cmp_auto_compare)
 
-/datum/controller/subsystem/characters/proc/resolve_species(id_path_name)
+datum/controller/subsystem/characters/proc/resolve_species(id_path_name)
 	RETURN_TYPE(/datum/species)
 	if(ispath(id_path_name))
 		return species_paths[id_path_name]
 	return species_lookup[id_path_name] || species_names[id_path_name]
 
-/datum/controller/subsystem/characters/proc/resolve_species_id(id)
+datum/controller/subsystem/characters/proc/resolve_species_id(id)
 	RETURN_TYPE(/datum/species)
 	return species_lookup[id]
 
-/datum/controller/subsystem/characters/proc/resolve_species_path(path)
+datum/controller/subsystem/characters/proc/resolve_species_path(path)
 	RETURN_TYPE(/datum/species)
 	ASSERT(ispath(path, /datum/species))		// why are you passing in invalid paths?
 	return species_paths[path]
 
 // todo: deprecated kinda - most of these uses should just be id
-/datum/controller/subsystem/characters/proc/resolve_species_name(name)
+datum/controller/subsystem/characters/proc/resolve_species_name(name)
 	RETURN_TYPE(/datum/species)
 	return species_names[name]
 
-/datum/controller/subsystem/characters/proc/construct_species_id(id)
+datum/controller/subsystem/characters/proc/construct_species_id(id)
 	RETURN_TYPE(/datum/species)
 	var/datum/species/static_copy = resolve_species_id(id)
 	if(!static_copy)
 		return
 	return new static_copy.type
 
-/datum/controller/subsystem/characters/proc/construct_species_path(path)
+datum/controller/subsystem/characters/proc/construct_species_path(path)
 	RETURN_TYPE(/datum/species)
 	ASSERT(ispath(path, /datum/species))		// why are you passing in invalid paths?
 	return new path
 
 // todo: deprecated
-/datum/controller/subsystem/characters/proc/construct_species_name(name)
+datum/controller/subsystem/characters/proc/construct_species_name(name)
 	RETURN_TYPE(/datum/species)
 	var/datum/species/static_copy = resolve_species_name(name)
 	if(!static_copy)
@@ -97,13 +97,13 @@
  * returns all static species datums
  * DO NOT EVER MODIFY THESE.
  */
-/datum/controller/subsystem/characters/proc/all_static_species_meta()
+datum/controller/subsystem/characters/proc/all_static_species_meta()
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/path in species_paths)
 		. += species_paths[path]
 
-/datum/controller/subsystem/characters/proc/all_species_names()
+datum/controller/subsystem/characters/proc/all_species_names()
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/name in species_names)
@@ -112,6 +112,6 @@
 /**
  * default species id for when someone's species is removed/no longer playable
  */
-/datum/controller/subsystem/characters/proc/default_species_id()
+datum/controller/subsystem/characters/proc/default_species_id()
 	var/datum/species/S = resolve_species_path(ispath(default_species_path, /datum/species)? default_species_path : /datum/species/human)
 	return S.id

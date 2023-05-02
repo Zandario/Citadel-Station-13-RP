@@ -5,7 +5,7 @@
 // instead.
 //
 
-/obj/item/clothing/head/helmet/space/void
+obj/item/clothing/head/helmet/space/void
 	sprite_sheets_obj = list(
 		SPECIES_TAJ         = 'icons/obj/clothing/species/tajaran/hats.dmi',
 		SPECIES_SKRELL      = 'icons/obj/clothing/species/skrell/hats.dmi',
@@ -23,7 +23,7 @@
 		SPECIES_VOX         = 'icons/obj/clothing/species/vox/hats.dmi',
 		)
 
-/obj/item/clothing/suit/space/void
+obj/item/clothing/suit/space/void
 	sprite_sheets_obj = list(
 		SPECIES_AKULA       = 'icons/obj/clothing/species/akula/suits.dmi',
 		SPECIES_NEVREAN     = 'icons/obj/clothing/species/nevrean/suits.dmi',
@@ -46,7 +46,7 @@
 	// however the species spritesheet now means we no longer need that anyway!
 	sprite_sheets_refit = list()
 
-/obj/item/clothing/suit/space/void/explorer
+obj/item/clothing/suit/space/void/explorer
 	desc = "A classy red voidsuit for the needs of any semi-retro-futuristic spaceperson! This one is rather loose fitting."
 	species_restricted = list(
 		SPECIES_AKULA,
@@ -72,12 +72,12 @@
 		SPECIES_ZORREN_HIGH,
 	)
 
-/obj/item/clothing/suit/space/void/explorer/Initialize(mapload)
+obj/item/clothing/suit/space/void/explorer/Initialize(mapload)
 	. = ..()
 	LAZYINITLIST(sprite_sheets)
 	sprite_sheets += sprite_sheets_refit
 
-/obj/item/clothing/head/helmet/space/void/explorer
+obj/item/clothing/head/helmet/space/void/explorer
 	desc = "A helmet that matches a red voidsuit! So classy."
 	species_restricted = list(
 		SPECIES_AKULA,
@@ -103,12 +103,12 @@
 		SPECIES_ZORREN_HIGH,
 	)
 
-/obj/item/clothing/head/helmet/space/void/explorer/Initialize(mapload)
+obj/item/clothing/head/helmet/space/void/explorer/Initialize(mapload)
 	. = ..()
 	LAZYINITLIST(sprite_sheets)
 	sprite_sheets += sprite_sheets_refit
 
-/obj/item/clothing/suit/space/void/autolok
+obj/item/clothing/suit/space/void/autolok
 	name = "AutoLok pressure suit"
 	desc = "A high-tech snug-fitting pressure suit. Fits any species. It offers very little physical protection, \
 	but is equipped with sensors that will automatically deploy the integral helmet to protect the wearer."
@@ -121,12 +121,12 @@
 	breach_threshold = 6 //this thing is basically tissue paper
 	w_class = ITEMSIZE_NORMAL //if it's snug, high-tech, and made of relatively soft materials, it should be much easier to store!
 
-/obj/item/clothing/suit/space/void/autolok/Initialize(mapload)
+obj/item/clothing/suit/space/void/autolok/Initialize(mapload)
 	. = ..()
 	helmet = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
 
 //override the attackby screwdriver proc so that people can't remove the helmet
-/obj/item/clothing/suit/space/void/autolok/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/clothing/suit/space/void/autolok/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!isliving(user))
 		return
@@ -164,7 +164,7 @@
 
 	..()
 
-/obj/item/clothing/head/helmet/space/void/autolok
+obj/item/clothing/head/helmet/space/void/autolok
 	name = "AutoLok pressure helmet"
 	desc = "A rather close-fitting helmet designed to protect the wearer from hazardous conditions. \
 	Automatically deploys when the suit's sensors detect an environment that is hazardous to the wearer."
@@ -173,7 +173,7 @@
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt too
 	inv_hide_flags = HIDEEARS|BLOCKHAIR //removed HIDEFACE/MASK/EYES flags so sunglasses or facemasks don't disappear. still gotta have BLOCKHAIR or it'll clip out tho.
 
-/obj/item/clothing/head/helmet/space/void/autolok
+obj/item/clothing/head/helmet/space/void/autolok
 	sprite_sheets_obj = list(
 		SPECIES_AKULA       = 'icons/obj/clothing/hats.dmi',
 		SPECIES_FENNEC      = 'icons/obj/clothing/hats.dmi',

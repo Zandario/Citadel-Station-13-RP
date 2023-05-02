@@ -1,4 +1,4 @@
-/obj/item/material/harpoon
+obj/item/material/harpoon
 	name = "harpoon"
 	sharp = 1
 	edge = 0
@@ -8,13 +8,13 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
-/obj/item/material/harpoon/plasteel
+obj/item/material/harpoon/plasteel
 	default_material = "plasteel"
 
-/obj/item/material/harpoon/durasteel
+obj/item/material/harpoon/durasteel
 	default_material = "durasteel"
 
-/obj/item/material/knife/machete/hatchet
+obj/item/material/knife/machete/hatchet
 	name = "hatchet"
 	desc = "A one-handed axe, with a short fibremetal handle. There's an infinite amount of variations in the galaxy, but this one's used for chopping wood."
 	icon = 'icons/obj/weapons.dmi'
@@ -30,13 +30,13 @@
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
-/obj/item/material/knife/machete/hatchet/bone
+obj/item/material/knife/machete/hatchet/bone
 	name = "primitive hatchet"
 	desc = "A broad, flat piece of bone knapped to a sharp edge. A truly primitive weapon."
 	icon_state = "hatchet_bone"
 	default_material = "bone"
 
-/obj/item/material/knife/machete/hatchet/unathiknife
+obj/item/material/knife/machete/hatchet/unathiknife
 	name = "duelling knife"
 	desc = "Though honor duels have fallen out of fashion in this new era, that doesn't stop some Unathi from carrying these wooden duelling blades as a status symbol. Or Vox from using these for their intended purpose in 'quill duels'."
 	icon = 'icons/obj/weapons.dmi'
@@ -45,13 +45,13 @@
 	can_cleave = FALSE
 	var/hits = 0
 
-/obj/item/material/knife/machete/hatchet/durasteel
+obj/item/material/knife/machete/hatchet/durasteel
 	default_material = "durasteel"
 
-/obj/item/material/knife/machete/hatchet/unathiknife/durasteel
+obj/item/material/knife/machete/hatchet/unathiknife/durasteel
 	default_material = "durasteel"
 
-/obj/item/material/knife/machete/hatchet/unathiknife/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/material/knife/machete/hatchet/unathiknife/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(hits > 0)
 		return
 	var/obj/item/I = user.get_inactive_held_item()
@@ -60,11 +60,11 @@
 		I.melee_attack_chain(target, user, CLICKCHAIN_REDIRECTED, params)
 	..()
 
-/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
+obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
 	hits = initial(hits)
 	..()
 
-/obj/item/material/minihoe // -- Numbers
+obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds and tilling soil."
 	icon = 'icons/obj/weapons.dmi'
@@ -75,19 +75,19 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
-/obj/item/material/minihoe/plasteel
+obj/item/material/minihoe/plasteel
 	default_material = "plasteel"
 
-/obj/item/material/minihoe/durasteel
+obj/item/material/minihoe/durasteel
 	default_material = "durasteel"
 
-/obj/item/material/minihoe/bone
+obj/item/material/minihoe/bone
 	name = "primitive mini hoe"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "cultivator_bone"
 	default_material = "bone"
 
-/obj/item/material/snow/snowball
+obj/item/material/snow/snowball
 	name = "loose packed snowball"
 	desc = "A fun snowball. Throw it at your friends!"
 	icon = 'icons/obj/weapons.dmi'
@@ -100,7 +100,7 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("mushed", "splatted", "splooshed", "splushed") // Words that totally exist.
 
-/obj/item/material/snow/snowball/attack_self(mob/user)
+obj/item/material/snow/snowball/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -116,14 +116,14 @@
 			del(src)
 			user.put_in_hands(S)
 
-/obj/item/material/snow/snowball/reinforced
+obj/item/material/snow/snowball/reinforced
 	name = "snowball"
 	desc = "A well-formed and fun snowball. It looks kind of dangerous."
 	//icon_state = "considered_reinforced-snowball"
 	force_divisor = 0.20
 	thrown_force_divisor = 0.25
 
-/obj/item/material/butterfly/saw //This Saw Cleaver is in here since I do not know where else to put it
+obj/item/material/butterfly/saw //This Saw Cleaver is in here since I do not know where else to put it
 	name = "Saw Cleaver"
 	desc = "A weapon consisting of a long handle and a heavy serrated blade. Using centrifrical force the blade extends outword allowing it to slice it long cleaves. The smell of blood hangs in the air around it."
 	icon = 'icons/obj/weapons.dmi'
@@ -143,7 +143,7 @@
 	thrown_force_divisor = 0.1 // 2 when thrown with weight 20 (steel) since frankly its too bulk to throw
 	//holy = TRUE		// Holy trait commented out until Dark Corners of the Galaxy: Awakening Merge
 
-/obj/item/material/butterfly/saw/update_force()
+obj/item/material/butterfly/saw/update_force()
 	if(active)
 		..() //Updates force.
 		w_class = ITEMSIZE_HUGE

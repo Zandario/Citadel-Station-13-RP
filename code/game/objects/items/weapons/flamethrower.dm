@@ -1,4 +1,4 @@
-/obj/item/flamethrower
+obj/item/flamethrower
 	name = "flamethrower"
 	desc = "You are a firestarter!"
 	icon = 'icons/obj/flamethrower.dmi'
@@ -25,13 +25,13 @@
 	var/obj/item/tank/phoron/ptank = null
 
 
-/obj/item/flamethrower/Destroy()
+obj/item/flamethrower/Destroy()
 	QDEL_NULL(weldtool)
 	QDEL_NULL(igniter)
 	QDEL_NULL(ptank)
 	. = ..()
 
-/obj/item/flamethrower/process(delta_time)
+obj/item/flamethrower/process(delta_time)
 	if(!lit)
 		STOP_PROCESSING(SSobj, src)
 		return null
@@ -43,7 +43,7 @@
 	if(isturf(location)) //start a fire if possible
 		location.hotspot_expose(700, 2)
 
-/obj/item/flamethrower/update_icon()
+obj/item/flamethrower/update_icon()
 	cut_overlays()
 
 	var/list/overlays_to_add = list()
@@ -61,7 +61,7 @@
 
 	return
 
-/obj/item/flamethrower/afterattack(atom/target, mob/user, proximity)
+obj/item/flamethrower/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 	// Make sure our user is still holding us
 	if(user && user.get_active_held_item() == src)
@@ -70,7 +70,7 @@
 			var/turflist = getline(user, target_turf)
 			flame_turf(turflist)
 
-/obj/item/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
 	if(W.is_wrench() && !status)//Taking this apart
 		var/turf/T = get_turf(src)
@@ -123,7 +123,7 @@
 	return
 
 
-/obj/item/flamethrower/attack_self(mob/user)
+obj/item/flamethrower/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -138,7 +138,7 @@
 	return
 
 
-/obj/item/flamethrower/Topic(href,href_list[])
+obj/item/flamethrower/Topic(href,href_list[])
 	if(href_list["close"])
 		usr.unset_machine()
 		usr << browse(null, "window=flamethrower")
@@ -170,7 +170,7 @@
 
 
 //Called from turf.dm turf/dblclick
-/obj/item/flamethrower/proc/flame_turf(turflist)
+obj/item/flamethrower/proc/flame_turf(turflist)
 	if(!lit || operating)	return
 	operating = 1
 	for(var/turf/T in turflist)
@@ -191,7 +191,7 @@
 	return
 
 
-/obj/item/flamethrower/proc/ignite_turf(turf/target)
+obj/item/flamethrower/proc/ignite_turf(turf/target)
 	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(throw_amount/100))
@@ -205,7 +205,7 @@
 	//location.hotspot_expose(1000,500,1)
 	return
 
-/obj/item/flamethrower/full/Initialize(mapload)
+obj/item/flamethrower/full/Initialize(mapload)
 	. = ..()
 	weldtool = new /obj/item/weldingtool(src)
 	weldtool.status = 0

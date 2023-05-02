@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/redpanda
+datum/category_item/catalogue/fauna/redpanda
 	name = "Red Panda"
 	desc = "Red Pandas are sometimes imported to the Frontier from \
 	exotic pet brokers in Orion space. Popular among collectors due \
@@ -6,7 +6,7 @@
 	the Red Panda is a popular pet and status symbol rolled into one."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/redpanda
+mob/living/simple_mob/vore/redpanda
 	name = "red panda"
 	desc = "It's a wah! Beware of doom pounce!"
 	tt_desc = "Ailurus fulgens"
@@ -36,7 +36,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 // Activate Noms!
-/mob/living/simple_mob/vore/redpanda
+mob/living/simple_mob/vore/redpanda
 	vore_active = 1
 	vore_bump_chance = 10
 	vore_bump_emote	= "playfully lunges at"
@@ -44,7 +44,7 @@
 	vore_default_mode = DM_HOLD // above will only matter if someone toggles it anyway
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/vore/redpanda/fae
+mob/living/simple_mob/vore/redpanda/fae
 	name = "dark wah"
 	desc = "Ominous, but still cute!"
 	tt_desc = "Ailurus brattus"
@@ -63,7 +63,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 
-/datum/say_list/redpanda
+datum/say_list/redpanda
 	speak = list("Wah!","Wah?","Waaaah.")
 	emote_hear = list("wahs!","chitters.")
 	emote_see = list("trundles around","rears up onto their hind legs and pounces a bug")

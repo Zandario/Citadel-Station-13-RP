@@ -1,4 +1,4 @@
-/obj/machinery/mecha_part_fabricator/pros
+obj/machinery/mecha_part_fabricator/pros
 	name = "Prosthetics Fabricator"
 	desc = "A machine used for construction of prosthetics."
 	icon_state = "profab"
@@ -67,17 +67,17 @@
 					"Misc",
 					)
 
-/obj/machinery/mecha_part_fabricator/pros/Initialize(mapload)
+obj/machinery/mecha_part_fabricator/pros/Initialize(mapload)
 	. = ..()
 	manufacturer = GLOB.basic_robolimb.company
 
-/obj/machinery/mecha_part_fabricator/pros/dispense_built_part(datum/design/D)
+obj/machinery/mecha_part_fabricator/pros/dispense_built_part(datum/design/D)
 	var/obj/item/I = ..()
 	if(isobj(I) && I.matter && I.matter.len > 0)
 		for(var/i in I.matter)
 			I.matter[i] = I.matter[i] * component_coeff
 
-/obj/machinery/mecha_part_fabricator/pros/ui_data(mob/user)
+obj/machinery/mecha_part_fabricator/pros/ui_data(mob/user)
 	var/list/data = ..()
 
 	data["species_types"] = species_types
@@ -98,7 +98,7 @@
 
 	return data
 
-/obj/machinery/mecha_part_fabricator/pros/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/mecha_part_fabricator/pros/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -128,7 +128,7 @@
 			return
 	return FALSE
 
-/obj/machinery/mecha_part_fabricator/pros/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/mecha_part_fabricator/pros/attackby(var/obj/item/I, var/mob/user)
 	if(..())
 		return TRUE
 

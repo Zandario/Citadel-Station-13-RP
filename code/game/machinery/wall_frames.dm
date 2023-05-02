@@ -1,4 +1,4 @@
-/obj/item/frame
+obj/item/frame
 	name = "frame parts"
 	desc = "Used for building frames."
 	icon = 'icons/obj/stock_parts.dmi'
@@ -10,20 +10,20 @@
 	var/list/frame_types_floor
 	var/list/frame_types_wall
 
-/obj/item/frame/proc/update_type_list()
+obj/item/frame/proc/update_type_list()
 	if(!frame_types_floor)
 		frame_types_floor = construction_frame_floor
 	if(!frame_types_wall)
 		frame_types_wall = construction_frame_wall
 
-/obj/item/frame/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/frame/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		new refund_type(get_turf(src.loc), refund_amt)
 		qdel(src)
 		return
 	..()
 
-/obj/item/frame/attack_self(mob/user)
+obj/item/frame/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -51,7 +51,7 @@
 	M.fingerprintslast = fingerprintslast
 	qdel(src)
 
-/obj/item/frame/proc/try_build(turf/on_wall, mob/user as mob)
+obj/item/frame/proc/try_build(turf/on_wall, mob/user as mob)
 	update_type_list()
 
 	if(get_dist(on_wall, user)>1)
@@ -98,7 +98,7 @@
 	M.fingerprintslast = fingerprintslast
 	qdel(src)
 
-/obj/item/frame/light
+obj/item/frame/light
 	name = "light fixture frame"
 	desc = "Used for building lights."
 	icon = 'icons/obj/lighting.dmi'
@@ -106,19 +106,19 @@
 	build_machine_type = /obj/machinery/light_construct
 	reverse = 1
 
-/obj/item/frame/light/small
+obj/item/frame/light/small
 	name = "small light fixture frame"
 	icon_state = "bulb-construct-item"
 	refund_amt = 1
 	build_machine_type = /obj/machinery/light_construct/small
 
-/obj/item/frame/light/fairy
+obj/item/frame/light/fairy
 	name = "fairy light fixture frame"
 	icon_state = "fairy-construct-item"
 	refund_amt = 1
 	build_machine_type = /obj/machinery/light_construct/fairy
 
-/obj/item/frame/extinguisher_cabinet
+obj/item/frame/extinguisher_cabinet
 	name = "extinguisher cabinet frame"
 	desc = "Used for building fire extinguisher cabinets."
 	icon = 'icons/obj/closet.dmi'
@@ -126,7 +126,7 @@
 	refund_amt = 4
 	build_machine_type = /obj/structure/extinguisher_cabinet
 
-/obj/item/frame/noticeboard
+obj/item/frame/noticeboard
 	name = "noticeboard frame"
 	desc = "Used for building noticeboards."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -135,7 +135,7 @@
 	refund_type = /obj/item/stack/material/wood
 	build_machine_type = /obj/structure/noticeboard
 
-/obj/item/frame/mirror
+obj/item/frame/mirror
 	name = "mirror frame"
 	desc = "Used for building mirrors."
 	icon = 'icons/obj/watercloset.dmi'
@@ -143,7 +143,7 @@
 	refund_amt = 1
 	build_machine_type = /obj/structure/mirror
 
-/obj/item/frame/fireaxe_cabinet
+obj/item/frame/fireaxe_cabinet
 	name = "fire axe cabinet frame"
 	desc = "Used for building fire axe cabinets."
 	icon = 'icons/obj/closet.dmi'

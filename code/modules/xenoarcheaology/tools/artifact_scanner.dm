@@ -1,4 +1,4 @@
-/obj/machinery/artifact_scanpad
+obj/machinery/artifact_scanpad
 	name = "Anomaly Scanner Pad"
 	desc = "Place things here for scanning."
 	icon = 'icons/obj/xenoarchaeology.dmi'

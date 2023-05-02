@@ -1,10 +1,10 @@
 //Shuttle controller computer for shuttles going between sectors
-/obj/machinery/computer/shuttle_control/explore
+obj/machinery/computer/shuttle_control/explore
 	name = "general shuttle control console"
 	circuit = /obj/item/circuitboard/shuttle_console/explore
 	tgui_subtemplate = "ShuttleControlConsoleExploration"
 
-/obj/machinery/computer/shuttle_control/explore/shuttlerich_ui_data(var/datum/shuttle/autodock/overmap/shuttle)
+obj/machinery/computer/shuttle_control/explore/shuttlerich_ui_data(var/datum/shuttle/autodock/overmap/shuttle)
 	. = ..()
 	if(istype(shuttle))
 		var/total_gas = 0
@@ -25,7 +25,7 @@
 			"fuel_span" = fuel_span
 		)
 
-/obj/machinery/computer/shuttle_control/explore/ui_act(action, list/params)
+obj/machinery/computer/shuttle_control/explore/ui_act(action, list/params)
 	if(..())
 		return TRUE
 

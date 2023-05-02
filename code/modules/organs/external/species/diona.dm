@@ -1,4 +1,4 @@
-/proc/spawn_diona_nymph(turf/target)
+proc/spawn_diona_nymph(turf/target)
 	if(!istype(target))
 		return FALSE
 
@@ -18,14 +18,14 @@
 				if(!D.ckey || !D.client)
 					D.death()
 
-/obj/item/organ/external/diona
+obj/item/organ/external/diona
 	name = "tendril"
 	cannot_break = TRUE
 	amputation_point = "branch"
 	joint = "structural ligament"
 	dislocated = -1
 
-/obj/item/organ/external/diona/chest
+obj/item/organ/external/diona/chest
 	name = "core trunk"
 	organ_tag = BP_TORSO
 	icon_name = "torso"
@@ -37,7 +37,7 @@
 	cannot_amputate = TRUE
 	parent_organ = null
 
-/obj/item/organ/external/diona/groin
+obj/item/organ/external/diona/groin
 	name = "fork"
 	organ_tag = BP_GROIN
 	icon_name = "groin"
@@ -47,7 +47,7 @@
 	body_part_flags = LOWER_TORSO
 	parent_organ = BP_TORSO
 
-/obj/item/organ/external/diona/arm
+obj/item/organ/external/diona/arm
 	name = "left upper tendril"
 	organ_tag = BP_L_ARM
 	icon_name = "l_arm"
@@ -58,13 +58,13 @@
 	parent_organ = BP_TORSO
 	can_grasp = TRUE
 
-/obj/item/organ/external/diona/arm/right
+obj/item/organ/external/diona/arm/right
 	name = "right upper tendril"
 	organ_tag = BP_R_ARM
 	icon_name = "r_arm"
 	body_part_flags = ARM_RIGHT
 
-/obj/item/organ/external/diona/leg
+obj/item/organ/external/diona/leg
 	name = "left lower tendril"
 	organ_tag = BP_L_LEG
 	icon_name = "l_leg"
@@ -76,14 +76,14 @@
 	parent_organ = BP_GROIN
 	can_stand = TRUE
 
-/obj/item/organ/external/diona/leg/right
+obj/item/organ/external/diona/leg/right
 	name = "right lower tendril"
 	organ_tag = BP_R_LEG
 	icon_name = "r_leg"
 	body_part_flags = LEG_RIGHT
 	icon_position = RIGHT
 
-/obj/item/organ/external/diona/foot
+obj/item/organ/external/diona/foot
 	name = "left foot"
 	organ_tag = BP_L_FOOT
 	icon_name = "l_foot"
@@ -95,7 +95,7 @@
 	parent_organ = BP_R_LEG
 	can_stand = TRUE
 
-/obj/item/organ/external/diona/foot/right
+obj/item/organ/external/diona/foot/right
 	name = "right foot"
 	organ_tag = BP_R_FOOT
 	icon_name = "r_foot"
@@ -105,7 +105,7 @@
 	joint = "right ankle"
 	amputation_point = "right ankle"
 
-/obj/item/organ/external/diona/hand
+obj/item/organ/external/diona/hand
 	name = "left grasper"
 	organ_tag = BP_L_HAND
 	icon_name = "l_hand"
@@ -116,7 +116,7 @@
 	parent_organ = BP_L_ARM
 	can_grasp = TRUE
 
-/obj/item/organ/external/diona/hand/right
+obj/item/organ/external/diona/hand/right
 	name = "right grasper"
 	organ_tag = BP_R_HAND
 	icon_name = "r_hand"
@@ -124,7 +124,7 @@
 	parent_organ = BP_R_ARM
 
 //DIONA ORGANS.
-/obj/item/organ/external/diona/removed()
+obj/item/organ/external/diona/removed()
 	if(robotic >= ORGAN_ROBOT)
 		return ..()
 	var/mob/living/carbon/human/H = owner
@@ -134,7 +134,7 @@
 	if(prob(50) && spawn_diona_nymph(get_turf(src)))
 		qdel(src)
 
-/obj/item/organ/external/head/no_eyes/diona
+obj/item/organ/external/head/no_eyes/diona
 	max_damage = 50
 	min_broken_damage = 25
 	cannot_break = TRUE

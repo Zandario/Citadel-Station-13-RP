@@ -1,4 +1,4 @@
-/mob/living/Life(seconds, times_fired)
+mob/living/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -17,7 +17,7 @@
 	// todo: is this necessary? probably but still..
 	update_mobility()
 
-/mob/living/PhysicalLife(seconds, times_fired)
+mob/living/PhysicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -38,7 +38,7 @@
 
 	auto_resist_rest()
 
-/mob/living/BiologicalLife(seconds, times_fired)
+mob/living/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -58,70 +58,70 @@
 	//Chemicals in the body, this is moved over here so that blood can be added after death
 	handle_chemicals_in_body()
 
-/mob/living/proc/handle_breathing()
+mob/living/proc/handle_breathing()
 	return
 
-/mob/living/proc/handle_mutations_and_radiation(seconds)
+mob/living/proc/handle_mutations_and_radiation(seconds)
 	return
 
-/mob/living/proc/handle_chemicals_in_body()
+mob/living/proc/handle_chemicals_in_body()
 	return
 
-/mob/living/proc/handle_blood()
+mob/living/proc/handle_blood()
 	return
 
-/mob/living/proc/handle_random_events()
+mob/living/proc/handle_random_events()
 	return
 
-/mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
+mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
 	return
 
-/mob/living/proc/handle_stomach()
+mob/living/proc/handle_stomach()
 	return
 
-/mob/living/proc/update_pulling()
+mob/living/proc/update_pulling()
 	if(pulling)
 		if(incapacitated())
 			stop_pulling()
 
 //This updates the health and status of the mob (conscious, unconscious, dead)
-/mob/living/proc/handle_regular_UI_updates()
+mob/living/proc/handle_regular_UI_updates()
 	update_health()
 	update_stat()
 
-/mob/living/proc/handle_statuses()
+mob/living/proc/handle_statuses()
 	handle_stuttering()
 	handle_silent()
 	handle_drugged()
 	handle_slurring()
 	handle_confused()
 
-/mob/living/proc/handle_stuttering()
+mob/living/proc/handle_stuttering()
 	if(stuttering)
 		stuttering = max(stuttering-1, 0)
 	return stuttering
 
-/mob/living/proc/handle_silent()
+mob/living/proc/handle_silent()
 	if(silent)
 		silent = max(silent-1, 0)
 	return silent
 
-/mob/living/proc/handle_drugged()
+mob/living/proc/handle_drugged()
 	if(druggy)
 		druggy = max(druggy-1, 0)
 	return druggy
 
-/mob/living/proc/handle_slurring()
+mob/living/proc/handle_slurring()
 	if(slurring)
 		slurring = max(slurring-1, 0)
 	return slurring
 
-/mob/living/proc/handle_confused()
+mob/living/proc/handle_confused()
 	if(confused)
 		AdjustConfused(-1)
 	return confused
 
-/mob/living/proc/handle_disabilities()
+mob/living/proc/handle_disabilities()
 	//Eyes
 	if(sdisabilities & SDISABILITY_NERVOUS || stat || HAS_TRAIT(src, TRAIT_BLIND))	//blindness from disability or unconsciousness doesn't get better on its own
 		SetBlinded(1)
@@ -151,7 +151,7 @@
 	if(HAS_TRAIT(src, TRAIT_BLIND))
 		eye_blind = max(eye_blind, 1)
 
-/mob/living/handle_regular_hud_updates()
+mob/living/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
 	..()
@@ -161,7 +161,7 @@
 
 	return TRUE
 
-/mob/living/proc/update_sight()
+mob/living/proc/update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
 	if(!seedarkness)
 		SetSeeInvisibleSelf(SEE_INVISIBLE_NOLIGHTING)
@@ -176,14 +176,14 @@
 
 	return
 
-/mob/living/proc/handle_hud_icons()
+mob/living/proc/handle_hud_icons()
 	handle_hud_icons_health()
 	return
 
-/mob/living/proc/handle_hud_icons_health()
+mob/living/proc/handle_hud_icons_health()
 	return
 
-/mob/living/proc/handle_light()
+mob/living/proc/handle_light()
 	if(instability >= TECHNOMANCER_INSTABILITY_MIN_GLOW)
 		var/distance = round(sqrt(instability / 2))
 		if(distance)
@@ -205,7 +205,7 @@
 		set_light(0)
 		return FALSE
 
-/mob/living/proc/handle_darksight()
+mob/living/proc/handle_darksight()
 	if(!dsoverlay)
 		return
 	if(!seedarkness) //Cheap 'always darksight' var

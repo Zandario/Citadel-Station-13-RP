@@ -1,4 +1,4 @@
-/obj/item/tape_recorder
+obj/item/tape_recorder
 	name = "universal recorder"
 	desc = "A device that can record to cassette tapes, and play them. It automatically translates the content in playback."
 	icon_state = "taperecorder_empty"
@@ -29,14 +29,14 @@
 	var/recording = FALSE
 
 
-/obj/item/tape_recorder/Initialize(mapload)
+obj/item/tape_recorder/Initialize(mapload)
 	. = ..()
 	if(ispath(tape))
 		tape = new tape(src)
 		update_icon()
 	listening_objects += src
 
-/obj/item/tape_recorder/Destroy()
+obj/item/tape_recorder/Destroy()
 	stop_everything()
 	listening_objects -= src
 	if(tape)
@@ -44,7 +44,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/tape_recorder/attackby(obj/item/I, mob/user, params)
+obj/item/tape_recorder/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/cassette_tape))
 		if(tape)
 			to_chat(user, "<span class='notice'>There's already a tape inside.</span>")
@@ -57,19 +57,19 @@
 		return
 	..()
 
-/obj/item/tape_recorder/fire_act()
+obj/item/tape_recorder/fire_act()
 	if(tape)
 		tape.ruin() //Fires destroy the tape
 	return ..()
 
-/obj/item/tape_recorder/attack_hand(mob/user, list/params)
+obj/item/tape_recorder/attack_hand(mob/user, list/params)
 	if(user.get_inactive_held_item() == src)
 		if(tape)
 			eject()
 			return
 	..()
 
-/obj/item/tape_recorder/proc/stop_recording(mob/user, silent)
+obj/item/tape_recorder/proc/stop_recording(mob/user, silent)
 	if(!recording)
 		if(user && !silent)
 			to_chat(user, SPAN_WARNING("[src] isn't recording."))
@@ -85,7 +85,7 @@
 		to_chat(user, SPAN_NOTICE("Recording stopped."))
 	update_icon()
 
-/obj/item/tape_recorder/proc/start_recording(mob/user, silent)
+obj/item/tape_recorder/proc/start_recording(mob/user, silent)
 	if(!tape)
 		if(user && !silent)
 			to_chat(user, SPAN_WARNING("There's no tape in [src]!"))
@@ -125,7 +125,7 @@
 	recording = TRUE
 	update_icon()
 
-/obj/item/tape_recorder/proc/stop_playing(mob/user, silent, ending)
+obj/item/tape_recorder/proc/stop_playing(mob/user, silent, ending)
 	if(!silent)
 		if(ending)
 			audible_message("[SPAN_BOLD("[src]")]: End of recording.")
@@ -147,7 +147,7 @@
 		addtimer(CALLBACK(src, /atom/proc/audible_message, "<font color=Maroon><B>Tape Recorder</B>: One.</font>"), 4 SECONDS)
 		addtimer(CALLBACK(src, /obj/item/tape_recorder/proc/explode), 5 SECONDS)
 
-/obj/item/tape_recorder/proc/start_playing(mob/user, silent)
+obj/item/tape_recorder/proc/start_playing(mob/user, silent)
 	if(!tape)
 		if(user && !silent)
 			to_chat(user, SPAN_WARNING("There's no tape in [src]."))
@@ -174,7 +174,7 @@
 	update_icon()
 	_play_next()
 
-/obj/item/tape_recorder/proc/_play_next()
+obj/item/tape_recorder/proc/_play_next()
 	PRIVATE_PROC(TRUE)
 	var/datum/cassette_tape_iterator/reader = tape_iterator
 	var/list/got = reader.next_slow()
@@ -200,7 +200,7 @@
 		delay = 3 SECONDS
 	play_timerid = addtimer(CALLBACK(src, .proc/_play_next), delay, TIMER_STOPPABLE)
 
-/obj/item/tape_recorder/verb/playback_memory()
+obj/item/tape_recorder/verb/playback_memory()
 	set name = "Playback Tape"
 	set category = "Object"
 
@@ -208,51 +208,51 @@
 		return
 	start_playing(usr)
 
-/obj/item/tape_recorder/proc/is_playing()
+obj/item/tape_recorder/proc/is_playing()
 	return playing
 
-/obj/item/tape_recorder/proc/is_recording()
+obj/item/tape_recorder/proc/is_recording()
 	return recording
 
-/obj/item/tape_recorder/proc/is_busy()
+obj/item/tape_recorder/proc/is_busy()
 	return playing || recording
 
-/obj/item/tape_recorder/proc/_release_lock()
+obj/item/tape_recorder/proc/_release_lock()
 	PRIVATE_PROC(TRUE)
 	if(tape_iterator)
 		QDEL_NULL(tape_iterator)
 		return TRUE
 	return FALSE
 
-/obj/item/tape_recorder/proc/_lock_deleted(datum/source)
+obj/item/tape_recorder/proc/_lock_deleted(datum/source)
 	PRIVATE_PROC(TRUE)
 	if(source == tape_iterator)
 		tape_iterator = null
 	else
 		stack_trace("lock deleted called with something that isn't ours?")
 
-/obj/item/tape_recorder/proc/_read_lock()
+obj/item/tape_recorder/proc/_read_lock()
 	PRIVATE_PROC(TRUE)
 	ASSERT(!tape_iterator)
 	tape_iterator = tape.iterator()
 	return !!tape_iterator
 
-/obj/item/tape_recorder/proc/_write_lock()
+obj/item/tape_recorder/proc/_write_lock()
 	PRIVATE_PROC(TRUE)
 	ASSERT(!tape_iterator)
 	tape_iterator = tape.obtain_recording_lock()
 	return !!tape_iterator
 
-/obj/item/tape_recorder/proc/has_read_lock()
+obj/item/tape_recorder/proc/has_read_lock()
 	return write_lock == FALSE
 
-/obj/item/tape_recorder/proc/has_write_lock()
+obj/item/tape_recorder/proc/has_write_lock()
 	return write_lock == TRUE
 
-/obj/item/tape_recorder/proc/has_lock()
+obj/item/tape_recorder/proc/has_lock()
 	return !isnull(write_lock)
 
-/obj/item/tape_recorder/verb/eject()
+obj/item/tape_recorder/verb/eject()
 	set name = "Eject Tape"
 	set category = "Object"
 
@@ -270,18 +270,18 @@
 	tape = null
 	update_icon()
 
-/obj/item/tape_recorder/proc/stop_everything(mob/user, silent)
+obj/item/tape_recorder/proc/stop_everything(mob/user, silent)
 	stop_playing(user, silent)
 	stop_recording(user, silent)
 
-/obj/item/tape_recorder/process(delta_time)
+obj/item/tape_recorder/process(delta_time)
 	if(!is_recording())
 		return PROCESS_KILL
 	var/datum/cassette_tape_iterator/write/writer = tape_iterator
 	writer.tick(delta_time)
 
 //! todo : saycode refactor
-/obj/item/tape_recorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
+obj/item/tape_recorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
 	if(!recording)
 		return
 	var/datum/cassette_tape_iterator/write/writer = tape_iterator
@@ -290,7 +290,7 @@
 	else
 		writer.write_speech(msg, M.name, speaking.id)
 
-/obj/item/tape_recorder/see_emote(mob/M as mob, text, var/emote_type)
+obj/item/tape_recorder/see_emote(mob/M as mob, text, var/emote_type)
 	if(emote_type != 2) //only hearable emotes
 		return
 	if(!recording)
@@ -298,7 +298,7 @@
 	var/datum/cassette_tape_iterator/write/writer = tape_iterator
 	writer.write_emote(text, M.name)
 
-/obj/item/tape_recorder/show_message(msg, type, alt, alt_type)
+obj/item/tape_recorder/show_message(msg, type, alt, alt_type)
 	var/recordedtext
 	if (msg && type == 2) //must be hearable
 		recordedtext = msg
@@ -312,7 +312,7 @@
 	writer.write_emote(recordedtext)
 //! end
 
-/obj/item/tape_recorder/emag_act(var/remaining_charges, var/mob/user)
+obj/item/tape_recorder/emag_act(var/remaining_charges, var/mob/user)
 	if(obj_flags & EMAGGED)
 		obj_flags |= EMAGGED
 		recording = 0
@@ -322,7 +322,7 @@
 	else
 		to_chat(user, "<span class='warning'>It is already emagged!</span>")
 
-/obj/item/tape_recorder/proc/explode()
+obj/item/tape_recorder/proc/explode()
 	var/turf/T = get_turf(loc)
 	if(ismob(loc))
 		var/mob/M = loc
@@ -332,7 +332,7 @@
 		explosion(T, light_impact_range = 3)
 	qdel(src)
 
-/obj/item/tape_recorder/verb/record()
+obj/item/tape_recorder/verb/record()
 	set name = "Start Recording"
 	set category = "Object"
 
@@ -340,7 +340,7 @@
 		return
 	start_recording(usr)
 
-/obj/item/tape_recorder/verb/stop()
+obj/item/tape_recorder/verb/stop()
 	set name = "Stop"
 	set category = "Object"
 
@@ -350,7 +350,7 @@
 		to_chat(usr, SPAN_WARNING("[src] isn't doing anything right now."))
 	stop_everything(usr)
 
-/obj/item/tape_recorder/verb/wipe_tape()
+obj/item/tape_recorder/verb/wipe_tape()
 	set name = "Wipe Tape"
 	set category = "Object"
 
@@ -371,7 +371,7 @@
 	tape.wipe()
 	to_chat(usr, SPAN_WARNING("You wipe the tape."))
 
-/obj/item/tape_recorder/verb/print_transcript()
+obj/item/tape_recorder/verb/print_transcript()
 	set name = "Print Transcript"
 	set category = "Object"
 
@@ -432,13 +432,13 @@
 	print_cooldown()
 	QDEL_NULL(tape_iterator)
 
-/obj/item/tape_recorder/proc/print_ready()
+obj/item/tape_recorder/proc/print_ready()
 	return !TIMER_COOLDOWN_CHECK(src, CD_INDEX_TAPE_PRINT)
 
-/obj/item/tape_recorder/proc/print_cooldown()
+obj/item/tape_recorder/proc/print_cooldown()
 	TIMER_COOLDOWN_START(src, CD_INDEX_TAPE_PRINT, 30 SECONDS)
 
-/obj/item/tape_recorder/attack_self(mob/user)
+obj/item/tape_recorder/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -449,7 +449,7 @@
 	else
 		start_recording(user)
 
-/obj/item/tape_recorder/update_icon_state()
+obj/item/tape_recorder/update_icon_state()
 	. = ..()
 	if(!tape)
 		icon_state = "taperecorder_empty"
@@ -460,5 +460,5 @@
 	else
 		icon_state = "taperecorder_idle"
 
-/obj/item/tape_recorder/empty
+obj/item/tape_recorder/empty
 	tape = null

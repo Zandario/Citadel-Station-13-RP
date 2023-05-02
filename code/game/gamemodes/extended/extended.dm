@@ -1,4 +1,4 @@
-/datum/game_mode/extended
+datum/game_mode/extended
 	name = "Extended"
 	config_tag = "extended"
 	required_players = 0

@@ -1,4 +1,4 @@
-/datum/disease2/disease/Topic(href, href_list)
+datum/disease2/disease/Topic(href, href_list)
 	. = ..()
 	if(.) return
 
@@ -16,7 +16,7 @@
 		return 1
 
 /*
-/datum/disease2/disease/vv_get_header()
+datum/disease2/disease/vv_get_header()
 	. = list()
 	for(var/datum/disease2/effectholder/E in effects)
 		. += "[E.stage]: [E.effect.name]"
@@ -25,21 +25,21 @@
 		[jointext(., "<br>")]</font>
 	"}
 
-/datum/disease2/disease/get_view_variables_options()
+datum/disease2/disease/get_view_variables_options()
 	return ..() + {"
 		<option value='?src=\ref[src];info=1'>Show info</option>
 	"}
 */
 
-/datum/admins/var/datum/virus2_editor/virus2_editor_datum = new
-/client/proc/virus2_editor()
+datum/admins/var/datum/virus2_editor/virus2_editor_datum = new
+client/proc/virus2_editor()
 	set name = "Virus Editor"
 	set category = "Admin"
 	if(!holder || !check_rights(R_SPAWN)) return // spawn privileges to create viruses
 
 	holder.virus2_editor_datum.show_ui(src)
 
-/datum/virus2_editor
+datum/virus2_editor
 	var/list/s = list(/datum/disease2/effect/invisible,/datum/disease2/effect/invisible,/datum/disease2/effect/invisible,/datum/disease2/effect/invisible)
 	var/list/s_chance = list(1,1,1,1)
 	var/list/s_multiplier = list(1,1,1,1)
@@ -54,7 +54,7 @@
 	// this holds spawned viruses so that the "Info" links work after the proc exits
 	var/list/spawned_viruses = list()
 
-/datum/virus2_editor/proc/select(mob/user, stage)
+datum/virus2_editor/proc/select(mob/user, stage)
 	if(stage < 1 || stage > 4) return
 
 	var/list/L = list()
@@ -70,7 +70,7 @@
 	if(!C) return
 	return L[C]
 
-/datum/virus2_editor/proc/show_ui(mob/user)
+datum/virus2_editor/proc/show_ui(mob/user)
 	var/H = {"
 	<center><h3>Virus2 Virus Editor</h3></center><br />
 	<b>Effects:</b><br />
@@ -122,7 +122,7 @@
 
 	user << browse(H, "window=virus2edit")
 
-/datum/virus2_editor/Topic(href, href_list)
+datum/virus2_editor/Topic(href, href_list)
 	switch(href_list["what"])
 		if("effect")
 			var/stage = text2num(href_list["stage"])

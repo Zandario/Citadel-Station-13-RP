@@ -39,7 +39,7 @@ Class Procs:
 
 */
 
-/datum/zas_zone
+datum/zas_zone
 	var/name
 	var/invalid = 0
 	var/list/contents = list()
@@ -52,13 +52,13 @@ Class Procs:
 	/// turf graphics holder
 	var/atom/movable/zas_graphics/renderer_one_for_all
 
-/datum/zas_zone/New()
+datum/zas_zone/New()
 	air_master.add_zone(src)
 	air.temperature = TCMB
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 
-/datum/zas_zone/proc/add(turf/simulated/T)
+datum/zas_zone/proc/add(turf/simulated/T)
 #ifdef ZAS_ASSERTIONS
 	ASSERT(!invalid)
 	ASSERT(istype(T))
@@ -78,7 +78,7 @@ Class Procs:
 	if(renderer_one_for_all && T.allow_gas_overlays && !T.outdoors)
 		T.vis_contents += renderer_one_for_all
 
-/datum/zas_zone/proc/remove(turf/simulated/T)
+datum/zas_zone/proc/remove(turf/simulated/T)
 #ifdef ZAS_ASSERTIONS
 	ASSERT(!invalid)
 	ASSERT(istype(T))
@@ -102,7 +102,7 @@ Class Procs:
 	else
 		c_invalidate()
 
-/datum/zas_zone/proc/c_merge(datum/zas_zone/into)
+datum/zas_zone/proc/c_merge(datum/zas_zone/into)
 #ifdef ZAS_ASSERTIONS
 	ASSERT(!invalid)
 	ASSERT(istype(into))
@@ -126,7 +126,7 @@ Class Procs:
 		for(var/turf/T in E.connecting_turfs)
 			T.queue_zone_update()
 
-/datum/zas_zone/proc/c_invalidate()
+datum/zas_zone/proc/c_invalidate()
 	invalid = 1
 	air_master.remove_zone(src)
 	#ifdef ZAS_DEBUG_GRAPHICS
@@ -134,7 +134,7 @@ Class Procs:
 		T.dbg(invalid_zone)
 	#endif
 
-/datum/zas_zone/proc/rebuild()
+datum/zas_zone/proc/rebuild()
 	if(invalid)
 		return //Short circuit for explosions where rebuild is called many times over.
 	c_invalidate()
@@ -144,7 +144,7 @@ Class Procs:
 		//T.dbg(invalid_zone)
 		T.queue_zone_update()
 
-/datum/zas_zone/proc/add_tile_air(datum/gas_mixture/tile_air)
+datum/zas_zone/proc/add_tile_air(datum/gas_mixture/tile_air)
 	//air.volume += CELL_VOLUME
 	air.group_multiplier = 1
 	air.multiply(contents.len)
@@ -152,7 +152,7 @@ Class Procs:
 	air.divide(contents.len+1)
 	air.group_multiplier = contents.len+1
 
-/datum/zas_zone/proc/tick()
+datum/zas_zone/proc/tick()
 	CACHE_VSC_PROP(atmos_vsc, /atmos/fire/firelevel_multiplier, firelevel_multiplier)
 	if(air.temperature >= PHORON_FLASHPOINT && !(src in air_master.active_fire_zones) && air.check_combustability() && contents.len)
 		var/turf/T = pick(contents)
@@ -181,7 +181,7 @@ Class Procs:
 		if(E.sleeping)
 			E.recheck()
 
-/datum/zas_zone/proc/dbg_data(mob/M)
+datum/zas_zone/proc/dbg_data(mob/M)
 	to_chat(M, name)
 	for(var/g in air.gas)
 		to_chat(M, "[GLOB.meta_gas_names[g]]: [air.gas[g]]")
@@ -214,7 +214,7 @@ Class Procs:
 /**
  * renderer object for overlays
  */
-/atom/movable/zas_graphics
+atom/movable/zas_graphics
 	name = null
 	desc = "WHY can you see this?"
 	icon = null

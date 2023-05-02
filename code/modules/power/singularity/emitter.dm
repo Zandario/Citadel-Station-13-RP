@@ -1,6 +1,6 @@
 ///used to transfer power to containment field generators
 #define EMITTER_DAMAGE_POWER_TRANSFER 500
-/obj/machinery/power/emitter
+obj/machinery/power/emitter
 	name = "emitter"
 	desc = "It is a heavy duty industrial laser."
 	icon = 'icons/obj/singularity.dmi'
@@ -30,7 +30,7 @@
 	integrity = 80
 
 
-/obj/machinery/power/emitter/verb/rotate_clockwise()
+obj/machinery/power/emitter/verb/rotate_clockwise()
 	set name = "Rotate Emitter Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -41,28 +41,28 @@
 	src.setDir(turn(src.dir, 270))
 	return 1
 
-/obj/machinery/power/emitter/Initialize(mapload)
+obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
 	if(state == 2 && anchored)
 		connect_to_network()
 
-/obj/machinery/power/emitter/Destroy()
+obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("EMITTER([x],[y],[z]) Destroyed/deleted.")
 	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
 	..()
 
-/obj/machinery/power/emitter/update_icon()
+obj/machinery/power/emitter/update_icon()
 	if (active && powernet && avail(active_power_usage * 0.001))
 		icon_state = "emitter_+a"
 	else
 		icon_state = "emitter"
 
-/obj/machinery/power/emitter/attack_hand(mob/user, list/params)
+obj/machinery/power/emitter/attack_hand(mob/user, list/params)
 	src.add_fingerprint(user)
 	activate(user)
 
-/obj/machinery/power/emitter/proc/activate(mob/user as mob)
+obj/machinery/power/emitter/proc/activate(mob/user as mob)
 	if(state == 2)
 		if(!powernet)
 			to_chat(user, "\The [src] isn't connected to a wire.")
@@ -90,7 +90,7 @@
 		return 1
 
 
-/obj/machinery/power/emitter/emp_act(var/severity)//Emitters are hardened but still might have issues
+obj/machinery/power/emitter/emp_act(var/severity)//Emitters are hardened but still might have issues
 //	add_load(1000)
 /*	if((severity == 1)&&prob(1)&&prob(1))
 		if(src.active)
@@ -98,7 +98,7 @@
 			src.use_power = 1	*/
 	return 1
 
-/obj/machinery/power/emitter/process(delta_time)
+obj/machinery/power/emitter/process(delta_time)
 	if(machine_stat & (BROKEN))
 		return
 	if(src.state != 2 || (!powernet && active_power_usage))
@@ -145,7 +145,7 @@
 		A.firer = src
 		A.fire(dir2angle(dir))
 
-/obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
+obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 
 	if(W.is_wrench())
 		if(active)
@@ -239,23 +239,23 @@
 	..()
 	return
 
-/obj/machinery/power/emitter/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/power/emitter/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		locked = 0
 		emagged = 1
 		user.visible_message("[user.name] emags [src].","<span class='warning'>You short out the lock.</span>")
 		return 1
 
-/obj/machinery/power/emitter/bullet_act(var/obj/projectile/P)
+obj/machinery/power/emitter/bullet_act(var/obj/projectile/P)
 	if(!P || !P.damage || P.get_structure_damage() <= 0 )
 		return
 
 	adjust_integrity(-P.get_structure_damage())
 
-/obj/machinery/power/emitter/blob_act()
+obj/machinery/power/emitter/blob_act()
 	adjust_integrity(-1000) // This kills the emitter.
 
-/obj/machinery/power/emitter/proc/adjust_integrity(amount)
+obj/machinery/power/emitter/proc/adjust_integrity(amount)
 	integrity = clamp( integrity + amount, 0,  initial(integrity))
 	if(integrity == 0)
 		if(powernet && avail(active_power_usage * 0.001)) // If it's powered, it goes boom if killed.
@@ -266,7 +266,7 @@
 		if(src)
 			qdel(src)
 
-/obj/machinery/power/emitter/examine(mob/user)
+obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
 	var/integrity_percentage = round((integrity / initial(integrity)) * 100)
 	switch(integrity_percentage)
@@ -278,14 +278,14 @@
 			. += "<span class='warning'>\The [src] is slightly damaged.</span>"
 
 //R-UST port
-/obj/machinery/power/emitter/proc/get_initial_fire_delay()
+obj/machinery/power/emitter/proc/get_initial_fire_delay()
 	return initial_fire_delay
 
-/obj/machinery/power/emitter/proc/get_rand_burst_delay()
+obj/machinery/power/emitter/proc/get_rand_burst_delay()
 	return rand(min_burst_delay, max_burst_delay)
 
-/obj/machinery/power/emitter/proc/get_burst_delay()
+obj/machinery/power/emitter/proc/get_burst_delay()
 	return burst_delay
 
-/obj/machinery/power/emitter/proc/get_emitter_beam()
+obj/machinery/power/emitter/proc/get_emitter_beam()
 	return new /obj/projectile/beam/emitter(get_turf(src))

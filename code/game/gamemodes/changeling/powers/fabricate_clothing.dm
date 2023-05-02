@@ -11,7 +11,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	"wear_id" = /obj/item/card/id/syndicate/changeling
 	)
 
-/datum/power/changeling/fabricate_clothing
+datum/power/changeling/fabricate_clothing
 	name = "Fabricate Clothing"
 	desc = "We reform our flesh to resemble various cloths, leathers, and other materials, allowing us to quickly create a disguise.  \
 	We cannot be relieved of this clothing by others."
@@ -22,7 +22,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	verbpath = /mob/proc/changeling_fabricate_clothing
 
 //Grows biological versions of chameleon clothes.
-/mob/proc/changeling_fabricate_clothing()
+mob/proc/changeling_fabricate_clothing()
 	set category = "Changeling"
 	set name = "Fabricate Clothing (10)"
 
@@ -30,7 +30,7 @@ var/global/list/changeling_fabricated_clothing = list(
 		return 1
 	return 0
 
-/obj/item/clothing/under/chameleon/changeling
+obj/item/clothing/under/chameleon/changeling
 	name = "malformed flesh"
 	icon_state = "lingchameleon"
 	item_icons = list(
@@ -43,10 +43,10 @@ var/global/list/changeling_fabricated_clothing = list(
 	ordinary cloth, allowing us to make ourselves appear to wear almost anything."
 	origin_tech = list() //The base chameleon items have origin technology, which we will inherit if we don't null out this variable.
 
-/obj/item/clothing/under/chameleon/changeling/emp_act(severity) //As these are purely organic, EMP does nothing to them.
+obj/item/clothing/under/chameleon/changeling/emp_act(severity) //As these are purely organic, EMP does nothing to them.
 	return
 
-/obj/item/clothing/under/chameleon/changeling/verb/shred() //Remove individual pieces if needed.
+obj/item/clothing/under/chameleon/changeling/verb/shred() //Remove individual pieces if needed.
 	set name = "Shred Jumpsuit"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -56,17 +56,17 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/clothing/head/chameleon/changeling
+obj/item/clothing/head/chameleon/changeling
 	name = "malformed head"
 	icon_state = "lingchameleon"
 	desc = "Our head is swelled with a large quanity of rapidly shifting skin cells.  We can reform our head to resemble various hats and \
 	helmets that biologicals are so fond of wearing."
 	origin_tech = list()
 
-/obj/item/clothing/head/chameleon/changeling/emp_act(severity)
+obj/item/clothing/head/chameleon/changeling/emp_act(severity)
 	return
 
-/obj/item/clothing/head/chameleon/changeling/verb/shred() //The copypasta is real.
+obj/item/clothing/head/chameleon/changeling/verb/shred() //The copypasta is real.
 	set name = "Shred Helmet"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -76,7 +76,7 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/clothing/suit/chameleon/changeling
+obj/item/clothing/suit/chameleon/changeling
 	name = "chitinous chest"
 	icon_state = "lingchameleon"
 	item_icons = list(
@@ -87,10 +87,10 @@ var/global/list/changeling_fabricated_clothing = list(
 	desc = "The cells in our chest are rapidly shifting, ready to reform into material that can resemble most pieces of clothing."
 	origin_tech = list()
 
-/obj/item/clothing/suit/chameleon/changeling/emp_act(severity)
+obj/item/clothing/suit/chameleon/changeling/emp_act(severity)
 	return
 
-/obj/item/clothing/suit/chameleon/changeling/verb/shred()
+obj/item/clothing/suit/chameleon/changeling/verb/shred()
 	set name = "Shred Suit"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -100,7 +100,7 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/clothing/shoes/chameleon/changeling
+obj/item/clothing/shoes/chameleon/changeling
 	name = "malformed feet"
 	icon_state = "lingchameleon"
 	item_icons = list(
@@ -111,10 +111,10 @@ var/global/list/changeling_fabricated_clothing = list(
 	desc = "Our feet are overlayed with another layer of flesh and bone on top.  We can reform our feet to resemble various boots and shoes."
 	origin_tech = list()
 
-/obj/item/clothing/shoes/chameleon/changeling/emp_act()
+obj/item/clothing/shoes/chameleon/changeling/emp_act()
 	return
 
-/obj/item/clothing/shoes/chameleon/changeling/verb/shred()
+obj/item/clothing/shoes/chameleon/changeling/verb/shred()
 	set name = "Shred Shoes"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -124,7 +124,7 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/storage/backpack/chameleon/changeling
+obj/item/storage/backpack/chameleon/changeling
 	name = "backpack"
 	icon_state = "backpack"
 	item_icons = list(
@@ -135,10 +135,10 @@ var/global/list/changeling_fabricated_clothing = list(
 	desc = "A large pouch imbedded in our back, it can shift form to resemble many common backpacks that other biologicals are fond of using."
 	origin_tech = list()
 
-/obj/item/storage/backpack/chameleon/changeling/emp_act()
+obj/item/storage/backpack/chameleon/changeling/emp_act()
 	return
 
-/obj/item/storage/backpack/chameleon/changeling/verb/shred()
+obj/item/storage/backpack/chameleon/changeling/verb/shred()
 	set name = "Shred Backpack"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -150,7 +150,7 @@ var/global/list/changeling_fabricated_clothing = list(
 			AM.forceMove(get_turf(loc))
 		qdel(src)
 
-/obj/item/clothing/gloves/chameleon/changeling
+obj/item/clothing/gloves/chameleon/changeling
 	name = "malformed hands"
 	icon_state = "lingchameleon"
 	item_icons = list(
@@ -162,10 +162,10 @@ var/global/list/changeling_fabricated_clothing = list(
 	tend to wear on their hands.  Remember that these won't protect your hands from harm."
 	origin_tech = list()
 
-/obj/item/clothing/gloves/chameleon/changeling/emp_act()
+obj/item/clothing/gloves/chameleon/changeling/emp_act()
 	return
 
-/obj/item/clothing/gloves/chameleon/changeling/verb/shred()
+obj/item/clothing/gloves/chameleon/changeling/verb/shred()
 	set name = "Shred Gloves"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -175,7 +175,7 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/clothing/mask/chameleon/changeling
+obj/item/clothing/mask/chameleon/changeling
 	name = "chitin visor"
 	icon_state = "lingchameleon"
 	item_icons = list(
@@ -187,10 +187,10 @@ var/global/list/changeling_fabricated_clothing = list(
 	tanks.."
 	origin_tech = list()
 
-/obj/item/clothing/mask/chameleon/changeling/emp_act()
+obj/item/clothing/mask/chameleon/changeling/emp_act()
 	return
 
-/obj/item/clothing/mask/chameleon/changeling/verb/shred()
+obj/item/clothing/mask/chameleon/changeling/verb/shred()
 	set name = "Shred Mask"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -200,17 +200,17 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/clothing/glasses/chameleon/changeling
+obj/item/clothing/glasses/chameleon/changeling
 	name = "chitin goggles"
 	icon_state = "lingchameleon"
 	item_state = "glasses"
 	desc = "A transparent piece of eyewear made out of brittle chitin.  We can reform it to resemble various glasses and goggles."
 	origin_tech = list()
 
-/obj/item/clothing/glasses/chameleon/changeling/emp_act()
+obj/item/clothing/glasses/chameleon/changeling/emp_act()
 	return
 
-/obj/item/clothing/glasses/chameleon/changeling/verb/shred()
+obj/item/clothing/glasses/chameleon/changeling/verb/shred()
 	set name = "Shred Glasses"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -220,7 +220,7 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/storage/belt/chameleon/changeling
+obj/item/storage/belt/chameleon/changeling
 	name = "waist pouch"
 	desc = "We can store objects in this, as well as shift it's appearance, so that it resembles various common belts."
 	icon_state = "lingchameleon"
@@ -231,10 +231,10 @@ var/global/list/changeling_fabricated_clothing = list(
 	item_state = "utility"
 	origin_tech = list()
 
-/obj/item/storage/belt/chameleon/changeling/emp_act()
+obj/item/storage/belt/chameleon/changeling/emp_act()
 	return
 
-/obj/item/storage/belt/chameleon/changeling/verb/shred()
+obj/item/storage/belt/chameleon/changeling/verb/shred()
 	set name = "Shred Belt"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -244,7 +244,7 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/card/id/syndicate/changeling
+obj/item/card/id/syndicate/changeling
 	name = "chitinous card"
 	desc = "A card that we can reform to resemble identification cards.  Due to the nature of the material this is made of, it cannot store any access codes."
 	icon_state = "changeling"
@@ -254,12 +254,12 @@ var/global/list/changeling_fabricated_clothing = list(
 	registered_user = null
 	access = null
 
-/obj/item/card/id/syndicate/changeling/Initialize(mapload)
+obj/item/card/id/syndicate/changeling/Initialize(mapload)
 	. = ..()
 	registered_user = loc
 	access = null
 
-/obj/item/card/id/syndicate/changeling/verb/shred()
+obj/item/card/id/syndicate/changeling/verb/shred()
 	set name = "Shred ID Card"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
@@ -269,7 +269,7 @@ var/global/list/changeling_fabricated_clothing = list(
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 
-/obj/item/card/id/syndicate/changeling/Click() //Since we can't hold it in our hands, and attack_hand() doesn't work if it in inventory...
+obj/item/card/id/syndicate/changeling/Click() //Since we can't hold it in our hands, and attack_hand() doesn't work if it in inventory...
 	if(!registered_user)
 		registered_user = usr
 		usr.set_id_info(src)

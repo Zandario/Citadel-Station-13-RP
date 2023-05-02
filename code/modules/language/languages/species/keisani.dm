@@ -1,4 +1,4 @@
-/datum/language/species/keisani
+datum/language/species/keisani
 	id = LANGUAGE_ID_KEISANI
 	name = LANGUAGE_KEISANI
 	translation_class = TRANSLATION_CLASS_DEFAULT_RARE_RACE
@@ -65,4 +65,3 @@
 		"Z" = "⩚"
 	)
 	shorthand = "KEI"
-

@@ -1,4 +1,4 @@
-/datum/language/cultcommon
+datum/language/cultcommon
 	id = LANGUAGE_ID_CULT
 	name = LANGUAGE_CULT
 	translation_class = TRANSLATION_CLASS_ARCANE
@@ -18,7 +18,7 @@
 		"gal'h'rfikk", "harfrandid", "mud'gib", "il", "fuu", "ma'jin", "dedo", "ol'btoh", "n'ath", "reth", "sh'yro", "eth", \
 		"d'rekkathnor", "khari'd", "gual'te", "nikka", "nikt'o", "barada", "kla'atu", "barhah", "hra" ,"zar'garis", "spiri", "malum")
 
-/datum/language/cult
+datum/language/cult
 	id = LANGUAGE_ID_CULT_COMMUNE
 	name = LANGUAGE_OCCULT
 	desc = "The initiated can share their thoughts by means defying all reason."
@@ -28,4 +28,3 @@
 	colour = "cult"
 	key = "y"
 	language_flags = LANGUAGE_RESTRICTED | LANGUAGE_HIVEMIND
-

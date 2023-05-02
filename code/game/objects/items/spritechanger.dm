@@ -3,7 +3,7 @@ The sprite changer allows the User to change their icon to a sprite from any dmi
 after the sprite has been set you can use it again to remove overlays that may have returned after putting on cloth
 
 */
-/obj/item/spritechanger
+obj/item/spritechanger
 	name = "Sprite Changer"
 	desc = "Adminbus Item - Used to adjust sprite, enter dmi file path and state to prepare, apply to get rid of clothing overlays"
 	icon = 'icons/obj/device.dmi'
@@ -13,7 +13,7 @@ after the sprite has been set you can use it again to remove overlays that may h
 	var/path
 	var/state
 
-/obj/item/spritechanger/attack_self(mob/user)
+obj/item/spritechanger/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -32,6 +32,6 @@ after the sprite has been set you can use it again to remove overlays that may h
 				state =  newState
 				to_chat(user, "<span class='notice'>You set the path to [newPath] and the state to [newState]</span>")
 
-/obj/item/spritechanger/AltClick(mob/user)
+obj/item/spritechanger/AltClick(mob/user)
 	path = ""
 	state = ""

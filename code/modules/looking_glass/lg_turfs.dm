@@ -1,4 +1,4 @@
-/singleton/flooring/looking_glass
+singleton/flooring/looking_glass
 	name = "looking glass surface"
 	desc = "Too expensive to replace. Don't break it!"
 	icon = 'icons/turf/flooring/lg_origin.dmi'
@@ -7,7 +7,7 @@
 	damage_temperature = T0C+200
 
 
-/turf/simulated/floor/looking_glass
+turf/simulated/floor/looking_glass
 	name = "looking glass surface"
 	icon = 'icons/turf/flooring/lg_origin.dmi'
 	icon_state = "origin_arrow"
@@ -18,16 +18,16 @@
 	var/center = FALSE
 	var/optional = FALSE
 
-/turf/simulated/floor/looking_glass/center
+turf/simulated/floor/looking_glass/center
 	center = TRUE
 	icon_state = "origin_center"
 
-/turf/simulated/floor/looking_glass/optional
+turf/simulated/floor/looking_glass/optional
 	center = TRUE
 	optional = TRUE
 	icon_state = "origin_optional_arrow"
 
-/turf/simulated/floor/looking_glass/proc/activate()
+turf/simulated/floor/looking_glass/proc/activate()
 	set waitfor = FALSE
 
 	icon_state = "origin_switching"
@@ -68,7 +68,7 @@
 
 	animate(src, color = "#FFFFFF", transform = M, time = 3 SECONDS)
 
-/turf/simulated/floor/looking_glass/proc/deactivate()
+turf/simulated/floor/looking_glass/proc/deactivate()
 	set waitfor = FALSE
 
 	animate(src, color = "#000000", transform = matrix(), time = 3 SECONDS)

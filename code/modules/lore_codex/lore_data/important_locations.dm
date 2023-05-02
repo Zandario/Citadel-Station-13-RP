@@ -1,4 +1,4 @@
-/datum/lore/codex/category/important_locations
+datum/lore/codex/category/important_locations
 	name = "Important Locations"
 	data = "There are several locations of interest that you may come across when visiting the system Vir."
 	children = list(
@@ -15,7 +15,7 @@
 		/datum/lore/codex/page/rota
 		)
 
-/datum/lore/codex/page/virgo_erigone/add_content()
+datum/lore/codex/page/virgo_erigone/add_content()
 	name = "Vir (Star)"
 	keywords += list("Vir")
 	data = "Vir is an A-type main sequence star with 81% more mass than Sol (the humans' home star), and almost nine times as bright.  It \
@@ -26,7 +26,7 @@
 	are named after figures in ancient human mythology (Norse), due to the original surveyor for the system deciding to do so. \
 	Some installations carry on this tradition."
 
-/datum/lore/codex/page/radiance_energy_chain/add_content()
+datum/lore/codex/page/radiance_energy_chain/add_content()
 	name = "Radiance Energy Chain (Artificial Satellites)"
 	keywords += list("Radiance Energy Chain")
 	data = "A sparse government-owned chain of automated stations exists between Firnir and the star itself. The idea is based on \
@@ -38,13 +38,13 @@
 	by [quick_link("positronic")] equipped units in shielded chassis, or very brave humans in voidsuits that protect from extreme heat, and radiation. There are \
 	currently 19 stations in operation."
 
-/datum/lore/codex/page/firnir/add_content()
+datum/lore/codex/page/firnir/add_content()
 	name = "Firnir (Terrestrial Planet)"
 	keywords += list("Firnir")
 	data = "Firnir is the first planet of Vir, tidally locked to it, and having temperatures in excess of 570 degrees \
 	kelvin (299°C) on the day side has caused this planet to go mostly ignored."
 
-/datum/lore/codex/page/tyr/add_content()
+datum/lore/codex/page/tyr/add_content()
 	name = "Tyr (Terrestrial Planet)"
 	keywords += list("Tyr")
 	data = "The second closest planet to [quick_link("Vir")], this planet has a high concentration of minerals inside its crust, as well as active volcanism and plate tectonics.  \
@@ -62,7 +62,7 @@
 	for Tyr mostly non-existent, with the exception of explorers who specifically seek out hellish landscapes, which are plentiful with all the ruins, \
 	volcanoes, twisting caves, and general lawlessness.  The occasional remains of previous explorers near certain hotspots somehow does not deter them."
 
-/datum/lore/codex/page/sif/add_content()
+datum/lore/codex/page/sif/add_content()
 	name = "Sif (Terrestrial Planet)"
 	keywords += list("Sif")
 	data = "Sif is a terrestrial planet and third closest planet to Vir. It possesses oceans, a breathable atmosphere, \
@@ -75,7 +75,7 @@
 	only 90% the strength of planet Earth's gravity. You may need to keep two clocks if you plan to visit \
 	or live on Sif, as the planet takes over 32 hours to complete one day.  A Sif year also takes just under five Earth years."
 
-/datum/lore/codex/page/vir_interstellar_spaceport/add_content()
+datum/lore/codex/page/vir_interstellar_spaceport/add_content()
 	name = "Vir Interstellar Spaceport (Artificial Satellite)"
 	keywords += list("Vir Interstellar Spaceport")
 	data = "The Vir Interstellar Spaceport is a large facility in orbit of the planet [quick_link("Sif")] which handles the loading and \
@@ -89,18 +89,18 @@
 	designed to be a living habitat - its proximity to the surface of Sif makes transport of people and materials to and from \
 	the facility and the planet via shuttle extremely cost-efficient."
 
-/datum/lore/codex/page/southern_cross/add_content()
+datum/lore/codex/page/southern_cross/add_content()
 	name = "Southern Cross (Artificial Satellite)"
 	keywords += list("Southern Cross", "NLS Southern Cross")
 	data = "The Southern Cross is a telecommunications and supply hub for [quick_link("NanoTrasen")], named after it's companion satellite, the \
 	[quick_link("Northern Star")].  It acts as a logistics hub for the smaller installations NanoTrasen has in Sif orbit and on the surface."
 
-/datum/lore/codex/page/magni/add_content()
+datum/lore/codex/page/magni/add_content()
 	name = "Magni (Terrestrial Planet)"
 	keywords += list("Magni")
 	data = "Outside of the habitable zone, the barren world Magni is generally at 202 kelvin (-71°C)."
 
-/datum/lore/codex/page/kara/add_content()
+datum/lore/codex/page/kara/add_content()
 	name = "Kara (Gas Giant)"
 	keywords += list("Kara")
 	data = "A gas giant, with a large number of moons. Captured asteroids, to be specific. Many of the asteroids are theorized \
@@ -109,7 +109,7 @@
 	asteroid installation is the [quick_link("Northern Star", "NCS Northern Star")], a general purpose colony owned and operated by \
 	[quick_link("NanoTrasen")]. The mid-atmospheric temperature of the gas giant averages to around 150 kelvin (-108°C)."
 
-/datum/lore/codex/page/northern_star/add_content()
+datum/lore/codex/page/northern_star/add_content()
 	name = "Northern Star (Artificial Satellite)"
 	keywords += list("Northern Star", "NCS Northern Star")
 	data = "One of the most prominent installations in the [quick_link("Kara")] subsystem, the Northern Star is owned \
@@ -123,7 +123,7 @@
 	self-sufficiency, and possesses many amenities and features that most other asteroid bases in the \
 	subsystem lack."
 
-/datum/lore/codex/page/rota/add_content()
+datum/lore/codex/page/rota/add_content()
 	name = "Rota (Gas Giant)"
 	keywords += list("Rota")
 	data = "An ice giant, with a beautiful ring system circling it. The average temperature for it is 165 kelvin (-157°C)."

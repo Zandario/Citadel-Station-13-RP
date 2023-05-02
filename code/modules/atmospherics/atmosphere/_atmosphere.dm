@@ -1,4 +1,4 @@
-/datum/atmosphere
+datum/atmosphere
 	/// Don't initialize abstract datums.
 	abstract_type = /datum/atmosphere
 
@@ -29,12 +29,12 @@
 	/// Maximum temperature this atmosphere can be
 	var/maximum_temp
 
-/datum/atmosphere/New()
+datum/atmosphere/New()
 	if(!id)
 		id = type
 	generate_gas_string()
 
-/datum/atmosphere/proc/generate_gas_string()
+datum/atmosphere/proc/generate_gas_string()
 	var/target_pressure = max(base_target_pressure, rand(minimum_pressure, maximum_pressure))
 	var/pressure_scalar = target_pressure / maximum_pressure
 

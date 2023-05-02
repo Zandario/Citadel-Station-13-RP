@@ -1,4 +1,4 @@
-/obj/item/deadringer
+obj/item/deadringer
 	name = "silver pocket watch"
 	desc = "A fancy silver-plated digital pocket watch. Looks expensive."
 	icon = 'icons/obj/deadringer.dmi'
@@ -13,22 +13,22 @@
 	var/mob/living/carbon/human/corpse = null
 	var/mob/living/carbon/human/watchowner = null
 
-/obj/item/deadringer/Initialize(mapload)
+obj/item/deadringer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
+obj/item/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
 	reveal()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/deadringer/dropped(mob/user, flags, atom/newLoc)
+obj/item/deadringer/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(timer > 20)
 		reveal()
 		watchowner = null
 
-/obj/item/deadringer/attack_self(mob/user)
+obj/item/deadringer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -51,7 +51,7 @@
 		activated = 0
 		return
 
-/obj/item/deadringer/process(delta_time)
+obj/item/deadringer/process(delta_time)
 	if(activated)
 		if (ismob(src.loc))
 			var/mob/living/carbon/human/H = src.loc
@@ -77,7 +77,7 @@
 		icon_state = "deadringer"
 	return
 
-/obj/item/deadringer/proc/deathprevent()
+obj/item/deadringer/proc/deathprevent()
 	for(var/mob/living/simple_mob/D in oviewers(7, src))
 		if(!D.has_AI())
 			continue
@@ -88,13 +88,13 @@
 	makeacorpse(watchowner)
 	return
 
-/obj/item/deadringer/proc/reveal()
+obj/item/deadringer/proc/reveal()
 	if(watchowner)
 		watchowner.alpha = 255
 		playsound(get_turf(src), 'sound/effects/uncloak.ogg', 35, 1, -1)
 	return
 
-/obj/item/deadringer/proc/makeacorpse(var/mob/living/carbon/human/H)
+obj/item/deadringer/proc/makeacorpse(var/mob/living/carbon/human/H)
 	if(H.isSynthetic())
 		return
 	corpse = new /mob/living/carbon/human(H.loc)

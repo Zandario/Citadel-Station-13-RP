@@ -1,4 +1,4 @@
-/datum/technomancer/spell/fire_aura
+datum/technomancer/spell/fire_aura
 	name = "Fire Storm"
 	desc = "This causes everyone within four meters of you to heat up, eventually burning to death if they remain for too long.  \
 	This does not affect you or your allies.  It also causes a large amount of fire to erupt around you, however the main threat is \
@@ -10,14 +10,14 @@
 	ability_icon_state = "tech_fireaura"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/aura/fire
+obj/item/spell/aura/fire
 	name = "Fire Storm"
 	desc = "Things are starting to heat up."
 	icon_state = "fire_bolt"
 	aspect = ASPECT_FIRE
 	glow_color = "#FF6A00"
 
-/obj/item/spell/aura/fire/process(delta_time)
+obj/item/spell/aura/fire/process(delta_time)
 	if(!pay_energy(100))
 		qdel(src)
 	var/list/nearby_things = range(round(calculate_spell_power(4)),owner)

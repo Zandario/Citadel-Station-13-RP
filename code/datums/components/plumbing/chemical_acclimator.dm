@@ -1,13 +1,13 @@
-/datum/component/plumbing/acclimator
+datum/component/plumbing/acclimator
 	demand_connects = WEST
 	supply_connects = EAST
 
-/datum/component/plumbing/acclimator/Initialize(start=TRUE, _turn_connects=TRUE)
+datum/component/plumbing/acclimator/Initialize(start=TRUE, _turn_connects=TRUE)
 	. = ..()
 	if(. && istype(parent, /obj/machinery/plumbing/acclimator))
 		return TRUE
 
-/datum/component/plumbing/acclimator/can_give(amount, reagent)
+datum/component/plumbing/acclimator/can_give(amount, reagent)
 	. = ..()
 	if(.)
 		var/obj/machinery/plumbing/acclimator/AC = parent

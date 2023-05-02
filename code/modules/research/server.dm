@@ -1,4 +1,4 @@
-/obj/machinery/r_n_d/server
+obj/machinery/r_n_d/server
 	name = "R&D Server"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
@@ -18,17 +18,17 @@
 	req_access = list(ACCESS_SCIENCE_RD) //Only the R&D can change server settings.
 	circuit = /obj/item/circuitboard/rdserver
 
-/obj/machinery/r_n_d/server/Destroy()
+obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
 	..()
 
-/obj/machinery/r_n_d/server/RefreshParts()
+obj/machinery/r_n_d/server/RefreshParts()
 	var/tot_rating = 0
 	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
 	idle_power_usage /= max(1, tot_rating)
 
-/obj/machinery/r_n_d/server/Initialize(mapload)
+obj/machinery/r_n_d/server/Initialize(mapload)
 	. = ..()
 	if(!files)
 		files = new /datum/research(src)
@@ -44,7 +44,7 @@
 		for(var/N in temp_list)
 			id_with_download += text2num(N)
 
-/obj/machinery/r_n_d/server/process(delta_time)
+obj/machinery/r_n_d/server/process(delta_time)
 	var/datum/gas_mixture/environment = loc.return_air()
 	switch(environment.temperature)
 		if(0 to T0C)
@@ -66,16 +66,16 @@
 		produce_heat()
 		delay = initial(delay)
 
-/obj/machinery/r_n_d/server/emp_act(severity)
+obj/machinery/r_n_d/server/emp_act(severity)
 	griefProtection()
 	..()
 
-/obj/machinery/r_n_d/server/legacy_ex_act(severity)
+obj/machinery/r_n_d/server/legacy_ex_act(severity)
 	griefProtection()
 	..()
 
 //Backup files to CentCom to help admins recover data after greifer attacks
-/obj/machinery/r_n_d/server/proc/griefProtection()
+obj/machinery/r_n_d/server/proc/griefProtection()
 	for(var/obj/machinery/r_n_d/server/centcom/C in GLOB.machines)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
@@ -83,7 +83,7 @@
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
-/obj/machinery/r_n_d/server/proc/produce_heat()
+obj/machinery/r_n_d/server/proc/produce_heat()
 	if(!produces_heat)
 		return
 
@@ -106,7 +106,7 @@
 
 			env.merge(removed)
 
-/obj/machinery/r_n_d/server/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/r_n_d/server/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))
@@ -114,11 +114,11 @@
 	if(default_part_replacement(user, O))
 		return
 
-/obj/machinery/r_n_d/server/centcom
+obj/machinery/r_n_d/server/centcom
 	name = "Central R&D Database"
 	server_id = -1
 
-/obj/machinery/r_n_d/server/centcom/proc/update_connections()
+obj/machinery/r_n_d/server/centcom/proc/update_connections()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
 	for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
@@ -140,10 +140,10 @@
 				server_ids += num
 		no_id_servers -= S
 
-/obj/machinery/r_n_d/server/centcom/process(delta_time)
+obj/machinery/r_n_d/server/centcom/process(delta_time)
 	return PROCESS_KILL //don't need process()
 
-/obj/machinery/computer/rdservercontrol
+obj/machinery/computer/rdservercontrol
 	name = "R&D Server Controller"
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
@@ -155,18 +155,18 @@
 	var/list/consoles = list()
 	var/badmin = 0
 
-/obj/machinery/computer/rdservercontrol/ui_status(mob/user)
+obj/machinery/computer/rdservercontrol/ui_status(mob/user)
 	. = ..()
 	if(!allowed(user) && !emagged)
 		. = min(., UI_UPDATE)
 
-/obj/machinery/computer/rdservercontrol/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+obj/machinery/computer/rdservercontrol/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ResearchServerController", name)
 		ui.open()
 
-/obj/machinery/computer/rdservercontrol/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/rdservercontrol/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["badmin"] = badmin
@@ -213,7 +213,7 @@
 
 	return data
 
-/obj/machinery/computer/rdservercontrol/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/rdservercontrol/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -284,12 +284,12 @@
 			target.files.known_tech |= from.files.known_tech
 			return TRUE
 
-/obj/machinery/computer/rdservercontrol/attack_hand(mob/user, list/params)
+obj/machinery/computer/rdservercontrol/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/rdservercontrol/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/rdservercontrol/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, TRUE)
 		emagged = TRUE
@@ -297,13 +297,13 @@
 		SStgui.update_uis(src)
 		return TRUE
 
-/obj/machinery/r_n_d/server/robotics
+obj/machinery/r_n_d/server/robotics
 	name = "Robotics R&D Server"
 	id_with_upload_string = "1;2"
 	id_with_download_string = "1;2"
 	server_id = 2
 
-/obj/machinery/r_n_d/server/core
+obj/machinery/r_n_d/server/core
 	name = "Core R&D Server"
 	id_with_upload_string = "1"
 	id_with_download_string = "1"

@@ -7,7 +7,7 @@
  * Scaling should affect the item's icon and all attached overlays (such as blood decals).
  *
  */
-/datum/element/item_scaling
+datum/element/item_scaling
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
 	/// Scaling value when the attached item is in the overworld (on a turf).
@@ -28,7 +28,7 @@
  * * overworld_scaling - Integer or float to scale the item in the overworld.
  * * storage_scaling - Integer or float to scale the item in storage/inventory.
  */
-/datum/element/item_scaling/Attach(datum/target, overworld_scaling, storage_scaling)
+datum/element/item_scaling/Attach(datum/target, overworld_scaling, storage_scaling)
 	. = ..()
 	if(!isatom(target))
 		return ELEMENT_INCOMPATIBLE
@@ -50,7 +50,7 @@
  * Arguments:
  * * target - Datum which the element is attached to.
  */
-/datum/element/item_scaling/Detach(datum/target)
+datum/element/item_scaling/Detach(datum/target)
 	UnregisterSignal(target, list(
 		COMSIG_ITEM_PICKUP,
 		COMSIG_ITEM_DROPPED,
@@ -69,7 +69,7 @@
  * * source - Source datum which sent the signal.
  * * scaling - Integer or float to scale the item's matrix.
  */
-/datum/element/item_scaling/proc/scale(datum/source, scaling)
+datum/element/item_scaling/proc/scale(datum/source, scaling)
 	var/atom/scalable_object = source
 	var/matrix/M = matrix()
 	scalable_object.transform = M.Scale(scaling)
@@ -82,7 +82,7 @@
  * Arguments:
  * * source - Source datum which sent the signal.
  */
-/datum/element/item_scaling/proc/scale_overworld(datum/source)
+datum/element/item_scaling/proc/scale_overworld(datum/source)
 	SIGNAL_HANDLER
 
 	scale(source, overworld_scaling)
@@ -95,7 +95,7 @@
  * Arguments:
  * * source - Source datum which sent the signal.
  */
-/datum/element/item_scaling/proc/scale_storage(datum/source)
+datum/element/item_scaling/proc/scale_storage(datum/source)
 	SIGNAL_HANDLER
 
 	scale(source, storage_scaling)

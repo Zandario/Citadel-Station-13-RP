@@ -1,6 +1,6 @@
 #define NEST_RESIST_TIME 1200
 
-/obj/structure/bed/nest
+obj/structure/bed/nest
 	name = "alien nest"
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
 	icon = 'icons/mob/alien.dmi'
@@ -8,10 +8,10 @@
 	color = "#261438"
 	var/health = 100
 
-/obj/structure/bed/nest/update_icon()
+obj/structure/bed/nest/update_icon()
 	return
 
-/obj/structure/bed/nest/mob_resist_buckle(mob/M, semantic)
+obj/structure/bed/nest/mob_resist_buckle(mob/M, semantic)
 	. = ..()
 	if(!.)
 		return
@@ -33,7 +33,7 @@
 		)
 		return FALSE
 
-/obj/structure/bed/nest/user_unbuckle_feedback(mob/M, flags, mob/user, semantic)
+obj/structure/bed/nest/user_unbuckle_feedback(mob/M, flags, mob/user, semantic)
 	if(user != M)
 		user.visible_message(\
 			"<span class='notice'>[user.name] pulls [M.name] free from the sticky nest!</span>",\
@@ -46,7 +46,7 @@
 			SPAN_WARNING("You hear squelching...")
 		)
 
-/obj/structure/bed/nest/user_buckle_mob(mob/M, flags, mob/user, semantic)
+obj/structure/bed/nest/user_buckle_mob(mob/M, flags, mob/user, semantic)
 	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
@@ -64,13 +64,13 @@
 
 	return ..()
 
-/obj/structure/bed/nest/user_buckle_feedback(mob/M, flags, mob/user, semantic)
+obj/structure/bed/nest/user_buckle_feedback(mob/M, flags, mob/user, semantic)
 	user.visible_message(\
 		"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
 		"<span class='warning'>[user.name] drenches you in a foul-smelling resin, trapping you in the [src]!</span>",\
 		"<span class='notice'>You hear squelching...</span>")
 
-/obj/structure/bed/nest/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/bed/nest/attackby(obj/item/W as obj, mob/user as mob)
 	var/aforce = W.damage_force
 	health = max(0, health - aforce)
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
@@ -78,7 +78,7 @@
 		M.show_message("<span class='warning'>[user] hits [src] with [W]!</span>", 1)
 	healthcheck()
 
-/obj/structure/bed/nest/proc/healthcheck()
+obj/structure/bed/nest/proc/healthcheck()
 	if(health <=0)
 		density = 0
 		qdel(src)

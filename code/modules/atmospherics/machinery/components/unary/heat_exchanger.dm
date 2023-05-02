@@ -1,4 +1,4 @@
-/obj/machinery/atmospherics/component/unary/heat_exchanger
+obj/machinery/atmospherics/component/unary/heat_exchanger
 	name = "Heat Exchanger"
 	desc = "Exchanges heat between two input gases. Setup for fast heat transfer"
 	icon = 'icons/obj/atmospherics/heat_exchanger.dmi'
@@ -9,14 +9,14 @@
 	var/obj/machinery/atmospherics/component/unary/heat_exchanger/partner = null
 	var/update_cycle
 
-/obj/machinery/atmospherics/component/unary/heat_exchanger/update_icon()
+obj/machinery/atmospherics/component/unary/heat_exchanger/update_icon()
 	if(node)
 		icon_state = "intact"
 	else
 		icon_state = "exposed"
 	return
 
-/obj/machinery/atmospherics/component/unary/heat_exchanger/atmos_init()
+obj/machinery/atmospherics/component/unary/heat_exchanger/atmos_init()
 	if(!partner)
 		var/partner_connect = turn(dir,180)
 
@@ -28,7 +28,7 @@
 
 	..()
 
-/obj/machinery/atmospherics/component/unary/heat_exchanger/process()
+obj/machinery/atmospherics/component/unary/heat_exchanger/process()
 	..()
 	if(!partner)
 		return 0
@@ -63,7 +63,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/component/unary/heat_exchanger/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/atmospherics/component/unary/heat_exchanger/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
 	var/turf/T = src.loc

@@ -1,4 +1,4 @@
-/client/proc/Debug2()
+client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debug-Game"
 	if(!check_rights(R_DEBUG))	return
@@ -16,7 +16,7 @@
 
 // callproc moved to code/modules/admin/callproc
 
-/client/proc/simple_DPS()
+client/proc/simple_DPS()
 	set name = "Simple DPS"
 	set category = "Debug"
 	set desc = "Gives a really basic idea of how much hurt something in-hand does."
@@ -72,7 +72,7 @@
 		to_chat(user, "<span class='warning'>You need to be a living mob, with hands, and for an object to be in your active hand, to use this verb.</span>")
 		return
 
-/client/proc/Cell()
+client/proc/Cell()
 	set category = "Debug"
 	set name = "Cell"
 	if(!mob)
@@ -93,7 +93,7 @@
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
+client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Robot"
 
@@ -105,7 +105,7 @@
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in GLOB.mob_list)
+client/proc/cmd_admin_animalize(var/mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
@@ -122,7 +122,7 @@
 		M.Animalize()
 
 
-/client/proc/makepAI(var/turf/T in GLOB.mob_list)
+client/proc/makepAI(var/turf/T in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
@@ -149,7 +149,7 @@
 			paiController.pai_candidates.Remove(candidate)
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_alienize(var/mob/M in GLOB.mob_list)
+client/proc/cmd_admin_alienize(var/mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Alien"
 
@@ -164,7 +164,7 @@
 		alert("Invalid mob")
 
 //TODO: merge the vievars version into this or something maybe mayhaps
-/client/proc/cmd_debug_del_all(object as text)
+client/proc/cmd_debug_del_all(object as text)
 	set category = "Debug"
 	set name = "Del-All"
 
@@ -187,7 +187,7 @@
 		message_admins("[key_name_admin(src)] has deleted all ([counter]) instances of [hsbitem].")
 		// SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete All") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_clear_mobs()
+client/proc/cmd_admin_clear_mobs()
 	set category = "Admin"
 	set name = "Clear Mobs"
 
@@ -211,7 +211,7 @@
 	feedback_add_details("admin_verb","CLRM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/cmd_debug_make_powernets()
+client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
 	set name = "Make Powernets"
 	SSmachines.makepowernets()
@@ -219,7 +219,7 @@
 	message_admins("[key_name_admin(src)] has remade the powernets. SSmachines.makepowernets() called.", 0)
 	feedback_add_details("admin_verb","MPWN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_debug_tog_aliens()
+client/proc/cmd_debug_tog_aliens()
 	set category = "Server"
 	set name = "Toggle Aliens"
 
@@ -228,7 +228,7 @@
 	message_admins("[key_name_admin(src)] has turned aliens [config_legacy.aliens_allowed ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb","TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_display_del_log()
+client/proc/cmd_display_del_log()
 	set category = "Debug"
 	set name = "Display del() Log"
 	set desc = "Display del's log of everything that's passed through it."
@@ -258,7 +258,7 @@
 
 	usr << browse(dellog.Join(), "window=dellog")
 
-/client/proc/cmd_display_init_log()
+client/proc/cmd_display_init_log()
 	set category = "Debug"
 	set name = "Display Initialize() Log"
 	set desc = "Displays a list of things that didn't handle Initialize() properly"
@@ -271,7 +271,7 @@
 		return
 	src << browse(rendered, "window=initlog")
 
-/client/proc/cmd_display_overlay_log()
+client/proc/cmd_display_overlay_log()
 	set category = "Debug"
 	set name = "Display overlay Log"
 	set desc = "Display SSoverlays log of everything that's passed through it."
@@ -281,7 +281,7 @@
 	render_stats(SSoverlays.stats, src)
 
 // Render stats list for round-end statistics.
-/proc/render_stats(list/stats, user, sort = /proc/cmp_generic_stat_item_time)
+proc/render_stats(list/stats, user, sort = /proc/cmp_generic_stat_item_time)
 	tim_sort(stats, sort, TRUE)
 
 	var/list/lines = list()
@@ -294,7 +294,7 @@
 	else
 		. = lines.Join("\n")
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in GLOB.mob_list)
+client/proc/cmd_admin_grantfullaccess(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Grant Full Access"
 
@@ -325,7 +325,7 @@
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins("<font color=#4F49AF>[key_name_admin(usr)] has granted [M.key] full access.</font>", 1)
 
-/client/proc/cmd_assume_direct_control(var/mob/M in GLOB.mob_list)
+client/proc/cmd_assume_direct_control(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
@@ -345,7 +345,7 @@
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/take_picture(atom/A in world)
+client/proc/take_picture(atom/A in world)
 	set name = "Save PNG"
 	set category = "Debug"
 	set desc = "Opens a dialog to save a PNG of any object in the game."
@@ -355,7 +355,7 @@
 
 	download_icon(A)
 
-/client/proc/cmd_admin_areatest()
+client/proc/cmd_admin_areatest()
 	set category = "Mapping"
 	set name = "Test areas"
 
@@ -443,7 +443,7 @@
 	for(var/areatype in areas_without_camera)
 		to_chat(world, "* [areatype]")
 
-/datum/admins/proc/cmd_admin_dress(input in getmobs())
+datum/admins/proc/cmd_admin_dress(input in getmobs())
 	set category = "Fun"
 	set name = "Select equipment"
 
@@ -466,7 +466,7 @@
 	feedback_add_details("admin_verb","SEQ")
 	dressup_human(H, outfit, 1)
 
-/proc/dressup_human(var/mob/living/carbon/human/H, var/datum/outfit/outfit)
+proc/dressup_human(var/mob/living/carbon/human/H, var/datum/outfit/outfit)
 	if(!H || !outfit)
 		return
 	if(outfit.undress)
@@ -474,7 +474,7 @@
 	outfit.equip(H)
 	log_and_message_admins("changed the equipment of [key_name(H)] to [outfit.name].")
 
-/client/proc/startSinglo()
+client/proc/startSinglo()
 
 	set category = "Debug"
 	set name = "Start Singularity"
@@ -519,7 +519,7 @@
 			if(!Rad.active)
 				Rad.toggle_power()
 
-/client/proc/setup_supermatter_engine()
+client/proc/setup_supermatter_engine()
 	set category = "Debug"
 	set name = "Setup supermatter"
 	set desc = "Sets up the supermatter engine"
@@ -600,7 +600,7 @@
 	message_admins("<font color=#4F49AF>[key_name_admin(usr)] setup the supermatter engine  [response == "Setup except coolant" ? "without coolant": ""]</font>", 1)
 	return
 
-/client/proc/cmd_debug_mob_lists()
+client/proc/cmd_debug_mob_lists()
 	set category = "Debug"
 	set name = "Debug Mob Lists"
 	set desc = "For when you just gotta know"
@@ -620,7 +620,7 @@
 			to_chat(usr, jointext(GLOB.clients,","))
 
 // DNA2 - Admin Hax
-/client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
+client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
 	if(istype(M, /mob/living/carbon))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
@@ -632,7 +632,7 @@
 	else
 		alert("Invalid mob")
 
-/datum/admins/proc/view_runtimes()
+datum/admins/proc/view_runtimes()
 	set category = "Debug"
 	set name = "View Runtimes"
 	set desc = "Open the Runtime Viewer"
@@ -642,7 +642,7 @@
 
 	GLOB.error_cache.show_to(usr)
 
-/datum/admins/proc/change_weather()
+datum/admins/proc/change_weather()
 	set category = "Debug"
 	set name = "Change Weather"
 	set desc = "Changes the current weather."
@@ -659,7 +659,7 @@
 		message_admins(log)
 		log_admin(log)
 
-/datum/admins/proc/change_time()
+datum/admins/proc/change_time()
 	set category = "Debug"
 	set name = "Change Planet Time"
 	set desc = "Changes the time of a planet."
@@ -686,7 +686,7 @@
 			message_admins(log)
 			log_admin(log)
 
-/client/proc/reload_configuration()
+client/proc/reload_configuration()
 	set category = "Debug"
 	set name = "Reload Configuration"
 	set desc = "Force config reload to world default"
@@ -696,7 +696,7 @@
 		config.admin_reload()
 		load_configuration()		//for legacy
 
-/datum/admins/proc/quick_nif()
+datum/admins/proc/quick_nif()
 	set category = "Fun"
 	set name = "Quick NIF"
 	set desc = "Spawns a NIF into someone in quick-implant mode."

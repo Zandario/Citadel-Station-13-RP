@@ -2,13 +2,13 @@
 //Breaches greatly increase the amount of lost gas and decrease the armour rating of the suit.
 //They can be healed with plastic or metal sheeting.
 
-/datum/breach
+datum/breach
 	var/class = 0                           // Size. Lower is smaller. Uses floating point values!
 	var/descriptor                          // 'gaping hole' etc.
 	var/damtype = BURN                      // Punctured or melted
 	var/obj/item/clothing/suit/space/holder // Suit containing the list of breaches holding this instance.
 
-/obj/item/clothing/suit/space
+obj/item/clothing/suit/space
 
 	var/can_breach = 1                      // Set to 0 to disregard all breaching.
 	var/list/breaches = list()              // Breach datum container.
@@ -19,7 +19,7 @@
 	var/burn_damage = 0                     // Specifically burn damage.
 	var/base_name                           // Used to keep the original name safe while we apply modifiers.
 
-/obj/item/clothing/suit/space/Initialize(mapload)
+obj/item/clothing/suit/space/Initialize(mapload)
 	. = ..()
 	base_name = "[name]"
 
@@ -41,7 +41,7 @@ var/global/list/breach_burn_descriptors = list(
 	"huge scorched area"
 	)
 
-/datum/breach/proc/update_descriptor()
+datum/breach/proc/update_descriptor()
 
 	//Sanity...
 	class = clamp( round(class), 1,  5)
@@ -52,7 +52,7 @@ var/global/list/breach_burn_descriptors = list(
 		descriptor = breach_brute_descriptors[class]
 
 //Repair a certain amount of brute or burn damage to the suit.
-/obj/item/clothing/suit/space/proc/repair_breaches(var/damtype, var/amount, var/mob/user)
+obj/item/clothing/suit/space/proc/repair_breaches(var/damtype, var/amount, var/mob/user)
 
 	if(!can_breach || !breaches || !breaches.len || !damage)
 		to_chat(user, "There are no breaches to repair on \the [src].")
@@ -84,7 +84,7 @@ var/global/list/breach_burn_descriptors = list(
 	user.visible_message("<b>[user]</b> patches some of the damage on \the [src].")
 	calc_breach_damage()
 
-/obj/item/clothing/suit/space/proc/create_breaches(var/damtype, var/amount)
+obj/item/clothing/suit/space/proc/create_breaches(var/damtype, var/amount)
 
 	amount -= src.breach_threshold
 	amount *= src.resilience
@@ -142,7 +142,7 @@ var/global/list/breach_burn_descriptors = list(
 	calc_breach_damage()
 
 //Calculates the current extent of the damage to the suit.
-/obj/item/clothing/suit/space/proc/calc_breach_damage()
+obj/item/clothing/suit/space/proc/calc_breach_damage()
 
 	damage = 0
 	brute_damage = 0
@@ -177,7 +177,7 @@ var/global/list/breach_burn_descriptors = list(
 
 //Handles repairs (and also upgrades).
 
-/obj/item/clothing/suit/space/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/clothing/suit/space/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack/material))
 		var/repair_power = 0
 		switch(W.get_material_name())
@@ -223,7 +223,7 @@ var/global/list/breach_burn_descriptors = list(
 
 	..()
 
-/obj/item/clothing/suit/space/examine(mob/user)
+obj/item/clothing/suit/space/examine(mob/user)
 	. = ..()
 	if(can_breach && breaches && breaches.len)
 		for(var/datum/breach/B in breaches)

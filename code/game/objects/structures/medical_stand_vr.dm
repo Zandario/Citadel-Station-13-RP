@@ -1,4 +1,4 @@
-/obj/structure/medical_stand
+obj/structure/medical_stand
 	name = "medical stand"
 	icon = 'icons/obj/medical_stand_vr.dmi'
 	desc = "Medical stand used to hang reagents for transfusion and to hold anesthetic tank."
@@ -21,14 +21,14 @@
 	var/list/transfer_amounts = list(REM, 1, 2)
 	var/transfer_amount = 1
 
-/obj/structure/medical_stand/Initialize(mapload)
+obj/structure/medical_stand/Initialize(mapload)
 	. = ..()
 	if (spawn_type)
 		tank = new spawn_type (src)
 	contained = new mask_type (src)
 	update_icon()
 
-/obj/structure/medical_stand/update_icon()
+obj/structure/medical_stand/update_icon()
 	cut_overlays()
 
 	var/list/overlays_to_add = list()
@@ -74,7 +74,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/structure/medical_stand/Destroy()
+obj/structure/medical_stand/Destroy()
 	STOP_PROCESSING(SSobj,src)
 	if(breather)
 		breather.internal = null
@@ -89,11 +89,11 @@
 		QDEL_NULL(beaker)
 	return ..()
 
-/obj/structure/medical_stand/attack_robot(var/mob/user)
+obj/structure/medical_stand/attack_robot(var/mob/user)
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/medical_stand/OnMouseDropLegacy(var/mob/living/carbon/human/target, src_location, over_location)
+obj/structure/medical_stand/OnMouseDropLegacy(var/mob/living/carbon/human/target, src_location, over_location)
 	..()
 	if(istype(target))
 		if(usr.stat == DEAD || !CanMouseDrop(target))
@@ -164,7 +164,7 @@
 				update_icon()
 
 
-/obj/structure/medical_stand/attack_hand(mob/user, list/params)
+obj/structure/medical_stand/attack_hand(mob/user, list/params)
 	var/list/available_options = list()
 	if (tank)
 		available_options += "Toggle valve"
@@ -220,7 +220,7 @@
 				beaker = null
 				update_icon()
 
-/obj/structure/medical_stand/verb/toggle_mode()
+obj/structure/medical_stand/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle IV Mode"
 	set src in view(1)
@@ -235,7 +235,7 @@
 	mode = !mode
 	to_chat(usr, "The IV drip is now [mode ? "injecting" : "taking blood"].")
 
-/obj/structure/medical_stand/verb/set_APTFT()
+obj/structure/medical_stand/verb/set_APTFT()
 	set name = "Set IV transfer amount"
 	set category = "Object"
 	set src in range(1)
@@ -243,7 +243,7 @@
 	if(N)
 		transfer_amount = N
 
-/obj/structure/medical_stand/proc/attach_mask(var/mob/living/carbon/C)
+obj/structure/medical_stand/proc/attach_mask(var/mob/living/carbon/C)
 	if(C && istype(C))
 		if(C.equip_to_slot_if_possible(contained, SLOT_ID_MASK, INV_OP_SUPPRESS_WARNING))
 			if(tank)
@@ -251,7 +251,7 @@
 			breather = C
 			return TRUE
 
-/obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, var/mob/user)
+obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, var/mob/user)
 	if(!user)
 		user = target
 	// Check target validity
@@ -288,7 +288,7 @@
 		return
 	return 1
 
-/obj/structure/medical_stand/attackby(var/obj/item/W, var/mob/user)
+obj/structure/medical_stand/attackby(var/obj/item/W, var/mob/user)
 	if(istype (W, /obj/item/tool))
 		if (valve_opened)
 			to_chat(user, "<span class='warning'>Close the valve first.</span>")
@@ -334,7 +334,7 @@
 	else
 		return ..()
 
-/obj/structure/medical_stand/examine(var/mob/user)
+obj/structure/medical_stand/examine(var/mob/user)
 	. = ..()
 
 	if (get_dist(src, user) > 2)
@@ -360,7 +360,7 @@
 	else
 		. += "<span class='notice'>There is no tank.</span>"
 
-/obj/structure/medical_stand/process()
+obj/structure/medical_stand/process()
 	//Gas Stuff
 	if(breather)
 		if(!can_apply_to_target(breather))
@@ -437,7 +437,7 @@
 	if ((!valve_opened || tank.distribute_pressure == 0) && !breather && !attached)
 		return PROCESS_KILL
 
-/obj/structure/medical_stand/anesthetic
+obj/structure/medical_stand/anesthetic
 	spawn_type = /obj/item/tank/anesthetic
 	mask_type = /obj/item/clothing/mask/breath/medical
 	is_loosen = FALSE

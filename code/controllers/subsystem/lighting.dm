@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(lighting)
 	var/force_override = FALSE
 #endif
 
-/datum/controller/subsystem/lighting/stat_entry()
+datum/controller/subsystem/lighting/stat_entry()
 	var/list/out = list(
 #ifdef USE_INTELLIGENT_LIGHTING_UPDATES
 		"IUR: [total_ss_updates ? round(total_instant_updates/(total_instant_updates+total_ss_updates)*100, 0.1) : "NaN"]% Instant: [force_queued ? "Disabled" : "Allowed"] <br>",
@@ -48,17 +48,17 @@ SUBSYSTEM_DEF(lighting)
 
 #ifdef USE_INTELLIGENT_LIGHTING_UPDATES
 
-/hook/roundstart/proc/lighting_init_roundstart()
+hook/roundstart/proc/lighting_init_roundstart()
 	SSlighting.handle_roundstart()
 	return TRUE
 
-/datum/controller/subsystem/lighting/proc/handle_roundstart()
+datum/controller/subsystem/lighting/proc/handle_roundstart()
 	force_queued = FALSE
 	total_ss_updates = 0
 	total_instant_updates = 0
 
 /// Disable instant updates, relying entirely on the (slower, but less laggy) queued pathway. Use if changing a *lot* of lights.
-/datum/controller/subsystem/lighting/proc/pause_instant()
+datum/controller/subsystem/lighting/proc/pause_instant()
 	if (force_override)
 		return
 
@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(lighting)
 		force_queued = TRUE
 
 /// Resume instant updates.
-/datum/controller/subsystem/lighting/proc/resume_instant()
+datum/controller/subsystem/lighting/proc/resume_instant()
 	if (force_override)
 		return
 
@@ -78,13 +78,13 @@ SUBSYSTEM_DEF(lighting)
 
 #else
 
-/datum/controller/subsystem/lighting/proc/pause_instant()
+datum/controller/subsystem/lighting/proc/pause_instant()
 
-/datum/controller/subsystem/lighting/proc/resume_instant()
+datum/controller/subsystem/lighting/proc/resume_instant()
 
 #endif
 
-/datum/controller/subsystem/lighting/Initialize(timeofday)
+datum/controller/subsystem/lighting/Initialize(timeofday)
 	var/overlaycount = 0
 	var/starttime = REALTIMEOFDAY
 
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(lighting)
 
 	return ..()
 
-/datum/controller/subsystem/lighting/proc/InitializeZlev(zlev)
+datum/controller/subsystem/lighting/proc/InitializeZlev(zlev)
 	for (var/thing in Z_ALL_TURFS(zlev))
 		var/turf/T = thing
 		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(lighting)
 		CHECK_TICK
 
 // It's safe to pass a list of non-turfs to this list - it'll only check turfs.
-/datum/controller/subsystem/lighting/proc/InitializeTurfs(list/targets)
+datum/controller/subsystem/lighting/proc/InitializeTurfs(list/targets)
 	for (var/turf/T in (targets || world))
 		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
 			T.lighting_build_overlay()
@@ -139,7 +139,7 @@ SUBSYSTEM_DEF(lighting)
 		// If this isn't here, BYOND will set-background us.
 		CHECK_TICK
 
-/datum/controller/subsystem/lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
+datum/controller/subsystem/lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
 	if (!resumed)
 		processed_lights = 0
 		processed_corners = 0
@@ -216,7 +216,7 @@ SUBSYSTEM_DEF(lighting)
 		curr_overlays.Cut(1, oq_idex)
 		oq_idex = 1
 
-/datum/controller/subsystem/lighting/Recover()
+datum/controller/subsystem/lighting/Recover()
 	total_lighting_corners = SSlighting.total_lighting_corners
 	total_lighting_overlays = SSlighting.total_lighting_overlays
 	total_lighting_sources = SSlighting.total_lighting_sources

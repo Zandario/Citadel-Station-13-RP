@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/solarmoth		//TODO: VIRGO_LORE_WRITING_WIP
+datum/category_item/catalogue/fauna/solarmoth		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Solarmoth"
 	desc = "An adult variation of a solargrub, these winged critters are very deadly. They seem to heat up everything nearby, \
 	turning ordinary rooms into infernos, and causing malfunctions across the station. They are so hot that laser weaponry is like throwing an ice cube at them. \
@@ -6,13 +6,13 @@
 	Melee seems to be thier weakness as long as the user has appropriate heat protection or if you're quick enough to respond before needing protection. Approach with caution."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/datum/category_item/catalogue/fauna/lunarmoth		//TODO: VIRGO_LORE_WRITING_WIP
+datum/category_item/catalogue/fauna/lunarmoth		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Lunarmoth"
 	desc = "A peculiar adult variation of a solargrub. Due to some sort of innate mutation, a simple solar grub turns into a power draining yet ever so majestic sparkling lunarmoth. \
 	Just their sheer sight sends chills down its beholders frame and the surroundings begin to creak. Approach with upmost caution."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/vore/solarmoth
+mob/living/simple_mob/vore/solarmoth
 	name = "Solarmoth"
 	desc = "A majestic sparkling solarmoth. Also a slight engineering hazard known to heat rooms equal to temperatures of a white dwarf."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/solarmoth)
@@ -75,10 +75,10 @@
 				"bio" = 100,
 				"rad" = 100)
 
-/datum/say_list/solarmoth
+datum/say_list/solarmoth
 	emote_see = list("flutters")
 
-/mob/living/simple_mob/vore/solarmoth/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/vore/solarmoth/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(shock_chance))
@@ -98,12 +98,12 @@
 					inject_poison(L, target_zone)
 
 // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/vore/solarmoth/proc/inject_poison(mob/living/L, target_zone)
+mob/living/simple_mob/vore/solarmoth/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>You feel a small shock rushing through your veins.</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/simple_mob/vore/solarmoth/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/vore/solarmoth/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -129,30 +129,30 @@
 	//Since I'm changing hyper mode to be variable we need to store old power
 	original_temp = heating_power //We remember our old goal, for use in non perpetual heating level increase
 
-/mob/living/simple_mob/vore/solarmoth/proc/explode()
+mob/living/simple_mob/vore/solarmoth/proc/explode()
 	src.anchored = 0
 	set_light(0)
 	if(empulse(src, emp_heavy, emp_med, emp_light, emp_long))
 		qdel(src)
 	return
 
-/mob/living/simple_mob/vore/solarmoth/death()
+mob/living/simple_mob/vore/solarmoth/death()
 	explode()
 	..()
 
-/mob/living/simple_mob/vore/solarmoth/gib() //This baby will explode no matter what you do to it.
+mob/living/simple_mob/vore/solarmoth/gib() //This baby will explode no matter what you do to it.
 	explode()
 	..()
 
 
-/mob/living/simple_mob/vore/solarmoth/handle_light()
+mob/living/simple_mob/vore/solarmoth/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
 		set_light(9.5, 1, mycolour) //9.5 makes the brightness range super huge.
 		return 1
 
 
-/mob/living/simple_mob/vore/solarmoth //active noms
+mob/living/simple_mob/vore/solarmoth //active noms
 	vore_bump_chance = 50
 	vore_bump_emote = "applies minimal effort to try and slurp up"
 	vore_active = 1
@@ -160,7 +160,7 @@
 	vore_pounce_chance = 0 //moths only eat incapacitated targets. It's too lazy burning you to a crisp to try to pounce you
 	vore_default_mode = DM_DIGEST
 
-/mob/living/simple_mob/vore/solarmoth/lunarmoth
+mob/living/simple_mob/vore/solarmoth/lunarmoth
 	name = "Lunarmoth"
 	desc = "A peculiar adult variation of a solargrub. Don't stare for too long and start running."
 	var/nospampls = 0
@@ -171,7 +171,7 @@
 	//light
 	mycolour = COLOR_BLUE
 
-/mob/living/simple_mob/vore/solarmoth/lunarmoth/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/vore/solarmoth/lunarmoth/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -197,7 +197,7 @@
 	if(!nospampls)
 		chilltheglass() //shatter and broken calls for glass and lights. Also some special thing.
 
-/mob/living/simple_mob/vore/solarmoth/lunarmoth/proc/chilltheglass() //Why does a coldfusion moth do this? science -shark
+mob/living/simple_mob/vore/solarmoth/lunarmoth/proc/chilltheglass() //Why does a coldfusion moth do this? science -shark
 	nospampls = 1
 	if(prob(25))
 		for(var/obj/machinery/light/light in range(5, src))
@@ -216,5 +216,3 @@
 
 	spawn(100)
 		nospampls = 0
-
-

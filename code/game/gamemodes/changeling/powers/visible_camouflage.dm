@@ -1,4 +1,4 @@
-/datum/power/changeling/visible_camouflage
+datum/power/changeling/visible_camouflage
 	name = "Camouflage"
 	desc = "We rapidly shape the color of our skin and secrete easily reversible dye on our clothes, to blend in with our surroundings.  \
 	We are undetectable, so long as we move slowly.(Toggle)"
@@ -9,7 +9,7 @@
 	verbpath = /mob/proc/changeling_visible_camouflage
 
 //Hide us from anyone who would do us harm.
-/mob/proc/changeling_visible_camouflage()
+mob/proc/changeling_visible_camouflage()
 	set category = "Changeling"
 	set name = "Visible Camouflage (10)"
 	set desc = "Turns yourself almost invisible, as long as you move slowly."

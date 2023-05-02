@@ -1,5 +1,5 @@
 //The base core object, worn on the wizard's back.
-/obj/item/technomancer_core
+obj/item/technomancer_core
 	name = "manipulation core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats."
 	icon = 'icons/obj/technomancer.dmi'
@@ -33,51 +33,51 @@
 	var/list/wards_in_use = list()	// Wards don't count against the cap for other summons.
 	var/max_summons = 10			// Maximum allowed summoned entities.  Some cores will have different caps.
 
-/obj/item/technomancer_core/Initialize(mapload)
+obj/item/technomancer_core/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/technomancer_core/Destroy()
+obj/item/technomancer_core/Destroy()
 	dismiss_all_summons()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 // Add the spell buttons to the HUD.
-/obj/item/technomancer_core/equipped(mob/user, slot, flags)
+obj/item/technomancer_core/equipped(mob/user, slot, flags)
 	wearer = user
 	for(var/obj/spellbutton/spell in spells)
 		wearer.ability_master.add_technomancer_ability(spell, spell.ability_icon_state)
 	..()
 
 // Removes the spell buttons from the HUD.
-/obj/item/technomancer_core/dropped(mob/user, flags, atom/newLoc)
+obj/item/technomancer_core/dropped(mob/user, flags, atom/newLoc)
 	for(var/atom/movable/screen/ability/obj_based/technomancer/A in wearer.ability_master.ability_objects)
 		wearer.ability_master.remove_ability(A)
 	wearer = null
 	..()
 
 // 'pay_energy' is too vague of a name for a proc at the mob level.
-/mob/proc/technomancer_pay_energy(amount)
+mob/proc/technomancer_pay_energy(amount)
 	return 0
 
-/mob/living/carbon/human/technomancer_pay_energy(amount)
+mob/living/carbon/human/technomancer_pay_energy(amount)
 	if(istype(back, /obj/item/technomancer_core))
 		var/obj/item/technomancer_core/TC = back
 		return TC.pay_energy(amount)
 	return 0
 
-/obj/item/technomancer_core/proc/pay_energy(amount)
+obj/item/technomancer_core/proc/pay_energy(amount)
 	amount = round(amount * energy_cost_modifier, 0.1)
 	if(amount <= energy)
 		energy = max(energy - amount, 0)
 		return 1
 	return 0
 
-/obj/item/technomancer_core/proc/give_energy(amount)
+obj/item/technomancer_core/proc/give_energy(amount)
 	energy = min(energy + amount, max_energy)
 	return 1
 
-/obj/item/technomancer_core/process(delta_time)
+obj/item/technomancer_core/process(delta_time)
 	var/old_energy = energy
 	regenerate()
 	pay_dues()
@@ -90,20 +90,20 @@
 	if(!wearer || wearer.stat == DEAD) // Unlock if we're dead or not worn.
 		REMOVE_TRAIT(src, TRAIT_ITEM_NODROP, TECHNOMANCER_TRAIT)
 
-/obj/item/technomancer_core/proc/regenerate()
+obj/item/technomancer_core/proc/regenerate()
 	energy = min(max(energy + regen_rate, 0), max_energy)
 	if(wearer && ishuman(wearer))
 		var/mob/living/carbon/human/H = wearer
 		H.wiz_energy_update_hud()
 
 // We pay for on-going effects here.
-/obj/item/technomancer_core/proc/pay_dues()
+obj/item/technomancer_core/proc/pay_dues()
 	if(summoned_mobs.len)
 		pay_energy( round(summoned_mobs.len * 5) )
 
 // Because sometimes our summoned mobs will stop existing and leave a null entry in the list, we need to do cleanup every
 // so often so .len remains reliable.
-/obj/item/technomancer_core/proc/maintain_summon_list()
+obj/item/technomancer_core/proc/maintain_summon_list()
 	if(!summoned_mobs.len) // No point doing work if there's no work to do.
 		return
 	for(var/A in summoned_mobs)
@@ -123,7 +123,7 @@
 					qdel(L)
 
 // Deletes all the summons and wards from the core, so that Destroy() won't have issues.
-/obj/item/technomancer_core/proc/dismiss_all_summons()
+obj/item/technomancer_core/proc/dismiss_all_summons()
 	for(var/mob/living/L in summoned_mobs)
 		summoned_mobs -= L
 		qdel(L)
@@ -132,13 +132,13 @@
 		qdel(ward)
 
 // This is what is clicked on to place a spell in the user's hands.
-/obj/spellbutton
+obj/spellbutton
 	name = "generic spellbutton"
 	var/spellpath = null
 	var/obj/item/technomancer_core/core = null
 	var/ability_icon_state = null
 
-/obj/spellbutton/Initialize(mapload, path, new_name, new_icon_state)
+obj/spellbutton/Initialize(mapload, path, new_name, new_icon_state)
 	. = ..()
 	if(!path || !ispath(path))
 		message_admins("ERROR: /obj/spellbutton/Initializesz() was not given a proper path!")
@@ -149,21 +149,21 @@
 	src.core = loc
 	src.ability_icon_state = new_icon_state
 
-/obj/spellbutton/Click()
+obj/spellbutton/Click()
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.place_spell_in_hand(spellpath)
 
-/obj/spellbutton/DblClick()
+obj/spellbutton/DblClick()
 	return Click()
 
-/mob/living/carbon/human/statpanel_data(client/C)
+mob/living/carbon/human/statpanel_data(client/C)
 	. = ..()
 	if(istype(back,/obj/item/technomancer_core) && C.statpanel_tab("Spell Core"))
 		var/obj/item/technomancer_core/core = back
 		. += technomancer_stat(core)
 
-/mob/living/carbon/human/proc/technomancer_stat(obj/item/technomancer_core/core)
+mob/living/carbon/human/proc/technomancer_stat(obj/item/technomancer_core/core)
 	var/charge_status = "[core.energy]/[core.max_energy] ([round( (core.energy / core.max_energy) * 100)]%) \
 	([round(core.energy_delta)]/s)"
 	var/instability_delta = instability - last_instability
@@ -173,7 +173,7 @@
 	for(var/obj/spellbutton/button in core.spells)
 		STATPANEL_DATA_CLICK(button.name, "Trigger", "\ref[button]")
 
-/obj/item/technomancer_core/proc/add_spell(var/path, var/new_name, var/ability_icon_state)
+obj/item/technomancer_core/proc/add_spell(var/path, var/new_name, var/ability_icon_state)
 	if(!path || !ispath(path))
 		message_admins("ERROR: /obj/item/technomancer_core/add_spell() was not given a proper path!  \
 		The path supplied was [path].")
@@ -183,7 +183,7 @@
 	if(wearer)
 		wearer.ability_master.add_technomancer_ability(spell, ability_icon_state)
 
-/obj/item/technomancer_core/proc/remove_spell(var/obj/spellbutton/spell_to_remove)
+obj/item/technomancer_core/proc/remove_spell(var/obj/spellbutton/spell_to_remove)
 	if(spell_to_remove in spells)
 		spells.Remove(spell_to_remove)
 		if(wearer)
@@ -192,18 +192,18 @@
 				wearer.ability_master.remove_ability(A)
 		qdel(spell_to_remove)
 
-/obj/item/technomancer_core/proc/remove_all_spells()
+obj/item/technomancer_core/proc/remove_all_spells()
 	for(var/obj/spellbutton/spell in spells)
 		spells.Remove(spell)
 		qdel(spell)
 
-/obj/item/technomancer_core/proc/has_spell(var/datum/technomancer/spell_to_check)
+obj/item/technomancer_core/proc/has_spell(var/datum/technomancer/spell_to_check)
 	for(var/obj/spellbutton/spell in spells)
 		if(spell.spellpath == spell_to_check.obj_path)
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/wiz_energy_update_hud()
+mob/living/carbon/human/proc/wiz_energy_update_hud()
 	if(client && hud_used)
 		if(istype(back, /obj/item/technomancer_core)) //I reckon there's a better way of doing this.
 			var/obj/item/technomancer_core/core = back
@@ -219,7 +219,7 @@
 //Variants which the wizard can buy.
 
 //High risk, high reward core.
-/obj/item/technomancer_core/unstable
+obj/item/technomancer_core/unstable
 	name = "unstable core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This one is rather unstable, \
 	and could prove dangerous to the user, as it feeds off unstable energies that can occur with overuse of this machine."
@@ -230,7 +230,7 @@
 	energy_cost_modifier = 0.7
 	spell_power_modifier = 1.1
 
-/obj/item/technomancer_core/unstable/regenerate()
+obj/item/technomancer_core/unstable/regenerate()
 	var/instability_bonus = 0
 	if(loc && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
@@ -241,7 +241,7 @@
 		H.wiz_energy_update_hud()
 
 //Lower capacity but safer core.
-/obj/item/technomancer_core/rapid
+obj/item/technomancer_core/rapid
 	name = "rapid core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This one has a superior \
 	recharge rate, at the price of storage capacity.  It also includes integrated motion assistance, increasing agility somewhat."
@@ -253,7 +253,7 @@
 	cooldown_modifier = 0.9
 
 //Big batteries but slow regen, buying energy spells is highly recommended.
-/obj/item/technomancer_core/bulky
+obj/item/technomancer_core/bulky
 	name = "bulky core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This variant is more \
 	cumbersome and bulky, due to the additional energy capacitors installed, which allows for a massive energy storage, as well \
@@ -267,7 +267,7 @@
 	spell_power_modifier = 1.4
 
 // Using this can result in abilities costing less energy.  If you're lucky.
-/obj/item/technomancer_core/recycling
+obj/item/technomancer_core/recycling
 	name = "recycling core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type tries to recover \
 	some of the energy lost from using functions due to inefficiency."
@@ -277,7 +277,7 @@
 	instability_modifier = 0.6
 	energy_cost_modifier = 0.8
 
-/obj/item/technomancer_core/recycling/pay_energy(amount)
+obj/item/technomancer_core/recycling/pay_energy(amount)
 	var/success = ..()
 	if(success)
 		if(prob(30))
@@ -287,7 +287,7 @@
 	return success
 
 // For those dedicated to summoning hoards of things.
-/obj/item/technomancer_core/summoner
+obj/item/technomancer_core/summoner
 	name = "summoner core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type is optimized for \
 	plucking hapless creatures and machines from other locations, to do your bidding.  The maximum amount of entities that you can \
@@ -299,12 +299,12 @@
 	instability_modifier = 1.2
 	spell_power_modifier = 1.2
 
-/obj/item/technomancer_core/summoner/pay_dues()
+obj/item/technomancer_core/summoner/pay_dues()
 	if(summoned_mobs.len)
 		pay_energy( round(summoned_mobs.len) )
 
 // For those who hate instability.
-/obj/item/technomancer_core/safety
+obj/item/technomancer_core/safety
 	name = "safety core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type is designed to be \
 	the closest thing you can get to 'safe' for a Core.  Instability from this is significantly reduced.  You can even dance if \
@@ -316,7 +316,7 @@
 	spell_power_modifier = 0.7
 
 // For those who want to blow everything on a few spells.
-/obj/item/technomancer_core/overcharged
+obj/item/technomancer_core/overcharged
 	name = "overcharged core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type will use as much \
 	energy as it can in order to pump up the strength of functions used to insane levels."
@@ -328,7 +328,7 @@
 	energy_cost_modifier = 2.0
 
 // For use only for the GOLEM.
-/obj/item/technomancer_core/golem
+obj/item/technomancer_core/golem
 	name = "integrated core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type is not meant \
 	to be worn on the back like other cores.  Instead it is meant to be installed inside a synthetic shell.  As a result, it's \
@@ -339,7 +339,7 @@
 	instability_modifier = 0.75
 
 
-/obj/item/technomancer_core/verb/toggle_lock()
+obj/item/technomancer_core/verb/toggle_lock()
 	set name = "Toggle Core Lock"
 	set category = "Object"
 	set desc = "Toggles the locking mechanism on your manipulation core."

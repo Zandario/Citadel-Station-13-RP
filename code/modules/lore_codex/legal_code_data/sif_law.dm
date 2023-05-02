@@ -1,4 +1,4 @@
-/datum/lore/codex/category/sif_law
+datum/lore/codex/category/sif_law
 	name = "Sif Law"
 	data = "This section contains the abbreviated Sif Govermental Authority legal code's potential charges for crimes that are relevant to \
 	the reader."
@@ -8,7 +8,7 @@
 		/datum/lore/codex/category/law_major_violations
 		)
 
-/datum/lore/codex/page/legal_punishments
+datum/lore/codex/page/legal_punishments
 	name = "Punishments (Law)"
 	data = "A violation of Sif Law is considered far more serious then a violation of corporate regulations. \
 	As a result, its expected that a member of Internal Affairs be present to observe and assist security with the paperwork if they are able. \
@@ -17,7 +17,7 @@
 	Punishments will usually include brig time with fines still remaining an option for the far less serious crimes. \
 	It should be noted that a majority of major violations carry a 'Hold till Transfer' order."
 
-/datum/lore/codex/category/law_minor_violations
+datum/lore/codex/category/law_minor_violations
 	name = "Minor Violations (Law)"
 	data = "Here is a list of the less severe violations of local Sif Law that might occur on your facility.  A fax to the Sif Governmental Authority \
 	is required to be sent within 24 hours of a violation being comitted, for minor violations listed here."
@@ -32,7 +32,7 @@
 		/datum/lore/codex/page/law/drone_id_failure
 		)
 
-/datum/lore/codex/page/law/assault/add_content()
+datum/lore/codex/page/law/assault/add_content()
 	name = "Assault"
 	definition = "To threaten use of physical force against someone while also having the capability and/or intent to carry out that threat."
 	suggested_punishments = "Seperation of offender from the threatened person.  Brig time of 10 minutes for first offense.  \
@@ -41,7 +41,7 @@
 	two people threatening to punch each other out over comms wouldn't fall under this."
 	..()
 
-/datum/lore/codex/page/law/battery/add_content()
+datum/lore/codex/page/law/battery/add_content()
 	name = "Battery"
 	definition = "To unlawfully use physical force against someone which results in injury to the attacked party."
 	suggested_punishments = "Brig time of 20 minutes for first offense.  Repeat offenders are to be brigged for up to \
@@ -52,7 +52,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/theft
+datum/lore/codex/page/law/theft
 	name = "Theft"
 	definition = "To knowingly take items without the consent of the owner."
 	suggested_punishments = "Brig time of 20 minutes.  Demotion at discretion of Superior.  Confiscation of tools used at discretion of arresting officer."
@@ -61,7 +61,7 @@
 	their original owner or location."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/vandalism/add_content()
+datum/lore/codex/page/law/vandalism/add_content()
 	name = "Vandalism"
 	definition = "To deliberately damage or deface the station."
 	suggested_punishments = "Fine of up to 200 thaler or brig time of up to 30 minutes.  \
@@ -70,7 +70,7 @@
 	lights, ripping up floor tiles, and such.  More serious or life threatening damages should have [quick_link("Sabotage")] applied instead."
 	..()
 
-/datum/lore/codex/page/law/animal_cruelty
+datum/lore/codex/page/law/animal_cruelty
 	name = "Animal Cruelty"
 	definition = "To inflict unnecessary suffering or harm on a non-sapient biological being which poses no threat to any persons."
 	suggested_punishments = "Brig time of 1 hour. Demotion at discretion of Superior, however recommended."
@@ -79,7 +79,7 @@
 	animal, such as Carp."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/disrespect_dead
+datum/lore/codex/page/law/disrespect_dead
 	name = "Disrespect to the Dead"
 	definition = "To damage, disfigure, butcher, or otherwise physically violate the integrity or former identity of a corpse."
 	suggested_punishments = "Brig time of 1 hour. Demotion at discretion of Superior, however recommended."
@@ -87,7 +87,7 @@
 	donation in accordance with postmortem instructions also do not fall under this."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/drone_id_failure
+datum/lore/codex/page/law/drone_id_failure
 	name = "Failure to Present Drone ID"
 	definition = "Failing to carry or present an EIO-issued Drone Identification card as a Drone intelligence."
 	suggested_punishments = "200 thaler fine.  Give Drone a temporary paper stating that it is a drone, if the ID was lost.  Fax VirGov.  Inform owner of \
@@ -97,14 +97,14 @@
 	simple bots do not require an ID card.  No fine or VirGov fax should be sent if the Drone's ID was lost due to theft and the ID is able to be recovered."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/slander
+datum/lore/codex/page/law/slander
 	name = "Slander / Libel"
 	definition = "To spread false rumours in order to damage someone's reputation."
 	suggested_punishments = "150 thaler fine."
 	notes = "Slander is for verbal cases, where as Libel is for written cases."
 	mandated = TRUE
 
-/datum/lore/codex/category/law_major_violations
+datum/lore/codex/category/law_major_violations
 	name = "Major Violations (Law)"
 	data = "Here is a list of the serious violations of local Sif Law that might occur on your facility.  A fax to the Sif Governmental Authority \
 	is required to be sent within one hour, or when it is safe to do so, for major crimes listed here."
@@ -125,7 +125,7 @@
 		/datum/lore/codex/page/law/terrorist_acts
 		)
 
-/datum/lore/codex/page/law/aggravated_battery/add_content()
+datum/lore/codex/page/law/aggravated_battery/add_content()
 	name = "Aggravated Battery"
 	definition = "To unlawfully use physical force against someone which results in serious or life-threatening injury to the attacked party."
 	suggested_punishments = "Hold until Transfer.  Weapons or other objects used are to be confiscated."
@@ -134,7 +134,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/tampering_with_evidence/add_content()
+datum/lore/codex/page/law/tampering_with_evidence/add_content()
 	name = "Tampering with Evidence / Obstruction of Justice"
 	keywords += list("Tampering with Evidence", "Obstruction of Justice")
 	definition = "To take intentional action to obstruct or inhibit investigation of a crime or regulation violation."
@@ -145,7 +145,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/embezzlement
+datum/lore/codex/page/law/embezzlement
 	name = "Embezzlement"
 	definition = "Stealing money that is entrusted to you by a corporation or person."
 	suggested_punishments = "Hold until Transfer.  Termination.  Reimbursement of embezzled funds.  Fax Central Command and VirGov."
@@ -153,7 +153,7 @@
 	transactions directly that are meant to go to a seperate account."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/excessive_force/add_content()
+datum/lore/codex/page/law/excessive_force/add_content()
 	name = "Excessive Force"
 	definition = "Using more force than what is required to safely detain someone, using force against a helpless or incapacitated person, \
 	or using force against an unarmed and compliant person."
@@ -163,7 +163,7 @@
 	unjustified."
 	..()
 
-/datum/lore/codex/page/law/manslaughter/add_content()
+datum/lore/codex/page/law/manslaughter/add_content()
 	name = "Manslaughter"
 	definition = "To kill a sapient being without intent."
 	suggested_punishments = "Hold until Transfer, if unjustified.  Fax VirGov."
@@ -174,7 +174,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/murder/add_content()
+datum/lore/codex/page/law/murder/add_content()
 	name = "Murder"
 	definition = "To kill or attempt to kill a sapient being with malicious intent."
 	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
@@ -183,14 +183,14 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/suicide_attempt
+datum/lore/codex/page/law/suicide_attempt
 	name = "Suicide Attempt"
 	definition = "To attempt or threaten to commit suicide."
 	suggested_punishments = "Compulsory psychiatric examination."
 	notes = "If a mental care specialist is unavailable, they are to be held until transfer, to be moved to a qualified mental care facility."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/transgressive_tech/add_content()
+datum/lore/codex/page/law/transgressive_tech/add_content()
 	name = "Experimentation with Transgressive Technology"
 	keywords += list("Transgressive", "Illegal Technology")
 	definition = "Experimenting with technologies deemed unsafe or are otherwise federally restricted by the Solar Confederate Government."
@@ -200,7 +200,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/unrated_drones
+datum/lore/codex/page/law/unrated_drones
 	name = "Creation of Unrated Drone Intelligence"
 	definition = "Creating an intelligence from an codeline that has not been registered with, or audited by, the Emergent Intelligence Oversight (EIO)."
 	suggested_punishments = "Decommissioning of the newly created Drone.  Investigation of Drone to determine level of intelligence, if possible.  \
@@ -222,14 +222,14 @@
 	<li><b>Cannot determine</b>: Hold until Transfer, bring Drone to Spaceport for further investigation.</li>\
 	</ul>"
 */
-/datum/lore/codex/page/law/unlawful_law_changes
+datum/lore/codex/page/law/unlawful_law_changes
 	name = "Unlawful Alteration of Bound Synthetics"
 	definition = "Modifying a bound synthetic's lawset or chassis, in order to force it to do illegal, humiliating, dangerous, or other unlawful acts."
 	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
 	notes = "If the synthetic is a cyborg or positronic, this is also an offense against the Sapient Rights laws federally mandated by the Solar Confederate Government."
 	mandated = TRUE
 
-/datum/lore/codex/page/law/grand_theft
+datum/lore/codex/page/law/grand_theft
 	name = "Grand Theft"
 	definition = "To steal items that are dangerous, of a high value, or a sensitive nature."
 	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
@@ -256,7 +256,7 @@
 	</ul>"
 	mandated = TRUE
 
-/datum/lore/codex/page/law/sabotage/add_content()
+datum/lore/codex/page/law/sabotage/add_content()
 	name = "Sabotage"
 	definition = "To deliberately damage, or attempt to damage the facility, or critical systems of the facility."
 	suggested_punishments = "Hold until Transfer.  Termination.  Fax VirGov."
@@ -265,7 +265,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/hostage_taking/add_content()
+datum/lore/codex/page/law/hostage_taking/add_content()
 	name = "Kidnapping / Hostage Taking"
 	keywords += list("Kidnapping", "Hostage Taking")
 	definition = "To unlawfully confine, transport, or hold a sapient being against that individual's will."
@@ -274,7 +274,7 @@
 	mandated = TRUE
 	..()
 
-/datum/lore/codex/page/law/terrorist_acts/add_content()
+datum/lore/codex/page/law/terrorist_acts/add_content()
 	name = "Terrorist Acts"
 	keywords += list("Terrorism")
 	definition = "To engage in maliciously destructive actions, which seriously threaten the crew or facility, or the usage of weapons of mass destruction."

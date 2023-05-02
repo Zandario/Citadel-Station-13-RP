@@ -1,4 +1,4 @@
-/datum/artifact_effect/badfeeling
+datum/artifact_effect/badfeeling
 	name = "badfeeling"
 	effect_type = EFFECT_PSIONIC
 	var/list/messages = list("You feel worried.",
@@ -25,7 +25,7 @@
 		"OH GOD!",
 		"HELP ME!")
 
-/datum/artifact_effect/badfeeling/DoEffectTouch(var/mob/user)
+datum/artifact_effect/badfeeling/DoEffectTouch(var/mob/user)
 	if(user)
 		if (istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -38,7 +38,7 @@
 			if(prob(50))
 				H.dizziness += rand(3,5)
 
-/datum/artifact_effect/badfeeling/DoEffectAura()
+datum/artifact_effect/badfeeling/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
@@ -52,7 +52,7 @@
 				H.dizziness += rand(3,5)
 		return 1
 
-/datum/artifact_effect/badfeeling/DoEffectPulse()
+datum/artifact_effect/badfeeling/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))

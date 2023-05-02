@@ -1,10 +1,10 @@
-/obj/structure/closet/secure_closet/personal
+obj/structure/closet/secure_closet/personal
 	name = "personal closet"
 	desc = "It's a secure locker for personnel. The first card swiped gains control."
 	req_access = list(ACCESS_COMMAND_LOCKERS)
 	var/registered_name = null
 
-/obj/structure/closet/secure_closet/personal/PopulateContents()
+obj/structure/closet/secure_closet/personal/PopulateContents()
 	new /obj/item/radio/headset(src)
 	if(prob(50))
 		new /obj/item/storage/backpack(src)
@@ -12,13 +12,13 @@
 		new /obj/item/storage/backpack/satchel/norm(src)
 	new /obj/item/instrument/piano_synth(src)
 
-/obj/structure/closet/secure_closet/personal/patient/PopulateContents()
+obj/structure/closet/secure_closet/personal/patient/PopulateContents()
 	new /obj/item/clothing/under/medigown(src)
 	new /obj/item/clothing/under/color/white(src)
 	new /obj/item/clothing/shoes/white(src)
 
 
-/obj/structure/closet/secure_closet/personal/cabinet
+obj/structure/closet/secure_closet/personal/cabinet
 	icon_state = "cabinetdetective_locked"
 	icon_closed = "cabinetdetective"
 	icon_locked = "cabinetdetective_locked"
@@ -31,7 +31,7 @@
 		/obj/item/radio/headset
 		)
 
-/obj/structure/closet/secure_closet/personal/cabinet/update_icon()
+obj/structure/closet/secure_closet/personal/cabinet/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -43,7 +43,7 @@
 		else
 			icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/personal/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/closet/secure_closet/personal/attackby(obj/item/W as obj, mob/user as mob)
 	if (src.opened)
 		if (istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
@@ -78,7 +78,7 @@
 		to_chat(user, "<span class='warning'>Access Denied</span>")
 	return
 
-/obj/structure/closet/secure_closet/personal/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
+obj/structure/closet/secure_closet/personal/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
 	if(!broken)
 		broken = 1
 		locked = 0
@@ -88,7 +88,7 @@
 			visible_message("<span class='warning'>[visual_feedback]</span>", "<span class='warning'>[audible_feedback]</span>")
 		return 1
 
-/obj/structure/closet/secure_closet/personal/verb/reset()
+obj/structure/closet/secure_closet/personal/verb/reset()
 	set src in oview(1) // One square distance
 	set category = "Object"
 	set name = "Reset Lock"

@@ -92,7 +92,7 @@ var/global/list/string_slot_flags = list(
 
 // To be replaced by tg rendering soon
 GLOBAL_LIST_EMPTY(mannequins)
-/proc/get_mannequin(var/ckey = "NULL")
+proc/get_mannequin(var/ckey = "NULL")
 	var/mob/living/carbon/human/dummy/mannequin/M = GLOB.mannequins[ckey]
 	if(!istype(M))
 		GLOB.mannequins[ckey] = new /mob/living/carbon/human/dummy/mannequin(null)
@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 /////Initial Building/////
 //////////////////////////
 
-/proc/make_datum_reference_lists()
+proc/make_datum_reference_lists()
 	//* Keybindings
 	init_keybindings()
 
@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	return 1 // Hooks must return 1
 
 /* // Uncomment to debug chemical reaction list.
-/client/verb/debug_chemical_list()
+client/verb/debug_chemical_list()
 
 	for (var/reaction in chemical_reactions_list)
 		. += "chemical_reactions_list\[\"[reaction]\"\] = \"[chemical_reactions_list[reaction]]\"\n"
@@ -583,7 +583,7 @@ var/global/list/remainless_species = list(SPECIES_ID_PROMETHEAN,
 				SPECIES_ID_GOLEM, //Some special species that may or may not be ever used in event too,
 				SPECIES_ID_SHADEKIN) //Shadefluffers just poof away
 
-/hook/startup/proc/init_vore_datum_ref_lists()
+hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
 
 	// Custom species traits

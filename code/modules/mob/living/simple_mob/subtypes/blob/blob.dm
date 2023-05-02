@@ -3,7 +3,7 @@
 
 // Do not spawn, this is a base type.
 
-/datum/category_item/catalogue/fauna/blob
+datum/category_item/catalogue/fauna/blob
 	name = "Blob"
 	desc = "Blobs are transient space hazards often encountered on the Frontier. \
 	Every Blob starts out as a Seed, which either hosts inside of an unwitting victim, \
@@ -19,7 +19,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/blob)
 
 // Obtained by scanning all X.
-/datum/category_item/catalogue/fauna/all_blobs
+datum/category_item/catalogue/fauna/all_blobs
 	name = "Collection - Blob"
 	desc = "You have scanned an array of different types of Blob forms, \
 	and therefore you have been granted a moderate sum of points, through this \
@@ -30,7 +30,7 @@
 		/datum/category_item/catalogue/fauna/blob/spore
 		)
 
-/mob/living/simple_mob/blob
+mob/living/simple_mob/blob
 	icon = 'icons/mob/blob.dmi'
 	pass_flags = ATOM_PASS_BLOB | ATOM_PASS_TABLE
 	faction = "blob"
@@ -56,22 +56,22 @@
 	mob_class = MOB_CLASS_SLIME
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/blob/speech_bubble_appearance()
+mob/living/simple_mob/blob/speech_bubble_appearance()
 	return "slime"
 
-/mob/living/simple_mob/blob/update_icons()
+mob/living/simple_mob/blob/update_icons()
 	if(overmind)
 		color = overmind.blob_type.complementary_color
 	else
 		color = null
 	..()
 
-/mob/living/simple_mob/blob/Destroy()
+mob/living/simple_mob/blob/Destroy()
 	if(overmind)
 		overmind.blob_mobs -= src
 	return ..()
 
-/mob/living/simple_mob/blob/blob_act(obj/structure/blob/B)
+mob/living/simple_mob/blob/blob_act(obj/structure/blob/B)
 	if(!overmind && B.overmind)
 		overmind = B.overmind
 		update_icon()
@@ -80,12 +80,12 @@
 		adjustBruteLoss(-maxHealth*0.0125)
 		adjustFireLoss(-maxHealth*0.0125)
 
-/mob/living/simple_mob/blob/CanAllowThrough(atom/movable/mover, turf/target)
+mob/living/simple_mob/blob/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/structure/blob)) // Don't block blobs from expanding onto a tile occupied by a blob mob.
 		return TRUE
 	return ..()
 
-/mob/living/simple_mob/blob/Process_Spacemove()
+mob/living/simple_mob/blob/Process_Spacemove()
 	for(var/obj/structure/blob/B in range(1, src))
 		return TRUE
 	return ..()

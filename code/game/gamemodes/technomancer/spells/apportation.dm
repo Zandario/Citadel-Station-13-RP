@@ -1,4 +1,4 @@
-/datum/technomancer/spell/apportation
+datum/technomancer/spell/apportation
 	name = "Apportation"
 	desc = "This allows you to teleport objects into your hand, or to pull people towards you.  If they're close enough, the function \
 	will grab them automatically."
@@ -7,14 +7,14 @@
 	obj_path = /obj/item/spell/apportation
 	category = UTILITY_SPELLS
 
-/obj/item/spell/apportation
+obj/item/spell/apportation
 	name = "apportation"
 	icon_state = "apportation"
 	desc = "Allows you to reach through Bluespace with your hand, and grab something, bringing it to you instantly."
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_TELE
 
-/obj/item/spell/apportation/on_ranged_cast(atom/hit_atom, mob/user)
+obj/item/spell/apportation/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 
@@ -75,4 +75,3 @@
 				G.icon_state = "grabbed1"
 				G.synch()
 				qdel(src)
-

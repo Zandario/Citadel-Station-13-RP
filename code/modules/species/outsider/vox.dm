@@ -1,4 +1,4 @@
-/datum/species/vox
+datum/species/vox
 	name = SPECIES_VOX
 	name_plural = SPECIES_VOX
 	uid = SPECIES_ID_VOX
@@ -111,11 +111,11 @@
 		/mob/living/carbon/human/proc/tie_hair,
 		)
 
-/datum/species/vox/get_random_name(gender)
+datum/species/vox/get_random_name(gender)
 	var/datum/language/species_language = SScharacters.resolve_language(default_language)
 	return species_language.get_random_name(gender)
 
-/datum/species/vox/equip_survival_gear(mob/living/carbon/human/H, extendedtank = FALSE, comprehensive = FALSE)
+datum/species/vox/equip_survival_gear(mob/living/carbon/human/H, extendedtank = FALSE, comprehensive = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_ID_MASK, INV_OP_SILENT | INV_OP_FLUFFLESS)

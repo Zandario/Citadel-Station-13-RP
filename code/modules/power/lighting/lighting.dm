@@ -15,13 +15,13 @@
 ///How much power emergency lights will consume per tick
 #define LIGHT_EMERGENCY_POWER_USE 0.2
 var/global/list/light_type_cache = list()
-/proc/get_light_type_instance(var/light_type)
+proc/get_light_type_instance(var/light_type)
 	. = light_type_cache[light_type]
 	if(!.)
 		. = new light_type
 		light_type_cache[light_type] = .
 
-/obj/machinery/light_construct
+obj/machinery/light_construct
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -38,7 +38,7 @@ var/global/list/light_type_cache = list()
 
 	var/cell_connectors = TRUE
 
-/obj/machinery/light_construct/Initialize(mapload, newdir, building = FALSE, datum/frame/frame_types/frame_type, obj/machinery/light/fixture)
+obj/machinery/light_construct/Initialize(mapload, newdir, building = FALSE, datum/frame/frame_types/frame_type, obj/machinery/light/fixture)
 	. = ..(mapload, newdir)
 	if(fixture)
 		fixture_type = fixture.type
@@ -49,7 +49,7 @@ var/global/list/light_type_cache = list()
 		setDir(newdir)
 	update_icon()
 
-/obj/machinery/light_construct/update_icon()
+obj/machinery/light_construct/update_icon()
 	switch(stage)
 		if(1)
 			icon_state = "tube-construct-stage1"
@@ -58,7 +58,7 @@ var/global/list/light_type_cache = list()
 		if(3)
 			icon_state = "tube-empty"
 
-/obj/machinery/light_construct/examine(mob/user)
+obj/machinery/light_construct/examine(mob/user)
 	. = ..()
 
 	switch(src.stage)
@@ -77,7 +77,7 @@ var/global/list/light_type_cache = list()
 	else
 		to_chat(user, "<span class='danger'>This casing doesn't support power cells for backup power.</span>")
 
-/obj/machinery/light_construct/attack_hand(mob/user, list/params)
+obj/machinery/light_construct/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return . // obj/machinery/attack_hand returns 1 if user can't use the machine
@@ -87,7 +87,7 @@ var/global/list/light_type_cache = list()
 		cell.update_icon()
 		cell = null
 
-/obj/machinery/light_construct/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/light_construct/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(istype(W, /obj/item/cell/emergency_light))
 		if(!cell_connectors)
@@ -163,7 +163,7 @@ var/global/list/light_type_cache = list()
 			return
 	..()
 
-/obj/machinery/light_construct/small
+obj/machinery/light_construct/small
 	name = "small light fixture frame"
 	desc = "A small light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -173,7 +173,7 @@ var/global/list/light_type_cache = list()
 	fixture_type = /obj/machinery/light/small
 	sheets_refunded = 1
 
-/obj/machinery/light_construct/small/update_icon()
+obj/machinery/light_construct/small/update_icon()
 	switch(stage)
 		if(1)
 			icon_state = "bulb-construct-stage1"
@@ -182,7 +182,7 @@ var/global/list/light_type_cache = list()
 		if(3)
 			icon_state = "bulb-empty"
 
-/obj/machinery/light_construct/flamp
+obj/machinery/light_construct/flamp
 	name = "floor light fixture frame"
 	desc = "A floor light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -194,7 +194,7 @@ var/global/list/light_type_cache = list()
 	fixture_type = /obj/machinery/light/flamp
 	sheets_refunded = 2
 
-/obj/machinery/light_construct/flamp/update_icon()
+obj/machinery/light_construct/flamp/update_icon()
 	switch(stage)
 		if(1)
 			icon_state = "flamp-construct-stage1"
@@ -204,7 +204,7 @@ var/global/list/light_type_cache = list()
 			icon_state = "flamp-empty"
 
 //Fairy Light Fixture
-/obj/machinery/light_construct/fairy
+obj/machinery/light_construct/fairy
 	name = "fairy light fixture frame"
 	desc = "A string of cable with lots of sockets - under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -216,7 +216,7 @@ var/global/list/light_type_cache = list()
 	fixture_type = /obj/machinery/light/fairy
 	sheets_refunded = 1
 
-/obj/machinery/light_construct/fairy/update_icon()
+obj/machinery/light_construct/fairy/update_icon()
 	switch(stage)
 		if(1)
 			icon_state = "fairy-construct-stage1"
@@ -226,7 +226,7 @@ var/global/list/light_type_cache = list()
 			icon_state = "fairy-empty"
 
 // the standard tube light fixture
-/obj/machinery/light
+obj/machinery/light
 	name = "light fixture"
 	icon = 'icons/obj/lighting_vr.dmi'
 	base_icon_state = "tube"
@@ -296,15 +296,15 @@ var/global/list/light_type_cache = list()
 	var/brightness_power_ns
 	var/brightness_color_ns
 
-/obj/machinery/light/flicker
+obj/machinery/light/flicker
 	auto_flicker = TRUE
 
-/obj/machinery/light/no_nightshift
+obj/machinery/light/no_nightshift
 	nightshift_allowed = FALSE
 
 // the smaller bulb light fixture
 
-/obj/machinery/light/small
+obj/machinery/light/small
 	icon_state = "bulb1"
 	base_icon_state = "bulb"
 	desc = "A small lighting fixture."
@@ -312,16 +312,16 @@ var/global/list/light_type_cache = list()
 	construct_type = /obj/machinery/light_construct/small
 	shows_alerts = FALSE
 
-/obj/machinery/light/small/flicker
+obj/machinery/light/small/flicker
 	auto_flicker = TRUE
 
-/obj/machinery/light/poi
+obj/machinery/light/poi
 	start_with_cell = FALSE
 
-/obj/machinery/light/small/poi
+obj/machinery/light/small/poi
 	start_with_cell = FALSE
 
-/obj/machinery/light/fairy
+obj/machinery/light/fairy
 	name = "fairy lights"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "fairy1"
@@ -331,7 +331,7 @@ var/global/list/light_type_cache = list()
 	construct_type = /obj/machinery/light_construct/fairy
 	shows_alerts = FALSE
 
-/obj/machinery/light/flamp
+obj/machinery/light/flamp
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp1"
 	base_icon_state = "flamp"
@@ -343,7 +343,7 @@ var/global/list/light_type_cache = list()
 	shows_alerts = FALSE
 	var/lamp_shade = 1
 
-/obj/machinery/light/flamp/Initialize(mapload, obj/machinery/light_construct/construct)
+obj/machinery/light/flamp/Initialize(mapload, obj/machinery/light_construct/construct)
 	. = ..()
 	if(construct)
 		start_with_cell = FALSE
@@ -353,30 +353,30 @@ var/global/list/light_type_cache = list()
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/cell/emergency_light(src)
 
-/obj/machinery/light/flamp/flicker
+obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
 
-/obj/machinery/light/small/emergency
+obj/machinery/light/small/emergency
 	light_type = /obj/item/light/bulb/red
 
-/obj/machinery/light/small/emergency/flicker
+obj/machinery/light/small/emergency/flicker
 	auto_flicker = TRUE
 
-/obj/machinery/light/spot
+obj/machinery/light/spot
 	name = "spotlight"
 	light_type = /obj/item/light/tube/large
 	shows_alerts = FALSE
 
-/obj/machinery/light/spot/flicker
+obj/machinery/light/spot/flicker
 	auto_flicker = TRUE
 
-/obj/machinery/light/flamp/noshade/Initialize(mapload, obj/machinery/light_construct/construct)
+obj/machinery/light/flamp/noshade/Initialize(mapload, obj/machinery/light_construct/construct)
 	. = ..()
 	lamp_shade = 0
 	update(0)
 
 // create a new lighting fixture
-/obj/machinery/light/Initialize(mapload, obj/machinery/light_construct/construct)
+obj/machinery/light/Initialize(mapload, obj/machinery/light_construct/construct)
 	. = ..(mapload)
 
 	switch (dir)
@@ -406,7 +406,7 @@ var/global/list/light_type_cache = list()
 	on = powered()
 	update(0)
 
-/obj/machinery/light/Destroy()
+obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
 		on = 0
@@ -414,7 +414,7 @@ var/global/list/light_type_cache = list()
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/machinery/light/update_icon()
+obj/machinery/light/update_icon()
 
 	switch(status) // set icon_states
 		if(LIGHT_OK)
@@ -433,7 +433,7 @@ var/global/list/light_type_cache = list()
 			on = 0
 	return
 
-/obj/machinery/light/flamp/update_icon()
+obj/machinery/light/flamp/update_icon()
 	if(lamp_shade)
 		base_icon_state = "flampshade"
 		switch(status)		// set icon_states
@@ -453,21 +453,21 @@ var/global/list/light_type_cache = list()
 		base_icon_state = "flamp"
 		..()
 
-/obj/machinery/light/proc/set_alert_atmos()
+obj/machinery/light/proc/set_alert_atmos()
 	if(shows_alerts)
 		current_alert = "atmos"
 		brightness_color = "#6D6DFC"
 		if(on)
 			update()
 
-/obj/machinery/light/proc/set_alert_fire()
+obj/machinery/light/proc/set_alert_fire()
 	if(shows_alerts)
 		current_alert = "fire"
 		brightness_color = "#FF3030"
 		if(on)
 			update()
 
-/obj/machinery/light/proc/reset_alert()
+obj/machinery/light/proc/reset_alert()
 	if(shows_alerts)
 		current_alert = null
 		brightness_color = initial(brightness_color) || "" // Workaround for BYOND stupidity. Can't set it to null or it won't clear.
@@ -475,7 +475,7 @@ var/global/list/light_type_cache = list()
 			update()
 
 // update lighting
-/obj/machinery/light/proc/update(var/trigger = 1)
+obj/machinery/light/proc/update(var/trigger = 1)
 	update_icon()
 	if(!on)
 		needsound = TRUE // Play sound next time we turn on
@@ -516,7 +516,7 @@ var/global/list/light_type_cache = list()
 
 	active_power_usage = ((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
-/obj/machinery/light/proc/nightshift_mode(var/state)
+obj/machinery/light/proc/nightshift_mode(var/state)
 	if(!nightshift_allowed)
 		return
 
@@ -524,7 +524,7 @@ var/global/list/light_type_cache = list()
 		nightshift_enabled = state
 		update(FALSE)
 
-/obj/machinery/light/attack_generic(var/mob/user, var/damage)
+obj/machinery/light/attack_generic(var/mob/user, var/damage)
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
@@ -537,7 +537,7 @@ var/global/list/light_type_cache = list()
 	broken()
 	return 1
 
-/obj/machinery/light/take_damage(var/damage)
+obj/machinery/light/take_damage(var/damage)
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
@@ -547,20 +547,20 @@ var/global/list/light_type_cache = list()
 	broken()
 	return 1
 
-/obj/machinery/light/blob_act()
+obj/machinery/light/blob_act()
 	broken()
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(var/s)
+obj/machinery/light/proc/seton(var/s)
 	on = (s && status == LIGHT_OK)
 	update()
 
-/obj/machinery/light/get_cell()
+obj/machinery/light/get_cell()
 	return cell
 
 // examine verb
-/obj/machinery/light/examine(mob/user)
+obj/machinery/light/examine(mob/user)
 	. = ..()
 	var/fitting = get_fitting_name()
 	switch(status)
@@ -575,11 +575,11 @@ var/global/list/light_type_cache = list()
 	if(cell)
 		to_chat(user, "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
 
-/obj/machinery/light/proc/get_fitting_name()
+obj/machinery/light/proc/get_fitting_name()
 	var/obj/item/light/L = light_type
 	return initial(L.name)
 
-/obj/machinery/light/proc/update_from_bulb(obj/item/light/L)
+obj/machinery/light/proc/update_from_bulb(obj/item/light/L)
 	status = L.status
 	switchcount = L.switchcount
 	rigged = L.rigged
@@ -594,7 +594,7 @@ var/global/list/light_type_cache = list()
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/proc/insert_bulb(obj/item/light/L)
+obj/machinery/light/proc/insert_bulb(obj/item/light/L)
 	update_from_bulb(L)
 	qdel(L)
 
@@ -608,14 +608,14 @@ var/global/list/light_type_cache = list()
 
 		explode()
 
-/obj/machinery/light/proc/remove_bulb()
+obj/machinery/light/proc/remove_bulb()
 	. = new light_type(src.loc, src)
 
 	switchcount = 0
 	status = LIGHT_EMPTY
 	update()
 
-/obj/machinery/light/attackby(obj/item/W, mob/user)
+obj/machinery/light/attackby(obj/item/W, mob/user)
 
 	//Light replacer code
 	if(istype(W, /obj/item/lightreplacer))
@@ -679,7 +679,7 @@ var/global/list/light_type_cache = list()
 			if (prob(75))
 				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
 
-/obj/machinery/light/flamp/attackby(obj/item/W, mob/user)
+obj/machinery/light/flamp/attackby(obj/item/W, mob/user)
 	if(W.is_wrench())
 		anchored = !anchored
 		playsound(src, W.tool_sound, 50, 1)
@@ -706,17 +706,17 @@ var/global/list/light_type_cache = list()
 
 // returns if the light has power /but/ is manually turned off
 // if a light is turned off, it won't activate emergency power
-/obj/machinery/light/proc/turned_off()
+obj/machinery/light/proc/turned_off()
 	var/area/A = get_area(src)
 	return !A.lightswitch && A.power_light || flickering
 
 // returns whether this light has power
 // true if area has power and lightswitch is on
-/obj/machinery/light/proc/has_power()
+obj/machinery/light/proc/has_power()
 	var/area/A = get_area(src)
 	return A && A.lightswitch && (!A.requires_power || A.power_light)
 
-/obj/machinery/light/flamp/has_power()
+obj/machinery/light/flamp/has_power()
 	var/area/A = get_area(src)
 	if(lamp_shade)
 		return A && (!A.requires_power || A.power_light)
@@ -725,14 +725,14 @@ var/global/list/light_type_cache = list()
 
 // returns whether this light has emergency power
 // can also return if it has access to a certain amount of that power
-/obj/machinery/light/proc/has_emergency_power(pwr)
+obj/machinery/light/proc/has_emergency_power(pwr)
 	if(no_emergency || !cell)
 		return FALSE
 	if(pwr ? cell.charge >= pwr : cell.charge)
 		return status == LIGHT_OK
 
 // attempts to use power from the installed emergency cell, returns true if it does and false if it doesn't
-/obj/machinery/light/proc/use_emergency_power(pwr = LIGHT_EMERGENCY_POWER_USE)
+obj/machinery/light/proc/use_emergency_power(pwr = LIGHT_EMERGENCY_POWER_USE)
 	if(turned_off())
 		return FALSE
 	if(!has_emergency_power(pwr))
@@ -746,7 +746,7 @@ var/global/list/light_type_cache = list()
 	return TRUE
 
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
+obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
 	if(flickering) return
 	flickering = 1
 	spawn(0)
@@ -761,22 +761,22 @@ var/global/list/light_type_cache = list()
 		flickering = 0
 
 // ai attack - turn on/off emergency lighting for a specific fixture
-/obj/machinery/light/attack_ai(mob/user)
+obj/machinery/light/attack_ai(mob/user)
 	no_emergency = !no_emergency
 	to_chat(user, "<span class='notice'>Emergency lights for this fixture have been [no_emergency ? "disabled" : "enabled"].</span>")
 	update(FALSE)
 
 // ai alt click - Make light flicker.  Very important for atmosphere.
-/obj/machinery/light/AIAltClick(mob/user)
+obj/machinery/light/AIAltClick(mob/user)
 	flicker(1)
 
-/obj/machinery/light/flamp/attack_ai(mob/user)
+obj/machinery/light/flamp/attack_ai(mob/user)
 	attack_hand()
 	return
 
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
-/obj/machinery/light/attack_hand(mob/user, list/params)
+obj/machinery/light/attack_hand(mob/user, list/params)
 
 	add_fingerprint(user)
 
@@ -822,7 +822,7 @@ var/global/list/light_type_cache = list()
 	// create a light tube/bulb item and put it in the user's hand
 	user.put_in_active_hand(remove_bulb())	//puts it in our active hand
 
-/obj/machinery/light/flamp/attack_hand(mob/user, list/params)
+obj/machinery/light/flamp/attack_hand(mob/user, list/params)
 	if(lamp_shade)
 		if(status == LIGHT_EMPTY)
 			to_chat(user, "There is no [get_fitting_name()] in this light.")
@@ -838,7 +838,7 @@ var/global/list/light_type_cache = list()
 		..()
 
 
-/obj/machinery/light/attack_tk(mob/user)
+obj/machinery/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
 		to_chat(user, "There is no [get_fitting_name()] in this light.")
 		return
@@ -848,7 +848,7 @@ var/global/list/light_type_cache = list()
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = 0)
+obj/machinery/light/proc/broken(var/skip_sound_and_sparks = 0)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -862,7 +862,7 @@ var/global/list/light_type_cache = list()
 	status = LIGHT_BROKEN
 	update()
 
-/obj/machinery/light/proc/fix()
+obj/machinery/light/proc/fix()
 	if(status == LIGHT_OK)
 		return
 	status = LIGHT_OK
@@ -872,7 +872,7 @@ var/global/list/light_type_cache = list()
 // explosion effect
 // destroy the whole light fixture or just shatter it
 
-/obj/machinery/light/legacy_ex_act(severity)
+obj/machinery/light/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -891,7 +891,7 @@ var/global/list/light_type_cache = list()
 // timed process
 // use power
 
-/obj/machinery/light/process(delta_time)
+obj/machinery/light/process(delta_time)
 	if(!cell)
 		return PROCESS_KILL
 	if(has_power())
@@ -911,19 +911,19 @@ var/global/list/light_type_cache = list()
 			seton(FALSE) // Otherwise keep it dark and spooky for when someone shows up.
 
 // called when area power state changes
-/obj/machinery/light/power_change()
+obj/machinery/light/power_change()
 	spawn(10)
 		seton(has_power())
 
 // called when on fire
 
-/obj/machinery/light/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/machinery/light/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(prob(max(0, exposed_temperature - 673)))   //0% at <400C, 100% at >500C
 		broken()
 
 // explode the light
 
-/obj/machinery/light/proc/explode()
+obj/machinery/light/proc/explode()
 	var/turf/T = get_turf(src.loc)
 	spawn(0)
 		broken()	// break it first to give a warning
@@ -933,7 +933,7 @@ var/global/list/light_type_cache = list()
 		qdel(src)
 
 //Lamp Shade
-/obj/item/lampshade
+obj/item/lampshade
 	name = "lamp shade"
 	desc = "A lamp shade for a lamp."
 	icon = 'icons/obj/lighting.dmi'

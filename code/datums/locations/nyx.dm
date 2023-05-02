@@ -1,11 +1,11 @@
 //Nyx
 
-/datum/locations/nyx
+datum/locations/nyx
 	name = "Nyx"
 	desc = "Nyx is most certainly considered an outer system, being on the edge of colonized space.  It's a red dwarf flare star far out in the \
 	frontier. There are four planets orbiting it, not including its sub-stellar companion, Erebus."
 
-/datum/locations/nyx/New(var/creator)
+datum/locations/nyx/New(var/creator)
 	contents.Add(
 		new /datum/locations/erebus(src),
 		new /datum/locations/moros(src),
@@ -18,7 +18,7 @@
 		)
 	..(creator)
 
-/datum/locations/erebus
+datum/locations/erebus
 	name = "Erebus"
 	desc = "Erebus was regarded for centuries as an uninteresting substellar companion to Nyx, itself a relatively uninteresting red dwarf. \
 	Massing at 44.7 times that of Jupiter, Erebus is a T-Class brown dwarf with a surface temperature of 963K, just above the melting point \
@@ -28,7 +28,7 @@
 	The most notable moon, but not the largest, is Roanake, a dwarf planet in its own right, which orbits with a high enough eccentricity to \
 	have significant volcanic activity due to tidal heating."
 
-/datum/locations/erebus/New(var/creator)
+datum/locations/erebus/New(var/creator)
 	contents.Add(
 		new /datum/locations/talons_bull(src),
 		new /datum/locations/exodus(src),
@@ -36,30 +36,30 @@
 	)
 	..(creator)
 
-/datum/locations/talons_bull
+datum/locations/talons_bull
 	name = "Talon's Bull"
 	desc = "A well visited Free Trade Union space station where a large amount of the independent trade outside of the Hauler's Tragedy is done. \
 	It is currently stationed on one of the smaller moons that orbits Erebus and has extensive facilities all across the moon's surface."
 
-/datum/locations/exodus
+datum/locations/exodus
 	name = "NSS Exodus"
 	desc = "A highly profitable research, mining, and supply dock for NanoTrasen that serves as one of their many facilities in exploiting the \
 	wonders of phoron. It is currently orbiting around Erebus and maintains close contact with the NAS Crescent. The station itself has been \
 	a target for a large number of Mercenaries and other companies wishing to steal NanoTrasen's secrets."
 
-/datum/locations/crescent
+datum/locations/crescent
 	name = "NAS Crescent"
 	desc = "The main hub for NanoTrasen in the Nyx system and is commonly referred to it by their workers as central command or \"CentCom\". \
 	The Crescent refines and stores much of the products that stations (such as the Exodus) bring in. It is also a large refueling and supply \
 	station of phoron and tritium in the Nyx system due to NanoTrasen being able to outsell almost any other company."
 
-/datum/locations/emerald_habitation
+datum/locations/emerald_habitation
 	name = "Emerald Habitation"
 	desc = "A relatively sub-par housing station that has a large population of aliens. The facility has areas for shopping, \
 	a few restaurants, and multiple blocks for living arrangements. The station is crowded, busy, and the air quality is a recurring issue. \
 	Nonetheless, it allows lower income spacers the means to travel in the Nyx system."
 
-/datum/locations/void_star
+datum/locations/void_star
 	name = "The Void Star"
 	desc = "No one quite knows who founded the Void Star, or indeed who actually manages the place. Theories range from a corporate money-laundry \
 	operation to interstellar mobsters, with the more far-fetched even suggesting the place has always been there, like some kind of haunt. \
@@ -75,27 +75,27 @@
 	Some even call the Star home, as the sprawling asteroid-station offers hotel services; luxurious or spartan. Addicts, smugglers, pirates and \
 	privateers - you'll find them all at the Void Star, ostensibly at their best behavior."
 
-/datum/locations/moros
+datum/locations/moros
 	name = "Moros"
 	desc = "A mercurial planet, Moros is tidally locked to Nyx with a dayside surface temperature of 980K. Unsettled, although several geological \
 	surveys have been performed on the night side. Undergoing orbital decay due to the influence of Euthenia; expected to break apart due to tidal \
 	forces within 50 million years."
 
-/datum/locations/brinkburn
+datum/locations/brinkburn
 	name = "Brinkburn"
 	desc = "A martian planet, Brinkburn is small and dry yet is hot enough to be habitable. Possesses a dense ring system, theorised to be the fate of \
 	primordial moons, which makes it difficult to enter or exit orbit."
 
-/datum/locations/haulers_tragedy
+datum/locations/haulers_tragedy
 	name = "Hauler's Tragedy"
 	desc = "A thick asteroid belt that's full of pirate activity, mining operations, and trade depots. Very few corporate interests are active in the area."
 
-/datum/locations/yulcite
+datum/locations/yulcite
 	name = "Yulcite"
 	desc = "A superearth near the outer edge of the habitable zone, Yulcite has 40% higher surface gravity than Earth. \
 	Has been a hotbed of xenoarcheology for decades, due to the remains of a civilization that existed on this world approximately 570 million years ago."
 
-/datum/locations/euthenia
+datum/locations/euthenia
 	name = "Euthenia"
 	desc = "A superneptune massing at 46 time that of Earth, Euthenia is one of the few planets still commonly called it's original survey designation. \
 	(The surveyor is noted to have a preference for ancient Greek mythology) As an ice giant, Euthenia has had consistent economic stability thanks to \

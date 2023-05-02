@@ -1,7 +1,7 @@
-/datum/admin_secret_item/admin_secret/show_game_mode
+datum/admin_secret_item/admin_secret/show_game_mode
 	name = "Show Game Mode"
 
-/datum/admin_secret_item/admin_secret/show_game_mode/execute(var/mob/user)
+datum/admin_secret_item/admin_secret/show_game_mode/execute(var/mob/user)
 	. = ..()
 	if(!.)
 		return

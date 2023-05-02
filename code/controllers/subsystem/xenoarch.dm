@@ -14,17 +14,17 @@ SUBSYSTEM_DEF(xenoarch)
 	var/list/artifact_spawning_turfs = list()
 	var/list/digsite_spawning_turfs = list()
 
-/datum/controller/subsystem/xenoarch/Initialize(timeofday)
+datum/controller/subsystem/xenoarch/Initialize(timeofday)
 	SetupXenoarch()
 	..()
 
-/datum/controller/subsystem/xenoarch/Recover()
+datum/controller/subsystem/xenoarch/Recover()
 	if (istype(SSxenoarch.artifact_spawning_turfs))
 		artifact_spawning_turfs = SSxenoarch.artifact_spawning_turfs
 	if (istype(SSxenoarch.digsite_spawning_turfs))
 		digsite_spawning_turfs = SSxenoarch.digsite_spawning_turfs
 
-/datum/controller/subsystem/xenoarch/proc/SetupXenoarch()
+datum/controller/subsystem/xenoarch/proc/SetupXenoarch()
 	var/list/faster = list()
 	var/start
 	for(var/i in 1 to world.maxz)

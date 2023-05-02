@@ -1,9 +1,9 @@
 var/datum/planet/sif/planet_sif = null
 
-/datum/planet/sif
+datum/planet/sif
 	name = "Sif"
 
-/datum/planet/sif
+datum/planet/sif
 	name = "Sif"
 	desc = "Sif is a terrestrial planet in the Vir system. It is somewhat earth-like, in that it has oceans, a \
 	breathable atmosphere, a magnetic field, weather, and similar gravity to Earth. It is currently the capital planet of Vir. \
@@ -15,13 +15,13 @@ var/datum/planet/sif/planet_sif = null
 	sun_name = "Vir"
 	moon_name = "Thor"
 
-/datum/planet/sif/New()
+datum/planet/sif/New()
 	..()
 	planet_sif = src
 	weather_holder = new /datum/weather_holder/sif(src) // Cold weather is also nice.
 
 // This code is horrible.
-/datum/planet/sif/update_sun()
+datum/planet/sif/update_sun()
 	..()
 	var/datum/time/time = current_time
 	var/length_of_day = time.seconds_in_day / 10 / 60 / 60 // 32
@@ -100,16 +100,16 @@ var/datum/planet/sif/planet_sif = null
 	update_sun_deferred(new_brightness, new_color)
 
 // We're gonna pretend there are 32 hours in a Sif day instead of 32.64 for the purposes of not losing sanity.  We lose 38m 24s but the alternative is a path to madness.
-/datum/time/sif
+datum/time/sif
 	seconds_in_day = 60 * 60 * 32 * 10 // 115,200 seconds.  If we did 32.64 hours/day it would be around 117,504 seconds instead.
 
 // Returns the time datum of Sif.
-/proc/get_sif_time()
+proc/get_sif_time()
 	if(planet_sif)
 		return planet_sif.current_time
 
 //Weather definitions
-/datum/weather_holder/sif
+datum/weather_holder/sif
 	temperature = T0C
 	allowed_weather_types = list(
 		WEATHER_CLEAR		= new /datum/weather/sif/clear(),
@@ -136,12 +136,12 @@ var/datum/planet/sif/planet_sif = null
 		WEATHER_HAIL		= 2.5
 		)
 
-/datum/weather/sif
+datum/weather/sif
 	name = "sif base"
 	temp_high = 283.15	// 10c
 	temp_low = 263.15	// -10c
 
-/datum/weather/sif/clear
+datum/weather/sif/clear
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR = 60,
@@ -155,7 +155,7 @@ var/datum/planet/sif/planet_sif = null
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
 
-/datum/weather/sif/overcast
+datum/weather/sif/overcast
 	name = "overcast"
 	light_modifier = 0.8
 	transition_chances = list(
@@ -173,7 +173,7 @@ var/datum/planet/sif/planet_sif = null
 		"It's very cloudy."
 		)
 
-/datum/weather/sif/light_snow
+datum/weather/sif/light_snow
 	name = "light snow"
 	icon_state = "snowfall_light"
 	temp_high = T0C		// 0c
@@ -191,7 +191,7 @@ var/datum/planet/sif/planet_sif = null
 		"It begins to snow lightly.",
 		)
 
-/datum/weather/sif/snow
+datum/weather/sif/snow
 	name = "moderate snow"
 	icon_state = "snowfall_med"
 	temp_high = T0C		// 0c
@@ -215,7 +215,7 @@ var/datum/planet/sif/planet_sif = null
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_snow
 	indoor_sounds_type = /datum/looping_sound/weather/inside_snow
 
-/datum/weather/sif/snow/process_effects()
+datum/weather/sif/snow/process_effects()
 	..()
 	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
@@ -225,7 +225,7 @@ var/datum/planet/sif/planet_sif = null
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(33))
 						T.chill()
 
-/datum/weather/sif/blizzard
+datum/weather/sif/blizzard
 	name = "blizzard"
 	icon_state = "snowfall_heavy"
 	temp_high = 243.15 // -30c
@@ -248,7 +248,7 @@ var/datum/planet/sif/planet_sif = null
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
-/datum/weather/sif/blizzard/process_effects()
+datum/weather/sif/blizzard/process_effects()
 	..()
 	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
@@ -258,7 +258,7 @@ var/datum/planet/sif/planet_sif = null
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(50))
 						T.chill()
 
-/datum/weather/sif/rain
+datum/weather/sif/rain
 	name = "rain"
 	icon_state = "rain"
 	wind_high = 2
@@ -280,7 +280,7 @@ var/datum/planet/sif/planet_sif = null
 //	outdoor_sounds_type = /datum/looping_sound/weather/rain
 //	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
-/datum/weather/sif/rain/process_effects()
+datum/weather/sif/rain/process_effects()
 	..()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -306,7 +306,7 @@ var/datum/planet/sif/planet_sif = null
 			if(show_message)
 				to_chat(L, effect_message)
 
-/datum/weather/sif/storm
+datum/weather/sif/storm
 	name = "storm"
 	icon_state = "storm"
 	temp_high = 243.15 // -30c
@@ -337,7 +337,7 @@ var/datum/planet/sif/planet_sif = null
 		WEATHER_OVERCAST = 5
 		)
 
-/datum/weather/sif/storm/process_effects()
+datum/weather/sif/storm/process_effects()
 	..()
 	for(var/mob/living/L in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
@@ -367,14 +367,14 @@ var/datum/planet/sif/planet_sif = null
 
 // This gets called to do lightning periodically.
 // There is a seperate function to do the actual lightning strike, so that badmins can play with it.
-/datum/weather/sif/storm/proc/handle_lightning()
+datum/weather/sif/storm/proc/handle_lightning()
 	if(world.time < next_lightning_strike)
 		return // It's too soon to strike again.
 	next_lightning_strike = world.time + rand(min_lightning_cooldown, max_lightning_cooldown)
 	var/turf/T = pick(holder.our_planet.planet_floors) // This has the chance to 'strike' the sky, but that might be a good thing, to scare reckless pilots.
 	lightning_strike(T)
 
-/datum/weather/sif/hail
+datum/weather/sif/hail
 	name = "hail"
 	icon_state = "hail"
 	temp_high = T0C		// 0c
@@ -398,7 +398,7 @@ var/datum/planet/sif/planet_sif = null
 		"An intense chill is felt, and chunks of ice start to fall from the sky, towards you."
 	)
 
-/datum/weather/sif/hail/process_effects()
+datum/weather/sif/hail/process_effects()
 	..()
 	for(var/humie in human_mob_list)
 		var/mob/living/carbon/human/H = humie
@@ -439,7 +439,7 @@ var/datum/planet/sif/planet_sif = null
 // These never happen naturally, and are for adminbuse.
 
 // A culty weather.
-/datum/weather/sif/blood_moon
+datum/weather/sif/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
 	light_color = "#FF0000"
@@ -455,7 +455,7 @@ var/datum/planet/sif/planet_sif = null
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
 // Ash and embers fall forever, such as from a volcano or something.
-/datum/weather/sif/emberfall
+datum/weather/sif/emberfall
 	name = "emberfall"
 	icon_state = "ashfall_light"
 	light_modifier = 0.7
@@ -474,7 +474,7 @@ var/datum/planet/sif/planet_sif = null
 	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
 // Like the above but a lot more harmful.
-/datum/weather/sif/ash_storm
+datum/weather/sif/ash_storm
 	name = "ash storm"
 	icon_state = "ashfall_heavy"
 	light_modifier = 0.1
@@ -495,7 +495,7 @@ var/datum/planet/sif/planet_sif = null
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
-/datum/weather/sif/ash_storm/process_effects()
+datum/weather/sif/ash_storm/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -508,7 +508,7 @@ var/datum/planet/sif/planet_sif = null
 
 
 // Totally radical.
-/datum/weather/sif/fallout
+datum/weather/sif/fallout
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
@@ -532,7 +532,7 @@ var/datum/planet/sif/planet_sif = null
 	var/fallout_rad_low = RAD_LEVEL_HIGH
 	var/fallout_rad_high = RAD_LEVEL_VERY_HIGH
 
-/datum/weather/sif/fallout/process_effects()
+datum/weather/sif/fallout/process_effects()
 	..()
 	for(var/thing in living_mob_list)
 		var/mob/living/L = thing
@@ -546,7 +546,7 @@ var/datum/planet/sif/planet_sif = null
 
 // This makes random tiles near people radioactive for awhile.
 // Tiles far away from people are left alone, for performance.
-/datum/weather/sif/fallout/proc/irradiate_nearby_turf(mob/living/L)
+datum/weather/sif/fallout/proc/irradiate_nearby_turf(mob/living/L)
 	if(!istype(L))
 		return
 	var/list/turfs = RANGE_TURFS(world.view, L)

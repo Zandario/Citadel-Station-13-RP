@@ -1,6 +1,6 @@
-/datum/preferences
+datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
-/datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
+datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
 	var/datum/species/current_species = real_species_datum()
 	set_biological_gender(pick(current_species.genders))
 
@@ -35,7 +35,7 @@
 	if(H)
 		copy_to(H)
 
-/datum/preferences/proc/randomize_hair_color(var/target = "hair")
+datum/preferences/proc/randomize_hair_color(var/target = "hair")
 	if(prob (75) && target == "facial") // Chance to inherit hair color
 		r_facial = r_hair
 		g_facial = g_hair
@@ -95,7 +95,7 @@
 			g_facial = green
 			b_facial = blue
 
-/datum/preferences/proc/randomize_eyes_color()
+datum/preferences/proc/randomize_eyes_color()
 	var/red
 	var/green
 	var/blue
@@ -143,7 +143,7 @@
 	g_eyes = green
 	b_eyes = blue
 
-/datum/preferences/proc/randomize_skin_color()
+datum/preferences/proc/randomize_skin_color()
 	var/red
 	var/green
 	var/blue
@@ -191,7 +191,7 @@
 	g_skin = green
 	b_skin = blue
 
-/datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin, flags)
+datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin, flags)
 	copy_to(mannequin, flags)
 
 	if(!equip_preview_mob)
@@ -233,7 +233,7 @@
 		mannequin.job = previewJob.title
 		previewJob.equip_preview(mannequin, get_job_alt_title_name(previewJob))
 
-/datum/preferences/proc/update_preview_icon()
+datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	mannequin.delete_inventory(TRUE)
 	if(regen_limbs)
@@ -247,10 +247,10 @@
 	update_character_previews(new /mutable_appearance(mannequin))
 
 //TFF 5/8/19 - add randomised sensor setting for random button clicking
-/datum/preferences/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
+datum/preferences/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
 	sensorpref = rand(1,5)
 
-/datum/preferences/proc/get_valid_hairstyles()
+datum/preferences/proc/get_valid_hairstyles()
 	var/list/valid_hairstyles = list()
 	var/species_name = real_species_name()
 	for(var/hairstyle in GLOB.legacy_hair_lookup)
@@ -262,7 +262,7 @@
 
 	return valid_hairstyles
 
-/datum/preferences/proc/get_valid_facialhairstyles()
+datum/preferences/proc/get_valid_facialhairstyles()
 	var/list/valid_facialhairstyles = list()
 	var/datum/species/RS = real_species_datum()
 	for(var/facialhairstyle in GLOB.legacy_facial_hair_lookup)
@@ -278,7 +278,7 @@
 
 	return valid_facialhairstyles
 
-/datum/preferences/update_preview_icon() // Lines up and un-overlaps character edit previews. Also un-splits taurs.
+datum/preferences/update_preview_icon() // Lines up and un-overlaps character edit previews. Also un-splits taurs.
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
 		mannequin.dna = new /datum/dna(null)

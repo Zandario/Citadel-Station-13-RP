@@ -1,4 +1,4 @@
-/datum/unit_test/metabolization/Run()
+datum/unit_test/metabolization/Run()
 	// Pause natural mob life so it can be handled entirely by the test
 	SSmobs.pause()
 
@@ -9,16 +9,16 @@
 		test_reagent(human, reagent_type)
 		test_reagent(monkey, reagent_type)
 
-/datum/unit_test/metabolization/proc/test_reagent(mob/living/carbon/C, reagent_type)
+datum/unit_test/metabolization/proc/test_reagent(mob/living/carbon/C, reagent_type)
 	C.reagents.add_reagent(reagent_type, 10)
 	C.reagents.metabolize(C, can_overdose = TRUE)
 	C.reagents.clear_reagents()
 
-/datum/unit_test/metabolization/Destroy()
+datum/unit_test/metabolization/Destroy()
 	SSmobs.ignite()
 	return ..()
 
-/datum/unit_test/on_mob_end_metabolize/Run()
+datum/unit_test/on_mob_end_metabolize/Run()
 	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
 	var/obj/item/reagent_containers/pill/pill = allocate(/obj/item/reagent_containers/pill)
 	var/datum/reagent/drug/methamphetamine/meth = /datum/reagent/drug/methamphetamine

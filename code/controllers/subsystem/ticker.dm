@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(ticker)
 	var/static/list/round_start_events
 	var/static/list/round_end_events
 
-/datum/controller/subsystem/ticker/Initialize()
+datum/controller/subsystem/ticker/Initialize()
 	if(!syndicate_code_phrase)
 		syndicate_code_phrase = generate_code_phrase()
 	if(!syndicate_code_response)
@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(ticker)
 
 	return ..()
 
-/datum/controller/subsystem/ticker/fire()
+datum/controller/subsystem/ticker/fire()
 	switch(current_state)
 		if(GAME_STATE_INIT)
 			// We fire after init finishes
@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(ticker)
 				SSpersistence.SavePersistence()
 
 
-/datum/controller/subsystem/ticker/proc/on_mc_init_finish()
+datum/controller/subsystem/ticker/proc/on_mc_init_finish()
 	send2irc("Server lobby is loaded and open at byond://[config_legacy.serverurl ? config_legacy.serverurl : (config_legacy.server ? config_legacy.server : "[world.address]:[world.port]")]")
 	to_chat(world, "<span class='boldnotice'>Welcome to the pregame lobby!</span>")
 	to_chat(world, "Please set up your character and select ready. The round will start in [CONFIG_GET(number/lobby_countdown)] seconds.")
@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(ticker)
 		start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 	fire()
 
-/datum/controller/subsystem/ticker/proc/process_pregame()
+datum/controller/subsystem/ticker/proc/process_pregame()
 	if(isnull(timeLeft))
 		timeLeft = max(0,start_at - world.time)
 	if(start_immediately)
@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(ticker)
 			SSvote.autogamemode()
 		//end
 
-/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
+datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
 	set waitfor = FALSE
 	if(usr && !check_rights(R_SERVER, TRUE))
 		return
@@ -200,24 +200,24 @@ SUBSYSTEM_DEF(ticker)
 
 	world.Reboot()
 
-/datum/controller/subsystem/ticker/proc/HasRoundStarted()
+datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
 
-/datum/controller/subsystem/ticker/proc/IsRoundInProgress()
+datum/controller/subsystem/ticker/proc/IsRoundInProgress()
 	return current_state == GAME_STATE_PLAYING
 
-/datum/controller/subsystem/ticker/proc/GetTimeLeft()
+datum/controller/subsystem/ticker/proc/GetTimeLeft()
 	if(isnull(SSticker.timeLeft))
 		return max(0, start_at - world.time)
 	return timeLeft
 
-/datum/controller/subsystem/ticker/proc/SetTimeLeft(newtime)
+datum/controller/subsystem/ticker/proc/SetTimeLeft(newtime)
 	if(newtime >= 0 && isnull(timeLeft))	//remember, negative means delayed
 		start_at = world.time + newtime
 	else
 		timeLeft = newtime
 
-/datum/controller/subsystem/ticker/proc/setup()
+datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, "<span class='boldannounce'>Starting game...</span>")
 	var/init_start = world.timeofday
 
@@ -327,21 +327,21 @@ SUBSYSTEM_DEF(ticker)
 	return TRUE
 
 //These callbacks will fire after roundstart key transfer
-/datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
+datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
 	if(!HasRoundStarted())
 		LAZYADD(round_start_events, cb)
 	else
 		cb.InvokeAsync()
 
 //These callbacks will fire before roundend report
-/datum/controller/subsystem/ticker/proc/OnRoundend(datum/callback/cb)
+datum/controller/subsystem/ticker/proc/OnRoundend(datum/callback/cb)
 	if(current_state >= GAME_STATE_FINISHED)
 		cb.InvokeAsync()
 	else
 		LAZYADD(round_end_events, cb)
 
 	//Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
+datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
 	if( cinematic )	return	//already a cinematic in progress!
 
 	//initialise our cinematic screen object
@@ -440,7 +440,7 @@ SUBSYSTEM_DEF(ticker)
 	return
 
 
-/datum/controller/subsystem/ticker/proc/create_characters()
+datum/controller/subsystem/ticker/proc/create_characters()
 	//! TEMPORARY PATCH: putting people in nullspace results in obscene behavior from BYOND
 	//? since we really don't want to kill login ..() without reason, we spawn them at random overflow spawnpoint.
 	var/obj/landmark/spawnpoint/S
@@ -465,13 +465,13 @@ SUBSYSTEM_DEF(ticker)
 					data_core.manifest_inject(new_char)
 
 
-/datum/controller/subsystem/ticker/proc/collect_minds()
+datum/controller/subsystem/ticker/proc/collect_minds()
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			minds += player.mind
 
 
-/datum/controller/subsystem/ticker/proc/equip_characters()
+datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless=1
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(player && player.mind && player.mind.assigned_role)
@@ -486,7 +486,7 @@ SUBSYSTEM_DEF(ticker)
 				to_chat(M, "Facility Directorship not forced on anyone.")
 
 
-/datum/controller/subsystem/ticker/proc/round_process()
+datum/controller/subsystem/ticker/proc/round_process()
 	if(current_state != GAME_STATE_PLAYING)
 		return 0
 
@@ -517,7 +517,7 @@ SUBSYSTEM_DEF(ticker)
 
 	return 1
 
-/datum/controller/subsystem/ticker/proc/declare_completion()
+datum/controller/subsystem/ticker/proc/declare_completion()
 	set waitfor = FALSE
 
 	to_chat(world, "<span class='infoplain'><BR><BR><BR><span class='big bold'>The round has ended.</span></span>")
@@ -621,7 +621,7 @@ SUBSYSTEM_DEF(ticker)
 	sleep(5 SECONDS)
 	standard_reboot()
 
-/datum/controller/subsystem/ticker/proc/standard_reboot()
+datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
 		if(mode.station_was_nuked)
 			Reboot("Station destroyed by Nuclear Device.", "nuke", 60 SECONDS)

@@ -1,5 +1,5 @@
 
-/datum/gear/accessory
+datum/gear/accessory
 	name = "Blue Silk Tie"
 	slot = /datum/inventory_slot_meta/abstract/attach_as_accessory
 	sort_category = "Accessories"
@@ -7,11 +7,11 @@
 	path = /obj/item/clothing/accessory
 	cost = 1
 
-/datum/gear/accessory/armband
+datum/gear/accessory/armband
 	name = "Armband Selection"
 	path = /obj/item/clothing/accessory/armband
 
-/datum/gear/accessory/armband/New()
+datum/gear/accessory/armband/New()
 	..()
 	var/list/armbands = list()
 	for(var/armband in (typesof(/obj/item/clothing/accessory/armband) - typesof(/obj/item/clothing/accessory/armband/med/color)))
@@ -19,57 +19,57 @@
 		armbands[initial(armband_type.name)] = armband_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(armbands, /proc/cmp_text_asc))
 
-/datum/gear/accessory/armband/colored
+datum/gear/accessory/armband/colored
 	name = "Armband - Colorable"
 	path = /obj/item/clothing/accessory/armband/med/color
 
-/datum/gear/accessory/armband/colored/New()
+datum/gear/accessory/armband/colored/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/accessory/wallet
+datum/gear/accessory/wallet
 	name = "Wallet - Orange"
 	path = /obj/item/storage/wallet/random
 
-/datum/gear/accessory/wallet_poly
+datum/gear/accessory/wallet_poly
 	name = "Wallet - Colorable"
 	path = /obj/item/storage/wallet/poly
 	cost = 0
 
 
-/datum/gear/accessory/wallet/womens
+datum/gear/accessory/wallet/womens
 	name = "Wallet - Womens"
 	path = /obj/item/storage/wallet/womens
 	cost = 0
 
-/datum/gear/accessory/wallet/womens/New()
+datum/gear/accessory/wallet/womens/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/accessory/clutch
+datum/gear/accessory/clutch
 	name = "Clutch Bag"
 	path = /obj/item/storage/briefcase/clutch
 	cost = 2
 
-/datum/gear/accessory/clutch/New()
+datum/gear/accessory/clutch/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/accessory/purse
+datum/gear/accessory/purse
 	name = "Purse"
 	path = /obj/item/storage/backpack/purse
 	cost = 3
 
-/datum/gear/accessory/purse/New()
+datum/gear/accessory/purse/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/accessory/wcoat
+datum/gear/accessory/wcoat
 	name = "Waistcoat - Selection"
 	path = /obj/item/clothing/accessory/wcoat
 	cost = 1
 
-/datum/gear/accessory/wcoat/New()
+datum/gear/accessory/wcoat/New()
 	..()
 	var/list/wcoats = list()
 	for(var/wcoat in typesof(/obj/item/clothing/accessory/wcoat))
@@ -77,12 +77,12 @@
 		wcoats[initial(wcoat_type.name)] = wcoat_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(wcoats, /proc/cmp_text_asc))
 
-/datum/gear/accessory/tie
+datum/gear/accessory/tie
 	name = "Tie - Selection"
 	path = /obj/item/clothing/accessory/tie
 	cost = 1
 
-/datum/gear/accessory/tie/New()
+datum/gear/accessory/tie/New()
 	..()
 	var/list/ties = list()
 	for(var/tie in typesof(/obj/item/clothing/accessory/tie))
@@ -90,12 +90,12 @@
 		ties[initial(tie_type.name)] = tie_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(ties, /proc/cmp_text_asc))
 
-/datum/gear/accessory/scarf
+datum/gear/accessory/scarf
 	name = "Scarf - Selection"
 	path = /obj/item/clothing/accessory/scarf
 	cost = 1
 
-/datum/gear/accessory/scarf/New()
+datum/gear/accessory/scarf/New()
 	..()
 	var/list/scarfs = list()
 	for(var/scarf in typesof(/obj/item/clothing/accessory/scarf))
@@ -103,21 +103,21 @@
 		scarfs[initial(scarf_type.name)] = scarf_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(scarfs, /proc/cmp_text_asc))
 
-/datum/gear/accessory/scarfcolor
+datum/gear/accessory/scarfcolor
 	name = "Scarf Colorable"
 	path = /obj/item/clothing/accessory/scarf/white
 	cost = 1
 
-/datum/gear/accessory/scarfcolor/New()
+datum/gear/accessory/scarfcolor/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/accessory/jacket
+datum/gear/accessory/jacket
 	name = "Suit Jacket Selection"
 	path = /obj/item/clothing/accessory/jacket
 	cost = 1
 
-/datum/gear/accessory/jacket/New()
+datum/gear/accessory/jacket/New()
 	..()
 	var/list/jackets = list()
 	for(var/jacket in typesof(/obj/item/clothing/accessory/jacket))
@@ -125,36 +125,36 @@
 		jackets[initial(jacket_type.name)] = jacket_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(jackets, /proc/cmp_text_asc))
 
-/datum/gear/accessory/suitvest
+datum/gear/accessory/suitvest
 	name = "Suit Vest"
 	path = /obj/item/clothing/accessory/vest
 
-/datum/gear/accessory/lifecrystal
+datum/gear/accessory/lifecrystal
 	name = "Life Crystal"
 	path = /obj/item/clothing/accessory/collar/lifecrystal
 	description = "A smart medical necklace that pings an offsite recovery facility and acts as a beacon, should you die."
 
-/datum/gear/accessory/brown_drop_pouches
+datum/gear/accessory/brown_drop_pouches
 	name = "Drop Pouches - Brown"
 	path = /obj/item/clothing/accessory/storage/brown_drop_pouches
 	cost = 2
 
-/datum/gear/accessory/black_drop_pouches
+datum/gear/accessory/black_drop_pouches
 	name = "Drop Pouches - Black"
 	path = /obj/item/clothing/accessory/storage/black_drop_pouches
 	cost = 2
 
-/datum/gear/accessory/white_drop_pouches
+datum/gear/accessory/white_drop_pouches
 	name = "Drop Pouches - White"
 	path = /obj/item/clothing/accessory/storage/white_drop_pouches
 	cost = 2
 
-/datum/gear/accessory/holster_selection
+datum/gear/accessory/holster_selection
 	name = "Holster - Selection"
 	path = /obj/item/clothing/accessory/holster
 	cost = 1
 
-/datum/gear/accessory/holster_selection/New()
+datum/gear/accessory/holster_selection/New()
 	..()
 	var/holstertype = list()
 	holstertype["Holster - Shoulder"] = /obj/item/clothing/accessory/holster
@@ -165,12 +165,12 @@
 	holstertype["Holster - Machete"] = /obj/item/clothing/accessory/holster/machete
 	gear_tweaks += new/datum/gear_tweak/path(holstertype)
 
-/datum/gear/accessory/fannypack
+datum/gear/accessory/fannypack
 	name = "Fannypack - Selection"
 	cost = 2
 	path = /obj/item/storage/belt/fannypack
 
-/datum/gear/accessory/fannypack/New()
+datum/gear/accessory/fannypack/New()
 	..()
 	var/list/fannys = list()
 	for(var/fanny in typesof(/obj/item/storage/belt/fannypack))
@@ -178,19 +178,19 @@
 		fannys[initial(fanny_type.name)] = fanny_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(fannys, /proc/cmp_text_asc))
 
-/datum/gear/accessory/chaps
+datum/gear/accessory/chaps
 	name = "Chaps - Brown"
 	path = /obj/item/clothing/accessory/chaps
 
-/datum/gear/accessory/chaps/black
+datum/gear/accessory/chaps/black
 	name = "Chaps - Black"
 	path = /obj/item/clothing/accessory/chaps/black
 
-/datum/gear/accessory/hawaii
+datum/gear/accessory/hawaii
 	name = "Hawaii Shirt"
 	path = /obj/item/clothing/accessory/hawaii
 
-/datum/gear/accessory/hawaii/New()
+datum/gear/accessory/hawaii/New()
 	..()
 	var/list/shirts = list()
 	shirts["Blue Hawaii Shirt"] = /obj/item/clothing/accessory/hawaii
@@ -199,11 +199,11 @@
 	gear_tweaks += new/datum/gear_tweak/path(shirts)
 
 
-/datum/gear/accessory/sweater
+datum/gear/accessory/sweater
 	name = "Sweater - Selection"
 	path = /obj/item/clothing/accessory/sweater
 
-/datum/gear/accessory/sweater/New()
+datum/gear/accessory/sweater/New()
 	..()
 	var/list/sweaters = list()
 	for(var/sweater in typesof(/obj/item/clothing/accessory/sweater))
@@ -211,13 +211,13 @@
 		sweaters[initial(sweater_type.name)] = sweater_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(sweaters, /proc/cmp_text_asc))
 
-/datum/gear/accessory/bracelet/material
+datum/gear/accessory/bracelet/material
 	name = "Bracelet - Selection"
 	description = "Choose from a number of bracelets."
 	path = /obj/item/clothing/accessory/bracelet
 	cost = 1
 
-/datum/gear/accessory/bracelet/material/New()
+datum/gear/accessory/bracelet/material/New()
 	..()
 	var/bracelettype = list()
 	bracelettype["Bracelet - Steel"] = /obj/item/clothing/accessory/bracelet/material/steel
@@ -230,45 +230,45 @@
 	bracelettype["Bracelet - Plastic"] = /obj/item/clothing/accessory/bracelet/material/plastic
 	gear_tweaks += new/datum/gear_tweak/path(bracelettype)
 
-/datum/gear/accessory/bracelet/friendship
+datum/gear/accessory/bracelet/friendship
 	name = "Friendship Bracelet"
 	path = /obj/item/clothing/accessory/bracelet/friendship
 
-/datum/gear/accessory/locket
+datum/gear/accessory/locket
 	name = "Locket"
 	path = /obj/item/clothing/accessory/locket
 
-/datum/gear/accessory/necklace
+datum/gear/accessory/necklace
 	name = "Customizable Necklace"
 	path = /obj/item/clothing/accessory/necklace
 	description = "A necklace. You can rename it and change its description in-game."
 
-/datum/gear/accessory/treatbox
+datum/gear/accessory/treatbox
 	name = "Box of Treats"
 	path = /obj/item/storage/box/treats
 	cost = 2
-/datum/gear/accessory/halfcape
+datum/gear/accessory/halfcape
 	name = "Half Cape"
 	path = /obj/item/clothing/accessory/halfcape
 
-/datum/gear/accessory/fullcape
+datum/gear/accessory/fullcape
 	name = "Full Cape"
 	path = /obj/item/clothing/accessory/fullcape
 
-/datum/gear/accessory/sash
+datum/gear/accessory/sash
 	name = "Sash - Colorable"
 	path = /obj/item/clothing/accessory/sash
 
-/datum/gear/accessory/sash/New()
+datum/gear/accessory/sash/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/accessory/asym
+datum/gear/accessory/asym
 	name = "Asymmetric Jacket - Selection"
 	path = /obj/item/clothing/accessory/asymmetric
 	cost = 1
 
-/datum/gear/accessory/asym/New()
+datum/gear/accessory/asym/New()
 	..()
 	var/list/asyms = list()
 	for(var/asym in typesof(/obj/item/clothing/accessory/asymmetric))
@@ -276,95 +276,95 @@
 		asyms[initial(asymmetric_type.name)] = asymmetric_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(asyms, /proc/cmp_text_asc))
 
-/datum/gear/accessory/cowledvest
+datum/gear/accessory/cowledvest
 	name = "Cowled Vest"
 	path = /obj/item/clothing/accessory/cowledvest
 
-/datum/gear/choker	// A colorable choker
+datum/gear/choker	// A colorable choker
 	name = "Choker"
 	path = /obj/item/clothing/accessory/choker
 	slot = /datum/inventory_slot_meta/abstract/attach_as_accessory
 	sort_category = "Accessories"
 
-/datum/gear/choker/New()
+datum/gear/choker/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/collar
+datum/gear/collar
 	name = "Collar - Silver"
 	path = /obj/item/clothing/accessory/collar/silver
 	slot = /datum/inventory_slot_meta/abstract/attach_as_accessory
 	sort_category = "Accessories"
 
-/datum/gear/collar/New()
+datum/gear/collar/New()
 	..()
 	gear_tweaks = list(gear_tweak_collar_tag)
 
-/datum/gear/collar/golden
+datum/gear/collar/golden
 	name = "Collar - Golden"
 	path = /obj/item/clothing/accessory/collar/gold
 
-/datum/gear/collar/bell
+datum/gear/collar/bell
 	name = "Collar - Bell"
 	path = /obj/item/clothing/accessory/collar/bell
 
-/datum/gear/collar/shock
+datum/gear/collar/shock
 	name = "Collar - Shock"
 	path = /obj/item/clothing/accessory/collar/shock
 
-/datum/gear/collar/spike
+datum/gear/collar/spike
 	name = "Collar - Spike"
 	path = /obj/item/clothing/accessory/collar/spike
 
-/datum/gear/collar/pink
+datum/gear/collar/pink
 	name = "Collar - Pink"
 	path = /obj/item/clothing/accessory/collar/pink
 
-/datum/gear/collar/holo
+datum/gear/collar/holo
 	name = "Collar - Holo"
 	path = /obj/item/clothing/accessory/collar/holo
 
-/datum/gear/collar/cow
+datum/gear/collar/cow
 	name = "Collar - Cowbell"
 	path = /obj/item/clothing/accessory/collar/cowbell
 
-/datum/gear/collar/holo/indigestible
+datum/gear/collar/holo/indigestible
 	name = "Collar - Holo - Indigestible"
 	path = /obj/item/clothing/accessory/collar/holo/indigestible
 
-/datum/gear/accessory/webbing
+datum/gear/accessory/webbing
 	cost = 1
 
-/datum/gear/accessory/vmcrystal
+datum/gear/accessory/vmcrystal
 	name = "Life Crystal"
 	path = /obj/item/storage/box/vmcrystal
 	description = "A small necklace device that will notify an offsite cloning facility should you expire after activating it."
 
-/datum/gear/accessory/metal_necklace
+datum/gear/accessory/metal_necklace
 	name = "Metal Necklace"
 	description = "A shiny steel chain with a vague metallic object dangling off it."
 	path = /obj/item/clothing/accessory/metal_necklace
 
-/datum/gear/accessory/pilotpin
+datum/gear/accessory/pilotpin
 	name = "Pilot - Qualification Pin"
 	description = "An iron pin denoting the qualification to fly OCG voidcraft."
 	path = /obj/item/clothing/accessory/oricon/specialty/pilot
 
-/datum/gear/accessory/flops
+datum/gear/accessory/flops
 	name = "Drop Straps"
 	description = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
 	path = /obj/item/clothing/accessory/flops
 
-/datum/gear/accessory/flops/New()
+datum/gear/accessory/flops/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/accessory/gaiter
+datum/gear/accessory/gaiter
 	name = "Neck Gaiter - Selection"
 	path = /obj/item/clothing/accessory/gaiter
 	cost = 1
 
-/datum/gear/accessory/gaiter/New()
+datum/gear/accessory/gaiter/New()
 	..()
 	var/list/gaiters = list()
 	for(var/gaiter in typesof(/obj/item/clothing/accessory/gaiter))
@@ -372,61 +372,61 @@
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(tim_sort(gaiters, /proc/cmp_text_asc))
 
-/datum/gear/accessory/laconic
+datum/gear/accessory/laconic
 	name = "Laconic Field Pouch System"
 	path = /obj/item/clothing/accessory/storage/laconic
 	cost = 1
 
-/datum/gear/accessory/buttonup
+datum/gear/accessory/buttonup
 	name = "Button Up Shirt"
 	path = /obj/item/clothing/accessory/buttonup
 	slot = /datum/inventory_slot_meta/abstract/attach_as_accessory
 	sort_category = "Accessories"
 
-/datum/gear/accessory/buttonup/New()
+datum/gear/accessory/buttonup/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/accessory/buttonup/untucked
+datum/gear/accessory/buttonup/untucked
 	name = "Button Up Shirt - Untucked"
 	path = /obj/item/clothing/accessory/buttonup/untucked
 	slot = /datum/inventory_slot_meta/abstract/attach_as_accessory
 	sort_category = "Accessories"
 
-/datum/gear/accessory/antediluvian
+datum/gear/accessory/antediluvian
 	name = "Antediluvian Loincloth"
 	path = /obj/item/clothing/accessory/antediluvian
 	cost = 1
 
-/datum/gear/accessory/antediluvian_gloves
+datum/gear/accessory/antediluvian_gloves
 	name = "Antediluvian Bracers"
 	path = /obj/item/clothing/accessory/antediluvian_gloves
 
-/datum/gear/accessory/mekkyaku
+datum/gear/accessory/mekkyaku
 	name = "Mekkyaku Turtleneck"
 	path = /obj/item/clothing/accessory/mekkyaku
 
-/datum/gear/accessory/armsock
+datum/gear/accessory/armsock
 	name = "Fingerless Sleeves"
 	path = /obj/item/clothing/accessory/armsocks
 
-/datum/gear/accessory/armsock_left
+datum/gear/accessory/armsock_left
 	name = "Fingerless Sleeve (Left)"
 	path = /obj/item/clothing/accessory/armsock_left
 
-/datum/gear/accessory/armsock_right
+datum/gear/accessory/armsock_right
 	name = "Fingerless Sleeve (Right)"
 	path = /obj/item/clothing/accessory/armsock_right
 
-/datum/gear/accessory/disenchanted_talisman
+datum/gear/accessory/disenchanted_talisman
 	name = "Disenchanted Bone Talisman"
 	path = /obj/item/clothing/accessory/disenchanted_talisman
 
-/datum/gear/accessory/halo_projector
+datum/gear/accessory/halo_projector
 	name = "Holographic Halo Projector"
 	path = /obj/item/clothing/accessory/halo_projector
 
-/datum/gear/accessory/halo_projector/New()
+datum/gear/accessory/halo_projector/New()
 	..()
 	var/list/halos = list()
 	for(var/obj/item/clothing/accessory/halo_projector/halo as anything in typesof(/obj/item/clothing/accessory/halo_projector))

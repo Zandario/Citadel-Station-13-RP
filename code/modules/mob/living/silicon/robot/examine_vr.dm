@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/proc/examine_bellies_borg()
+mob/living/silicon/robot/proc/examine_bellies_borg()
 
 	var/message = ""
 	for(var/belly in vore_organs)

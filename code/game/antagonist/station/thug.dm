@@ -1,6 +1,6 @@
 var/datum/antagonist/thug/thugs
 
-/datum/antagonist/THUG
+datum/antagonist/THUG
 	id = MODE_THUG
 	role_type = BE_RENEGADE
 	role_text = "Thug"

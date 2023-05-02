@@ -1,11 +1,11 @@
-/datum/event/blob
+datum/event/blob
 	announceWhen	= 12
 	endWhen			= 120
 
 	var/obj/structure/blob/core/Blob
 
 
-/datum/event/blob/start()
+datum/event/blob/start()
 	var/turf/T = pick(blobstart)
 	if(!T)
 		kill()
@@ -14,7 +14,7 @@
 	Blob = new /obj/structure/blob/core/random_medium(T)
 
 
-/datum/event/blob/tick()
+datum/event/blob/tick()
 	if(!Blob || !Blob.loc)
 		Blob = null
 		kill()

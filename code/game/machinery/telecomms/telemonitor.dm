@@ -6,7 +6,7 @@
 	and displays a heirarchy of linked machines.
 */
 
-/obj/machinery/computer/telecomms/monitor
+obj/machinery/computer/telecomms/monitor
 	name = "Telecommunications Monitor"
 	desc = "Used to traverse a telecommunication network. Helpful for debugging connection issues."
 	icon_screen = "comm_monitor"
@@ -20,7 +20,7 @@
 
 	var/list/temp = null				// temporary feedback messages
 
-/obj/machinery/computer/telecomms/monitor/ui_data(mob/user)
+obj/machinery/computer/telecomms/monitor/ui_data(mob/user)
 	var/list/data = list()
 
 	data["network"] = network
@@ -50,18 +50,18 @@
 
 	return data
 
-/obj/machinery/computer/telecomms/monitor/attack_hand(mob/user, list/params)
+obj/machinery/computer/telecomms/monitor/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/telecomms/monitor/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/telecomms/monitor/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TelecommsMachineBrowser", name)
 		ui.open()
 
-/obj/machinery/computer/telecomms/monitor/ui_act(action, params)
+obj/machinery/computer/telecomms/monitor/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -114,7 +114,7 @@
 			. = TRUE
 
 
-/obj/machinery/computer/telecomms/monitor/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/telecomms/monitor/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
@@ -122,5 +122,5 @@
 		src.updateUsrDialog()
 		return 1
 
-/obj/machinery/computer/telecomms/monitor/proc/set_temp(var/text, var/color = "average")
+obj/machinery/computer/telecomms/monitor/proc/set_temp(var/text, var/color = "average")
 	temp = list("color" = color, "text" = text)

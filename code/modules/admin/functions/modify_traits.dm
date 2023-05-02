@@ -1,5 +1,5 @@
 /// Allow admin to add or remove traits of datum
-/datum/admins/proc/modify_traits(datum/D)
+datum/admins/proc/modify_traits(datum/D)
 	if(!D)
 		return
 

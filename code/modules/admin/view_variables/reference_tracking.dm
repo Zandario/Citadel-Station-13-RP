@@ -1,6 +1,6 @@
 #ifdef REFERENCE_TRACKING
 
-/datum/verb/find_refs()
+datum/verb/find_refs()
 	set category = "Debug"
 	set name = "Find References"
 	set src in world
@@ -8,10 +8,10 @@
 	find_references(FALSE)
 
 
-/datum/proc/find_references(skip_alert)
+datum/proc/find_references(skip_alert)
 	UNLINT(_find_references(skip_alert))
 
-/datum/proc/_find_references(skip_alert)
+datum/proc/_find_references(skip_alert)
 	running_find_references = type
 	if(usr?.client)
 		if(usr.client.running_find_references)
@@ -56,7 +56,7 @@
 	SSgarbage.next_fire = world.time + world.tick_lag
 
 
-/datum/verb/qdel_then_find_references()
+datum/verb/qdel_then_find_references()
 	set category = "Debug"
 	set name = "qdel() then Find References"
 	set src in world
@@ -66,7 +66,7 @@
 		find_references(TRUE)
 
 
-/datum/verb/qdel_then_if_fail_find_references()
+datum/verb/qdel_then_if_fail_find_references()
 	set category = "Debug"
 	set name = "qdel() then Find References if GC failure"
 	set src in world
@@ -74,7 +74,7 @@
 	qdel_and_find_ref_if_fail(src, TRUE)
 
 
-/datum/proc/DoSearchVar(potential_container, container_name, recursive_limit = 64)
+datum/proc/DoSearchVar(potential_container, container_name, recursive_limit = 64)
 	if(usr?.client && !usr.client.running_find_references)
 		return
 
@@ -117,7 +117,7 @@
 	#endif
 
 
-/proc/qdel_and_find_ref_if_fail(datum/thing_to_del, force = FALSE)
+proc/qdel_and_find_ref_if_fail(datum/thing_to_del, force = FALSE)
 	SSgarbage.reference_find_on_fail[REF(thing_to_del)] = TRUE
 	qdel(thing_to_del, force)
 

@@ -1,28 +1,28 @@
 var/global/list/uplink_locations = list("PDA", "Headset", "None")
 
-/datum/category_item/player_setup_item/antagonism/basic
+datum/category_item/player_setup_item/antagonism/basic
 	name = "Basic"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/antagonism/basic/load_character(var/savefile/S)
+datum/category_item/player_setup_item/antagonism/basic/load_character(var/savefile/S)
 	S["uplinklocation"] >> pref.uplinklocation
 	S["exploit_record"] >> pref.exploit_record
 	S["antag_faction"]	>> pref.antag_faction
 	S["antag_vis"]		>> pref.antag_vis
 
-/datum/category_item/player_setup_item/antagonism/basic/save_character(var/savefile/S)
+datum/category_item/player_setup_item/antagonism/basic/save_character(var/savefile/S)
 	S["uplinklocation"] << pref.uplinklocation
 	S["exploit_record"] << pref.exploit_record
 	S["antag_faction"]	<< pref.antag_faction
 	S["antag_vis"]		<< pref.antag_vis
 
-/datum/category_item/player_setup_item/antagonism/basic/sanitize_character()
+datum/category_item/player_setup_item/antagonism/basic/sanitize_character()
 	pref.uplinklocation	= sanitize_inlist(pref.uplinklocation, uplink_locations, initial(pref.uplinklocation))
 	if(!pref.antag_faction) pref.antag_faction = "None"
 	if(!pref.antag_vis) pref.antag_vis = "Hidden"
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/antagonism/basic/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/antagonism/basic/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
@@ -32,7 +32,7 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 	character.antag_vis = pref.antag_vis
 	return TRUE
 
-/datum/category_item/player_setup_item/antagonism/basic/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/antagonism/basic/content(datum/preferences/prefs, mob/user, data)
 	. += "Faction: <a href='?src=\ref[src];antagfaction=1'>[pref.antag_faction]</a><br/>"
 	. += "Visibility: <a href='?src=\ref[src];antagvis=1'>[pref.antag_vis]</a><br/>"
 	. +="<b>Uplink Type : <a href='?src=\ref[src];antagtask=1'>[pref.uplinklocation]</a></b>"
@@ -43,7 +43,7 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 	else
 		. +="<a href='?src=\ref[src];exploitable_record=1'>[TextPreview(pref.exploit_record,40)]</a><br>"
 
-/datum/category_item/player_setup_item/antagonism/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
+datum/category_item/player_setup_item/antagonism/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if (href_list["antagtask"])
 		pref.uplinklocation = next_list_item(pref.uplinklocation, uplink_locations)
 		return PREFERENCES_REFRESH

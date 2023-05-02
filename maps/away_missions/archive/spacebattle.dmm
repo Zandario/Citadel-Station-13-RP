@@ -1,1703 +1,1703 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/area)
+area)
 "ab" = (
-/turf/space,
-/area)
+turf/space,
+area)
 "ac" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area/awaymission/spacebattle/syndicate2)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area/awaymission/spacebattle/syndicate2)
 "ad" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 1
 	},
-/turf/space,
-/area/awaymission/spacebattle/syndicate2)
+turf/space,
+area/awaymission/spacebattle/syndicate2)
 "ah" = (
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/syndicate2)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/syndicate2)
 "ai" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced,
-/area/awaymission/spacebattle/syndicate2)
+obj/structure/window/reinforced,
+area/awaymission/spacebattle/syndicate2)
 "aj" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "ak" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/machinery/door/airlock/external,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "am" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/space/void/merc,
-/obj/item/clothing/head/helmet/space/void/merc,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/structure/table/reinforced,
+obj/item/clothing/suit/space/void/merc,
+obj/item/clothing/head/helmet/space/void/merc,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "an" = (
-/obj/structure/table/reinforced,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/structure/table/reinforced,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "ao" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/machinery/sleeper,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "ap" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "aq" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+mob/living/simple_mob/humanoid/merc/melee/sword,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "ar" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "as" = (
-/obj/structure/table/reinforced,
-/obj/item/grenade/empgrenade,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/structure/table/reinforced,
+obj/item/grenade/empgrenade,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "at" = (
-/obj/structure/table/reinforced,
-/obj/item/ammo_magazine/m10x24mm,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/structure/table/reinforced,
+obj/item/ammo_magazine/m10x24mm,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "au" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/ballistic/automatic/c20r,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/structure/table/reinforced,
+obj/item/gun/ballistic/automatic/c20r,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "av" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area/awaymission/spacebattle/syndicate3)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area/awaymission/spacebattle/syndicate3)
 "aw" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 1
 	},
-/turf/space,
-/area/awaymission/spacebattle/syndicate3)
+turf/space,
+area/awaymission/spacebattle/syndicate3)
 "aA" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/ballistic/silenced,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/structure/table/reinforced,
+obj/item/gun/ballistic/silenced,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "aB" = (
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/syndicate3)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/syndicate3)
 "aC" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced,
-/area/awaymission/spacebattle/syndicate3)
+obj/structure/window/reinforced,
+area/awaymission/spacebattle/syndicate3)
 "aD" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "aE" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/machinery/door/airlock/external,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "aF" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "aH" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+mob/living/simple_mob/humanoid/merc/ranged,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "aJ" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/space/void/merc,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/structure/table/reinforced,
+obj/item/clothing/suit/space/void/merc,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "aK" = (
-/obj/structure/table/reinforced,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/structure/table/reinforced,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "aL" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/ballistic/deagle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/structure/table/reinforced,
+obj/item/gun/ballistic/deagle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "aM" = (
-/obj/machinery/computer/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+obj/machinery/computer/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "aP" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area/awaymission/spacebattle/syndicate1)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area/awaymission/spacebattle/syndicate1)
 "aQ" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 1
 	},
-/turf/space,
-/area/awaymission/spacebattle/syndicate1)
+turf/space,
+area/awaymission/spacebattle/syndicate1)
 "aU" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/shuttle/plating,
-/area/awaymission/spacebattle/syndicate2)
+obj/machinery/door/airlock/external,
+turf/simulated/shuttle/plating,
+area/awaymission/spacebattle/syndicate2)
 "aV" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/machinery/sleeper,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "aW" = (
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/syndicate1)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/syndicate1)
 "aX" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/window/reinforced,
+area/awaymission/spacebattle/syndicate1)
 "aY" = (
-/obj/structure/window/reinforced,
-/obj/structure/shuttle/engine/heater{
+obj/structure/window/reinforced,
+obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/area/awaymission/spacebattle/syndicate2)
+area/awaymission/spacebattle/syndicate2)
 "aZ" = (
-/obj/structure/window/reinforced,
-/obj/structure/shuttle/engine/heater{
+obj/structure/window/reinforced,
+obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/area/awaymission/spacebattle/syndicate2)
+area/awaymission/spacebattle/syndicate2)
 "ba" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bd" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/machinery/door/airlock/external,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "be" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bf" = (
-/obj/machinery/porta_turret{
+obj/machinery/porta_turret{
 	dir = 8;
 	emagged = 1;
 	installation = /obj/item/gun/energy/lasercannon
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/syndicate2)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/syndicate2)
 "bg" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "bh" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/space/void/merc,
-/obj/item/clothing/head/helmet/space/void/merc,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/table/reinforced,
+obj/item/clothing/suit/space/void/merc,
+obj/item/clothing/head/helmet/space/void/merc,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bi" = (
-/obj/structure/table/reinforced,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/table/reinforced,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bj" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/gloves/swat,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/table/reinforced,
+obj/item/clothing/gloves/swat,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bk" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/machinery/sleeper,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bl" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/helmet/swat,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/structure/table/reinforced,
+obj/item/clothing/head/helmet/swat,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "bm" = (
-/obj/machinery/computer/pod{
+obj/machinery/computer/pod{
 	id = "spacebattlepod3";
 	name = "Hull Door Control"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate2)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate2)
 "bn" = (
-/obj/machinery/door/airlock/voidcraft/survival_pod{
+obj/machinery/door/airlock/voidcraft/survival_pod{
 	icon_state = "pdoor1";
 	name = "Front Hull Door";
 	opacity = 1
 	},
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/syndicate2)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/syndicate2)
 "bo" = (
-/obj/structure/table/reinforced,
-/obj/item/plastique,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/structure/table/reinforced,
+obj/item/plastique,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "bp" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bq" = (
-/obj/structure/table/reinforced,
-/obj/item/plastique,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/table/reinforced,
+obj/item/plastique,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "br" = (
-/obj/structure/table/reinforced,
-/obj/item/grenade/spawnergrenade/manhacks,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/table/reinforced,
+obj/item/grenade/spawnergrenade/manhacks,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bs" = (
-/obj/structure/table/reinforced,
-/obj/item/handcuffs,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/table/reinforced,
+obj/item/handcuffs,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bu" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+mob/living/simple_mob/humanoid/merc/ranged,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "bw" = (
-/obj/structure/table/reinforced,
-/obj/item/melee/energy/sword,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/table/reinforced,
+obj/item/melee/energy/sword,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bx" = (
-/obj/machinery/computer/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate3)
+obj/machinery/computer/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate3)
 "bA" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/helmet/swat,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/structure/table/reinforced,
+obj/item/clothing/head/helmet/swat,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bB" = (
-/obj/machinery/porta_turret{
+obj/machinery/porta_turret{
 	dir = 8;
 	emagged = 1;
 	installation = /obj/item/gun/energy/lasercannon
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/syndicate3)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/syndicate3)
 "bD" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+mob/living/simple_mob/humanoid/merc/ranged,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bF" = (
-/obj/machinery/computer/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate1)
+obj/machinery/computer/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate1)
 "bI" = (
-/obj/machinery/porta_turret{
+obj/machinery/porta_turret{
 	dir = 8;
 	emagged = 1;
 	installation = /obj/item/gun/energy/lasercannon
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/syndicate1)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/syndicate1)
 "bJ" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area/awaymission/spacebattle/cruiser)
 "bK" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 1
 	},
-/turf/space,
-/area/awaymission/spacebattle/cruiser)
+turf/space,
+area/awaymission/spacebattle/cruiser)
 "bL" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/door/airlock/external,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "bO" = (
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/cruiser)
 "bP" = (
-/obj/structure/window/reinforced,
-/obj/structure/shuttle/engine/heater{
+obj/structure/window/reinforced,
+obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "bR" = (
-/obj/structure/window/reinforced,
-/obj/structure/shuttle/engine/heater{
+obj/structure/window/reinforced,
+obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "bU" = (
-/turf/simulated/shuttle/wall,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/shuttle/wall,
+area/awaymission/spacebattle/cruiser)
 "bW" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 1
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "bX" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 4
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "bZ" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
-/turf/space,
-/area/awaymission/spacebattle/cruiser)
+turf/space,
+area/awaymission/spacebattle/cruiser)
 "ca" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cb" = (
-/obj/machinery/computer/power_monitor,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/power_monitor,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cc" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cd" = (
-/obj/machinery/computer/pod{
+obj/machinery/computer/pod{
 	id = "spacebattlepod";
 	name = "Hull Door Control"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cf" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ci" = (
-/obj/structure/table/reinforced,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ck" = (
-/turf/simulated/shuttle/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/shuttle/plating,
+area/awaymission/spacebattle/cruiser)
 "cm" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+mob/living/simple_mob/humanoid/merc/melee/sword/space,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cs" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	mobname = "Rosen Miller";
 	name = "Rosen Miller"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ct" = (
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cu" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 8
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "cv" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 10
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "cw" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 6
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "cx" = (
-/obj/machinery/power/smes/magical{
+obj/machinery/power/smes/magical{
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit.";
 	name = "power storage unit"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cy" = (
-/obj/item/ammo_casing/a10mm,
-/obj/item/ammo_casing/a10mm,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/ammo_casing/a10mm,
+obj/item/ammo_casing/a10mm,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cz" = (
-/obj/fiftyspawner/steel,
-/obj/item/ammo_casing/a10mm,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/fiftyspawner/steel,
+obj/item/ammo_casing/a10mm,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cA" = (
-/obj/item/ammo_casing/a10mm,
-/obj/item/ammo_casing/a10mm,
-/obj/item/ammo_casing/a10mm,
-/obj/item/ammo_casing/a10mm,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/ammo_casing/a10mm,
+obj/item/ammo_casing/a10mm,
+obj/item/ammo_casing/a10mm,
+obj/item/ammo_casing/a10mm,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cB" = (
-/obj/structure/closet/cabinet,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/cabinet,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cC" = (
-/obj/item/bedsheet,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/bedsheet,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cD" = (
-/obj/machinery/vending/cigarette,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/vending/cigarette,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cE" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/sausage,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/reagent_containers/food/snacks/sausage,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cF" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/reagent_containers/food/condiment/enzyme,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cH" = (
-/obj/structure/table/reinforced,
-/obj/item/material/kitchen/rollingpin,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/material/kitchen/rollingpin,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cI" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/secure_closet/freezer/kitchen,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cJ" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/secure_closet/freezer/fridge,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cK" = (
-/obj/structure/table/reinforced,
-/obj/machinery/microwave,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/machinery/microwave,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cL" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "cM" = (
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "cO" = (
-/obj/item/ammo_casing/a10mm,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/ammo_casing/a10mm,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cQ" = (
-/obj/landmark{
+obj/landmark{
 	name = "awaystart"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cS" = (
-/obj/fiftyspawner/steel,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/fiftyspawner/steel,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cT" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 5
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "cU" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	mobname = "Bill Sanchez";
 	name = "Bill Sanchez"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cW" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/fries,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/reagent_containers/food/snacks/fries,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cX" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/stew,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/reagent_containers/food/snacks/stew,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "cZ" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+mob/living/simple_mob/humanoid/merc/melee/sword,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "da" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "db" = (
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "dd" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+mob/living/simple_mob/humanoid/merc/ranged/space,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "de" = (
-/obj/machinery/computer/pod{
+obj/machinery/computer/pod{
 	id = "spacebattlepod2";
 	name = "Hull Door Control"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "df" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/window/reinforced,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "dg" = (
-/obj/machinery/shieldgen{
+obj/machinery/shieldgen{
 	anchored = 1
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "di" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	mobname = "John Locke";
 	name = "John Locke"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "dk" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/secure_closet/engineering_electrical,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "dl" = (
-/obj/structure/closet/secure_closet/engineering_welding,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/secure_closet/engineering_welding,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "dm" = (
-/obj/structure/closet/wardrobe/engineering_yellow,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/wardrobe/engineering_yellow,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "dn" = (
-/obj/structure/closet/toolcloset,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/toolcloset,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "do" = (
-/obj/spawner/corpse/doctor{
+obj/spawner/corpse/doctor{
 	mobname = "Daniel Kalla";
 	name = "Daniel Kalla"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "dw" = (
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/shuttle/wall{
+obj/effect/debris/cleanable/blood,
+turf/simulated/shuttle/wall{
 	dir = 4
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "dz" = (
-/obj/spawner/corpse/chef{
+obj/spawner/corpse/chef{
 	mobname = "Nathaniel Waters";
 	name = "Nathaniel Waters"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "dE" = (
-/obj/structure/closet/secure_closet/security,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/secure_closet/security,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "dG" = (
-/obj/effect/debris/cleanable/blood,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+area/awaymission/spacebattle/cruiser)
 "dH" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "dI" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/window/reinforced,
+area/awaymission/spacebattle/cruiser)
 "dJ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "dK" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "dM" = (
-/obj/item/stack/rods,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/stack/rods,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "dN" = (
-/obj/mecha/medical/odysseus,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/mecha/medical/odysseus,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "dO" = (
-/obj/mecha/working/ripley/firefighter,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/mecha/working/ripley/firefighter,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "dP" = (
-/obj/structure/closet/crate{
+obj/structure/closet/crate{
 	name = "Gold Crate"
 	},
-/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "dQ" = (
-/obj/structure/closet/crate{
+obj/structure/closet/crate{
 	name = "Gold Crate"
 	},
-/obj/item/mecha_parts/mecha_equipment/tool/drill,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/item/mecha_parts/mecha_equipment/tool/drill,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "dR" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/reagent_dispensers/watertank,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "dS" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/reagent_dispensers/fueltank,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "dU" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/small/peppermill,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/reagent_containers/food/condiment/small/peppermill,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ea" = (
-/obj/spawner/corpse/engineer/rig{
+obj/spawner/corpse/engineer/rig{
 	corpseidjob = "Gunner";
 	mobname = "Andrew Thorn";
 	name = "Andrew Thorn"
 	},
-/obj/effect/debris/cleanable/blood,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+area/awaymission/spacebattle/cruiser)
 "eb" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "ec" = (
-/obj/machinery/porta_turret{
+obj/machinery/porta_turret{
 	dir = 8;
 	emagged = 1;
 	installation = /obj/item/gun/energy/lasercannon
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "ed" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	mobname = "Clay Dawson";
 	name = "Clay Dawson"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ee" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "ef" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 9
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "eg" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "eh" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 5
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "ei" = (
-/obj/structure/closet/crate{
+obj/structure/closet/crate{
 	name = "Gold Crate"
 	},
-/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/item/mecha_parts/mecha_equipment/tool/syringe_gun,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "ej" = (
-/obj/structure/closet/crate{
+obj/structure/closet/crate{
 	name = "Gold Crate"
 	},
-/obj/item/mecha_parts/mecha_equipment/repair_droid,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/item/mecha_parts/mecha_equipment/repair_droid,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "el" = (
-/obj/structure/closet/l3closet/security,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/l3closet/security,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "em" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/portable_atmospherics/canister/oxygen,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "en" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "ep" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "eq" = (
-/obj/machinery/gateway/centeraway{
+obj/machinery/gateway/centeraway{
 	calibrated = 0
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "er" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "et" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area/awaymission/spacebattle/syndicate4)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area/awaymission/spacebattle/syndicate4)
 "eu" = (
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/syndicate4)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/syndicate4)
 "ew" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "ex" = (
-/obj/machinery/gateway,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/gateway,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "ey" = (
-/obj/machinery/gateway{
+obj/machinery/gateway{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "eB" = (
-/obj/spawner/corpse/bridgeofficer{
+obj/spawner/corpse/bridgeofficer{
 	mobname = "Davis Hume";
 	name = "Davis Hume"
 	},
-/obj/item/gun/ballistic/shotgun/pump/combat,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/gun/ballistic/shotgun/pump/combat,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "eC" = (
-/obj/item/ammo_casing/a12g/pellet,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/ammo_casing/a12g/pellet,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "eI" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "eJ" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
-/area/awaymission/spacebattle/cruiser)
+mob/living/simple_mob/humanoid/merc/melee/sword/space,
+area/awaymission/spacebattle/cruiser)
 "eK" = (
-/obj/spawner/corpse/engineer/rig{
+obj/spawner/corpse/engineer/rig{
 	corpseidjob = "Gunner";
 	mobname = "Peter West";
 	name = "Peter West"
 	},
-/obj/effect/debris/cleanable/blood,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+area/awaymission/spacebattle/cruiser)
 "eM" = (
-/turf/simulated/shuttle/wall{
+turf/simulated/shuttle/wall{
 	dir = 9
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "eN" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate4)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate4)
 "eO" = (
-/obj/machinery/computer/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate4)
+obj/machinery/computer/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate4)
 "eP" = (
-/obj/structure/table/reinforced,
-/obj/item/material/kitchen/utensil/spoon,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/material/kitchen/utensil/spoon,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "eR" = (
-/obj/item/shield/energy,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/shield/energy,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "eT" = (
-/obj/machinery/computer/med_data,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/med_data,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "eU" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "eV" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate4)
+obj/machinery/sleeper,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate4)
 "eW" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate4)
+mob/living/simple_mob/humanoid/merc/ranged,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate4)
 "eX" = (
-/obj/structure/closet/crate,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "eY" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/reagent_containers/food/condiment/small/saltshaker,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "eZ" = (
-/obj/structure/table/reinforced,
-/obj/item/material/kitchen/utensil/fork,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/material/kitchen/utensil/fork,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fa" = (
-/obj/spawner/corpse/syndicatesoldier,
-/obj/item/melee/energy/sword,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/spawner/corpse/syndicatesoldier,
+obj/item/melee/energy/sword,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fb" = (
-/obj/spawner/corpse/bridgeofficer{
+obj/spawner/corpse/bridgeofficer{
 	mobname = "Kurt Kliest";
 	name = "Kurt Kliest"
 	},
-/obj/item/gun/ballistic/shotgun/pump/combat,
-/obj/item/ammo_casing/a12g/pellet,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/gun/ballistic/shotgun/pump/combat,
+obj/item/ammo_casing/a12g/pellet,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fc" = (
-/obj/item/ammo_casing/a12g/pellet,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/ammo_casing/a12g/pellet,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fd" = (
-/obj/machinery/computer/crew,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/crew,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fe" = (
-/obj/spawner/corpse/engineer/rig{
+obj/spawner/corpse/engineer/rig{
 	corpseidjob = "Gunner";
 	mobname = "Eric Abnett";
 	name = "Eric Abnett"
 	},
-/obj/effect/debris/cleanable/blood,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+area/awaymission/spacebattle/cruiser)
 "ff" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/glasses/night,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/clothing/glasses/night,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "fj" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/gloves/blue,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/clothing/gloves/blue,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "fk" = (
-/obj/item/hand_labeler,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/item/hand_labeler,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "fn" = (
-/obj/machinery/computer/security/telescreen,
-/turf/simulated/shuttle/wall,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/security/telescreen,
+turf/simulated/shuttle/wall,
+area/awaymission/spacebattle/cruiser)
 "fp" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate4)
+obj/machinery/door/airlock/external,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate4)
 "fq" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/glasses/material,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/clothing/glasses/material,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "fr" = (
-/obj/structure/closet/crate,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/obj/item/light/tube,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/light/tube,
+obj/item/light/tube,
+obj/item/light/tube,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "ft" = (
-/obj/spawner/corpse/syndicatesoldier,
-/obj/item/gun/ballistic/automatic/c20r,
-/obj/item/ammo_casing/a10mm,
-/obj/item/ammo_casing/a10mm,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/spawner/corpse/syndicatesoldier,
+obj/item/gun/ballistic/automatic/c20r,
+obj/item/ammo_casing/a10mm,
+obj/item/ammo_casing/a10mm,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fv" = (
-/obj/spawner/corpse/bridgeofficer{
+obj/spawner/corpse/bridgeofficer{
 	mobname = "Walter Strider";
 	name = "Walter Strider"
 	},
-/obj/item/gun/ballistic/shotgun/pump/combat,
-/obj/item/ammo_casing/a10mm,
-/obj/item/ammo_casing/a10mm,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/gun/ballistic/shotgun/pump/combat,
+obj/item/ammo_casing/a10mm,
+obj/item/ammo_casing/a10mm,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fx" = (
-/obj/item/ammo_casing/a357,
-/obj/item/ammo_casing/a357,
-/obj/item/gun/ballistic/revolver/mateba,
-/obj/spawner/corpse/commander{
+obj/item/ammo_casing/a357,
+obj/item/ammo_casing/a357,
+obj/item/gun/ballistic/revolver/mateba,
+obj/spawner/corpse/commander{
 	mobname = "Aaron Bowden";
 	name = "Aaron Bowden"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fz" = (
-/obj/machinery/computer/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fA" = (
-/obj/structure/artilleryplaceholder,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/artilleryplaceholder,
+area/awaymission/spacebattle/cruiser)
 "fM" = (
-/obj/structure/closet/crate/internals,
-/obj/item/tank/emergency/oxygen,
-/obj/item/storage/firstaid/o2,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate/internals,
+obj/item/tank/emergency/oxygen,
+obj/item/storage/firstaid/o2,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "fP" = (
-/obj/item/ammo_casing/a12g/pellet,
-/obj/item/ammo_casing/a10mm,
-/obj/item/ammo_casing/a10mm,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/ammo_casing/a12g/pellet,
+obj/item/ammo_casing/a10mm,
+obj/item/ammo_casing/a10mm,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "fT" = (
-/obj/machinery/computer/communications,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/communications,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gg" = (
-/obj/structure/closet/crate,
-/obj/item/contraband/poster,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/contraband/poster,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "gh" = (
-/obj/spawner/corpse/bridgeofficer{
+obj/spawner/corpse/bridgeofficer{
 	mobname = "Robert Faver";
 	name = "Robert Faver"
 	},
-/obj/item/ammo_casing/a12g/pellet,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/ammo_casing/a12g/pellet,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gi" = (
-/obj/structure/artilleryplaceholder/decorative,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/artilleryplaceholder/decorative,
+area/awaymission/spacebattle/cruiser)
 "gl" = (
-/obj/structure/artilleryplaceholder/decorative,
-/obj/machinery/artillerycontrol,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/artilleryplaceholder/decorative,
+obj/machinery/artillerycontrol,
+area/awaymission/spacebattle/cruiser)
 "gt" = (
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/ammo_magazine/s357,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate/secure/weapon,
+obj/item/ammo_magazine/s357,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "gu" = (
-/obj/structure/closet/crate,
-/obj/item/lipstick/black,
-/obj/item/lipstick/jade,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/lipstick/black,
+obj/item/lipstick/jade,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "gv" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/gloves/rainbow,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/clothing/gloves/rainbow,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "gw" = (
-/obj/machinery/button/remote/airlock{
+obj/machinery/button/remote/airlock{
 	id = "spacebattlestorage";
 	name = "Secure Storage";
 	pixel_x = 24
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "gx" = (
-/obj/machinery/computer/operating,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/operating,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gy" = (
-/obj/structure/table/reinforced,
-/obj/item/surgical/scalpel,
-/obj/item/surgical/circular_saw,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/surgical/scalpel,
+obj/item/surgical/circular_saw,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gz" = (
-/obj/structure/table/reinforced,
-/obj/item/surgical/retractor,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/surgical/retractor,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gA" = (
-/obj/structure/table/reinforced,
-/obj/item/surgical/hemostat,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/surgical/hemostat,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gB" = (
-/obj/structure/table/reinforced,
-/obj/item/surgical/scalpel,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/surgical/scalpel,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gC" = (
-/obj/machinery/vending/cigarette,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/vending/cigarette,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "gD" = (
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "gE" = (
-/obj/item/gun/ballistic/shotgun/pump/combat,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/gun/ballistic/shotgun/pump/combat,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gH" = (
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/gun/energy/laser,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate/secure/weapon,
+obj/item/gun/energy/laser,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "gI" = (
-/obj/structure/closet/crate,
-/obj/item/spacecash/c10,
-/obj/item/spacecash/c10,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/spacecash/c10,
+obj/item/spacecash/c10,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "gJ" = (
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/shuttle/wall{
+obj/effect/debris/cleanable/blood,
+turf/simulated/shuttle/wall{
 	dir = 1
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "gK" = (
-/obj/spawner/corpse/doctor{
+obj/spawner/corpse/doctor{
 	mobname = "Adam Smith";
 	name = "Adam Smith"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gL" = (
-/obj/machinery/optable,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/optable,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gN" = (
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/vending/coffee,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "gO" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+mob/living/simple_mob/humanoid/merc/melee/sword/space,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "gP" = (
-/obj/machinery/computer/security,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/security,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gQ" = (
-/obj/structure/table/woodentable,
-/obj/item/flashlight/lamp/green,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/woodentable,
+obj/item/flashlight/lamp/green,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "gR" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/woodentable,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "gS" = (
-/obj/machinery/computer/secure_data,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/computer/secure_data,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "gT" = (
-/obj/spawner/corpse/engineer/rig{
+obj/spawner/corpse/engineer/rig{
 	corpseidjob = "Gunner";
 	name = "Jeremy Tailor"
 	},
-/obj/effect/debris/cleanable/blood,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+area/awaymission/spacebattle/cruiser)
 "gU" = (
-/obj/machinery/porta_turret{
+obj/machinery/porta_turret{
 	dir = 8;
 	emagged = 1;
 	installation = /obj/item/gun/energy/lasercannon
 	},
-/area/awaymission/spacebattle/syndicate7)
+area/awaymission/spacebattle/syndicate7)
 "gV" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area/awaymission/spacebattle/syndicate7)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area/awaymission/spacebattle/syndicate7)
 "gW" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
+obj/structure/shuttle/engine/heater,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/area/awaymission/spacebattle/syndicate4)
+area/awaymission/spacebattle/syndicate4)
 "gX" = (
-/obj/structure/reagent_dispensers/beerkeg,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/reagent_dispensers/beerkeg,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "ha" = (
-/obj/spawner/corpse/doctor{
+obj/spawner/corpse/doctor{
 	mobname = "Allan Yoshimaru";
 	name = "Allan Yoshimaru"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "hf" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/window/reinforced,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "hh" = (
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/syndicate7)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/syndicate7)
 "hi" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/space,
-/area/awaymission/spacebattle/syndicate4)
+obj/structure/shuttle/engine/propulsion,
+turf/space,
+area/awaymission/spacebattle/syndicate4)
 "hj" = (
-/obj/item/pickaxe,
-/obj/item/pickaxe/plasmacutter,
-/obj/structure/closet/crate,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/item/pickaxe,
+obj/item/pickaxe/plasmacutter,
+obj/structure/closet/crate,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "hk" = (
-/obj/item/surgical/circular_saw,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/surgical/circular_saw,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "hl" = (
-/obj/structure/table/woodentable,
-/obj/item/paper_bin,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/woodentable,
+obj/item/paper_bin,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "hm" = (
-/obj/spawner/corpse/engineer/rig{
+obj/spawner/corpse/engineer/rig{
 	corpseidjob = "Gunner";
 	mobname = "Dan Hedricks";
 	name = "Dan Hedricks"
 	},
-/obj/effect/debris/cleanable/blood,
-/obj/effect/debris/cleanable/blood,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+obj/effect/debris/cleanable/blood,
+area/awaymission/spacebattle/cruiser)
 "hn" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/syndicate7)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/syndicate7)
 "ho" = (
-/obj/structure/table/reinforced,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate7)
+obj/structure/table/reinforced,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate7)
 "hp" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate7)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate7)
 "hq" = (
-/obj/structure/shuttle/engine/heater{
+obj/structure/shuttle/engine/heater{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/area/awaymission/spacebattle/syndicate7)
+area/awaymission/spacebattle/syndicate7)
 "hr" = (
-/obj/structure/shuttle/engine/propulsion{
+obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
-/turf/space,
-/area/awaymission/spacebattle/syndicate7)
+turf/space,
+area/awaymission/spacebattle/syndicate7)
 "hs" = (
-/obj/structure/largecrate,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/largecrate,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "ht" = (
-/obj/structure/closet/crate/secure/phoron,
-/obj/item/tank/phoron,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate/secure/phoron,
+obj/item/tank/phoron,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "hu" = (
-/obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/fire,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate/medical,
+obj/item/storage/firstaid/fire,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "hv" = (
-/obj/item/clothing/suit/space/rig,
-/obj/item/clothing/head/helmet/space/rig,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/clothing/suit/space/rig,
+obj/item/clothing/head/helmet/space/rig,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "hx" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "hy" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "hz" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/syndicate7)
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/syndicate7)
 "hB" = (
-/obj/structure/largecrate,
-/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/largecrate,
+mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "hC" = (
-/obj/structure/closet/crate,
-/obj/item/cell/high,
-/obj/item/cell/high,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate,
+obj/item/cell/high,
+obj/item/cell/high,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "hD" = (
-/obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/regular,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate/medical,
+obj/item/storage/firstaid/regular,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "hE" = (
-/obj/structure/closet/crate/medical,
-/obj/item/tank/anesthetic,
-/turf/simulated/floor/plating,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/crate/medical,
+obj/item/tank/anesthetic,
+turf/simulated/floor/plating,
+area/awaymission/spacebattle/cruiser)
 "hF" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor{
+obj/machinery/door/unpowered/shuttle,
+turf/simulated/floor{
 	icon_state = "white"
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "hH" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/regular,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/storage/firstaid/regular,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "hI" = (
-/obj/structure/table/woodentable,
-/obj/item/instrument/violin,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/woodentable,
+obj/item/instrument/violin,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "hJ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "hN" = (
-/obj/item/bedsheet/captain,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+obj/item/bedsheet/captain,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "hO" = (
-/obj/structure/closet/secure_closet/captains,
-/turf/simulated/floor/wood,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/closet/secure_closet/captains,
+turf/simulated/floor/wood,
+area/awaymission/spacebattle/cruiser)
 "hP" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	corpseidjob = "Gunner";
 	mobname = "William Gannon";
 	name = "William Gannon"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "hR" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 8
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "hS" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "hT" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/grille,
+obj/structure/window/reinforced,
+area/awaymission/spacebattle/cruiser)
 "hU" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+obj/structure/grille,
+obj/structure/window/reinforced,
+obj/structure/window/reinforced{
 	dir = 4
 	},
-/area/awaymission/spacebattle/cruiser)
+area/awaymission/spacebattle/cruiser)
 "hV" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	mobname = "Javier Wismer";
 	name = "Javier Wismer"
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "hW" = (
-/obj/machinery/computer/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate7)
+obj/machinery/computer/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate7)
 "hX" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate7)
+mob/living/simple_mob/humanoid/merc/ranged,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate7)
 "hY" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate7)
+obj/machinery/door/airlock/external,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate7)
 "hZ" = (
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/bikehorn/rubberducky,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/bikehorn/rubberducky,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ib" = (
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ic" = (
-/obj/structure/toilet,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/toilet,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "id" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/fire,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/storage/firstaid/fire,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ih" = (
-/obj/item/storage/firstaid/regular,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/storage/firstaid/regular,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ii" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/o2,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/structure/table/reinforced,
+obj/item/storage/firstaid/o2,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ij" = (
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ik" = (
-/obj/machinery/shower{
+obj/machinery/shower{
 	dir = 8
 	},
-/obj/item/soap,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/soap,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "im" = (
-/obj/spawner/corpse/doctor{
+obj/spawner/corpse/doctor{
 	mobname = "Herbert West";
 	name = "Herbert West"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "in" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	mobname = "Carth Robinson";
 	name = "Carth Robinson"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "ip" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/sleeper,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "iq" = (
-/obj/machinery/sleep_console,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/machinery/sleep_console,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "is" = (
-/obj/structure/sink{
+obj/structure/sink{
 	dir = 4;
 	pixel_x = 11
 	},
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "iw" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	mobname = "Cyrion";
 	name = "Cyrion"
 	},
-/obj/item/flamethrower/full,
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/item/flamethrower/full,
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "iy" = (
-/obj/spawner/corpse/syndicatesoldier,
-/obj/item/gun/ballistic/automatic/c20r,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/spawner/corpse/syndicatesoldier,
+obj/item/gun/ballistic/automatic/c20r,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "iA" = (
-/obj/spawner/corpse/engineer{
+obj/spawner/corpse/engineer{
 	mobname = "Mercutio";
 	name = "Mercutio"
 	},
-/obj/effect/debris/cleanable/blood,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/cruiser)
+obj/effect/debris/cleanable/blood,
+turf/simulated/floor,
+area/awaymission/spacebattle/cruiser)
 "iB" = (
-/obj/structure/lattice,
-/turf/space,
-/area)
+obj/structure/lattice,
+turf/space,
+area)
 "iC" = (
-/obj/spawner/corpse/syndicatesoldier,
-/turf/space,
-/area)
+obj/spawner/corpse/syndicatesoldier,
+turf/space,
+area)
 "iD" = (
-/turf/simulated/shuttle/wall/dark,
-/area)
+turf/simulated/shuttle/wall/dark,
+area)
 "iE" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area)
 "iF" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor/airless{
+obj/machinery/sleeper,
+turf/simulated/floor/airless{
 	dir = 10
 	},
-/area)
+area)
 "iG" = (
-/turf/simulated/floor/airless{
+turf/simulated/floor/airless{
 	dir = 10
 	},
-/area)
+area)
 "iH" = (
-/obj/spawner/corpse/syndicatesoldier,
-/turf/simulated/floor/airless{
+obj/spawner/corpse/syndicatesoldier,
+turf/simulated/floor/airless{
 	dir = 10
 	},
-/area)
+area)
 "iJ" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor/airless{
+obj/machinery/door/airlock/external,
+turf/simulated/floor/airless{
 	dir = 10
 	},
-/area)
+area)
 "iK" = (
-/obj/item/stack/rods,
-/turf/simulated/floor/airless{
+obj/item/stack/rods,
+turf/simulated/floor/airless{
 	dir = 10
 	},
-/area)
+area)
 "iL" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area/awaymission/spacebattle/syndicate5)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area/awaymission/spacebattle/syndicate5)
 "iM" = (
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/syndicate5)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/syndicate5)
 "iO" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor/airless,
-/area)
+obj/machinery/sleeper,
+turf/simulated/floor/airless,
+area)
 "iP" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate5)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate5)
 "iQ" = (
-/obj/machinery/computer/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate5)
+obj/machinery/computer/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate5)
 "iT" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate5)
+obj/machinery/sleeper,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate5)
 "iU" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate5)
+mob/living/simple_mob/humanoid/merc/ranged,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate5)
 "iV" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
+obj/structure/shuttle/engine/heater,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/area)
+area)
 "iW" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/space,
-/area)
+obj/structure/shuttle/engine/propulsion,
+turf/space,
+area)
 "iX" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate5)
+obj/machinery/door/airlock/external,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate5)
 "ja" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
+obj/structure/shuttle/engine/heater,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/area/awaymission/spacebattle/syndicate5)
+area/awaymission/spacebattle/syndicate5)
 "jb" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/space,
-/area/awaymission/spacebattle/syndicate5)
+obj/structure/shuttle/engine/propulsion,
+turf/space,
+area/awaymission/spacebattle/syndicate5)
 "jc" = (
-/turf/simulated/shuttle/wall/dark,
-/turf/space,
-/area/awaymission/spacebattle/syndicate6)
+turf/simulated/shuttle/wall/dark,
+turf/space,
+area/awaymission/spacebattle/syndicate6)
 "jd" = (
-/turf/simulated/shuttle/wall/dark,
-/area/awaymission/spacebattle/syndicate6)
+turf/simulated/shuttle/wall/dark,
+area/awaymission/spacebattle/syndicate6)
 "jf" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate6)
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate6)
 "jg" = (
-/obj/machinery/computer/shuttle,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate6)
+obj/machinery/computer/shuttle,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate6)
 "jh" = (
-/obj/machinery/sleeper,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate6)
+obj/machinery/sleeper,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate6)
 "ji" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate6)
+mob/living/simple_mob/humanoid/merc/ranged,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate6)
 "jj" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/syndicate6)
+obj/machinery/door/airlock/external,
+turf/simulated/floor,
+area/awaymission/spacebattle/syndicate6)
 "jm" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
+obj/structure/shuttle/engine/heater,
+obj/structure/window/reinforced{
 	dir = 1
 	},
-/area/awaymission/spacebattle/syndicate6)
+area/awaymission/spacebattle/syndicate6)
 "jn" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/space,
-/area/awaymission/spacebattle/syndicate6)
+obj/structure/shuttle/engine/propulsion,
+turf/space,
+area/awaymission/spacebattle/syndicate6)
 "jo" = (
-/turf/simulated/floor/airless,
-/area)
+turf/simulated/floor/airless,
+area)
 "jp" = (
-/turf/simulated/wall/phoron,
-/area/awaymission/spacebattle/secret)
+turf/simulated/wall/phoron,
+area/awaymission/spacebattle/secret)
 "jq" = (
-/turf/simulated/floor,
-/area/awaymission/spacebattle/secret)
+turf/simulated/floor,
+area/awaymission/spacebattle/secret)
 "jr" = (
-/obj/machinery/door/airlock/phoron,
-/turf/simulated/wall/phoron,
-/area/awaymission/spacebattle/secret)
+obj/machinery/door/airlock/phoron,
+turf/simulated/wall/phoron,
+area/awaymission/spacebattle/secret)
 "js" = (
-/obj/item/clothing/suit/space/void/wizard,
-/obj/item/clothing/head/helmet/space/void/wizard,
-/turf/simulated/floor,
-/area/awaymission/spacebattle/secret)
+obj/item/clothing/suit/space/void/wizard,
+obj/item/clothing/head/helmet/space/void/wizard,
+turf/simulated/floor,
+area/awaymission/spacebattle/secret)
 
 (1,1,1) = {"
 aa

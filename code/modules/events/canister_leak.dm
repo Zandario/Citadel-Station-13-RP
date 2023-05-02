@@ -3,7 +3,7 @@
 // On severity EVENT_LEVEL_MUNDANE or below it checks to make sure nobody is in the area, otherwise... good luck.
 //
 
-/datum/event/canister_leak/start()
+datum/event/canister_leak/start()
 	// List of all non-destroyed canisters on station levels
 	var/list/all_canisters = list()
 	for(var/obj/machinery/portable_atmospherics/canister/C in GLOB.machines)
@@ -24,7 +24,7 @@
 	kill()
 	return
 
-/datum/event/canister_leak/proc/break_canister(var/obj/machinery/portable_atmospherics/canister/C)
+datum/event/canister_leak/proc/break_canister(var/obj/machinery/portable_atmospherics/canister/C)
 	log_debug(SPAN_DEBUGWARNING("canister_leak event: Canister [C] ([C.x],[C.y],[C.z]) destroyed."))
 	C.health = 0
 	C.healthcheck()

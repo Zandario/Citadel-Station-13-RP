@@ -1,4 +1,4 @@
-/obj/machinery/cash_register
+obj/machinery/cash_register
 	name = "cash register"
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -24,13 +24,13 @@
 
 
 // Claim machine ID
-/obj/machinery/cash_register/Initialize(mapload, newdir)
+obj/machinery/cash_register/Initialize(mapload, newdir)
 	. = ..()
 	machine_id = "RETAIL UNIT #[GLOB.num_financial_terminals++]"
 	cash_stored = rand(10, 70)*10
 	GLOB.transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
-/obj/machinery/cash_register/examine(mob/user)
+obj/machinery/cash_register/examine(mob/user)
 	. = ..()
 	if(cash_open)
 		if(cash_stored)
@@ -39,7 +39,7 @@
 			. += "It's completely empty."
 
 
-/obj/machinery/cash_register/attack_hand(mob/user, list/params)
+obj/machinery/cash_register/attack_hand(mob/user, list/params)
 	// Don't be accessible from the wrong side of the machine
 	if(get_dir(src, user) & global.reverse_dir[src.dir]) return
 
@@ -55,12 +55,12 @@
 		interact(user)
 
 
-/obj/machinery/cash_register/AltClick(mob/user)
+obj/machinery/cash_register/AltClick(mob/user)
 	if(Adjacent(user))
 		open_cash_box()
 
 
-/obj/machinery/cash_register/interact(mob/user as mob)
+obj/machinery/cash_register/interact(mob/user as mob)
 	var/dat = "<h2>Cash Register<hr></h2>"
 	if (locked)
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
@@ -87,7 +87,7 @@
 	onclose(user, "cash_register")
 
 
-/obj/machinery/cash_register/Topic(var/href, var/href_list)
+obj/machinery/cash_register/Topic(var/href, var/href_list)
 	if(..())
 		return
 
@@ -165,7 +165,7 @@
 
 
 
-/obj/machinery/cash_register/attackby(obj/item/O as obj, user as mob)
+obj/machinery/cash_register/attackby(obj/item/O as obj, user as mob)
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
 	var/obj/item/card/id/I = O.GetID()
 	if(I)
@@ -192,12 +192,12 @@
 		scan_item_price(O)
 
 
-/obj/machinery/cash_register/MouseDroppedOnLegacy(atom/dropping, mob/user)
+obj/machinery/cash_register/MouseDroppedOnLegacy(atom/dropping, mob/user)
 	if(Adjacent(dropping) && Adjacent(user) && !user.stat)
 		attackby(dropping, user)
 
 
-/obj/machinery/cash_register/proc/confirm(obj/item/I)
+obj/machinery/cash_register/proc/confirm(obj/item/I)
 	if(confirm_item == I)
 		return 1
 	else
@@ -207,7 +207,7 @@
 		return 0
 
 
-/obj/machinery/cash_register/proc/scan_card(obj/item/card/id/I, obj/item/ID_container)
+obj/machinery/cash_register/proc/scan_card(obj/item/card/id/I, obj/item/ID_container)
 	if (!transaction_amount)
 		return
 
@@ -272,7 +272,7 @@
 					transaction_complete()
 
 
-/obj/machinery/cash_register/proc/scan_wallet(obj/item/spacecash/ewallet/E)
+obj/machinery/cash_register/proc/scan_wallet(obj/item/spacecash/ewallet/E)
 	if (!transaction_amount)
 		return
 
@@ -310,7 +310,7 @@
 			transaction_complete()
 
 
-/obj/machinery/cash_register/proc/scan_cash(obj/item/spacecash/SC)
+obj/machinery/cash_register/proc/scan_cash(obj/item/spacecash/SC)
 	if (!transaction_amount)
 		return
 
@@ -339,7 +339,7 @@
 		transaction_complete()
 
 
-/obj/machinery/cash_register/proc/scan_item_price(obj/O)
+obj/machinery/cash_register/proc/scan_item_price(obj/O)
 	if(!istype(O))	return
 	if(item_list.len > 10)
 		src.visible_message("[icon2html(thing = src, target = world)]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
@@ -375,7 +375,7 @@
 	updateDialog()
 
 
-/obj/machinery/cash_register/proc/get_current_transaction()
+obj/machinery/cash_register/proc/get_current_transaction()
 	var/dat = {"
 	<head><style>
 		.tx-title-r {text-align: center; background-color:#ffdddd; font-weight: bold}
@@ -395,7 +395,7 @@
 	return dat
 
 
-/obj/machinery/cash_register/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
+obj/machinery/cash_register/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
 	var/dat = {"
 	<head><style>
 		.tx-title {text-align: center; background-color:#ddddff; font-weight: bold}
@@ -421,7 +421,7 @@
 	transaction_logs += dat
 
 
-/obj/machinery/cash_register/proc/check_account()
+obj/machinery/cash_register/proc/check_account()
 	if (!linked_account)
 		usr.visible_message("[icon2html(thing = src, target = world)]<span class='warning'>Unable to connect to linked account.</span>")
 		return 0
@@ -432,7 +432,7 @@
 	return 1
 
 
-/obj/machinery/cash_register/proc/transaction_complete()
+obj/machinery/cash_register/proc/transaction_complete()
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
 	src.visible_message("[icon2html(thing = src, target = world)]<span class='notice'>Transaction complete.</span>")
@@ -441,7 +441,7 @@
 	updateDialog()
 
 
-/obj/machinery/cash_register/proc/reset_memory()
+obj/machinery/cash_register/proc/reset_memory()
 	transaction_amount = null
 	transaction_purpose = ""
 	item_list.Cut()
@@ -449,7 +449,7 @@
 	confirm_item = null
 
 
-/obj/machinery/cash_register/verb/open_cash_box()
+obj/machinery/cash_register/verb/open_cash_box()
 	set category = "Object"
 	set name = "Open Cash Box"
 	set desc = "Open/closes the register's cash box."
@@ -477,7 +477,7 @@
 		to_chat(usr, "<span class='warning'>The cash box is locked.</span>")
 
 
-/obj/machinery/cash_register/proc/toggle_anchors(obj/item/tool/wrench/W, mob/user)
+obj/machinery/cash_register/proc/toggle_anchors(obj/item/tool/wrench/W, mob/user)
 	if(manipulating) return
 	manipulating = 1
 	if(!anchored)
@@ -502,7 +502,7 @@
 
 
 
-/obj/machinery/cash_register/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/cash_register/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		src.visible_message("<span class='danger'>The [src]'s cash box springs open as [user] swipes the card through the scanner!</span>")
 		playsound(src, "sparks", 50, 1)
@@ -515,28 +515,28 @@
 
 //--Premades--//
 
-/obj/machinery/cash_register/command
+obj/machinery/cash_register/command
 	account_to_connect = "Command"
 
-/obj/machinery/cash_register/medical
+obj/machinery/cash_register/medical
 	account_to_connect = "Medical"
 
-/obj/machinery/cash_register/engineering
+obj/machinery/cash_register/engineering
 	account_to_connect = "Engineering"
 
-/obj/machinery/cash_register/science
+obj/machinery/cash_register/science
 	account_to_connect = "Science"
 
-/obj/machinery/cash_register/security
+obj/machinery/cash_register/security
 	account_to_connect = "Security"
 
-/obj/machinery/cash_register/cargo
+obj/machinery/cash_register/cargo
 	account_to_connect = "Cargo"
 
-/obj/machinery/cash_register/civilian
+obj/machinery/cash_register/civilian
 	account_to_connect = "Civilian"
 
-/obj/machinery/cash_register/trader
+obj/machinery/cash_register/trader
 	name = "Nebula Gas Cash Register"
 	account_to_connect = "Civilian"
 	machine_id = "Nebula Gas RETAIL UNIT"

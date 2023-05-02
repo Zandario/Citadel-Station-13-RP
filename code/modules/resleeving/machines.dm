@@ -4,19 +4,19 @@
 ////////////////////////////////
 
 /////// Grower Pod ///////
-/obj/machinery/clonepod/transhuman
+obj/machinery/clonepod/transhuman
 	name = "grower pod"
 	catalogue_data = list(///datum/category_item/catalogue/information/organization/vey_med,
 						/datum/category_item/catalogue/technology/resleeving)
 	circuit = /obj/item/circuitboard/transhuman_clonepod
 
 //A full version of the pod
-/obj/machinery/clonepod/transhuman/full/Initialize(mapload)
+obj/machinery/clonepod/transhuman/full/Initialize(mapload)
 	. = ..()
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)
 
-/obj/machinery/clonepod/transhuman/growclone(datum/transhuman/body_record/current_project)
+obj/machinery/clonepod/transhuman/growclone(datum/transhuman/body_record/current_project)
 	//Manage machine-specific stuff.
 	if(mess || attempting)
 		return 0
@@ -126,7 +126,7 @@
 	attempting = 0
 	return 1
 
-/obj/machinery/clonepod/transhuman/process(delta_time)
+obj/machinery/clonepod/transhuman/process(delta_time)
 	if(machine_stat & NOPOWER)
 		if(occupant)
 			locked = 0
@@ -175,7 +175,7 @@
 	return
 
 //Synthetic version
-/obj/machinery/transhuman/synthprinter
+obj/machinery/transhuman/synthprinter
 	name = "SynthFab 3000"
 	desc = "A rapid fabricator for synthetic bodies."
 	catalogue_data = list(///datum/category_item/catalogue/information/organization/vey_med,
@@ -196,11 +196,11 @@
 	var/burn_value = 45
 	var/brute_value = 60
 
-/obj/machinery/transhuman/synthprinter/Initialize(mapload)
+obj/machinery/transhuman/synthprinter/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/machinery/transhuman/synthprinter/RefreshParts()
+obj/machinery/transhuman/synthprinter/RefreshParts()
 
 	//Scanning modules reduce burn rating by 15 each
 	var/burn_rating = initial(burn_value)
@@ -220,7 +220,7 @@
 		store_rating = store_rating * MB.rating
 	max_res_amount = store_rating
 
-/obj/machinery/transhuman/synthprinter/process(delta_time)
+obj/machinery/transhuman/synthprinter/process(delta_time)
 	if(machine_stat & NOPOWER)
 		if(busy)
 			busy = 0
@@ -236,7 +236,7 @@
 
 	return
 
-/obj/machinery/transhuman/synthprinter/proc/print(var/datum/transhuman/body_record/BR)
+obj/machinery/transhuman/synthprinter/proc/print(var/datum/transhuman/body_record/BR)
 	if(!istype(BR) || busy)
 		return 0
 
@@ -249,7 +249,7 @@
 
 	return 1
 
-/obj/machinery/transhuman/synthprinter/proc/make_body()
+obj/machinery/transhuman/synthprinter/proc/make_body()
 	//Manage machine-specific stuff
 	if(!current_project)
 		busy = 0
@@ -341,13 +341,13 @@
 
 	return 1
 
-/obj/machinery/transhuman/synthprinter/attack_hand(mob/user, list/params)
+obj/machinery/transhuman/synthprinter/attack_hand(mob/user, list/params)
 	if((busy == 0) || (machine_stat & NOPOWER))
 		return
 	to_chat(user, "Current print cycle is [busy]% complete.")
 	return
 
-/obj/machinery/transhuman/synthprinter/attackby(obj/item/W, mob/user)
+obj/machinery/transhuman/synthprinter/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 	if(busy)
 		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
@@ -385,7 +385,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/transhuman/synthprinter/update_icon()
+obj/machinery/transhuman/synthprinter/update_icon()
 	..()
 	icon_state = "pod_0"
 	if(busy && !(machine_stat & NOPOWER))
@@ -394,7 +394,7 @@
 		icon_state = "pod_g"
 
 /////// Resleever Pod ///////
-/obj/machinery/transhuman/resleever
+obj/machinery/transhuman/resleever
 	name = "resleeving pod"
 	desc = "Used to combine mind and body into one unit."
 	catalogue_data = list(
@@ -415,11 +415,11 @@
 
 	var/sleevecards = 2
 
-/obj/machinery/transhuman/resleever/Initialize(mapload)
+obj/machinery/transhuman/resleever/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/machinery/transhuman/resleever/RefreshParts()
+obj/machinery/transhuman/resleever/RefreshParts()
 	var/scan_rating = 0
 	for(var/obj/item/stock_parts/scanning_module/SM in component_parts)
 		scan_rating += SM.rating
@@ -430,7 +430,7 @@
 		manip_rating += M.rating
 	blur_amount = (48 - manip_rating * 8)
 
-/obj/machinery/transhuman/resleever/attack_hand(mob/user, list/params)
+obj/machinery/transhuman/resleever/attack_hand(mob/user, list/params)
 	user.set_machine(src)
 	var/health_text = ""
 	var/mind_text = ""
@@ -454,7 +454,7 @@
 	user << browse(dat, "window=resleever")
 	onclose(user, "resleever")
 
-/obj/machinery/transhuman/resleever/attackby(obj/item/W, mob/user)
+obj/machinery/transhuman/resleever/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -485,7 +485,7 @@
 		sleevecards++
 		to_chat(user, SPAN_NOTICE("You store \the [C] in \the [src]."))
 
-/obj/machinery/transhuman/resleever/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user)
+obj/machinery/transhuman/resleever/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user)
 	if(!istype(O))
 		return FALSE //not a mob
 	if(user.incapacitated())
@@ -516,12 +516,12 @@
 
 	add_fingerprint(user)
 
-/obj/machinery/transhuman/resleever/MouseDroppedOnLegacy(mob/target, mob/user) //Allows borgs to put people into resleeving without external assistance
+obj/machinery/transhuman/resleever/MouseDroppedOnLegacy(mob/target, mob/user) //Allows borgs to put people into resleeving without external assistance
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
 		return
 	put_mob(target)
 
-/obj/machinery/transhuman/resleever/proc/putmind(datum/transhuman/mind_record/MR, mode = 1, mob/living/carbon/human/override = null)
+obj/machinery/transhuman/resleever/proc/putmind(datum/transhuman/mind_record/MR, mode = 1, mob/living/carbon/human/override = null)
 	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0
 
@@ -592,7 +592,7 @@
 	playsound(src, 'sound/machines/medbayscanner1.ogg', 100, TRUE) // Play our sound at the end of the mind injection!
 	return 1
 
-/obj/machinery/transhuman/resleever/proc/go_out(mob/M)
+obj/machinery/transhuman/resleever/proc/go_out(mob/M)
 	if(!occupant)
 		return
 	occupant.forceMove(loc)
@@ -601,7 +601,7 @@
 	icon_state = "implantchair"
 	return
 
-/obj/machinery/transhuman/resleever/proc/put_mob(mob/living/carbon/human/M as mob)
+obj/machinery/transhuman/resleever/proc/put_mob(mob/living/carbon/human/M as mob)
 	if(!ishuman(M))
 		to_chat(usr, SPAN_WARNING("\The [src] cannot hold this!"))
 		return
@@ -616,7 +616,7 @@
 	icon_state = "implantchair_on"
 	return TRUE
 
-/obj/machinery/transhuman/resleever/verb/get_out()
+obj/machinery/transhuman/resleever/verb/get_out()
 	set name = "EJECT Occupant"
 	set category = "Object"
 	set src in oview(1)
@@ -626,7 +626,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/transhuman/resleever/verb/move_inside()
+obj/machinery/transhuman/resleever/verb/move_inside()
 	set name = "Move INSIDE"
 	set category = "Object"
 	set src in oview(1)

@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/technology/bot/cleanbot/edCLN
+datum/category_item/catalogue/technology/bot/cleanbot/edCLN
 	name = "Bot - ED CLN"
 	desc = "ED CLN units are the end result of a marketing campaign designed \
 	to change the ED series robot's public image. Although marginally successful, \
@@ -7,7 +7,7 @@
 	comparison to the more compact cleanbot."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/bot/cleanbot/edCLN
+mob/living/bot/cleanbot/edCLN
 	name = "ED-CLN Cleaning Robot"
 	desc = "A large cleaning robot. It looks rather efficient."
 	icon_state = "edCLN0"
@@ -28,13 +28,13 @@
 	var/blue_switch = 0
 	var/green_switch = 0
 
-/mob/living/bot/cleanbot/edCLN/update_icons()
+mob/living/bot/cleanbot/edCLN/update_icons()
 	if(on && busy)
 		icon_state = "edCLN"
 	else
 		icon_state = "edCLN[on]"
 
-/mob/living/bot/cleanbot/edCLN/handleIdle()
+mob/living/bot/cleanbot/edCLN/handleIdle()
 	if(prob(10))
 		custom_emote(2, "makes a less than thrilled beeping sound.")
 		playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, 0)
@@ -59,7 +59,7 @@
 	if(red_switch && blue_switch && green_switch && prob(1))
 		src.explode()
 
-/mob/living/bot/cleanbot/edCLN/explode()
+mob/living/bot/cleanbot/edCLN/explode()
 	on = 0
 	visible_message("<span class='danger'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
@@ -81,7 +81,7 @@
 	qdel(src)
 	return
 
-/mob/living/bot/cleanbot/edCLN/ui_data(mob/user)
+mob/living/bot/cleanbot/edCLN/ui_data(mob/user)
 	var/list/data = ..()
 	data["version"] = "v3.0"
 	data["rgbpanel"] = TRUE
@@ -90,7 +90,7 @@
 	data["blue_switch"] = blue_switch
 	return data
 
-/mob/living/bot/cleanbot/edCLN/ui_act(action, list/params, datum/tgui/ui)
+mob/living/bot/cleanbot/edCLN/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -110,7 +110,7 @@
 			to_chat(usr, SPAN_NOTICE("You flip the blue switch [blue_switch ? "on" : "off"]."))
 			. = TRUE
 
-/mob/living/bot/cleanbot/edCLN/emag_act(var/remaining_uses, var/mob/user)
+mob/living/bot/cleanbot/edCLN/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -121,7 +121,7 @@
 
 // Assembly
 
-/obj/item/secbot_assembly/edCLN_assembly
+obj/item/secbot_assembly/edCLN_assembly
 	name = "ED-CLN assembly"
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
@@ -129,7 +129,7 @@
 	item_state = "buildpipe"
 	created_name = "ED-CLN Security Robot"
 
-/obj/item/secbot_assembly/edCLN_assembly/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/item/secbot_assembly/edCLN_assembly/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()
 
 	if(istype(W, /obj/item/pen))

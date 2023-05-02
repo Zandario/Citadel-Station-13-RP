@@ -1,4 +1,4 @@
-/datum/role/ghostrole/old_research
+datum/role/ghostrole/old_research
 	name = "Oldstation Crew"
 	allow_pick_spawner = TRUE
 	desc = "You were a Nanotrasen employee from an era past, stationed upon a state of the art research station. \
@@ -10,7 +10,7 @@
 
 	instantiator = /datum/ghostrole_instantiator/human/random/old_research
 
-/datum/ghostrole_instantiator/human/random/old_research/GetOutfit(client/C, mob/M, list/params)
+datum/ghostrole_instantiator/human/random/old_research/GetOutfit(client/C, mob/M, list/params)
 	. = ..()
 	switch(params["role"])
 		if("Officer")
@@ -20,41 +20,41 @@
 		if("Scientist")
 			return /datum/outfit/old_research/scientist
 
-/obj/structure/ghost_role_spawner/old_research
+obj/structure/ghost_role_spawner/old_research
 	role_type = /datum/role/ghostrole/old_research
 	name = "old cryogenics pod"
 	desc = "A humming cryo pod. You can barely recognise a security uniform underneath the built up ice. The machine is attempting to wake up its occupant."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 
-/obj/structure/ghost_role_spawner/old_research/Destroy()
+obj/structure/ghost_role_spawner/old_research/Destroy()
 	new /obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
 
-/obj/structure/ghost_role_spawner/old_research/security
+obj/structure/ghost_role_spawner/old_research/security
 	role_params = list("role" = "Officer")
 
-/obj/structure/ghost_role_spawner/old_research/engineer
+obj/structure/ghost_role_spawner/old_research/engineer
 	role_params = list("role" = "Engineer")
 
-/obj/structure/ghost_role_spawner/old_research/scientist
+obj/structure/ghost_role_spawner/old_research/scientist
 	role_params = list("role" = "Scientist")
 
-/datum/outfit/old_research/security
+datum/outfit/old_research/security
 	uniform = /obj/item/clothing/under/rank/security/officer
 	shoes = /obj/item/clothing/shoes/jackboots
 	id = /obj/item/card/id/away/old/sec
 	r_pocket = /obj/item/restraints/handcuffs
 	l_pocket = /obj/item/assembly/flash/handheld
 
-/datum/outfit/old_research/engineer
+datum/outfit/old_research/engineer
 	uniform = /obj/item/clothing/under/rank/engineering/engineer
 	shoes = /obj/item/clothing/shoes/workboots
 	id = /obj/item/card/id/away/old/eng
 	gloves = /obj/item/clothing/gloves/color/fyellow/old
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
 
-/datum/outfit/old_research/scientist
+datum/outfit/old_research/scientist
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/away/old/sci

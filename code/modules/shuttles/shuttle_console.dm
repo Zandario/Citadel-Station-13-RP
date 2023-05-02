@@ -1,4 +1,4 @@
-/obj/machinery/computer/shuttle_control
+obj/machinery/computer/shuttle_control
 	name = "shuttle control console"
 	desc = "Used to control a linked shuttle."
 	icon_keyboard = "atmos_key"
@@ -11,7 +11,7 @@
 	var/skip_act = FALSE
 	var/tgui_subtemplate = "ShuttleControlConsoleDefault"
 
-/obj/machinery/computer/shuttle_control/attack_hand(mob/user, list/params)
+obj/machinery/computer/shuttle_control/attack_hand(mob/user, list/params)
 	if(..(user))
 		return
 	if(!allowed(user))
@@ -20,7 +20,7 @@
 
 	ui_interact(user)
 
-/obj/machinery/computer/shuttle_control/proc/shuttlerich_ui_data(var/datum/shuttle/autodock/shuttle)
+obj/machinery/computer/shuttle_control/proc/shuttlerich_ui_data(var/datum/shuttle/autodock/shuttle)
 	var/shuttle_state
 	switch(shuttle.moving_status)
 		if(SHUTTLE_IDLE) shuttle_state = "idle"
@@ -60,7 +60,7 @@
 
 // This is a subset of the actual checks; contains those that give messages to the user.
 // This enables us to give nice error messages as well as not even bother proceeding if we can't.
-/obj/machinery/computer/shuttle_control/proc/can_move(var/datum/shuttle/autodock/shuttle, var/user)
+obj/machinery/computer/shuttle_control/proc/can_move(var/datum/shuttle/autodock/shuttle, var/user)
 	var/cannot_depart = shuttle.current_location.cannot_depart(shuttle)
 	if(cannot_depart)
 		to_chat(user, "<span class='warning'>[cannot_depart]</span>")
@@ -72,7 +72,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/shuttle_control/ui_act(action, list/params)
+obj/machinery/computer/shuttle_control/ui_act(action, list/params)
 	if(..())
 		return TRUE
 	if(skip_act)
@@ -106,14 +106,14 @@
 				shuttle.set_docking_codes(uppertext(newcode))
 			return TRUE
 
-/obj/machinery/computer/shuttle_control/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/shuttle_control/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ShuttleControl", "[shuttle_tag] Shuttle Control") // 470, 360
 		ui.open()
 
 // We delegate populating data to another proc to make it easier for overriding types to add their data.
-/obj/machinery/computer/shuttle_control/ui_data(mob/user)
+obj/machinery/computer/shuttle_control/ui_data(mob/user)
 	var/datum/shuttle/autodock/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		to_chat(user, "<span class='warning'>Unable to establish link with the shuttle.</span>")
@@ -122,13 +122,13 @@
 	return shuttlerich_ui_data(shuttle)
 
 // Call to set the linked shuttle tag; override to add behaviour to shuttle tag changes
-/obj/machinery/computer/shuttle_control/proc/set_shuttle_tag(var/new_shuttle_tag)
+obj/machinery/computer/shuttle_control/proc/set_shuttle_tag(var/new_shuttle_tag)
 	if(shuttle_tag == new_shuttle_tag)
 		return FALSE
 	shuttle_tag = new_shuttle_tag
 	return TRUE
 
-/obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
 	if (!hacked)
 		req_access = list()
 		req_one_access = list()
@@ -136,28 +136,28 @@
 		to_chat(user, "You short out the console's ID checking system. It's now available to everyone!")
 		return 1
 
-/obj/machinery/computer/shuttle_control/bullet_act(var/obj/projectile/Proj)
+obj/machinery/computer/shuttle_control/bullet_act(var/obj/projectile/Proj)
 	visible_message("\The [Proj] ricochets off \the [src]!")
 
-/obj/machinery/computer/shuttle_control/legacy_ex_act()
+obj/machinery/computer/shuttle_control/legacy_ex_act()
 	return
 
-/obj/machinery/computer/shuttle_control/emp_act()
+obj/machinery/computer/shuttle_control/emp_act()
 	return
 
 
 GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
-/hook/roundstart/proc/populate_dockingcodes()
+hook/roundstart/proc/populate_dockingcodes()
 	for(var/paper in GLOB.papers_dockingcode)
 		var/obj/item/paper/dockingcodes/dcp = paper
 		dcp.populate_info()
 	return TRUE
 
-/obj/item/paper/dockingcodes
+obj/item/paper/dockingcodes
 	name = "Docking Codes"
 	var/codes_from_z = null	// So you can put codes from the station other places to give to antags or whatever
 
-/obj/item/paper/dockingcodes/proc/populate_info()
+obj/item/paper/dockingcodes/proc/populate_info()
 	var/dockingcodes = null
 	var/z_to_check = codes_from_z ? codes_from_z : z
 	if(GLOB.using_map.use_overmap)

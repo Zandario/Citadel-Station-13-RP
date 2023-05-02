@@ -1,4 +1,4 @@
-/datum/power/changeling/transform
+datum/power/changeling/transform
 	name = "Transform"
 	desc = "We take on the appearance and voice of one we have absorbed."
 	ability_icon_state = "ling_transform"
@@ -6,7 +6,7 @@
 	verbpath = /mob/proc/changeling_transform
 
 //Change our DNA to that of somebody we've absorbed.
-/mob/proc/changeling_transform()
+mob/proc/changeling_transform()
 	set category = "Changeling"
 	set name = "Transform (5)"
 

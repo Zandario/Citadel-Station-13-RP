@@ -1,5 +1,5 @@
 //Stormdrifters
-/datum/category_item/catalogue/fauna/stormdrifter/stormdrifters
+datum/category_item/catalogue/fauna/stormdrifter/stormdrifters
 	name = "Stormdrifters"
 	desc = "Stormdrifters are a rare sight on the surface of Surt. Where for other native fauna this may have \
 	been true due to their subterranean lifestyle, Stormdrifters exist on the opposite side of the spectrum. These \
@@ -11,7 +11,7 @@
 	value = CATALOGUER_REWARD_TRIVIAL
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/stormdrifter)
 
-/datum/category_item/catalogue/fauna/all_stormdrifters
+datum/category_item/catalogue/fauna/all_stormdrifters
 	name = "Collection - Stormdrifters"
 	desc = "You have scanned all known variants of Stormdrifter, \
 	and therefore you have been granted a fair sum of points, through this \
@@ -24,7 +24,7 @@
 
 //Netches! (Expand on this later with more detail.)
 
-/datum/category_item/catalogue/fauna/stormdrifter
+datum/category_item/catalogue/fauna/stormdrifter
 	name = "Stormdrifter Polyp"
 	desc = "The common Stormdrifter is passive. If provoked, this creature is able to attack with the tendrils which dangle \
 	below its body. In a mechanism vaguely similar to Old Earth jellyfish, these tendrils pass on a debilitating pulse of electricity \
@@ -32,7 +32,7 @@
 	to speculation that the Scori may be experimenting with air travel."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/stormdrifter
+mob/living/simple_mob/animal/stormdrifter
 	name = "stormdrifter polyp"
 	desc = "These curious entities are able to fly thanks to the gaseous bags which comprise most of their body. They are generally passive, unless threatened."
 	icon = 'icons/mob/lavaland/lavaland_mobs.dmi'
@@ -72,16 +72,16 @@
 	say_list_type = /datum/say_list/stormdrifter
 	ai_holder_type = /datum/ai_holder/simple_mob/stormdrifter
 
-/datum/say_list/stormdrifter
+datum/say_list/stormdrifter
 	emote_hear = list("drifts back and forth.", "gently flails its tendrils about.", "warbles.")
 	emote_see = list ("wriggles its tendrils.", "bobs up and down.")
 
-/datum/ai_holder/simple_mob/stormdrifter
+datum/ai_holder/simple_mob/stormdrifter
 	hostile = FALSE
 	retaliate = TRUE
 	can_flee = TRUE
 
-/mob/living/simple_mob/animal/stormdrifter/apply_melee_effects(atom/A)
+mob/living/simple_mob/animal/stormdrifter/apply_melee_effects(atom/A)
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A
@@ -90,7 +90,7 @@
 		playsound(L, 'sound/effects/sparks6.ogg', 75, 1)
 
 //Stormdrifter Bulls!
-/datum/category_item/catalogue/fauna/stormdrifter/bull
+datum/category_item/catalogue/fauna/stormdrifter/bull
 	name = "Stormdrifter Bull"
 	desc = "The hide of a Stormdrifter Bull is much thicker than that of a Polyp. Bulls also possess significantly \
 	better developed tendrils. These two factors alone make the Bull a far more formidable opponnent than the simple Polyp. \
@@ -98,7 +98,7 @@
 	real or perceived."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/stormdrifter/bull
+mob/living/simple_mob/animal/stormdrifter/bull
 	name = "stormdrifter bull"
 	desc = "Unlike the more passive Polyp, Stormdrifter Bulls are hardy and formidable. Fiercely territorial, Bulls will aggressively protect Stormdrifter pods."
 	icon_state = "bulldrifter"
@@ -127,17 +127,17 @@
 	var/neutered = 0
 	var/rideable = 0
 
-/datum/ai_holder/simple_mob/stormdrifter/bull
+datum/ai_holder/simple_mob/stormdrifter/bull
 	hostile = TRUE
 	cooperative = TRUE
 	can_flee = FALSE
 
-/datum/ai_holder/simple_mob/stormdrifter/bull_neutered
+datum/ai_holder/simple_mob/stormdrifter/bull_neutered
 	hostile = FALSE
 	cooperative = FALSE
 	can_flee = FALSE
 
-/mob/living/simple_mob/animal/stormdrifter/bull/attackby(var/obj/item/O as obj, var/mob/user as mob)
+mob/living/simple_mob/animal/stormdrifter/bull/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/tool/wirecutters) || is_sharp(O))
 		to_chat(user, "<span class='danger'>You amputate the [src]'s stingers! It may now be domesticated!</span>")
 		neutered = 1
@@ -167,7 +167,7 @@
 		RenameMount()
 	update_icon()
 
-/mob/living/simple_mob/animal/stormdrifter/bull/proc/RenameMount()
+mob/living/simple_mob/animal/stormdrifter/bull/proc/RenameMount()
 	var/mob/M = usr
 	if(!M.mind)	return 0
 	if(!M.faction == src.faction)
@@ -181,7 +181,7 @@
 		to_chat(M, "You name this mount [input]. Ride together.")
 		return 1
 
-/datum/component/riding_handler/stormdrifter_bull
+datum/component/riding_handler/stormdrifter_bull
 	rider_offsets = list(
 		list(
 			list(0, 9, -0.1, null),
@@ -200,7 +200,7 @@
 	riding_handler_flags = CF_RIDING_HANDLER_IS_CONTROLLABLE
 	vehicle_move_delay = 2
 
-/mob/living/simple_mob/animal/stormdrifter/bull/update_icon()
+mob/living/simple_mob/animal/stormdrifter/bull/update_icon()
 	if(neutered)
 		icon_state = "bulldrifter_neutered"
 	if(rideable)

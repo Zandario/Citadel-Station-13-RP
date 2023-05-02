@@ -1,4 +1,4 @@
-/obj/item/energy_net
+obj/item/energy_net
 	name = "energy net"
 	desc = "It's a net made of green energy."
 	icon = 'icons/effects/effects.dmi'
@@ -7,11 +7,11 @@
 	damage_force = 0
 	var/net_type = /obj/effect/energy_net
 
-/obj/item/energy_net/dropped(mob/user, flags, atom/newLoc)
+obj/item/energy_net/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	QDEL_IN(src, 10)
 
-/obj/item/energy_net/throw_impact(atom/hit_atom)
+obj/item/energy_net/throw_impact(atom/hit_atom)
 	..()
 
 	var/mob/living/M = hit_atom
@@ -31,7 +31,7 @@
 	spawn(10)
 		if(src) qdel(src)
 
-/obj/effect/energy_net
+obj/effect/energy_net
 	name = "energy net"
 	desc = "It's a net made of green energy."
 	icon = 'icons/effects/effects.dmi'
@@ -48,11 +48,11 @@
 
 	var/escape_time = 8 SECONDS
 
-/obj/effect/energy_net/Initialize(mapload)
+obj/effect/energy_net/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/energy_net/Destroy()
+obj/effect/energy_net/Destroy()
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)
 			to_chat(A,"<span class='notice'>You are free of the net!</span>")
@@ -61,11 +61,11 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/energy_net/process(delta_time)
+obj/effect/energy_net/process(delta_time)
 	if(!has_buckled_mobs())
 		qdel(src)
 
-/obj/effect/energy_net/Move()
+obj/effect/energy_net/Move()
 	..()
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)
@@ -77,7 +77,7 @@
 				unbuckle_mob(occupant)
 				qdel(src)
 
-/obj/effect/energy_net/mob_resist_buckle(mob/M, semantic)
+obj/effect/energy_net/mob_resist_buckle(mob/M, semantic)
 	. = ..()
 	if(!.)
 		return
@@ -89,6 +89,6 @@
 	qdel(src)
 	return FALSE
 
-/obj/effect/energy_net/mob_buckled(mob/M, flags, mob/user, semantic)
+obj/effect/energy_net/mob_buckled(mob/M, flags, mob/user, semantic)
 	. = ..()
 	layer = M.layer + 1

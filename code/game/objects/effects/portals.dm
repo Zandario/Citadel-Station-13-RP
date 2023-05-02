@@ -1,6 +1,6 @@
 GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 
-/obj/effect/portal
+obj/effect/portal
 	name = "portal"
 	desc = "Looks unstable. Best to test it with the clown."
 	icon = 'icons/obj/stationobjs.dmi'
@@ -12,16 +12,16 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	var/creator = null
 	anchored = 1.0
 
-/obj/effect/portal/Bumped(mob/M as mob|obj)
+obj/effect/portal/Bumped(mob/M as mob|obj)
 	if(istype(M,/mob) && !(istype(M,/mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(M)
 
-/obj/effect/portal/Crossed(AM as mob|obj)
+obj/effect/portal/Crossed(AM as mob|obj)
 	. = ..()
 	teleport(AM)
 
-/obj/effect/portal/attack_hand(mob/user, list/params)
+obj/effect/portal/attack_hand(mob/user, list/params)
 	if(istype(user) && !(istype(user,/mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
@@ -29,11 +29,11 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 		return
 	return
 
-/obj/effect/portal/Initialize(mapload, ...)
+obj/effect/portal/Initialize(mapload, ...)
 	. = ..()
 	QDEL_IN(src, 30 SECONDS)
 
-/obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
+obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if(istype(M, /obj/effect)) //sparks don't teleport
 		return
 	if (M.anchored&&istype(M, /obj/mecha))
@@ -49,4 +49,3 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 			do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), pick(GLOB.using_map.get_map_levels(z))), 0)
 		else
 			do_teleport(M, target, 1) ///You will appear adjacent to the beacon
-

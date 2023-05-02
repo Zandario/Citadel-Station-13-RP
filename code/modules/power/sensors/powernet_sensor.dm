@@ -7,7 +7,7 @@
 // may be used in PDAs or similar applications. Second proc, return_reading_data will return list containing needed data.
 // This is used in NanoUI, for example.
 
-/obj/machinery/power/sensor
+obj/machinery/power/sensor
 	name = "Powernet Sensor"
 	desc = "Small machine which transmits data about specific powernet"
 	anchored = TRUE
@@ -30,7 +30,7 @@
 // Proc: New()
 // Parameters: None
 // Description: Automatically assigns name according to ID tag.
-/obj/machinery/power/sensor/Initialize(mapload, newdir)
+obj/machinery/power/sensor/Initialize(mapload, newdir)
 	. = ..()
 	auto_set_name()
 	history["supply"] = list()
@@ -39,10 +39,10 @@
 // Proc: auto_set_name()
 // Parameters: None
 // Description: Sets name of this sensor according to the ID tag.
-/obj/machinery/power/sensor/proc/auto_set_name()
+obj/machinery/power/sensor/proc/auto_set_name()
 	name = "[name_tag] - Powernet Sensor"
 
-/obj/machinery/power/sensor/Destroy()
+obj/machinery/power/sensor/Destroy()
 	. = ..()
 	// TODO - Switch power_monitor to register deletion events instead of this.
 	for(var/obj/machinery/computer/power_monitor/PM in GLOB.machines)
@@ -54,7 +54,7 @@
 // Proc: check_grid_warning()
 // Parameters: None
 // Description: Checks connected powernet for warnings. If warning is found returns 1
-/obj/machinery/power/sensor/proc/check_grid_warning()
+obj/machinery/power/sensor/proc/check_grid_warning()
 	connect_to_network()
 	if(powernet)
 		if(powernet.problem)
@@ -64,7 +64,7 @@
 // Proc: process()
 // Parameters: None
 // Description: This has to be here because we need sensors to remain in Machines list.
-/obj/machinery/power/sensor/process(delta_time)
+obj/machinery/power/sensor/process(delta_time)
 	if(!powernet)
 		use_power = USE_POWER_IDLE
 		connect_to_network()
@@ -74,7 +74,7 @@
 	return TRUE
 
 /// This tracks historical usage, for TGUI power monitors
-/obj/machinery/power/sensor/proc/record()
+obj/machinery/power/sensor/proc/record()
 	if(world.time >= next_record)
 		next_record = world.time + record_interval
 
@@ -92,7 +92,7 @@
 		if(demand.len > record_size)
 			demand.Cut(1, 2)
 
-/obj/machinery/power/sensor/ui_data()
+obj/machinery/power/sensor/ui_data()
 	var/list/data = list()
 
 	data["name"] = name_tag
@@ -128,7 +128,7 @@
 // Proc: find_apcs()
 // Parameters: None
 // Description: Searches powernet for APCs and returns them in a list.
-/obj/machinery/power/sensor/proc/find_apcs()
+obj/machinery/power/sensor/proc/find_apcs()
 	if(!powernet)
 		return
 
@@ -144,7 +144,7 @@
 // Proc: return_reading_text()
 // Parameters: None
 // Description: Generates string which contains HTML table with reading data.
-/obj/machinery/power/sensor/proc/return_reading_text()
+obj/machinery/power/sensor/proc/return_reading_text()
 	// No powernet. Try to connect to one first.
 	if(!powernet)
 		connect_to_network()
@@ -192,7 +192,7 @@
 // Proc: return_reading_data()
 // Parameters: None
 // Description: Generates list containing all powernet data. Optimised for usage with NanoUI
-/obj/machinery/power/sensor/proc/return_reading_data()
+obj/machinery/power/sensor/proc/return_reading_data()
 	// No powernet. Try to connect to one first.
 	if(!powernet)
 		connect_to_network()

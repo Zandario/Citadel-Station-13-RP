@@ -1,9 +1,9 @@
 var/atom/movable/screen/robot_inventory
 /*
-/mob/living/silicon/robot/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
+mob/living/silicon/robot/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
 	HUD.robot_hud(ui_style, ui_color, ui_alpha, src)*/
 
-/datum/hud/proc/robot_hud(ui_style='icons/mob/screen1_robot.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/silicon/robot/target)
+datum/hud/proc/robot_hud(ui_style='icons/mob/screen1_robot.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/silicon/robot/target)
 /*	var/datum/hud_data/hud_data
 	if(!istype(target))
 		hud_data = new()
@@ -201,7 +201,7 @@ var/atom/movable/screen/robot_inventory
 
 	mymob.reload_rendering()
 
-/datum/hud/proc/toggle_show_robot_modules()
+datum/hud/proc/toggle_show_robot_modules()
 	if(!isrobot(mymob))
 		return
 
@@ -211,7 +211,7 @@ var/atom/movable/screen/robot_inventory
 	update_robot_modules_display()
 
 
-/datum/hud/proc/update_robot_modules_display()
+datum/hud/proc/update_robot_modules_display()
 	if(!isrobot(mymob))
 		return
 
@@ -274,13 +274,13 @@ var/atom/movable/screen/robot_inventory
 		r.shown_robot_modules = 0
 		r.client.screen -= r.robot_modules_background
 
-/mob/living/silicon/robot/update_hud()
+mob/living/silicon/robot/update_hud()
 	if(modtype)
 		hands.icon_state = lowertext(modtype)
 	..()
 
 //! ## VR FILE MERGE ## !//
-/mob/living/silicon/robot/update_hud()
+mob/living/silicon/robot/update_hud()
 	if(modtype)
 		hands.icon_state = lowertext(modtype)
 	..()

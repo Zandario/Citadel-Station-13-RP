@@ -129,7 +129,7 @@
  * * event_handler - Optional user defined [/datum/tgs_event_handler].
  * * minimum_required_security_level: The minimum required security level to run the game in which the DMAPI is integrated. Can be one of [TGS_SECURITY_ULTRASAFE], [TGS_SECURITY_SAFE], or [TGS_SECURITY_TRUSTED].
  */
-/world/proc/TgsNew(datum/tgs_event_handler/event_handler, minimum_required_security_level = TGS_SECURITY_ULTRASAFE)
+world/proc/TgsNew(datum/tgs_event_handler/event_handler, minimum_required_security_level = TGS_SECURITY_ULTRASAFE)
 	return
 
 /**
@@ -139,7 +139,7 @@
  * Afterwards, consider explicitly setting it to what you want to avoid this BYOND bug: http://www.byond.com/forum/post/2575184
  * This function should not be called before ..() in [/world/proc/New].
  */
-/world/proc/TgsInitializationComplete()
+world/proc/TgsInitializationComplete()
 	return
 
 /// Put this at the start of [/world/proc/Topic].
@@ -148,14 +148,14 @@
 /**
  * Call this as late as possible in [world/proc/Reboot].
  */
-/world/proc/TgsReboot()
+world/proc/TgsReboot()
 	return
 
 // DATUM DEFINITIONS
 // All datums defined here should be considered read-only
 
 /// Represents git revision information.
-/datum/tgs_revision_information
+datum/tgs_revision_information
 	/// Full SHA of the commit.
 	var/commit
 	/// ISO 8601 timestamp of when the commit was created
@@ -164,7 +164,7 @@
 	var/origin_commit
 
 /// Represents a version.
-/datum/tgs_version
+datum/tgs_version
 	/// The suite/major version number
 	var/suite
 
@@ -185,7 +185,7 @@
 /**
  * Returns [TRUE]/[FALSE] based on if the [/datum/tgs_version] contains wildcards.
  */
-/datum/tgs_version/proc/Wildcard()
+datum/tgs_version/proc/Wildcard()
 	return
 
 /**
@@ -193,11 +193,11 @@
  *
  * other_version - The [/datum/tgs_version] to compare against.
  */
-/datum/tgs_version/proc/Equals(datum/tgs_version/other_version)
+datum/tgs_version/proc/Equals(datum/tgs_version/other_version)
 	return
 
 /// Represents a merge of a GitHub pull request.
-/datum/tgs_revision_information/test_merge
+datum/tgs_revision_information/test_merge
 	/// The test merge number.
 	var/number
 	/// The test merge source's title when it was merged.
@@ -214,7 +214,7 @@
 	var/comment
 
 /// Represents a connected chat channel.
-/datum/tgs_chat_channel
+datum/tgs_chat_channel
 	/// TGS internal channel ID.
 	var/id
 	/// User friendly name of the channel.
@@ -231,7 +231,7 @@
 	var/embeds_supported
 
 // Represents a chat user
-/datum/tgs_chat_user
+datum/tgs_chat_user
 	/// TGS internal user ID.
 	var/id
 	// The user's display name.
@@ -246,12 +246,12 @@
  *
  * event_code - One of the TGS_EVENT_ defines. Extra parameters will be documented in each
  */
-/datum/tgs_event_handler/proc/HandleEvent(event_code, ...)
+datum/tgs_event_handler/proc/HandleEvent(event_code, ...)
 	set waitfor = FALSE
 	return
 
 /// User definable chat command
-/datum/tgs_chat_command
+datum/tgs_chat_command
 	/// The string to trigger this command on a chat bot. e.g `@bot name ...` or `!tgs name ...`
 	var/name = ""
 	/// The help text displayed for this command
@@ -267,18 +267,18 @@
  * sender - The [/datum/tgs_chat_user] who issued the command.
  * params - The trimmed string following the command `/datum/tgs_chat_command/var/name].
  */
-/datum/tgs_chat_command/proc/Run(datum/tgs_chat_user/sender, params)
+datum/tgs_chat_command/proc/Run(datum/tgs_chat_user/sender, params)
 	CRASH("[type] has no implementation for Run()")
 
 /// User definable chat message
-/datum/tgs_message_content
+datum/tgs_message_content
 	/// The tring content of the message. Must be provided in New().
 	var/text
 
 	/// The [/datum/tgs_chat_embed] to embed in the message. Not supported on all chat providers.
 	var/datum/tgs_chat_embed/structure/embed
 
-/datum/tgs_message_content/New(text)
+datum/tgs_message_content/New(text)
 	if(!istext(text))
 		TGS_ERROR_LOG("[/datum/tgs_message_content] created with no text!")
 		text = null
@@ -286,7 +286,7 @@
 	src.text = text
 
 /// User definable chat embed. Currently mirrors Discord chat embeds. See https://discord.com/developers/docs/resources/channel#embed-object-embed-structure for details.
-/datum/tgs_chat_embed/structure
+datum/tgs_chat_embed/structure
 	var/title
 	var/description
 	var/url
@@ -313,55 +313,55 @@
 	var/list/datum/tgs_chat_embed/field/fields
 
 /// Common datum for similar discord embed medias
-/datum/tgs_chat_embed/media
+datum/tgs_chat_embed/media
 	/// Must be set in New().
 	var/url
 	var/width
 	var/height
 	var/proxy_url
 
-/datum/tgs_chat_embed/media/New(url)
+datum/tgs_chat_embed/media/New(url)
 	if(!istext(url))
 		CRASH("[/datum/tgs_chat_embed/media] created with no url!")
 
 	src.url = url
 
 /// See https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure for details.
-/datum/tgs_chat_embed/footer
+datum/tgs_chat_embed/footer
 	/// Must be set in New().
 	var/text
 	var/icon_url
 	var/proxy_icon_url
 
-/datum/tgs_chat_embed/footer/New(text)
+datum/tgs_chat_embed/footer/New(text)
 	if(!istext(text))
 		CRASH("[/datum/tgs_chat_embed/footer] created with no text!")
 
 	src.text = text
 
 /// See https://discord.com/developers/docs/resources/channel#embed-object-embed-provider-structure for details.
-/datum/tgs_chat_embed/provider
+datum/tgs_chat_embed/provider
 	var/name
 	var/url
 
 /// See https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure for details. Must have name set in New().
-/datum/tgs_chat_embed/provider/author
+datum/tgs_chat_embed/provider/author
 	var/icon_url
 	var/proxy_icon_url
 
-/datum/tgs_chat_embed/provider/author/New(name)
+datum/tgs_chat_embed/provider/author/New(name)
 	if(!istext(name))
 		CRASH("[/datum/tgs_chat_embed/provider/author] created with no name!")
 
 	src.name = name
 
 /// See https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure for details. Must have name and value set in New().
-/datum/tgs_chat_embed/field
+datum/tgs_chat_embed/field
 	var/name
 	var/value
 	var/is_inline
 
-/datum/tgs_chat_embed/field/New(name, value)
+datum/tgs_chat_embed/field/New(name, value)
 	if(!istext(name))
 		CRASH("[/datum/tgs_chat_embed/field] created with no name!")
 
@@ -374,17 +374,17 @@
 // API FUNCTIONS
 
 /// Returns the maximum supported [/datum/tgs_version] of the DMAPI.
-/world/proc/TgsMaximumApiVersion()
+world/proc/TgsMaximumApiVersion()
 	return
 
 /// Returns the minimum supported [/datum/tgs_version] of the DMAPI.
-/world/proc/TgsMinimumApiVersion()
+world/proc/TgsMinimumApiVersion()
 	return
 
 /**
  * Returns [TRUE] if DreamDaemon was launched under TGS, the API matches, and was properly initialized. [FALSE] will be returned otherwise.
  */
-/world/proc/TgsAvailable()
+world/proc/TgsAvailable()
 	return
 
 // No function below this succeeds if it TgsAvailable() returns FALSE or if TgsNew() has yet to be called.
@@ -395,7 +395,7 @@
  * Unlike del(world) clients will try to reconnect.
  * If TGS has not requested a [TGS_REBOOT_MODE_SHUTDOWN] DreamDaemon will be launched again
  */
-/world/proc/TgsEndProcess()
+world/proc/TgsEndProcess()
 	return
 
 /**
@@ -404,7 +404,7 @@
  * message - The [/datum/tgs_message_content] to send.
  * admin_only: If [TRUE], message will be sent to admin connected chats. Vice-versa applies.
  */
-/world/proc/TgsTargetedChatBroadcast(datum/tgs_message_content/message, admin_only = FALSE)
+world/proc/TgsTargetedChatBroadcast(datum/tgs_message_content/message, admin_only = FALSE)
 	return
 
 /**
@@ -413,7 +413,7 @@
  * message - The [/datum/tgs_message_content] to send.
  * user: The [/datum/tgs_chat_user] to PM.
  */
-/world/proc/TgsChatPrivateMessage(datum/tgs_message_content/message, datum/tgs_chat_user/user)
+world/proc/TgsChatPrivateMessage(datum/tgs_message_content/message, datum/tgs_chat_user/user)
 	return
 
 // The following functions will sleep if a call to TgsNew() is sleeping
@@ -424,35 +424,35 @@
  * message - The [/datum/tgs_message_content] to send.
  * channels - Optional list of [/datum/tgs_chat_channel]s to restrict the message to.
  */
-/world/proc/TgsChatBroadcast(datum/tgs_message_content/message, list/channels = null)
+world/proc/TgsChatBroadcast(datum/tgs_message_content/message, list/channels = null)
 	return
 
 /// Returns the current [/datum/tgs_version] of TGS if it is running the server, null otherwise.
-/world/proc/TgsVersion()
+world/proc/TgsVersion()
 	return
 
 /// Returns the current [/datum/tgs_version] of the DMAPI being used if it was activated, null otherwise.
-/world/proc/TgsApiVersion()
+world/proc/TgsApiVersion()
 	return
 
 /// Returns the name of the TGS instance running the game if TGS is present, null otherwise.
-/world/proc/TgsInstanceName()
+world/proc/TgsInstanceName()
 	return
 
 /// Return the current [/datum/tgs_revision_information] of the running server if TGS is present, null otherwise.
-/world/proc/TgsRevision()
+world/proc/TgsRevision()
 	return
 
 /// Returns the current BYOND security level as a TGS_SECURITY_ define if TGS is present, null otherwise.
-/world/proc/TgsSecurityLevel()
+world/proc/TgsSecurityLevel()
 	return
 
 /// Returns a list of active [/datum/tgs_revision_information/test_merge]s if TGS is present, null otherwise.
-/world/proc/TgsTestMerges()
+world/proc/TgsTestMerges()
 	return
 
 /// Returns a list of connected [/datum/tgs_chat_channel]s if TGS is present, null otherwise.
-/world/proc/TgsChatChannelInfo()
+world/proc/TgsChatChannelInfo()
 	return
 
 /*

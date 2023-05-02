@@ -1,20 +1,20 @@
 //As part of the Phase 3 expansions, Ashlanders are receiving some dedicated structures.
 //One of these is a functional forge where they can produce metal rods and lead sheets.
 //Another is a bricklayer that will compress sandstone blocks for construction.
-/obj/structure/ashlander
+obj/structure/ashlander
 	name = "ashlander structure"
 	desc = "Woah! You shouldn't be seeing me, outlander! Report me to the Buried Ones at once!"
 	icon = 'icons/obj/lavaland.dmi'
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/ashlander/forge
+obj/structure/ashlander/forge
 	name = "magma forge"
 	desc = "A primitive forge of Scorian design. It is used primarily to convert iron and lead into more workable shapes."
 	icon = 'icons/obj/lavaland.dmi'
 	icon_state = "forge"
 
-/obj/structure/ashlander/forge/attackby(obj/item/O, mob/user)
+obj/structure/ashlander/forge/attackby(obj/item/O, mob/user)
 	. = ..()
 	if(istype(O, /obj/item/ore/lead))
 		to_chat(user, "<span class='danger'>You drop the [O] into the [src]! It begins to melt in the crucible.</span>")
@@ -38,20 +38,20 @@
 		new /obj/item/ore/slag(T)
 
 //This is a child of the Hydroponics seed extractor, and was originally in that file. But I've moved it here since it's an Ashlander "machine".
-/obj/machinery/seed_extractor/press
+obj/machinery/seed_extractor/press
 	name = "primitive press"
 	desc = "A hand crafted press and sieve designed to extract seeds from fruit."
 	icon = 'icons/obj/lavaland.dmi'
 	icon_state = "press"
 	use_power = USE_POWER_OFF
 
-/obj/structure/ashlander/brickmaker
+obj/structure/ashlander/brickmaker
 	name = "brick press"
 	desc = "Scorians have been observed using this device to compress sand and clay into hardened bricks."
 	icon = 'icons/obj/lavaland.dmi'
 	icon_state = "brickmaker"
 
-/obj/structure/ashlander/brickmaker/attackby(obj/item/O, mob/user)
+obj/structure/ashlander/brickmaker/attackby(obj/item/O, mob/user)
 	. = ..()
 	if(istype(O, /obj/item/ore/glass))
 		to_chat(user, "<span class='danger'>You pour the [O] into the [src]! After some work you compress it into a sturdy brick.</span>")
@@ -61,7 +61,7 @@
 
 //This is a child of the juicer/all-in-one grinder/reagent grinder. Just for some fun alchemy.
 
-/obj/machinery/reagentgrinder/ashlander
+obj/machinery/reagentgrinder/ashlander
 	name = "basic alchemical station"
 	desc = "A primitive assembly designed to hold a mortar and pestle."
 	icon = 'icons/obj/lavaland.dmi'
@@ -72,15 +72,15 @@
 	circuit = null
 	no_panel = TRUE
 
-/obj/machinery/reagentgrinder/ashlander/Initialize(mapload, newdir)
+obj/machinery/reagentgrinder/ashlander/Initialize(mapload, newdir)
 	. = ..()
 	beaker = new /obj/item/reagent_containers/glass/stone(src)
 
-/obj/machinery/reagentgrinder/ashlander/update_icon()
+obj/machinery/reagentgrinder/ashlander/update_icon()
 	icon_state = "alchemy"+num2text(!isnull(beaker))
 	return
 
-/obj/machinery/reagentgrinder/ashlander/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/machinery/reagentgrinder/ashlander/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(beaker)
 		if(default_deconstruction_screwdriver(user, O))
 			return
@@ -142,7 +142,7 @@
 	src.updateUsrDialog()
 	return 0
 
-/obj/machinery/reagentgrinder/ashlander/grind()
+obj/machinery/reagentgrinder/ashlander/grind()
 
 	// Sanity check.
 	if (!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
@@ -190,21 +190,21 @@
 //Calcinator
 //"A very basic implement that burns things down into ash. Pretty simple. Almost a waste to create it."
 //The above is the note I wrote for this when I started. Obviously now it's gigantic.
-/obj/structure/ashlander/calcinator
+obj/structure/ashlander/calcinator
 	name = "calcinator"
 	desc = "This carved basin is used in alchemy to reduce an item down to ashes, thereby releasing its inner properties."
 	icon_state = "calcinator1"
 	var/obj/item/reagent_containers/beaker
 
-/obj/structure/ashlander/calcinator/Initialize(mapload, newdir)
+obj/structure/ashlander/calcinator/Initialize(mapload, newdir)
 	. = ..()
 	beaker = new /obj/item/reagent_containers/glass/stone(src)
 
-/obj/structure/ashlander/calcinator/update_icon()
+obj/structure/ashlander/calcinator/update_icon()
 	icon_state = "calcinator"+num2text(!isnull(beaker))
 	return
 
-/obj/structure/ashlander/calcinator/attackby(obj/item/I as obj, mob/user as mob)
+obj/structure/ashlander/calcinator/attackby(obj/item/I as obj, mob/user as mob)
 	if(!istype(I))
 		return
 	if (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
@@ -249,22 +249,22 @@
 	src.updateUsrDialog()
 	return 0
 
-/obj/structure/ashlander/calcinator/attack_hand(mob/user, list/params)
+obj/structure/ashlander/calcinator/attack_hand(mob/user, list/params)
 	interact(user)
 
-/obj/structure/ashlander/calcinator/AltClick(mob/user)
+obj/structure/ashlander/calcinator/AltClick(mob/user)
 	. = ..()
 	if(user.incapacitated() || !Adjacent(user))
 		return
 	replace_beaker(user)
 
-/obj/structure/ashlander/calcinator/interact(mob/user)
+obj/structure/ashlander/calcinator/interact(mob/user)
 	if(user.incapacitated())
 		return
 	if(beaker)
 		replace_beaker(user)
 
-/obj/structure/ashlander/calcinator/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
+obj/structure/ashlander/calcinator/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
 	if(!user)
 		return FALSE
 	if(beaker)
@@ -279,7 +279,7 @@
 	return TRUE
 
 //Ashies gotta eat.
-/obj/machinery/appliance/cooker/grill/spit
+obj/machinery/appliance/cooker/grill/spit
 	name = "cooking spit"
 	desc = "Primitive structures such as these have been used to cook raw meat for as long as the benefits of such a practice have been known."
 	icon = 'icons/obj/lavaland.dmi'
@@ -292,7 +292,7 @@
 	use_power = USE_POWER_OFF
 	var/lit = 0
 
-/obj/machinery/appliance/cooker/grill/spit/attempt_toggle_power(mob/user)
+obj/machinery/appliance/cooker/grill/spit/attempt_toggle_power(mob/user)
 	if (!isliving(user))
 		return
 
@@ -319,7 +319,7 @@
 	playsound(src, 'sound/weapons/gun_flamethrower2.ogg', 40, 1)
 	update_icon()
 
-/obj/machinery/appliance/cooker/grill/spit/update_icon()
+obj/machinery/appliance/cooker/grill/spit/update_icon()
 	. = ..()
 	if(lit)
 		set_light(3, 2, "#FF9933")
@@ -328,16 +328,16 @@
 		set_light(0)
 		icon_state = "[off_icon]"
 
-/obj/structure/ashlander/statue
+obj/structure/ashlander/statue
 	name = "religious statue"
 	desc = "This statue depicts the Mother, one of the Buried Ones. It has been carved from one giant piece of elderstone. It seems to glow faintly, and the distant ring of the chiming stone fills the air around it. The Mother can be seen standing proudly, one arm outstretched. Floating above her open hand somehow is a small, polished sphere of pure elderstone."
 	icon_state = "mother_statue"
 
-/obj/structure/ashlander/statue/Initialize(mapload)
+obj/structure/ashlander/statue/Initialize(mapload)
 	. = ..()
 	set_light(3, 2, "#9463bb")
 
-/obj/structure/ashlander/statue/attack_hand(mob/user, list/params)
+obj/structure/ashlander/statue/attack_hand(mob/user, list/params)
 	var/choice = tgui_alert(user, "Do you wish to pray to the statue?", "Interact With the Statue", list("Yes", "No"))
 	if(choice != "Yes")
 		return
@@ -345,14 +345,14 @@
 		user.visible_message("[user] prays before the [src].", "You pray before the [src].")
 		Bless()
 
-/obj/structure/ashlander/statue/proc/Bless(mob/user)
+obj/structure/ashlander/statue/proc/Bless(mob/user)
 	var/mob/living/carbon/human/H = usr
 	if(!H.faction == "lavaland")
 		to_chat(user, "<span class='danger'>You feel as if an eye briefly regards you, and then turns away.</span>")
 	else
 		H.add_modifier(/datum/modifier/ashlander_blessing, 15 MINUTES)
 
-/datum/modifier/ashlander_blessing
+datum/modifier/ashlander_blessing
 	name = "The Mother's Blessing"
 	desc = "You feel as if a higher power is protecting you."
 	stacks = MODIFIER_STACK_FORBID
@@ -364,7 +364,7 @@
 	on_expired_text = "<span class='notice'>The feeling that you are being protected fades, but the sense of contentment lingers.</span>"
 
 //Ashlander Cryo
-/obj/machinery/cryopod/robot/door/travel/ashlander
+obj/machinery/cryopod/robot/door/travel/ashlander
 	name = "Warrens Passage"
 	desc = "A mildly obscured passage down into the deep warrens of Surt-nar-Cthardamz."
 	icon = 'icons/obj/lavaland.dmi'
@@ -380,7 +380,7 @@
 	on_store_visible_message_2 = "to the dark below."
 
 //Ashlander Chem Master
-/obj/machinery/chem_master/ashlander
+obj/machinery/chem_master/ashlander
 	name = "advanced alchemical station"
 	desc = "A finely carved bone cabinet designed to hold stone mortars for precise mixing and alchemical work."
 	icon = 'icons/obj/lavaland.dmi'
@@ -389,7 +389,7 @@
 	use_power = USE_POWER_OFF
 	//primi = TRUE
 
-/obj/machinery/chem_master/ashlander/ui_interact(mob/user, datum/tgui/ui = null)
+obj/machinery/chem_master/ashlander/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemPrimi", name)

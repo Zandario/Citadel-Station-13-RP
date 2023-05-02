@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/feral_alien
+datum/category_item/catalogue/fauna/feral_alien
 	name = "Feral Xenomorph"
 	desc = "Xenomorphs are a widely recognized and rightfully feared scourge \
 	across the Frontier. Some Xenomorph hives lose a connection to the greater \
@@ -8,7 +8,7 @@
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/feral_alien)
 
 // Obtained by scanning all Aliens.
-/datum/category_item/catalogue/fauna/all_feral_aliens
+datum/category_item/catalogue/fauna/all_feral_aliens
 	name = "Collection - Feral Xenomorphs"
 	desc = "You have scanned a large array of different types of Xenomorph, \
 	and therefore you have been granted a large sum of points, through this \
@@ -24,7 +24,7 @@
 		/datum/category_item/catalogue/fauna/feral_alien/queen/empress/mother
 		)
 
-/datum/category_item/catalogue/fauna/feral_alien/hunter
+datum/category_item/catalogue/fauna/feral_alien/hunter
 	name = "Feral Xenomorph - Hunter"
 	desc = "Hunters are one of the generalized combat morphs used \
 	by the Hive offensively. Capable of moving at great speed and \
@@ -34,7 +34,7 @@
 	Hunters will seek to capture less frequently. Kill on sight."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/space/alien
+mob/living/simple_mob/animal/space/alien
 	name = "alien hunter"
 	desc = "Hiss!"
 	icon = 'icons/mob/alien.dmi'
@@ -72,7 +72,7 @@
 	hide_amount = 2
 	hide_type = /obj/item/stack/xenochitin
 
-/datum/category_item/catalogue/fauna/feral_alien/drone
+datum/category_item/catalogue/fauna/feral_alien/drone
 	name = "Feral Xenomorph - Drone"
 	desc = "The adult form of the Xenomorph, the drone's iconic \
 	morphology and biological traits make it easily identifiable across \
@@ -82,7 +82,7 @@
 	revert to a defensive Kill on sight."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/space/alien/drone
+mob/living/simple_mob/animal/space/alien/drone
 	name = "alien drone"
 	icon_state = "aliend_running"
 	icon_living = "aliend_running"
@@ -94,7 +94,7 @@
 	melee_damage_upper = 15
 	catalogue_data = list(/datum/category_item/catalogue/fauna/feral_alien/drone)
 
-/datum/category_item/catalogue/fauna/feral_alien/sentinel
+datum/category_item/catalogue/fauna/feral_alien/sentinel
 	name = "Feral Xenomorph - Sentinel"
 	desc = "Sentinels serve as defensive units for the Hive. Possessing \
 	a powerful neurotoxic venom, Sentinels are able to spit this toxin at \
@@ -105,7 +105,7 @@
 	on sight."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/space/alien/sentinel
+mob/living/simple_mob/animal/space/alien/sentinel
 	name = "alien sentinel"
 	icon_state = "aliens_running"
 	icon_living = "aliens_running"
@@ -118,7 +118,7 @@
 	projectilesound = 'sound/weapons/pierce.ogg'
 	catalogue_data = list(/datum/category_item/catalogue/fauna/feral_alien/sentinel)
 
-/datum/category_item/catalogue/fauna/feral_alien/sentinel/praetorian
+datum/category_item/catalogue/fauna/feral_alien/sentinel/praetorian
 	name = "Feral Xenomorph - Praetorian"
 	desc = "The Xenomorph Praetorian is not often seen amongst \
 	standard Xeno incursions. Spawned in large Hives to serve as \
@@ -130,7 +130,7 @@
 	die to protect their Queen. Kill on sight."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/space/alien/sentinel/praetorian
+mob/living/simple_mob/animal/space/alien/sentinel/praetorian
 	name = "alien praetorian"
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "prat_s"
@@ -152,7 +152,7 @@
 	mod_min = 80
 	mod_max = 150
 
-/datum/category_item/catalogue/fauna/feral_alien/queen
+datum/category_item/catalogue/fauna/feral_alien/queen
 	name = "Feral Xenomorph - Queen"
 	desc = "When a Drone reaches a certain level of maturity, she may \
 	evolve into a Queen, if there is no functioning Hive nearby. The Queen \
@@ -165,7 +165,7 @@
 	a form of shock which reverts them into a Drone's mindstate. Kill on sight. "
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/space/alien/queen
+mob/living/simple_mob/animal/space/alien/queen
 	name = "alien queen"
 	icon_state = "alienq_running"
 	icon_living = "alienq_running"
@@ -184,7 +184,7 @@
 
 	movement_cooldown = 8
 
-/datum/category_item/catalogue/fauna/feral_alien/queen/empress
+datum/category_item/catalogue/fauna/feral_alien/queen/empress
 	name = "Feral Xenomorph - Empress"
 	desc = "A Xenomorph queen who reaches a certain stage of maturity \
 	may eventually develop into an Empress. Xenomorph Empresses reign \
@@ -195,7 +195,7 @@
 	Kill on sight."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/space/alien/queen/empress
+mob/living/simple_mob/animal/space/alien/queen/empress
 	name = "alien empress"
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "queen_s"
@@ -212,7 +212,7 @@
 	icon_x_dimension = 64
 	icon_y_dimension = 64
 
-/datum/category_item/catalogue/fauna/feral_alien/queen/empress/mother
+datum/category_item/catalogue/fauna/feral_alien/queen/empress/mother
 	name = "Feral Xenomorph - Mother"
 	desc = "The true end stage of Xenomorph Queen development, \
 	the Xenomorph Mother is the local psionic node of the Hive. These \
@@ -223,7 +223,7 @@
 	to eliminate any threat. Retreat immediately."
 	value = CATALOGUER_REWARD_SUPERHARD
 
-/mob/living/simple_mob/animal/space/alien/queen/empress/mother
+mob/living/simple_mob/animal/space/alien/queen/empress/mother
 	name = "alien mother"
 	icon = 'icons/mob/96x96.dmi'
 	icon_state = "empress_s"
@@ -246,7 +246,7 @@
 	mod_min = 100
 	mod_max = 150
 
-/mob/living/simple_mob/animal/space/alien/death()
+mob/living/simple_mob/animal/space/alien/death()
 	..()
 	visible_message("[src] lets out a waning guttural screech, green blood bubbling from its maw...")
 	playsound(src, 'sound/voice/hiss6.ogg', 100, 1)

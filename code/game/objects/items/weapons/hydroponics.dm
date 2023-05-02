@@ -3,7 +3,7 @@
  */
 //uncomment when this is updated to match storage update
 /*
-/obj/item/seedbag
+obj/item/seedbag
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "seedbag"
 	name = "Seed Bag"
@@ -14,14 +14,14 @@
 	w_class = ITEMSIZE_TINY
 	var/list/item_quants = list()
 
-/obj/item/seedbag/attack_self(mob/user)
+obj/item/seedbag/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	user.machine = src
 	interact(user)
 
-/obj/item/seedbag/verb/toggle_mode()
+obj/item/seedbag/verb/toggle_mode()
 	set name = "Switch Bagging Method"
 	set category = "Object"
 
@@ -32,7 +32,7 @@
 		if(0)
 			to_chat(usr, "The bag now picks up one seed pouch at a time.")
 
-/obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
+obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()
 	if (istype(O, /obj/item/seedbag))
 		var/obj/item/seedbag/S = O
@@ -61,7 +61,7 @@
 		S.updateUsrDialog()
 	return
 
-/obj/item/seedbag/interact(mob/user as mob)
+obj/item/seedbag/interact(mob/user as mob)
 
 	var/dat = "<TT><b>Select an item:</b><br>"
 
@@ -82,7 +82,7 @@
 	onclose(user, "seedbag")
 	return
 
-/obj/item/seedbag/Topic(href, href_list)
+obj/item/seedbag/Topic(href, href_list)
 	if(..())
 		return
 
@@ -108,7 +108,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/item/seedbag/updateUsrDialog()
+obj/item/seedbag/updateUsrDialog()
 	var/list/nearby = range(1, src)
 	for(var/mob/M in nearby)
 		if ((M.client && M.machine == src))

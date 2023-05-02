@@ -1,4 +1,4 @@
-/obj/mecha/combat/marauder
+obj/mecha/combat/marauder
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations."
 	name = "Marauder"
 	catalogue_data = list(/datum/category_item/catalogue/technology/marauder)
@@ -47,7 +47,7 @@
 	icon_scale_x = 1.5
 	icon_scale_y = 1.5
 
-/obj/mecha/combat/marauder/seraph
+obj/mecha/combat/marauder/seraph
 	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
 	name = "Seraph"
 	catalogue_data = list(/datum/category_item/catalogue/technology/seraph)
@@ -70,7 +70,7 @@
 		)
 
 //Note that is the Mauler
-/obj/mecha/combat/marauder/mauler
+obj/mecha/combat/marauder/mauler
 	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
 	name = "Mauler"
 	icon_state = "mauler"
@@ -80,7 +80,7 @@
 	mech_faction = MECH_FACTION_SYNDI
 
 //I'll break this down later
-/obj/mecha/combat/marauder/relaymove(mob/user,direction)
+obj/mecha/combat/marauder/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		user.loc = get_turf(src)
 		to_chat(user, "You climb out from [src]")
@@ -125,7 +125,7 @@
 	return 0
 
 //To be kill ltr
-/obj/mecha/combat/marauder/get_commands()
+obj/mecha/combat/marauder/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
@@ -139,12 +139,12 @@
 	return output
 
 //Meant for random spawns.
-/obj/mecha/combat/marauder/old
+obj/mecha/combat/marauder/old
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations. This one is particularly worn looking and likely isn't as sturdy."
 
 	starting_equipment = null
 
-/obj/mecha/combat/marauder/old/Initialize(mapload)
+obj/mecha/combat/marauder/old/Initialize(mapload)
 	. = ..()
 	health = 25
 	maxhealth = 300	//Just slightly worse.

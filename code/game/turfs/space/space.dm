@@ -1,4 +1,4 @@
-/turf/space
+turf/space
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = "0"
@@ -19,14 +19,14 @@
 	/// Force this one to pretend it's an overedge turf.
 	var/forced_dirs = 0
 
-/turf/space/basic
+turf/space/basic
 	atom_flags = ATOM_INITIALIZED
 
-/turf/space/basic/New()	//Do not convert to Initialize
+turf/space/basic/New()	//Do not convert to Initialize
 	//This is used to optimize the map loader
 	return
 
-/turf/space/Initialize(mapload)
+turf/space/Initialize(mapload)
 
 	SHOULD_CALL_PARENT(FALSE)
 	atom_flags |= ATOM_INITIALIZED
@@ -60,7 +60,7 @@
 
 	return INITIALIZE_HINT_LATELOAD // oh no! we need to switch to being a different kind of turf!
 
-/turf/space/Destroy()
+turf/space/Destroy()
 	// Cleanup cached z_eventually_space values above us.
 	if (above)
 		var/turf/T = src
@@ -68,21 +68,21 @@
 			T.z_eventually_space = FALSE
 	return ..()
 
-/turf/space/is_space()	// Hmmm this Space is made of Space.
+turf/space/is_space()	// Hmmm this Space is made of Space.
 	return TRUE
 
-/turf/space/is_open()
+turf/space/is_open()
 	return TRUE
 
 // Override for space turfs, since they should never hide anything
-/turf/space/levelupdate()
+turf/space/levelupdate()
 	for(var/obj/O in src)
 		O.hide(0)
 
-/turf/space/is_solid_structure()
+turf/space/is_solid_structure()
 	return locate(/obj/structure/lattice, src)	// Counts as solid structure if it has a lattice
 
-/turf/space/proc/update_starlight()
+turf/space/proc/update_starlight()
 	if(!(CONFIG_GET(flag/starlight)))
 		return
 
@@ -98,7 +98,7 @@
 		clear_ambient_light()
 
 
-/turf/space/attackby(obj/item/C as obj, mob/user as mob)
+turf/space/attackby(obj/item/C as obj, mob/user as mob)
 
 	if(istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
@@ -152,13 +152,13 @@
 		// If that's changed, then you'll want to swipe the rest of the roofing code from code/game/turfs/simulated/floor_attackby.dm
 	return
 
-/turf/space/Entered(var/atom/movable/A)
+turf/space/Entered(var/atom/movable/A)
 	. = ..()
 
 	if(edge)
 		addtimer(CALLBACK(src, .proc/on_atom_edge_touch, A), 0)
 
-/turf/space/proc/on_atom_edge_touch(atom/movable/AM)
+turf/space/proc/on_atom_edge_touch(atom/movable/AM)
 	if(!QDELETED(AM) && (AM.loc == src))
 		AM.touch_map_edge()
 
@@ -166,22 +166,22 @@
 //// Special variants used in various maps ////
 
 // Bluespace jump turf!
-/turf/space/bluespace
+turf/space/bluespace
 	name = "bluespace"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "bluespace"
 
-/turf/space/bluespace/Initialize(mapload)
+turf/space/bluespace/Initialize(mapload)
 	. = ..()
 	icon = 'icons/turf/space.dmi'
 	icon_state = "bluespace"
 
 // Desert jump turf!
-/turf/space/sandyscroll
+turf/space/sandyscroll
 	name = "sand transit"
 	icon = 'icons/turf/transit_vr.dmi'
 	icon_state = "desert_ns"
 
-/turf/space/sandyscroll/Initialize(mapload)
+turf/space/sandyscroll/Initialize(mapload)
 	. = ..()
 	icon_state = "desert_ns"

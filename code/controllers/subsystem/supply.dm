@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(supply)
 // Supply packs are in /code/datums/supplypacks
 // Computers are in /code/game/machinery/computer/supply.dm
 
-/datum/supply_order
+datum/supply_order
 	var/ordernum							// Unfabricatable index
 	var/index								// Fabricatable index
 	var/datum/supply_pack/object = null
@@ -44,12 +44,12 @@ SUBSYSTEM_DEF(supply)
 	var/approved_at							// Date and time the order was approved at
 	var/status								// [Requested, Accepted, Denied, Shipped]
 
-/datum/exported_crate
+datum/exported_crate
 	var/name
 	var/value
 	var/list/contents
 
-/datum/controller/subsystem/supply/Initialize()
+datum/controller/subsystem/supply/Initialize()
 	ordernum = rand(1,9000)
 
 	for(var/typepath in subtypesof(/datum/supply_pack))
@@ -59,11 +59,11 @@ SUBSYSTEM_DEF(supply)
 
 // Supply shuttle SSticker - handles supply point regeneration
 // This is called by the process scheduler every thirty seconds
-/datum/controller/subsystem/supply/fire(resumed)
+datum/controller/subsystem/supply/fire(resumed)
 	points += max(0, ((world.time - last_fire) / 10) * points_per_second)
 
 // To stop things being sent to CentCom which should not be sent to centcomm. Recursively checks for these types.
-/datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
+datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
 		return 1
 	if(istype(A,/obj/item/disk/nuclear))
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(supply)
 			return 1
 
 // Selling
-/datum/controller/subsystem/supply/proc/sell()
+datum/controller/subsystem/supply/proc/sell()
 	// Loop over each area in the supply shuttle
 	for(var/area/subarea in shuttle.shuttle_area)
 		callHook("sell_shuttle", list(subarea));
@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(supply)
 
 			qdel(MA)
 
-/datum/controller/subsystem/supply/proc/get_clear_turfs()
+datum/controller/subsystem/supply/proc/get_clear_turfs()
 	var/list/clear_turfs = list()
 
 	for(var/area/subarea in shuttle.shuttle_area)
@@ -178,7 +178,7 @@ SUBSYSTEM_DEF(supply)
 	return clear_turfs
 
 // Buying
-/datum/controller/subsystem/supply/proc/buy()
+datum/controller/subsystem/supply/proc/buy()
 	var/list/shoppinglist = list()
 	for(var/datum/supply_order/SO in order_history)
 		if(SO.status == SUP_ORDER_APPROVED)
@@ -220,7 +220,7 @@ SUBSYSTEM_DEF(supply)
 			slip.info += info.Join("")
 
 // Will attempt to purchase the specified order, returning TRUE on success, FALSE on failure
-/datum/controller/subsystem/supply/proc/approve_order(var/datum/supply_order/O, var/mob/user)
+datum/controller/subsystem/supply/proc/approve_order(var/datum/supply_order/O, var/mob/user)
 	// Not enough points to purchase the crate
 	if(SSsupply.points <= O.object.cost)
 		return FALSE
@@ -253,7 +253,7 @@ SUBSYSTEM_DEF(supply)
 	return TRUE
 
 // Will deny the specified order. Only useful if the order is currently requested, but available at any status
-/datum/controller/subsystem/supply/proc/deny_order(var/datum/supply_order/O, var/mob/user)
+datum/controller/subsystem/supply/proc/deny_order(var/datum/supply_order/O, var/mob/user)
 	// Based on the current model, there shouldn't be any entries in order_history, requestlist, or shoppinglist, that aren't matched in adm_order_history
 	var/datum/supply_order/adm_order
 	for(var/datum/supply_order/temp in adm_order_history)
@@ -279,13 +279,13 @@ SUBSYSTEM_DEF(supply)
 	return
 
 // Will deny all requested orders
-/datum/controller/subsystem/supply/proc/deny_all_pending(var/mob/user)
+datum/controller/subsystem/supply/proc/deny_all_pending(var/mob/user)
 	for(var/datum/supply_order/O in order_history)
 		if(O.status == SUP_ORDER_REQUESTED)
 			deny_order(O, user)
 
 // Will delete the specified order from the user-side list
-/datum/controller/subsystem/supply/proc/delete_order(var/datum/supply_order/O, var/mob/user)
+datum/controller/subsystem/supply/proc/delete_order(var/datum/supply_order/O, var/mob/user)
 	// Making sure they know what they're doing
 	if(alert(user, "Are you sure you want to delete this record? If it has been approved, cargo points will NOT be refunded!", "Delete Record","No","Yes") == "Yes")
 		if(alert(user, "Are you really sure? There is no way to recover the order once deleted.", "Delete Record", "No", "Yes") == "Yes")
@@ -294,7 +294,7 @@ SUBSYSTEM_DEF(supply)
 	return
 
 // Will generate a new, requested order, for the given supply pack type
-/datum/controller/subsystem/supply/proc/create_order(var/datum/supply_pack/S, var/mob/user, var/reason)
+datum/controller/subsystem/supply/proc/create_order(var/datum/supply_pack/S, var/mob/user, var/reason)
 	var/datum/supply_order/new_order = new()
 	var/datum/supply_order/adm_order = new()	// Admin-recorded order must be a separate copy in memory, or user-made edits will corrupt it
 
@@ -329,7 +329,7 @@ SUBSYSTEM_DEF(supply)
 	adm_order_history += adm_order
 
 // Will delete the specified export receipt from the user-side list
-/datum/controller/subsystem/supply/proc/delete_export(var/datum/exported_crate/E, var/mob/user)
+datum/controller/subsystem/supply/proc/delete_export(var/datum/exported_crate/E, var/mob/user)
 	// Making sure they know what they're doing
 	if(alert(user, "Are you sure you want to delete this record?", "Delete Record","No","Yes") == "Yes")
 		if(alert(user, "Are you really sure? There is no way to recover the receipt once deleted.", "Delete Record", "No", "Yes") == "Yes")
@@ -338,7 +338,7 @@ SUBSYSTEM_DEF(supply)
 	return
 
 // Will add an item entry to the specified export receipt on the user-side list
-/datum/controller/subsystem/supply/proc/add_export_item(var/datum/exported_crate/E, var/mob/user)
+datum/controller/subsystem/supply/proc/add_export_item(var/datum/exported_crate/E, var/mob/user)
 	var/new_name = input(user, "Name", "Please enter the name of the item.") as null|text
 	if(!new_name)
 		return

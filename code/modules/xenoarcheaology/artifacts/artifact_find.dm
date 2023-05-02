@@ -1,8 +1,8 @@
-/datum/artifact_find
+datum/artifact_find
 	var/artifact_id
 	var/artifact_find_type
 
-/datum/artifact_find/New()
+datum/artifact_find/New()
 
 	artifact_id = "[pick("kappa","sigma","antaeres","beta","omicron","iota","epsilon","omega","gamma","delta","tau","alpha")]-[rand(100,999)]"
 

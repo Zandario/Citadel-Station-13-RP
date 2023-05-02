@@ -1,4 +1,4 @@
-/obj/structure/anomaly_container
+obj/structure/anomaly_container
 	name = "anomaly container"
 	desc = "Used to safely contain and move anomalies."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -7,21 +7,21 @@
 
 	var/obj/machinery/artifact/contained
 
-/obj/structure/anomaly_container/Initialize(mapload)
+obj/structure/anomaly_container/Initialize(mapload)
 	. = ..()
 
 	var/obj/machinery/artifact/A = locate() in loc
 	if(A)
 		contain(A)
 
-/obj/structure/anomaly_container/attack_hand(mob/user, list/params)
+obj/structure/anomaly_container/attack_hand(mob/user, list/params)
 	release()
 
-/obj/structure/anomaly_container/attack_robot(var/mob/user)
+obj/structure/anomaly_container/attack_robot(var/mob/user)
 	if(Adjacent(user))
 		release()
 
-/obj/structure/anomaly_container/proc/contain(var/obj/machinery/artifact/artifact)
+obj/structure/anomaly_container/proc/contain(var/obj/machinery/artifact/artifact)
 	if(contained)
 		return
 	contained = artifact
@@ -29,7 +29,7 @@
 	underlays += image(artifact)
 	desc = "Used to safely contain and move anomalies. \The [contained] is kept inside."
 
-/obj/structure/anomaly_container/proc/release()
+obj/structure/anomaly_container/proc/release()
 	if(!contained)
 		return
 	contained.dropInto(src)
@@ -37,7 +37,7 @@
 	underlays.Cut()
 	desc = initial(desc)
 
-/obj/machinery/artifact/OnMouseDropLegacy(var/obj/structure/anomaly_container/over_object)
+obj/machinery/artifact/OnMouseDropLegacy(var/obj/structure/anomaly_container/over_object)
 	if(istype(over_object) && Adjacent(over_object) && CanMouseDrop(over_object, usr))
 		Bumped(usr)
 		over_object.contain(src)

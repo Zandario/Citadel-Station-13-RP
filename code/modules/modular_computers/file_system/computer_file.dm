@@ -1,6 +1,6 @@
 var/global/file_uid = 0
 
-/datum/computer_file
+datum/computer_file
 	/// Placeholder. No spacebars
 	var/filename = "NewFile"
 	/// File full names are [filename].[filetype] so like NewFile.XXX in this case.
@@ -16,12 +16,12 @@ var/global/file_uid = 0
 	/// UID of this file.
 	var/uid
 
-/datum/computer_file/New()
+datum/computer_file/New()
 	..()
 	uid = file_uid
 	file_uid++
 
-/datum/computer_file/Destroy()
+datum/computer_file/Destroy()
 	if(!holder)
 		return ..()
 
@@ -33,7 +33,7 @@ var/global/file_uid = 0
 	..()
 
 /// Returns independent copy of this file.
-/datum/computer_file/proc/clone(var/rename = 0)
+datum/computer_file/proc/clone(var/rename = 0)
 	var/datum/computer_file/temp = new type
 	temp.unsendable = unsendable
 	temp.undeletable = undeletable

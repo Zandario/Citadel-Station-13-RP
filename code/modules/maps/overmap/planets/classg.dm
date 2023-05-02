@@ -1,4 +1,4 @@
-/obj/effect/overmap/visitable/sector/mining_planet
+obj/effect/overmap/visitable/sector/mining_planet
 	name = "Mineral Rich Planet"
 	desc = "A planet filled with valuable minerals. No life signs currently detected on the surface."
 	scanner_desc = @{"[i]Information[/i]
@@ -14,13 +14,13 @@ Lifesigns: No immediate life-signs detected."}
 
 // This is a special subtype of the thing that generates ores on a map
 // It will generate more rich ores because of the lower numbers than the normal one
-/datum/random_map/noise/ore/mining_planet
+datum/random_map/noise/ore/mining_planet
 	descriptor = "Mining planet mine ore distribution map"
 	deep_val = 0.6 //More riches, normal is 0.7 and 0.8
 	rare_val = 0.4
 
 // The check_map_sanity proc is sometimes unsatisfied with how AMAZING our ores are
-/datum/random_map/noise/ore/mining_planet/check_map_sanity(mapload) // am changing it so it only does this on mapload though
+datum/random_map/noise/ore/mining_planet/check_map_sanity(mapload) // am changing it so it only does this on mapload though
 	var/rare_count = 0
 	var/surface_count = 0
 	var/deep_count = 0

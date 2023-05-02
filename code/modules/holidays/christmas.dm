@@ -1,4 +1,4 @@
-/datum/holiday/xmas
+datum/holiday/xmas
 	name = CHRISTMAS
 	desc = "Christmas is a very old holiday that originated in Earth, Sol.  It was a \
 					religious holiday for the Christian religion, which would later form Unitarianism.  Nowdays, the holiday is celebrated \

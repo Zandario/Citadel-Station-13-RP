@@ -1,6 +1,6 @@
 var/global/list/ashtray_cache = list()
 
-/obj/item/material/ashtray
+obj/item/material/ashtray
 	name = "ashtray"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "blank"
@@ -9,7 +9,7 @@ var/global/list/ashtray_cache = list()
 	var/image/base_image
 	var/max_butts = 10
 
-/obj/item/material/ashtray/Initialize(mapload, material_name)
+obj/item/material/ashtray/Initialize(mapload, material_name)
 	. = ..(mapload, material_name)
 	if(!material)
 		qdel(src)
@@ -20,7 +20,7 @@ var/global/list/ashtray_cache = list()
 	update_icon()
 	return
 
-/obj/item/material/ashtray/update_icon()
+obj/item/material/ashtray/update_icon()
 	color = null
 
 	cut_overlays()
@@ -48,7 +48,7 @@ var/global/list/ashtray_cache = list()
 
 	add_overlay(overlays_to_add)
 
-/obj/item/material/ashtray/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/material/ashtray/attackby(obj/item/W as obj, mob/user as mob)
 	if (health <= 0)
 		return ..()
 	if (istype(W,/obj/item/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/flame/match))
@@ -84,7 +84,7 @@ var/global/list/ashtray_cache = list()
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return ..()
 
-/obj/item/material/ashtray/throw_impact(atom/hit_atom)
+obj/item/material/ashtray/throw_impact(atom/hit_atom)
 	if (health > 0)
 		health = max(0,health - 3)
 		if (contents.len)
@@ -97,11 +97,11 @@ var/global/list/ashtray_cache = list()
 		update_icon()
 	return ..()
 
-/obj/item/material/ashtray/plastic/Initialize(mapload, material_key)
+obj/item/material/ashtray/plastic/Initialize(mapload, material_key)
 	return ..(mapload, "plastic")
 
-/obj/item/material/ashtray/bronze/Initialize(mapload, material_key)
+obj/item/material/ashtray/bronze/Initialize(mapload, material_key)
 	return ..(mapload, "bronze")
 
-/obj/item/material/ashtray/glass/Initialize(mapload, material_key)
+obj/item/material/ashtray/glass/Initialize(mapload, material_key)
 	return ..(mapload, "glass")

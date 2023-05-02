@@ -7,7 +7,7 @@ meteor_act
 
 */
 
-/mob/living/carbon/human/bullet_act(var/obj/projectile/P, var/def_zone)
+mob/living/carbon/human/bullet_act(var/obj/projectile/P, var/def_zone)
 	def_zone = check_zone(def_zone)
 	if(!has_organ(def_zone))
 		return PROJECTILE_FORCE_MISS //if they don't have the organ in question then the projectile just passes by.
@@ -44,7 +44,7 @@ meteor_act
 
 	return ..()
 
-/mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
+mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
 	if(fire_stacks < 0) // Water makes you more conductive.
@@ -73,7 +73,7 @@ meteor_act
 
 	..(stun_amount, agony_amount, def_zone)
 
-/mob/living/carbon/human/legacy_mob_armor(var/def_zone, var/type)
+mob/living/carbon/human/legacy_mob_armor(var/def_zone, var/type)
 	var/armorval = 0
 	var/total = 0
 
@@ -96,7 +96,7 @@ meteor_act
 	return (armorval/max(total, 1))
 
 //Like legacy_mob_armor, but the value it returns will be numerical damage reduction
-/mob/living/carbon/human/legacy_mob_soak(var/def_zone, var/type)
+mob/living/carbon/human/legacy_mob_soak(var/def_zone, var/type)
 	var/soakval = 0
 	var/total = 0
 
@@ -119,7 +119,7 @@ meteor_act
 	return (soakval/max(total, 1))
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
-/mob/living/carbon/human/proc/get_siemens_coefficient_organ(var/obj/item/organ/external/def_zone)
+mob/living/carbon/human/proc/get_siemens_coefficient_organ(var/obj/item/organ/external/def_zone)
 	if (!def_zone)
 		return 1.0
 
@@ -133,7 +133,7 @@ meteor_act
 	return siemens_coefficient
 
 // Similar to above but is for the mob's overall protection, being the average of all slots.
-/mob/living/carbon/human/proc/get_siemens_coefficient_average()
+mob/living/carbon/human/proc/get_siemens_coefficient_average()
 	var/siemens_value = 0
 	var/total = 0
 	for(var/organ_name in organs_by_name)
@@ -150,11 +150,11 @@ meteor_act
 	return (siemens_value/max(total, 1))
 
 // Returns a number between 0 to 1, with 1 being total protection.
-/mob/living/carbon/human/get_shock_protection()
+mob/living/carbon/human/get_shock_protection()
 	return clamp( 1-get_siemens_coefficient_average(), 0,  1)
 
 // Returns a list of clothing that is currently covering def_zone.
-/mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
+mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
 	var/list/results = list()
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
 	for(var/obj/item/clothing/C in clothing_items)
@@ -163,7 +163,7 @@ meteor_act
 	return results
 
 //this proc returns the armour value for a particular external organ.
-/mob/living/carbon/human/proc/getarmor_organ(var/obj/item/organ/external/def_zone, var/type)
+mob/living/carbon/human/proc/getarmor_organ(var/obj/item/organ/external/def_zone, var/type)
 	if(!type || !def_zone)
 		return 0
 	var/protection = 0
@@ -172,7 +172,7 @@ meteor_act
 		protection += gear.fetch_armor().raw(type) * 100
 	return protection
 
-/mob/living/carbon/human/proc/getsoak_organ(var/obj/item/organ/external/def_zone, var/type)
+mob/living/carbon/human/proc/getsoak_organ(var/obj/item/organ/external/def_zone, var/type)
 	if(!type || !def_zone)
 		return 0
 	var/soaked = 0
@@ -182,7 +182,7 @@ meteor_act
 	return soaked
 
 // Checked in borer code
-/mob/living/carbon/human/proc/check_head_coverage()
+mob/living/carbon/human/proc/check_head_coverage()
 	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
 	var/list/body_parts = H.get_covering_clothing(EYES)
 	if(LAZYLEN(body_parts))
@@ -190,7 +190,7 @@ meteor_act
 	return 0
 
 //Used to check if they can be fed food/drinks/pills
-/mob/living/carbon/human/proc/check_mouth_coverage()
+mob/living/carbon/human/proc/check_mouth_coverage()
 	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
 	var/list/protective_gear = H.get_covering_clothing(FACE)
 	for(var/obj/item/gear in protective_gear)
@@ -198,7 +198,7 @@ meteor_act
 			return gear
 	return null
 
-/mob/living/carbon/human/proc/check_mouth_coverage_survival()
+mob/living/carbon/human/proc/check_mouth_coverage_survival()
 	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
 	var/list/protective_gear = H.get_covering_clothing(FACE)
 	for(var/obj/item/gear in protective_gear)
@@ -206,14 +206,14 @@ meteor_act
 			return gear
 	return null
 
-/mob/living/carbon/human/proc/check_shields(var/damage = 0, var/atom/damage_source = null, var/mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+mob/living/carbon/human/proc/check_shields(var/damage = 0, var/atom/damage_source = null, var/mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	for(var/obj/item/shield in list(l_hand, r_hand, wear_suit))
 		if(!shield) continue
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
 	return 0
 
-/mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
+mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	if(check_neckgrab_attack(I, user, target_zone))
 		return null
 
@@ -235,7 +235,7 @@ meteor_act
 
 	return hit_zone
 
-/mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return //should be prevented by attacked_with_item() but for sanity.
@@ -248,7 +248,7 @@ meteor_act
 
 	return blocked
 
-/mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
+mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return 0
@@ -320,7 +320,7 @@ meteor_act
 
 	return 1
 
-/mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/effective_force, var/dislocate_mult, var/blocked, var/soaked)
+mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/effective_force, var/dislocate_mult, var/blocked, var/soaked)
 	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 100)
 		return 0
 
@@ -338,7 +338,7 @@ meteor_act
 		return 1
 	return 0
 
-/mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
+mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
 	var/obj/item/organ/external/affecting = get_organ(user.zone_sel.selecting)
 	if(!affecting || !(affecting.robotic >= ORGAN_ROBOT))
 		to_chat(user, "<span class='warning'>That limb isn't robotic.</span>")
@@ -351,7 +351,7 @@ meteor_act
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/carbon/human/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+mob/living/carbon/human/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 //	if(buckled && buckled == AM)
 //		return // Don't get hit by the thing we're buckled to.
 
@@ -456,7 +456,7 @@ meteor_act
 					pinned += O
 
 // This does a prob check to catch the thing flying at you, with a minimum of 1%
-/mob/living/carbon/human/proc/can_catch(var/obj/O)
+mob/living/carbon/human/proc/can_catch(var/obj/O)
 	if(!get_active_held_item())	// If active hand is empty
 		var/obj/item/organ/external/temp = organs_by_name["r_hand"]
 		if (hand)
@@ -483,7 +483,7 @@ meteor_act
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)
+mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)
 	if(!def_zone) ..()
 
 	var/obj/item/organ/external/affecting = get_organ(def_zone)
@@ -491,7 +491,7 @@ meteor_act
 		affecting.embed(O)
 
 
-/mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
+mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
 	if (gloves)
 		gloves.add_blood(source)
 		gloves:transfer_blood = amount
@@ -502,7 +502,7 @@ meteor_act
 		bloody_hands_mob = source
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
-/mob/living/carbon/human/proc/bloody_body(var/mob/living/source)
+mob/living/carbon/human/proc/bloody_body(var/mob/living/source)
 	if(wear_suit)
 		wear_suit.add_blood(source)
 		update_inv_wear_suit(0)
@@ -510,7 +510,7 @@ meteor_act
 		w_uniform.add_blood(source)
 		update_inv_w_uniform(0)
 
-/mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage, var/def_zone)
+mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage, var/def_zone)
 
 	// Tox and oxy don't matter to suits.
 	if(damtype != BURN && damtype != BRUTE) return
@@ -527,7 +527,7 @@ meteor_act
 	var/penetrated_dam = max(0,(damage - SS.breach_threshold))
 	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
 
-/mob/living/carbon/human/reagent_permeability()
+mob/living/carbon/human/reagent_permeability()
 	var/perm = 0
 
 	var/list/perm_by_part = list(
@@ -565,7 +565,7 @@ meteor_act
 
 // This is for preventing harm by being covered in water, which only prometheans need to deal with.
 // This is not actually used for now since the code for prometheans gets changed a lot.
-/mob/living/carbon/human/get_water_protection()
+mob/living/carbon/human/get_water_protection()
 	var/protection = ..() // Todo: Replace with species var later.
 	if(protection == 1) // No point doing permeability checks if it won't matter.
 		return protection
@@ -577,7 +577,7 @@ meteor_act
 	return 1-converted_protection
 
 
-/mob/living/carbon/human/shank_attack(obj/item/W, obj/item/grab/G, mob/user, hit_zone)
+mob/living/carbon/human/shank_attack(obj/item/W, obj/item/grab/G, mob/user, hit_zone)
 
 	if(!..())
 		return 0

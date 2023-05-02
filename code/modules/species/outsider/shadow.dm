@@ -1,4 +1,4 @@
-/datum/species/shadow
+datum/species/shadow
 	uid = SPECIES_ID_SHADOW
 	name = SPECIES_SHADOW
 	name_plural = "shadows"
@@ -37,7 +37,7 @@
 		/datum/unarmed_attack/bite/sharp,
 	)
 
-/datum/species/shadow/handle_death(var/mob/living/carbon/human/H)
+datum/species/shadow/handle_death(var/mob/living/carbon/human/H)
 	spawn(1)
 		new /obj/effect/debris/cleanable/ash(H.loc)
 		qdel(H)

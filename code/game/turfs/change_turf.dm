@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	/turf/baseturf_bottom,
 )))
 
-/turf/proc/empty(turf_type=/turf/space, baseturf_type, list/ignore_typecache, flags)
+turf/proc/empty(turf_type=/turf/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
 	var/static/list/ignored_atoms = typecacheof(list(/mob/observer, /obj/landmark, /atom/movable/lighting_overlay, /obj/effect/shuttle_landmark))
 	var/list/allowed_contents = typecache_filter_list_reverse(get_all_contents_ignoring(ignore_typecache), ignored_atoms)
@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	if(turf_type)
 		ChangeTurf(turf_type)
 
-/turf/proc/CopyTurf(turf/T, copy_flags = NONE)
+turf/proc/CopyTurf(turf/T, copy_flags = NONE)
 	if(T.type != type)
 		T.ChangeTurf(type)
 	if(T.icon_state != icon_state)
@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 /**
  * get what /turf/baseturf_bottom should be
  */
-/turf/proc/baseturf_core()
+turf/proc/baseturf_core()
 	// todo: this is shitcode, pull it out on maploader refactor.
 	// this is very obviously a copypaste from ChangeTurf.
 	. = SSmapping.level_trait(z, ZTRAIT_BASETURF) || GLOB.using_map.base_turf_by_z["[z]"] || /turf/space
@@ -54,14 +54,14 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 /**
  * get baseturf on bottom
  */
-/turf/proc/baseturf_bottom()
+turf/proc/baseturf_bottom()
 	. = islist(baseturfs)? baseturfs[1] : baseturfs
 	return (. == /turf/baseturf_bottom)? baseturf_core() : .
 
 /**
  * get baseturf underneath
  */
-/turf/proc/baseturf_underneath()
+turf/proc/baseturf_underneath()
 	. = islist(baseturfs)? baseturfs[length(baseturfs)] : baseturfs
 	// check if it's bottom, if it is let bottom proc handle
 	// if it's not bottom but another baseturf we assume it's fine
@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 
 // Creates a new turf
 // new_baseturfs can be either a single type or list of types, formated the same as baseturfs. see turf.dm
-/turf/proc/ChangeTurf(path, list/new_baseturfs, flags)
+turf/proc/ChangeTurf(path, list/new_baseturfs, flags)
 	switch(path)
 		if(null)
 			return
@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	return new_turf
 
 // todo: zas refactor
-/turf/simulated/ChangeTurf(path, list/new_baseturfs, flags)
+turf/simulated/ChangeTurf(path, list/new_baseturfs, flags)
 	// invalidate zone
 	if(has_valid_zone())
 		if(can_safely_remove_from_zone())
@@ -230,7 +230,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 		air.parse_gas_string(initial_gas_mix, src)
 
 /// Take off the top layer turf and replace it with the next baseturf down
-/turf/proc/ScrapeAway(amount=1, flags)
+turf/proc/ScrapeAway(amount=1, flags)
 	if(!amount)
 		return
 	if(length(baseturfs))
@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
  * scrape away a turf from the bottom above logically multiz hole baseturfs
  * used for shuttle ceilings
  */
-/turf/proc/ScrapeFromLogicalBottom(flags, this_type_only)
+turf/proc/ScrapeFromLogicalBottom(flags, this_type_only)
 	// if we're already logically bottomless, don't bother
 	if(GLOB.multiz_hole_baseturfs[src.type])
 		return
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
  * put a turf in from the bottom above logically multiz hole baseturfs. can changeturf.
  * used for shuttle ceilings
  */
-/turf/proc/PlaceBelowLogicalBottom(type, flags)
+turf/proc/PlaceBelowLogicalBottom(type, flags)
 	ASSERT(!GLOB.multiz_hole_baseturfs[type])
 	// if we're already bottomless, just place on us
 	if(GLOB.multiz_hole_baseturfs[src.type])
@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
  * put a turf one below the logical top. can changeturf if logical top is a hole.
  * used for shuttle floors
  */
-/turf/proc/PlaceBelowLogicalTop(type, flags)
+turf/proc/PlaceBelowLogicalTop(type, flags)
 	ASSERT(!GLOB.multiz_hole_baseturfs[type])
 	// if we're already bottomless, just place on us
 	if(GLOB.multiz_hole_baseturfs[src.type])
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 // Take the input as baseturfs and put it underneath the current baseturfs
 // If fake_turf_type is provided and new_baseturfs is not the baseturfs list will be created identical to the turf type's
 // If both or just new_baseturfs is provided they will be inserted below the existing baseturfs
-/turf/proc/PlaceOnBottom(list/new_baseturfs, turf/fake_turf_type)
+turf/proc/PlaceOnBottom(list/new_baseturfs, turf/fake_turf_type)
 	if(fake_turf_type)
 		if(!new_baseturfs)
 			if(!length(baseturfs))
@@ -354,7 +354,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
  * WARNING WARNING: CITRP EDIT: /turf/closed check replaced with TURF DENSITY CHECK.
  * every if(!density) is a if(!istype(src, /turf/closed)) in this version.
  */
-/turf/proc/PlaceOnTop(list/new_baseturfs, turf/fake_turf_type, flags)
+turf/proc/PlaceOnTop(list/new_baseturfs, turf/fake_turf_type, flags)
 	var/area/turf_area = loc
 	if(new_baseturfs && !length(new_baseturfs))
 		new_baseturfs = list(new_baseturfs)
@@ -401,7 +401,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 
 // Copy an existing turf and put it on top
 // Returns the new turf
-/turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY, copy_air = FALSE)
+turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY, copy_air = FALSE)
 	var/list/new_baseturfs = list()
 	new_baseturfs += baseturfs
 	new_baseturfs += type
@@ -423,16 +423,16 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	return newT
 
 //If you modify this function, ensure it works correctly with lateloaded map templates.
-/turf/proc/AfterChange(flags, oldType) //called after a turf has been replaced in ChangeTurf()
+turf/proc/AfterChange(flags, oldType) //called after a turf has been replaced in ChangeTurf()
 	levelupdate()
 	if (above)
 		above.update_mimic()
 
-/turf/proc/RemoveLattice()
+turf/proc/RemoveLattice()
 	for(var/obj/structure/lattice/L in src)
 		qdel(L)
 
-/turf/proc/ReplaceWithLattice()
+turf/proc/ReplaceWithLattice()
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	if(!(locate(/obj/structure/lattice) in .))
 		new /obj/structure/lattice(.)

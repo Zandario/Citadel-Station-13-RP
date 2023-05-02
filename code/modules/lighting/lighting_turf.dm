@@ -1,4 +1,4 @@
-/turf
+turf
 	luminosity = 1
 
 	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
@@ -25,7 +25,7 @@
 	var/tmp/ambient_light_old_g = 0
 	var/tmp/ambient_light_old_b = 0
 
-/turf/vv_edit_var(var_name, var_value)
+turf/vv_edit_var(var_name, var_value)
 	switch (var_name)
 		if (NAMEOF(src, ambient_light))
 			if (isnull(var_value))
@@ -42,7 +42,7 @@
 
 	return ..()
 
-/turf/proc/set_ambient_light(color, multiplier)
+turf/proc/set_ambient_light(color, multiplier)
 	if (color == ambient_light && multiplier == ambient_light_multiplier)
 		return
 
@@ -53,7 +53,7 @@
 
 	update_ambient_light()
 
-/turf/proc/replace_ambient_light(old_color, new_color, old_multiplier, new_multiplier = 0)
+turf/proc/replace_ambient_light(old_color, new_color, old_multiplier, new_multiplier = 0)
 	if (!TURF_IS_AMBIENT_LIT_UNSAFE(src))
 		add_ambient_light(new_color, new_multiplier)
 		return
@@ -75,7 +75,7 @@
 
 	add_ambient_light_raw(dr, dg, db)
 
-/turf/proc/add_ambient_light(color, multiplier, update = TRUE)
+turf/proc/add_ambient_light(color, multiplier, update = TRUE)
 	if (!color)
 		return
 
@@ -89,7 +89,7 @@
 
 	add_ambient_light_raw(ambient_r, ambient_g, ambient_b, update)
 
-/turf/proc/add_ambient_light_raw(lr, lg, lb, update = TRUE)
+turf/proc/add_ambient_light_raw(lr, lg, lb, update = TRUE)
 	if (!lr && !lg && !lb)
 		if (!ambient_light_old_r || !ambient_light_old_g || !ambient_light_old_b)
 			ambient_active = FALSE
@@ -123,14 +123,14 @@
 	for (var/datum/lighting_corner/C in corners)
 		C.update_ambient_lumcount(lr, lg, lb, !update)
 
-/turf/proc/clear_ambient_light()
+turf/proc/clear_ambient_light()
 	if (ambient_light == null)
 		return
 
 	ambient_light = null
 	update_ambient_light()
 
-/turf/proc/update_ambient_light(no_corner_update = FALSE)
+turf/proc/update_ambient_light(no_corner_update = FALSE)
 	// These are deltas.
 	var/ambient_r = 0
 	var/ambient_g = 0
@@ -149,20 +149,20 @@
 	add_ambient_light_raw(ambient_r, ambient_g, ambient_b, !no_corner_update)
 
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
-/turf/proc/reconsider_lights()
+turf/proc/reconsider_lights()
 	var/datum/light_source/L
 	for (var/thing in affecting_lights)
 		L = thing
 		L.vis_update()
 
 // Forces a lighting update. Reconsider lights is preferred when possible.
-/turf/proc/force_update_lights()
+turf/proc/force_update_lights()
 	var/datum/light_source/L
 	for (var/thing in affecting_lights)
 		L = thing
 		L.force_update()
 
-/turf/proc/lighting_clear_overlay()
+turf/proc/lighting_clear_overlay()
 	if (lighting_overlay)
 		if (lighting_overlay.loc != src)
 			stack_trace("Lighting overlay variable on turf [log_info_line(src)] is insane, lighting overlay actually located on [log_info_line(lighting_overlay.loc)]!")
@@ -174,7 +174,7 @@
 		C.update_active()
 
 // Builds a lighting overlay for us, but only if our area is dynamic.
-/turf/proc/lighting_build_overlay(now = FALSE)
+turf/proc/lighting_build_overlay(now = FALSE)
 	if (lighting_overlay)
 		CRASH("Attempted to create lighting_overlay on tile that already had one.")
 
@@ -193,7 +193,7 @@
 				C.active = TRUE
 
 // Returns the average color of this tile. Roughly corresponds to the color of a single old-style lighting overlay.
-/turf/proc/get_avg_color()
+turf/proc/get_avg_color()
 	if (!lighting_overlay)
 		return null
 
@@ -215,7 +215,7 @@
 #define SCALE(targ,min,max) (targ - min) / (max - min)
 
 // Used to get a scaled lumcount.
-/turf/proc/get_lumcount(minlum = 0, maxlum = 1)
+turf/proc/get_lumcount(minlum = 0, maxlum = 1)
 	if (!lighting_overlay)
 		return 0.5
 
@@ -232,7 +232,7 @@
 #undef SCALE
 
 // Can't think of a good name, this proc will recalculate the has_opaque_atom variable.
-/turf/proc/recalc_atom_opacity()
+turf/proc/recalc_atom_opacity()
 #ifdef AO_USE_LIGHTING_OPACITY
 	var/old = has_opaque_atom
 #endif
@@ -252,7 +252,7 @@
 		regenerate_ao()
 #endif
 
-/turf/Exited(atom/movable/Obj, atom/newloc)
+turf/Exited(atom/movable/Obj, atom/newloc)
 	. = ..()
 
 	if (!Obj)
@@ -273,7 +273,7 @@
 
 // This is inlined in lighting_source.dm.
 // Update it too if you change this.
-/turf/proc/generate_missing_corners()
+turf/proc/generate_missing_corners()
 	if (!TURF_IS_DYNAMICALLY_LIT_UNSAFE(src) && !light_source_solo && !light_source_multi && !(mz_flags & MZ_ALLOW_LIGHTING) && !ambient_light && !ambient_has_indirect)
 		return
 

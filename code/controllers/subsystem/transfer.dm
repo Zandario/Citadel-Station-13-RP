@@ -9,13 +9,13 @@ SUBSYSTEM_DEF(transfer)
 // should be a config someday lol
 #define NUMBER_OF_VOTE_EXTENSIONS 2
 
-/datum/controller/subsystem/transfer/Initialize()
+datum/controller/subsystem/transfer/Initialize()
 	timerbuffer = config_legacy.vote_autotransfer_initial
 	shift_hard_end = config_legacy.vote_autotransfer_initial + (config_legacy.vote_autotransfer_interval * NUMBER_OF_VOTE_EXTENSIONS) //Change this "1" to how many extend votes you want there to be.
 	shift_last_vote = shift_hard_end - config_legacy.vote_autotransfer_interval
 	return ..()
 
-/datum/controller/subsystem/transfer/fire(resumed)
+datum/controller/subsystem/transfer/fire(resumed)
 	currenttick = currenttick + 1
 	if(round_duration_in_ds >= shift_hard_end - 1 MINUTE)
 		init_shift_change(null, 1)

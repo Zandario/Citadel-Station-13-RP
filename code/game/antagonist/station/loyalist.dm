@@ -1,6 +1,6 @@
 var/datum/antagonist/loyalists/loyalists
 
-/datum/antagonist/loyalists
+datum/antagonist/loyalists
 	id = MODE_LOYALIST
 	role_type = BE_LOYALIST
 	role_text = "Head Loyalist"
@@ -31,11 +31,11 @@ var/datum/antagonist/loyalists/loyalists
 	faction_invisible = 1
 	restricted_jobs = list("AI", "Cyborg")
 
-/datum/antagonist/loyalists/New()
+datum/antagonist/loyalists/New()
 	..()
 	loyalists = src
 
-/datum/antagonist/loyalists/create_global_objectives()
+datum/antagonist/loyalists/create_global_objectives()
 	if(!..())
 		return
 	global_objectives = list()

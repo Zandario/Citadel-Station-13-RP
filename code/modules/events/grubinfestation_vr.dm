@@ -1,4 +1,4 @@
-/datum/event/grub_infestation
+datum/event/grub_infestation
 	announceWhen	= 90
 	endWhen			= 200
 	var/spawncount = 1
@@ -6,7 +6,7 @@
 	var/list/grubs = list()
 	var/give_positions = 0
 
-/datum/event/grub_infestation/setup()
+datum/event/grub_infestation/setup()
 	announceWhen = rand(announceWhen, announceWhen + 60)
 
 	spawncount = rand(2 * severity, 6 * severity)
@@ -18,10 +18,10 @@
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent
 
-/datum/event/grub_infestation/announce()
+datum/event/grub_infestation/announce()
 	command_announcement.Announce("Solargrubs detected coming aboard [station_name()]. Please clear them out before this starts to affect productivity. All crew efforts are appreciated and encouraged.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 
-/datum/event/grub_infestation/start()
+datum/event/grub_infestation/start()
 	while((spawncount >= 1) && vents.len)
 		var/obj/vent = pick(vents)
 		new /mob/living/simple_mob/animal/solargrub_larva(get_turf(vent))
@@ -29,7 +29,7 @@
 		spawncount--
 	vents.Cut()
 
-/datum/event/grub_infestation/end()
+datum/event/grub_infestation/end()
 	var/list/area_names = list()
 	for(var/grub in GLOB.solargrubs)
 		var/mob/living/G = grub

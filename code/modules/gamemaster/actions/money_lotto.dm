@@ -1,11 +1,11 @@
-/datum/gm_action/money_lotto
+datum/gm_action/money_lotto
 	name = "lottery win"
 	departments = list(DEPARTMENT_EVERYONE)
 	var/winner_name = "John Smith"
 	var/winner_sum = 0
 	var/deposit_success = 0
 
-/datum/gm_action/money_lotto/start()
+datum/gm_action/money_lotto/start()
 	..()
 	winner_sum = pick(5000, 10000, 50000, 100000, 500000, 1000000, 1500000)
 	if(GLOB.all_money_accounts.len)
@@ -25,7 +25,7 @@
 
 			deposit_success = 1
 
-/datum/gm_action/money_lotto/announce()
+datum/gm_action/money_lotto/announce()
 	var/author = "[GLOB.using_map.company_name] Editor"
 	var/channel = "The [GLOB.using_map.starsys_name] Times"
 
@@ -35,5 +35,5 @@
 
 	news_network.SubmitArticle(body, author, channel, null, 1)
 
-/datum/gm_action/money_lotto/get_weight()
+datum/gm_action/money_lotto/get_weight()
 	return 25 * metric.count_people_in_department(DEPARTMENT_EVERYONE)

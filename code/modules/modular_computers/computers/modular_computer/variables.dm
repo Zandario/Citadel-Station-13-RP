@@ -1,6 +1,6 @@
 // This is the base type that handles everything. Subtypes can be easily created by tweaking variables in this file to your liking.
 
-/obj/item/modular_computer
+obj/item/modular_computer
 	name = "Modular Computer"
 	desc = "A modular computer. You shouldn't see this."
 

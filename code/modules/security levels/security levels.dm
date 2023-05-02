@@ -8,10 +8,10 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 //6 = code delta
 
 //config_legacy.alert_desc_blue_downto
-/var/datum/legacy_announcement/priority/security/security_announcement_up = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/alert_levels/alert_raise.ogg'))
-/var/datum/legacy_announcement/priority/security/security_announcement_down = new(do_log = 0, do_newscast = 1)
+var/datum/legacy_announcement/priority/security/security_announcement_up = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/alert_levels/alert_raise.ogg'))
+var/datum/legacy_announcement/priority/security/security_announcement_down = new(do_log = 0, do_newscast = 1)
 
-/proc/set_security_level(var/level)
+proc/set_security_level(var/level)
 	switch(level)
 		if("green")
 			level = SEC_LEVEL_GREEN
@@ -86,7 +86,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 		admin_chat_message(message = "Security level is now: [uppertext(get_security_level())]", color = "#CC2222")
 
-/proc/get_security_level()
+proc/get_security_level()
 	switch(GLOB.security_level)
 		if(SEC_LEVEL_GREEN)
 			return "green"
@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
-/proc/num2seclevel(var/num)
+proc/num2seclevel(var/num)
 	switch(num)
 		if(SEC_LEVEL_GREEN)
 			return "green"
@@ -120,7 +120,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
-/proc/seclevel2num(var/seclevel)
+proc/seclevel2num(var/seclevel)
 	switch( lowertext(seclevel) )
 		if("green")
 			return SEC_LEVEL_GREEN
@@ -139,18 +139,18 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 
 /*DEBUG
-/mob/verb/set_thing0()
+mob/verb/set_thing0()
 	set_security_level(0)
-/mob/verb/set_thing1()
+mob/verb/set_thing1()
 	set_security_level(1)
-/mob/verb/set_thing2()
+mob/verb/set_thing2()
 	set_security_level(2)
-/mob/verb/set_thing3()
+mob/verb/set_thing3()
 	set_security_level(3)
-/mob/verb/set_thing4()
+mob/verb/set_thing4()
 	set_security_level(4)
-/mob/verb/set_thing5()
+mob/verb/set_thing5()
 	set_security_level(5)
-/mob/verb/set_thing6()
+mob/verb/set_thing6()
 	set_security_level(6)
 */

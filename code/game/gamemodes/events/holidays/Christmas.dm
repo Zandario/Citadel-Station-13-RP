@@ -1,4 +1,4 @@
-/proc/Christmas_Game_Start()
+proc/Christmas_Game_Start()
 	for(var/obj/structure/flora/tree/pine/xmas in world)
 		if(isNotStationLevel(xmas.z))	continue
 		for(var/turf/simulated/floor/T in orange(1,xmas))
@@ -7,7 +7,7 @@
 	//for(var/mob/living/simple_mob/corgi/Ian/Ian in GLOB.mob_list)
 	//	Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
 
-/proc/ChristmasEvent()
+proc/ChristmasEvent()
 	for(var/obj/structure/flora/tree/pine/xmas in world)
 		var/mob/living/simple_mob/animal/space/tree/evil_tree = new /mob/living/simple_mob/animal/space/tree(xmas.loc)
 		evil_tree.icon_state = xmas.icon_state
@@ -16,14 +16,14 @@
 		evil_tree.icon_gib = evil_tree.icon_state
 		qdel(xmas)
 
-/obj/item/toy/xmas_cracker
+obj/item/toy/xmas_cracker
 	name = "xmas cracker"
 	icon = 'icons/obj/christmas.dmi'
 	icon_state = "cracker"
 	desc = "Directions for use: Requires two people, one to pull each end."
 	var/cracked = 0
 
-/obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
+obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && (istype(target,/mob/living/silicon) || (istype(target,/mob/living/carbon/human) && !target.get_active_held_item())) && target.stat == CONSCIOUS)
 		target.visible_message("<span class='notice'>[user] and [target] pop \an [src]! *pop*</span>", "<span class='notice'>You pull \an [src] with [target]! *pop*</span>", "<span class='notice'>You hear a *pop*.</span>")
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
@@ -50,11 +50,10 @@
 		return 1
 	return ..()
 
-/obj/item/clothing/head/festive
+obj/item/clothing/head/festive
 	name = "festive paper hat"
 	icon_state = "xmashat"
 	desc = "A crappy paper hat that you are REQUIRED to wear."
 	inv_hide_flags = 0
 	body_cover_flags = 0
 	armor_type = /datum/armor/none
-

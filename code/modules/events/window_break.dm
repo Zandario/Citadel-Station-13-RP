@@ -1,4 +1,4 @@
-/datum/event/window_break
+datum/event/window_break
 	var/obj/structure/window/chosen_window
 	var/list/obj/structure/window/collateral_windows
 	var/turf/chosen_location
@@ -7,7 +7,7 @@
 		/area/crew_quarters
 	)
 
-/datum/event/window_break/setup()
+datum/event/window_break/setup()
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)
 	//try 10 times
 	for(var/i in 1 to 10)
@@ -27,7 +27,7 @@
 			return
 
 //TL;DR: breadth first search for all connected turfs with windows
-/datum/event/window_break/proc/gather_collateral_windows(var/obj/structure/window/target_window)
+datum/event/window_break/proc/gather_collateral_windows(var/obj/structure/window/target_window)
 	var/list/turf/frontier_set = list(target_window.loc)
 	var/list/obj/structure/window/result_set = list()
 	var/list/turf/explored_set = list()
@@ -57,10 +57,10 @@
 			if(!(neighbor in frontier_set) && !(neighbor in explored_set))
 				frontier_set += neighbor
 	return result_set
-	
 
 
-/datum/event/window_break/start()
+
+datum/event/window_break/start()
 	if(!chosen_window)
 		return
 	chosen_window.shatter(0)
@@ -69,5 +69,5 @@
 		sleep(rand(1,20))
 		current_collateral.take_damage(current_collateral.health - (current_collateral.maxhealth / 5)) //set to 1/5th health
 
-/datum/event/window_break/announce()
+datum/event/window_break/announce()
 	command_announcement.Announce("Structural integrity of windows at [chosen_location.loc.name] is failing. Immediate repair or replacement is advised.", "Structural Alert")

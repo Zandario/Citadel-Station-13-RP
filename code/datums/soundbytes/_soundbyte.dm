@@ -22,7 +22,7 @@
  * - length - manual set for now, rust later tm
  * - id - defaults to path for preloaded, otherwise should be made in init
  */
-/datum/soundbyte
+datum/soundbyte
 	/// unique id
 	var/id
 	/// name
@@ -38,31 +38,31 @@
 	/// should we register by type to global lookup? obviously this only works if we're NOT runtime loaded!
 	var/is_sfx = FALSE
 
-/datum/soundbyte/Destroy()
+datum/soundbyte/Destroy()
 	// it's okay
 	// let go.
 	path = null
 	return ..()
 
-/datum/soundbyte/proc/get_asset()
+datum/soundbyte/proc/get_asset()
 	return path
 
-/datum/soundbyte/proc/instance_sound()
+datum/soundbyte/proc/instance_sound()
 	return sound(get_asset())
 
-/datum/soundbyte/proc/get_length()
+datum/soundbyte/proc/get_length()
 	return length? length : 10 SECONDS		// screw you when do we get rustg for this
 
 /**
  * managed sound file groups holding filenames
  * has no runtime load detection
  */
-/datum/soundbyte/grouped
+datum/soundbyte/grouped
 	path = list()
 	runtime_loaded = FALSE
 
-/datum/soundbyte/grouped/get_asset()
+datum/soundbyte/grouped/get_asset()
 	return pick(path)
 
-/datum/soundbyte/grouped/get_length()
+datum/soundbyte/grouped/get_length()
 	return length

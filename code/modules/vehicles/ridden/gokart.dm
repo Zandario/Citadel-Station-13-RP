@@ -1,4 +1,4 @@
-/obj/vehicle/ridden/gokart
+obj/vehicle/ridden/gokart
 	name = "go-kart"
 	desc = "Moves fast. Built for smooth, purpose-built raceways."
 	icon = 'icons/obj/gokart.dmi'
@@ -7,12 +7,12 @@
 	max_integrity = 200
 	riding_handler_type = /datum/component/riding_handler/vehicle/gokart
 
-/obj/vehicle/ridden/gokart/random/Initialize(mapload)
+obj/vehicle/ridden/gokart/random/Initialize(mapload)
 	. = ..()
 	icon_state = pick("orange","black","blue","red","yellow","purple","brown","pink","white","cyan","lime","green","rainbow")
 	update_icon()
 
-/datum/component/riding_handler/vehicle/gokart
+datum/component/riding_handler/vehicle/gokart
 	vehicle_move_delay = 1
 	allowed_turf_types = list(
 		/turf/simulated,
@@ -22,7 +22,7 @@
 	CF_RIDING_HANDLER_IS_CONTROLLABLE)
 
 
-/datum/component/riding_handler/vehicle/gokart
+datum/component/riding_handler/vehicle/gokart
 	rider_offsets = list(
 		list(
 			list(0, 0, -0.1, null),

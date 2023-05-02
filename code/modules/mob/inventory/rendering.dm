@@ -143,7 +143,7 @@
  *
  * ? Everything else: read the procs.
  */
-/obj/item
+obj/item
 	//! LEGACY
 	//** These specify item/icon overrides for _slots_
 
@@ -234,7 +234,7 @@
 	/// vv only; set to override layer
 	VAR_PRIVATE/worn_layer_override
 
-/obj/item/Initialize(mapload)
+obj/item/Initialize(mapload)
 	. = ..()
 	CONSTRUCT_BODYTYPES(worn_bodytypes)
 	CONSTRUCT_BODYTYPES(worn_bodytypes_invisible)
@@ -246,7 +246,7 @@
  * @params
  * * M - the mob we're rendering
  */
-/obj/item/proc/render_mob_appearance(mob/M, slot_id_or_hand_index, bodytype = BODYTYPE_DEFAULT)
+obj/item/proc/render_mob_appearance(mob/M, slot_id_or_hand_index, bodytype = BODYTYPE_DEFAULT)
 	// SHOULD_NOT_OVERRIDE(TRUE) // if you think you need to, rethink.
 	// todo: eh reevaluate later
 	// determine if in hands
@@ -262,7 +262,7 @@
 
 	return _render_mob_appearance(M, slot_meta, inhands, bodytype, resolved[WORN_DATA_ICON], resolved[WORN_DATA_STATE], resolved[WORN_DATA_LAYER], resolved [WORN_DATA_SIZE_X], resolved[WORN_DATA_SIZE_Y], resolved[WORN_DATA_ALIGN_Y])
 
-/obj/item/proc/_render_mob_appearance(mob/M, datum/inventory_slot_meta/slot_meta, inhands, bodytype, icon_used, state_used, layer_used, dim_x, dim_y, align_y)
+obj/item/proc/_render_mob_appearance(mob/M, datum/inventory_slot_meta/slot_meta, inhands, bodytype, icon_used, state_used, layer_used, dim_x, dim_y, align_y)
 	SHOULD_NOT_OVERRIDE(TRUE) // if you think you need to, rethink.
 	PRIVATE_PROC(TRUE) // if you think you need to call this, rethink.
 	var/list/additional = render_additional(M, icon_used, state_used, layer_used, dim_x, dim_y, align_y, bodytype, inhands, slot_meta)
@@ -288,7 +288,7 @@
  *
  * icon/icon state/layer information is included in the mutable appearance
  */
-/obj/item/proc/render_apply_custom(mob/M, mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used, align_y)
+obj/item/proc/render_apply_custom(mob/M, mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used, align_y)
 	return MA
 
 /**
@@ -296,13 +296,13 @@
  *
  * icon/icon state/layer information is included in the mutable appearance
  */
-/obj/item/proc/render_apply_blood(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used)
+obj/item/proc/render_apply_blood(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used)
 	return MA
 
 /**
  * override to apply overlays to our current mutable appearance; called first
  */
-/obj/item/proc/render_apply_overlays(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used)
+obj/item/proc/render_apply_overlays(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta, icon_used)
 	if(addblends)
 		var/mutable_appearance/adding = mutable_appearance(icon = MA.icon, icon_state = addblends)
 		adding.blend_mode = BLEND_ADD
@@ -312,7 +312,7 @@
 /**
  * override to include additional appearances while rendering
  */
-/obj/item/proc/render_additional(mob/M, icon/icon_used, state_used, layer_used, dim_x, dim_y, align_y, bodytype, inhands, datum/inventory_slot_meta/slot_meta)
+obj/item/proc/render_additional(mob/M, icon/icon_used, state_used, layer_used, dim_x, dim_y, align_y, bodytype, inhands, datum/inventory_slot_meta/slot_meta)
 	RETURN_TYPE(/list)
 	return list()
 
@@ -325,7 +325,7 @@
  * - inhands - if we're going to inhands
  * - bodytype - bodytype in question
  */
-/obj/item/proc/resolve_worn_assets(mob/M, datum/inventory_slot_meta/slot_meta, inhands, bodytype)
+obj/item/proc/resolve_worn_assets(mob/M, datum/inventory_slot_meta/slot_meta, inhands, bodytype)
 	if(istext(slot_meta))
 		slot_meta = resolve_inventory_slot_meta(slot_meta)
 	var/list/data = new /list(WORN_DATA_LIST_SIZE)
@@ -420,7 +420,7 @@
 
 	return data
 
-/obj/item/proc/debug_worn_assets(slot_or_id, mob/M = worn_mob(), bodytype)
+obj/item/proc/debug_worn_assets(slot_or_id, mob/M = worn_mob(), bodytype)
 	var/mob/living/carbon/human/H = ishuman(M)? M : null
 	var/datum/inventory_slot_meta/slot_meta
 	if(isnull(slot_or_id))
@@ -435,16 +435,16 @@
 	.[WORN_DATA_ICON] = "[.[WORN_DATA_ICON]]"
 
 // todo: remove, aka get rid of fucking uniform _s state
-/obj/item/proc/resolve_legacy_state(mob/M, datum/inventory_slot_meta/slot_meta, inhands, bodytype)
+obj/item/proc/resolve_legacy_state(mob/M, datum/inventory_slot_meta/slot_meta, inhands, bodytype)
 	return (item_state_slots?[slot_meta.id]) || (inhands? inhand_state : worn_state) || item_state || icon_state
 
-/obj/item/proc/resolve_worn_state(inhands, slot_key, bodytype)
+obj/item/proc/resolve_worn_state(inhands, slot_key, bodytype)
 	// PRIVATE_PROC(TRUE)
 	if(inhands)
 		return "[base_worn_state(inhands, slot_key, bodytype)][(worn_render_flags & WORN_RENDER_INHAND_ONE_FOR_ALL)? "_all" : "_[slot_key]"]"
 	return "[base_worn_state(inhands, slot_key, bodytype)][(worn_render_flags & WORN_RENDER_SLOT_ONE_FOR_ALL)? "_all" : "_[slot_key]"][((bodytype != BODYTYPE_DEFAULT) && CHECK_BODYTYPE(worn_bodytypes, bodytype))? "_[bodytype_to_string(bodytype)]" : ""]"
 
-/obj/item/proc/base_worn_state(inhands, slot_key, bodytype)
+obj/item/proc/base_worn_state(inhands, slot_key, bodytype)
 	if(inhands)
 		return inhand_state || icon_state
 	return worn_state || icon_state

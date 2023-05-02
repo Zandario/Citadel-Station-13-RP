@@ -1,8 +1,8 @@
-/datum/ai_emotion
+datum/ai_emotion
 	var/overlay
 	var/ckey
 
-/datum/ai_emotion/New(over, key)
+datum/ai_emotion/New(over, key)
 	overlay = over
 	ckey = key
 
@@ -30,7 +30,7 @@ var/list/ai_status_emotions = list(
 	"Tribunal Malfunctioning"	= new /datum/ai_emotion("ai_tribunal_malf", "serithi")
 	)
 
-/proc/get_ai_emotions(ckey)
+proc/get_ai_emotions(ckey)
 	var/list/emotions = new
 	for(var/emotion_name in ai_status_emotions)
 		var/datum/ai_emotion/emotion = ai_status_emotions[emotion_name]
@@ -39,7 +39,7 @@ var/list/ai_status_emotions = list(
 
 	return emotions
 
-/proc/set_ai_status_displays(mob/user as mob)
+proc/set_ai_status_displays(mob/user as mob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	for (var/obj/machinery/M in GLOB.machines) //change status
@@ -56,7 +56,7 @@ var/list/ai_status_emotions = list(
 			else
 				SD.friendc = 0
 
-/obj/machinery/ai_status_display
+obj/machinery/ai_status_display
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
 	name = "AI display"
@@ -72,24 +72,24 @@ var/list/ai_status_emotions = list(
 
 	var/emotion = "Neutral"
 
-/obj/machinery/ai_status_display/attackby(I as obj, user as mob)
+obj/machinery/ai_status_display/attackby(I as obj, user as mob)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	else
 		attack_hand(user)
 	return
 
-/obj/machinery/ai_status_display/attack_ai/(mob/user as mob)
+obj/machinery/ai_status_display/attack_ai/(mob/user as mob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	var/datum/ai_emotion/ai_emotion = ai_status_emotions[emote]
 	set_picture(ai_emotion.overlay)
 
 
-/obj/machinery/ai_status_display/process(delta_time)
+obj/machinery/ai_status_display/process(delta_time)
 	return
 
-/obj/machinery/ai_status_display/proc/update()
+obj/machinery/ai_status_display/proc/update()
 	switch (mode)
 		if (0) //Blank
 			cut_overlays()
@@ -101,13 +101,13 @@ var/list/ai_status_emotions = list(
 		if (2)	// BSOD
 			set_picture("ai_bsod")
 
-/obj/machinery/ai_status_display/proc/set_picture(state)
+obj/machinery/ai_status_display/proc/set_picture(state)
 	picture_state = state
 	if(overlays.len)
 		cut_overlays()
 	add_overlay(picture_state)
 
-/obj/machinery/ai_status_display/power_change()
+obj/machinery/ai_status_display/power_change()
 	..()
 	if(machine_stat & NOPOWER)
 		if(overlays.len)

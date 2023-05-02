@@ -4,7 +4,7 @@
  */
 
 /// Admin music volume, from 0 to 1.
-/client/var/admin_music_volume = 1
+client/var/admin_music_volume = 1
 
 /**
  * public
@@ -19,7 +19,7 @@
  * required url string Must be an https URL.
  * optional extra_data list Optional settings.
  */
-/datum/tgui_panel/proc/play_music(url, extra_data)
+datum/tgui_panel/proc/play_music(url, extra_data)
 	if(!is_ready())
 		return
 	if(!findtext(url, GLOB.is_http_protocol))
@@ -36,7 +36,7 @@
  *
  * Stops playing music through the browser.
  */
-/datum/tgui_panel/proc/stop_music()
+datum/tgui_panel/proc/stop_music()
 	if(!is_ready())
 		return
 	window.send_message("audio/stopMusic")

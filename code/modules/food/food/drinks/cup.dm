@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/drinks/cup
+obj/item/reagent_containers/food/drinks/cup
 	name = "coffee cup"
 	desc = "The container of oriental luxuries."
 	icon_state = "cup_empty"
@@ -6,7 +6,7 @@
 	volume = 30
 	center_of_mass = list("x"=16, "y"=16)
 
-/obj/item/reagent_containers/food/drinks/cup/on_reagent_change()
+obj/item/reagent_containers/food/drinks/cup/on_reagent_change()
 	..()
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
@@ -38,26 +38,26 @@
 		center_of_mass = list("x"=16, "y"=16)
 		return
 
-/obj/item/reagent_containers/food/drinks/sillycup
+obj/item/reagent_containers/food/drinks/sillycup
 	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = list()
 	volume = 10
 
-/obj/item/reagent_containers/food/drinks/sillycup/on_reagent_change(changetype)
+obj/item/reagent_containers/food/drinks/sillycup/on_reagent_change(changetype)
 	if(reagents.total_volume)
 		icon_state = "water_cup"
 	else
 		icon_state = "water_cup_e"
 
-/obj/item/reagent_containers/food/drinks/sillycup/smallcarton
+obj/item/reagent_containers/food/drinks/sillycup/smallcarton
 	name = "small carton"
 	desc = "A small carton, intended for holding drinks."
 	icon_state = "juicebox"
 	volume = 15 //I figure if you have to craft these it should at least be slightly better than something you can get for free from a watercooler
 
-/obj/item/reagent_containers/food/drinks/sillycup/smallcarton/on_reagent_change(changetype)
+obj/item/reagent_containers/food/drinks/sillycup/smallcarton/on_reagent_change(changetype)
 	if (reagents.reagent_list.len)
 		switch(reagents.get_master_reagent_id())
 			if("orangejuice")

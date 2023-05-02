@@ -25,7 +25,7 @@ Key procs
 * [update_movespeed](mob.html#proc/update_movespeed)
 */
 
-/datum/movespeed_modifier
+datum/movespeed_modifier
 	/// Whether or not this is a variable modifier. Variable modifiers can NOT be ever auto-cached. ONLY CHECKED VIA INITIAL(), EFFECTIVELY READ ONLY (and for very good reason)
 	var/variable = FALSE
 
@@ -56,7 +56,7 @@ Key procs
 
 
 
-/datum/movespeed_modifier/New()
+datum/movespeed_modifier/New()
 	. = ..()
 	if(!id)
 		id = "[type]" //We turn the path into a string.
@@ -64,7 +64,7 @@ Key procs
 /**
   * Returns new multiplicative movespeed after modification.
   */
-/datum/movespeed_modifier/proc/apply_multiplicative(existing, mob/target)
+datum/movespeed_modifier/proc/apply_multiplicative(existing, mob/target)
 	if(!complex_calculation || (multiplicative_slowdown > 0))		// we aren't limiting how much things can slowdown.. yet.
 		return existing + multiplicative_slowdown
 	var/current_tiles = 10 / max(existing, world.tick_lag)
@@ -76,7 +76,7 @@ Key procs
 GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 
 /// Grabs a STATIC MODIFIER datum from cache. YOU MUST NEVER EDIT THESE DATUMS, OR IT WILL AFFECT ANYTHING ELSE USING IT TOO!
-/proc/get_cached_movespeed_modifier(modtype)
+proc/get_cached_movespeed_modifier(modtype)
 	if(!ispath(modtype, /datum/movespeed_modifier))
 		CRASH("[modtype] is not a movespeed modification typepath.")
 	var/datum/movespeed_modifier/M = modtype
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	return M
 
 ///Add a move speed modifier to a mob. If a variable subtype is passed in as the first argument, it will make a new datum. If ID conflicts, it will overwrite the old ID.
-/mob/proc/add_movespeed_modifier(datum/movespeed_modifier/type_or_datum, update = TRUE)
+mob/proc/add_movespeed_modifier(datum/movespeed_modifier/type_or_datum, update = TRUE)
 	if(ispath(type_or_datum))
 		if(!initial(type_or_datum.variable))
 			type_or_datum = get_cached_movespeed_modifier(type_or_datum)
@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	return TRUE
 
 /// Remove a move speed modifier from a mob, whether static or variable.
-/mob/proc/remove_movespeed_modifier(datum/movespeed_modifier/type_id_datum, update = TRUE)
+mob/proc/remove_movespeed_modifier(datum/movespeed_modifier/type_id_datum, update = TRUE)
 	var/key
 	if(ispath(type_id_datum))
 		key = initial(type_id_datum.id) || "[type_id_datum]"		//id if set, path set to string if not.
@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	4. If any of the rest of the args are not null (see: multiplicative slowdown), modify the datum
 	5. Update if necessary
 */
-/mob/proc/add_or_update_variable_movespeed_modifier(datum/movespeed_modifier/type_id_datum, update = TRUE, multiplicative_slowdown)
+mob/proc/add_or_update_variable_movespeed_modifier(datum/movespeed_modifier/type_id_datum, update = TRUE, multiplicative_slowdown)
 	var/modified = FALSE
 	var/inject = FALSE
 	var/datum/movespeed_modifier/final
@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	return final
 
 /// Handles the special case of editing the movement var
-/mob/vv_edit_var(var_name, var_value)
+mob/vv_edit_var(var_name, var_value)
 	var/slowdown_edit = (var_name == NAMEOF(src, cached_multiplicative_slowdown))
 	var/diff
 	if(slowdown_edit && isnum(cached_multiplicative_slowdown) && isnum(var_value))
@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/admin_varedit, multiplicative_slowdown = diff)
 
 ///Is there a movespeed modifier for this mob
-/mob/proc/has_movespeed_modifier(datum/movespeed_modifier/datum_type_id)
+mob/proc/has_movespeed_modifier(datum/movespeed_modifier/datum_type_id)
 	var/key
 	if(ispath(datum_type_id))
 		key = initial(datum_type_id.id) || "[datum_type_id]"
@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	return LAZYACCESS(movespeed_modification, key)
 
 /// Set or update the global movespeed config on a mob
-/mob/proc/update_config_movespeed()
+mob/proc/update_config_movespeed()
 // todo: this
 /*
 	add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/mob_config_speedmod, multiplicative_slowdown = get_config_multiplicative_speed())
@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 */
 
 /// Get the global config movespeed of a mob by type
-/mob/proc/get_config_multiplicative_speed(floating = FALSE)
+mob/proc/get_config_multiplicative_speed(floating = FALSE)
 // todo: refactor mobs to use movespeed mods
 /*
 	var/list/read = floating? GLOB.mob_config_movespeed_type_lookup_floating : GLOB.mob_config_movespeed_type_lookup
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	return 0
 
 /// Go through the list of movespeed modifiers and calculate a final movespeed. ANY ADD/REMOVE DONE IN UPDATE_MOVESPEED MUST HAVE THE UPDATE ARGUMENT SET AS FALSE!
-/mob/proc/update_movespeed()
+mob/proc/update_movespeed()
 	. = 0
 	var/list/conflict_tracker = list()
 	for(var/datum/movespeed_modifier/M in get_movespeed_modifiers())
@@ -246,7 +246,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 #endif
 
 /// Get the move speed modifier datums of this mob
-/mob/proc/get_movespeed_modifiers()
+mob/proc/get_movespeed_modifiers()
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/id in movespeed_modification)
@@ -255,13 +255,13 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 		. += movespeed_modification[id]
 
 /// Get the movespeed modifier ids on this mob
-/mob/proc/get_movespeed_modifier_ids()
+mob/proc/get_movespeed_modifier_ids()
 	. = LAZYCOPY(movespeed_modification)
 	for(var/id in movespeed_mod_immunities)
 		. -= id
 
 /// Calculate the total slowdown of all movespeed modifiers
-/mob/proc/total_multiplicative_slowdown()
+mob/proc/total_multiplicative_slowdown()
 	. = 0
 	for(var/id in get_movespeed_modifiers())
 		var/datum/movespeed_modifier/M = movespeed_modification[id]
@@ -271,11 +271,11 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
   * Gets the movespeed modifier datum of a modifier on a mob. Returns null if not found.
   * DANGER: IT IS UP TO THE PERSON USING THIS TO MAKE SURE THE MODIFIER IS NOT MODIFIED IF IT HAPPENS TO BE GLOBAL/CACHED.
   */
-/mob/proc/get_movespeed_modifier_datum(id)
+mob/proc/get_movespeed_modifier_datum(id)
 	return movespeed_modification[id]
 
 /// Checks if a move speed modifier is valid and not missing any data
-/proc/movespeed_data_null_check(datum/movespeed_modifier/M)		//Determines if a data list is not meaningful and should be discarded.
+proc/movespeed_data_null_check(datum/movespeed_modifier/M)		//Determines if a data list is not meaningful and should be discarded.
 	. = TRUE
 	if(M.multiplicative_slowdown)
 		. = FALSE

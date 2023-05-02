@@ -4,14 +4,14 @@
 #define TORFILE "data/ToR_ban.bdb"
 ///~6 hours
 #define TOR_UPDATE_INTERVAL 216000
-/proc/ToRban_isbanned(var/ip_address)
+proc/ToRban_isbanned(var/ip_address)
 	var/savefile/F = new(TORFILE)
 	if(F)
 		if( ip_address in F.dir )
 			return 1
 	return 0
 
-/proc/ToRban_autoupdate()
+proc/ToRban_autoupdate()
 	var/savefile/F = new(TORFILE)
 	if(F)
 		var/last_update
@@ -20,7 +20,7 @@
 			ToRban_update()
 	return
 
-/proc/ToRban_update()
+proc/ToRban_update()
 	spawn(0)
 		log_misc("Downloading updated ToR data...")
 		var/http[] = world.Export("https://check.torproject.org/exit-addresses")
@@ -40,7 +40,7 @@
 			if(usr)	to_chat(usr, "ToRban updated.")
 		log_misc("ToR data update aborted: no data.")
 
-/client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
+client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
 	set category = "Server"
 	if(!holder)	return

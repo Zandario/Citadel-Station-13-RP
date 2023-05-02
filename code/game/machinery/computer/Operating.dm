@@ -1,6 +1,6 @@
 #define OP_COMPUTER_COOLDOWN 60
 
-/obj/machinery/computer/operating
+obj/machinery/computer/operating
 	name = "patient monitoring console"
 	density = TRUE
 	anchored = TRUE
@@ -27,7 +27,7 @@
 	var/choice = FALSE
 	var/nextTick = OP_COMPUTER_COOLDOWN
 
-/obj/machinery/computer/operating/Initialize(mapload)
+obj/machinery/computer/operating/Initialize(mapload)
 	. = ..()
 	for(var/direction in ALL_CARDINALS)
 		table = locate(/obj/machinery/optable, get_step(src, direction))
@@ -35,7 +35,7 @@
 			table.computer = src
 			break
 
-/obj/machinery/computer/operating/Destroy()
+obj/machinery/computer/operating/Destroy()
 	if(table)
 		table.computer = null
 		table = null
@@ -43,24 +43,24 @@
 		victim = null
 	return ..()
 
-/obj/machinery/computer/operating/attack_ai(mob/user)
+obj/machinery/computer/operating/attack_ai(mob/user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/operating/attack_hand(mob/user, list/params)
+obj/machinery/computer/operating/attack_hand(mob/user, list/params)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 	..()
 
-/obj/machinery/computer/operating/ui_interact(mob/user, datum/tgui/ui = null)
+obj/machinery/computer/operating/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "OperatingComputer", "Patient Monitor")
 		ui.open()
 
-/obj/machinery/computer/operating/ui_data(mob/user)
+obj/machinery/computer/operating/ui_data(mob/user)
 	var/data[0]
 	var/mob/living/carbon/human/occupant
 	if(table)
@@ -132,7 +132,7 @@
 
 	return data
 
-/obj/machinery/computer/operating/ui_act(action, params)
+obj/machinery/computer/operating/ui_act(action, params)
 	if(..())
 		return TRUE
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
@@ -167,7 +167,7 @@
 		else
 			return FALSE
 
-/obj/machinery/computer/operating/process(delta_time)
+obj/machinery/computer/operating/process(delta_time)
 	if(table && table.check_victim())
 		if(verbose)
 			if(patientName!=table.victim.name)
@@ -186,7 +186,7 @@
 					atom_say("[round(((victim.health / victim.maxHealth) * 100))]% health.")
 
 // Surgery Helpers
-/obj/machinery/computer/operating/proc/build_surgery_list(mob/user)
+obj/machinery/computer/operating/proc/build_surgery_list(mob/user)
 	if(!istype(victim))
 		return null
 
@@ -228,7 +228,7 @@
  * I have no idea why you would ever perform these surgeries, given that Bicaradine and Kelotane exist.
  * So I'm not even going to bother trying to represent them here. Fuck it.
  */
-/obj/machinery/computer/operating/proc/find_stage(var/obj/item/organ/external/E)
+obj/machinery/computer/operating/proc/find_stage(var/obj/item/organ/external/E)
 	. = "None."
 	switch(E.open)
 		if(1)
@@ -268,12 +268,12 @@
  * This converts a typepath into a pretty name.
  * As best as it can, anyways.
  */
-/proc/pretty_type(var/datum/A)
+proc/pretty_type(var/datum/A)
 	var/typeStr = "[A.type]"
 	. = copytext(typeStr, findlasttext(typeStr, "/") + 1, length(typeStr) + 1)
 	. = capitalize(replacetext(., "_", " "))
 
-/proc/get_surgery_steps_without_basetypes()
+proc/get_surgery_steps_without_basetypes()
 	var/static/list/good_surgeries = list()
 	if(LAZYLEN(good_surgeries))
 		return good_surgeries
@@ -300,7 +300,7 @@
  * All we have to do is check what surgeries can be done, like surgery mechanics themselves do.
  * Then, build a string telling the user what they can do next.
  */
-/obj/machinery/computer/operating/proc/find_next_steps(mob/user, zone)
+obj/machinery/computer/operating/proc/find_next_steps(mob/user, zone)
 	. = list()
 	for(var/datum/surgery_step/S in get_surgery_steps_without_basetypes())
 		if(S.can_use(user, victim, zone, null) && S.is_valid_target(victim))

@@ -1,4 +1,4 @@
-/datum/gm_action/window_break
+datum/gm_action/window_break
 	name = "window breach"
 	departments = list(DEPARTMENT_ENGINEERING)
 	chaotic = 5
@@ -10,7 +10,7 @@
 		/area/crew_quarters
 	)
 
-/datum/gm_action/window_break/set_up()
+datum/gm_action/window_break/set_up()
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)
 	//try 10 times
 	for(var/i in 1 to 10)
@@ -28,7 +28,7 @@
 			return
 
 //TL;DR: breadth first search for all connected turfs with windows
-/datum/gm_action/window_break/proc/gather_collateral_windows(var/obj/structure/window/target_window)
+datum/gm_action/window_break/proc/gather_collateral_windows(var/obj/structure/window/target_window)
 	var/list/turf/frontier_set = list(target_window.loc)
 	var/list/obj/structure/window/result_set = list()
 	var/list/turf/explored_set = list()
@@ -59,7 +59,7 @@
 				frontier_set += neighbor
 	return result_set
 
-/datum/gm_action/window_break/start()
+datum/gm_action/window_break/start()
 	if(!chosen_window)
 		return
 	..()
@@ -70,9 +70,9 @@
 			sleep(rand(1,20))
 			current_collateral.take_damage(current_collateral.health - (current_collateral.maxhealth / 5)) //set to 1/5th health
 
-/datum/gm_action/window_break/announce()
+datum/gm_action/window_break/announce()
 	if(chosen_window)
 		command_announcement.Announce("Structural integrity of windows at [chosen_location.loc.name] is failing. Immediate repair or replacement is advised.", "Structural Alert")
 
-/datum/gm_action/window_break/get_weight()
+datum/gm_action/window_break/get_weight()
 	return 20 * metric.count_people_in_department(DEPARTMENT_ENGINEERING)

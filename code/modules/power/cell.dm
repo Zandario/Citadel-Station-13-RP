@@ -2,7 +2,7 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/cell
+obj/item/cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
 	icon = 'icons/obj/power.dmi'
@@ -31,7 +31,7 @@
 	var/overlay_full_state = "cell-o2" // Overlay used when fully charged.
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
-/obj/item/cell/Initialize(mapload)
+obj/item/cell/Initialize(mapload)
 	. = ..()
 	if(isnull(charge))
 		charge = maxcharge
@@ -39,34 +39,34 @@
 	if(self_recharge)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/cell/Destroy()
+obj/item/cell/Destroy()
 	if(self_recharge)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/cell/get_cell()
+obj/item/cell/get_cell()
 	return src
 
-/obj/item/cell/process(delta_time)
+obj/item/cell/process(delta_time)
 	if(self_recharge)
 		if(world.time >= last_use + charge_delay)
 			give(charge_amount)
 	else
 		return PROCESS_KILL
 
-/obj/item/cell/drain_energy(datum/actor, amount, flags)
+obj/item/cell/drain_energy(datum/actor, amount, flags)
 	if(charge <= 0)
 		return 0
 	return use(DYNAMIC_KJ_TO_CELL_UNITS(amount)) * GLOB.cellrate
 
-/obj/item/cell/can_drain_energy(datum/actor, flags)
+obj/item/cell/can_drain_energy(datum/actor, flags)
 	return TRUE
 
 #define OVERLAY_FULL	2
 #define OVERLAY_PARTIAL	1
 #define OVERLAY_EMPTY	0
 
-/obj/item/cell/update_icon()
+obj/item/cell/update_icon()
 	var/new_overlay = null // The overlay that is needed.
 	// If it's different than the current overlay, then it'll get changed.
 	// Otherwise nothing happens, to save on CPU.
@@ -95,24 +95,24 @@
 #undef OVERLAY_PARTIAL
 #undef OVERLAY_EMPTY
 
-/obj/item/cell/proc/percent()		// return % charge of cell
+obj/item/cell/proc/percent()		// return % charge of cell
 	if(!maxcharge)
 		return 0
 	return 100.0*charge/maxcharge
 
-/obj/item/cell/proc/fully_charged()
+obj/item/cell/proc/fully_charged()
 	return (charge == maxcharge)
 
 // checks if the power cell is able to provide the specified amount of charge
-/obj/item/cell/proc/check_charge(var/amount)
+obj/item/cell/proc/check_charge(var/amount)
 	return (charge >= amount)
 
 // Returns how much charge is missing from the cell, useful to make sure not overdraw from the grid when recharging.
-/obj/item/cell/proc/amount_missing()
+obj/item/cell/proc/amount_missing()
 	return max(maxcharge - charge, 0)
 
 // use power from a cell, returns the amount actually used
-/obj/item/cell/proc/use(var/amount)
+obj/item/cell/proc/use(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -124,7 +124,7 @@
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
 // from the cell and returns 1. Otherwise does nothing and returns 0.
-/obj/item/cell/proc/checked_use(var/amount)
+obj/item/cell/proc/checked_use(var/amount)
 	if(!check_charge(amount))
 		return 0
 	use(amount)
@@ -133,7 +133,7 @@
 /**
  * use x cell units, affected by GLOB.cellefficiency
  */
-/obj/item/cell/proc/use_scaled(amount)
+obj/item/cell/proc/use_scaled(amount)
 	return use(amount / GLOB.cellefficiency) * GLOB.cellefficiency
 
 /**
@@ -141,11 +141,11 @@
  *
  * returns TRUE/FALSE
  */
-/obj/item/cell/proc/checked_use_scaled(amount)
+obj/item/cell/proc/checked_use_scaled(amount)
 	return checked_use(amount / GLOB.cellefficiency)
 
 // recharge the cell
-/obj/item/cell/proc/give(var/amount)
+obj/item/cell/proc/give(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
@@ -157,7 +157,7 @@
 	return amount_used
 
 
-/obj/item/cell/examine(mob/user)
+obj/item/cell/examine(mob/user)
 	. = ..()
 	if(get_dist(src, user) <= 1)
 		. += " It has a power rating of [maxcharge].\nThe charge meter reads [round(src.percent() )]%."
@@ -166,7 +166,7 @@
 	else
 		. += "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
 
-/obj/item/cell/attackby(obj/item/W, mob/user)
+obj/item/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = W
@@ -182,7 +182,7 @@
 
 		S.reagents.clear_reagents()
 
-/obj/item/cell/proc/explode()
+obj/item/cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)
@@ -209,13 +209,13 @@
 
 	qdel(src)
 
-/obj/item/cell/proc/corrupt()
+obj/item/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
 		rigged = 1 //broken batteries are dangerous
 
-/obj/item/cell/emp_act(severity)
+obj/item/cell/emp_act(severity)
 	. = ..()
 	if(emp_proof)
 		return
@@ -230,7 +230,7 @@
 
 	update_icon()
 
-/obj/item/cell/legacy_ex_act(severity)
+obj/item/cell/legacy_ex_act(severity)
 
 	switch(severity)
 		if(1.0)
@@ -250,7 +250,7 @@
 				corrupt()
 	return
 
-/obj/item/cell/proc/get_electrocute_damage()
+obj/item/cell/proc/get_electrocute_damage()
 	switch (charge)
 /*		if (9000 to INFINITY)
 			return min(rand(90,150),rand(90,150))
@@ -279,7 +279,7 @@
 		else
 			return 0
 
-/obj/item/cell/suicide_act(mob/user)
+obj/item/cell/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	user.visible_message("<span class='danger'>\The [user] is licking the electrodes of \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return (FIRELOSS)

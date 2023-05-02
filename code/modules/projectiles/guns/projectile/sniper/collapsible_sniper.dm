@@ -1,8 +1,8 @@
 ////////////// PTR-7 Anti-Materiel Rifle //////////////
 
-/obj/item/gun/ballistic/heavysniper/collapsible
+obj/item/gun/ballistic/heavysniper/collapsible
 
-/obj/item/gun/ballistic/heavysniper/collapsible/verb/take_down()
+obj/item/gun/ballistic/heavysniper/collapsible/verb/take_down()
 	set category = "Object"
 	set name = "Disassemble Rifle"
 
@@ -15,7 +15,7 @@
 	else
 		collapse_rifle(user)
 
-/obj/item/gun/ballistic/heavysniper/proc/collapse_rifle(mob/user)
+obj/item/gun/ballistic/heavysniper/proc/collapse_rifle(mob/user)
 	to_chat(user, "<span class='warning'>You begin removing \the [src]'s barrel.</span>")
 	if(do_after(user, 40))
 		to_chat(user, "<span class='warning'>You remove \the [src]'s barrel.</span>")
@@ -30,7 +30,7 @@
 		user.put_in_hands(barrel) || barrel.dropInto(user.loc)
 
 
-/obj/item/sniper_rifle_part
+obj/item/sniper_rifle_part
 	name = "AM rifle part"
 	desc = "A part of an antimateriel rifle."
 
@@ -44,31 +44,31 @@
 	var/part_count = 1
 
 
-/obj/item/sniper_rifle_part/barrel
+obj/item/sniper_rifle_part/barrel
 	name = "AM rifle barrel"
 	icon_state = "heavysniper-barrel"
 
-/obj/item/sniper_rifle_part/barrel/Initialize(mapload)
+obj/item/sniper_rifle_part/barrel/Initialize(mapload)
 	. = ..()
 	barrel = src
 
-/obj/item/sniper_rifle_part/stock
+obj/item/sniper_rifle_part/stock
 	name = "AM rifle stock"
 	icon_state = "heavysniper-stock"
 
-/obj/item/sniper_rifle_part/stock/Initialize(mapload)
+obj/item/sniper_rifle_part/stock/Initialize(mapload)
 	. = ..()
 	stock = src
 
-/obj/item/sniper_rifle_part/trigger_group
+obj/item/sniper_rifle_part/trigger_group
 	name = "AM rifle trigger assembly"
 	icon_state = "heavysniper-trig"
 
-/obj/item/sniper_rifle_part/trigger_group/Initialize(mapload)
+obj/item/sniper_rifle_part/trigger_group/Initialize(mapload)
 	. = ..()
 	trigger_group = src
 
-/obj/item/sniper_rifle_part/attack_self(mob/user)
+obj/item/sniper_rifle_part/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -94,7 +94,7 @@
 
 	update_build()
 
-/obj/item/sniper_rifle_part/attackby(var/obj/item/sniper_rifle_part/A as obj, mob/user as mob)
+obj/item/sniper_rifle_part/attackby(var/obj/item/sniper_rifle_part/A as obj, mob/user as mob)
 
 	to_chat(user, "<span class='notice'>You begin adding \the [A] to \the [src].</span>")
 	if(!do_after(user, 30))
@@ -145,7 +145,7 @@
 	part_count = A.part_count + src.part_count
 	update_build(user)
 
-/obj/item/sniper_rifle_part/proc/update_build()
+obj/item/sniper_rifle_part/proc/update_build()
 	switch(part_count)
 		if(1)
 			name = initial(name)
@@ -171,7 +171,7 @@
 				user.put_in_hands_or_drop(gun)
 			qdel(src)
 
-/obj/item/gun/ballistic/heavysniper/update_icon_state()
+obj/item/gun/ballistic/heavysniper/update_icon_state()
 	. = ..()
 	if(bolt_open)
 		icon_state = "heavysniper-open"

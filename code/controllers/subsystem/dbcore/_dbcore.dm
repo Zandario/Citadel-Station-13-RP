@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(dbcore)
 
 	var/connection  // Arbitrary handle returned from rust_g.
 
-/datum/controller/subsystem/dbcore/Initialize()
+datum/controller/subsystem/dbcore/Initialize()
 	//We send warnings to the admins during subsystem init, as the clients will be New'd and messages
 	//will queue properly with goonchat
 	switch(schema_mismatch)
@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(dbcore)
 
 	return ..()
 
-/datum/controller/subsystem/dbcore/fire()
+datum/controller/subsystem/dbcore/fire()
 	for(var/I in active_queries)
 		var/datum/db_query/Q = I
 		if(world.time - Q.last_activity_time > (5 MINUTES))
@@ -36,10 +36,10 @@ SUBSYSTEM_DEF(dbcore)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/dbcore/Recover()
+datum/controller/subsystem/dbcore/Recover()
 	connection = SSdbcore.connection
 
-/datum/controller/subsystem/dbcore/Shutdown()
+datum/controller/subsystem/dbcore/Shutdown()
 	//This is as close as we can get to the true round end before Disconnect() without changing where it's called, defeating the reason this is a subsystem
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_shutdown = SSdbcore.NewQuery(
@@ -52,15 +52,15 @@ SUBSYSTEM_DEF(dbcore)
 		Disconnect()
 
 //nu
-/datum/controller/subsystem/dbcore/can_vv_get(var_name)
+datum/controller/subsystem/dbcore/can_vv_get(var_name)
 	return var_name != NAMEOF(src, connection) && var_name != NAMEOF(src, active_queries) && ..()
 
-/datum/controller/subsystem/dbcore/vv_edit_var(var_name, var_value)
+datum/controller/subsystem/dbcore/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, connection))
 		return FALSE
 	return ..()
 
-/datum/controller/subsystem/dbcore/proc/Connect()
+datum/controller/subsystem/dbcore/proc/Connect()
 	if(IsConnected())
 		return TRUE
 
@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(dbcore)
 		log_sql("Connect() failed | [last_error]")
 		++failed_connections
 
-/datum/controller/subsystem/dbcore/proc/CheckSchemaVersion()
+datum/controller/subsystem/dbcore/proc/CheckSchemaVersion()
 	if(CONFIG_GET(flag/sql_enabled))
 		if(Connect())
 			log_world("Database connection established.")
@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(dbcore)
 	else
 		log_sql("Database is not enabled in configuration.")
 
-/datum/controller/subsystem/dbcore/proc/SetRoundID()
+datum/controller/subsystem/dbcore/proc/SetRoundID()
 	if(!Connect())
 		return
 	var/datum/db_query/query_round_initialize = SSdbcore.NewQuery(
@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(dbcore)
 	GLOB.round_id = "[query_round_initialize.last_insert_id]"
 	qdel(query_round_initialize)
 
-/datum/controller/subsystem/dbcore/proc/SetRoundStart()
+datum/controller/subsystem/dbcore/proc/SetRoundStart()
 	if(!Connect())
 		return
 	var/datum/db_query/query_round_start = SSdbcore.NewQuery(
@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(dbcore)
 	query_round_start.Execute()
 	qdel(query_round_start)
 
-/datum/controller/subsystem/dbcore/proc/SetRoundEnd()
+datum/controller/subsystem/dbcore/proc/SetRoundEnd()
 	if(!Connect())
 		return
 	var/datum/db_query/query_round_end = SSdbcore.NewQuery(
@@ -153,25 +153,25 @@ SUBSYSTEM_DEF(dbcore)
 	query_round_end.Execute()
 	qdel(query_round_end)
 
-/datum/controller/subsystem/dbcore/proc/Disconnect()
+datum/controller/subsystem/dbcore/proc/Disconnect()
 	failed_connections = 0
 	if (connection)
 		rustg_sql_disconnect_pool(connection)
 	connection = null
 
-/datum/controller/subsystem/dbcore/proc/IsConnected()
+datum/controller/subsystem/dbcore/proc/IsConnected()
 	if (!CONFIG_GET(flag/sql_enabled))
 		return FALSE
 	if (!connection)
 		return FALSE
 	return json_decode(rustg_sql_connected(connection))["status"] == "online"
 
-/datum/controller/subsystem/dbcore/proc/ErrorMsg()
+datum/controller/subsystem/dbcore/proc/ErrorMsg()
 	if(!CONFIG_GET(flag/sql_enabled))
 		return "Database disabled by configuration"
 	return last_error
 
-/datum/controller/subsystem/dbcore/proc/ReportError(error)
+datum/controller/subsystem/dbcore/proc/ReportError(error)
 	last_error = error
 
 /**
@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(dbcore)
  * - sql_query - the query. use :arg for arguments
  * - arguments - keyed list
  */
-/datum/controller/subsystem/dbcore/proc/NewQuery(sql_query, arguments)
+datum/controller/subsystem/dbcore/proc/NewQuery(sql_query, arguments)
 	RETURN_TYPE(/datum/db_query)
 	if(IsAdminAdvancedProcCall())
 		log_admin_private("ERROR: Advanced admin proc call led to sql query: [sql_query]. Query has been blocked")
@@ -200,7 +200,7 @@ SUBSYSTEM_DEF(dbcore)
  * - sql_query - the query. use :arg for arguments
  * - arguments - keyed list
  */
-/datum/controller/subsystem/dbcore/proc/ExecuteQuery(sql_query, arguments)
+datum/controller/subsystem/dbcore/proc/ExecuteQuery(sql_query, arguments)
 	RETURN_TYPE(/datum/db_query)
 	var/datum/db_query/query = NewQuery(sql_query, arguments)
 	. = query
@@ -215,14 +215,14 @@ SUBSYSTEM_DEF(dbcore)
  *
  * **warning**: will delete the query right after the current set of procs run. USE NewQuery IF YOU WANT TO MANAGE THIS YOURSELF.
  */
-/datum/controller/subsystem/dbcore/proc/RunQuery(sql_query, arguments)
+datum/controller/subsystem/dbcore/proc/RunQuery(sql_query, arguments)
 	RETURN_TYPE(/datum/db_query)
 	var/datum/db_query/query = NewQuery(sql_query, arguments)
 	. = query
 	query.Execute(TRUE, TRUE)
 	QDEL_IN(query, 0)
 
-/datum/controller/subsystem/dbcore/proc/QuerySelect(list/querys, warn = FALSE, qdel = FALSE)
+datum/controller/subsystem/dbcore/proc/QuerySelect(list/querys, warn = FALSE, qdel = FALSE)
 	if (!islist(querys))
 		if (!istype(querys, /datum/db_query))
 			CRASH("Invalid query passed to QuerySelect: [querys]")
@@ -255,7 +255,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 	It was included because it is still supported in mariadb.
 	It does not work with duplicate_key and the mysql server ignores it in those cases
 */
-/datum/controller/subsystem/dbcore/proc/MassInsert(table, list/rows, duplicate_key = FALSE, ignore_errors = FALSE, delayed = FALSE, warn = FALSE, async = TRUE, special_columns = null)
+datum/controller/subsystem/dbcore/proc/MassInsert(table, list/rows, duplicate_key = FALSE, ignore_errors = FALSE, delayed = FALSE, warn = FALSE, async = TRUE, special_columns = null)
 	if (!table || !rows || !istype(rows))
 		return
 
@@ -320,7 +320,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
  * why??? Because rust_g already sanitizes strings.
  * This proc simply flattens a string.
  */
-/proc/sanitizeSQL(t)
+proc/sanitizeSQL(t)
 	return "[t]"
 
 /**
@@ -332,7 +332,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
  * DON'T BLINDLY TOUCH IT.
  */
 // Sanitize inputs to avoid SQL injection attacks
-/proc/sql_sanitize_text(var/text)
+proc/sql_sanitize_text(var/text)
 	text = replacetext(text, "'", "''")
 	text = replacetext(text, ";", "")
 	text = replacetext(text, "&", "")

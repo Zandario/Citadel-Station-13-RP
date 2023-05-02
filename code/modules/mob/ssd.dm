@@ -6,10 +6,10 @@
  * people who are dead do not count.
  * adminghosted people do not count.
  */
-/mob/proc/is_ssd()
+mob/proc/is_ssd()
 	return ckey && isnull(client) && isnull(teleop) && !IS_DEAD(src)
 
-/mob/living/is_ssd()
+mob/living/is_ssd()
 	return isnull(ai_holder) && ..()
 
 /**
@@ -17,10 +17,10 @@
  *
  * people who are dead do not count
  */
-/mob/proc/is_catatonic()
+mob/proc/is_catatonic()
 	return !ckey && !IS_DEAD(src)
 
-/mob/living/is_catatonic()
+mob/living/is_catatonic()
 	return isnull(ai_holder) && ..()
 
 /**
@@ -29,7 +29,7 @@
  * @params
  * * forced_state - if set, adds on TRUE and removes on FALSE, ignoring client status.
  */
-/mob/proc/update_ssd_overlay(forced_state)
+mob/proc/update_ssd_overlay(forced_state)
 	var/want = ssd_visible && (isnull(forced_state)? (is_catatonic() || is_ssd()) : forced_state)
 	if(want)
 		if(isnull(ssd_overlay))
@@ -47,7 +47,7 @@
 /**
  * checks if we need a ssd overlay update
  */
-/mob/proc/needs_ssd_overlay_update()
+mob/proc/needs_ssd_overlay_update()
 	return TRUE // no support for smart re-renders yet.
 
 /**
@@ -55,7 +55,7 @@
  *
  * @return TRUE if anything changed, FALSE otherwise
  */
-/mob/proc/render_ssd_overlay()
+mob/proc/render_ssd_overlay()
 	if(isnull(ssd_overlay))
 		ssd_overlay = mutable_appearance(icon = 'icons/screen/atom_hud/status_16x16_oversized.dmi', icon_state = "eepy")
 	// flags

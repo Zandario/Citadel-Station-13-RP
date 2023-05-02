@@ -1,11 +1,11 @@
-/datum/role/ghostrole/hermit
+datum/role/ghostrole/hermit
 	name = "Space Hermit"
 	assigned_role = "Hermit"
 	desc = "A stranded cryo-occupant in deep space."
 	spawntext = "You've been late to awaken from your cryo slumber. Blasted machine, you set it to 10 days not 10 weeks!</span><b> Where have the others gone while we were out? Did they manage to survive?"
 	instantiator = /datum/ghostrole_instantiator/human/random/hermit
 
-/datum/role/ghostrole/hermit/Instantiate(client/C, atom/loc, list/params)
+datum/role/ghostrole/hermit/Instantiate(client/C, atom/loc, list/params)
 	var/rp = rand(1, 4)
 	switch(rp)
 		if(1)
@@ -18,7 +18,7 @@
 			params["fluff"] = "tourist"
 	return ..()
 
-/datum/role/ghostrole/hermit/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
+datum/role/ghostrole/hermit/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
 	var/flavour_text = "Each day you barely scrape by, and between the terrible conditions of your makeshift shelter, \
 	the hostile creatures, and the relentless yawn of the cloudless skies, all you can wish for is the feel of soft grass between your toes and \
@@ -42,12 +42,12 @@
 			You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now."
 	to_chat(created, flavour_text)
 
-/datum/ghostrole_instantiator/human/random/hermit
+datum/ghostrole_instantiator/human/random/hermit
 	// mob_traits = list(
 	// 	TRAIT_EXEMPT_HEALTH_EVENTS
 	// )
 
-/datum/ghostrole_instantiator/human/random/hermit/GetOutfit(client/C, mob/M, list/params)
+datum/ghostrole_instantiator/human/random/hermit/GetOutfit(client/C, mob/M, list/params)
 	var/datum/outfit/outfit = ..()
 	switch(params["fluff"])
 		if("proper")
@@ -70,7 +70,7 @@
 	return outfit
 
 //Malfunctioning cryostasis sleepers: Spawns in makeshift shelters in lavaland. Ghosts become hermits with knowledge of how they got to where they are now.
-/obj/structure/ghost_role_spawner/hermit
+obj/structure/ghost_role_spawner/hermit
 	name = "malfunctioning cryostasis sleeper"
 	desc = "A humming sleeper with a silhouetted occupant inside. Its stasis function is broken and it's likely being used as a bed."
 	icon = 'icons/obj/spawners.dmi'
@@ -78,6 +78,6 @@
 	role_type = /datum/role/ghostrole/hermit
 	qdel_on_deplete = TRUE
 
-/obj/structure/ghost_role_spawner/hermit/Destroy()
+obj/structure/ghost_role_spawner/hermit/Destroy()
 	// new /obj/structure/fluff/empty_cryostasis_sleeper(get_turf(src))
 	return ..()

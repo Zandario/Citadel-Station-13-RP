@@ -1,13 +1,13 @@
 /****************************************************
 				INTERNAL ORGANS DEFINES
 ****************************************************/
-/obj/item/organ/internal
+obj/item/organ/internal
 	/// Icon to use when the organ has died.
 	var/dead_icon
 
 // Yep... That's it. - @Zandario
 
-/obj/item/organ/internal/Destroy()
+obj/item/organ/internal/Destroy()
 	if(owner)
 		owner.internal_organs.Remove(src)
 		owner.internal_organs_by_name[organ_tag] = null
@@ -18,17 +18,17 @@
 		if(istype(E)) E.internal_organs -= src
 	return ..()
 
-/obj/item/organ/internal/on_die()
+obj/item/organ/internal/on_die()
 	. = ..()
 	if(dead_icon)
 		icon_state = dead_icon
 
-/obj/item/organ/internal/on_revive()
+obj/item/organ/internal/on_revive()
 	. = ..()
 	if(dead_icon)
 		icon_state = initial(icon_state)
 
-/obj/item/organ/internal/remove_rejuv()
+obj/item/organ/internal/remove_rejuv()
 	if(owner)
 		owner.internal_organs -= src
 		owner.internal_organs_by_name[organ_tag] = null
@@ -39,14 +39,14 @@
 		if(istype(E)) E.internal_organs -= src
 	..()
 
-/obj/item/organ/internal/robotize()
+obj/item/organ/internal/robotize()
 	..()
 	name = "prosthetic [initial(name)]"
 	icon_state = "[initial(icon_state)]_prosthetic"
 	if(dead_icon)
 		dead_icon = "[initial(dead_icon)]_prosthetic"
 
-/obj/item/organ/internal/mechassist()
+obj/item/organ/internal/mechassist()
 	..()
 	name = "assisted [initial(name)]"
 	icon_state = "[initial(icon_state)]_assisted"
@@ -54,7 +54,7 @@
 		dead_icon = "[initial(dead_icon)]_assisted"
 
 // Brain is defined in brain.dm
-/obj/item/organ/internal/handle_germ_effects()
+obj/item/organ/internal/handle_germ_effects()
 	. = ..() //Should be an interger value for infection level
 	if(!.) return
 

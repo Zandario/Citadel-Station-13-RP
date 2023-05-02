@@ -7,7 +7,7 @@ var/list/global/tank_gauge_cache = list()
  * Handheld gas canisters
  * Can rupture explosively if overpressurized
  */
-/obj/item/tank
+obj/item/tank
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
 	drop_sound = 'sound/items/drop/gascan.ogg'
@@ -53,13 +53,13 @@ var/list/global/tank_gauge_cache = list()
 	Wired and assembled tanks may be disarmed with a set of wirecutters. Any exploding or rupturing tank will generate shrapnel, assuming their relief valves have been welded beforehand. Even if not, they can be incited to expel hot gas on ignition if pushed above 173�C. \
 	Relatively easy to make, the single tank bomb requries no tank transfer valve, and is still a fairly formidable weapon that can be manufactured from any tank."
 
-/obj/item/tank/proc/init_proxy()
+obj/item/tank/proc/init_proxy()
 	var/obj/item/tankassemblyproxy/proxy = new /obj/item/tankassemblyproxy(src)
 	proxy.tank = src
 	src.proxyassembly = proxy
 
 
-/obj/item/tank/Initialize(mapload)
+obj/item/tank/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -69,7 +69,7 @@ var/list/global/tank_gauge_cache = list()
 	src.air_contents.temperature = T20C
 	update_gauge()
 
-/obj/item/tank/Destroy()
+obj/item/tank/Destroy()
 	QDEL_NULL(air_contents)
 
 	STOP_PROCESSING(SSobj, src)
@@ -82,7 +82,7 @@ var/list/global/tank_gauge_cache = list()
 
 	. = ..()
 
-/obj/item/tank/examine(mob/user)
+obj/item/tank/examine(mob/user)
 	. = ..()
 	if(.)
 		var/celsius_temperature = air_contents.temperature - T0C
@@ -110,7 +110,7 @@ var/list/global/tank_gauge_cache = list()
 		. += "<span class='warning'>\The [src] emergency relief valve has been welded shut!</span>"
 
 
-/obj/item/tank/attackby(obj/item/W, mob/user)
+obj/item/tank/attackby(obj/item/W, mob/user)
 	..()
 	if (istype(loc, /obj/item/assembly))
 		icon = loc
@@ -209,7 +209,7 @@ var/list/global/tank_gauge_cache = list()
 
 
 
-/obj/item/tank/attack_self(mob/user)
+obj/item/tank/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -222,16 +222,16 @@ var/list/global/tank_gauge_cache = list()
 	if (src.proxyassembly.assembly)
 		src.proxyassembly.assembly.attack_self(user)
 
-/obj/item/weapon/tank/ui_state(mob/user, datum/tgui_module/module)
+obj/item/weapon/tank/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.deep_inventory_state
 
-/obj/item/tank/ui_interact(mob/user, datum/tgui/ui)
+obj/item/tank/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Tank", name)
 		ui.open()
 
-/obj/item/tank/ui_static_data(mob/user)
+obj/item/tank/ui_static_data(mob/user)
 	. = list (
 		"defaultReleasePressure" = round(TANK_DEFAULT_RELEASE_PRESSURE),
 		"minReleasePressure" = round(TANK_MIN_RELEASE_PRESSURE),
@@ -240,7 +240,7 @@ var/list/global/tank_gauge_cache = list()
 		"fragmentPressure" = round(TANK_FRAGMENT_PRESSURE)
 	)
 
-/obj/item/tank/ui_data(mob/user)
+obj/item/tank/ui_data(mob/user)
 	. = list(
 		"tankPressure" = round(air_contents.return_pressure()),
 		"releasePressure" = round(distribute_pressure)
@@ -264,7 +264,7 @@ var/list/global/tank_gauge_cache = list()
 
 	return .
 
-/obj/item/tank/ui_act(action, params)
+obj/item/tank/ui_act(action, params)
 	if(..())
 		return TRUE
 	switch(action)
@@ -288,7 +288,7 @@ var/list/global/tank_gauge_cache = list()
 			toggle_valve(usr)
 			. = TRUE
 
-/obj/item/tank/proc/toggle_valve(var/mob/user)
+obj/item/tank/proc/toggle_valve(var/mob/user)
 	if(istype(loc,/mob/living/carbon))
 		var/mob/living/carbon/location = loc
 		if(location.internal == src)
@@ -314,34 +314,34 @@ var/list/global/tank_gauge_cache = list()
 			else
 				to_chat(user, "<span class='warning'>You need something to connect to \the [src].</span>")
 
-/obj/item/tank/proc/remove_air_by_flag(flag, amount)
+obj/item/tank/proc/remove_air_by_flag(flag, amount)
 	. = air_contents.remove_by_flag(flag, amount)
 	START_PROCESSING(SSobj, src)
 
-/obj/item/tank/return_air()
+obj/item/tank/return_air()
 	return air_contents
 
-/obj/item/tank/assume_air(datum/gas_mixture/giver)
+obj/item/tank/assume_air(datum/gas_mixture/giver)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/tank/assume_gas(gasid, moles, temp)
+obj/item/tank/assume_gas(gasid, moles, temp)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/tank/adjust_thermal_energy(joules)
+obj/item/tank/adjust_thermal_energy(joules)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/tank/remove_moles(moles)
+obj/item/tank/remove_moles(moles)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/tank/remove_volume(liters)
+obj/item/tank/remove_volume(liters)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/tank/proc/remove_air_volume(volume_to_return)
+obj/item/tank/proc/remove_air_volume(volume_to_return)
 	if(!air_contents)
 		return null
 
@@ -353,7 +353,7 @@ var/list/global/tank_gauge_cache = list()
 
 	return remove_moles(moles_needed)
 
-/obj/item/tank/process(delta_time)
+obj/item/tank/process(delta_time)
 	//Allow for reactions
 	air_contents.react() //cooking up air tanks - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
 	if(gauge_icon)
@@ -361,7 +361,7 @@ var/list/global/tank_gauge_cache = list()
 	check_status()
 
 
-/obj/item/tank/proc/add_bomb_overlay()
+obj/item/tank/proc/add_bomb_overlay()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(wired)
@@ -374,7 +374,7 @@ var/list/global/tank_gauge_cache = list()
 	add_overlay(overlays_to_add)
 
 
-/obj/item/tank/proc/update_gauge()
+obj/item/tank/proc/update_gauge()
 	var/gauge_pressure = 0
 	if(air_contents)
 		gauge_pressure = air_contents.return_pressure()
@@ -394,7 +394,7 @@ var/list/global/tank_gauge_cache = list()
 	add_overlay(tank_gauge_cache[indicator])
 
 
-/obj/item/tank/proc/check_status()
+obj/item/tank/proc/check_status()
 	//Handle exploding, leaking, and rupturing of the tank
 
 	if(!air_contents)
@@ -531,9 +531,9 @@ var/list/global/tank_gauge_cache = list()
 ///Prewelded tanks
 /////////////////////////////////
 
-/obj/item/tank/phoron/welded
+obj/item/tank/phoron/welded
 	valve_welded = 1
-/obj/item/tank/oxygen/welded
+obj/item/tank/oxygen/welded
 	valve_welded = 1
 
 
@@ -541,7 +541,7 @@ var/list/global/tank_gauge_cache = list()
 ///Onetankbombs (added as actual items)
 /////////////////////////////////
 
-/obj/item/tank/proc/onetankbomb(fill = 1)
+obj/item/tank/proc/onetankbomb(fill = 1)
 	var/phoron_amt = 4 + rand(4)
 	var/oxygen_amt = 6 + rand(8)
 
@@ -570,28 +570,28 @@ var/list/global/tank_gauge_cache = list()
 	add_overlay("bomb_assembly")
 
 
-/obj/item/tank/phoron/onetankbomb/Initialize(mapload)
+obj/item/tank/phoron/onetankbomb/Initialize(mapload)
 	. = ..()
 	src.onetankbomb()
 
-/obj/item/tank/oxygen/onetankbomb/Initialize(mapload)
+obj/item/tank/oxygen/onetankbomb/Initialize(mapload)
 	. = ..()
 	src.onetankbomb()
 
 
-/obj/item/tank/phoron/onetankbomb/full/Initialize(mapload)
+obj/item/tank/phoron/onetankbomb/full/Initialize(mapload)
 	. = ..()
 	src.onetankbomb(2)
 
-/obj/item/tank/oxygen/onetankbomb/full/Initialize(mapload)
+obj/item/tank/oxygen/onetankbomb/full/Initialize(mapload)
 	. = ..()
 	src.onetankbomb(2)
 
-/obj/item/tank/phoron/onetankbomb/small/Initialize(mapload)
+obj/item/tank/phoron/onetankbomb/small/Initialize(mapload)
 	. = ..()
 	src.onetankbomb(0)
 
-/obj/item/tank/oxygen/onetankbomb/small/Initialize(mapload)
+obj/item/tank/oxygen/onetankbomb/small/Initialize(mapload)
 	. = ..()
 	src.onetankbomb(0)
 
@@ -599,22 +599,22 @@ var/list/global/tank_gauge_cache = list()
 ///Pulled from rewritten bomb.dm
 /////////////////////////////////
 
-/obj/item/tankassemblyproxy
+obj/item/tankassemblyproxy
 	name = "Tank assembly proxy"
 	desc = "Used as a stand in to trigger single tank assemblies... but you shouldn't see this."
 	var/obj/item/tank/tank = null
 	var/obj/item/assembly_holder/assembly = null
 
 
-/obj/item/tankassemblyproxy/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
+obj/item/tankassemblyproxy/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
 	tank.ignite()	//boom (or not boom if you made shijwtty mix)
 
-/obj/item/tankassemblyproxy/Destroy()
+obj/item/tankassemblyproxy/Destroy()
 	. = ..()
 	tank = null
 	assembly = null
 
-/obj/item/tank/proc/assemble_bomb(W, user)	//Bomb assembly proc. This turns assembly+tank into a bomb
+obj/item/tank/proc/assemble_bomb(W, user)	//Bomb assembly proc. This turns assembly+tank into a bomb
 	var/obj/item/assembly_holder/S = W
 	var/mob/M = user
 	if(!S.secured)										//Check if the assembly is secured
@@ -638,7 +638,7 @@ var/list/global/tank_gauge_cache = list()
 	return
 
 ///This happens when a bomb is told to explode
-/obj/item/tank/proc/ignite()
+obj/item/tank/proc/ignite()
 	var/obj/item/assembly_holder/assy = proxyassembly.assembly
 	var/ign = assy.a_right
 	var/obj/item/other = assy.a_left
@@ -658,7 +658,7 @@ var/list/global/tank_gauge_cache = list()
 	air_contents.adjust_thermal_energy(15000)
 
 
-/obj/item/tankassemblyproxy/update_icon()
+obj/item/tankassemblyproxy/update_icon()
 	if(assembly)
 		tank.update_icon()
 		tank.add_overlay("bomb_assembly")
@@ -666,6 +666,6 @@ var/list/global/tank_gauge_cache = list()
 		tank.update_icon()
 		tank.cut_overlay("bomb_assembly")
 
-/obj/item/tankassemblyproxy/HasProximity(atom/movable/AM)
+obj/item/tankassemblyproxy/HasProximity(atom/movable/AM)
 	if(assembly)
 		assembly.HasProximity(AM)

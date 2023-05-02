@@ -1,4 +1,4 @@
-/obj/item/modular_computer/proc/update_verbs()
+obj/item/modular_computer/proc/update_verbs()
 	verbs.Cut()
 	if(portable_drive)
 		add_obj_verb(src, /obj/item/modular_computer/verb/eject_usb)
@@ -7,7 +7,7 @@
 	add_obj_verb(src, /obj/item/modular_computer/verb/emergency_shutdown)
 
 // Forcibly shut down the device. To be used when something bugs out and the UI is nonfunctional.
-/obj/item/modular_computer/verb/emergency_shutdown()
+obj/item/modular_computer/verb/emergency_shutdown()
 	set name = "Forced Shutdown"
 	set category = "Object"
 	set src in view(1)
@@ -31,7 +31,7 @@
 
 
 // Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/verb/eject_id()
+obj/item/modular_computer/verb/eject_id()
 	set name = "Eject ID"
 	set category = "Object"
 	set src in view(1)
@@ -47,7 +47,7 @@
 	proc_eject_id(usr)
 
 // Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/verb/eject_usb()
+obj/item/modular_computer/verb/eject_usb()
 	set name = "Eject Portable Storage"
 	set category = "Object"
 	set src in view(1)
@@ -62,7 +62,7 @@
 
 	proc_eject_usb(usr)
 
-/obj/item/modular_computer/proc/proc_eject_id(mob/user)
+obj/item/modular_computer/proc/proc_eject_id(mob/user)
 	if(!user)
 		user = usr
 
@@ -86,7 +86,7 @@
 	to_chat(user, "You remove the card from \the [src]")
 
 
-/obj/item/modular_computer/proc/proc_eject_usb(mob/user)
+obj/item/modular_computer/proc/proc_eject_usb(mob/user)
 	if(!user)
 		user = usr
 
@@ -97,7 +97,7 @@
 	uninstall_component(user, portable_drive)
 	update_uis()
 
-/obj/item/modular_computer/attack_ghost(mob/observer/ghost/user)
+obj/item/modular_computer/attack_ghost(mob/observer/ghost/user)
 	. = ..()
 	if(enabled)
 		nano_ui_interact(user)
@@ -106,16 +106,16 @@
 		if(response == "Yes")
 			turn_on(user)
 
-/obj/item/modular_computer/attack_ai(mob/user)
+obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
 
-/obj/item/modular_computer/attack_hand(mob/user, list/params)
+obj/item/modular_computer/attack_hand(mob/user, list/params)
 	if(anchored)
 		return attack_self(user)
 	return ..()
 
 /// On-click handling. Turns on the computer if it's off and opens the GUI.
-/obj/item/modular_computer/attack_self(mob/user)
+obj/item/modular_computer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -124,7 +124,7 @@
 	else if(!enabled && screen_on)
 		turn_on(user)
 
-/obj/item/modular_computer/attackby(obj/item/W, mob/user)
+obj/item/modular_computer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)) // ID Card, try to insert it.
 		var/obj/item/card/id/I = W
 		if(!card_slot)

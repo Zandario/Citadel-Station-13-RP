@@ -1,4 +1,4 @@
-/obj/machinery/wish_granter
+obj/machinery/wish_granter
 	name = "Wish Granter"
 	desc = "You're not so sure about this, anymore..."
 	icon = 'icons/obj/device.dmi'
@@ -9,7 +9,7 @@
 	var/charges = 1
 	var/insisting = 0
 
-/obj/machinery/wish_granter/attack_hand(mob/user, list/params)
+obj/machinery/wish_granter/attack_hand(mob/user, list/params)
 	usr.set_machine(src)
 
 	if(charges <= 0)

@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
-/obj/effect/accelerated_particle
+obj/effect/accelerated_particle
 	name = "Accelerated Particles"
 	desc = "Small things moving very fast."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
@@ -18,40 +18,40 @@
 	var/turf/source
 	var/movetotarget = 1
 
-/obj/effect/accelerated_particle/weak
+obj/effect/accelerated_particle/weak
 	icon_state = "particle0"
 	movement_range = 8
 	energy = 5
 
-/obj/effect/accelerated_particle/strong
+obj/effect/accelerated_particle/strong
 	icon_state = "particle2"
 	movement_range = 15
 	energy = 15
 
-/obj/effect/accelerated_particle/powerful
+obj/effect/accelerated_particle/powerful
 	icon_state = "particle3"
 	movement_range = 25
 	energy = 50
 
-/obj/effect/accelerated_particle/reverse
+obj/effect/accelerated_particle/reverse
 	icon_state = "particle3"
 	movement_range = 15
 	energy = -20
 
-/obj/effect/accelerated_particle/Initialize(mapload, dir = SOUTH)
+obj/effect/accelerated_particle/Initialize(mapload, dir = SOUTH)
 	. = ..()
 	src.loc = loc
 	src.setDir(dir)
 	INVOKE_ASYNC(src, .proc/move, 1)
 
-/obj/effect/accelerated_particle/Moved()
+obj/effect/accelerated_particle/Moved()
 	. = ..()
 	if(!isturf(loc))
 		return
 	for(var/atom/movable/AM as anything in loc.contents)
 		do_the_funny(AM)
 
-/obj/effect/accelerated_particle/proc/do_the_funny(atom/A)
+obj/effect/accelerated_particle/proc/do_the_funny(atom/A)
 	if (A)
 		if(ismob(A))
 			toxmob(A)
@@ -74,17 +74,17 @@
 					loc = null
 
 
-/obj/effect/accelerated_particle/legacy_ex_act(severity)
+obj/effect/accelerated_particle/legacy_ex_act(severity)
 	qdel(src)
 
-/obj/effect/accelerated_particle/singularity_act()
+obj/effect/accelerated_particle/singularity_act()
 	return
 
-/obj/effect/accelerated_particle/proc/toxmob(var/mob/living/M)
+obj/effect/accelerated_particle/proc/toxmob(var/mob/living/M)
 	var/radiation = (energy * 5)
 	M.afflict_radiation(radiation, TRUE)
 
-/obj/effect/accelerated_particle/proc/move(var/lag)
+obj/effect/accelerated_particle/proc/move(var/lag)
 	if(target)
 		if(movetotarget)
 			forceMove(get_step_towards(src, target))

@@ -1,4 +1,4 @@
-/obj/machinery/portable_atmospherics
+obj/machinery/portable_atmospherics
 	name = "atmoalter"
 	use_power = USE_POWER_OFF
 	layer = OBJ_LAYER // These are mobile, best not be under everything.
@@ -14,17 +14,17 @@
 	///Maximum pressure allowed on initialize inside the canister, multiplied by the filled var
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/Initialize(mapload)
+obj/machinery/portable_atmospherics/Initialize(mapload)
 	. = ..()
 	air_contents.volume = volume
 	air_contents.temperature = T20C
 
-/obj/machinery/portable_atmospherics/Destroy()
+obj/machinery/portable_atmospherics/Destroy()
 	QDEL_NULL(air_contents)
 	QDEL_NULL(holding)
 	. = ..()
 
-/obj/machinery/portable_atmospherics/Initialize(mapload)
+obj/machinery/portable_atmospherics/Initialize(mapload)
 	. = ..()
 	spawn()
 		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
@@ -32,25 +32,25 @@
 			connect(port)
 			update_icon()
 
-/obj/machinery/portable_atmospherics/process(delta_time)
+obj/machinery/portable_atmospherics/process(delta_time)
 	if(!connected_port) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
 		air_contents.react()
 	else
 		update_icon()
 
-/obj/machinery/portable_atmospherics/blob_act()
+obj/machinery/portable_atmospherics/blob_act()
 	qdel(src)
 
-/obj/machinery/portable_atmospherics/proc/StandardAirMix()
+obj/machinery/portable_atmospherics/proc/StandardAirMix()
 	return list(
 		/datum/gas/oxygen = O2STANDARD * MolesForPressure(),
 		/datum/gas/nitrogen = N2STANDARD *  MolesForPressure())
 
-/obj/machinery/portable_atmospherics/proc/MolesForPressure(var/target_pressure = start_pressure)
+obj/machinery/portable_atmospherics/proc/MolesForPressure(var/target_pressure = start_pressure)
 	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 
-/obj/machinery/portable_atmospherics/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
+obj/machinery/portable_atmospherics/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
 	//Make sure not already connected to something else
 	if(connected_port || !new_port || new_port.connected_device)
 		return 0
@@ -74,7 +74,7 @@
 
 	return 1
 
-/obj/machinery/portable_atmospherics/proc/disconnect()
+obj/machinery/portable_atmospherics/proc/disconnect()
 	if(!connected_port)
 		return 0
 
@@ -89,7 +89,7 @@
 
 	return 1
 
-/obj/machinery/portable_atmospherics/proc/update_connected_network()
+obj/machinery/portable_atmospherics/proc/update_connected_network()
 	if(!connected_port)
 		return
 
@@ -97,7 +97,7 @@
 	if (network)
 		network.update = 1
 
-/obj/machinery/portable_atmospherics/attackby(var/obj/item/W as obj, var/mob/user as mob)
+obj/machinery/portable_atmospherics/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if ((istype(W, /obj/item/tank) && !( src.destroyed )))
 		if (holding && (user.a_intent != INTENT_GRAB))
 			return
@@ -137,7 +137,7 @@
 		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
 
-/obj/machinery/portable_atmospherics/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user as mob)
+obj/machinery/portable_atmospherics/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user as mob)
 	if(!istype(O))
 		return 0 //not a mob
 	if(user.incapacitated())
@@ -165,7 +165,7 @@
 	if (get_turf(user) == get_turf(src))
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 
-/obj/machinery/portable_atmospherics/powered
+obj/machinery/portable_atmospherics/powered
 	var/power_rating
 	var/power_losses
 	var/last_power_draw = 0
@@ -173,14 +173,14 @@
 	var/use_cell = TRUE
 	var/removeable_cell = TRUE
 
-/obj/machinery/portable_atmospherics/powered/powered()
+obj/machinery/portable_atmospherics/powered/powered()
 	if(use_power) //using area power
 		return ..()
 	if(cell && cell.charge)
 		return 1
 	return 0
 
-/obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
+obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
 	if(use_cell && istype(I, /obj/item/cell))
 		if(cell)
 			to_chat(user, "There is already a power cell installed.")
@@ -210,7 +210,7 @@
 		return
 	..()
 
-/obj/machinery/portable_atmospherics/proc/log_open()
+obj/machinery/portable_atmospherics/proc/log_open()
 	if(air_contents.gas.len == 0)
 		return
 

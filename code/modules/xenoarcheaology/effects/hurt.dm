@@ -1,8 +1,8 @@
-/datum/artifact_effect/hurt
+datum/artifact_effect/hurt
 	name = "hurt"
 	effect_type = EFFECT_ORGANIC
 
-/datum/artifact_effect/hurt/DoEffectTouch(var/mob/toucher)
+datum/artifact_effect/hurt/DoEffectTouch(var/mob/toucher)
 	if(toucher)
 		var/weakness = GetAnomalySusceptibility(toucher)
 		if(iscarbon(toucher) && prob(weakness * 100))
@@ -19,7 +19,7 @@
 			C.make_dizzy(6 * weakness)
 			C.afflict_paralyze(20 * weakness * 6)
 
-/datum/artifact_effect/hurt/DoEffectAura()
+datum/artifact_effect/hurt/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/C in range(src.effectrange,T))
@@ -34,7 +34,7 @@
 				C.adjustBrainLoss(0.1 * weakness)
 				C.update_health()
 
-/datum/artifact_effect/hurt/DoEffectPulse()
+datum/artifact_effect/hurt/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/C in range(effectrange, T))

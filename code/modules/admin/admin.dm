@@ -4,14 +4,14 @@ var/global/floorIsLava = 0
 
 
 ////////////////////////////////
-/proc/message_admins(msg)
+proc/message_admins(msg)
 	msg = SPAN_ADMIN("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
-/proc/msg_admin_attack(var/text) //Toggleable Attack Messages
+proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	var/rendered = "<span class='log_message><span class='prefix'>ATTACK:</span> <span class='message'>[text]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
@@ -19,14 +19,14 @@ var/global/floorIsLava = 0
 				var/msg = rendered
 				to_chat(C, msg)
 
-/proc/admin_notice(var/message, var/rights)
+proc/admin_notice(var/message, var/rights)
 	for(var/mob/M in GLOB.mob_list)
 		if(check_rights(rights, 0, M))
 			to_chat(M, message)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
-/datum/admins/proc/show_player_panel(var/mob/M in GLOB.mob_list)
+datum/admins/proc/show_player_panel(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
@@ -209,13 +209,13 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb","SPP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/player_info/var/author // admin who authored the information
-/datum/player_info/var/rank //rank of admin who made the notes
-/datum/player_info/var/content // text content of the information
-/datum/player_info/var/timestamp // Because this is bloody annoying
+datum/player_info/var/author // admin who authored the information
+datum/player_info/var/rank //rank of admin who made the notes
+datum/player_info/var/content // text content of the information
+datum/player_info/var/timestamp // Because this is bloody annoying
 
 #define PLAYER_NOTES_ENTRIES_PER_PAGE 50
-/datum/admins/proc/PlayerNotes()
+datum/admins/proc/PlayerNotes()
 	set category = "Admin"
 	set name = "Player Notes"
 	if (!istype(src,/datum/admins))
@@ -225,7 +225,7 @@ var/global/floorIsLava = 0
 		return
 	PlayerNotesPage(1)
 
-/datum/admins/proc/PlayerNotesPage(page)
+datum/admins/proc/PlayerNotesPage(page)
 	var/dat = "<B>Player notes</B><HR>"
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
@@ -265,7 +265,7 @@ var/global/floorIsLava = 0
 	usr << browse(dat, "window=player_notes;size=400x400")
 
 
-/datum/admins/proc/player_has_info(var/key as text)
+datum/admins/proc/player_has_info(var/key as text)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
@@ -273,7 +273,7 @@ var/global/floorIsLava = 0
 	else return 1
 
 
-/datum/admins/proc/show_player_info(var/key as text)
+datum/admins/proc/show_player_info(var/key as text)
 	set category = "Admin"
 	set name = "Show Player Info"
 	if (!istype(src,/datum/admins))
@@ -322,7 +322,7 @@ var/global/floorIsLava = 0
 
 
 
-/datum/admins/proc/access_news_network() //MARKER
+datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun"
 	set name = "Access Newscaster Network"
 	set desc = "Allows you to view, add and edit news feeds."
@@ -568,7 +568,7 @@ var/global/floorIsLava = 0
 
 
 
-/datum/admins/proc/Jobbans()
+datum/admins/proc/Jobbans()
 	if(!check_rights(R_BAN))	return
 
 	var/dat = "<B>Job Bans!</B><HR><table>"
@@ -580,7 +580,7 @@ var/global/floorIsLava = 0
 	dat += "</table>"
 	usr << browse(dat, "window=ban;size=400x400")
 
-/datum/admins/proc/Game()
+datum/admins/proc/Game()
 	if(!check_rights(0))	return
 
 	var/dat = {"
@@ -602,7 +602,7 @@ var/global/floorIsLava = 0
 	usr << browse(dat, "window=admin2;size=210x280")
 	return
 
-/datum/admins/proc/Secrets(var/datum/admin_secret_category/active_category = null)
+datum/admins/proc/Secrets(var/datum/admin_secret_category/active_category = null)
 	if(!check_rights(0))	return
 
 	// Print the header with category selection buttons.
@@ -634,7 +634,7 @@ var/global/floorIsLava = 0
 
 
 
-/datum/admins/proc/announce()
+datum/admins/proc/announce()
 	set category = "Special Verbs"
 	set name = "Announce"
 	set desc="Announce your desires to the world"
@@ -652,7 +652,7 @@ var/global/floorIsLava = 0
 /// This verb for the purpose of making it compliant with the announcer system.
 var/datum/legacy_announcement/priority/admin_pri_announcer = new
 var/datum/legacy_announcement/minor/admin_min_announcer = new
-/datum/admins/proc/intercom()
+datum/admins/proc/intercom()
 	set category = "Fun"
 	set name = "Intercom Msg"
 	set desc = "Send an intercom message, like an arrivals announcement."
@@ -674,7 +674,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/intercom_convo()
+datum/admins/proc/intercom_convo()
 	set category = "Fun"
 	set name = "Intercom Convo"
 	set desc = "Send an intercom conversation, like several uses of the Intercom Msg verb."
@@ -757,7 +757,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 			GLOB.global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]") //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
 			sleep(this_wait SECONDS)
 
-/datum/admins/proc/toggleooc()
+datum/admins/proc/toggleooc()
 	set category = "Server"
 	set desc="Globally Toggles OOC"
 	set name="Toggle OOC"
@@ -770,7 +770,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	log_and_message_admins("toggled OOC.")
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglelooc()
+datum/admins/proc/togglelooc()
 	set category = "Server"
 	set desc="Globally Toggles LOOC"
 	set name="Toggle LOOC"
@@ -784,7 +784,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/toggledsay()
+datum/admins/proc/toggledsay()
 	set category = "Server"
 	set desc="Globally Toggles DSAY"
 	set name="Toggle DSAY"
@@ -798,7 +798,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
-/datum/admins/proc/toggleoocdead()
+datum/admins/proc/toggleoocdead()
 	set category = "Server"
 	set desc="Toggle Dead OOC."
 	set name="Toggle Dead OOC"
@@ -811,7 +811,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglehubvisibility()
+datum/admins/proc/togglehubvisibility()
 	set category = "Server"
 	set desc="Globally Toggles Hub Visibility"
 	set name="Toggle Hub Visibility"
@@ -824,7 +824,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name_admin(usr)] toggled hub visibility.  The server is now [world.visibility ? "visible" : "invisible"] ([world.visibility]).", 1)
 	feedback_add_details("admin_verb","THUB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
-/datum/admins/proc/toggletraitorscaling()
+datum/admins/proc/toggletraitorscaling()
 	set category = "Server"
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
@@ -833,7 +833,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [config_legacy.traitor_scaling ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/startnow()
+datum/admins/proc/startnow()
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
@@ -850,7 +850,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 		to_chat(usr, SPAN_WARNING("Error: Start Now: Game has already started."))
 		return 0
 
-/datum/admins/proc/toggleenter()
+datum/admins/proc/toggleenter()
 	set category = "Server"
 	set desc="People can't enter"
 	set name="Toggle Entering"
@@ -864,7 +864,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleAI()
+datum/admins/proc/toggleAI()
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
@@ -877,7 +877,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleaban()
+datum/admins/proc/toggleaban()
 	set category = "Server"
 	set desc = "Respawn basically"
 	set name = "Toggle Respawn"
@@ -891,7 +891,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggle_aliens()
+datum/admins/proc/toggle_aliens()
 	set category = "Server"
 	set desc="Toggle alien mobs"
 	set name="Toggle Aliens"
@@ -900,7 +900,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name_admin(usr)] toggled Aliens [config_legacy.aliens_allowed ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggle_space_ninja()
+datum/admins/proc/toggle_space_ninja()
 	set category = "Server"
 	set desc="Toggle space ninjas spawning."
 	set name="Toggle Space Ninjas"
@@ -909,7 +909,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name_admin(usr)] toggled Space Ninjas [config_legacy.ninjas_allowed ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/delay_end()
+datum/admins/proc/delay_end()
 	set category = "Server"
 	set desc = "Prevent the server from restarting"
 	set name = "Delay Reboot"
@@ -937,7 +937,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name_admin(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
 	// SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Delay Round End", "Reason: [delay_reason]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/delay_start()
+datum/admins/proc/delay_start()
 	set category = "Server"
 	set desc = "Delay the game start"
 	set name = "Delay pre-game"
@@ -957,7 +957,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 //		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adjump()
+datum/admins/proc/adjump()
 	set category = "Server"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
@@ -965,7 +965,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("<font color=#4F49AF>Toggled admin jumping to [config_legacy.allow_admin_jump].</font>")
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adspawn()
+datum/admins/proc/adspawn()
 	set category = "Server"
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
@@ -973,7 +973,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("<font color=#4F49AF>Toggled admin item spawning to [config_legacy.allow_admin_spawning].</font>")
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adrev()
+datum/admins/proc/adrev()
 	set category = "Server"
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
@@ -981,7 +981,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("<font color=#4F49AF>Toggled reviving to [config_legacy.allow_admin_rev].</font>")
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
+datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Unprison"
 	if (M.z == 2)
@@ -997,7 +997,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-/proc/is_special_character(var/character) // returns 1 for special characters and 2 for heroes of gamemode
+proc/is_special_character(var/character) // returns 1 for special characters and 2 for heroes of gamemode
 	if(!SSticker || !SSticker.mode)
 		return 0
 	var/datum/mind/M
@@ -1022,7 +1022,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 
 	return 0
 
-/datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
+datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
@@ -1035,7 +1035,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	S.harvest(usr,0,0,1)
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
 
-/datum/admins/proc/spawn_custom_item()
+datum/admins/proc/spawn_custom_item()
 	set category = "Debug"
 	set desc = "Spawn a custom item."
 	set name = "Spawn Custom Item"
@@ -1053,7 +1053,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 
 	item_to_spawn.spawn_item(get_turf(usr))
 
-/datum/admins/proc/check_custom_items()
+datum/admins/proc/check_custom_items()
 
 	set category = "Debug"
 	set desc = "Check the custom item list."
@@ -1075,7 +1075,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 		for(var/datum/custom_item/item in current_items)
 			to_chat(usr, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
 
-/datum/admins/proc/spawn_plant(seedtype in SSplants.seeds)
+datum/admins/proc/spawn_plant(seedtype in SSplants.seeds)
 	set category = "Debug"
 	set desc = "Spawn a spreading plant effect."
 	set name = "Spawn Plant"
@@ -1087,7 +1087,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	new /obj/effect/plant(get_turf(usr), SSplants.seeds[seedtype])
 	log_admin("[key_name(usr)] spawned [seedtype] vines at ([usr.x],[usr.y],[usr.z])")
 
-/datum/admins/proc/spawn_atom(var/object as text)
+datum/admins/proc/spawn_atom(var/object as text)
 	set category = "Debug"
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
@@ -1128,7 +1128,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
+datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
@@ -1143,7 +1143,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	M.mind.edit_memory()
 	feedback_add_details("admin_verb","STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/show_game_mode()
+datum/admins/proc/show_game_mode()
 	set category = "Admin"
 	set desc = "Show the current round configuration."
 	set name = "Show Game Mode"
@@ -1217,7 +1217,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","SGM")
 
 
-/datum/admins/proc/toggletintedweldhelmets()
+datum/admins/proc/toggletintedweldhelmets()
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
 	set name="Toggle tinted welding helmets."
@@ -1230,7 +1230,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleguests()
+datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
@@ -1243,7 +1243,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("<font color=#4F49AF>[key_name_admin(usr)] toggled guests game entering [config_legacy.guests_allowed?"":"dis"]allowed.</font>", 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/output_ai_laws()
+datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
 	for(var/mob/living/silicon/S in GLOB.mob_list)
 		ai_number++
@@ -1265,7 +1265,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 		to_chat(usr, "<b>No AIs located</b>") //Just so you know the thing is actually working and not just ignoring you.
 
 /*
-/datum/admins/proc/show_skills()
+datum/admins/proc/show_skills()
 	set category = "Admin"
 	set name = "Show Skills"
 
@@ -1282,7 +1282,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 
 	return
 */
-/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
 	set category = "Admin"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
@@ -1294,7 +1294,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	if(istype(H))
 		H.regenerate_icons()
 
-/proc/get_options_bar(whom, detail = 2, name = 0, link = 1, highlight_special = 1)
+proc/get_options_bar(whom, detail = 2, name = 0, link = 1, highlight_special = 1)
 	if(!whom)
 		return "<b>(*null*)</b>"
 	var/mob/M
@@ -1327,7 +1327,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;take_question=\ref[M]'>TAKE</A>)</b>"
 
 
-/proc/ishost(whom)
+proc/ishost(whom)
 	if(!whom)
 		return 0
 	var/client/C
@@ -1349,7 +1349,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 
 //Returns 1 to let the dragdrop code know we are trapping this event
 //Returns 0 if we don't plan to trap the event
-/datum/admins/proc/cmd_ghost_drag(var/mob/observer/dead/frommob, var/mob/living/tomob)
+datum/admins/proc/cmd_ghost_drag(var/mob/observer/dead/frommob, var/mob/living/tomob)
 	if(!istype(frommob))
 		return //Extra sanity check to make sure only observers are shoved into things
 
@@ -1376,7 +1376,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	qdel(frommob)
 	return 1
 
-/datum/admins/proc/force_antag_latespawn()
+datum/admins/proc/force_antag_latespawn()
 	set category = "Admin"
 	set name = "Force Template Spawn"
 	set desc = "Force an antagonist template to spawn."
@@ -1400,7 +1400,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
 	antag.attempt_late_spawn()
 
-/datum/admins/proc/force_mode_latespawn()
+datum/admins/proc/force_mode_latespawn()
 	set category = "Admin"
 	set name = "Force Mode Spawn"
 	set desc = "Force autotraitor to proc."
@@ -1418,7 +1418,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	log_and_message_admins("attempting to force mode autospawn.")
 	SSticker.mode.try_latespawn()
 
-/datum/admins/proc/paralyze_mob(mob/living/H as mob)
+datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin"
 	set name = "Toggle Paralyze"
 	set desc = "Paralyzes a player. Or unparalyses them."
@@ -1441,7 +1441,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 		msg = "has unparalyzed [key_name(H)]."
 		log_and_message_admins(msg)
 
-/datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
+datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
 	set category = "Debug"
 	set name = "Set Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user."
@@ -1457,7 +1457,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	else
 		to_chat(usr, "You do not have access to this command.")
 
-/datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
+datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
 	set category = "Debug"
 	set name = "Add Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user by addition."
@@ -1474,7 +1474,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 		to_chat(usr, "You do not have access to this command.")
 
 
-/datum/admins/proc/sendFax()
+datum/admins/proc/sendFax()
 	set category = "Special Verbs"
 	set name = "Send Fax"
 	set desc = "Sends a fax to this machine"
@@ -1502,7 +1502,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 
 datum/admins/var/obj/item/paper/admin/faxreply // var to hold fax replies in
 
-/datum/admins/proc/faxCallback(var/obj/item/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
+datum/admins/proc/faxCallback(var/obj/item/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
 	var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
 	P.name = "[P.origin] - [customname]"
@@ -1565,7 +1565,7 @@ datum/admins/var/obj/item/paper/admin/faxreply // var to hold fax replies in
 		faxreply = null
 	return
 
-/datum/admins/proc/update_stealth_ghost()
+datum/admins/proc/update_stealth_ghost()
 	if(!isobserver(owner.mob))
 		return
 	var/mob/observer/dead/dead = owner.mob

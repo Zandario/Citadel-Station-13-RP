@@ -10,7 +10,7 @@
  *
  * DO NOT USE THESE UNLESS YOU KNOW WHAT YOU ARE DOING.
  */
-/appearance
+appearance
 	var/alpha
 	var/appearance_flags
 	var/blend_mode
@@ -97,7 +97,7 @@ GLOBAL_REAL_VAR(_appearance_var_list) = list(
 	// "vis_flags"
 )
 
-/proc/__appearance_v_debug(appearance/A, name)
+proc/__appearance_v_debug(appearance/A, name)
 	switch(name)
 #define DEBUG_APPEARANCE_VAR(n) if(#n) return debug_variable(name, A.n, 0, null)
 		DEBUG_APPEARANCE_VAR(alpha)

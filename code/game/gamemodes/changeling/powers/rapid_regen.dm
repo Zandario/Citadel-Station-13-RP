@@ -1,4 +1,4 @@
-/datum/power/changeling/rapid_regen
+datum/power/changeling/rapid_regen
 	name = "Rapid Regeneration"
 	desc = "We quickly heal ourselves, removing most advanced injuries, at a high chemical cost."
 	helptext = "This will heal a significant amount of brute, fire, oxy, clone, and brain damage, and heal broken bones, internal bleeding, low blood, \
@@ -9,7 +9,7 @@
 	verbpath = /mob/proc/changeling_rapid_regen
 
 //Gives a big heal, removing various injuries that might shut down normal people, like IB or fractures.
-/mob/proc/changeling_rapid_regen()
+mob/proc/changeling_rapid_regen()
 	set category = "Changeling"
 	set name = "Rapid Regeneration (50)"
 	set desc = "Heal ourselves of most injuries instantly."

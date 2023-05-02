@@ -1,4 +1,4 @@
-/datum/characteristic_skill/security
+datum/characteristic_skill/security
 	abstract_type = /datum/characteristic_skill/security
 	category = "Security"
 
@@ -7,7 +7,7 @@
  *
  * Implementation status: Not started
  */
-/datum/characteristic_skill/security/ranged
+datum/characteristic_skill/security/ranged
 	id = "ranged"
 	name = "Weapons Expertise"
 	desc = "How skilled you are with assorted weaponry."
@@ -26,7 +26,7 @@
  *
  * Implementation status: Not started
  */
-/datum/characteristic_skill/security/forensics
+datum/characteristic_skill/security/forensics
 	id = "forensics"
 	name = "Forensics"
 	desc = "How skilled you are at forensic examinations and evidence collection."

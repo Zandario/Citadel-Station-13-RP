@@ -1,4 +1,4 @@
-/obj/machinery/door/proc/checkForMultipleDoors()
+obj/machinery/door/proc/checkForMultipleDoors()
 	if(!src.loc)
 		return 0
 	for(var/obj/machinery/door/D in src.loc)
@@ -6,7 +6,7 @@
 			return 0
 	return 1
 
-/turf/simulated/wall/proc/checkForMultipleDoors()
+turf/simulated/wall/proc/checkForMultipleDoors()
 	if(!src.loc)
 		return 0
 	for(var/obj/machinery/door/D in locate(src.x,src.y,src.z))

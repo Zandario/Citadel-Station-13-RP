@@ -1,11 +1,11 @@
-/client/verb/bunker_auto_authorize()
+client/verb/bunker_auto_authorize()
 	set name = "Auto Authorize Panic Bunker"
 	set desc = "Authorizes your account in the panic bunker of any servers connected to this function."
 	set category = "OOC"
 
 	world.send_cross_server_bunker_overrides(key, src)
 
-/world/proc/send_cross_server_bunker_overrides(key, client/C)
+world/proc/send_cross_server_bunker_overrides(key, client/C)
 	if(!C.is_preference_enabled(/datum/client_preference/debug/age_verified)) return
 	var/comms_key = CONFIG_GET(string/comms_key)
 	if(!comms_key)

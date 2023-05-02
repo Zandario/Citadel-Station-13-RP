@@ -1,4 +1,4 @@
-/datum/technomancer/spell/beam
+datum/technomancer/spell/beam
 	name = "Beam"
 	desc = "Fires a laser at your target.  Cheap, reliable, and a bit boring."
 	spell_power_desc = "Increases damage dealt."
@@ -7,7 +7,7 @@
 	obj_path = /obj/item/spell/projectile/beam
 	category = OFFENSIVE_SPELLS
 
-/obj/item/spell/projectile/beam
+obj/item/spell/projectile/beam
 	name = "beam"
 	icon_state = "beam"
 	desc = "Boring, but practical."
@@ -19,7 +19,7 @@
 	cooldown = 10
 	fire_sound = 'sound/weapons/Laser.ogg'
 
-/obj/projectile/beam/blue
+obj/projectile/beam/blue
 	damage = 30
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue

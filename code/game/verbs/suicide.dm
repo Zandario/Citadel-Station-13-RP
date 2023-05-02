@@ -1,6 +1,6 @@
-/mob/var/suiciding = 0
+mob/var/suiciding = 0
 
-/mob/living/carbon/human/verb/suicide()
+mob/living/carbon/human/verb/suicide()
 	set hidden = 1
 
 	if (stat == DEAD)
@@ -88,7 +88,7 @@
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		update_health()
 
-/mob/living/carbon/brain/verb/suicide()
+mob/living/carbon/brain/verb/suicide()
 	set hidden = 1
 
 	if (stat == 2)
@@ -112,7 +112,7 @@
 			death(0)
 			suiciding = 0
 
-/mob/living/silicon/ai/verb/suicide()
+mob/living/silicon/ai/verb/suicide()
 	set hidden = 1
 
 	if (stat == 2)
@@ -132,7 +132,7 @@
 		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		update_health()
 
-/mob/living/silicon/robot/verb/suicide()
+mob/living/silicon/robot/verb/suicide()
 	set hidden = 1
 
 	if (stat == 2)
@@ -152,7 +152,7 @@
 		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		update_health()
 
-/mob/living/silicon/pai/verb/suicide()
+mob/living/silicon/pai/verb/suicide()
 	set category = "pAI Commands"
 	set desc = "Kill yourself and become a ghost (You will receive a confirmation prompt)"
 	set name = "pAI Suicide"

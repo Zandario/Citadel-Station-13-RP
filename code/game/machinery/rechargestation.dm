@@ -1,4 +1,4 @@
-/obj/machinery/recharge_station
+obj/machinery/recharge_station
 	name = "cyborg recharging station"
 	desc = "A heavy duty rapid charging system, designed to quickly recharge cyborg power reserves."
 	icon = 'icons/obj/objects.dmi'
@@ -32,14 +32,14 @@
 	/// Power used per point of burn damage repaired.
 	var/wire_power_use = 500
 
-/obj/machinery/recharge_station/Initialize(mapload)
+obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/machinery/recharge_station/proc/has_cell_power()
+obj/machinery/recharge_station/proc/has_cell_power()
 	return cell && cell.percent() > 0
 
-/obj/machinery/recharge_station/process(delta_time)
+obj/machinery/recharge_station/process(delta_time)
 	if(machine_stat & (BROKEN))
 		return
 	if(!cell) // Shouldn't be possible, but sanity check
@@ -73,7 +73,7 @@
 		update_icon()
 
 //Processes the occupant, drawing from the internal power cell if needed.
-/obj/machinery/recharge_station/proc/process_occupant()
+obj/machinery/recharge_station/proc/process_occupant()
 	if(isrobot(occupant))
 		var/mob/living/silicon/robot/R = occupant
 
@@ -131,22 +131,22 @@
 				var/charge_used = cell.use(diff)
 				rigcell.give(charge_used)
 
-/obj/machinery/recharge_station/examine(mob/user)
+obj/machinery/recharge_station/examine(mob/user)
 	. = ..()
 	. += "<span class = 'notice'>The charge meter reads: [round(chargepercentage())]%</span>"
 
-/obj/machinery/recharge_station/proc/chargepercentage()
+obj/machinery/recharge_station/proc/chargepercentage()
 	if(!cell)
 		return 0
 	return cell.percent()
 
-/obj/machinery/recharge_station/relaymove(mob/user as mob)
+obj/machinery/recharge_station/relaymove(mob/user as mob)
 	if(user.stat)
 		return
 	go_out()
 	return
 
-/obj/machinery/recharge_station/emp_act(severity)
+obj/machinery/recharge_station/emp_act(severity)
 	if(occupant)
 		occupant.emp_act(severity)
 		go_out()
@@ -154,7 +154,7 @@
 		cell.emp_act(severity)
 	..(severity)
 
-/obj/machinery/recharge_station/attackby(obj/item/O, mob/user)
+obj/machinery/recharge_station/attackby(obj/item/O, mob/user)
 	if(!occupant)
 		if(default_deconstruction_screwdriver(user, O))
 			return
@@ -171,13 +171,13 @@
 
 	..()
 
-/obj/machinery/recharge_station/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/machinery/recharge_station/MouseDroppedOnLegacy(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user))
 		return
 
 	go_in(target)
 
-/obj/machinery/recharge_station/RefreshParts()
+obj/machinery/recharge_station/RefreshParts()
 	..()
 	var/man_rating = 0
 	var/cap_rating = 0
@@ -202,7 +202,7 @@
 	if(wire_rate)
 		desc += "<br>It is capable of repairing burn damage."
 
-/obj/machinery/recharge_station/proc/build_overlays()
+obj/machinery/recharge_station/proc/build_overlays()
 	cut_overlays()
 	switch(round(chargepercentage()))
 		if(1 to 20)
@@ -218,7 +218,7 @@
 		if(99 to 110)
 			add_overlay(image('icons/obj/objects.dmi', "statn_c100"))
 
-/obj/machinery/recharge_station/update_icon()
+obj/machinery/recharge_station/update_icon()
 	..()
 	if(machine_stat & BROKEN)
 		icon_state = "borgcharger0"
@@ -235,10 +235,10 @@
 	if(icon_update_tick == 0)
 		build_overlays()
 
-/obj/machinery/recharge_station/Bumped(mob/living/L)
+obj/machinery/recharge_station/Bumped(mob/living/L)
 	go_in(L)
 
-/obj/machinery/recharge_station/proc/go_in(mob/living/L)
+obj/machinery/recharge_station/proc/go_in(mob/living/L)
 	if(!istype(L))
 		return
 	if(occupant || L.buckled)
@@ -272,7 +272,7 @@
 	else
 		return
 
-/obj/machinery/recharge_station/proc/go_out()
+obj/machinery/recharge_station/proc/go_out()
 	if(!occupant)
 		return
 
@@ -281,7 +281,7 @@
 	occupant = null
 	update_appearance()
 
-/obj/machinery/recharge_station/verb/move_eject()
+obj/machinery/recharge_station/verb/move_eject()
 	set category = "Object"
 	set name = "Eject Recharger"
 	set src in oview(1)
@@ -293,7 +293,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/recharge_station/verb/move_inside()
+obj/machinery/recharge_station/verb/move_inside()
 	set category = "Object"
 	set name = "Enter Recharger"
 	set src in oview(1)
@@ -303,12 +303,12 @@
 
 	go_in(usr)
 
-/obj/machinery/recharge_station/ghost_pod_recharger
+obj/machinery/recharge_station/ghost_pod_recharger
 	name = "drone pod"
 	desc = "This is a pod which used to contain a drone... Or maybe it still does?"
 	icon = 'icons/obj/structures.dmi'
 
-/obj/machinery/recharge_station/ghost_pod_recharger/update_icon()
+obj/machinery/recharge_station/ghost_pod_recharger/update_icon()
 	..()
 	if(machine_stat & BROKEN)
 		icon_state = "borg_pod_closed"

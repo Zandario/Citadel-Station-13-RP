@@ -1,7 +1,7 @@
 /**
  * announcement locations
  */
-/datum/announce_location
+datum/announce_location
 	/// name
 	var/name = "Unknown Location"
 	/// description
@@ -12,7 +12,7 @@
 /**
  * get affected atoms to process on
  */
-/datum/announce_location/proc/get_affected_atoms()
+datum/announce_location/proc/get_affected_atoms()
 	. = list()
 	var/list/levels = get_affected_levels()
 	for(var/mob/M in GLOB.player_list)
@@ -24,8 +24,8 @@
 /**
  * get affected zlevels
  */
-/datum/announce_location/proc/get_affected_levels()
+datum/announce_location/proc/get_affected_levels()
 	return list()
 
-/datum/announce_location/proc/render_proper_possessive_name()
+datum/announce_location/proc/render_proper_possessive_name()
 	return "A"

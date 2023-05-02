@@ -11,7 +11,7 @@
 #define FIELD(N, V, E) list(field = N, value = V, edit = E)
 #define MED_FIELD(N, V, E, LB) list(field = N, value = V, edit = E, line_break = LB)
 
-/obj/machinery/computer/med_data //TODO:SANITY
+obj/machinery/computer/med_data //TODO:SANITY
 	name = "medical records console"
 	desc = "Used to view, edit and maintain medical records."
 	icon_keyboard = "med_key"
@@ -33,7 +33,7 @@
 	var/static/list/field_edit_choices
 
 
-/obj/machinery/computer/med_data/Initialize(mapload)
+obj/machinery/computer/med_data/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		//General
@@ -66,12 +66,12 @@
 		"blood_type" = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"),
 	)
 
-/obj/machinery/computer/med_data/Destroy()
+obj/machinery/computer/med_data/Destroy()
 	active1 = null
 	active2 = null
 	return ..()
 
-/obj/machinery/computer/med_data/verb/eject_id()
+obj/machinery/computer/med_data/verb/eject_id()
 	set category = "Object"
 	set name = "Eject ID Card"
 	set src in oview(1)
@@ -88,7 +88,7 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/med_data/attackby(var/obj/item/O, var/mob/user)
+obj/machinery/computer/med_data/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/card/id) && !scan)
 		if(!user.attempt_insert_item_for_installation(O, src))
 			return
@@ -98,17 +98,17 @@
 	else
 		..()
 
-/obj/machinery/computer/med_data/attack_ai(user as mob)
+obj/machinery/computer/med_data/attack_ai(user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/med_data/attack_hand(mob/user, list/params)
+obj/machinery/computer/med_data/attack_hand(mob/user, list/params)
 	if(..())
 		return
 
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/computer/med_data/ui_interact(mob/user, datum/tgui/ui = null)
+obj/machinery/computer/med_data/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MedicalRecords", "Medical Records") //800, 380
@@ -116,7 +116,7 @@
 		ui.set_autoupdate(FALSE)
 
 
-/obj/machinery/computer/med_data/ui_data(mob/user)
+obj/machinery/computer/med_data/ui_data(mob/user)
 	var/data[0]
 	data["temp"] = temp
 	data["scan"] = scan ? scan.name : null
@@ -202,7 +202,7 @@
 	data["modal"] = ui_modal_data(src)
 	return data
 
-/obj/machinery/computer/med_data/ui_act(action, params)
+obj/machinery/computer/med_data/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -362,7 +362,7 @@
   * * action - The action passed by tgui
   * * params - The params passed by tgui
   */
-/obj/machinery/computer/med_data/proc/ui_act_modal(action, params)
+obj/machinery/computer/med_data/proc/ui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
 	var/list/arguments = istext(params["arguments"]) ? json_decode(params["arguments"]) : params["arguments"]
@@ -417,7 +417,7 @@
 /**
   * Called when the print timer finishes
   */
-/obj/machinery/computer/med_data/proc/print_finish()
+obj/machinery/computer/med_data/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center><b>Medical Record</b></center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
@@ -462,12 +462,12 @@
  * * text - Text to display, null/empty to clear the message from the UI
  * * style - The style of the message: (color name), info, success, warning, danger, virus
  */
-/obj/machinery/computer/med_data/proc/set_temp(text = "", style = "info", update_now = FALSE)
+obj/machinery/computer/med_data/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
 		SStgui.update_uis(src)
 
-/obj/machinery/computer/med_data/emp_act(severity)
+obj/machinery/computer/med_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -498,7 +498,7 @@
 	..(severity)
 
 
-/obj/machinery/computer/med_data/laptop //TODO: Change name to PCU and update mapdata to include replacement computers
+obj/machinery/computer/med_data/laptop //TODO: Change name to PCU and update mapdata to include replacement computers
 	name = "\improper Medical Laptop"
 	desc = "A personal computer unit. It seems to have only the medical records program installed."
 	icon_screen = "pcu_generic"

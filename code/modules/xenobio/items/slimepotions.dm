@@ -1,6 +1,6 @@
 // These things get applied to slimes to do things.
 
-/obj/item/slimepotion
+obj/item/slimepotion
 	name = "slime agent"
 	desc = "A flask containing strange, mysterious substances excreted by a slime."
 	icon = 'icons/obj/medical/chemical.dmi'
@@ -8,20 +8,20 @@
 	origin_tech = list(TECH_BIO = 4)
 
 // This is actually applied to an extract, so no attack() overriding needed.
-/obj/item/slimepotion/enhancer
+obj/item/slimepotion/enhancer
 	name = "extract enhancer agent"
 	desc = "A potent chemical mix that will give a slime extract an additional two uses."
 	icon_state = "potpurple"
 	description_info = "This will even work on inert slime extracts, if it wasn't enhanced before.  Extracts enhanced cannot be enhanced again."
 
 // Makes slimes less likely to mutate.
-/obj/item/slimepotion/stabilizer
+obj/item/slimepotion/stabilizer
 	name = "slime stabilizer agent"
 	desc = "A potent chemical mix that will reduce the chance of a slime mutating."
 	icon_state = "potcyan"
 	description_info = "The slime needs to be alive for this to work.  It will reduce the chances of mutation by 15%."
 
-/obj/item/slimepotion/stabilizer/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slimepotion/stabilizer/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -42,13 +42,13 @@
 	qdel(src)
 
 // The opposite, makes the slime more likely to mutate.
-/obj/item/slimepotion/mutator
+obj/item/slimepotion/mutator
 	name = "slime mutator agent"
 	desc = "A potent chemical mix that will increase the chance of a slime mutating."
 	description_info = "The slime needs to be alive for this to work.  It will increase the chances of mutation by 12%."
 	icon_state = "potred"
 
-/obj/item/slimepotion/mutator/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slimepotion/mutator/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -70,13 +70,13 @@
 
 
 // Makes the slime friendly forever.
-/obj/item/slimepotion/docility
+obj/item/slimepotion/docility
 	name = "docility agent"
 	desc = "A potent chemical mix that nullifies a slime's hunger, causing it to become docile and tame.  It might also work on other creatures?"
 	icon_state = "potlightpink"
 	description_info = "The target needs to be alive, not already passive, and be an animal or slime type entity."
 
-/obj/item/slimepotion/docility/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slimepotion/docility/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -130,14 +130,14 @@
 
 
 // Makes slimes make more extracts.
-/obj/item/slimepotion/steroid
+obj/item/slimepotion/steroid
 	name = "slime steroid agent"
 	desc = "A potent chemical mix that will increase the amount of extracts obtained from harvesting a slime."
 	description_info = "The slime needs to be alive and not an adult for this to work.  It will increase the amount of extracts gained by one, up to a max of five per slime.  \
 	Extra extracts are not passed down to offspring when reproducing."
 	icon_state = "potpurple"
 
-/obj/item/slimepotion/steroid/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slimepotion/steroid/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -162,14 +162,14 @@
 
 
 // Makes slimes not try to murder other slime colors.
-/obj/item/slimepotion/unity
+obj/item/slimepotion/unity
 	name = "slime unity agent"
 	desc = "A potent chemical mix that makes the slime feel and be seen as all the colors at once, and as a result not be considered an enemy to any other color."
 	description_info = "The slime needs to be alive for this to work.  Slimes unified will not attack or be attacked by other colored slimes, and this will \
 	carry over to offspring when reproducing."
 	icon_state = "potpink"
 
-/obj/item/slimepotion/unity/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slimepotion/unity/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -192,14 +192,14 @@
 	qdel(src)
 
 // Makes slimes not kill (most) humanoids but still fight spiders/carp/bears/etc.
-/obj/item/slimepotion/loyalty
+obj/item/slimepotion/loyalty
 	name = "slime loyalty agent"
 	desc = "A potent chemical mix that makes an animal deeply loyal to the species of whoever applies this, and will attack threats to them."
 	description_info = "The slime or other animal needs to be alive for this to work.  The slime this is applied to will have their 'faction' change to \
 	the user's faction, which means the slime will attack things that are hostile to the user's faction, such as carp, spiders, and other slimes."
 	icon_state = "potred"
 
-/obj/item/slimepotion/loyalty/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slimepotion/loyalty/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -231,14 +231,14 @@
 
 
 // User befriends the slime with this.
-/obj/item/slimepotion/friendship
+obj/item/slimepotion/friendship
 	name = "slime friendship agent"
 	desc = "A potent chemical mix that makes an animal deeply loyal to the the specific entity which feeds them this agent."
 	description_info = "The slime or other animal needs to be alive for this to work.  The slime this is applied to will consider the user \
 	their 'friend', and will never attack them.  This might also work on other things besides slimes."
 	icon_state = "potlightpink"
 
-/obj/item/slimepotion/friendship/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slimepotion/friendship/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -270,13 +270,13 @@
 
 
 // Feeds the slime instantly.
-/obj/item/slimepotion/feeding
+obj/item/slimepotion/feeding
 	name = "slime feeding agent"
 	desc = "A potent chemical mix that will instantly sediate the slime."
 	description_info = "The slime needs to be alive for this to work.  It will instantly grow the slime enough to reproduce."
 	icon_state = "potyellow"
 
-/obj/item/slimepotion/feeding/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/slimepotion/feeding/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE

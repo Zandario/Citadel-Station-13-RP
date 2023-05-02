@@ -2,7 +2,7 @@
 // Generally, if the icon file is card_xxx.dmi, this filename should be sprite_stacks_xxx.dm
 // Please make sure that only the relevant sprite_stacks_xxx.file is included, if more are made.
 
-/obj/item/card
+obj/item/card
 	icon = 'icons/obj/card_cit.dmi' // These are redefined here so that changing sprites is as easy as clicking the checkbox.
 	base_icon = 'icons/obj/card_cit.dmi'
 
@@ -14,7 +14,7 @@
 
 //! Silver
 
-/obj/item/card/id/silver/blueshield
+obj/item/card/id/silver/blueshield
 	initial_sprite_stack = list(
 		"base-stamp-silver",
 		"top-command-security",
@@ -22,14 +22,14 @@
 		"pips-gold",
 	)
 
-/obj/item/card/id/silver/secretary
+obj/item/card/id/silver/secretary
 	initial_sprite_stack = list(
 		"base-stamp",
 		"top-command",
 		"letter-n-command",
 	)
 
-/obj/item/card/id/silver/hop
+obj/item/card/id/silver/hop
 	initial_sprite_stack = list(
 		"base-stamp-silver",
 		"top-command",
@@ -40,19 +40,19 @@
 
 //! Medical
 
-/obj/item/card/id/medical/chemist
+obj/item/card/id/medical/chemist
 	initial_sprite_stack = list(
 		"",
 		"pips-engineering",
 	)
-/obj/item/card/id/medical/geneticist
+obj/item/card/id/medical/geneticist
 	initial_sprite_stack = list(
 		"base-stamp",
 		"top-medical",
 		"letter-n-science",
 		"pips-science",
 	)
-/obj/item/card/id/medical/head
+obj/item/card/id/medical/head
 	initial_sprite_stack = list(
 		"base-stamp-silver",
 		"top-command-medical",
@@ -63,13 +63,13 @@
 
 //! Security
 
-/obj/item/card/id/security/warden
+obj/item/card/id/security/warden
 	initial_sprite_stack = list(
 		"",
 		"pips-gold",
 	)
 
-/obj/item/card/id/security/head
+obj/item/card/id/security/head
 	initial_sprite_stack = list(
 		"base-stamp-silver",
 		"top-command-security",
@@ -80,13 +80,13 @@
 
 //! Engineering
 
-/obj/item/card/id/engineering/atmos
+obj/item/card/id/engineering/atmos
 	initial_sprite_stack = list(
 		"",
 		"pips-medical",
 	)
 
-/obj/item/card/id/engineering/head
+obj/item/card/id/engineering/head
 	initial_sprite_stack = list(
 		"base-stamp-silver",
 		"top-command-engineering",
@@ -97,7 +97,7 @@
 
 //! Science
 
-/obj/item/card/id/science/head
+obj/item/card/id/science/head
 	initial_sprite_stack = list(
 		"base-stamp-silver",
 		"top-command-science",
@@ -108,7 +108,7 @@
 
 //! Cargo
 
-/obj/item/card/id/cargo/head
+obj/item/card/id/cargo/head
 	initial_sprite_stack = list(
 		"",
 		"pips-gold",
@@ -117,7 +117,7 @@
 
 //! Civilian
 
-/obj/item/card/id/civilian/chaplain
+obj/item/card/id/civilian/chaplain
 	initial_sprite_stack = list(
 		"base-stamp-silver",
 		"top-dark",
@@ -125,28 +125,28 @@
 		"pips-mime",
 	)
 
-/obj/item/card/id/civilian/internal_affairs_agent
+obj/item/card/id/civilian/internal_affairs_agent
 	initial_sprite_stack = list(
 		"base-stamp",
 		"top-internal-affairs",
 		"letter-n-command",
 	)
 
-/obj/item/card/id/civilian/clown
+obj/item/card/id/civilian/clown
 	initial_sprite_stack = list(
 		"base-stamp",
 		"top-clown",
 		"letter-n-clown",
 	)
 
-/obj/item/card/id/civilian/mime
+obj/item/card/id/civilian/mime
 	initial_sprite_stack = list(
 		"base-stamp",
 		"top-mime",
 		"letter-n-mime",
 	)
 
-/obj/item/card/id/civilian/head //Not used but I'm defining it anyway.
+obj/item/card/id/civilian/head //Not used but I'm defining it anyway.
 	initial_sprite_stack = list(
 		"base-stamp-silver",
 		"top-command",
@@ -157,25 +157,25 @@
 
 //! Exploration
 
-/obj/item/card/id/medical/sar
+obj/item/card/id/medical/sar
 	initial_sprite_stack = list(
 		"",
 		"pips-science",
 	)
 
-/obj/item/card/id/civilian/pilot
+obj/item/card/id/civilian/pilot
 	initial_sprite_stack = list(
 		"",
 		"pips-science",
 	)
 
-/obj/item/card/id/science/explorer
+obj/item/card/id/science/explorer
 	initial_sprite_stack = list(
 		"",
 		"top-science-explorer",
 	)
 
-/obj/item/card/id/explorer/head/pathfinder
+obj/item/card/id/explorer/head/pathfinder
 	initial_sprite_stack = list(
 		"",
 		"top-science-explorer",

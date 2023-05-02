@@ -1,4 +1,4 @@
-/obj/item/robot_module/robot/standard
+obj/item/robot_module/robot/standard
 	name = "standard robot module"
 	sprites = list(
 		"M-USE NanoTrasen" = "robot",
@@ -27,7 +27,7 @@
 		"W02M" = "worm-standard"
 	)
 
-/obj/item/robot_module/robot/standard/get_modules()
+obj/item/robot_module/robot/standard/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/melee/baton/loaded,
@@ -35,18 +35,18 @@
 		/obj/item/healthanalyzer
 	)
 
-/obj/item/robot_module/robot/standard/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/standard/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	src.emag = new /obj/item/melee/energy/sword(src)
 
-/obj/item/robot_module/robot/quad/basic
+obj/item/robot_module/robot/quad/basic
 	name = "Standard Quadruped module"
 	sprites = list(
 		"F3-LINE" = "FELI-Standard"
 	)
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/quad/basic/get_modules()
+obj/item/robot_module/robot/quad/basic/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/melee/baton/loaded,
@@ -55,7 +55,7 @@
 		/obj/item/dogborg/jaws/small
 	)
 
-/obj/item/robot_module/robot/quad/basic/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/basic/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	// These get a larger water synth.
 	synths_by_kind[MATSYN_WATER]:max_energy = 1000

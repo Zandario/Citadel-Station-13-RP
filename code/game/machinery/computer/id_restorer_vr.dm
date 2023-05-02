@@ -1,4 +1,4 @@
-/obj/machinery/computer/id_restorer
+obj/machinery/computer/id_restorer
 	name = "ID restoration terminal"
 	desc = "A terminal for restoration of damaged IDs. Mostly used for aftermath of unfortunate falls into vats of acid."
 	icon_state = "restorer"
@@ -16,7 +16,7 @@
 
 	var/obj/item/card/id/inserted
 
-/obj/machinery/computer/id_restorer/attackby(obj/I, mob/user)
+obj/machinery/computer/id_restorer/attackby(obj/I, mob/user)
 	if(istype(I, /obj/item/card/id) && !(istype(I,/obj/item/card/id/guest)))
 		if(!inserted)
 			if(!user.attempt_insert_item_for_installation(I, src))
@@ -27,7 +27,7 @@
 		return
 	..()
 
-/obj/machinery/computer/id_restorer/attack_hand(mob/user, list/params)
+obj/machinery/computer/id_restorer/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -86,7 +86,7 @@
 
 
 //Frame
-/datum/frame/frame_types/id_restorer
+datum/frame/frame_types/id_restorer
 	name = "ID Restoration Terminal"
 	frame_class = FRAME_CLASS_DISPLAY
 	frame_size = 2
@@ -95,5 +95,5 @@
 	y_offset = 30
 	icon_override = 'icons/obj/machines/id_restorer_vr.dmi'
 
-/datum/frame/frame_types/id_restorer/get_icon_state(var/state)
+datum/frame/frame_types/id_restorer/get_icon_state(var/state)
 	return "restorer_b[state]"

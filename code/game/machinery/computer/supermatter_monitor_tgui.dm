@@ -1,8 +1,8 @@
-/obj/item/circuitboard/sm_monitor
+obj/item/circuitboard/sm_monitor
 	name = "\improper Supermatter Monitor Computer Circuitboard"
 	build_path = /obj/machinery/computer/sm_monitor
 
-/obj/machinery/computer/sm_monitor
+obj/machinery/computer/sm_monitor
 	name = "\improper Supermatter Monitor Computer"//cool, isnt it?
 	desc = "Allows to monitor nearby Supermatter crystals."
 	icon_keyboard = "generic_key"
@@ -14,15 +14,15 @@
 	req_access = list()
 	var/datum/tgui_module_old/supermatter_monitor/sm_monitor
 
-/obj/machinery/computer/sm_monitor/attack_ai(mob/user)
+obj/machinery/computer/sm_monitor/attack_ai(mob/user)
 	ui_interact(user)
 
-/obj/machinery/computer/sm_monitor/attack_hand(mob/user, list/params)
+obj/machinery/computer/sm_monitor/attack_hand(mob/user, list/params)
 	if(..())
 		return TRUE
 	ui_interact(user)
 
-/obj/machinery/computer/sm_monitor/ui_interact(mob/user)
+obj/machinery/computer/sm_monitor/ui_interact(mob/user)
 	if(!sm_monitor)
 		sm_monitor = new(src)
 	sm_monitor.ui_interact(user)

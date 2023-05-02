@@ -1,17 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/submap/beacons)
+turf/template_noop,
+area/submap/beacons)
 "b" = (
-/obj/structure/marker_beacon,
-/turf/template_noop,
-/area/submap/beacons)
+obj/structure/marker_beacon,
+turf/template_noop,
+area/submap/beacons)
 "c" = (
-/obj/item/stack/marker_beacon{
+obj/item/stack/marker_beacon{
 	amount = 3
 	},
-/turf/template_noop,
-/area/submap/beacons)
+turf/template_noop,
+area/submap/beacons)
 
 (1,1,1) = {"
 a

@@ -1,4 +1,4 @@
-/obj/item/inducer
+obj/item/inducer
 	name = "industrial inducer"
 	desc = "A tool for inductively charging internal power cells."
 
@@ -29,32 +29,32 @@
 	/// recharge distance
 	var/recharge_dist = 7
 
-/obj/item/inducer/unloaded
+obj/item/inducer/unloaded
 	cell_type = null
 	opened = TRUE
 
-/obj/item/inducer/Initialize(mapload)
+obj/item/inducer/Initialize(mapload)
 	. = ..()
 	if(!cell && cell_type)
 		cell = new cell_type
 	update_appearance()
 
-/obj/item/inducer/get_cell()
+obj/item/inducer/get_cell()
 	return cell
 
-/obj/item/inducer/emp_act(severity)
+obj/item/inducer/emp_act(severity)
 	. = ..()
 	if(cell)
 		cell.emp_act(severity)
 
-/obj/item/inducer/afterattack(atom/A, mob/living/carbon/user, proximity)
+obj/item/inducer/afterattack(atom/A, mob/living/carbon/user, proximity)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(cantbeused(user))
 		return
 	recharge(A, user)
 
-/obj/item/inducer/proc/cantbeused(mob/user)
+obj/item/inducer/proc/cantbeused(mob/user)
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to use [src]!</span>")
 		return TRUE
@@ -69,7 +69,7 @@
 	return FALSE
 
 
-/obj/item/inducer/attackby(obj/item/W, mob/user)
+obj/item/inducer/attackby(obj/item/W, mob/user)
 	if(W.is_screwdriver())
 		playsound(src, W.tool_sound, 50, 1)
 		if(!opened)
@@ -103,7 +103,7 @@
 
 	return ..()
 
-/obj/item/inducer/proc/recharge(atom/movable/A, mob/user)
+obj/item/inducer/proc/recharge(atom/movable/A, mob/user)
 	if(inducing)
 		return FALSE
 	if(!isturf(A) && user.loc == A)
@@ -161,7 +161,7 @@
 	inducing = FALSE
 	user.visible_message(SPAN_NOTICE("[user] recharged [A]."), SPAN_NOTICE("Rechraged [A] with [used] units of power."))
 
-/obj/item/inducer/attack_self(mob/user)
+obj/item/inducer/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -172,7 +172,7 @@
 		cell = null
 		update_icon()
 
-/obj/item/inducer/examine(mob/living/M)
+obj/item/inducer/examine(mob/living/M)
 	. = ..()
 	if(cell)
 		. += "<br><span class='notice'>Its display shows: [round(cell.charge)] / [cell.maxcharge].</span>"
@@ -181,7 +181,7 @@
 	if(opened)
 		. += "<br><span class='notice'>Its battery compartment is open.</span>"
 
-/obj/item/inducer/update_icon()
+obj/item/inducer/update_icon()
 	..()
 	cut_overlays()
 	if(opened)
@@ -191,7 +191,7 @@
 			add_overlay("inducer-bat")
 
 //////// Variants
-/obj/item/inducer/sci
+obj/item/inducer/sci
 	name = "inducer"
 	desc = "A tool for inductively charging internal power cells. This one has a science color scheme, and is less potent than its engineering counterpart."
 	icon_state = "inducer-sci"
@@ -200,7 +200,7 @@
 	transfer_rate = 500
 	opened = TRUE
 
-/obj/item/inducer/syndicate
+obj/item/inducer/syndicate
 	name = "suspicious inducer"
 	desc = "A tool for inductively charging internal power cells. This one has a suspicious colour scheme, and seems to be rigged to transfer charge at a much faster rate."
 	icon_state = "inducer-syndi"
@@ -210,7 +210,7 @@
 	inducer_flags = NONE
 
 /*
-/obj/item/inducer/hybrid
+obj/item/inducer/hybrid
 	name = "hybrid-tech inducer"
 	desc = "A tool for inductively charging internal power cells. This one has some flashy bits and recharges devices slower, but seems to recharge itself between uses."
 	icon_state = "inducer-hybrid"
@@ -220,7 +220,7 @@
 	inducer_flags = NONE
 */
 
-/atom/proc/_inducer_scan(obj/item/inducer/I, list/things_to_induce = list(), inducer_flags)
+atom/proc/_inducer_scan(obj/item/inducer/I, list/things_to_induce = list(), inducer_flags)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	. = inducer_scan(I, things_to_induce, inducer_flags)
 	var/signal = SEND_SIGNAL(src, COMSIG_INDUCER_SCAN, I, things_to_induce, inducer_flags)
@@ -236,7 +236,7 @@
 /**
  * even if full, always add things, or the inducer might think we don't support induction when we do!
  */
-/atom/proc/inducer_scan(obj/item/inducer/I, list/things_to_induce = list(), inducer_flags)
+atom/proc/inducer_scan(obj/item/inducer/I, list/things_to_induce = list(), inducer_flags)
 	var/obj/item/cell/C = get_cell()
 	if(C)
 		things_to_induce += C
@@ -248,12 +248,12 @@
  *
  * do NOT used this on components to take charge, put the component/signal registered in inducer scan!
  */
-/datum/proc/inducer_act(obj/item/inducer/I, amount, inducer_flags)
+datum/proc/inducer_act(obj/item/inducer/I, amount, inducer_flags)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(I, COMSIG_INDUCER_ACT, amount, inducer_flags)
 	return 0
 
-/atom/inducer_act(obj/item/inducer/I, amount, inducer_flags)
+atom/inducer_act(obj/item/inducer/I, amount, inducer_flags)
 	. = ..()
 	var/obj/item/cell/C = get_cell()
 	if(C)

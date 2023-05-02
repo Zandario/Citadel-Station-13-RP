@@ -2,7 +2,7 @@
 ////
 //  One-part Refactor
 ////
-/mob/living/carbon/human/proc/nano_partswap()
+mob/living/carbon/human/proc/nano_partswap()
 	set name = "Ref - Single Limb"
 	set desc = "Allows you to replace and reshape your limbs as you see fit."
 	set category = "Abilities"
@@ -82,7 +82,7 @@
 ////
 //  Full Refactor
 ////
-/mob/living/carbon/human/proc/nano_regenerate() //fixed the proc, it used to leave active_regen true.
+mob/living/carbon/human/proc/nano_regenerate() //fixed the proc, it used to leave active_regen true.
 	set name = "Ref - Whole Body"
 	set desc = "Allows you to regrow limbs and replace organs, given you have enough materials."
 	set category = "Abilities"
@@ -187,7 +187,7 @@
 ////
 //  Storing metal
 ////
-/mob/living/carbon/human/proc/nano_metalnom()
+mob/living/carbon/human/proc/nano_metalnom()
 	set name = "Ref - Store Metals"
 	set desc = "If you're holding a stack of material, you can consume some and store it for later."
 	set category = "Abilities"
@@ -229,7 +229,7 @@
 	else
 		to_chat(src,"<span class='notice'>You're completely capped out on [substance]!</span>")
 // toggling buffs
-/mob/living/carbon/human/proc/nano_togglebuff()
+mob/living/carbon/human/proc/nano_togglebuff()
 	set name = "Ref - Toggle Material Augment"
 	set desc = "Toggle your consumption of stored diamonds, mhydrogen and plasteel."
 	set category = "Abilities"
@@ -250,7 +250,7 @@
 ////
 //  Blob Form
 ////
-/mob/living/carbon/human/proc/nano_blobform()
+mob/living/carbon/human/proc/nano_blobform()
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
 	set category = "Abilities"
@@ -280,7 +280,7 @@
 ////
 //  Change fitting
 ////
-/mob/living/carbon/human/proc/nano_change_fitting()
+mob/living/carbon/human/proc/nano_change_fitting()
 	set name = "Change Species Fit"
 	set desc = "Tweak your shape to change what suits you fit into (and their sprites!)."
 	set category = "Abilities"
@@ -299,7 +299,7 @@
 ////
 //  Change size
 ////
-/mob/living/carbon/human/proc/nano_set_size()
+mob/living/carbon/human/proc/nano_set_size()
 	set name = "Adjust Volume"
 	set category = "Abilities"
 	set hidden = TRUE
@@ -344,38 +344,38 @@
 	user.visible_message("<span class='notice'>Black mist swirls around [user] as they change size.</span>")
 
 /// /// /// A helper to reuse
-/mob/living/proc/nano_get_refactory(obj/item/organ/internal/nano/refactory/R)
+mob/living/proc/nano_get_refactory(obj/item/organ/internal/nano/refactory/R)
 	if(istype(R))
 		if(!(R.status & ORGAN_DEAD))
 			return R
 	return
 
-/mob/living/simple_mob/protean_blob/nano_get_refactory()
+mob/living/simple_mob/protean_blob/nano_get_refactory()
 	if(refactory)
 		return ..(refactory)
 	if(humanform)
 		return humanform.nano_get_refactory()
 
-/mob/living/carbon/human/nano_get_refactory()
+mob/living/carbon/human/nano_get_refactory()
 	return ..(locate(/obj/item/organ/internal/nano/refactory) in internal_organs)
 
 
 
 /// /// /// Ability objects for stat panel
-/obj/effect/protean_ability
+obj/effect/protean_ability
 	name = "Activate"
 	desc = ""
 	icon = 'icons/mob/clothing/species/protean/protean_powers.dmi'
 	var/ability_name
 	var/to_call
 
-/obj/effect/protean_ability/proc/atom_button_text()
+obj/effect/protean_ability/proc/atom_button_text()
 	return src
 
-/obj/effect/protean_ability/statpanel_click(client/C, action, auth)
+obj/effect/protean_ability/statpanel_click(client/C, action, auth)
 	Click()
 
-/obj/effect/protean_ability/Click(var/location, var/control, var/params)
+obj/effect/protean_ability/Click(var/location, var/control, var/params)
 	var/list/clickprops = params2list(params)
 	var/opts = clickprops["shift"]
 
@@ -390,44 +390,44 @@
 			var/mob/living/simple_mob/protean_blob/blob = usr
 			do_ability(blob.humanform)
 
-/obj/effect/protean_ability/proc/do_ability(var/mob/living/L)
+obj/effect/protean_ability/proc/do_ability(var/mob/living/L)
 	if(istype(L))
 		call(L,to_call)()
 	return FALSE
 
 /// The actual abilities
-/obj/effect/protean_ability/into_blob
+obj/effect/protean_ability/into_blob
 	ability_name = "Toggle Blobform"
 	desc = "Discard your shape entirely, changing to a low-energy blob that can fit into small spaces. You'll consume steel to repair yourself in this form."
 	icon_state = "blob"
 	to_call = /mob/living/carbon/human/proc/nano_blobform
 
-/obj/effect/protean_ability/change_volume
+obj/effect/protean_ability/change_volume
 	ability_name = "Change Volume"
 	desc = "Alter your size by consuming steel to produce additional nanites, or regain steel by reducing your size and reclaiming them."
 	icon_state = "volume"
 	to_call = /mob/living/carbon/human/proc/nano_set_size
 
-/obj/effect/protean_ability/reform_limb
+obj/effect/protean_ability/reform_limb
 	ability_name = "Ref - Single Limb"
 	desc = "Rebuild or replace a single limb, assuming you have 2000 steel."
 	icon_state = "limb"
 	to_call = /mob/living/carbon/human/proc/nano_partswap
 
-/obj/effect/protean_ability/reform_body
+obj/effect/protean_ability/reform_body
 	ability_name = "Ref - Whole Body"
 	desc = "Rebuild your entire body into whatever design you want, assuming you have 10,000 metal."
 	icon_state = "body"
 	to_call = /mob/living/carbon/human/proc/nano_regenerate
 
-/obj/effect/protean_ability/metal_nom
+obj/effect/protean_ability/metal_nom
 	ability_name = "Ref - Store Metals"
 	desc = "Store the metal you're holding. Your refactory can only store steel, and all other metals will be converted into nanites ASAP for various effects."
 	icon_state = "metal"
 	to_call = /mob/living/carbon/human/proc/nano_metalnom
 
 
-/obj/effect/protean_ability/toggle_buff
+obj/effect/protean_ability/toggle_buff
 	ability_name = "Ref - Toggle Material Augment"
 	desc = "Toggle your consumption of augmenting materials such as diamonds, plasteel and metallic hydrogen. Toggling this on will cause these materials to be consumed to provide special effects."
 	icon_state = "togglebuff"

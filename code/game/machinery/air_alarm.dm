@@ -27,14 +27,14 @@ GLOBAL_LIST_EMPTY(air_alarms)
 #define MIN_TEMPERATURE -40
 
 //all air alarms in area are connected via magic
-/area
+area
 	var/obj/machinery/alarm/master_air_alarm
 	var/list/air_vent_names = list()
 	var/list/air_scrub_names = list()
 	var/list/air_vent_info = list()
 	var/list/air_scrub_info = list()
 
-/obj/machinery/alarm
+obj/machinery/alarm
 	name = "alarm"
 	desc = "Used to control various station atmospheric systems. The light indicates the current air status of the area."
 	icon = 'icons/obj/monitors.dmi'
@@ -92,27 +92,27 @@ GLOBAL_LIST_EMPTY(air_alarms)
 	///If the alarms from this machine are visible on consoles
 	var/alarms_hidden = FALSE
 
-/obj/machinery/alarm/nobreach
+obj/machinery/alarm/nobreach
 	breach_detection = 0
 
-/obj/machinery/alarm/monitor
+obj/machinery/alarm/monitor
 	report_danger_level = 0
 	breach_detection = 0
 
-/obj/machinery/alarm/alarms_hidden
+obj/machinery/alarm/alarms_hidden
 	alarms_hidden = TRUE
 
-/obj/machinery/alarm/angled
+obj/machinery/alarm/angled
 //	icon = 'icons/obj/wall_machines_angled.dmi'
 
-/obj/machinery/alarm/angled/hidden
+obj/machinery/alarm/angled/hidden
 	alarms_hidden = TRUE
 
-/obj/machinery/alarm/angled/offset_airalarm()
+obj/machinery/alarm/angled/offset_airalarm()
 	pixel_x = (dir & 3) ? 0 : (dir == 4 ? -21 : 21)
 	pixel_y = (dir & 3) ? (dir == 1 ? -18 : 20) : 0
 
-/obj/machinery/alarm/server/Initialize(mapload)
+obj/machinery/alarm/server/Initialize(mapload)
 	. = ..()
 	req_access = list(ACCESS_SCIENCE_RD, ACCESS_ENGINEERING_ATMOS, ACCESS_ENGINEERING_ENGINE)
 	TLV[/datum/gas/oxygen] =			list(16,   19,   135, 140) // Partial pressure, kpa
@@ -122,14 +122,14 @@ GLOBAL_LIST_EMPTY(air_alarms)
 	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
-/obj/machinery/alarm/Initialize(mapload)
+obj/machinery/alarm/Initialize(mapload)
 	. = ..()
 	GLOB.air_alarms += src
 	if(!pixel_x && !pixel_y)
 		offset_airalarm()
 	first_run()
 
-/obj/machinery/alarm/Destroy()
+obj/machinery/alarm/Destroy()
 	GLOB.air_alarms -= src
 	unregister_radio(src, frequency)
 	qdel(wires)
@@ -139,11 +139,11 @@ GLOBAL_LIST_EMPTY(air_alarms)
 		elect_master(exclude_self = TRUE)
 	return ..()
 
-/obj/machinery/alarm/proc/offset_airalarm()
+obj/machinery/alarm/proc/offset_airalarm()
 	pixel_x = (dir & 3) ? 0 : (dir == 4 ? -26 : 26)
 	pixel_y = (dir & 3) ? (dir == 1 ? -26 : 26) : 0
 
-/obj/machinery/alarm/proc/first_run()
+obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
 	area_uid = "\ref[alarm_area]"
 	if(name == "alarm")
@@ -163,13 +163,13 @@ GLOBAL_LIST_EMPTY(air_alarms)
 
 	update_icon()
 
-/obj/machinery/alarm/Initialize(mapload)
+obj/machinery/alarm/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 	if(!master_is_operating())
 		elect_master()
 
-/obj/machinery/alarm/process(delta_time)
+obj/machinery/alarm/process(delta_time)
 	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
 		return
 
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 
 	return
 
-/obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
+obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
 	DECLARE_TLV_VALUES
 	LOAD_TLV_VALUES(TLV["temperature"], target_temperature)
 	if(!regulating_temperature)
@@ -263,7 +263,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 
 			environment.merge(gas)
 
-/obj/machinery/alarm/proc/overall_danger_level(var/datum/gas_mixture/environment)
+obj/machinery/alarm/proc/overall_danger_level(var/datum/gas_mixture/environment)
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature/environment.volume
 	var/environment_pressure = environment.return_pressure()
 
@@ -295,7 +295,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 		)
 
 /// Returns whether this air alarm thinks there is a breach, given the sensors that are available to it.
-/obj/machinery/alarm/proc/breach_detected()
+obj/machinery/alarm/proc/breach_detected()
 	var/turf/simulated/location = src.loc
 
 	if(!istype(location))
@@ -313,10 +313,10 @@ GLOBAL_LIST_EMPTY(air_alarms)
 			return TRUE
 	return FALSE
 
-/obj/machinery/alarm/proc/master_is_operating()
+obj/machinery/alarm/proc/master_is_operating()
 	return alarm_area && alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.machine_stat & (NOPOWER | BROKEN))
 
-/obj/machinery/alarm/proc/elect_master(exclude_self = FALSE)
+obj/machinery/alarm/proc/elect_master(exclude_self = FALSE)
 	for(var/obj/machinery/alarm/AA in alarm_area)
 		if(exclude_self && AA == src)
 			continue
@@ -325,7 +325,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 			return TRUE
 	return FALSE
 
-/obj/machinery/alarm/update_icon()
+obj/machinery/alarm/update_icon()
 	cut_overlays()
 
 	if(panel_open)
@@ -364,7 +364,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 	set_light(l_range = 2, l_power = 0.25, l_color = new_color)
 	//set_light_on(TRUE)
 
-/obj/machinery/alarm/receive_signal(datum/signal/signal)
+obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(alarm_area.master_air_alarm != src)
@@ -392,7 +392,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 		alarm_area.air_vent_info[id_tag] = signal.data
 	SStgui.update_uis(src)
 
-/obj/machinery/alarm/proc/register_env_machine(var/m_id, var/device_type)
+obj/machinery/alarm/proc/register_env_machine(var/m_id, var/device_type)
 	var/new_name
 	if(device_type == "AVP")
 		new_name = "[alarm_area.name] Vent Pump #[alarm_area.air_vent_names.len+1]"
@@ -405,7 +405,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 	spawn(10)
 		send_signal(m_id, list("init" = new_name))
 
-/obj/machinery/alarm/proc/refresh_all()
+obj/machinery/alarm/proc/refresh_all()
 	for(var/id_tag in alarm_area.air_vent_names)
 		var/list/I = alarm_area.air_vent_info[id_tag]
 		if(I && I["timestamp"] + AALARM_REPORT_TIMEOUT / 2 > world.time)
@@ -417,12 +417,12 @@ GLOBAL_LIST_EMPTY(air_alarms)
 			continue
 		send_signal(id_tag, list("status"))
 
-/obj/machinery/alarm/proc/set_frequency(new_frequency)
+obj/machinery/alarm/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_TO_AIRALARM)
 
-/obj/machinery/alarm/proc/send_signal(var/target, var/list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
+obj/machinery/alarm/proc/send_signal(var/target, var/list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)
 		return 0
 
@@ -439,7 +439,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 
 	return 1
 
-/obj/machinery/alarm/proc/apply_mode()
+obj/machinery/alarm/proc/apply_mode()
 	//propagate mode to other air alarms in the area
 	//TODO: make it so that players can choose between applying the new mode to the room they are in (related area) vs the entire alarm area
 	for(var/obj/machinery/alarm/AA in alarm_area)
@@ -476,13 +476,13 @@ GLOBAL_LIST_EMPTY(air_alarms)
 			for(var/device_id in alarm_area.air_vent_names)
 				send_signal(device_id, list("power"= 0))
 
-/obj/machinery/alarm/proc/apply_danger_level(var/new_danger_level)
+obj/machinery/alarm/proc/apply_danger_level(var/new_danger_level)
 	if(report_danger_level && alarm_area.atmosalert(new_danger_level, src))
 		post_alert(new_danger_level)
 
 	update_icon()
 
-/obj/machinery/alarm/proc/post_alert(alert_level)
+obj/machinery/alarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
 	if(!frequency)
 		return
@@ -502,27 +502,27 @@ GLOBAL_LIST_EMPTY(air_alarms)
 
 	frequency.post_signal(src, alert_signal)
 
-/obj/machinery/alarm/attack_ai(mob/user)
+obj/machinery/alarm/attack_ai(mob/user)
 	ui_interact(user)
 
-/obj/machinery/alarm/attack_hand(mob/user, list/params)
+obj/machinery/alarm/attack_hand(mob/user, list/params)
 	. = ..()
 	if(.)
 		return
 	return interact(user)
 
-/obj/machinery/alarm/interact(mob/user)
+obj/machinery/alarm/interact(mob/user)
 	ui_interact(user)
 	wires.Interact(user)
 
-/obj/machinery/alarm/ui_status(mob/user)
+obj/machinery/alarm/ui_status(mob/user)
 	if(isAI(user) && aidisabled)
 		to_chat(user, "AI control has been disabled.")
 	else if(!shorted)
 		return ..()
 	return UI_CLOSE
 
-/obj/machinery/alarm/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/ui_state/state)
+obj/machinery/alarm/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/ui_state/state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AirAlarm", name, parent_ui)
@@ -530,7 +530,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 			ui.set_state(state)
 		ui.open()
 
-/obj/machinery/alarm/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/alarm/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = list(
 		"locked" = locked,
 		"siliconUser" = issilicon(user),
@@ -664,7 +664,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 		data["thresholds"] = thresholds
 	return data
 
-/obj/machinery/alarm/ui_act(action, params, datum/tgui/ui)
+obj/machinery/alarm/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -763,7 +763,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 
 // This big ol' mess just ensures that TLV always makes sense. If you set the max value below the min value,
 // it'll automatically update all the other values to keep it sane.
-/obj/machinery/alarm/proc/clamp_tlv_values(env, changed_threshold)
+obj/machinery/alarm/proc/clamp_tlv_values(env, changed_threshold)
 	var/list/selected = TLV[env]
 	switch(changed_threshold)
 		if(1)
@@ -798,12 +798,12 @@ GLOBAL_LIST_EMPTY(air_alarms)
 
 
 
-/obj/machinery/alarm/proc/atmos_reset()
+obj/machinery/alarm/proc/atmos_reset()
 	if(alarm_area.atmosalert(0, src))
 		apply_danger_level(0)
 	update_icon()
 
-/obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(alarm_deconstruction_screwdriver(user, W))
 		return
@@ -814,7 +814,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 		togglelock()
 	return ..()
 
-/obj/machinery/alarm/verb/togglelock(mob/user as mob)
+obj/machinery/alarm/verb/togglelock(mob/user as mob)
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "It does nothing.")
 		return
@@ -826,18 +826,18 @@ GLOBAL_LIST_EMPTY(air_alarms)
 			to_chat(user, SPAN_BOLDWARNING("Access denied."))
 		return
 
-/obj/machinery/alarm/AltClick()
+obj/machinery/alarm/AltClick()
 	..()
 	togglelock()
 
-/obj/machinery/alarm/power_change()
+obj/machinery/alarm/power_change()
 	..()
 	spawn(rand(0,15))
 		update_icon()
-/obj/machinery/alarm/freezer
+obj/machinery/alarm/freezer
 	target_temperature = T0C - 13.15 // Chilly freezer room
 
-/obj/machinery/alarm/freezer/first_run()
+obj/machinery/alarm/freezer/first_run()
 	. = ..()
 
 	TLV["temperature"] =	list(T0C - 40, T0C - 20, T0C + 40, T0C + 66) // K, Lower Temperature for Freezer Air Alarms (This is because TLV is hardcoded to be generated on first_run, and therefore the only way to modify this without changing TLV generation)

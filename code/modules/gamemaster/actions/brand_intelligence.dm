@@ -1,4 +1,4 @@
-/datum/gm_action/brand_intelligence
+datum/gm_action/brand_intelligence
 	name = "rampant vending machines"
 	length = 30 MINUTES
 	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_EVERYONE)
@@ -10,12 +10,12 @@
 
 	var/active = FALSE	// Are we currently infecting?
 
-/datum/gm_action/brand_intelligence/announce()
+datum/gm_action/brand_intelligence/announce()
 	if(prob(90))
 		command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard  [station_name()], which appears to transmit \
 	to other nearby vendors.  The original infected machine is believed to be \a [originMachine.name].", "Vendor Service Alert")
 
-/datum/gm_action/brand_intelligence/set_up()
+datum/gm_action/brand_intelligence/set_up()
 	vendingMachines.Cut()
 	infectedVendingMachines.Cut()
 
@@ -35,7 +35,7 @@
 	start_time = world.time
 	active = TRUE
 
-/datum/gm_action/brand_intelligence/start()
+datum/gm_action/brand_intelligence/start()
 	..()
 	while(originMachine || active)
 		if(!vendingMachines.len || !originMachine || originMachine.shut_up)	//if every machine is infected, or if the original vending machine is missing or has it's voice switch flipped
@@ -59,11 +59,11 @@
 											 "Advertising is legalized lying! But don't let that put you off our great deals!", \
 											 "You don't want to buy anything? Yeah, well I didn't want to buy your mom either."))
 
-/datum/gm_action/brand_intelligence/end()
+datum/gm_action/brand_intelligence/end()
 	active = FALSE
 	for(var/obj/machinery/vending/infectedMachine in infectedVendingMachines)
 		infectedMachine.shut_up = 1
 		infectedMachine.shoot_inventory = 0
 
-/datum/gm_action/brand_intelligence/get_weight()
+datum/gm_action/brand_intelligence/get_weight()
 	return 60 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20)

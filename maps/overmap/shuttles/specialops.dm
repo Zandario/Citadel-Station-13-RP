@@ -1,7 +1,7 @@
 // ERT SHIP
 //This vessel needs an overmap presence, mostly so we can stop using the shitcode old variant. CentCom will need to become notionally visitable as part of this change.
 //Look into figuring out a way to spawn an OM destination adjacent to another - that way CC can always orbit Lythios, instead of being mysteriously across the map out of orbit.
-/datum/shuttle/autodock/overmap/specops
+datum/shuttle/autodock/overmap/specops
 	name = "NDV Quicksilver"
 	warmup_time = 3
 	shuttle_area = list(/area/shuttle/specops/general, /area/shuttle/specops/cockpit, /area/shuttle/specops/engine)
@@ -13,7 +13,7 @@
 	defer_initialisation = TRUE
 
 // The 'ship' of the shuttle
-/obj/effect/overmap/visitable/ship/landable/specops
+obj/effect/overmap/visitable/ship/landable/specops
 	name = "NDV Quicksilver"
 	desc = "A NanoTrasen ST-ERT rapid response vessel."
 	fore_dir = EAST
@@ -21,7 +21,7 @@
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "NDV Quicksilver"
 
-/obj/effect/shuttle_landmark/shuttle_initializer/specops
+obj/effect/shuttle_landmark/shuttle_initializer/specops
 	name = "Special Operations Dock"
 	landmark_tag = "specops_hangar"
 	docking_controller = "specops_hangar_dock"
@@ -29,29 +29,29 @@
 	base_area = /area/centcom/specops/dock
 	shuttle_type = /datum/shuttle/autodock/overmap/specops
 
-/obj/machinery/computer/shuttle_control/explore/specops
+obj/machinery/computer/shuttle_control/explore/specops
 	name = "special operations short jump console"
 	shuttle_tag = "NDV Quicksilver"
 
 // Spec Ops Areas
-/area/shuttle/specops
+area/shuttle/specops
 	requires_power = TRUE
 	name = "\improper NDV Quicksilver"
 	icon_state = "shuttle1"
 
-/area/shuttle/specops/general
+area/shuttle/specops/general
 	name = "\improper NDV Quicksilver Deck"
 
-/area/shuttle/specops/cockpit
+area/shuttle/specops/cockpit
 	name = "\improper NDV Quicksilver Cockpit"
 
-/area/shuttle/specops/engine
+area/shuttle/specops/engine
 	name = "\improper NDV Quicksilver Engine"
 
 
 //So this ship is the prior specops stuff. It was never used/implemented, and it's just a direct rip of the Beruang. I can do better.
 /*
-/datum/shuttle/autodock/multi/specialops
+datum/shuttle/autodock/multi/specialops
 	name = "NDV Phantom"
 	can_cloak = TRUE
 	cloaked = FALSE
@@ -75,7 +75,7 @@
 	arrival_message = "Attention. An NT support vessel is approaching NSV Triumph."
 	departure_message = "Attention. A NT support vessel is now leaving NSV Triumph."
 
-/datum/shuttle/autodock/overmap/specialops2
+datum/shuttle/autodock/overmap/specialops2
 	name = "NDV Phantom"
 	warmup_time = 0
 	current_location = "specops_base"
@@ -85,14 +85,14 @@
 	defer_initialisation = TRUE //We're not loaded until an admin does it (Need to check if this works with other forms of loading like map seeding - Bloop)
 
 // The 'ship' of the excursion shuttle
-/obj/effect/overmap/visitable/ship/landable/specialops2
+obj/effect/overmap/visitable/ship/landable/specialops2
 	name = "NDV Phantom"
 	desc = "A specialized emergency response vessel"
 	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Special Oops Shuttle"
 
-/obj/machinery/computer/shuttle_control/explore/specialops2
+obj/machinery/computer/shuttle_control/explore/specialops2
 	name = "short jump console"
 	shuttle_tag = "Special Oops Shuttle"
 */

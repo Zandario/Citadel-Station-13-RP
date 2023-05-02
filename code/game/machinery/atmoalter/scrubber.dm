@@ -1,4 +1,4 @@
-/obj/machinery/portable_atmospherics/powered/scrubber
+obj/machinery/portable_atmospherics/powered/scrubber
 	name = "Portable Air Scrubber"
 
 	icon = 'icons/obj/atmos.dmi'
@@ -22,7 +22,7 @@
 		/datum/gas/methane, /datum/gas/argon, /datum/gas/krypton, /datum/gas/neon, /datum/gas/ammonia, /datum/gas/xenon, /datum/gas/chlorine,
 		/datum/gas/sulfur_dioxide, /datum/gas/hydrogen)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/Initialize(mapload)
+obj/machinery/portable_atmospherics/powered/scrubber/Initialize(mapload)
 	. = ..()
 	for(var/i in scrubbing_gas)
 		if(!ispath(i))
@@ -34,7 +34,7 @@
 				scrubbing_gas += path
 	cell = new/obj/item/cell/apc(src)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
+obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -45,14 +45,14 @@
 
 	..(severity)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/update_icon_state()
+obj/machinery/portable_atmospherics/powered/scrubber/update_icon_state()
 	. = ..()
 	if(on && cell && cell.charge)
 		icon_state = "pscrubber:1"
 	else
 		icon_state = "pscrubber:0"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/update_overlays()
+obj/machinery/portable_atmospherics/powered/scrubber/update_overlays()
 	. = ..()
 	if(holding)
 		. += "scrubber-open"
@@ -60,7 +60,7 @@
 	if(connected_port)
 		. += "scrubber-connector"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/process(delta_time)
+obj/machinery/portable_atmospherics/powered/scrubber/process(delta_time)
 	..()
 
 	var/power_draw = -1
@@ -94,27 +94,27 @@
 	//src.update_icon()
 	src.updateDialog()
 
-/obj/machinery/portable_atmospherics/powered/scrubber/return_air()
+obj/machinery/portable_atmospherics/powered/scrubber/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_ai(var/mob/user)
+obj/machinery/portable_atmospherics/powered/scrubber/attack_ai(var/mob/user)
 	src.add_hiddenprint(user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_ghost(var/mob/user)
+obj/machinery/portable_atmospherics/powered/scrubber/attack_ghost(var/mob/user)
 	. = ..()
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(mob/user, list/params)
+obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(mob/user, list/params)
 	ui_interact(user)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/portable_atmospherics/powered/scrubber/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PortableScrubber", name)
 		ui.open()
 
-/obj/machinery/portable_atmospherics/powered/scrubber/ui_data(mob/user)
+obj/machinery/portable_atmospherics/powered/scrubber/ui_data(mob/user)
 	var/list/data = list()
 
 	data["on"] = on ? 1 : 0
@@ -136,7 +136,7 @@
 
 	return data
 
-/obj/machinery/portable_atmospherics/powered/scrubber/ui_act(action, params)
+obj/machinery/portable_atmospherics/powered/scrubber/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -156,7 +156,7 @@
 	update_icon()
 
 //Huge scrubber
-/obj/machinery/portable_atmospherics/powered/scrubber/huge
+obj/machinery/portable_atmospherics/powered/scrubber/huge
 	name = "Huge Air Scrubber"
 	icon = 'icons/obj/atmos_vr.dmi'
 	icon_state = "scrubber:0"
@@ -172,7 +172,7 @@
 	var/global/gid = 1
 	var/id = 0
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/Initialize(mapload)
+obj/machinery/portable_atmospherics/powered/scrubber/huge/Initialize(mapload)
 	. = ..()
 	cell = null
 
@@ -181,10 +181,10 @@
 
 	name = "[name] (ID [id])"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(mob/user, list/params)
+obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(mob/user, list/params)
 		to_chat(user, "<span class='notice'>You can't directly interact with this machine. Use the scrubber control console.</span>")
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
+obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
 	cut_overlays()
 
 	if(on && !(machine_stat & (NOPOWER|BROKEN)))
@@ -192,13 +192,13 @@
 	else
 		icon_state = "scrubber:0"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/power_change()
+obj/machinery/portable_atmospherics/powered/scrubber/huge/power_change()
 	var/old_stat = machine_stat
 	..()
 	if (old_stat != machine_stat)
 		update_icon()
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/process(delta_time)
+obj/machinery/portable_atmospherics/powered/scrubber/huge/process(delta_time)
 	if(!anchored || (machine_stat & (NOPOWER|BROKEN)))
 		on = 0
 		last_flow_rate = 0
@@ -225,7 +225,7 @@
 		use_power(power_draw)
 		update_connected_network()
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
+obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(I.is_wrench())
 		if(on)
 			to_chat(user, "<span class='warning'>Turn \the [src] off first!</span>")
@@ -250,10 +250,10 @@
 	..()
 
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
 	name = "Stationary Air Scrubber"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(I.is_wrench())
 		to_chat(user, "<span class='warning'>The bolts are too tight for you to unscrew!</span>")
 		return
@@ -261,19 +261,19 @@
 	..()
 
 // Tether tram air scrubbers for keeping arrivals clean - they work even with no area power
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram
 	name = "\improper Tram Air Scrubber"
 	icon_state = "scrubber:1"
 	on = TRUE
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram/powered()
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram/powered()
 	return TRUE // Always be powered
 
 // Triumph shuttle air scrubbers for keeping arrivals clean - they work even with no area power
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/shuttle
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/shuttle
 	name = "\improper Shuttle Air Scrubber"
 	icon_state = "scrubber:1"
 	on = TRUE
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/shuttle/powered()
+obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/shuttle/powered()
 	return TRUE // Always be powered

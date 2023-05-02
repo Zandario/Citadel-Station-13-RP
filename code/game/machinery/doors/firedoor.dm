@@ -10,7 +10,7 @@
 #define FIREDOOR_ALERT_COLD		2
 // Not used #define FIREDOOR_ALERT_LOWPRESS 4
 
-/obj/machinery/door/firedoor
+obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
@@ -52,7 +52,7 @@
 		"cold"
 	)
 
-/obj/machinery/door/firedoor/Initialize(mapload, newdir)
+obj/machinery/door/firedoor/Initialize(mapload, newdir)
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
@@ -69,15 +69,15 @@
 			LAZYADD(A.all_doors, src)
 			areas_added += A
 
-/obj/machinery/door/firedoor/Destroy()
+obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
 		LAZYREMOVE(A.all_doors, src)
 	return ..()
 
-/obj/machinery/door/firedoor/get_material()
+obj/machinery/door/firedoor/get_material()
 	return get_material_by_name(MAT_STEEL)
 
-/obj/machinery/door/firedoor/examine(mob/user)
+obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()
 	if(!density)
 		return
@@ -116,7 +116,7 @@
 				users_to_open_string += ", [users_to_open[i]]"
 		. += "<span class = 'danger'>These people have opened \the [src] during an alert: [users_to_open_string].</span>"
 
-/obj/machinery/door/firedoor/Bumped(atom/AM)
+obj/machinery/door/firedoor/Bumped(atom/AM)
 	if(p_open || operating)
 		return
 	if(!density)
@@ -130,7 +130,7 @@
 			attack_hand(M)
 	return 0
 
-/obj/machinery/door/firedoor/attack_hand(mob/user, list/params)
+obj/machinery/door/firedoor/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
@@ -191,7 +191,7 @@
 				nextstate = FIREDOOR_CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attack_alien(var/mob/user) //Familiar, right? Doors.
+obj/machinery/door/firedoor/attack_alien(var/mob/user) //Familiar, right? Doors.
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
@@ -216,7 +216,7 @@
 			return
 	..()
 
-/obj/machinery/door/firedoor/attack_generic(var/mob/living/user, var/damage)
+obj/machinery/door/firedoor/attack_generic(var/mob/living/user, var/damage)
 	if(machine_stat & (BROKEN|NOPOWER))
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			var/time_to_force = (2 + (2 * blocked)) * 5
@@ -241,7 +241,7 @@
 		return
 	..()
 
-/obj/machinery/door/firedoor/attackby(obj/item/C as obj, mob/user as mob)
+obj/machinery/door/firedoor/attackby(obj/item/C as obj, mob/user as mob)
 	add_fingerprint(user, 0, C)
 	if(istype(C, /obj/item/barrier_tape_roll))
 		return //Don't open the door if we're putting tape on it to tell people 'don't open the door'.
@@ -345,7 +345,7 @@
 	return ..()
 
 // CHECK PRESSURE
-/obj/machinery/door/firedoor/process(delta_time)
+obj/machinery/door/firedoor/process(delta_time)
 	..()
 
 	if(density && next_process_time <= world.time)
@@ -389,7 +389,7 @@
 		if(changed)
 			update_icon()
 
-/obj/machinery/door/firedoor/proc/latetoggle()
+obj/machinery/door/firedoor/proc/latetoggle()
 	if(operating || !nextstate)
 		return
 	switch(nextstate)
@@ -402,11 +402,11 @@
 			close()
 	return
 
-/obj/machinery/door/firedoor/close()
+obj/machinery/door/firedoor/close()
 	latetoggle()
 	return ..()
 
-/obj/machinery/door/firedoor/open(var/forced = 0)
+obj/machinery/door/firedoor/open(var/forced = 0)
 	if(hatch_open)
 		hatch_open = 0
 		visible_message("The maintenance hatch of \the [src] closes.")
@@ -424,7 +424,7 @@
 	latetoggle()
 	return ..()
 
-/obj/machinery/door/firedoor/do_animate(animation)
+obj/machinery/door/firedoor/do_animate(animation)
 	switch(animation)
 		if("opening")
 			flick("door_opening", src)
@@ -435,7 +435,7 @@
 	return
 
 
-/obj/machinery/door/firedoor/update_icon()
+obj/machinery/door/firedoor/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 
@@ -468,7 +468,7 @@
 
 //These are playing merry hell on ZAS.  Sorry fellas :(
 
-/obj/machinery/door/firedoor/border_only
+obj/machinery/door/firedoor/border_only
 /*
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	glass = 1 //There is a glass window so you can see through the door
@@ -507,14 +507,14 @@
 */
 
 // For prosperity, in case border doors get reimplemented.
-/obj/machinery/door/firedoor/border_only/CanAStarPass(obj/item/card/id/ID, to_dir)
+obj/machinery/door/firedoor/border_only/CanAStarPass(obj/item/card/id/ID, to_dir)
 	return ..() || (dir != to_dir)
 
-/obj/machinery/door/firedoor/multi_tile
+obj/machinery/door/firedoor/multi_tile
 	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
 	width = 2
 
-/obj/machinery/door/firedoor/glass
+obj/machinery/door/firedoor/glass
 	name = "\improper Emergency Glass Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This one has a resilient glass window, allowing you to see the danger."
 	icon = 'icons/obj/doors/DoorHazardGlass.dmi'
@@ -522,7 +522,7 @@
 	glass = 1
 
 
-/obj/machinery/door/firedoor/glass/hidden
+obj/machinery/door/firedoor/glass/hidden
 	name = "\improper Emergency Shutter System"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This model fits flush with the walls, and has a panel in the floor for maintenance."
 	icon = 'icons/obj/doors/DoorHazardHidden.dmi'
@@ -534,15 +534,15 @@
 	layer = BELOW_OBJ_LAYER
 	#endif
 
-/obj/machinery/door/firedoor/glass/hidden/open()
+obj/machinery/door/firedoor/glass/hidden/open()
 	. = ..()
 	plane = TURF_PLANE
 
-/obj/machinery/door/firedoor/glass/hidden/close()
+obj/machinery/door/firedoor/glass/hidden/close()
 	. = ..()
 	plane = OBJ_PLANE
 
-/obj/machinery/door/firedoor/glass/hidden/steel
+obj/machinery/door/firedoor/glass/hidden/steel
 	name = "\improper Emergency Shutter System"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This model fits flush with the walls, and has a panel in the floor for maintenance."
 	icon = 'icons/obj/doors/DoorHazardHidden_steel.dmi'

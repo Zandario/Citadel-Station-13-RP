@@ -1,7 +1,7 @@
-/proc/investigate_subject2file(subject)
+proc/investigate_subject2file(subject)
 	return file("[GLOB.log_directory]/investigate/[subject].html")
 
-/atom/proc/investigate_log(message, subject)
+atom/proc/investigate_log(message, subject)
 	if(!message)
 		return
 	var/F = investigate_subject2file(subject)
@@ -10,7 +10,7 @@
 	F << "<small>[time2text(world.timeofday,"hh:mm")] \ref[src] ([x],[y],[z])</small> || [src] [message]<br>"
 
 //ADMINVERBS
-/client/proc/investigate_show()
+client/proc/investigate_show()
 	set name = "Investigate"
 	set category = "Admin"
 	if(!holder)

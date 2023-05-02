@@ -57,7 +57,7 @@ Add those other swinging traps you mentioned above!
 */
 
 
-/obj/effect/trap
+obj/effect/trap
 	name = "strange area"
 	desc = "The dust hangs strangely in the air here."
 	icon = 'icons/turf/flooring/trap.dmi'
@@ -71,39 +71,39 @@ Add those other swinging traps you mentioned above!
 	var/id = "trap_debug_controller"
 	var/broken = FALSE
 
-/obj/effect/trap/Initialize(mapload)
+obj/effect/trap/Initialize(mapload)
 	. = ..()
 	RegisterSimpleNetwork(id)
 
-/obj/effect/trap/SimpleNetworkReceive(id, message, list/data, datum/sender)
+obj/effect/trap/SimpleNetworkReceive(id, message, list/data, datum/sender)
 	. = ..()
 	trip()
 
-/obj/effect/trap/proc/trip()
+obj/effect/trap/proc/trip()
 	if(tripped)
 		return
 	if(!tripped)
 		tripped = TRUE
 		fire()
 
-/obj/effect/trap/proc/fire()
+obj/effect/trap/proc/fire()
 	update_icon()
 	visible_message("<span class='danger'>The floor crumbles away!</span>")
 	playsound(src, 'sound/effects/slosh.ogg', 100, 1)
 	var/turf/deploy_location = get_turf(src)
 	deploy_location.ChangeTurf(trap_floor_type)
 
-/obj/effect/trap/proc/Break()
+obj/effect/trap/proc/Break()
 	desc += " Whatever nefarious purpose this one once had, it's broken now."
 	update_icon()
 	broken = TRUE
 
-/obj/effect/trap/proc/Reset()
+obj/effect/trap/proc/Reset()
 	update_icon()
 	broken = FALSE
 	tripped = FALSE
 
-/obj/effect/trap/update_icon()
+obj/effect/trap/update_icon()
 	if(!tripped)
 		icon_state = "[initial(icon_state)]"
 	else if (tripped)
@@ -114,11 +114,11 @@ Add those other swinging traps you mentioned above!
 //////////////////
 
 //Acid Pits
-/obj/effect/trap/pit
+obj/effect/trap/pit
 	name = "strange area"
 	desc = "The dust hangs strangely in the air here."
 
-/obj/effect/trap/pit/attackby(obj/item/W, mob/user)
+obj/effect/trap/pit/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/stack/material/wood))
 		var/obj/item/stack/material/wood/M = W
 		if(M.amount >= 3)
@@ -144,33 +144,33 @@ Add those other swinging traps you mentioned above!
 		else
 			to_chat(user, "<span class='warning'>You need two tiles to rearm the trap.</span>")
 
-/obj/effect/trap/pit/deep
+obj/effect/trap/pit/deep
 	trap_floor_type = /turf/simulated/floor/water/acid/deep
 
-/obj/effect/trap/pit/blood
+obj/effect/trap/pit/blood
 	trap_floor_type = /turf/simulated/floor/water/blood
 
-/obj/effect/trap/pit/blood/deep
+obj/effect/trap/pit/blood/deep
 	trap_floor_type = /turf/simulated/floor/water/blood/deep
 
-/obj/effect/trap/pit/open_space
+obj/effect/trap/pit/open_space
 	trap_floor_type = /turf/simulated/open
 
 //Punji Spear Traps
-/obj/effect/trap/pit/punji
+obj/effect/trap/pit/punji
 	icon_state = "punji"
 	trap_floor_type = null
 	var/min_damage = 15
 	var/max_damage = 25
 
-/obj/effect/trap/pit/punji/fire()
+obj/effect/trap/pit/punji/fire()
 	name = "punji pit"
 	desc = "This pit is filled with sharpened punji stakes!"
 	update_icon()
 	visible_message("<span class='danger'>The floor crumbles away!</span>")
 	playsound(src, 'sound/weapons/slice.ogg', 100, 1)
 
-/obj/effect/trap/pit/punji/Crossed(atom/AM as mob|obj)
+obj/effect/trap/pit/punji/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -185,7 +185,7 @@ Add those other swinging traps you mentioned above!
 		M.visible_message("<span class='danger'>[M] falls onto a punji stake!</span>", \
 						"<span class='userdanger'>You slide onto a punji stake!</span>")
 
-/obj/effect/trap/pit/punji/attackby(obj/item/W, mob/user)
+obj/effect/trap/pit/punji/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W,/obj/item/stack/tile))
 		var/obj/item/stack/tile/M = W
@@ -200,16 +200,16 @@ Add those other swinging traps you mentioned above!
 
 //Bone Breaking Traps
 
-/obj/effect/trap/pit/bone_breaker
+obj/effect/trap/pit/bone_breaker
 	icon_state = "bone"
 	trap_floor_type = null
 
-/obj/effect/trap/pit/bone_breaker/fire(atom/A)
+obj/effect/trap/pit/bone_breaker/fire(atom/A)
 	update_icon()
 	visible_message("<span class='danger'>The floor crumbles away!</span>")
 	playsound(src, 'sound/effects/bang.ogg', 100, 1)
 
-/obj/effect/trap/pit/bone_breaker/Crossed(atom/AM as mob|obj)
+obj/effect/trap/pit/bone_breaker/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -222,7 +222,7 @@ Add those other swinging traps you mentioned above!
 		AM.visible_message("<span class='danger'>[AM] falls into the path of the piston!</span>", \
 						"<span class='userdanger'>Your leg is crushed by the piston!</span>")
 
-/obj/effect/trap/pit/bone_breaker/proc/break_legs(mob/victim as mob)
+obj/effect/trap/pit/bone_breaker/proc/break_legs(mob/victim as mob)
 	var/broken_legs = 0
 	var/mob/living/carbon/human/target = victim
 	var/obj/item/organ/external/left_leg = target.get_organ(BP_L_LEG)
@@ -235,7 +235,7 @@ Add those other swinging traps you mentioned above!
 	if(!broken_legs)
 		return
 
-/obj/effect/trap/pit/bone_breaker/attackby(obj/item/W, mob/user)
+obj/effect/trap/pit/bone_breaker/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W,/obj/item/stack/tile))
 		var/obj/item/stack/tile/M = W
@@ -251,24 +251,24 @@ Add those other swinging traps you mentioned above!
 
 //It's currently acting as if chasms don't exist. Investigate.
 /*
-/obj/effect/trap/pit/chasm
+obj/effect/trap/pit/chasm
 	trap_floor_type = /turf/open/chasm
 */
 
 //Tentacle Pits
 
-/obj/effect/trap/pit/tentacle
+obj/effect/trap/pit/tentacle
 	icon_state = "tentacle"
 	trap_floor_type = null
 	var/min_damage = 15
 	var/max_damage = 25
 
-/obj/effect/trap/pit/tentacle/fire(atom/A)
+obj/effect/trap/pit/tentacle/fire(atom/A)
 	update_icon()
 	visible_message("<span class='danger'>The floor crumbles away!</span>")
 	playsound(src, 'sound/effects/blobattack.ogg', 100, 1)
 
-/obj/effect/trap/pit/tentacle/Crossed(atom/AM as mob|obj)
+obj/effect/trap/pit/tentacle/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -284,7 +284,7 @@ Add those other swinging traps you mentioned above!
 		M.visible_message("<span class='danger'>[M] falls into a writhing mass of tentacles!</span>", \
 						"<span class='userdanger'>You are entwined by a writhing mass of tentacles!</span>")
 
-/obj/effect/trap/pit/tentacle/attackby(obj/item/W, mob/user)
+obj/effect/trap/pit/tentacle/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W,/obj/item/stack/tile))
 		var/obj/item/stack/tile/M = W
@@ -296,7 +296,7 @@ Add those other swinging traps you mentioned above!
 		else
 			to_chat(user, "<span class='warning'>You need two tiles to rearm the trap.</span>")
 
-/obj/effect/trap/pit/tentacle/safe //C'mon, you know why.
+obj/effect/trap/pit/tentacle/safe //C'mon, you know why.
 	min_damage = 0
 	max_damage = 0
 
@@ -305,7 +305,7 @@ Add those other swinging traps you mentioned above!
 //////////////////
 
 //Crossbow Launcher
-/obj/effect/trap/launcher
+obj/effect/trap/launcher
 	name = "odd sculpture"
 	desc = "This sculpture on the wall seems vaguely threatening."
 	icon_state = "launcher"
@@ -327,17 +327,17 @@ Add those other swinging traps you mentioned above!
 
 	//This needs to check dirs, projectiles, accuracy, reload/recharge. It's kinda gonna suck. Consult Turret code.
 
-/obj/effect/trap/launcher/Initialize(mapload)
+obj/effect/trap/launcher/Initialize(mapload)
 	. = ..()
 	RegisterSimpleNetwork(id)
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/trap/launcher/fire()
+obj/effect/trap/launcher/fire()
 	update_icon()
 	visible_message("<span class='danger'>The sculpture's eyes snap open!</span>")
 	playsound(src, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
 
-/obj/effect/trap/launcher/process(delta_time)
+obj/effect/trap/launcher/process(delta_time)
 	if(!tripped)
 		return
 	if(broken)
@@ -358,19 +358,19 @@ Add those other swinging traps you mentioned above!
 		//P.firer = src
 		P.fire(dir2angle(dir))
 
-/obj/effect/trap/launcher/proc/get_initial_fire_delay()
+obj/effect/trap/launcher/proc/get_initial_fire_delay()
 	return initial_fire_delay
 
-/obj/effect/trap/launcher/proc/get_rand_burst_delay()
+obj/effect/trap/launcher/proc/get_rand_burst_delay()
 	return rand(min_burst_delay, max_burst_delay)
 
-/obj/effect/trap/launcher/proc/get_burst_delay()
+obj/effect/trap/launcher/proc/get_burst_delay()
 	return burst_delay
 
-/obj/effect/trap/launcher/proc/get_projectile()
+obj/effect/trap/launcher/proc/get_projectile()
 	return new projectile_type(get_turf(src))
 
-/obj/effect/trap/launcher/attackby(var/obj/item/W, var/mob/user)
+obj/effect/trap/launcher/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/stack/rods))
 		var/obj/item/stack/rods/M = W
 		if(M.amount >= 5)
@@ -388,7 +388,7 @@ Add those other swinging traps you mentioned above!
 		else
 			to_chat(user, "<span class='warning'>You can't pry this sculpture off of the wall.</span>")
 
-/obj/effect/trap/launcher/update_icon()
+obj/effect/trap/launcher/update_icon()
 	if(!tripped)
 		icon_state = "[initial(icon_state)]"
 	else if (tripped && !broken)
@@ -397,32 +397,32 @@ Add those other swinging traps you mentioned above!
 		icon_state = "[initial(icon_state)]_jammed"
 
 //Stake Launcher
-/obj/effect/trap/launcher/stake
+obj/effect/trap/launcher/stake
 	projectile_type = /obj/projectile/bullet/shotgun/stake
 	projectile_sound = 'sound/weapons/punchmiss.ogg'
 
 //Dart Launcher
-/obj/effect/trap/launcher/dart
+obj/effect/trap/launcher/dart
 	projectile_type = /obj/projectile/energy/bolt
 	projectile_sound = 'sound/weapons/slice.ogg'
 
 //Fireball Launcher
-/obj/effect/trap/launcher/fireball
+obj/effect/trap/launcher/fireball
 	projectile_type = /obj/projectile/bullet/incendiary/flamethrower/large
 	projectile_sound = 'sound/effects/bamf.ogg'
 
 //Heavy Fireball Launcher
-/obj/effect/trap/launcher/fireball_aoe
+obj/effect/trap/launcher/fireball_aoe
 	projectile_type = /obj/projectile/magic/aoe/fireball
 	projectile_sound = 'sound/weapons/cannon.ogg'
 
 //Web Launcher
-/obj/effect/trap/launcher/web
+obj/effect/trap/launcher/web
 	projectile_type = /obj/projectile/webball
 	projectile_sound = 'sound/effects/splat.ogg'
 
 //Flesh Launcher
-/obj/effect/trap/launcher/flesh
+obj/effect/trap/launcher/flesh
 	projectile_type = /obj/projectile/bullet/organic
 	projectile_sound = 'sound/effects/squelch1.ogg'
 
@@ -431,7 +431,7 @@ Add those other swinging traps you mentioned above!
 //////////////////
 
 //Debug
-/obj/effect/trap/pop_up
+obj/effect/trap/pop_up
 	name = "pop up trap"
 	desc = "You shouldn't be seeing this! Contact an admin!"
 	icon_state = "popup_spear"
@@ -443,13 +443,13 @@ Add those other swinging traps you mentioned above!
 	var/health = 200
 	var/maxhealth = 200
 
-/obj/effect/trap/pop_up/bullet_act(var/obj/projectile/Proj)
+obj/effect/trap/pop_up/bullet_act(var/obj/projectile/Proj)
 	health -= Proj.damage
 	..()
 	healthcheck()
 	return
 
-/obj/effect/trap/pop_up/attackby(var/obj/item/W, var/mob/user)
+obj/effect/trap/pop_up/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 
@@ -473,12 +473,12 @@ Add those other swinging traps you mentioned above!
 	src.health -= damage
 	healthcheck()
 
-/obj/effect/trap/pop_up/proc/healthcheck()
+obj/effect/trap/pop_up/proc/healthcheck()
 	if((health <= 0))
 		Break()
 		src.visible_message(SPAN_DANGER("\The [src] breaks! It was a trap!"))
 
-/obj/effect/trap/pop_up/update_icon()
+obj/effect/trap/pop_up/update_icon()
 	if(!tripped)
 		icon_state = "[initial(icon_state)]"
 	else if(tripped && !broken)
@@ -488,19 +488,19 @@ Add those other swinging traps you mentioned above!
 
 //Spear Trap
 
-/obj/effect/trap/pop_up/spear
+obj/effect/trap/pop_up/spear
 	name = "loose tile"
 	desc = "The edges of this tile are angled strangely."
 	icon_state = "popup_spear"
 
-/obj/effect/trap/pop_up/spear/fire()
+obj/effect/trap/pop_up/spear/fire()
 	update_icon()
 	visible_message("<span class='danger'>Blades erupt from concealed holes in the floor!</span>")
 	playsound(src, 'sound/effects/holster/holsterout.ogg', 100, 1) //Sound is too quiet, same issue as pillar.
 	name = "spear trap"
 	desc = "These knee-high blades look dangerous!"
 
-/obj/effect/trap/pop_up/spear/Crossed(atom/AM as mob|obj)
+obj/effect/trap/pop_up/spear/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -520,21 +520,21 @@ Add those other swinging traps you mentioned above!
 
 //Spinning Blade Column
 
-/obj/effect/trap/pop_up/pillar
+obj/effect/trap/pop_up/pillar
 	name = "loose tile"
 	desc = "The edges of this tile are bent strangely."
 	icon_state = "popup_pillar"
 	min_damage = 10
 	max_damage = 30
 
-/obj/effect/trap/pop_up/pillar/fire()
+obj/effect/trap/pop_up/pillar/fire()
 	update_icon()
 	visible_message("<span class='danger'>A bladed pillar pops up from a concealed pit in the floor!</span>")
 	playsound(src, 'sound/effects/holster/holsterout.ogg', 100, 1) //Fix sound. It's the gun draw sound, not the blade draw.
 	name = "spinning blade trap"
 	desc = "The blades on this waist-high pillar are spinning violently!"
 
-/obj/effect/trap/pop_up/pillar/Crossed(atom/AM as mob|obj)
+obj/effect/trap/pop_up/pillar/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -564,33 +564,33 @@ if (istype(AM, /mob/living))
 		M.visible_message("<span class='danger'>[M] is slashed by the spinning blades!</span>", \
 						"<span class='userdanger'>You are slashed by the spinning blades!</span>")
 
-/obj/effect/trap/pop_up/pillar/process(atom/AM as mob|obj)
+obj/effect/trap/pop_up/pillar/process(atom/AM as mob|obj)
 	var/mob/living/M = AM
 	var/damage = rand(min_damage, max_damage)
 	M.apply_damage(damage, BRUTE)
 
-/obj/effect/trap/pop_up/pillar/Destroy()
+obj/effect/trap/pop_up/pillar/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 */
 
 //Springtrap Buzzsaw
 
-/obj/effect/trap/pop_up/buzzsaw
+obj/effect/trap/pop_up/buzzsaw
 	icon_state = "popup_saw"
 	name = "loose tile"
 	desc = "This tile has straight slits running along it."
 	min_damage = 25
 	max_damage = 45
 
-/obj/effect/trap/pop_up/buzzsaw/fire()
+obj/effect/trap/pop_up/buzzsaw/fire()
 	update_icon()
 	visible_message("<span class='danger'>Sawblades erupt from concealed slats in the floor!</span>")
 	playsound(src, 'sound/weapons/circsawhit.ogg', 100, 1)
 	name = "spinning saw trap"
 	desc = "These buzzsaw blades are spinning incredibly quickly!"
 
-/obj/effect/trap/pop_up/buzzsaw/Crossed(atom/AM as mob|obj)
+obj/effect/trap/pop_up/buzzsaw/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -614,21 +614,21 @@ if (istype(AM, /mob/living))
 
 //Flame Trap
 
-/obj/effect/trap/pop_up/flame
+obj/effect/trap/pop_up/flame
 	name = "loose tile"
 	desc = "The edges of this tile shine strangely."
 	icon_state = "popup_flame"
 	min_damage = 5
 	max_damage = 15
 
-/obj/effect/trap/pop_up/flame/fire()
+obj/effect/trap/pop_up/flame/fire()
 	update_icon()
 	visible_message("<span class='danger'>Flames gush from a hidden nozzle in the floor!</span>")
 	playsound(src, 'sound/effects/bamf.ogg', 100, 1)
 	name = "flame geyser trap"
 	desc = "The flames bursting out of this are extremely hot!"
 
-/obj/effect/trap/pop_up/flame/Crossed(atom/AM as mob|obj)
+obj/effect/trap/pop_up/flame/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -650,20 +650,20 @@ if (istype(AM, /mob/living))
 
 //Tossing Piston Plate
 
-/obj/effect/trap/pop_up/thrower
+obj/effect/trap/pop_up/thrower
 	name = "crooked tile"
 	desc = "The edges of this tile are lifted slightly."
 	icon_state = "thrower"
 	trap_floor_type = null
 
-/obj/effect/trap/pop_up/thrower/fire()
+obj/effect/trap/pop_up/thrower/fire()
 	update_icon()
 	visible_message("<span class='danger'>The floor tile pistons upwards violently!</span>")
 	playsound(src, 'sound/effects/bang.ogg', 100, 1)
 	name = "piston trap"
 	desc = "This concealed piston rockets upwards with great force."
 
-/obj/effect/trap/pop_up/thrower/Crossed(atom/AM as mob|obj)
+obj/effect/trap/pop_up/thrower/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -688,7 +688,7 @@ if (istype(AM, /mob/living))
 		visible_message("<span class='danger'>[src] slams into [M], sending them flying!</span>")
 		M.afflict_paralyze(20 * 12)
 
-/obj/effect/trap/pop_up/thrower/attackby(var/obj/item/W, var/mob/user)
+obj/effect/trap/pop_up/thrower/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/stack/rods))
 		var/obj/item/stack/rods/M = W
 		if(M.amount >= 3)
@@ -706,14 +706,14 @@ if (istype(AM, /mob/living))
 		else
 			to_chat(user, "<span class='warning'>You can't disarm the trap this way!</span>")
 
-/obj/effect/trap/pop_up/thrower/Reset()
+obj/effect/trap/pop_up/thrower/Reset()
 	update_icon()
 	broken = FALSE
 	tripped = FALSE
 	name = "crooked tile"
 	desc = "The edges of this tile are lifted slightly."
 
-/obj/effect/trap/pop_up/thrower/update_icon()
+obj/effect/trap/pop_up/thrower/update_icon()
 	if(!tripped)
 		icon_state = "[initial(icon_state)]"
 	else if (tripped && !broken)
@@ -726,7 +726,7 @@ if (istype(AM, /mob/living))
 //////////////////
 
 //Falling Log
-/obj/effect/trap/falling
+obj/effect/trap/falling
 	name = "falling trap"
 	desc = "You shouldn't be seeing this! Contact an admin!"
 	icon_state = "log"
@@ -734,7 +734,7 @@ if (istype(AM, /mob/living))
 	var/min_damage = 20
 	var/max_damage = 40
 
-/obj/effect/trap/falling/attackby(var/obj/item/W, var/mob/user)
+obj/effect/trap/falling/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W,/obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/M = W
 		if(M.amount >= 5 && broken)
@@ -748,7 +748,7 @@ if (istype(AM, /mob/living))
 			to_chat(user, "<span class='notice'>You cut the ropes suspending the [src], breaking it.</span>")
 			update_icon()
 
-/obj/effect/trap/falling/update_icon()
+obj/effect/trap/falling/update_icon()
 	if(!tripped)
 		icon_state = "[initial(icon_state)]"
 	else if (tripped && !broken)
@@ -757,7 +757,7 @@ if (istype(AM, /mob/living))
 		icon_state = "[initial(icon_state)]_jammed"
 
 //Falling Log
-/obj/effect/trap/falling/log
+obj/effect/trap/falling/log
 	name = "wavering tile"
 	desc = "There's something strange about the lighting around this tile."
 	icon_state = "log"
@@ -766,13 +766,13 @@ if (istype(AM, /mob/living))
 	min_damage = 20
 	max_damage = 40
 
-/obj/effect/trap/falling/log/fire()
+obj/effect/trap/falling/log/fire()
 	visible_message("<span class='danger'>A log swings down from overhead!</span>")
 	tripped = TRUE
 	name = "falling log trap"
 	desc = "A heavy wooden log suspended by ropes. Primitive, but effective."
 
-/obj/effect/trap/falling/log/Crossed(atom/AM as mob|obj)
+obj/effect/trap/falling/log/Crossed(atom/AM as mob|obj)
 	. = ..()
 	if(AM.is_incorporeal())
 		return
@@ -804,14 +804,14 @@ if (istype(AM, /mob/living))
 		visible_message("<span class='danger'>The falling log slams into [M], sending them flying!</span>")
 		M.afflict_paralyze(20 * 12)
 
-/obj/effect/trap/falling/log/Reset()
+obj/effect/trap/falling/log/Reset()
 	broken = FALSE
 	tripped = FALSE
 	name = "wavering tile"
 	desc = "There's something strange about the lighting around this tile."
 	update_icon()
 
-/obj/effect/trap/falling/log/update_icon()
+obj/effect/trap/falling/log/update_icon()
 	if(!tripped)
 		icon_state = "[initial(icon_state)]"
 	else if (tripped && !broken)

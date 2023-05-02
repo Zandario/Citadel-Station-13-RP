@@ -1,4 +1,4 @@
-/obj/item/rig/vox	//Just to get the atom_flags set up
+obj/item/rig/vox	//Just to get the atom_flags set up
 	name = "alien control module"
 	desc = "This metal box writhes and squirms as if it were alive..."
 	suit_type = "alien"
@@ -22,7 +22,7 @@
 	chest_type = /obj/item/clothing/suit/space/rig/vox
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/vox
 
-/datum/armor/rig/vox
+datum/armor/rig/vox
 	melee = 0.6
 	bullet = 0.5
 	laser = 0.4
@@ -31,22 +31,22 @@
 	bio = 1.0
 	rad = 0.5
 
-/obj/item/clothing/head/helmet/space/rig/vox
+obj/item/clothing/head/helmet/space/rig/vox
 	species_restricted = list(SPECIES_VOX)
 	inv_hide_flags = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 
-/obj/item/clothing/shoes/magboots/rig/vox
+obj/item/clothing/shoes/magboots/rig/vox
 	name = "talons"
 	species_restricted = list(SPECIES_VOX)
 
-/obj/item/clothing/suit/space/rig/vox
+obj/item/clothing/suit/space/rig/vox
 	species_restricted = list(SPECIES_VOX)
 
-/obj/item/clothing/gloves/gauntlets/rig/vox
+obj/item/clothing/gloves/gauntlets/rig/vox
 	siemens_coefficient = 0
 	species_restricted = list(SPECIES_VOX)
 
-/obj/item/rig/vox/carapace
+obj/item/rig/vox/carapace
 	name = "dense alien control module"
 	suit_type = "dense alien"
 	emp_protection = 40 //change this to 30 if too high.
@@ -61,7 +61,7 @@
 		/obj/item/rig_module/self_destruct
 		)
 
-/obj/item/rig/vox/stealth
+obj/item/rig/vox/stealth
 	name = "sinister alien control module"
 	suit_type = "sinister alien"
 	icon_state = "voxstealth_rig"

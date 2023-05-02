@@ -1,4 +1,4 @@
-/obj/item/implantpad
+obj/item/implantpad
 	name = "implantpad"
 	desc = "Used to modify implants."
 	icon = 'icons/obj/items.dmi'
@@ -13,7 +13,7 @@
 
 
 
-/obj/item/implantpad/proc/update()
+obj/item/implantpad/proc/update()
 	if (src.case)
 		src.icon_state = "implantpad-1"
 	else
@@ -21,7 +21,7 @@
 	return
 
 
-/obj/item/implantpad/attack_hand(mob/user, list/params)
+obj/item/implantpad/attack_hand(mob/user, list/params)
 	if ((src.case && user.is_holding(src)))
 		user.put_in_active_hand(case)
 
@@ -35,7 +35,7 @@
 	return
 
 
-/obj/item/implantpad/attackby(obj/item/implantcase/C as obj, mob/user as mob)
+obj/item/implantpad/attackby(obj/item/implantcase/C as obj, mob/user as mob)
 	..()
 	if(istype(C, /obj/item/implantcase))
 		if(!( src.case ))
@@ -48,7 +48,7 @@
 	return
 
 
-/obj/item/implantpad/attack_self(mob/user)
+obj/item/implantpad/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -73,7 +73,7 @@
 	return
 
 
-/obj/item/implantpad/Topic(href, href_list)
+obj/item/implantpad/Topic(href, href_list)
 	..()
 	if (usr.stat)
 		return

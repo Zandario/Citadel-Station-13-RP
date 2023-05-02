@@ -1,4 +1,4 @@
-/obj/item/clothing/accessory
+obj/item/clothing/accessory
 	name = "tie"
 	desc = "A neosilk clip-on tie."
 	icon = 'icons/obj/clothing/ties.dmi'
@@ -21,13 +21,13 @@
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
-/obj/item/clothing/accessory/Destroy()
+obj/item/clothing/accessory/Destroy()
 	accessory_host?.accessories -= src
 	on_removed()
 	return ..()
 
 // todo: refactor entirely, we shouldn't have /obj/item/clothing/accessory
-/obj/item/clothing/accessory/proc/get_inv_overlay()
+obj/item/clothing/accessory/proc/get_inv_overlay()
 	var/mutable_appearance/inv_overlay
 	var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 	if(icon_override)
@@ -42,7 +42,7 @@
 	inv_overlay.appearance_flags = appearance_flags	// Stops accessory_host's color from being multiplied onto the accessory
 	return inv_overlay
 
-/obj/item/clothing/accessory/proc/get_mob_overlay()
+obj/item/clothing/accessory/proc/get_mob_overlay()
 	if(!istype(loc,/obj/item/clothing/))	//don't need special handling if it's worn as normal item.
 		return
 	var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
@@ -80,7 +80,7 @@
 	return mob_overlay
 
 //when user attached an accessory to S
-/obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S, var/mob/user)
+obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S, var/mob/user)
 	if(!istype(S))
 		return
 	accessory_host = S
@@ -103,7 +103,7 @@
 		to_chat(user, "<span class='notice'>You attach \the [src] to \the [accessory_host].</span>")
 		add_fingerprint(user)
 
-/obj/item/clothing/accessory/proc/on_removed(mob/user)
+obj/item/clothing/accessory/proc/on_removed(mob/user)
 	if(!accessory_host)
 		return
 
@@ -128,81 +128,81 @@
 		forceMove(get_turf(src))
 
 //default attackby behaviour
-/obj/item/clothing/accessory/attackby(obj/item/I, mob/user)
+obj/item/clothing/accessory/attackby(obj/item/I, mob/user)
 	..()
 
 //default attack_hand behaviour
-/obj/item/clothing/accessory/attack_hand(mob/user, list/params)
+obj/item/clothing/accessory/attack_hand(mob/user, list/params)
 	if(accessory_host)
 		return	//we aren't an object on the ground so don't call parent
 	..()
 
-/obj/item/clothing/accessory/tie
+obj/item/clothing/accessory/tie
 	name = "blue tie"
 	icon_state = "bluetie"
 	slot = ACCESSORY_SLOT_TIE
 
-/obj/item/clothing/accessory/tie/red
+obj/item/clothing/accessory/tie/red
 	name = "red tie"
 	icon_state = "redtie"
 
-/obj/item/clothing/accessory/tie/blue_clip
+obj/item/clothing/accessory/tie/blue_clip
 	name = "blue tie with a clip"
 	icon_state = "bluecliptie"
 
-/obj/item/clothing/accessory/tie/blue_long
+obj/item/clothing/accessory/tie/blue_long
 	name = "blue long tie"
 	icon_state = "bluelongtie"
 
-/obj/item/clothing/accessory/tie/red_clip
+obj/item/clothing/accessory/tie/red_clip
 	name = "red tie with a clip"
 	icon_state = "redcliptie"
 
-/obj/item/clothing/accessory/tie/red_long
+obj/item/clothing/accessory/tie/red_long
 	name = "red long tie"
 	icon_state = "redlongtie"
 
-/obj/item/clothing/accessory/tie/black
+obj/item/clothing/accessory/tie/black
 	name = "black tie"
 	icon_state = "blacktie"
 
-/obj/item/clothing/accessory/tie/black_clip
+obj/item/clothing/accessory/tie/black_clip
 	name = "black tie with a clip"
 	icon_state = "blackcliptie"
 
-/obj/item/clothing/accessory/tie/darkgreen
+obj/item/clothing/accessory/tie/darkgreen
 	name = "dark green tie"
 	icon_state = "dgreentie"
 
-/obj/item/clothing/accessory/tie/yellow
+obj/item/clothing/accessory/tie/yellow
 	name = "yellow tie"
 	icon_state = "yellowtie"
 
-/obj/item/clothing/accessory/tie/navy
+obj/item/clothing/accessory/tie/navy
 	name = "navy tie"
 	icon_state = "navytie"
 
-/obj/item/clothing/accessory/tie/white
+obj/item/clothing/accessory/tie/white
 	name = "white tie"
 	icon_state = "whitetie"
 
-/obj/item/clothing/accessory/tie/horrible
+obj/item/clothing/accessory/tie/horrible
 	name = "horrible tie"
 	desc = "A neosilk clip-on tie. This one is disgusting."
 	icon_state = "horribletie"
 
-/obj/item/clothing/accessory/stethoscope
+obj/item/clothing/accessory/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
 	slot = ACCESSORY_SLOT_TIE
 
-/obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/carbon/human/M, mob/living/user)
+obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/carbon/human/M, mob/living/user)
 	if(user.a_intent != INTENT_HELP) //in case it is ever used as a surgery tool
 		return ..()
 	return TRUE
 
-/obj/item/clothing/accessory/stethoscope/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/clothing/accessory/stethoscope/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(ishuman(target) && isliving(user))
@@ -255,7 +255,7 @@
 	return ..()
 
 //Medals
-/obj/item/clothing/accessory/medal
+obj/item/clothing/accessory/medal
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
@@ -263,121 +263,121 @@
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
-/obj/item/clothing/accessory/medal/conduct
+obj/item/clothing/accessory/medal/conduct
 	name = "distinguished conduct medal"
 	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is most basic award on offer. It is often awarded by a captain to a member of their crew."
 
-/obj/item/clothing/accessory/medal/bronze_heart
+obj/item/clothing/accessory/medal/bronze_heart
 	name = "bronze heart medal"
 	desc = "A bronze heart-shaped medal awarded for sacrifice. It is often awarded posthumously or for severe injury in the line of duty."
 	icon_state = "bronze_heart"
 
-/obj/item/clothing/accessory/medal/nobel_science
+obj/item/clothing/accessory/medal/nobel_science
 	name = "nobel sciences award"
 	desc = "A bronze medal which represents significant contributions to the field of science or engineering."
 
-/obj/item/clothing/accessory/medal/silver
+obj/item/clothing/accessory/medal/silver
 	name = "silver medal"
 	desc = "A silver medal."
 	icon_state = "silver"
 
-/obj/item/clothing/accessory/medal/silver/valor
+obj/item/clothing/accessory/medal/silver/valor
 	name = "medal of valor"
 	desc = "A silver medal awarded for acts of exceptional valor."
 
-/obj/item/clothing/accessory/medal/silver/security
+obj/item/clothing/accessory/medal/silver/security
 	name = "robust security award"
 	desc = "An award for distinguished combat and sacrifice in defence of corporate commercial interests. Often awarded to security staff."
 
-/obj/item/clothing/accessory/medal/gold
+obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
 	desc = "A prestigious golden medal."
 	icon_state = "gold"
 
-/obj/item/clothing/accessory/medal/gold/captain
+obj/item/clothing/accessory/medal/gold/captain
 	name = "medal of captaincy"
 	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain, and their undisputable authority over their crew."
 
-/obj/item/clothing/accessory/medal/gold/heroism
+obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by high ranking officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but distinguished veteran staff."
 
 // Base type for 'medals' found in a "dungeon" submap, as a sort of trophy to celebrate the player's conquest.
-/obj/item/clothing/accessory/medal/dungeon
+obj/item/clothing/accessory/medal/dungeon
 
-/obj/item/clothing/accessory/medal/dungeon/alien_ufo
+obj/item/clothing/accessory/medal/dungeon/alien_ufo
 	name = "alien captain's medal"
 	desc = "It vaguely like a star. It looks like something an alien captain might've worn. Probably."
 	icon_state = "alien_medal"
 
 //Scarves
 
-/obj/item/clothing/accessory/scarf
+obj/item/clothing/accessory/scarf
 	name = "green scarf"
 	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
 	icon_state = "greenscarf"
 	slot = ACCESSORY_SLOT_DECOR
 
-/obj/item/clothing/accessory/scarf/red
+obj/item/clothing/accessory/scarf/red
 	name = "red scarf"
 	icon_state = "redscarf"
 
-/obj/item/clothing/accessory/scarf/darkblue
+obj/item/clothing/accessory/scarf/darkblue
 	name = "dark blue scarf"
 	icon_state = "darkbluescarf"
 
-/obj/item/clothing/accessory/scarf/purple
+obj/item/clothing/accessory/scarf/purple
 	name = "purple scarf"
 	icon_state = "purplescarf"
 
-/obj/item/clothing/accessory/scarf/yellow
+obj/item/clothing/accessory/scarf/yellow
 	name = "yellow scarf"
 	icon_state = "yellowscarf"
 
-/obj/item/clothing/accessory/scarf/orange
+obj/item/clothing/accessory/scarf/orange
 	name = "orange scarf"
 	icon_state = "orangescarf"
 
-/obj/item/clothing/accessory/scarf/lightblue
+obj/item/clothing/accessory/scarf/lightblue
 	name = "light blue scarf"
 	icon_state = "lightbluescarf"
 
-/obj/item/clothing/accessory/scarf/white
+obj/item/clothing/accessory/scarf/white
 	name = "white scarf"
 	icon_state = "whitescarf"
 
-/obj/item/clothing/accessory/scarf/black
+obj/item/clothing/accessory/scarf/black
 	name = "black scarf"
 	icon_state = "blackscarf"
 
-/obj/item/clothing/accessory/scarf/zebra
+obj/item/clothing/accessory/scarf/zebra
 	name = "zebra scarf"
 	icon_state = "zebrascarf"
 
-/obj/item/clothing/accessory/scarf/christmas
+obj/item/clothing/accessory/scarf/christmas
 	name = "christmas scarf"
 	icon_state = "christmasscarf"
 
-/obj/item/clothing/accessory/scarf/stripedred
+obj/item/clothing/accessory/scarf/stripedred
 	name = "striped red scarf"
 	icon_state = "stripedredscarf"
 
-/obj/item/clothing/accessory/scarf/stripedgreen
+obj/item/clothing/accessory/scarf/stripedgreen
 	name = "striped green scarf"
 	icon_state = "stripedgreenscarf"
 
-/obj/item/clothing/accessory/scarf/stripedblue
+obj/item/clothing/accessory/scarf/stripedblue
 	name = "striped blue scarf"
 	icon_state = "stripedbluescarf"
 
-/obj/item/clothing/accessory/scarf/teshari/neckscarf
+obj/item/clothing/accessory/scarf/teshari/neckscarf
 	name = "small neckscarf"
 	desc = "a neckscarf that is too small for a human's neck"
 	icon_state = "tesh_neckscarf"
 	species_restricted = list(SPECIES_TESHARI)
 
 //Gaiter scarves
-/obj/item/clothing/accessory/gaiter
+obj/item/clothing/accessory/gaiter
 	name = "neck gaiter (red)"
 	desc = "A slightly worn neck gaiter, it's loose enough to be worn comfortably like a scarf. Commonly used by outdoorsmen and mercenaries, both to keep warm and keep debris away from the face."
 	icon_state = "gaiter_red"
@@ -385,7 +385,7 @@
 	slot = ACCESSORY_SLOT_DECOR
 	action_button_name = "Adjust Gaiter"
 
-/obj/item/clothing/accessory/gaiter/attack_self(mob/user)
+obj/item/clothing/accessory/gaiter/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -397,17 +397,17 @@
 		to_chat(user, "You tug the gaiter down around your neck.")
 	update_worn_icon()	//so our mob-overlays update
 
-/obj/item/clothing/accessory/gaiter/tan
+obj/item/clothing/accessory/gaiter/tan
 	name = "neck gaiter (tan)"
 	icon_state = "gaiter_tan"
 
-/obj/item/clothing/accessory/gaiter/gray
+obj/item/clothing/accessory/gaiter/gray
 	name = "neck gaiter (gray)"
 	icon_state = "gaiter_gray"
 
 //bracelets
 
-/obj/item/clothing/accessory/bracelet
+obj/item/clothing/accessory/bracelet
 	name = "bracelet"
 	desc = "A simple silver bracelet with a clasp."
 	icon = 'icons/obj/clothing/ties.dmi'
@@ -416,12 +416,12 @@
 	slot_flags = SLOT_TIE
 	slot = ACCESSORY_SLOT_DECOR
 
-/obj/item/clothing/accessory/bracelet/friendship
+obj/item/clothing/accessory/bracelet/friendship
 	name = "friendship bracelet"
 	desc = "A beautiful friendship bracelet in all the colors of the rainbow."
 	icon_state = "friendbracelet"
 
-/obj/item/clothing/accessory/bracelet/friendship/verb/dedicate_bracelet()
+obj/item/clothing/accessory/bracelet/friendship/verb/dedicate_bracelet()
 	set name = "Dedicate Bracelet"
 	set category = "Object"
 	set desc = "Dedicate your friendship bracelet to a special someone."
@@ -436,10 +436,10 @@
 		to_chat(M, "You dedicate the bracelet to [input], remembering the times you've had together.")
 		return 1
 
-/obj/item/clothing/accessory/bracelet/material
+obj/item/clothing/accessory/bracelet/material
 	icon_state = "materialbracelet"
 
-/obj/item/clothing/accessory/bracelet/material/Initialize(mapload, new_material)
+obj/item/clothing/accessory/bracelet/material/Initialize(mapload, new_material)
 	. = ..(mapload)
 	if(!new_material)
 		new_material = MAT_STEEL
@@ -450,55 +450,55 @@
 	desc = "A bracelet made from [material.display_name]."
 	color = material.icon_colour
 
-/obj/item/clothing/accessory/bracelet/material/get_material()
+obj/item/clothing/accessory/bracelet/material/get_material()
 	return material
 
-/obj/item/clothing/accessory/bracelet/material/wood/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/wood/Initialize(mapload, material_key)
 	return ..(mapload, "wood")
 
-/obj/item/clothing/accessory/bracelet/material/plastic/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/plastic/Initialize(mapload, material_key)
 	return ..(mapload, "plastic")
 
-/obj/item/clothing/accessory/bracelet/material/iron/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/iron/Initialize(mapload, material_key)
 	return ..(mapload, "iron")
 
-/obj/item/clothing/accessory/bracelet/material/steel/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/steel/Initialize(mapload, material_key)
 	return ..(mapload, "steel")
 
-/obj/item/clothing/accessory/bracelet/material/silver/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/silver/Initialize(mapload, material_key)
 	return ..(mapload, "silver")
 
-/obj/item/clothing/accessory/bracelet/material/gold/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/gold/Initialize(mapload, material_key)
 	return ..(mapload, "gold")
 
-/obj/item/clothing/accessory/bracelet/material/platinum/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/platinum/Initialize(mapload, material_key)
 	return ..(mapload, "platinum")
 
-/obj/item/clothing/accessory/bracelet/material/phoron/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/phoron/Initialize(mapload, material_key)
 	return ..(mapload, "phoron")
 
-/obj/item/clothing/accessory/bracelet/material/glass/Initialize(mapload, material_key)
+obj/item/clothing/accessory/bracelet/material/glass/Initialize(mapload, material_key)
 	return ..(mapload, "glass")
 
-/obj/item/clothing/accessory/halfcape
+obj/item/clothing/accessory/halfcape
 	name = "half cape"
 	desc = "A tasteful half-cape, suitible for European nobles and retro anime protagonists."
 	icon_state = "halfcape"
 	slot = ACCESSORY_SLOT_DECOR
 
-/obj/item/clothing/accessory/fullcape
+obj/item/clothing/accessory/fullcape
 	name = "full cape"
 	desc = "A gaudy full cape. You're thinking about wearing it, aren't you?"
 	icon_state = "fullcape"
 	slot = ACCESSORY_SLOT_DECOR
 
-/obj/item/clothing/accessory/sash
+obj/item/clothing/accessory/sash
 	name = "sash"
 	desc = "A plain, unadorned sash."
 	icon_state = "sash"
 	slot = ACCESSORY_SLOT_OVER
 
-/obj/item/clothing/accessory/necklace
+obj/item/clothing/accessory/necklace
 	name = "necklace"
 	desc = "Alt-click to name and add a description."
 	icon_state = "locket"
@@ -506,7 +506,7 @@
 	var/named = FALSE
 	var/coloured = FALSE
 
-/obj/item/clothing/accessory/necklace/AltClick(mob/user)
+obj/item/clothing/accessory/necklace/AltClick(mob/user)
 	if(!named)
 		var/inputname = sanitizeSafe(input("Enter a prefix for the necklace's name.", ,""), MAX_NAME_LEN)
 		if(src && inputname && in_range(user,src))
@@ -525,7 +525,7 @@
 			color = sanitize_hexcolor(colour_input)
 			coloured = TRUE
 
-/obj/item/clothing/accessory/metal_necklace
+obj/item/clothing/accessory/metal_necklace
 	name = "metal necklace"
 	desc = "A shiny steel chain with a vague metallic object dangling off it."
 	icon_state = "metal_necklace"
@@ -536,7 +536,7 @@
 // Collars and such like that
 //
 
-/obj/item/clothing/accessory/choker //A colorable, tagless choker
+obj/item/clothing/accessory/choker //A colorable, tagless choker
 	name = "plain choker"
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	desc = "A simple, plain choker. Or maybe it's a collar? Use in-hand to customize it."
@@ -547,7 +547,7 @@
 	overlay_state = "choker_cst_overlay"
 	var/customized = 0
 
-/obj/item/clothing/accessory/choker/attack_self(mob/user)
+obj/item/clothing/accessory/choker/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -562,7 +562,7 @@
 	else
 		to_chat(usr,"<span class='notice'>[src] has already been customized!</span>")
 
-/obj/item/clothing/accessory/collar
+obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	icon = 'icons/obj/clothing/collars.dmi'
 	icon_override = 'icons/mob/clothing/ties.dmi'
@@ -570,11 +570,11 @@
 	var/writtenon = 0
 
 // Forces different sprite sheet on equip
-/obj/item/clothing/accessory/collar/Initialize(mapload)
+obj/item/clothing/accessory/collar/Initialize(mapload)
 	. = ..()
 	icon_previous_override = icon_override
 
-/obj/item/clothing/accessory/collar/attackby(obj/item/P as obj, mob/user as mob)
+obj/item/clothing/accessory/collar/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/pen))
 		to_chat(user,"<span class='notice'>You write on [name]'s tag.</span>")
 		var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
@@ -592,11 +592,11 @@
 
 // Solution for race-specific sprites for an accessory which is also a suit.
 // Suit icons break if you don't use icon override which then also overrides race-specific sprites.
-/obj/item/clothing/accessory/collar/equipped(mob/user, slot, flags)
+obj/item/clothing/accessory/collar/equipped(mob/user, slot, flags)
 	..()
 	setUniqueSpeciesSprite()
 
-/obj/item/clothing/accessory/collar/proc/setUniqueSpeciesSprite()
+obj/item/clothing/accessory/collar/proc/setUniqueSpeciesSprite()
 	var/mob/living/carbon/human/H = loc
 	if(!istype(H))
 		if(istype(accessory_host) && ishuman(accessory_host.loc))
@@ -606,32 +606,32 @@
 			icon_override = 'icons/mob/clothing/species/teshari/ties.dmi'
 		update_worn_icon()
 
-/obj/item/clothing/accessory/collar/on_attached(var/obj/item/clothing/S, var/mob/user)
+obj/item/clothing/accessory/collar/on_attached(var/obj/item/clothing/S, var/mob/user)
 	if(!istype(S))
 		return
 	accessory_host = S
 	setUniqueSpeciesSprite()
 	..(S, user)
 
-/obj/item/clothing/accessory/collar/dropped(mob/user, flags, atom/newLoc)
+obj/item/clothing/accessory/collar/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	icon_override = icon_previous_override
 
-/obj/item/clothing/accessory/collar/silver
+obj/item/clothing/accessory/collar/silver
 	name = "Silver tag collar"
 	desc = "A collar for your little pets... or the big ones."
 	icon_state = "collar_blk"
 	item_state = "collar_blk_overlay"
 	overlay_state = "collar_blk_overlay"
 
-/obj/item/clothing/accessory/collar/gold
+obj/item/clothing/accessory/collar/gold
 	name = "Golden tag collar"
 	desc = "A collar for your little pets... or the big ones."
 	icon_state = "collar_gld"
 	item_state = "collar_gld_overlay"
 	overlay_state = "collar_gld_overlay"
 
-/obj/item/clothing/accessory/collar/bell
+obj/item/clothing/accessory/collar/bell
 	name = "Bell collar"
 	desc = "A collar with a tiny bell hanging from it, purrfect furr kitties."
 	icon_state = "collar_bell"
@@ -639,7 +639,7 @@
 	overlay_state = "collar_bell_overlay"
 	var/jingled = 0
 
-/obj/item/clothing/accessory/collar/bell/verb/jinglebell()
+obj/item/clothing/accessory/collar/bell/verb/jinglebell()
 	set name = "Jingle Bell"
 	set category = "Object"
 	set src in usr
@@ -652,10 +652,10 @@
 		addtimer(CALLBACK(src, .proc/jingledreset), 50)
 	return
 
-/obj/item/clothing/accessory/collar/bell/proc/jingledreset()
+obj/item/clothing/accessory/collar/bell/proc/jingledreset()
 		jingled = 0
 
-/obj/item/clothing/accessory/collar/shock
+obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
 	desc = "A collar used to ease hungry predators."
 	icon_state = "collar_shk0"
@@ -666,21 +666,21 @@
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/clothing/accessory/collar/shock/Initialize(mapload)
+obj/item/clothing/accessory/collar/shock/Initialize(mapload)
 	. = ..()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
 
-/obj/item/clothing/accessory/collar/shock/Destroy() //Clean up your toys when you're done.
+obj/item/clothing/accessory/collar/shock/Destroy() //Clean up your toys when you're done.
 	radio_controller.remove_object(src, frequency)
 	radio_connection = null //Don't delete this, this is a shared object.
 	return ..()
 
-/obj/item/clothing/accessory/collar/shock/proc/set_frequency(new_frequency)
+obj/item/clothing/accessory/collar/shock/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
+obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
 	if(usr.stat || usr.restrained())
 		return
 	if(((istype(usr, /mob/living/carbon/human) && ((!( SSticker ) || (SSticker && SSticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
@@ -727,7 +727,7 @@
 		return
 	return
 
-/obj/item/clothing/accessory/collar/shock/receive_signal(datum/signal/signal)
+obj/item/clothing/accessory/collar/shock/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption != code)
 		return
 
@@ -744,7 +744,7 @@
 		M.afflict_paralyze(20 * 10)
 	return
 
-/obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
+obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
 	if(!istype(user, /mob/living/carbon/human))
 		return
 	user.set_machine(src)
@@ -770,21 +770,21 @@
 	onclose(user, "radio")
 	return
 
-/obj/item/clothing/accessory/collar/spike
+obj/item/clothing/accessory/collar/spike
 	name = "Spiked collar"
 	desc = "A collar with spikes that look as sharp as your teeth."
 	icon_state = "collar_spik"
 	item_state = "collar_spik_overlay"
 	overlay_state = "collar_spik_overlay"
 
-/obj/item/clothing/accessory/collar/pink
+obj/item/clothing/accessory/collar/pink
 	name = "Pink collar"
 	desc = "This collar will make your pets look FA-BU-LOUS."
 	icon_state = "collar_pnk"
 	item_state = "collar_pnk_overlay"
 	overlay_state = "collar_pnk_overlay"
 
-/obj/item/clothing/accessory/collar/holo
+obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"
 	desc = "An expensive holo-collar for the modern day pet."
 	icon_state = "collar_holo"
@@ -792,14 +792,14 @@
 	overlay_state = "collar_holo_overlay"
 	matter = list(MAT_STEEL = 50)
 
-/obj/item/clothing/accessory/collar/silvercolor
+obj/item/clothing/accessory/collar/silvercolor
 	name = "Dyeable Silver tag collar"
 	desc = "A collar for your little pets... or the big ones."
 	icon_state = "collar_blk_colorized"
 	item_state = "collar_blk_colorized_overlay"
 	overlay_state = "collar_blk_colorized_overlay"
 
-/obj/item/clothing/accessory/collar/cowbell
+obj/item/clothing/accessory/collar/cowbell
 	name = "Cowbell collar"
 	desc = "A collar for your little pets... or the big ones."
 	icon_state = "collar_cowbell"
@@ -807,17 +807,17 @@
 	overlay_state = "collar_cowbell_overlay"
 
 //TFF 17/6/19 - public loadout addition: Indigestible Holocollar
-/obj/item/clothing/accessory/collar/holo/indigestible
+obj/item/clothing/accessory/collar/holo/indigestible
 	name = "Holo-collar"
 	desc = "A special variety of the holo-collar that seems to be made of a very durable fabric that fits around the neck."
 	icon_state = "collar_holo"
 	item_state = "collar_holo_overlay"
 	overlay_state = "collar_holo_overlay"
 //Make indigestible
-/obj/item/clothing/accessory/collar/holo/indigestible/digest_act(var/atom/movable/item_storage = null)
+obj/item/clothing/accessory/collar/holo/indigestible/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/accessory/collar/attack_self(mob/user)
+obj/item/clothing/accessory/collar/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -839,16 +839,16 @@
 		to_chat(user,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
 		initialize_tag(str)
 
-/obj/item/clothing/accessory/collar/proc/initialize_tag(var/tag)
+obj/item/clothing/accessory/collar/proc/initialize_tag(var/tag)
 		name = initial(name) + " ([tag])"
 		desc = initial(desc) + " \"[tag]\" has been engraved on the tag."
 		writtenon = 1
 
-/obj/item/clothing/accessory/collar/holo/initialize_tag(var/tag)
+obj/item/clothing/accessory/collar/holo/initialize_tag(var/tag)
 		..()
 		desc = initial(desc) + " The tag says \"[tag]\"."
 
-/obj/item/clothing/accessory/collar/attackby(obj/item/I, mob/user)
+obj/item/clothing/accessory/collar/attackby(obj/item/I, mob/user)
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
 		return
 
@@ -862,7 +862,7 @@
 
 	to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
 
-/obj/item/clothing/accessory/collar/proc/update_collartag(mob/user, obj/item/I, var/erasemethod, var/erasing, var/writemethod)
+obj/item/clothing/accessory/collar/proc/update_collartag(mob/user, obj/item/I, var/erasemethod, var/erasing, var/writemethod)
 	if(!(istype(user.get_active_held_item(),I)) || !(istype(user.get_inactive_held_item(),src)) || (user.stat))
 		return
 
@@ -888,32 +888,32 @@
 
 //Medals
 
-/obj/item/clothing/accessory/medal/silver/unity
+obj/item/clothing/accessory/medal/silver/unity
 	name = "medal of unity"
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat."
 
 //Primal
-/obj/item/clothing/accessory/talisman
+obj/item/clothing/accessory/talisman
 	name = "bone talisman"
 	desc = "A Scori religious talisman. Some say the Buried Ones smile on those who wear it."
 	icon_state = "talisman"
 	armor_type = /datum/armor/lavaland/trinket
 	slot = ACCESSORY_SLOT_TIE
 
-/obj/item/clothing/accessory/disenchanted_talisman
+obj/item/clothing/accessory/disenchanted_talisman
 	name = "disenchanted bone talisman"
 	desc = "A Scori religious talisman, perhaps given as a gift. Whatever protections such an item may have once brought have since faded away."
 	icon_state = "talisman"
 	slot = ACCESSORY_SLOT_TIE
 
-/obj/item/clothing/accessory/skullcodpiece
+obj/item/clothing/accessory/skullcodpiece
 	name = "skull codpiece"
 	desc = "A skull shaped ornament, intended to protect the important things in life."
 	icon_state = "skull"
 	armor_type = /datum/armor/lavaland/trinket
 	slot = ACCESSORY_SLOT_DECOR
 
-/obj/item/clothing/accessory/skullcodpiece/fake
+obj/item/clothing/accessory/skullcodpiece/fake
 	name = "false codpiece"
 	desc = "A plastic ornament, intended to protect the important things in life. It's not very good at it."
 	icon_state = "skull"

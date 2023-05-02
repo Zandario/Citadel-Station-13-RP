@@ -1,4 +1,4 @@
-/datum/computer_file/program/ntnet_dos
+datum/computer_file/program/ntnet_dos
 	filename = "ntn_dos"
 	filedesc = "DoS Traffic Generator"
 	program_icon_state = "hostile"
@@ -15,7 +15,7 @@
 	var/error = ""
 	var/executed = 0
 
-/datum/computer_file/program/ntnet_dos/process_tick()
+datum/computer_file/program/ntnet_dos/process_tick()
 	dos_speed = 0
 	switch(ntnet_status)
 		if(1)
@@ -31,7 +31,7 @@
 			target = null
 			error = "Connection to destination relay lost."
 
-/datum/computer_file/program/ntnet_dos/kill_program(var/forced)
+datum/computer_file/program/ntnet_dos/kill_program(var/forced)
 	if(target)
 		target.dos_sources.Remove(src)
 		target = null
@@ -39,10 +39,10 @@
 
 	..(forced)
 
-/datum/nano_module/program/computer_dos
+datum/nano_module/program/computer_dos
 	name = "DoS Traffic Generator"
 
-/datum/nano_module/program/computer_dos/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/computer_dos/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	if(!ntnet_global)
 		return
 	var/datum/computer_file/program/ntnet_dos/PRG = program
@@ -83,7 +83,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/datum/computer_file/program/ntnet_dos/Topic(href, href_list)
+datum/computer_file/program/ntnet_dos/Topic(href, href_list)
 	if(..())
 		return 1
 	if(href_list["PRG_target_relay"])

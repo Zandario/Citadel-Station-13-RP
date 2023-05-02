@@ -1,7 +1,7 @@
 /*
  * Trays - Agouri
  */
-/obj/item/tray
+obj/item/tray
 	name = "tray"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "tray"
@@ -15,7 +15,7 @@
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
 
-/obj/item/tray/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/tray/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()
 	if(!isliving(user) || !isliving(target))
 		return
@@ -139,9 +139,9 @@
 				return
 			return
 
-/obj/item/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
+obj/item/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
 
-/obj/item/tray/attackby(atom/A, mob/user, clickchain_flags, list/params)
+obj/item/tray/attackby(atom/A, mob/user, clickchain_flags, list/params)
 	if(istype(A, /obj/item/material/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
 			user.visible_message("<span class='warning'>[user] bashes [src] with [A]!</span>")
@@ -157,7 +157,7 @@
 =																			=
 ===============~~~~~================================~~~~~====================
 */
-/obj/item/tray/proc/calc_carry()
+obj/item/tray/proc/calc_carry()
 	// calculate the weight of the items on the tray
 	var/val = 0 // value to return
 
@@ -171,7 +171,7 @@
 
 	return val
 
-/obj/item/tray/pickup(mob/user, flags, atom/oldLoc)
+obj/item/tray/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 
 	if(!isturf(loc))
@@ -200,7 +200,7 @@
 					Img.color = O.color
 			add_overlay(Img)
 
-/obj/item/tray/dropped(mob/user, flags, atom/newLoc)
+obj/item/tray/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	var/noTable = null
 

@@ -1,4 +1,4 @@
-/obj/effect/debris/cleanable/liquid_fuel
+obj/effect/debris/cleanable/liquid_fuel
 	//Liquid fuel is used for things that used to rely on volatile fuels or phoron being contained to a couple tiles.
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
@@ -7,7 +7,7 @@
 	anchored = TRUE
 	var/amount = 1
 
-/obj/effect/debris/cleanable/liquid_fuel/Initialize(mapload, amt = 1, nologs = TRUE)
+obj/effect/debris/cleanable/liquid_fuel/Initialize(mapload, amt = 1, nologs = TRUE)
 	var/turf/newLoc = loc
 	if(!nologs)
 		message_admins("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[newLoc.x];Y=[newLoc.y];Z=[newLoc.z]'>JMP</a>)")
@@ -29,7 +29,7 @@
 	else
 		return INITIALIZE_HINT_QDEL
 
-/obj/effect/debris/cleanable/liquid_fuel/proc/Spread(exclude=list())
+obj/effect/debris/cleanable/liquid_fuel/proc/Spread(exclude=list())
 	//Allows liquid fuels to sometimes flow into other tiles.
 	if(amount < 15)
 		return //lets suppose welder fuel is fairly thick and sticky. For something like water, 5 or less would be more appropriate.
@@ -50,18 +50,18 @@
 				new/obj/effect/debris/cleanable/liquid_fuel(target, amount*0.25,1)
 			amount *= 0.75
 
-/obj/effect/debris/cleanable/liquid_fuel/flamethrower_fuel
+obj/effect/debris/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
 	anchored = FALSE
 
-/obj/effect/debris/cleanable/liquid_fuel/flamethrower_fuel/Initialize(mapload, amt = 1, d = 0)
+obj/effect/debris/cleanable/liquid_fuel/flamethrower_fuel/Initialize(mapload, amt = 1, d = 0)
 	setDir(d) //Setting this direction means you won't get torched by your own flamethrower.
 	if(istype(loc, /turf/simulated))
 		var/turf/simulated/T = loc
 		T.hotspot_expose((T20C*2) + 380, 500) //Ignite the fuel.
 	. = ..()
 
-/obj/effect/debris/cleanable/liquid_fuel/flamethrower_fuel/Spread()
+obj/effect/debris/cleanable/liquid_fuel/flamethrower_fuel/Spread()
 	//The spread for flamethrower fuel is much more precise, to create a wide fire pattern.
 	if(amount <= 0.1)
 		if(amount < 0.025) //Hopefully stops fuel spreading into unburnable puddles.

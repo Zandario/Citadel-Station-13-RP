@@ -1,11 +1,11 @@
 // TODO: port to modern vehicles. If you're in this file, STOP FUCKING WITH IT AND PORT IT OVER.
 //Dummy object for holding items in vehicles.
 //Prevents items from being interacted with.
-/datum/vehicle_dummy_load
+datum/vehicle_dummy_load
 	var/name = "dummy load"
 	var/actual_load
 
-/obj/vehicle_old
+obj/vehicle_old
 	name = "vehicle"
 	icon = 'icons/obj/vehicles.dmi'
 	layer = MOB_LAYER + 0.1 //so it sits above objects including mobs
@@ -49,7 +49,7 @@
 
 //BUCKLE HOOKS
 
-/obj/vehicle_old/Move()
+obj/vehicle_old/Move()
 	if(world.time > l_move_time + move_delay)
 		var/old_loc = get_turf(src)
 		if(mechanical && on && powered && cell.charge < charge_use)
@@ -77,7 +77,7 @@
 	else
 		return 0
 
-/obj/vehicle_old/attackby(obj/item/W as obj, mob/user as mob)
+obj/vehicle_old/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/hand_labeler))
 		return
 	if(mechanical)
@@ -120,16 +120,16 @@
 	else
 		..()
 
-/obj/vehicle_old/bullet_act(var/obj/projectile/Proj)
+obj/vehicle_old/bullet_act(var/obj/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
 	healthcheck()
 
-/obj/vehicle_old/proc/adjust_health(amount)
+obj/vehicle_old/proc/adjust_health(amount)
 	health = clamp( health + amount, 0,  maxhealth)
 	healthcheck()
 
-/obj/vehicle_old/legacy_ex_act(severity)
+obj/vehicle_old/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			explode()
@@ -147,7 +147,7 @@
 				return
 	return
 
-/obj/vehicle_old/emp_act(severity)
+obj/vehicle_old/emp_act(severity)
 	if(!mechanical)
 		return
 
@@ -169,17 +169,17 @@
 		if(was_on)
 			turn_on()
 
-/obj/vehicle_old/attack_ai(mob/user as mob)
+obj/vehicle_old/attack_ai(mob/user as mob)
 	return
 
 // For downstream compatibility (in particular Paradise)
-/obj/vehicle_old/proc/handle_rotation()
+obj/vehicle_old/proc/handle_rotation()
 	return
 
 //-------------------------------------------
 // Vehicle procs
 //-------------------------------------------
-/obj/vehicle_old/proc/turn_on()
+obj/vehicle_old/proc/turn_on()
 	if(!mechanical || stat)
 		return FALSE
 	if(powered && cell.charge < charge_use)
@@ -189,14 +189,14 @@
 	update_icon()
 	return TRUE
 
-/obj/vehicle_old/proc/turn_off()
+obj/vehicle_old/proc/turn_off()
 	if(!mechanical)
 		return FALSE
 	on = 0
 	set_light(0)
 	update_icon()
 
-/obj/vehicle_old/emag_act(var/remaining_charges, mob/user as mob)
+obj/vehicle_old/emag_act(var/remaining_charges, mob/user as mob)
 	if(!mechanical)
 		return FALSE
 
@@ -207,7 +207,7 @@
 			to_chat(user, "<span class='warning'>You bypass [src]'s controls.</span>")
 		return TRUE
 
-/obj/vehicle_old/proc/explode()
+obj/vehicle_old/proc/explode()
 	src.visible_message("<font color='red'><B>[src] blows apart!</B></font>", 1)
 	var/turf/Tsec = get_turf(src)
 
@@ -232,11 +232,11 @@
 
 	qdel(src)
 
-/obj/vehicle_old/proc/healthcheck()
+obj/vehicle_old/proc/healthcheck()
 	if(health <= 0)
 		explode()
 
-/obj/vehicle_old/proc/powercheck()
+obj/vehicle_old/proc/powercheck()
 	if(!mechanical)
 		return
 
@@ -255,7 +255,7 @@
 		turn_on()
 		return
 
-/obj/vehicle_old/proc/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+obj/vehicle_old/proc/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
 	if(!mechanical)
 		return
 	if(cell)
@@ -269,7 +269,7 @@
 	powercheck()
 	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
 
-/obj/vehicle_old/proc/remove_cell(var/mob/living/carbon/human/H)
+obj/vehicle_old/proc/remove_cell(var/mob/living/carbon/human/H)
 	if(!mechanical)
 		return
 	if(!cell)
@@ -280,7 +280,7 @@
 	cell = null
 	powercheck()
 
-/obj/vehicle_old/proc/RunOver(var/mob/living/M)
+obj/vehicle_old/proc/RunOver(var/mob/living/M)
 	return		//write specifics for different vehicles
 
 //-------------------------------------------
@@ -290,7 +290,7 @@
 // the vehicle load() definition before
 // calling this parent proc.
 //-------------------------------------------
-/obj/vehicle_old/proc/load(var/atom/movable/C, var/mob/living/user)
+obj/vehicle_old/proc/load(var/atom/movable/C, var/mob/living/user)
 	//This loads objects onto the vehicle so they can still be interacted with.
 	//Define allowed items for loading in specific vehicle definitions.
 	if(!isturf(C.loc)) //To prevent loading things from someone's inventory, which wouldn't get handled properly.
@@ -323,7 +323,7 @@
 	return 1
 
 
-/obj/vehicle_old/proc/unload(var/mob/user, var/direction)
+obj/vehicle_old/proc/unload(var/mob/user, var/direction)
 	if(!load)
 		return
 
@@ -371,10 +371,10 @@
 //-------------------------------------------------------
 // Stat update procs
 //-------------------------------------------------------
-/obj/vehicle_old/proc/update_stats()
+obj/vehicle_old/proc/update_stats()
 	return
 
-/obj/vehicle_old/attack_generic(var/mob/user, var/damage, var/attack_message)
+obj/vehicle_old/attack_generic(var/mob/user, var/damage, var/attack_message)
 	if(!damage)
 		return
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
@@ -386,7 +386,7 @@
 	spawn(1) healthcheck()
 	return 1
 
-/obj/vehicle_old/take_damage(var/damage)
+obj/vehicle_old/take_damage(var/damage)
 	if(!damage)
 		return
 	src.health -= damage

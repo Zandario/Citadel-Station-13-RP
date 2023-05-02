@@ -8,7 +8,7 @@ For now this is still usable but bad.
 
 
 
-/obj/tether_away_spawner
+obj/tether_away_spawner
 	name = "RENAME ME, JERK"
 	desc = "Spawns the mobs!"
 	icon = 'icons/mob/screen1.dmi'
@@ -35,7 +35,7 @@ For now this is still usable but bad.
 	var/mob/living/simple_mob/my_mob
 	var/depleted = FALSE
 
-/obj/tether_away_spawner/Initialize(mapload)
+obj/tether_away_spawner/Initialize(mapload)
 	. = ..()
 
 	if(!LAZYLEN(mobs_to_pick_from))
@@ -43,7 +43,7 @@ For now this is still usable but bad.
 		return INITIALIZE_HINT_QDEL
 	START_PROCESSING(SSobj, src)
 
-/obj/tether_away_spawner/process()
+obj/tether_away_spawner/process()
 	if(my_mob && my_mob.stat != DEAD)
 		return //No need
 
@@ -94,7 +94,7 @@ For now this is still usable but bad.
 
 //Shadekin spawner. Could have them show up on any mission, so it's here.
 //Make sure to put them away from others, so they don't get demolished by rude mobs.
-/obj/tether_away_spawner/shadekin
+obj/tether_away_spawner/shadekin
 	name = "Shadekin Spawner"
 	icon = 'icons/mob/vore_shadekin.dmi'
 	icon_state = "spawner"
@@ -109,7 +109,7 @@ For now this is still usable but bad.
 
 
 // Underdark mob spawners
-/obj/tether_away_spawner/underdark_drone_swarm
+obj/tether_away_spawner/underdark_drone_swarm
 	name = "Underdark Drone Swarm Spawner"
 	faction = "underdark"
 	atmos_comp = TRUE
@@ -120,7 +120,7 @@ For now this is still usable but bad.
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 3,
 	)
 
-/obj/tether_away_spawner/underdark_normal
+obj/tether_away_spawner/underdark_normal
 	name = "Underdark Normal Spawner"
 	faction = "underdark"
 	atmos_comp = TRUE
@@ -133,7 +133,7 @@ For now this is still usable but bad.
 		/mob/living/simple_mob/animal/giant_spider/tunneler = 3,
 	)
 
-/obj/tether_away_spawner/underdark_hard
+obj/tether_away_spawner/underdark_hard
 	name = "Underdark Hard Spawner"
 	faction = "underdark"
 	atmos_comp = TRUE
@@ -145,7 +145,7 @@ For now this is still usable but bad.
 		/mob/living/simple_mob/vore/aggressive/rat/phoron = 6,
 	)
 
-/obj/tether_away_spawner/underdark_boss
+obj/tether_away_spawner/underdark_boss
 	name = "Underdark Boss Spawner"
 	faction = "underdark"
 	atmos_comp = TRUE
@@ -155,4 +155,3 @@ For now this is still usable but bad.
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/aggressive/dragon = 1
 	)
-

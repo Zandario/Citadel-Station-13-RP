@@ -2,10 +2,10 @@
 
 GLOBAL_DATUM_INIT(loremaster, /datum/lore/loremaster, new)
 
-/datum/lore/loremaster
+datum/lore/loremaster
 	var/list/organizations = list()
 
-/datum/lore/loremaster/New()
+datum/lore/loremaster/New()
 	var/list/paths = subtypesof(/datum/lore/organization)
 	for(var/path in paths)
 		// Some intermediate paths are not real organizations (ex. /datum/lore/organization/mil). Only do ones with names

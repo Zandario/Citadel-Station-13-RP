@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/hydroponics
+obj/structure/closet/secure_closet/hydroponics
 	name = "botanist's locker"
 	req_access = list(ACCESS_GENERAL_BOTANY)
 	icon_state = "hydrosecure1"
@@ -24,7 +24,7 @@
 		/obj/item/clothing/shoes/boots/winter/hydro,
 		/obj/item/clothing/gloves/botanic_leather)
 
-/obj/structure/closet/secure_closet/hydroponics/Initialize(mapload)
+obj/structure/closet/secure_closet/hydroponics/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/clothing/suit/storage/apron
 	else

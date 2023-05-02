@@ -17,7 +17,7 @@
  *! ## To-Be-Deprecated.
  * optional parent_ui datum/tgui A parent UI that, when closed, closes this UI as well.
  */
-/datum/proc/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+datum/proc/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	return FALSE // Not implemented.
 
 /**
@@ -30,7 +30,7 @@
  *
  * return list Data to be sent to the UI.
  */
-/datum/proc/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+datum/proc/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	return list() // Not implemented.
 
 /**
@@ -47,7 +47,7 @@
  *
  * return list Statuic Data to be sent to the UI.
  */
-/datum/proc/ui_static_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+datum/proc/ui_static_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	return list()
 
 /**
@@ -62,7 +62,7 @@
  * optional ui tgui to be updated
  * optional hard_refreshion use if you need to block the ui from showing if the refresh queues
  */
-/datum/proc/update_static_data(mob/user, datum/tgui/ui, hard_refresh)
+datum/proc/update_static_data(mob/user, datum/tgui/ui, hard_refresh)
 	if(!user)
 		for (var/datum/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
 			window.send_full_update(hard_refresh = hard_refresh)
@@ -80,7 +80,7 @@
  * * ui - when specified, only pushes this ui for a given user.
  * * updates - list(id = list(data...), ...) for modules. the reducer on tgui-side will only overwrite provided data keys.
  */
-/datum/proc/push_ui_data(mob/user, datum/tgui/ui, list/data)
+datum/proc/push_ui_data(mob/user, datum/tgui/ui, list/data)
 	if(!user)
 		for (var/datum/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
 			window.push_data(data)
@@ -98,7 +98,7 @@
  * * ui - when specified, only pushes this ui for a given user.
  * * updates - list(id = list(data...), ...) for modules. the reducer on tgui-side will only overwrite provided data keys.
  */
-/datum/proc/push_ui_modules(mob/user, datum/tgui/ui, list/updates)
+datum/proc/push_ui_modules(mob/user, datum/tgui/ui, list/updates)
 	if(!user)
 		for (var/datum/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
 			window.push_modules(updates)
@@ -119,7 +119,7 @@
  *
  * return bool If the user's input has been handled and the UI should update.
  */
-/datum/proc/ui_act(action, list/params, datum/tgui/ui)
+datum/proc/ui_act(action, list/params, datum/tgui/ui)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_UI_ACT, usr, action, params, ui)
 	// If UI is not interactive or usr calling Topic is not the UI user, bail.
@@ -134,7 +134,7 @@
  *
  * return list List of asset datums or file paths.
  */
-/datum/proc/ui_assets(mob/user)
+datum/proc/ui_assets(mob/user)
 	return list()
 
 /**
@@ -144,7 +144,7 @@
  * This allows modules/datums to have the UI attached to them,
  * and be a part of another object.
  */
-/datum/proc/ui_host(mob/user, datum/tgui_module/module)
+datum/proc/ui_host(mob/user, datum/tgui_module/module)
 	return src // Default src.
 
 /**
@@ -153,7 +153,7 @@
  * The UI's state controller to be used for created uis
  * This is a proc over a var for memory reasons
  */
-/datum/proc/ui_state(mob/user, datum/tgui_module/module)
+datum/proc/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.default_state
 
 /**
@@ -161,7 +161,7 @@
  *
  * checks if UIs are open
  */
-/datum/proc/has_open_ui()
+datum/proc/has_open_ui()
 	return length(SStgui.open_uis_by_src[REF(src)])
 
 /**
@@ -170,28 +170,28 @@
  * Associative list of JSON-encoded shared states that were set by
  * tgui clients.
  */
-/datum/var/list/tgui_shared_states
+datum/var/list/tgui_shared_states
 
 /**
  * global
  *
  * Tracks open UIs for a user.
  */
-/mob/var/list/tgui_open_uis = list()
+mob/var/list/tgui_open_uis = list()
 
 /**
  * global
  *
  * Tracks open windows for a user.
  */
-/client/var/list/tgui_windows = list()
+client/var/list/tgui_windows = list()
 
 /**
  * global
  *
  * TRUE if cache was reloaded by tgui dev server at least once.
  */
-/client/var/tgui_cache_reloaded = FALSE
+client/var/tgui_cache_reloaded = FALSE
 
 /**
  * public
@@ -203,7 +203,7 @@
  * * user - closing mob
  * * module - (optional) the module it came from, if any
  */
-/datum/proc/ui_close(mob/user, datum/tgui_module/module)
+datum/proc/ui_close(mob/user, datum/tgui_module/module)
 	SIGNAL_HANDLER
 
 /**
@@ -214,7 +214,7 @@
  *
  * required uiref ref The UI that was closed.
  */
-/client/verb/uiclose(window_id as text)
+client/verb/uiclose(window_id as text)
 	// Name the verb, and hide it from the user panel.
 	set name = "uiclose"
 	set hidden = TRUE
@@ -229,7 +229,7 @@
  *
  * return bool If TRUE, prevents propagation of the topic call.
  */
-/proc/tgui_Topic(href_list)
+proc/tgui_Topic(href_list)
 	// Skip non-tgui topics
 	if(!href_list["tgui"])
 		return FALSE

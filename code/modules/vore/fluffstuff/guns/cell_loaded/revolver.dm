@@ -1,5 +1,5 @@
 // The Gun //
-/obj/item/gun/ballistic/cell_loaded/combat
+obj/item/gun/ballistic/cell_loaded/combat
 	name = "cell-loaded revolver"
 	desc = "Variety is the spice of life! The NT-102b 'Hydra' is an unholy hybrid of an ammo-driven  \
 	energy weapon that allows the user to mix and match their own fire modes. Up to four combinations of \
@@ -9,7 +9,7 @@
 	description_fluff = "The Nanotrasen 'Nanotech Selectable Fire Weapon' allows one to customize their loadout in the field, or before deploying, to achieve various results in a weapon they are already familiar with wielding."
 	allowed_magazines = list(/obj/item/ammo_magazine/cell_mag/combat)
 
-/obj/item/gun/ballistic/cell_loaded/combat/prototype
+obj/item/gun/ballistic/cell_loaded/combat/prototype
 	name = "prototype cell-loaded revolver"
 	desc = "Variety is the spice of life! A prototype based on NT-102b 'Hydra' for short, is an unholy hybrid of an ammo-driven  \
 	energy weapon that allows the user to mix and match their own fire modes. Up to two combinations of \
@@ -23,7 +23,7 @@
 
 
 // The Magazine //
-/obj/item/ammo_magazine/cell_mag/combat
+obj/item/ammo_magazine/cell_mag/combat
 	name = "microbattery magazine"
 	desc = "A microbattery holder for the \'Hydra\'"
 	icon_state = "nsfw_mag"
@@ -33,7 +33,7 @@
 	description_info = "This magazine holds Hydra microbatteries to power the Hydra handgun. Up to three can be loaded at once, and each provides four shots of their respective energy type. Loading multiple of the same type will provide additional shots of that type. The batteries can be recharged in a normal recharger."
 	ammo_type = /obj/item/ammo_casing/microbattery/combat
 
-/obj/item/ammo_magazine/cell_mag/combat/prototype
+obj/item/ammo_magazine/cell_mag/combat/prototype
 	name = "prototype microbattery magazine"
 	icon_state = "nsfw_mag_prototype"
 	max_ammo = 2
@@ -43,25 +43,25 @@
 
 
 // The Pack //
-/obj/item/storage/secure/briefcase/nsfw_pack
+obj/item/storage/secure/briefcase/nsfw_pack
 	name = "\improper NT-102b \'Hydra\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
-/obj/item/storage/secure/briefcase/nsfw_pack/PopulateContents()
+obj/item/storage/secure/briefcase/nsfw_pack/PopulateContents()
 	new /obj/item/gun/ballistic/cell_loaded/combat(src)
 	new /obj/item/ammo_magazine/cell_mag/combat(src)
 	for(var/path in subtypesof(/obj/item/ammo_casing/microbattery/combat))
 		new path(src)
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hos
+obj/item/storage/secure/briefcase/nsfw_pack_hos
 	name = "\improper NT-102b \'Hydra\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hos/PopulateContents()
+obj/item/storage/secure/briefcase/nsfw_pack_hos/PopulateContents()
 	new /obj/item/gun/ballistic/cell_loaded/combat(src)
 	new /obj/item/ammo_magazine/cell_mag/combat(src)
 	new /obj/item/ammo_casing/microbattery/combat/lethal(src)

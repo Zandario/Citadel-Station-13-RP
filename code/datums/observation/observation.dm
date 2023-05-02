@@ -56,17 +56,17 @@
 //		Should never be called unless implementing a new event type.
 //		The first argument shall always be the event_source belonging to the event. Beyond that there are no restrictions.
 
-/singleton/observ
+singleton/observ
 	var/name = "Unnamed Event"          // The name of this event, used mainly for debug/VV purposes. The list of event managers can be reached through the "Debug Controller" verb, selecting the "Observation" entry.
 	var/expected_type = /datum          // The expected event source for this event. register() will CRASH() if it receives an unexpected type.
 	var/list/event_sources = list()     // Associative list of event sources, each with their own associative list. This associative list contains an instance/list of procs to call when the event is raised.
 	var/list/global_listeners = list()  // Associative list of instances that listen to all events of this type (as opposed to events belonging to a specific source) and the proc to call.
 
-/singleton/observ/New()
+singleton/observ/New()
 	GLOB.all_observable_events.events += src
 	. = ..()
 
-/singleton/observ/proc/is_listening(var/event_source, var/datum/listener, var/proc_call)
+singleton/observ/proc/is_listening(var/event_source, var/datum/listener, var/proc_call)
 	// Return whether there are global listeners unless the event source is given.
 	if (!event_source)
 		return !!global_listeners.len
@@ -95,10 +95,10 @@
 
 	return (proc_call in callback)
 
-/singleton/observ/proc/has_listeners(var/event_source)
+singleton/observ/proc/has_listeners(var/event_source)
 	return is_listening(event_source)
 
-/singleton/observ/proc/register(var/datum/event_source, var/datum/listener, var/proc_call)
+singleton/observ/proc/register(var/datum/event_source, var/datum/listener, var/proc_call)
 	// Sanity checking.
 	if (!(event_source && listener && proc_call))
 		return FALSE
@@ -129,7 +129,7 @@
 	callbacks += proc_call
 	return TRUE
 
-/singleton/observ/proc/unregister(var/event_source, var/datum/listener, var/proc_call)
+singleton/observ/proc/unregister(var/event_source, var/datum/listener, var/proc_call)
 	// Sanity.
 	if (!(event_source && listener && (event_source in event_sources)))
 		return FALSE
@@ -163,7 +163,7 @@
 		event_sources -= event_source
 	return TRUE
 
-/singleton/observ/proc/register_global(var/datum/listener, var/proc_call)
+singleton/observ/proc/register_global(var/datum/listener, var/proc_call)
 	// Sanity.
 	if (!(listener && proc_call))
 		return FALSE
@@ -178,7 +178,7 @@
 	callbacks |= proc_call
 	return TRUE
 
-/singleton/observ/proc/unregister_global(var/datum/listener, var/proc_call)
+singleton/observ/proc/unregister_global(var/datum/listener, var/proc_call)
 	// Return false unless the listener is set as a global listener.
 	if (!(listener && (listener in global_listeners)))
 		return FALSE
@@ -201,7 +201,7 @@
 		global_listeners -= listener
 	return TRUE
 
-/singleton/observ/proc/raise_event()
+singleton/observ/proc/raise_event()
 	// Sanity
 	if (!args.len)
 		return FALSE

@@ -1,14 +1,14 @@
-/obj/effect/step_trigger/message
+obj/effect/step_trigger/message
 	var/message	//the message to give to the mob
 	var/once = 1
 
-/obj/effect/step_trigger/message/Trigger(mob/M as mob)
+obj/effect/step_trigger/message/Trigger(mob/M as mob)
 	if(M.client)
 		to_chat(M, "<span class='info'>[message]</span>")
 		if(once)
 			qdel(src)
 
-/obj/effect/step_trigger/teleport_fancy
+obj/effect/step_trigger/teleport_fancy
 	var/locationx
 	var/locationy
 	var/uses = 1	//0 for infinite uses
@@ -17,7 +17,7 @@
 	var/entersmoke = 0
 	var/exitsmoke = 0
 
-/obj/effect/step_trigger/teleport_fancy/Trigger(mob/M as mob)
+obj/effect/step_trigger/teleport_fancy/Trigger(mob/M as mob)
 	var/dest = locate(locationx, locationy, z)
 	M.forceMove(dest)
 

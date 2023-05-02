@@ -1,4 +1,4 @@
-/obj/structure/closet
+obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closet.dmi'
@@ -32,7 +32,7 @@
 
 	var/list/starts_with
 
-/obj/structure/closet/Initialize(mapload)
+obj/structure/closet/Initialize(mapload)
 	. = ..()
 	if(mapload && !opened)
 		addtimer(CALLBACK(src, .proc/take_contents), 0)
@@ -40,14 +40,14 @@
 	// Closets need to come later because of spawners potentially creating objects during init.
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/structure/closet/LateInitialize()
+obj/structure/closet/LateInitialize()
 	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)
 		starts_with = null
 	update_icon()
 
-/obj/structure/closet/proc/take_contents()
+obj/structure/closet/proc/take_contents()
 	// if(istype(loc, /mob/living))
 	//	return // No collecting mob organs if spawned inside mob
 	// I'll leave this out, if someone dies to this from voring someone who made a closet go yell at a coder to
@@ -66,10 +66,10 @@
 /**
  * The proc that fills the closet with its initial contents.
  */
-/obj/structure/closet/proc/PopulateContents()
+obj/structure/closet/proc/PopulateContents()
 	return
 
-/obj/structure/closet/examine(mob/user)
+obj/structure/closet/examine(mob/user)
 	. = ..()
 	if(!opened)
 		var/content_size = 0
@@ -87,17 +87,17 @@
 		else
 			. += "It is full."
 
-/obj/structure/closet/CanAllowThrough(atom/movable/mover, turf/target)
+obj/structure/closet/CanAllowThrough(atom/movable/mover, turf/target)
 	if(wall_mounted)
 		return TRUE
 	return ..()
 
-/obj/structure/closet/proc/can_open()
+obj/structure/closet/proc/can_open()
 	if(src.sealed)
 		return 0
 	return 1
 
-/obj/structure/closet/proc/can_close()
+obj/structure/closet/proc/can_close()
 	var/closet_count = 0
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src)
@@ -107,7 +107,7 @@
 		return 0
 	return 1
 
-/obj/structure/closet/proc/dump_contents()
+obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
 	for(var/obj/effect/dummy/chameleon/AD in src)
 		AD.forceMove(src.loc)
@@ -119,7 +119,7 @@
 		M.forceMove(loc)
 		M.update_perspective()
 
-/obj/structure/closet/proc/open()
+obj/structure/closet/proc/open()
 	if(src.opened)
 		return 0
 
@@ -135,7 +135,7 @@
 		density = !density
 	return 1
 
-/obj/structure/closet/proc/close()
+obj/structure/closet/proc/close()
 	if(!src.opened)
 		return 0
 	if(!src.can_close())
@@ -161,7 +161,7 @@
 	return 1
 
 //Cham Projector Exception
-/obj/structure/closet/proc/store_misc(var/stored_units)
+obj/structure/closet/proc/store_misc(var/stored_units)
 	var/added_units = 0
 	for(var/obj/effect/dummy/chameleon/AD in src.loc)
 		if((stored_units + added_units) > storage_capacity)
@@ -170,7 +170,7 @@
 		added_units++
 	return added_units
 
-/obj/structure/closet/proc/store_items(var/stored_units)
+obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in src.loc)
 		var/item_size = CEILING(I.w_class / 2, 1)
@@ -181,7 +181,7 @@
 			added_units += item_size
 	return added_units
 
-/obj/structure/closet/proc/store_mobs(var/stored_units)
+obj/structure/closet/proc/store_mobs(var/stored_units)
 	var/added_units = 0
 	for(var/mob/living/M in src.loc)
 		if(M.buckled || M.pinned.len)
@@ -193,7 +193,7 @@
 		added_units += M.mob_size
 	return added_units
 
-/obj/structure/closet/proc/store_closets(var/stored_units)
+obj/structure/closet/proc/store_closets(var/stored_units)
 	var/added_units = 0
 	for(var/obj/structure/closet/C in src.loc)
 		if(C == src)	//Don't store ourself
@@ -209,14 +209,14 @@
 	return added_units
 
 
-/obj/structure/closet/proc/toggle(mob/user as mob)
+obj/structure/closet/proc/toggle(mob/user as mob)
 	if(!(src.opened ? src.close() : src.open()))
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		return
 	update_icon()
 
 // this should probably use dump_contents()
-/obj/structure/closet/legacy_ex_act(severity)
+obj/structure/closet/legacy_ex_act(severity)
 	switch(severity)
 		if(1)
 			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
@@ -235,17 +235,17 @@
 					A.forceMove(src.loc)
 				qdel(src)
 
-/obj/structure/closet/blob_act()
+obj/structure/closet/blob_act()
 	damage(100)
 
-/obj/structure/closet/proc/damage(var/damage)
+obj/structure/closet/proc/damage(var/damage)
 	health -= damage
 	if(health <= 0)
 		for(var/atom/movable/A in src)
 			A.forceMove(src.loc)
 		qdel(src)
 
-/obj/structure/closet/bullet_act(var/obj/projectile/Proj)
+obj/structure/closet/bullet_act(var/obj/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage)
 		return
@@ -255,7 +255,7 @@
 
 	return
 
-/obj/structure/closet/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/closet/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
@@ -331,7 +331,7 @@
 		src.attack_hand(user)
 	return
 
-/obj/structure/closet/MouseDroppedOnLegacy(atom/movable/O as mob|obj, mob/user as mob)
+obj/structure/closet/MouseDroppedOnLegacy(atom/movable/O as mob|obj, mob/user as mob)
 	if(istype(O, /atom/movable/screen))	//fix for HUD elements making their way into the world	-Pete
 		return
 	if(O.loc == user)
@@ -352,35 +352,35 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/closet/attack_robot(mob/user)
+obj/structure/closet/attack_robot(mob/user)
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/closet/relaymove(mob/user as mob)
+obj/structure/closet/relaymove(mob/user as mob)
 	if(user.stat || !isturf(src.loc))
 		return
 
 	if(!src.open())
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 
-/obj/structure/closet/attack_hand(mob/user, list/params)
+obj/structure/closet/attack_hand(mob/user, list/params)
 	src.add_fingerprint(user)
 	src.toggle(user)
 
 // tk grab then use on self
-/obj/structure/closet/attack_self_tk(mob/user as mob)
+obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
 		to_chat(usr, "<span class='notice'>It won't budge!</span>")
 
-/obj/structure/closet/attack_ghost(mob/ghost)
+obj/structure/closet/attack_ghost(mob/ghost)
 	. = ..()
 	if(ghost.client && ghost.client.inquisitive_ghost)
 		ghost.examinate(src)
 		if (!src.opened)
 			to_chat(ghost, "It contains: [english_list(contents)].")
 
-/obj/structure/closet/verb/verb_toggleopen()
+obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Toggle Open"
@@ -394,7 +394,7 @@
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
-/obj/structure/closet/update_icon()//Putting the sealed stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
+obj/structure/closet/update_icon()//Putting the sealed stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	cut_overlays()
 	if(!opened)
 		icon_state = icon_closed
@@ -403,7 +403,7 @@
 	else
 		icon_state = icon_opened
 
-/obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys")
+obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys")
 	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		return
 	user.do_attack_animation(src)
@@ -412,14 +412,14 @@
 	spawn(1) qdel(src)
 	return 1
 
-/obj/structure/closet/proc/req_breakout()
+obj/structure/closet/proc/req_breakout()
 	if(opened)
 		return 0 //Door's open... wait, why are you in it's contents then?
 	if(!sealed)
 		return 0 //closed but not sealed...
 	return 1
 
-/obj/structure/closet/contents_resist(mob/escapee)
+obj/structure/closet/contents_resist(mob/escapee)
 	if(breakout)
 		return
 	if(!req_breakout() && !opened)
@@ -459,7 +459,7 @@
 		animate_shake()
 		break_open()
 
-/obj/structure/closet/proc/break_open()
+obj/structure/closet/proc/break_open()
 	sealed = 0
 	update_icon()
 	//Do this to prevent contents from being opened into nullspace (read: bluespace)
@@ -468,33 +468,33 @@
 		BD.unwrap()
 	open()
 
-/obj/structure/closet/proc/animate_shake()
+obj/structure/closet/proc/animate_shake()
 	var/init_px = pixel_x
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
 
-/obj/structure/closet/onDropInto(var/atom/movable/AM)
+obj/structure/closet/onDropInto(var/atom/movable/AM)
 	return
 
-/obj/structure/closet/AllowDrop()
+obj/structure/closet/AllowDrop()
 	return !opened
 
-/obj/structure/closet/return_air_for_internal_lifeform(var/mob/living/L)
+obj/structure/closet/return_air_for_internal_lifeform(var/mob/living/L)
 	if(src.loc)
 		if(istype(src.loc, /obj/structure/closet))
 			return (loc.return_air_for_internal_lifeform(L))
 	return return_air()
 
-/obj/structure/closet/take_damage(var/damage)
+obj/structure/closet/take_damage(var/damage)
 	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		return
 	dump_contents()
 	spawn(1) qdel(src)
 	return 1
 
-/obj/structure/closet/CanReachOut(atom/movable/mover, atom/target, obj/item/tool, list/cache)
+obj/structure/closet/CanReachOut(atom/movable/mover, atom/target, obj/item/tool, list/cache)
 	return FALSE
 
-/obj/structure/closet/CanReachIn(atom/movable/mover, atom/target, obj/item/tool, list/cache)
+obj/structure/closet/CanReachIn(atom/movable/mover, atom/target, obj/item/tool, list/cache)
 	return FALSE

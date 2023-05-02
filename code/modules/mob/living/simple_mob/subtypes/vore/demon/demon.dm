@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/demon
+mob/living/simple_mob/vore/demon
 	name = "Rift Walker"
 	desc = "A large bipedal creature, body a mix of dark fur and scales. Marks on the creatures body pulse slowly with red light"
 
@@ -43,25 +43,25 @@
 	var/last_shift = 0
 	var/is_shifting = FALSE
 
-/mob/living/simple_mob/vore/demon/init_vore()
+mob/living/simple_mob/vore/demon/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
 	B.desc = "You slide down the slick, slippery gullet of the creature. It's warm, and the air is thick. You can feel the doughy walls of the creatures gut push and knead into your form! Slimy juices coat your form stinging against your flesh as they waste no time to start digesting you. The creature's heartbeat and the gurgling of their stomach are all you can hear as your jostled about, treated like nothing but food."
 
-/mob/living/simple_mob/vore/demon/UnarmedAttack()
+mob/living/simple_mob/vore/demon/UnarmedAttack()
 	if(shifted_out)
 		return FALSE
 
 	. = ..()
 
-/mob/living/simple_mob/vore/demon/can_fall()
+mob/living/simple_mob/vore/demon/can_fall()
 	if(shifted_out)
 		return FALSE
 
 	return ..()
 
-/mob/living/simple_mob/vore/demon/zMove(direction)
+mob/living/simple_mob/vore/demon/zMove(direction)
 	if(shifted_out)
 		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 		if(destination)
@@ -70,21 +70,21 @@
 
 	return ..()
 
-/mob/living/simple_mob/vore/demon/Life(seconds, times_fired)
+mob/living/simple_mob/vore/demon/Life(seconds, times_fired)
 	if((. = ..()))
 		return
 
 	if(shifted_out)
 		density = FALSE
 
-/mob/living/simple_mob/vore/demon/handle_atmos()
+mob/living/simple_mob/vore/demon/handle_atmos()
 	if(shifted_out)
 		return
 	else
 		return .=..()
 
 // todo: better way
-/mob/living/simple_mob/vore/demon/update_mobility()
+mob/living/simple_mob/vore/demon/update_mobility()
 	if(is_shifting)
 		return (mobility_flags = MOBILITY_CAN_MOVE)
 	return ..()

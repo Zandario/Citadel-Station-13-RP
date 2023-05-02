@@ -1,4 +1,4 @@
-/obj/machinery/computer/area_atmos
+obj/machinery/computer/area_atmos
 	name = "Area Air Control"
 	desc = "A computer used to control the stationary scrubbers and pumps in the area."
 	icon_keyboard = "atmos_key"
@@ -14,25 +14,25 @@
 	/// Simple variable to prevent me from doing attack_hand in both this and the child computer.
 	var/zone = "This computer is working on a wireless range, the range is currently limited to "
 
-/obj/machinery/computer/area_atmos/Initialize(mapload)
+obj/machinery/computer/area_atmos/Initialize(mapload)
 	. = ..()
 	scanscrubbers()
 
-/obj/machinery/computer/area_atmos/attack_ai(mob/user)
+obj/machinery/computer/area_atmos/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/area_atmos/attack_hand(mob/user, list/params)
+obj/machinery/computer/area_atmos/attack_hand(mob/user, list/params)
 	if(..(user))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/area_atmos/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/area_atmos/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AreaScrubberControl", name)
 		ui.open()
 
-/obj/machinery/computer/area_atmos/ui_data(mob/user)
+obj/machinery/computer/area_atmos/ui_data(mob/user)
 	var/list/working = list()
 	for(var/id in connectedscrubbers)
 		var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber = connectedscrubbers[id]
@@ -51,7 +51,7 @@
 
 	return list("scrubbers" = working)
 
-/obj/machinery/computer/area_atmos/ui_act(action, params)
+obj/machinery/computer/area_atmos/ui_act(action, params)
 	if(..())
 		return TRUE
 
@@ -77,7 +77,7 @@
 
 	add_fingerprint(usr)
 
-/obj/machinery/computer/area_atmos/proc/toggle_all(on)
+obj/machinery/computer/area_atmos/proc/toggle_all(on)
 	for(var/id in connectedscrubbers)
 		var/obj/machinery/portable_atmospherics/powered/scrubber/huge/S = connectedscrubbers["[id]"]
 		if(!validscrubber(S))
@@ -87,12 +87,12 @@
 		S.update_icon()
 		CHECK_TICK
 
-/obj/machinery/computer/area_atmos/proc/validscrubber(obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
+obj/machinery/computer/area_atmos/proc/validscrubber(obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
 	if(!isobj(scrubber) || get_dist(scrubber.loc, src.loc) > src.range || scrubber.loc.z != src.loc.z)
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/area_atmos/proc/scanscrubbers()
+obj/machinery/computer/area_atmos/proc/scanscrubbers()
 	connectedscrubbers = list()
 
 	var/found = FALSE
@@ -106,10 +106,10 @@
 	SStgui.update_uis(src)
 
 // The one that only works in the same map area
-/obj/machinery/computer/area_atmos/area
+obj/machinery/computer/area_atmos/area
 	zone = "This computer is working in a wired network limited to this area."
 
-/obj/machinery/computer/area_atmos/area/scanscrubbers()
+obj/machinery/computer/area_atmos/area/scanscrubbers()
 	connectedscrubbers = list()
 
 	var/found = FALSE
@@ -123,7 +123,7 @@
 
 	SStgui.update_uis(src)
 
-/obj/machinery/computer/area_atmos/area/validscrubber(obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
+obj/machinery/computer/area_atmos/area/validscrubber(obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
 	if(!istype(scrubber))
 		return FALSE
 	if(get_area(scrubber) == get_area(src))
@@ -131,15 +131,15 @@
 	return FALSE
 
 // The one that only works in the same map area
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/var/scrub_id = "generic"
+obj/machinery/portable_atmospherics/powered/scrubber/huge/var/scrub_id = "generic"
 
-/obj/machinery/computer/area_atmos/tag
+obj/machinery/computer/area_atmos/tag
 	name = "Heavy Scrubber Control"
 	zone = "This computer is operating industrial scrubbers nearby."
 	var/scrub_id = "generic"
 	var/last_scan = 0
 
-/obj/machinery/computer/area_atmos/tag/scanscrubbers()
+obj/machinery/computer/area_atmos/tag/scanscrubbers()
 	if(last_scan && world.time - last_scan < 20 SECONDS)
 		return FALSE
 	else
@@ -153,7 +153,7 @@
 
 	SStgui.update_uis(src)
 
-/obj/machinery/computer/area_atmos/tag/validscrubber(obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
+obj/machinery/computer/area_atmos/tag/validscrubber(obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
 	if(!istype(scrubber))
 		return FALSE
 	if(scrubber.scrub_id == src.scrub_id)

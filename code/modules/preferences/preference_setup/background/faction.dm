@@ -1,10 +1,10 @@
-/datum/category_item/player_setup_item/background/faction
+datum/category_item/player_setup_item/background/faction
 	name = "Faction"
 	save_key = CHARACTER_DATA_FACTION
 	load_order = PREFERENCE_LOAD_ORDER_LORE_FACTION
 	sort_order = 7
 
-/datum/category_item/player_setup_item/background/faction/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/background/faction/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	var/list/datum/lore/character_background/faction/available = SScharacters.available_factions(prefs.character_species_id(), prefs.lore_origin_id(), prefs.lore_citizenship_id())
 	var/list/categories = list()
@@ -34,7 +34,7 @@
 	. += current? current.desc : "<center>error; faction load failed</center>"
 	. += "</div>"
 
-/datum/category_item/player_setup_item/background/faction/act(datum/preferences/prefs, mob/user, action, list/params)
+datum/category_item/player_setup_item/background/faction/act(datum/preferences/prefs, mob/user, action, list/params)
 	switch(action)
 		if("pick")
 			var/id = params["pick"]
@@ -60,7 +60,7 @@
 			return PREFERENCES_REFRESH
 	return ..()
 
-/datum/category_item/player_setup_item/background/faction/filter_data(datum/preferences/prefs, data, list/errors)
+datum/category_item/player_setup_item/background/faction/filter_data(datum/preferences/prefs, data, list/errors)
 	var/datum/lore/character_background/faction/current = SScharacters.resolve_faction(data)
 	if(!current?.check_species_id(prefs.character_species_id()))
 		return SScharacters.resolve_faction(/datum/lore/character_background/faction/nanotrasen).id
@@ -73,14 +73,14 @@
 		return SScharacters.resolve_faction(/datum/lore/character_background/faction/nanotrasen).id
 	return data
 
-/datum/category_item/player_setup_item/background/faction/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
+datum/category_item/player_setup_item/background/faction/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	// todo: sources - this one is from culture/bcakground
 	var/datum/lore/character_background/B = SScharacters.resolve_faction(data)
 	for(var/id in B.innate_languages)
 		M.add_language(id)
 	return TRUE
 
-/datum/category_item/player_setup_item/background/faction/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
+datum/category_item/player_setup_item/background/faction/spawn_checks(datum/preferences/prefs, data, flags, list/errors, list/warnings)
 	var/datum/lore/character_background/faction/current = SScharacters.resolve_faction(data)
 	if(!current?.check_species_id(prefs.character_species_id()))
 		errors?.Add("Invalid faction for your current species.")
@@ -96,21 +96,21 @@
 		return FALSE
 	return TRUE
 
-/datum/category_item/player_setup_item/background/faction/default_value(randomizing)
+datum/category_item/player_setup_item/background/faction/default_value(randomizing)
 	return SScharacters.resolve_faction(/datum/lore/character_background/faction/nanotrasen).id
 
-/datum/category_item/player_setup_item/background/faction/informed_default_value(datum/preferences/prefs, randomizing)
+datum/category_item/player_setup_item/background/faction/informed_default_value(datum/preferences/prefs, randomizing)
 	var/datum/character_species/S = SScharacters.resolve_character_species(prefs.character_species_id())
 	if(!S)
 		return ..()
 	return S.get_default_faction_id()
 
-/datum/preferences/proc/lore_faction_id()
+datum/preferences/proc/lore_faction_id()
 	return get_character_data(CHARACTER_DATA_FACTION)
 
-/datum/preferences/proc/lore_faction_datum()
+datum/preferences/proc/lore_faction_datum()
 	RETURN_TYPE(/datum/lore/character_background/faction)
 	return SScharacters.resolve_faction(get_character_data(CHARACTER_DATA_FACTION))
 
-/datum/preferences/proc/lore_faction_job_check(datum/role/job/J)
+datum/preferences/proc/lore_faction_job_check(datum/role/job/J)
 	return lore_faction_datum()?.check_job_id(J.id)

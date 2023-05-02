@@ -58,7 +58,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 */
 
-/obj/structure/particle_accelerator
+obj/structure/particle_accelerator
 	name = "Particle Accelerator"
 	desc = "Part of a Particle Accelerator."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
@@ -72,24 +72,24 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	var/strength = null
 	var/desc_holder = null
 
-/obj/structure/particle_accelerator/Destroy()
+obj/structure/particle_accelerator/Destroy()
 	construction_state = 0
 	if(master)
 		master.part_scan()
 	..()
 
-/obj/structure/particle_accelerator/end_cap
+obj/structure/particle_accelerator/end_cap
 	name = "Alpha Particle Generation Array"
 	desc_holder = "This is where Alpha particles are generated from \[REDACTED\]"
 	icon_state = "end_cap"
 	reference = "end_cap"
 
-/obj/structure/particle_accelerator/update_icon()
+obj/structure/particle_accelerator/update_icon()
 	..()
 	return
 
 
-/obj/structure/particle_accelerator/verb/rotate_clockwise()
+obj/structure/particle_accelerator/verb/rotate_clockwise()
 	set name = "Rotate Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -100,7 +100,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	src.setDir(turn(src.dir, 270))
 	return 1
 
-/obj/structure/particle_accelerator/verb/rotate_counterclockwise()
+obj/structure/particle_accelerator/verb/rotate_counterclockwise()
 	set name = "Rotate Counter Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -111,7 +111,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	src.setDir(turn(src.dir, 90))
 	return 1
 
-/obj/structure/particle_accelerator/examine(mob/user)
+obj/structure/particle_accelerator/examine(mob/user)
 	. = ..()
 	switch(src.construction_state)
 		if(0)
@@ -125,7 +125,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			if(powered)
 				. += desc_holder
 
-/obj/structure/particle_accelerator/attackby(obj/item/W, mob/user)
+obj/structure/particle_accelerator/attackby(obj/item/W, mob/user)
 	if(istool(W))
 		if(src.process_tool_hit(W,user))
 			return
@@ -133,14 +133,14 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return
 
 
-/obj/structure/particle_accelerator/Move()
+obj/structure/particle_accelerator/Move()
 	..()
 	if(master && master.active)
 		master.toggle_power()
 		log_game("PACCEL([x],[y],[z]) Was moved while active and turned off.")
 		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.","singulo")
 
-/obj/structure/particle_accelerator/legacy_ex_act(severity)
+obj/structure/particle_accelerator/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -156,7 +156,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		else
 	return
 
-/obj/structure/particle_accelerator/update_icon()
+obj/structure/particle_accelerator/update_icon()
 	switch(construction_state)
 		if(0,1)
 			icon_state="[reference]"
@@ -169,26 +169,26 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				icon_state="[reference]c"
 	return
 
-/obj/structure/particle_accelerator/proc/update_state()
+obj/structure/particle_accelerator/proc/update_state()
 	if(master)
 		master.update_state()
 		return 0
 
 
-/obj/structure/particle_accelerator/proc/report_ready(var/obj/O)
+obj/structure/particle_accelerator/proc/report_ready(var/obj/O)
 	if(O && (O == master))
 		if(construction_state >= 3)
 			return 1
 	return 0
 
 
-/obj/structure/particle_accelerator/proc/report_master()
+obj/structure/particle_accelerator/proc/report_master()
 	if(master)
 		return master
 	return 0
 
 
-/obj/structure/particle_accelerator/proc/connect_master(var/obj/O)
+obj/structure/particle_accelerator/proc/connect_master(var/obj/O)
 	if(O && istype(O,/obj/machinery/particle_accelerator/control_box))
 		if(O.dir == src.dir)
 			master = O
@@ -196,7 +196,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return 0
 
 
-/obj/structure/particle_accelerator/proc/process_tool_hit(var/obj/item/O, var/mob/user)
+obj/structure/particle_accelerator/proc/process_tool_hit(var/obj/item/O, var/mob/user)
 	if(!(O) || !(user))
 		return 0
 	if(!ismob(user) || !isobj(O))
@@ -246,7 +246,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		update_icon()
 		return 1
 
-/obj/machinery/particle_accelerator
+obj/machinery/particle_accelerator
 	name = "Particle Accelerator"
 	desc = "Part of a Particle Accelerator."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
@@ -264,7 +264,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	var/desc_holder = null
 
 
-/obj/machinery/particle_accelerator/verb/rotate_clockwise()
+obj/machinery/particle_accelerator/verb/rotate_clockwise()
 	set name = "Rotate Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -275,7 +275,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	src.setDir(turn(src.dir, 270))
 	return 1
 
-/obj/machinery/particle_accelerator/verb/rotate_counterclockwise()
+obj/machinery/particle_accelerator/verb/rotate_counterclockwise()
 	set name = "Rotate Counter-Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -286,10 +286,10 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	src.setDir(turn(src.dir, 90))
 	return 1
 
-/obj/machinery/particle_accelerator/update_icon()
+obj/machinery/particle_accelerator/update_icon()
 	return
 
-/obj/machinery/particle_accelerator/examine(mob/user)
+obj/machinery/particle_accelerator/examine(mob/user)
 	. = ..()
 	switch(src.construction_state)
 		if(0)
@@ -304,14 +304,14 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				. += desc_holder
 
 
-/obj/machinery/particle_accelerator/attackby(obj/item/W, mob/user)
+obj/machinery/particle_accelerator/attackby(obj/item/W, mob/user)
 	if(istool(W))
 		if(src.process_tool_hit(W,user))
 			return
 	..()
 	return
 
-/obj/machinery/particle_accelerator/legacy_ex_act(severity)
+obj/machinery/particle_accelerator/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -327,10 +327,10 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		else
 	return
 
-/obj/machinery/particle_accelerator/proc/update_state()
+obj/machinery/particle_accelerator/proc/update_state()
 	return 0
 
-/obj/machinery/particle_accelerator/proc/process_tool_hit(var/obj/item/O, var/mob/user)
+obj/machinery/particle_accelerator/proc/process_tool_hit(var/obj/item/O, var/mob/user)
 	if(!(O) || !(user))
 		return 0
 	if(!ismob(user) || !isobj(O))

@@ -1,5 +1,5 @@
 //Overriding carbon move proc that forces default hunger factor. Merged from now-defunct Human life_vr.
-/mob/living/carbon/Move(NewLoc, direct)
+mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
 	if(.)
 		if(src.nutrition && src.stat != 2)

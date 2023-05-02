@@ -1,11 +1,11 @@
-/datum/gm_action/rogue_drone
+datum/gm_action/rogue_drone
 	name = "rogue drones"
 	departments = list(DEPARTMENT_SECURITY)
 	chaotic = 60
 	length = 20 MINUTES
 	var/list/drones_list = list()
 
-/datum/gm_action/rogue_drone/start()
+datum/gm_action/rogue_drone/start()
 	..()
 	//spawn them at the same place as carp
 	var/list/possible_spawns = list()
@@ -23,7 +23,7 @@
 		var/mob/living/simple_mob/mechanical/combat_drone/event/D = new(get_turf(pick(possible_spawns)))
 		drones_list.Add(D)
 
-/datum/gm_action/rogue_drone/announce()
+datum/gm_action/rogue_drone/announce()
 	var/msg
 	var/rng = rand(1,5)
 	switch(rng)
@@ -42,7 +42,7 @@
 
 	command_announcement.Announce(msg, "Rogue drone alert")
 
-/datum/gm_action/rogue_drone/end()
+datum/gm_action/rogue_drone/end()
 	var/num_recovered = 0
 	for(var/mob/living/simple_mob/mechanical/combat_drone/D in drones_list)
 		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
@@ -59,5 +59,5 @@
 	else
 		command_announcement.Announce("We're disappointed at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")
 
-/datum/gm_action/rogue_drone/get_weight()
+datum/gm_action/rogue_drone/get_weight()
 	return 20 + (metric.count_people_in_department(DEPARTMENT_SECURITY) * 10) + (metric.count_all_space_mobs() * 30)

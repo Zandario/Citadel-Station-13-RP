@@ -1,4 +1,4 @@
-/obj/item/organ/internal/robotic
+obj/item/organ/internal/robotic
 	name = "FBP component"
 	desc = "A complex piece of a much more complex machine."
 

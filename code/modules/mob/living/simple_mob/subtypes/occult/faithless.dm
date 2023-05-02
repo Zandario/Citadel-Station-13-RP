@@ -1,10 +1,10 @@
-/datum/category_item/catalogue/fauna/horror
+datum/category_item/catalogue/fauna/horror
 	name = "%#ERROR#%"
 	desc = "%ERROR% SCAN DATA REDACTED. RETURN SCANNER TO A\
 	CENTRAL ADMINISTRATOR FOR IMMEDIATE MAINTENANCE. %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/faithless
+mob/living/simple_mob/faithless
 	name = "Faithless"
 	desc = "The Wish Granter's faith in humanity, incarnate"
 	icon_state = "faithless"
@@ -48,15 +48,15 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/faithless/Initialize(mapload)
+mob/living/simple_mob/faithless/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/weak)
 
 
-/mob/living/simple_mob/faithless/Process_Spacemove(var/check_drift = 0)
+mob/living/simple_mob/faithless/Process_Spacemove(var/check_drift = 0)
 	return 1
 
-/mob/living/simple_mob/faithless/apply_melee_effects(var/atom/A)
+mob/living/simple_mob/faithless/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(12))
@@ -64,7 +64,7 @@
 			L.visible_message("<span class='danger'>\the [src] knocks down \the [L]!</span>")
 
 // Strong Variant
-/mob/living/simple_mob/faithless/strong
+mob/living/simple_mob/faithless/strong
 	maxHealth = 100
 	health = 100
 
@@ -73,15 +73,15 @@
 	melee_damage_upper = 28
 
 // Cult Variant
-/mob/living/simple_mob/faithless/cult
+mob/living/simple_mob/faithless/cult
 	faction = "cult"
 	supernatural = TRUE
 
-/mob/living/simple_mob/faithless/cult/cultify()
+mob/living/simple_mob/faithless/cult/cultify()
 	return
 
 // Strong Cult Variant
-/mob/living/simple_mob/faithless/cult/strong
+mob/living/simple_mob/faithless/cult/strong
 	maxHealth = 100
 	health = 100
 

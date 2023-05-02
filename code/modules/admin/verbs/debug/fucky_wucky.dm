@@ -1,5 +1,5 @@
 
-/client/proc/fucky_wucky()
+client/proc/fucky_wucky()
 	set category = "Debug"
 	set name = "Fucky Wucky"
 	set desc = "Inform the players that the code monkeys at our headquarters are working very hard to fix this."

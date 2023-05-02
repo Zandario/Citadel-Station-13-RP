@@ -1,4 +1,4 @@
-/obj/item/aicard
+obj/item/aicard
 	name = "intelliCore"
 	desc = "Used to preserve and transport an AI."
 	icon = 'icons/obj/pda.dmi'
@@ -14,21 +14,21 @@
 
 	var/mob/living/silicon/ai/carded_ai
 
-/obj/item/aicard/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/aicard/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!istype(target, /mob/living/silicon/decoy))
 		return ..()
 	target.death()
 	to_chat(user, "<b>ERROR ERROR ERROR</b>")
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/item/aicard/attack_self(mob/user)
+obj/item/aicard/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 
 	nano_ui_interact(user)
 
-/obj/item/aicard/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = inventory_state)
+obj/item/aicard/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = inventory_state)
 	var/data[0]
 	data["has_ai"] = carded_ai != null
 	if(carded_ai)
@@ -53,7 +53,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/item/aicard/Topic(href, href_list, state)
+obj/item/aicard/Topic(href, href_list, state)
 	if(..())
 		return 1
 
@@ -88,7 +88,7 @@
 		update_icon()
 	return 1
 
-/obj/item/aicard/update_icon()
+obj/item/aicard/update_icon()
 	cut_overlays()
 	if(carded_ai)
 		if (!carded_ai.control_disabled)
@@ -100,7 +100,7 @@
 	else
 		icon_state = "aicard"
 
-/obj/item/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
+obj/item/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
 	if(carded_ai)
 		to_chat(user, "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one.")
 		return 0
@@ -139,7 +139,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/aicard/proc/clear()
+obj/item/aicard/proc/clear()
 	if(carded_ai && istype(carded_ai.loc, /turf))
 		carded_ai.mobility_flags = NONE
 		carded_ai.carded = 0
@@ -147,19 +147,19 @@
 	carded_ai = null
 	update_icon()
 
-/obj/item/aicard/see_emote(mob/living/M, text)
+obj/item/aicard/see_emote(mob/living/M, text)
 	if(carded_ai && carded_ai.client)
 		var/rendered = "<span class='message'>[text]</span>"
 		carded_ai.show_message(rendered, 2)
 	..()
 
-/obj/item/aicard/show_message(msg, type, alt, alt_type)
+obj/item/aicard/show_message(msg, type, alt, alt_type)
 	if(carded_ai && carded_ai.client)
 		var/rendered = "<span class='message'>[msg]</span>"
 		carded_ai.show_message(rendered, type)
 	..()
 
-/obj/item/aicard/relaymove(var/mob/user, var/direction)
+obj/item/aicard/relaymove(var/mob/user, var/direction)
 	if(!CHECK_MOBILITY(user, MOBILITY_CAN_MOVE))
 		return
 	var/obj/item/rig/rig = src.get_rig()
@@ -167,12 +167,12 @@
 		rig.forced_move(direction, user)
 
 //Subtypes
-/obj/item/aicard/aitater
+obj/item/aicard/aitater
 	name = "intelliTater"
 	desc = "A stylish upgrade (?) to the intelliCard."
 	icon_state = "aitater"
 
-/obj/item/aicard/aitater/update_icon()
+obj/item/aicard/aitater/update_icon()
 	cut_overlays()
 	if(carded_ai)
 		if (!carded_ai.control_disabled)
@@ -184,12 +184,12 @@
 	else
 		icon_state = "aitater"
 
-/obj/item/aicard/aispook
+obj/item/aicard/aispook
 	name = "intelliLantern"
 	desc = "A spoOoOoky upgrade to the intelliCard."
 	icon_state = "aispook"
 
-/obj/item/aicard/aispook/update_icon()
+obj/item/aicard/aispook/update_icon()
 	cut_overlays()
 	if(carded_ai)
 		if (!carded_ai.control_disabled)

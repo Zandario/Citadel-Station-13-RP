@@ -1,11 +1,11 @@
 // Straight move from the old location, with the paths corrected.
 
-/mob/living/captive_brain
+mob/living/captive_brain
 	name = "host brain"
 	real_name = "host brain"
 	universal_understand = 1
 
-/mob/living/captive_brain/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
+mob/living/captive_brain/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
@@ -31,10 +31,10 @@
 			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
 
-/mob/living/captive_brain/emote(var/message)
+mob/living/captive_brain/emote(var/message)
 	return
 
-/mob/living/captive_brain/process_resist()
+mob/living/captive_brain/process_resist()
 	//Resisting control by an alien mind.
 	if(istype(src.loc, /mob/living/simple_mob/animal/borer))
 		var/mob/living/simple_mob/animal/borer/B = src.loc

@@ -1,6 +1,6 @@
 /**********************Resonator**********************/
 
-/obj/item/resonator
+obj/item/resonator
 	name = "resonator"
 	icon = 'icons/obj/mining_vr.dmi'
 	icon_state = "resonator"
@@ -19,14 +19,14 @@
 	var/burst_time = 50
 	var/fieldlimit = 3
 
-/obj/item/resonator/upgraded
+obj/item/resonator/upgraded
 	name = "upgraded resonator"
 	desc = "An upgraded version of the resonator that can produce more fields at once."
 	icon_state = "resonator_u"
 	origin_tech =  list(TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	fieldlimit = 5
 
-/obj/item/resonator/proc/CreateResonance(var/target, var/creator)
+obj/item/resonator/proc/CreateResonance(var/target, var/creator)
 	var/turf/T = get_turf(target)
 	if(locate(/obj/effect/resonance) in T)
 		return
@@ -37,7 +37,7 @@
 		spawn(burst_time)
 			fieldsactive--
 
-/obj/item/resonator/attack_self(mob/user)
+obj/item/resonator/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -48,13 +48,13 @@
 		burst_time = 50
 		to_chat(user, "<span class='info'>You set the resonator's fields to detonate after 5 seconds.</span>")
 
-/obj/item/resonator/afterattack(atom/target, mob/user, proximity_flag)
+obj/item/resonator/afterattack(atom/target, mob/user, proximity_flag)
 	if(proximity_flag)
 		if(!check_allowed_items(target, 1))
 			return
 		CreateResonance(target, user)
 
-/obj/effect/resonance
+obj/effect/resonance
 	name = "resonance field"
 	desc = "A resonating field that significantly damages anything inside of it when the field eventually ruptures."
 	icon = 'icons/effects/effects.dmi'
@@ -64,7 +64,7 @@
 	mouse_opacity = 0
 	var/resonance_damage = 20
 
-/obj/effect/resonance/Initialize(mapload, var/creator = null, var/timetoburst)
+obj/effect/resonance/Initialize(mapload, var/creator = null, var/timetoburst)
 	. = ..()
 	// Start small and grow to big size as we are about to burst
 	transform = matrix()*0.75
@@ -74,7 +74,7 @@
 		if(!QDELETED(src))
 			burst(creator)
 
-/obj/effect/resonance/proc/burst(var/creator = null)
+obj/effect/resonance/proc/burst(var/creator = null)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -101,13 +101,13 @@
 	qdel(src)
 
 
-/obj/effect/temp_visual/resonance_crush
+obj/effect/temp_visual/resonance_crush
 	icon_state = "shield1"
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	duration = 4
 
-/obj/effect/temp_visual/resonance_crush/Initialize(mapload)
+obj/effect/temp_visual/resonance_crush/Initialize(mapload)
 	. = ..()
 	transform = matrix()*1.5
 	animate(src, transform = matrix()*0.1, alpha = 50, time = 4)

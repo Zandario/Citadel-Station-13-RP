@@ -1,6 +1,6 @@
 var/datum/antagonist/deathsquad/mercenary/commandos
 
-/datum/antagonist/deathsquad/mercenary
+datum/antagonist/deathsquad/mercenary
 	id = MODE_COMMANDO
 	landmark_id = "Syndicate-Commando"
 	role_text = "Syndicate Commando"
@@ -15,11 +15,11 @@ var/datum/antagonist/deathsquad/mercenary/commandos
 	initial_spawn_target = 6
 
 
-/datum/antagonist/deathsquad/mercenary/New()
+datum/antagonist/deathsquad/mercenary/New()
 	..(1)
 	commandos = src
 
-/datum/antagonist/deathsquad/mercenary/equip(var/mob/living/carbon/human/player)
+datum/antagonist/deathsquad/mercenary/equip(var/mob/living/carbon/human/player)
 
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(player), SLOT_ID_UNIFORM)
 	player.equip_to_slot_or_del(new /obj/item/gun/ballistic/silenced(player), SLOT_ID_BELT)

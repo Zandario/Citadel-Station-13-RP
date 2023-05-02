@@ -1,4 +1,4 @@
-/client/verb/motd()
+client/verb/motd()
 	set name = "MOTD"
 	set category = "OOC"
 	set desc ="Check the Message of the Day"
@@ -10,7 +10,7 @@
 		to_chat(src, "<span class='notice'>The Message of the Day has not been set.</span>")
 	to_chat(src, getAlertDesc())
 
-/client/proc/getAlertDesc()
+client/proc/getAlertDesc()
 	var/color
 	var/desc
 	//borrow the same colors from the fire alarms
@@ -38,12 +38,12 @@
 			desc = CONFIG_GET(string/alert_desc_delta)
 	. = SPAN_NOTICE("<br>The alert level on \the [station_name()] is currently: <font color=[color]>Code [capitalize(get_security_level())]</font>. [desc]")
 
-/client/proc/ooc_wrapper()
+client/proc/ooc_wrapper()
 	var/message = input("","ooc (text)") as text|null
 	if(message)
 		ooc(message)
 
-/client/verb/ooc(msg as text)
+client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
 
@@ -132,12 +132,12 @@
 			else
 				to_chat(target, "<span class='ooc'><span class='[ooc_style]'><span class='message'>OOC: <EM>[display_name]: </EM><span class='linkify'>[msg]</span></span></span></span>")
 
-/client/proc/looc_wrapper()
+client/proc/looc_wrapper()
 	var/message = input("","looc (text)") as text|null
 	if(message)
 		looc(message)
 
-/client/verb/looc(msg as text)
+client/verb/looc(msg as text)
 	set name = "LOOC"
 	set desc = "Local OOC, seen only by those in view."
 	set category = "OOC"
@@ -233,10 +233,10 @@
 
 		to_chat(target, "<span class='looc'>" + "LOOC: " + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]: </EM> <span class='message'><span class='linkify'>[msg]</span></span></span>")
 
-/mob/proc/get_looc_source()
+mob/proc/get_looc_source()
 	return src
 
-/mob/living/silicon/ai/get_looc_source()
+mob/living/silicon/ai/get_looc_source()
 	if(eyeobj)
 		return eyeobj
 	return src

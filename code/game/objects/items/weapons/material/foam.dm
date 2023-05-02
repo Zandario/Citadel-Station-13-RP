@@ -1,7 +1,7 @@
-/obj/item/material/twohanded/baseballbat/foam/Initialize(mapload, material_key)
+obj/item/material/twohanded/baseballbat/foam/Initialize(mapload, material_key)
 	return ..(mapload,"foam")
 
-/obj/item/material/sword/foam
+obj/item/material/sword/foam
 	attack_verb = list("bonked","whacked")
 	force_divisor = 1
 	damage_force = 0
@@ -10,7 +10,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	hitsound = 'sound/effects/bodyfall3.ogg'
 
-/obj/item/material/twohanded/baseballbat/foam
+obj/item/material/twohanded/baseballbat/foam
 	attack_verb = list("bonked","whacked")
 	force_wielded = 0
 	force_divisor = 1
@@ -20,10 +20,10 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	hitsound = 'sound/effects/bodyfall3.ogg'
 
-/obj/item/material/sword/foam/Initialize(mapload, material_key)
+obj/item/material/sword/foam/Initialize(mapload, material_key)
 	return ..(mapload,"foam")
 
-/obj/item/material/twohanded/spear/foam
+obj/item/material/twohanded/spear/foam
 	attack_verb = list("bonked","whacked")
 	force_wielded = 0
 	force_divisor = 1
@@ -36,10 +36,10 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	hitsound = 'sound/effects/bodyfall3.ogg'
 
-/obj/item/material/twohanded/spear/foam/Initialize(mapload, material_key)
+obj/item/material/twohanded/spear/foam/Initialize(mapload, material_key)
 	return ..(mapload,"foam")
 
-/obj/item/material/twohanded/fireaxe/foam
+obj/item/material/twohanded/fireaxe/foam
 	attack_verb = list("bonked","whacked")
 	force_wielded = 0
 	force_divisor = 1
@@ -57,8 +57,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	hitsound = 'sound/effects/bodyfall3.ogg'
 
-/obj/item/material/twohanded/fireaxe/foam/Initialize(mapload, material_key)
+obj/item/material/twohanded/fireaxe/foam/Initialize(mapload, material_key)
 	return ..(mapload,"foam")
 
-/obj/item/material/twohanded/fireaxe/foam/afterattack()
+obj/item/material/twohanded/fireaxe/foam/afterattack()
 	return

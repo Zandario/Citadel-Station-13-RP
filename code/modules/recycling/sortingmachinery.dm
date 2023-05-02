@@ -1,4 +1,4 @@
-/obj/structure/bigDelivery
+obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
 	icon = 'icons/obj/storage.dmi'
@@ -13,14 +13,14 @@
 	var/label_x
 	var/tag_x
 
-/obj/structure/bigDelivery/attack_hand(mob/user, list/params)
+obj/structure/bigDelivery/attack_hand(mob/user, list/params)
 	unwrap()
 
-/obj/structure/bigDelivery/proc/unwrap()
+obj/structure/bigDelivery/proc/unwrap()
 	// Destroy will drop our wrapped object on the turf, so let it.
 	qdel(src)
 
-/obj/structure/bigDelivery/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/bigDelivery/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/destTagger))
 		var/obj/item/destTagger/O = W
 		if(O.currTag)
@@ -68,7 +68,7 @@
 				"You hear someone scribbling a note.")
 	return
 
-/obj/structure/bigDelivery/update_icon()
+obj/structure/bigDelivery/update_icon()
 	cut_overlays()
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
@@ -97,14 +97,14 @@
 			I.pixel_y = -3
 		add_overlay(I)
 
-/obj/structure/bigDelivery/examine(mob/user)
+obj/structure/bigDelivery/examine(mob/user)
 	. = ..()
 	if(sortTag)
 		. +=  "<span class='notice'>It is labeled \"[sortTag]\"</span>"
 	if(examtext)
 		. += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
 
-/obj/structure/bigDelivery/Destroy()
+obj/structure/bigDelivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.forceMove(get_turf(src))
 		if(istype(wrapped, /obj/structure/closet))
@@ -116,7 +116,7 @@
 		AM.forceMove(T)
 	return ..()
 
-/obj/item/smallDelivery
+obj/item/smallDelivery
 	desc = "A small wrapped package."
 	name = "small parcel"
 	icon = 'icons/obj/storage.dmi'
@@ -129,7 +129,7 @@
 	var/nameset = 0
 	var/tag_x
 
-/obj/item/smallDelivery/attack_self(mob/user)
+obj/item/smallDelivery/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -143,7 +143,7 @@
 	qdel(src)
 	return
 
-/obj/item/smallDelivery/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/smallDelivery/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/destTagger))
 		var/obj/item/destTagger/O = W
 		if(O.currTag)
@@ -192,7 +192,7 @@
 				"You hear someone scribbling a note.")
 	return
 
-/obj/item/smallDelivery/update_icon()
+obj/item/smallDelivery/update_icon()
 	cut_overlays()
 	if((nameset || examtext) && icon_state != "deliverycrate1")
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
@@ -217,14 +217,14 @@
 				I.pixel_y = -3
 		add_overlay(I)
 
-/obj/item/smallDelivery/examine(mob/user)
+obj/item/smallDelivery/examine(mob/user)
 	. = ..()
 	if(sortTag)
 		. += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
 	if(examtext)
 		. += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
 
-/obj/item/packageWrap
+obj/item/packageWrap
 	name = "package wrapper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
@@ -232,7 +232,7 @@
 	var/amount = 25.0
 
 
-/obj/item/packageWrap/afterattack(var/obj/target as obj, mob/user as mob, proximity)
+obj/item/packageWrap/afterattack(var/obj/target as obj, mob/user as mob, proximity)
 	if(!proximity) return
 	if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
 		return
@@ -314,11 +314,11 @@
 		return
 	return
 
-/obj/item/packageWrap/examine(mob/user)
+obj/item/packageWrap/examine(mob/user)
 	. = ..()
 	. += "<font color=#4F49AF>There are [amount] units of package wrap left!</font>"
 
-/obj/item/destTagger
+obj/item/destTagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
 	icon = 'icons/obj/device.dmi'
@@ -329,16 +329,16 @@
 	item_state = "electronic"
 	slot_flags = SLOT_BELT
 
-/obj/item/destTagger/ui_state(mob/user, datum/tgui_module/module)
+obj/item/destTagger/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/destTagger/ui_interact(mob/user, datum/tgui/ui)
+obj/item/destTagger/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DestinationTagger", name)
 		ui.open()
 
-/obj/item/destTagger/ui_data(mob/user, datum/tgui/ui)
+obj/item/destTagger/ui_data(mob/user, datum/tgui/ui)
 	var/list/data = ..()
 
 	data["currTag"] = currTag
@@ -346,13 +346,13 @@
 
 	return data
 
-/obj/item/destTagger/attack_self(mob/user)
+obj/item/destTagger/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/obj/item/destTagger/ui_act(action, params)
+obj/item/destTagger/ui_act(action, params)
 	if(..())
 		return TRUE
 	add_fingerprint(usr)
@@ -364,7 +364,7 @@
 			currTag = new_tag
 			. = TRUE
 
-/obj/machinery/disposal/deliveryChute
+obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"
 	desc = "A chute for big and small packages alike!"
 	density = 1
@@ -372,20 +372,20 @@
 
 	var/c_mode = 0
 
-/obj/machinery/disposal/deliveryChute/Initialize(mapload, newdir)
+obj/machinery/disposal/deliveryChute/Initialize(mapload, newdir)
 	. = ..()
 	spawn(5)
 		trunk = locate() in src.loc
 		if(trunk)
 			trunk.linked = src	// link the pipe trunk to self
 
-/obj/machinery/disposal/deliveryChute/interact()
+obj/machinery/disposal/deliveryChute/interact()
 	return
 
-/obj/machinery/disposal/deliveryChute/update()
+obj/machinery/disposal/deliveryChute/update()
 	return
 
-/obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
+obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
 	if(istype(AM, /obj/projectile) || istype(AM, /obj/effect) || istype(AM, /obj/mecha))	return
 	switch(dir)
 		if(NORTH)
@@ -407,7 +407,7 @@
 		M.loc = src
 	src.flush()
 
-/obj/machinery/disposal/deliveryChute/flush()
+obj/machinery/disposal/deliveryChute/flush()
 	flushing = 1
 	flick("intake-closing", src)
 	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
@@ -429,7 +429,7 @@
 	update()
 	return
 
-/obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
 	if(!I || !user)
 		return
 
@@ -463,7 +463,7 @@
 			to_chat(user, "You need more welding fuel to complete this task.")
 			return
 
-/obj/machinery/disposal/deliveryChute/Destroy()
+obj/machinery/disposal/deliveryChute/Destroy()
 	if(trunk)
 		trunk.linked = null
 	..()

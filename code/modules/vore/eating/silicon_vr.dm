@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/verb/holo_nom()
+mob/living/silicon/ai/verb/holo_nom()
 	set name = "Hardlight Nom"
 	set category = "AI Commands"
 	set desc = "Wrap up a person in hardlight holograms."
@@ -34,7 +34,7 @@
 
 	hologram.vore_someone(prey)
 
-/mob/living/AIShiftClick(mob/user) //Shift-click as AI overridden on mobs to examine.
+mob/living/AIShiftClick(mob/user) //Shift-click as AI overridden on mobs to examine.
 	if(user.client)
 		var/list/result = examine(user)
 		to_chat(user, "<blockquote class='info'>[result.Join("\n")]</blockquote>")

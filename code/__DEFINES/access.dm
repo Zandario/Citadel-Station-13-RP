@@ -83,11 +83,11 @@ GLOBAL_LIST_INIT(access_type_names, list(
 //       as it's bound to break stuff.
 
 #define STANDARD_ACCESS_DATUM(value, type, desc) \
-/datum/access/##type { \
+datum/access/##type { \
 	access_name = desc; \
 	access_value = value; \
 } \
-/datum/access/##type
+datum/access/##type
 
 //* STATION *//
 

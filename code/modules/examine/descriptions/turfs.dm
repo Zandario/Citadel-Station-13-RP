@@ -1,7 +1,7 @@
-/turf/simulated/wall
+turf/simulated/wall
 	description_info = "You can build a wall by using metal sheets and making a girder, then adding more metal or plasteel."
 
-/turf/simulated/wall/get_description_interaction(mob/user)
+turf/simulated/wall/get_description_interaction(mob/user)
 	var/list/results = list()
 	if(damage)
 		results += "[desc_panel_image("welder", user)]to repair."

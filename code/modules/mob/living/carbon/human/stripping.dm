@@ -1,16 +1,16 @@
-/mob/living/carbon/human/mouse_drop_strip_interaction(mob/user)
+mob/living/carbon/human/mouse_drop_strip_interaction(mob/user)
 	// don't collide with riding
 	if(user.check_grab(src) == GRAB_PASSIVE && user.a_intent == INTENT_GRAB && lying)
 		return
 	return ..()
 
-/mob/living/carbon/human/strip_menu_options(mob/user)
+mob/living/carbon/human/strip_menu_options(mob/user)
 	. = ..()
 	.["splints"] = "Remove Splints"
 	if(strip_menu_check_valid_internals_items())
 		.["internals"] = "Toggle Internals"
 
-/mob/living/carbon/human/strip_menu_act(mob/user, action)
+mob/living/carbon/human/strip_menu_act(mob/user, action)
 	. = ..()
 	switch(action)
 		if("splints")
@@ -18,7 +18,7 @@
 		if("internals")
 			return try_toggle_internals(user)
 
-/mob/living/carbon/human/proc/try_remove_splints(mob/user)
+mob/living/carbon/human/proc/try_remove_splints(mob/user)
 	visible_message(
 		SPAN_WARNING("[user] is trying to remove [src]'s splints!"),
 		SPAN_WARNING("[user] is trying to remove your splints!")
@@ -29,7 +29,7 @@
 	return TRUE
 
 // Remove all splints.
-/mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
+mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
 
 	var/can_reach_splints = 1
 	if(istype(wear_suit,/obj/item/clothing/suit/space))
@@ -54,7 +54,7 @@
 		else
 			to_chat(user, "<span class='warning'>\The [src] has no splints to remove.</span>")
 
-/mob/living/carbon/human/proc/try_toggle_internals(mob/user)
+mob/living/carbon/human/proc/try_toggle_internals(mob/user)
 	visible_message(
 		SPAN_WARNING("[user] is trying to toggle [src]'s internals!"),
 		SPAN_WARNING("[user] is trying to toggle your internals!")
@@ -65,7 +65,7 @@
 	return TRUE
 
 // Set internals on or off.
-/mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)
+mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)
 	if(internal)
 		internal.add_fingerprint(user)
 		internal = null
@@ -93,7 +93,7 @@
 		visible_message("<span class='danger'>\The [user] disables \the [src]'s internals!</span>")
 		add_attack_logs(user, src, "turned off internals")
 
-/mob/living/carbon/human/proc/strip_menu_check_valid_internals_items()
+mob/living/carbon/human/proc/strip_menu_check_valid_internals_items()
 	// todo: proper CLOTHING_ALLOW_INTERNALS flag checks lmao
 	if(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space))
 		if(istype(back, /obj/item/tank) || istype(belt, /obj/item/tank) || istype(s_store, /obj/item/tank))

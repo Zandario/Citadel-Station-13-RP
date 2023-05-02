@@ -1,5 +1,5 @@
-/obj/item/seeds/shrinkshroom
+obj/item/seeds/shrinkshroom
 	seed_type = "microm"
 
-/obj/item/seeds/megashroom
+obj/item/seeds/megashroom
 	seed_type = "megam"

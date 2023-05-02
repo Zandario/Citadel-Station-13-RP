@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(_kbMap, list(
 	))
 
 /// Creates and sorts all the keybinding datums
-/proc/init_keybindings()
+proc/init_keybindings()
 	for(var/KB in subtypesof(/datum/keybinding))
 		var/datum/keybinding/keybinding = KB
 		if(!initial(keybinding.hotkey_keys))
@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(_kbMap, list(
 	init_emote_keybinds()
 
 /// Adds an instanced keybinding to the global tracker
-/proc/add_keybinding(datum/keybinding/instance)
+proc/add_keybinding(datum/keybinding/instance)
 	GLOB.keybindings_by_name[instance.name] = instance
 
 	// Classic
@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(_kbMap, list(
 		for(var/bound_key in instance.hotkey_keys)
 			LAZYADD(GLOB.hotkey_keybinding_list_by_key[bound_key], list(instance.name))
 
-/proc/init_emote_keybinds()
+proc/init_emote_keybinds()
 /*		// FOR WHEN DATUM EMOTES ARE OUT.
 	for(var/i in subtypesof(/datum/emote))
 		var/datum/emote/faketype = i

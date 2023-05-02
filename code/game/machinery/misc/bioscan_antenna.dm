@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(bioscan_antenna_list)
-/obj/machinery/bioscan_antenna
+obj/machinery/bioscan_antenna
 	name = "Bioscan Antenna"
 	desc = "A fragile antenna used to locate nearby biosignatures."
 	allow_deconstruct = TRUE
@@ -22,18 +22,18 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 	// todo: scaling levels of how accurate they are
 	// todo: multiz / world-sector functionality; for now one must be there for each zlevel
 
-/obj/machinery/bioscan_antenna/Initialize(mapload)
+obj/machinery/bioscan_antenna/Initialize(mapload)
 	. = ..()
 	id = "[++id_next]"
 	if(network_key_obfuscated)
 		network_key = SSmapping.subtly_obfuscated_id(network_key_obfuscated, "bioscan_network")
 	change_network(network_key)
 
-/obj/machinery/bioscan_antenna/Destroy()
+obj/machinery/bioscan_antenna/Destroy()
 	change_network(null)
 	return ..()
 
-/obj/machinery/bioscan_antenna/crowbar_act(obj/item/I, mob/user, flags, hint)
+obj/machinery/bioscan_antenna/crowbar_act(obj/item/I, mob/user, flags, hint)
 	if(!allow_deconstruct || !panel_open)
 		return ..()
 	if(default_deconstruction_crowbar(user, I))
@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 		return TRUE
 	return ..()
 
-/obj/machinery/bioscan_antenna/screwdriver_act(obj/item/I, mob/user, flags, hint)
+obj/machinery/bioscan_antenna/screwdriver_act(obj/item/I, mob/user, flags, hint)
 	if(!allow_deconstruct)
 		return ..()
 	if(default_deconstruction_screwdriver(user, I))
@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 		return TRUE
 	return ..()
 
-/obj/machinery/bioscan_antenna/wrench_act(obj/item/I, mob/user, flags, hint)
+obj/machinery/bioscan_antenna/wrench_act(obj/item/I, mob/user, flags, hint)
 	if(!allow_unanchor)
 		return ..()
 	if(default_unfasten_wrench(user, I, 4 SECONDS))
@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 		return TRUE
 	return ..()
 
-/obj/machinery/bioscan_antenna/multitool_act(obj/item/I, mob/user, flags, hint)
+obj/machinery/bioscan_antenna/multitool_act(obj/item/I, mob/user, flags, hint)
 	if(!network_mutable)
 		return ..()
 	. = TRUE
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 	user.visible_message(SPAN_NOTICE("[user] reprograms the network on [src]."), range = MESSAGE_RANGE_CONFIGURATION)
 	change_network(new_network)
 
-/obj/machinery/bioscan_antenna/dynamic_tool_functions(obj/item/I, mob/user)
+obj/machinery/bioscan_antenna/dynamic_tool_functions(obj/item/I, mob/user)
 	. = list()
 	if(network_mutable)
 		.[TOOL_MULTITOOL] = "change network"
@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 		if(panel_open)
 			.[TOOL_CROWBAR] = "deconstruct"
 
-/obj/machinery/bioscan_antenna/dynamic_tool_image(function, hint)
+obj/machinery/bioscan_antenna/dynamic_tool_image(function, hint)
 	switch(function)
 		if(TOOL_WRENCH)
 			return anchored? dyntool_image_backward(TOOL_WRENCH) : dyntool_image_forward(TOOL_WRENCH)
@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 			return panel_open? dyntool_image_forward(TOOL_SCREWDRIVER) : dyntool_image_backward(TOOL_SCREWDRIVER)
 	return ..()
 
-/obj/machinery/bioscan_antenna/attack_hand(mob/user, list/params)
+obj/machinery/bioscan_antenna/attack_hand(mob/user, list/params)
 	// todo: better xenomorphs
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 			return
 	return ..()
 
-/obj/machinery/bioscan_antenna/proc/change_network(key)
+obj/machinery/bioscan_antenna/proc/change_network(key)
 	if(src.network_key)
 		if(GLOB.bioscan_antenna_list[src.network_key])
 			GLOB.bioscan_antenna_list[src.network_key] -= src
@@ -112,11 +112,11 @@ GLOBAL_LIST_EMPTY(bioscan_antenna_list)
 		GLOB.bioscan_antenna_list[src.network_key] += src
 	update_icon()
 
-/obj/machinery/bioscan_antenna/update_icon_state()
+obj/machinery/bioscan_antenna/update_icon_state()
 	icon_state = "[base_icon_state][network_key? "_active" : ""]"
 	return ..()
 
-/obj/machinery/bioscan_antenna/permanent
+obj/machinery/bioscan_antenna/permanent
 	desc = "A less fragile antenna used to locate nearby biosignatures. This one cannot be anchored or moved, only reprogrammed."
 	allow_deconstruct = FALSE
 	allow_unanchor = FALSE

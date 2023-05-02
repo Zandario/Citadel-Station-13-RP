@@ -48,7 +48,7 @@
  *
  * Otherwise you must always provide the full typepath of the proc (/type/of/thing/proc/procname)
  */
-/datum/callback
+datum/callback
 
 	/// The object we will be calling the proc on.
 	var/datum/object = GLOBAL_PROC
@@ -67,7 +67,7 @@
  * * proctocall the proc to call on the target object
  * * ... an optional list of extra arguments to pass to the proc
  */
-/datum/callback/New(thingtocall, proctocall, ...)
+datum/callback/New(thingtocall, proctocall, ...)
 	if(thingtocall)
 		object = thingtocall
 	delegate = proctocall
@@ -84,7 +84,7 @@
  *
  * If the datum being called on is varedited, the call is wrapped via [WrapAdminProcCall][/proc/WrapAdminProcCall]
  */
-/datum/callback/proc/Invoke(...)
+datum/callback/proc/Invoke(...)
 	if(!usr)
 		var/datum/weakref/W = user
 		if(W)
@@ -117,7 +117,7 @@
  *
  * If the datum being called on is varedited, the call is wrapped via WrapAdminProcCall
  */
-/datum/callback/proc/InvokeAsync(...)
+datum/callback/proc/InvokeAsync(...)
 	set waitfor = FALSE
 
 	if(!usr)
@@ -147,18 +147,18 @@
 /**
 	Helper datum for the select callbacks proc
  */
-/datum/callback_select
+datum/callback_select
 	var/list/finished
 	var/pendingcount
 	var/total
 
-/datum/callback_select/New(count, savereturns)
+datum/callback_select/New(count, savereturns)
 	total = count
 	if(savereturns)
 		finished = new(count)
 
 
-/datum/callback_select/proc/invoke_callback(index, datum/callback/callback, list/callback_args, savereturn = TRUE)
+datum/callback_select/proc/invoke_callback(index, datum/callback/callback, list/callback_args, savereturn = TRUE)
 	set waitfor = FALSE
 	if(!callback || !istype(callback))
 		//This check only exists because the alternative is callback_select would block forever if given invalid data
@@ -182,7 +182,7 @@
  * * savereturns Optionally save and return the list of returned values from each of the callbacks
  * * resolution The number of byond ticks between each time you check if all callbacks are complete
  */
-/proc/callback_select(list/callbacks, list/callback_args, savereturns = TRUE, resolution = 1)
+proc/callback_select(list/callbacks, list/callback_args, savereturns = TRUE, resolution = 1)
 	if(!callbacks)
 		return
 	var/count = length(callbacks)
@@ -202,7 +202,7 @@
 	return CS.finished
 
 ///Makes a call in the context of a different usr. Use sparingly
-/world/proc/push_usr(mob/user_mob, datum/callback/invoked_callback, ...)
+world/proc/push_usr(mob/user_mob, datum/callback/invoked_callback, ...)
 	var/temp = usr
 	usr = user_mob
 	if (length(args) > 2)

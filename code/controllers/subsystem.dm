@@ -6,7 +6,7 @@
  * Simply define a child of this subsystem, using the [SUBSYSTEM_DEF] macro, and the MC will handle registration.
  * Changing the name is required.
  */
-/datum/controller/subsystem
+datum/controller/subsystem
 	//# Metadata; you should define these.
 
 	/**
@@ -148,7 +148,7 @@
  *
  * ? Prefer Initialize() where possible, don't put anything laggy in here please.
  */
-/datum/controller/subsystem/proc/PreInit(recovering)
+datum/controller/subsystem/proc/PreInit(recovering)
 	return
 
 
@@ -162,7 +162,7 @@
  *
  * ? Prefer Initialize() where possible, don't put anything laggy in here please.
  */
-/datum/controller/subsystem/proc/Preload(recovering)
+datum/controller/subsystem/proc/Preload(recovering)
 	return
 
 
@@ -170,7 +170,7 @@
  * This is used so the mc knows when the subsystem sleeps.
  * DO NOT OVERRIDE THIS.
  */
-/datum/controller/subsystem/proc/ignite(resumed = FALSE)
+datum/controller/subsystem/proc/ignite(resumed = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	set waitfor = FALSE
 	. = SS_IDLE
@@ -196,12 +196,12 @@
  * fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
  * Sleeping in here prevents future fires until returned.
  */
-/datum/controller/subsystem/proc/fire(resumed = FALSE)
+datum/controller/subsystem/proc/fire(resumed = FALSE)
 	subsystem_flags |= SS_NO_FIRE
 	CRASH("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
 
 
-/datum/controller/subsystem/Destroy()
+datum/controller/subsystem/Destroy()
 	dequeue()
 	can_fire = 0
 	subsystem_flags |= SS_NO_FIRE
@@ -216,7 +216,7 @@
  * (we loop thru a linked list until we get to the end or find the right point)
  * (this lets us sort our run order correctly without having to re-sort the entire already sorted list)
  */
-/datum/controller/subsystem/proc/enqueue()
+datum/controller/subsystem/proc/enqueue()
 	var/SS_priority = priority
 	var/SS_flags = subsystem_flags
 	var/datum/controller/subsystem/queue_node
@@ -281,7 +281,7 @@
 		queue_node.queue_prev = src
 
 
-/datum/controller/subsystem/proc/dequeue()
+datum/controller/subsystem/proc/dequeue()
 	if (queue_next)
 		queue_next.queue_prev = queue_prev
 
@@ -299,7 +299,7 @@
 		state = SS_IDLE
 
 
-/datum/controller/subsystem/proc/pause()
+datum/controller/subsystem/proc/pause()
 	. = TRUE
 	switch(state)
 		if(SS_RUNNING)
@@ -310,11 +310,11 @@
 
 
 /// Called after the config has been loaded or reloaded.
-/datum/controller/subsystem/proc/OnConfigLoad()
+datum/controller/subsystem/proc/OnConfigLoad()
 	return
 
 
-/datum/controller/subsystem/proc/subsystem_log(msg)
+datum/controller/subsystem/proc/subsystem_log(msg)
 	return log_subsystem(name, msg)
 
 
@@ -322,7 +322,7 @@
  * Used to initialize the subsystem AFTER the map has loaded.
  * This is expected to be overriden by subtypes.
  */
-/datum/controller/subsystem/Initialize(start_timeofday)
+datum/controller/subsystem/Initialize(start_timeofday)
 	initialized = TRUE
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
@@ -335,18 +335,18 @@
 /**
  * Hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
  */
-/datum/controller/subsystem/stat_entry()
+datum/controller/subsystem/stat_entry()
 	if(can_fire && !(SS_NO_FIRE & subsystem_flags))
 		. = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]&emsp;"
 	else
 		. = "OFFLINE&emsp;"
 
 
-/datum/controller/subsystem/stat_key()
+datum/controller/subsystem/stat_key()
 	return can_fire? "\[[state_letter()]\][name]" : name
 
 
-/datum/controller/subsystem/proc/state_letter()
+datum/controller/subsystem/proc/state_letter()
 	switch (state)
 		if (SS_RUNNING)
 			. = "R"
@@ -368,7 +368,7 @@
  * Could be used to postpone a costly subsystem for (default one) var/cycles, cycles.
  * For instance, during cpu intensive operations like explosions.
  */
-/datum/controller/subsystem/proc/postpone(cycles = 1)
+datum/controller/subsystem/proc/postpone(cycles = 1)
 	if(next_fire - world.time < wait)
 		next_fire += (wait*cycles)
 
@@ -377,11 +377,11 @@
  * Usually called via datum/controller/subsystem/New() when replacing a subsystem (i.e. due to a recurring crash).
  * Should attempt to salvage what it can from the old instance of subsystem.
  */
-/datum/controller/subsystem/Recover()
+datum/controller/subsystem/Recover()
 	return TRUE
 
 
-/datum/controller/subsystem/vv_edit_var(var_name, var_value)
+datum/controller/subsystem/vv_edit_var(var_name, var_value)
 	switch (var_name)
 		if (NAMEOF(src, can_fire))
 			// This is so the subsystem doesn't rapid fire to make up missed ticks causing more lag
@@ -401,7 +401,7 @@
  * * old_z_count - The old z count.
  * * new_z_count - The new z count.
  */
-/datum/controller/subsystem/proc/on_max_z_changed(old_z_count, new_z_count)
+datum/controller/subsystem/proc/on_max_z_changed(old_z_count, new_z_count)
 	return
 
 // todo: generic json-based save/load for subsystems, for simple state storage

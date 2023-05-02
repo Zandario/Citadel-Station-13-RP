@@ -1,4 +1,4 @@
-/datum/technomancer/spell/gambit
+datum/technomancer/spell/gambit
 	name = "Gambit"
 	desc = "This function causes you to receive a random function, including those which you haven't purchased."
 //	enhancement_desc = "Makes results less random and more biased towards what the function thinks you need in your current situation."
@@ -9,7 +9,7 @@
 	obj_path = /obj/item/spell/gambit
 	category = UTILITY_SPELLS
 
-/var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/spell) - list(
+var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/spell) - list(
 	/obj/item/spell,
 	/obj/item/spell/gambit,
 	/obj/item/spell/projectile,
@@ -19,7 +19,7 @@
 	/obj/item/spell/summon,
 	/obj/item/spell/modifier)
 
-/obj/item/spell/gambit
+obj/item/spell/gambit
 	name = "gambit"
 	desc = "Do you feel lucky?"
 	icon_state = "gambit"
@@ -30,7 +30,7 @@
 	)
 
 
-/obj/item/spell/gambit/on_use_cast(mob/living/carbon/human/user)
+obj/item/spell/gambit/on_use_cast(mob/living/carbon/human/user)
 	if(pay_energy(200))
 		adjust_instability(3)
 		if(check_for_scepter())
@@ -39,12 +39,12 @@
 			give_new_spell(random_spell())
 		qdel(src)
 
-/obj/item/spell/gambit/proc/give_new_spell(var/spell_type)
+obj/item/spell/gambit/proc/give_new_spell(var/spell_type)
 	owner.drop_item_to_ground(src, INV_OP_FORCE)
 	owner.place_spell_in_hand(spell_type)
 
 // Gives a random spell.
-/obj/item/spell/gambit/proc/random_spell()
+obj/item/spell/gambit/proc/random_spell()
 	var/list/potential_spells = all_technomancer_gambit_spells.Copy()
 	var/rare_spell_chance = clamp( calculate_spell_power(100) - 100, 0,  100) // Having 120% spellpower means a 20% chance to get to roll for rare spells.
 	if(prob(rare_spell_chance))
@@ -53,7 +53,7 @@
 	return pick(potential_spells)
 
 // Gives a "random" spell.
-/obj/item/spell/gambit/proc/biased_random_spell()
+obj/item/spell/gambit/proc/biased_random_spell()
 	var/list/potential_spells = list()
 	var/rare_spell_chance = clamp( calculate_spell_power(100) - 100, 0,  100)
 	var/give_rare_spells = FALSE

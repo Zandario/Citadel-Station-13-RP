@@ -1,5 +1,5 @@
 // Base type, do not use.
-/obj/structure/lift
+obj/structure/lift
 	name = "turbolift control component"
 	icon = 'icons/obj/turbolift.dmi'
 	anchored = 1
@@ -8,7 +8,7 @@
 
 	var/datum/turbolift/lift
 
-/obj/structure/lift/setDir(var/newdir)
+obj/structure/lift/setDir(var/newdir)
 	. = ..()
 	pixel_x = 0
 	pixel_y = 0
@@ -21,7 +21,7 @@
 	else if(dir & WEST)
 		pixel_x = 32
 
-/obj/structure/lift/proc/pressed(var/mob/user)
+obj/structure/lift/proc/pressed(var/mob/user)
 	if(!istype(user, /mob/living/silicon))
 		if(user.a_intent == INTENT_HARM)
 			user.visible_message("<span class='danger'>\The [user] hammers on the lift button!</span>")
@@ -29,27 +29,27 @@
 			user.visible_message("<span class='notice'>\The [user] presses the lift button.</span>")
 
 
-/obj/structure/lift/New(var/newloc, var/datum/turbolift/_lift)
+obj/structure/lift/New(var/newloc, var/datum/turbolift/_lift)
 	lift = _lift
 	return ..(newloc)
 
-/obj/structure/lift/attack_ai(var/mob/user)
+obj/structure/lift/attack_ai(var/mob/user)
 	return attack_hand(user)
 
-/obj/structure/lift/attack_generic(var/mob/user)
+obj/structure/lift/attack_generic(var/mob/user)
 	return attack_hand(user)
 
-/obj/structure/lift/attack_hand(mob/user, list/params)
+obj/structure/lift/attack_hand(mob/user, list/params)
 	return interact(user)
 
-/obj/structure/lift/interact(var/mob/user)
+obj/structure/lift/interact(var/mob/user)
 	if(!lift.is_functional())
 		return 0
 	return 1
 // End base.
 
 // Button. No HTML interface, just calls the associated lift to its floor.
-/obj/structure/lift/button
+obj/structure/lift/button
 	name = "elevator button"
 	desc = "A call button for an elevator. Be sure to hit it three hundred times."
 	icon_state = "button"
@@ -57,18 +57,18 @@
 	req_access = list(ACCESS_COMMAND_EVA)
 	var/datum/turbolift_floor/floor
 
-/obj/structure/lift/button/Destroy()
+obj/structure/lift/button/Destroy()
 	if(floor && floor.ext_panel == src)
 		floor.ext_panel = null
 	floor = null
 	return ..()
 
-/obj/structure/lift/button/proc/reset()
+obj/structure/lift/button/proc/reset()
 	light_up = FALSE
 	update_icon()
 
 // Hit it with a PDA or ID to enable priority call mode
-/obj/structure/lift/button/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/lift/button/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/card/id/id = W.GetID()
 	if(istype(id))
 		if(!check_access(id))
@@ -82,7 +82,7 @@
 		return
 	. = ..()
 
-/obj/structure/lift/button/interact(var/mob/user)
+obj/structure/lift/button/interact(var/mob/user)
 	if(!..())
 		return
 	if(lift.fire_mode || lift.priority_mode)
@@ -97,11 +97,11 @@
 		return
 	lift.queue_move_to(floor)
 
-/obj/structure/lift/button/proc/light_up()
+obj/structure/lift/button/proc/light_up()
 	light_up = TRUE
 	update_icon()
 
-/obj/structure/lift/button/update_icon()
+obj/structure/lift/button/update_icon()
 	if(lift.fire_mode)
 		icon_state = "button_fire"
 	else if(lift.priority_mode)
@@ -114,14 +114,14 @@
 // End button.
 
 // Panel. Lists floors (HTML), moves with the elevator, schedules a move to a given floor.
-/obj/structure/lift/panel
+obj/structure/lift/panel
 	name = "elevator control panel"
 	icon_state = "panel"
 	req_access = list(ACCESS_COMMAND_EVA)
 	req_one_access = list(ACCESS_COMMAND_BRIDGE, ACCESS_ENGINEERING_ATMOS, ACCESS_MEDICAL_MAIN)
 
 // Hit it with a PDA or ID to enable priority call mode
-/obj/structure/lift/panel/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/lift/panel/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/card/id/id = W.GetID()
 	if(istype(id))
 		if(!check_access(id))
@@ -136,11 +136,11 @@
 		return
 	. = ..()
 
-/obj/structure/lift/panel/attack_ghost(var/mob/user)
+obj/structure/lift/panel/attack_ghost(var/mob/user)
 	. = ..()
 	return interact(user)
 
-/obj/structure/lift/panel/interact(var/mob/user)
+obj/structure/lift/panel/interact(var/mob/user)
 	if(!..())
 		return
 
@@ -170,7 +170,7 @@
 	popup.open()
 	return
 
-/obj/structure/lift/panel/Topic(href, href_list)
+obj/structure/lift/panel/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -195,7 +195,7 @@
 
 	return 0
 
-/obj/structure/lift/panel/update_icon()
+obj/structure/lift/panel/update_icon()
 	if(lift.fire_mode)
 		icon_state = "panel_fire"
 	else

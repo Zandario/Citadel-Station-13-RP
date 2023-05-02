@@ -1,6 +1,6 @@
 var/datum/antagonist/xenos/xenomorphs
 
-/datum/antagonist/xenos
+datum/antagonist/xenos
 	id = MODE_XENOMORPH
 	role_type = BE_ALIEN
 	role_text = "Xenomorph"
@@ -21,15 +21,15 @@ var/datum/antagonist/xenos/xenomorphs
 	spawn_announcement_sound = 'sound/AI/aliens.ogg'
 	spawn_announcement_delay = 5000
 
-/datum/antagonist/xenos/New(var/no_reference)
+datum/antagonist/xenos/New(var/no_reference)
 	..()
 	if(!no_reference)
 		xenomorphs = src
 
-/datum/antagonist/xenos/attempt_random_spawn()
+datum/antagonist/xenos/attempt_random_spawn()
 	if(config_legacy.aliens_allowed) ..()
 
-/datum/antagonist/xenos/proc/get_vents()
+datum/antagonist/xenos/proc/get_vents()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/component/unary/vent_pump/temp_vent in GLOB.machines)
 		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in GLOB.using_map.station_levels))
@@ -37,11 +37,11 @@ var/datum/antagonist/xenos/xenomorphs
 				vents += temp_vent
 	return vents
 
-/datum/antagonist/xenos/create_objectives(var/datum/mind/player)
+datum/antagonist/xenos/create_objectives(var/datum/mind/player)
 	if(!..())
 		return
 	player.objectives += new /datum/objective/survive()
 	player.objectives += new /datum/objective/escape()
 
-/datum/antagonist/xenos/place_mob(var/mob/living/player)
+datum/antagonist/xenos/place_mob(var/mob/living/player)
 	player.forceMove(get_turf(pick(get_vents())))

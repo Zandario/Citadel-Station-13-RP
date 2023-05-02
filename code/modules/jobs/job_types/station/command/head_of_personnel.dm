@@ -1,4 +1,4 @@
-/datum/role/job/station/head_of_personnel
+datum/role/job/station/head_of_personnel
 	id = JOB_ID_HEAD_OF_PERSONNEL
 	title = "Head of Personnel"
 	flag = HOP
@@ -74,13 +74,13 @@
 		ACCESS_SUPPLY_QM,
 	)
 
-/datum/prototype/alt_title/cro
+datum/prototype/alt_title/cro
 	title = "Crew Resources Officer"
 
-/datum/prototype/alt_title/hop/deputy
+datum/prototype/alt_title/hop/deputy
 	title = "Deputy Director"
 
-/datum/outfit/job/station/head_of_personnel
+datum/outfit/job/station/head_of_personnel
 	name = OUTFIT_JOB_NAME("Head of Personnel")
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	l_ear = /obj/item/radio/headset/heads/hop

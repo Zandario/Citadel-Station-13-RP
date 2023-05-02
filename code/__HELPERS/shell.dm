@@ -3,7 +3,7 @@
 #define SHELLEO_NAME "data/shelleo."
 #define SHELLEO_ERR ".err"
 #define SHELLEO_OUT ".out"
-/world/proc/shelleo(command)
+world/proc/shelleo(command)
 	var/static/list/shelleo_ids = list()
 	var/stdout = ""
 	var/stderr = ""
@@ -41,7 +41,7 @@
 #undef SHELLEO_ERR
 #undef SHELLEO_OUT
 
-/proc/shell_url_scrub(url)
+proc/shell_url_scrub(url)
 	var/static/regex/bad_chars_regex = regex("\[^#%&./:=?\\w]*", "g")
 	var/scrubbed_url = ""
 	var/bad_match = ""

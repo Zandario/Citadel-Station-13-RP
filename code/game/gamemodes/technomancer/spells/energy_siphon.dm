@@ -1,4 +1,4 @@
-/datum/technomancer/spell/energy_siphon
+datum/technomancer/spell/energy_siphon
 	name = "Energy Siphon"
 	desc = "This creates a link to a target that drains electricity, converts it to energy that the Core can use, then absorbs it.  \
 	Every second, electricity is stolen until the link is broken by the target moving too far away, or having no more energy left.  \
@@ -10,7 +10,7 @@
 	ability_icon_state = "tech_energysiphon"
 	category = UTILITY_SPELLS
 
-/obj/item/spell/energy_siphon
+obj/item/spell/energy_siphon
 	name = "energy siphon"
 	desc = "Now you are an energy vampire."
 	icon_state = "energy_siphon"
@@ -20,16 +20,16 @@
 	var/list/things_to_siphon = list() //Things which are actually drained as a result of the above not being null.
 	var/flow_rate = 2000 // Limits how much electricity can be drained per second.  Measured in W.
 
-/obj/item/spell/energy_siphon/Initialize(mapload)
+obj/item/spell/energy_siphon/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/spell/energy_siphon/Destroy()
+obj/item/spell/energy_siphon/Destroy()
 	stop_siphoning()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/spell/energy_siphon/process(delta_time)
+obj/item/spell/energy_siphon/process(delta_time)
 	if(!siphoning)
 		return
 	if(!pay_energy(100))
@@ -46,7 +46,7 @@
 		return
 	siphon(siphoning, owner)
 
-/obj/item/spell/energy_siphon/on_ranged_cast(atom/hit_atom, mob/user)
+obj/item/spell/energy_siphon/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable) && within_range(hit_atom, 4))
 		var/atom/movable/AM = hit_atom
 		populate_siphon_list(AM)
@@ -59,7 +59,7 @@
 	else
 		stop_siphoning()
 
-/obj/item/spell/energy_siphon/proc/populate_siphon_list(atom/movable/target)
+obj/item/spell/energy_siphon/proc/populate_siphon_list(atom/movable/target)
 	things_to_siphon.Cut()
 	things_to_siphon |= target // The recursive check below does not add the object being checked to its list.
 	things_to_siphon |= recursive_content_check(target, things_to_siphon, recursion_limit = 3, client_check = 0, sight_check = 0, include_mobs = 1, include_objects = 1, ignore_show_messages = 1)
@@ -71,7 +71,7 @@
 		if(!AM.can_drain_energy(src, NONE))
 			things_to_siphon.Remove(AM)
 
-/obj/item/spell/energy_siphon/proc/stop_siphoning()
+obj/item/spell/energy_siphon/proc/stop_siphoning()
 	siphoning = null
 	things_to_siphon.Cut()
 	update_icon()
@@ -81,7 +81,7 @@
 #define SIPHON_CORE_TO_ENERGY	0.5
 
 // This is called every tick, so long as a link exists between the target and the Technomancer.
-/obj/item/spell/energy_siphon/proc/siphon(atom/movable/siphoning, mob/user)
+obj/item/spell/energy_siphon/proc/siphon(atom/movable/siphoning, mob/user)
 	var/list/things_to_drain = things_to_siphon // Temporary list copy of what we're gonna steal from.
 	var/charge_to_give = 0 // How much energy to give to the Technomancer at the end.
 	var/flow_remaining = calculate_spell_power(flow_rate)
@@ -148,14 +148,14 @@
 		to_chat(user, "<span class='warning'>\The [siphoning] cannot be drained any further.</span>")
 		stop_siphoning()
 
-/obj/item/spell/energy_siphon/update_icon()
+obj/item/spell/energy_siphon/update_icon()
 	..()
 	if(siphoning)
 		icon_state = "energy_siphon_drain"
 	else
 		icon_state = "energy_siphon"
 
-/obj/item/spell/energy_siphon/proc/create_lightning(mob/user, atom/source)
+obj/item/spell/energy_siphon/proc/create_lightning(mob/user, atom/source)
 	if(user && source && user != source)
 		spawn(0)
 			var/i = 7 // process() takes two seconds to tick, this ensures the appearance of a ongoing beam.
@@ -167,14 +167,14 @@
 				i--
 				sleep(3)
 
-/obj/projectile/beam/lightning/energy_siphon
+obj/projectile/beam/lightning/energy_siphon
 	name = "energy stream"
 	icon_state = "lightning"
 	range = 6 // Backup plan in-case the effect somehow misses the Technomancer.
 	power = 5 // This fires really fast, so this may add up if someone keeps standing in the beam.
 	penetrating = 5
 
-/obj/projectile/beam/lightning/energy_siphon/Bump(atom/A as mob|obj|turf|area, forced=0)
+obj/projectile/beam/lightning/energy_siphon/Bump(atom/A as mob|obj|turf|area, forced=0)
 	if(A == firer) // For this, you CAN shoot yourself.
 		on_impact(A)
 
@@ -185,7 +185,7 @@
 		return 1
 	..()
 
-/obj/projectile/beam/lightning/energy_siphon/projectile_attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
+obj/projectile/beam/lightning/energy_siphon/projectile_attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 	if(target_mob == firer) // This shouldn't actually occur due to Bump(), but just in-case.
 		return 1
 	if(ishuman(target_mob)) // Otherwise someone else stood in the beam and is going to pay for it.

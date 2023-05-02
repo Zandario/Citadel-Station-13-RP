@@ -12,17 +12,17 @@ PROCESSING_SUBSYSTEM_DEF(instruments)
 	var/static/max_instrument_channels = MAX_INSTRUMENT_CHANNELS
 	var/static/current_instrument_channels = 0
 
-/datum/controller/subsystem/processing/instruments/Initialize()
+datum/controller/subsystem/processing/instruments/Initialize()
 	initialize_instrument_data()
 	return ..()
 
-/datum/controller/subsystem/processing/instruments/proc/on_song_new(datum/song/S)
+datum/controller/subsystem/processing/instruments/proc/on_song_new(datum/song/S)
 	songs += S
 
-/datum/controller/subsystem/processing/instruments/proc/on_song_del(datum/song/S)
+datum/controller/subsystem/processing/instruments/proc/on_song_del(datum/song/S)
 	songs -= S
 
-/datum/controller/subsystem/processing/instruments/proc/initialize_instrument_data()
+datum/controller/subsystem/processing/instruments/proc/initialize_instrument_data()
 	for(var/path in subtypesof(/datum/instrument))
 		var/datum/instrument/I = path
 		if(initial(I.abstract_type) == path)
@@ -32,10 +32,10 @@ PROCESSING_SUBSYSTEM_DEF(instruments)
 		instrument_data[I.id || "[I.type]"] = I
 		CHECK_TICK
 
-/datum/controller/subsystem/processing/instruments/proc/get_instrument(id_or_path)
+datum/controller/subsystem/processing/instruments/proc/get_instrument(id_or_path)
 	return instrument_data["[id_or_path]"]
 
-/datum/controller/subsystem/processing/instruments/proc/reserve_instrument_channel(datum/instrument/I)
+datum/controller/subsystem/processing/instruments/proc/reserve_instrument_channel(datum/instrument/I)
 	if(current_instrument_channels > max_instrument_channels)
 		return
 	. = SSsounds.reserve_sound_channel(I)

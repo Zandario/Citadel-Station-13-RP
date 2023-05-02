@@ -1,4 +1,4 @@
-/obj/structure/closet/athletic_mixed
+obj/structure/closet/athletic_mixed
 	name = "athletic wardrobe"
 	desc = "It's a storage unit for athletic wear."
 	icon_state = "mixed"
@@ -22,7 +22,7 @@
 		/obj/item/clothing/shoes/swimmingfins = 2,
 		/obj/item/reagent_containers/spray/squirt = 2)
 
-/obj/structure/closet/boxinggloves
+obj/structure/closet/boxinggloves
 	name = "boxing gloves"
 	desc = "It's a storage unit for gloves for use in the boxing ring."
 
@@ -32,7 +32,7 @@
 		/obj/item/clothing/gloves/boxing/yellow,
 		/obj/item/clothing/gloves/boxing)
 
-/obj/structure/closet/masks
+obj/structure/closet/masks
 	name = "mask closet"
 	desc = "IT'S A STORAGE UNIT FOR FIGHTER MASKS OLE!"
 
@@ -42,7 +42,7 @@
 		/obj/item/clothing/mask/luchador/tecnicos)
 
 
-/obj/structure/closet/lasertag/red
+obj/structure/closet/lasertag/red
 	name = "red laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
 	icon_state = "red"
@@ -53,7 +53,7 @@
 		/obj/item/clothing/suit/redtag = 5)
 
 
-/obj/structure/closet/lasertag/blue
+obj/structure/closet/lasertag/blue
 	name = "blue laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
 	icon_state = "blue"

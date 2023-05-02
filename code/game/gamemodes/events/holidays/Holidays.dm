@@ -11,12 +11,12 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 //ALSO, MOST IMPORTANTLY: Don't add stupid stuff! Discuss bonus content with Project-Heads first please!//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/hook/startup/proc/updateHoliday()
+hook/startup/proc/updateHoliday()
 	Get_Holiday()
 	return 1
 
 /// Sets up the Holiday global variable. Shouldbe called on game configuration or something.
-/proc/Get_Holiday()
+proc/Get_Holiday()
 	if(!Holiday)
 		return // Holiday stuff was not enabled in the config!
 
@@ -192,7 +192,7 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 				Holiday["Friday the 13th"] = "Friday the 13th is a superstitious day, associated with bad luck and misfortune."
 
 //Allows GA and GM to set the Holiday variable
-/client/proc/Set_Holiday()
+client/proc/Set_Holiday()
 	set name = ".Set Holiday"
 	set category = "Fun"
 	set desc = "Force-set the Holiday variable to make the game think it's a certain day."
@@ -215,7 +215,7 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 
 
 //Run at the  start of a round
-/proc/Holiday_Game_Start()
+proc/Holiday_Game_Start()
 	if(Holiday.len != 0)
 		var/list/holidays = list()
 		var/list/holiday_blurbs = list()
@@ -230,6 +230,6 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 				to_chat(world, "<div align='center'><font color=#4F49AF>[blurb]</font></div>")
 
 //Nested in the random events loop. Will be triggered every 2 minutes
-/proc/Holiday_Random_Event()
+proc/Holiday_Random_Event()
 	if(!length(Holiday))
 		return 0

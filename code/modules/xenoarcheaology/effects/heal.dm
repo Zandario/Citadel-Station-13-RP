@@ -1,8 +1,8 @@
-/datum/artifact_effect/heal
+datum/artifact_effect/heal
 	name = "heal"
 	effect_type = EFFECT_ORGANIC
 
-/datum/artifact_effect/heal/DoEffectTouch(var/mob/toucher)
+datum/artifact_effect/heal/DoEffectTouch(var/mob/toucher)
 	//todo: check over this properly
 	if(toucher && iscarbon(toucher))
 		var/weakness = GetAnomalySusceptibility(toucher)
@@ -32,7 +32,7 @@
 			C.regenerate_icons()
 			return 1
 
-/datum/artifact_effect/heal/DoEffectAura()
+datum/artifact_effect/heal/DoEffectAura()
 	//todo: check over this properly
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -48,7 +48,7 @@
 				C.adjustBrainLoss(-1 * weakness)
 				C.update_health()
 
-/datum/artifact_effect/heal/DoEffectPulse()
+datum/artifact_effect/heal/DoEffectPulse()
 	//todo: check over this properly
 	if(holder)
 		var/turf/T = get_turf(holder)

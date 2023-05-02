@@ -1,8 +1,8 @@
-/datum/artifact_effect/berserk
+datum/artifact_effect/berserk
 	name = "berserk"
 	effect_type = EFFECT_PSIONIC
 
-/datum/artifact_effect/berserk/proc/apply_berserk(var/mob/living/L)
+datum/artifact_effect/berserk/proc/apply_berserk(var/mob/living/L)
 	if(!istype(L))
 		return FALSE
 
@@ -22,12 +22,12 @@
 			it quickly passes.</span>")
 		return FALSE
 
-/datum/artifact_effect/berserk/DoEffectTouch(var/mob/toucher)
+datum/artifact_effect/berserk/DoEffectTouch(var/mob/toucher)
 	if(toucher && isliving(toucher))
 		apply_berserk(toucher)
 		return TRUE
 
-/datum/artifact_effect/berserk/DoEffectAura()
+datum/artifact_effect/berserk/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/L in range(src.effectrange,T))
@@ -35,7 +35,7 @@
 				apply_berserk(L)
 		return TRUE
 
-/datum/artifact_effect/berserk/DoEffectPulse()
+datum/artifact_effect/berserk/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/L in range(src.effectrange,T))

@@ -1,4 +1,4 @@
-/obj/machinery/computer/aifixer
+obj/machinery/computer/aifixer
 	name = "\improper AI system integrity restorer"
 	desc = "Used with intelliCards containing nonfunctional AIs to restore them to working order."
 	req_one_access = list(ACCESS_SCIENCE_ROBOTICS, ACCESS_COMMAND_BRIDGE)
@@ -14,7 +14,7 @@
 	/// Variable dictating if we are in the process of restoring the occupier AI
 	var/restoring = FALSE
 
-/obj/machinery/computer/aifixer/attackby(obj/item/I, mob/living/user)
+obj/machinery/computer/aifixer/attackby(obj/item/I, mob/living/user)
 	if(I.is_screwdriver())
 		if(occupier)
 			if(machine_stat & (NOPOWER|BROKEN))
@@ -48,18 +48,18 @@
 			to_chat(user, SPAN_NOTICE("There is no AI loaded onto this computer, and no AI loaded onto [I]. What exactly are you trying to do here?"))
 	return ..()
 
-/obj/machinery/computer/aifixer/attack_hand(mob/user, list/params)
+obj/machinery/computer/aifixer/attack_hand(mob/user, list/params)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/aifixer/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/aifixer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AiRestorer", name)
 		ui.open()
 
-/obj/machinery/computer/aifixer/ui_data(mob/user)
+obj/machinery/computer/aifixer/ui_data(mob/user)
 	var/list/data = list()
 
 	data["ejectable"] = FALSE
@@ -80,7 +80,7 @@
 
 	return data
 
-/obj/machinery/computer/aifixer/ui_act(action, params)
+obj/machinery/computer/aifixer/ui_act(action, params)
 	if(..())
 		return TRUE
 	if(!occupier)
@@ -97,7 +97,7 @@
 					ghost.notify_revive("Your core files are being restored!")
 				. = TRUE
 
-/obj/machinery/computer/aifixer/proc/Fix()
+obj/machinery/computer/aifixer/proc/Fix()
 	use_power(active_power_usage)
 	occupier.adjustOxyLoss(-5, 0, FALSE)
 	occupier.adjustFireLoss(-5, 0, FALSE)
@@ -107,7 +107,7 @@
 
 	return occupier.health < 100
 
-/obj/machinery/computer/aifixer/process()
+obj/machinery/computer/aifixer/process()
 	if(..())
 		if(restoring)
 			var/oldstat = occupier.stat
@@ -115,7 +115,7 @@
 			if(oldstat != occupier.stat)
 				update_icon()
 
-/obj/machinery/computer/aifixer/update_icon()
+obj/machinery/computer/aifixer/update_icon()
 	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return

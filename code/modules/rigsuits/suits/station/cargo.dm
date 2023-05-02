@@ -1,4 +1,4 @@
-/obj/item/rig/industrial
+obj/item/rig/industrial
 	name = "industrial suit control module"
 	suit_type = "industrial hardsuit"
 	desc = "A heavy, powerful hardsuit used by construction crews and mining corporations."
@@ -25,7 +25,7 @@
 		/obj/item/bluespace_radio,
 	)
 
-/datum/armor/rig/industrial
+datum/armor/rig/industrial
 	melee = 0.6
 	bullet = 0.5
 	laser = 0.3
@@ -34,7 +34,7 @@
 	bio = 1.0
 	rad = 0.7
 
-/obj/item/rig/industrial/equipped
+obj/item/rig/industrial/equipped
 	initial_modules = list(
 		/obj/item/rig_module/device/plasmacutter,
 		/obj/item/rig_module/device/drill,
@@ -43,5 +43,5 @@
 		/obj/item/rig_module/maneuvering_jets,
 		)
 
-/obj/item/clothing/head/helmet/space/rig/industrial
+obj/item/clothing/head/helmet/space/rig/industrial
 	camera_networks = list(NETWORK_MINE)

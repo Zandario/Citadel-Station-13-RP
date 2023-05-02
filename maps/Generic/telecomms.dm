@@ -3,44 +3,42 @@
 
 //// Tether///////
 
-/obj/machinery/telecomms/relay/preset/tether
+obj/machinery/telecomms/relay/preset/tether
 
-/obj/machinery/telecomms/hub/preset/tether
+obj/machinery/telecomms/hub/preset/tether
 
-/obj/machinery/telecomms/receiver/preset_right/tether
+obj/machinery/telecomms/receiver/preset_right/tether
 
-/obj/machinery/telecomms/broadcaster/preset_right/tether
+obj/machinery/telecomms/broadcaster/preset_right/tether
 
-/obj/machinery/telecomms/bus/preset_two/tether
+obj/machinery/telecomms/bus/preset_two/tether
 
-/obj/machinery/telecomms/server/presets/service/tether
+obj/machinery/telecomms/server/presets/service/tether
 
 //// Triumph ////
 
-/obj/machinery/telecomms/relay/preset/triumph/deck_one
+obj/machinery/telecomms/relay/preset/triumph/deck_one
 
-/obj/machinery/telecomms/relay/preset/centcom/triumph/deck_one
+obj/machinery/telecomms/relay/preset/centcom/triumph/deck_one
 
-/obj/machinery/telecomms/relay/preset/triumph/deck_two
+obj/machinery/telecomms/relay/preset/triumph/deck_two
 
-/obj/machinery/telecomms/relay/preset/centcom/triumph/deck_two
+obj/machinery/telecomms/relay/preset/centcom/triumph/deck_two
 
-/obj/machinery/telecomms/relay/preset/triumph/deck_three
+obj/machinery/telecomms/relay/preset/triumph/deck_three
 
-/obj/machinery/telecomms/relay/preset/centcom/triumph/deck_three
+obj/machinery/telecomms/relay/preset/centcom/triumph/deck_three
 
-/obj/machinery/telecomms/relay/preset/triumph/deck_four
+obj/machinery/telecomms/relay/preset/triumph/deck_four
 
-/obj/machinery/telecomms/relay/preset/centcom/triumph/deck_four
+obj/machinery/telecomms/relay/preset/centcom/triumph/deck_four
 
-/obj/machinery/telecomms/hub/preset/triumph
+obj/machinery/telecomms/hub/preset/triumph
 
-/obj/machinery/telecomms/receiver/preset_right/triumph
+obj/machinery/telecomms/receiver/preset_right/triumph
 
-/obj/machinery/telecomms/broadcaster/preset_right/triumph
+obj/machinery/telecomms/broadcaster/preset_right/triumph
 
-/obj/machinery/telecomms/bus/preset_two/triumph
+obj/machinery/telecomms/bus/preset_two/triumph
 
-/obj/machinery/telecomms/server/presets/service/triumph
-
-
+obj/machinery/telecomms/server/presets/service/triumph

@@ -1,7 +1,7 @@
-/datum/component/art
+datum/component/art
 	var/impressiveness = 0
 
-/datum/component/art/Initialize(impress)
+datum/component/art/Initialize(impress)
 	impressiveness = impress
 	if(isobj(parent))
 		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_obj_examine)
@@ -12,7 +12,7 @@
 	if(isitem(parent))
 		RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/apply_moodlet)
 
-/datum/component/art/proc/apply_moodlet(mob/M, impress)
+datum/component/art/proc/apply_moodlet(mob/M, impress)
 	M.visible_message("<span class='notice'>[M] stops and looks intently at [parent].</span>", \
 						 "<span class='notice'>You stop to take in [parent].</span>")
 	switch(impress)
@@ -26,14 +26,14 @@
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "artgreat", /datum/mood_event/artgreat)
 
 
-/datum/component/art/proc/on_other_examine(datum/source, mob/M)
+datum/component/art/proc/on_other_examine(datum/source, mob/M)
 	apply_moodlet(M, impressiveness)
 
-/datum/component/art/proc/on_obj_examine(datum/source, mob/M)
+datum/component/art/proc/on_obj_examine(datum/source, mob/M)
 	var/obj/O = parent
 	apply_moodlet(M, impressiveness *(O.obj_integrity/O.max_integrity))
 
-/datum/component/art/proc/on_attack_hand(datum/source, mob/M)
+datum/component/art/proc/on_attack_hand(datum/source, mob/M)
 	to_chat(M, "You start examining [parent].")
 	if(!do_after(M, 20, target = parent))
 		return

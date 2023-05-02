@@ -1,5 +1,5 @@
 //temporary visual effects
-/obj/effect/temp_visual
+obj/effect/temp_visual
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	anchored = TRUE
@@ -9,30 +9,29 @@
 	var/randomdir = TRUE
 	var/timerid
 
-/obj/effect/temp_visual/Initialize(mapload)
+obj/effect/temp_visual/Initialize(mapload)
 	. = ..()
 	if(randomdir)
 		dir = pick(list(NORTH, SOUTH, EAST, WEST))
 	timerid = QDEL_IN(src, duration)
 
-/obj/effect/temp_visual/Destroy()
+obj/effect/temp_visual/Destroy()
 	. = ..()
 	deltimer(timerid)
 
-/obj/effect/temp_visual/singularity_act()
+obj/effect/temp_visual/singularity_act()
 	return
 
-/obj/effect/temp_visual/singularity_pull()
+obj/effect/temp_visual/singularity_pull()
 	return
 
-/obj/effect/temp_visual/legacy_ex_act()
+obj/effect/temp_visual/legacy_ex_act()
 	return
 
-/obj/effect/temp_visual/dir_setting
+obj/effect/temp_visual/dir_setting
 	randomdir = FALSE
 
-/obj/effect/temp_visual/dir_setting/New(loc, setDir)
+obj/effect/temp_visual/dir_setting/New(loc, setDir)
 	if(setDir)
 		dir = setDir
 	return ..()
-

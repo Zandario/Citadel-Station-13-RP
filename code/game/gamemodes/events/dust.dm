@@ -6,7 +6,7 @@ No command report on the common version of this event.
 The "dust" will damage the hull of the station causin minor hull breaches.
 */
 
-/proc/dust_swarm(var/strength = "weak", var/list/affecting_z)
+proc/dust_swarm(var/strength = "weak", var/list/affecting_z)
 	var/numbers = 1
 	var/dust_type = /obj/effect/space_dust
 	switch(strength)
@@ -58,7 +58,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 		D.setDir(global.reverse_dir[startside])
 		walk_towards(D, endloc, 1)
 
-/obj/effect/space_dust
+obj/effect/space_dust
 	name = "Space Dust"
 	desc = "Dust in space."
 	icon = 'icons/obj/meteor.dmi'
@@ -68,30 +68,30 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	var/strength = 2	// legacy_ex_act severity number
 	var/life = 2	// How many things we hit before qdel(src)
 
-/obj/effect/space_dust/weak
+obj/effect/space_dust/weak
 	strength = 3
 	life = 1
 
-/obj/effect/space_dust/strong
+obj/effect/space_dust/strong
 	strength = 1
 	life = 6
 
-/obj/effect/space_dust/super
+obj/effect/space_dust/super
 	strength = 1
 	life = 40
 
-/obj/effect/space_dust/Destroy()
+obj/effect/space_dust/Destroy()
 	walk(src, 0)	// Because we might have called walk_towards, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
-/obj/effect/space_dust/touch_map_edge()
+obj/effect/space_dust/touch_map_edge()
 	qdel(src)
 
-/obj/effect/space_dust/Bump(atom/A)
+obj/effect/space_dust/Bump(atom/A)
 	. = ..()
 	hit(A)
 
-/obj/effect/space_dust/proc/hit(atom/A)
+obj/effect/space_dust/proc/hit(atom/A)
 	if(prob(50))
 		for(var/mob/M in range(10, src))
 			if(!M.stat && !istype(M, /mob/living/silicon/ai))
@@ -110,10 +110,10 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 			qdel(src)
 			return
 
-/obj/effect/space_dust/Bumped(atom/A)
+obj/effect/space_dust/Bumped(atom/A)
 	hit(A)
 	return
 
-/obj/effect/space_dust/legacy_ex_act(severity)
+obj/effect/space_dust/legacy_ex_act(severity)
 	qdel(src)
 	return

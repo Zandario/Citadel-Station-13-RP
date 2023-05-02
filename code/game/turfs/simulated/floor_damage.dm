@@ -1,12 +1,12 @@
-/turf/simulated/floor/proc/gets_drilled()
+turf/simulated/floor/proc/gets_drilled()
 	return
 
-/turf/simulated/floor/proc/break_tile_to_plating()
+turf/simulated/floor/proc/break_tile_to_plating()
 	if(!is_plating())
 		make_plating()
 	break_tile()
 
-/turf/simulated/floor/proc/break_tile()
+turf/simulated/floor/proc/break_tile()
 	if(!flooring || !(flooring.flooring_flags & TURF_CAN_BREAK) || !isnull(broken))
 		return
 	if(flooring.has_damage_range)
@@ -15,7 +15,7 @@
 		broken = 0
 	update_appearance()
 
-/turf/simulated/floor/proc/burn_tile(exposed_temperature)
+turf/simulated/floor/proc/burn_tile(exposed_temperature)
 	if(!flooring || !(flooring.flooring_flags & TURF_CAN_BURN) || !isnull(burnt))
 		return
 	if(flooring.has_burn_range)

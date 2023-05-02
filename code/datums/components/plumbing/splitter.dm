@@ -1,13 +1,13 @@
-/datum/component/plumbing/splitter
+datum/component/plumbing/splitter
 	demand_connects = NORTH
 	supply_connects = SOUTH | EAST
 
-/datum/component/plumbing/splitter/Initialize()
+datum/component/plumbing/splitter/Initialize()
 	. = ..()
 	if(. && !istype(parent, /obj/machinery/plumbing/splitter))
 		return FALSE
 
-/datum/component/plumbing/splitter/can_give(amount, reagent, datum/ductnet/net)
+datum/component/plumbing/splitter/can_give(amount, reagent, datum/ductnet/net)
 	. = ..()
 	if(!.)
 		return
@@ -28,7 +28,7 @@
 				S.turn_straight = FALSE
 				return TRUE
 
-/datum/component/plumbing/splitter/transfer_to(datum/component/plumbing/target, amount, reagent, datum/ductnet/net)
+datum/component/plumbing/splitter/transfer_to(datum/component/plumbing/target, amount, reagent, datum/ductnet/net)
 	var/direction
 	for(var/A in ducts)
 		if(ducts[A] == net)
@@ -43,5 +43,3 @@
 			if(amount >= S.transfer_side)
 				amount = S.transfer_side
 	. = ..()
-
-

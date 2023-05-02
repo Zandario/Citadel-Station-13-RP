@@ -1,4 +1,4 @@
-/mob/observer/dead/Move(NewLoc, direct)
+mob/observer/dead/Move(NewLoc, direct)
 	if(updatedir)
 		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
 	var/oldloc = loc
@@ -20,8 +20,8 @@
 			x--
 	Moved(oldloc, direct, FALSE)
 
-/mob/observer/dead/Process_Spacemove(dir)
+mob/observer/dead/Process_Spacemove(dir)
 	return TRUE		//we don't drift.
 
-/mob/observer/dead/canface()
+mob/observer/dead/canface()
 	return TRUE

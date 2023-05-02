@@ -1,6 +1,6 @@
 /*** EXIT PORTAL ***/
 
-/obj/singularity/narsie/large/exit
+obj/singularity/narsie/large/exit
 	name = "Bluespace Rift"
 	desc = "NO TIME TO EXPLAIN, JUMP IN"
 	icon = 'icons/obj/rift.dmi'
@@ -14,23 +14,23 @@
 
 	consume_range = 6
 
-/obj/singularity/narsie/large/exit/Initialize(mapload)
+obj/singularity/narsie/large/exit/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/singularity/narsie/large/exit/update_icon()
+obj/singularity/narsie/large/exit/update_icon()
 	cut_overlays()
 
-/obj/singularity/narsie/large/exit/process(delta_time)
+obj/singularity/narsie/large/exit/process(delta_time)
 	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			M.see_rift(src)
 	eat()
 
-/obj/singularity/narsie/large/exit/acquire(var/mob/food)
+obj/singularity/narsie/large/exit/acquire(var/mob/food)
 	return
 
-/obj/singularity/narsie/large/exit/consume(const/atom/A)
+obj/singularity/narsie/large/exit/consume(const/atom/A)
 	if(!(A.singuloCanEat()))
 		return 0
 
@@ -69,11 +69,11 @@
 					AM.singularity_pull(src, src.current_size)
 
 
-/mob
+mob
 	//thou shall always be able to see the rift
 	var/image/riftimage = null
 
-/mob/proc/see_rift(var/obj/singularity/narsie/large/exit/R)
+mob/proc/see_rift(var/obj/singularity/narsie/large/exit/R)
 	var/turf/T_mob = get_turf(src)
 	if((R.z == T_mob.z) && (get_dist(R,T_mob) <= (R.consume_range+10)) && !(R in view(T_mob)))
 		if(!riftimage)

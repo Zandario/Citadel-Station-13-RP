@@ -1,7 +1,7 @@
-/datum/shuttle
+datum/shuttle
 	var/move_direction //Null is legacy behavior, otherwise people are thrown in the opposite direction
 
-/datum/shuttle/proc/throw_a_mob(var/mob/living/carbon/M, direction)
+datum/shuttle/proc/throw_a_mob(var/mob/living/carbon/M, direction)
 	direction = turn(direction, 180)
 	var/atom/target
 	switch(direction)
@@ -20,27 +20,26 @@
 	if(target)
 		M.throw_at_old(target, world.view, 1)
 
-/obj/machinery/computer/shuttle_control/multi/admin
+obj/machinery/computer/shuttle_control/multi/admin
 	name = "centcom shuttle control console"
 	req_access = list(ACCESS_CENTCOM_GENERAL)
 	shuttle_tag = "Administration"
 
-/obj/machinery/computer/shuttle_control/multi/awaymission
+obj/machinery/computer/shuttle_control/multi/awaymission
 	name = "exploration shuttle control console"
 	req_access = list(ACCESS_GENERAL_GATEWAY)
 	shuttle_tag = "AwayMission"
 
-/obj/machinery/computer/shuttle_control/belter
+obj/machinery/computer/shuttle_control/belter
 	name = "belter control console"
 	req_one_access = list(ACCESS_SCIENCE_MAIN, ACCESS_SUPPLY_MINE, ACCESS_MEDICAL_EQUIPMENT) //Allows xenoarch, miners AND doctors to use it.
 	shuttle_tag = "Belter" //The scanning console needs to enable/disable this at will.
 
-/obj/machinery/computer/shuttle_control/mining
+obj/machinery/computer/shuttle_control/mining
 	name = "mining elevator control console"
 
-/obj/machinery/computer/shuttle_control/engineering
+obj/machinery/computer/shuttle_control/engineering
 	name = "engineering elevator control console"
 
-/obj/machinery/computer/shuttle_control/research
+obj/machinery/computer/shuttle_control/research
 	name = "research elevator control console"
-

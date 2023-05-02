@@ -5,7 +5,7 @@
 var/list/powers = typesof(/datum/power/changeling) - /datum/power/changeling	//needed for the badmin verb for now
 var/list/datum/power/changeling/powerinstances = list()
 
-/datum/power //Could be used by other antags too
+datum/power //Could be used by other antags too
 	var/name = "Power"
 	var/desc = "Placeholder"
 	var/helptext = ""
@@ -19,14 +19,14 @@ var/list/datum/power/changeling/powerinstances = list()
 	/// icon_state for icons for the ability HUD.  Must be in screen_spells.dmi.
 	var/ability_icon_state = null
 
-/datum/power/changeling
+datum/power/changeling
 	var/allowduringlesserform = 0
 	/// Cost for the changling to evolve this power.
 	var/genomecost = 500000
 
 
 /// Modularchangling, totally stolen from the new player panel.  YAYY
-/datum/changeling/proc/EvolutionMenu() //The new one
+datum/changeling/proc/EvolutionMenu() //The new one
 	set name = "-Evolution Menu-"
 	set category = "Changeling"
 	set desc = "Adapt yourself carefully."
@@ -300,7 +300,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	usr << browse(dat, "window=powers;size=900x480")
 
 
-/datum/changeling/Topic(href, href_list)
+datum/changeling/Topic(href, href_list)
 	..()
 	if(!ismob(usr))
 		return
@@ -314,7 +314,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 
 
-/datum/changeling/proc/purchasePower(datum/mind/M, Pname, remake_verbs = 1)
+datum/changeling/proc/purchasePower(datum/mind/M, Pname, remake_verbs = 1)
 	if(!M || !M.changeling)
 		return
 

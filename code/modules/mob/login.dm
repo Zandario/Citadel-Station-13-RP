@@ -22,7 +22,7 @@
  * * calls [auto_deadmin_on_login](mob.html#proc/auto_deadmin_on_login)
  * * send signal COMSIG_MOB_CLIENT_LOGIN
  */
-/mob/Login()
+mob/Login()
 	GLOB.player_list |= src
 	update_Login_details()
 	world.update_status()
@@ -103,7 +103,7 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, update_ssd_overlay)), 0)
 
 /// Handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
-/mob/proc/update_Login_details()
+mob/proc/update_Login_details()
 	//Multikey checks and logging
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id

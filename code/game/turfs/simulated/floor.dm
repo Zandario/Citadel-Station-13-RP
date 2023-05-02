@@ -1,4 +1,4 @@
-/turf/simulated/floor
+turf/simulated/floor
 	name = "plating"
 	desc = "Unfinished flooring."
 	icon = 'icons/turf/flooring/plating.dmi'
@@ -40,10 +40,10 @@
 	var/singleton/flooring/flooring
 	var/mineral = MAT_STEEL
 
-/turf/simulated/floor/is_plating()
+turf/simulated/floor/is_plating()
 	return !flooring
 
-/turf/simulated/floor/Initialize(mapload, floortype)
+turf/simulated/floor/Initialize(mapload, floortype)
 	. = ..()
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
@@ -56,15 +56,15 @@
 			dirt += rand(50,100)
 			update_dirt() //5% chance to start with dirt on a floor tile- give the janitor something to do
 
-/turf/simulated/proc/make_outdoors()
+turf/simulated/proc/make_outdoors()
 	outdoors = TRUE
 	SSplanets.addTurf(src)
 
-/turf/simulated/proc/make_indoors()
+turf/simulated/proc/make_indoors()
 	outdoors = FALSE
 	SSplanets.removeTurf(src)
 
-/turf/simulated/AfterChange(flags, oldType)
+turf/simulated/AfterChange(flags, oldType)
 	. = ..()
 	RemoveLattice()
 	// If it was outdoors and still is, it will not get added twice when the planet controller gets around to putting it in.
@@ -79,7 +79,7 @@
  * TODO: REWORK FLOORING GETTERS/INIT/SETTERS THIS IS BAD
  */
 
-/turf/simulated/floor/proc/set_flooring(singleton/flooring/newflooring, init)
+turf/simulated/floor/proc/set_flooring(singleton/flooring/newflooring, init)
 	if(flooring == newflooring)
 		return
 	make_plating(null, TRUE, TRUE)
@@ -109,7 +109,7 @@
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
-/turf/simulated/floor/proc/make_plating(place_product, defer_icon_update, strip_bare)
+turf/simulated/floor/proc/make_plating(place_product, defer_icon_update, strip_bare)
 
 	if(flooring)
 		// We are flooring switching to plating, swap out old_decals for decals.
@@ -140,7 +140,7 @@
 	flooring_override = null
 
 
-/turf/simulated/floor/levelupdate()
+turf/simulated/floor/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && src.flooring)
 
@@ -149,7 +149,7 @@
 	else
 		layer = PLATING_LAYER
 
-/turf/simulated/floor/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+turf/simulated/floor/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			// A wall costs four sheets to build (two for the grider and two for finishing it).
@@ -187,7 +187,7 @@
 	return FALSE
 
 
-/turf/simulated/floor/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+turf/simulated/floor/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, SPAN_NOTICE("You build a wall."))

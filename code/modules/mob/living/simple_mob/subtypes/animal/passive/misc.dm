@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/yithian
+datum/category_item/catalogue/fauna/yithian
 	name = "Mystery - Yithian"
 	desc = "The exact provenance of this creature remains unknown. \
 	Although scientists have confirmed that this species is Sapient, and \
@@ -7,7 +7,7 @@
 	Yith."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/yithian
+mob/living/simple_mob/animal/passive/yithian
 	name = "yithian"
 	desc = "A friendly creature vaguely resembling an oversized snail without a shell."
 	tt_desc = "J Escargot escargot" // a product of Jade, which is a planet that totally exists
@@ -24,7 +24,7 @@
 	mob_size = MOB_MINISCULE
 	randomized = TRUE
 
-/datum/category_item/catalogue/fauna/tindalos
+datum/category_item/catalogue/fauna/tindalos
 	name = "Mystery - Tindalos"
 	desc = "There is much dispute regarding the origin of Tindalosi. \
 	Commonly referred to as 'hounds', these creatures exhibit translocative \
@@ -34,7 +34,7 @@
 	acute angles."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/tindalos
+mob/living/simple_mob/animal/passive/tindalos
 	name = "tindalos"
 	desc = "It looks like a large, flightless grasshopper."
 	tt_desc = "J Locusta bruchus"

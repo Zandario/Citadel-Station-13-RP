@@ -1,4 +1,4 @@
-/datum/role/job/station/clown
+datum/role/job/station/clown
 	id = JOB_ID_CLOWN
 	title = "Clown"
 	flag = CLOWN
@@ -16,19 +16,19 @@
 	pto_type = PTO_CIVILIAN
 	alt_titles = list("Jester" = /datum/prototype/alt_title/clown/jester, "Fool" = /datum/prototype/alt_title/clown/fool)
 
-/datum/prototype/alt_title/clown/jester
+datum/prototype/alt_title/clown/jester
 	title = "Jester"
 
-/datum/prototype/alt_title/clown/fool
+datum/prototype/alt_title/clown/fool
 	title = "Fool"
 
-/datum/role/job/station/clown/get_access()
+datum/role/job/station/clown/get_access()
 	if(config_legacy.assistant_maint)
 		return list(ACCESS_ENGINEERING_MAINT, ACCESS_GENERAL_ENTERTAINMENT, ACCESS_GENERAL_CLOWN, ACCESS_GENERAL_TOMFOOLERY)
 	else
 		return list(ACCESS_GENERAL_ENTERTAINMENT, ACCESS_GENERAL_CLOWN, ACCESS_GENERAL_TOMFOOLERY)
 
-/datum/outfit/job/station/clown
+datum/outfit/job/station/clown
 	name = OUTFIT_JOB_NAME("Clown")
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	uniform = /obj/item/clothing/under/rank/clown

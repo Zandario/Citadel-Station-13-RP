@@ -1,4 +1,4 @@
-/datum/lore/codex/category/political_factions
+datum/lore/codex/category/political_factions
 	name = "Political Factions"
 	data = "Those wishing to immigrate to somewhere in Vir, or otherwise plan to stay for a long time should get to know human politics.  \
 	There are presently three major political parties that exist throughout OriCon space, being the Icarus Front, the Shadow Coalition, and \
@@ -17,7 +17,7 @@
 		)
 
 
-/datum/lore/codex/page/icarus_front/add_content()
+datum/lore/codex/page/icarus_front/add_content()
 	name = "Icarus Front"
 	keywords += list("Icarus", "IF")
 	data = "The political group with the most seats in the [quick_link("OriCon")] legislature and control over the heartworlds of humanity, the Icarus Front is a \
@@ -26,14 +26,14 @@
 	intelligence and human genetic augmentation. Previously an unbeatable political force, recent changes have lead to its power backsliding. It remains a \
 	popular party among those from Sol, Tau Ceti, and other heavily settled systems."
 
-/datum/lore/codex/page/shadow_coalition/add_content()
+datum/lore/codex/page/shadow_coalition/add_content()
 	name = "Shadow Coalition"
 	data = "A disorganized liberal party, originating in an anti-[quick_link("Icarus")] shadow government.  'Shadow' in this case, refers to acting as an opposition \
 	party to the Icarus majority. The Shadow Coalition calls for the lifting of certain Icarus-restricted technologies, especially medical \
 	technologies with the ability to drastically improve quality of life. While fractious and prone to infighting, the Shadow Coalition and affiliated \
 	parties remain the most popular political groups in the large towns and small cities of humanity, including Vir."
 
-/datum/lore/codex/page/sol_economic_organization/add_content()
+datum/lore/codex/page/sol_economic_organization/add_content()
 	name = "Sol Economic Organization"
 	keywords += list("SEO")
 	data = "The newest force in [quick_link("OriCon")] politics, backed by the massive [quick_link("TSC", "Trans-Stellar Corporations")] and the [quick_link("Free Trade Union")], \
@@ -46,7 +46,7 @@
 	Industries, as well as, notably, [quick_link("Vey-Med")]. The Free Trade Union's participation in the SEO is a contentious issue that many of its members disagree with, but \
 	most FTU representatives caucus with the SEO."
 
-/datum/lore/codex/page/mercurials/add_content()
+datum/lore/codex/page/mercurials/add_content()
 	name = "Mercurials"
 	keywords += list("Mercurial")
 	data = "[quick_link("Positronics")] and the rare augmented human who want to follow a different cultural path from the rest of humanity, viewing themselves as fundamentally \
@@ -54,7 +54,7 @@
 	posed by positronics without human values in mind, self-described Mercurials still often find themselves persecuted or used by bioconservatives as scapegoats \
 	and 'boogiemen'. As a technoprogressive group, they tend to vote along with the [quick_link("Shadow Coalition")]."
 
-/datum/lore/codex/page/positronic_rights_group/add_content()
+datum/lore/codex/page/positronic_rights_group/add_content()
 	name = "Positronic Rights Group"
 	keywords += list("PRG")
 	data = "The other side of the coin from the [quick_link("Mercurials")], the PRG wants full integration of [quick_link("positronics")] into human society, with equal wages, opportunities \
@@ -62,7 +62,7 @@
 	a measure supported due to its potential to counteract the aging positronic population and to bring the average positronic closer to human culture.  They tend to vote \
 	along with the [quick_link("Shadow Coalition")], due to being technoprogressive."
 
-/datum/lore/codex/page/church_of_unitarian_god
+datum/lore/codex/page/church_of_unitarian_god
 	name = "The Church of the Unitarian God"
 	keywords = list("Unitarian Church")
 	data = "An often-imperfect fusion of various human religions such as Christianity, Islam, and Judaism, the Unitarian Church represents the dim voice of \
@@ -70,7 +70,7 @@
 	and they use this power to protect the fundamental human soul from corruption by dangerous technologies and to spread their faith among aliens and positronics, \
 	who they view as fellow children of God.  They tend to side with bioconservatives."
 
-/datum/lore/codex/page/friends_of_ned/add_content()
+datum/lore/codex/page/friends_of_ned/add_content()
 	name = "Friends of Ned"
 	keywords += list("Ned")
 	data = "The metaphorical reincarnation of a human named Ned Ludd's original Luddites, disdaining that name's negative connotations and embracing their original \
@@ -79,7 +79,7 @@
 	nanofabrication deployment. While the party refrains from making a definitive statement on their view of [quick_link("positronics")], many Friends have taken it upon themselves to label \
 	them \"anti-labor technology\", and nominally-unsanctioned lynchings have marred the faction's reputation."
 
-/datum/lore/codex/page/multinational_movement/add_content()
+datum/lore/codex/page/multinational_movement/add_content()
 	name = "Multinational Movement"
 	keywords += list("Multinational")
 	data = "The barely-unified voice of [quick_link("OriCon", "OriCon's")] various independence movements, encompassing Terran governments wishing for a lighter touch \
@@ -89,7 +89,7 @@
 	wants to force their change on the government en masse. The Multinational Movement finds themselves in an uneasy alliance with the [quick_link("SEO")], connected by their corporate, \
 	fringe-system membership, and often provide a dissenting voice to SEO's war hawks."
 
-/datum/lore/codex/page/free_trade_union/add_content()
+datum/lore/codex/page/free_trade_union/add_content()
 	name = "Free Trade Union"
 	keywords += list("FTU")
 	data = "A softer counterpoint to the [quick_link("SEO")], the FTU is a party representing small businesses, workers' syndicates, and trade unions, who advocate for government \

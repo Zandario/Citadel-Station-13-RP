@@ -1,4 +1,4 @@
-/datum/lore/codex/category/important_locations
+datum/lore/codex/category/important_locations
 	name = "Important Locations"
 	data = "There are several locations of interest that you may come across when visiting the system Virgo-Erigone."
 	children = list(
@@ -14,7 +14,7 @@
 		/datum/lore/codex/page/outer_worlds
 		)
 
-/datum/lore/codex/page/virgo_erigone/add_content()
+datum/lore/codex/page/virgo_erigone/add_content()
 	name = "Virgo-Erigone (Star System)"
 	keywords += list("Virgo-Erigone")
 	data = "Virgo-Erigone is a dimming and dying star with a warm yellow/orange glow like that of burning candle. It has eight planets in its orbit.\
@@ -26,7 +26,7 @@
 	as it resides over 30,000 lightyears away from [quick_link("SolGov")]'s sphere of influence. Despite its isolation, it generally abides by Sol's laws, as NanoTrasen is a human-owned \
 	company."
 
-/datum/lore/codex/page/radiance_energy_chain/add_content()
+datum/lore/codex/page/radiance_energy_chain/add_content()
 	name = "R.E.C. (Artificial Satellites)"
 	keywords += list("Radiance Energy Chain", "R.E.C.")
 	data = "A sparse government-owned chain of automated stations exists between [quick_link("Virgo 3")] and the star itself, known as the Radiance Energy Chain. The idea is based on \
@@ -38,13 +38,13 @@
 	by [quick_link("positronic")] equipped units in shielded chassis, or very brave humans in voidsuits that protect from extreme heat, and radiation. There are \
 	currently 19 stations in operation."
 
-/datum/lore/codex/page/virgo_one/add_content()
+datum/lore/codex/page/virgo_one/add_content()
 	name = "Virgo 1 (Hot-Ice Giant)"
 	keywords += list("Virgo 1")
 	data = "Virgo 1 is a tidally locked hot ice giant located closest to the star. Temperatures soar and drop between 490°K and 120°K. Winds on the planet often surpass \
 	supersonic speeds."
 
-/datum/lore/codex/page/virgo_two/add_content()
+datum/lore/codex/page/virgo_two/add_content()
 	name = "Virgo 2 (Metal-Rich Planet)"
 	keywords += list("Virgo 2")
 	data = "The second closest planet to [quick_link("Virgo-Erigone")], this planet has a high concentration of minerals inside its crust, as well as active volcanism and plate tectonics.  \
@@ -62,7 +62,7 @@
 	for Virgo 2 mostly non-existent, with the exception of explorers who specifically seek out hellish landscapes, which are plentiful with all the ruins, \
 	volcanoes, twisting caves, and general lawlessness. The occasional remains of previous explorers near certain hotspots somehow does not deter them."
 
-/datum/lore/codex/page/virgo_three/add_content()
+datum/lore/codex/page/virgo_three/add_content()
 	name = "Virgo 3 (Phoron Giant)"
 	keywords += list("Virgo 3")
 	data = "Virgo 3 is one of only two gas giants composed primarily of [quick_link("Phoron")] in the known galaxy. This fact has attracted several [quick_link("TSC", "TSCs")] into \
@@ -72,7 +72,7 @@
 	The largest TSC to exploit this planet is none other than Phoron research giant [quick_link("NanoTrasen")], having built several stations orbiting the planet \
 	for both research and phoron refining purposes."
 
-/datum/lore/codex/page/virgo_three_bee/add_content()
+datum/lore/codex/page/virgo_three_bee/add_content()
 	name = "Virgo-3B (Terrestrial Moon)"
 	keywords += list("Virgo-3B")
 	data = "Virgo-3B is the only moon of [quick_link("Virgo 3")] with any atmosphere to speak of, composed primarily of [quick_link("Phoron")] and carbon dioxide with trace amounts of nitrogen. \
@@ -85,7 +85,7 @@
 	The presence of several [quick_link("TSC", "TSCs")] on the surface has introduced new life forms to the planet via bioengineering, and now several 'new' species are commonly sighted per year. \
 	Currently, [quick_link("NanoTrasen")] is constructing a 'space elevator' for commercial purposes, as the atmosphere of Virgo-3B is inimical to shuttles, and engines in particular."
 
-/datum/lore/codex/page/virgo_prime/add_content() // Virgo 4 technically.
+datum/lore/codex/page/virgo_prime/add_content() // Virgo 4 technically.
 	name = "Virgo 4 / Virgo-Prime (Terrestrial Planet)"
 	keywords += list("Virgo 4","Virgo-Prime")
 	data = "Virgo 4, also known as Virgo-Prime, is the fourth planet of Virgo-Eirgone. Although primarily desert, temperatures linger around only 287 kelvin (~14°C). \
@@ -100,7 +100,7 @@
 	Zorren occupy the planet, but it is believed that at least two million live scattered across the deserts and mountains, where \
 	they subsist off of underground water sources, and hunt for prey."
 
-/datum/lore/codex/page/virgo_five/add_content()
+datum/lore/codex/page/virgo_five/add_content()
 	name = "Virgo 5 (Rocky Ice Planet)"
 	keywords += list("Virgo 5")
 	data = "Virgo 5 is a cold, inhospitable wasteland contaminated with toxic phoron-based compounds. At temperatures around 213 kelvin (-60°C), \
@@ -108,7 +108,7 @@
 	atmosphere. Scientists believe this planet was once closer to its host star, but over time was pushed out beyond the habitable zone by \
 	other large planets."
 
-/datum/lore/codex/page/outer_worlds/add_content()
+datum/lore/codex/page/outer_worlds/add_content()
 	name = "The Outer Worlds"
 	keywords += list("The Outer Worlds")
 	data = "The last three planets in the system are two small rocky worlds, Virgo 6 and 7, and finally Virgo 8 which is a frozen gas giant \
@@ -116,7 +116,7 @@
 	as 8's moons have no substantial deposits of any useful minerals, nor do they have an abundance of phoron. They are left largely ignored by \
 	the local [quick_link("TSC", "TSCs")], though this also makes them a safe haven for various pirate and smuggler stations."
 
-/datum/lore/codex/page/virgo_central_command/add_content()
+datum/lore/codex/page/virgo_central_command/add_content()
 	name = "Virgo Central Command (Colony)"
 	keywords += list("Virgo Central Command")
 	data = "<i>This page has been ripped out. Odd.</i>"
@@ -131,7 +131,7 @@
 	designed to be a living habitat - its proximity to Virgo 3 makes transport of people and materials to and from \
 	the facility and the planet's stations via shuttle extremely cost-efficient."*/ // ToDo: ReDo.
 
-/datum/lore/codex/page/nsb_adephagia/add_content()
+datum/lore/codex/page/nsb_adephagia/add_content()
 	name = "NSB Adephagia (Space Elevator)"
 	keywords += list("NSB Adephagia", "Tether")
 	data = "Also known as the 'Tether', the NSB Adephagia is one of the most prominent installations in the [quick_link("Virgo-Erigone")] star system. \

@@ -1,5 +1,5 @@
 //TODO: We don't have check_reactions or something like it, so we can't prevent idiot transfers. @Zandario
-/obj/machinery/chem_master
+obj/machinery/chem_master
 	name = "ChemMaster 3000"
 	desc = "Used to seperate and package chemicals in to autoinjectors, lollipops, patches, pills, or bottles. Warranty void if used to create Space Drugs."
 	density = TRUE
@@ -59,26 +59,26 @@
 	/// List of available condi styles for UI
 	var/list/condi_styles
 
-/obj/machinery/chem_master/condimaster
+obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"
 	condi = TRUE
 
-/obj/machinery/chem_master/Initialize(mapload)
+obj/machinery/chem_master/Initialize(mapload)
 	create_reagents(1000) // refreshparts needs reagents
 	return ..()
 
-/obj/machinery/chem_master/Destroy()
+obj/machinery/chem_master/Destroy()
 	QDEL_NULL(beaker)
 	QDEL_NULL(pill_bottle)
 	return ..()
 
-/obj/machinery/chem_master/RefreshParts()
+obj/machinery/chem_master/RefreshParts()
 	. = ..()
 	reagents.maximum_volume = 0
 	for(var/obj/item/reagent_containers/glass/beaker/B in component_parts)
 		reagents.maximum_volume += B.reagents.maximum_volume
 
-/obj/machinery/chem_master/legacy_ex_act(severity)
+obj/machinery/chem_master/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -88,20 +88,20 @@
 				qdel(src)
 				return
 
-/obj/machinery/chem_master/update_icon_state()
+obj/machinery/chem_master/update_icon_state()
 	icon_state = "[base_icon_state][beaker ? 1 : 0][(machine_stat & BROKEN) ? "_b" : (powered() ? null : "_nopower")]"
 	return ..()
 
-/obj/machinery/chem_master/update_overlays()
+obj/machinery/chem_master/update_overlays()
 	. = ..()
 	if(machine_stat & BROKEN)
 		. += "waitlight"
 
-/obj/machinery/chem_master/blob_act(obj/structure/blob/B)
+obj/machinery/chem_master/blob_act(obj/structure/blob/B)
 	if (prob(50))
 		qdel(src)
 
-/obj/machinery/chem_master/attackby(obj/item/I, mob/user)
+obj/machinery/chem_master/attackby(obj/item/I, mob/user)
 	if(default_unfasten_wrench(user, I, 20))
 		return
 	else if(default_deconstruction_screwdriver(user, I))
@@ -140,7 +140,7 @@
 	else
 		return ..()
 
-/obj/machinery/chem_master/on_deconstruction()
+obj/machinery/chem_master/on_deconstruction()
 	replace_beaker()
 	if(pill_bottle)
 		pill_bottle.forceMove(drop_location())
@@ -148,7 +148,7 @@
 		pill_bottle = null
 	return ..()
 
-/obj/machinery/chem_master/attack_hand(mob/user, list/params)
+obj/machinery/chem_master/attack_hand(mob/user, list/params)
 	if(machine_stat & BROKEN)
 		return
 	user.set_machine(src)
@@ -165,7 +165,7 @@
  * * user - Mob that initialized replacement, gets previously inserted beaker if there's any
  * * new_beaker - New beaker to insert. Optional
  */
-/obj/machinery/chem_master/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
+obj/machinery/chem_master/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
 	if(!user)
 		return FALSE
 	if(beaker)
@@ -176,7 +176,7 @@
 	update_appearance()
 	return TRUE
 
-/obj/machinery/chem_master/proc/load_styles()
+obj/machinery/chem_master/proc/load_styles()
 	/// Calculate the span tags and ids fo all the available pill icons.
 	var/datum/asset/spritesheet/simple/pill_assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
 	pill_styles = list()
@@ -205,20 +205,20 @@
 
 	condi_styles = strip_condi_styles_to_icons(get_condi_styles())
 
-/obj/machinery/chem_master/ui_assets(mob/user)
+obj/machinery/chem_master/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/simple/pills),
 		get_asset_datum(/datum/asset/spritesheet/simple/bottles),
 		get_asset_datum(/datum/asset/spritesheet/simple/patches),
 	)
 
-/obj/machinery/chem_master/ui_interact(mob/user, datum/tgui/ui = null)
+obj/machinery/chem_master/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemMaster", name)
 		ui.open()
 
-/obj/machinery/chem_master/ui_data(mob/user)
+obj/machinery/chem_master/ui_data(mob/user)
 	var/list/data = list()
 
 	data["mode"]   = mode
@@ -266,7 +266,7 @@
 
 	return data
 
-/obj/machinery/chem_master/ui_static_data(mob/user)
+obj/machinery/chem_master/ui_static_data(mob/user)
 	var/list/static_data = list()
 	//Calculated once since it'll never change
 	if(!pill_styles || !bottle_styles || !chosen_patch_style || !patch_styles)
@@ -278,7 +278,7 @@
 
 	return static_data
 
-/obj/machinery/chem_master/ui_act(action, params)
+obj/machinery/chem_master/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -518,10 +518,10 @@
 
 	return FALSE
 
-/obj/machinery/chem_master/attack_ai(mob/user)
+obj/machinery/chem_master/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/chem_master/proc/isgoodnumber(num)
+obj/machinery/chem_master/proc/isgoodnumber(num)
 	if(isnum(num))
 		if(num > 200)
 			num = 200
@@ -538,7 +538,7 @@
 // 			all_safe = FALSE
 // 	return all_safe
 
-/obj/machinery/chem_master/adjust_item_drop_location(atom/movable/AM) // Special version for chemmasters and condimasters
+obj/machinery/chem_master/adjust_item_drop_location(atom/movable/AM) // Special version for chemmasters and condimasters
 	if (AM == beaker)
 		AM.pixel_x = AM.base_pixel_x - 8
 		AM.pixel_y = AM.base_pixel_y + 8
@@ -571,7 +571,7 @@
  * Arguments:
  * * styles - List of styles for condiment bottles in internal format: [/obj/machinery/chem_master/proc/get_condi_styles]
  */
-/obj/machinery/chem_master/proc/strip_condi_styles_to_icons(list/styles)
+obj/machinery/chem_master/proc/strip_condi_styles_to_icons(list/styles)
 	var/list/icons = list()
 	for (var/s in styles)
 		if (styles[s] && styles[s]["className"])
@@ -605,7 +605,7 @@
  * )
  *
  */
-/obj/machinery/chem_master/proc/get_condi_styles()
+obj/machinery/chem_master/proc/get_condi_styles()
 	var/list/styles = typelist("condi_styles")
 	if (!styles.len)
 		//Possible_states has the reagent type as key and a list of, in order, the icon_state, the name and the desc as values. Was used in the condiment/on_reagent_change(changetype) to change names, descs and sprites.
@@ -758,7 +758,7 @@
  * If not available returns fallback style, or null if no such thing.
  * Returns list that is one of condibottle styles from [/obj/machinery/chem_master/proc/get_condi_styles]
  */
-/obj/machinery/chem_master/proc/guess_condi_style(datum/reagents/reagents)
+obj/machinery/chem_master/proc/guess_condi_style(datum/reagents/reagents)
 	var/list/styles = get_condi_styles()
 	if (reagents.reagent_list.len > 0)
 		var/main_reagent = reagents.get_master_reagent_id()
@@ -780,7 +780,7 @@
  * * container - condiment bottle that gets style applied to it
  * * style - assoc list, must probably one from [/obj/machinery/chem_master/proc/get_condi_styles]
  */
-/obj/machinery/chem_master/proc/apply_condi_style(obj/item/reagent_containers/food/condiment/container, list/style)
+obj/machinery/chem_master/proc/apply_condi_style(obj/item/reagent_containers/food/condiment/container, list/style)
 	container.name = style["name"]
 	container.desc = style["desc"]
 	container.icon_state = style["icon_state"]

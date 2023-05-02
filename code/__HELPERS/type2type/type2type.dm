@@ -16,7 +16,7 @@
  * breaks when hittin invalid characters thereafter
  *  If safe=TRUE, returns null on incorrect input strings instead of CRASHing
  */
-/proc/hex2num(hex, safe=FALSE)
+proc/hex2num(hex, safe=FALSE)
 	. = 0
 	var/place = 1
 	for(var/i in length(hex) to 1 step -1)
@@ -43,7 +43,7 @@
 /**
  * Returns the hex value of a number given a value assumed to be a base-ten value.
  */
-/proc/num2hex(num, padlength)
+proc/num2hex(num, padlength)
 	var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
 
 	. = ""
@@ -57,7 +57,7 @@
 	while (left-- > 0)
 		. = "0[.]"
 
-/proc/text2numlist(text, delimiter="\n")
+proc/text2numlist(text, delimiter="\n")
 	var/list/num_list = list()
 	for(var/x in splittext(text, delimiter))
 		num_list += text2num(x)
@@ -66,7 +66,7 @@
 /**
  * Turns a direction into text.
  */
-/proc/num2dir(direction)
+proc/num2dir(direction)
 	switch (direction)
 		if (1.0) return NORTH
 		if (2.0) return SOUTH
@@ -79,7 +79,7 @@
  * Splits the text of a file at seperator and returns them in a list.
  * Returns an empty list if the file doesn't exist.
  */
-/world/proc/file2list(filename, seperator="\n", trim = TRUE)
+world/proc/file2list(filename, seperator="\n", trim = TRUE)
 	if (trim)
 		return splittext(trim(file2text(filename)),seperator)
 	return splittext(file2text(filename),seperator)
@@ -87,7 +87,7 @@
 /**
  * Turns a direction into text.
  */
-/proc/dir2text(direction)
+proc/dir2text(direction)
 	switch (direction)
 		if (NORTH)
 			return "north"
@@ -113,7 +113,7 @@
 /**
  * Turns text into proper directions.
  */
-/proc/text2dir(direction)
+proc/text2dir(direction)
 	switch (uppertext(direction))
 		if ("NORTH")
 			return 1
@@ -135,7 +135,7 @@
 /**
  * Converts an angle (degrees) into an ss13 direction.
  */
-/proc/angle2dir(degree)
+proc/angle2dir(degree)
 	degree = (degree + 22.5) % 365 // 22.5 = 45 / 2
 	if (degree < 45)
 		return NORTH
@@ -156,7 +156,7 @@
 /**
  * Returns the north-zero clockwise angle in degrees, given a direction.
  */
-/proc/dir2angle(direction)
+proc/dir2angle(direction)
 	switch (direction)
 		if (NORTH)
 			return 0
@@ -178,13 +178,13 @@
 /**
  * Returns the angle in english.
  */
-/proc/angle2text(degree)
+proc/angle2text(degree)
 	return dir2text(angle2dir(degree))
 
 /**
  * Converts a blend_mode constant to one acceptable to icon.Blend()
  */
-/proc/blendMode2iconMode(blend_mode)
+proc/blendMode2iconMode(blend_mode)
 	switch (blend_mode)
 		if (BLEND_MULTIPLY)
 			return ICON_MULTIPLY
@@ -198,7 +198,7 @@
 /**
  * Converts a rights bitfield into a string.
  */
-/proc/rights2text(rights,seperator="")
+proc/rights2text(rights,seperator="")
 	if (rights & R_BUILDMODE)
 		. += "[seperator]+BUILDMODE"
 	if (rights & R_ADMIN)
@@ -233,7 +233,7 @@
 
 // Very ugly, BYOND doesn't support unix time and rounding errors make it really hard to convert it to BYOND time.
 // returns "YYYY-MM-DD" by default
-/proc/unix2date(timestamp, seperator = "-")
+proc/unix2date(timestamp, seperator = "-")
 	if(timestamp < 0)
 		return 0 //Do not accept negative values
 
@@ -272,10 +272,10 @@
 
 	return "[year][seperator][((month < 10) ? "0[month]" : month)][seperator][((day < 10) ? "0[day]" : day)]"
 
-/proc/isLeap(y)
+proc/isLeap(y)
 	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
 
-/proc/type2parent(child)
+proc/type2parent(child)
 	var/string_type = "[child]"
 	var/last_slash = findlasttext(string_type, "/")
 	if(last_slash == 1)
@@ -291,7 +291,7 @@
 	return text2path(copytext(string_type, 1, last_slash))
 
 //returns a string the last bit of a type, without the preceeding '/'
-/proc/type2top(the_type)
+proc/type2top(the_type)
 	//handle the builtins manually
 	if(!ispath(the_type))
 		return
@@ -313,11 +313,11 @@
 
 /// Return html to load a url.
 /// for use inside of browse() calls to html assets that might be loaded on a cdn.
-/proc/url2htmlloader(url)
+proc/url2htmlloader(url)
 	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}
 
 // Converts a string into ascii then converts it into hexadecimal.
-/proc/strtohex(str)
+proc/strtohex(str)
 	if(!istext(str)||!str)
 		return
 	var/r
@@ -329,7 +329,7 @@
 
 // Decodes hexadecimal ascii into a raw byte string.
 // If safe=TRUE, returns null on incorrect input strings instead of CRASHing
-/proc/hextostr(str, safe=FALSE)
+proc/hextostr(str, safe=FALSE)
 	if(!istext(str)||!str)
 		return
 	var/r
@@ -353,7 +353,7 @@
  * The datum is used as a source for var names, to check validity
  * Otherwise every single word could technically be a variable!
  */
-/proc/string2listofvars(t_string, datum/var_source)
+proc/string2listofvars(t_string, datum/var_source)
 	if(!t_string || !var_source)
 		return list()
 
@@ -380,7 +380,7 @@
 					if(var_source.vars.Find(A))
 						. += A
 
-/proc/get_end_section_of_type(type)
+proc/get_end_section_of_type(type)
 	var/strtype = "[type]"
 	var/delim_pos = findlasttext(strtype, "/")
 	if(delim_pos == 0)
@@ -393,7 +393,7 @@
  *
  * Concatenates a list of strings into a single string.  A seperator may optionally be provided.
  */
-/proc/list2text(list/ls, sep)
+proc/list2text(list/ls, sep)
 	if (ls.len <= 1) // Early-out code for empty or singleton lists.
 		return ls.len ? ls[1] : ""
 
@@ -483,7 +483,7 @@
  * Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
  */
 
-/proc/text2list(text, delimiter="\n")
+proc/text2list(text, delimiter="\n")
 	var/delim_len = length(delimiter)
 	if (delim_len < 1)
 		return list(text)

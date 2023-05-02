@@ -1,4 +1,4 @@
-/datum/power/changeling/delayed_toxic_sting
+datum/power/changeling/delayed_toxic_sting
 	name = "Delayed Toxic Sting"
 	desc = "We silently sting a biological, causing a significant amount of toxins after a few minutes, allowing us to not \
 	implicate ourselves."
@@ -8,19 +8,19 @@
 	genomecost = 1
 	verbpath = /mob/proc/changeling_delayed_toxic_sting
 
-/datum/modifier/delayed_toxin_sting
+datum/modifier/delayed_toxin_sting
 	name = "delayed toxin injection"
 	hidden = TRUE
 	stacks = MODIFIER_STACK_FORBID
 	on_expired_text = "<span class='danger'>You feel a burning sensation flowing through your veins!</span>"
 
-/datum/modifier/delayed_toxin_sting/on_expire()
+datum/modifier/delayed_toxin_sting/on_expire()
 	holder.adjustToxLoss(rand(20, 30))
 
-/datum/modifier/delayed_toxin_sting/strong/on_expire()
+datum/modifier/delayed_toxin_sting/strong/on_expire()
 	holder.adjustToxLoss(rand(40, 60))
 
-/mob/proc/changeling_delayed_toxic_sting()
+mob/proc/changeling_delayed_toxic_sting()
 	set category = "Changeling"
 	set name = "Delayed Toxic Sting (20)"
 	set desc = "Injects the target with a toxin that will take effect after a few minutes."

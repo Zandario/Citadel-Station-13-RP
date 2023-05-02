@@ -80,11 +80,11 @@
 #define ADMIN_FULLMONTY_NONAME(user) ("[ADMIN_QUE(user)] [ADMIN_PP(user)] [ADMIN_VV(user)] [ADMIN_SM(user)] [ADMIN_FLW(user)] [ADMIN_TP(user)] [ADMIN_SMITE(user)]")
 #define ADMIN_FULLMONTY(user)        ("[key_name_admin(user)] [ADMIN_FULLMONTY_NONAME(user)]")
 
-/atom/proc/Admin_Coordinates_Readable(area_name, admin_jump_ref)
+atom/proc/Admin_Coordinates_Readable(area_name, admin_jump_ref)
 	var/turf/T = Safe_COORD_Location()
 	return T ? "[area_name ? "[get_area_name(T, TRUE)] " : " "]([T.x],[T.y],[T.z])[admin_jump_ref ? " [ADMIN_JMP(T)]" : ""]" : "nonexistent location"
 
-/atom/proc/Safe_COORD_Location()
+atom/proc/Safe_COORD_Location()
 	var/atom/A = drop_location()
 	if(!A)
 		return // Not a valid atom.
@@ -95,7 +95,7 @@
 			T = get_step(last_try, 0)
 	return T
 
-/turf/Safe_COORD_Location()
+turf/Safe_COORD_Location()
 	return src
 
 /**

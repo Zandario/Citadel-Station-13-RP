@@ -6,7 +6,7 @@
 #define DNA2_BUF_SE 4
 
 //list("data" = null, "owner" = null, "label" = null, "type" = null, "ue" = 0),
-/datum/dna2/record
+datum/dna2/record
 	var/datum/dna/dna = null
 	var/types=0
 	var/name="Empty"
@@ -22,7 +22,7 @@
 	var/list/body_descriptors = null
 	var/list/genetic_modifiers = list() // Modifiers with the MODIFIER_GENETIC flag are saved.  Note that only the type is saved, not an instance.
 
-/datum/dna2/record/proc/GetData()
+datum/dna2/record/proc/GetData()
 	var/list/ser=list("data" = null, "owner" = null, "label" = null, "type" = null, "ue" = 0)
 	if(dna)
 		ser["ue"] = (types & DNA2_BUF_UE) == DNA2_BUF_UE
@@ -39,7 +39,7 @@
 	return ser
 
 //! ## DNA MACHINES
-/obj/machinery/dna_scannernew
+obj/machinery/dna_scannernew
 	name = "\improper DNA modifier"
 	desc = "It scans DNA structures."
 	icon = 'icons/obj/medical/cryogenic2.dmi'
@@ -57,13 +57,13 @@
 	var/mob/living/carbon/occupant = null
 	var/obj/item/reagent_containers/glass/beaker = null
 
-/obj/machinery/dna_scannernew/relaymove(mob/user)
+obj/machinery/dna_scannernew/relaymove(mob/user)
 	if (user.stat)
 		return
 	src.go_out()
 	return
 
-/obj/machinery/dna_scannernew/verb/eject()
+obj/machinery/dna_scannernew/verb/eject()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Eject DNA Scanner"
@@ -76,7 +76,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/dna_scannernew/proc/eject_occupant()
+obj/machinery/dna_scannernew/proc/eject_occupant()
 	src.go_out()
 	for(var/obj/O in src)
 		if((!istype(O,/obj/item/reagent_containers)) && (!istype(O,/obj/item/circuitboard/clonescanner)) && (!istype(O,/obj/item/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
@@ -88,12 +88,12 @@
 /**
  *? Allows borgs to clone people without external assistance.
  */
-/obj/machinery/dna_scannernew/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/machinery/dna_scannernew/MouseDroppedOnLegacy(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
 		return
 	put_in(target)
 
-/obj/machinery/dna_scannernew/verb/move_inside()
+obj/machinery/dna_scannernew/verb/move_inside()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Enter DNA Scanner"
@@ -117,7 +117,7 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/machinery/dna_scannernew/attackby(obj/item/item, mob/user)
+obj/machinery/dna_scannernew/attackby(obj/item/item, mob/user)
 	if(istype(item, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
@@ -159,7 +159,7 @@
 	qdel(G)
 	return
 
-/obj/machinery/dna_scannernew/proc/put_in(mob/M)
+obj/machinery/dna_scannernew/proc/put_in(mob/M)
 	occupant = M
 	M.update_perspective()
 
@@ -178,7 +178,7 @@
 					break
 	return
 
-/obj/machinery/dna_scannernew/proc/go_out()
+obj/machinery/dna_scannernew/proc/go_out()
 	if(!occupant|| locked)
 		return
 	if(istype(occupant,/mob/living/carbon/brain))
@@ -193,7 +193,7 @@
 	occupant = null
 	icon_state = "scanner_0"
 
-/obj/machinery/dna_scannernew/legacy_ex_act(severity)
+obj/machinery/dna_scannernew/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
@@ -224,7 +224,7 @@
 		else
 	return
 
-/obj/machinery/computer/scan_consolenew
+obj/machinery/computer/scan_consolenew
 	name = "DNA Modifier Access Console"
 	desc = "Scan DNA."
 	icon_keyboard = "med_key"
@@ -251,7 +251,7 @@
 	active_power_usage = 400
 	var/waiting_for_user_input=0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X
 
-/obj/machinery/computer/scan_consolenew/attackby(obj/item/I, mob/user)
+obj/machinery/computer/scan_consolenew/attackby(obj/item/I, mob/user)
 	if (istype(I, /obj/item/disk/data)) //INSERT SOME diskS
 		if (!src.disk)
 			if(!user.attempt_insert_item_for_installation(I, src))
@@ -264,7 +264,7 @@
 		..()
 	return
 
-/obj/machinery/computer/scan_consolenew/legacy_ex_act(severity)
+obj/machinery/computer/scan_consolenew/legacy_ex_act(severity)
 
 	switch(severity)
 		if(1.0)
@@ -279,35 +279,35 @@
 		else
 	return
 
-/obj/machinery/computer/scan_consolenew/Initialize(mapload)
+obj/machinery/computer/scan_consolenew/Initialize(mapload)
 	. = ..()
 	buffers = list()
 	for(var/i in 1 to 3)
 		buffers +=  new /datum/dna2/record
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/computer/scan_consolenew/LateInitialize()
+obj/machinery/computer/scan_consolenew/LateInitialize()
 	. = ..()
 	scan_for_scanner()
 	addtimer(CALLBACK(src, .proc/recharge_injector), 25 SECONDS)
 
-/obj/machinery/computer/scan_consolenew/proc/recharge_injector()
+obj/machinery/computer/scan_consolenew/proc/recharge_injector()
 	injector_ready = TRUE
 
-/obj/machinery/computer/scan_consolenew/proc/scan_for_scanner()
+obj/machinery/computer/scan_consolenew/proc/scan_for_scanner()
 	connected = null
 	for(var/dir in GLOB.cardinal)
 		connected = locate(/obj/machinery/dna_scannernew) in get_step(src, dir)
 		if(connected)
 			break
 
-/obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(list/buffer)
+obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(list/buffer)
 	var/list/arr = list()
 	for(var/i = 1, i <= buffer.len, i++)
 		arr += "[i]:[EncodeDNABlock(buffer[i])]"
 	return arr
 
-/obj/machinery/computer/scan_consolenew/proc/setInjectorBlock(obj/item/dnainjector/I, blk, datum/dna2/record/buffer)
+obj/machinery/computer/scan_consolenew/proc/setInjectorBlock(obj/item/dnainjector/I, blk, datum/dna2/record/buffer)
 	var/pos = findtext(blk,":")
 	if(!pos)
 		return 0
@@ -319,7 +319,7 @@
 	return 1
 
 /*
-/obj/machinery/computer/scan_consolenew/process(delta_time) //not really used right now
+obj/machinery/computer/scan_consolenew/process(delta_time) //not really used right now
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!( src.status )) //remove this
@@ -327,11 +327,11 @@
 	return
 */
 
-/obj/machinery/computer/scan_consolenew/attack_ai(mob/user)
+obj/machinery/computer/scan_consolenew/attack_ai(mob/user)
 	src.add_hiddenprint(user)
 	nano_ui_interact(user)
 
-/obj/machinery/computer/scan_consolenew/attack_hand(mob/user, list/params)
+obj/machinery/computer/scan_consolenew/attack_hand(mob/user, list/params)
 	if(!..())
 		nano_ui_interact(user)
 
@@ -346,7 +346,7 @@
   *
   * @return nothing
   */
-/obj/machinery/computer/scan_consolenew/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
+obj/machinery/computer/scan_consolenew/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	if(!connected || user == connected.occupant || user.stat)
 		return
@@ -438,7 +438,7 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/scan_consolenew/Topic(href, href_list)
+obj/machinery/computer/scan_consolenew/Topic(href, href_list)
 	if(..())
 		return 0 // don't update uis
 	if(!istype(usr.loc, /turf))

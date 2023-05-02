@@ -1,6 +1,6 @@
 var/datum/legacy_announcement/minor/captain_announcement = new(do_newscast = 1)
 
-/datum/role/job/station/captain
+datum/role/job/station/captain
 	id = JOB_ID_CAPTAIN
 	title = "Facility Director"
 	economy_payscale = ECONOMY_PAYSCALE_JOB_CAPTAIN
@@ -35,22 +35,22 @@ var/datum/legacy_announcement/minor/captain_announcement = new(do_newscast = 1)
 		"Captain" = /datum/prototype/alt_title/captain/captain
 	)
 
-/datum/role/job/station/captain/get_access()
+datum/role/job/station/captain/get_access()
 	return SSjob.access_ids_of_type(ACCESS_TYPE_STATION)
 
-/datum/prototype/alt_title/overseer
+datum/prototype/alt_title/overseer
 	title = "Overseer"
 
-/datum/prototype/alt_title/captain/site
+datum/prototype/alt_title/captain/site
 	title = "Site Manager"
 
-/datum/prototype/alt_title/captain/director
+datum/prototype/alt_title/captain/director
 	title = "Director of Operations"
 
-/datum/prototype/alt_title/captain/captain
+datum/prototype/alt_title/captain/captain
 	title = "Captain"
 
-/datum/outfit/job/station/captain
+datum/outfit/job/station/captain
 	name = OUTFIT_JOB_NAME("Captain")
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/rank/captain
@@ -65,7 +65,7 @@ var/datum/legacy_announcement/minor/captain_announcement = new(do_newscast = 1)
 	messenger_bag = /obj/item/storage/backpack/messenger/com
 	dufflebag = /obj/item/storage/backpack/dufflebag/captain
 
-/datum/outfit/job/station/captain/post_equip(var/mob/living/carbon/human/H)
+datum/outfit/job/station/captain/post_equip(var/mob/living/carbon/human/H)
 	..()
 	if(H.age>49)
 		// Since we can have something other than the default uniform at this

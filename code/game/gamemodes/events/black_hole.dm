@@ -1,4 +1,4 @@
-/obj/effect/bhole
+obj/effect/bhole
 	name = "black hole"
 	icon = 'icons/obj/objects.dmi'
 	desc = "FUCK FUCK FUCK AAAHHH"
@@ -9,11 +9,11 @@
 	anchored = 1
 	var/process_step = 0
 
-/obj/effect/bhole/Initialize(mapload)
+obj/effect/bhole/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
-/obj/effect/bhole/process()
+obj/effect/bhole/process()
 	if(!isturf(loc))
 		qdel(src)
 		return
@@ -55,7 +55,7 @@
 		step(src,pick(GLOB.alldirs))
 		src.anchored = 1
 
-/obj/effect/bhole/proc/grav(var/r, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
+obj/effect/bhole/proc/grav(var/r, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
 	if(!isturf(loc))	//blackhole cannot be contained inside anything. Weird stuff might happen
 		qdel(src)
 		return
@@ -66,7 +66,7 @@
 		affect_coord(x-r, y-t, ex_act_force, pull_chance, turf_removal_chance)
 	return
 
-/obj/effect/bhole/proc/affect_coord(var/x, var/y, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
+obj/effect/bhole/proc/affect_coord(var/x, var/y, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
 	//Get turf at coordinate
 	var/turf/T = locate(x, y, z)
 	if(isnull(T))	return

@@ -1,6 +1,6 @@
 // Carriers are not too dangerous on their own, but they create more spiders when dying.
 
-/datum/category_item/catalogue/fauna/giant_spider/carrier_spider
+datum/category_item/catalogue/fauna/giant_spider/carrier_spider
 	name = "Giant Spider - Carrier"
 	desc = "This specific spider has been catalogued as 'Carrier', \
 	and it belongs to the 'Nurse' caste. \
@@ -12,7 +12,7 @@
 	unless the host dies catastrophically."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/carrier
+mob/living/simple_mob/animal/giant_spider/carrier
 	desc = "Furry, beige, and red, it makes you shudder to look at it. This one has luminous green eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/carrier_spider)
 
@@ -40,12 +40,12 @@
 	var/swarmling_faction = "spiders"
 	var/swarmling_prob = 10 // Odds that a spiderling will be a swarmling instead.
 
-/mob/living/simple_mob/animal/giant_spider/carrier/Initialize(mapload)
+mob/living/simple_mob/animal/giant_spider/carrier/Initialize(mapload)
 	spiderling_count = rand(5, 10)
 	adjust_scale(1.2)
 	return ..()
 
-/mob/living/simple_mob/animal/giant_spider/carrier/death()
+mob/living/simple_mob/animal/giant_spider/carrier/death()
 	visible_message(SPAN_WARNING( "\The [src]'s abdomen splits as it rolls over, spiderlings crawling from the wound.") )
 	spawn(1)
 		var/list/new_spiders = list()
@@ -75,12 +75,12 @@
 	return ..()
 
 // Note that this isn't required for the 'scan all spiders' entry since its essentially a meme.
-/datum/category_item/catalogue/fauna/giant_spider/recursive_carrier_spider
+datum/category_item/catalogue/fauna/giant_spider/recursive_carrier_spider
 	name = "Giant Spider - Recursive Carrier"
 	desc = "<font face='comic sans ms'>It's Carriers all the way down.</font>"
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/carrier/recursive
+mob/living/simple_mob/animal/giant_spider/carrier/recursive
 	desc = "Furry, beige, and red, it makes you shudder to look at it. This one has luminous green eyes. \
 	You have a distinctly <font face='comic sans ms'>bad</font> feeling about this."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/recursive_carrier_spider)

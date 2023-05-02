@@ -4,7 +4,7 @@
 
 
 
-/obj/machinery/computer/telecomms/traffic
+obj/machinery/computer/telecomms/traffic
 	name = "Telecommunications Traffic Control"
 	desc = "Used to upload code to telecommunication consoles for execution."
 	icon_screen = "generic"
@@ -206,7 +206,7 @@
 		updateUsrDialog()
 		return
 
-/obj/machinery/computer/telecomms/traffic/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/computer/telecomms/traffic/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1

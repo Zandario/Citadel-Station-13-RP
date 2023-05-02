@@ -1,6 +1,6 @@
 
 /*
-/proc/start_events()
+proc/start_events()
 	//changed to a while(1) loop since they are more efficient.
 	//Moved the spawn in here to allow it to be called with advance proc call if it crashes.
 	//and also to stop spawn copying variables from the game SSticker
@@ -23,7 +23,7 @@
 var/list/event_last_fired = list()
 
 //Always triggers an event when called, dynamically chooses events based on job population
-/proc/spawn_dynamic_event()
+proc/spawn_dynamic_event()
 	if(!config_legacy.allow_random_events)
 		return
 
@@ -177,7 +177,7 @@ var/list/event_last_fired = list()
 // Returns how many characters are currently active(not logged out, not AFK for more than 10 minutes)
 // with a specific role.
 // Note that this isn't sorted by department, because e.g. having a roboticist shouldn't make meteors spawn.
-/proc/number_active_with_role()
+proc/number_active_with_role()
 	var/list/active_with_role = list()
 	active_with_role["Engineer"] = 0
 	active_with_role["Medical"] = 0

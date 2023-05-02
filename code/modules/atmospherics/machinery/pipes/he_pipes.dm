@@ -1,7 +1,7 @@
 //
 // Heat Exchanging Pipes - Behave like simple pipes
 //
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging
+obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	icon = 'icons/atmos/heat.dmi'
 	icon_state = "intact"
 	pipe_icon = "hepipe"
@@ -22,25 +22,25 @@
 
 	buckle_lying = 1
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/Initialize(mapload)
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/Initialize(mapload)
 	. = ..()
 	add_atom_colour("#404040", FIXED_COLOUR_PRIORITY) //we don't make use of the fancy overlay system for colours, use this to set the default.
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/init_dir()
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/init_dir()
 	..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 	initialize_directions = 0
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/get_init_dirs()
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/get_init_dirs()
 	return ..() | initialize_directions_he
 
 // Use initialize_directions_he to connect to neighbors instead.
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/can_be_node(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target)
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/can_be_node(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target)
 	if(!istype(target))
 		return FALSE
 	return (target.initialize_directions_he & get_dir(target,src)) && check_connectable(target) && target.check_connectable(src)
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/atmos_init()
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/atmos_init()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -68,7 +68,7 @@
 	return
 
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/process(delta_time)
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/process(delta_time)
 	if(!parent)
 		..()
 	else
@@ -124,7 +124,7 @@
 //
 // Heat Exchange Junction - Interfaces HE pipes to normal pipes
 //
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 	icon = 'icons/atmos/junction.dmi'
 	icon_state = "intact"
 	pipe_icon = "hejunction"
@@ -135,7 +135,7 @@
 	minimum_temperature_difference = 300
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/init_dir()
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/init_dir()
 	..()
 	switch ( dir )
 		if ( SOUTH )
@@ -152,7 +152,7 @@
 			initialize_directions_he = WEST
 
 	// Allow ourselves to make connections to either HE or normal pipes depending on which node we are doing.
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/can_be_node(obj/machinery/atmospherics/target, node_num)
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/can_be_node(obj/machinery/atmospherics/target, node_num)
 	var/target_initialize_directions
 	switch(node_num)
 		if(1)
@@ -164,7 +164,7 @@
 			target_initialize_directions = H.initialize_directions_he  // Node2 is towards HE pies.
 	return (target_initialize_directions & get_dir(target,src)) && check_connectable(target) && target.check_connectable(src)
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/atmos_init()
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src,initialize_directions))
 		if(target.initialize_directions & get_dir(target,src))
 			node1 = target

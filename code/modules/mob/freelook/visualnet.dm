@@ -2,7 +2,7 @@
 //
 // The datum containing all the chunks.
 
-/datum/visualnet
+datum/visualnet
 	// The chunks of the map, mapping the areas that an object can see.
 	var/list/chunks = list()
 	var/ready = 0
@@ -10,16 +10,16 @@
 	/// are we generated at all?
 	var/any_generated = FALSE
 
-/datum/visualnet/New()
+datum/visualnet/New()
 	..()
 	GLOB.visual_nets += src
 
-/datum/visualnet/Destroy()
+datum/visualnet/Destroy()
 	GLOB.visual_nets -= src
 	return ..()
 
 // Checks if a chunk has been Generated in x, y, z.
-/datum/visualnet/proc/chunkGenerated(x, y, z)
+datum/visualnet/proc/chunkGenerated(x, y, z)
 	x &= ~0xf
 	y &= ~0xf
 	var/key = "[x],[y],[z]"
@@ -27,7 +27,7 @@
 
 // Returns the chunk in the x, y, z.
 // If there is no chunk, it creates a new chunk and returns that.
-/datum/visualnet/proc/getChunk(x, y, z)
+datum/visualnet/proc/getChunk(x, y, z)
 	x &= ~0xf
 	y &= ~0xf
 	var/key = "[x],[y],[z]"
@@ -39,7 +39,7 @@
 
 // Updates what the aiEye can see. It is recommended you use this when the aiEye moves or it's location is set.
 
-/datum/visualnet/proc/visibility(mob/observer/eye/eye)
+datum/visualnet/proc/visibility(mob/observer/eye/eye)
 	// 0xf = 15
 	var/x1 = max(0, eye.x - 16) & ~0xf
 	var/y1 = max(0, eye.y - 16) & ~0xf
@@ -65,13 +65,13 @@
 
 // Updates the chunks that the turf is located in. Use this when obstacles are destroyed or	when doors open.
 
-/datum/visualnet/proc/updateVisibility(atom/A, var/opacity_check = 1)
+datum/visualnet/proc/updateVisibility(atom/A, var/opacity_check = 1)
 
 	if(!any_generated || (opacity_check && !A.opacity))
 		return
 	majorChunkChange(A, 2)
 
-/datum/visualnet/proc/updateChunk(x, y, z)
+datum/visualnet/proc/updateChunk(x, y, z)
 	// 0xf = 15
 	if(!chunkGenerated(x, y, z))
 		return
@@ -84,7 +84,7 @@
 // Setting the choice to 0 will remove the camera from the chunks.
 // If you want to update the chunks around an object, without adding/removing a camera, use choice 2.
 
-/datum/visualnet/proc/majorChunkChange(atom/c, var/choice)
+datum/visualnet/proc/majorChunkChange(atom/c, var/choice)
 	// 0xf = 15
 	if(!c)
 		return
@@ -105,16 +105,16 @@
 					onMajorChunkChange(c, choice, chunk)
 					chunk.hasChanged()
 
-/datum/visualnet/proc/onMajorChunkChange(atom/c, var/choice, var/datum/chunk/chunk)
+datum/visualnet/proc/onMajorChunkChange(atom/c, var/choice, var/datum/chunk/chunk)
 
 // Will check if a mob is on a viewable turf. Returns 1 if it is, otherwise returns 0.
 
-/datum/visualnet/proc/checkVis(mob/living/target as mob)
+datum/visualnet/proc/checkVis(mob/living/target as mob)
 	// 0xf = 15
 	var/turf/position = get_turf(target)
 	return checkTurfVis(position)
 
-/datum/visualnet/proc/checkTurfVis(var/turf/position)
+datum/visualnet/proc/checkTurfVis(var/turf/position)
 	var/datum/chunk/chunk = getChunk(position.x, position.y, position.z)
 	if(chunk)
 		if(chunk.changed)
@@ -125,7 +125,7 @@
 
 // Debug verb for VVing the chunk that the turf is in.
 /*
-/turf/verb/view_chunk()
+turf/verb/view_chunk()
 	set src in world
 
 	if(GLOB.cameranet.chunkGenerated(x, y, z))

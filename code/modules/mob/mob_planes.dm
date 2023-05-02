@@ -4,11 +4,11 @@
 
 // todo: refactor all of this so we can use subtypesof like on main like on any SANE CODEBASE
 
-/datum/plane_holder
+datum/plane_holder
 	var/mob/my_mob
 	var/list/plane_masters[VIS_COUNT]
 
-/datum/plane_holder/New(mob/this_guy)
+datum/plane_holder/New(mob/this_guy)
 	ASSERT(ismob(this_guy))
 	my_mob = this_guy
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
@@ -42,12 +42,12 @@
 	plane_masters[VIS_SPACE] = new /atom/movable/screen/plane_master/parallax_white{plane = SPACE_PLANE}
 	plane_masters[VIS_SONAR] = new /atom/movable/screen/plane_master{plane = SONAR_PLANE}
 
-/datum/plane_holder/Destroy()
+datum/plane_holder/Destroy()
 	my_mob = null
 	QDEL_LIST_NULL(plane_masters) //Goodbye my children, be free
 	return ..()
 
-/datum/plane_holder/proc/set_vis(var/which = null, var/state = FALSE)
+datum/plane_holder/proc/set_vis(var/which = null, var/state = FALSE)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
@@ -68,7 +68,7 @@
 		LAZYREMOVE(my_mob.planes_visible, plane)
 
 /*
-/datum/plane_holder/proc/set_desired_alpha(var/which = null, var/new_alpha)
+datum/plane_holder/proc/set_desired_alpha(var/which = null, var/new_alpha)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
@@ -80,7 +80,7 @@
 			set_vis(which = SP, new_alpha = new_alpha)
 */
 
-/datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
+datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
@@ -91,7 +91,7 @@
 		for(var/SP in subplanes)
 			set_ao(SP, enabled)
 
-/datum/plane_holder/proc/alter_values(var/which = null, var/list/values = null)
+datum/plane_holder/proc/alter_values(var/which = null, var/list/values = null)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
@@ -105,7 +105,7 @@
 ////////////////////
 // The Plane Master
 ////////////////////
-/atom/movable/screen/plane_master
+atom/movable/screen/plane_master
 	screen_loc = "CENTER"
 	plane = -100 //Dodge just in case someone instantiates one of these accidentally, don't end up on 0 with plane_master
 	appearance_flags = PLANE_MASTER
@@ -115,13 +115,13 @@
 	var/invis_toggle = FALSE
 	var/list/sub_planes
 
-/atom/movable/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
+atom/movable/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
 		desired_alpha = new_alpha
 		if(alpha) //If we're already visible, update it now.
 			alpha = new_alpha
 
-/atom/movable/screen/plane_master/proc/set_visibility(var/want = FALSE)
+atom/movable/screen/plane_master/proc/set_visibility(var/want = FALSE)
 	//Invisibility-managed
 	if(invis_toggle)
 		if(want && invisibility)
@@ -137,17 +137,17 @@
 			alpha = 0
 			mouse_opacity = 0
 
-/atom/movable/screen/plane_master/proc/set_alpha(var/new_alpha = 255)
+atom/movable/screen/plane_master/proc/set_alpha(var/new_alpha = 255)
 	if(new_alpha != alpha)
 		new_alpha = sanitize_integer(new_alpha, 0, 255, 255)
 		alpha = new_alpha
 
-/atom/movable/screen/plane_master/proc/set_ambient_occlusion(var/enabled = FALSE)
+atom/movable/screen/plane_master/proc/set_ambient_occlusion(var/enabled = FALSE)
 	filters -= AMBIENT_OCCLUSION
 	if(enabled)
 		filters += AMBIENT_OCCLUSION
 
-/atom/movable/screen/plane_master/proc/alter_plane_values()
+atom/movable/screen/plane_master/proc/alter_plane_values()
 	return //Stub
 
 ////////////////////
@@ -156,7 +156,7 @@
 
 /////////////////
 //Lighting is weird and has matrix shenanigans. Think of this as turning on/off darkness.
-/atom/movable/screen/plane_master/fullbright
+atom/movable/screen/plane_master/fullbright
 	plane = LIGHTING_PLANE
 	layer = LAYER_HUD_BASE+1 // This MUST be above the lighting plane_master
 	color = null //To break lighting when visible (this is sorta backwards)
@@ -164,7 +164,7 @@
 	invisibility = 101
 	invis_toggle = TRUE
 
-/atom/movable/screen/plane_master/lighting
+atom/movable/screen/plane_master/lighting
 	plane = LIGHTING_PLANE
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
@@ -180,7 +180,7 @@
  * This is then used to alpha mask the lighting plane.
  */
 
-/atom/movable/screen/plane_master/lighting/Initialize(mapload)
+atom/movable/screen/plane_master/lighting/Initialize(mapload)
 	. = ..()
 	add_filter("emissives", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))
 	// add_filter("object_lighting", 2, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE))
@@ -188,71 +188,71 @@
 /**
  * Handles emissive overlays and emissive blockers.
  */
-/atom/movable/screen/plane_master/emissive
+atom/movable/screen/plane_master/emissive
 	name = "emissive plane master"
 	plane = EMISSIVE_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	render_target = EMISSIVE_RENDER_TARGET
 	alpha = 255
 
-/atom/movable/screen/plane_master/emissive/Initialize(mapload)
+atom/movable/screen/plane_master/emissive/Initialize(mapload)
 	. = ..()
 	add_filter("em_block_masking", 1, color_matrix_filter(GLOB.em_mask_matrix))
 
 /////////////////
 //Ghosts has a special alpha level
-/atom/movable/screen/plane_master/ghosts
+atom/movable/screen/plane_master/ghosts
 	plane = PLANE_GHOSTS
 	desired_alpha = 127 //When enabled, they're like half-transparent
 
 /////////////////
 //Cloaked atoms are visible to ghosts (or for other reasons?)
-/atom/movable/screen/plane_master/cloaked
+atom/movable/screen/plane_master/cloaked
 	plane = CLOAKED_PLANE
 	desired_alpha = 80
 	color = "#0000FF"
 
 ////////////////
 // parallax
-/atom/movable/screen/plane_master/parallax
+atom/movable/screen/plane_master/parallax
 	plane = PARALLAX_PLANE
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
 
 ////////////////
 // space
-/atom/movable/screen/plane_master/parallax_white
+atom/movable/screen/plane_master/parallax_white
 	plane = SPACE_PLANE
 	alpha = 255
 	mouse_opacity = 1
 
 /////////////////
 //The main game planes start normal and visible
-/atom/movable/screen/plane_master/main
+atom/movable/screen/plane_master/main
 	alpha = 255
 	mouse_opacity = 1
 
 /////////////////
 //AR planemaster does some special image handling
-/atom/movable/screen/plane_master/augmented
+atom/movable/screen/plane_master/augmented
 	plane = PLANE_AUGMENTED
 	var/state = FALSE //Saves cost with the lists
 	var/mob/my_mob
 
-/atom/movable/screen/plane_master/augmented/Initialize(mapload, mob/new_mob)
+atom/movable/screen/plane_master/augmented/Initialize(mapload, mob/new_mob)
 	. = ..()
 	my_mob = new_mob
 
-/atom/movable/screen/plane_master/augmented/Destroy()
+atom/movable/screen/plane_master/augmented/Destroy()
 	my_mob = null
 	return ..()
 
-/atom/movable/screen/plane_master/augmented/set_visibility(var/want = FALSE)
+atom/movable/screen/plane_master/augmented/set_visibility(var/want = FALSE)
 	. = ..()
 	state = want
 	apply()
 
-/atom/movable/screen/plane_master/augmented/proc/apply()
+atom/movable/screen/plane_master/augmented/proc/apply()
 	// if(!my_mob.client)
 	// 	return
 

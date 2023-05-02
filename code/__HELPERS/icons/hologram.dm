@@ -11,7 +11,7 @@
  * * scanlines - include scanlines
  * * no_anim - kill any animations.
  */
-/proc/render_hologram_icon(rendering, use_alpha, no_anim, scanlines = TRUE)
+proc/render_hologram_icon(rendering, use_alpha, no_anim, scanlines = TRUE)
 	var/icon/processing
 	if(!isicon(rendering))
 		// cursed : operator; see params for why.
@@ -29,7 +29,7 @@
 
 GLOBAL_LIST_EMPTY(hologram_scanline_renders)
 
-/proc/hologram_scanline_renderer(width, height)
+proc/hologram_scanline_renderer(width, height)
 	var/key = "[width]x[height]"
 	var/atom/movable/screen/render/scanline/cached = GLOB.hologram_scanline_renders[key]
 	if(isnull(cached))
@@ -41,14 +41,14 @@ GLOBAL_LIST_EMPTY(hologram_scanline_renders)
 		GLOB.hologram_scanline_renders[key] = cached
 	return cached
 
-/atom/movable/screen/render/scanline
+atom/movable/screen/render/scanline
 
 GLOBAL_LIST_EMPTY(hologram_scanline_inverses)
 
 /**
  * output icons have white lines suitable for BLEND_SUBTRACT-ing.
  */
-/proc/hologram_scanline_inverse(width, height)
+proc/hologram_scanline_inverse(width, height)
 	var/key = "[width]x[height]"
 	var/icon/cached = GLOB.hologram_scanline_inverses[key]
 	if(isnull(cached))
@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(hologram_scanline_inverses)
  * * use_alpha - what alpha to render it as
  * * scanlines - include scanlines
  */
-/proc/make_hologram_appearance(rendering, use_alpha, scanlines = TRUE)
+proc/make_hologram_appearance(rendering, use_alpha, scanlines = TRUE)
 	var/mutable_appearance/rendered
 	if(isicon(rendering))
 		rendered = new(rendering)

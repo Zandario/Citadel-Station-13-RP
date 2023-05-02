@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/fennix
+mob/living/simple_mob/vore/fennix
 	name = "Fennix"
 	desc = "A feral fennix, Warm to the touch"
 	tt_desc = "Incaendium Faeles Vulpes"
@@ -24,7 +24,7 @@
 	say_list_type = /datum/say_list/fennix
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 
-/datum/say_list/fennix
+datum/say_list/fennix
 	speak = list("SQUEL!","SQEL?","Skree.")
 	emote_hear = list("Screeeeecheeeeessss!","Chirrup.")
 	emote_see = list("earflicks","pats at the ground")

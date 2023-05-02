@@ -4,7 +4,7 @@
 #define EFFICENCY_MULT 1
 #define EFFICENCY_LIMIT_MULT 1
 
-/obj/machinery/atmospherics/component/binary/heat_pump
+obj/machinery/atmospherics/component/binary/heat_pump
 	name = "heat pump"
 	desc = "A heat pump, used to transfer heat between two pipe systems."
 
@@ -35,7 +35,7 @@
 	var/on = 0
 	var/efficiency = 0
 
-/obj/machinery/atmospherics/component/binary/heat_pump/CtrlClick(mob/user)
+obj/machinery/atmospherics/component/binary/heat_pump/CtrlClick(mob/user)
 	if(Adjacent(user))
 		add_hiddenprint(user)
 		if(powered())
@@ -46,7 +46,7 @@
 		else
 			to_chat(user, SPAN_WARNING("There doesn't seem to be any power."))
 
-/obj/machinery/atmospherics/component/binary/heat_pump/CtrlShiftClick(mob/user)
+obj/machinery/atmospherics/component/binary/heat_pump/CtrlShiftClick(mob/user)
 	if(Adjacent(user))
 		add_hiddenprint(user)
 		if (powered())
@@ -55,7 +55,7 @@
 		else
 			to_chat(user, SPAN_WARNING("There doesn't seem to be any power."))
 
-/obj/machinery/atmospherics/component/binary/heat_pump/AltClick(mob/user)
+obj/machinery/atmospherics/component/binary/heat_pump/AltClick(mob/user)
 	if(Adjacent(user))
 		add_hiddenprint(user)
 		if (powered())
@@ -64,16 +64,16 @@
 		else
 			to_chat(user, SPAN_WARNING("There doesn't seem to be any power."))
 
-/obj/machinery/atmospherics/component/binary/heat_pump/Initialize(mapload)
+obj/machinery/atmospherics/component/binary/heat_pump/Initialize(mapload)
 	. = ..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
-/obj/machinery/atmospherics/component/binary/passive_gate/Destroy()
+obj/machinery/atmospherics/component/binary/passive_gate/Destroy()
 	unregister_radio(src, frequency)
 	. = ..()
 
-/obj/machinery/atmospherics/component/binary/heat_pump/update_icon()
+obj/machinery/atmospherics/component/binary/heat_pump/update_icon()
 	. = ..()
 	if(!powered() || !on)
 		icon_state = "off"
@@ -84,7 +84,7 @@
 	else
 		icon_state = "off"
 
-/obj/machinery/atmospherics/component/binary/heat_pump/update_underlays()
+obj/machinery/atmospherics/component/binary/heat_pump/update_underlays()
 	if(..())
 		underlays.Cut()
 		var/turf/T = get_turf(src)
@@ -93,10 +93,10 @@
 		add_underlay(T, node1, turn(dir, 180))
 		add_underlay(T, node2, dir)
 
-/obj/machinery/atmospherics/component/binary/heat_pump/hide(var/i)
+obj/machinery/atmospherics/component/binary/heat_pump/hide(var/i)
 	update_underlays()
 
-/obj/machinery/atmospherics/component/binary/heat_pump/attackby(obj/item/W, mob/user)
+obj/machinery/atmospherics/component/binary/heat_pump/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/pen))
 		var/new_name = input(user, "Please enter the new name for this device:", "New Name")  as text|null
 		new_name = trim(new_name)
@@ -117,7 +117,7 @@
 			"You hear ratchet.")
 		deconstruct()
 
-/obj/machinery/atmospherics/component/binary/heat_pump/attack_hand(mob/user, list/params)
+obj/machinery/atmospherics/component/binary/heat_pump/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	src.add_fingerprint(usr)
@@ -128,7 +128,7 @@
 	ui_interact(user)
 	return
 
-/obj/machinery/atmospherics/component/binary/heat_pump/process(delta_time)
+obj/machinery/atmospherics/component/binary/heat_pump/process(delta_time)
 	update_icon()
 	if((machine_stat & (NOPOWER|BROKEN)) || !use_power)
 		return
@@ -157,13 +157,13 @@
 		if(network2)
 			network2.update = 1
 
-/obj/machinery/atmospherics/component/binary/heat_pump/proc/get_thermal_efficency()
+obj/machinery/atmospherics/component/binary/heat_pump/proc/get_thermal_efficency()
 	if((target_temp < air2.temperature))
 		return clamp((air2.temperature / air1.temperature) * EFFICENCY_MULT, 0, 1 * EFFICENCY_LIMIT_MULT)
 	else if((target_temp > air2.temperature))
 		return clamp((air1.temperature / air2.temperature) * EFFICENCY_MULT, 0, 1 * EFFICENCY_LIMIT_MULT)
 
-/obj/machinery/atmospherics/component/binary/heat_pump/proc/handle_passive_flow()
+obj/machinery/atmospherics/component/binary/heat_pump/proc/handle_passive_flow()
 	var/air_heat_capacity = air1.heat_capacity()
 	var/other_air_heat_capacity = air2.heat_capacity()
 	var/combined_heat_capacity = other_air_heat_capacity + air_heat_capacity
@@ -175,20 +175,20 @@
 		air1.temperature = new_temperature
 		air2.temperature = new_temperature
 
-/obj/machinery/atmospherics/component/binary/heat_pump/proc/check_passive_opportunity()
+obj/machinery/atmospherics/component/binary/heat_pump/proc/check_passive_opportunity()
     if((target_temp < air2.temperature) && (air1.temperature < air2.temperature - 5))//Little offsets to prevent just constant passive flow for minor temperature differences
         return TRUE
     if((target_temp > air2.temperature) && (air1.temperature > air2.temperature + 5))
         return TRUE
     return FALSE
 
-/obj/machinery/atmospherics/component/binary/heat_pump/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/atmospherics/component/binary/heat_pump/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "heat_pump", name)
 		ui.open()
 
-/obj/machinery/atmospherics/component/binary/heat_pump/ui_data(mob/user)
+obj/machinery/atmospherics/component/binary/heat_pump/ui_data(mob/user)
 	var/list/data = list()
 	data["target_temp"] = target_temp
 	data["current_temp"] = air2.temperature
@@ -201,10 +201,10 @@
 
 	return data
 
-/obj/machinery/atmospherics/component/binary/heat_pump/ui_state(mob/user, datum/tgui_module/module)
+obj/machinery/atmospherics/component/binary/heat_pump/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/obj/machinery/atmospherics/component/binary/heat_pump/ui_act(action, params)
+obj/machinery/atmospherics/component/binary/heat_pump/ui_act(action, params)
 	if(..())
 		return TRUE
 	switch(action)

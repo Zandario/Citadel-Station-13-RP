@@ -1,4 +1,4 @@
-/datum/map_template/ruin/proc/try_to_place(z,allowed_areas,turf/forced_turf)
+datum/map_template/ruin/proc/try_to_place(z,allowed_areas,turf/forced_turf)
 	var/sanity = forced_turf ? 1 : PLACEMENT_TRIES
 	if(SSmapping.level_trait(z,ZTRAIT_ISOLATED_RUINS))
 		return place_on_isolated_level(z)
@@ -46,7 +46,7 @@
 		new /obj/landmark/ruin(central_turf, src)
 		return central_turf
 
-/datum/map_template/ruin/proc/place_on_isolated_level(z)
+datum/map_template/ruin/proc/place_on_isolated_level(z)
 	var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(width, height, z) //Make the new level creation work with different traits.
 	if(!reservation)
 		return
@@ -59,7 +59,7 @@
 	new /obj/landmark/ruin(center, src)
 	return center
 
-/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins)
+proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins)
 	if(!z_levels || !z_levels.len)
 		WARNING("No Z levels provided - Not generating ruins")
 		return

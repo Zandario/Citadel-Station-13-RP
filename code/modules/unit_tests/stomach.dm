@@ -1,4 +1,4 @@
-/datum/unit_test/stomach/Run()
+datum/unit_test/stomach/Run()
 
 	// Pause natural mob life so it can be handled entirely by the test
 	SSmobs.pause()
@@ -35,6 +35,6 @@
 
 
 
-/datum/unit_test/stomach/Destroy()
+datum/unit_test/stomach/Destroy()
 	SSmobs.ignite()
 	return ..()

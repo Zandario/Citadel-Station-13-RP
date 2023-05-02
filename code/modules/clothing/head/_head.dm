@@ -1,5 +1,5 @@
 //Head
-/obj/item/clothing/head
+obj/item/clothing/head
 	name = "head"
 	icon = 'icons/obj/clothing/hats.dmi'
 	item_icons = list(
@@ -22,7 +22,7 @@
 	unequip_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-/obj/item/clothing/head/attack_self(mob/user)
+obj/item/clothing/head/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -36,7 +36,7 @@
 	else
 		return ..(user)
 
-/obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
+obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	if(on && !light_applied)
 		set_light(brightness_on)
 		light_applied = 1
@@ -47,15 +47,15 @@
 	update_worn_icon()
 	user.update_action_buttons()
 
-/obj/item/clothing/head/attack_ai(var/mob/user)
+obj/item/clothing/head/attack_ai(var/mob/user)
 	if(!mob_wear_hat(user))
 		return ..()
 
-/obj/item/clothing/head/attack_generic(var/mob/user)
+obj/item/clothing/head/attack_generic(var/mob/user)
 	if(!mob_wear_hat(user))
 		return ..()
 
-/obj/item/clothing/head/proc/mob_wear_hat(var/mob/user)
+obj/item/clothing/head/proc/mob_wear_hat(var/mob/user)
 	if(!Adjacent(user))
 		return 0
 	var/success
@@ -82,7 +82,7 @@
 		to_chat(user, "<span class='notice'>You crawl under \the [src].</span>")
 	return 1
 
-/obj/item/clothing/head/update_icon()
+obj/item/clothing/head/update_icon()
 	var/mob/living/carbon/human/H = worn_mob()
 
 	if(on)

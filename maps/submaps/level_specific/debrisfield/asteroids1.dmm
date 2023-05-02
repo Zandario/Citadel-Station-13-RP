@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/mineral/vacuum,
-/area/space/debrisfield/asteroids/rocks)
+turf/simulated/mineral/vacuum,
+area/space/debrisfield/asteroids/rocks)
 "b" = (
-/turf/template_noop,
-/area/space/debrisfield/explored)
+turf/template_noop,
+area/space/debrisfield/explored)
 "Z" = (
-/obj/mob_spawner/carp/hard,
-/turf/template_noop,
-/area/space/debrisfield/explored)
+obj/mob_spawner/carp/hard,
+turf/template_noop,
+area/space/debrisfield/explored)
 
 (1,1,1) = {"
 a

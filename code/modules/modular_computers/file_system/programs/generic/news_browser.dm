@@ -1,4 +1,4 @@
-/datum/computer_file/program/newsbrowser
+datum/computer_file/program/newsbrowser
 	filename = "newsbrowser"
 	filedesc = "NTNet/ExoNet News Browser"
 	extended_desc = "This program may be used to view and download news articles from the network."
@@ -17,7 +17,7 @@
 	var/message = ""
 	var/show_archived = 0
 
-/datum/computer_file/program/newsbrowser/process_tick()
+datum/computer_file/program/newsbrowser/process_tick()
 	if(!downloading)
 		return
 	download_netspeed = 0
@@ -35,7 +35,7 @@
 		requires_ntnet = 0 // Turn off NTNet requirement as we already loaded the file into local memory.
 	SSnanoui.update_uis(NM)
 
-/datum/computer_file/program/newsbrowser/kill_program()
+datum/computer_file/program/newsbrowser/kill_program()
 	..()
 	requires_ntnet = 1
 	loaded_article = null
@@ -43,7 +43,7 @@
 	downloading = 0
 	show_archived = 0
 
-/datum/computer_file/program/newsbrowser/Topic(href, href_list)
+datum/computer_file/program/newsbrowser/Topic(href, href_list)
 	if(..())
 		return 1
 	if(href_list["PRG_openarticle"])
@@ -86,10 +86,10 @@
 		SSnanoui.update_uis(NM)
 
 
-/datum/nano_module/program/computer_newsbrowser
+datum/nano_module/program/computer_newsbrowser
 	name = "NTNet/ExoNet News Browser"
 
-/datum/nano_module/program/computer_newsbrowser/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+datum/nano_module/program/computer_newsbrowser/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 
 	var/datum/computer_file/program/newsbrowser/PRG
 	var/list/data = list()

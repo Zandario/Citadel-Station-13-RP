@@ -1,4 +1,4 @@
-/obj/item/modular_computer/laptop
+obj/item/modular_computer/laptop
 	anchored = TRUE
 	name = "laptop computer"
 	desc = "A portable computer."
@@ -16,7 +16,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/icon_state_closed = "laptop-closed"
 
-/obj/item/modular_computer/laptop/AltClick(mob/living/carbon/user)
+obj/item/modular_computer/laptop/AltClick(mob/living/carbon/user)
 	// We need to be close to it to open it
 	if((!in_range(src, user)) || user.stat || user.restrained())
 		return
@@ -35,7 +35,7 @@
 	screen_on = anchored
 	update_icon()
 
-/obj/item/modular_computer/laptop/update_icon()
+obj/item/modular_computer/laptop/update_icon()
 	if(anchored)
 		..()
 	else
@@ -43,6 +43,6 @@
 		set_light(0)		// No glow from closed laptops
 		icon_state = icon_state_closed
 
-/obj/item/modular_computer/laptop/preset
+obj/item/modular_computer/laptop/preset
 	anchored = FALSE
 	screen_on = FALSE

@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/engineering_chief
+obj/structure/closet/secure_closet/engineering_chief
 	name = "chief engineer's locker"
 	icon_state = "securece1"
 	icon_closed = "securece"
@@ -41,7 +41,7 @@
 		/obj/item/clothing/accessory/poncho/roles/cloak/ce,
 		)
 
-/obj/structure/closet/secure_closet/engineering_chief/Initialize(mapload)
+obj/structure/closet/secure_closet/engineering_chief/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/industrial
 	else
@@ -50,7 +50,7 @@
 		starts_with += /obj/item/storage/backpack/dufflebag/eng
 	return ..()
 
-/obj/structure/closet/secure_closet/engineering_electrical
+obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
 	icon_state = "secureengelec1"
 	icon_closed = "secureengelec"
@@ -69,7 +69,7 @@
 		/obj/item/lightreplacer = 1)
 
 
-/obj/structure/closet/secure_closet/engineering_welding
+obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
 	icon_state = "secureengweld1"
 	icon_closed = "secureengweld"
@@ -85,7 +85,7 @@
 		/obj/item/weldpack = 3,
 		/obj/item/clothing/glasses/welding = 3)
 
-/obj/structure/closet/secure_closet/engineering_personal
+obj/structure/closet/secure_closet/engineering_personal
 	name = "engineer's locker"
 	icon_state = "secureeng1"
 	icon_closed = "secureeng"
@@ -115,7 +115,7 @@
 		/obj/item/shield_diffuser,
 		)
 
-/obj/structure/closet/secure_closet/engineering_personal/Initialize(mapload)
+obj/structure/closet/secure_closet/engineering_personal/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/industrial
 	else
@@ -125,7 +125,7 @@
 	return ..()
 
 
-/obj/structure/closet/secure_closet/atmos_personal
+obj/structure/closet/secure_closet/atmos_personal
 	name = "technician's locker"
 	icon_state = "secureatm1"
 	icon_closed = "secureatm"
@@ -155,7 +155,7 @@
 		/obj/item/shield_diffuser,
 		)
 
-/obj/structure/closet/secure_closet/atmos_personal/Initialize(mapload)
+obj/structure/closet/secure_closet/atmos_personal/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/industrial
 	else
@@ -164,7 +164,7 @@
 		starts_with += /obj/item/storage/backpack/dufflebag/eng
 	return ..()
 
-/obj/structure/closet/secure_closet/senior_engineer
+obj/structure/closet/secure_closet/senior_engineer
 	name = "Senior engineer's locker"
 	desc = "It looks like it has been stuffed to the brim with Space OSHA violation notices."
 	icon_state = "secureeng1"

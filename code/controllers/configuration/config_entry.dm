@@ -6,7 +6,7 @@
 #define KEY_MODE_TEXT 0
 #define KEY_MODE_TYPE 1
 
-/datum/config_entry
+datum/config_entry
 	/// Do not instantiate if type matches this.
 	abstract_type = /datum/config_entry
 
@@ -33,21 +33,21 @@
 	/// Stores the original protection configuration, used for set_default()
 	var/default_protection
 
-/datum/config_entry/New()
+datum/config_entry/New()
 	if(type == abstract_type)
 		CRASH("Abstract config entry [type] instatiated!")
 	name = lowertext(type2top(type))
 	default_protection = protection
 	set_default()
 
-/datum/config_entry/Destroy()
+datum/config_entry/Destroy()
 	config.RemoveEntry(src)
 	return ..()
 
 /**
  * Returns the value of the configuration datum to its default, used for resetting a config value. Note this also sets the protection back to default.
  */
-/datum/config_entry/proc/set_default()
+datum/config_entry/proc/set_default()
 	if((protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall())
 		log_admin_private("[key_name(usr)] attempted to reset locked config entry [type] to its default")
 		return
@@ -60,12 +60,12 @@
 	resident_file = null
 	modified = FALSE
 
-/datum/config_entry/can_vv_get(var_name)
+datum/config_entry/can_vv_get(var_name)
 	. = ..()
 	if(var_name == NAMEOF(src, config_entry_value) || var_name == NAMEOF(src, default))
 		. &= !(protection & CONFIG_ENTRY_HIDDEN)
 
-/datum/config_entry/vv_edit_var(var_name, var_value)
+datum/config_entry/vv_edit_var(var_name, var_value)
 	var/static/list/banned_edits = list(
 		NAMEOF_STATIC(src, name),
 		NAMEOF_STATIC(src, vv_VAS),
@@ -91,46 +91,46 @@
 		return FALSE
 	return ..()
 
-/datum/config_entry/proc/VASProcCallGuard(str_val)
+datum/config_entry/proc/VASProcCallGuard(str_val)
 	. = !((protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "ValidateAndSet" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
 	if(!.)
 		log_admin_private("[key_name(usr)] attempted to set locked config entry [type] to '[str_val]'")
 
-/datum/config_entry/proc/ValidateAndSet(str_val)
+datum/config_entry/proc/ValidateAndSet(str_val)
 	VASProcCallGuard(str_val)
 	CRASH("Invalid config entry type!")
 
-/datum/config_entry/proc/ValidateListEntry(key_name, key_value)
+datum/config_entry/proc/ValidateListEntry(key_name, key_value)
 	return TRUE
 
-/datum/config_entry/proc/DeprecationUpdate(value)
+datum/config_entry/proc/DeprecationUpdate(value)
 	return
 
-/datum/config_entry/proc/OnPostload()
+datum/config_entry/proc/OnPostload()
 	return
 
-/datum/config_entry/string
+datum/config_entry/string
 	default = ""
 	abstract_type = /datum/config_entry/string
 	var/auto_trim = TRUE
 
-/datum/config_entry/string/vv_edit_var(var_name, var_value)
+datum/config_entry/string/vv_edit_var(var_name, var_value)
 	return var_name != NAMEOF(src, auto_trim) && ..()
 
-/datum/config_entry/string/ValidateAndSet(str_val, during_load)
+datum/config_entry/string/ValidateAndSet(str_val, during_load)
 	if(!VASProcCallGuard(str_val))
 		return FALSE
 	config_entry_value = auto_trim ? trim(str_val) : str_val
 	return TRUE
 
-/datum/config_entry/number
+datum/config_entry/number
 	default = 0
 	abstract_type = /datum/config_entry/number
 	var/integer = TRUE
 	var/max_val = INFINITY
 	var/min_val = -INFINITY
 
-/datum/config_entry/number/ValidateAndSet(str_val)
+datum/config_entry/number/ValidateAndSet(str_val)
 	if(!VASProcCallGuard(str_val))
 		return FALSE
 	var/temp = text2num(trim(str_val))
@@ -141,7 +141,7 @@
 		return TRUE
 	return FALSE
 
-/datum/config_entry/number/vv_edit_var(var_name, var_value)
+datum/config_entry/number/vv_edit_var(var_name, var_value)
 	var/static/list/banned_edits = list(
 		NAMEOF_STATIC(src, max_val),
 		NAMEOF_STATIC(src, min_val),
@@ -149,21 +149,21 @@
 	)
 	return !(var_name in banned_edits) && ..()
 
-/datum/config_entry/flag
+datum/config_entry/flag
 	default = FALSE
 	abstract_type = /datum/config_entry/flag
 
-/datum/config_entry/flag/ValidateAndSet(str_val)
+datum/config_entry/flag/ValidateAndSet(str_val)
 	if(!VASProcCallGuard(str_val))
 		return FALSE
 	config_entry_value = text2num(trim(str_val)) != 0
 	return TRUE
 
-/datum/config_entry/number_list
+datum/config_entry/number_list
 	abstract_type = /datum/config_entry/number_list
 	default = list()
 
-/datum/config_entry/number_list/ValidateAndSet(str_val)
+datum/config_entry/number_list/ValidateAndSet(str_val)
 	if(!VASProcCallGuard(str_val))
 		return FALSE
 	str_val = trim(str_val)
@@ -179,7 +179,7 @@
 	config_entry_value = new_list
 	return TRUE
 
-/datum/config_entry/keyed_list
+datum/config_entry/keyed_list
 	abstract_type = /datum/config_entry/keyed_list
 	default = list()
 	dupes_allowed = TRUE
@@ -189,12 +189,12 @@
 	var/splitter = " "
 	var/lowercase = TRUE
 
-/datum/config_entry/keyed_list/New()
+datum/config_entry/keyed_list/New()
 	. = ..()
 	if(isnull(key_mode) || isnull(value_mode))
 		CRASH("Keyed list of type [type] created with null key or value mode!")
 
-/datum/config_entry/keyed_list/ValidateAndSet(str_val)
+datum/config_entry/keyed_list/ValidateAndSet(str_val)
 	if(!VASProcCallGuard(str_val))
 		return FALSE
 
@@ -249,28 +249,28 @@
 			return TRUE
 	return FALSE
 
-/datum/config_entry/keyed_list/vv_edit_var(var_name, var_value)
+datum/config_entry/keyed_list/vv_edit_var(var_name, var_value)
 	return var_name != NAMEOF(src, splitter) && ..()
 
-/datum/config_entry/keyed_list/proc/preprocess_key(key)
+datum/config_entry/keyed_list/proc/preprocess_key(key)
 	return key
 
-/datum/config_entry/keyed_list/proc/preprocess_value(value)
+datum/config_entry/keyed_list/proc/preprocess_value(value)
 	return value
 
 //snowflake for donator things being on one line smh
-/datum/config_entry/multi_keyed_flag
+datum/config_entry/multi_keyed_flag
 	vv_VAS = FALSE
 	abstract_type = /datum/config_entry/multi_keyed_flag
 	config_entry_value = list()
 	var/delimiter = "|"
 
-/datum/config_entry/multi_keyed_flag/vv_edit_var(var_name, var_value)
+datum/config_entry/multi_keyed_flag/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, delimiter))
 		return FALSE
 	return ..()
 
-/datum/config_entry/multi_keyed_flag/ValidateAndSet(str_val)
+datum/config_entry/multi_keyed_flag/ValidateAndSet(str_val)
 	if(!VASProcCallGuard(str_val))
 		return FALSE
 	str_val = trim(str_val)
@@ -279,5 +279,5 @@
 		config_entry_value[process_key(i)] = TRUE
 	return length(keys)? TRUE : FALSE
 
-/datum/config_entry/multi_keyed_flag/proc/process_key(key)
+datum/config_entry/multi_keyed_flag/proc/process_key(key)
 	return trim(key)

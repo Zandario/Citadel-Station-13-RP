@@ -1,4 +1,4 @@
-/obj/item/robot_parts
+obj/item/robot_parts
 	name = "robot parts"
 	icon = 'icons/obj/robot_parts.dmi'
 	item_state = "buildpipe"
@@ -9,35 +9,35 @@
 	var/model_info
 	dir = SOUTH
 
-/obj/item/robot_parts/l_arm
+obj/item/robot_parts/l_arm
 	name = "cyborg left arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_arm"
 	part = list(BP_L_ARM, BP_L_HAND)
 	model_info = 1
 
-/obj/item/robot_parts/r_arm
+obj/item/robot_parts/r_arm
 	name = "cyborg right arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_arm"
 	part = list(BP_R_ARM, BP_R_HAND)
 	model_info = 1
 
-/obj/item/robot_parts/l_leg
+obj/item/robot_parts/l_leg
 	name = "cyborg left leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_leg"
 	part = list(BP_L_LEG, BP_L_FOOT)
 	model_info = 1
 
-/obj/item/robot_parts/r_leg
+obj/item/robot_parts/r_leg
 	name = "cyborg leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_leg"
 	part = list(BP_R_LEG, BP_R_FOOT)
 	model_info = 1
 
-/obj/item/robot_parts/chest
+obj/item/robot_parts/chest
 	name = "cyborg chest"
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
 	icon_state = "chest"
@@ -45,7 +45,7 @@
 	var/wires = 0.0
 	var/obj/item/cell/cell = null
 
-/obj/item/robot_parts/head
+obj/item/robot_parts/head
 	name = "cyborg head"
 	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals."
 	icon_state = "head"
@@ -53,7 +53,7 @@
 	var/obj/item/flash/flash1 = null
 	var/obj/item/flash/flash2 = null
 
-/obj/item/robot_parts/robot_suit
+obj/item/robot_parts/robot_suit
 	name = "endoskeleton"
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
@@ -65,11 +65,11 @@
 	var/obj/item/robot_parts/head/head = null
 	var/created_name = ""
 
-/obj/item/robot_parts/robot_suit/Initialize(mapload)
+obj/item/robot_parts/robot_suit/Initialize(mapload)
 	. = ..()
 	updateicon()
 
-/obj/item/robot_parts/robot_suit/proc/updateicon()
+obj/item/robot_parts/robot_suit/proc/updateicon()
 	cut_overlays()
 
 	var/list/overlays_to_add = list()
@@ -88,7 +88,7 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/item/robot_parts/robot_suit/proc/check_completion()
+obj/item/robot_parts/robot_suit/proc/check_completion()
 	if(src.l_arm && src.r_arm)
 		if(src.l_leg && src.r_leg)
 			if(src.chest && src.head)
@@ -96,7 +96,7 @@
 				return 1
 	return 0
 
-/obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MAT_STEEL && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
 		var/obj/item/stack/material/M = W
@@ -239,7 +239,7 @@
 
 	return
 
-/obj/item/robot_parts/chest/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/robot_parts/chest/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/cell))
 		if(cell)
@@ -261,7 +261,7 @@
 			to_chat(user, "<span class='notice'>You insert the wire!</span>")
 	return
 
-/obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
+obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/flash))
 		if(istype(user,/mob/living/silicon/robot))
@@ -275,7 +275,7 @@
 			add_flashes(W,user)
 	return
 
-/obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user as mob) //Made into a seperate proc to avoid copypasta
+obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user as mob) //Made into a seperate proc to avoid copypasta
 	if(flash1 && flash2)
 		to_chat(user, "<span class='notice'>You have already inserted the eyes!</span>")
 		return
@@ -291,7 +291,7 @@
 		to_chat(user, "<span class='notice'>You insert the flash into the eye socket!</span>")
 
 
-/obj/item/robot_parts/emag_act(var/remaining_charges, var/mob/user)
+obj/item/robot_parts/emag_act(var/remaining_charges, var/mob/user)
 	if(sabotaged)
 		to_chat(user, "<span class='warning'>[src] is already sabotaged!</span>")
 	else

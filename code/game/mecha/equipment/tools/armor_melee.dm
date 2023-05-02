@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster //what is that noise? A BAWWW from MUTATION_TELEKINESIS mutants.
+obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster //what is that noise? A BAWWW from MUTATION_TELEKINESIS mutants.
 	name = "\improper CCW armor booster"
 	desc = "Close-combat armor booster. Boosts exosuit armor against armed melee attacks. Requires energy to operate."
 	icon_state = "mecha_abooster_ccw"
@@ -13,11 +13,11 @@
 
 	equip_type = EQUIP_HULL
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/get_equip_info()
+obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/get_equip_info()
 	if(!chassis) return
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/W, var/mob/living/user, var/inc_damage = null)
+obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/W, var/mob/living/user, var/inc_damage = null)
 	if(!action_checks(user))
 		return inc_damage
 	chassis.log_message("Attacked by [W]. Attacker - [user]")
@@ -37,23 +37,23 @@
 
 /*
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/can_attach(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/can_attach(obj/mecha/M as obj)
 	if(..())
 		if(!M.proc_res["dynattackby"])
 			return 1
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/attach(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/attach(obj/mecha/M as obj)
 	..()
 	chassis.proc_res["dynattackby"] = src
 	return
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/detach()
+obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/detach()
 	chassis.proc_res["dynattackby"] = null
 	..()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/dynattackby(obj/item/W as obj, mob/user as mob)
+obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/dynattackby(obj/item/W as obj, mob/user as mob)
 	if(!action_checks(user))
 		return chassis.dynattackby(W,user)
 	chassis.log_message("Attacked by [W]. Attacker - [user]")

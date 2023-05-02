@@ -12,7 +12,7 @@
  *
  * @return args as list.
  */
-/mob/proc/check_mob_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
+mob/proc/check_mob_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
 	var/list/returned = check_armor(damage, tier, flag, mode, attack_type, weapon)
 	damage = returned[1]
 	mode = returned[4]
@@ -33,7 +33,7 @@
  *
  * @return args as list.
  */
-/mob/proc/run_mob_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
+mob/proc/run_mob_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
 	var/list/returned = run_armor(damage, tier, flag, mode, attack_type, weapon)
 	damage = returned[1]
 	mode = returned[4]
@@ -54,7 +54,7 @@
  *
  * @return args as list.
  */
-/mob/proc/check_overall_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
+mob/proc/check_overall_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
 	var/list/returned = check_armor(damage, tier, flag, mode, attack_type, weapon)
 	damage = returned[1]
 	mode = returned[4]
@@ -76,7 +76,7 @@
  *
  * @return args as list.
  */
-/mob/proc/run_overall_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
+mob/proc/run_overall_armor(damage, tier, flag, mode, attack_type, datum/weapon, target_zone)
 	var/list/returned = run_armor(damage, tier, flag, mode, attack_type, weapon)
 	damage = returned[1]
 	mode = returned[4]

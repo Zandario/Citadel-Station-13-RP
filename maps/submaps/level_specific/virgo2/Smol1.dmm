@@ -1,17 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/template_noop)
+turf/template_noop,
+area/template_noop)
 "b" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/Small1)
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/Small1)
 "c" = (
-/turf/template_noop,
-/area/submap/virgo2/Small1)
+turf/template_noop,
+area/submap/virgo2/Small1)
 "d" = (
-/obj/tether_away_spawner/aerostat_surface,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/Small1)
+obj/tether_away_spawner/aerostat_surface,
+turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+area/submap/virgo2/Small1)
 
 (1,1,1) = {"
 a

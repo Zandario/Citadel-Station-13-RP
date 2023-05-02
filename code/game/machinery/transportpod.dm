@@ -1,4 +1,4 @@
-/obj/machinery/transportpod
+obj/machinery/transportpod
 	name = "Ballistic Transportation Pod"
 	desc = "A fast transit ballistic pod used to get from one place to the next. Batteries not included!"
 	icon = 'icons/obj/structures.dmi'
@@ -17,7 +17,7 @@
 	var/limit_x = 3
 	var/limit_y = 3
 
-/obj/machinery/transportpod/process(delta_time)
+obj/machinery/transportpod/process(delta_time)
 	if(occupant)
 		if(in_transit)
 			var/locNum = rand(0, 7) //pick a random location
@@ -34,23 +34,23 @@
 			sleep(2)
 			del(src)
 
-/obj/machinery/transportpod/relaymove(mob/user)
+obj/machinery/transportpod/relaymove(mob/user)
 	if(user.stat)
 		return
 	go_out()
 	return
 
-/obj/machinery/transportpod/update_icon()
+obj/machinery/transportpod/update_icon()
 	..()
 	if(occupant)
 		icon_state = "borg_pod_closed"
 	else
 		icon_state = "borg_pod_opened"
 
-/obj/machinery/transportpod/Bumped(mob/living/O)
+obj/machinery/transportpod/Bumped(mob/living/O)
 	go_in(O)
 
-/obj/machinery/transportpod/proc/go_in(mob/living/carbon/human/O)
+obj/machinery/transportpod/proc/go_in(mob/living/carbon/human/O)
 	if(occupant)
 		return
 
@@ -69,7 +69,7 @@
 		go_out()
 	return 1
 
-/obj/machinery/transportpod/proc/go_out()
+obj/machinery/transportpod/proc/go_out()
 	if(!occupant)
 		return
 
@@ -78,7 +78,7 @@
 	occupant = null
 	update_icon()
 
-/obj/machinery/transportpod/verb/move_eject()
+obj/machinery/transportpod/verb/move_eject()
 	set category = "Object"
 	set name = "Eject Pod"
 	set src in oview(1)
@@ -90,7 +90,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/machinery/transportpod/verb/move_inside()
+obj/machinery/transportpod/verb/move_inside()
 	set category = "Object"
 	set name = "Enter Pod"
 	set src in oview(1)
@@ -100,7 +100,7 @@
 
 	go_in(usr)
 
-/obj/machinery/transportpod/proc/build()
+obj/machinery/transportpod/proc/build()
 	for(var/x = limit_x-2, x <= limit_x, x++)
 		for(var/y = limit_y-2, y <= limit_y, y++)
 			var/current_cell = locate(x, y, 1)

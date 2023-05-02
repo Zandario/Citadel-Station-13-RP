@@ -1,86 +1,86 @@
 
 // Map template for spawning the shuttle
-/datum/map_template/shuttle/overmap/generic/itglight
+datum/map_template/shuttle/overmap/generic/itglight
 	name = "OM Ship - ITG Dauntless (New Z)"
 	desc = "A small, well armed interstellar cargo ship!!"
 	suffix = "itglight.dmm"
 
-/area/itglight
+area/itglight
 	requires_power = 1
 	icon_state = "purple"
 
-/area/itglight/cockpit
+area/itglight/cockpit
 	name = "Dauntless - Cockpit"
-/area/itglight/captain
+area/itglight/captain
 	name = "Dauntless - Captain's Quarters"
-/area/itglight/readyroom
+area/itglight/readyroom
 	name = "Dauntless - Ready Room"
-/area/itglight/metingroom
+area/itglight/metingroom
 	name = "Dauntless - Meeting Room"
-/area/itglight/forehall
+area/itglight/forehall
 	name = "Dauntless - Fore Hall"
 	area_flags = AREA_RAD_SHIELDED
-/area/itglight/starboardcargo
+area/itglight/starboardcargo
 	name = "Dauntless - Starboard Cargo Bay"
-/area/itglight/starboardhighsec
+area/itglight/starboardhighsec
 	name = "Dauntless - Starboard Secure Cargo"
-/area/itglight/starboarddocking
+area/itglight/starboarddocking
 	name = "Dauntless - Starboard Docking Port"
-/area/itglight/portcargo
+area/itglight/portcargo
 	name = "Dauntless - Port Cargo Bay"
-/area/itglight/porthighsec
+area/itglight/porthighsec
 	name = "Dauntless - Port Secure Cargo"
-/area/itglight/portdocking
+area/itglight/portdocking
 	name = "Dauntless - Port Docking Port"
-/area/itglight/common
+area/itglight/common
 	name = "Dauntless - Common Area"
-/area/itglight/lockers
+area/itglight/lockers
 	name = "Dauntless - Locker Room"
-/area/itglight/passengersleeping
+area/itglight/passengersleeping
 	name = "Dauntless - Passenger Sleeping Barracks"
-/area/itglight/showers
+area/itglight/showers
 	name = "Dauntless - Showers"
-/area/itglight/restrooms
+area/itglight/restrooms
 	name = "Dauntless - Restrooms"
-/area/itglight/afthall
+area/itglight/afthall
 	name = "Dauntless - Aft Hall"
 	area_flags = AREA_RAD_SHIELDED
-/area/itglight/medbay
+area/itglight/medbay
 	name = "Dauntless - Medbay"
-/area/itglight/kitchen
+area/itglight/kitchen
 	name = "Dauntless - Kitchen"
-/area/itglight/crew1
+area/itglight/crew1
 	name = "Dauntless - Crew Quarters - 1"
 	area_flags = AREA_RAD_SHIELDED
-/area/itglight/crew2
+area/itglight/crew2
 	name = "Dauntless - Crew Quarters - 2"
 	area_flags = AREA_RAD_SHIELDED
-/area/itglight/crew3
+area/itglight/crew3
 	name = "Dauntless - Crew Quarters - 3"
 	area_flags = AREA_RAD_SHIELDED
-/area/itglight/crew4
+area/itglight/crew4
 	name = "Dauntless - Crew Quarters - 4"
 	area_flags = AREA_RAD_SHIELDED
-/area/itglight/shuttlebay
+area/itglight/shuttlebay
 	name = "Dauntless - Shuttle Bay"
-/area/itglight/starboardengi
+area/itglight/starboardengi
 	name = "Dauntless - Starboard Engineering"
 	area_flags = AREA_RAD_SHIELDED
-/area/itglight/starboardsolars
+area/itglight/starboardsolars
 	name = "Dauntless - Starboard Solars"
-/area/itglight/portengi
+area/itglight/portengi
 	name = "Dauntless - Port Engineering"
 	area_flags = AREA_RAD_SHIELDED
-/area/itglight/portsolars
+area/itglight/portsolars
 	name = "Dauntless - Port Solars"
 
-/area/shuttle/itglightshuttle
+area/shuttle/itglightshuttle
 	name = "ITG Shuttlecraft"
 	requires_power = 1
 	dynamic_lighting = 1
 
 // The 'Dauntless'
-/obj/effect/overmap/visitable/ship/itglight
+obj/effect/overmap/visitable/ship/itglight
 	name = "spacecraft"
 	desc = "Spacefaring vessel. Friendly IFF detected."
 	scanner_name = "ITG Dauntless"
@@ -100,19 +100,19 @@
 	skybox_pixel_x = 425
 	skybox_pixel_y = 200
 
-/obj/effect/overmap/visitable/ship/itglight/build_skybox_representation()
+obj/effect/overmap/visitable/ship/itglight/build_skybox_representation()
 	..()
 	if(!cached_skybox_image)
 		return
 	cached_skybox_image.add_overlay("glow")
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/itglightshuttle
+obj/machinery/computer/shuttle_control/explore/itglightshuttle
 	name = "shuttle control console"
 	shuttle_tag = "ITG Shuttlecraft"
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/itglightshuttle
+obj/effect/shuttle_landmark/shuttle_initializer/itglightshuttle
 	name = "ITG Dauntless - Shuttle Bay"
 	base_area = /area/itglight/shuttlebay
 	base_turf = /turf/simulated/floor/reinforced
@@ -121,7 +121,7 @@
 	shuttle_type = /datum/shuttle/autodock/overmap/itglightshuttle
 
 // The 'shuttle'
-/datum/shuttle/autodock/overmap/itglightshuttle
+datum/shuttle/autodock/overmap/itglightshuttle
 	name = "ITG Shuttlecraft"
 	current_location = "omship_spawn_itglightshuttle"
 	docking_controller_tag = "itglightshuttle_docker"
@@ -129,11 +129,11 @@
 	fuel_consumption = 0
 	defer_initialisation = TRUE
 
-/obj/machinery/photocopier/faxmachine/itglight
+obj/machinery/photocopier/faxmachine/itglight
 	department = "ITG Dauntless"
 	desc = "The ship's fax machine! It's a safe assumption that most of the departments listed aren't on your ship, since the ship only has one."
 
-/obj/item/paper/Dauntless
+obj/item/paper/Dauntless
 	name = "Notes about Dauntless"
 	info = {"<font size=1>Welcome to the Ironcrest Transport Group</font><br><br>
 	<h4>ITG Dauntless</h4>

@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/technology/bot/ed209/slime
+datum/category_item/catalogue/technology/bot/ed209/slime
 	name = "Bot - SL ED 209"
 	desc = "Due to the commercial failure of the ED model bots, \
 	the frames are easily procured by hobbyists or tinkerers for field \
@@ -6,7 +6,7 @@
 	Xenobiology containment tool."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/bot/secbot/ed209/slime
+mob/living/bot/secbot/ed209/slime
 	name = "SL-ED-209 Security Robot"
 	desc = "A security robot.  He looks less than thrilled."
 	icon = 'icons/obj/aibots.dmi'
@@ -32,13 +32,13 @@
 	botcard_access = list(ACCESS_SCIENCE_MAIN, ACCESS_SCIENCE_ROBOTICS, ACCESS_SCIENCE_XENOBIO, ACCESS_SCIENCE_XENOARCH, ACCESS_SCIENCE_FABRICATION, ACCESS_SCIENCE_TOXINS, ACCESS_ENGINEERING_MAINT)
 	var/xeno_stun_strength = 6
 
-/mob/living/bot/secbot/ed209/slime/update_icons()
+mob/living/bot/secbot/ed209/slime/update_icons()
 	if(on && busy)
 		icon_state = "sled209-c"
 	else
 		icon_state = "sled209[on]"
 
-/mob/living/bot/secbot/ed209/slime/RangedAttack(var/atom/A)
+mob/living/bot/secbot/ed209/slime/RangedAttack(var/atom/A)
 	if(last_shot + shot_delay > world.time)
 		to_chat(src, "You are not ready to fire yet!")
 		return
@@ -56,7 +56,7 @@
 	P.old_style_target(A)
 	P.fire()
 
-/mob/living/bot/secbot/ed209/slime/UnarmedAttack(var/mob/living/L, var/proximity)
+mob/living/bot/secbot/ed209/slime/UnarmedAttack(var/mob/living/L, var/proximity)
 	..()
 
 	if(istype(L, /mob/living/simple_mob/slime/xenobio))
@@ -65,7 +65,7 @@
 
 // Assembly
 
-/obj/item/secbot_assembly/ed209_assembly/slime
+obj/item/secbot_assembly/ed209_assembly/slime
 	name = "SL-ED-209 assembly"
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
@@ -73,7 +73,7 @@
 	item_state = "buildpipe"
 	created_name = "SL-ED-209 Security Robot"
 
-/obj/item/secbot_assembly/ed209_assembly/slime/attackby(var/obj/item/W as obj, var/mob/user as mob) // Here in the event it's added into a PoI or some such. Standard construction relies on the standard ED up until taser.
+obj/item/secbot_assembly/ed209_assembly/slime/attackby(var/obj/item/W as obj, var/mob/user as mob) // Here in the event it's added into a PoI or some such. Standard construction relies on the standard ED up until taser.
 	if(istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
 		if(!t)
@@ -177,4 +177,3 @@
 				var/turf/T = get_turf(src)
 				new /mob/living/bot/secbot/ed209/slime(T,created_name,lasercolor)
 				qdel(src)
-

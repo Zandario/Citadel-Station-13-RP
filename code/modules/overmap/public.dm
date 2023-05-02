@@ -8,7 +8,7 @@
  *
  * @return overmap entity if found, null otherwise.
  */
-/proc/get_overmap_sector(atom/what)
+proc/get_overmap_sector(atom/what)
 	RETURN_TYPE(/obj/effect/overmap/visitable)
 	if(!isnum(what))
 		what = get_z(what) // todo: this doesn't support shuttles :/

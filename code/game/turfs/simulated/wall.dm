@@ -3,7 +3,7 @@
  * Surely, *surely*, such a nice, amazing thing wouldn't be entirely shitcode.
  * Right?
  */
-/turf/simulated/wall
+turf/simulated/wall
 	name = "wall"
 	desc = "A huge chunk of iron used to separate rooms."
 	icon = 'icons/turf/walls/solid.dmi'
@@ -49,11 +49,11 @@
 	var/construction_stage
 
 // Walls always hide the stuff below them.
-/turf/simulated/wall/levelupdate()
+turf/simulated/wall/levelupdate()
 	for(var/obj/O in src)
 		O.hide(1)
 
-/turf/simulated/wall/Initialize(mapload)
+turf/simulated/wall/Initialize(mapload)
 	. = ..()
 	//? Remove the color that was set for mapping clarity.
 	color = null
@@ -76,23 +76,23 @@
 	if(material?.radioactivity || reinf_material?.radioactivity || girder_material?.radioactivity)
 		START_PROCESSING(SSturfs, src)
 
-/turf/simulated/wall/Destroy()
+turf/simulated/wall/Destroy()
 	STOP_PROCESSING(SSturfs, src)
 	clear_plants()
 	return ..()
 
-/turf/simulated/wall/process(delta_time)
+turf/simulated/wall/process(delta_time)
 	// Calling parent will kill processing
 	if(!radiate())
 		return PROCESS_KILL
 
-/turf/simulated/wall/proc/get_material()
+turf/simulated/wall/proc/get_material()
 	return material
 
-/turf/simulated/wall/proc/get_default_material()
+turf/simulated/wall/proc/get_default_material()
 	. = /datum/material/steel
 
-/turf/simulated/wall/bullet_act(var/obj/projectile/Proj)
+turf/simulated/wall/bullet_act(var/obj/projectile/Proj)
 	if(istype(Proj,/obj/projectile/beam))
 		burn(2500)
 	else if(istype(Proj,/obj/projectile/ion))
@@ -133,7 +133,7 @@
 	take_damage(damage)
 	return
 
-/turf/simulated/wall/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+turf/simulated/wall/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	if(TT.throw_flags & THROW_AT_IS_GENTLE)
 		return
@@ -144,7 +144,7 @@
 
 	take_damage(tforce)
 
-/turf/simulated/wall/proc/clear_plants()
+turf/simulated/wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
 	for(var/obj/effect/plant/plant in range(src, 1))
@@ -156,7 +156,7 @@
 		plant.update_neighbors()
 
 //Appearance
-/turf/simulated/wall/examine(mob/user)
+turf/simulated/wall/examine(mob/user)
 	. = ..()
 
 	if(!damage)
@@ -175,7 +175,7 @@
 
 //Damage
 
-/turf/simulated/wall/melt()
+turf/simulated/wall/melt()
 
 	if(!can_melt())
 		return
@@ -190,13 +190,13 @@
 	visible_message("<span class='danger'>\The [src] spontaneously combusts!.</span>") //!!OH SHIT!!
 	return
 
-/turf/simulated/wall/take_damage(dam)
+turf/simulated/wall/take_damage(dam)
 	if(dam)
 		damage = max(0, damage + dam)
 		update_damage()
 	return
 
-/turf/simulated/wall/proc/update_damage()
+turf/simulated/wall/proc/update_damage()
 	var/cap = material.integrity
 	if(reinf_material)
 		cap += reinf_material.integrity
@@ -209,17 +209,17 @@
 	else
 		update_appearance()
 
-/turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
+turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
 	burn(exposed_temperature)
 
-/turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
+turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	burn(adj_temp)
 	if(adj_temp > material.melting_point)
 		take_damage(log(RAND_F(0.9, 1.1) * (adj_temp - material.melting_point)))
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
+turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
 		if(reinf_material)
@@ -239,7 +239,7 @@
 			O.forceMove(src)
 	ScrapeAway()
 
-/turf/simulated/wall/legacy_ex_act(severity)
+turf/simulated/wall/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0)
 			if(girder_material.explosion_resistance >= 25 && prob(girder_material.explosion_resistance))
@@ -254,19 +254,19 @@
 			take_damage(rand(0, 250))
 
 // Wall-rot effect, a nasty fungus that destroys walls.
-/turf/simulated/wall/proc/rot()
+turf/simulated/wall/proc/rot()
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return
 	var/number_rots = rand(2,3)
 	for(var/i=0, i<number_rots, i++)
 		new/obj/effect/overlay/wallrot(src)
 
-/turf/simulated/wall/proc/can_melt()
+turf/simulated/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)
 		return 0
 	return 1
 
-/turf/simulated/wall/proc/thermitemelt(mob/user as mob)
+turf/simulated/wall/proc/thermitemelt(mob/user as mob)
 	if(!can_melt())
 		return
 	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
@@ -294,7 +294,7 @@
 //	F.sd_LumReset()		//TODO: ~Carn
 	return
 
-/turf/simulated/wall/proc/radiate()
+turf/simulated/wall/proc/radiate()
 	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0) + (girder_material ? girder_material.radioactivity / 2 : 0)
 	if(!total_radiation)
 		return
@@ -302,11 +302,11 @@
 	radiation_pulse(src, total_radiation)
 	return total_radiation
 
-/turf/simulated/wall/proc/set_rad_insulation()
+turf/simulated/wall/proc/set_rad_insulation()
 	var/total_rad_insulation = material.weight + material.radiation_resistance + (reinf_material ? (reinf_material.weight + reinf_material.radiation_resistance) / 4 : 0) + (girder_material ? (girder_material.weight + girder_material.radiation_resistance) / 16 : 0)
 	rad_insulation = round(1/(total_rad_insulation**1.35*1/21.25**1.35+1),0.01) // 21.25 would be the total_rad_insulation of basic steel walls and return 0.5 rad_insulation. 1.35 exponential function helps us to also hit the plasteel wall goal of 0.25.
 
-/turf/simulated/wall/proc/burn(temperature)
+turf/simulated/wall/proc/burn(temperature)
 	if(material.combustion_effect(src, temperature, 0.7))
 		spawn(2)
 			new /obj/structure/girder(src, girder_material.name)
@@ -316,7 +316,7 @@
 			for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
 				D.ignite(temperature/4)
 
-/turf/simulated/wall/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+turf/simulated/wall/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	if(material.integrity > 1000) // Don't decon things like elevatorium.
 		return FALSE
 	if(reinf_material && !the_rcd.can_remove_rwalls) // Gotta do it the old fashioned way if your RCD can't.
@@ -333,7 +333,7 @@
 			)
 	return FALSE
 
-/turf/simulated/wall/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+turf/simulated/wall/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	if(passed_mode == RCD_DECONSTRUCT)
 		to_chat(user, SPAN_NOTICE("You deconstruct \the [src]."))
 		ScrapeAway()

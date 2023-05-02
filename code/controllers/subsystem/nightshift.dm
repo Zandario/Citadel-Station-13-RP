@@ -14,25 +14,25 @@ SUBSYSTEM_DEF(nightshift)
 
 	var/high_security_mode = FALSE
 
-/datum/controller/subsystem/nightshift/Initialize()
+datum/controller/subsystem/nightshift/Initialize()
 	if (!CONFIG_GET(flag/nightshifts_enabled))
 		can_fire = FALSE
 	//if(CONFIG_GET(flag/randomized_start_time_enabled))
 		//GLOB.gametime_offset = rand(0, 23) HOURS
 	return ..()
 
-/datum/controller/subsystem/nightshift/fire(resumed = FALSE)
+datum/controller/subsystem/nightshift/fire(resumed = FALSE)
 	if(world.time - round_duration_in_ds < nightshift_first_check)
 		return
 	check_nightshift()
 
-/datum/controller/subsystem/nightshift/proc/announce(message)
+datum/controller/subsystem/nightshift/proc/announce(message)
 	var/announce_z
 	if(GLOB.using_map.station_levels.len)
 		announce_z = pick(GLOB.using_map.station_levels)
 	priority_announcement.Announce(message, new_title = "Automated Lighting System Announcement", new_sound = 'sound/misc/notice2.ogg', zlevel = announce_z)
 
-/datum/controller/subsystem/nightshift/proc/check_nightshift(check_canfire=FALSE) //This is called from elsewhere, like setting the alert levels
+datum/controller/subsystem/nightshift/proc/check_nightshift(check_canfire=FALSE) //This is called from elsewhere, like setting the alert levels
 	if(overridden || (check_canfire && !can_fire))
 		return
 	var/emergency = GLOB.security_level > SEC_LEVEL_GREEN
@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(nightshift)
 	if(nightshift_active != night_time)
 		update_nightshift(night_time, announcing)
 
-/datum/controller/subsystem/nightshift/proc/update_nightshift(active, announce = TRUE)
+datum/controller/subsystem/nightshift/proc/update_nightshift(active, announce = TRUE)
 	nightshift_active = active
 	if(announce)
 		if(active)

@@ -1,19 +1,19 @@
 
 /* Uncomment if someone makes these buildable
-/datum/design/circuit/general_alert
+datum/design/circuit/general_alert
 	name = "general alert console"
 	id = "general_alert"
 	build_path = /obj/item/circuitboard/general_alert
 
 // Removal of loyalty implants. Can't think of a way to add this to the config option.
-/datum/design/item/implant/loyalty
+datum/design/item/implant/loyalty
 	name = "loyalty"
 	id = "implant_loyal"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3)
 	materials = list(MAT_STEEL = 7000, MAT_GLASS = 7000)
 	build_path = /obj/item/implantcase/loyalty"
 
-/datum/design/rust_core_control
+datum/design/rust_core_control
 	name = "Circuit Design (RUST core controller)"
 	desc = "Allows for the construction of circuit boards used to build a core control console for the RUST fusion engine."
 	id = "rust_core_control"

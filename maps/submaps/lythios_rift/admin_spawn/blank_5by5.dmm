@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/lythios43c,
-/area/space)
+turf/simulated/wall/lythios43c,
+area/space)
 "W" = (
-/turf/simulated/floor/lythios43c/indoors,
-/area/space)
+turf/simulated/floor/lythios43c/indoors,
+area/space)
 
 (1,1,1) = {"
 a

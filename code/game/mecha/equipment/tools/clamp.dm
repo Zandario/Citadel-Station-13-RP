@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
+obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
 	name = "hydraulic clamp"
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
@@ -8,13 +8,13 @@
 	required_type = list(/obj/mecha/working)
 	ready_sound = 'sound/mecha/gasdisconnected.ogg'
 
-/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/attach(obj/mecha/M as obj)
+obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/attach(obj/mecha/M as obj)
 	..()
 	cargo_holder = M
 
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/action(atom/target)
+obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/action(atom/target)
 	if(!action_checks(target)) return
 	if(!cargo_holder) return
 
@@ -122,13 +122,13 @@
 
 
 //This is pretty much just for the death-ripley so that it is harmless
-/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety
+obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety
 	name = "\improper KILL CLAMP"
 	equip_cooldown = 15
 	energy_drain = 0
 	dam_force = 0
 
-/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety/action(atom/target)
+obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety/action(atom/target)
 	if(!action_checks(target)) return
 	if(!cargo_holder) return
 	if(istype(target,/obj))

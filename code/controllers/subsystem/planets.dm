@@ -17,14 +17,14 @@ SUBSYSTEM_DEF(planets)
 	var/static/list/needs_sun_update = list()
 	var/static/list/needs_temp_update = list()
 
-/datum/controller/subsystem/planets/Initialize(timeofday)
+datum/controller/subsystem/planets/Initialize(timeofday)
 	report_progress("Initializing planetary weather.")
 	createPlanets()
 	allocateTurfs(TRUE)
 	fire() // Fire once to preemptively set up weather and planetary ambient lighting.
 	return ..()
 
-/datum/controller/subsystem/planets/proc/createPlanets()
+datum/controller/subsystem/planets/proc/createPlanets()
 	var/list/planet_datums = GLOB.using_map.planet_datums_to_make
 	for(var/P in planet_datums)
 		var/datum/planet/NP = new P()
@@ -37,19 +37,19 @@ SUBSYSTEM_DEF(planets)
 				continue
 			z_to_planet[Z] = NP
 
-/datum/controller/subsystem/planets/proc/addTurf(turf/T)
+datum/controller/subsystem/planets/proc/addTurf(turf/T)
 	if(T.turf_flags & (TURF_PLANET_QUEUED | TURF_PLANET_REGISTERED))
 		return
 	T.turf_flags |= TURF_PLANET_QUEUED
 	new_outdoor_turfs += T
 
-/datum/controller/subsystem/planets/proc/addWall(turf/T)
+datum/controller/subsystem/planets/proc/addWall(turf/T)
 	if(T.turf_flags & (TURF_PLANET_QUEUED | TURF_PLANET_REGISTERED))
 		return
 	T.turf_flags |= TURF_PLANET_QUEUED
 	new_outdoor_walls += T
 
-/datum/controller/subsystem/planets/proc/removeTurf(turf/T)
+datum/controller/subsystem/planets/proc/removeTurf(turf/T)
 	new_outdoor_turfs -= T
 	T.turf_flags &= ~(TURF_PLANET_QUEUED | TURF_PLANET_REGISTERED)
 	if(z_to_planet.len >= T.z)
@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(planets)
 		T.vis_contents -= P.weather_holder.visuals
 		T.vis_contents -= P.weather_holder.special_visuals
 
-/datum/controller/subsystem/planets/proc/removeWall(turf/T)
+datum/controller/subsystem/planets/proc/removeWall(turf/T)
 	new_outdoor_walls -= T
 	T.turf_flags &= ~(TURF_PLANET_QUEUED | TURF_PLANET_REGISTERED)
 	if(z_to_planet.len >= T.z)
@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(planets)
 		T.vis_contents -= P.weather_holder.visuals
 		T.vis_contents -= P.weather_holder.special_visuals
 
-/datum/controller/subsystem/planets/proc/allocateTurfs(initial)
+datum/controller/subsystem/planets/proc/allocateTurfs(initial)
 	// if initial we're going to do optimizations
 	var/planet_z_count = z_to_planet.len
 	if(initial)
@@ -136,7 +136,7 @@ SUBSYSTEM_DEF(planets)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/planets/fire(resumed = FALSE)
+datum/controller/subsystem/planets/fire(resumed = FALSE)
 	if(new_outdoor_turfs.len || new_outdoor_walls.len)
 		allocateTurfs()
 
@@ -181,14 +181,14 @@ SUBSYSTEM_DEF(planets)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/planets/proc/updateTemp(datum/planet/P)
+datum/controller/subsystem/planets/proc/updateTemp(datum/planet/P)
 	//Set new temperatures
 	for(var/W in P.planet_walls)
 		var/turf/unsimulated/wall/planetary/wall = W
 		wall.set_temperature(P.weather_holder.temperature)
 		CHECK_TICK
 
-/datum/controller/subsystem/planets/proc/weatherDisco()
+datum/controller/subsystem/planets/proc/weatherDisco()
 	var/count = 100000
 	while(count > 0)
 		count--

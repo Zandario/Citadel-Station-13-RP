@@ -1,4 +1,4 @@
-/obj/item/blueprints
+obj/item/blueprints
 	name = "station blueprints"
 	desc = "Blueprints of the station. There is a \"Classified\" stamp and several coffee stains on it."
 	icon = 'icons/obj/items.dmi'
@@ -46,7 +46,7 @@
 	var/can_expand_areas_into = AREA_SPACE	// Can expand station areas only into space.
 	var/can_rename_areas_in = AREA_STATION	// Only station areas can be reanamed
 
-/obj/item/blueprints/attack_self(mob/user)
+obj/item/blueprints/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -55,7 +55,7 @@
 		return
 	interact()
 
-/obj/item/blueprints/Topic(href, href_list)
+obj/item/blueprints/Topic(href, href_list)
 	..()
 	if ((usr.restrained() || usr.stat || usr.get_active_held_item() != src))
 		return
@@ -81,7 +81,7 @@
 				return
 			expand_area()
 
-/obj/item/blueprints/interact()
+obj/item/blueprints/interact()
 	var/area/A = get_area()
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
 <h2>[station_name()] blueprints</h2>
@@ -112,12 +112,12 @@
 	onclose(usr, "blueprints")
 
 
-/obj/item/blueprints/proc/get_area()
+obj/item/blueprints/proc/get_area()
 	var/turf/T = get_turf(usr)
 	var/area/A = T.loc
 	return A
 
-/obj/item/blueprints/proc/get_area_type(var/area/A = get_area())
+obj/item/blueprints/proc/get_area_type(var/area/A = get_area())
 	for(var/type in SPACE_AREA_TYPES)
 		if(istype(A, type))
 			return AREA_SPACE
@@ -129,7 +129,7 @@
 /**
  * Create a new area encompasing the current room.
  */
-/obj/item/blueprints/proc/create_area()
+obj/item/blueprints/proc/create_area()
 	var/res = detect_room_ex(get_turf(usr), can_create_areas_into)
 	if(!istype(res,/list))
 		switch(res)
@@ -167,7 +167,7 @@
 /**
  * Expand the current area to fill the current room.
  */
-/obj/item/blueprints/proc/expand_area()
+obj/item/blueprints/proc/expand_area()
 	var/turf/startingTurf = get_turf(usr)
 	var/res = detect_room_ex(startingTurf, can_expand_areas_into)
 	if(!istype(res,/list))
@@ -196,13 +196,13 @@
 		interact()
 	return
 
-/obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
+obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
 	A.contents.Add(turfs)
 		//oldarea.contents.Remove(usr.loc) // not needed
 		//T.loc = A //error: cannot change constant value
 
 
-/obj/item/blueprints/proc/edit_area()
+obj/item/blueprints/proc/edit_area()
 	var/area/A = get_area()
 	var/prevname = "[A.name]"
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", prevname), MAX_NAME_LEN)
@@ -219,7 +219,7 @@
 
 
 
-/obj/item/blueprints/proc/set_area_machinery_title(var/area/A,var/title,var/oldtitle)
+obj/item/blueprints/proc/set_area_machinery_title(var/area/A,var/title,var/oldtitle)
 	if (!oldtitle) // or replacetext goes to infinite loop
 		return
 
@@ -245,7 +245,7 @@
  *  Note: The first turf is always allowed, and turfs in its area.
  * @return On success, a list of turfs included in the room.  On failure will return a ROOM_ERR_* constant.
 */
-/obj/item/blueprints/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE)
+obj/item/blueprints/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE)
 	if(!istype(first))
 		return ROOM_ERR_LOLWAT
 	var/list/turf/found = new
@@ -281,7 +281,7 @@
 	// end while
 	return found
 
-/obj/item/blueprints/verb/seeAreaColors()
+obj/item/blueprints/verb/seeAreaColors()
 	set src in usr
 	set category = "Blueprints"
 	set name = "Show Area Colors"
@@ -300,7 +300,7 @@
 			SEND_IMAGE(usr, image(areaColor, T, "blueprints", TURF_LAYER))
 			areaColor_turfs += T
 
-/obj/item/blueprints/verb/seeRoomColors()
+obj/item/blueprints/verb/seeRoomColors()
 	set src in usr
 	set category = "Blueprints"
 	set name = "Show Room Colors"
@@ -327,7 +327,7 @@
 		areaColor_turfs += T
 	to_chat(usr, "<span class='notice'>The space covered by the new area is highlighted in green.</span>")
 
-/obj/item/blueprints/verb/seeAreaColors_remove()
+obj/item/blueprints/verb/seeAreaColors_remove()
 	set src in usr
 	set category = "Blueprints"
 	set name = "Remove Area Colors"
@@ -339,7 +339,7 @@
 				usr.client.images.Remove(i)
 
 // Make sure to turn off the colors when we drop the blueprints.
-/obj/item/blueprints/dropped(mob/user, flags, atom/newLoc)
+obj/item/blueprints/dropped(mob/user, flags, atom/newLoc)
 	if(areaColor_turfs.len)
 		seeAreaColors_remove()
 	return ..()

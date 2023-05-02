@@ -1,8 +1,8 @@
-/obj/structure/noticeboard/anomaly
+obj/structure/noticeboard/anomaly
 	notices = 5
 	icon_state = "nboard05"
 
-/obj/structure/noticeboard/anomaly/Initialize(mapload)
+obj/structure/noticeboard/anomaly/Initialize(mapload)
 	. = ..()
 	var/obj/item/paper/P = new(src)
 	P.name = "Memo RE: proper analysis procedure"
@@ -34,10 +34,10 @@
 	P.stamped = list(/obj/item/stamp/rd)
 	P.add_overlay("paper_stamped_rd")
 
-/obj/structure/bookcase/manuals/xenoarchaeology
+obj/structure/bookcase/manuals/xenoarchaeology
 	name = "Xenoarchaeology Manuals bookcase"
 
-/obj/structure/bookcase/manuals/xenoarchaeology/Initialize(mapload)
+obj/structure/bookcase/manuals/xenoarchaeology/Initialize(mapload)
 	. = ..()
 	new /obj/item/book/manual/excavation(src)
 	new /obj/item/book/manual/mass_spectrometry(src)
@@ -47,7 +47,7 @@
 	new /obj/item/book/manual/stasis(src)
 	update_icon()
 
-/obj/structure/closet/secure_closet/xenoarchaeologist
+obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
 	icon_state = "secureres1"
 	icon_closed = "secureres"
@@ -67,7 +67,7 @@
 		/obj/item/storage/belt/archaeology,
 		/obj/item/storage/excavation)
 
-/obj/structure/closet/excavation
+obj/structure/closet/excavation
 	name = "Excavation tools"
 	icon_state = "toolcloset"
 	icon_closed = "toolcloset"
@@ -98,8 +98,8 @@
 		/obj/item/paper_bin,
 		/obj/item/hand_labeler)
 
-/obj/machinery/alarm/isolation
+obj/machinery/alarm/isolation
 	req_one_access = list(ACCESS_SCIENCE_MAIN, ACCESS_ENGINEERING_ATMOS, ACCESS_ENGINEERING_ENGINE)
 
-/obj/machinery/alarm/monitor/isolation
+obj/machinery/alarm/monitor/isolation
 	req_one_access = list(ACCESS_SCIENCE_MAIN, ACCESS_ENGINEERING_ATMOS, ACCESS_ENGINEERING_ENGINE)

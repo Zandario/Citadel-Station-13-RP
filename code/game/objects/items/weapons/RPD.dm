@@ -7,7 +7,7 @@
 #define DESTROY_MODE (1<<2)
 #define PAINT_MODE (1<<3)
 
-/obj/item/pipe_dispenser
+obj/item/pipe_dispenser
 	name = "Rapid Piping Device (RPD)"
 	desc = "A device used to rapidly pipe things."
 	icon = 'icons/obj/tools_vr.dmi'
@@ -58,13 +58,13 @@
 		"Aux" = PIPING_LAYER_AUX
 	)
 
-/obj/item/pipe_dispenser/Initialize(mapload)
+obj/item/pipe_dispenser/Initialize(mapload)
 	. = ..()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	tool = new /obj/item/tool/wrench/cyborg(src)
 
-/obj/item/pipe_dispenser/proc/SetupPipes()
+obj/item/pipe_dispenser/proc/SetupPipes()
 	if(!first_atmos)
 		first_atmos = GLOB.atmos_pipe_recipes[GLOB.atmos_pipe_recipes[1]][1]
 	if(!first_disposal)
@@ -74,12 +74,12 @@
 	if(!recipe)
 		recipe = first_atmos
 
-/obj/item/pipe_dispenser/Destroy()
+obj/item/pipe_dispenser/Destroy()
 	QDEL_NULL(spark_system)
 	QDEL_NULL(tool)
 	return ..()
 /*
-/obj/item/pipe_dispenser/suicide_act(mob/user)
+obj/item/pipe_dispenser/suicide_act(mob/user)
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	user.visible_message(SPAN_SUICIDE("[user] points the end of the RPD down [TU.his] throat and presses a button! It looks like [TU.hes] trying to commit suicide..."))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
@@ -87,18 +87,18 @@
 	return(BRUTELOSS)
 */
 
-/obj/item/pipe_dispenser/examine(mob/user)
+obj/item/pipe_dispenser/examine(mob/user)
 	. = ..()
 	. += "You can scroll your mouse wheel to change the piping layer."
 
-/obj/item/pipe_dispenser/equipped(mob/user, slot, flags)
+obj/item/pipe_dispenser/equipped(mob/user, slot, flags)
 	. = ..()
 	if(slot == SLOT_ID_HANDS)
 		RegisterSignal(user, COMSIG_MOUSE_SCROLL_ON, .proc/mouse_wheeled)
 	else
 		UnregisterSignal(user, COMSIG_MOUSE_SCROLL_ON)
 
-/obj/item/pipe_dispenser/unequipped(mob/user, slot, flags)
+obj/item/pipe_dispenser/unequipped(mob/user, slot, flags)
 	UnregisterSignal(user, COMSIG_MOUSE_SCROLL_ON)
 	return ..()
 
@@ -106,32 +106,32 @@
 //	UnregisterSignal(user, COMSIG_MOUSE_SCROLL_ON)
 //	return ..()
 
-/obj/item/pipe_dispenser/attack_self(mob/user)
+obj/item/pipe_dispenser/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/obj/item/pipe_dispenser/ui_assets(mob/user)
+obj/item/pipe_dispenser/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/pipes),
 	)
 
-/obj/item/pipe_dispenser/ui_state(mob/user, datum/tgui_module/module)
+obj/item/pipe_dispenser/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/pipe_dispenser/ui_interact(mob/user, datum/tgui/ui)
+obj/item/pipe_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	SetupPipes()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RapidPipeDispenser", name)
 		ui.open()
 
-/obj/item/pipe_dispenser/ui_static_data(mob/user)
+obj/item/pipe_dispenser/ui_static_data(mob/user)
 	var/list/data = list("paint_colors" = GLOB.pipe_paint_colors)
 	return data
 
-/obj/item/pipe_dispenser/ui_data(mob/user)
+obj/item/pipe_dispenser/ui_data(mob/user)
 	var/list/data = list(
 		"category" = category,
 		"piping_layer" = piping_layer,
@@ -165,7 +165,7 @@
 	data["init_directions"] = init_directions
 	return data
 
-/obj/item/pipe_dispenser/ui_act(action, params)
+obj/item/pipe_dispenser/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -220,7 +220,7 @@
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 50, FALSE)
 	return TRUE
 
-/obj/item/pipe_dispenser/afterattack(atom/A, mob/user as mob, proximity)
+obj/item/pipe_dispenser/afterattack(atom/A, mob/user as mob, proximity)
 	if(!user.IsAdvancedToolUser() || istype(A, /turf/space/transit) || !proximity)
 		return ..()
 
@@ -329,7 +329,7 @@
 			else
 				return ..()
 
-/obj/item/pipe_dispenser/proc/build_effect(var/obj/P, var/time = 1.5)
+obj/item/pipe_dispenser/proc/build_effect(var/obj/P, var/time = 1.5)
 	set waitfor = FALSE
 	P.filters += filter(type = "angular_blur", size = 30)
 	animate(P.filters[P.filters.len], size = 0, time = time)
@@ -339,7 +339,7 @@
 	P.filters -= outline
 	P.filters -= filter(type = "angular_blur", size = 0)
 
-/obj/item/pipe_dispenser/proc/animate_deletion(var/obj/P, var/time = 1.5)
+obj/item/pipe_dispenser/proc/animate_deletion(var/obj/P, var/time = 1.5)
 	set waitfor = FALSE
 	P.filters += filter(type = "angular_blur", size = 0)
 	animate(P.filters[P.filters.len], size = 30, time = time)
@@ -348,15 +348,15 @@
 		P.filters -= filter(type = "angular_blur", size = 30)
 		qdel(P)
 
-/obj/item/pipe_dispenser/proc/activate()
+obj/item/pipe_dispenser/proc/activate()
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 
-/obj/item/pipe_dispenser/proc/do_wrench(var/atom/target, mob/user)
+obj/item/pipe_dispenser/proc/do_wrench(var/atom/target, mob/user)
 	var/resolved = target.attackby(tool,user)
 	if(!resolved && tool && target)
 		tool.afterattack(target,user,1)
 
-/obj/item/pipe_dispenser/proc/mouse_wheeled(mob/user, atom/A, delta_x, delta_y, params)
+obj/item/pipe_dispenser/proc/mouse_wheeled(mob/user, atom/A, delta_x, delta_y, params)
 	SIGNAL_HANDLER
 	if(user.incapacitated(INCAPACITATION_RESTRAINED))
 		return

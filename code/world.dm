@@ -1,7 +1,7 @@
 
 //This file is just for the necessary /world definition
 //Try looking in game/world.dm
-/world
+world
 	mob = /mob/new_player
 	turf = /turf/space/basic
 	area = /area/space

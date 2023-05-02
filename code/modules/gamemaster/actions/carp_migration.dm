@@ -1,5 +1,5 @@
 //carp_migration
-/datum/gm_action/carp_migration
+datum/gm_action/carp_migration
 	name = "carp migration"
 	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_EVERYONE)
 	chaotic = 50
@@ -7,14 +7,14 @@
 	var/carp_amount = 0
 	length = 20 MINUTES
 
-/datum/gm_action/carp_migration/get_weight()
+datum/gm_action/carp_migration/get_weight()
 	return 50 + (metric.count_people_in_department(DEPARTMENT_SECURITY) * 10) + (metric.count_all_space_mobs() * 20)
 
-/datum/gm_action/carp_migration/announce()
+datum/gm_action/carp_migration/announce()
 	var/announcement = "Unknown biological entities have been detected near [station_name()], please stand-by."
 	command_announcement.Announce(announcement, "Lifesign Alert")
 
-/datum/gm_action/carp_migration/set_up()
+datum/gm_action/carp_migration/set_up()
 	// Higher filled roles means more groups of fish.
 	var/station_strength = 0
 	station_strength += (metric.count_people_in_department(DEPARTMENT_SECURITY) * 3)
@@ -27,7 +27,7 @@
 
 	carp_amount = CEILING(station_strength * (activeness / 100) + 1, 1)
 
-/datum/gm_action/carp_migration/start()
+datum/gm_action/carp_migration/start()
 	..()
 	var/list/spawn_locations = list()
 
@@ -49,7 +49,7 @@
 		i++
 	message_admins("[spawned_carp.len] carp spawned by event.")
 
-/datum/gm_action/carp_migration/end()
+datum/gm_action/carp_migration/end()
 	for(var/mob/living/simple_mob/animal/space/carp/C in spawned_carp)
 		if(!C.stat)
 			var/turf/T = get_turf(C)

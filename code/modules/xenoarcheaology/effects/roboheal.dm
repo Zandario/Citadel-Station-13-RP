@@ -1,12 +1,12 @@
-/datum/artifact_effect/roboheal
+datum/artifact_effect/roboheal
 	name = "robotic healing"
 	var/last_message
 
-/datum/artifact_effect/roboheal/New()
+datum/artifact_effect/roboheal/New()
 	..()
 	effect_type = pick(EFFECT_ELECTRO, EFFECT_PARTICLE)
 
-/datum/artifact_effect/roboheal/DoEffectTouch(var/mob/user)
+datum/artifact_effect/roboheal/DoEffectTouch(var/mob/user)
 	if(user)
 		if (istype(user, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/R = user
@@ -15,7 +15,7 @@
 			R.adjustFireLoss(rand(-10,-30))
 			return 1
 
-/datum/artifact_effect/roboheal/DoEffectAura()
+datum/artifact_effect/roboheal/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/silicon/robot/M in range(src.effectrange,T))
@@ -27,7 +27,7 @@
 			M.update_health()
 		return 1
 
-/datum/artifact_effect/roboheal/DoEffectPulse()
+datum/artifact_effect/roboheal/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/silicon/robot/M in range(src.effectrange,T))

@@ -3,21 +3,21 @@ GLOBAL_DATUM_INIT(join_menu, /datum/join_menu, new)
 /**
  * Global singleton for holding TGUI data for players joining.
  */
-/datum/join_menu
+datum/join_menu
 
-/datum/join_menu/ui_interact(mob/user, datum/tgui/ui)
+datum/join_menu/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "JoinMenu", "Join Menu")
 		ui.open()
 
-/datum/join_menu/proc/queue_update()
+datum/join_menu/proc/queue_update()
 	addtimer(CALLBACK(src, /datum/proc/update_static_data), 0, TIMER_UNIQUE | TIMER_OVERRIDE)
 
-/datum/join_menu/ui_state(mob/user, datum/tgui_module/module)
+datum/join_menu/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.explicit_new_player_state
 
-/datum/join_menu/ui_static_data(mob/user)
+datum/join_menu/ui_static_data(mob/user)
 	var/list/data = ..()
 	// every entry will have:
 	// - faction
@@ -89,7 +89,7 @@ GLOBAL_DATUM_INIT(join_menu, /datum/join_menu, new)
 		ghostroles += list(ghostrole_data)	// wrap list
 	return data
 
-/datum/join_menu/ui_data(mob/user)
+datum/join_menu/ui_data(mob/user)
 	var/list/data = ..()
 	// common info goes into ui data
 	var/level = "green"
@@ -133,52 +133,52 @@ GLOBAL_DATUM_INIT(join_menu, /datum/join_menu, new)
  * checks if job is available
  * if not, it shouldn't even show
  */
-/datum/join_menu/proc/IsJobAvailable(datum/role/job/J, mob/new_player/N)
+datum/join_menu/proc/IsJobAvailable(datum/role/job/J, mob/new_player/N)
 	return J.check_client_availability_one(N.client, TRUE, TRUE) == ROLE_AVAILABLE
 
 /**
  * checks if ghostrole is available
  * if not, it shouldn't even show
  */
-/datum/join_menu/proc/IsGhostroleAvailable(datum/role/ghostrole/G, mob/new_player/N)
+datum/join_menu/proc/IsGhostroleAvailable(datum/role/ghostrole/G, mob/new_player/N)
 	return G.AllowSpawn(N.client)
 
 /**
  * return effective title - used for alt titles - JOBS ONLY, not ghostroles
  */
-/datum/join_menu/proc/EffectiveTitle(datum/role/job/J, mob/new_player/N)
+datum/join_menu/proc/EffectiveTitle(datum/role/job/J, mob/new_player/N)
 	return N.client.prefs.get_job_alt_title_name(J) || J.title
 
 /**
  * returns effective desc - used for alt titles - JOBS ONLY, not ghostroles
  */
-/datum/join_menu/proc/EffectiveDesc(datum/role/job/J, mob/new_player/N)
+datum/join_menu/proc/EffectiveDesc(datum/role/job/J, mob/new_player/N)
 	var/title = N.client.prefs.get_job_alt_title_name(J)
 	var/datum/prototype/alt_title/T = J.alt_titles?[title]
 	return isnull(T)? J.desc : (initial(T.title_blurb) || J.desc)
 
-/datum/join_menu/proc/QueueStatus(mob/new_player/N)
+datum/join_menu/proc/QueueStatus(mob/new_player/N)
 	return null
 
 /*
-/datum/join_menu/proc/QueueStatus(mob/new_player/N)
+datum/join_menu/proc/QueueStatus(mob/new_player/N)
 	QueueActive()? (SSticker.queued_players.Find(N) || -1) : null
 */
 
-/datum/join_menu/proc/QueueActive()
+datum/join_menu/proc/QueueActive()
 	return FALSE
 
 /*
-/datum/join_menu/proc/QueueActive()
+datum/join_menu/proc/QueueActive()
 	var/relevant_cap = PopCap()
 	return length(SSticker.queued_players) || (relevant_cap && living_player_count() > relevant_cap)
 */
 
-/datum/join_menu/proc/PopCap()
+datum/join_menu/proc/PopCap()
 	return INFINITY
 
 /*
-/datum/join_menu/proc/PopCap()
+datum/join_menu/proc/PopCap()
 	. = null
 	var/hpc = CONFIG_GET(number/hard_popcap)
 	var/epc = CONFIG_GET(number/extreme_popcap)
@@ -188,7 +188,7 @@ GLOBAL_DATUM_INIT(join_menu, /datum/join_menu, new)
 		. = max(hpc, epc)
 */
 
-/datum/join_menu/ui_act(action, list/params, datum/tgui/ui)
+datum/join_menu/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	var/mob/new_player/N = usr
 	if(!istype(N))
@@ -233,7 +233,7 @@ GLOBAL_DATUM_INIT(join_menu, /datum/join_menu, new)
 /**
  * Return FALSE to block joining.
  */
-/datum/join_menu/proc/AttemptQueue(mob/new_player/N)
+datum/join_menu/proc/AttemptQueue(mob/new_player/N)
 	. = TRUE
 /*
 	if(QueueActive() && !(ckey(N.key) in GLOB.admin_datums))
@@ -254,5 +254,5 @@ GLOBAL_DATUM_INIT(join_menu, /datum/join_menu, new)
 				return FALSE
 */
 
-/mob/new_player/proc/LateChoices()
+mob/new_player/proc/LateChoices()
 	GLOB.join_menu.ui_interact(src)

@@ -5,7 +5,7 @@
 #define LOC_BRIDGE		4
 #define LOC_TALON		5
 
-/datum/event/pirate
+datum/event/pirate
 	var/location
 	var/locstring
 	var/spawn_area_type
@@ -18,12 +18,12 @@
 	var/list/players = list()
 	has_skybox_image = FALSE
 
-/datum/event/pirate/setup()
+datum/event/pirate/setup()
 	announceWhen = rand(announceWhen+2, announceWhen + 3)
 	startWhen = announceWhen
 	endWhen = 45
 
-/datum/event/pirate/announce()
+datum/event/pirate/announce()
 	if	(piratestring == "human")
 		command_announcement.Announce("Attention, Crew of the [station_name()], hand over your valuables and your vessel and no one gets hurt!", "Incoming Transmission", new_sound = sound('sound/effects/siren.ogg', volume=25))
 	if 	(piratestring == "vox")
@@ -31,7 +31,7 @@
 	if 	(piratestring =="rats")
 		command_announcement.Announce("Tiny Boarding Torpedos have been detected on Route to [station_name()]. Prepare Crew to repell small boarders.", "Boarding Alert", new_sound = sound('sound/effects/siren.ogg', volume=25))
 
-/datum/event/pirate/start()
+datum/event/pirate/start()
 	switch(rand(1,100))
 		if(1 to 60)
 			toughness = 1
@@ -77,7 +77,7 @@
 			spawncount = rand(1 * severity * toughness, 3 * severity * toughness)
 			boss_spawn_count = rand(0,toughness)
 
-/datum/event/pirate/end()
+datum/event/pirate/end()
 	var/list/vents = list()
 	var/pirate_spawn = list()
 	var/pirate_boss = list()
@@ -141,7 +141,7 @@
 	isTalon = 0
 
 // Overmap version
-/datum/event/pirate/overmap/announce()
+datum/event/pirate/overmap/announce()
 	if(istype(victim, /obj/effect/overmap/visitable/ship/talon))
 		if(piratestring == "human")
 			command_announcement.Announce("Attention, Crew of the ITV Talon, thanks for delivering your ship to us suckers!", "Incoming Transmission")
@@ -157,7 +157,7 @@
 		if (piratestring =="rats")
 			command_announcement.Announce("Attention [station_name()], a tiny teleportation matrix has been detected on the nearby vessel. Prepare Crew to repell small boarders.", "Boarding Alert", new_sound = sound('sound/effects/siren.ogg', volume=25))
 
-/datum/event/pirate/overmap/start()		// override - cancel if not main ship since it doesn't properly target the actual triggering ship
+datum/event/pirate/overmap/start()		// override - cancel if not main ship since it doesn't properly target the actual triggering ship
 	if(istype(victim, /obj/effect/overmap/visitable/ship/landable))
 		kill()
 	if(istype(victim, /obj/effect/overmap/visitable/ship/talon)) //Forces the location to be the Talon.

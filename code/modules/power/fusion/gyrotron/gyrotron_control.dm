@@ -1,4 +1,4 @@
-/obj/machinery/computer/gyrotron_control
+obj/machinery/computer/gyrotron_control
 	name = "gyrotron control console"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "engine"
@@ -8,14 +8,14 @@
 	var/id_tag
 	var/scan_range = 25
 
-/obj/machinery/computer/gyrotron_control/attack_ai(var/mob/user)
+obj/machinery/computer/gyrotron_control/attack_ai(var/mob/user)
 	attack_hand(user)
 
-/obj/machinery/computer/gyrotron_control/attack_hand(mob/user, list/params)
+obj/machinery/computer/gyrotron_control/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	interact(user)
 
-/obj/machinery/computer/gyrotron_control/interact(var/mob/user)
+obj/machinery/computer/gyrotron_control/interact(var/mob/user)
 
 	if(machine_stat & (BROKEN|NOPOWER))
 		user.unset_machine()
@@ -56,7 +56,7 @@
 	add_fingerprint(user)
 	user.set_machine(src)
 
-/obj/machinery/computer/gyrotron_control/Topic(href, list/href_list)
+obj/machinery/computer/gyrotron_control/Topic(href, list/href_list)
 	. = ..()
 	if(.)
 		return
@@ -94,7 +94,7 @@
 
 	return 0
 
-/obj/machinery/computer/gyrotron_control/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/computer/gyrotron_control/attackby(var/obj/item/W, var/mob/user)
 	..()
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = input("Enter a new ident tag.", "Gyrotron Control", id_tag) as null|text
@@ -102,7 +102,7 @@
 			id_tag = new_ident
 		return
 
-/obj/machinery/computer/gyrotron_control/update_icon()
+obj/machinery/computer/gyrotron_control/update_icon()
 	if(machine_stat & (BROKEN))
 		icon = 'icons/obj/computer.dmi'
 		icon_state = "broken"

@@ -5,7 +5,7 @@
  *
  * this is also visual angle because ss13 uses weird CW of N instead of CCW of E angles (which the rest of the math world does).
  */
-/proc/get_visual_angle(atom/movable/start, atom/movable/end)
+proc/get_visual_angle(atom/movable/start, atom/movable/end)
 	if(!start || !end)
 		return 0
 	var/dy =(32 * end.y + end.pixel_y) - (32 * start.y + start.pixel_y)
@@ -25,7 +25,7 @@
  *
  * this is also visual angle because ss13 uses weird CW of N instead of CCW of E angles (which the rest of the math world does).
  */
-/proc/get_visual_angle_raw(start_x, start_y, start_pixel_x, start_pixel_y, end_x, end_y, end_pixel_x, end_pixel_y)
+proc/get_visual_angle_raw(start_x, start_y, start_pixel_x, start_pixel_y, end_x, end_y, end_pixel_x, end_pixel_y)
 	var/dy = (32 * end_y + end_pixel_y) - (32 * start_y + start_pixel_y)
 	var/dx = (32 * end_x + end_pixel_x) - (32 * start_x + start_pixel_x)
 	if(!dy)
@@ -43,7 +43,7 @@
  *
  * this is also visual angle because ss13 uses weird CW of N instead of CCW of E angles (which the rest of the math world does).
  */
-/proc/get_visual_angle_offset(x, y)
+proc/get_visual_angle_offset(x, y)
 	if(!y)
 		return (x >= 0) ? 90 : 270
 	. = arctan(x/y)

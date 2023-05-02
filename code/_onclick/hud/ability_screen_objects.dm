@@ -1,6 +1,6 @@
 // TODO: KILL THIS SHIT FOR ACTION BUTTONS
 // TODO: NEW SCREEN LOC DECODING PROCS.
-/atom/movable/screen/movable/ability_master
+atom/movable/screen/movable/ability_master
 	name = "Abilities"
 	icon = 'icons/mob/screen_spells.dmi'
 	icon_state = "grey_spell_ready"
@@ -16,7 +16,7 @@
 	var/opens_to_left = TRUE
 	var/opens_downwards = TRUE
 
-/atom/movable/screen/movable/ability_master/Initialize(mapload)
+atom/movable/screen/movable/ability_master/Initialize(mapload)
 	. = ..()
 	var/mob/owner = ismob(loc) && loc
 	if(owner)
@@ -25,7 +25,7 @@
 	else
 		message_admins("ERROR: ability_master's New() was not given an owner argument.  This is a bug.")
 
-/atom/movable/screen/movable/ability_master/Destroy()
+atom/movable/screen/movable/ability_master/Destroy()
 	. = ..()
 	//Get rid of the ability objects.
 	remove_all_abilities()
@@ -38,20 +38,20 @@
 			my_mob.client.screen -= src
 		my_mob = null
 
-/atom/movable/screen/movable/ability_master/OnMouseDropLegacy()
+atom/movable/screen/movable/ability_master/OnMouseDropLegacy()
 	if(showing)
 		return
 
 	return ..()
 
-/atom/movable/screen/movable/ability_master/Click()
+atom/movable/screen/movable/ability_master/Click()
 	if(!ability_objects.len) // If we're empty for some reason.
 //		qdel(src)
 		return
 
 	toggle_open()
 
-/atom/movable/screen/movable/ability_master/proc/toggle_open(var/forced_state = 0)
+atom/movable/screen/movable/ability_master/proc/toggle_open(var/forced_state = 0)
 	if(showing && (forced_state != 2)) // We are closing the ability master, hide the abilities.
 		for(var/atom/movable/screen/ability/O in ability_objects)
 			if(my_mob && my_mob.client)
@@ -68,7 +68,7 @@
 		add_overlay(open_state)
 	update_icon()
 
-/atom/movable/screen/movable/ability_master/proc/open_ability_master()
+atom/movable/screen/movable/ability_master/proc/open_ability_master()
 	var/list/screen_loc_xy = splittext(screen_loc,",")
 
 	//Create list of X offsets
@@ -92,7 +92,7 @@
 			my_mob.client.screen += S
 //			A.handle_icon_updates = 1
 
-/atom/movable/screen/movable/ability_master/proc/update_abilities(forced = 0, mob/user)
+atom/movable/screen/movable/ability_master/proc/update_abilities(forced = 0, mob/user)
 	update_icon()
 	if(user && user.client)
 		if(!(src in user.client.screen))
@@ -104,13 +104,13 @@
 		ability.maptext = "[ability.index]" // Slot number
 		i++
 
-/atom/movable/screen/movable/ability_master/update_icon()
+atom/movable/screen/movable/ability_master/update_icon()
 	if(ability_objects.len)
 		invisibility = 0
 	else
 		invisibility = 101
 
-/atom/movable/screen/movable/ability_master/proc/add_ability(var/name_given)
+atom/movable/screen/movable/ability_master/proc/add_ability(var/name_given)
 	if(!name) return
 
 //	if(spell.connected_button) //we have one already, for some reason
@@ -145,7 +145,7 @@
 	if(my_mob.client)
 		toggle_open(2) //forces the icons to refresh on screen
 
-/atom/movable/screen/movable/ability_master/proc/remove_ability(var/atom/movable/screen/ability/ability)
+atom/movable/screen/movable/ability_master/proc/remove_ability(var/atom/movable/screen/ability/ability)
 	if(!ability)
 		return
 	ability_objects.Remove(ability)
@@ -158,36 +158,36 @@
 //	else
 //		qdel(src)
 
-/atom/movable/screen/movable/ability_master/proc/remove_all_abilities()
+atom/movable/screen/movable/ability_master/proc/remove_all_abilities()
 	for(var/atom/movable/screen/ability/A in ability_objects)
 		remove_ability(A)
 
-/atom/movable/screen/movable/ability_master/proc/get_ability_by_name(name_to_search)
+atom/movable/screen/movable/ability_master/proc/get_ability_by_name(name_to_search)
 	for(var/atom/movable/screen/ability/A in ability_objects)
 		if(A.name == name_to_search)
 			return A
 	return null
 
-/atom/movable/screen/movable/ability_master/proc/get_ability_by_proc_ref(proc_ref)
+atom/movable/screen/movable/ability_master/proc/get_ability_by_proc_ref(proc_ref)
 	for(var/atom/movable/screen/ability/verb_based/V in ability_objects)
 		if(V.verb_to_call == proc_ref)
 			return V
 	return null
 
-/atom/movable/screen/movable/ability_master/proc/get_ability_by_instance(var/obj/instance/)
+atom/movable/screen/movable/ability_master/proc/get_ability_by_instance(var/obj/instance/)
 	for(var/atom/movable/screen/ability/obj_based/O in ability_objects)
 		if(O.object == instance)
 			return O
 	return null
 
-/mob/Login()
+mob/Login()
 	. = ..()
 
 	if(ability_master)
 		ability_master.toggle_open(1)
 		client.screen -= ability_master
 
-/mob/Initialize(mapload)
+mob/Initialize(mapload)
 	. = ..()
 	if(!ability_master)
 		ability_master = new /atom/movable/screen/movable/ability_master(src)
@@ -195,7 +195,7 @@
 ///////////ACTUAL ABILITIES////////////
 //This is what you click to do things//
 ///////////////////////////////////////
-/atom/movable/screen/ability
+atom/movable/screen/ability
 	icon = 'icons/mob/screen_spells.dmi'
 	icon_state = "grey_spell_base"
 	maptext_x = 3
@@ -208,7 +208,7 @@
 
 //	var/icon/last_charged_icon
 
-/atom/movable/screen/ability/Destroy()
+atom/movable/screen/ability/Destroy()
 	if(ability_master)
 		ability_master.ability_objects -= src
 		if(ability_master.my_mob && ability_master.my_mob.client)
@@ -219,7 +219,7 @@
 	ability_master = null
 	..()
 
-/atom/movable/screen/ability/update_icon()
+atom/movable/screen/ability/update_icon()
 //	if(!spell)
 //		qdel(src)
 //		return
@@ -259,7 +259,7 @@
 //	if(spell.silenced)
 //		overlays += "silence"
 
-/atom/movable/screen/ability/Click()
+atom/movable/screen/ability/Click()
 	if(!usr)
 //		qdel(src)
 		return
@@ -267,7 +267,7 @@
 //	spell.perform(usr)
 	activate()
 
-/atom/movable/screen/ability/OnMouseDropLegacy(var/atom/A)
+atom/movable/screen/ability/OnMouseDropLegacy(var/atom/A)
 	if(!A || A == src)
 		return
 	if(istype(A, /atom/movable/screen/ability))
@@ -278,15 +278,15 @@
 
 
 // Makes the ability be triggered.  The subclasses of this are responsible for carrying it out in whatever way it needs to.
-/atom/movable/screen/ability/proc/activate()
+atom/movable/screen/ability/proc/activate()
 	to_chat(world, "[src] had activate() called.")
 	return
 
 // This checks if the ability can be used.
-/atom/movable/screen/ability/proc/can_activate()
+atom/movable/screen/ability/proc/can_activate()
 	return 1
 
-/client/verb/activate_ability(var/slot as num)
+client/verb/activate_ability(var/slot as num)
 	set name = ".activate_ability"
 //	set hidden = 1
 	if(!mob)
@@ -305,12 +305,12 @@
 //Buttons to trigger verbs/procs//
 //////////////////////////////////
 
-/atom/movable/screen/ability/verb_based
+atom/movable/screen/ability/verb_based
 	var/verb_to_call = null
 	var/object_used = null
 	var/arguments_to_use = list()
 
-/atom/movable/screen/ability/verb_based/activate()
+atom/movable/screen/ability/verb_based/activate()
 	if(object_used && verb_to_call)
 		call(object_used,verb_to_call)(arguments_to_use)
 //		call(object_used,verb_to_call)(arguments_to_use)
@@ -320,7 +320,7 @@
 //		else
 //			message_admins("ERROR: activate() on [ability_master.my_mob]'s [src] failed the hascall([object_used],[verb_to_call]) check.")
 
-/atom/movable/screen/movable/ability_master/proc/add_verb_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
+atom/movable/screen/movable/ability_master/proc/add_verb_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
 	if(!object_given)
 		message_admins("ERROR: add_verb_ability() was not given an object in its arguments.")
 	if(!verb_given)
@@ -340,11 +340,11 @@
 		toggle_open(2) //forces the icons to refresh on screen
 
 //Changeling Abilities
-/atom/movable/screen/ability/verb_based/changeling
+atom/movable/screen/ability/verb_based/changeling
 	icon_state = "ling_spell_base"
 	background_base_state = "ling"
 
-/atom/movable/screen/movable/ability_master/proc/add_ling_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
+atom/movable/screen/movable/ability_master/proc/add_ling_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
 	if(!object_given)
 		message_admins("ERROR: add_ling_ability() was not given an object in its arguments.")
 	if(!verb_given)
@@ -368,19 +368,19 @@
 //Buttons to trigger objects//
 //////////////////////////////
 
-/atom/movable/screen/ability/obj_based
+atom/movable/screen/ability/obj_based
 	var/obj/object = null
 
-/atom/movable/screen/ability/obj_based/activate()
+atom/movable/screen/ability/obj_based/activate()
 	if(object)
 		object.Click()
 
 // Technomancer
-/atom/movable/screen/ability/obj_based/technomancer
+atom/movable/screen/ability/obj_based/technomancer
 	icon_state = "wiz_spell_base"
 	background_base_state = "wiz"
 
-/atom/movable/screen/movable/ability_master/proc/add_technomancer_ability(var/obj/object_given, var/ability_icon_given)
+atom/movable/screen/movable/ability_master/proc/add_technomancer_ability(var/obj/object_given, var/ability_icon_given)
 	if(!object_given)
 		message_admins("ERROR: add_technomancer_ability() was not given an object in its arguments.")
 	if(get_ability_by_instance(object_given))

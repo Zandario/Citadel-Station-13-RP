@@ -1,11 +1,11 @@
-/obj/item/robot_module/robot/medical
+obj/item/robot_module/robot/medical
 	name = "medical robot module"
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/medical/surgeon
+obj/item/robot_module/robot/medical/surgeon
 	name = "medical robot module"
 	sprites = list(
 		"M-USE NanoTrasen" = "robotMedi",
@@ -34,7 +34,7 @@
 		"W02M" = "worm-crisis"
 	)
 
-/obj/item/robot_module/robot/medical/surgeon/get_modules()
+obj/item/robot_module/robot/medical/surgeon/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/healthanalyzer,
@@ -60,11 +60,11 @@
 		/obj/item/dogborg/mirrortool
 	)
 
-/obj/item/robot_module/robot/medical/surgeon/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/medical/surgeon/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	MATTER_SYNTH(MATSYN_DRUGS, medicine, 15000)
 
-/obj/item/robot_module/robot/medical/surgeon/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/medical/surgeon/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 
 	src.emag = new /obj/item/reagent_containers/spray(src)
@@ -89,7 +89,7 @@
 	B.synths = list(synths_by_kind[MATSYN_DRUGS])
 	. += B
 
-/obj/item/robot_module/robot/medical/surgeon/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+obj/item/robot_module/robot/medical/surgeon/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 
 	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
@@ -106,7 +106,7 @@
 
 //Crisis module removed - 5/2/2021
 
-/obj/item/robot_module/robot/quad/medi
+obj/item/robot_module/robot/quad/medi
 	name = "MediQuad module"
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
@@ -122,7 +122,7 @@
 		"Drake" = "drakemed"
 	)
 
-/obj/item/robot_module/robot/quad/medi/get_modules()
+obj/item/robot_module/robot/quad/medi/get_modules()
 	. = ..()
 	. |= list(
 		/obj/item/dogborg/jaws/small, //In case a patient is being attacked by carp.
@@ -149,11 +149,11 @@
 		/obj/item/dogborg/mirrortool
 	)
 
-/obj/item/robot_module/robot/quad/medi/get_synths(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/medi/get_synths(mob/living/silicon/robot/R)
 	. = ..()
 	MATTER_SYNTH(MATSYN_DRUGS, medicine, 15000)
 
-/obj/item/robot_module/robot/quad/medi/handle_special_module_init(mob/living/silicon/robot/R)
+obj/item/robot_module/robot/quad/medi/handle_special_module_init(mob/living/silicon/robot/R)
 	. = ..()
 	src.emag 	 = new /obj/item/dogborg/pounce(src) //Pounce
 

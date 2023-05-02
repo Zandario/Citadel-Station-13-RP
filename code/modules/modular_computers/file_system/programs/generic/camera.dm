@@ -1,5 +1,5 @@
 // Returns which access is relevant to passed network. Used by the program.
-/proc/get_camera_access(var/network)
+proc/get_camera_access(var/network)
 	if(!network)
 		return 0
 	. = GLOB.using_map.get_network_access(network)
@@ -21,7 +21,7 @@
 	else
 		return 999	//Inaccessible if not a station network and not mentioned above
 
-/datum/computer_file/program/camera_monitor
+datum/computer_file/program/camera_monitor
 	filename = "cammon"
 	filedesc = "Camera Monitoring"
 	tguimodule_path = /datum/tgui_module_old/camera/ntos
@@ -34,7 +34,7 @@
 	requires_ntnet = 1
 
 // ERT Variant of the program
-/datum/computer_file/program/camera_monitor/ert
+datum/computer_file/program/camera_monitor/ert
 	filename = "ntcammon"
 	filedesc = "Advanced Camera Monitoring"
 	extended_desc = "This program allows remote access to the camera system. Some camera networks may have additional access requirements. This version has an integrated database with additional encrypted keys."

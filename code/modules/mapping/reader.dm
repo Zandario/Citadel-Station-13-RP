@@ -9,19 +9,19 @@
  */
 #define SPACE_KEY "space"
 
-/datum/grid_set
+datum/grid_set
 	var/xcrd
 	var/ycrd
 	var/zcrd
 	var/gridLines
 
-/datum/grid_set/proc/height(key_len)
+datum/grid_set/proc/height(key_len)
 	return length(gridLines)
 
-/datum/grid_set/proc/width(key_len)
+datum/grid_set/proc/width(key_len)
 	return gridLines[1] / key_len
 
-/datum/parsed_map
+datum/parsed_map
 	var/original_path
 	var/key_len = 0
 	var/list/grid_models = list()
@@ -57,7 +57,7 @@
 /// - `no_changeturf`: When true, [turf/AfterChange] won't be called on loaded turfs
 /// - `x_lower`, `x_upper`, `y_lower`, `y_upper`: Coordinates (relative to the game world) to crop to (Optional).
 /// - `placeOnTop`: Whether to use [turf/PlaceOnTop] rather than [turf/ChangeTurf] (Optional).
-/proc/load_map(
+proc/load_map(
 	dmm_file as file,
 	x_offset as num,
 	y_offset as num,
@@ -85,10 +85,10 @@
   * WARNING: Crop function crops based on the tiles you'd see in the map editor. If you're planning to load it in in a different orientation later, you better have done the math.
   * It's recommended that you do not crop using this at all.
   */
-/datum/parsed_map/New(tfile, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, z_lower = -INFINITY, z_upper = INFINITY, measureOnly = FALSE)
+datum/parsed_map/New(tfile, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, z_lower = -INFINITY, z_upper = INFINITY, measureOnly = FALSE)
 	_parse(tfile, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, measureOnly)
 
-/datum/parsed_map/proc/_parse(tfile, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, measureOnly)
+datum/parsed_map/proc/_parse(tfile, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, measureOnly)
 	var/static/parsing = FALSE
 	UNTIL(!parsing)
 	// do not multithread this or bad things happen
@@ -96,7 +96,7 @@
 	_do_parse(tfile, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, measureOnly)
 	parsing = FALSE
 
-/datum/parsed_map/proc/_do_parse(tfile, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, measureOnly)
+datum/parsed_map/proc/_do_parse(tfile, x_lower, x_upper, y_lower, y_upper, z_lower, z_upper, measureOnly)
 	if(isfile(tfile))
 		original_path = "[tfile]"
 		tfile = file2text(tfile)
@@ -193,14 +193,14 @@
 		height = bounds[MAP_MAXY] - bounds[MAP_MINY] + 1
 	parsed_bounds = bounds
 
-/datum/parsed_map/Destroy()
+datum/parsed_map/Destroy()
 	if(template_host && template_host.cached_map == src)
 		template_host.cached_map = null
 	. = ..()
 	return QDEL_HINT_HARDDEL_NOW
 
 /// Load the parsed map into the world. See [/proc/load_map] for arguments.
-/datum/parsed_map/proc/load(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop, orientation, annihilate_tiles, datum/map_orientation_pattern/forced_pattern)
+datum/parsed_map/proc/load(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop, orientation, annihilate_tiles, datum/map_orientation_pattern/forced_pattern)
 	//How I wish for RAII
 	Master.StartLoadingMap()
 	. = _load_impl(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop, orientation, annihilate_tiles, forced_pattern)
@@ -208,7 +208,7 @@
 
 // Do not call except via load() above.
 // Lower/upper here refers to the actual map template's parsed coordinates, NOT ACTUAL COORDINATES! Figure it out yourself my head hurts too much to implement that too.
-/datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE, orientation = SOUTH, annihilate_tiles = FALSE, datum/map_orientation_pattern/forced_pattern)
+datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE, orientation = SOUTH, annihilate_tiles = FALSE, datum/map_orientation_pattern/forced_pattern)
 	var/list/areaCache = list()
 	var/list/modelCache = build_cache(no_changeturf)
 	var/space_key = modelCache[SPACE_KEY]
@@ -303,7 +303,7 @@
 
 	return TRUE
 
-/datum/parsed_map/proc/build_cache(no_changeturf, bad_paths=null)
+datum/parsed_map/proc/build_cache(no_changeturf, bad_paths=null)
 	if(modelCache && !bad_paths)
 		return modelCache
 	. = modelCache = list()
@@ -382,7 +382,7 @@
 
 		.[model_key] = list(members, members_attributes)
 
-/datum/parsed_map/proc/build_coordinate(list/areaCache, list/model, turf/crds, no_changeturf as num, placeOnTop as num, turn_angle as num, annihilate_tiles = FALSE, swap_xy, invert_y, invert_x)
+datum/parsed_map/proc/build_coordinate(list/areaCache, list/model, turf/crds, no_changeturf as num, placeOnTop as num, turn_angle as num, annihilate_tiles = FALSE, swap_xy, invert_y, invert_x)
 	var/index
 	var/list/members = model[1]
 	var/list/members_attributes = model[2]
@@ -444,7 +444,7 @@
 ////////////////
 
 //Instance an atom at (x,y,z) and gives it the variables in attributes
-/datum/parsed_map/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop, turn_angle = 0, swap_xy, invert_y, invert_x)
+datum/parsed_map/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop, turn_angle = 0, swap_xy, invert_y, invert_x)
 	world.preloader_setup(attributes, path, turn_angle, invert_x, invert_y, swap_xy)
 
 	if(crds)
@@ -467,13 +467,13 @@
 		stoplag()
 		SSatoms.map_loader_begin()
 
-/datum/parsed_map/proc/create_atom(path, crds)
+datum/parsed_map/proc/create_atom(path, crds)
 	set waitfor = FALSE
 	. = new path (crds)
 
 //text trimming (both directions) helper proc
 //optionally removes quotes before and after the text (for variable name)
-/datum/parsed_map/proc/trim_text(what as text,trim_quotes=0)
+datum/parsed_map/proc/trim_text(what as text,trim_quotes=0)
 	if(trim_quotes)
 		return trimQuotesRegex.Replace(what, "")
 	else
@@ -482,7 +482,7 @@
 
 //find the position of the next delimiter,skipping whatever is comprised between opening_escape and closing_escape
 //returns 0 if reached the last delimiter
-/datum/parsed_map/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
+datum/parsed_map/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
 	var/position = initial_position
 	var/next_delimiter = findtext(text,delimiter,position,0)
 	var/next_opening = findtext(text,opening_escape,position,0)
@@ -497,7 +497,7 @@
 
 //build a list from variables in text form (e.g {var1="derp"; var2; var3=7} => list(var1="derp", var2, var3=7))
 //return the filled list
-/datum/parsed_map/proc/readlist(text as text, delimiter=",")
+datum/parsed_map/proc/readlist(text as text, delimiter=",")
 	. = list()
 	if (!text)
 		return
@@ -527,7 +527,7 @@
 		else  // simple var
 			. += list(left_constant)
 
-/datum/parsed_map/proc/parse_constant(text)
+datum/parsed_map/proc/parse_constant(text)
 	// number
 	var/num = text2num(text)
 	if(isnum(num))
@@ -561,7 +561,7 @@
 	// fallback: string
 	return text
 
-/datum/parsed_map/vv_edit_var(var_name, var_value)
+datum/parsed_map/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, dmmRegex) || var_name == NAMEOF(src, trimQuotesRegex) || var_name == NAMEOF(src, trimRegex))
 		return FALSE
 	return ..()

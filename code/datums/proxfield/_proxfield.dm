@@ -5,7 +5,7 @@
  *
  * constructor: (parent, attach to (if not parent), ...) where ... is the rest of args in Init().
  */
-/datum/proxfield
+datum/proxfield
 	/// what we're attached to
 	VAR_PRIVATE/atom/attached
 	/// what we notify if it's not attached
@@ -15,13 +15,13 @@
 	/// do we work when attached isn't on a turf? if so, we use get_turf
 	var/scan_from_turf = TRUE
 
-/datum/proxfield/New(datum/parent, ...)
+datum/proxfield/New(datum/parent, ...)
 	ASSERT(parent)
 	src.parent = parent
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel)
 	Init(arglist(args.Copy(2)))
 
-/datum/proxfield/Destroy()
+datum/proxfield/Destroy()
 	Stop()
 	UnregisterSignal(parent, list(
 		COMSIG_PARENT_QDELETING
@@ -30,11 +30,11 @@
 	parent = null
 	return ..()
 
-/datum/proxfield/proc/Init()
+datum/proxfield/proc/Init()
 	SHOULD_CALL_PARENT(TRUE)
 	Start()
 
-/datum/proxfield/proc/Attach(atom/A)
+datum/proxfield/proc/Attach(atom/A)
 	if(attached == A)
 		return
 	if(attached)
@@ -55,23 +55,23 @@
 	RegisterSignal(attached, COMSIG_MOVABLE_MOVED, .proc/on_move)
 	RegisterSignal(attached, COMSIG_MOVABLE_Z_CHANGED, .proc/on_z_transit)
 
-/datum/proxfield/proc/on_move(datum/source, atom/movable/oldLoc, dir, forced)
+datum/proxfield/proc/on_move(datum/source, atom/movable/oldLoc, dir, forced)
 	SIGNAL_HANDLER
 
-/datum/proxfield/proc/on_z_transit(datum/source, old_z, new_z)
+datum/proxfield/proc/on_z_transit(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
 
-/datum/proxfield/proc/on_parent_qdel(datum/source)
+datum/proxfield/proc/on_parent_qdel(datum/source)
 	SIGNAL_HANDLER
 	if(QDELING(src) || QDELETED(src))
 		return
 	qdel(src)
 
-/datum/proxfield/proc/on_attached_qdel(datum/source)
+datum/proxfield/proc/on_attached_qdel(datum/source)
 	SIGNAL_HANDLER
 	Attach(null)
 
-/datum/proxfield/proc/Start()
+datum/proxfield/proc/Start()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(active)
 		Stop()
@@ -79,29 +79,29 @@
 	Build()
 	Update()
 
-/datum/proxfield/proc/Stop()
+datum/proxfield/proc/Stop()
 	if(!active)
 		return
 	active = FALSE
 	Teardown()
 
-/datum/proxfield/proc/Build()
+datum/proxfield/proc/Build()
 	return
 
-/datum/proxfield/proc/Teardown()
+datum/proxfield/proc/Teardown()
 	return
 
-/datum/proxfield/proc/Update()
+datum/proxfield/proc/Update()
 	return
 
-/datum/proxfield/proc/Anchor()
+datum/proxfield/proc/Anchor()
 	return scan_from_turf? get_turf(attached) : attached
 
-/datum/proxfield/proc/Detect(...)
+datum/proxfield/proc/Detect(...)
 
-/datum/proc/Proximity(datum/proxfield/field, ...)
+datum/proc/Proximity(datum/proxfield/field, ...)
 
-/atom/movable/proximity_checker
+atom/movable/proximity_checker
 	name = ""
 	icon = null
 	icon_state = ""
@@ -116,16 +116,16 @@
 	/// our proxfield
 	var/datum/proxfield/field
 
-/atom/movable/proximity_checker/Initialize(mapload, datum/proxfield/field)
+atom/movable/proximity_checker/Initialize(mapload, datum/proxfield/field)
 	src.field = field
 	return ..()
 
-/atom/movable/proximity_checker/Destroy()
+atom/movable/proximity_checker/Destroy()
 	field = null
 	return ..()
 
-/atom/movable/proximity_checker/CanPass(atom/movable/mover, turf/target)
+atom/movable/proximity_checker/CanPass(atom/movable/mover, turf/target)
 	return TRUE
 
-/atom/movable/proximity_checker/CanAtmosPass(turf/T, d)
+atom/movable/proximity_checker/CanAtmosPass(turf/T, d)
 	return TRUE

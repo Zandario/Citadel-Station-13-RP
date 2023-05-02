@@ -2,7 +2,7 @@
 // Parameters: 4 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received,
 //				  text - message text to send if message is of type "text")
 // Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response and IM function.
-/obj/item/communicator/receive_exonet_message(var/atom/origin_atom, origin_address, message, text)
+obj/item/communicator/receive_exonet_message(var/atom/origin_atom, origin_address, message, text)
 	if(message == "voice")
 		if(isobserver(origin_atom) || istype(origin_atom, /obj/item/communicator))
 			if(origin_atom in voice_invites)
@@ -27,7 +27,7 @@
 // Proc: receive_exonet_message()
 // Parameters: 3 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received)
 // Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response.
-/mob/observer/dead/receive_exonet_message(origin_atom, origin_address, message, text)
+mob/observer/dead/receive_exonet_message(origin_atom, origin_address, message, text)
 	if(message == "voice")
 		if(istype(origin_atom, /obj/item/communicator))
 			var/obj/item/communicator/comm = origin_atom
@@ -53,7 +53,7 @@
 // Parameters: 3 (candidate - the communicator wanting to message the device, origin_address - the address of the sender, text - the message)
 // Description: Response to a communicator trying to message the device.
 //				Adds them to the list of people that have messaged this device and adds the message to the message list.
-/obj/item/communicator/proc/request_im(var/atom/candidate, var/origin_address, var/text)
+obj/item/communicator/proc/request_im(var/atom/candidate, var/origin_address, var/text)
 	var/who = null
 	if(isobserver(candidate))
 		var/mob/observer/dead/ghost = candidate
@@ -94,7 +94,7 @@
 // Verb: text_communicator()
 // Parameters: None
 // Description: Allows a ghost to send a text message to a communicator.
-/mob/observer/dead/verb/text_communicator()
+mob/observer/dead/verb/text_communicator()
 	set category = "Ghost"
 	set name = "Text Communicator"
 	set desc = "If there is a communicator available, send a text message to it."
@@ -152,7 +152,7 @@
 // Verb: show_text_messages()
 // Parameters: None
 // Description: Lets ghosts review messages they've sent or received.
-/mob/observer/dead/verb/show_text_messages()
+mob/observer/dead/verb/show_text_messages()
 	set category = "Ghost"
 	set name = "Show Text Messages"
 	set desc = "Allows you to see exonet text messages you've sent and received."

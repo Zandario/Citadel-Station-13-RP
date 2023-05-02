@@ -1,4 +1,4 @@
-/mob/living/carbon
+mob/living/carbon
 	gender = MALE
 	throw_force = 10
 

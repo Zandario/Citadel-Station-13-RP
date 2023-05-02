@@ -1,4 +1,4 @@
-/datum/map_template
+datum/map_template
 	/// abstract type
 	abstract_type = /datum/map_template
 
@@ -30,7 +30,7 @@
 	/// Zlevel traits
 	var/list/ztraits
 
-/datum/map_template/New(path = null, rename = null)
+datum/map_template/New(path = null, rename = null)
 	if(path)
 		mappath = path
 	if(mappath)
@@ -38,7 +38,7 @@
 	if(rename)
 		name = rename
 
-/datum/map_template/proc/preload_size(path, orientation = SOUTH)
+datum/map_template/proc/preload_size(path, orientation = SOUTH)
 	var/bounds = maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
 	if(bounds)
 		if(orientation & (90 | 270))
@@ -49,7 +49,7 @@
 			height = bounds[MAP_MAXY]
 	return bounds
 
-/datum/map_template/proc/initTemplateBounds(var/list/bounds)
+datum/map_template/proc/initTemplateBounds(var/list/bounds)
 	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
 		return	// Let proper initialisation handle it later
 
@@ -95,7 +95,7 @@
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = SOUTH, list/traits = src.ztraits || list(ZTRAIT_AWAY = TRUE))
+datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = SOUTH, list/traits = src.ztraits || list(ZTRAIT_AWAY = TRUE))
 	var/x = 1
 	var/y = 1
 
@@ -116,7 +116,7 @@
 	on_map_loaded(world.maxz)
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH)
+datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH)
 	var/old_T = T
 	if(centered)
 		T = locate(T.x - round(((orientation & NORTH|SOUTH) ? width : height)/2) , T.y - round(((orientation & NORTH|SOUTH) ? height : width)/2) , T.z)
@@ -145,7 +145,7 @@
 	loaded++
 	return TRUE
 
-/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE, orientation = SOUTH)
+datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE, orientation = SOUTH)
 	var/turf/placement = T
 	if(centered)
 		var/turf/corner = locate(placement.x - round(((orientation & NORTH|SOUTH) ? width : height)/2), placement.y - round(((orientation & NORTH|SOUTH) ? height : width)/2), placement.z)
@@ -153,7 +153,7 @@
 			placement = corner
 	return block(placement, locate(placement.x+((orientation & NORTH|SOUTH) ? width : height)-1, placement.y+((orientation & NORTH|SOUTH) ? height : width)-1, placement.z))
 
-/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = SOUTH)
+datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = SOUTH)
 	var/deleted_atoms = 0
 	log_debug(SPAN_DEBUG("Annihilating objects in submap loading locatation."))
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
@@ -167,12 +167,12 @@
 
 // For your ever biggening badminnery kevinz000
 // ❤ - Cyberboss
-/proc/load_new_z_level(var/file, var/name, var/orientation = SOUTH)
+proc/load_new_z_level(var/file, var/name, var/orientation = SOUTH)
 	var/datum/map_template/template = new(file, name)
 	template.load_new_z(orientation)
 
 // Very similar to the /tg/ version.
-/proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
+proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
 	set background = TRUE
 
 	if(!z_levels || !z_levels.len)

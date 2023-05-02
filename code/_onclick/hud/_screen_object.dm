@@ -6,7 +6,7 @@
 	They are used with the client/screen list and the screen_loc var.
 	For more information, see the byond documentation on the screen_loc and screen vars.
 */
-/atom/movable/screen
+atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
 	appearance_flags = PIXEL_SCALE | NO_CLIENT_COLOR
@@ -15,11 +15,11 @@
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
-/atom/movable/screen/Destroy()
+atom/movable/screen/Destroy()
 	master = null
 	return ..()
 
-/atom/movable/screen/text
+atom/movable/screen/text
 	icon = null
 	icon_state = null
 	mouse_opacity = 0
@@ -27,10 +27,10 @@
 	maptext_height = 480
 	maptext_width = 480
 
-/atom/movable/screen/close
+atom/movable/screen/close
 	name = "close"
 
-/atom/movable/screen/close/Click()
+atom/movable/screen/close/Click()
 	if(master)
 		if(istype(master, /obj/item/storage))
 			var/obj/item/storage/S = master
@@ -38,14 +38,14 @@
 	return 1
 
 
-/atom/movable/screen/item_action
+atom/movable/screen/item_action
 	var/obj/item/owner
 
-/atom/movable/screen/item_action/Destroy()
+atom/movable/screen/item_action/Destroy()
 	. = ..()
 	owner = null
 
-/atom/movable/screen/item_action/Click()
+atom/movable/screen/item_action/Click()
 	if(!usr || !owner)
 		return 1
 	if(!usr.canClick())
@@ -60,25 +60,25 @@
 	owner.ui_action_click()
 	return 1
 
-/atom/movable/screen/grab
+atom/movable/screen/grab
 	name = "grab"
 
-/atom/movable/screen/grab/Click()
+atom/movable/screen/grab/Click()
 	var/obj/item/grab/G = master
 	G.s_click(src)
 	return 1
 
-/atom/movable/screen/grab/attack_hand(mob/user, list/params)
+atom/movable/screen/grab/attack_hand(mob/user, list/params)
 	return
 
-/atom/movable/screen/grab/attackby()
+atom/movable/screen/grab/attackby()
 	return
 
 
-/atom/movable/screen/storage
+atom/movable/screen/storage
 	name = "storage"
 
-/atom/movable/screen/storage/Click()
+atom/movable/screen/storage/Click()
 	if(!usr.canClick())
 		return 1
 	if(!CHECK_MOBILITY(usr, MOBILITY_CAN_STORAGE))
@@ -91,13 +91,13 @@
 			usr.ClickOn(master)
 	return 1
 
-/atom/movable/screen/zone_sel
+atom/movable/screen/zone_sel
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/selecting = BP_TORSO
 
-/atom/movable/screen/zone_sel/Click(location, control,params)
+atom/movable/screen/zone_sel/Click(location, control,params)
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
@@ -158,28 +158,28 @@
 		update_icon()
 	return 1
 
-/atom/movable/screen/zone_sel/proc/set_selected_zone(bodypart)
+atom/movable/screen/zone_sel/proc/set_selected_zone(bodypart)
 	var/old_selecting = selecting
 	selecting = bodypart
 	if(old_selecting != selecting)
 		update_icon()
 
-/atom/movable/screen/zone_sel/update_icon()
+atom/movable/screen/zone_sel/update_icon()
 	cut_overlays()
 	add_overlay(image('icons/mob/zone_sel.dmi', "[selecting]"))
 
 /// The UI Button to open the TGUI Crafting Menu
-/atom/movable/screen/craft
+atom/movable/screen/craft
 	name = "crafting menu"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "craft"
 	screen_loc = ui_smallquad
 
-/atom/movable/screen/craft/Click(location, control, params)
+atom/movable/screen/craft/Click(location, control, params)
 	var/datum/component/personal_crafting/C = usr.GetComponent(/datum/component/personal_crafting)
 	C?.ui_interact(usr)
 
-/atom/movable/screen/Click(location, control, params)
+atom/movable/screen/Click(location, control, params)
 	..() //Why the FUCK was this not called before
 	if(!usr)
 		return TRUE
@@ -461,7 +461,7 @@
 
 //! ## VR FILE MERGE ## !//
 
-/atom/movable/screen/proc/Click_vr(location, control, params)
+atom/movable/screen/proc/Click_vr(location, control, params)
 	if(!usr)	return 1
 	switch(name)
 
@@ -517,18 +517,18 @@
 
 
 // Character setup stuff
-/atom/movable/screen/setup_preview
+atom/movable/screen/setup_preview
 
 	var/datum/preferences/pref
 
-/atom/movable/screen/setup_preview/Destroy()
+atom/movable/screen/setup_preview/Destroy()
 	pref = null
 	return ..()
 
 // Background 'floor'
-/atom/movable/screen/setup_preview/bg
+atom/movable/screen/setup_preview/bg
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
-/atom/movable/screen/setup_preview/bg/Click(params)
+atom/movable/screen/setup_preview/bg/Click(params)
 	pref?.bgstate = next_list_item(pref.bgstate, pref.bgstate_options)
 	pref?.update_preview_icon()

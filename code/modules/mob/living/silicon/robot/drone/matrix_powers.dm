@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/drone/verb/view_matrix_info()
+mob/living/silicon/robot/drone/verb/view_matrix_info()
 	set name = "View Matrix Info"
 	set desc = "View various information regarding the status of your assigned matrix."
 	set category = "Matrix"
@@ -45,7 +45,7 @@
 	matrix_win.set_content(dat)
 	matrix_win.open()
 
-/mob/living/silicon/robot/drone/verb/view_own_matrix_upgrades()
+mob/living/silicon/robot/drone/verb/view_own_matrix_upgrades()
 	set name = "View Own Matrix Upgrades"
 	set desc = "View the matrix upgrades applied to your own chassis."
 	set category = "Matrix"
@@ -56,7 +56,7 @@
 
 	to_chat(src, SPAN_NOTICE("Matrix upgrades active on chassis: [english_list(matrix_upgrades)]"))
 
-/mob/living/silicon/robot/drone/construction/matriarch/verb/select_matrix_upgrades()
+mob/living/silicon/robot/drone/construction/matriarch/verb/select_matrix_upgrades()
 	set name = "Select Matrix Upgrades"
 	set desc = "Select the upgrades to apply to the drones within your matrix."
 	set category = "Matrix"

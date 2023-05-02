@@ -1,5 +1,5 @@
 // Helper tool to see fishing probabilities with different setups
-/datum/admins/proc/fishing_calculator()
+datum/admins/proc/fishing_calculator()
 	set name = "Fishing Calculator"
 	set category = "Debug"
 
@@ -8,36 +8,36 @@
 
 	owner.open_fishing_calculator()
 
-/client/proc/open_fishing_calculator()
+client/proc/open_fishing_calculator()
 	var/datum/fishing_calculator/ui = new
 	ui.ui_interact(mob)
 
-/datum/fishing_calculator
+datum/fishing_calculator
 	var/list/current_table
 
-/datum/fishing_calculator/ui_interact(mob/user, datum/tgui/ui)
+datum/fishing_calculator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "FishingCalculator")
 		ui.open()
 
-/datum/fishing_calculator/ui_state(mob/user)
+datum/fishing_calculator/ui_state(mob/user)
 	return GLOB.always_state
 
-/datum/fishing_calculator/ui_close(mob/user)
+datum/fishing_calculator/ui_close(mob/user)
 	qdel(src)
 
-/datum/fishing_calculator/ui_static_data(mob/user)
+datum/fishing_calculator/ui_static_data(mob/user)
 	. = ..()
 	.["rod_types"] = typesof(/obj/item/fishing_rod)
 	.["hook_types"] = typesof(/obj/item/fishing_hook)
 	.["line_types"] = typesof(/obj/item/fishing_line)
 	.["spot_types"] = subtypesof(/datum/fish_source)
 
-/datum/fishing_calculator/ui_data(mob/user)
+datum/fishing_calculator/ui_data(mob/user)
 	return list("info" = current_table)
 
-/datum/fishing_calculator/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+datum/fishing_calculator/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	var/mob/user = usr
 	switch(action)

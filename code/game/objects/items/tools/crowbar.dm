@@ -2,7 +2,7 @@
  * Crowbar
  */
 
-/obj/item/tool/crowbar
+obj/item/tool/crowbar
 	name = "crowbar"
 	desc = "Used to remove floors and to pry open doors."
 	icon = 'icons/obj/tools.dmi'
@@ -23,26 +23,26 @@
 	pickup_sound = 'sound/items/pickup/crowbar.ogg'
 	tool_speed = 1
 
-/obj/item/tool/crowbar/red
+obj/item/tool/crowbar/red
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar_red"
 	item_state = "crowbar_red"
 
-/obj/item/tool/crowbar/bone
+obj/item/tool/crowbar/bone
 	name = "primitive crowbar"
 	desc = "A sturdy, carved bone used to remove floors and to pry open doors."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar_bone"
 	tool_speed = 1.25
 
-/obj/item/tool/crowbar/brass
+obj/item/tool/crowbar/brass
 	name = "brass crowbar"
 	desc = "An etched piece of brass plated metal, used to remove floors and to pry open doors."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar_brass"
 	tool_speed = 0.75
 
-/datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar
+datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar
 	name = "Precursor Alpha Object - Hard Light Pry Tool"
 	desc = "An object which bears striking resemblence to the common crowbar. \
 	It appears to also serve a similar purpose, being used for prying. Unlike \
@@ -55,7 +55,7 @@
 	the tool aligned while in use."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/tool/crowbar/alien
+obj/item/tool/crowbar/alien
 	name = "alien crowbar"
 	desc = "A hard-light crowbar. It appears to pry by itself, without any effort required."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar)
@@ -65,7 +65,7 @@
 	tool_speed = 0.1
 	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 4)
 
-/obj/item/tool/crowbar/hybrid
+obj/item/tool/crowbar/hybrid
 	name = "strange crowbar"
 	desc = "A crowbar whose head seems to phase in and out of view."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar)
@@ -75,20 +75,20 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 3)
 	reach = 2
 
-/obj/item/tool/crowbar/cyborg
+obj/item/tool/crowbar/cyborg
 	name = "hydraulic crowbar"
 	desc = "A hydraulic prying tool, compact but powerful. Designed to replace crowbars in industrial synthetics."
 	tool_sound = 'sound/items/jaws_pry.ogg'
 	damage_force = 10
 	tool_speed = 0.5
 
-/obj/item/tool/crowbar/RIGset
+obj/item/tool/crowbar/RIGset
 	name = "integrated prybar"
 	desc = "If you're seeing this, someone did a dum-dum."
 	tool_sound = 'sound/items/jaws_pry.ogg'
 	tool_speed = 0.7
 
-/obj/item/tool/crowbar/power
+obj/item/tool/crowbar/power
 	name = "jaws of life"
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a prying head."
 	icon_state = "jaws_pry"
@@ -100,19 +100,19 @@
 	tool_speed = 0.25
 	var/obj/item/tool/wirecutters/power/counterpart = null
 
-/obj/item/tool/crowbar/power/Initialize(mapload, no_counterpart = TRUE)
+obj/item/tool/crowbar/power/Initialize(mapload, no_counterpart = TRUE)
 	. = ..()
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src
 
-/obj/item/tool/crowbar/power/Destroy()
+obj/item/tool/crowbar/power/Destroy()
 	if(counterpart)
 		counterpart.counterpart = null // So it can qdel cleanly.
 		QDEL_NULL(counterpart)
 	return ..()
 
-/obj/item/tool/crowbar/power/attack_self(mob/user)
+obj/item/tool/crowbar/power/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -127,7 +127,7 @@
  * Prybar
  */
 
-/obj/item/tool/prybar
+obj/item/tool/prybar
 	name = "pry bar"
 	desc = "A steel bar with a wedge, designed specifically for opening unpowered doors in an emergency. It comes in a variety of configurations - collect them all!"
 	icon = 'icons/obj/tools_vr.dmi'
@@ -145,17 +145,17 @@
 	tool_speed = 1
 	var/random_color = TRUE
 
-/obj/item/tool/prybar/red
+obj/item/tool/prybar/red
 	icon_state = "prybar_red"
 	item_state = "crowbar_red"
 	random_color = FALSE
 
-/obj/item/tool/prybar/Initialize(mapload)
+obj/item/tool/prybar/Initialize(mapload)
 	. = ..()
 	if(random_color)
 		icon_state = "prybar[pick("","_green","_aubergine","_blue")]"
 
-/obj/item/tool/crowbar/crystal
+obj/item/tool/crowbar/crystal
 	name = "crystalline prytool"
 	desc = "A crystalline prying tool of an alien make."
 	icon_state = "crystal_crowbar"
@@ -164,7 +164,7 @@
 	matter = list(MATERIAL_CRYSTAL = 1250)
 	tool_speed = 0.2
 
-/obj/item/tool/crowbar/crystal/Initialize()
+obj/item/tool/crowbar/crystal/Initialize()
 	. = ..()
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)

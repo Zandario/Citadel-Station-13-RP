@@ -1,5 +1,5 @@
 // Etc UI-only vars
-/obj/item/communicator
+obj/item/communicator
 	// Stuff for moving cameras
 	var/turf/last_camera_turf
 	// Stuff needed to render the map
@@ -13,7 +13,7 @@
 // Proc: setup_tgui_camera()
 // Parameters: None
 // Description: This sets up all of the variables above to handle in-UI map windows.
-/obj/item/communicator/proc/setup_tgui_camera()
+obj/item/communicator/proc/setup_tgui_camera()
 	map_name = "communicator_[REF(src)]_map"
 
 	// Initialize map objects
@@ -40,7 +40,7 @@
 // Proc: update_active_camera_screen()
 // Parameters: None
 // Description: This refreshes the camera location
-/obj/item/communicator/proc/update_active_camera_screen()
+obj/item/communicator/proc/update_active_camera_screen()
 	if(!video_source?.can_use())
 		show_static()
 		return
@@ -78,7 +78,7 @@
 
 	parallax.Update(TRUE)
 
-/obj/item/communicator/proc/show_static()
+obj/item/communicator/proc/show_static()
 	cam_screen.vis_contents.Cut()
 	cam_background.icon_state = "scanline2"
 	cam_background.fill_rect(1, 1, (video_range * 2), (video_range * 2))
@@ -86,13 +86,13 @@
 // Proc: ui_state()
 // Parameters: User
 // Description: This tells TGUI to only allow us to be interacted with while in a mob inventory.
-/obj/item/communicator/ui_state(mob/user, datum/tgui_module/module)
+obj/item/communicator/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
 // Proc: ui_interact()
 // Parameters: User, UI, Parent UI
 // Description: This proc handles opening the UI. It's basically just a standard stub.
-/obj/item/communicator/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/ui_state/custom_state)
+obj/item/communicator/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/ui_state/custom_state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	// Update the camera every SStgui tick in case it moves
 	update_active_camera_screen()
@@ -111,14 +111,14 @@
 	if(custom_state) // Just in case
 		ui.set_state(custom_state)
 
-/obj/item/communicator/ui_close(mob/user, datum/tgui_module/module)
+obj/item/communicator/ui_close(mob/user, datum/tgui_module/module)
 	. = ..()
 	parallax.Remove(user.client)
 
 // Proc: ui_data()
 // Parameters: User, UI, State
 // Description: Uses a bunch of for loops to turn lists into lists of lists, so they can be displayed in nanoUI, then displays various buttons to the user.
-/obj/item/communicator/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/communicator/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	// this is the data which will be sent to the ui
 	var/list/data = list()						//General nanoUI information
 	var/list/communicators = list()			    //List of communicators
@@ -298,7 +298,7 @@
 // Proc: ui_static_data()
 // Parameters: User, UI, State
 // Description: Just like ui_data, except it only gets called once when the user opens the UI, not every tick.
-/obj/item/communicator/ui_static_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/item/communicator/ui_static_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	// Update manifest'
 	if(data_core)
@@ -310,7 +310,7 @@
 // Proc: tgui-act()
 // Parameters: 4 (standard ui_act arguments)
 // Description: Responds to UI button presses.
-/obj/item/communicator/ui_act(action, list/params, datum/tgui/ui)
+obj/item/communicator/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 

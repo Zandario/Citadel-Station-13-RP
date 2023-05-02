@@ -1,4 +1,4 @@
-/obj/mecha/combat/reticent
+obj/mecha/combat/reticent
 	name = "Reticent"
 	desc = "Designed in response to the H.O.N.K., Reticent models are close combat powerhouses designed to rapidly and quietly ambush slower foes."
 	icon_state = "reticent"
@@ -37,7 +37,7 @@
 	stomp_sound = 'sound/effects/suitstep1.ogg'
 	swivel_sound = 'sound/effects/suitstep2.ogg'
 
-/obj/mecha/combat/reticent/reticence
+obj/mecha/combat/reticent/reticence
 	name = "Reticence"
 	desc = "The current flagship mecha of Le Rien. The Reticence trades some speed for durability, but remains formidable. It is not commercially available."
 	icon_state = "reticence"
@@ -65,7 +65,7 @@
 		/obj/item/mecha_parts/mecha_equipment/cloak
 		)
 
-/obj/mecha/combat/reticent/reticence/add_cell(var/obj/item/cell/C=null)
+obj/mecha/combat/reticent/reticence/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C

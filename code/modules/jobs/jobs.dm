@@ -57,10 +57,10 @@ var/const/ENTERTAINER		=(1<<14)
 var/const/TRADER			=(1<<15)
 
 
-/proc/guest_jobbans(job)
+proc/guest_jobbans(job)
 	return ( (job in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY)) )
 
-/proc/get_job_datums()
+proc/get_job_datums()
 	var/list/occupations = list()
 	var/list/all_jobs = typesof(/datum/role/job)
 
@@ -71,7 +71,7 @@ var/const/TRADER			=(1<<15)
 
 	return occupations
 
-/proc/get_alternate_titles(var/job)
+proc/get_alternate_titles(var/job)
 	var/list/jobs = get_job_datums()
 	var/list/titles = list()
 

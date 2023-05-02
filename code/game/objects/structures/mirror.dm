@@ -1,5 +1,5 @@
 //wip wip wup
-/obj/structure/mirror
+obj/structure/mirror
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
@@ -10,7 +10,7 @@
 	var/list/ui_users = list()
 	var/glass = 1
 
-/obj/structure/mirror/Initialize(mapload, dir, building = FALSE, mob/user)
+obj/structure/mirror/Initialize(mapload, dir, building = FALSE, mob/user)
 	. = ..()
 	if(building)
 		glass = 0
@@ -18,7 +18,7 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -28 : 28)
 		pixel_y = (dir & 3)? (dir == 1 ? -30 : 30) : 0
 
-/obj/structure/mirror/attack_hand(mob/user, list/params)
+obj/structure/mirror/attack_hand(mob/user, list/params)
 	if(!glass) return
 	if(shattered)	return
 
@@ -30,7 +30,7 @@
 			ui_users[user] = AC
 		AC.nano_ui_interact(user)
 
-/obj/structure/mirror/proc/shatter()
+obj/structure/mirror/proc/shatter()
 	if(!glass) return
 	if(shattered)	return
 	shattered = 1
@@ -39,7 +39,7 @@
 	desc = "Oh no, seven years of bad luck!"
 
 
-/obj/structure/mirror/bullet_act(var/obj/projectile/Proj)
+obj/structure/mirror/bullet_act(var/obj/projectile/Proj)
 
 	if(prob(Proj.get_structure_damage() * 2))
 		if(!shattered)
@@ -48,7 +48,7 @@
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 	..()
 
-/obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
+obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_wrench())
 		if(!glass)
 			playsound(src.loc, I.tool_sound, 50, 1)
@@ -99,7 +99,7 @@
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
 
-/obj/structure/mirror/attack_generic(var/mob/user, var/damage)
+obj/structure/mirror/attack_generic(var/mob/user, var/damage)
 
 	user.do_attack_animation(src)
 	if(shattered && glass)
@@ -115,14 +115,14 @@
 	return 1
 
 /// TODO: retype this one, I dont wanna touch maps in a Whitelist rework
-/obj/structure/mirror/raider
+obj/structure/mirror/raider
 	name = "cracked mirror"
 	desc = "Oh no, seven years of bad luck!"
 	icon_state = "mirror_broke"
 	shattered = 1
 
 //Long mirrors.
-/obj/structure/mirror/long
+obj/structure/mirror/long
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
@@ -130,7 +130,7 @@
 	density = 0
 	anchored = 1
 
-/obj/structure/mirror/long/left
+obj/structure/mirror/long/left
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
@@ -138,7 +138,7 @@
 	density = 0
 	anchored = 1
 
-/obj/structure/mirror/long/right
+obj/structure/mirror/long/right
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
@@ -147,7 +147,7 @@
 	anchored = 1
 
 //Shattered versions.
-/obj/structure/mirror/long/broke
+obj/structure/mirror/long/broke
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
@@ -156,7 +156,7 @@
 	anchored = 1
 	shattered = 1
 
-/obj/structure/mirror/long/left_broke
+obj/structure/mirror/long/left_broke
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
@@ -165,7 +165,7 @@
 	anchored = 1
 	shattered = 1
 
-/obj/structure/mirror/long/right_broke
+obj/structure/mirror/long/right_broke
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'

@@ -1,5 +1,5 @@
 //general stuff
-/proc/sanitize_integer(number, min=0, max=1, default=0)
+proc/sanitize_integer(number, min=0, max=1, default=0)
 	if(isnum(number))
 		number = round(number)
 		if(min <= number && number <= max)
@@ -8,7 +8,7 @@
 
 
 //more specialised stuff
-/proc/sanitize_gender(gender,neuter=0,plural=1, default="male")
+proc/sanitize_gender(gender,neuter=0,plural=1, default="male")
 	switch(gender)
 		if(MALE, FEMALE)
 			return gender
@@ -24,7 +24,7 @@
 				return default
 	return default
 
-/proc/sanitize_hexcolor(color, desired_format=3, include_crunch=0, default)
+proc/sanitize_hexcolor(color, desired_format=3, include_crunch=0, default)
 	var/crunch = include_crunch ? "#" : ""
 	if(!istext(color))
 		color = ""
@@ -58,4 +58,3 @@
 		return crunch + repeat_string(desired_format, "0")
 
 	return crunch + .
-

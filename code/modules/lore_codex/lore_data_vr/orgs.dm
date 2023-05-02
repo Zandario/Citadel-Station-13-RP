@@ -1,9 +1,9 @@
 // Pulls data from organizations data
-/datum/lore/codex/category/auto_org
+datum/lore/codex/category/auto_org
 	var/desired_type = null
 	var/auto_keywords = list()
 
-/datum/lore/codex/category/auto_org/New(var/new_holder, var/new_parent)
+datum/lore/codex/category/auto_org/New(var/new_holder, var/new_parent)
 	..(new_holder, new_parent)
 	keywords += auto_keywords
 	for(var/path in GLOB.loremaster.organizations)
@@ -20,20 +20,20 @@
 		P.data = O.desc
 		children.Add(P)
 
-/datum/lore/codex/category/auto_org/tsc
+datum/lore/codex/category/auto_org/tsc
 	name = "Trans-Stellar Corporations"
 	auto_keywords = list("TSC","TSCs","Trans-Stellar","Trans-Stellar Corporation")
 	data = "By definition, TSCs are companies which span multiple star systems, however the term is generally reserved for \
 	the biggest and most influential of them all.  Some people also categorize the different TSCs into 'major' and 'minor' TSCs."
 	desired_type = /datum/lore/organization/tsc
 
-/datum/lore/codex/category/auto_org/gov
+datum/lore/codex/category/auto_org/gov
 	name = "Governments"
 	auto_keywords = list("Gov","Government","Governments")
 	desired_type = /datum/lore/organization/gov
 
 
-/datum/lore/codex/category/auto_org/mil
+datum/lore/codex/category/auto_org/mil
 	name = "Militaries"
 	auto_keywords = list("Mil","Military", "Militaries")
 	desired_type = /datum/lore/organization/mil

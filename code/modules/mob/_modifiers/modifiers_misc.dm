@@ -40,7 +40,7 @@ the artifact triggers the rage.
 
 */
 
-/datum/modifier/berserk
+datum/modifier/berserk
 	name = "berserk"
 	desc = "You are filled with an overwhelming rage."
 	client_color = "#FF5555" // Make everything red!
@@ -71,17 +71,17 @@ the artifact triggers the rage.
 
 
 // For changelings.
-/datum/modifier/berserk/changeling
+datum/modifier/berserk/changeling
 	on_created_text = "<span class='critical'>We feel an intense and overwhelming rage overtake us as we go berserk!</span>"
 	on_expired_text = "<span class='notice'>The blaze of rage inside us has ran out.</span>"
 
 // For changelings who bought the Recursive Enhancement evolution.
-/datum/modifier/berserk/changeling/recursive
+datum/modifier/berserk/changeling/recursive
 	exhaustion_duration = 1 MINUTE
 	nutrition_cost = 75
 
 
-/datum/modifier/berserk/on_applied()
+datum/modifier/berserk/on_applied()
 	if(ishuman(holder)) // Most other mobs don't really use nutrition and can't get it back.
 		holder.nutrition = max(0, holder.nutrition - nutrition_cost)
 	holder.visible_message("<span class='critical'>\The [holder] descends into an all consuming rage!</span>")
@@ -100,7 +100,7 @@ the artifact triggers the rage.
 		last_shock_stage = H.shock_stage
 		H.shock_stage = 0
 
-/datum/modifier/berserk/on_expire()
+datum/modifier/berserk/on_expire()
 	if(exhaustion_duration > 0 && holder.stat != DEAD)
 		holder.add_modifier(/datum/modifier/berserk_exhaustion, exhaustion_duration)
 
@@ -112,7 +112,7 @@ the artifact triggers the rage.
 			var/mob/living/carbon/human/H = holder
 			H.shock_stage = last_shock_stage
 
-/datum/modifier/berserk/can_apply(var/mob/living/L)
+datum/modifier/berserk/can_apply(var/mob/living/L)
 	if(L.stat)
 		to_chat(L, "<span class='warning'>You can't be unconscious or dead to berserk.</span>")
 		return FALSE // It would be weird to see a dead body get angry all of a sudden.
@@ -140,13 +140,13 @@ the artifact triggers the rage.
 
 	return ..()
 
-/datum/modifier/berserk/tick()
+datum/modifier/berserk/tick()
 	if(holder.stat == DEAD)
 		expire(silent = TRUE)
 
 
 // Applied when berserk expires. Acts as a downside as well as the cooldown for berserk.
-/datum/modifier/berserk_exhaustion
+datum/modifier/berserk_exhaustion
 	name = "exhaustion"
 	desc = "You recently exerted yourself extremely hard, and need a rest."
 
@@ -160,13 +160,13 @@ the artifact triggers the rage.
 	disable_duration_percent = 1.5
 	evasion = -30
 
-/datum/modifier/berserk_exhaustion/on_applied()
+datum/modifier/berserk_exhaustion/on_applied()
 	holder.visible_message("<span class='warning'>\The [holder] looks exhausted.</span>")
 
 
 // Synth version with no benefits due to a loss of focus inside a metal shell, which can't be pushed harder just be being mad.
 // Fortunately there is no exhaustion or nutrition cost.
-/datum/modifier/berserk_synthetic
+datum/modifier/berserk_synthetic
 	name = "recklessness"
 	desc = "You are filled with an overwhelming rage, however your metal shell prevents taking advantage of this."
 	client_color = "#FF0000" // Make everything red!
@@ -183,7 +183,7 @@ the artifact triggers the rage.
 	evasion = -45				// Too angry to dodge.
 
 // Speedy, but not hasted.
-/datum/modifier/sprinting
+datum/modifier/sprinting
 	name = "sprinting"
 	desc = "You are filled with energy!"
 
@@ -195,7 +195,7 @@ the artifact triggers the rage.
 	disable_duration_percent = 0.8
 
 // Speedy, but not berserked.
-/datum/modifier/melee_surge
+datum/modifier/melee_surge
 	name = "melee surge"
 	desc = "You are filled with energy!"
 
@@ -209,7 +209,7 @@ the artifact triggers the rage.
 
 // Non-cult version of deep wounds.
 // Surprisingly, more dangerous.
-/datum/modifier/grievous_wounds
+datum/modifier/grievous_wounds
 	name = "grievous wounds"
 	desc = "Your wounds are not easily mended."
 
@@ -228,7 +228,7 @@ the artifact triggers the rage.
 
 // Ignition, but confined to the modifier system.
 // This makes it more predictable and thus, easier to balance.
-/datum/modifier/fire
+datum/modifier/fire
 	name = "on fire"
 	desc = "You are on fire! You will be harmed until the fire goes out or you extinguish it with water."
 	mob_overlay_state = "on_fire"
@@ -238,17 +238,17 @@ the artifact triggers the rage.
 	stacks = MODIFIER_STACK_ALLOWED // Multiple instances will hurt a lot.
 	var/damage_per_tick = 5
 
-/datum/modifier/fire/intense
+datum/modifier/fire/intense
 	mob_overlay_state = "on_fire_intense"
 	damage_per_tick = 10
 
-/datum/modifier/fire/tick()
+datum/modifier/fire/tick()
 	holder.inflict_heat_damage(damage_per_tick)
 
 
 // Applied when near something very cold.
 // Reduces mobility, attack speed.
-/datum/modifier/chilled
+datum/modifier/chilled
 	name = "chilled"
 	desc = "You feel yourself freezing up. Its hard to move."
 	mob_overlay_state = "chilled"
@@ -266,7 +266,7 @@ the artifact triggers the rage.
 // Similar to being on fire, except poison tends to be more long term.
 // Antitoxins will remove stacks over time.
 // Synthetics can't receive this.
-/datum/modifier/poisoned
+datum/modifier/poisoned
 	name = "poisoned"
 	desc = "You have poison inside of you. It will cause harm over a long span of time if not cured."
 	mob_overlay_state = "poisoned"
@@ -276,40 +276,40 @@ the artifact triggers the rage.
 	stacks = MODIFIER_STACK_ALLOWED // Multiple instances will hurt a lot.
 	var/damage_per_tick = 1
 
-/datum/modifier/poisoned/weak
+datum/modifier/poisoned/weak
 	damage_per_tick = 0.5
 
-/datum/modifier/poisoned/strong
+datum/modifier/poisoned/strong
 	damage_per_tick = 2
 
-/datum/modifier/poisoned/tick()
+datum/modifier/poisoned/tick()
 	if(holder.stat == DEAD)
 		expire(silent = TRUE)
 	holder.inflict_poison_damage(damage_per_tick)
 
-/datum/modifier/poisoned/can_apply(mob/living/L)
+datum/modifier/poisoned/can_apply(mob/living/L)
 	if(L.isSynthetic())
 		return FALSE
 	if(L.get_poison_protection() >= 1)
 		return FALSE
 	return TRUE
 
-/datum/modifier/poisoned/paralysis
+datum/modifier/poisoned/paralysis
 	desc = "You have poison inside of you. It will cause harm over a long span of time if not cured, and may cause temporary paralysis."
 	on_created_text = "<span class='warning'>You feel incredibly weak...</span>"
 	damage_per_tick = 0.75
 
-/datum/modifier/poisoned/paralysis/tick()
+datum/modifier/poisoned/paralysis/tick()
 	..()
 	if(prob(5))
 		holder.afflict_unconscious(20 * 3)
 
-/datum/modifier/poisoned/paralysis/on_applied()
+datum/modifier/poisoned/paralysis/on_applied()
 	..()
 	holder.afflict_unconscious(20 * 4)
 
 // Pulse modifier.
-/datum/modifier/false_pulse
+datum/modifier/false_pulse
 	name = "false pulse"
 	desc = "Your blood flows, despite all other factors."
 
@@ -319,7 +319,7 @@ the artifact triggers the rage.
 
 	pulse_set_level = PULSE_NORM
 
-/datum/modifier/slow_pulse
+datum/modifier/slow_pulse
 	name = "slow pulse"
 	desc = "Your blood flows slower."
 
@@ -332,7 +332,7 @@ the artifact triggers the rage.
 	pulse_modifier = -1
 
 // Temperature Normalizer.
-/datum/modifier/homeothermic
+datum/modifier/homeothermic
 	name = "temperature resistance"
 	desc = "Your body normalizes to room temperature."
 
@@ -340,11 +340,11 @@ the artifact triggers the rage.
 	on_expired_text = "<span class='notice'>You feel.. still probably comfortable.</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/homeothermic/tick()
+datum/modifier/homeothermic/tick()
 	..()
 	holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)
 
-/datum/modifier/synthcooling // a version of the above for synths to maintain temperature
+datum/modifier/synthcooling // a version of the above for synths to maintain temperature
 	name = "synthetic cooling"
 	desc = "You expend energy to cool your systems."
 
@@ -352,6 +352,6 @@ the artifact triggers the rage.
 	on_expired_text = "<span class='notice' face='fixedsys'>Cooling systems recharging. . .</span>"
 	stacks = MODIFIER_STACK_EXTEND
 
-/datum/modifier/synthcooling/tick()
+datum/modifier/synthcooling/tick()
 	..()
 	holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)

@@ -4,7 +4,7 @@
 
 // #define EMPDEBUG 10
 
-/proc/empulse(turf/epicenter, first_range, second_range, third_range, fourth_range, log = FALSE)
+proc/empulse(turf/epicenter, first_range, second_range, third_range, fourth_range, log = FALSE)
 	if(!epicenter)
 		return
 

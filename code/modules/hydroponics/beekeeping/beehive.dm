@@ -1,4 +1,4 @@
-/obj/machinery/beehive
+obj/machinery/beehive
 	name = "beehive"
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "beehive"
@@ -12,7 +12,7 @@
 	var/frames = 0
 	var/maxFrames = 5
 
-/obj/machinery/beehive/update_icon()
+obj/machinery/beehive/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	icon_state = "beehive"
@@ -33,12 +33,12 @@
 
 	add_overlay(overlays_to_add)
 
-/obj/machinery/beehive/examine(mob/user)
+obj/machinery/beehive/examine(mob/user)
 	. = ..()
 	if(!closed)
 		. += "The lid is open."
 
-/obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
 	if(I.is_crowbar())
 		closed = !closed
 		user.visible_message("<span class='notice'>[user] [closed ? "closes" : "opens"] \the [src].</span>", "<span class='notice'>You [closed ? "close" : "open"] \the [src].</span>")
@@ -122,7 +122,7 @@
 			qdel(src)
 		return
 
-/obj/machinery/beehive/attack_hand(mob/user, list/params)
+obj/machinery/beehive/attack_hand(mob/user, list/params)
 	if(!closed)
 		if(honeycombs < 100)
 			to_chat(user, "<span class='notice'>There are no filled honeycombs.</span>")
@@ -140,7 +140,7 @@
 			to_chat(user, "<span class='notice'>You take all filled honeycombs out.</span>")
 		return
 
-/obj/machinery/beehive/process(delta_time)
+obj/machinery/beehive/process(delta_time)
 	if(closed && !smoked && bee_count)
 		pollinate_flowers()
 		update_icon()
@@ -149,7 +149,7 @@
 		bee_count = min(bee_count * 1.005, 100)
 		update_icon()
 
-/obj/machinery/beehive/proc/pollinate_flowers()
+obj/machinery/beehive/proc/pollinate_flowers()
 	var/coef = bee_count / 100
 	var/trays = 0
 	for(var/obj/machinery/portable_atmospherics/hydroponics/H in view(7, src))
@@ -158,7 +158,7 @@
 			++trays
 	honeycombs = min(honeycombs + 0.1 * coef * min(trays, 5), frames * 100)
 
-/obj/machinery/honey_extractor
+obj/machinery/honey_extractor
 	name = "honey extractor"
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
 	icon = 'icons/obj/virology.dmi'
@@ -167,7 +167,7 @@
 	var/processing = 0
 	var/honey = 0
 
-/obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
+obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
 	if(processing)
 		to_chat(user, "<span class='notice'>\The [src] is currently spinning, wait until it's finished.</span>")
 		return
@@ -197,14 +197,14 @@
 		user.visible_message("<span class='notice'>[user] collects honey from \the [src] into \the [G].</span>", "<span class='notice'>You collect [transferred] units of honey from \the [src] into \the [G].</span>")
 		return 1
 
-/obj/item/bee_smoker
+obj/item/bee_smoker
 	name = "bee smoker"
 	desc = "A device used to calm down bees before harvesting honey."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "battererburnt"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/honey_frame
+obj/item/honey_frame
 	name = "beehive frame"
 	desc = "A frame for the beehive that the bees will fill with honeycombs."
 	icon = 'icons/obj/beekeeping.dmi'
@@ -213,22 +213,22 @@
 
 	var/honey = 0
 
-/obj/item/honey_frame/filled
+obj/item/honey_frame/filled
 	name = "filled beehive frame"
 	desc = "A frame for the beehive that the bees have filled with honeycombs."
 	honey = 20
 
-/obj/item/honey_frame/filled/Initialize(mapload)
+obj/item/honey_frame/filled/Initialize(mapload)
 	. = ..()
 	add_overlay("honeycomb")
 
-/obj/item/beehive_assembly
+obj/item/beehive_assembly
 	name = "beehive assembly"
 	desc = "Contains everything you need to build a beehive."
 	icon = 'icons/obj/apiary_bees_etc.dmi'
 	icon_state = "apiary"
 
-/obj/item/beehive_assembly/attack_self(mob/user)
+obj/item/beehive_assembly/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -238,25 +238,25 @@
 		new /obj/machinery/beehive(get_turf(user))
 		qdel(src)
 
-/obj/item/bee_pack
+obj/item/bee_pack
 	name = "bee pack"
 	desc = "Contains a queen bee and some worker bees. Everything you'll need to start a hive!"
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "beepack"
 	var/full = 1
 
-/obj/item/bee_pack/Initialize(mapload)
+obj/item/bee_pack/Initialize(mapload)
 	. = ..()
 	add_overlay("beepack-full")
 
-/obj/item/bee_pack/proc/empty()
+obj/item/bee_pack/proc/empty()
 	full = 0
 	name = "empty bee pack"
 	desc = "A stasis pack for moving bees. It's empty."
 	cut_overlays()
 	add_overlay("beepack-empty")
 
-/obj/item/bee_pack/proc/fill()
+obj/item/bee_pack/proc/fill()
 	full = initial(full)
 	name = initial(name)
 	desc = initial(desc)

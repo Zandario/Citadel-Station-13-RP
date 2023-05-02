@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(single_paper_tags, single_paper_tags())
 GLOBAL_LIST_INIT(paired_paper_tags, paired_paper_tags())
 GLOBAL_LIST(paired_paper_tag_lookup)
 
-/proc/single_paper_tags()
+proc/single_paper_tags()
 	. = list()
 	for(var/path in subtypesof(/datum/paper_tag/single))
 		var/datum/paper_tag/single/T = path
@@ -10,7 +10,7 @@ GLOBAL_LIST(paired_paper_tag_lookup)
 			continue
 		. += new path
 
-/proc/paired_paper_tags()
+proc/paired_paper_tags()
 	. = list()
 	GLOB.paired_paper_tag_lookup = list()
 	for(var/path in subtypesof(/datum/paper_tag/paired))
@@ -21,7 +21,7 @@ GLOBAL_LIST(paired_paper_tag_lookup)
 		. += T
 		GLOB.paired_paper_tag_lookup[T.tagname] = T
 
-/obj/item/paper/proc/parse_tags(str, mob/user, obj/item/pen/T)
+obj/item/paper/proc/parse_tags(str, mob/user, obj/item/pen/T)
 	. = str
 	//? parse single tags
 	for(var/datum/paper_tag/single/tag as anything in GLOB.single_paper_tags)
@@ -85,18 +85,18 @@ GLOBAL_LIST(paired_paper_tag_lookup)
  *
  * For now, this is what you get.
  */
-/datum/paper_tag
+datum/paper_tag
 	abstract_type = /datum/paper_tag
 
 /**
  * simple macros
  */
-/datum/paper_tag/single
+datum/paper_tag/single
 	abstract_type = /datum/paper_tag/single
 	var/tagname
 	var/cached_replace_query
 
-/datum/paper_tag/single/New()
+datum/paper_tag/single/New()
 	cached_replace_query = "\[[tagname]\]"
 
 /**
@@ -104,7 +104,7 @@ GLOBAL_LIST(paired_paper_tag_lookup)
  * P can be null
  * T can be null
  */
-/datum/paper_tag/single/proc/transform_string(str, mob/user, obj/item/paper/P, obj/item/pen/T)
+datum/paper_tag/single/proc/transform_string(str, mob/user, obj/item/paper/P, obj/item/pen/T)
 	return replacetext(str, cached_replace_query, replace_with(user, P, T))
 
 /**
@@ -112,25 +112,25 @@ GLOBAL_LIST(paired_paper_tag_lookup)
  * P can be null
  * T can be null
  */
-/datum/paper_tag/single/proc/replace_with(mob/user, obj/item/paper/P, obj/item/pen/T)
+datum/paper_tag/single/proc/replace_with(mob/user, obj/item/paper/P, obj/item/pen/T)
 	return ""
 
-/datum/paper_tag/single/current_time
+datum/paper_tag/single/current_time
 	tagname = "time"
 
-/datum/paper_tag/single/current_time/replace_with(mob/user, obj/item/paper/P, obj/item/pen/T)
+datum/paper_tag/single/current_time/replace_with(mob/user, obj/item/paper/P, obj/item/pen/T)
 	return stationtime2text()
 
-/datum/paper_tag/single/current_date
+datum/paper_tag/single/current_date
 	tagname = "date"
 
-/datum/paper_tag/single/current_date/replace_with(mob/user, obj/item/paper/P, obj/item/pen/T)
+datum/paper_tag/single/current_date/replace_with(mob/user, obj/item/paper/P, obj/item/pen/T)
 	return stationdate2text()
 
-/datum/paper_tag/single/current_map
+datum/paper_tag/single/current_map
 	tagname = "station"
 
-/datum/paper_tag/single/current_map/replace_with(mob/user, obj/item/paper/P, obj/item/pen/T)
+datum/paper_tag/single/current_map/replace_with(mob/user, obj/item/paper/P, obj/item/pen/T)
 	return GLOB.using_map.station_name
 
 //? todo: [station_controller]
@@ -139,25 +139,25 @@ GLOBAL_LIST(paired_paper_tag_lookup)
  * paired paper tags
  * supports a single parameter via =
  */
-/datum/paper_tag/paired
+datum/paper_tag/paired
 	abstract_type = /datum/paper_tag/paired
 	/// tag name; ending this tag should be a [/tagname].
 	var/tagname
 
-/datum/paper_tag/paired/proc/replace_start(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
+datum/paper_tag/paired/proc/replace_start(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
 	return ""
 
-/datum/paper_tag/paired/proc/replace_end(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
+datum/paper_tag/paired/proc/replace_end(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
 	return ""
 
-/datum/paper_tag/paired/proc/replace_auto_close(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
+datum/paper_tag/paired/proc/replace_auto_close(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
 	return replace_end(user, P, T, parameter)
 
-/datum/paper_tag/paired/bold
+datum/paper_tag/paired/bold
 	tagname = "b"
 
-/datum/paper_tag/paired/bold/replace_start(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
+datum/paper_tag/paired/bold/replace_start(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
 	return "<b>"
 
-/datum/paper_tag/paired/bold/replace_end(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
+datum/paper_tag/paired/bold/replace_end(mob/user, obj/item/paper/P, obj/item/pen/T, parameter)
 	return "</b>"

@@ -1,26 +1,26 @@
 // Map template for spawning the shuttle
-/datum/map_template/shuttle/overmap/generic/abductor
+datum/map_template/shuttle/overmap/generic/abductor
 	name = "OM Ship - Abductor Ship (New Z)"
 	desc = "A ship for spooky aliens to kidnap farmers and unfortunate spacemen."
 	suffix = "abductor.dmm"
 
-/area/abductor
+area/abductor
 	requires_power = 0
 	icon_state = "purple"
 
-/area/abductor/
+area/abductor/
 	name = "Abductor Ship"
 	area_flags = AREA_RAD_SHIELDED | AREA_FLAG_BLUE_SHIELDED
 
-/area/abductor/interior
+area/abductor/interior
 	name = "Abductor Ship Interior"
 
-/area/abductor/exterior
+area/abductor/exterior
 	name = "Abductor Ship Exterior"
 	has_gravity = 0
 
 // The 'Abductor Ship'
-/obj/effect/overmap/visitable/ship/abductor
+obj/effect/overmap/visitable/ship/abductor
 	name = "spacecraft"
 	desc = "Spacefaring vessel."
 	icon_state = "shuttle"
@@ -36,7 +36,7 @@
 	initial_generic_waypoints = list("abductor_port", "abductor_starboard")
 	fore_dir = NORTH
 
-/obj/item/paper/alien/abductor
+obj/item/paper/alien/abductor
 	name = "Read Me"
 	info = {"<b>((Just to state the obvious here, but make sure you're reading OOC notes and all that. This role does not give you any special protections from the rules. Only abduct people who seem like they'd be cool with it.))</b><br><br>
 
@@ -64,7 +64,7 @@ You will find a dispenser within the room you started in which contains some bas
 
 <b>And finally, to leave this room, you will want to put your ID on the table, and pray to the corporate overlords to add access 777 to it.</b>"}
 
-/obj/machinery/porta_turret/alien/abductor
+obj/machinery/porta_turret/alien/abductor
 	name = "anti-personnel turret"
 	installation = /obj/item/gun/energy/gun/taser
 	lethal = FALSE
@@ -72,11 +72,11 @@ You will find a dispenser within the room you started in which contains some bas
 	maxhealth = 500
 	req_one_access = list(777) // The code I've been using for events, same as the doors
 
-/obj/machinery/porta_turret/alien/abductor/ion
+obj/machinery/porta_turret/alien/abductor/ion
 	name = "anti-personnel turret"
 	installation = /obj/item/gun/energy/ionrifle/weak
 	lethal = TRUE
 
-/obj/machinery/power/port_gen/abductor/built/abductor
+obj/machinery/power/port_gen/abductor/built/abductor
 	name = "Void Core"
 	power_gen = 5000000

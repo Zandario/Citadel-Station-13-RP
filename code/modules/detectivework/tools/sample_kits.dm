@@ -1,27 +1,27 @@
-/obj/item/sample
+obj/item/sample
 	name = "forensic sample"
 	icon = 'icons/obj/forensics.dmi'
 	atom_flags = NOPRINT
 	w_class = ITEMSIZE_TINY
 	var/list/evidence = list()
 
-/obj/item/sample/Initialize(mapload, atom/supplied)
+obj/item/sample/Initialize(mapload, atom/supplied)
 	. = ..()
 	if(supplied)
 		copy_evidence(supplied)
 		name = "[initial(name)] (\the [supplied])"
 
-/obj/item/sample/print/Initialize(mapload, atom/supplied)
+obj/item/sample/print/Initialize(mapload, atom/supplied)
 	. = ..()
 	if(evidence && evidence.len)
 		icon_state = "fingerprint1"
 
-/obj/item/sample/proc/copy_evidence(var/atom/supplied)
+obj/item/sample/proc/copy_evidence(var/atom/supplied)
 	if(supplied.suit_fibers && supplied.suit_fibers.len)
 		evidence = supplied.suit_fibers.Copy()
 		supplied.suit_fibers.Cut()
 
-/obj/item/sample/proc/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
+obj/item/sample/proc/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
 	if(!supplied.evidence || !supplied.evidence.len)
 		return 0
 	evidence |= supplied.evidence
@@ -29,7 +29,7 @@
 	to_chat(user, "<span class='notice'>You transfer the contents of \the [supplied] into \the [src].</span>")
 	return 1
 
-/obj/item/sample/print/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
+obj/item/sample/print/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
 	if(!supplied.evidence || !supplied.evidence.len)
 		return 0
 	for(var/print in supplied.evidence)
@@ -41,26 +41,26 @@
 	to_chat(user, "<span class='notice'>You overlay \the [src] and \the [supplied], combining the print records.</span>")
 	return 1
 
-/obj/item/sample/attackby(var/obj/O, var/mob/user)
+obj/item/sample/attackby(var/obj/O, var/mob/user)
 	if(O.type == src.type)
 		if(merge_evidence(O, user))
 			qdel(O)
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return ..()
 
-/obj/item/sample/fibers
+obj/item/sample/fibers
 	name = "fiber bag"
 	desc = "Used to hold fiber evidence for the detective."
 	icon_state = "fiberbag"
 
-/obj/item/sample/print
+obj/item/sample/print
 	name = "fingerprint card"
 	desc = "Records a set of fingerprints."
 	icon = 'icons/obj/card.dmi'
 	icon_state = "fingerprint0"
 	item_state = "paper"
 
-/obj/item/sample/print/attack_self(mob/user)
+obj/item/sample/print/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -79,7 +79,7 @@
 	name = "[initial(name)] (\the [H])"
 	icon_state = "fingerprint1"
 
-/obj/item/sample/print/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/sample/print/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(!ishuman(target) || user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -116,16 +116,16 @@
 		name = "[initial(name)] (\the [H])"
 		icon_state = "fingerprint1"
 
-/obj/item/sample/print/copy_evidence(var/atom/supplied)
+obj/item/sample/print/copy_evidence(var/atom/supplied)
 	if(supplied.fingerprints && supplied.fingerprints.len)
 		for(var/print in supplied.fingerprints)
 			evidence[print] = supplied.fingerprints[print]
 		supplied.fingerprints.Cut()
 
-/obj/item/forensics
+obj/item/forensics
 	atom_flags = NOPRINT
 
-/obj/item/forensics/sample_kit
+obj/item/forensics/sample_kit
 	name = "fiber collection kit"
 	desc = "A magnifying glass and tweezers. Used to lift suit fibers."
 	icon_state = "m_glass"
@@ -133,14 +133,14 @@
 	var/evidence_type = "fiber"
 	var/evidence_path = /obj/item/sample/fibers
 
-/obj/item/forensics/sample_kit/proc/can_take_sample(var/mob/user, var/atom/supplied)
+obj/item/forensics/sample_kit/proc/can_take_sample(var/mob/user, var/atom/supplied)
 	return (supplied.suit_fibers && supplied.suit_fibers.len)
 
-/obj/item/forensics/sample_kit/proc/take_sample(var/mob/user, var/atom/supplied)
+obj/item/forensics/sample_kit/proc/take_sample(var/mob/user, var/atom/supplied)
 	var/obj/item/sample/S = new evidence_path(get_turf(user), supplied)
 	to_chat(user, "<span class='notice'>You transfer [S.evidence.len] [S.evidence.len > 1 ? "[evidence_type]s" : "[evidence_type]"] to \the [S].</span>")
 
-/obj/item/forensics/sample_kit/afterattack(var/atom/A, var/mob/user, var/proximity)
+obj/item/forensics/sample_kit/afterattack(var/atom/A, var/mob/user, var/proximity)
 	if(!proximity)
 		return
 	add_fingerprint(user)
@@ -151,12 +151,12 @@
 		to_chat(user, "<span class='warning'>You are unable to locate any [evidence_type]s on \the [A].</span>")
 		return ..()
 
-/obj/item/forensics/sample_kit/powder
+obj/item/forensics/sample_kit/powder
 	name = "fingerprint powder"
 	desc = "A jar containing aluminum powder and a specialized brush."
 	icon_state = "dust"
 	evidence_type = "fingerprint"
 	evidence_path = /obj/item/sample/print
 
-/obj/item/forensics/sample_kit/powder/can_take_sample(var/mob/user, var/atom/supplied)
+obj/item/forensics/sample_kit/powder/can_take_sample(var/mob/user, var/atom/supplied)
 	return (supplied.fingerprints && supplied.fingerprints.len)

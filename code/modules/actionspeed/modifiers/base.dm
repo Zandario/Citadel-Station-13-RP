@@ -1,2 +1,2 @@
-/datum/actionspeed_modifier/base
+datum/actionspeed_modifier/base
 	variable = TRUE

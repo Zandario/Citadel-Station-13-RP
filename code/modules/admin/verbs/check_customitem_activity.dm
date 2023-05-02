@@ -1,7 +1,7 @@
 var/checked_for_inactives = 0
 var/inactive_keys = "None<br>"
 
-/client/proc/check_customitem_activity()
+client/proc/check_customitem_activity()
 	set category = "Admin"
 	set name = "Check activity of players with custom items"
 
@@ -23,7 +23,7 @@ var/inactive_keys = "None<br>"
 
 	usr << browse(dat, "window=inactive_customitems;size=600x480")
 
-/proc/populate_inactive_customitems_list(var/client/C)
+proc/populate_inactive_customitems_list(var/client/C)
 	set background = 1
 
 	if(checked_for_inactives)

@@ -33,7 +33,7 @@ var/list/all_supply_groups = list("Atmospherics",
 								  "Voidsuits",
 								  "Vehicles")
 
-/datum/supply_pack
+datum/supply_pack
 	var/name
 	var/cost
 
@@ -57,7 +57,7 @@ var/list/all_supply_groups = list("Atmospherics",
 /**
  * instance the supply pack at a location. returns the container used.
  */
-/datum/supply_pack/proc/Instantiate(atom/loc)
+datum/supply_pack/proc/Instantiate(atom/loc)
 	RETURN_TYPE(/atom/movable)
 	. = InstanceContainer(loc)
 	SetupContainer(.)
@@ -66,14 +66,14 @@ var/list/all_supply_groups = list("Atmospherics",
 /**
  * creates our container
  */
-/datum/supply_pack/proc/InstanceContainer(atom/loc)
+datum/supply_pack/proc/InstanceContainer(atom/loc)
 	RETURN_TYPE(/atom/movable)
 	return new container_type(loc)
 
 /**
  * sets up our container, happens before objects are spawned
  */
-/datum/supply_pack/proc/SetupContainer(atom/movable/container)
+datum/supply_pack/proc/SetupContainer(atom/movable/container)
 	if(container_name)
 		container.name = container_name
 	if(container_desc)
@@ -97,14 +97,14 @@ var/list/all_supply_groups = list("Atmospherics",
 /**
  * spawn an object of a certain type
  */
-/datum/supply_pack/proc/InstanceObject(path, atom/loc, ...)
+datum/supply_pack/proc/InstanceObject(path, atom/loc, ...)
 	RETURN_TYPE(/atom/movable)
 	return new path(arglist(args.Copy(2)))
 
 /**
  * spawwns our contents into a container. if you need special behavior like randomization, besure to modify default manifest too!
  */
-/datum/supply_pack/proc/SpawnContents(atom/loc)
+datum/supply_pack/proc/SpawnContents(atom/loc)
 	var/list/to_spawn = preprocess_contents_list()
 	if(!LAZYLEN(to_spawn))
 		return
@@ -123,7 +123,7 @@ var/list/all_supply_groups = list("Atmospherics",
 /**
  * used to preprocess the contained list for spawning
  */
-/datum/supply_pack/proc/preprocess_contents_list()
+datum/supply_pack/proc/preprocess_contents_list()
 	return contains.Copy()
 
 /**
@@ -131,7 +131,7 @@ var/list/all_supply_groups = list("Atmospherics",
  *
  * argument is provided for container incase you want to modify based on what actually spawned
  */
-/datum/supply_pack/proc/get_html_manifest(atom/movable/container)
+datum/supply_pack/proc/get_html_manifest(atom/movable/container)
 	RETURN_TYPE(/list)
 	var/list/lines = list()
 	lines += "Contents:<br>"
@@ -152,7 +152,7 @@ var/list/all_supply_groups = list("Atmospherics",
  * this proc's existence, as well as hardcoded ui data for packs, really makes me hate life
  * but i'm not doing nanoui/tgui conversion today.
  */
-/datum/supply_pack/proc/is_random()
+datum/supply_pack/proc/is_random()
 	return FALSE
 
 /**
@@ -160,7 +160,7 @@ var/list/all_supply_groups = list("Atmospherics",
  * god, i hate nanoui
  * burn this proc and is_random() with fire at some point, please.
  */
-/datum/supply_pack/proc/flattened_nanoui_manifest()
+datum/supply_pack/proc/flattened_nanoui_manifest()
 	. = list()
 	for(var/path in contains)
 		var/amount = contains[path] || 1
@@ -176,11 +176,11 @@ var/list/all_supply_groups = list("Atmospherics",
  * maybe we should roll this into default functionality
  * question for another day, not like we aren't modular enough with this system now to do it easily.
  */
-/datum/supply_pack/randomised
+datum/supply_pack/randomised
 	/// how many of our items at random to spawn
 	var/num_contained = 1
 
-/datum/supply_pack/randomised/get_html_manifest(atom/movable/container)
+datum/supply_pack/randomised/get_html_manifest(atom/movable/container)
 	var/list/lines = list()
 	lines += "Contains any [num_contained] of the following:<br>"
 	lines += "<ul>"
@@ -192,7 +192,7 @@ var/list/all_supply_groups = list("Atmospherics",
 	lines += "</ul>"
 	return lines
 
-/datum/supply_pack/randomised/preprocess_contents_list()
+datum/supply_pack/randomised/preprocess_contents_list()
 	var/list/L = list()
 	// first, flatten list
 	for(var/path in contains)
@@ -203,5 +203,5 @@ var/list/all_supply_groups = list("Atmospherics",
 		var/path = pickweight(L)
 		.[path]++
 
-/datum/supply_pack/randomised/is_random()
+datum/supply_pack/randomised/is_random()
 	return num_contained

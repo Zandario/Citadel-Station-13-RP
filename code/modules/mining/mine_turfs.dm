@@ -1,5 +1,5 @@
 /**********************Mineral deposits**************************/
-/turf/unsimulated/mineral
+turf/unsimulated/mineral
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
@@ -7,7 +7,7 @@
 
 	smoothing_groups = (SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS)
 
-/turf/simulated/mineral //wall piece
+turf/simulated/mineral //wall piece
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
@@ -47,49 +47,49 @@
 	var/ignore_oregen = FALSE
 	var/ignore_cavegen = FALSE
 
-/turf/simulated/mineral/rich
+turf/simulated/mineral/rich
 	//Placeholder, go to the oregen stuff at the bottom to see the oregen weight
 
 // Alternatives that ignore ore_gen and cavegen
-/turf/simulated/mineral/ignore_oregen
+turf/simulated/mineral/ignore_oregen
 	ignore_oregen = TRUE
 
-/turf/simulated/mineral/floor/ignore_oregen
+turf/simulated/mineral/floor/ignore_oregen
 	ignore_oregen = TRUE
 
-/turf/simulated/mineral/ignore_cavegen
+turf/simulated/mineral/ignore_cavegen
 	ignore_cavegen = TRUE
 
-/turf/simulated/mineral/floor/ignore_cavegen
+turf/simulated/mineral/floor/ignore_cavegen
 	ignore_cavegen = TRUE
 
-/turf/simulated/mineral/floor/ignore_cavegen/has_air
+turf/simulated/mineral/floor/ignore_cavegen/has_air
 	initial_gas_mix = GAS_STRING_STP
 
-/turf/simulated/mineral/floor/indoors
+turf/simulated/mineral/floor/indoors
 	outdoors = FALSE
 	name = "Depreciated, tell a mapper if you see this"
 	icon_state = ""
 
-/turf/simulated/mineral/icerock/ignore_cavegen
+turf/simulated/mineral/icerock/ignore_cavegen
 	ignore_cavegen = TRUE
 
-/turf/simulated/mineral/icerock/floor/ignore_cavegen
+turf/simulated/mineral/icerock/floor/ignore_cavegen
 	ignore_cavegen = TRUE
 
-/turf/simulated/mineral/icerock/floor/ignore_cavegen/indoors
+turf/simulated/mineral/icerock/floor/ignore_cavegen/indoors
 	outdoors = FALSE
 
 
 // Alternative rock wall sprites.
-/turf/simulated/mineral/light
+turf/simulated/mineral/light
 	icon_state = "rock-light"
 	rock_side_icon_state = "rock_side-light"
 	sand_icon_state = "sand-light"
 	rock_icon_state = "rock-light"
 	random_icon = 1
 
-/turf/simulated/mineral/icerock
+turf/simulated/mineral/icerock
 	name = "icerock"
 	icon_state = "icerock"
 	rock_side_icon_state = "icerock_side"
@@ -97,18 +97,18 @@
 	rock_icon_state = "icerock"
 	random_icon = 1
 
-/turf/simulated/mineral/icerock/airmix
+turf/simulated/mineral/icerock/airmix
 	initial_gas_mix = GAS_STRING_STP
-/turf/unsimulated/mineral/icerock
+turf/unsimulated/mineral/icerock
 	name = "impassable icerock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "icerock-dark"
 	density = 1
 
-/turf/simulated/mineral/ignore_mapgen
+turf/simulated/mineral/ignore_mapgen
 	ignore_mapgen = 1
 
-/turf/simulated/mineral/floor
+turf/simulated/mineral/floor
 	name = "sand"
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
@@ -118,34 +118,34 @@
 	can_build_into_floor = TRUE
 
 //Alternative sand floor sprite.
-/turf/simulated/mineral/floor/light
+turf/simulated/mineral/floor/light
 	icon_state = "sand-light"
 	sand_icon_state = "sand-light"
 
-/turf/simulated/mineral/floor/light_border
+turf/simulated/mineral/floor/light_border
 	icon_state = "sand-light-border"
 	sand_icon_state = "sand-light-border"
 
-/turf/simulated/mineral/floor/light_nub
+turf/simulated/mineral/floor/light_nub
 	icon_state = "sand-light-nub"
 	sand_icon_state = "sand-light-nub"
 
-/turf/simulated/mineral/floor/light_corner
+turf/simulated/mineral/floor/light_corner
 	icon_state = "sand-light-corner"
 	sand_icon_state = "sand-light-corner"
 
-/turf/simulated/mineral/floor/ignore_mapgen
+turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
 
-/turf/simulated/mineral/floor/icerock
+turf/simulated/mineral/floor/icerock
 	name = "ice"
 	icon_state = "ice"
 	sand_icon_state = "ice"
 
-/turf/simulated/mineral/floor/icerock/airmix
+turf/simulated/mineral/floor/icerock/airmix
 	initial_gas_mix = GAS_STRING_STP
 
-/turf/simulated/mineral/proc/make_floor()
+turf/simulated/mineral/proc/make_floor()
 	if(!density && !opacity)
 		return
 	density = FALSE
@@ -160,7 +160,7 @@
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)
 
-/turf/simulated/mineral/proc/make_wall()
+turf/simulated/mineral/proc/make_wall()
 	if(density && opacity)
 		return
 	density = TRUE
@@ -175,7 +175,7 @@
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)
 
-/turf/simulated/mineral/Entered(atom/movable/M as mob|obj)
+turf/simulated/mineral/Entered(atom/movable/M as mob|obj)
 	..()
 	if(istype(M,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = M
@@ -184,7 +184,7 @@
 				O.autoload(R)
 				return
 
-/turf/simulated/mineral/Initialize(mapload)
+turf/simulated/mineral/Initialize(mapload)
 	. = ..()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
@@ -197,17 +197,17 @@
 			UpdateMineral()	// this'll work because we're initialized
 
 /* custom smoothing code */
-/turf/simulated/mineral/find_type_in_direction(direction)
+turf/simulated/mineral/find_type_in_direction(direction)
 	var/turf/T = get_step(src, direction)
 	if(!T)
 		return NULLTURF_BORDER
 	return T.density? ADJ_FOUND : NO_ADJ_FOUND
 
-/turf/simulated/mineral/custom_smooth(dirs)
+turf/simulated/mineral/custom_smooth(dirs)
 	smoothing_junction = dirs
 	update_appearance()
 
-/turf/simulated/mineral/update_appearance(updates)
+turf/simulated/mineral/update_appearance(updates)
 	. = ..()
 
 	//We are a wall (why does this system work like this??)
@@ -227,7 +227,7 @@
 		icon = sand_icon // So that way we can source from other files.
 		icon_state = sand_icon_state
 
-/turf/simulated/mineral/update_overlays()
+turf/simulated/mineral/update_overlays()
 	. = ..()
 
 	//We are a wall (why does this system work like this??)
@@ -266,7 +266,7 @@
 			. += mutable_appearance('icons/turf/flooring/decals.dmi', overlay_detail)
 
 
-/turf/simulated/mineral/legacy_ex_act(severity)
+turf/simulated/mineral/legacy_ex_act(severity)
 
 	switch(severity)
 		if(2.0)
@@ -286,7 +286,7 @@
 					new oretype(src)
 				resources[ore] = 0
 
-/turf/simulated/mineral/bullet_act(var/obj/projectile/Proj) // only emitters for now
+turf/simulated/mineral/bullet_act(var/obj/projectile/Proj) // only emitters for now
 	. = ..()
 	if(Proj.excavation_amount)
 		var/newDepth = excavation_level + Proj.excavation_amount // Used commonly below
@@ -305,7 +305,7 @@
 		excavation_level += Proj.excavation_amount
 		update_archeo_overlays(Proj.excavation_amount)
 
-/turf/simulated/mineral/Bumped(AM)
+turf/simulated/mineral/Bumped(AM)
 
 	. = ..()
 
@@ -328,7 +328,7 @@
 		if(istype(M.selected,/obj/item/mecha_parts/mecha_equipment/tool/drill))
 			M.selected.action(src)
 
-/turf/simulated/mineral/proc/MineralSpread()
+turf/simulated/mineral/proc/MineralSpread()
 	UpdateMineral()
 	if(mineral && mineral.spread)
 		for(var/trydir in GLOB.cardinal)
@@ -338,7 +338,7 @@
 					target_turf.mineral = mineral
 					target_turf.MineralSpread()
 
-/turf/simulated/mineral/proc/UpdateMineral(update_neighbors)
+turf/simulated/mineral/proc/UpdateMineral(update_neighbors)
 	if(!(atom_flags & ATOM_INITIALIZED))
 		return	// /Initialize() will handle us
 	clear_ore_effects()
@@ -346,7 +346,7 @@
 		new /obj/effect/mineral(src, mineral)
 
 //Not even going to touch this pile of spaghetti
-/turf/simulated/mineral/attackby(obj/item/W as obj, mob/user as mob)
+turf/simulated/mineral/attackby(obj/item/W as obj, mob/user as mob)
 
 	if (!(istype(usr, /mob/living/carbon/human) || SSticker) && SSticker.mode.name != "monkey")
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
@@ -517,7 +517,7 @@
 					next_rock += P.excavation_amount
 					while(next_rock > 50)
 						next_rock -= 50
-						var/obj/item/ore/O = new(src)
+						new/obj/item/ore(src)
 				return
 			else
 				return
@@ -578,7 +578,7 @@
 
 	return attack_hand(user)
 
-/turf/simulated/mineral/proc/wreckfinds(var/destroy = FALSE)
+turf/simulated/mineral/proc/wreckfinds(var/destroy = FALSE)
 	if(!destroy && prob(90)) //nondestructive methods have a chance of letting you step away to not trash things
 		if(prob(25))
 			excavate_find(prob(5), finds[1])
@@ -587,7 +587,7 @@
 		if(prob(50))
 			artifact_debris()
 
-/turf/simulated/mineral/proc/update_archeo_overlays(var/excavation_amount = 0)
+turf/simulated/mineral/proc/update_archeo_overlays(var/excavation_amount = 0)
 	var/updateIcon = 0
 
 	//archaeo overlays
@@ -626,18 +626,18 @@
 	if(updateIcon)
 		update_appearance()
 
-/turf/simulated/mineral/proc/clear_ore_effects()
+turf/simulated/mineral/proc/clear_ore_effects()
 	for(var/obj/effect/mineral/M in contents)
 		qdel(M)
 
-/turf/simulated/mineral/proc/DropMineral()
+turf/simulated/mineral/proc/DropMineral()
 	if(!mineral)
 		return
 	clear_ore_effects()
 	var/obj/item/ore/O = new mineral.ore (src)
 	return O
 
-/turf/simulated/mineral/proc/excavate_turf()
+turf/simulated/mineral/proc/excavate_turf()
 	var/obj/structure/boulder/B
 	if(artifact_find)
 		if( excavation_level > 0 || prob(15) )
@@ -657,7 +657,7 @@
 		GetDrilled(1)
 	return
 
-/turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
+turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
 
 	if(!density)
 		if(!sand_dug)
@@ -698,17 +698,17 @@
 
 	make_floor()
 
-/obj/item/artifact_shards
+obj/item/artifact_shards
 	name = "sickening fragments"
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "splinterslarge"
 	desc = "Looking at this makes you feel sick. You should probably get away from it."
 
-/obj/item/artifact_shards/Initialize(mapload, intensity = 1000, half_life = rand(0.5 MINUTES, 3 MINUTES), falloff = RAD_FALLOFF_ANOMALY_SHARDS)
+obj/item/artifact_shards/Initialize(mapload, intensity = 1000, half_life = rand(0.5 MINUTES, 3 MINUTES), falloff = RAD_FALLOFF_ANOMALY_SHARDS)
 	. = ..()
 	AddComponent(/datum/component/radioactive, intensity, half_life, falloff = falloff)
 
-/turf/simulated/mineral/proc/excavate_find(var/is_clean = 0, var/datum/find/F)
+turf/simulated/mineral/proc/excavate_find(var/is_clean = 0, var/datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
 	var/obj/item/X
@@ -737,7 +737,7 @@
 
 	finds.Remove(F)
 
-/turf/simulated/mineral/proc/artifact_debris(var/severity = 0)
+turf/simulated/mineral/proc/artifact_debris(var/severity = 0)
 	//cael's patented random limited drop componentized loot system!
 	//sky's patented not-fucking-stupid overhaul!
 
@@ -761,7 +761,7 @@
 			if(7)
 				new /obj/item/stack/material/uranium(src, rand(5,25))
 
-/turf/simulated/mineral/proc/make_ore(rare_ore)
+turf/simulated/mineral/proc/make_ore(rare_ore)
 	if(mineral || ignore_mapgen || ignore_oregen)
 		return
 

@@ -8,7 +8,7 @@
  * This proc is dangerously laggy, avoid it or die
  * On another note this is main's but probability is reversed because RP code is stupid.
  */
-/proc/stars(phrase, probability = 25, max = 4096)
+proc/stars(phrase, probability = 25, max = 4096)
 	if(probability >= 100)
 		return phrase
 	if(probability <= 0)
@@ -28,7 +28,7 @@
 			. += "*"
 	return sanitize(.)
 
-/proc/slur(phrase)
+proc/slur(phrase)
 	phrase = html_decode(phrase)
 	var/leng=length(phrase)
 	var/counter=length(phrase)
@@ -63,7 +63,7 @@
 		newphrase+="[newletter]";counter-=1
 	return newphrase
 
-/proc/stutter(n)
+proc/stutter(n)
 	var/te = html_decode(n)
 	/// Placed before the message. Not really sure what it's for.
 	var/t = ""
@@ -100,7 +100,7 @@
  *
  * t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added.
  */
-/proc/Gibberish(t, p)
+proc/Gibberish(t, p)
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
 
@@ -121,7 +121,7 @@
  * The issue here is that anything that does not have a space is treated as one word (in many instances). For instance, "LOOKING," is a word, including the comma.
  * It's fairly easy to fix if dealing with single letters but not so much with compounds of letters./N
  */
-/proc/ninjaspeak(n)
+proc/ninjaspeak(n)
 	var/te = html_decode(n)
 	var/t = ""
 	n = length(n)

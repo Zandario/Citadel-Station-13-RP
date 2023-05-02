@@ -1,6 +1,6 @@
 
 //Either pass the mob you wish to ban in the 'banned_mob' attribute, or the banckey, banip and bancid variables. If both are passed, the mob takes priority! If a mob is not passed, banckey is the minimum that needs to be passed! banip and bancid are optional.
-/datum/admins/proc/DB_ban_record(bantype, mob/banned_mob, duration = -1, reason, job = "", rounds = 0, banckey = null, banip = null, bancid = null)
+datum/admins/proc/DB_ban_record(bantype, mob/banned_mob, duration = -1, reason, job = "", rounds = 0, banckey = null, banip = null, bancid = null)
 
 	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
 
@@ -101,7 +101,7 @@
 	// reload
 	jobban_loadbanfile()
 
-/datum/admins/proc/DB_ban_unban(ckey, bantype, job = "")
+datum/admins/proc/DB_ban_unban(ckey, bantype, job = "")
 
 	if(!check_rights(R_BAN))
 		return
@@ -173,7 +173,7 @@
 	// reload
 	jobban_loadbanfile()
 
-/datum/admins/proc/DB_ban_edit(banid = null, param = null)
+datum/admins/proc/DB_ban_edit(banid = null, param = null)
 
 	if(!check_rights(R_BAN))
 		return
@@ -253,7 +253,7 @@
 			to_chat(usr, "Cancelled")
 			return
 
-/datum/admins/proc/DB_ban_unban_by_id(var/id)
+datum/admins/proc/DB_ban_unban_by_id(var/id)
 	if(!check_rights(R_BAN))
 		return
 
@@ -301,7 +301,7 @@
 		)
 	)
 
-/client/proc/DB_ban_panel()
+client/proc/DB_ban_panel()
 	set category = "Admin"
 	set name = "Banning Panel"
 	set desc = "Edit admin permissions"
@@ -312,7 +312,7 @@
 	holder.DB_ban_panel()
 
 
-/datum/admins/proc/DB_ban_panel(var/playerckey = null, var/adminckey = null, var/playerip = null, var/playercid = null, var/dbbantype = null, var/match = null)
+datum/admins/proc/DB_ban_panel(var/playerckey = null, var/adminckey = null, var/playerip = null, var/playercid = null, var/dbbantype = null, var/match = null)
 	if(!usr.client)
 		return
 

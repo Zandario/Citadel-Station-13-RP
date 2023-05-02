@@ -1,4 +1,4 @@
-/obj/structure/AIcore
+obj/structure/AIcore
 	density = TRUE
 	anchored = FALSE
 	name = "\improper AI core"
@@ -10,7 +10,7 @@
 	var/obj/item/mmi/brain = null
 
 
-/obj/structure/AIcore/attackby(obj/item/P as obj, mob/user as mob)
+obj/structure/AIcore/attackby(obj/item/P as obj, mob/user as mob)
 
 	switch(state)
 		if(0)
@@ -183,7 +183,7 @@
 GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactivated)
 
 // todo: refactor this shit it shouldn't be a subtype
-/obj/structure/AIcore/deactivated
+obj/structure/AIcore/deactivated
 	name = "inactive AI"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai-empty"
@@ -191,17 +191,17 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	state = 20//So it doesn't interact based on the above. Not really necessary.
 
 //! temporary hack to detect improper usage
-/obj/structure/AIcore/deactivated/New()
+obj/structure/AIcore/deactivated/New()
 	if(loc == null)
 		CRASH("attempted to spawn deactivated aicore at null loc")
 	return ..()
 
-/obj/structure/AIcore/deactivated/Destroy()
+obj/structure/AIcore/deactivated/Destroy()
 	if(src in GLOB.empty_playable_ai_cores)
 		GLOB.empty_playable_ai_cores -= src
 	return ..()
 
-/obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/aicard/card, var/mob/user)
+obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/aicard/card, var/mob/user)
 
 	if(!istype(transfer) || locate(/mob/living/silicon/ai) in src)
 		return
@@ -222,13 +222,13 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 
 	qdel(src)
 
-/obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
+obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
 	if(!ai) return
 	for (var/datum/mind/malfai in malf.current_antagonists)
 		if (ai.mind == malfai)
 			return 1
 
-/obj/structure/AIcore/deactivated/attackby(var/obj/item/W, var/mob/user)
+obj/structure/AIcore/deactivated/attackby(var/obj/item/W, var/mob/user)
 
 	if(istype(W, /obj/item/aicard))
 		var/obj/item/aicard/card = W
@@ -260,7 +260,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	else
 		return ..()
 
-/client/proc/empty_ai_core_toggle_latejoin()
+client/proc/empty_ai_core_toggle_latejoin()
 	set name = "Toggle AI Core Latejoin"
 	set category = "Admin"
 

@@ -5,7 +5,7 @@
 	Manually injects chemicals into a xenobiological creature from a linked machine.
 
 */
-/obj/machinery/xenobio2/manualinjector
+obj/machinery/xenobio2/manualinjector
 	name = "biological injector"
 	desc = "Injects biological organisms that are inserted with the contents of an inserted beaker at the command of a remote computer."
 	density = 1
@@ -19,7 +19,7 @@
 
 	circuit = /obj/item/circuitboard/xenobioinjectormachine
 
-/obj/machinery/xenobio2/manualinjector/Initialize(mapload)
+obj/machinery/xenobio2/manualinjector/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
@@ -32,7 +32,7 @@
 	component_parts += new /obj/item/stock_parts/manipulator(src)
 	RefreshParts()
 
-/obj/machinery/xenobio2/manualinjector/update_icon()
+obj/machinery/xenobio2/manualinjector/update_icon()
 	if(beaker)
 		if(occupant)
 			icon_state = "biogen-stand"
@@ -41,12 +41,12 @@
 	else
 		icon_state = "biogen-empty"
 
-/obj/machinery/xenobio2/manualinjector/MouseDroppedOnLegacy(mob/target, mob/user)
+obj/machinery/xenobio2/manualinjector/MouseDroppedOnLegacy(mob/target, mob/user)
 	if(user.stat || user.restrained())
 		return
 	move_into_injector(user,target)
 
-/obj/machinery/xenobio2/manualinjector/proc/move_into_injector(var/mob/user,var/mob/living/victim)
+obj/machinery/xenobio2/manualinjector/proc/move_into_injector(var/mob/user,var/mob/living/victim)
 	if(src.occupant)
 		to_chat(user, "<span class='danger'>The injector is full, empty it first!</span>")
 		return
@@ -65,23 +65,23 @@
 		victim.forceMove(src)
 		src.occupant = victim
 
-/obj/machinery/xenobio2/manualinjector/proc/eject_contents()
+obj/machinery/xenobio2/manualinjector/proc/eject_contents()
 	eject_xeno()
 	eject_beaker()
 	return
 
-/obj/machinery/xenobio2/manualinjector/proc/eject_xeno()
+obj/machinery/xenobio2/manualinjector/proc/eject_xeno()
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
 
-/obj/machinery/xenobio2/manualinjector/proc/eject_beaker()
+obj/machinery/xenobio2/manualinjector/proc/eject_beaker()
 	if(beaker)
 		var/obj/item/reagent_containers/glass/beaker/B = beaker
 		B.loc = loc
 		beaker = null
 
-/obj/machinery/xenobio2/manualinjector/proc/inject_reagents()
+obj/machinery/xenobio2/manualinjector/proc/inject_reagents()
 	if(!occupant)
 		return
 	if(isxeno(occupant))
@@ -90,7 +90,7 @@
 	else
 		beaker.reagents.trans_to_mob(occupant, computer.transfer_amount)
 
-/obj/machinery/xenobio2/manualinjector/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/xenobio2/manualinjector/attackby(var/obj/item/W, var/mob/user)
 
 	//Let's try to deconstruct first.
 	if(W.is_screwdriver())
@@ -137,7 +137,7 @@
 	move_into_injector(user,G.affecting)
 
 
-/obj/item/circuitboard/xenobioinjectormachine
+obj/item/circuitboard/xenobioinjectormachine
 	name = T_BOARD("biological injector")
 	build_path = /obj/machinery/xenobio2/manualinjector
 	board_type = /datum/frame/frame_types/machine

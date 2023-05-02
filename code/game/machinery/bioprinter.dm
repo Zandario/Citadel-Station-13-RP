@@ -1,7 +1,7 @@
 // GENERIC PRINTER - DO NOT USE THIS OBJECT.
 // Flesh and robot printers are defined below this object.
 
-/obj/machinery/organ_printer
+obj/machinery/organ_printer
 	name = "organ printer"
 	desc = "It's a machine that prints organs."
 	icon = 'icons/obj/machines/fabricators/bioprinter.dmi'
@@ -61,14 +61,14 @@
 		"Adrenal Valve Cluster" = list(/obj/item/organ/internal/heart/replicant/rage, 80)
 		)
 
-/obj/machinery/organ_printer/update_icon_state()
+obj/machinery/organ_printer/update_icon_state()
 	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "[base_icon_state]-off"
 	else
 		icon_state = base_icon_state
 
-/obj/machinery/organ_printer/update_overlays()
+obj/machinery/organ_printer/update_overlays()
 	. = ..()
 	cut_overlays()
 	if(panel_open)
@@ -76,7 +76,7 @@
 	if(printing)
 		add_overlay("[base_icon_state]-active")
 
-/obj/machinery/organ_printer/attackby(obj/item/O, mob/user)
+obj/machinery/organ_printer/attackby(obj/item/O, mob/user)
 	if(default_deconstruction_screwdriver(user, O))
 		updateUsrDialog()
 		return
@@ -88,7 +88,7 @@
 		return
 	return ..()
 
-/obj/machinery/organ_printer/examine(mob/user)
+obj/machinery/organ_printer/examine(mob/user)
 	. = ..()
 	var/biomass = get_biomass_volume()
 	if(biomass)
@@ -96,7 +96,7 @@
 	else
 		. += SPAN_INFO("It is not loaded with any biomass.")
 
-/obj/machinery/organ_printer/RefreshParts()
+obj/machinery/organ_printer/RefreshParts()
 	// Print Delay updating
 	print_delay = base_print_delay
 	var/manip_rating = 0
@@ -125,7 +125,7 @@
 
 	. = ..()
 
-/obj/machinery/organ_printer/attack_hand(mob/user, list/params)
+obj/machinery/organ_printer/attack_hand(mob/user, list/params)
 
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
@@ -145,7 +145,7 @@
 	else
 		to_chat(user, SPAN_WARNING("\The [src] can't operate without a reagent reservoir!"))
 
-/obj/machinery/organ_printer/proc/printing_menu(mob/user)
+obj/machinery/organ_printer/proc/printing_menu(mob/user)
 	var/list/possible_list = list()
 
 	possible_list |= products
@@ -185,7 +185,7 @@
 
 	return
 
-/obj/machinery/organ_printer/verb/eject_beaker()
+obj/machinery/organ_printer/verb/eject_beaker()
 	set name = "Eject Beaker"
 	set category = "Object"
 	set src in oview(1)
@@ -197,7 +197,7 @@
 	return
 
 /// Returns TRUE if it succeeds, FALSE if it fails. Added in case someone wants to add messages to the user.
-/obj/machinery/organ_printer/proc/remove_beaker()
+obj/machinery/organ_printer/proc/remove_beaker()
 	if(container)
 		container.forceMove(get_turf(src))
 		container = null
@@ -205,7 +205,7 @@
 	return FALSE
 
 /// Checks for reagents, then reports how much biomass it has in it.
-/obj/machinery/organ_printer/proc/get_biomass_volume()
+obj/machinery/organ_printer/proc/get_biomass_volume()
 	var/biomass_count = 0
 	if(container && container.reagents)
 		for(var/datum/reagent/R in container.reagents.reagent_list)
@@ -214,7 +214,7 @@
 
 	return biomass_count
 
-/obj/machinery/organ_printer/proc/can_print(choice, biomass_needed = 0)
+obj/machinery/organ_printer/proc/can_print(choice, biomass_needed = 0)
 	var/biomass = get_biomass_volume()
 	if(biomass < biomass_needed)
 		visible_message(SPAN_INFO("\The [src] displays a warning: 'Not enough biomass. [biomass] stored and [biomass_needed] needed.'"))
@@ -225,7 +225,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/organ_printer/proc/print_organ(var/choice)
+obj/machinery/organ_printer/proc/print_organ(var/choice)
 	var/new_organ = choice
 	var/obj/item/organ/O = new new_organ(get_turf(src))
 	O.status |= ORGAN_CUT_AWAY
@@ -259,7 +259,7 @@
 // END GENERIC PRINTER
 
 // CIRCUITS
-/obj/item/circuitboard/bioprinter
+obj/item/circuitboard/bioprinter
 	name = "bioprinter circuit"
 	build_path = /obj/machinery/organ_printer/flesh
 	board_type = new /datum/frame/frame_types/machine
@@ -271,16 +271,16 @@
 		)
 
 // FLESH ORGAN PRINTER
-/obj/machinery/organ_printer/flesh
+obj/machinery/organ_printer/flesh
 	name = "bioprinter"
 	desc = "It's a machine that prints replacement organs."
 	circuit = /obj/item/circuitboard/bioprinter
 
-/obj/machinery/organ_printer/flesh/full/Initialize(mapload, newdir)
+obj/machinery/organ_printer/flesh/full/Initialize(mapload, newdir)
 	. = ..()
 	container = new /obj/item/reagent_containers/glass/bottle/biomass(src)
 
-/obj/machinery/organ_printer/flesh/dismantle()
+obj/machinery/organ_printer/flesh/dismantle()
 	var/turf/T = get_turf(src)
 	if(T)
 		if(container)
@@ -288,14 +288,14 @@
 			container = null
 	return ..()
 
-/obj/machinery/organ_printer/flesh/print_organ(choice)
+obj/machinery/organ_printer/flesh/print_organ(choice)
 	var/obj/item/organ/O = ..()
 
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE)
 	visible_message(SPAN_INFO("\The [src] dings, then spits out \a [O]."))
 	return O
 
-/obj/machinery/organ_printer/flesh/attackby(obj/item/W, mob/user)
+obj/machinery/organ_printer/flesh/attackby(obj/item/W, mob/user)
 	// DNA sample from syringe.
 	if(istype(W,/obj/item/reagent_containers/syringe))	//TODO: Make this actually empty the syringe
 		var/obj/item/reagent_containers/syringe/S = W
@@ -322,7 +322,7 @@
 
 
 /* Roboprinter is made obsolete by the system already in place and mapped into Robotics
-/obj/item/circuitboard/roboprinter
+obj/item/circuitboard/roboprinter
 	name = "roboprinter circuit"
 	build_path = /obj/machinery/organ_printer/robot
 	board_type = new /datum/frame/frame_types/machine
@@ -334,7 +334,7 @@
 
 // ROBOT ORGAN PRINTER
 // Still Requires DNA, /obj/machinery/pros_fab is better for limbs
-/obj/machinery/organ_printer/robot
+obj/machinery/organ_printer/robot
 	name = "prosthetic organ fabricator"
 	desc = "It's a machine that prints prosthetic organs."
 	icon_state = "roboprinter"
@@ -343,16 +343,16 @@
 	var/matter_amount_per_sheet = 10
 	var/matter_type = MAT_STEEL
 
-/obj/machinery/organ_printer/robot/full/New()
+obj/machinery/organ_printer/robot/full/New()
 	. = ..()
 	stored_matter = max_stored_matter
 
-/obj/machinery/organ_printer/robot/dismantle()
+obj/machinery/organ_printer/robot/dismantle()
 	if(stored_matter >= matter_amount_per_sheet)
 		new /obj/item/stack/material/steel(get_turf(src), FLOOR(stored_matter/matter_amount_per_sheet, 1))
 	return ..()
 
-/obj/machinery/organ_printer/robot/print_organ(var/choice)
+obj/machinery/organ_printer/robot/print_organ(var/choice)
 	var/obj/item/organ/O = ..()
 	O.robotize()
 	O.status |= ORGAN_CUT_AWAY  // robotize() resets status to 0
@@ -360,7 +360,7 @@
 	audible_message("<span class='info'>\The [src] dings, then spits out \a [O].</span>")
 	return O
 
-/obj/machinery/organ_printer/robot/attackby(var/obj/item/W, var/mob/user)
+obj/machinery/organ_printer/robot/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == matter_type)
 		if((max_stored_matter-stored_matter) < matter_amount_per_sheet)
 			to_chat(user, "<span class='warning'>\The [src] is too full.</span>")

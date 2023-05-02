@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/silicon/robot/lost
+datum/category_item/catalogue/fauna/silicon/robot/lost
 	name = "Robot - Lost"
 	desc = "Cyborgs may be considered valuable assets on the Frontier, but their \
 	recovery is not always tenable. Vessels lost in space, due either to mishap or \
@@ -7,7 +7,7 @@
 	for a multitude of reasons, and are often claimed as salvage and repurposed."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/silicon/robot/lost
+mob/living/silicon/robot/lost
 	lawupdate = 0
 	scrambledcodes = 1
 	icon_state = "drone-lost"
@@ -18,7 +18,7 @@
 	icon_selected = FALSE
 	catalogue_data = list(/datum/category_item/catalogue/fauna/silicon/robot/lost)
 
-/mob/living/silicon/robot/lost/init()
+mob/living/silicon/robot/lost/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
 	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
@@ -33,17 +33,17 @@
 
 	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
-/mob/living/silicon/robot/lost/speech_bubble_appearance()
+mob/living/silicon/robot/lost/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/silicon/robot/lost/randomlaws
+mob/living/silicon/robot/lost/randomlaws
 
-/mob/living/silicon/robot/lost/randomlaws/init()
+mob/living/silicon/robot/lost/randomlaws/init()
 	..()
 	laws = give_random_lawset()
 
 // Returns a random ai_laws datum.
-/mob/living/silicon/proc/give_random_lawset()
+mob/living/silicon/proc/give_random_lawset()
 	// Decide what kind of laws we want to draw from.
 	var/law_class = pick(
 		prob(25);"good",

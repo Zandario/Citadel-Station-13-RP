@@ -1,4 +1,4 @@
-/datum/game_mode/infiltrator
+datum/game_mode/infiltrator
 	name = "Team Traitor"
 	round_description = "There are a group of shadowy infiltrators onboard!  Be careful!"
 	extended_round_description = "A team of secretative people have played the long con, and managed to obtain entry to \

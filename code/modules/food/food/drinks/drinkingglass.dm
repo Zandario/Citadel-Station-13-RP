@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/drinks/drinkingglass
+obj/item/reagent_containers/food/drinks/drinkingglass
 	name = "glass"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
@@ -10,7 +10,7 @@
 	pickup_sound =  'sound/items/pickup/drinkglass.ogg'
 	matter = list(MAT_GLASS = 500)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
+obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
 	/*if(reagents.reagent_list.len > 1 )
 		icon_state = "glass_brown"
 		name = "Glass of Hooch"
@@ -52,7 +52,7 @@
 		center_of_mass = list("x"=16, "y"=10)
 		return
 
-/obj/item/reagent_containers/food/drinks/cup
+obj/item/reagent_containers/food/drinks/cup
 	name = "coffee cup"
 	desc = "The container of oriental luxuries."
 	icon_state = "cup_empty"
@@ -60,7 +60,7 @@
 	volume = 30
 	center_of_mass = list("x"=16, "y"=16)
 
-/obj/item/reagent_containers/food/drinks/cup/on_reagent_change()
+obj/item/reagent_containers/food/drinks/cup/on_reagent_change()
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
 
@@ -97,17 +97,17 @@
 		return
 
 // for /obj/machinery/vending/sovietsoda
-/obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("sodawater", 50)
 	on_reagent_change()
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("cola", 50)
 	on_reagent_change()
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass
+obj/item/reagent_containers/food/drinks/drinkingglass/shotglass
 	name = "shot glass"
 	desc = "No glasses were shot in the making of this glass."
 	icon_state = "shotglass"
@@ -115,7 +115,7 @@
 	volume = 10
 	matter = list(MAT_GLASS = 175)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
+obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
 	cut_overlays()
 
 	if(reagents.total_volume)
@@ -135,18 +135,18 @@
 	else
 		name = "shot glass"
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask
+obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask
 	name = "fitness shaker"
 	desc = "Big enough to contain enough protein to get perfectly swole. Don't mind the bits."
 	icon_state = "fitness-cup_black"
 	volume = 100
 	matter = list(MAT_PLASTIC = 2000)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/Initialize(mapload)
 	. = ..()
 	icon_state = pick("fitness-cup_black", "fitness-cup_red", "fitness-cup_black")
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
+obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
 	cut_overlays()
 
 	if(reagents.total_volume)
@@ -177,10 +177,10 @@
 		filling.color += reagents.get_color()
 		add_overlay(filling)
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake
+obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake
 	name = "protein shake"
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake/Initialize(mapload)
+obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("nutriment", 30)
 	reagents.add_reagent("iron", 10)

@@ -1,4 +1,4 @@
-/datum/unit_test/reagent_ids/Run()
+datum/unit_test/reagent_ids/Run()
 	var/list/id_lookup = list()
 	var/list/colliding = list()
 	for(var/path in subtypesof(/datum/reagent))

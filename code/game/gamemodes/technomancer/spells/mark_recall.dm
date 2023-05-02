@@ -1,4 +1,4 @@
-/datum/technomancer/spell/mark
+datum/technomancer/spell/mark
 	name = "Mark"
 	desc = "This function places a specific 'mark' beacon under you, which is used by the Recall function as a destination.  \
 	Note that using Mark again will move the destination instead of creating a second destination, and only one destination \
@@ -9,7 +9,7 @@
 	category = UTILITY_SPELLS
 
 //The object to teleport to when Recall is used.
-/obj/effect/mark_spell
+obj/effect/mark_spell
 	name = "mark"
 	desc = "This is a strange looking disturbance."
 	opacity = 0
@@ -17,16 +17,16 @@
 	anchored = 1
 
 //This is global, to avoid looping through a list of all objects, or god forbid, looping through world.
-/var/global/obj/effect/mark_spell/mark_spell_ref = null
+var/global/obj/effect/mark_spell/mark_spell_ref = null
 
-/obj/item/spell/mark
+obj/item/spell/mark
 	name = "mark"
 	icon_state = "mark"
 	desc = "Marks a specific location to be used by Recall."
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-/obj/item/spell/mark/on_use_cast(mob/living/user)
+obj/item/spell/mark/on_use_cast(mob/living/user)
 	if(!allowed_to_teleport()) // Otherwise you could teleport back to the admin Z-level.
 		to_chat(user, "<span class='warning'>You can't teleport here!</span>")
 		return 0
@@ -45,7 +45,7 @@
 
 //Recall
 
-/datum/technomancer/spell/recall
+datum/technomancer/spell/recall
 	name = "Recall"
 	desc = "This function teleports you to where you placed a mark using the Mark function.  Without the Mark function, this \
 	function is useless.  Note that teleporting takes three seconds.  Being incapacitated while teleporting will cancel it."
@@ -55,14 +55,14 @@
 	ability_icon_state = "tech_recall"
 	category = UTILITY_SPELLS
 
-/obj/item/spell/recall
+obj/item/spell/recall
 	name = "recall"
 	icon_state = "recall"
 	desc = "This will bring you to your Mark."
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-/obj/item/spell/recall/on_use_cast(mob/living/user)
+obj/item/spell/recall/on_use_cast(mob/living/user)
 	if(pay_energy(3000))
 		if(!mark_spell_ref)
 			to_chat(user, "<span class='danger'>There's no Mark!</span>")
@@ -108,4 +108,3 @@
 	else
 		to_chat(user, "<span class='warning'>You can't afford the energy cost!</span>")
 		return 0
-

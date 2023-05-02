@@ -1,4 +1,4 @@
-/obj/machinery/artifact
+obj/machinery/artifact
 	name = "alien artifact"
 	desc = "A large alien device."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -9,7 +9,7 @@
 	var/datum/artifact_effect/secondary_effect
 	var/being_used = 0
 
-/obj/machinery/artifact/Initialize(mapload, newdir)
+obj/machinery/artifact/Initialize(mapload, newdir)
 	. = ..()
 
 	var/effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
@@ -53,7 +53,7 @@
 		if(prob(60))
 			my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
 
-/obj/machinery/artifact/proc/choose_effect()
+obj/machinery/artifact/proc/choose_effect()
 	var/effect_type = input(usr, "What type do you want?", "Effect Type") as null|anything in typesof(/datum/artifact_effect) - /datum/artifact_effect
 	if(effect_type)
 		my_effect = new effect_type(src)
@@ -64,7 +64,7 @@
 			secondary_effect = null
 
 
-/obj/machinery/artifact/process(delta_time)
+obj/machinery/artifact/process(delta_time)
 	var/turf/L = loc
 	if(!istype(L)) 	// We're inside a container or on null turf, either way stop processing effects
 		return
@@ -174,7 +174,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_NITRO && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 
-/obj/machinery/artifact/attack_hand(mob/user, list/params)
+obj/machinery/artifact/attack_hand(mob/user, list/params)
 	if (get_dist(user, src) > 1)
 		to_chat(user, "<font color='red'>You can't reach [src] from here.</font>")
 		return
@@ -199,7 +199,7 @@
 	if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated)
 		secondary_effect.DoEffectTouch(user)
 
-/obj/machinery/artifact/attackby(obj/item/W as obj, mob/living/user as mob)
+obj/machinery/artifact/attackby(obj/item/W as obj, mob/living/user as mob)
 
 	if (istype(W, /obj/item/reagent_containers/))
 		if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
@@ -245,7 +245,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
 			secondary_effect.ToggleActivate(0)
 
-/obj/machinery/artifact/Bumped(M as mob|obj)
+obj/machinery/artifact/Bumped(M as mob|obj)
 	..()
 	if(istype(M,/obj))
 		if(M:throw_force >= 10)
@@ -274,7 +274,7 @@
 			to_chat(M, "<b>You accidentally touch [src].</b>")
 	..()
 
-/obj/machinery/artifact/bullet_act(var/obj/projectile/P)
+obj/machinery/artifact/bullet_act(var/obj/projectile/P)
 	if(istype(P,/obj/projectile/bullet))
 		if(my_effect.trigger == TRIGGER_FORCE)
 			my_effect.ToggleActivate()
@@ -289,7 +289,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_ENERGY && prob(25))
 			secondary_effect.ToggleActivate(0)
 
-/obj/machinery/artifact/legacy_ex_act(severity)
+obj/machinery/artifact/legacy_ex_act(severity)
 	switch(severity)
 		if(1.0) qdel(src)
 		if(2.0)
@@ -307,7 +307,7 @@
 				secondary_effect.ToggleActivate(0)
 	return
 
-/obj/machinery/artifact/Move()
+obj/machinery/artifact/Move()
 	..()
 	if(my_effect)
 		my_effect.UpdateMove()

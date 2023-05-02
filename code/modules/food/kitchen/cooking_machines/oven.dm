@@ -1,4 +1,4 @@
-/obj/machinery/appliance/cooker/oven
+obj/machinery/appliance/cooker/oven
 	name = "oven"
 	desc = "Cookies are ready, dear."
 	icon = 'icons/obj/cooking_machines.dmi'
@@ -36,16 +36,16 @@
 		"Donut" = /obj/item/reagent_containers/food/snacks/variable/donut
 	)
 
-/obj/machinery/appliance/cooker/oven/Initialize(mapload)
+obj/machinery/appliance/cooker/oven/Initialize(mapload)
 	. = ..()
 
 	oven_loop = new(list(src), FALSE)
 
-/obj/machinery/appliance/cooker/oven/Destroy()
+obj/machinery/appliance/cooker/oven/Destroy()
 	QDEL_NULL(oven_loop)
 	return ..()
 
-/obj/machinery/appliance/cooker/oven/update_icon()
+obj/machinery/appliance/cooker/oven/update_icon()
 	if (!open)
 		if (!machine_stat)
 			icon_state = "ovenclosed_on"
@@ -61,18 +61,18 @@
 			oven_loop.stop(src)
 	..()
 
-/obj/machinery/appliance/cooker/oven/AltClick(var/mob/user)
+obj/machinery/appliance/cooker/oven/AltClick(var/mob/user)
 	try_toggle_door(user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-/obj/machinery/appliance/cooker/oven/verb/toggle_door()
+obj/machinery/appliance/cooker/oven/verb/toggle_door()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Open/close oven door"
 
 	try_toggle_door(usr)
 
-/obj/machinery/appliance/cooker/oven/proc/try_toggle_door(mob/user)
+obj/machinery/appliance/cooker/oven/proc/try_toggle_door(mob/user)
 	if (!isliving(usr) || isAI(user))
 		return
 
@@ -95,7 +95,7 @@
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
 	update_icon()
 
-/obj/machinery/appliance/cooker/oven/can_insert(var/obj/item/I, var/mob/user)
+obj/machinery/appliance/cooker/oven/can_insert(var/obj/item/I, var/mob/user)
 	if (!open)
 		to_chat(user, "<span class='warning'>You can't put anything in while the door is closed!</span>")
 		return 0
@@ -106,14 +106,14 @@
 
 //If an oven's door is open it will lose heat every proc, even if it also gained it
 //But dont call equalize twice in one stack. A return value of -1 from the parent indicates equalize was already called
-/obj/machinery/appliance/cooker/oven/heat_up()
+obj/machinery/appliance/cooker/oven/heat_up()
 	.=..()
 	if (open && . != -1)
 		var/turf/T = get_turf(src)
 		if (temperature > T.temperature)
 			equalize_temperature()
 
-/obj/machinery/appliance/cooker/oven/can_remove_items(var/mob/user)
+obj/machinery/appliance/cooker/oven/can_remove_items(var/mob/user)
 	if (!open)
 		to_chat(user, "<span class='warning'>You can't take anything out while the door is closed!</span>")
 		return 0
@@ -124,7 +124,7 @@
 
 //Oven has lots of recipes and combine options. The chance for interference is high, so
 //If a combine target is set the oven will do it instead of checking recipes
-/obj/machinery/appliance/cooker/oven/finish_cooking(var/datum/cooking_item/CI)
+obj/machinery/appliance/cooker/oven/finish_cooking(var/datum/cooking_item/CI)
 	if(CI.combine_target)
 		CI.result_type = 3//Combination type. We're making something out of our ingredients
 		combination_cook(CI)

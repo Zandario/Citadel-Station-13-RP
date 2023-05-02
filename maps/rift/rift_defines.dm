@@ -37,7 +37,7 @@
 //#define Z_LEVEL_AEROSTAT				30
 //#define Z_LEVEL_AEROSTAT_SURFACE		31
 
-/datum/map/rift
+datum/map/rift
 	name = "Rift"
 	full_name = "NSB Atlas"
 	path = "rift"
@@ -228,7 +228,7 @@
 
 // Overmap stuff. Main file is under code/modules/maps/overmap/_lythios43c.dm
 // Todo, find a way to populate this list automatically without having to do this
-/obj/effect/overmap/visitable/sector/lythios43c
+obj/effect/overmap/visitable/sector/lythios43c
 	extra_z_levels = list(
 		Z_LEVEL_WEST_PLAIN,
 		Z_LEVEL_WEST_CAVERN,
@@ -253,30 +253,30 @@
 #define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TETHER_MAP_SIZE)) / 2) // 60
 
 // We have a bunch of stuff common to the station z levels
-/datum/map_z_level/tether/station
+datum/map_z_level/tether/station
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
 	holomap_legend_x = 220
 	holomap_legend_y = 160
 */
-/datum/map_z_level/rift/station/underground_floor
+datum/map_z_level/rift/station/underground_floor
 	z = Z_LEVEL_UNDERGROUND_FLOOR
 	name = "Eastern Canyon"
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
 	base_turf = /turf/simulated/floor/outdoors/safeice/lythios43c
 
-/datum/map_z_level/rift/station/underground_deep
+datum/map_z_level/rift/station/underground_deep
 	z = Z_LEVEL_UNDERGROUND_DEEP
 	name = "Underground 2"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
 	base_turf = /turf/simulated/floor/outdoors/safeice/lythios43c
 
-/datum/map_z_level/rift/station/underground_shallow
+datum/map_z_level/rift/station/underground_shallow
 	z = Z_LEVEL_UNDERGROUND
 	name = "Underground 1"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
 	base_turf = /turf/simulated/open
 
-/datum/map_z_level/rift/station/surface_low
+datum/map_z_level/rift/station/surface_low
 	z = Z_LEVEL_SURFACE_LOW
 	name = "Surface 1"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
@@ -285,7 +285,7 @@
 //	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 //	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
 
-/datum/map_z_level/rift/station/surface_mid
+datum/map_z_level/rift/station/surface_mid
 	z = Z_LEVEL_SURFACE_MID
 	name = "Surface 2"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
@@ -293,7 +293,7 @@
 //	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 //	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
 
-/datum/map_z_level/rift/station/surface_high
+datum/map_z_level/rift/station/surface_high
 	z = Z_LEVEL_SURFACE_HIGH
 	name = "Surface 3"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
@@ -301,27 +301,27 @@
 //	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 //	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
 
-/datum/map_z_level/rift/base
+datum/map_z_level/rift/base
 	z = Z_LEVEL_WEST_BASE
 	name = "Western Canyon"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
 	base_turf = /turf/simulated/mineral/floor/icerock/lythios43c/indoors
 
-/datum/map_z_level/rift/deep
+datum/map_z_level/rift/deep
 	z = Z_LEVEL_WEST_DEEP
 	name = "Western Deep Caves"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_PLAYER
 	base_turf = /turf/simulated/mineral/floor/icerock/lythios43c/indoors
 
 
-/datum/map_z_level/rift/caves
+datum/map_z_level/rift/caves
 	z = Z_LEVEL_WEST_CAVERN
 	name = "Western Caves"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_PLAYER
 	base_turf = /turf/simulated/mineral/floor/icerock/lythios43c/indoors
 
 
-/datum/map_z_level/rift/plains
+datum/map_z_level/rift/plains
 	z = Z_LEVEL_WEST_PLAIN
 	name = "Western Plains"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
@@ -330,7 +330,7 @@
 
 
 /// Cave Generation
-/datum/map/rift/perform_map_generation()
+datum/map/rift/perform_map_generation()
 	. = ..()
 	seed_submaps(list(Z_LEVEL_WEST_CAVERN), 50, /area/rift/surfacebase/outside/west_caves/submap_seedzone, /datum/map_template/submap/level_specific/rift/west_caves)
 	seed_submaps(list(Z_LEVEL_WEST_DEEP), 50, /area/rift/surfacebase/outside/west_deep/submap_seedzone, /datum/map_template/submap/level_specific/rift/west_deep)
@@ -348,19 +348,19 @@
 	return 1
 
 
-/datum/map_z_level/rift/colony
+datum/map_z_level/rift/colony
 	z = Z_LEVEL_MISC
 	name = "Orbital Relay"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 /// This is the effect that slams people into the ground upon dropping out of the sky //
 
-/obj/effect/step_trigger/teleporter/planetary_fall/lythios43c/find_planet()
+obj/effect/step_trigger/teleporter/planetary_fall/lythios43c/find_planet()
 	planet = planet_lythios43c
 
 /// Temporary place for this
 // Spawner for lythios animals
-/obj/tether_away_spawner/lythios_animals
+obj/tether_away_spawner/lythios_animals
 	name = "Lythios Animal Spawner"
 	faction = "lythios"
 	atmos_comp = TRUE
@@ -374,17 +374,17 @@
 
 
 /// Z level dropper. Todo, make something generic so we dont have to copy pasta this
-/obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
+obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
 
-/obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
+obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
 	. = ..()
 
 	if(istype(get_turf(src), /turf/simulated/floor))
 		src:target_z = z
 		return INITIALIZE_HINT_QDEL
 
-/obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
+obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
 	if(!src:target_z)
 		return
 
@@ -423,5 +423,5 @@
 		var/mob/living/L = A
 		L.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
 
-/obj/effect/step_trigger/zlevel_fall/cavernfall
+obj/effect/step_trigger/zlevel_fall/cavernfall
 	var/static/target_z = Z_LEVEL_WEST_CAVERN

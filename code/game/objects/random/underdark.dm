@@ -1,26 +1,26 @@
-/obj/random/underdark
+obj/random/underdark
 	name = "random underdark loot"
 	desc = "Random loot for Underdark."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spickaxe"
 
-/obj/random/underdark/item_to_spawn()
+obj/random/underdark/item_to_spawn()
 	return pick(prob(3);/obj/random/multiple/underdark/miningdrills,
 				prob(3);/obj/random/multiple/underdark/ores,
 				prob(2);/obj/random/multiple/underdark/treasure,
 				prob(1);/obj/random/multiple/underdark/mechtool)
 
-/obj/random/underdark/uncertain
+obj/random/underdark/uncertain
 	icon_state = "upickaxe"
 	spawn_nothing_percentage = 65	//only 33% to spawn loot
 
-/obj/random/multiple/underdark/miningdrills
+obj/random/multiple/underdark/miningdrills
 	name = "random underdark mining tool loot"
 	desc = "Random mining tool loot for Underdark."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spickaxe"
 
-/obj/random/multiple/underdark/miningdrills/item_to_spawn()
+obj/random/multiple/underdark/miningdrills/item_to_spawn()
 	return pick(
 				prob(10);list(/obj/item/pickaxe/silver),
 				prob(8);list(/obj/item/pickaxe/drill),
@@ -31,13 +31,13 @@
 				prob(1);list(/obj/item/pickaxe/diamonddrill)
 				)
 
-/obj/random/multiple/underdark/ores
+obj/random/multiple/underdark/ores
 	name = "random underdark mining ore loot"
 	desc = "Random mining utility loot for Underdark."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
 
-/obj/random/multiple/underdark/ores/item_to_spawn()
+obj/random/multiple/underdark/ores/item_to_spawn()
 	return pick(
 				prob(9);list(
 							/obj/item/storage/bag/ore,
@@ -121,13 +121,13 @@
 							)
 				)
 
-/obj/random/multiple/underdark/treasure
+obj/random/multiple/underdark/treasure
 	name = "random underdark treasure"
 	desc = "Random treasure loot for Underdark."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "cashbag"
 
-/obj/random/multiple/underdark/treasure/item_to_spawn()
+obj/random/multiple/underdark/treasure/item_to_spawn()
 	return pick(
 				prob(5);list(
 							/obj/random/coin,
@@ -166,13 +166,13 @@
 							)
 				)
 
-/obj/random/multiple/underdark/mechtool
+obj/random/multiple/underdark/mechtool
 	name = "random underdark mech equipment"
 	desc = "Random mech equipment loot for Underdark."
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = "mecha_clamp"
 
-/obj/random/multiple/underdark/mechtool/item_to_spawn()
+obj/random/multiple/underdark/mechtool/item_to_spawn()
 	return pick(
 				prob(12);list(/obj/item/mecha_parts/mecha_equipment/tool/drill),
 				prob(10);list(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp),
@@ -184,4 +184,3 @@
 				// prob(2);list(/obj/item/mecha_parts/mecha_equipment/energy/flamer/rigged),
 				prob(1);list(/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill),
 				)
-

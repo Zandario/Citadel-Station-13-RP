@@ -11,7 +11,7 @@
 /*
  * Borrowbook datum
  */
-/datum/borrowbook // Datum used to keep track of who has borrowed what when and for how long.
+datum/borrowbook // Datum used to keep track of who has borrowed what when and for how long.
 	var/bookname
 	var/mobname
 	var/getdate
@@ -20,7 +20,7 @@
 /*
  * Library Public Computer
  */
-/obj/machinery/librarypubliccomp
+obj/machinery/librarypubliccomp
 	name = "visitor computer"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
@@ -31,7 +31,7 @@
 	var/category = "Any"
 	var/author
 
-/obj/machinery/librarypubliccomp/attack_hand(mob/user, list/params)
+obj/machinery/librarypubliccomp/attack_hand(mob/user, list/params)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Library Visitor</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
@@ -64,7 +64,7 @@
 	user << browse(dat, "window=publiclibrary")
 	onclose(user, "publiclibrary")
 
-/obj/machinery/librarypubliccomp/Topic(href, href_list)
+obj/machinery/librarypubliccomp/Topic(href, href_list)
 	if(..())
 		usr << browse(null, "window=publiclibrary")
 		onclose(usr, "publiclibrary")
@@ -107,7 +107,7 @@
  */
 // TODO: Make this an actual /obj/machinery/computer that can be crafted from circuit boards and such
 // It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it. // Nov 2019. Nope.
-/obj/machinery/librarycomp
+obj/machinery/librarycomp
 	name = "Check-In/Out Computer"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
@@ -130,7 +130,7 @@
 
 	var/static/list/base_genre_books
 
-/obj/machinery/librarycomp/Initialize(mapload)
+obj/machinery/librarycomp/Initialize(mapload)
 	. = ..()
 
 	if(!base_genre_books || !base_genre_books.len)
@@ -160,7 +160,7 @@
 			var/obj/item/book/M = new path(null)
 			all_books[M.title] = M
 
-/obj/machinery/librarycomp/attack_hand(mob/user, list/params)
+obj/machinery/librarycomp/attack_hand(mob/user, list/params)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
@@ -289,12 +289,12 @@
 	user << browse(dat, "window=library")
 	onclose(user, "library")
 
-/obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
+obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
 	if (src.density && !src.emagged)
 		src.emagged = 1
 		return 1
 
-/obj/machinery/librarycomp/attackby(obj/item/W as obj, mob/user as mob)
+obj/machinery/librarycomp/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/barcodescanner))
 		var/obj/item/barcodescanner/scanner = W
 		scanner.computer = src
@@ -304,7 +304,7 @@
 	else
 		..()
 
-/obj/machinery/librarycomp/Topic(href, href_list)
+obj/machinery/librarycomp/Topic(href, href_list)
 	if(..())
 		usr << browse(null, "window=library")
 		onclose(usr, "library")
@@ -463,7 +463,7 @@
 /*
  * Library Scanner
  */
-/obj/machinery/libraryscanner
+obj/machinery/libraryscanner
 	name = "scanner"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
@@ -471,12 +471,12 @@
 	density = 1
 	var/obj/item/book/cache		// Last scanned book
 
-/obj/machinery/libraryscanner/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
+obj/machinery/libraryscanner/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
 	if(istype(I, /obj/item/book))
 		if(!user.attempt_insert_item_for_installation(I, src))
 			return
 
-/obj/machinery/libraryscanner/attack_hand(mob/user, list/params)
+obj/machinery/libraryscanner/attack_hand(mob/user, list/params)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Scanner Control Interface</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	if(cache)
@@ -491,7 +491,7 @@
 	user << browse(dat, "window=scanner")
 	onclose(user, "scanner")
 
-/obj/machinery/libraryscanner/Topic(href, href_list)
+obj/machinery/libraryscanner/Topic(href, href_list)
 	if(..())
 		usr << browse(null, "window=scanner")
 		onclose(usr, "scanner")
@@ -514,7 +514,7 @@
 /*
  * Book binder
  */
-/obj/machinery/bookbinder
+obj/machinery/bookbinder
 	name = "Book Binder"
 	icon = 'icons/obj/machines/fabricators/book.dmi'
 	icon_state = "binder"
@@ -522,20 +522,20 @@
 	anchored = TRUE
 	density = TRUE
 
-/obj/machinery/bookbinder/update_icon_state()
+obj/machinery/bookbinder/update_icon_state()
 	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "[base_icon_state]-off"
 	else
 		icon_state = base_icon_state
 
-/obj/machinery/bookbinder/update_overlays()
+obj/machinery/bookbinder/update_overlays()
 	. = ..()
 	cut_overlays()
 	if(panel_open)
 		add_overlay("[base_icon_state]-panel")
 
-/obj/machinery/bookbinder/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
+obj/machinery/bookbinder/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
 	if(istype(I, /obj/item/paper))
 		if(!user.attempt_insert_item_for_installation(I, src))
 			return

@@ -1,19 +1,19 @@
 //Engine control and monitoring console
 
-/obj/machinery/computer/ship/engines
+obj/machinery/computer/ship/engines
 	name = "engine control console"
 	icon_keyboard = "tech_key"
 	icon_screen = "engines"
 	circuit = /obj/item/circuitboard/engine
 
 // fancy sprite
-/obj/machinery/computer/ship/engines/adv
+obj/machinery/computer/ship/engines/adv
 	icon_keyboard = null
 	icon_state = "adv_engines"
 	icon_screen = "adv_engines_screen"
 	light_color = "#05A6A8"
 
-/obj/machinery/computer/ship/engines/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/ship/engines/ui_interact(mob/user, datum/tgui/ui)
 	if(!linked)
 		display_reconnect_dialog(user, "ship control systems")
 		return
@@ -23,7 +23,7 @@
 		ui = new(user, src, "OvermapEngines", "[linked.name] Engines Control") // 390, 530
 		ui.open()
 
-/obj/machinery/computer/ship/engines/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/ship/engines/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	var/list/data = list()
 	data["global_state"] = linked.engines_state
 	data["global_limit"] = round(linked.thrust_limit*100)
@@ -49,7 +49,7 @@
 	data["total_thrust"] = total_thrust
 	return data
 
-/obj/machinery/computer/ship/engines/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/ship/engines/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 

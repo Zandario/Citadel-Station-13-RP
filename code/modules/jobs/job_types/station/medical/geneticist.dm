@@ -3,7 +3,7 @@
 //////////////////////////////////
 //			Geneticist
 //////////////////////////////////
-/datum/role/job/station/geneticist
+datum/role/job/station/geneticist
 	id = "geneticist"
 	title = "Geneticist"
 	flag = GENETICIST
@@ -23,7 +23,7 @@
 						When required, geneticists have the skills to clone, and are the superior choice when available for doing so."
 */
 
-/datum/outfit/job/station/geneticist
+datum/outfit/job/station/geneticist
 	name = OUTFIT_JOB_NAME("Geneticist")
 	uniform = /obj/item/clothing/under/rank/geneticist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/genetics

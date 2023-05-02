@@ -4,61 +4,61 @@ var/global/list/weavable_items = list()
 
 // Structures
 
-/obj/effect/weaversilk
+obj/effect/weaversilk
 	name = "weaversilk web"
 	desc = "A thin layer of fiberous webs. It looks like it can be torn down with one strong hit."
 	icon = 'icons/vore/weaver_icons_vr.dmi'
 	anchored = TRUE
 	density = FALSE
 
-/obj/effect/weaversilk/legacy_ex_act(severity)
+obj/effect/weaversilk/legacy_ex_act(severity)
 	qdel(src)
 	return
 
-/obj/effect/weaversilk/attackby(var/obj/item/W, var/mob/user)
+obj/effect/weaversilk/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(W.damage_force)
 		visible_message("<span class='warning'>\The [src] has been [W.get_attack_verb(src, user)] with \the [W][(user ? " by [user]." : ".")]</span>")
 		qdel(src)
 
-/obj/effect/weaversilk/bullet_act(var/obj/projectile/Proj)
+obj/effect/weaversilk/bullet_act(var/obj/projectile/Proj)
 	..()
 	if(Proj.get_structure_damage())
 		qdel(src)
 
-/obj/effect/weaversilk/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+obj/effect/weaversilk/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	qdel(src)
 
-/obj/effect/weaversilk/attack_generic(mob/user as mob, var/damage)
+obj/effect/weaversilk/attack_generic(mob/user as mob, var/damage)
 	if(damage)
 		qdel(src)
 
-/obj/effect/weaversilk/attack_hand(mob/user, list/params)
+obj/effect/weaversilk/attack_hand(mob/user, list/params)
 	..()
 	if(user.a_intent == INTENT_HARM)
 		to_chat(user,"<span class='warning'>You easily tear down [name].</span>")
 		qdel(src)
 
-/obj/effect/weaversilk/floor
+obj/effect/weaversilk/floor
 	var/possible_icon_states = list("floorweb1", "floorweb2", "floorweb3", "floorweb4", "floorweb5", "floorweb6", "floorweb7", "floorweb8")
 
-/obj/effect/weaversilk/floor/Initialize(mapload)
+obj/effect/weaversilk/floor/Initialize(mapload)
 	..()
 	icon_state = pick(possible_icon_states)
 
-/obj/effect/weaversilk/wall
+obj/effect/weaversilk/wall
 	name = "weaversilk web wall"
 	desc = "A thin layer of fiberous webs, but just thick enough to block your way. It looks like it can be torn down with one strong hit."
 	icon_state = "wallweb1"
 	var/possible_icon_states = list("wallweb1", "wallweb2", "wallweb3")
 	density = TRUE
 
-/obj/effect/weaversilk/wall/Initialize(mapload)
+obj/effect/weaversilk/wall/Initialize(mapload)
 	..()
 	icon_state = pick(possible_icon_states)
 
-/obj/effect/weaversilk/wall/CanPass(atom/movable/mover, turf/target)
+obj/effect/weaversilk/wall/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = mover
 		for(var/F in H.contents)
@@ -66,35 +66,35 @@ var/global/list/weavable_items = list()
 				return TRUE
 	..()
 
-/obj/structure/bed/double/weaversilk_nest
+obj/structure/bed/double/weaversilk_nest
 	name = "weaversilk nest"
 	desc = "A nest of some kind, made of fiberous material."
 	icon = 'icons/vore/weaver_icons_vr.dmi'
 	icon_state = "nest"
 	base_icon = "nest"
 
-/obj/structure/bed/double/weaversilk_nest/update_icon()
+obj/structure/bed/double/weaversilk_nest/update_icon()
 	return
 
-/obj/structure/bed/double/weaversilk_nest/attackby(obj/item/W as obj, mob/user as mob)
+obj/structure/bed/double/weaversilk_nest/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench() || istype(W,/obj/item/stack) || W.is_wirecutter())
 		return
 	..()
 
-/obj/structure/bed/double/weaversilk_nest/attack_hand(mob/user, list/params)
+obj/structure/bed/double/weaversilk_nest/attack_hand(mob/user, list/params)
 	..()
 	if(user.a_intent == INTENT_HARM && !has_buckled_mobs())
 		to_chat(user,"<span class='warning'>You easily tear down [name].</span>")
 		qdel(src)
 
-/obj/effect/weaversilk/trap
+obj/effect/weaversilk/trap
 	name = "weaversilk trap"
 	desc = "A silky, yet firm trap. Be careful not to step into it! Or don't..."
 	icon_state = "trap"
 	buckle_allowed = TRUE
 	var/trap_active = TRUE
 
-/obj/effect/weaversilk/trap/Crossed(atom/movable/AM as mob|obj)
+obj/effect/weaversilk/trap/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
 	if(istype(AM, /mob/living/carbon/human))
@@ -118,14 +118,14 @@ var/global/list/weavable_items = list()
 			desc += " Actually, it looks like it's been all spent."
 	..()
 
-/obj/effect/weaversilk/trap/MouseDroppedOnLegacy(atom/movable/AM,mob/user)
+obj/effect/weaversilk/trap/MouseDroppedOnLegacy(atom/movable/AM,mob/user)
 	return
 
 // Items
 
 // TODO: Spidersilk clothing and actual bindings, once sprites are ready.
 
-/obj/item/clothing/suit/weaversilk_bindings
+obj/item/clothing/suit/weaversilk_bindings
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	name = "weaversilk bindings"
@@ -134,4 +134,3 @@ var/global/list/weavable_items = list()
 	item_state = "web_bindings_mob"
 	body_cover_flags = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	inv_hide_flags = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
-

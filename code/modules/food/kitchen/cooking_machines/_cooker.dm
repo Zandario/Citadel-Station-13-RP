@@ -1,4 +1,4 @@
-/obj/machinery/appliance/cooker
+obj/machinery/appliance/cooker
 	var/temperature = T20C
 	var/min_temp = 80 + T0C	//Minimum temperature to do any cooking
 	var/optimal_temp = 200 + T0C	//Temperature at which we have 100% efficiency. - Edit, efficiency is not lowered anymore for being too hot, because why would that slow down cooking?
@@ -11,7 +11,7 @@
 	var/light_y = 0
 	cooking_power = 0
 
-/obj/machinery/appliance/cooker/examine(var/mob/user)
+obj/machinery/appliance/cooker/examine(var/mob/user)
 	. = ..()
 	if(.)	//no need to duplicate adjacency check
 		if(!machine_stat)
@@ -24,7 +24,7 @@
 			if(machine_stat)
 				. += SPAN_WARNING( "It is switched off.")
 
-/obj/machinery/appliance/cooker/list_contents(var/mob/user)
+obj/machinery/appliance/cooker/list_contents(var/mob/user)
 	if (cooking_objs.len)
 		var/string = "Contains...</br>"
 		var/num = 0
@@ -37,11 +37,11 @@
 	else
 		to_chat(user, SPAN_NOTICE("It is empty."))
 
-/obj/machinery/appliance/cooker/proc/get_efficiency()
+obj/machinery/appliance/cooker/proc/get_efficiency()
 	//RefreshParts()
 	return (cooking_power / optimal_power) * 100
 
-/obj/machinery/appliance/cooker/Initialize(mapload, newdir)
+obj/machinery/appliance/cooker/Initialize(mapload, newdir)
 	. = ..()
 	loss = (active_power_usage / resistance)*0.5
 	cooking_objs = list()
@@ -51,7 +51,7 @@
 
 	update_icon() // this probably won't cause issues, but Aurora used SSIcons and update_icon() instead
 
-/obj/machinery/appliance/cooker/update_icon()
+obj/machinery/appliance/cooker/update_icon()
 	cut_overlays()
 	var/image/light
 	if (use_power == 2 && !machine_stat)
@@ -62,7 +62,7 @@
 	light.pixel_y = light_y
 	add_overlay(light)
 
-/obj/machinery/appliance/cooker/process(delta_time)
+obj/machinery/appliance/cooker/process(delta_time)
 	if (!machine_stat)
 		heat_up()
 	else
@@ -71,11 +71,11 @@
 			equalize_temperature()
 	..()
 
-/obj/machinery/appliance/cooker/power_change()
+obj/machinery/appliance/cooker/power_change()
 	. = ..()
 	update_icon() // this probably won't cause issues, but Aurora used SSIcons and update_icon() instead
 
-/obj/machinery/appliance/cooker/proc/update_cooking_power()
+obj/machinery/appliance/cooker/proc/update_cooking_power()
 	var/temp_scale = 0
 	if(temperature > min_temp)
 
@@ -96,7 +96,7 @@
 
 	//RefreshParts()
 
-/obj/machinery/appliance/cooker/proc/heat_up()
+obj/machinery/appliance/cooker/proc/heat_up()
 	if (temperature < optimal_temp)
 		if (use_power == 1 && ((optimal_temp - temperature) > 5))
 			playsound(src, 'sound/machines/click.ogg', 20, 1)
@@ -115,12 +115,12 @@
 			equalize_temperature()
 			return -1
 
-/obj/machinery/appliance/cooker/proc/equalize_temperature()
+obj/machinery/appliance/cooker/proc/equalize_temperature()
 	temperature -= loss//Temperature will fall somewhat slowly
 	update_cooking_power()
 
 //Cookers do differently, they use containers
-/obj/machinery/appliance/cooker/has_space(var/obj/item/I)
+obj/machinery/appliance/cooker/has_space(var/obj/item/I)
 	if (istype(I, /obj/item/reagent_containers/cooking_container))
 		//Containers can go into an empty slot
 		if (cooking_objs.len < max_contents)
@@ -133,7 +133,7 @@
 
 	return 0
 
-/obj/machinery/appliance/cooker/add_content(var/obj/item/I, var/mob/user)
+obj/machinery/appliance/cooker/add_content(var/obj/item/I, var/mob/user)
 	var/datum/cooking_item/CI = ..()
 	if (CI && CI.combine_target)
 		to_chat(user, "\The [I] will be used to make a [selected_option]. Output selection is returned to default for future items.")

@@ -1,4 +1,4 @@
-/mob/living/carbon/proc/handle_viruses()
+mob/living/carbon/proc/handle_viruses()
 
 	if(status_flags & STATUS_GODMODE)	return 0	//godmode
 

@@ -1,5 +1,5 @@
 
-/obj/machinery/computer/card
+obj/machinery/computer/card
 	name = "\improper ID card modification console"
 	desc = "Terminal for programming employee ID cards to access parts of the station."
 	icon_keyboard = "id_key"
@@ -13,15 +13,15 @@
 	/// editing ID
 	var/obj/item/card/id/editing
 
-/obj/machinery/computer/card/Initialize(mapload)
+obj/machinery/computer/card/Initialize(mapload)
 	. = ..()
 	tgui_cardmod = new(src)
 
-/obj/machinery/computer/card/Destroy()
+obj/machinery/computer/card/Destroy()
 	QDEL_NULL(tgui_cardmod)
 	return ..()
 
-/obj/machinery/computer/card/ui_module_route(action, list/params, datum/tgui/ui, id)
+obj/machinery/computer/card/ui_module_route(action, list/params, datum/tgui/ui, id)
 	. = ..()
 	if(.)
 		return
@@ -29,27 +29,27 @@
 		if("modify")
 			return tgui_cardmod.ui_act(action, params, ui)
 
-/obj/machinery/computer/card/ui_module_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/card/ui_module_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	.["modify"] = tgui_cardmod.data(user, editing, authing)
 
-/obj/machinery/computer/card/ui_module_static(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/card/ui_module_static(mob/user, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	.["modify"] = tgui_cardmod.static_data(user, editing, authing)
 
 /**
  * for later use: authorized to change slots
  */
-/obj/machinery/computer/card/proc/authed_for_slotmod(obj/item/card/id/checking = authing)
+obj/machinery/computer/card/proc/authed_for_slotmod(obj/item/card/id/checking = authing)
 	return ACCESS_COMMAND_CARDMOD in checking?.access
 
 /**
  * authed for at least one possible access change OR rank change
  */
-/obj/machinery/computer/card/proc/authed_for_edit(obj/item/card/id/checking = authing)
+obj/machinery/computer/card/proc/authed_for_edit(obj/item/card/id/checking = authing)
 	return checking?.access && length(SSjob.cached_access_edit_relevant & checking.access)
 
-/obj/machinery/computer/card/AltClick(mob/user)
+obj/machinery/computer/card/AltClick(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -59,7 +59,7 @@
 	if(attempt_grab_authing(user) || attempt_grab_editing(user))
 		return TRUE
 
-/obj/machinery/computer/card/proc/attempt_grab_authing(mob/user)
+obj/machinery/computer/card/proc/attempt_grab_authing(mob/user)
 	if(!authing)
 		return FALSE
 	user.grab_item_from_interacted_with(authing, src)
@@ -67,7 +67,7 @@
 	authing = null
 	return TRUE
 
-/obj/machinery/computer/card/proc/attempt_grab_editing(mob/user)
+obj/machinery/computer/card/proc/attempt_grab_editing(mob/user)
 	if(!editing)
 		return FALSE
 	user.grab_item_from_interacted_with(editing, src)
@@ -75,7 +75,7 @@
 	editing = null
 	return TRUE
 
-/obj/machinery/computer/card/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
+obj/machinery/computer/card/attackby(obj/item/I, mob/living/user, params, clickchain_flags, damage_multiplier)
 	if(!istype(I, /obj/item/card/id))
 		return ..()
 	var/obj/item/card/id/id_card = I
@@ -102,30 +102,30 @@
 		update_static_data()
 	return CLICKCHAIN_DO_NOT_PROPAGATE
 
-/obj/machinery/computer/card/attack_ai(var/mob/user as mob)
+obj/machinery/computer/card/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/card/attack_hand(mob/user, list/params)
+obj/machinery/computer/card/attack_hand(mob/user, list/params)
 	if(..())
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/card/ui_interact(mob/user, datum/tgui/ui)
+obj/machinery/computer/card/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "IdentificationComputer", name)
 		ui.open()
 
-/obj/machinery/computer/card/ui_static_data(mob/user)
+obj/machinery/computer/card/ui_static_data(mob/user)
 	. = ..()
 	//? manifest
 	// todo: refactor PDA_Manifest and CrewManifest.js
 	data_core.get_manifest_list()
 	.["manifest"] = GLOB.PDA_Manifest
 
-/obj/machinery/computer/card/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+obj/machinery/computer/card/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 
 	//? general
@@ -147,7 +147,7 @@
 	.["authed_cardmod"] = authed_for_edit()
 	.["authed_slotmod"] = authed_for_slotmod()
 
-/obj/machinery/computer/card/ui_act(action, list/params, datum/tgui/ui)
+obj/machinery/computer/card/ui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -199,7 +199,7 @@
 			addtimer(CALLBACK(src, /obj/machinery/computer/card/proc/print_card_report), 5 SECONDS)
 			return TRUE
 
-/obj/machinery/computer/card/proc/print_manifest()
+obj/machinery/computer/card/proc/print_manifest()
 	var/obj/item/paper/P = new(loc)
 	P.name = text("crew manifest ([])", stationtime2text())
 	P.info = {"<h4>Crew Manifest</h4>
@@ -207,7 +207,7 @@
 		[data_core ? data_core.get_manifest(0) : ""]
 	"}
 
-/obj/machinery/computer/card/proc/print_card_report()
+obj/machinery/computer/card/proc/print_card_report()
 	if(!editing || !authing)
 		visible_message(SPAN_NOTICE("Printing failed: Target or authenticating card removed."))
 		return
@@ -231,4 +231,3 @@
 		for(var/datum/access/A as anything in by_cat[category])
 			joining += "- [A.access_name]<br>"
 	P.info += jointext(joining, "")
-

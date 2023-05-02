@@ -2,11 +2,11 @@
 //Turret Control Panel//
 ////////////////////////
 
-/area
+area
 	// Turrets use this list to see if individual power/lethal settings are allowed
 	var/list/turret_controls = list()
 
-/obj/machinery/turretid
+obj/machinery/turretid
 	name = "turret control panel"
 	desc = "Used to control a room's automated defenses."
 	icon = 'icons/obj/machines/turret_control.dmi'
@@ -37,23 +37,23 @@
 
 	req_access = list(ACCESS_COMMAND_UPLOAD)
 
-/obj/machinery/turretid/stun
+obj/machinery/turretid/stun
 	enabled = TRUE
 	icon_state = "control_stun"
 
-/obj/machinery/turretid/lethal
+obj/machinery/turretid/lethal
 	enabled = TRUE
 	lethal = TRUE
 	icon_state = "control_kill"
 
-/obj/machinery/turretid/Destroy()
+obj/machinery/turretid/Destroy()
 	if(control_area)
 		var/area/A = control_area
 		if(A && istype(A))
 			A.turret_controls -= src
 	..()
 
-/obj/machinery/turretid/Initialize(mapload)
+obj/machinery/turretid/Initialize(mapload)
 	if(!control_area)
 		control_area = get_area(src)
 	else if(ispath(control_area))
@@ -74,7 +74,7 @@
 	power_change() //Checks power and initial settings
 	. = ..()
 
-/obj/machinery/turretid/proc/isLocked(mob/user)
+obj/machinery/turretid/proc/isLocked(mob/user)
 	if(ailock && issilicon(user))
 		to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
 		return TRUE
@@ -84,13 +84,13 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/turretid/CanUseTopic(mob/user)
+obj/machinery/turretid/CanUseTopic(mob/user)
 	if(isLocked(user))
 		return UI_CLOSE
 
 	return ..()
 
-/obj/machinery/turretid/attackby(obj/item/W, mob/user)
+obj/machinery/turretid/attackby(obj/item/W, mob/user)
 	if(machine_stat & BROKEN)
 		return
 
@@ -104,7 +104,7 @@
 		return
 	return ..()
 
-/obj/machinery/turretid/emag_act(remaining_charges, mob/user)
+obj/machinery/turretid/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		to_chat(user, "<span class='danger'>You short out the turret controls' access analysis module.</span>")
 		emagged = TRUE
@@ -112,19 +112,19 @@
 		ailock = FALSE
 		return TRUE
 
-/obj/machinery/turretid/attack_ai(mob/user)
+obj/machinery/turretid/attack_ai(mob/user)
 	if(isLocked(user))
 		return
 
 	nano_ui_interact(user)
 
-/obj/machinery/turretid/attack_hand(mob/user, list/params)
+obj/machinery/turretid/attack_hand(mob/user, list/params)
 	if(isLocked(user))
 		return
 
 	nano_ui_interact(user)
 
-/obj/machinery/turretid/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+obj/machinery/turretid/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
@@ -151,7 +151,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/turretid/Topic(href, href_list)
+obj/machinery/turretid/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -179,7 +179,7 @@
 		updateTurrets()
 		return 1
 
-/obj/machinery/turretid/proc/updateTurrets()
+obj/machinery/turretid/proc/updateTurrets()
 	var/datum/turret_checks/TC = new
 	TC.enabled = enabled
 	TC.lethal = lethal
@@ -198,12 +198,12 @@
 
 	update_icon()
 
-/obj/machinery/turretid/power_change()
+obj/machinery/turretid/power_change()
 	..()
 	updateTurrets()
 	update_icon()
 
-/obj/machinery/turretid/update_icon()
+obj/machinery/turretid/update_icon()
 	..()
 	if(machine_stat & NOPOWER)
 		icon_state = "control_off"
@@ -219,7 +219,7 @@
 		icon_state = "control_standby"
 		set_light(1.5, 1,"#003300")
 
-/obj/machinery/turretid/emp_act(severity)
+obj/machinery/turretid/emp_act(severity)
 	if(enabled)
 		//if the turret is on, the EMP no matter how severe disables the turret for a while
 		//and scrambles its settings, with a slight chance of having an emag effect

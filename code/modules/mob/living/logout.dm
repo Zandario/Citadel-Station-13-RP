@@ -1,4 +1,4 @@
-/mob/living/Logout()
+mob/living/Logout()
 	..()
 	if (mind)
 		//Per BYOND docs key remains set if the player DCs, becomes null if switching bodies.

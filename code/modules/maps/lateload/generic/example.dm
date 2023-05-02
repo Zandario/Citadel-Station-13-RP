@@ -2,7 +2,7 @@
 /// Example Template                       ///
 //////////////////////////////////////////////
 
-/datum/map_template/lateload/example
+datum/map_template/lateload/example
 	name = "Example Planet"
 	/// ^ The name of your planet. This is what you will need to put in the lateload_z_level list to actually have it be created.
 	/// If it is not on the list it will not be created, simple as that
@@ -22,7 +22,7 @@
 	ztraits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_GRAVITY = TRUE)
 	/// Z level traits. Controls some behavior of the z level. Check out maps.dm for more information
 
-/datum/map_z_level/example
+datum/map_z_level/example
 	name = "Away Mission - Example Planet"
 	/// Does not have to be the same name as the one you used above. Keep it short and to the point
 
@@ -35,7 +35,7 @@
 	/// to be using a lot. MAP_LEVEL_CONTACT means you will be able to hear station alerts and such. MAP_LEVEL_PLAYER simply tells
 	/// the z level that players will likely be on the z level. Check out maps.dm for more information
 
-/datum/map_template/lateload/example/on_map_loaded(z)
+datum/map_template/lateload/example/on_map_loaded(z)
 	. = ..()
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, z, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
 	seed_submaps(list(z), 150, /area/class_d/unexplored, /datum/map_template/submap/level_specific/class_d)

@@ -8,7 +8,7 @@ Metaobjects are used to make it not affected by map order in .dme and carry some
 *************************************************************
 Metaobject
 *************************************************************
-/obj/effect/mapinfo, sectors.dm
+obj/effect/mapinfo, sectors.dm
 Used to build overmap in beginning, has basic information needed to create overmap objects and make shuttles work.
 Its name and icon (if non-standard) vars will be applied to resulting overmap object.
 'mapy' and 'mapx' vars are optional, sector will be assigned random overmap coordinates if they are not set.
@@ -22,7 +22,7 @@ Right after creation it sends itself to nullspace and creates an overmap object,
 *************************************************************
 Overmap object
 *************************************************************
-/obj/effect/map, sectors.dm
+obj/effect/map, sectors.dm
 Represents a zlevel on the overmap. Spawned by metaobjects at the startup.
 	var/area/shuttle/shuttle_landing - keeps a reference to the area of where inbound shuttles should land
 
@@ -36,7 +36,7 @@ It has 'current_sector' var that keeps refernce to, well, sector ship currently 
 *************************************************************
 Helm console
 *************************************************************
-/obj/machinery/computer/helm, helm.dm
+obj/machinery/computer/helm, helm.dm
 On creation console seeks a ship overmap object corresponding to this zlevel and links it.
 Clicking with empty hand on it starts steering, Cancel-Camera-View stops it.
 Helm console relays movement of mob to the linked overmap object.

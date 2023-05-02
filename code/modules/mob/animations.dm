@@ -8,10 +8,10 @@ value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
 
-/mob/var/dizziness = 0//Carbon
-/mob/var/is_dizzy = 0
+mob/var/dizziness = 0//Carbon
+mob/var/is_dizzy = 0
 
-/mob/proc/make_dizzy(var/amount)
+mob/proc/make_dizzy(var/amount)
 	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
 		return
 
@@ -27,7 +27,7 @@ dizzy process - wiggles the client's pixel offset over time
 spawned from make_dizzy(), will terminate automatically when dizziness gets <100
 note dizziness decrements automatically in the mob's Life() proc.
 */
-/mob/proc/dizzy_process()
+mob/proc/dizzy_process()
 	is_dizzy = 1
 	while(dizziness > 100)
 		if(client)
@@ -43,9 +43,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 		client.pixel_y = 0
 
 // jitteriness - copy+paste of dizziness
-/mob/var/is_jittery = 0
-/mob/var/jitteriness = 0//Carbon
-/mob/proc/make_jittery(var/amount)
+mob/var/is_jittery = 0
+mob/var/jitteriness = 0//Carbon
+mob/proc/make_jittery(var/amount)
 	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
 		return
 
@@ -57,7 +57,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 
 // Typo from the oriignal coder here, below lies the jitteriness process. So make of his code what you will, the previous comment here was just a copypaste of the above.
-/mob/proc/jittery_process()
+mob/proc/jittery_process()
 	//var/old_x = pixel_x
 	//var/old_y = pixel_y
 	is_jittery = 1
@@ -76,10 +76,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 	reset_pixel_offsets()
 
 //handles up-down floaty effect in space and zero-gravity
-/mob/var/is_floating = 0
-/mob/var/floatiness = 0
+mob/var/is_floating = 0
+mob/var/floatiness = 0
 
-/mob/proc/update_floating(dense_object=0)
+mob/proc/update_floating(dense_object=0)
 
 	if(anchored||buckled)
 		make_floating(0)
@@ -109,7 +109,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	make_floating(1)
 	return
 
-/mob/proc/make_floating(var/n)
+mob/proc/make_floating(var/n)
 	if(buckled)
 		if(is_floating)
 			stop_floating()
@@ -121,7 +121,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	else if(!floatiness && is_floating)
 		stop_floating()
 
-/mob/proc/start_floating()
+mob/proc/start_floating()
 
 	is_floating = 1
 
@@ -137,12 +137,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(pixel_y = bottom, time = half_period, easing = SINE_EASING, loop = -1)						//down
 	animate(pixel_y = get_standard_pixel_y_offset(), time = quarter_period, easing = SINE_EASING | EASE_IN, loop = -1)			//back
 
-/mob/proc/stop_floating()
+mob/proc/stop_floating()
 	animate(src, pixel_y = get_standard_pixel_y_offset(), time = 5, easing = SINE_EASING | EASE_IN) //halt animation
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/fade_towards(atom/A,var/time = 2)
+atom/movable/proc/fade_towards(atom/A,var/time = 2)
 	set waitfor = FALSE
 
 	var/pixel_x_diff = 0
@@ -179,7 +179,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	alpha = initial_alpha
 
 // Similar to attack animations, but in reverse and is longer to act as a telegraph.
-/atom/movable/proc/do_windup_animation(atom/A, windup_time)
+atom/movable/proc/do_windup_animation(atom/A, windup_time)
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
 	var/direction = get_dir(src, A)
@@ -204,7 +204,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(pixel_x = base_pixel_x, pixel_y = base_pixel_y, time = 2)
 
 
-/atom/movable/proc/do_attack_animation(atom/A)
+atom/movable/proc/do_attack_animation(atom/A)
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
 	var/direction = get_dir(src, A)
@@ -230,7 +230,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = base_pixel_x, pixel_y = base_pixel_y, time = 2)
 
-/mob/living/do_attack_animation(atom/A, no_attack_icons = FALSE)
+mob/living/do_attack_animation(atom/A, no_attack_icons = FALSE)
 	..()
 	if(no_attack_icons)
 		return FALSE
@@ -296,7 +296,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	update_icon()
 	return TRUE //Found an item, doing item attack animation.
 
-/mob/proc/spin(spintime, speed)
+mob/proc/spin(spintime, speed)
 	if(speed < world.tick_lag)
 		return		// no.
 	spawn()

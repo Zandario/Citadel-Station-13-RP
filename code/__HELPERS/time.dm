@@ -2,7 +2,7 @@
 #define TimeOfGame (get_game_time())
 #define TimeOfTick (TICK_USAGE*0.01*world.tick_lag)
 
-/proc/get_game_time()
+proc/get_game_time()
 	var/global/time_offset = 0
 	var/global/last_time = 0
 	var/global/last_usage = 0
@@ -19,18 +19,18 @@
 	return wtime + (time_offset + wusage) * world.tick_lag
 
 GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
-/var/station_date = ""
-/var/next_station_date_change = 1 DAY
+var/station_date = ""
+var/next_station_date_change = 1 DAY
 
 #define duration2stationtime(time) time2text(station_time_in_ds + time, "hh:mm")
 #define worldtime2stationtime(time) time2text(GLOB.roundstart_hour HOURS + time, "hh:mm")
 #define round_duration_in_ds (SSticker.round_start_time ? world.time - SSticker.round_start_time : 0)
 #define station_time_in_ds (GLOB.roundstart_hour HOURS + round_duration_in_ds)
 
-/proc/stationtime2text()
+proc/stationtime2text()
 	return time2text(station_time_in_ds + GLOB.timezoneOffset, "hh:mm")
 
-/proc/stationdate2text()
+proc/stationdate2text()
 	var/update_time = FALSE
 	if(station_time_in_ds > next_station_date_change)
 		next_station_date_change += 1 DAY
@@ -42,19 +42,19 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 	return station_date
 
 /// ISO 8601
-/proc/time_stamp()
+proc/time_stamp()
 	var/date_portion = time2text(world.timeofday, "YYYY-MM-DD")
 	var/time_portion = time2text(world.timeofday, "hh:mm:ss")
 	return "[date_portion]T[time_portion]"
 
-/proc/get_timezone_offset()
+proc/get_timezone_offset()
 	var/midnight_gmt_here = text2num(time2text(0,"hh")) * 36000
 	if(midnight_gmt_here > 12 HOURS)
 		return 24 HOURS - midnight_gmt_here
 	else
 		return midnight_gmt_here
 
-/proc/gameTimestamp(format = "hh:mm:ss", wtime=null)
+proc/gameTimestamp(format = "hh:mm:ss", wtime=null)
 	if(!wtime)
 		wtime = world.time
 	return time2text(wtime - GLOB.timezoneOffset, format)
@@ -65,16 +65,16 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
  * - You can use this, for example, to do "This will expire at [station_time_at(world.time + 500)]" to display a "station time" expiration date
  *   which is much more useful for a player).
  */
-/proc/station_time(time=world.time, display_only=FALSE)
+proc/station_time(time=world.time, display_only=FALSE)
 	return ((((time - SSticker.round_start_time)) + GLOB.gametime_offset) % 864000) - (display_only ? GLOB.timezoneOffset : 0)
 
-/proc/station_time_timestamp(format = "hh:mm:ss", time=world.time)
+proc/station_time_timestamp(format = "hh:mm:ss", time=world.time)
 	return time2text(station_time(time, TRUE), format)
 
 /**
  * Returns 1 if it is the selected month and day.
  */
-/proc/isDay(var/month, var/day)
+proc/isDay(var/month, var/day)
 	if(isnum(month) && isnum(day))\
 		/// Get the current month.
 		var/MM = text2num(time2text(world.timeofday, "MM"))
@@ -87,10 +87,10 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 		// else
 		// 	return TRUE
 
-/var/next_duration_update = 0
-/var/last_round_duration = 0
+var/next_duration_update = 0
+var/last_round_duration = 0
 
-/proc/roundduration2text()
+proc/roundduration2text()
 	if(!SSticker.round_start_time)
 		return "00:00"
 	if(last_round_duration && world.time < next_duration_update)
@@ -110,15 +110,15 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 	next_duration_update = world.time + 1 MINUTES
 	return last_round_duration
 
-/var/midnight_rollovers = 0
-/var/rollovercheck_last_timeofday = 0
+var/midnight_rollovers = 0
+var/rollovercheck_last_timeofday = 0
 
-/proc/update_midnight_rollover()
+proc/update_midnight_rollover()
 	if (world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
 		return midnight_rollovers++
 	return midnight_rollovers
 
-/proc/weekdayofthemonth()
+proc/weekdayofthemonth()
 	/// Get the current day.
 	var/DD = text2num(time2text(world.timeofday, "DD"))
 	switch(DD)
@@ -137,7 +137,7 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
  * Takes a value of time in deciseconds.
  * Returns a text value of that number in hours, minutes, or seconds.
  */
-/proc/DisplayTimeText(time_value, round_seconds_to = 0.1)
+proc/DisplayTimeText(time_value, round_seconds_to = 0.1)
 	var/second = round(time_value * 0.1, round_seconds_to)
 	if(!second)
 		return "right now"
@@ -164,5 +164,5 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 		hourT = " and [hour] hour[(hour != 1)? "s":""]"
 	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
 
-/proc/daysSince(realtimev)
+proc/daysSince(realtimev)
 	return round((world.realtime - realtimev) / (24 HOURS))

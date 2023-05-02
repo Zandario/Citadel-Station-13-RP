@@ -1,4 +1,4 @@
-/turf/simulated/floor/glass
+turf/simulated/floor/glass
 	name = "glass floor"
 	desc = "Don't jump on it, or do, I'm not your mom."
 
@@ -16,16 +16,16 @@
 
 	mz_flags = MZ_MIMIC_DEFAULTS
 
-/turf/simulated/floor/glass/Initialize()
+turf/simulated/floor/glass/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/turf/simulated/floor/glass/LateInitialize()
+turf/simulated/floor/glass/LateInitialize()
 	. = ..()
 	layer = base_layer
 
 
-/turf/simulated/floor/glass/reinforced
+turf/simulated/floor/glass/reinforced
 	name = "reinforced glass flooring"
 	desc = "Heavily reinforced with steel rods."
 

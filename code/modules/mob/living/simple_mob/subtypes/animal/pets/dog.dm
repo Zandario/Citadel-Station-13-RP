@@ -1,4 +1,4 @@
-/datum/category_item/catalogue/fauna/dog
+datum/category_item/catalogue/fauna/dog
 	name = "Dog"
 	desc = "Canines have been a consistent companion of Humanity for \
 	tens of thousands of years. Descended from Wolves, a larger pack \
@@ -7,7 +7,7 @@
 	gone on to be regarded as true friends by many Humans."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/dog
+mob/living/simple_mob/animal/passive/dog
 	name = "dog"
 	real_name = "dog"
 	desc = "It's a dog."
@@ -40,7 +40,7 @@
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
 
-/mob/living/simple_mob/animal/passive/dog/attackby(var/obj/item/O as obj, var/mob/user as mob)
+mob/living/simple_mob/animal/passive/dog/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/newspaper))
 		if(!stat)
 			for(var/mob/M in viewers(user, null))
@@ -53,7 +53,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/animal/passive/dog/regenerate_icons()
+mob/living/simple_mob/animal/passive/dog/regenerate_icons()
 	cut_overlays()
 
 	if(inventory_head)
@@ -79,20 +79,20 @@
 
 
 
-/obj/item/reagent_containers/food/snacks/meat/corgi
+obj/item/reagent_containers/food/snacks/meat/corgi
 	name = "corgi meat"
 	desc = "Tastes like... well, you know..."
 
 
 
 
-/datum/say_list/dog
+datum/say_list/dog
 	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
 	emote_hear = list("barks", "woofs", "yaps","pants")
 	emote_see = list("shakes its head", "shivers")
 
 // This exists so not every type of dog has to be a subtype of corgi, and in case we get more dog sprites
-/mob/living/simple_mob/animal/passive/dog/corgi
+mob/living/simple_mob/animal/passive/dog/corgi
 	name = "corgi"
 	real_name = "corgi"
 	desc = "It's a corgi."
@@ -101,7 +101,7 @@
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
 
-/mob/living/simple_mob/animal/passive/dog/corgi/puppy
+mob/living/simple_mob/animal/passive/dog/corgi/puppy
 	name = "corgi puppy"
 	real_name = "corgi"
 	desc = "It's a corgi puppy."
@@ -109,7 +109,7 @@
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
 
-/mob/living/simple_mob/animal/passive/dog/pug
+mob/living/simple_mob/animal/passive/dog/pug
 	name = "pug"
 	real_name = "pug"
 	desc = "It's a pug."
@@ -118,19 +118,19 @@
 	icon_dead = "pug_dead"
 
 //pupplies cannot wear anything.
-/mob/living/simple_mob/animal/passive/dog/corgi/puppy/Topic(href, href_list)
+mob/living/simple_mob/animal/passive/dog/corgi/puppy/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
 		to_chat(usr, "<font color='red'>You can't fit this on [src]</font>")
 		return
 	..()
 
-/mob/living/simple_mob/animal/passive/dog/corgi/puppy/Bockscar
+mob/living/simple_mob/animal/passive/dog/corgi/puppy/Bockscar
 	name = "Bockscar"
 	real_name = "Bockscar"
 	randomized = FALSE
 
 //Sir Pogsley. (Sec Pet)
-/mob/living/simple_mob/animal/passive/dog/pug/SirPogsley
+mob/living/simple_mob/animal/passive/dog/pug/SirPogsley
 	name = "Sir Pogsley"
 	real_name= "Sir Pogsley"
 	gender = MALE
@@ -140,7 +140,7 @@
 	var/obj/movement_target
 	randomized = FALSE
 
-/mob/living/simple_mob/animal/passive/dog/pug/SirPogsley/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/animal/passive/dog/pug/SirPogsley/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -191,7 +191,7 @@
 
 
 //IAN! SQUEEEEEEEEE~
-/mob/living/simple_mob/animal/passive/dog/corgi/Ian
+mob/living/simple_mob/animal/passive/dog/corgi/Ian
 	name = "Ian"
 	real_name = "Ian"	//Intended to hold the name without altering it.
 	gender = MALE
@@ -201,7 +201,7 @@
 	makes_dirt = FALSE
 	randomized = FALSE
 
-/mob/living/simple_mob/animal/passive/dog/corgi/Ian/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/animal/passive/dog/corgi/Ian/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -252,7 +252,7 @@
 					sleep(1)
 
 //LISA! SQUEEEEEEEEE~
-/mob/living/simple_mob/animal/passive/dog/corgi/Lisa
+mob/living/simple_mob/animal/passive/dog/corgi/Lisa
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE
@@ -268,13 +268,13 @@
 	randomized = FALSE
 
 //Lisa already has a cute bow!
-/mob/living/simple_mob/animal/passive/dog/corgi/Lisa/Topic(href, href_list)
+mob/living/simple_mob/animal/passive/dog/corgi/Lisa/Topic(href, href_list)
 	if(href_list["remove_inv"] || href_list["add_inv"])
 		to_chat(usr, "<font color='red'>[src] already has a cute bow!</font>")
 		return
 	..()
 
-/mob/living/simple_mob/animal/passive/dog/corgi/Lisa/BiologicalLife(seconds, times_fired)
+mob/living/simple_mob/animal/passive/dog/corgi/Lisa/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -308,7 +308,7 @@
 					sleep(1)
 
 // Tamaskans
-/mob/living/simple_mob/animal/passive/dog/tamaskan
+mob/living/simple_mob/animal/passive/dog/tamaskan
 	name = "tamaskan"
 	real_name = "tamaskan"
 	desc = "It's a tamaskan."
@@ -316,7 +316,7 @@
 	icon_living = "tamaskan"
 	icon_dead = "tamaskan_dead"
 
-/mob/living/simple_mob/animal/passive/dog/tamaskan/Spice
+mob/living/simple_mob/animal/passive/dog/tamaskan/Spice
 	name = "Spice"
 	real_name = "Spice"	//Intended to hold the name without altering it.
 	gender = FEMALE

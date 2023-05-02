@@ -1,10 +1,10 @@
-/client/proc/callproc()
+client/proc/callproc()
 	set category = "Debug"
 	set name = "Advanced ProcCall"
 	set waitfor = FALSE
 	callproc_blocking()
 
-/client/proc/callproc_blocking(list/get_retval)
+client/proc/callproc_blocking(list/get_retval)
 	if(!check_rights(R_DEBUG))
 		return
 
@@ -86,7 +86,7 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
 GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
-/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
+proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target && procname == "Del")
 		to_chat(usr, "Calling Del() is not allowed")
 		return
@@ -117,7 +117,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		GLOB.AdminProcCaller = null
 
 //adv proc call this, ya nerds
-/world/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
+world/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target == GLOBAL_PROC)
 		return call(text2path("/proc/[procname]"))(arglist(arguments))
 	else if(target != world)
@@ -125,14 +125,14 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	else
 		log_admin("[key_name(usr)] attempted to call world/proc/[procname] with arguments: [english_list(arguments)]")
 
-/proc/IsAdminAdvancedProcCall()
+proc/IsAdminAdvancedProcCall()
 #ifdef TESTING
 	return FALSE
 #else
 	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
 #endif
 
-/client/proc/callproc_datum(datum/A as null|area|mob|obj|turf)
+client/proc/callproc_datum(datum/A as null|area|mob|obj|turf)
 	set category = "Debug"
 	set name = "Atom ProcCall"
 	set waitfor = 0
@@ -164,7 +164,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(.)
 		to_chat(usr, .)
 
-/client/proc/get_callproc_args()
+client/proc/get_callproc_args()
 	var/argnum = input("Number of arguments","Number:",0) as num|null
 	if(isnull(argnum))
 		return
@@ -185,7 +185,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		retval += named_args
 	return retval
 
-/client/proc/get_callproc_returnval(returnval,procname)
+client/proc/get_callproc_returnval(returnval,procname)
 	. = ""
 	if(islist(returnval))
 		var/list/returnedlist = returnval

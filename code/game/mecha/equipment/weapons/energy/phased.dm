@@ -1,4 +1,4 @@
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/phase
+obj/item/mecha_parts/mecha_equipment/weapon/energy/phase
 	equip_cooldown = 6
 	name = "\improper NT-PE \"Scorpio\" phase-emitter"
 	desc = "A specialist energy weapon intended for use against hostile wildlife."

@@ -3,7 +3,7 @@
  * Patches. A subtype of pills, in order to inherit the possible future produceability within chem-masters, and dissolving.
  */
 
-/obj/item/reagent_containers/pill/patch
+obj/item/reagent_containers/pill/patch
 	name = "patch"
 	desc = "A thin, sticky patch, capable of suffusing chemicals through the skin."
 	icon = 'icons/obj/medical/chemical.dmi'
@@ -20,19 +20,19 @@
 
 //! Non-implemented Subtypes
 /*
-/obj/item/reagent_containers/pill/patch/libital
+obj/item/reagent_containers/pill/patch/libital
 	name = "libital patch (brute)"
 	desc = "A pain reliever. Does minor liver damage. Diluted with Granibitaluri."
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/granibitaluri = 8) //10 iterations
 	icon_state = "bandaid_brute"
 
-/obj/item/reagent_containers/pill/patch/aiuri
+obj/item/reagent_containers/pill/patch/aiuri
 	name = "aiuri patch (burn)"
 	desc = "Helps with burn injuries. Does minor eye damage. Diluted with Granibitaluri."
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 2, /datum/reagent/medicine/granibitaluri = 8)
 	icon_state = "bandaid_burn"
 
-/obj/item/reagent_containers/pill/patch/synthflesh
+obj/item/reagent_containers/pill/patch/synthflesh
 	name = "synthflesh patch"
 	desc = "Helps with brute and burn injuries. Slightly toxic."
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 20)
@@ -40,7 +40,7 @@
 */
 //! End ofNon-implemented Subtypes
 
-/obj/item/reagent_containers/pill/patch/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
+obj/item/reagent_containers/pill/patch/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	var/mob/living/L = user
 
 	if(target == L)
@@ -128,4 +128,3 @@
 			W.bandage()
 			break //dont bandage more than one wound, its only one patch you can have in your stack
 		affecting.update_damages()
-

@@ -1,4 +1,4 @@
-/datum/species/vasilissan //These actually look pretty damn spooky!
+datum/species/vasilissan //These actually look pretty damn spooky!
 	uid = SPECIES_ID_VASILISSAN
 	id = SPECIES_ID_VASILISSAN
 	name = SPECIES_VASILISSAN
@@ -79,7 +79,7 @@
 		/datum/unarmed_attack/bite/sharp/numbing,
 	)
 
-/datum/species/vasilissan/handle_environment_special(mob/living/carbon/human/H)
+datum/species/vasilissan/handle_environment_special(mob/living/carbon/human/H)
 	if(H.stat == DEAD) // If they're dead they won't need anything.
 		return
 
@@ -97,7 +97,7 @@
 		H.shock_stage = min(H.shock_stage + coldshock, 160) //cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage.
 		return
 
-/obj/item/organ/internal/weaver
+obj/item/organ/internal/weaver
 	name = "silk gland"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "innards"
@@ -109,11 +109,11 @@
 	var/silk_max_reserve = 1000
 	var/silk_color = "#FFFFFF"
 
-/obj/item/organ/internal/weaver/weak
+obj/item/organ/internal/weaver/weak
 	silk_reserve = 100
 	silk_max_reserve = 500
 
-/mob/living/carbon/human/proc/check_silk_amount()
+mob/living/carbon/human/proc/check_silk_amount()
 	set name = "Check Silk Amount"
 	set category = "Abilities"
 	var/obj/item/organ/internal/weaver/silk
@@ -128,7 +128,7 @@
 	else
 		to_chat(src, "<span class='warning'>You are missing a silk gland to do this!</span>")
 
-/mob/living/carbon/human/proc/toggle_silk_production()
+mob/living/carbon/human/proc/toggle_silk_production()
 	set name = "Toggle Silk Production"
 	set category = "Abilities"
 	var/obj/item/organ/internal/weaver/silk
@@ -144,7 +144,7 @@
 	else
 		to_chat(src, "<span class='warning'>You are missing a silk gland to do this!</span>")
 
-/mob/living/carbon/human/proc/weave_structure()
+mob/living/carbon/human/proc/weave_structure()
 	set name = "Weave Structure"
 	set category = "Abilities"
 	var/obj/item/organ/internal/weaver/silk
@@ -209,7 +209,7 @@
 		O.color = silk.silk_color
 
 
-/mob/living/carbon/human/proc/weave_item()
+mob/living/carbon/human/proc/weave_item()
 	set name = "Weave Item"
 	set category = "Abilities"
 	var/obj/item/organ/internal/weaver/silk
@@ -264,7 +264,7 @@
 		var/atom/O = new desired_result.result_type(src.loc)
 		O.color = silk.silk_color
 
-/mob/living/carbon/human/proc/set_silk_color()
+mob/living/carbon/human/proc/set_silk_color()
 	set name = "Set Silk Color"
 	set category = "Abilities"
 	var/obj/item/organ/internal/weaver/silk
@@ -283,7 +283,7 @@
 	if(new_silk_color)
 		silk.silk_color = new_silk_color
 
-/mob/living/carbon/human/proc/process_weaver_silk()
+mob/living/carbon/human/proc/process_weaver_silk()
 	var/obj/item/organ/internal/weaver/silk
 
 	for(var/F in contents)

@@ -6,7 +6,7 @@
 	} \
 }
 
-/datum/unit_test/outfit_sanity/Run()
+datum/unit_test/outfit_sanity/Run()
 	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human)
 
 	for (var/outfit_type in subtypesof(/datum/outfit))

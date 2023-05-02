@@ -1,12 +1,12 @@
 // todo: convert and make looking up keys BY BIND possible
-/datum/preferences
+datum/preferences
 	/// Custom Keybindings
 	var/list/key_bindings = list()
 	/// Hotkeys mode
 	var/hotkeys = TRUE
 
 //Used in savefile update from 11, can be removed once that is no longer relevant.
-/datum/preferences/proc/force_reset_keybindings()
+datum/preferences/proc/force_reset_keybindings()
 	var/choice = tgalert(client.mob, "Your basic keybindings need to be reset, emotes will remain as before. Would you prefer 'hotkey' or 'classic' mode?", "Reset keybindings", "Hotkey", "Classic")
 	hotkeys = (choice != "Classic")
 	var/list/oldkeys = key_bindings
@@ -17,26 +17,26 @@
 			key_bindings[key] = oldkeys[key]
 	client.update_movement_keys()
 
-/datum/category_group/player_setup_category/keybindings
+datum/category_group/player_setup_category/keybindings
 	name = "Keybindings"
 	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/keybinding
 	auto_split = FALSE
 
-/datum/category_item/player_setup_item/keybinding/hotkey_mode
+datum/category_item/player_setup_item/keybinding/hotkey_mode
 	name = "Hotkey Mode"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/keybinding/hotkey_mode/load_preferences(savefile/S)
+datum/category_item/player_setup_item/keybinding/hotkey_mode/load_preferences(savefile/S)
 	S["hotkeys"] >> pref.hotkeys
 
-/datum/category_item/player_setup_item/keybinding/hotkey_mode/save_preferences(savefile/S)
+datum/category_item/player_setup_item/keybinding/hotkey_mode/save_preferences(savefile/S)
 	WRITE_FILE(S["hotkeys"], pref.hotkeys)
 
-/datum/category_item/player_setup_item/keybinding/hotkey_mode/sanitize_preferences()
+datum/category_item/player_setup_item/keybinding/hotkey_mode/sanitize_preferences()
 	pref.hotkeys = sanitize_integer(pref.hotkeys, 0, 1, initial(pref.hotkeys))
 
-/datum/category_item/player_setup_item/keybinding/hotkey_mode/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/keybinding/hotkey_mode/content(datum/preferences/prefs, mob/user, data)
 	. += "<b>Hotkey mode:</b> <a href='?src=[REF(src)];option=hotkeys'>[(pref.hotkeys) ? "Hotkeys" : "Default"]</a><br>"
 	. += "Keybindings mode controls how the game behaves with tab and map/input focus.<br>If it is on <b>Hotkeys</b>, the game will always attempt to force you to map focus, meaning keypresses are sent \
 	directly to the map instead of the input. You will still be able to use the command bar, but you need to tab to do it every time you click on the game map.<br>\
@@ -47,7 +47,7 @@
 	<b>IMPORTANT:</b> While in input mode's non hotkey setting (tab toggled), Ctrl + KEY will send KEY to the keybind system as the key itself, not as Ctrl + KEY. This means Ctrl + T/W/A/S/D/all your familiar stuff still works, but you \
 	won't be able to access any regular Ctrl binds.<br>"
 
-/datum/category_item/player_setup_item/keybinding/hotkey_mode/OnTopic(href, list/href_list, mob/user)
+datum/category_item/player_setup_item/keybinding/hotkey_mode/OnTopic(href, list/href_list, mob/user)
 	if(href_list["option"])
 		switch(href_list["option"])
 			if("hotkeys")
@@ -56,17 +56,17 @@
 		return PREFERENCES_REFRESH
 	return ..()
 
-/datum/category_item/player_setup_item/keybinding/bindings
+datum/category_item/player_setup_item/keybinding/bindings
 	name = "Bindings"
 	sort_order = 2
 
-/datum/category_item/player_setup_item/keybinding/bindings/load_preferences(savefile/S)
+datum/category_item/player_setup_item/keybinding/bindings/load_preferences(savefile/S)
 	S["key_bindings"] >> pref.key_bindings
 
-/datum/category_item/player_setup_item/keybinding/bindings/save_preferences(savefile/S)
+datum/category_item/player_setup_item/keybinding/bindings/save_preferences(savefile/S)
 	WRITE_FILE(S["key_bindings"], pref.key_bindings)
 
-/datum/category_item/player_setup_item/keybinding/bindings/sanitize_preferences()
+datum/category_item/player_setup_item/keybinding/bindings/sanitize_preferences()
 	pref.key_bindings = sanitize_islist(pref.key_bindings, list())
 	for(var/key in pref.key_bindings)
 		var/list/L = pref.key_bindings[key]
@@ -76,7 +76,7 @@
 		if(!length(L))
 			pref.key_bindings -= key
 
-/datum/category_item/player_setup_item/keybinding/bindings/content(datum/preferences/prefs, mob/user, data)
+datum/category_item/player_setup_item/keybinding/bindings/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	var/list/key_bindings = pref.key_bindings		//cache for speed or atleast my finger's sake..
 	// Create an inverted list of keybindings -> key
@@ -121,7 +121,7 @@
 	. += "</body>"
 	. = jointext(., null)
 
-/datum/category_item/player_setup_item/keybinding/bindings/OnTopic(href, list/href_list, mob/user)
+datum/category_item/player_setup_item/keybinding/bindings/OnTopic(href, list/href_list, mob/user)
 	if(href_list["option"])
 		switch(href_list["option"])
 			if("keybindings_capture")
@@ -188,7 +188,7 @@
 		return PREFERENCES_REFRESH
 	return ..()
 
-/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, old_key, datum/category_item/player_setup_item/keybinding/bindings/host)
+datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, old_key, datum/category_item/player_setup_item/keybinding/bindings/host)
 	var/HTML = {"
 	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
 	<script>

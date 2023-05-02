@@ -1,4 +1,4 @@
-/datum/browser
+datum/browser
 	var/mob/user
 	var/title
 	var/window_id // window_id is used as the window name for browse and onclose
@@ -15,7 +15,7 @@
 	var/static/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
 
 
-/datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
+datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 
 	user = nuser
 	window_id = nwindow_id
@@ -28,16 +28,16 @@
 	if (nref)
 		ref = nref
 
-/datum/browser/proc/add_head_content(nhead_content)
+datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
 
-/datum/browser/proc/set_window_options(nwindow_options)
+datum/browser/proc/set_window_options(nwindow_options)
 	window_options = nwindow_options
 
-/datum/browser/proc/set_title_image(ntitle_image)
+datum/browser/proc/set_title_image(ntitle_image)
 	//title_image = ntitle_image
 
-/datum/browser/proc/add_stylesheet(name, file)
+datum/browser/proc/add_stylesheet(name, file)
 	if(istype(name, /datum/asset/spritesheet))
 		var/datum/asset/spritesheet/sheet = name
 		stylesheets["spritesheet_[sheet.name].css"] = "data/spritesheets/[sheet.name]"
@@ -49,17 +49,17 @@
 		if (!SSassets.cache[asset_name])
 			SSassets.transport.register_asset(asset_name, file)
 
-/datum/browser/proc/add_script(name, file)
+datum/browser/proc/add_script(name, file)
 	scripts["[ckey(name)].js"] = file
 	SSassets.transport.register_asset("[ckey(name)].js", file)
 
-/datum/browser/proc/set_content(ncontent)
+datum/browser/proc/set_content(ncontent)
 	content = ncontent
 
-/datum/browser/proc/add_content(ncontent)
+datum/browser/proc/add_content(ncontent)
 	content += ncontent
 
-/datum/browser/proc/get_header()
+datum/browser/proc/get_header()
 	var/file
 	head_content += "<link rel='stylesheet' type='text/css' href='[common_asset.get_url_mappings()["common.css"]]'>"
 	for (file in stylesheets)
@@ -82,14 +82,14 @@
 			<div class='uiContent'>
 	"}
 //" This is here because else the rest of the file looks like a string in notepad++.
-/datum/browser/proc/get_footer()
+datum/browser/proc/get_footer()
 	return {"
 			</div>
 		</div>
 	</body>
 </html>"}
 
-/datum/browser/proc/get_content()
+datum/browser/proc/get_content()
 	return {"
 	[get_header()]
 	[content]
@@ -97,7 +97,7 @@
 	"}
 
 
-/datum/browser/proc/open(use_onclose = TRUE)
+datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
 		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
@@ -114,14 +114,14 @@
 	if(use_onclose)
 		setup_onclose()
 
-/datum/browser/proc/setup_onclose()
+datum/browser/proc/setup_onclose()
 	set waitfor = 0 //winexists sleeps, so we don't need to.
 	for (var/i in 1 to 10)
 		if (user && winexists(user, window_id))
 			onclose(user, window_id, ref)
 			break
 
-/datum/browser/proc/close()
+datum/browser/proc/close()
 	if(!isnull(window_id))//null check because this can potentially nuke goonchat
 		user << browse(null, "window=[window_id]")
 	else

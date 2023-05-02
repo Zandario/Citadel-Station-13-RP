@@ -1,6 +1,6 @@
 var/global/list/total_extraction_beacons = list()
 
-/obj/item/extraction_pack
+obj/item/extraction_pack
 	name = "fulton extraction pack"
 	desc = "A balloon pack that can be used to extract equipment or personnel to a Fulton Recovery Beacon. Anything not bolted down can be moved. Link the pack to a beacon by using the pack in hand."
 	icon = 'icons/obj/fulton.dmi'
@@ -13,23 +13,23 @@ var/global/list/total_extraction_beacons = list()
 	var/safe_for_living_creatures = 1
 	var/stuntime = 15
 
-/obj/item/extraction_pack/wormhole
+obj/item/extraction_pack/wormhole
 	name = "wormhole fulton extraction pack"
 	desc = "A balloon pack with integrated wormhole technology and less disruptive movement that can be used to extract equipment or personnel to a Fulton Recovery Beacon. Anything not bolted down can be moved. Link the pack to a beacon by using the pack in hand."
 	can_use_indoors = TRUE
 	stuntime = 3
 
-/obj/item/extraction_holdercrate
+obj/item/extraction_holdercrate
 	name = "extraction crate"
 	desc = "A regular old crate."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "phoroncrate"
 
-/obj/item/extraction_pack/examine(mob/user)
+obj/item/extraction_pack/examine(mob/user)
 	. = ..()
 	. +="It has [uses_left] use\s remaining."
 
-/obj/item/extraction_pack/attack_self(mob/user)
+obj/item/extraction_pack/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -53,7 +53,7 @@ var/global/list/total_extraction_beacons = list()
 		beacon = A
 		to_chat(user, "You link the extraction pack to the beacon system.")
 
-/obj/item/extraction_pack/afterattack(atom/movable/A, mob/living/carbon/user, flag, params)
+obj/item/extraction_pack/afterattack(atom/movable/A, mob/living/carbon/user, flag, params)
 	if(!beacon)
 		to_chat(user, "[src] is not linked to a beacon, and cannot be used.")
 		return
@@ -159,13 +159,13 @@ var/global/list/total_extraction_beacons = list()
 				qdel(src)
 
 
-/obj/item/fulton_core
+obj/item/fulton_core
 	name = "extraction beacon signaller"
 	desc = "Emits a signal which fulton recovery devices can lock onto. Activate in hand to create a beacon."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "subspace_amplifier"
 
-/obj/item/fulton_core/attack_self(mob/user)
+obj/item/fulton_core/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -173,7 +173,7 @@ var/global/list/total_extraction_beacons = list()
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)
 
-/obj/structure/extraction_point
+obj/structure/extraction_point
 	name = "fulton recovery beacon"
 	desc = "A beacon for the fulton recovery system. Activate a pack in your hand to link it to a beacon."
 	icon = 'icons/obj/fulton.dmi'
@@ -182,21 +182,21 @@ var/global/list/total_extraction_beacons = list()
 	density = FALSE
 	var/beacon_network = "station"
 
-/obj/structure/extraction_point/Initialize(mapload)
+obj/structure/extraction_point/Initialize(mapload)
 	. = ..()
 	name += " ([rand(100,999)]) ([get_area_name(src, TRUE)])"
 	global.total_extraction_beacons += src
 
-/obj/structure/extraction_point/Destroy()
+obj/structure/extraction_point/Destroy()
 	global.total_extraction_beacons -= src
 	..()
 
-/obj/effect/extraction_holder
+obj/effect/extraction_holder
 	name = "extraction holder"
 	desc = "you shouldnt see this"
 	var/atom/movable/stored_obj
 
-/obj/item/extraction_pack/proc/check_for_living_mobs(atom/A)
+obj/item/extraction_pack/proc/check_for_living_mobs(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.stat != DEAD)
@@ -209,8 +209,8 @@ var/global/list/total_extraction_beacons = list()
 				return 1
 	return 0
 
-/obj/effect/extraction_holder/singularity_pull()
+obj/effect/extraction_holder/singularity_pull()
 	return
 
-/obj/effect/extraction_holder/singularity_pull()
+obj/effect/extraction_holder/singularity_pull()
 	return

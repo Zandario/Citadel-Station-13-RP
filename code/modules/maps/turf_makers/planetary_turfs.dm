@@ -74,40 +74,40 @@ GAIA_TURF_CREATE(/turf/simulated/mineral/floor)
 GAIA_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 
 //Exterior Turfs for weather effects.
-/turf/simulated/floor/tiled/classm/outdoors
+turf/simulated/floor/tiled/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/tiled/white/classm/outdoors
+turf/simulated/floor/tiled/white/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/concrete/classm/outdoors
+turf/simulated/floor/concrete/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/concrete/rng/classm/outdoors
+turf/simulated/floor/concrete/rng/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/concrete/tile/classm/outdoors
+turf/simulated/floor/concrete/tile/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/outdoors/dirt/classm/outdoors
+turf/simulated/floor/outdoors/dirt/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/water/beach/outdoors
+turf/simulated/floor/water/beach/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/water/beach/corner/outdoors
+turf/simulated/floor/water/beach/corner/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/water/shoreline/classm/outdoors
+turf/simulated/floor/water/shoreline/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/water/shoreline/corner/classm/outdoors
+turf/simulated/floor/water/shoreline/corner/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/tiled/monotile/classm/outdoors
+turf/simulated/floor/tiled/monotile/classm/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/wood/classm/outdoors
+turf/simulated/floor/wood/classm/outdoors
 	outdoors = TRUE
 
 
@@ -168,35 +168,35 @@ FROZEN_TURF_CREATE(/turf/simulated/mineral/floor)
 FROZEN_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 
 //Exterior Turfs for weather effects.
-/turf/simulated/floor/classp/outdoors
+turf/simulated/floor/classp/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/wood/classp/outdoors
+turf/simulated/floor/wood/classp/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/outdoors/snow/classp/no_tree
+turf/simulated/floor/outdoors/snow/classp/no_tree
 	tree_chance = 0
 	deadtree_chance = 0
 
-/turf/simulated/floor/old_tile/red/outdoors
+turf/simulated/floor/old_tile/red/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/old_tile/blue/outdoors
+turf/simulated/floor/old_tile/blue/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/old_tile/green/outdoors
+turf/simulated/floor/old_tile/green/outdoors
 	outdoors = TRUE
 
-/turf/simulated/floor/outdoors/mud/classp/indoors
+turf/simulated/floor/outdoors/mud/classp/indoors
 	outdoors = FALSE
 
-/turf/simulated/floor/outdoors/ice/classp/indoors
+turf/simulated/floor/outdoors/ice/classp/indoors
 	outdoors = FALSE
 
-/turf/simulated/floor/water/acid/classp/indoors
+turf/simulated/floor/water/acid/classp/indoors
 	outdoors = FALSE
 
-/turf/simulated/floor/water/acid/deep/classp/indoors
+turf/simulated/floor/water/acid/deep/classp/indoors
 	outdoors = FALSE
 
 ////////////////////////////////////////////////
@@ -220,7 +220,7 @@ CLASSD_TURF_CREATE(/turf/simulated/mineral/ignore_mapgen)
 CLASSD_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 CLASSD_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 
-/turf/simulated/floor/outdoors/classd
+turf/simulated/floor/outdoors/classd
 	name = "irradiated sand"
 	desc = "It literally glows in the dark."
 	icon = 'icons/turf/flooring/asteroid.dmi'
@@ -233,34 +233,34 @@ CLASSD_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 	initial_flooring = /singleton/flooring/outdoors/classd
 
 ///Indoor usage turfs with Class D's Atmos. Unaffected by weather etc (Important because radioactive fallout will happen on a regular basis!)
-/turf/simulated/floor/classd/indoors
+turf/simulated/floor/classd/indoors
 	color = "#eaa17c"
 	initial_gas_mix = ATMOSPHERE_ID_CLASSD
 	outdoors = FALSE
 
-/turf/simulated/mineral/classd/indoors
+turf/simulated/mineral/classd/indoors
 	color = "#eaa17c"
 	initial_gas_mix = ATMOSPHERE_ID_CLASSD
 	outdoors = FALSE
 
-/turf/simulated/mineral/floor/classd/indoors
+turf/simulated/mineral/floor/classd/indoors
 	color = "#eaa17c"
 	initial_gas_mix = ATMOSPHERE_ID_CLASSD
 	outdoors = FALSE
 
-/turf/simulated/floor/tiled/classd/indoors
+turf/simulated/floor/tiled/classd/indoors
 	color = "#eaa17c"
 	initial_gas_mix = ATMOSPHERE_ID_CLASSD
 	outdoors = FALSE
 
-/turf/simulated/wall/classd/indoors
+turf/simulated/wall/classd/indoors
 	color = "#eaa17c"
 	initial_gas_mix = ATMOSPHERE_ID_CLASSD
 	outdoors = FALSE
 
 // Unused Turfs (For now)
 /*
-/turf/simulated/floor/reinforced/classd_indoors
+turf/simulated/floor/reinforced/classd_indoors
 	color = "#eaa17c"
 	initial_gas_mix = ATMOSPHERE_ID_CLASSD
 	outdoors = FALSE
@@ -286,21 +286,21 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 VIRGO2_TURF_CREATE(/turf/simulated/mineral/ignore_mapgen)
 VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor)
 VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
-/turf/simulated/floor/sky/virgo2_sky
+turf/simulated/floor/sky/virgo2_sky
 	name = "virgo 2 atmosphere"
 	desc = "Be careful where you step!"
 	color = "#eacd7c"
 	initial_gas_mix = ATMOSPHERE_ID_VIRGO2
 
-/turf/simulated/floor/sky/virgo2_sky/Initialize(mapload)
+turf/simulated/floor/sky/virgo2_sky/Initialize(mapload)
 	skyfall_levels = list(z+1)
 	. = ..()
 
-/turf/simulated/shuttle/wall/voidcraft/green/virgo2
+turf/simulated/shuttle/wall/voidcraft/green/virgo2
 	initial_gas_mix = ATMOSPHERE_ID_VIRGO2
 	color = "#eacd7c"
 
-/turf/simulated/shuttle/wall/voidcraft/green/virgo2/nocol
+turf/simulated/shuttle/wall/voidcraft/green/virgo2/nocol
 	color = null
 
 ////////////////////////////////////////////////
@@ -363,35 +363,35 @@ LAVALAND_TURF_CREATE(/turf/unsimulated/mineral/triumph)
 LAVALAND_TURF_CREATE(/turf/simulated/mineral/)
 
 
-/turf/simulated/mineral/floor/lavaland
+turf/simulated/mineral/floor/lavaland
 	outdoors = TRUE
 
 //Cave doesnt make things indoor, its actually a variant that
 //has an initial gas string of regular air mix. The turf creator overrides
 //that gas mix though so this is effectively useless. Lava land was made though with this
 //being default outdoors so I will leave it as is for now
-/turf/simulated/mineral/floor/cave/lavaland
+turf/simulated/mineral/floor/cave/lavaland
 	outdoors = TRUE
 
-/turf/simulated/mineral/floor/ignore_mapgen/lavaland
+turf/simulated/mineral/floor/ignore_mapgen/lavaland
 	outdoors = TRUE
 
 ///... why are is a TRIUMPH_TURF_CREATE turf being chewed through LAVALAND_TURF_CREATE I dont
 /// know. This will need to be looked into at some point soon
-/turf/simulated/mineral/triumph/lavaland
+turf/simulated/mineral/triumph/lavaland
 	outdoors = TRUE
 	edge_blending_priority = 2
 
-/turf/simulated/mineral/triumph/rich/lavaland
+turf/simulated/mineral/triumph/rich/lavaland
 	outdoors = TRUE
 
-/turf/simulated/mineral/rich/triumph/lavaland
+turf/simulated/mineral/rich/triumph/lavaland
 	outdoors = TRUE
 	edge_blending_priority = 2
 
 // Lava Land turfs
 
-/turf/simulated/floor/outdoors/lavaland
+turf/simulated/floor/outdoors/lavaland
 	name = "ash sand"
 	desc = "Soft and ominous."
 	icon = 'icons/turf/flooring/asteroid.dmi'
@@ -402,19 +402,19 @@ LAVALAND_TURF_CREATE(/turf/simulated/mineral/)
 	baseturfs = /turf/simulated/mineral/floor/lavaland
 	initial_flooring = /singleton/flooring/outdoors/lavaland
 
-/turf/simulated/floor/outdoors/lavaland/indoors //I know this path is confusing. Basically this is a way to simulate interior caverns that don't use mapgen for specific POIs.
+turf/simulated/floor/outdoors/lavaland/indoors //I know this path is confusing. Basically this is a way to simulate interior caverns that don't use mapgen for specific POIs.
 	outdoors = 0
 
-/turf/simulated/floor/tiled/steel_dirty/lavaland/exterior
+turf/simulated/floor/tiled/steel_dirty/lavaland/exterior
 	outdoors = 1
 
-/turf/simulated/floor/water/lavaland/interior
+turf/simulated/floor/water/lavaland/interior
 	outdoors = 0
 
-/turf/simulated/floor/outdoors/grass/lavaland/interior
+turf/simulated/floor/outdoors/grass/lavaland/interior
 	outdoors = 0
 
-/turf/simulated/floor/outdoors/dirt/lavaland/interior
+turf/simulated/floor/outdoors/dirt/lavaland/interior
 	outdoors = 0
 
 // This is a special subtype of the thing that generates ores on a map

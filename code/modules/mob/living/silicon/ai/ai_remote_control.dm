@@ -1,7 +1,7 @@
-/mob/living/silicon/ai
+mob/living/silicon/ai
 	var/mob/living/silicon/robot/deployed_shell = null //For shell control
 
-/mob/living/silicon/ai/proc/deploy_to_shell(var/mob/living/silicon/robot/target)
+mob/living/silicon/ai/proc/deploy_to_shell(var/mob/living/silicon/robot/target)
 	if(!config_legacy.allow_ai_shells)
 		to_chat(src, SPAN_WARNING( "AI Shells are not allowed on this server. You shouldn't have this verb because of it, so consider making a bug report."))
 		return
@@ -47,12 +47,12 @@
 		teleop = target // So the AI 'hears' messages near its core.
 		target.post_deploy()
 
-/mob/living/silicon/ai/proc/deploy_to_shell_act()
+mob/living/silicon/ai/proc/deploy_to_shell_act()
 	set category = "AI Commands"
 	set name = "Deploy to Shell"
 	deploy_to_shell() // This is so the AI is not prompted with a list of all mobs when using the 'real' proc.
 
-/mob/living/silicon/ai/proc/disconnect_shell(message = "Your remote connection has been reset!")
+mob/living/silicon/ai/proc/disconnect_shell(message = "Your remote connection has been reset!")
 	if(deployed_shell) // Forcibly call back AI in event of things such as damage, EMP or power loss.
 		message = SPAN_DANGER(message)
 		deployed_shell.undeploy(message)

@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(mapping)
 	var/static/stat_map_name = "Loading..."
 
 //dlete dis once #39770 is resolved
-/datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
+datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!config)
 #ifdef FORCE_MAP
 		config = load_map_config(FORCE_MAP)
@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(mapping)
 #endif
 	stat_map_name = config.map_name
 
-/datum/controller/subsystem/mapping/Initialize(timeofday)
+datum/controller/subsystem/mapping/Initialize(timeofday)
 	report_progress("Initializing [name] subsystem...")
 	// shim: this goes at the top
 	world.max_z_changed(0, world.maxz) // This is to set up the player z-level list, maxz hasn't actually changed (probably)
@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(mapping)
 	repopulate_sorted_areas()
 	return ..()
 
-/datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE, orientation = SOUTH)
+datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE, orientation = SOUTH)
 /*
 	. = list()
 	var/start_time = REALTIMEOFDAY
@@ -132,7 +132,7 @@ SUBSYSTEM_DEF(mapping)
 	return parsed_maps
 */
 
-/datum/controller/subsystem/mapping/proc/loadWorld()
+datum/controller/subsystem/mapping/proc/loadWorld()
 	// Until we have runtime maploading, just load traits from config
 	if(!config)
 		INIT_ANNOUNCE("WARNING: FAILED TO LOAD MAP CONFIG. THIS ROUND WILL BREAK. REBOOTING WILL LIKELY NOT FIX IT AT THIS POINT, CONTACT A MAINTAINER IMMEDIATELY.")
@@ -197,7 +197,7 @@ SUBSYSTEM_DEF(mapping)
 */
 
 
-/datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
+datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
 	if(clearing_reserved_turfs || !initialized)			//in either case this is just not needed.
 		return
 	clearing_reserved_turfs = TRUE
@@ -222,7 +222,7 @@ SUBSYSTEM_DEF(mapping)
 	clearing_reserved_turfs = FALSE
 
 /*
-/datum/controller/subsystem/mapping/proc/safety_clear_transit_dock(obj/docking_port/stationary/transit/T, obj/docking_port/mobile/M, list/returning)
+datum/controller/subsystem/mapping/proc/safety_clear_transit_dock(obj/docking_port/stationary/transit/T, obj/docking_port/mobile/M, list/returning)
 	M.setTimer(0)
 	var/error = M.initiate_docking(M.destination, M.preferred_direction)
 	if(!error)
@@ -230,7 +230,7 @@ SUBSYSTEM_DEF(mapping)
 		qdel(T, TRUE)
 */
 
-/datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override, border_type_override)
+datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override, border_type_override)
 	UNTIL((!z || reservation_ready["[z]"]) && !clearing_reserved_turfs)
 	var/datum/turf_reservation/reserve = new type
 	if(turf_type_override)
@@ -257,7 +257,7 @@ SUBSYSTEM_DEF(mapping)
 	QDEL_NULL(reserve)
 
 //This is not for wiping reserved levels, use wipe_reservations() for that.
-/datum/controller/subsystem/mapping/proc/initialize_reserved_level(z)
+datum/controller/subsystem/mapping/proc/initialize_reserved_level(z)
 	UNTIL(!clearing_reserved_turfs)				//regardless, lets add a check just in case.
 	clearing_reserved_turfs = TRUE			//This operation will likely clear any existing reservations, so lets make sure nothing tries to make one while we're doing it.
 	if(!level_trait(z,ZTRAIT_RESERVED))
@@ -275,7 +275,7 @@ SUBSYSTEM_DEF(mapping)
 	reservation_ready["[z]"] = TRUE
 	clearing_reserved_turfs = FALSE
 
-/datum/controller/subsystem/mapping/proc/reserve_turfs(list/turfs)
+datum/controller/subsystem/mapping/proc/reserve_turfs(list/turfs)
 	for(var/i in turfs)
 		var/turf/T = i
 		T.empty(RESERVED_TURF_TYPE, RESERVED_TURF_TYPE, null, TRUE)
@@ -286,7 +286,7 @@ SUBSYSTEM_DEF(mapping)
 		CHECK_TICK
 
 //DO NOT CALL THIS PROC DIRECTLY, CALL wipe_reservations().
-/datum/controller/subsystem/mapping/proc/do_wipe_turf_reservations()
+datum/controller/subsystem/mapping/proc/do_wipe_turf_reservations()
 	UNTIL(initialized)							//This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
 	for(var/i in turf_reservations)
 		var/datum/turf_reservation/TR = i
@@ -307,17 +307,17 @@ SUBSYSTEM_DEF(mapping)
 // Mapping subsystem handles initialization of random map elements at server start
 // For us that means loading our random roundstart engine!
 //
-/datum/controller/subsystem/mapping
+datum/controller/subsystem/mapping
 	var/list/map_templates = list()
 	var/dmm_suite/maploader = null
 	var/obj/landmark/engine_loader/engine_loader
 	var/list/shelter_templates = list()
 
-/datum/controller/subsystem/mapping/Recover()
+datum/controller/subsystem/mapping/Recover()
 	subsystem_flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 	shelter_templates = SSmapping.shelter_templates
 
-/datum/controller/subsystem/mapping/proc/load_map_templates()
+datum/controller/subsystem/mapping/proc/load_map_templates()
 	for(var/T in subtypesof(/datum/map_template))
 		var/datum/map_template/template = T
 		template = new T
@@ -327,7 +327,7 @@ SUBSYSTEM_DEF(mapping)
 		map_templates[template.name] = template
 	return TRUE
 
-/datum/controller/subsystem/mapping/proc/loadEngine()
+datum/controller/subsystem/mapping/proc/loadEngine()
 	if(!engine_loader)
 		return // Seems this map doesn't need an engine loaded.
 
@@ -365,7 +365,7 @@ SUBSYSTEM_DEF(mapping)
 	// Actually load it
 	chosen_type.load(T)
 
-/datum/controller/subsystem/mapping/proc/loadLateMaps()
+datum/controller/subsystem/mapping/proc/loadLateMaps()
 #ifndef FASTBOOT_DISABLE_LATELOAD
 	var/list/deffo_load = GLOB.using_map.lateload_z_levels
 	var/list/maybe_load = GLOB.using_map.lateload_single_pick
@@ -400,7 +400,7 @@ SUBSYSTEM_DEF(mapping)
 				MT.load_new_z(centered = FALSE)
 #endif
 
-/datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
+datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
 	for(var/item in subtypesof(/datum/map_template/shelter))
 		var/datum/map_template/shelter/shelter_type = item
 		if(!(initial(shelter_type.mappath)))

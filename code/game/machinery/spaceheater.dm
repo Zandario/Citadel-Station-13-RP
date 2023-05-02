@@ -1,4 +1,4 @@
-/obj/machinery/space_heater
+obj/machinery/space_heater
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
 	icon = 'icons/obj/atmos.dmi'
@@ -12,13 +12,13 @@
 	var/set_temperature = T0C + 20 //K
 	var/heating_power = 40000
 
-/obj/machinery/space_heater/Initialize(mapload, newdir)
+obj/machinery/space_heater/Initialize(mapload, newdir)
 	. = ..()
 	if(cell_type)
 		cell = new cell_type(src)
 	update_icon()
 
-/obj/machinery/space_heater/update_icon()
+obj/machinery/space_heater/update_icon()
 	cut_overlays()
 	icon_state = "sheater[on]"
 	if(panel_open)
@@ -28,7 +28,7 @@
 	else
 		set_light(0)
 
-/obj/machinery/space_heater/examine(mob/user)
+obj/machinery/space_heater/examine(mob/user)
 	. = ..()
 	. += "The heater is [on ? "on" : "off"] and the hatch is [panel_open ? "open" : "closed"]."
 	if(panel_open)
@@ -36,10 +36,10 @@
 	else
 		. += "The charge meter reads [cell ? round(cell.percent(),1) : 0]%"
 
-/obj/machinery/space_heater/powered()
+obj/machinery/space_heater/powered()
 	return !!cell?.charge
 
-/obj/machinery/space_heater/emp_act(severity)
+obj/machinery/space_heater/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -47,7 +47,7 @@
 		cell.emp_act(severity)
 	..(severity)
 
-/obj/machinery/space_heater/attackby(obj/item/I, mob/user)
+obj/machinery/space_heater/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/cell))
 		if(panel_open)
 			if(cell)
@@ -74,10 +74,10 @@
 		..()
 	return
 
-/obj/machinery/space_heater/attack_hand(mob/user, list/params)
+obj/machinery/space_heater/attack_hand(mob/user, list/params)
 	interact(user)
 
-/obj/machinery/space_heater/interact(mob/user as mob)
+obj/machinery/space_heater/interact(mob/user as mob)
 	if(panel_open)
 
 		var/dat
@@ -105,7 +105,7 @@
 		update_icon()
 
 
-/obj/machinery/space_heater/Topic(href, href_list)
+obj/machinery/space_heater/Topic(href, href_list)
 	if(usr.stat)
 		return
 	if((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
@@ -145,7 +145,7 @@
 		usr << browse(null, "window=spaceheater")
 		usr.unset_machine()
 
-/obj/machinery/space_heater/process(delta_time)
+obj/machinery/space_heater/process(delta_time)
 	if(on)
 		if(cell && cell.charge)
 			var/datum/gas_mixture/env = loc.return_air()
@@ -182,7 +182,7 @@
 #define MODE_HEATING 1
 #define MODE_COOLING 2
 
-/obj/machinery/power/thermoregulator
+obj/machinery/power/thermoregulator
 	name = "thermal regulator"
 	desc = "A massive machine that can either add or remove thermal energy from the surrounding environment. Must be secured onto a powered wire node to function."
 	icon = 'icons/obj/machines/thermoregulator_vr.dmi'
@@ -200,11 +200,11 @@
 	var/target_temp = T20C
 	var/mode = MODE_IDLE
 
-/obj/machinery/power/thermoregulator/examine(mob/user)
+obj/machinery/power/thermoregulator/examine(mob/user)
 	. = ..()
 	. += "<span class = 'notice'>There is a small display that reads [target_temp]K.</span>"
 
-/obj/machinery/power/thermoregulator/attackby(obj/item/I, mob/user)
+obj/machinery/power/thermoregulator/attackby(obj/item/I, mob/user)
 	if(I.is_screwdriver())
 		if(default_deconstruction_screwdriver(user,I))
 			return
@@ -230,11 +230,11 @@
 		return
 	..()
 
-/obj/machinery/power/thermoregulator/attack_hand(mob/user, list/params)
+obj/machinery/power/thermoregulator/attack_hand(mob/user, list/params)
 	add_fingerprint(user)
 	interact(user)
 
-/obj/machinery/power/thermoregulator/interact(mob/user)
+obj/machinery/power/thermoregulator/interact(mob/user)
 	if(!anchored)
 		return
 	on = !on
@@ -243,7 +243,7 @@
 		change_mode(MODE_IDLE)
 	update_icon()
 
-/obj/machinery/power/thermoregulator/process()
+obj/machinery/power/thermoregulator/process()
 	if(!on)
 		return
 	if(!powernet)
@@ -283,7 +283,7 @@
 		removed.adjust_thermal_energy(-min(power_avail * THERMOREGULATOR_CHEAT_FACTOR * cop, actual_heat_transfer))
 	env.merge(removed)
 
-/obj/machinery/power/thermoregulator/update_icon()
+obj/machinery/power/thermoregulator/update_icon()
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(on)
@@ -295,25 +295,25 @@
 				overlays_to_add += "lasergen-cool"
 	add_overlay(overlays_to_add)
 
-/obj/machinery/power/thermoregulator/proc/turn_off()
+obj/machinery/power/thermoregulator/proc/turn_off()
 	on = 0
 	change_mode(MODE_IDLE)
 	update_icon()
 
-/obj/machinery/power/thermoregulator/proc/change_mode(new_mode = MODE_IDLE)
+obj/machinery/power/thermoregulator/proc/change_mode(new_mode = MODE_IDLE)
 	if(mode == new_mode)
 		return
 	mode = new_mode
 	update_icon()
 
-/obj/machinery/power/thermoregulator/emp_act(severity)
+obj/machinery/power/thermoregulator/emp_act(severity)
 	if(!on)
 		on = 1
 	target_temp += rand(0, 1000)
 	update_icon()
 	..(severity)
 
-/obj/machinery/power/thermoregulator/overload(var/obj/machinery/power/source)
+obj/machinery/power/thermoregulator/overload(var/obj/machinery/power/source)
 	if(!anchored || !powernet)
 		return
 	// 1.5 MW

@@ -1,13 +1,13 @@
 /**
  * Simple conflict checking for getting number of conflicting things on someone with the same ID.
  */
-/datum/element/conflict_checking
+datum/element/conflict_checking
 	element_flags = ELEMENT_BESPOKE | ELEMENT_DETACH
 	id_arg_index = 1
 	/// we don't need to KNOW who has us, only our ID.
 	var/id
 
-/datum/element/conflict_checking/Attach(datum/target, id)
+datum/element/conflict_checking/Attach(datum/target, id)
 	. = ..()
 	if(. & ELEMENT_INCOMPATIBLE)
 		return
@@ -20,14 +20,14 @@
 		src.id = id
 	RegisterSignal(target, COMSIG_CONFLICT_ELEMENT_CHECK, .proc/check)
 
-/datum/element/conflict_checking/proc/check(datum/source, id_to_check)
+datum/element/conflict_checking/proc/check(datum/source, id_to_check)
 	if(id == id_to_check)
 		return ELEMENT_CONFLICT_FOUND
 
 /**
  * Counts number of conflicts on something that have a conflict checking element.
  */
-/atom/proc/ConflictElementCount(id)
+atom/proc/ConflictElementCount(id)
 	. = 0
 	for(var/i in get_all_contents())
 		var/atom/movable/AM = i

@@ -1,9 +1,9 @@
-/atom/movable/screen/crew_shadekin
+atom/movable/screen/crew_shadekin
 	name = "shadekin status"
 	icon = 'icons/screen/hud/common/shadekin.dmi'
 	invisibility = 101
 
-/atom/movable/screen/movable/ability_master/crew_shadekin
+atom/movable/screen/movable/ability_master/crew_shadekin
 	name = "Shadekin Abilities"
 	icon = 'icons/mob/screen_spells.dmi'
 	icon_state = "nano_spell_base"
@@ -15,7 +15,7 @@
 
 	screen_loc = ui_spell_master
 
-/atom/movable/screen/movable/ability_master/crew_shadekin/update_abilities(forced = 0, mob/user) //Different proc to prevent indexing
+atom/movable/screen/movable/ability_master/crew_shadekin/update_abilities(forced = 0, mob/user) //Different proc to prevent indexing
 	update_icon()
 	if(user && user.client)
 		if(!(src in user.client.screen))
@@ -23,11 +23,11 @@
 	for(var/atom/movable/screen/ability/ability in ability_objects)
 		ability.update_icon(forced)
 
-/atom/movable/screen/ability/verb_based/crew_shadekin
+atom/movable/screen/ability/verb_based/crew_shadekin
 	icon_state = "nano_spell_base"
 	background_base_state = "nano"
 
-/atom/movable/screen/movable/ability_master/proc/add_crew_shadekin_ability(object_given, verb_given, name_given, ability_icon_given, arguments)
+atom/movable/screen/movable/ability_master/proc/add_crew_shadekin_ability(object_given, verb_given, name_given, ability_icon_given, arguments)
 	if(!object_given)
 		message_admins("ERROR: add_crew_shadekin_ability() was not given an object in its arguments.")
 	if(!verb_given)

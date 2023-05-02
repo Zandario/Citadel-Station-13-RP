@@ -1,4 +1,4 @@
-/obj/item/storage/wallet
+obj/item/storage/wallet
 	name = "wallet"
 	desc = "It can hold a few small and personal things."
 	storage_slots = 10
@@ -46,7 +46,7 @@
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
-/obj/item/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location, do_move = TRUE)
+obj/item/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location, do_move = TRUE)
 	. = ..()
 	if(.)
 		if(W == front_id)
@@ -54,7 +54,7 @@
 			name = initial(name)
 			update_icon()
 
-/obj/item/storage/wallet/handle_item_insertion(obj/item/W as obj, mob/user, prevent_warning = 0)
+obj/item/storage/wallet/handle_item_insertion(obj/item/W as obj, mob/user, prevent_warning = 0)
 	. = ..()
 	if(.)
 		if(!front_id && istype(W, /obj/item/card/id))
@@ -62,7 +62,7 @@
 			name = "[name] ([front_id])"
 			update_icon()
 
-/obj/item/storage/wallet/update_icon()
+obj/item/storage/wallet/update_icon()
 	cut_overlays()
 	if(front_id)
 		var/tiny_state = "id-generic"
@@ -72,17 +72,17 @@
 		tiny_image.appearance_flags = RESET_COLOR
 		add_overlay(tiny_image)
 
-/obj/item/storage/wallet/GetID()
+obj/item/storage/wallet/GetID()
 	return front_id
 
-/obj/item/storage/wallet/GetAccess()
+obj/item/storage/wallet/GetAccess()
 	var/obj/item/I = GetID()
 	if(I)
 		return I.GetAccess()
 	else
 		return ..()
 
-/obj/item/storage/wallet/random/Initialize(mapload)
+obj/item/storage/wallet/random/Initialize(mapload)
 	. = ..()
 	var/amount = rand(50, 100) + rand(50, 100) // Triangular distribution from 100 to 200
 	var/obj/item/spacecash/SC = null
@@ -95,17 +95,17 @@
 			SC.adjust_worth(i, 0)
 		SC.update_icon()
 
-/obj/item/storage/wallet/poly
+obj/item/storage/wallet/poly
 	name = "polychromic wallet"
 	desc = "You can recolor it! Fancy! The future is NOW!"
 	icon_state = "wallet-white"
 
-/obj/item/storage/wallet/poly/Initialize(mapload)
+obj/item/storage/wallet/poly/Initialize(mapload)
 	. = ..()
 	add_atom_colour("#"+get_random_colour(), FIXED_COLOUR_PRIORITY)
 	update_icon()
 
-/obj/item/storage/wallet/poly/verb/change_color()
+obj/item/storage/wallet/poly/verb/change_color()
 	set name = "Change Wallet Color"
 	set category = "Object"
 	set desc = "Change the color of the wallet."
@@ -119,7 +119,7 @@
 	if(new_color)
 		add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
 
-/obj/item/storage/wallet/poly/emp_act()
+obj/item/storage/wallet/poly/emp_act()
 	var/original_state = icon_state
 	icon_state = "wallet-emp"
 	update_icon()
@@ -129,7 +129,7 @@
 			icon_state = original_state
 			update_icon()
 
-/obj/item/storage/wallet/womens
+obj/item/storage/wallet/womens
 	name = "women's wallet"
 	desc = "A stylish wallet typically used by women."
 	icon_state = "girl_wallet"

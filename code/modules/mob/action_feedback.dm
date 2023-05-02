@@ -7,7 +7,7 @@
  * - msg - what we see/know
  * - target - what we're messing with
  */
-/mob/proc/action_feedback(msg, atom/target)
+mob/proc/action_feedback(msg, atom/target)
 	to_chat(src, msg)
 
 /**
@@ -19,7 +19,7 @@
  * - msg - what we see/know
  * - target - what we're messing with
  */
-/mob/proc/bubble_action_feedback(msg, atom/target)
+mob/proc/bubble_action_feedback(msg, atom/target)
 	// for now, just wrapper for chat action feedback
 	action_feedback("[icon2html(target, src)] [SPAN_NOTICE(msg)]")
 
@@ -31,7 +31,7 @@
  * - target - what we're messing with
  * - them - what they see
  */
-/mob/proc/detectable_action_feedback(msg, atom/target, them)
+mob/proc/detectable_action_feedback(msg, atom/target, them)
 	ASSERT(them && target)
 	action_feedback(msg, target)
 	if(!ismob(target))
@@ -49,23 +49,23 @@
  * - them - what they see
  * - blind - what blind people see (overridden by self and them if specified)
  */
-/mob/proc/visible_action_feedback(others, atom/target, range = MESSAGE_RANGE_COMBAT_LOUD, self, them, blind)
+mob/proc/visible_action_feedback(others, atom/target, range = MESSAGE_RANGE_COMBAT_LOUD, self, them, blind)
 	visible_message(others, self, blind, range)
 
 /**
  * gives feedback for something a mob can innately feel
  */
-/mob/proc/innate_feedback(msg)
+mob/proc/innate_feedback(msg)
 	to_chat(src, msg)
 
 /**
  * gives feedback for an ui click
  */
-/mob/proc/ui_feedback(msg, datum/host, datum/tgui/ui)
+mob/proc/ui_feedback(msg, datum/host, datum/tgui/ui)
 	to_chat(src, msg)
 
 /**
  * gives feedback for trying to move/whatever
  */
-/mob/proc/selfmove_feedback(msg)
+mob/proc/selfmove_feedback(msg)
 	to_chat(src, msg)

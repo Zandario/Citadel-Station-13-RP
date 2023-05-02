@@ -2,7 +2,7 @@
 #define MODKIT_SUIT 2
 #define MODKIT_FULL 3
 
-/obj/item/modkit
+obj/item/modkit
 	name = "hardsuit modification kit"
 	desc = "A kit containing all the needed tools and parts to modify a hardsuit for another user."
 	icon = 'icons/obj/device.dmi'
@@ -15,7 +15,7 @@
 		/obj/item/clothing/suit/space/void
 		)
 
-/obj/item/modkit/afterattack(obj/item/O, mob/user as mob, proximity)
+obj/item/modkit/afterattack(obj/item/O, mob/user as mob, proximity)
 	if(!proximity)
 		return
 
@@ -61,11 +61,11 @@
 	if(!parts)
 		qdel(src)
 
-/obj/item/modkit/examine(mob/user)
+obj/item/modkit/examine(mob/user)
 	. = ..()
 	. += "<span class = 'notice'>It looks as though it modifies hardsuits to fit [target_species] users.</span>"
 
-/obj/item/modkit/tajaran
+obj/item/modkit/tajaran
 	name = "tajaran hardsuit modification kit"
 	desc = "A kit containing all the needed tools and parts to modify a hardsuit for another user. This one looks like it's meant for Tajaran."
 	target_species = SPECIES_TAJ

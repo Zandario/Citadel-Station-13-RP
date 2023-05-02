@@ -1,4 +1,4 @@
-/obj/item/spell/aura
+obj/item/spell/aura
 	name = "aura template"
 	desc = "If you can read me, the game broke!  Yay!"
 	icon_state = "generic"
@@ -6,16 +6,16 @@
 	aspect = null
 	var/glow_color = "#FFFFFF"
 
-/obj/item/spell/aura/Initialize(mapload)
+obj/item/spell/aura/Initialize(mapload)
 	. = ..()
 	set_light(calculate_spell_power(7), calculate_spell_power(4), l_color = glow_color)
 	START_PROCESSING(SSobj, src)
 	log_and_message_admins("has started casting [src].")
 
-/obj/item/spell/aura/Destroy()
+obj/item/spell/aura/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	log_and_message_admins("has stopped maintaining [src].")
 	return ..()
 
-/obj/item/spell/aura/process(delta_time)
+obj/item/spell/aura/process(delta_time)
 	return

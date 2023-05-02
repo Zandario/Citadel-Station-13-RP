@@ -16,14 +16,14 @@
 //Call these procs to dump your world to a series of image files (!!)
 //NOTE: Does not explicitly support non 32x32 icons or stuff with large pixel_* values, so don't blame me if it doesn't work perfectly
 
-/client/proc/nanomapgen_DumpImage()
+client/proc/nanomapgen_DumpImage()
 	set name = "Generate NanoUI Map"
 	set category = "Server"
 
 	if(holder)
 		nanomapgen_DumpTile(1, 1, text2num(input(usr,"Enter the Z level to generate")))
 
-/client/proc/nanomapgen_DumpTile(var/startX = 1, var/startY = 1, var/currentZ = 1, var/endX = -1, var/endY = -1)
+client/proc/nanomapgen_DumpTile(var/startX = 1, var/startY = 1, var/currentZ = 1, var/endX = -1, var/endY = -1)
 
 	if (endX < 0 || endX > world.maxx)
 		endX = world.maxx

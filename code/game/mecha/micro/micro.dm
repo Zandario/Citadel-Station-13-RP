@@ -1,4 +1,4 @@
-/obj/mecha
+obj/mecha
 	var/max_micro_utility_equip = 0
 	var/max_micro_weapon_equip = 0
 	var/list/micro_utility_equipment = new
@@ -6,7 +6,7 @@
 
 
 
-/obj/mecha/micro
+obj/mecha/micro
 	icon = 'icons/mecha/micro.dmi'
 	force = 10 //still a robot
 	anchored = 0 //light enough to push and pull, but you still can't just walk past them. Like people on non-help.
@@ -31,7 +31,7 @@
 	damage_minimum = 0				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
 	minimum_penetration = 0		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
 
-/obj/mecha/micro/melee_action(target as obj|mob|turf)
+obj/mecha/micro/melee_action(target as obj|mob|turf)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
 		target = SAFEPICK(oview(1,src))
 	if(!melee_can_hit || !istype(target, /atom)) return
@@ -110,7 +110,7 @@
 	return
 
 
-/obj/mecha/micro/Topic(href,href_list)
+obj/mecha/micro/Topic(href,href_list)
 	..()
 	var/datum/topic_input/top_filter = new (href,href_list)
 	if(top_filter.get("close"))
@@ -119,7 +119,7 @@
 
 // override move_inside() so only micro crew can use them
 
-/obj/mecha/micro/move_inside()
+obj/mecha/micro/move_inside()
 	var/mob/living/carbon/C = usr
 	if (C.size_multiplier >= 0.5)
 		to_chat(C, "<span class='warning'>You can't fit in this suit!</span>")
@@ -127,7 +127,7 @@
 	else
 		..()
 
-/obj/mecha/micro/move_inside_passenger()
+obj/mecha/micro/move_inside_passenger()
 	var/mob/living/carbon/C = usr
 	if (C.size_multiplier >= 0.5)
 		to_chat(C, "<span class='warning'>You can't fit in this suit!</span>")
@@ -137,23 +137,22 @@
 
 // override move/turn procs so they play more appropriate sounds. Placeholder sounds for now, but mechmove04 at least sounds like tracks for the poleat.
 
-/obj/mecha/micro/mechturn(direction)
+obj/mecha/micro/mechturn(direction)
 	setDir(direction)
 	playsound(src,'sound/mecha/mechmove03.ogg',40,1)
 	return 1
 
-/obj/mecha/micro/mechstep(direction)
+obj/mecha/micro/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
 		playsound(src,'sound/mecha/mechmove04.ogg',40,1)
 	return result
 
-/obj/mecha/micro/mechsteprand()
+obj/mecha/micro/mechsteprand()
 	var/result = step_rand(src)
 	if(result)
 		playsound(src,'sound/mecha/mechmove04.ogg',40,1)
 	return result
 
-/obj/effect/decal/mecha_wreckage/micro
+obj/effect/decal/mecha_wreckage/micro
 	icon = 'icons/mecha/micro.dmi'
-

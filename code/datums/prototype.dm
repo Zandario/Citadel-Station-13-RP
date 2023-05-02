@@ -15,7 +15,7 @@ candidates for conversion:
  *
  * all prototypes should eventually be serializable
  */
-/datum/prototype
+datum/prototype
 	abstract_type = /datum/prototype
 
 	//? Identity
@@ -42,13 +42,13 @@ candidates for conversion:
 	/// lazyloaded
 	var/lazy = FALSE
 
-/datum/prototype/New()
+datum/prototype/New()
 	if(anonymous)
 		generate_anonymous_uid()
 	else
 		uid = "[namespace]-[identifier]"
 
-/datum/prototype/proc/generate_anonymous_uid()
+datum/prototype/proc/generate_anonymous_uid()
 	// unique always, even across rounds
 	uid = "[namespace]-[num2text(world.realtime, 16)]-[++uid_next]"
 
@@ -58,7 +58,7 @@ candidates for conversion:
  *
  * @return TRUE / FALSE to allow / deny register; PLEASE clean up side effects if you make this fail!
  */
-/datum/prototype/proc/register()
+datum/prototype/proc/register()
 	return TRUE
 
 /**
@@ -67,14 +67,14 @@ candidates for conversion:
  *
  * @return TRUE / FALSE on success / failure
  */
-/datum/prototype/proc/unregister()
+datum/prototype/proc/unregister()
 	return TRUE
 
-/datum/prototype/serialize()
+datum/prototype/serialize()
 	. = ..()
 	.[NAMEOF(src, identifier)] = identifier
 
-/datum/prototype/deserialize(list/data)
+datum/prototype/deserialize(list/data)
 	. = ..()
 	identifier = data[NAMEOF(src, identifier)]
 	uid = "[namespace]_[identifier]"
@@ -82,5 +82,5 @@ candidates for conversion:
 /**
  * checks that our identifier is set properly
  */
-/datum/prototype/proc/assert_identifier()
+datum/prototype/proc/assert_identifier()
 	return !anonymous && uid == "[namespace]_[identifier]" && namespace == initial(namespace)

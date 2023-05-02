@@ -1,21 +1,21 @@
-/datum/technomancer/spell/aspect_aura
+datum/technomancer/spell/aspect_aura
 	name = "Aspect Aura"
 	desc = "This aura function takes on the properties of other functions based on which aspect is introduced to it, applying \
 	it to everyone nearby."
 	cost = 200
 	obj_path = /mob/living/carbon/human/proc/technomancer_aspect_aura
 
-/mob/living/carbon/human/proc/technomancer_aspect_aura()
+mob/living/carbon/human/proc/technomancer_aspect_aura()
 	place_spell_in_hand(/obj/item/spell/aspect_aura)
 
-/obj/item/spell/aspect_aura
+obj/item/spell/aspect_aura
 	name = "aspect aura"
 	desc = "Combine this with another spell to finish the function."
 	icon_state = "aspect_bolt"
 	cast_methods = CAST_COMBINE
 	aspect = ASPECT_CHROMATIC
 
-/obj/item/spell/aspect_aura/on_combine_cast(obj/item/W, var/mob/living/carbon/human/user)
+obj/item/spell/aspect_aura/on_combine_cast(obj/item/W, var/mob/living/carbon/human/user)
 	if(istype(W, /obj/item/spell))
 		var/obj/item/spell/spell = W
 		if(!spell.aspect || spell.aspect == ASPECT_CHROMATIC)
@@ -33,7 +33,7 @@
 					user.place_spell_in_hand(/obj/item/spell/aura/biomed)
 		qdel(src)
 
-/obj/item/spell/aura
+obj/item/spell/aura
 	name = "aura template"
 	desc = "If you can read me, the game broke!  Yay!"
 	icon_state = "generic"
@@ -41,19 +41,19 @@
 	aspect = ASPECT_CHROMATIC
 	var/glow_color = "#FFFFFF"
 
-/obj/item/spell/aura/Initialize(mapload)
+obj/item/spell/aura/Initialize(mapload)
 	. = ..()
 	set_light(7, 4, l_color = glow_color)
 	START_PROCESSING(SSobj, src)
 
-/obj/item/spell/aura/Destroy()
+obj/item/spell/aura/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/spell/aura/process(delta_time)
+obj/item/spell/aura/process(delta_time)
 	return
 
-/obj/item/spell/aura/fire
+obj/item/spell/aura/fire
 	name = "heat aura"
 	desc = "Things are starting to heat up."
 	icon_state = "generic"
@@ -61,7 +61,7 @@
 	aspect = ASPECT_FIRE
 	glow_color = "#FF6A00"
 
-/obj/item/spell/aura/fire/process(delta_time)
+obj/item/spell/aura/fire/process(delta_time)
 	if(!pay_energy(100))
 		qdel(src)
 	var/list/nearby_mobs = range(4,owner)
@@ -75,7 +75,7 @@
 
 	adjust_instability(1)
 
-/obj/item/spell/aura/frost
+obj/item/spell/aura/frost
 	name = "chilling aura"
 	desc = "Your enemies will find it hard to chase you if they freeze to death."
 	icon_state = "generic"
@@ -83,7 +83,7 @@
 	aspect = ASPECT_FROST
 	glow_color = "#FF6A00"
 
-/obj/item/spell/aura/frost/process(delta_time)
+obj/item/spell/aura/frost/process(delta_time)
 	if(!pay_energy(100))
 		qdel(src)
 	var/list/nearby_mobs = range(4,owner)
@@ -99,7 +99,7 @@
 
 
 
-/obj/item/spell/aura/biomed
+obj/item/spell/aura/biomed
 	name = "restoration aura"
 	desc = "Allows everyone, or just your allies, to slowly regenerate."
 	icon_state = "generic"
@@ -109,7 +109,7 @@
 	var/regen_tick = 0
 	var/heal_allies_only = 1
 
-/obj/item/spell/aura/biomed/process(delta_time)
+obj/item/spell/aura/biomed/process(delta_time)
 	if(!pay_energy(75))
 		qdel(src)
 	regen_tick++
@@ -130,6 +130,6 @@
 			L.adjustFireLoss(-5)
 		adjust_instability(2)
 
-/obj/item/spell/aura/biomed/on_use_cast(mob/living/user)
+obj/item/spell/aura/biomed/on_use_cast(mob/living/user)
 	heal_allies_only = !heal_allies_only
 	user << "Your aura will now heal [heal_allies_only ? "your allies" : "everyone"] near you."

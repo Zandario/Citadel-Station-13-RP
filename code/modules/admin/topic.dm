@@ -1,4 +1,4 @@
-/datum/admins/Topic(href, href_list)
+datum/admins/Topic(href, href_list)
 	..()
 
 	if((usr.client != src.owner) || !check_rights(0))
@@ -2028,27 +2028,27 @@
 				PlayerNotesPage(text2num(href_list["index"]))
 		return
 
-/mob/living/proc/can_centcom_reply()
+mob/living/proc/can_centcom_reply()
 	return 0
 
-/mob/living/carbon/human/can_centcom_reply()
+mob/living/carbon/human/can_centcom_reply()
 	return istype(l_ear, /obj/item/radio/headset) || istype(r_ear, /obj/item/radio/headset)
 
-/mob/living/silicon/ai/can_centcom_reply()
+mob/living/silicon/ai/can_centcom_reply()
 	return common_radio != null && !check_unable(2)
 
-/atom/proc/extra_admin_link()
+atom/proc/extra_admin_link()
 	return
 
-/mob/extra_admin_link(var/source)
+mob/extra_admin_link(var/source)
 	if(client && eyeobj)
 		return "|<A HREF='?[source];adminplayerobservejump=\ref[eyeobj]'>EYE</A>"
 
-/mob/observer/dead/extra_admin_link(var/source)
+mob/observer/dead/extra_admin_link(var/source)
 	if(mind && mind.current)
 		return "|<A HREF='?[source];adminplayerobservejump=\ref[mind.current]'>BDY</A>"
 
-/proc/admin_jump_link(var/atom/target, var/source)
+proc/admin_jump_link(var/atom/target, var/source)
 	if(!target) return
 	// The way admin jump links handle their src is weirdly inconsistent...
 	if(istype(source, /datum/admins))
