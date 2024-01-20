@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "nanoui-workspace",
+  "version": "0.1.0",
+  "packageManager": "yarn@3.3.1",
+  "workspaces": [
+    "js/*"
+  ],
+  "scripts": {
+    "nanoui:build": "webpack"
+  },
+  "dependencies": {
+    "webpack": "^5.89.0",
+    "webpack-bundle-analyzer": "^4.10.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "description": "NanoUI uses doT (<https://olado.github.io/doT/index.html>) as its templating engine.",
+  "main": "webpack.config.js",
+  "author": "",
+  "license": "ISC"
+}

@@ -9,6 +9,7 @@
 		"nano/templates/",
 		"nano/js/",
 		"nano/js/libraries/",
+		"nano/dist/"
 	)
 	var/list/exts = list(
 		"js",
