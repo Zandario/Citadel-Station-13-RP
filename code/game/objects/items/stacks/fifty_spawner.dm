@@ -11,7 +11,7 @@
 	. = ..()
 	var/obj/item/stack/M = new type_to_spawn(src.loc)
 	M.amount = M.max_amount //some stuff spawns with 60, we're still calling it fifty
-	M.update_icon() // Some stacks have different sprites depending on how full they are.
+	M.update_appearance() // Some stacks have different sprites depending on how full they are.
 	return INITIALIZE_HINT_QDEL
 
 /obj/fiftyspawner/rods

@@ -70,7 +70,7 @@ LYTHIOS43C_TURF_CREATE_UN(/turf/simulated/mineral/icerock/floor/ignore_cavegen)
 	blocks_air = FALSE
 	can_build_into_floor = TRUE
 	smoothing_groups = (SMOOTH_GROUP_FLOOR_SNOW)
-	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon = 'icons/turf/floors/asteroid.dmi'
 	icon_state = "asteroid"
 	color = LIGHT_COLOR_BLUE
 	queue_zone_update()
@@ -107,7 +107,7 @@ LYTHIOS43C_TURF_CREATE_UN(/turf/simulated/mineral/icerock/floor/ignore_cavegen)
 /turf/simulated/floor/outdoors/icesand/lythios43c/indoor
 	outdoors = FALSE
 	smoothing_groups = (SMOOTH_GROUP_FLOOR_SNOW)
-	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon = 'icons/turf/floors/asteroid.dmi'
 	icon_state = "asteroid"
 	color = LIGHT_COLOR_BLUE
 

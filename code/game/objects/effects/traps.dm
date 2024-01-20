@@ -60,7 +60,7 @@ Add those other swinging traps you mentioned above!
 /obj/effect/trap
 	name = "strange area"
 	desc = "The dust hangs strangely in the air here."
-	icon = 'icons/turf/flooring/trap.dmi'
+	icon = 'icons/turf/floors/traps.dmi'
 	icon_state = "trap_frame"
 	anchored = TRUE
 	density = FALSE

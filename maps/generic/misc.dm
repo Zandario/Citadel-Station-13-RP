@@ -55,7 +55,7 @@
 /turf/simulated/floor/maglev
 	name = "maglev track"
 	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
-	icon = 'icons/turf/flooring/maglevs.dmi'
+	icon = 'icons/turf/floors/maglevs.dmi'
 	icon_state = "maglevup"
 
 	var/area/shock_area = /area/tether/surfacebase/tram

@@ -5,7 +5,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal
 	name = "floor decal"
-	icon = 'icons/turf/flooring/decals.dmi'
+	icon = 'icons/turf/floors/decals.dmi'
 
 	plane = TURF_PLANE
 
@@ -621,17 +621,17 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/carpet
 	name = "carpet"
-	icon = 'icons/turf/flooring/carpet.dmi'
+	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet_edges"
 
 /obj/effect/floor_decal/carpet/blue
 	name = "carpet"
-	icon = 'icons/turf/flooring/carpet.dmi'
+	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "bcarpet_edges"
 
 /obj/effect/floor_decal/carpet/corners
 	name = "carpet"
-	icon = 'icons/turf/flooring/carpet.dmi'
+	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet_corners"
 
 /obj/effect/floor_decal/asteroid

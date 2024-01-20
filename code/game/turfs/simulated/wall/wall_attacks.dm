@@ -28,13 +28,15 @@
 
 // IF I CATCH YOU USING THIS YOU'RE DEAD @Zandario
 /// Set mode to TRUE to add the baseturf underlay, set to FALSE to remove.
+/// This exists because our walls aren't structure yet, so we're coping.
+/// If you use this for anything other than walls, you're dead. @Zandario
 /turf/simulated/wall/proc/update_underlay(mode = TRUE)
 	if(!mode)
 		underlays.Cut()
 
 	var/mutable_appearance/under_ma
 	under_ma = new()
-	under_ma.icon = 'icons/turf/flooring/plating.dmi'
+	under_ma.icon = 'icons/turf/floors.dmi'
 	under_ma.icon_state = "plating"
 
 	underlays += under_ma

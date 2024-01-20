@@ -1,5 +1,6 @@
-// These objects are used by cyborgs to get around a lot of the limitations on stacks
-// and the weird bugs that crop up when expecting borg module code to behave sanely.
+/// TODO: GET RID OF THIS SHIT, THIS IS HORRIBLE! @Zandario
+/// These objects are used by cyborgs to get around a lot of the limitations on stacks
+/// and the weird bugs that crop up when expecting borg module code to behave sanely.
 /obj/item/stack/material/cyborg
 	uses_charge = 1
 	charge_costs = list(1000)

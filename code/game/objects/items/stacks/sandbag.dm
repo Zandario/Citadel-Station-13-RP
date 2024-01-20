@@ -15,11 +15,8 @@
 	max_amount = 50
 	attack_verb = list("tapped", "smacked", "flapped")
 
-/obj/item/stack/emptysandbag/Initialize(mapload, new_amount, merge)
-	. = ..()
-	update_icon()
 
-/obj/item/stack/emptysandbag/update_icon()
+/obj/item/stack/emptysandbag/update_icon_state()
 	var/amount = get_amount()
 	if((amount >= 35))
 		icon_state = "sandbag_empty_3"
@@ -27,6 +24,7 @@
 		icon_state = "sandbag_empty_2"
 	else
 		icon_state = "sandbag_empty"
+	return ..()
 
 /obj/item/stack/emptysandbag/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/stack/ore/glass) && !interact(user, src))
@@ -62,11 +60,8 @@
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
-/obj/item/stack/sandbags/Initialize(mapload, new_amount, merge)
-	. = ..()
-	update_icon()
 
-/obj/item/stack/sandbags/update_icon()
+/obj/item/stack/sandbags/update_icon_state()
 	var/amount = get_amount()
 	if((amount >= 35))
 		icon_state = "sandbags_3"
@@ -74,6 +69,7 @@
 		icon_state = "sandbags_2"
 	else
 		icon_state = "sandbags"
+	return ..()
 
 /obj/item/stack/sandbags/generate_explicit_recipes()
 	. = list()
@@ -121,20 +117,6 @@
 		if(S != src)
 			break_to_parts(full_return = 1)
 			return
-	if(mapload)
-		return INITIALIZE_HINT_LATELOAD
-	else
-		//update_connections(TRUE)
-		update_icon()
-
-/obj/structure/sandbag/LateInitialize()
-	. = ..()
-	//update_connections(FALSE)
-	update_icon()
-
-/obj/structure/sandbag/Destroy()
-	//update_connections(TRUE)
-	. = ..()
 
 /obj/structure/sandbag/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))

@@ -2,7 +2,7 @@
 	name = "glass floor"
 	desc = "Don't jump on it, or do, I'm not your mom."
 
-	icon = 'icons/turf/flooring/glass.dmi'
+	icon = 'icons/turf/floors/glass.dmi'
 	icon_state = "glass-0"
 	base_icon_state = "glass"
 
@@ -29,7 +29,7 @@
 	name = "reinforced glass flooring"
 	desc = "Heavily reinforced with steel rods."
 
-	icon = 'icons/turf/flooring/glass_reinf.dmi'
+	icon = 'icons/turf/floors/glass_reinf.dmi'
 	icon_state = "glass_reinf-0"
 	base_icon_state = "glass_reinf"
 

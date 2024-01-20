@@ -72,34 +72,45 @@
 			var/obj/item/stack/cable_coil/coil = C
 			coil.turf_place(src, user)
 			return
-		else if(istype(C, /obj/item/stack))
+
+		//? Tile Handling.
+			// TODO: Murder and Refactor. @Zandario
+		else if(istype(C, /obj/item/stack/tile))
 			if(broken || burnt)
-				to_chat(user, "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>")
+				to_chat(user, SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage."))
 				return
-			var/obj/item/stack/S = C
+
+			var/obj/item/stack/tile/tile_stack = C
+
 			var/singleton/flooring/use_flooring
-			for(var/flooring_type in flooring_types)
-				var/singleton/flooring/F = flooring_types[flooring_type]
-				if(!F.build_type)
+			for(var/singleton/flooring/Flooring as anything in flooring_types)
+				Flooring = flooring_types[Flooring]
+				if(!Flooring.build_type)
 					continue
-				if((S.type == F.build_type) || (S.build_type == F.build_type))
-					use_flooring = F
+				if((tile_stack.type == Flooring.build_type) || (tile_stack.turf_type == Flooring.build_type))
+					use_flooring = Flooring
 					break
+
+			// Failed to get a turf from the stack.
 			if(!use_flooring)
+				stack_trace("Failed to get a Flooring Type from the stack ([use_flooring])!")
 				return
+
 			// Do we have enough?
-			if(use_flooring.build_cost && S.amount < use_flooring.build_cost)
-				to_chat(user, "<span class='warning'>You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor].</span>")
+			if(use_flooring.build_cost && tile_stack.amount < use_flooring.build_cost)
+				to_chat(user, SPAN_WARNING("You require at least [use_flooring.build_cost] [tile_stack.name] to complete the [use_flooring.descriptor]."))
 				return
 			// Stay still and focus...
 			if(use_flooring.build_time && !do_after(user, use_flooring.build_time))
 				return
-			if(flooring || !S || !user || !use_flooring)
+			if(flooring || !tile_stack || !user || !use_flooring)
 				return
-			if(S.use(use_flooring.build_cost))
+			if(tile_stack.use(use_flooring.build_cost))
 				set_flooring(use_flooring)
-				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 80, TRUE)
 				return
+			// End of awful flooring code.
+
 		// Repairs.
 		else if(istype(C, /obj/item/weldingtool))
 			var/obj/item/weldingtool/welder = C
@@ -118,13 +129,13 @@
 	if(W.is_crowbar())
 		if(broken || burnt)
 			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
-			make_plating()
+			make_plating(place_product = FALSE)
 		else if(flooring.flooring_flags & TURF_IS_FRAGILE)
 			to_chat(user, "<span class='danger'>You forcefully pry off the [flooring.descriptor], destroying them in the process.</span>")
-			make_plating()
+			make_plating(place_product = FALSE)
 		else if(flooring.flooring_flags & TURF_REMOVE_CROWBAR)
 			to_chat(user, "<span class='notice'>You lever off the [flooring.descriptor].</span>")
-			make_plating(1)
+			make_plating(place_product = TRUE)
 		else
 			return 0
 		playsound(src, W.tool_sound, 80, 1)
@@ -133,17 +144,17 @@
 		if(broken || burnt)
 			return 0
 		to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
-		make_plating(1)
+		make_plating(place_product = TRUE)
 		playsound(src, W.tool_sound, 80, 1)
 		return 1
 	else if(W.is_wrench() && (flooring.flooring_flags & TURF_REMOVE_WRENCH))
 		to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
-		make_plating(1)
+		make_plating(place_product = TRUE)
 		playsound(src, W.tool_sound, 80, 1)
 		return 1
 	else if(istype(W, /obj/item/shovel) && (flooring.flooring_flags & TURF_REMOVE_SHOVEL))
 		to_chat(user, "<span class='notice'>You shovel off the [flooring.descriptor].</span>")
-		make_plating(1)
+		make_plating(place_product = TRUE)
 		playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 		return 1
 	return 0

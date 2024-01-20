@@ -2,7 +2,7 @@
 
 /turf/simulated/floor/trap
 	name = "suspicious flooring"
-	icon = 'icons/turf/flooring/trap.dmi'
+	icon = 'icons/turf/floors/traps.dmi'
 	icon_state = "steel_dirty"
 	var/tripped = FALSE
 	var/message = "trip"

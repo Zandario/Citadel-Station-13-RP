@@ -223,7 +223,7 @@ CLASSD_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 /turf/simulated/floor/outdoors/classd
 	name = "irradiated sand"
 	desc = "It literally glows in the dark."
-	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon = 'icons/turf/floors/asteroid.dmi'
 	icon_state = "asteroid"
 	outdoors = 1
 	color = "#eaa17c"
@@ -394,7 +394,7 @@ LAVALAND_TURF_CREATE(/turf/simulated/mineral/)
 /turf/simulated/floor/outdoors/lavaland
 	name = "ash sand"
 	desc = "Soft and ominous."
-	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon = 'icons/turf/floors/asteroid.dmi'
 	icon_state = "asteroid"
 	outdoors = 1
 	edge_blending_priority = 2

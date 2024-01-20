@@ -306,7 +306,7 @@
 				W.heal_damage(heal_brute)
 				playsound(src, pick(apply_sounds), 25)
 				used = 1
-				update_icon() //  Support for stack icons
+				update_appearance() //  Support for stack icons
 			affecting.update_damages()
 			if(used == amount)
 				if(affecting.is_bandaged())
@@ -353,7 +353,7 @@
 			use(1)
 			affecting.salve()
 			playsound(src, pick(apply_sounds), 25)
-			update_icon() // Support for stack icons
+			update_appearance() // Support for stack icons
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
@@ -432,12 +432,7 @@
 	icon_state = "primitive-splint"
 	amount = 5
 
-// Begin Citadel Changes - New advanced kit sprites
-/obj/item/stack/medical/advanced/Initialize(mapload)
-	. = ..()
-	update_icon()
-
-/obj/item/stack/medical/advanced/update_icon()
+/obj/item/stack/medical/advanced/update_icon_state()
 	switch(amount)
 		if(1 to 2)
 			icon_state = initial(icon_state)
@@ -451,7 +446,7 @@
 			icon_state = "[initial(icon_state)]_9"
 		else
 			icon_state = "[initial(icon_state)]_10"
-// End Citadel Changes
+	return ..()
 
 //Ashlander Poultices - They basically use the same stack system as ointment and bruise packs. Gotta dupe some of the code since bruise pack/ointment chat messages are too specific.
 /obj/item/stack/medical/poultice_brute

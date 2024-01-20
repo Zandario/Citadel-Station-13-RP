@@ -34,7 +34,7 @@ VIRGO3B_TURF_CREATE_UN(/turf/simulated/floor/tiled/kafel_full/yellow)
 	initial_gas_mix = ATMOSPHERE_ID_VIRGO3B
 
 /turf/simulated/floor/outdoors/dirt/virgo3b
-	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon = 'icons/turf/floors/asteroid.dmi'
 	icon_state = "asteroid"
 
 /turf/simulated/floor/outdoors/grass/sif
@@ -79,4 +79,3 @@ VIRGO3B_TURF_CREATE_UN(/turf/simulated/floor/tiled/kafel_full/yellow)
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
-

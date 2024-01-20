@@ -6,7 +6,7 @@
 /singleton/flooring/tiling/eris
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/eris/tiles.dmi'
+	icon = 'icons/turf/floors/eris/tiles.dmi'
 	icon_base = "tiles"
 	has_damage_range = 2
 	damage_temperature = T0C+1400
@@ -33,7 +33,7 @@
 /singleton/flooring/tiling/eris/steel
 	name = "steel floor"
 	icon_base = "tiles"
-	icon = 'icons/turf/flooring/eris/tiles_steel.dmi'
+	icon = 'icons/turf/floors/eris/tiles_steel.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/steel
 
 /singleton/flooring/tiling/eris/steel/panels
@@ -121,7 +121,7 @@
 /singleton/flooring/tiling/eris/white
 	name = "white floor"
 	icon_base = "tiles"
-	icon = 'icons/turf/flooring/eris/tiles_white.dmi'
+	icon = 'icons/turf/floors/eris/tiles_white.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/white
 
 /singleton/flooring/tiling/eris/white/panels
@@ -188,7 +188,7 @@
 /singleton/flooring/tiling/eris/dark
 	name = "dark floor"
 	icon_base = "tiles"
-	icon = 'icons/turf/flooring/eris/tiles_dark.dmi'
+	icon = 'icons/turf/floors/eris/tiles_dark.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/dark
 
 /singleton/flooring/tiling/eris/dark/panels
@@ -255,7 +255,7 @@
 /singleton/flooring/tiling/eris/cafe
 	name = "linoleum floor"
 	icon_base = "cafe"
-	icon = 'icons/turf/flooring/eris/tiles.dmi'
+	icon = 'icons/turf/floors/eris/tiles.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/cafe
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
@@ -263,7 +263,7 @@
 /singleton/flooring/tiling/eris/techmaint
 	name = "techmaint floor"
 	icon_base = "techmaint"
-	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
+	icon = 'icons/turf/floors/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
@@ -271,7 +271,7 @@
 /singleton/flooring/tiling/eris/techmaint_perforated
 	name = "techmaint floor"
 	icon_base = "techmaint_perforated"
-	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
+	icon = 'icons/turf/floors/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/perforated
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
@@ -279,7 +279,7 @@
 /singleton/flooring/tiling/eris/techmaint_panels
 	name = "techmaint floor"
 	icon_base = "techmaint_panels"
-	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
+	icon = 'icons/turf/floors/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/panels
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
@@ -287,7 +287,7 @@
 /singleton/flooring/tiling/eris/techmaint_cargo
 	name = "techmaint floor"
 	icon_base = "techmaint_cargo"
-	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
+	icon = 'icons/turf/floors/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/cargo
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
@@ -296,7 +296,7 @@
 /// TILE OBJS   ///////
 ///////////////////////
 /obj/item/stack/tile/floor/eris
-	icon = 'icons/turf/flooring/eris/tilestack.dmi'
+	icon = 'icons/turf/floors/eris/tilestack.dmi'
 
 // Cafe
 /obj/item/stack/tile/floor/eris/cafe
@@ -602,7 +602,7 @@
 ///////////////////////
 /turf/simulated/floor/tiled/eris
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles.dmi'
+	icon = 'icons/turf/floors/eris/tiles.dmi'
 	icon_state = "tiles"
 	initial_flooring = /singleton/flooring/tiling/eris
 
@@ -611,7 +611,7 @@
 //Steel tiles
 /turf/simulated/floor/tiled/eris/steel
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles_steel.dmi'
+	icon = 'icons/turf/floors/eris/tiles_steel.dmi'
 	icon_state = "tiles"
 	initial_flooring = /singleton/flooring/tiling/eris/steel
 
@@ -696,7 +696,7 @@
 //White Tiles
 /turf/simulated/floor/tiled/eris/white
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles_white.dmi'
+	icon = 'icons/turf/floors/eris/tiles_white.dmi'
 	icon_state = "tiles"
 	initial_flooring = /singleton/flooring/tiling/eris/white
 
@@ -765,7 +765,7 @@
 // Dark Tiles
 /turf/simulated/floor/tiled/eris/dark
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles_dark.dmi'
+	icon = 'icons/turf/floors/eris/tiles_dark.dmi'
 	icon_state = "tiles"
 	initial_flooring = /singleton/flooring/tiling/eris/dark
 
@@ -834,31 +834,31 @@
 
 /turf/simulated/floor/tiled/eris/cafe
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles.dmi'
+	icon = 'icons/turf/floors/eris/tiles.dmi'
 	icon_state = "cafe"
 	initial_flooring = /singleton/flooring/tiling/eris/cafe
 
 /turf/simulated/floor/tiled/eris/techmaint
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
+	icon = 'icons/turf/floors/eris/tiles_maint.dmi'
 	icon_state = "techmaint"
 	initial_flooring = /singleton/flooring/tiling/eris/techmaint
 
 /turf/simulated/floor/tiled/eris/techmaint_perforated
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
+	icon = 'icons/turf/floors/eris/tiles_maint.dmi'
 	icon_state = "techmaint_perforated"
 	initial_flooring = /singleton/flooring/tiling/eris/techmaint_perforated
 
 /turf/simulated/floor/tiled/eris/techmaint_panels
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
+	icon = 'icons/turf/floors/eris/tiles_maint.dmi'
 	icon_state = "techmaint_panels"
 	initial_flooring = /singleton/flooring/tiling/eris/techmaint_panels
 
 /turf/simulated/floor/tiled/eris/techmaint_cargo
 	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
+	icon = 'icons/turf/floors/eris/tiles_maint.dmi'
 	icon_state = "techmaint_cargo"
 	initial_flooring = /singleton/flooring/tiling/eris/techmaint_cargo
 
@@ -893,7 +893,7 @@
 /singleton/flooring/eris_plating
 	name = "reinforced plating"
 	descriptor = "reinforced plating"
-	icon = 'icons/turf/flooring/eris/plating.dmi'
+	icon = 'icons/turf/floors/eris/plating.dmi'
 	icon_base = "plating"
 	flooring_flags = TURF_REMOVE_WRENCH | TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
@@ -919,7 +919,7 @@
 
 /turf/simulated/floor/plating/eris
 	name = "reinforced plating"
-	icon = 'icons/turf/flooring/eris/plating.dmi'
+	icon = 'icons/turf/floors/eris/plating.dmi'
 	icon_state = "plating"
 	initial_flooring = /singleton/flooring/eris_plating
 
@@ -930,7 +930,7 @@
 // This looks similar to normal plating, but with edges
 /singleton/flooring/eris_plating/under
 	name = "underplating"
-	icon = 'icons/turf/flooring/eris/plating.dmi'
+	icon = 'icons/turf/floors/eris/plating.dmi'
 	descriptor = "support beams"
 	icon_base = "under"
 	flooring_flags = TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_REMOVE_SCREWDRIVER
@@ -969,7 +969,7 @@
 /singleton/flooring/eris_plating/hull
 	name = "hull"
 	descriptor = "outer hull"
-	icon = 'icons/turf/flooring/eris/hull.dmi'
+	icon = 'icons/turf/floors/eris/hull.dmi'
 	icon_base = "hullcenter"
 	flooring_flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
 	has_base_range = 35
@@ -1003,7 +1003,7 @@
 */
 /turf/simulated/floor/hull
 	name = "hull"
-	icon = 'icons/turf/flooring/eris/hull.dmi'
+	icon = 'icons/turf/floors/eris/hull.dmi'
 	icon_state = "hullcenter0"
 	initial_flooring = /singleton/flooring/eris_plating/hull
 

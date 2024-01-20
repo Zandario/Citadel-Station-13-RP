@@ -34,7 +34,7 @@
 	// PROCESS_AO above also uses this cache, check it before changing this key.
 	var/key = "[cstr]|[px]/[py]/[pz]/[pw]|[alpha]"
 
-	var/image/I = image('icons/turf/flooring/shadows.dmi', cstr)
+	var/image/I = image('icons/turf/floors/shadows.dmi', cstr)
 	I.alpha = alpha
 	I.blend_mode = BLEND_OVERLAY
 	I.appearance_flags = RESET_ALPHA | RESET_COLOR | TILE_BOUND

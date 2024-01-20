@@ -44,6 +44,5 @@
 
 /turf/simulated/floor/crystal
 	name = "crystal floor"
-	icon = 'icons/turf/flooring/crystal.dmi'
-	icon_state = ""
+	icon_state = "crystal"
 	initial_flooring = /singleton/flooring/crystal

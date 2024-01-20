@@ -6,19 +6,21 @@
 	origin_tech = list(TECH_MATERIAL = 1)
 	icon = 'icons/obj/stacks.dmi'
 	item_flags = ITEM_CAREFUL_BLUDGEON | ITEM_ENCUMBERS_WHILE_HELD
+
+
+	//? Core Variables
+	/// What's the name of just 1 of this stack.
+	/// You have a stack of leather, but one piece of leather.
 	var/singular_name
+	/// How much is in this stack?
 	var/amount = 1
 	/// See stack recipes initialisation, param "max_res_amount" must be equal to this max_amount.
 	var/max_amount = 50
-	/// Determines whether different stack types can merge.
-	var/stacktype
+	/// This typepath and its children should merge with this stack, defaults to src.type
+	var/stacktype = null
 	/// enforce a certain type when splitting; useful if you have an infinite stack you don't want to be split into another one
 	var/split_type
-	/// Used when directly applied to a turf.
-	var/build_type = null
-	var/uses_charge = 0
-	var/list/charge_costs = null
-	var/list/datum/matter_synth/synths = null
+
 	/// Determines whether the item should update it's sprites based on amount.
 	var/no_variants = TRUE
 
@@ -29,6 +31,13 @@
 
 	/// explicit recipes, lazy-list. this is typelist'd
 	var/list/datum/stack_recipe/explicit_recipes
+
+	//? Synth stuff
+	/// Determines whether the stack consumes power when used, literally only for cyborgs
+	var/uses_charge = 0
+	/// Determines how much power is drained when used, literally only for cyborgs
+	var/list/charge_costs = null
+	var/list/datum/matter_synth/synths = null
 
 /obj/item/stack/Initialize(mapload, new_amount, merge = TRUE)
 	if(has_typelist(explicit_recipes))
@@ -44,9 +53,9 @@
 		for(var/obj/item/stack/S in loc)
 			if(can_merge(S))
 				merge(S)
-	update_icon()
+	update_appearance()
 
-/obj/item/stack/update_icon()
+/obj/item/stack/update_icon_state()
 	if(no_variants)
 		icon_state = initial(icon_state)
 	else
@@ -57,6 +66,7 @@
 		else
 			icon_state = "[initial(icon_state)]_3"
 		item_state = initial(icon_state)
+	return ..()
 
 /obj/item/stack/examine(mob/user, dist)
 	. = ..()
@@ -163,7 +173,7 @@
 		amount -= used
 		if (amount <= 0)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
-		update_icon()
+		update_appearance()
 		return TRUE
 	else
 		if(get_amount() < used)
@@ -179,7 +189,7 @@
 			return FALSE
 		else
 			amount += extra
-		update_icon()
+		update_appearance()
 		return TRUE
 	else if(!synths || synths.len < uses_charge)
 		return FALSE
@@ -387,5 +397,5 @@
 	if(amount == 0 && !no_limits)
 		qdel(src)
 		return FALSE
-	update_icon()
+	update_appearance()
 	return TRUE

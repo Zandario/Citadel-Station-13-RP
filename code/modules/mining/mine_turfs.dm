@@ -26,7 +26,7 @@ CREATE_STANDARD_TURFS(/turf/unsimulated/mineral)
 	smoothing_groups = (SMOOTH_GROUP_WALLS+SMOOTH_GROUP_MINERAL_WALLS)
 	canSmoothWith = (SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS+SMOOTH_GROUP_MINERAL_WALLS)
 
-	var/sand_icon = 'icons/turf/flooring/asteroid.dmi'
+	var/sand_icon = 'icons/turf/floors/asteroid.dmi'
 	var/rock_side_icon_state = "rock_side"
 	var/sand_icon_state = "asteroid"
 	var/rock_icon_state = "rock"
@@ -115,7 +115,7 @@ CREATE_STANDARD_TURFS(/turf/unsimulated/mineral)
 
 /turf/simulated/mineral/floor
 	name = "sand"
-	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon = 'icons/turf/floors/asteroid.dmi'
 	icon_state = "asteroid"
 	density = 0
 	opacity = 0
@@ -267,7 +267,7 @@ CREATE_STANDARD_TURFS(/turf/unsimulated/mineral)
 		if(sand_dug)
 			. += mutable_appearance(icon, "dug_overlay")
 		if(overlay_detail)
-			. += mutable_appearance('icons/turf/flooring/decals.dmi', overlay_detail)
+			. += mutable_appearance('icons/turf/floors/decals.dmi', overlay_detail)
 
 
 /turf/simulated/mineral/legacy_ex_act(severity)

@@ -1,30 +1,30 @@
-/* Diffrent misc types of tiles
- * Contains:
- *		Prototype
- *		Grass
- *		Wood
- *		Carpet
- * 		Blue Carpet
- *		Linoleum
+/**
+ * TILE STACKS
  *
- * Put your stuff in fifty_stacks_tiles.dm as well.
+ * Allows us to place a turf on a plating.
  */
-
 /obj/item/stack/tile
-	name = "tile"
-	singular_name = "tile"
-	desc = "A non-descript floor tile"
+	abstract_type = /obj/item/stack
+
+	name = "broken tile"
+	singular_name = "broken tile"
+	desc = "A broken tile. This should not exist."
+
 	w_class = ITEMSIZE_NORMAL
 	max_amount = 60
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
+
+	/// What type of turf does this tile produce.
+	var/turf_type = null
+
 
 /obj/item/stack/tile/Initialize(mapload, new_amount, merge)
 	. = ..()
 	pixel_x = rand(-7, 7)
 	pixel_y = rand(-7, 7)
 
-/*
+/**
  * Grass
  */
 /obj/item/stack/tile/grass
@@ -88,7 +88,7 @@
 	uses_charge = 1
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/wood
-	build_type = /obj/item/stack/tile/wood
+	turf_type = /obj/item/stack/tile/wood
 
 /*
  * Carpets
@@ -299,7 +299,7 @@
 	uses_charge = 1
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/floor
-	build_type = /obj/item/stack/tile/floor
+	turf_type = /obj/item/stack/tile/floor
 
 /obj/item/stack/tile/floor/sandstone
 	name = "sandstone tile"
@@ -354,7 +354,7 @@
 	uses_charge = 1
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/roofing
-	build_type = /obj/item/stack/tile/roofing
+	turf_type = /obj/item/stack/tile/roofing
 
 /obj/item/stack/tile/roofing/wood
 	name = "wood roofing"

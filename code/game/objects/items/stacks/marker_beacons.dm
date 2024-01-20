@@ -38,17 +38,14 @@ var/list/marker_beacon_colors = list(
 /obj/item/stack/marker_beacon/hundred
 	amount = 100
 
-/obj/item/stack/marker_beacon/Initialize(mapload)
-	. = ..()
-	update_icon()
-
 /obj/item/stack/marker_beacon/examine(mob/user, dist)
 	. = ..()
 	. += "<span class='notice'>Use in-hand to place a [singular_name].</span>"
 	. += "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>"
 
-/obj/item/stack/marker_beacon/update_icon()
+/obj/item/stack/marker_beacon/update_icon_state()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]"
+	return ..()
 
 /obj/item/stack/marker_beacon/attack_self(mob/user)
 	. = ..()
@@ -77,7 +74,7 @@ var/list/marker_beacon_colors = list(
 		return
 	if(input_color)
 		picked_color = input_color
-		update_icon()
+		update_appearance()
 
 /obj/structure/marker_beacon
 	name = "marker beacon"
@@ -94,24 +91,24 @@ var/list/marker_beacon_colors = list(
 /obj/structure/marker_beacon/Initialize(mapload, set_color)
 	. = ..()
 	picked_color = set_color
-	update_icon()
 
 /obj/structure/marker_beacon/examine(mob/user, dist)
 	. = ..()
 	. += "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>"
 
-/obj/structure/marker_beacon/update_icon()
+/obj/structure/marker_beacon/update_icon_state()
 	while(!picked_color || !marker_beacon_colors[picked_color])
 		picked_color = pick(marker_beacon_colors)
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	return ..()
 
 /obj/structure/marker_beacon/attack_hand(mob/user, list/params)
 	to_chat(user, "<span class='notice'>You start picking [src] up...</span>")
 	if(do_after(user, remove_speed, target = src))
 		var/obj/item/stack/marker_beacon/M = new(loc)
 		M.picked_color = picked_color
-		M.update_icon()
+		M.update_appearance()
 		transfer_fingerprints_to(M)
 		if(user.put_in_hands(M, INV_OP_FORCE)) //delete the beacon if it fails
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
@@ -140,27 +137,30 @@ var/list/marker_beacon_colors = list(
 		return
 	if(input_color)
 		picked_color = input_color
-		update_icon()
+		update_appearance()
 
 /obj/structure/marker_beacon/red
 	picked_color = "Burgundy"
 
-/obj/structure/marker_beacon/red/update_icon()
+/obj/structure/marker_beacon/red/update_icon_state()
 	while(!picked_color || !marker_beacon_colors[picked_color])
 		picked_color = "Burgundy"
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	return ..()
 
 /obj/structure/marker_beacon/yellow
 	picked_color = "Yellow"
 
-/obj/structure/marker_beacon/yellow/update_icon()
+/obj/structure/marker_beacon/yellow/update_icon_state()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	return ..()
 
 /obj/structure/marker_beacon/green
 	picked_color = "Green"
 
-/obj/structure/marker_beacon/green/update_icon()
+/obj/structure/marker_beacon/green/update_icon_state()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	return ..()

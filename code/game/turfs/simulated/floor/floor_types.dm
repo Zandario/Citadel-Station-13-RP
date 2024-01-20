@@ -103,7 +103,6 @@
 
 /turf/simulated/shuttle/floor
 	name = "floor"
-	icon = 'icons/turf/flooring/shuttle.dmi'
 	icon_state = "floor_blue"
 
 /turf/simulated/shuttle/floor/red

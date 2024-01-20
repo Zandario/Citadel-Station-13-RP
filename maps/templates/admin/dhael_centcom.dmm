@@ -2499,8 +2499,7 @@
 /area/centcom/control)
 "fT" = (
 /turf/unsimulated/floor/steel{
-	icon_state = "bcircuit";
-	icon = 'icons/turf/flooring/circuit.dmi'
+	icon_state = "bcircuit"
 	},
 /area/centcom/control)
 "fV" = (

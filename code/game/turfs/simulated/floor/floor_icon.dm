@@ -86,7 +86,7 @@ var/list/flooring_cache = list()
 	else
 		// no flooring - just handle plating stuff
 		if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
-			icon = 'icons/turf/flooring/plating.dmi'
+			icon = 'icons/turf/floors.dmi'
 			icon_state = "dmg[rand(1,4)]"
 
 /**

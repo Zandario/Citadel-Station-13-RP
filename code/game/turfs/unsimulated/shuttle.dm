@@ -17,7 +17,7 @@
 
 /turf/unsimulated/shuttle/floor
 	name = "floor"
-	icon = 'icons/turf/flooring/shuttle.dmi'
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor_blue"
 
 /turf/unsimulated/shuttle/plating

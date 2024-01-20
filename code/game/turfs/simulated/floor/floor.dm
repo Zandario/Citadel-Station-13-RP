@@ -1,7 +1,7 @@
 /turf/simulated/floor
 	name = "plating"
 	desc = "Unfinished flooring."
-	icon = 'icons/turf/flooring/plating.dmi'
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 	base_icon_state = "plating"
 	thermal_conductivity = 0.040
@@ -20,10 +20,6 @@
 	var/broken
 	var/burnt
 
-	// Plating data.
-	var/base_name = "plating"
-	var/base_desc = "The naked hull."
-	var/base_icon = 'icons/turf/flooring/plating.dmi'
 	var/static/list/base_footstep_sounds = list("human" = list(
 		'sound/effects/footstep/plating1.ogg',
 		'sound/effects/footstep/plating2.ogg',
@@ -82,7 +78,7 @@
 /turf/simulated/floor/proc/set_flooring(singleton/flooring/newflooring, init)
 	if(flooring == newflooring)
 		return
-	make_plating(null, TRUE, TRUE)
+	make_plating(place_product = FALSE, defer_icon_update = TRUE, strip_bare = TRUE)
 	flooring = newflooring
 
 	footstep_sounds = newflooring.footstep_sounds
@@ -109,7 +105,7 @@
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
-/turf/simulated/floor/proc/make_plating(place_product, defer_icon_update, strip_bare)
+/turf/simulated/floor/proc/make_plating(place_product = FALSE, defer_icon_update = FALSE, strip_bare = FALSE)
 
 	if(flooring)
 		// We are flooring switching to plating, swap out old_decals for decals.
@@ -123,12 +119,11 @@
 		if(newtype && !strip_bare) // Has a custom plating type to become
 			set_flooring(get_flooring_data(newtype))
 		else
+			// Return to monk- I MEAN PLATING
 			flooring = null
 			// this branch is only if we don't set flooring because otherwise it'll do it for us
 			if(!defer_icon_update)
-				name = base_name
-				desc = base_desc
-				icon = base_icon
+				icon = initial(icon)
 				icon_state = base_icon_state
 				footstep_sounds = base_footstep_sounds
 				QUEUE_SMOOTH(src)
