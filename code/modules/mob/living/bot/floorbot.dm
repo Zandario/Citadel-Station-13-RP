@@ -272,29 +272,30 @@
 		target = null
 		busy = 0
 		update_icons()
-	else if(istype(A, /turf/simulated/floor))
-		var/turf/simulated/floor/F = A
-		if(F.broken || F.burnt)
-			busy = 1
-			update_icons()
-			visible_message("<span class='notice'>\The [src] begins to remove the broken floor.</span>")
-			if(do_after(src, 50, F))
-				if(F.broken || F.burnt)
-					F.make_plating()
-			target = null
-			busy = 0
-			update_icons()
-		else if(!F.flooring && amount)
-			busy = 1
-			update_icons()
-			visible_message("<span class='notice'>\The [src] begins to improve the floor.</span>")
-			if(do_after(src, 50))
-				if(!F.flooring)
-					F.set_flooring(get_flooring_data(floor_build_type))
-					addTiles(-1)
-			target = null
-			busy = 0
-			update_icons()
+	#warn redo this too fuckhead
+	// else if(istype(A, /turf/simulated/floor))
+	// 	var/turf/simulated/floor/F = A
+	// 	if(F.broken || F.burnt)
+	// 		busy = 1
+	// 		update_icons()
+	// 		visible_message("<span class='notice'>\The [src] begins to remove the broken floor.</span>")
+	// 		if(do_after(src, 50, F))
+	// 			if(F.broken || F.burnt)
+	// 				F.make_plating()
+	// 		target = null
+	// 		busy = 0
+	// 		update_icons()
+	// 	else if(!F.flooring && amount)
+	// 		busy = 1
+	// 		update_icons()
+	// 		visible_message("<span class='notice'>\The [src] begins to improve the floor.</span>")
+	// 		if(do_after(src, 50))
+	// 			if(!F.flooring)
+	// 				F.set_flooring(get_flooring_data(floor_build_type))
+	// 				addTiles(-1)
+	// 		target = null
+	// 		busy = 0
+	// 		update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
 		visible_message("<span class='notice'>\The [src] begins to collect tiles.</span>")

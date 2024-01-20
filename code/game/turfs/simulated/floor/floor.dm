@@ -7,6 +7,7 @@
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
 	permit_ao = TRUE
+	overfloor_placed = TRUE
 
 	#ifdef IN_MAP_EDITOR // Display disposal pipes etc. above walls in map editors.
 	layer = PLATING_LAYER
@@ -31,22 +32,17 @@
 	var/list/old_decals = null // Remember what decals we had between being pried up and replaced.
 
 	// Flooring data.
-	var/flooring_override
-	var/initial_flooring
-	var/singleton/flooring/flooring
+	// var/flooring_override
+	// var/initial_flooring
+	// var/singleton/flooring/flooring
 	var/mineral = MAT_STEEL
 
-/turf/simulated/floor/is_plating()
-	return !flooring
+
+	var/overfloor_placed = TRUE
 
 /turf/simulated/floor/Initialize(mapload, floortype)
 	. = ..()
-	if(!floortype && initial_flooring)
-		floortype = initial_flooring
-	if(floortype)
-		set_flooring(get_flooring_data(floortype), TRUE)
-	else
-		footstep_sounds = base_footstep_sounds
+	footstep_sounds = base_footstep_sounds
 	if(mapload && can_dirty && can_start_dirty)
 		if(prob(dirty_prob))
 			dirt += rand(50,100)
@@ -60,6 +56,9 @@
 	outdoors = FALSE
 	SSplanets.removeTurf(src)
 
+/turf/simulated/floor/is_plating() // This is so dumb.
+	return overfloor_placed
+
 /turf/simulated/AfterChange(flags, oldType)
 	. = ..()
 	RemoveLattice()
@@ -71,75 +70,16 @@
 		else
 			make_indoors()
 
-/**
- * TODO: REWORK FLOORING GETTERS/INIT/SETTERS THIS IS BAD
- */
-
-/turf/simulated/floor/proc/set_flooring(singleton/flooring/newflooring, init)
-	if(flooring == newflooring)
-		return
-	make_plating(place_product = FALSE, defer_icon_update = TRUE, strip_bare = TRUE)
-	flooring = newflooring
-
-	footstep_sounds = newflooring.footstep_sounds
-	// We are plating switching to flooring, swap out old_decals for decals
-	var/list/overfloor_decals = old_decals
-	old_decals = decals
-	decals = overfloor_decals
-
-	var/check_z_flags
-	if(flooring)
-		check_z_flags = flooring.mz_flags
-	else
-		check_z_flags = initial(mz_flags)
-
-	if(check_z_flags & MZ_MIMIC_BELOW)
-		enable_zmimic(check_z_flags)
-	else
-		disable_zmimic()
-
-	if(!init)
-		QUEUE_SMOOTH(src)
-		QUEUE_SMOOTH_NEIGHBORS(src)
-	levelupdate()
-
-//This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
-//This proc auto corrects the grass tiles' siding.
-/turf/simulated/floor/proc/make_plating(place_product = FALSE, defer_icon_update = FALSE, strip_bare = FALSE)
-
-	if(flooring)
-		// We are flooring switching to plating, swap out old_decals for decals.
-		var/list/underfloor_decals = old_decals
-		old_decals = decals
-		decals = underfloor_decals
-
-		if(place_product)
-			flooring.drop_product(src)
-		var/newtype = flooring.get_plating_type()
-		if(newtype && !strip_bare) // Has a custom plating type to become
-			set_flooring(get_flooring_data(newtype))
-		else
-			// Return to monk- I MEAN PLATING
-			flooring = null
-			// this branch is only if we don't set flooring because otherwise it'll do it for us
-			if(!defer_icon_update)
-				icon = initial(icon)
-				icon_state = base_icon_state
-				footstep_sounds = base_footstep_sounds
-				QUEUE_SMOOTH(src)
-				QUEUE_SMOOTH_NEIGHBORS(src)
-				levelupdate()
-
-	broken = null
-	burnt = null
-	flooring_override = null
+/// Things seem to rely on this actually returning plating. Override it if you have other baseturfs.
+/turf/simulated/floor/proc/make_plating(force = FALSE)
+	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 
 /turf/simulated/floor/levelupdate()
 	for(var/obj/O in src)
-		O.hide(O.hides_under_flooring() && src.flooring)
+		O.hide(O.hides_under_flooring() && overfloor_placed)
 
-	if(flooring)
+	if(overfloor_placed)
 		layer = TURF_LAYER
 	else
 		layer = PLATING_LAYER

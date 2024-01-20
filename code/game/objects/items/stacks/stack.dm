@@ -39,6 +39,11 @@
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
 
+
+	//? TEMPORARY VARIABLES
+	/// Used to store how much deduct from the stack when using it
+	var/TEMP_FLOOR_use_cost = 2
+
 /obj/item/stack/Initialize(mapload, new_amount, merge = TRUE)
 	if(has_typelist(explicit_recipes))
 		explicit_recipes = get_typelist(explicit_recipes)

@@ -45,4 +45,4 @@
 /turf/simulated/floor/crystal
 	name = "crystal floor"
 	icon_state = "crystal"
-	initial_flooring = /singleton/flooring/crystal
+	// initial_flooring = /singleton/flooring/crystal

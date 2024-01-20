@@ -3,7 +3,7 @@
 	desc = "That's concrete baby!"
 	icon = 'icons/turf/floors/concrete.dmi'
 	icon_state = "concrete"
-	initial_flooring = /singleton/flooring/concrete
+	// initial_flooring = /singleton/flooring/concrete
 	baseturfs = /turf/simulated/floor/outdoors/dirt
 	edge_blending_priority = 0
 	smoothing_flags = NONE
@@ -13,7 +13,7 @@
 	desc = "That's concrete baby!"
 	icon = 'icons/turf/floors/concrete.dmi'
 	icon_state = "concrete3"
-	initial_flooring = /singleton/flooring/concrete/tile
+	// initial_flooring = /singleton/flooring/concrete/tile
 	baseturfs = /turf/simulated/floor/outdoors/dirt
 
 /turf/simulated/floor/concrete/rng/Initialize(mapload)

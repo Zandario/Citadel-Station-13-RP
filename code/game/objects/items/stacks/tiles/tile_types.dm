@@ -32,6 +32,7 @@
 	singular_name = "grass floor tile"
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "tile_grass"
+	turf_type = /turf/simulated/floor/grass
 	damage_force = 1.0
 	throw_force = 1.0
 	throw_speed = 5
@@ -68,6 +69,7 @@
 	singular_name = "wood floor tile"
 	desc = "An easy to fit wooden floor tile."
 	icon_state = "tile-wood"
+	turf_type = /turf/simulated/floor/wood
 	damage_force = 1.0
 	throw_force = 1.0
 	throw_speed = 5
@@ -98,6 +100,7 @@
 	singular_name = "carpet"
 	desc = "A piece of carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpet"
+	turf_type = /turf/simulated/floor/carpet
 	damage_force = 1.0
 	throw_force = 1.0
 	throw_speed = 5
@@ -111,6 +114,7 @@
 	singular_name = "teal carpet"
 	desc = "A piece of teal carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-tealcarpet"
+	turf_type = /turf/simulated/floor/carpet/tealcarpet
 	no_variants = FALSE
 
 /obj/item/stack/tile/carpet/bcarpet
@@ -118,50 +122,59 @@
 	singular_name = "black carpet"
 	desc = "A piece of black carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-bcarpet"
+	turf_type = /turf/simulated/floor/carpet/bcarpet
 
 /obj/item/stack/tile/carpet/blucarpet
 	name = "blue carpet"
 	singular_name = "blue carpet"
 	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-blucarpet"
+	turf_type = /turf/simulated/floor/carpet/blucarpet
 
 /obj/item/stack/tile/carpet/turcarpet
 	name = "tur carpet"
 	singular_name = "tur carpet"
 	desc = "A piece of turquoise carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-turcarpet"
+	turf_type = /turf/simulated/floor/carpet/turcarpet
 
 /obj/item/stack/tile/carpet/sblucarpet
 	name = "silver-blue carpet"
 	singular_name = "silver-blue carpet"
 	desc = "A piece of silver-blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-sblucarpet"
+	turf_type = /turf/simulated/floor/carpet/sblucarpet
 
 /obj/item/stack/tile/carpet/gaycarpet
 	name = "funny carpet"
 	singular_name = "funny carpet"
 	desc = "A piece of funny carpet. Perfect for clowning around on."
 	icon_state = "tile-gaycarpet"
+	turf_type = /turf/simulated/floor/carpet/gaycarpet
 
 /obj/item/stack/tile/carpet/purcarpet
 	name = "purple carpet"
 	singular_name = "purple carpet"
 	desc = "A piece of purple carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-purcarpet"
+	turf_type = /turf/simulated/floor/carpet/purcarpet
 
 /obj/item/stack/tile/carpet/oracarpet
 	name = "orange carpet"
 	singular_name = "orange carpet"
 	desc = "A piece of orange carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-oracarpet"
+	turf_type = /turf/simulated/floor/carpet/oracarpet
 
 /obj/item/stack/tile/carpet/arcadecarpet
 	name = "arcadey carpet"
 	singular_name = "arcadey carpet"
 	desc = "A piece of arcadey carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpet-arcade"
+	turf_type = /turf/simulated/floor/carpet/arcadecarpet
 
 /obj/item/stack/tile/carpet/patterned
+	abstract_type = /obj/item/stack/tile/carpet/patterned
 	no_variants = TRUE
 
 /obj/item/stack/tile/carpet/patterned/brown
@@ -169,60 +182,70 @@
 	singular_name = "brown patterned carpet"
 	desc = "A piece of brown carpet with a fetching light brown pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetbrown"
+	turf_type = /turf/simulated/floor/carpet/patterened/brown
 
 /obj/item/stack/tile/carpet/patterned/green
 	name = "green patterned carpet"
 	singular_name = "green patterned carpet"
 	desc = "A piece of green carpet with a fetching light green pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetgreen"
+	turf_type = /turf/simulated/floor/carpet/patterened/green
 
 /obj/item/stack/tile/carpet/patterned/red
 	name = "red patterned carpet"
 	singular_name = "red patterned carpet"
 	desc = "A piece of red carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetred"
+	turf_type = /turf/simulated/floor/carpet/patterened/red
 
 /obj/item/stack/tile/carpet/patterned/blue
 	name = "blue patterned carpet"
 	singular_name = "blue patterned carpet"
 	desc = "A piece of brown carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetblue"
+	turf_type = /turf/simulated/floor/carpet/patterened/blue
 
 /obj/item/stack/tile/carpet/patterned/blue/alt
 	name = "blue patterned carpet"
 	singular_name = "blue patterned carpet"
 	desc = "A piece of blue carpet with a fetching white pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetblue2"
+	turf_type = /turf/simulated/floor/carpet/patterened/blue/alt
 
 /obj/item/stack/tile/carpet/patterned/blue/alt2
 	name = "blue patterned carpet"
 	singular_name = "blue patterned carpet"
 	desc = "A piece of blue carpet with a fetching seafoam green pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetblue3"
+	turf_type = /turf/simulated/floor/carpet/patterened/blue/alt2
 
 /obj/item/stack/tile/carpet/patterned/magenta
 	name = "magenta patterned carpet"
 	singular_name = "magenta patterned carpet"
 	desc = "A piece of magenta carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetmagenta"
+	turf_type = /turf/simulated/floor/carpet/patterened/magneta
 
 /obj/item/stack/tile/carpet/patterned/purple
 	name = "purple patterned carpet"
 	singular_name = "purple patterned carpet"
 	desc = "A piece of purple carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetpurple"
+	turf_type = /turf/simulated/floor/carpet/patterened/purple
 
 /obj/item/stack/tile/carpet/patterned/orange
 	name = "orange patterned carpet"
 	singular_name = "orange patterned carpet"
 	desc = "A piece of orange carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetorange"
+	turf_type = /turf/simulated/floor/carpet/patterened/orange
 
 /obj/item/stack/tile/floor
 	name = "floor tile"
 	singular_name = "floor tile"
 	desc = "A metal tile fit for covering a section of floor."
 	icon_state = "tile"
+	turf_type = /turf/simulated/floor/tiled
 	materials_base = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT / 4)
 	damage_force = 6.0
 	throw_force = 15.0
@@ -235,24 +258,28 @@
 	singular_name = "red floor tile"
 	color = COLOR_RED_GRAY
 	icon_state = "tile_white"
+	turf_type = /turf/simulated/floor/tiled/red
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/techgrey
 	name = "grey techfloor tile"
 	singular_name = "grey techfloor tile"
 	icon_state = "techtile_grey"
+	turf_type = /turf/simulated/floor/tiled/techfloor
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/techgrid
 	name = "grid techfloor tile"
 	singular_name = "grid techfloor tile"
 	icon_state = "techtile_grid"
+	turf_type = /turf/simulated/floor/tiled/techfloor/grid
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/steel_dirty
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
+	turf_type = /turf/simulated/floor/tiled/steel_dirty
 	materials_base = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
 	no_variants = FALSE
 
@@ -260,6 +287,7 @@
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
+	turf_type = /turf/simulated/floor/tiled/steel
 	materials_base = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
 	no_variants = FALSE
 
@@ -267,6 +295,7 @@
 	name = "white floor tile"
 	singular_name = "white floor tile"
 	icon_state = "tile_white"
+	turf_type = /turf/simulated/floor/tiled/white
 	materials_base = list(MAT_PLASTIC = SHEET_MATERIAL_AMOUNT / 4)
 	no_variants = FALSE
 
@@ -275,12 +304,14 @@
 	singular_name = "yellow floor tile"
 	color = COLOR_BROWN
 	icon_state = "tile_white"
+	turf_type = /turf/simulated/floor/tiled/yellow
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/dark
 	name = "dark floor tile"
 	singular_name = "dark floor tile"
 	icon_state = "tile_steel"
+	turf_type = /turf/simulated/floor/tiled/dark
 	materials_base = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT / 4)
 	no_variants = FALSE
 
@@ -288,6 +319,7 @@
 	name = "freezer floor tile"
 	singular_name = "freezer floor tile"
 	icon_state = "tile_freezer"
+	turf_type = /turf/simulated/floor/tiled/freezer
 	materials_base = list(MAT_PLASTIC = SHEET_MATERIAL_AMOUNT / 4)
 	no_variants = FALSE
 
@@ -299,13 +331,14 @@
 	uses_charge = 1
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/floor
-	turf_type = /obj/item/stack/tile/floor
+	turf_type = /turf/simulated/floor/tiled
 
 /obj/item/stack/tile/floor/sandstone
 	name = "sandstone tile"
 	singular_name = "sandstone tile"
 	desc = "Hardened sand compacted into a brick akin to stone in toughness."
 	icon_state = "tile-sandstone"
+	turf_type = /turf/simulated/floor/sandstone
 	materials_base = list("sandstone" = SHEET_MATERIAL_AMOUNT / 4)
 	no_variants = FALSE
 
@@ -314,6 +347,7 @@
 	singular_name = "linoleum"
 	desc = "A piece of linoleum. It is the same size as a normal floor tile!"
 	icon_state = "tile-linoleum"
+	turf_type = /turf/simulated/floor/lino
 	damage_force = 1.0
 	throw_force = 1.0
 	throw_speed = 5
@@ -325,6 +359,7 @@
 	singular_name = "light marble tile"
 	desc = "Some white marble tiles used for flooring."
 	icon_state = "tile-wmarble"
+	turf_type = /turf/simulated/floor/wmarble
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -336,6 +371,7 @@
 	singular_name = "dark marble tile"
 	desc = "Some black marble tiles used for flooring."
 	icon_state = "tile-bmarble"
+	turf_type = /turf/simulated/floor/bmarble
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -347,6 +383,7 @@
 	singular_name = "roofing"
 	desc = "A section of roofing material. You can use it to repair the ceiling, or expand it."
 	icon_state = "techtile_grid"
+	turf_type = /turf/simulated/floor
 
 /obj/item/stack/tile/roofing/cyborg
 	name = "roofing synthesizer"
@@ -354,23 +391,25 @@
 	uses_charge = 1
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/roofing
-	turf_type = /obj/item/stack/tile/roofing
 
 /obj/item/stack/tile/roofing/wood
 	name = "wood roofing"
 	singular_name = "wood roofing"
 	icon_state = "tile-wood"
+	turf_type = /turf/simulated/floor/wood
 
 /obj/item/stack/tile/roofing/bone
 	name = "bone roofing"
 	singular_name = "bone roofing"
 	icon_state = "tile-white"
+	turf_type = /turf/simulated/floor/bone
 
 /obj/item/stack/tile/bananium
 	name = "bananium tile"
 	singular_name = "bananium tile"
 	desc = "The pinnacle of trolling."
 	icon_state = "tile-bananium"
+	turf_type = /turf/simulated/floor/bananium
 	damage_force = 6.0
 	throw_force = 10.0
 	throw_speed = 5
@@ -382,6 +421,7 @@
 	singular_name = "silencium tile"
 	desc = "If a tear falls off a mime, and no one's around to see it, does it still not make a sound?"
 	icon_state = "tile-silencium"
+	turf_type = /turf/simulated/floor/silencium
 	damage_force = 6.0
 	throw_force = 10.0
 	throw_speed = 5
@@ -392,6 +432,7 @@
 	name = "plasteel tile"
 	singular_name = "plasteel tile"
 	icon_state = "tile-plasteel"
+	turf_type = /turf/simulated/floor/plasteel
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -402,6 +443,7 @@
 	name = "durasteel tile"
 	singular_name = "durasteel tile"
 	icon_state = "tile-durasteel"
+	turf_type = /turf/simulated/floor/plasteel
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -412,6 +454,7 @@
 	name = "silver tile"
 	singular_name = "silver tile"
 	icon_state = "tile-silver"
+	turf_type = /turf/simulated/floor/silver
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -422,6 +465,7 @@
 	name = "gold tile"
 	singular_name = "gold tile"
 	icon_state = "tile-gold"
+	turf_type = /turf/simulated/floor/gold
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -432,6 +476,7 @@
 	name = "phoron tile"
 	singular_name = "phoron tile"
 	icon_state = "tile-phoron"
+	turf_type = /turf/simulated/floor/phoron
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -442,6 +487,7 @@
 	name = "uranium tile"
 	singular_name = "uranium tile"
 	icon_state = "tile-uranium"
+	turf_type = /turf/simulated/floor/uranium
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -452,6 +498,7 @@
 	name = "diamond tile"
 	singular_name = "diamond tile"
 	icon_state = "tile-diamond"
+	turf_type = /turf/simulated/floor/diamond
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
@@ -462,11 +509,15 @@
 	name = "brass tile"
 	singular_name = "brass tile"
 	icon_state = "tile-brass"
+	turf_type = /turf/simulated/floor/brass
 	damage_force = 6.0
 	throw_force = 15.0
 	throw_speed = 5
 	throw_range = 20
 	no_variants = FALSE
+
+
+// No actual turfs???
 
 /obj/item/stack/tile/wax
 	name = "wax tile"
