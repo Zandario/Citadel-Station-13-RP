@@ -223,7 +223,7 @@
 #endif
 
 	var/turf/simulated/floor/T = A
-	return (istype(T) && (T.broken || T.burnt || (improvefloors && !T.flooring)) && (get_turf(T) == loc || prob(40)))
+	return (istype(T) && (T.broken || T.burnt || (improvefloors && T.is_plating())) && (get_turf(T) == loc || prob(40)))
 
 /mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
 	if(!..())
@@ -239,7 +239,8 @@
 		var/turf/simulated/floor/F = A
 		busy = 1
 		update_icons()
-		if(F.flooring)
+		// if(F.flooring)
+		if(!F.is_plating())
 			visible_message("<span class='warning'>\The [src] begins to tear the floor tile from the floor!</span>")
 			if(do_after(src, 50))
 				F.break_tile_to_plating()

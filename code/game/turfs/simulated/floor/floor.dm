@@ -7,16 +7,22 @@
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
 	permit_ao = TRUE
-	overfloor_placed = TRUE
+	overfloor_placed = FALSE
+	#warn God this is dumb
+	baseturfs = /turf/simulated/floor
+	// baseturfs = /turf/simulated/floor/plating
 
 	#ifdef IN_MAP_EDITOR // Display disposal pipes etc. above walls in map editors.
 	layer = PLATING_LAYER
 	#endif
 
-	smoothing_flags = SMOOTH_CUSTOM
+	#warn Deal with custom smoothing
+	// smoothing_flags = SMOOTH_CUSTOM
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_OPEN_FLOOR)
 	canSmoothWith = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_OPEN_FLOOR)
 
+
+	damaged_dmi = 'icons/turf/floors/damage.dmi'
 	// Damage to flooring.
 	var/broken
 	var/burnt
@@ -37,8 +43,8 @@
 	// var/singleton/flooring/flooring
 	var/mineral = MAT_STEEL
 
-
-	var/overfloor_placed = TRUE
+	/// Path of the tile that this floor drops
+	var/floor_tile = null
 
 /turf/simulated/floor/Initialize(mapload, floortype)
 	. = ..()
@@ -47,14 +53,6 @@
 		if(prob(dirty_prob))
 			dirt += rand(50,100)
 			update_dirt() //5% chance to start with dirt on a floor tile- give the janitor something to do
-
-/turf/simulated/proc/make_outdoors()
-	outdoors = TRUE
-	SSplanets.addTurf(src)
-
-/turf/simulated/proc/make_indoors()
-	outdoors = FALSE
-	SSplanets.removeTurf(src)
 
 /turf/simulated/floor/is_plating() // This is so dumb.
 	return overfloor_placed
@@ -69,11 +67,6 @@
 			make_outdoors()
 		else
 			make_indoors()
-
-/// Things seem to rely on this actually returning plating. Override it if you have other baseturfs.
-/turf/simulated/floor/proc/make_plating(force = FALSE)
-	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-
 
 /turf/simulated/floor/levelupdate()
 	for(var/obj/O in src)

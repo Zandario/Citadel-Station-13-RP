@@ -182,63 +182,63 @@
 	singular_name = "brown patterned carpet"
 	desc = "A piece of brown carpet with a fetching light brown pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetbrown"
-	turf_type = /turf/simulated/floor/carpet/patterened/brown
+	turf_type = /turf/simulated/floor/carpet/patterned/brown
 
 /obj/item/stack/tile/carpet/patterned/green
 	name = "green patterned carpet"
 	singular_name = "green patterned carpet"
 	desc = "A piece of green carpet with a fetching light green pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetgreen"
-	turf_type = /turf/simulated/floor/carpet/patterened/green
+	turf_type = /turf/simulated/floor/carpet/patterned/green
 
 /obj/item/stack/tile/carpet/patterned/red
 	name = "red patterned carpet"
 	singular_name = "red patterned carpet"
 	desc = "A piece of red carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetred"
-	turf_type = /turf/simulated/floor/carpet/patterened/red
+	turf_type = /turf/simulated/floor/carpet/patterned/red
 
 /obj/item/stack/tile/carpet/patterned/blue
 	name = "blue patterned carpet"
 	singular_name = "blue patterned carpet"
 	desc = "A piece of brown carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetblue"
-	turf_type = /turf/simulated/floor/carpet/patterened/blue
+	turf_type = /turf/simulated/floor/carpet/patterned/blue
 
 /obj/item/stack/tile/carpet/patterned/blue/alt
 	name = "blue patterned carpet"
 	singular_name = "blue patterned carpet"
 	desc = "A piece of blue carpet with a fetching white pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetblue2"
-	turf_type = /turf/simulated/floor/carpet/patterened/blue/alt
+	turf_type = /turf/simulated/floor/carpet/patterned/blue/alt
 
 /obj/item/stack/tile/carpet/patterned/blue/alt2
 	name = "blue patterned carpet"
 	singular_name = "blue patterned carpet"
 	desc = "A piece of blue carpet with a fetching seafoam green pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetblue3"
-	turf_type = /turf/simulated/floor/carpet/patterened/blue/alt2
+	turf_type = /turf/simulated/floor/carpet/patterned/blue/alt2
 
 /obj/item/stack/tile/carpet/patterned/magenta
 	name = "magenta patterned carpet"
 	singular_name = "magenta patterned carpet"
 	desc = "A piece of magenta carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetmagenta"
-	turf_type = /turf/simulated/floor/carpet/patterened/magneta
+	turf_type = /turf/simulated/floor/carpet/patterned/magneta
 
 /obj/item/stack/tile/carpet/patterned/purple
 	name = "purple patterned carpet"
 	singular_name = "purple patterned carpet"
 	desc = "A piece of purple carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetpurple"
-	turf_type = /turf/simulated/floor/carpet/patterened/purple
+	turf_type = /turf/simulated/floor/carpet/patterned/purple
 
 /obj/item/stack/tile/carpet/patterned/orange
 	name = "orange patterned carpet"
 	singular_name = "orange patterned carpet"
 	desc = "A piece of orange carpet with a fetching gold pattern. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpetorange"
-	turf_type = /turf/simulated/floor/carpet/patterened/orange
+	turf_type = /turf/simulated/floor/carpet/patterned/orange
 
 /obj/item/stack/tile/floor
 	name = "floor tile"

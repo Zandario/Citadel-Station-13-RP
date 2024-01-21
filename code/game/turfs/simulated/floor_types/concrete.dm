@@ -7,6 +7,7 @@
 	baseturfs = /turf/simulated/floor/outdoors/dirt
 	edge_blending_priority = 0
 	smoothing_flags = NONE
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/concrete/tile
 	name = "concrete tile"

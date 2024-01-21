@@ -2,122 +2,128 @@
 	name = "carpet"
 	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet"
-	// initial_flooring = /singleton/flooring/carpet
+	floor_tile = /obj/item/stack/tile/carpet
+	floor_tile = /obj/item/stack/tile/carpet
 
 	// smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET)
 	canSmoothWith = (SMOOTH_GROUP_CARPET)
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/carpet/bcarpet
 	name = "black carpet"
 	icon_state = "bcarpet"
-	// initial_flooring = /singleton/flooring/carpet/bcarpet
+	floor_tile = /obj/item/stack/tile/carpet/bcarpet
 
 /turf/simulated/floor/carpet/blucarpet
 	name = "blue carpet"
 	icon_state = "blucarpet"
-	// initial_flooring = /singleton/flooring/carpet/blucarpet
+	floor_tile = /obj/item/stack/tile/carpet/blucarpet
 
 /turf/simulated/floor/carpet/tealcarpet
 	name = "teal carpet"
 	icon_state = "tealcarpet"
-	// initial_flooring = /singleton/flooring/carpet/tealcarpet
+	floor_tile = /obj/item/stack/tile/carpet/teal
 
 // Legacy support for existing paths for blue carpet
 /turf/simulated/floor/carpet/blue
 	name = "blue carpet"
 	icon_state = "blucarpet"
-	// initial_flooring = /singleton/flooring/carpet/blucarpet
+	floor_tile = /obj/item/stack/tile/carpet/blucarpet
 
 /turf/simulated/floor/carpet/turcarpet
 	name = "tur carpet"
 	icon_state = "turcarpet"
-	// initial_flooring = /singleton/flooring/carpet/turcarpet
+	floor_tile = /obj/item/stack/tile/carpet/turcarpet
 
 /turf/simulated/floor/carpet/sblucarpet
 	name = "sblue carpet"
 	icon_state = "sblucarpet"
-	// initial_flooring = /singleton/flooring/carpet/sblucarpet
+	floor_tile = /obj/item/stack/tile/carpet/sblucarpet
 
 /turf/simulated/floor/carpet/gaycarpet
 	name = "clown carpet"
 	icon_state = "gaycarpet"
-	// initial_flooring = /singleton/flooring/carpet/gaycarpet
+	floor_tile = /obj/item/stack/tile/carpet/gaycarpet
 
 /turf/simulated/floor/carpet/purcarpet
 	name = "purple carpet"
 	icon_state = "purcarpet"
-	// initial_flooring = /singleton/flooring/carpet/purcarpet
+	floor_tile = /obj/item/stack/tile/carpet/purcarpet
 
 /turf/simulated/floor/carpet/oracarpet
 	name = "orange carpet"
 	icon_state = "oracarpet"
-	// initial_flooring = /singleton/flooring/carpet/oracarpet
+	floor_tile = /obj/item/stack/tile/carpet/oracarpet
 
 /turf/simulated/floor/carpet/arcadecarpet
 	name = "arcade carpet"
 	icon_state = "arcade"
-	// initial_flooring = /singleton/flooring/carpet/arcadecarpet
+	floor_tile = /obj/item/stack/tile/carpet/arcadecarpet
 
-/turf/simulated/floor/carpet/patterened/brown
+/turf/simulated/floor/carpet/patterned/brown
 	name = "brown patterend carpet"
 	icon_state = "brown"
-	// initial_flooring = /singleton/flooring/carpet/patterened/brown
+	floor_tile = /obj/item/stack/tile/carpet/patterned/brown
 
-/turf/simulated/floor/carpet/patterened/blue
+/turf/simulated/floor/carpet/patterned/blue
 	name = "blue patterend carpet"
 	icon_state = "blue1"
-	// initial_flooring = /singleton/flooring/carpet/patterened/blue
+	floor_tile = /obj/item/stack/tile/carpet/patterned/blue
 
-/turf/simulated/floor/carpet/patterened/blue/alt
+/turf/simulated/floor/carpet/patterned/blue/alt
 	name = "blue patterend carpet"
 	icon_state = "blue2"
-	// initial_flooring = /singleton/flooring/carpet/patterened/blue/alt
+	floor_tile = /obj/item/stack/tile/carpet/patterned/blue/alt
 
-/turf/simulated/floor/carpet/patterened/blue/alt2
+/turf/simulated/floor/carpet/patterned/blue/alt2
 	name = "blue patterend carpet"
 	icon_state = "blue3"
-	// initial_flooring = /singleton/flooring/carpet/patterened/blue/alt2
+	floor_tile = /obj/item/stack/tile/carpet/patterned/blue/alt2
 
-/turf/simulated/floor/carpet/patterened/red
+/turf/simulated/floor/carpet/patterned/red
 	name = "red patterend carpet"
 	icon_state = "red"
-	// initial_flooring = /singleton/flooring/carpet/patterened/red
+	floor_tile = /obj/item/stack/tile/carpet/patterned/red
 
-/turf/simulated/floor/carpet/patterened/green
+/turf/simulated/floor/carpet/patterned/green
 	name = "green patterend carpet"
 	icon_state = "green"
-	// initial_flooring = /singleton/flooring/carpet/patterened/green
+	floor_tile = /obj/item/stack/tile/carpet/patterned/green
 
-/turf/simulated/floor/carpet/patterened/magneta
+/turf/simulated/floor/carpet/patterned/magneta
 	name = "magenta patterend carpet"
 	icon_state = "magenta"
-	// initial_flooring = /singleton/flooring/carpet/patterened/magenta
+	floor_tile = /obj/item/stack/tile/carpet/patterned/magenta
 
-/turf/simulated/floor/carpet/patterened/purple
+/turf/simulated/floor/carpet/patterned/purple
 	name = "purple patterend carpet"
 	icon_state = "purple"
-	// initial_flooring = /singleton/flooring/carpet/patterened/purple
+	floor_tile = /obj/item/stack/tile/carpet/patterned/purple
 
-/turf/simulated/floor/carpet/patterened/orange
+/turf/simulated/floor/carpet/patterned/orange
 	name = "orange patterend carpet"
 	icon_state = "orange"
-	// initial_flooring = /singleton/flooring/carpet/patterened/orange
+	floor_tile = /obj/item/stack/tile/carpet/patterned/orange
 
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
 	icon_state = "bcircuit"
-	// initial_flooring = /singleton/flooring/reinforced/circuit
+	#warn Circuit stacks?
+	// floor_tile = /obj/item/stack/tile/reinforced/circuit
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/greengrid
 	name = "mainframe floor"
 	icon_state = "gcircuit"
-	// initial_flooring = /singleton/flooring/reinforced/circuit/green
+	// floor_tile = /obj/item/stack/tile/reinforced/circuit/green
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/wood
 	name = "wooden floor"
 	icon_state = "wood"
-	// initial_flooring = /singleton/flooring/wood
+	floor_tile = /obj/item/stack/tile/wood
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/wood/broken
 	icon_state = "broken0" // This gets changed when spawned.
@@ -129,7 +135,7 @@
 /turf/simulated/floor/wood/sif
 	name = "alien wooden floor"
 	icon_state = "sifwood"
-	// initial_flooring = /singleton/flooring/wood/sif
+	floor_tile = /obj/item/stack/tile/wood/sif
 
 /turf/simulated/floor/wood/sif/broken
 	icon_state = "sifwood_broken0" // This gets changed when spawned.
@@ -141,18 +147,19 @@
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon_state = "grass0"
-	// initial_flooring = /singleton/flooring/grass
+	floor_tile = /obj/item/stack/tile/grass
 
 /turf/simulated/floor/tiled
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "tiled"
-	// initial_flooring = /singleton/flooring/tiling
+	floor_tile = /obj/item/stack/tile/floor
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/tiled/techmaint
 	name = "floor"
 	icon_state = "techmaint"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/techmaint
+	floor_tile = /obj/item/stack/tile/floor/techmaint
 
 /turf/simulated/floor/tiled/techmaint/airless
 	initial_gas_mix = GAS_STRING_VACUUM
@@ -160,47 +167,47 @@
 /turf/simulated/floor/tiled/monofloor
 	name = "floor"
 	icon_state = "monofloor"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/monofloor
+	floor_tile = /obj/item/stack/tile/floor/monofloor
 
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
 	icon_state = "techfloor_gray"
-	// initial_flooring = /singleton/flooring/tiling/tech
+	floor_tile = /obj/item/stack/tile/floor/tech
 
 /turf/simulated/floor/tiled/monotile
 	name = "floor"
 	icon_state = "monotile"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/monotile
+	floor_tile = /obj/item/stack/tile/floor/monotile
 
 /turf/simulated/floor/tiled/monowhite
 	name = "floor"
 	icon_state = "monowhite"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/monowhite
+	floor_tile = /obj/item/stack/tile/floor/monowhite
 
 /turf/simulated/floor/tiled/monodark
 	name = "floor"
 	icon_state = "monodark"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/monodark
+	floor_tile = /obj/item/stack/tile/floor/monodark
 
 /turf/simulated/floor/tiled/monotechmaint
 	name = "floor"
 	icon_state = "monotechmaint"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/monotechmaint
+	floor_tile = /obj/item/stack/tile/floor/monotechmaint
 
 /turf/simulated/floor/tiled/steel_grid
 	name = "floor"
 	icon_state = "steel_grid"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/steel_grid
+	floor_tile = /obj/item/stack/tile/floor/steel_grid
 
 /turf/simulated/floor/tiled/steel_ridged
 	name = "floor"
 	icon_state = "steel_ridged"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/steel_ridged
+	floor_tile = /obj/item/stack/tile/floor/steel_ridged
 
 /turf/simulated/floor/tiled/old_tile
 	name = "floor"
 	icon_state = "tile_full"
-	// initial_flooring = /singleton/flooring/tiling/new_tile
+	floor_tile = /obj/item/stack/tile/floor
 /turf/simulated/floor/tiled/old_tile/white
 	color = "#d9d9d9"
 /turf/simulated/floor/tiled/old_tile/blue
@@ -223,7 +230,8 @@
 /turf/simulated/floor/tiled/old_cargo
 	name = "floor"
 	icon_state = "cargo_one_full"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/cargo_one
+	floor_tile = /obj/item/stack/tile/floor/cargo_one
+
 /turf/simulated/floor/tiled/old_cargo/white
 	color = "#d9d9d9"
 /turf/simulated/floor/tiled/old_cargo/blue
@@ -245,7 +253,8 @@
 /turf/simulated/floor/tiled/kafel_full
 	name = "floor"
 	icon_state = "kafel_full"
-	// initial_flooring = /singleton/flooring/tiling/new_tile/kafel
+	floor_tile = /obj/item/stack/tile/floor/kafel
+
 /turf/simulated/floor/tiled/kafel_full/white
 	color = "#d9d9d9"
 /turf/simulated/floor/tiled/kafel_full/blue
@@ -267,18 +276,19 @@
 /turf/simulated/floor/tiled/techfloor/grid
 	name = "floor"
 	icon_state = "techfloor_grid"
-	// initial_flooring = /singleton/flooring/tiling/tech/grid
+	floor_tile = /obj/item/stack/tile/floor/techgrid
 
 /turf/simulated/floor/tiled/techfloor/monogrid
 	name = "floor"
 	icon_state = "techfloor_monogrid"
-	// initial_flooring = /singleton/flooring/tiling/tech/monogrid
+	floor_tile = /obj/item/stack/tile/floor/tech/monogrid
 
 /turf/simulated/floor/reinforced
 	name = "reinforced floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "reinforced"
-	// initial_flooring = /singleton/flooring/reinforced
+	floor_tile = /obj/item/stack/rods
+	overfloor_placed = TRUE
 
 CREATE_STANDARD_TURFS(/turf/simulated/floor/reinforced)
 
@@ -306,7 +316,8 @@ CREATE_STANDARD_TURFS(/turf/simulated/floor/reinforced)
 /turf/simulated/floor/cult
 	name = "engraved floor"
 	icon_state = "cult"
-	// initial_flooring = /singleton/flooring/reinforced/cult
+	// floor_tile = /obj/item/stack/tile/reinforced/cult
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/cult/cultify()
 	return
@@ -314,33 +325,33 @@ CREATE_STANDARD_TURFS(/turf/simulated/floor/reinforced)
 /turf/simulated/floor/tiled/dark
 	name = "dark floor"
 	icon_state = "dark"
-	// initial_flooring = /singleton/flooring/tiling/dark
+	floor_tile = /obj/item/stack/tile/floor/dark
 
 /turf/simulated/floor/tiled/hydro
 	name = "hydro floor"
 	icon_state = "hydrofloor"
-	// initial_flooring = /singleton/flooring/tiling/hydro
+	floor_tile = /obj/item/stack/tile/floor/hydro
 
 /turf/simulated/floor/tiled/neutral
 	name = "light floor"
 	icon_state = "neutral"
-	// initial_flooring = /singleton/flooring/tiling/neutral
+	floor_tile = /obj/item/stack/tile/floor/neutral
 
 /turf/simulated/floor/tiled/red
 	name = "red floor"
 	color = COLOR_RED_GRAY
 	icon_state = "white"
-	// initial_flooring = /singleton/flooring/tiling/red
+	floor_tile = /obj/item/stack/tile/floor/red
 
 /turf/simulated/floor/tiled/steel
 	name = "steel floor"
 	icon_state = "steel"
-	// initial_flooring = /singleton/flooring/tiling/steel
+	floor_tile = /obj/item/stack/tile/floor/steel
 
 /turf/simulated/floor/tiled/steel_dirty
 	name = "steel floor"
 	icon_state = "steel_dirty"
-	// initial_flooring = /singleton/flooring/tiling/steel_dirty
+	floor_tile = /obj/item/stack/tile/floor/steel_dirty
 
 /turf/simulated/floor/tiled/steel_dirty/dark
 	color = COLOR_GRAY
@@ -365,7 +376,7 @@ CREATE_STANDARD_TURFS(/turf/simulated/floor/reinforced)
 
 /turf/simulated/floor/tiled/asteroid_steel
 	icon_state = "asteroidfloor"
-	// initial_flooring = /singleton/flooring/tiling/asteroidfloor
+	floor_tile = /obj/item/stack/tile/floor/asteroidfloor
 
 /turf/simulated/floor/tiled/asteroid_steel/airless
 	name = "plating"
@@ -374,40 +385,44 @@ CREATE_STANDARD_TURFS(/turf/simulated/floor/reinforced)
 /turf/simulated/floor/tiled/white
 	name = "white floor"
 	icon_state = "white"
-	// initial_flooring = /singleton/flooring/tiling/white
+	floor_tile = /obj/item/stack/tile/floor/white
 
 /turf/simulated/floor/tiled/yellow
 	name = "yellow floor"
 	color = COLOR_BROWN
 	icon_state = "white"
-	// initial_flooring = /singleton/flooring/tiling/yellow
+	floor_tile = /obj/item/stack/tile/floor/yellow
 
 /turf/simulated/floor/tiled/freezer
 	name = "tiles"
 	icon_state = "freezer"
 	temperature = 277.15
-	// initial_flooring = /singleton/flooring/tiling/freezer
+	floor_tile = /obj/item/stack/tile/floor/freezer
 
 /turf/simulated/floor/lino
 	name = "linoleum"
 	icon_state = "linoleum"
-	// initial_flooring = /singleton/flooring/linoleum
+	floor_tile = /obj/item/stack/tile/linoleum
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/wmarble
 	name = "marble"
 	icon_state = "lightmarble"
-	// initial_flooring = /singleton/flooring/wmarble
+	floor_tile = /obj/item/stack/tile/wmarble
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/bmarble
 	name = "marble"
 	icon_state = "darkmarble"
-	// initial_flooring = /singleton/flooring/bmarble
+	floor_tile = /obj/item/stack/tile/bmarble
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/bananium
 	name = "bananium"
 	desc = "This floor feels vaguely springy and rubbery, and has an almost pleasant bounce when stepped on."
 	icon_state = "bananium"
-	// initial_flooring = /singleton/flooring/bananium
+	floor_tile = /obj/item/stack/tile/bananium
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/bananium/Entered(atom/A)
 	if(isliving(A))
@@ -420,62 +435,73 @@ CREATE_STANDARD_TURFS(/turf/simulated/floor/reinforced)
 /turf/simulated/floor/silencium
 	name = "silencium"
 	icon_state = "silencium"
-	// initial_flooring = /singleton/flooring/silencium
+	floor_tile = /obj/item/stack/tile/silencium
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/plasteel
 	name = "plasteel"
 	icon_state = "plasteel"
-	// initial_flooring = /singleton/flooring/plasteel
+	floor_tile = /obj/item/stack/tile/plasteel
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/durasteel
 	name = "durasteel"
 	icon_state = "durasteel"
-	// initial_flooring = /singleton/flooring/durasteel
+	floor_tile = /obj/item/stack/tile/durasteel
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/silver
 	name = "silver"
 	icon_state = "silver"
-	// initial_flooring = /singleton/flooring/silver
+	floor_tile = /obj/item/stack/tile/silver
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/gold
 	name = "gold"
 	icon_state = "gold"
-	// initial_flooring = /singleton/flooring/gold
+	floor_tile = /obj/item/stack/tile/gold
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/phoron
 	name = "phoron"
 	icon_state = "phoron"
-	// initial_flooring = /singleton/flooring/phoron
+	floor_tile = /obj/item/stack/tile/phoron
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/uranium
 	name = "uranium"
 	icon_state = "uranium"
-	// initial_flooring = /singleton/flooring/uranium
+	floor_tile = /obj/item/stack/tile/uranium
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/diamond
 	name = "diamond"
 	icon_state = "diamond"
-	// initial_flooring = /singleton/flooring/diamond
+	floor_tile = /obj/item/stack/tile/diamond
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/brass
 	name = "clockwork floor"
 	icon_state = "clockwork_floor"
-	// initial_flooring = /singleton/flooring/brass
+	floor_tile = /obj/item/stack/tile/brass
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/sandstone
 	name = "sandstone"
 	icon_state = "sandstone"
-	// initial_flooring = /singleton/flooring/sandstone
+	floor_tile = /obj/item/stack/tile/sandstone
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/bone
 	name = "bone floor"
 	icon_state = "bone"
-	// initial_flooring = /singleton/flooring/bone
+	floor_tile = /obj/item/stack/tile/bone
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/bone/engraved
 	name = "engraved bone floor"
 	icon_state = "bonecarve"
-	// initial_flooring = /singleton/flooring/bone/engraved
+	floor_tile = /obj/item/stack/tile/bone/engraved
 
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
@@ -506,7 +532,7 @@ CREATE_STANDARD_TURFS(/turf/simulated/floor/reinforced)
 	initial_gas_mix = GAS_STRING_VACUUM
 
 // Placeholders
-
+#warn what the fuck
 /turf/simulated/floor/airless/lava
 /turf/simulated/floor/light
 /*
@@ -542,20 +568,20 @@ CREATE_STANDARD_TURFS(/turf/simulated/floor/reinforced)
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
-	// initial_flooring = /singleton/flooring/snow
+	floor_tile = /obj/item/stack/tile/snow
 
 /turf/simulated/floor/snow/gravsnow2
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "gravsnow"
-	// initial_flooring = /singleton/flooring/snow/gravsnow2
+	floor_tile = /obj/item/stack/tile/snow/gravsnow2
 
 /turf/simulated/floor/snow/plating
 	name = "snowy playing"
 	icon_state = "snowyplating"
-	// initial_flooring = /singleton/flooring/snow/plating
+	floor_tile = /obj/item/stack/tile/snow/plating
 
 /turf/simulated/floor/snow/plating/drift
 	name = "snowy plating"
 	icon_state = "snowyplayingdrift"
-	// initial_flooring = /singleton/flooring/snow/plating/drift
+	floor_tile = /obj/item/stack/tile/snow/plating/drift

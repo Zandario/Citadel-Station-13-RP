@@ -24,6 +24,11 @@
 	/// edge icon state, overrides icon_state if set
 	var/edge_icon_state
 
+	/// Determines the type of damage overlay that will be used for the tile
+	var/damaged_dmi = null
+	/// If there's a tile over a basic floor that can be ripped out
+	var/overfloor_placed = FALSE
+
 /turf/simulated/Initialize(mapload)
 	. = ..()
 	if(mapload)

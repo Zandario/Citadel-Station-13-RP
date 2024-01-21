@@ -99,15 +99,6 @@
 	ScrapeAway()
 	return 2
 
-/turf/simulated/floor/singularity_pull(S, current_size)
-	if(flooring && current_size >= STAGE_THREE)
-		if(prob(current_size / 2))
-			var/leave_tile = TRUE
-			if(broken || burnt || flooring.flooring_flags & TURF_IS_FRAGILE)
-				leave_tile = FALSE
-			playsound(src, 'sound/items/crowbar.ogg', 50, 1)
-			make_plating(place_product = leave_tile)
-
 /turf/simulated/wall/singularity_pull(S, current_size)
 
 	if(!material_reinf)

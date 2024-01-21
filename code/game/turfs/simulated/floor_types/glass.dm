@@ -15,6 +15,7 @@
 	canSmoothWith = (SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
 
 	mz_flags = MZ_MIMIC_DEFAULTS
+	overfloor_placed = TRUE
 
 /turf/simulated/floor/glass/Initialize()
 	. = ..()

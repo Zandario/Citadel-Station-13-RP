@@ -178,6 +178,16 @@
 	return is_holding(I) && (get_active_held_item() != I)
 
 /**
+ * Checks if we're holding an item of type: typepath
+ * returns the item if we are, or FALSE if we aren't
+ */
+/mob/proc/is_holding_item_of_type(typepath)
+	for(var/obj/item/I as anything in get_held_items())
+		if(istype(I, typepath))
+			return I
+	return FALSE
+
+/**
  * drops all our held items
  *
  * @params

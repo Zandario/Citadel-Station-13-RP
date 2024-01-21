@@ -263,48 +263,48 @@ var/list/singleton/flooring/flooring_types
 	icon_base = "arcade"
 	// build_type = /obj/item/stack/tile/carpet/arcadecarpet
 
-/singleton/flooring/carpet/patterened/brown
-	name = "brown patterened carpet"
+/singleton/flooring/carpet/patterned/brown
+	name = "brown patterned carpet"
 	icon_base = "brown"
 	// build_type = /obj/item/stack/tile/carpet/patterned/brown
 
-/singleton/flooring/carpet/patterened/red
-	name = "red patterened carpet"
+/singleton/flooring/carpet/patterned/red
+	name = "red patterned carpet"
 	icon_base = "red"
 	// build_type = /obj/item/stack/tile/carpet/patterned/red
 
-/singleton/flooring/carpet/patterened/blue
-	name = "blue patterened carpet"
+/singleton/flooring/carpet/patterned/blue
+	name = "blue patterned carpet"
 	icon_base = "blue1"
 	// build_type = /obj/item/stack/tile/carpet/patterned/blue
 
-/singleton/flooring/carpet/patterened/blue/alt
-	name = "blue patterened carpet"
+/singleton/flooring/carpet/patterned/blue/alt
+	name = "blue patterned carpet"
 	icon_base = "blue2"
 	// build_type = /obj/item/stack/tile/carpet/patterned/blue/alt
 
-/singleton/flooring/carpet/patterened/blue/alt2
-	name = "blue patterened carpet"
+/singleton/flooring/carpet/patterned/blue/alt2
+	name = "blue patterned carpet"
 	icon_base = "blue3"
 	// build_type = /obj/item/stack/tile/carpet/patterned/blue/alt2
 
-/singleton/flooring/carpet/patterened/green
-	name = "green patterened carpet"
+/singleton/flooring/carpet/patterned/green
+	name = "green patterned carpet"
 	icon_base = "green"
 	// build_type = /obj/item/stack/tile/carpet/patterned/green
 
-/singleton/flooring/carpet/patterened/magenta
-	name = "magenta patterened carpet"
+/singleton/flooring/carpet/patterned/magenta
+	name = "magenta patterned carpet"
 	icon_base = "magenta"
 	// build_type = /obj/item/stack/tile/carpet/patterned/magenta
 
-/singleton/flooring/carpet/patterened/purple
-	name = "purple patterened carpet"
+/singleton/flooring/carpet/patterned/purple
+	name = "purple patterned carpet"
 	icon_base = "purple"
 	// build_type = /obj/item/stack/tile/carpet/patterned/purple
 
-/singleton/flooring/carpet/patterened/orange
-	name = "orange patterened carpet"
+/singleton/flooring/carpet/patterned/orange
+	name = "orange patterned carpet"
 	icon_base = "orange"
 	// build_type = /obj/item/stack/tile/carpet/patterned/orange
 

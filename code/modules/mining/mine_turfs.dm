@@ -13,7 +13,8 @@ CREATE_STANDARD_TURFS(/turf/unsimulated/mineral)
 	icon = 'icons/turf/walls/natural.dmi'
 	icon_state = "preview"
 	base_icon_state = "wall"
-	smoothing_flags = SMOOTH_CUSTOM
+	#warn Deal with custom smoothing
+	// smoothing_flags = SMOOTH_CUSTOM
 	initial_gas_mix = GAS_STRING_VACUUM
 	opacity = 1
 	density = 1
@@ -199,7 +200,9 @@ CREATE_STANDARD_TURFS(/turf/unsimulated/mineral)
 		else
 			UpdateMineral()	// this'll work because we're initialized
 
+#warn Fucking mineturfs
 /* custom smoothing code */
+/*
 /turf/simulated/mineral/find_type_in_direction(direction)
 	var/turf/T = get_step(src, direction)
 	if(!T)
@@ -268,7 +271,7 @@ CREATE_STANDARD_TURFS(/turf/unsimulated/mineral)
 			. += mutable_appearance(icon, "dug_overlay")
 		if(overlay_detail)
 			. += mutable_appearance('icons/turf/floors/decals.dmi', overlay_detail)
-
+*/
 
 /turf/simulated/mineral/legacy_ex_act(severity)
 

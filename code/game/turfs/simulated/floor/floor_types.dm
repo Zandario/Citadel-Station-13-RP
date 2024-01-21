@@ -11,6 +11,7 @@
 	icon_state = "light"
 	desc = "An extremely thick segment of hull used by spacefaring vessels. Doesn't look like you'll be able to break it."
 	baseturfs = /turf/simulated/shuttle_ceiling
+	overfloor_placed = TRUE
 
 /turf/simulated/shuttle
 	name = "shuttle"
@@ -24,6 +25,7 @@
 	var/join_flags = 0	// Bitstring to represent adjacency of joining walls
 	var/join_group = "shuttle"	// A tag for what other walls to join with. Null if you don't want them to.
 	var/static/list/antilight_cache
+	overfloor_placed = TRUE
 
 /turf/simulated/shuttle/Initialize(mapload)
 	. = ..()

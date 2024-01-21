@@ -5,26 +5,40 @@ GLOBAL_DATUM_INIT(no_ceiling_image, /image, generate_no_ceiling_image())
 	I.plane = VERTICALITY_PLANE
 	return I
 
-/turf/simulated/floor/calculate_adjacencies()
-	if (smoothing_flags & SMOOTH_CUSTOM)
-		return NONE
-	return ..()
+// /turf/simulated/floor/calculate_adjacencies()
+// 	if (smoothing_flags & SMOOTH_CUSTOM)
+// 		return NONE
+// 	return ..()
 
 GLOBAL_LIST_EMPTY(turf_edge_cache)
 
 var/list/flooring_cache = list()
 
-/turf/simulated/floor/update_appearance(updates)
-	cut_overlays()
+
+/turf/simulated/floor/update_overlays()
+	if(isnull(damaged_dmi))
+		return ..()
+	. = ..()
 
 	// Re-apply floor decals
 	if(LAZYLEN(decals))
-		add_overlay(decals)
+		add_overlay()
+		. += decals
 
 	update_border_spillover() // sigh
 
-	. = ..()
 
+	if(broken)
+		. += mutable_appearance(damaged_dmi, pick(broken_states()))
+	else if(burnt)
+		var/list/burnt_states = burnt_states()
+		if(burnt_states.len)
+			. += mutable_appearance(damaged_dmi, pick(burnt_states))
+		else
+			. += mutable_appearance(damaged_dmi, pick(broken_states()))
+
+
+/*
 /turf/simulated/floor/custom_smooth()
 	if(flooring)
 		// Set initial icon and strings.
@@ -88,6 +102,7 @@ var/list/flooring_cache = list()
 		if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
 			icon = 'icons/turf/floors.dmi'
 			icon_state = "dmg[rand(1,4)]"
+*/
 
 /**
  * welcome to the less modular but more sensical and efficient way to do icon edges
@@ -132,6 +147,9 @@ var/list/flooring_cache = list()
 			I.pixel_x = -32
 	GLOB.turf_edge_cache["[state]-[dir]"] = I
 	return I
+
+
+/*
 
 // wip - turf icon stuff needs to be refactored
 
@@ -283,9 +301,24 @@ var/list/flooring_cache = list()
 
 	return is_linked
 
-/turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
+
+/turf/simulated/floor/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = 0)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
 		flooring_cache[cache_key] = I
 	return flooring_cache[cache_key]
+*/
+
+/// Returns a list of every turf state considered "broken".
+/// Will be randomly chosen if a turf breaks at runtime.
+/turf/simulated/proc/broken_states()
+	return list()
+
+/// Returns a list of every turf state considered "burnt".
+/// Will be randomly chosen if a turf is burnt at runtime.
+/turf/simulated/proc/burnt_states()
+	return list()
+
+/turf/simulated/floor/broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")

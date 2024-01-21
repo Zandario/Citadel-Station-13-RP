@@ -155,7 +155,7 @@
 		if(broken || burnt)
 			return 0
 		to_chat(user, "<span class='notice'>You unscrew and remove the [name].</span>")
-		make_plating(place_product = TRUE)
+		make_plating()
 	// 	playsound(src, W.tool_sound, 80, 1)
 	// 	return 1
 	// else if(W.is_wrench() && (flooring.flooring_flags & TURF_REMOVE_WRENCH))
@@ -170,12 +170,101 @@
 		return 1
 	return 0
 
-/turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/T as obj, mob/user as mob)
-	if(T.type == T.turf_type)
+/turf/simulated/proc/make_outdoors()
+	outdoors = TRUE
+	SSplanets.addTurf(src)
+
+/turf/simulated/proc/make_indoors()
+	outdoors = FALSE
+	SSplanets.removeTurf(src)
+
+/**
+ * Things seem to rely on this actually returning plating.
+ * Override it if you have other baseturfs.
+ */
+/turf/simulated/floor/proc/make_plating(force = FALSE)
+	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+
+
+/turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/Tile, mob/user, params)
+	// if(Tile.turf_type == type)
+	if(Tile.turf_type == type /* && Tile.turf_dir == dir */)
 		return
-	var/obj/item/W = user.get_inactive_held_item()
-	if(!try_deconstruct_tile(W, user))
+	var/obj/item/tool/crowbar/Crowbar = user.is_holding_item_of_type(/obj/item/tool/crowbar)
+	if(!Crowbar)
 		return
-	if(overfloor_placed)
+	var/turf/simulated/floor/Floor = pry_tile(Crowbar, user, TRUE)
+	if(!istype(Floor))
 		return
-	attackby(T, user)
+	Floor.attackby(Tile, user, params)
+
+
+/turf/simulated/floor/proc/pry_tile(obj/item/I, mob/user, silent = FALSE)
+	// I.play_tool_sound(src, 80)
+	if(!silent)
+		playsound(src, 'sound/items/crowbar.ogg', 50, TRUE)
+	return remove_tile(user, silent)
+
+/turf/simulated/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, force_plating)
+	if(broken || burnt)
+		broken = FALSE
+		burnt = FALSE
+		if(user && !silent)
+			to_chat(user, SPAN_NOTICE("You remove the broken plating."))
+	else
+		if(user && !silent)
+			to_chat(user, SPAN_NOTICE("You remove the floor tile."))
+		if(make_tile)
+			spawn_tile()
+	return make_plating(force_plating)
+
+/turf/simulated/floor/proc/has_tile()
+	return floor_tile
+
+/turf/simulated/floor/proc/spawn_tile()
+	if(!has_tile())
+		return null
+	return new floor_tile(src)
+
+/turf/simulated/floor/singularity_pull(S, current_size)
+	..()
+	var/sheer = FALSE
+	switch(current_size)
+		if(STAGE_THREE)
+			if(prob(30))
+				sheer = TRUE
+		if(STAGE_FOUR)
+			if(prob(50))
+				sheer = TRUE
+		if(STAGE_FIVE to INFINITY)
+			if(prob(70))
+				sheer = TRUE
+	if(sheer)
+		if(has_tile())
+			#warn sounds are dumb
+			playsound(src, 'sound/items/crowbar.ogg', 50, TRUE)
+			remove_tile(null, TRUE, TRUE, TRUE)
+
+// /turf/simulated/floor/crowbar_act(mob/living/user, obj/item/I)
+// 	if(overfloor_placed && pry_tile(I, user))
+// 		return TRUE
+
+/turf/simulated/floor/crowbar_act(obj/item/I, datum/event_args/actor/clickchain/e_args, flags, hint)
+	. = ..()
+	if(.)
+		return
+	if(!overfloor_placed)
+		return FALSE
+	if(!use_crowbar(I, e_args, flags, 1 SECOND, usage = TOOL_USAGE_DECONSTRUCT))
+		return TRUE
+	e_args.visible_feedback(
+		target = src,
+		range = MESSAGE_RANGE_CONSTRUCTION,
+		visible = SPAN_NOTICE("[e_args.performer] removes the [src]."),
+		visible_self = SPAN_NOTICE("You remove the [src]."),
+		audible = SPAN_WARNING("You hear something being prised up."),
+	)
+	log_construction(e_args, src, "crowbared")
+	pry_tile(I, e_args.initiator, TRUE)
+	update_appearance()
+	return TRUE

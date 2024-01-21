@@ -10,6 +10,17 @@
 /// Disable atmospherics zone build.
 // #define FASTBOOT_DISABLE_ZONES
 
+#ifdef FASTBOOT_DISABLE_LATELOAD
+	#warn Fastboot: Late map loading disabled.
+#endif
+#ifdef FASTBOOT_DISABLE_SMOOTHING
+	#warn Fastboot: Roundstart icon smoothing disabled.
+#endif
+#ifdef FASTBOOT_DISABLE_ZONES
+	#warn Fastboot: Atmospherics zone build disabled.
+#endif
+
+
 /// Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
 // #define DATUMVAR_DEBUGGING_MODE
 
