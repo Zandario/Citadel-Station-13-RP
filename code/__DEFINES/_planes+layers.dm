@@ -167,6 +167,8 @@
 
 #define MIMICED_LIGHTING_LAYER_MAIN      (MOB_LAYER+0.22) /// Z-Mimic-managed lighting
 
+#define SHADOW_CASTER_LAYER_MAIN      (MOB_LAYER+0.23) /// Shadow Casting layer
+
 /**
  *! -- Obj Plane
  */
@@ -365,6 +367,9 @@
  */
 #define CAMERA_MASK_PLANE 92
 #define CAMERA_MASK_LAYER_MAIN 1
+
+#define SHADOWCASTING_REFLECTOR_PLANE 93
+#define SHADOWCASTING_PLANE 94
 
 /**
  *! -- Player HUD Plane

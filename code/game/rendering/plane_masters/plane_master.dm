@@ -235,3 +235,15 @@
 
 /atom/movable/screen/plane_master/above_hud
 	plane = ABOVE_HUD_PLANE
+
+/atom/movable/screen/plane_master/above_hud
+	plane = ABOVE_HUD_PLANE
+
+/atom/movable/screen/plane_master/shadow_casting
+	name = "shadow casting plane master"
+	plane = SHADOWCASTING_PLANE
+	render_target = "all3"
+
+/atom/movable/screen/plane_master/shadow_casting/Initialize(mapload)
+	. = ..()
+	add_filter("mask", 1, gauss_blur_filter(2))

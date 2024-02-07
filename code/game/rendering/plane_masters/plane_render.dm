@@ -58,3 +58,8 @@
 	blend_mode = BLEND_OVERLAY
 	relevant_plane_path = /atom/movable/screen/plane_master/darkvision
 	render_source = BYOND_RENDER_TARGET
+
+/atom/movable/screen/plane_render/shadow_casting
+	plane = SHADOWCASTING_PLANE
+	layer = SHADOW_CASTER_LAYER_MAIN
+	relevant_plane_path = /atom/movable/screen/plane_master/shadow_casting

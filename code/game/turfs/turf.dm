@@ -197,6 +197,9 @@
 	if(T)
 		T.multiz_turf_del(src, UP)
 */
+	if(shadow_flags & SHADOW_FLAG_QUEUED)
+		SSshadows.remove_from_queues(src)
+
 	if(force)
 		..()
 		//this will completely wipe turf state
