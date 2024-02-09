@@ -21,9 +21,9 @@
 	var/broken_chance = 0
 
 	/// range of light
-	var/brightness_range = 8
+	var/brightness_range = 9
 	/// power of light
-	var/brightness_power = 0.8
+	var/brightness_power = 0.6
 	/// color of light
 	var/brightness_color = LIGHT_COLOR_HALOGEN
 

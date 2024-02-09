@@ -408,6 +408,10 @@
 /turf/set_smoothed_icon_state(new_junction)
 	// Avoid calling ..() here to avoid setting icon_state twice, which is expensive given how hot this proc is
 	. = smoothing_junction
+
+	if(smoothing_junction != .) //The smoothing changed
+		light?.update()
+
 	smoothing_junction = new_junction
 
 	if (!(smoothing_flags & SMOOTH_DIAGONAL_CORNERS))

@@ -265,11 +265,14 @@
 #define LIGHTING_LAYER_MAIN 1
 #define LIGHTING_RENDER_TARGET "LIGHTING_PLANE"
 
+
+#define LIGHTING_PLANE_ADDITIVE 10
+
 /**
  *! -- Darkvision Plane
  * todo: see plane_master.dm for what to-do.
  */
-#define DARKVISION_PLANE 10
+#define DARKVISION_PLANE 11
 #define DARKVISION_LAYER_TURFS 1
 #define DARKVISION_LAYER_OBJS 2
 #define DARKVISION_LAYER_ADDITIONAL 3
@@ -290,7 +293,7 @@
  *
  * tl;dr shit sucks
  */
-#define DARKVISION_OCCLUSION_PLANE 11
+#define DARKVISION_OCCLUSION_PLANE 12
 #define DARKVISION_OCCLUSION_LAYER_MAIN 1
 #define DARKVISION_OCCLUSION_LAYER_BLACKNESS 2
 #define DARKVISION_OCCLUSION_RENDER_TARGET "*DARKMASK_PLANE"
@@ -302,7 +305,7 @@
  * (mob, obj) rather than also turfs
  * this makes it far less disorientating.
  */
-#define FOV_OCCLUSION_PLANE 12
+#define FOV_OCCLUSION_PLANE 13
 #define FOV_OCCLUSION_LAYER_MAIN 1
 #define FOV_OCCLUSION_RENDER_TARGET "*FOVMASK_PLANE"
 
@@ -311,7 +314,7 @@
  *? Objects on this plane can only be seen without light.
  *  todo: proper layering
  */
-#define LIGHTLESS_PLANE 13
+#define LIGHTLESS_PLANE 14
 #define LIGHTLESS_LAYER(normal_layer) (normal_layer)
 #define LIGHTLESS_RENDER_TARGET "LIGHTLESS_PLANE"
 

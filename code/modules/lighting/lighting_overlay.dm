@@ -16,6 +16,12 @@
 
 	var/needs_update = FALSE
 
+	///the turf that our light is applied to
+	var/turf/affected_turf
+
+	var/mutable_appearance/current_appearance
+	var/mutable_appearance/additive_overlay
+
 	#if WORLD_ICON_SIZE != 32
 	transform = matrix(WORLD_ICON_SIZE / 32, 0, (WORLD_ICON_SIZE - 32) / 2, 0, WORLD_ICON_SIZE / 32, (WORLD_ICON_SIZE - 32) / 2)
 	#endif
@@ -24,9 +30,12 @@
 	atom_flags |= ATOM_INITIALIZED
 	SSlighting.total_lighting_overlays += 1
 
-	var/turf/T         = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
+	var/turf/T = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
 	T.lighting_overlay = src
-	T.luminosity       = 0
+	T.luminosity = 0
+
+	current_appearance = mutable_appearance(LIGHTING_ICON, LIGHTING_BASE_ICON_STATE, LIGHTING_LAYER_MAIN, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+	additive_overlay = mutable_appearance(LIGHTING_ICON, LIGHTING_BASE_ICON_STATE, LIGHTING_LAYER_MAIN, LIGHTING_PLANE_ADDITIVE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
 
 	if (T.corners && T.corners.len)
 		for (var/datum/lighting_corner/C in T.corners)
@@ -49,6 +58,7 @@
 	if (istype(T))
 		T.lighting_overlay = null
 		T.luminosity = 1
+		overlays -= additive_overlay
 
 	return ..()
 
@@ -133,6 +143,36 @@
 				ar, ag, ab, 0,
 				0, 0, 0, 1
 			)
+
+	if(cr.applying_additive || cg.applying_additive || cb.applying_additive || ca.applying_additive)
+		overlays -= additive_overlay
+		additive_overlay.icon_state = LIGHTING_BASE_ICON_STATE
+		var/a_rr = cr.add_r
+		var/a_rg = cr.add_g
+		var/a_rb = cr.add_b
+
+		var/a_gr = cg.add_r
+		var/a_gg = cg.add_g
+		var/a_gb = cg.add_b
+
+		var/a_br = cb.add_r
+		var/a_bg = cb.add_g
+		var/a_bb = cb.add_b
+
+		var/a_ar = ca.add_r
+		var/a_ag = ca.add_g
+		var/a_ab = ca.add_b
+
+		additive_overlay.color = list(
+			a_rr, a_rg, a_rb, 00,
+			a_gr, a_gg, a_gb, 00,
+			a_br, a_bg, a_bb, 00,
+			a_ar, a_ag, a_ab, 00,
+			00, 00, 00, 01
+		)
+		overlays += additive_overlay
+	else
+		overlays -= additive_overlay
 
 	// If there's a Z-turf above us, update its shadower.
 	if (T.above)

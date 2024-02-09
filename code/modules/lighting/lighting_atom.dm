@@ -45,6 +45,10 @@
 
 #undef NONSENSICAL_VALUE
 
+/atom/proc/kill_light()
+	light_power = 0
+	update_light()
+
 // Will update the light (duh).
 // Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
 /atom/proc/update_light()
@@ -66,7 +70,7 @@
 
 /**
  * Updates the atom's opacity value.
- * 
+ *
  * Should always be used to change the opacity of an atom.
  * This exists to act as a hook for associated behavior.
  * It notifies (potentially) affected light sources so they can update (if needed).
@@ -77,7 +81,7 @@
 	. = TRUE
 	SEND_SIGNAL(src, COMSIG_ATOM_SET_OPACITY, new_opacity)
 	opacity = new_opacity
-	
+
 	var/turf/T = loc
 	if (!isturf(T))
 		return

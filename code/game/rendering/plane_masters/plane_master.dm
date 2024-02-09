@@ -135,6 +135,12 @@
 	. = ..()
 	add_filter("emissives", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))
 
+/atom/movable/screen/plane_master/additive_lighting
+	name = "additive lighting plane master"
+	plane = LIGHTING_PLANE_ADDITIVE
+	blend_mode = BLEND_ADD
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
 /**
  * darkvision plate: gathers everything we can see, colors it, etc
  * the actual drawing and occlusion effects are done on the darkvision plane, which is BLEND_ADD.

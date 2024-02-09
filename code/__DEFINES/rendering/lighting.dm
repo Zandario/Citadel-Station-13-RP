@@ -10,6 +10,9 @@
 /// Value used to round lumcounts, values smaller than 1/255 don't matter (if they do, thanks sinking points), greater values will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
 #define LIGHTING_ROUND_VALUE (1 / 200)
 
+/// The default falloff curve for all atoms. It's a magic number you should adjust until it looks good.
+#define LIGHTING_DEFAULT_FALLOFF_CURVE 2
+
 /// Icon used for lighting shading effects
 #define LIGHTING_ICON 'icons/effects/lighting_overlay.dmi'
 /// icon_state used for normal color-matrix based lighting overlays.
