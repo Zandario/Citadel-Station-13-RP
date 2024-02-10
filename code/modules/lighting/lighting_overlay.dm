@@ -119,30 +119,13 @@
 		color = null
 	else
 		icon_state = LIGHTING_BASE_ICON_STATE
-		if (islist(color))
-			// Does this even save a list alloc?
-			var/list/c_list = color
-			c_list[CL_MATRIX_RR] = rr
-			c_list[CL_MATRIX_RG] = rg
-			c_list[CL_MATRIX_RB] = rb
-			c_list[CL_MATRIX_GR] = gr
-			c_list[CL_MATRIX_GG] = gg
-			c_list[CL_MATRIX_GB] = gb
-			c_list[CL_MATRIX_BR] = br
-			c_list[CL_MATRIX_BG] = bg
-			c_list[CL_MATRIX_BB] = bb
-			c_list[CL_MATRIX_AR] = ar
-			c_list[CL_MATRIX_AG] = ag
-			c_list[CL_MATRIX_AB] = ab
-			color = c_list
-		else
-			color = list(
-				rr, rg, rb, 0,
-				gr, gg, gb, 0,
-				br, bg, bb, 0,
-				ar, ag, ab, 0,
-				0, 0, 0, 1
-			)
+		color = list(
+			rr, rg, rb, 0,
+			gr, gg, gb, 0,
+			br, bg, bb, 0,
+			ar, ag, ab, 0,
+			0, 0, 0, 1
+		)
 
 	if(cr.applying_additive || cg.applying_additive || cb.applying_additive || ca.applying_additive)
 		overlays -= additive_overlay

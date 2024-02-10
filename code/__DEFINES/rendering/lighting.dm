@@ -13,6 +13,10 @@
 /// The default falloff curve for all atoms. It's a magic number you should adjust until it looks good.
 #define LIGHTING_DEFAULT_FALLOFF_CURVE 2
 
+#define ADDITIVE_LIGHTING_PLANE_ALPHA_MAX 255
+#define ADDITIVE_LIGHTING_PLANE_ALPHA_NORMAL 128
+#define ADDITIVE_LIGHTING_PLANE_ALPHA_INVISIBLE 0
+
 /// Icon used for lighting shading effects
 #define LIGHTING_ICON 'icons/effects/lighting_overlay.dmi'
 /// icon_state used for normal color-matrix based lighting overlays.

@@ -7,22 +7,24 @@
 	/// The power of the above is multiplied by this. Setting too high may drown out normal lights on the same turf.
 	var/ambient_light_multiplier = 0.3
 
+	/// If this is TRUE, we have a lighting overlay.
 	var/tmp/lighting_corners_initialised = FALSE
 
 	/// List of light sources affecting this turf.
 	var/tmp/list/datum/light_source/affecting_lights
 	/// Our lighting overlay.
 	var/tmp/atom/movable/lighting_overlay/lighting_overlay
+	/// List of [/datum/lighting_corner]s on this turf.
 	var/tmp/list/datum/lighting_corner/corners
 	/// Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 	var/tmp/has_opaque_atom = FALSE
 	/// If this is TRUE, an above turf's ambient light is affecting this turf.
 	var/tmp/ambient_has_indirect = FALSE
-	/// we don't use fullbright overlay when dark - this is only here for stuff like level borders which are 'abstract' turfs
+	/// We don't use fullbright overlay when dark - this is only here for stuff like level borders which are 'abstract' turfs
 	var/tmp/lighting_disable_fullbright = FALSE
 
-	//! Record-keeping, do not touch -- that means you, admins.
-	var/tmp/ambient_active = FALSE	//! Do we have non-zero ambient light? Use [TURF_IS_AMBIENT_LIT] instead of reading this directly.
+	//# Record-keeping, do not touch -- that means you, admins.
+	var/tmp/ambient_active = FALSE //! Do we have non-zero ambient light? Use [TURF_IS_AMBIENT_LIT] instead of reading this directly.
 	var/tmp/ambient_light_old_r = 0
 	var/tmp/ambient_light_old_g = 0
 	var/tmp/ambient_light_old_b = 0
@@ -287,9 +289,10 @@
 
 // This is inlined in lighting_source.dm.
 // Update it too if you change this.
-/turf/proc/generate_missing_corners()
-	if (!TURF_IS_DYNAMICALLY_LIT_UNSAFE(src) && !light_source_solo && !light_source_multi && !(mz_flags & MZ_ALLOW_LIGHTING) && !ambient_light && !ambient_has_indirect)
-		return
+/turf/proc/generate_missing_corners(force = FALSE)
+	if (!force)
+		if (!TURF_IS_DYNAMICALLY_LIT_UNSAFE(src) && !light_source_solo && !light_source_multi && !(mz_flags & MZ_ALLOW_LIGHTING) && !ambient_light && !ambient_has_indirect)
+			return
 
 	lighting_corners_initialised = TRUE
 	if (!corners)

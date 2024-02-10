@@ -1,9 +1,9 @@
 var/global/datum/lighting_corner/dummy/dummy_lighting_corner = new
 
-// This list is what the code that assigns corners listens to, the order in this list is the order in which corners are added to the /turf/corners list.
+/// This list is what the code that assigns corners listens to, the order in this list is the order in which corners are added to the /turf/corners list.
 var/global/list/LIGHTING_CORNER_DIAGONAL = list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST)
 
-// This is the reverse of the above - the position in the array is a dir. Update this if the above changes.
+/// This is the reverse of [LIGHTING_CORNER_DIAGONAL] - the position in the array is a dir. Update this if the above changes.
 var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 2, 1)
 
 /**
@@ -12,87 +12,94 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
  * For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
  */
 /datum/lighting_corner
+	//# Core Values
+	/// Light sources affecting us.
+	var/list/datum/light_source/affecting
+	/// TRUE if one of our masters has dynamic lighting.
+	var/active = FALSE
+
+	//## Position
+	var/x = 0, y = 0, z = 0
+
+	//## Turf Masters
 	// t1 through t4 are our masters, in no particular order.
 	// They are split into vars like this in the interest of reducing memory usage.
 	// tX is the turf itself, tXi is the index of this corner in that turf's corners list.
-	var/turf/t1
-	var/t1i
-	var/turf/t2
-	var/t2i
-	var/turf/t3
-	var/t3i
-	var/turf/t4
-	var/t4i
+	var/turf/t1, turf/t2, turf/t3, turf/t4
+	var/t1i, t2i, t3i, t4i
 
-	var/list/datum/light_source/affecting // Light sources affecting us.
-	var/active                            = FALSE  // TRUE if one of our masters has dynamic lighting.
+	//# Lighting Values
 
-	var/x = 0
-	var/y = 0
-	var/z = 0
-
+	//## Self Lighting Values
 	// Our own intensity, from lights directly shining on us.
-	var/self_r = 0
-	var/self_g = 0
-	var/self_b = 0
+	var/self_r = 0, self_g = 0, self_b = 0
 
+	//## Below Lighting Values
 	// The intensity we're inheriting from the turf below us, if we're a Z-turf.
-	var/below_r = 0
-	var/below_g = 0
-	var/below_b = 0
+	var/below_r = 0, below_g = 0, below_b = 0
 
-	// Ambient turf lighting that's not inherited from a light source. These are updated as absolute values.
-	var/ambient_r = 0
-	var/ambient_g = 0
-	var/ambient_b = 0
+	//## Ambient Lighting Values
+	// Ambient turf lighting that's not inherited from a light source.
+	// These are updated as absolute values.
+	var/ambient_r = 0, ambient_g = 0, ambient_b = 0
 
-	// The turf above us' ambient
-	var/above_ambient_r = 0
-	var/above_ambient_g = 0
-	var/above_ambient_b = 0
+	//## Above Ambient Lighting Values
+	// The turf above us' ambient lighting.
+	var/above_ambient_r = 0, above_ambient_g = 0, above_ambient_b = 0
 
+	//## Apparent Lighting Values
 	// The final intensity, all things considered.
-	var/apparent_r = 0
-	var/apparent_g = 0
-	var/apparent_b = 0
+	var/apparent_r = 0, apparent_g = 0, apparent_b = 0
 
 	var/needs_update = FALSE
 
-	var/cache_r  = 0
-	var/cache_g  = 0
-	var/cache_b  = 0
+	var/cache_r  = 0, cache_g  = 0, cache_b  = 0
 	var/cache_mx = 0
 
-	/// Used for planet lighting. Probably needs a better system to prevent over-updating when not needed at some point.
+	//## Additive light values
+	// These are used to apply bloom to the lighting.
+	var/add_r = 0, add_g = 0, add_b = 0
+	var/applying_additive = FALSE
+
+	//# Misc
+	/// Used for planet lighting.
+	/// Probably needs a better system to prevent over-updating when not needed at some point.
 	var/update_gen = 0
 
-	//additive light values
-	var/add_r = 0
-	var/add_g = 0
-	var/add_b = 0
-	var/applying_additive = FALSE
+#warn Check this again.
+/// Just a helper macro to save some space and reduce the copy pasting.
+// #define SAVE_MASTER(T, CORNER, INDEX, DIR) \
+// if (!T.corners){ \
+// 	T.corners = new(4)\
+// }; \
+// CORNER = T; \
+// INDEX = DIR; \
+// T.corners[INDEX] = src; \
+// if (TURF_IS_AMBIENT_LIT_UNSAFE(T)){ \
+// 	has_ambience = TRUE; \
+// }
 
 /datum/lighting_corner/New(turf/new_turf, diagonal, oi)
 	SSlighting.total_lighting_corners += 1
 
 	var/has_ambience = FALSE
-
-	t1 = new_turf
-	z = new_turf.z
-	t1i = oi
-
 	if (TURF_IS_AMBIENT_LIT_UNSAFE(new_turf))
 		has_ambience = TRUE
 
 	var/vertical   = diagonal & ~(diagonal - 1) // The horizontal directions (4 and 8) are bigger than the vertical ones (1 and 2), so we can reliably say the lsb is the horizontal direction.
 	var/horizontal = diagonal & ~vertical       // Now that we know the horizontal one we can get the vertical one.
 
+	t1 = new_turf
+	t1i = oi
+
 	x = new_turf.x + (horizontal == EAST  ? 0.5 : -0.5)
 	y = new_turf.y + (vertical   == NORTH ? 0.5 : -0.5)
+	z = new_turf.z
 
 	// My initial plan was to make this loop through a list of all the dirs (horizontal, vertical, diagonal).
 	// Issue being that the only way I could think of doing it was very messy, slow and honestly overengineered.
-	// So we'll have this hardcode instead.
+	// So we'll have this hardcode instead. - PJB in 2017
+	/// The new master turf.
 	var/turf/T
 
 
@@ -135,6 +142,8 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	update_active()
 	if (has_ambience)
 		init_ambient()
+
+// #undef SAVE_MASTER
 
 #define OVERLAY_PRESENT(T) (T && T.lighting_overlay)
 
@@ -180,9 +189,9 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 	update_ambient_lumcount(sum_r, sum_g, sum_b)
 
-// God that was a mess, now to do the rest of the corner code! Hooray!
+// God that was a mess, now to do the rest of the corner code! Hooray! - PJB in 2017
 /datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b, now = FALSE)
-	if (!(delta_r + delta_g + delta_b))
+	if (!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
 
 	self_r += delta_r
@@ -193,12 +202,18 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, g)
 	UPDATE_APPARENT(src, b)
 
-	add_r = clamp((apparent_r - 1.4) * 0.5, 0, 0.3)
-	add_g = clamp((apparent_g - 1.4) * 0.5, 0, 0.3)
-	add_b = clamp((apparent_b - 1.4) * 0.5, 0, 0.3)
+	add_r = clamp((apparent_r - 1.1) * 0.3, 0, 0.22)
+	add_g = clamp((apparent_g - 1.1) * 0.3, 0, 0.22)
+	add_b = clamp((apparent_b - 1.1) * 0.3, 0, 0.22)
 
-	applying_additive = add_r || add_b || add_g
+	// Client-shredding, does not cull any additive overlays.
+	//applying_additive = add_r || add_g || add_b
+	// Cull additive overlays that would be below 0.03 alpha in any color.
+	applying_additive = max(add_r, add_g, add_b) > 0.03
+	// Cull additive overlays whose color alpha sum is lower than 0.03
+	//applying_additive = (add_r + add_g + add_b) > 0.03
 
+	// Can't really make this look better without lists, could use macros but why bother. @Zandario
 	var/turf/T
 	var/Ti
 	// Grab the first master that's a Z-turf, if one exists.
@@ -219,6 +234,15 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 		var/datum/lighting_corner/above = T.corners[Ti]
 		above.update_below_lumcount(delta_r, delta_g, delta_b, now)
 
+	// if (T)
+	// 	do
+	// 		if (!T.corners || !T.corners[Ti])
+	// 			T.generate_missing_corners(TRUE)
+
+	// 		// These never get instant updates; they're less important, so better to avoid risk of lag.
+	// 		T.corners[Ti].update_below_lumcount(delta_r, delta_g, delta_b)
+	// 	while ((T = T.above) && (T.mz_flags & MZ_ALLOW_LIGHTING))
+
 	// This needs to be down here instead of the above if so the lum values are properly updated.
 	if (needs_update)
 		return
@@ -229,8 +253,8 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 		needs_update = TRUE
 		SSlighting.corner_queue += src
 
-/datum/lighting_corner/proc/update_below_lumcount(delta_r, delta_g, delta_b, now = FALSE)
-	if (!(delta_r + delta_g + delta_b))
+/datum/lighting_corner/proc/update_below_lumcount(delta_r, delta_g, delta_b)
+	if (!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
 
 	below_r += delta_r
@@ -241,20 +265,12 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, g)
 	UPDATE_APPARENT(src, b)
 
-	add_r = clamp((apparent_r - 1.4) * 0.5, 0, 0.3)
-	add_g = clamp((apparent_g - 1.4) * 0.5, 0, 0.3)
-	add_b = clamp((apparent_b - 1.4) * 0.5, 0, 0.3)
-
-	applying_additive = add_r || add_b || add_g
 	// This needs to be down here instead of the above if so the lum values are properly updated.
 	if (needs_update)
 		return
 
-	if (!now)
-		needs_update = TRUE
-		SSlighting.corner_queue += src
-	else
-		update_overlays(TRUE)
+	needs_update = TRUE
+	SSlighting.corner_queue += src
 
 /datum/lighting_corner/proc/update_ambient_lumcount(delta_r, delta_g, delta_b, skip_update = FALSE)
 	ambient_r += delta_r
@@ -273,7 +289,6 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 	var/turf/T
 	var/Ti
-
 	if (t1)
 		T = t1
 		Ti = t1i
@@ -336,16 +351,16 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	var/lb = apparent_b
 
 	// Cache these values a head of time so 4 individual lighting overlays don't all calculate them individually.
-	var/mx = max(lr, lg, lb) // Scale it so 1 is the strongest lum, if it is above 1.
+	var/largest_color_luminosity = max(lr, lg, lb) // Scale it so 1 is the strongest lum, if it is above 1.
 	. = 1 // factor
-	if (mx > 1)
-		. = 1 / mx
+	if (largest_color_luminosity > 1)
+		. = 1 / largest_color_luminosity
 
 	cache_r = round(lr * ., LIGHTING_ROUND_VALUE)
 	cache_g = round(lg * ., LIGHTING_ROUND_VALUE)
 	cache_b = round(lb * ., LIGHTING_ROUND_VALUE)
 
-	cache_mx = round(mx, LIGHTING_ROUND_VALUE)
+	cache_mx = round(largest_color_luminosity, LIGHTING_ROUND_VALUE)
 
 	var/turf/T
 	for (var/i in 1 to 4)
@@ -356,13 +371,17 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 			if (3) T = t3
 			if (4) T = t4
 
-		var/atom/movable/lighting_overlay/Ov
-		if (T && (Ov = T.lighting_overlay))
+		var/atom/movable/lighting_overlay/our_overlay
+		if (T && (our_overlay = T.lighting_overlay))
 			if (now)
-				Ov.update_overlay()
-			else if (!Ov.needs_update)
-				Ov.needs_update = TRUE
-				SSlighting.overlay_queue += Ov
+				our_overlay.update_overlay()
+			else if (!our_overlay.needs_update)
+				our_overlay.needs_update = TRUE
+				SSlighting.overlay_queue += our_overlay
+
+
+/datum/lighting_corner/dummy/New()
+	return
 
 /datum/lighting_corner/Destroy(force = FALSE)
 	stack_trace("Someone [force ? "force-" : ""]deleted a lighting corner.")
@@ -371,6 +390,3 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 	SSlighting.total_lighting_corners -= 1
 	return ..()
-
-/datum/lighting_corner/dummy/New()
-	return
