@@ -19,46 +19,68 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	var/active = FALSE
 
 	//## Position
-	var/x = 0, y = 0, z = 0
+	var/x = 0
+	var/y = 0
+	var/z = 0
 
 	//## Turf Masters
 	// t1 through t4 are our masters, in no particular order.
 	// They are split into vars like this in the interest of reducing memory usage.
 	// tX is the turf itself, tXi is the index of this corner in that turf's corners list.
-	var/turf/t1, turf/t2, turf/t3, turf/t4
-	var/t1i, t2i, t3i, t4i
+	var/turf/t1
+	var/turf/t2
+	var/turf/t3
+	var/turf/t4
+	var/t1i
+	var/t2i
+	var/t3i
+	var/t4i
 
 	//# Lighting Values
 
 	//## Self Lighting Values
 	// Our own intensity, from lights directly shining on us.
-	var/self_r = 0, self_g = 0, self_b = 0
+	var/self_r = 0
+	var/self_g = 0
+	var/self_b = 0
 
 	//## Below Lighting Values
 	// The intensity we're inheriting from the turf below us, if we're a Z-turf.
-	var/below_r = 0, below_g = 0, below_b = 0
+	var/below_r = 0
+	var/below_g = 0
+	var/below_b = 0
 
 	//## Ambient Lighting Values
 	// Ambient turf lighting that's not inherited from a light source.
 	// These are updated as absolute values.
-	var/ambient_r = 0, ambient_g = 0, ambient_b = 0
+	var/ambient_r = 0
+	var/ambient_g = 0
+	var/ambient_b = 0
 
 	//## Above Ambient Lighting Values
 	// The turf above us' ambient lighting.
-	var/above_ambient_r = 0, above_ambient_g = 0, above_ambient_b = 0
+	var/above_ambient_r = 0
+	var/above_ambient_g = 0
+	var/above_ambient_b = 0
 
 	//## Apparent Lighting Values
 	// The final intensity, all things considered.
-	var/apparent_r = 0, apparent_g = 0, apparent_b = 0
+	var/apparent_r = 0
+	var/apparent_g = 0
+	var/apparent_b = 0
 
 	var/needs_update = FALSE
 
-	var/cache_r  = 0, cache_g  = 0, cache_b  = 0
+	var/cache_r  = 0
+	var/cache_g  = 0
+	var/cache_b  = 0
 	var/cache_mx = 0
 
 	//## Additive light values
 	// These are used to apply bloom to the lighting.
-	var/add_r = 0, add_g = 0, add_b = 0
+	var/add_r = 0
+	var/add_g = 0
+	var/add_b = 0
 	var/applying_additive = FALSE
 
 	//# Misc
