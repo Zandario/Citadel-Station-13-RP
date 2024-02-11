@@ -16,13 +16,13 @@ SUBSYSTEM_DEF(ambient_lighting)
 	return ..()
 
 /datum/controller/subsystem/ambient_lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
-	var/list/curr = queued
-	var/starlight_enabled = CONFIG_GET(flag/starlight)
+	// var/list/curr = queued
+	// var/starlight_enabled = CONFIG_GET(flag/starlight)
 
-	var/needs_ambience
-	while (curr.len)
-		var/turf/target = curr[curr.len]
-		curr.len -= 1
+	// var/needs_ambience
+	// while (curr.len)
+	// 	var/turf/target = curr[curr.len]
+	// 	curr.len -= 1
 
 		#warn AA
 		// if (target.is_outside())
@@ -49,10 +49,10 @@ SUBSYSTEM_DEF(ambient_lighting)
 		// 	else if (starlight_enabled)
 		// 		target.replace_ambient_light(COLOR_WHITE, null, 1, null)
 
-		if (no_mc_tick)
-			CHECK_TICK
-		else if (MC_TICK_CHECK)
-			return
+		// if (no_mc_tick)
+		// 	CHECK_TICK
+		// else if (MC_TICK_CHECK)
+		// 	return
 
 /turf/proc/set_ambient_light()
 	return

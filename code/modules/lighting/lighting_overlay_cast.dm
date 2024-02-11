@@ -260,19 +260,27 @@ GLOBAL_VAR(lights)
 		var/targ_dir = get_dir(target_turf, src)
 
 		var/blocking_dirs = 0
-		for(var/d in GLOB.cardinal)
-			var/turf/T = get_step(target_turf, d)
-			occluded= FALSE
+		for(var/Direction in GLOB.cardinal)
+			var/turf/T = get_step(target_turf, Direction)
+			occluded = FALSE
 			CHECK_OCCLUSION(occluded, T)
 			if(occluded)
-				blocking_dirs |= d
+				blocking_dirs |= Direction
 
+
+		// if(IS_SMOOTH(target_turf))
+		// 	var/lwc_key = "wall-[target_turf.smoothing_junction]"
+		// 	I = image('icons/effects/lighting/smooth_wall_lighting.dmi')
+		// 	I.icon_state = lwc_key
+		// 	I.layer = LIGHTING_LAYER_WALL
+		// 	GLOB.lighting_wall_cache[lwc_key] = new /mutable_appearance(I)
+		// else
 		var/lwc_key = "[blocking_dirs]-[targ_dir]"
 		I = GLOB.lighting_wall_cache[lwc_key]
 		if (!I)
 			I = image('icons/effects/lighting/wall_lighting.dmi')
-			I.layer = LIGHTING_LAYER_WALL
 			I.icon_state = lwc_key
+			I.layer = LIGHTING_LAYER_WALL
 			GLOB.lighting_wall_cache[lwc_key] = new /mutable_appearance(I)
 
 		I.pixel_x = (world.icon_size * light_range) + (x_offset * world.icon_size)
