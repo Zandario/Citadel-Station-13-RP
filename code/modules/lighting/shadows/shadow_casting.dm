@@ -3,6 +3,8 @@
 	var/atom/movable/mover = null
 
 // Fake lists winning
+// Changing this to a list caused me to go from ~180 second init to ~660 second init.
+// TRUST ME IT'S WINNING
 /datum/triangle
 	var/x1
 	var/x2
@@ -19,18 +21,27 @@
 	src.y2 = y2
 	src.y3 = y3
 
+/// @param locturf The current turf being considered for shadow casting.
 /proc/create_shadowcast_overlays(turf/locturf)
 	// Clean up old list before making a new one
 	locturf.shadowcasting_overlays = list()
 
-	// Handles almost every edge case there is.
+	/// The range of visibility for shadow casting.
+	/// 7 handles almost every edge case there is. (but not really)
 	var/vrange = 7
+
+	/// The ID of the movement being considered.
+	/// TODO: Why is this here? What does it do?
 	var/moveid = rand(0, 65535)
-	var/list/atom/movable/new_triangles = list()
+
+	/// The list of new triangles representing shadows.
+	/// Whatever the fuck that means lol
+	var/list/atom/movable/triangle/new_triangles = list()
 
 	for(var/turf/T in oview(vrange))
 		T.shadowcast_inview = moveid
 
+	/// The list of turfs in a specific order.
 	var/list/vturfsordered = list()
 	for(var/I as anything in 1 to (vrange + 1))
 		for(var/J as anything in 1 to I)
@@ -39,9 +50,11 @@
 			vturfsordered += locate(locturf.x + J, locturf.y + I - J, locturf.z)
 			vturfsordered += locate(locturf.x - J, locturf.y - I + J, locturf.z)
 
+	/// The list of low triangles representing shadows.
+	/// Whatever the fuck that means lol
+	/// From what I can tell it is a buffer that then is fed into new_triangles
 	var/list/low_triangles = list()
 
-	// we need to typecheck as there is no way to know if locate() didn't return null
 	for(var/turf/T in vturfsordered)
 		if((T.shadowcast_inview != moveid) || !T.opacity || (T.shadowcast_considered == moveid))
 			continue
@@ -58,6 +71,7 @@
 		var/rdir = (dx >= 0 ? EAST : WEST)
 		var/width  = 0
 		var/height = 0
+
 		if(zx || zy)
 			width  = 1
 			height = 1
@@ -73,7 +87,7 @@
 					width++
 					dx -= 32
 					CT = get_step(CT, WEST)
-				var/cdir = dy > 0 ? 2 : 1
+				var/cdir = dy > 0 ? SOUTH : NORTH
 				CT = get_step(T, cdir)
 				if(CT && CT.opacity)
 					continue
