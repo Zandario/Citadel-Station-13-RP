@@ -120,6 +120,14 @@
 	appearance_flags = PLANE_MASTER | NO_CLIENT_COLOR
 	alpha = 255
 
+/atom/movable/screen/plane_master/shadow_casting
+	name = "shadow casting plane master"
+	plane = SHADOWCASTING_PLANE
+
+// /atom/movable/screen/plane_master/shadow_casting/Initialize(mapload)
+// 	. = ..()
+// 	add_filter("mask", 1, gauss_blur_filter(2))
+
 /*!
  * This system works by exploiting BYONDs color matrix filter to use layers to handle emissive blockers.
  *
@@ -238,12 +246,3 @@
 
 /atom/movable/screen/plane_master/above_hud
 	plane = ABOVE_HUD_PLANE
-
-/atom/movable/screen/plane_master/shadow_casting
-	name = "shadow casting plane master"
-	plane = SHADOWCASTING_PLANE
-	render_target = "all3"
-
-/atom/movable/screen/plane_master/shadow_casting/Initialize(mapload)
-	. = ..()
-	add_filter("mask", 1, gauss_blur_filter(2))

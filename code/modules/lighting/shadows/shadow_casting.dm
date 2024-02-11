@@ -32,7 +32,7 @@
 		T.shadowcast_inview = moveid
 
 	var/list/vturfsordered = list()
-	for(var/I as anything in 1 to vrange+1)
+	for(var/I as anything in 1 to (vrange + 1))
 		for(var/J as anything in 1 to I)
 			vturfsordered += locate(locturf.x + I - J, locturf.y - J, locturf.z)
 			vturfsordered += locate(locturf.x - I + J, locturf.y + J, locturf.z)
@@ -53,56 +53,56 @@
 		var/signy = (dy >= 0) ? 1 : -1
 		var/zx = dx == 0
 		var/zy = dy == 0
-		var/L = abs(odx)+abs(ody)
-		var/udir = (dy >= 0 ? 1 : 2)
-		var/rdir = (dx >= 0 ? 4 : 8)
-		var/width = 0
+		var/L = abs(odx) + abs(ody)
+		var/udir = (dy >= 0 ? NORTH : SOUTH)
+		var/rdir = (dx >= 0 ? EAST : WEST)
+		var/width  = 0
 		var/height = 0
 		if(zx || zy)
-			width = 1
+			width  = 1
 			height = 1
 			if(zx)
-				var/turf/CT = get_step(T, 4)
+				var/turf/CT = get_step(T, EAST)
 				while(CT && CT.opacity && abs(CT.x - locturf.x) < (vrange + 2))
 					CT.shadowcast_considered = moveid
 					width++
-					CT = get_step(CT, 4)
-				CT = get_step(T, 8)
+					CT = get_step(CT, EAST)
+				CT = get_step(T, WEST)
 				while(CT && CT.opacity && abs(CT.x - locturf.x) < (vrange + 2))
 					CT.shadowcast_considered = moveid
 					width++
 					dx -= 32
-					CT = get_step(CT, 8)
+					CT = get_step(CT, WEST)
 				var/cdir = dy > 0 ? 2 : 1
 				CT = get_step(T, cdir)
 				if(CT && CT.opacity)
 					continue
-				cdir = dy > 0 ? 1 : 2
+				cdir = dy > 0 ? NORTH : SOUTH
 				CT = T
 				while(CT && abs(CT.y - locturf.y))
 					CT.shadowcast_considered = moveid
 					CT = get_step(CT, udir)
 			if(zy)
-				var/turf/CT = get_step(T, 1)
+				var/turf/CT = get_step(T, NORTH)
 				while(CT && CT.opacity && abs(CT.y - locturf.y) < (vrange + 2))
 					CT.shadowcast_considered = moveid
 					height++
-					CT = get_step(CT, 1)
-				CT = get_step(T, 2)
+					CT = get_step(CT, NORTH)
+				CT = get_step(T, SOUTH)
 				while(CT && CT.opacity && abs(CT.y - locturf.y) < (vrange + 2))
 					CT.shadowcast_considered = moveid
 					height++
 					dy -= 32
-					CT = get_step(CT, 2)
-				var/cdir = dx > 0 ? 8 : 4
+					CT = get_step(CT, SOUTH)
+				var/cdir = dx > 0 ? WEST : EAST
 				CT = get_step(T, cdir)
 				if(CT && CT.opacity)
 					continue
-				cdir = dx > 0 ? 4 : 8
+				cdir = dx > 0 ? EAST : WEST
 				CT = T
 				while(CT && abs(CT.x - locturf.x))
 					CT.shadowcast_considered = moveid
-					CT = get_step(CT,rdir)
+					CT = get_step(CT, rdir)
 		else
 			var/turf/CT = T
 			while(CT && CT.opacity && abs(CT.x - locturf.x) < (vrange + 2))
@@ -116,14 +116,14 @@
 				height++
 				CT = get_step(CT, udir)
 
-		var/top = dy - (signy * 16) + (signy * 32 * height)
+		var/top    = dy - (signy * 16) + (signy * 32 * height)
 		var/bottom = dy - (signy * 16)
-		var/left = dx - (signx * 16)
-		var/right = dx - (signx * 16) + (signx * 32 * width)
+		var/left   = dx - (signx * 16)
+		var/right  = dx - (signx * 16) + (signx * 32 * width)
 
-		var/fac = 32/L
+		var/fac = 32 / L
 		if(zy)
-			low_triangles += new /datum/triangle(left, top, left, bottom, left*fac, bottom*fac)
+			low_triangles += new /datum/triangle(left, top, left, bottom, left * fac, bottom * fac)
 			low_triangles += new /datum/triangle(left * fac, top * fac, left, top, left * fac, bottom * fac)
 		else if(zx)
 			low_triangles += new /datum/triangle(right, bottom, left, bottom, left * fac, bottom * fac)
@@ -146,13 +146,20 @@
 /atom/movable/triangle
 	name = ""
 	icon = 'icons/effects/triangle.dmi'
-	icon_state = "triangle"
+	icon_state = "white"
+	color = "black"
 	plane = SHADOWCASTING_PLANE
 	layer = SHADOW_CASTER_LAYER_MAIN
 
 /atom/movable/triangle/New(x1, y1, x2, y2, x3, y3)
 	transform = matrix((x3 * 0.03125) - (x2 * 0.03125), -(x2 * 0.03125) + (x1 * 0.03125), (x3 * 0.5) + (x1 * 0.5), -(y2 * 0.03125) + (y3 * 0.03125), (y1 * 0.03125) - (y2 * 0.03125), (y1 * 0.5) + (y3 * 0.5))
 	tag = "triangle-movable-[x1]-[y1]-[x2]-[y2]-[x3]-[y3]"
+
+
+/atom/movable/triangle/Initialize(mapload)
+	color = random_color()
+	. = ..()
+
 
 /proc/make_triangle_image(x1, y1, x2, y2, x3, y3)
 	// First we try to find an existing triangle atom
