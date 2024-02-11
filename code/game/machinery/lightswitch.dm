@@ -42,7 +42,7 @@
 	cut_overlays()
 	if(machine_stat & NOPOWER)
 		icon_state = "light-p"
-		set_light(0)
+		kill_light()
 	else
 		icon_state = "light[on]"
 		overlay.icon_state = "light[on]-overlay"

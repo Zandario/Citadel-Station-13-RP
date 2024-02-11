@@ -60,14 +60,14 @@ CREATE_WALL_MOUNTING_TYPES_SHIFTED(/obj/machinery/fire_alarm/alarms_hidden, 21)
 	add_overlay("casing")
 
 	if(panel_open)
-		set_light(0)
+		kill_light()
 		return
 
 	if(machine_stat & BROKEN)
 		add_overlay("broken")
-		set_light(0)
+		kill_light()
 	else if(machine_stat & NOPOWER)
-		set_light(0)
+		kill_light()
 		return
 	else
 		if(!detecting)

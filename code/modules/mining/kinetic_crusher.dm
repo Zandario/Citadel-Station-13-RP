@@ -25,7 +25,7 @@
 	edge = TRUE
 	// sharpness = SHARP_EDGED
 	action_button_name = "Toggle Light"
-	light_wedge = LIGHT_WIDE
+	// light_wedge = LIGHT_WIDE
 	// actions_types = list(/datum/action/item_action/toggle_light)
 	// var/list/trophies = list()
 	var/charged = TRUE
@@ -218,7 +218,7 @@
 	if(light_on)
 		set_light(brightness_on)
 	else
-		set_light(0)
+		kill_light()
 
 /obj/item/kinetic_crusher/update_icon_state()
 	. = ..()

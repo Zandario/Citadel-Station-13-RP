@@ -375,7 +375,7 @@
 
 /obj/item/switchtool/holo/undeploy()
 	..()
-	set_light(0)
+	kill_light()
 
 /obj/item/switchtool/holo/CE
 	name = "holotool"

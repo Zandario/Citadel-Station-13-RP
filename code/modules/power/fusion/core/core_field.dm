@@ -478,7 +478,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 			AddParticles(reactant, react_pool[reactant])
 
 /obj/effect/fusion_em_field/Destroy()
-	set_light(0)
+	kill_light()
 	RadiateAll()
 	for(var/obj/effect/fusion_particle_catcher/catcher in particle_catchers)
 		qdel(catcher)

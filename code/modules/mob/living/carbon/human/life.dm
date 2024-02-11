@@ -274,7 +274,7 @@
 	// no radiation: stop
 	if(!radiation)
 		if(species.species_appearance_flags & RADIATION_GLOWS)
-			set_light(0)
+			kill_light()
 		return
 	// todo: SPECIES GLOWS - probably refactor this shit
 	if(species.species_appearance_flags & RADIATION_GLOWS)

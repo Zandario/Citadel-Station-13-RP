@@ -163,13 +163,13 @@
 	var/area/A = loc
 
 	if (light_power && light_range)
-		update_light()
+		set_light()
 
 	if (!mapload)
 		SSambient_lighting.queued += src
 
 	if (opacity)
-		has_opaque_atom = TRUE
+		blocks_light = -1
 
 	if (mapload && permit_ao)
 		queue_ao()

@@ -25,7 +25,7 @@
 	if(!(machine_stat & (BROKEN|NOPOWER)))
 		set_light(2)
 	else
-		set_light(0)
+		kill_light()
 
 /obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
 	if(!istype(G))
@@ -633,7 +633,7 @@
 /obj/machinery/bodyscanner/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_off"
-		set_light(0)
+		kill_light()
 	else
 		var/h_ratio
 		if(occupant)
@@ -653,14 +653,14 @@
 					set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 		else
 			icon_state = "scanner_open"
-			set_light(0)
+			kill_light()
 		if(console)
 			console.update_icon(h_ratio)
 
 /obj/machinery/body_scanconsole/update_icon(var/h_ratio)
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_terminal_off"
-		set_light(0)
+		kill_light()
 	else
 		if(scanner)
 			if(h_ratio)
@@ -679,4 +679,4 @@
 				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_BLUE)
 		else
 			icon_state = "scanner_terminal_off"
-			set_light(0)
+			kill_light()

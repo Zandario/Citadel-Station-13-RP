@@ -94,7 +94,7 @@ CREATE_WALL_MOUNTING_TYPES(/obj/machinery/camera)
 		if(!affected_by_emp_until || (world.time > affected_by_emp_until))
 			affected_by_emp_until = max(affected_by_emp_until, world.time + (90 SECONDS / severity))
 			machine_stat |= EMPED
-			set_light(0)
+			kill_light()
 			triggerCameraAlarm()
 			update_icon()
 			update_coverage()

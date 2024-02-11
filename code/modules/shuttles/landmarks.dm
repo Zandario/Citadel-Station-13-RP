@@ -196,4 +196,4 @@
 	. = ..()
 	if(active)
 		icon_state = "bluflare_on"
-		set_light(0.3, 0.1, 6, 2, "85d1ff")
+		kill_light()

@@ -385,7 +385,7 @@
 						if("helmet")
 							to_chat(M, "<font color=#4F49AF>\The [piece] hisses [is_sealing ? "closed" : "open"].</font>")
 							if(helmet)
-								helmet.update_light(wearer)
+								helmet.update_all_lights(wearer)
 
 					//sealed pieces become airtight, protecting against diseases
 					if (is_sealing)
@@ -886,7 +886,7 @@
 				to_chat(H, "<span class='notice'>Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.</span>")
 
 	if(piece == "helmet" && helmet)
-		helmet.update_light(H)
+		helmet.update_all_lights(H)
 
 /obj/item/hardsuit/proc/deploy(mob/M,var/sealed)
 

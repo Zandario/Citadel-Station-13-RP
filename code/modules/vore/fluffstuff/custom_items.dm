@@ -1307,7 +1307,7 @@
 	if(status==1)
 		set_light(2, 2, lightcolor)
 	else
-		set_light(0)
+		kill_light()
 
 /obj/item/melee/baton/fluff/stunstaff/dropped(mob/user, flags, atom/newLoc)
 	..()

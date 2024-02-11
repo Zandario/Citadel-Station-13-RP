@@ -287,13 +287,13 @@
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) /// Sends a signal that the new atom `src`, has been created at `loc`
 
 	if(light_power && light_range)
-		update_light()
+		set_light()
 
 	SETUP_SMOOTHING()
 
 	if(opacity && isturf(loc))
 		var/turf/T = loc
-		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guranteed to be on afterwards anyways.
+		T.blocks_light = -1 // No need to recalculate it in this case, it's guranteed to be on afterwards anyways.
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -335,8 +335,8 @@
 	LAZYCLEARLIST(overlays)
 	LAZYNULL(managed_overlays)
 
-	if(light)
-		QDEL_NULL(light)
+	if(lighting_overlay)
+		QDEL_NULL(lighting_overlay)
 
 	if(smoothing_flags & SMOOTH_QUEUED)
 		SSicon_smooth.remove_from_queues(src)

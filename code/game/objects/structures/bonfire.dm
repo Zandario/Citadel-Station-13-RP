@@ -222,7 +222,7 @@
 		var/light_strength = max(get_fuel_amount() / 2, 2)
 		set_light(light_strength, light_strength, "#FF9933")
 	else
-		set_light(0)
+		kill_light()
 
 	if(grill)
 		var/image/grille_image = image(icon, "bonfire_grill")
@@ -389,7 +389,7 @@
 		var/light_strength = max(get_fuel_amount() / 2, 2)
 		set_light(light_strength, light_strength, "#FF9933")
 	else
-		set_light(0)
+		kill_light()
 
 /obj/structure/fireplace/process(delta_time)
 	if(!check_oxygen())

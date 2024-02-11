@@ -11,7 +11,7 @@
 	var/wall_type =  /turf/simulated/wall/elevator
 	var/floor_type = /turf/simulated/floor/tiled/dark
 	var/door_type =  /obj/machinery/door/airlock/lift
-	var/light_type =  /obj/machinery/light/no_nightshift
+	var/bulb_type =  /obj/machinery/light/no_nightshift
 
 	var/list/areas_to_use = list()
 
@@ -236,11 +236,11 @@
 	lift.current_floor = lift.floors[1]
 
 	// Place interior lights
-	if(light_type)
+	if(bulb_type)
 		var/turf/placing1 = locate(light_x1, light_y1, uz)
 		var/turf/placing2 = locate(light_x2, light_y2, uz)
-		var/obj/machinery/light/light1 = new light_type(placing1, light)
-		var/obj/machinery/light/light2 = new light_type(placing2, light)
+		var/obj/machinery/light/light1 = new bulb_type(placing1, lighting_overlay)
+		var/obj/machinery/light/light2 = new bulb_type(placing2, lighting_overlay)
 		if(udir == NORTH || udir == SOUTH)
 			light1.setDir(WEST)
 			light2.setDir(EAST)

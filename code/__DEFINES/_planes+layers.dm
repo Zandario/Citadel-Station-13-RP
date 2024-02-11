@@ -262,9 +262,15 @@
  *? Where the lighting (and darkness) lives (ignoring all other higher planes)
  */
 #define LIGHTING_PLANE 9
-#define LIGHTING_LAYER_MAIN 1
 #define LIGHTING_RENDER_TARGET "LIGHTING_PLANE"
 
+#define LIGHTING_LAYER_MAIN     1 //! Base plane layer.
+#define LIGHTING_LAYER_SHADOW   2 //! Base shadow templates.
+#define LIGHTING_LAYER_WALL     3 //! Wall lighting overlays.
+#define LIGHTING_LAYER_FALLOFF  4 //! Light falloff overlay.
+#define LIGHTING_LAYER_SUBTRACT 5 //! Subtractive light layer.
+
+#define ABOVE_LAYER_LIGHTING    6
 
 #define LIGHTING_PLANE_ADDITIVE 10
 

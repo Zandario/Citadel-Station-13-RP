@@ -17,7 +17,7 @@
 	if(status)
 		set_light(1.5, 1, lightcolor)
 	else
-		set_light(0)
+		kill_light()
 
 /obj/item/borg/overdrive
 	name = "overdrive"

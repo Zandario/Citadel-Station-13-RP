@@ -731,7 +731,7 @@
 					//Move the objects. Not forceMove because the object isn't "moving" really, it's supposed to be on the "same" turf.
 					for(var/obj/O in T)
 						O.loc = X
-						O.update_light()
+						O.update_all_lights()
 						if(z_level_change) // The objects still need to know if their z-level changed.
 							O.on_changed_z_level(T.z, X.z)
 

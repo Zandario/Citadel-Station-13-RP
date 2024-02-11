@@ -1,176 +1,118 @@
 /atom/movable/lighting_overlay
-	name = ""
-	anchored = TRUE
-	atom_flags = ATOM_ABSTRACT
-
-	icon = LIGHTING_ICON
-	icon_state = LIGHTING_BASE_ICON_STATE
-
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = LIGHTING_PLANE
 	layer = LIGHTING_LAYER_MAIN
-	color = LIGHTING_BASE_MATRIX
 
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	appearance_flags = KEEP_TOGETHER
+	icon = null
 	invisibility = INVISIBILITY_LIGHTING
-	// simulated = FALSE
+	pixel_x = -WORLD_ICON_SIZE * 2
+	pixel_y = -WORLD_ICON_SIZE * 2
+	glide_size = WORLD_ICON_SIZE
+	blend_mode = BLEND_ADD
+	anchored = TRUE
 
-	var/needs_update = FALSE
+	alpha = 180
 
-	///the turf that our light is applied to
-	var/turf/affected_turf
+	var/current_power = 1
+	var/atom/movable/holder
+	var/point_angle
+	var/list/affecting_turfs = list()
+	var/list/temp_appearance
 
-	var/mutable_appearance/current_appearance
-	var/mutable_appearance/additive_overlay
+/atom/movable/lighting_overlay/New(newholder)
+	holder = newholder
+	if(istype(holder, /atom))
+		var/atom/A = holder
+		light_range = A.light_range
+		light_color = A.light_color
+		light_power = A.light_power
+		light_type  = A.light_type
+		color = light_color
+	..(get_turf(holder))
 
-	#if WORLD_ICON_SIZE != 32
-	transform = matrix(WORLD_ICON_SIZE / 32, 0, (WORLD_ICON_SIZE - 32) / 2, 0, WORLD_ICON_SIZE / 32, (WORLD_ICON_SIZE - 32) / 2)
-	#endif
+/atom/movable/lighting_overlay/Initialize(mapload)
+	. = ..()
+	if(holder)
+		follow_holder()
 
-/atom/movable/lighting_overlay/New(newloc, update_now = FALSE)
-	atom_flags |= ATOM_INITIALIZED
-	SSlighting.total_lighting_overlays += 1
+/atom/movable/lighting_overlay/Destroy()
+	transform = null
+	appearance = null
+	overlays = null
+	temp_appearance = null
 
-	var/turf/T = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
-	T.lighting_overlay = src
-	T.luminosity = 0
+	if(holder)
+		if(holder.lighting_overlay == src)
+			holder.lighting_overlay = null
+		holder = null
+	for(var/turf/T in affecting_turfs)
+		T.lumcount = -1
+		T.affecting_lights -= src
+	affecting_turfs.Cut()
+	. = ..()
 
-	current_appearance = mutable_appearance(LIGHTING_ICON, LIGHTING_BASE_ICON_STATE, LIGHTING_LAYER_MAIN, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
-	additive_overlay = mutable_appearance(LIGHTING_ICON, LIGHTING_BASE_ICON_STATE, LIGHTING_LAYER_MAIN, LIGHTING_PLANE_ADDITIVE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+/**
+ * Applies power value to size (via Scale()) and updates the current rotation (via Turn())
+ * angle for directional lights. This is only ever called before cast_light() so affected turfs
+ * are updated elsewhere.
+ */
+/atom/movable/lighting_overlay/update_transform(newrange)
+	if(!isnull(newrange) && current_power != newrange)
+		current_power = newrange
 
-	if (T.corners && T.corners.len)
-		for (var/datum/lighting_corner/C in T.corners)
-			C.active = TRUE
-
-	if (update_now)
-		update_overlay()
-		needs_update = FALSE
+/**
+ * Orients the light to the holder's (or the holder's holder) current dir.
+ * Also updates rotation for directional lights when appropriate.
+ */
+/atom/movable/lighting_overlay/proc/follow_holder_dir()
+	if(holder.loc.loc && ismob(holder.loc))
+		set_dir(holder.loc.dir)
 	else
-		needs_update = TRUE
-		SSlighting.overlay_queue += src
+		set_dir(holder.dir)
 
-/atom/movable/lighting_overlay/Destroy(force = FALSE)
-	if (!force)
-		return QDEL_HINT_LETMELIVE	// STOP DELETING ME
+/// Moves the light overlay to the holder's turf and updates bleeding values accordingly.
+/atom/movable/lighting_overlay/proc/follow_holder()
+	if(SSlighting.lighting_update_lights)
+		if(holder && holder.loc)
+			follow_holder_dir()
 
-	SSlighting.total_lighting_overlays -= 1
+			if(isturf(holder))
+				forceMove(holder, harderforce = TRUE)
+			else if(holder.loc.loc && ismob(holder.loc))
+				forceMove(holder.loc.loc, harderforce = TRUE)
+			else
+				forceMove(holder.loc, harderforce = TRUE)
 
-	var/turf/T   = loc
-	if (istype(T))
-		T.lighting_overlay = null
-		T.luminosity = 1
-		overlays -= additive_overlay
-
-	return ..()
-
-// This is a macro PURELY so that the if below is actually readable.
-#define ALL_EQUAL ((rr == gr && gr == br && br == ar) && (rg == gg && gg == bg && bg == ag) && (rb == gb && gb == bb && bb == ab))
-
-/atom/movable/lighting_overlay/proc/update_overlay()
-	var/turf/T = loc
-	if (!isturf(T)) // Erm...
-		if (loc)
-			stack_trace("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update_overlay() and got deleted!")
-
-		else
-			stack_trace("A lighting overlay realised it was in nullspace in update_overlay() and got deleted!")
-
-		qdel(src, TRUE)
-		return
-
-	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
-	var/list/corners = T.corners
-	var/datum/lighting_corner/cr = dummy_lighting_corner
-	var/datum/lighting_corner/cg = dummy_lighting_corner
-	var/datum/lighting_corner/cb = dummy_lighting_corner
-	var/datum/lighting_corner/ca = dummy_lighting_corner
-	if (corners)
-		cr = corners[3] || dummy_lighting_corner
-		cg = corners[2] || dummy_lighting_corner
-		cb = corners[4] || dummy_lighting_corner
-		ca = corners[1] || dummy_lighting_corner
-
-	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
-	luminosity = max > 0
-
-	var/rr = cr.cache_r
-	var/rg = cr.cache_g
-	var/rb = cr.cache_b
-
-	var/gr = cg.cache_r
-	var/gg = cg.cache_g
-	var/gb = cg.cache_b
-
-	var/br = cb.cache_r
-	var/bg = cb.cache_g
-	var/bb = cb.cache_b
-
-	var/ar = ca.cache_r
-	var/ag = ca.cache_g
-	var/ab = ca.cache_b
-
-	if(rr + rg + rb + gr + gg + gb + br + bg + bb + ar + ag + ab >= 12)
-		icon_state = LIGHTING_TRANSPARENT_ICON_STATE
-		color = null
-	else if (!luminosity)
-		icon_state = LIGHTING_DARKNESS_ICON_STATE
-		color = null
-	else if (rr == LIGHTING_DEFAULT_TUBE_R && rg == LIGHTING_DEFAULT_TUBE_G && rb == LIGHTING_DEFAULT_TUBE_B && ALL_EQUAL)
-		icon_state = LIGHTING_STATION_ICON_STATE
-		color = null
+			cast_light() // We don't use the subsystem queue for this since it's too slow to prevent shadows not being updated quickly enough.
 	else
-		icon_state = LIGHTING_BASE_ICON_STATE
-		color = list(
-			rr, rg, rb, 0,
-			gr, gg, gb, 0,
-			br, bg, bb, 0,
-			ar, ag, ab, 0,
-			0, 0, 0, 1
-		)
+		SSlighting.init_lights |= src
 
-	if(cr.applying_additive || cg.applying_additive || cb.applying_additive || ca.applying_additive)
-		overlays -= additive_overlay
-		additive_overlay.icon_state = LIGHTING_BASE_ICON_STATE
-		var/a_rr = cr.add_r
-		var/a_rg = cr.add_g
-		var/a_rb = cr.add_b
+/atom/movable/lighting_overlay/proc/set_dir(new_dir)
+	if(dir != new_dir)
+		dir = new_dir
 
-		var/a_gr = cg.add_r
-		var/a_gg = cg.add_g
-		var/a_gb = cg.add_b
+	if(light_type == LIGHT_DIRECTIONAL)
+		switch(dir)
+			if(NORTH)
+				pixel_x = -(world.icon_size * light_range) + world.icon_size / 2
+				pixel_y = 0
+			if(SOUTH)
+				pixel_x = -(world.icon_size * light_range) + world.icon_size / 2
+				pixel_y = -(world.icon_size * light_range) - world.icon_size * light_range + world.icon_size
+			if(EAST)
+				pixel_x = 0
+				pixel_y = -(world.icon_size * light_range) + world.icon_size / 2
+			if(WEST)
+				pixel_x = -(world.icon_size * light_range) - (world.icon_size * light_range) + world.icon_size
+				pixel_y = -(world.icon_size * light_range) + (world.icon_size / 2)
 
-		var/a_br = cb.add_r
-		var/a_bg = cb.add_g
-		var/a_bb = cb.add_b
-
-		var/a_ar = ca.add_r
-		var/a_ag = ca.add_g
-		var/a_ab = ca.add_b
-
-		additive_overlay.color = list(
-			a_rr, a_rg, a_rb, 00,
-			a_gr, a_gg, a_gb, 00,
-			a_br, a_bg, a_bb, 00,
-			a_ar, a_ag, a_ab, 00,
-			00, 00, 00, 01
-		)
-		overlays += additive_overlay
-	else
-		overlays -= additive_overlay
-
-	// If there's a Z-turf above us, update its shadower.
-	if (T.above)
-		if (T.above.shadower)
-			T.above.shadower.copy_lighting(src)
-		else
-			T.above.update_mimic()
-
-#undef ALL_EQUAL
-
-// Variety of overrides so the overlays don't get affected by weird things.
+/atom/movable/lighting_overlay/proc/light_off()
+	alpha = 0
 
 /atom/movable/lighting_overlay/ex_act(severity)
-	SHOULD_CALL_PARENT(FALSE)
-	return
+	. = ..()
+	return FALSE
 
 /atom/movable/lighting_overlay/singularity_act()
 	return
@@ -178,13 +120,13 @@
 /atom/movable/lighting_overlay/singularity_pull()
 	return
 
-/atom/movable/lighting_overlay/singuloCanEat()
-	return FALSE
+/atom/movable/lighting_overlay/blob_act()
+	return
 
-/atom/movable/lighting_overlay/can_fall()
-	return FALSE
-
-// Override here to prevent things accidentally moving around overlays.
-/atom/movable/lighting_overlay/forceMove(atom/destination, harderforce = FALSE)
-	if(QDELING(src))
+/// Override here to prevent things accidentally moving around overlays.
+/atom/movable/lighting_overlay/forceMove(atom/destination, no_tp = FALSE, harderforce = FALSE)
+	if(harderforce)
 		. = ..()
+
+/atom/movable/lighting_overlay/set_light(l_range, l_power, l_color, l_type, fadeout)
+	return

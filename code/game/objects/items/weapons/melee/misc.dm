@@ -290,7 +290,7 @@
 	if(active && flame_intensity)
 		set_light(flame_intensity, flame_intensity, flame_color)
 	else
-		set_light(0)
+		kill_light()
 
 	var/mob/M = loc
 	if(istype(M))
@@ -534,7 +534,7 @@
 	if(active && flame_intensity)
 		set_light(flame_intensity, flame_intensity, flame_color)
 	else
-		set_light(0)
+		kill_light()
 
 	var/mob/M = loc
 	if(istype(M))

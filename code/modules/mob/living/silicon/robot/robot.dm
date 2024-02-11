@@ -54,10 +54,6 @@
 
 	zmm_flags = ZMM_MANGLE_PLANES
 
-	// Wideborgs are offset, but their light shouldn't be. This disables offset because of how the math works (1 is less than 16).
-	light_offset_x = 1
-	light_offset_y = 1
-
 	can_be_antagged = TRUE
 
 	/// Is our integrated light on?
@@ -435,9 +431,9 @@
 	to_chat(usr, "You [lights_on ? "enable" : "disable"] your integrated light.")
 
 	if (lights_on)
-		radio.set_light(integrated_light_power, 2, l_color = get_light_color_for_icontype(), angle = LIGHT_WIDE)
+		radio.set_light(integrated_light_power, 2, l_color = get_light_color_for_icontype())
 	else
-		radio.set_light(0)
+		radio.kill_light()
 
 	updateicon()
 
@@ -819,7 +815,7 @@
 	hands.icon_state = initial(hands.icon_state)
 
 	lights_on = FALSE
-	radio.set_light(0)
+	radio.kill_light()
 
 	notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)

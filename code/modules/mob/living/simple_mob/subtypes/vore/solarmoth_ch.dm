@@ -131,7 +131,7 @@
 
 /mob/living/simple_mob/vore/solarmoth/proc/explode()
 	src.anchored = 0
-	set_light(0)
+	kill_light()
 	if(empulse(src, emp_heavy, emp_med, emp_light, emp_long))
 		qdel(src)
 	return
@@ -218,4 +218,3 @@
 				door.open(1)
 	spawn(100)
 		nospampls = 0
-

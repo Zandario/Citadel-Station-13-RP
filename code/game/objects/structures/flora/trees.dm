@@ -90,7 +90,7 @@
 	density = FALSE
 	icon_state = "[base_icon_state]_stump"
 	cut_overlays() // For the Sif tree and other future glowy trees.
-	set_light(0)
+	kill_light()
 
 /obj/structure/flora/tree/get_description_interaction(mob/user)
 	var/list/results = list()

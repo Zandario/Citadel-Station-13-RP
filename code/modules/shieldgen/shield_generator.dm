@@ -47,7 +47,7 @@
 		set_light(1, 2, "#66FFFF")
 	else
 		icon_state = "generator0"
-		set_light(0)
+		kill_light()
 
 
 /obj/machinery/power/shield_generator/Initialize(mapload)

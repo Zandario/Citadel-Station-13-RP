@@ -207,7 +207,7 @@
 	..()
 	if(machine_stat & NOPOWER)
 		icon_state = "control_off"
-		set_light(0)
+		kill_light()
 	else if(enabled)
 		if(lethal)
 			icon_state = "control_kill"

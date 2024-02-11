@@ -409,8 +409,9 @@
 	// Avoid calling ..() here to avoid setting icon_state twice, which is expensive given how hot this proc is
 	. = smoothing_junction
 
-	if(smoothing_junction != .) //The smoothing changed
-		light?.update()
+	// if(smoothing_junction != .) //The smoothing changed
+	// 	affecting_lights.update()
+	#warn recast
 
 	smoothing_junction = new_junction
 

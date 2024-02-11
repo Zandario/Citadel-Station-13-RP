@@ -78,7 +78,7 @@
 	if(!enabled)
 		if(icon_state_screensaver)
 			add_overlay(icon_state_screensaver)
-		set_light(0)
+		kill_light()
 		return
 	set_light(light_strength)
 	if(active_program)

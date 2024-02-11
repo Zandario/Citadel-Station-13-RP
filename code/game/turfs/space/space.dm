@@ -95,8 +95,8 @@
 		set_ambient_light(COLOR_WHITE)
 		return
 
-	if (TURF_IS_AMBIENT_LIT_UNSAFE(src))
-		clear_ambient_light()
+	// if (TURF_IS_AMBIENT_LIT_UNSAFE(src))
+	// 	clear_ambient_light()
 
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)

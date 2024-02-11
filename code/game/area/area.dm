@@ -242,9 +242,9 @@
 		if(SSlighting.initialized)
 			if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 				if(A.dynamic_lighting)
-					T.lighting_build_overlay()
+					T.update_all_lights()
 				else
-					T.lighting_clear_overlay()
+					T.kill_light()
 		for(var/atom/movable/AM in T)
 			old_area.Exited(AM, A)
 

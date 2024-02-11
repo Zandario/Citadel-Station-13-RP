@@ -66,7 +66,7 @@ var/global/list/grub_machine_overlays = list()
 
 /mob/living/simple_mob/animal/solargrub_larva/death()
 	powermachine.draining = 0
-	set_light(0)
+	kill_light()
 	return ..()
 
 /mob/living/simple_mob/animal/solargrub_larva/Destroy()

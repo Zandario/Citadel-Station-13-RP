@@ -374,7 +374,7 @@
 		set_light(3, 2, "#FF9933")
 		icon_state = "[on_icon]"
 	else
-		set_light(0)
+		kill_light()
 		icon_state = "[off_icon]"
 
 /obj/structure/ashlander/statue

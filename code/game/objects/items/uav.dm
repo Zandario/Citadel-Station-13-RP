@@ -244,7 +244,7 @@
 	state = UAV_OFF
 	update_icon()
 	stop_hover()
-	set_light(0)
+	kill_light()
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	visible_message(SPAN_NOTICE("[nickname] gracefully settles onto the ground."))

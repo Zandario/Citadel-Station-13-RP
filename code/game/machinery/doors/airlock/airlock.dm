@@ -129,7 +129,7 @@ GLOBAL_REAL_VAR(airlock_typecache) = typecacheof(list(
 	var/icon/sparks_overlay
 	var/icon/brace_overlay
 
-	set_light(0)
+	kill_light()
 
 	if(door_color && !(door_color == "none"))
 		var/ikey = "[airlock_type]-[door_color]-color"

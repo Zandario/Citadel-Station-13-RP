@@ -131,8 +131,8 @@
 /turf/simulated/shuttle/floor/alien
 	icon_state = "alienpod1"
 	block_tele = TRUE
-	ambient_light = COLOR_LUMINOL
-	ambient_light_multiplier = 0.6
+	// ambient_light = COLOR_LUMINOL
+	// ambient_light_multiplier = 0.6
 
 /turf/simulated/shuttle/floor/alien/Initialize(mapload)
 	. = ..()

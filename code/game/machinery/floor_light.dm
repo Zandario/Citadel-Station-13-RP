@@ -115,7 +115,7 @@ var/list/floor_light_cache = list()
 	else
 		update_use_power(USE_POWER_OFF)
 		if(light_range || light_power)
-			set_light(0)
+			kill_light()
 
 	active_power_usage = ((light_range + light_power) * 10)
 	update_icon()
@@ -208,4 +208,3 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/changing/prebuilt
 	anchored = TRUE
 	on = FALSE
-

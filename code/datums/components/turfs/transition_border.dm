@@ -256,7 +256,7 @@ CREATE_STANDARD_TURFS(/turf/level_border)
 	initial_gas_mix = ATMOSPHERE_USE_OUTDOORS
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	// so the fullbright overlay doesn't cause issues on the other side
-	lighting_disable_fullbright = TRUE
+	// lighting_disable_fullbright = TRUE
 
 // todo: refactor
 /turf/level_border/Initialize(mapload)

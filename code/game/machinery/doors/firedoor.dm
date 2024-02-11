@@ -478,7 +478,7 @@ GLOBAL_LIST_INIT(firelock_align_types, typecacheof(list(
 /obj/machinery/door/firedoor/update_icon()
 	var/image/lights_overlay
 	cut_overlays()
-	set_light(0)
+	kill_light()
 	var/do_set_light = FALSE
 
 	if(density)
@@ -561,4 +561,3 @@ GLOBAL_LIST_INIT(firelock_align_types, typecacheof(list(
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This one has a resilient glass window, allowing you to see the danger."
 	icon_state = "open"
 	glass = 1
-

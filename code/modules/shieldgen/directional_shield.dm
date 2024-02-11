@@ -156,7 +156,7 @@
 	for(var/obj/effect/directional_shield/S in active_shields)
 		active_shields -= S
 		qdel(S)
-	set_light(0)
+	kill_light()
 	active = FALSE
 
 /obj/item/shield_projector/proc/update_shield_positions()

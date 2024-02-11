@@ -44,7 +44,7 @@ var/list/blobs = list()
 	else
 		name = "inert [base_name]"
 		color = null
-		set_light(0)
+		kill_light()
 
 // Blob tiles are not actually dense so we need Special Code(tm).
 /obj/structure/blob/CanAllowThrough(atom/movable/mover, turf/target)

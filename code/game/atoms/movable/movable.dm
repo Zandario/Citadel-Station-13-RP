@@ -193,7 +193,7 @@
 
 	moveToNullspace()
 	if(un_opaque)
-		un_opaque.recalc_atom_opacity()
+		un_opaque.set_opacity()
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	if(mover in buckled_mobs)

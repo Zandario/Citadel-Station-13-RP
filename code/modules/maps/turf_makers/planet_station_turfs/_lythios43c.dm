@@ -64,8 +64,8 @@ LYTHIOS43C_TURF_CREATE_UN(/turf/simulated/mineral/icerock/floor/ignore_cavegen)
 		return
 	density = FALSE
 	opacity = FALSE
-	recalc_atom_opacity()
-	reconsider_lights()
+	// recalc_atom_opacity()
+	update_all_lights()
 	regenerate_ao()
 	blocks_air = FALSE
 	can_build_into_floor = TRUE
