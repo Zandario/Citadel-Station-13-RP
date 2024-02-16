@@ -6,6 +6,7 @@
 	name = "Overmap-Demo Suttle"
 	music = "music/escape.ogg"
 	icon_state = "shuttle"
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /datum/shuttle/autodock/overmap/overmapdemo
 	name = "Overmap-Demo"
@@ -64,6 +65,7 @@
 	name = "Ferry-Demo Suttle"
 	music = "music/escape.ogg"
 	icon_state = "shuttle"
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /obj/effect/shuttle_landmark/ferrydemo_space
 	name = "Ferry-Demo Space Hover Point"
@@ -97,6 +99,7 @@
 	name = "Multi-Demo Suttle"
 	music = "music/escape.ogg"
 	icon_state = "shuttlegrn"
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /obj/effect/shuttle_landmark/multidemo_start
 	name = "Multi-Demo Starting Point"
@@ -123,6 +126,7 @@
 	name = "Web-Demo Suttle"
 	icon_state = "shuttlered"
 	music = "music/escape.ogg"
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /datum/shuttle/autodock/web_shuttle/webdemo
 	name = "Web-Demo"
