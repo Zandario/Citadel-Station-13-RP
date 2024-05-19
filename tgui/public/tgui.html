@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<!-- Remove with 516 --><meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- Inlined metadata -->
 <meta id="tgui:windowId" content="[tgui:windowId]">
@@ -13,6 +14,7 @@
 (function () {
   // Utility functions
   var hasOwn = Object.prototype.hasOwnProperty;
+  // Remove with 516
   var assign = function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -43,6 +45,14 @@
   // Backwards compatibility
   window.__windowId__ = Byond.windowId;
 
+  // Blink engine version
+  Byond.BLINK = (function () {
+    var groups = navigator.userAgent.match(/Chrome\/(\d+)\./);
+    var majorVersion = groups && groups[1];
+    return majorVersion ? parseInt(majorVersion, 10) : null;
+  })();
+
+  // Remove with 516
   // Trident engine version
   Byond.TRIDENT = (function () {
     var groups = navigator.userAgent.match(/Trident\/(\d+).+?;/i);
@@ -53,11 +63,10 @@
   })();
 
   // Basic checks to detect whether this page runs in BYOND
-  var isByond = (Byond.TRIDENT !== null || window.cef_to_byond)
+  // Remove TRIDENT with 516
+  var isByond = (Byond.TRIDENT !== null || Byond.BLINK !== null || window.cef_to_byond)
     && location.hostname === '127.0.0.1'
     && location.search !== '?external';
-    //As of BYOND 515 the path doesn't seem to include tmp dir anymore if you're trying to open tgui in external browser and looking why it doesn't work
-    //&& location.pathname.indexOf('/tmp') === 0
 
   // Version constants
   Byond.IS_BYOND = isByond;
@@ -73,17 +82,12 @@
   Byond.__callbacks__ = [];
 
   // Reviver for BYOND JSON
-  // IE8: No reviver for you!
-  // See: https://stackoverflow.com/questions/1288962
-  var byondJsonReviver;
-  if (!Byond.IS_LTE_IE8) {
-    byondJsonReviver = function (key, value) {
-      if (typeof value === 'object' && value !== null && value.__number__) {
-        return parseFloat(value.__number__);
-      }
-      return value;
-    };
-  }
+  var byondJsonReviver = function (key, value) {
+    if (typeof value === 'object' && value !== null && value.__number__) {
+      return parseFloat(value.__number__);
+    }
+    return value;
+  };
 
   // Makes a BYOND call.
   // See: https://secure.byond.com/docs/ref/skinparams.html
@@ -137,9 +141,17 @@
     var promise = new window.Promise(function (resolve) {
       Byond.__callbacks__.push(resolve);
     });
-    Byond.call(path, assign({}, params, {
-      callback: 'Byond.__callbacks__[' + index + ']',
-    }));
+    // Remove first half with 516
+    if(Byond.TRIDENT !== null) {
+      Byond.call(path, assign({}, params, {
+        callback: 'Byond.__callbacks__[' + index + ']',
+      }));
+    }
+    else {
+      Byond.call(path, Object.assign({}, params, {
+        callback: 'Byond.__callbacks__[' + index + ']',
+      }));
+    }
     return promise;
   };
 
@@ -183,7 +195,13 @@
       props[propName] = propValue;
     }
     else {
-      assign(props, propName);
+      // Remove first half with 516
+      if (Byond.TRIDENT !== null) {
+        assign(props, propName);
+      }
+      else {
+        Object.assign(props, propName);
+      }
     }
     props.id = id;
     return Byond.call('winset', props);
@@ -207,10 +225,19 @@
       message.payload = JSON.stringify(message.payload);
     }
     // Append an identifying header
-    assign(message, {
-      tgui: 1,
-      window_id: Byond.windowId,
-    });
+    // Remove first half with 516
+    if(Byond.TRIDENT !== null) {
+      assign(message, {
+        tgui: 1,
+        window_id: Byond.windowId,
+      });
+    }
+    else {
+      Object.assign(message, {
+        tgui: 1,
+        window_id: Byond.windowId,
+      });
+    }
     Byond.topic(message);
   };
 
@@ -244,23 +271,10 @@
   var loadedAssetByUrl = {};
 
   var isStyleSheetLoaded = function (node, url) {
-    // Method #1 (works on IE10+)
     var styleSheet = node.sheet;
     if (styleSheet) {
       return styleSheet.rules.length > 0;
     }
-    // Method #2
-    var styleSheets = document.styleSheets;
-    var len = styleSheets.length;
-    for (var i = 0; i < len; i++) {
-      var styleSheet = styleSheets[i];
-      if(styleSheet.href === undefined)
-        continue;
-      if (styleSheet.href.indexOf(url) !== -1) {
-        return styleSheet.rules.length > 0;
-      }
-    }
-    // All methods failed
     return false;
   };
 
@@ -307,10 +321,8 @@
     if (type === 'js') {
       var node = document.createElement('script');
       node.type = 'text/javascript';
-      // IE8: Prefer non-https protocols
-      node.src = Byond.IS_LTE_IE9
-        ? url.replace('https://', 'http://')
-        : url;
+      node.crossOrigin = 'anonymous';
+      node.src = url;
       if (sync) {
         node.defer = true;
       }
@@ -331,10 +343,7 @@
       var node = document.createElement('link');
       node.type = 'text/css';
       node.rel = 'stylesheet';
-      // IE8: Prefer non-https protocols
-      node.href = Byond.IS_LTE_IE9
-        ? url.replace('https://', 'http://')
-        : url;
+      node.href = url;
       // Temporarily set media to something inapplicable
       // to ensure it'll fetch without blocking render
       if (!sync) {
@@ -394,7 +403,7 @@ window.onerror = function (msg, url, line, col, error) {
       else {
         window.onerror.__stack__ = stack;
       }
-      var textProp = Byond.IS_LTE_IE8 ? 'innerText' : 'textContent';
+      var textProp = 'textContent';
       errorStack[textProp] = window.onerror.__stack__;
     }
     // Set window geometry
@@ -509,9 +518,6 @@ window.replaceHtml = function (inline_html) {
       + "<!-- tgui:inline-html-end -->"
   );
 };
-
-// Signal tgui that we're ready to receive updates
-Byond.sendMessage('ready');
 </script>
 
 <style>
@@ -628,6 +634,7 @@ blink {
 <!-- Fatal error container -->
 <div id="FatalError" class="FatalError">
 <div class="FatalError__logo">
+<pre>
 ooooo      ooo     .     .oooooo.    .oooooo..o
 `888b.     `8'   .o8    d8P'  `Y8b  d8P'    `Y8
  8 `88b.    8  .o888oo 888      888 Y88bo.
@@ -635,6 +642,7 @@ ooooo      ooo     .     .oooooo.    .oooooo..o
  8     `88b.8    888   888      888      `"Y88b
  8       `888    888 . `88b    d88' oo     .d8P
 o8o        `8    "888"  `Y8bood8P'  8""88888P'
+</pre>
 </div>
 <marquee class="FatalError__header">
 A fatal exception has occurred at 002B:C562F1B7 in TGUI.
@@ -655,6 +663,11 @@ Nanotrasen (c) 2525-2566
     <div>Please enable Javascript and restart the game.</div>
   </div>
 </noscript>
+
+<script>
+// Signal tgui that we're ready to receive updates
+Byond.sendMessage('ready');
+</script>
 
 </body>
 </html>
