@@ -106,7 +106,7 @@ jobs:
           tag: "latest"
           fileName: "DMCompiler_linux-x64.tar.gz"
           extract: true
-      - run: ./DMCompiler_linux-x64/DMCompiler --suppress-unimplemented goonstation.dme --version=515.1635
+      - run: ./DMCompiler_linux-x64/DMCompiler --suppress-unimplemented citadel.dme --version=515.1635
 
 
   compile_all_maps:
