@@ -225,3 +225,8 @@ libprof.so
 
 # Screenshot tests
 /artifacts
+
+
+# OpenDream stuff
+OpenDream
+citadel.json
