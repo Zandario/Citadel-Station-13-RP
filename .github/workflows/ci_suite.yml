@@ -96,6 +96,7 @@ jobs:
 
 
   odlint:
+    # Written by ZeWaka on behalf of Bingus.
     name: Lint with OpenDream
     runs-on: ubuntu-22.04
     steps:
