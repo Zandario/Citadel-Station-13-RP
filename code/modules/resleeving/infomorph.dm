@@ -85,7 +85,7 @@ var/list/infomorph_emotions = list(
 
 /mob/living/silicon/infomorph/Initialize(mapload, obj/item/sleevecard/SC, name = "Unknown")
 	ASSERT(SC)
-	name = "[initial(name)] ([name])"
+	name = "[initial(src.name)] ([name])"
 	src.forceMove(SC)
 	card = SC
 	sradio = new(src)

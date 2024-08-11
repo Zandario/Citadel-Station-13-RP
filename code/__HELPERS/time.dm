@@ -79,21 +79,21 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 /**
  * Returns 1 if it is the selected month and day.
  */
-/proc/isDay(var/month, var/day)
-	if(isnum(month) && isnum(day))\
+/proc/isDay(month, day)
+	if(isnum(month) && isnum(day))
 		/// Get the current month.
 		var/MM = text2num(time2text(world.timeofday, "MM"))
 		/// Get the current day.
 		var/DD = text2num(time2text(world.timeofday, "DD"))
-		if(month == MM && day == DD)
+		if((month == MM) && (day == DD))
 			return TRUE
-
+	return FALSE
 		// Uncomment this out when debugging!
 		// else
 		// 	return TRUE
 
-/var/next_duration_update = 0
-/var/last_round_duration = 0
+var/global/next_duration_update = 0
+var/global/last_round_duration = 0
 
 /proc/roundduration2text()
 	if(!SSticker.round_start_time)

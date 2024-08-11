@@ -227,10 +227,10 @@
 
 //Funny gimmick, skeletons always seem to wear roman/ancient armour
 /obj/item/necromantic_stone/proc/equip_roman_skeleton(mob/living/carbon/human/H)
-	for(var/obj/item/I in H)
+	// for(var/obj/item/I in H)
 		//H.dropItemtoGround(I) //Just gonna disable this until I figure out what it does.
 
-	var/hat = pick(/obj/item/clothing/head/helmet/roman, /obj/item/clothing/head/helmet/romancent)
+	var/obj/item/clothing/head/helmet/hat = pick(/obj/item/clothing/head/helmet/roman, /obj/item/clothing/head/helmet/romancent)
 	H.equip_to_slot_or_del(new hat(H), SLOT_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/roman(H), SLOT_ID_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roman(H), SLOT_FEET)
