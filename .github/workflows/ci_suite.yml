@@ -94,17 +94,20 @@ jobs:
         run: |
           bash tools/ci/check_misc.sh
 
+
   odlint:
     name: Lint with OpenDream
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup OD
-        run: |
-          bash tools/ci/setup_od.sh
-      - name: Run OD
-        run: |
-          bash tools/ci/run_od.sh
+      - uses: actions/checkout@v4
+      - uses: robinraju/release-downloader@v1.11
+        with:
+          repository: "OpenDreamProject/OpenDream"
+          tag: "latest"
+          fileName: "DMCompiler_linux-x64.tar.gz"
+          extract: true
+      - run: ./DMCompiler_linux-x64/DMCompiler --suppress-unimplemented goonstation.dme --version=515.1635
+
 
   compile_all_maps:
     name: Compile Maps
