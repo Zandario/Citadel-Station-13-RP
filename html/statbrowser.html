@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<head>
+
+<!-- Remove with 516 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!--
 	STATPANEL - In House Citadel Edition (tm)
@@ -13,12 +17,10 @@
 	- does NOT play nicely with tabs with spaces
  -->
 
-<head>
 <title>Stat Browser</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Cache-Control" content="max-age=15; must-revalidate" />
-<link id="goonStyle" rel="stylesheet" type="text/css" href="browserOutput_white.css" media="all" />
+<link id="goonStyle" rel="stylesheet" type="text/css" href="chat_panel_white.css" media="all" />
 
 <!-- FIRST SCRIPT - TGUI NEEDS TO BE ABLE TO CALL THIS FROM OTHER WINDOWS -->
 
@@ -31,10 +33,10 @@
 function set_theme(which) {
 	if (which == "light") {
 		document.body.className = "";
-		set_style_sheet("browserOutput_white");
+		set_style_sheet("chat_panel_white");
 	} else if (which == "dark") {
 		document.body.className = "dark";
-		set_style_sheet("browserOutput");
+		set_style_sheet("chat_panel");
 	}
 }
 
@@ -699,7 +701,7 @@ function transmit_href(action, _data) {
 			assembled += key + "=" + ((_data[key] == undefined)? "1" : _data[key]) + ";"
 		}
 	}
-	window.location.href = "?_src_=stat;act=" + action + ";" + assembled;
+	window.location.href = "byond://?_src_=stat;act=" + action + ";" + assembled;
 }
 
 /// flushes queue
@@ -997,7 +999,7 @@ function draw_tab(tab) {
 				var a = document.createElement("a");
 				a.innerHTML = entry[1];
 				// todo: token
-				a.href = "?_src_=stat;act=stat_click;ref=" + entry[2];
+				a.href = "byond://?_src_=stat;act=stat_click;ref=" + entry[2];
 				tdv.appendChild(a);
 			}
 			tr.appendChild(tdk);

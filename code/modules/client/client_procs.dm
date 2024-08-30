@@ -231,7 +231,7 @@
 	spawn(1)
 		statpanel_boot()
 	// Instantiate tgui panel
-	tgui_panel = new(src, "browseroutput")
+	tgui_panel = new(src, "chat_panel")
 	// Instantiate cutscene system
 	spawn(1)
 		init_cutscene_system()
@@ -617,4 +617,3 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 
 /client/proc/AnnouncePR(announcement)
 	to_chat(src, announcement)
-

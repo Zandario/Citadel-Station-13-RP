@@ -73,10 +73,6 @@ export const Button = (props: ButtonProps) => {
       onClick(e);
     }
   };
-  // IE8: Use "unselectable" because "user-select" doesn't work.
-  if (Byond.IS_LTE_IE8) {
-    rest.unselectable = true;
-  }
   let buttonContent = (
     <div
       className={classes([

@@ -57,7 +57,7 @@
 	if(asset_flush_last_id >= SHORT_REAL_LIMIT)
 		asset_flush_last_id = 0
 	var/timeout_time = world.time + timeout
-	src << browse({"<script>window.location.href="?asset_cache_confirm_arrival=[job]"</script>"}, "window=asset_cache_browser&file=asset_cache_send_verify.htm")
+	src << browse({"<script>window.location.href="byond://?asset_cache_confirm_arrival=[job]"</script>"}, "window=asset_cache_browser&file=asset_cache_send_verify.htm")
 
 	asset_flush_jobs["[job]"] = FALSE
 	while(!asset_flush_jobs["[job]"] && world.time < timeout_time) // Reception is handled in Topic()

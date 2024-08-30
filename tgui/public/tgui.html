@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+<!-- Remove with 516 -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <meta charset="utf-8">
 
 <!-- Inlined metadata -->
 <meta id="tgui:windowId" content="[tgui:windowId]">
 <meta id="tgui:strictMode" content="[tgui:strictMode]">
 
+<title>TGUI</title>
 <!-- Early setup -->
-<script type="text/javascript">
+<script>
 (function () {
   // Utility functions
   var hasOwn = Object.prototype.hasOwnProperty;
+  // Remove with 516
   var assign = function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -43,6 +48,14 @@
   // Backwards compatibility
   window.__windowId__ = Byond.windowId;
 
+  // Blink engine version
+  Byond.BLINK = (function () {
+    var groups = navigator.userAgent.match(/Chrome\/(\d+)\./);
+    var majorVersion = groups && groups[1];
+    return majorVersion ? parseInt(majorVersion, 10) : null;
+  })();
+
+  // Remove with 516
   // Trident engine version
   Byond.TRIDENT = (function () {
     var groups = navigator.userAgent.match(/Trident\/(\d+).+?;/i);
@@ -53,18 +66,13 @@
   })();
 
   // Basic checks to detect whether this page runs in BYOND
-  var isByond = (Byond.TRIDENT !== null || window.cef_to_byond)
+  // Remove TRIDENT with 516
+  var isByond = (Byond.TRIDENT !== null || Byond.BLINK !== null || window.cef_to_byond)
     && location.hostname === '127.0.0.1'
     && location.search !== '?external';
-    //As of BYOND 515 the path doesn't seem to include tmp dir anymore if you're trying to open tgui in external browser and looking why it doesn't work
-    //&& location.pathname.indexOf('/tmp') === 0
 
   // Version constants
   Byond.IS_BYOND = isByond;
-  Byond.IS_LTE_IE8 = Byond.TRIDENT !== null && Byond.TRIDENT <= 4;
-  Byond.IS_LTE_IE9 = Byond.TRIDENT !== null && Byond.TRIDENT <= 5;
-  Byond.IS_LTE_IE10 = Byond.TRIDENT !== null && Byond.TRIDENT <= 6;
-  Byond.IS_LTE_IE11 = Byond.TRIDENT !== null && Byond.TRIDENT <= 7;
 
   // Strict mode flag
   Byond.strictMode = Boolean(Number(parseMetaTag('tgui:strictMode')));
@@ -73,17 +81,12 @@
   Byond.__callbacks__ = [];
 
   // Reviver for BYOND JSON
-  // IE8: No reviver for you!
-  // See: https://stackoverflow.com/questions/1288962
-  var byondJsonReviver;
-  if (!Byond.IS_LTE_IE8) {
-    byondJsonReviver = function (key, value) {
-      if (typeof value === 'object' && value !== null && value.__number__) {
-        return parseFloat(value.__number__);
-      }
-      return value;
-    };
-  }
+  var byondJsonReviver = function (key, value) {
+    if (typeof value === 'object' && value !== null && value.__number__) {
+      return parseFloat(value.__number__);
+    }
+    return value;
+  };
 
   // Makes a BYOND call.
   // See: https://secure.byond.com/docs/ref/skinparams.html
@@ -137,9 +140,17 @@
     var promise = new window.Promise(function (resolve) {
       Byond.__callbacks__.push(resolve);
     });
-    Byond.call(path, assign({}, params, {
-      callback: 'Byond.__callbacks__[' + index + ']',
-    }));
+    // Remove first half with 516
+    if (Byond.TRIDENT !== null) {
+      Byond.call(path, assign({}, params, {
+        callback: 'Byond.__callbacks__[' + index + ']',
+      }));
+    }
+    else {
+      Byond.call(path, Object.assign({}, params, {
+        callback: 'Byond.__callbacks__[' + index + ']',
+      }));
+    }
     return promise;
   };
 
@@ -183,7 +194,14 @@
       props[propName] = propValue;
     }
     else {
-      assign(props, propName);
+      // Remove first half with 516
+      if (Byond.TRIDENT !== null) {
+        assign(props, propName);
+
+      }
+      else {
+        Object.assign(props, propName);
+      }
     }
     props.id = id;
     return Byond.call('winset', props);
@@ -206,11 +224,20 @@
     if (message.payload !== null && message.payload !== undefined) {
       message.payload = JSON.stringify(message.payload);
     }
-    // Append an identifying header
-    assign(message, {
-      tgui: 1,
-      window_id: Byond.windowId,
-    });
+    // Append an identifying heade
+    // Remove first half with 516
+    if (Byond.TRIDENT !== null) {
+      assign(message, {
+        tgui: 1,
+        window_id: Byond.windowId,
+      });
+    }
+    else {
+      Object.assign(message, {
+        tgui: 1,
+        window_id: Byond.windowId,
+      });
+    }
     Byond.topic(message);
   };
 
@@ -244,23 +271,10 @@
   var loadedAssetByUrl = {};
 
   var isStyleSheetLoaded = function (node, url) {
-    // Method #1 (works on IE10+)
     var styleSheet = node.sheet;
     if (styleSheet) {
       return styleSheet.rules.length > 0;
     }
-    // Method #2
-    var styleSheets = document.styleSheets;
-    var len = styleSheets.length;
-    for (var i = 0; i < len; i++) {
-      var styleSheet = styleSheets[i];
-      if(styleSheet.href === undefined)
-        continue;
-      if (styleSheet.href.indexOf(url) !== -1) {
-        return styleSheet.rules.length > 0;
-      }
-    }
-    // All methods failed
     return false;
   };
 
@@ -307,10 +321,8 @@
     if (type === 'js') {
       var node = document.createElement('script');
       node.type = 'text/javascript';
-      // IE8: Prefer non-https protocols
-      node.src = Byond.IS_LTE_IE9
-        ? url.replace('https://', 'http://')
-        : url;
+      node.crossOrigin = 'anonymous';
+      node.src = url;
       if (sync) {
         node.defer = true;
       }
@@ -331,10 +343,7 @@
       var node = document.createElement('link');
       node.type = 'text/css';
       node.rel = 'stylesheet';
-      // IE8: Prefer non-https protocols
-      node.href = Byond.IS_LTE_IE9
-        ? url.replace('https://', 'http://')
-        : url;
+      node.href = url;
       // Temporarily set media to something inapplicable
       // to ensure it'll fetch without blocking render
       if (!sync) {
@@ -394,7 +403,7 @@ window.onerror = function (msg, url, line, col, error) {
       else {
         window.onerror.__stack__ = stack;
       }
-      var textProp = Byond.IS_LTE_IE8 ? 'innerText' : 'textContent';
+      var textProp = 'textContent';
       errorStack[textProp] = window.onerror.__stack__;
     }
     // Set window geometry
@@ -425,7 +434,7 @@ window.onerror = function (msg, url, line, col, error) {
   }
   // Short-circuit further updates
   if (Byond.strictMode) {
-    window.update = function () {};
+    window.update = function () { };
     window.update.queue = [];
   }
   // Prevent default action
@@ -505,114 +514,159 @@ window.replaceHtml = function (inline_html) {
   document.body.insertAdjacentHTML(
     "afterbegin",
     "<!-- tgui:inline-html-start -->"
-      + inline_html
-      + "<!-- tgui:inline-html-end -->"
+    + inline_html
+    + "<!-- tgui:inline-html-end -->"
   );
 };
-
-// Signal tgui that we're ready to receive updates
-Byond.sendMessage('ready');
 </script>
 
 <style>
-/* Blink polyfill, originally authored on /tg/ by @iamgoofball */
-blink {
-  animation: 1s linear infinite condemned-blink-effect;
-}
-
-@keyframes condemned-blink-effect {
-  0% { visibility: hidden; }
-  50% { visibility: hidden; }
-  100% { visibility: visible; }
-}
-
-.FatalError {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 12px;
-  font-size: 12px;
-  font-family: Consolas, monospace;
-  color: #ffffff;
-  background-color: #0000dd;
-  z-index: 1000;
-  overflow: hidden;
-  text-align: center;
-}
-
-.FatalError--visible {
-  display: block !important;
-}
-
-.FatalError__logo {
-  display: inline-block;
-  text-align: left;
-  font-size: 10px;
-  line-height: 12px;
-  position: relative;
-  margin: 16px;
-  top: 0;
-  left: 0;
-  animation:
-    FatalError__rainbow 2s linear infinite alternate,
-    FatalError__shadow 4s linear infinite alternate,
-    FatalError__tfmX 3s infinite alternate,
-    FatalError__tfmY 4s infinite alternate;
-  white-space: pre;
-}
-
-.FatalError__header {
-  margin-top: 12px;
-}
-
-.FatalError__stack {
-  text-align: left;
-  white-space: pre-wrap;
-  word-break: break-all;
-  margin-top: 24px;
-  margin-bottom: 24px;
-}
-
-.FatalError__footer {
-  margin-bottom: 24px;
-}
-
-@keyframes FatalError__rainbow {
-  0% { color: #ff0; }
-  50% { color: #0ff; }
-  100% { color: #f0f; }
-}
-
-@keyframes FatalError__shadow {
-  0% {
-    left: -2px;
-    text-shadow: 4px 0 #f0f;
+  /* Blink polyfill, originally authored on /tg/ by @iamgoofball */
+  blink {
+    animation: 1s linear infinite condemned-blink-effect;
   }
-  50% {
-    left: 0px;
-    text-shadow: 0px 0 #0ff;
-  }
-  100% {
-    left: 2px;
-    text-shadow: -4px 0 #ff0;
-  }
-}
 
-@keyframes FatalError__tfmX {
-  0% { left: 15px; }
-  100% { left: -15px; }
-}
+  @keyframes condemned-blink-effect {
+    0% {
+      visibility: hidden;
+    }
 
-@keyframes FatalError__tfmY {
-  100% { top: -15px; }
-}
+    50% {
+      visibility: hidden;
+    }
+
+    100% {
+      visibility: visible;
+    }
+  }
+
+  .FatalError {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px;
+    font-size: 12px;
+    font-family: Consolas, monospace;
+    color: #ffffff;
+    background-color: #0000dd;
+    z-index: 1000;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .FatalError--visible {
+    display: block !important;
+  }
+
+  .FatalError__logo {
+    display: inline-block;
+    text-align: left;
+    font-size: 10px;
+    line-height: 12px;
+    position: relative;
+    margin: 16px;
+    top: 0;
+    left: 0;
+    animation:
+      FatalError__rainbow 2s linear infinite alternate,
+      FatalError__shadow 4s linear infinite alternate,
+      FatalError__tfmX 3s infinite alternate,
+      FatalError__tfmY 4s infinite alternate;
+    white-space: pre;
+  }
+
+  .FatalError__header {
+    margin-top: 12px;
+    animation: FatalErrorMarquee 60s linear infinite;
+  }
+
+  .FatalError__stack {
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .FatalError__footer {
+    margin-bottom: 24px;
+  }
+
+  @keyframes FatalError__rainbow {
+    0% {
+      color: #ff0;
+    }
+
+    50% {
+      color: #0ff;
+    }
+
+    100% {
+      color: #f0f;
+    }
+  }
+
+  @keyframes FatalError__shadow {
+    0% {
+      left: -2px;
+      text-shadow: 4px 0 #f0f;
+    }
+
+    50% {
+      left: 0px;
+      text-shadow: 0px 0 #0ff;
+    }
+
+    100% {
+      left: 2px;
+      text-shadow: -4px 0 #ff0;
+    }
+  }
+
+  @keyframes FatalError__tfmX {
+    0% {
+      left: 15px;
+    }
+
+    100% {
+      left: -15px;
+    }
+  }
+
+  @keyframes FatalError__tfmY {
+    100% {
+      top: -15px;
+    }
+  }
+
+  @keyframes FatalErrorMarquee {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .NoticeBox {
+    padding: .33em .5em;
+    margin-bottom: .5em;
+    box-shadow: none;
+    font-weight: bold;
+    font-style: italic;
+    color: #000;
+    background-color: #bb9b68;
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 0.8333333333em, rgba(0, 0, 0, 0.1) 0.8333333333em, rgba(0, 0, 0, 0.1) 1.6666666667em)
+  }
 </style>
 
 <!-- tgui:inline-css -->
 </head>
+
 <body>
 
 <!-- tgui:inline-polyfill -->
@@ -627,7 +681,7 @@ blink {
 
 <!-- Fatal error container -->
 <div id="FatalError" class="FatalError">
-<div class="FatalError__logo">
+<pre class="FatalError__logo">
 ooooo      ooo     .     .oooooo.    .oooooo..o
 `888b.     `8'   .o8    d8P'  `Y8b  d8P'    `Y8
  8 `88b.    8  .o888oo 888      888 Y88bo.
@@ -635,26 +689,31 @@ ooooo      ooo     .     .oooooo.    .oooooo..o
  8     `88b.8    888   888      888      `"Y88b
  8       `888    888 . `88b    d88' oo     .d8P
 o8o        `8    "888"  `Y8bood8P'  8""88888P'
-</div>
-<marquee class="FatalError__header">
+</pre>
+<p class="FatalError__header">
 A fatal exception has occurred at 002B:C562F1B7 in TGUI.
 The current application will be terminated.
 Send the copy of the following stack trace to an authorized
 Nanotrasen incident handler at https://github.com/Citadel-Station-13/Citadel-Station-13-RP.
 Thank you for your cooperation.
-</marquee>
+</p>
 <div id="FatalError__stack" class="FatalError__stack"></div>
 <div class="FatalError__footer">
-Nanotrasen (c) 2525-2566
+  Nanotrasen (c) 2525-2566
 </div>
 </div>
 
 <noscript>
-  <div class="NoticeBox">
-    <div>Javascript is required in order to use this interface.</div>
-    <div>Please enable Javascript and restart the game.</div>
-  </div>
+<div class="NoticeBox">
+  <div>Javascript is required in order to use this interface.</div>
+  <div>Please enable Javascript and restart the game.</div>
+</div>
 </noscript>
+
+<script>
+// Signal tgui that we're ready to receive updates
+Byond.sendMessage('ready');
+</script>
 
 </body>
 </html>

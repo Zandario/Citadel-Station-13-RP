@@ -8,7 +8,6 @@ import { clamp01, keyOfMatchingRange, scale } from 'common/math';
 import { BooleanLike, classes } from 'common/react';
 import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 import { DraggableControl } from './DraggableControl';
-import { NumberInput } from './NumberInput';
 
 interface SliderProps extends BoxProps {
   readonly animated?: BooleanLike;
@@ -28,12 +27,6 @@ interface SliderProps extends BoxProps {
 }
 
 export const Slider = (props: SliderProps) => {
-  // IE8: I don't want to support a yet another component on IE8.
-  if (Byond.IS_LTE_IE8) {
-    return (
-      <NumberInput {...props} />
-    );
-  }
   const {
     // Draggable props (passthrough)
     animated,

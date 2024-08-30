@@ -13,13 +13,13 @@ var NanoUtility = function ()
 		// generate a Byond href, combines _urlParameters with parameters
 		generateHref: function (parameters)
 		{
-			var queryString = '?';
+			var queryString = 'byond://?';
 
 			for (var key in _urlParameters)
 			{
 				if (_urlParameters.hasOwnProperty(key))
 				{
-					if (queryString !== '?')
+					if (queryString !== 'byond://?')
 					{
 						queryString += ';';
 					}
@@ -31,7 +31,7 @@ var NanoUtility = function ()
 			{
 				if (parameters.hasOwnProperty(key))
 				{
-					if (queryString !== '?')
+					if (queryString !== 'byond://?')
 					{
 						queryString += ';';
 					}

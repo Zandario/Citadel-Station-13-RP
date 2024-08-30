@@ -193,7 +193,7 @@ window "outputwindow"
 		is-pane = true
 		outer-size = 656x538
 		inner-size = 640x499
-	elem "browseroutput"
+	elem "chat_panel"
 		type = BROWSER
 		pos = 0,0
 		size = 640x456
@@ -309,4 +309,3 @@ window "statwindow"
 		current-tab = "stat_pane_browser,stat_pane_byond"
 		multi-line = false
 		on-tab = ".statswitcher [[*]]"
-
