@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<!-- Remove with 516 -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+<!-- Remove with 516 --><meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
 <!-- Inlined metadata -->
 <meta id="tgui:windowId" content="[tgui:windowId]">
 <meta id="tgui:strictMode" content="[tgui:strictMode]">
 
-<title>TGUI</title>
 <!-- Early setup -->
 <script>
 (function () {
@@ -197,7 +194,6 @@
       // Remove first half with 516
       if (Byond.TRIDENT !== null) {
         assign(props, propName);
-
       }
       else {
         Object.assign(props, propName);
@@ -224,7 +220,7 @@
     if (message.payload !== null && message.payload !== undefined) {
       message.payload = JSON.stringify(message.payload);
     }
-    // Append an identifying heade
+    // Append an identifying header
     // Remove first half with 516
     if (Byond.TRIDENT !== null) {
       assign(message, {
@@ -434,7 +430,7 @@ window.onerror = function (msg, url, line, col, error) {
   }
   // Short-circuit further updates
   if (Byond.strictMode) {
-    window.update = function () { };
+    window.update = function () {};
     window.update.queue = [];
   }
   // Prevent default action
@@ -521,152 +517,120 @@ window.replaceHtml = function (inline_html) {
 </script>
 
 <style>
-  /* Blink polyfill, originally authored on /tg/ by @iamgoofball */
-  blink {
-    animation: 1s linear infinite condemned-blink-effect;
+/* Blink polyfill, originally authored on /tg/ by @iamgoofball */
+blink {
+  animation: 1s linear infinite condemned-blink-effect;
+}
+
+@keyframes condemned-blink-effect {
+  0% { visibility: hidden; }
+  50% { visibility: hidden; }
+  100% { visibility: visible; }
+}
+
+.FatalError {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px;
+  font-size: 12px;
+  font-family: Consolas, monospace;
+  color: #ffffff;
+  background-color: #0000dd;
+  z-index: 1000;
+  overflow: hidden;
+  text-align: center;
+}
+
+.FatalError--visible {
+  display: block !important;
+}
+
+.FatalError__logo {
+  display: inline-block;
+  text-align: left;
+  font-size: 10px;
+  line-height: 12px;
+  position: relative;
+  margin: 16px;
+  top: 0;
+  left: 0;
+  animation:
+    FatalError__rainbow 2s linear infinite alternate,
+    FatalError__shadow 4s linear infinite alternate,
+    FatalError__tfmX 3s infinite alternate,
+    FatalError__tfmY 4s infinite alternate;
+  white-space: pre;
+}
+
+.FatalError__header {
+  margin-top: 12px;
+  animation: FatalErrorMarquee 60s linear infinite;
+}
+
+.FatalError__stack {
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 24px 0;
+}
+
+.FatalError__footer {
+  margin-bottom: 24px;
+}
+
+@keyframes FatalError__rainbow {
+  0% { color: #ff0; }
+  50% { color: #0ff; }
+  100% { color: #f0f; }
+}
+
+@keyframes FatalError__shadow {
+  0% {
+    left: -2px;
+    text-shadow: 4px 0 #f0f;
   }
-
-  @keyframes condemned-blink-effect {
-    0% {
-      visibility: hidden;
-    }
-
-    50% {
-      visibility: hidden;
-    }
-
-    100% {
-      visibility: visible;
-    }
+  50% {
+    left: 0px;
+    text-shadow: 0px 0 #0ff;
   }
-
-  .FatalError {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 12px;
-    font-size: 12px;
-    font-family: Consolas, monospace;
-    color: #ffffff;
-    background-color: #0000dd;
-    z-index: 1000;
-    overflow: hidden;
-    text-align: center;
+  100% {
+    left: 2px;
+    text-shadow: -4px 0 #ff0;
   }
+}
 
-  .FatalError--visible {
-    display: block !important;
-  }
+@keyframes FatalError__tfmX {
+  0% { left: 15px; }
+  100% { left: -15px; }
+}
 
-  .FatalError__logo {
-    display: inline-block;
-    text-align: left;
-    font-size: 10px;
-    line-height: 12px;
-    position: relative;
-    margin: 16px;
-    top: 0;
-    left: 0;
-    animation:
-      FatalError__rainbow 2s linear infinite alternate,
-      FatalError__shadow 4s linear infinite alternate,
-      FatalError__tfmX 3s infinite alternate,
-      FatalError__tfmY 4s infinite alternate;
-    white-space: pre;
-  }
+@keyframes FatalError__tfmY {
+  100% { top: -15px; }
+}
 
-  .FatalError__header {
-    margin-top: 12px;
-    animation: FatalErrorMarquee 60s linear infinite;
-  }
+@keyframes FatalErrorMarquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 
-  .FatalError__stack {
-    text-align: left;
-    white-space: pre-wrap;
-    word-break: break-all;
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-
-  .FatalError__footer {
-    margin-bottom: 24px;
-  }
-
-  @keyframes FatalError__rainbow {
-    0% {
-      color: #ff0;
-    }
-
-    50% {
-      color: #0ff;
-    }
-
-    100% {
-      color: #f0f;
-    }
-  }
-
-  @keyframes FatalError__shadow {
-    0% {
-      left: -2px;
-      text-shadow: 4px 0 #f0f;
-    }
-
-    50% {
-      left: 0px;
-      text-shadow: 0px 0 #0ff;
-    }
-
-    100% {
-      left: 2px;
-      text-shadow: -4px 0 #ff0;
-    }
-  }
-
-  @keyframes FatalError__tfmX {
-    0% {
-      left: 15px;
-    }
-
-    100% {
-      left: -15px;
-    }
-  }
-
-  @keyframes FatalError__tfmY {
-    100% {
-      top: -15px;
-    }
-  }
-
-  @keyframes FatalErrorMarquee {
-    0% {
-      transform: translateX(100%);
-    }
-
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  .NoticeBox {
-    padding: .33em .5em;
-    margin-bottom: .5em;
-    box-shadow: none;
-    font-weight: bold;
-    font-style: italic;
-    color: #000;
-    background-color: #bb9b68;
-    background-image: repeating-linear-gradient(-45deg, transparent, transparent 0.8333333333em, rgba(0, 0, 0, 0.1) 0.8333333333em, rgba(0, 0, 0, 0.1) 1.6666666667em)
-  }
+.NoticeBox {
+  padding: .33em .5em;
+  margin-bottom: .5em;
+  box-shadow: none;
+  font-weight: bold;
+  font-style: italic;
+  color: #000;
+  background-color: #bb9b68;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 0.8333333333em, rgba(0, 0, 0, 0.1) 0.8333333333em, rgba(0, 0, 0, 0.1) 1.6666666667em)
+}
 </style>
 
 <!-- tgui:inline-css -->
 </head>
-
 <body>
 
 <!-- tgui:inline-polyfill -->
@@ -704,10 +668,10 @@ Thank you for your cooperation.
 </div>
 
 <noscript>
-<div class="NoticeBox">
-  <div>Javascript is required in order to use this interface.</div>
-  <div>Please enable Javascript and restart the game.</div>
-</div>
+  <div class="NoticeBox">
+    <div>Javascript is required in order to use this interface.</div>
+    <div>Please enable Javascript and restart the game.</div>
+  </div>
 </noscript>
 
 <script>
