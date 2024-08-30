@@ -410,7 +410,7 @@
 		var/turf/L = get_turf(src)
 		if(!istype(L))
 			return
-		message_admins("[name] exploding in 15 seconds at ([L.x],[L.y],[L.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[L.x];Y=[L.y];Z=[L.z]'>JMP</a>)",0,1)
+		message_admins("[name] exploding in 15 seconds at ([L.x],[L.y],[L.z] - <A HREF='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[L.x];Y=[L.y];Z=[L.z]'>JMP</a>)",0,1)
 		log_game("[name] exploded at ([L.x],[L.y],[L.z])")
 		exploded = 1
 		if(!anchored)

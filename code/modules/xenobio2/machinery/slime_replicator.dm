@@ -111,9 +111,9 @@
 	[core]<br>
 	"}
 		if (core && !(stat & (NOPOWER|BROKEN)))
-			dat += "<A href='?src=\ref[src];action=replicate'>Start the replication process</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=replicate'>Start the replication process</a><BR>"
 		if(core)
-			dat += "<A href='?src=\ref[src];action=eject'>Eject the core</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=eject'>Eject the core</a><BR>"
 	else
 		dat += "Please wait..."
 	var/datum/browser/popup = new(user, "Slime Replicator", "Slime Replicator", src)
@@ -145,4 +145,3 @@
 							/obj/item/stock_parts/matter_bin = 1,
 							/obj/item/stock_parts/micro_laser = 1
 							)
-

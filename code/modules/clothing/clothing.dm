@@ -126,7 +126,7 @@
 /obj/item/clothing/examine_more(mob/user)
 	. = ..()
 	if(user.using_perspective?.eye && get_dist(user.using_perspective?.eye, src) <= 2)
-		. += "From this distance you can determine its <a href='?src=[REF(src)];examine_armor=1'>armor</a> with a close examination."
+		. += "From this distance you can determine its <a href='byond://?src=[REF(src)];examine_armor=1'>armor</a> with a close examination."
 
 /obj/item/clothing/Topic(href, list/href_list)
 	. = ..()

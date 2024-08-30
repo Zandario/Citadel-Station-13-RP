@@ -657,7 +657,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 	for(var/mob/living/silicon/ai/AI in living_mob_list)
 		if(!AI.client)
 			continue
-		to_chat(AI, SPAN_INFO("Your presence is requested at <a href='?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>."))
+		to_chat(AI, SPAN_INFO("Your presence is requested at <a href='byond://?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>."))
 
 /**
  * is request ai available
@@ -1265,7 +1265,7 @@ GLOBAL_VAR_INIT(holopad_connectivity_rebuild_queued, FALSE)
 /obj/effect/overlay/hologram/holopad/ai/examine(mob/user, dist)
 	. = ..()
 	//If you need an ooc_notes copy paste, this is NOT the one to use.
-	. += SPAN_BOLDNOTICE("Character Profile: <a href='?owner=\ref[src];character_profile=1'>\[View\]</a>")
+	. += SPAN_BOLDNOTICE("Character Profile: <a href='byond://?owner=\ref[src];character_profile=1'>\[View\]</a>")
 	if(vored)
 		. += SPAN_WARNING("It seems to have [vored] inside of it!")
 

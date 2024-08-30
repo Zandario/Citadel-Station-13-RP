@@ -145,8 +145,8 @@
  */
 /datum/category_item/player_setup_item/proc/href(datum/preferences/prefs, action, innerhtml, list/params)
 	if(length(params))
-		return "<a href='?src=\ref[src];prefs=\ref[prefs];act=[action];[list2params(params)]'>[innerhtml]</a>"
-	return "<a href='?src=\ref[src];prefs=\ref[prefs];act=[action]'>[innerhtml]</a>"
+		return "<a href='byond://?src=\ref[src];prefs=\ref[prefs];act=[action];[list2params(params)]'>[innerhtml]</a>"
+	return "<a href='byond://?src=\ref[src];prefs=\ref[prefs];act=[action]'>[innerhtml]</a>"
 
 /**
  * encodes href
@@ -155,8 +155,8 @@
  */
 /datum/category_item/player_setup_item/proc/href_simple(datum/preferences/prefs, action, innerhtml, option)
 	if(option)
-		return "<a href='?src=\ref[src];prefs=\ref[prefs];act=[action];[action]=[option]'>[innerhtml]</a>"
-	return "<a href='?src=\ref[src];prefs=\ref[prefs];act=[action]'>[innerhtml]</a>"
+		return "<a href='byond://?src=\ref[src];prefs=\ref[prefs];act=[action];[action]=[option]'>[innerhtml]</a>"
+	return "<a href='byond://?src=\ref[src];prefs=\ref[prefs];act=[action]'>[innerhtml]</a>"
 
 //! warning not all content() procs return a list properly for now
 

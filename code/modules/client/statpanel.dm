@@ -19,7 +19,7 @@
 /client/proc/statpanel_check()
 	if(statpanel_ready)
 		return
-	to_chat(src, SPAN_USERDANGER("Statpanel failed to load, click <a href='?src=[REF(src)];statpanel=reload'>here</a> to reload the panel "))
+	to_chat(src, SPAN_USERDANGER("Statpanel failed to load, click <a href='byond://?src=[REF(src)];statpanel=reload'>here</a> to reload the panel "))
 
 /**
  * boots statpanel up during connect

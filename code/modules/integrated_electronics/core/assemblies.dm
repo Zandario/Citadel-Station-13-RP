@@ -80,7 +80,7 @@
 
 	if(isobserver(user))
 		if(isobserver(user) && ckeys_allowed_to_scan[user.ckey] || IsAdminGhost(user))
-			. += "You can <a href='?src=[REF(src)];ghostscan=1'>scan</a> this circuit."
+			. += "You can <a href='byond://?src=[REF(src)];ghostscan=1'>scan</a> this circuit."
 		ui_interact(user)
 
 /obj/item/electronic_assembly/Bump(atom/AM)

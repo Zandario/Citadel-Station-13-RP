@@ -93,7 +93,7 @@
 	var/constraints = compute_constraints()
 
 	apply_traits(TRUE, pref.pos_traits.Copy() + pref.neu_traits.Copy() + pref.neg_traits.Copy(), available_traits, constraints)
-	
+
 	for(var/path in pref.id_hidden_traits)
 		var/datum/trait/T = all_traits[path]
 		if(!istype(T) || !T.extra_id_info_optional)
@@ -141,12 +141,12 @@
 
 /datum/category_item/player_setup_item/vore/traits/content(datum/preferences/prefs, mob/user, data)
 	. += "<b>Custom Species Name:</b> "
-	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
+	. += "<a href='byond://?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
 	var/datum/species/selected_species = pref.real_species_datum()
 	if(selected_species.selects_bodytype)
 		. += "<b>Icon Base: </b> "
-		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : SPECIES_HUMAN]</a><br>"
+		. += "<a href='byond://?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : SPECIES_HUMAN]</a><br>"
 
 	var/traits_left = pref.max_traits - length(pref.pos_traits) - length(pref.neg_traits)
 	. += "<b>Traits Left:</b> [traits_left >= 0? traits_left : "<font color='red'>[traits_left]</font>"]<br>"
@@ -159,40 +159,40 @@
 		if(points_left < 0 || traits_left < 0 || !pref.custom_species)
 			. += "<span style='color:red;'><b>^ Fix things! ^</b></span><br>"
 
-		. += "<a href='?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
+		. += "<a href='byond://?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.pos_traits)
 			var/datum/trait/trait = positive_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='byond://?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
-		. += "<a href='?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
+		. += "<a href='byond://?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neg_traits)
 			var/datum/trait/trait = negative_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='byond://?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
-		. += "<a href='?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
+		. += "<a href='byond://?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neu_traits)
 			var/datum/trait/trait = neutral_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='byond://?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 	else
-		. += "<a href='?src=\ref[src];add_trait=[ALL_MODE]'>Trait +</a><br>"
+		. += "<a href='byond://?src=\ref[src];add_trait=[ALL_MODE]'>Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neu_traits)
 			var/datum/trait/trait = neutral_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name]</a></li>"
+			. += "<li>- <a href='byond://?src=\ref[src];clicked_neu_trait=[T]'>[trait.name]</a></li>"
 		for(var/T in pref.neg_traits)
 			var/datum/trait/trait = negative_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name]</a></li>"
+			. += "<li>- <a href='byond://?src=\ref[src];clicked_neg_trait=[T]'>[trait.name]</a></li>"
 		. += "</ul>"
 
 	var/list/id_traits = list()
 	for(var/path in pref.pos_traits + pref.neg_traits + pref.neu_traits)
-		var/datum/trait/T = all_traits[path] 
+		var/datum/trait/T = all_traits[path]
 		if(istype(T) && T.extra_id_info)
 			id_traits |= T
 
@@ -201,25 +201,25 @@
 		. += "<ul>"
 		for(var/datum/trait/T in id_traits)
 			if(T.extra_id_info_optional)
-				. += "<li>- <a href='?src=\ref[src];id_info_toggle=[T.type]'>[T.name][(T.type in pref.id_hidden_traits) ? " (HIDDEN)" : ""]</a></li>"
+				. += "<li>- <a href='byond://?src=\ref[src];id_info_toggle=[T.type]'>[T.name][(T.type in pref.id_hidden_traits) ? " (HIDDEN)" : ""]</a></li>"
 			else
 				. += "<li>- [T.name]</li>"
 		. += "</ul>"
 		. += "<br>"
 
 	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
-	. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
-	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
+	. += "<a href='byond://?src=\ref[src];blood_color=1'>Set Color</a>"
+	. += "<a href='byond://?src=\ref[src];blood_reset=1'>R</a><br>"
 	. += "<br>"
 
 	. += "<b>Custom Say: </b>"
-	. += "<a href='?src=\ref[src];custom_say=1'>Set Say Verb</a><br>"
+	. += "<a href='byond://?src=\ref[src];custom_say=1'>Set Say Verb</a><br>"
 	. += "<b>Custom Whisper: </b>"
-	. += "<a href='?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a><br>"
+	. += "<a href='byond://?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a><br>"
 	. += "<b>Custom Ask: </b>"
-	. += "<a href='?src=\ref[src];custom_ask=1'>Set Ask Verb</a><br>"
+	. += "<a href='byond://?src=\ref[src];custom_ask=1'>Set Ask Verb</a><br>"
 	. += "<b>Custom Exclaim: </b>"
-	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a><br>"
+	. += "<a href='byond://?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a><br>"
 
 /datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))

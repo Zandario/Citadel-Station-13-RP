@@ -88,7 +88,7 @@
 		remove_verb(M, /obj/vehicle/sealed/mecha/proc/move_inside_passenger)
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/get_equip_info()
-	return "[..()] <br />[occupant_legacy? "\[Occupant: [occupant_legacy]\]|" : ""]Exterior Hatch: <a href='?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
+	return "[..()] <br />[occupant_legacy? "\[Occupant: [occupant_legacy]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/Topic(href,href_list)
 	..()

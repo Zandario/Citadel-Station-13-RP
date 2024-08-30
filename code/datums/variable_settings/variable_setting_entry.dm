@@ -43,7 +43,7 @@
 
 /datum/variable_setting_entry/proc/ui_html(datum/variable_settings_controller/host, category)
 	. = list()
-	. += "<b>[name]</b><br><a href='?src=[REF(host)];target=[type];set=1;category=[category]'>Set</a> \[[render_value()]\]<br>"
+	. += "<b>[name]</b><br><a href='byond://?src=[REF(host)];target=[type];set=1;category=[category]'>Set</a> \[[render_value()]\]<br>"
 	. += "[desc]"
 	return jointext(., "")
 

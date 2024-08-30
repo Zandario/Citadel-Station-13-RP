@@ -99,7 +99,7 @@
 	if(output)
 		var/temp = ""
 		if(occupant_legacy)
-			temp = "<br />\[Occupant: [occupant_legacy] (Health: [occupant_legacy.integrity]%)\]<br /><a href='?src=\ref[src];view_stats=1'>View stats</a>|<a href='?src=\ref[src];eject=1'>Eject</a>"
+			temp = "<br />\[Occupant: [occupant_legacy] (Health: [occupant_legacy.integrity]%)\]<br /><a href='byond://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond://?src=\ref[src];eject=1'>Eject</a>"
 		return "[output] [temp]"
 	return
 

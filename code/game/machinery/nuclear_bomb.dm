@@ -169,10 +169,10 @@ var/bomb_set
 			return 1
 
 		user.set_machine(src)
-		var/dat = "<TT><B>Nuclear Fission Explosive</B><BR>\nAuth. Disk: <A href='?src=\ref[src];auth=1'>[(auth ? "++++++++++" : "----------")]</A><HR>"
+		var/dat = "<TT><B>Nuclear Fission Explosive</B><BR>\nAuth. Disk: <A href='byond://?src=\ref[src];auth=1'>[(auth ? "++++++++++" : "----------")]</A><HR>"
 		if(auth)
 			if(yes_code)
-				dat += "\n<B>Status</B>: [(timing ? "Func/Set" : "Functional")]-[(safety ? "Safe" : "Engaged")]<BR>\n<B>Timer</B>: [timeleft]<BR>\n<BR>\nTimer: [(timing ? "On" : "Off")] <A href='?src=\ref[src];timer=1'>Toggle</A><BR>\nTime: <A href='?src=\ref[src];time=-10'>-</A> <A href='?src=\ref[src];time=-1'>-</A> [timeleft] <A href='?src=\ref[src];time=1'>+</A> <A href='?src=\ref[src];time=10'>+</A><BR>\n<BR>\nSafety: [(safety ? "On" : "Off")] <A href='?src=\ref[src];safety=1'>Toggle</A><BR>\nAnchor: [(anchored ? "Engaged" : "Off")] <A href='?src=\ref[src];anchor=1'>Toggle</A><BR>\n"
+				dat += "\n<B>Status</B>: [(timing ? "Func/Set" : "Functional")]-[(safety ? "Safe" : "Engaged")]<BR>\n<B>Timer</B>: [timeleft]<BR>\n<BR>\nTimer: [(timing ? "On" : "Off")] <A href='byond://?src=\ref[src];timer=1'>Toggle</A><BR>\nTime: <A href='byond://?src=\ref[src];time=-10'>-</A> <A href='byond://?src=\ref[src];time=-1'>-</A> [timeleft] <A href='byond://?src=\ref[src];time=1'>+</A> <A href='byond://?src=\ref[src];time=10'>+</A><BR>\n<BR>\nSafety: [(safety ? "On" : "Off")] <A href='byond://?src=\ref[src];safety=1'>Toggle</A><BR>\nAnchor: [(anchored ? "Engaged" : "Off")] <A href='byond://?src=\ref[src];anchor=1'>Toggle</A><BR>\n"
 
 			else
 				dat += "\n<B>Status</B>: Auth. S2-[(safety ? "Safe" : "Engaged")]<BR>\n<B>Timer</B>: [timeleft]<BR>\n<BR>\nTimer: [(timing ? "On" : "Off")] Toggle<BR>\nTime: - - [timeleft] + +<BR>\n<BR>\n[(safety ? "On" : "Off")] Safety: Toggle<BR>\nAnchor: [(anchored ? "Engaged" : "Off")] Toggle<BR>\n"
@@ -186,7 +186,7 @@ var/bomb_set
 			message = "[code]"
 			if(yes_code)
 				message = "*****"
-		dat += "<HR>\n>[message]<BR>\n<A href='?src=\ref[src];type=1'>1</A>-<A href='?src=\ref[src];type=2'>2</A>-<A href='?src=\ref[src];type=3'>3</A><BR>\n<A href='?src=\ref[src];type=4'>4</A>-<A href='?src=\ref[src];type=5'>5</A>-<A href='?src=\ref[src];type=6'>6</A><BR>\n<A href='?src=\ref[src];type=7'>7</A>-<A href='?src=\ref[src];type=8'>8</A>-<A href='?src=\ref[src];type=9'>9</A><BR>\n<A href='?src=\ref[src];type=R'>R</A>-<A href='?src=\ref[src];type=0'>0</A>-<A href='?src=\ref[src];type=E'>E</A><BR>\n</TT>"
+		dat += "<HR>\n>[message]<BR>\n<A href='byond://?src=\ref[src];type=1'>1</A>-<A href='byond://?src=\ref[src];type=2'>2</A>-<A href='byond://?src=\ref[src];type=3'>3</A><BR>\n<A href='byond://?src=\ref[src];type=4'>4</A>-<A href='byond://?src=\ref[src];type=5'>5</A>-<A href='byond://?src=\ref[src];type=6'>6</A><BR>\n<A href='byond://?src=\ref[src];type=7'>7</A>-<A href='byond://?src=\ref[src];type=8'>8</A>-<A href='byond://?src=\ref[src];type=9'>9</A><BR>\n<A href='byond://?src=\ref[src];type=R'>R</A>-<A href='byond://?src=\ref[src];type=0'>0</A>-<A href='byond://?src=\ref[src];type=E'>E</A><BR>\n</TT>"
 		user << browse(dat, "window=nuclearbomb;size=300x400")
 		onclose(user, "nuclearbomb")
 	else if(deployable)
@@ -205,7 +205,7 @@ var/bomb_set
 	var/dat
 	dat += "<TT><B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
 	for(var/wire in wires)
-		dat += "[wire] Wire: <A href='?src=\ref[src];wire=[wire];act=wire'>[wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>"
+		dat += "[wire] Wire: <A href='byond://?src=\ref[src];wire=[wire];act=wire'>[wires[wire] ? "Mend" : "Cut"]</A> <A href='byond://?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>"
 	dat += "<HR>The device is [timing ? "shaking!" : "still"]<BR>"
 	dat += "The device is [safety ? "quiet" : "whirring"].<BR>"
 	dat += "The lights are [lighthack ? "static" : "functional"].<BR>"

@@ -19,7 +19,7 @@
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>null</span>"
 
 	else if(IS_APPEARANCE(value))
-		item = "<a href='?_src_=vars;[HrefToken()];[VV_HK_VIEW_APPEARANCE]=[ref(value)]'>[VV_HTML_ENCODE(name)] [ref(value)]</a> = <span class='value'>/appearance</span>"
+		item = "<a href='byond://?_src_=vars;[HrefToken()];[VV_HK_VIEW_APPEARANCE]=[ref(value)]'>[VV_HTML_ENCODE(name)] [ref(value)]</a> = <span class='value'>/appearance</span>"
 
 	else if (istext(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>\"[VV_HTML_ENCODE(value)]\"</span>"
@@ -41,9 +41,9 @@
 	else if (istype(value, /datum))
 		var/datum/DV = value
 		if ("[DV]" != "[DV.type]") //if the thing as a name var, lets use it.
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [DV] [DV.type]"
+			item = "<a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [DV] [DV.type]"
 		else
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [DV.type]"
+			item = "<a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [DV.type]"
 
 	else if (islist(value))
 		var/list/L = value
@@ -65,9 +65,9 @@
 
 				items += debug_variable(key, val, level + 1, sanitize = sanitize)
 
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a><ul>[items.Join()]</ul>"
+			item = "<a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a><ul>[items.Join()]</ul>"
 		else
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
+			item = "<a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
 
 	else if (name in GLOB.bitfields)
 		var/list/flags = list()

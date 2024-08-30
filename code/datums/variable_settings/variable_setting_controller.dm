@@ -61,9 +61,9 @@
 
 /datum/variable_settings_controller/proc/html_render(category = entries_by_category[1])
 	. = list()
-	. += "<a href='?src=[REF(src)];category=[category];preset=1'>Set Preset</a> <a href='?src=[REF(src)];category=[category];reset=1'>Reset Default</a><br>"
+	. += "<a href='byond://?src=[REF(src)];category=[category];preset=1'>Set Preset</a> <a href='byond://?src=[REF(src)];category=[category];reset=1'>Reset Default</a><br>"
 	for(var/cat in entries_by_category)
-		. += "<span class='[(cat == category)? "linkOn" : ""]'><a href='?src=[REF(src)];category=[cat];refresh=1'>[cat]</a></span> "
+		. += "<span class='[(cat == category)? "linkOn" : ""]'><a href='byond://?src=[REF(src)];category=[cat];refresh=1'>[cat]</a></span> "
 	. += "<hr>"
 	for(var/datum/variable_setting_entry/E in entries_by_category[category])
 		. += "<div class='statusDisplay'>[E.ui_html(src, category)]</div>"

@@ -391,7 +391,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(!name)	name = "Character[i]"
 			if(i==default_slot)
 				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[name]</a><br>"
+			dat += "<a href='byond://?src=\ref[src];changeslot=[i]'>[name]</a><br>"
 
 	dat += "<hr>"
 	dat += "</center></tt>"
@@ -419,7 +419,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(!name)	name = "Character[i]"
 			if(i==default_slot)
 				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];overwrite=[i]'>[name]</a><br>"
+			dat += "<a href='byond://?src=\ref[src];overwrite=[i]'>[name]</a><br>"
 
 	dat += "<hr>"
 	dat += "</center></tt>"

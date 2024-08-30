@@ -52,11 +52,11 @@
 	. += attempt_vr(src,"examine_bellies_borg",args)
 
 	if(showvoreprefs && ckey) //ckey so non-controlled mobs don't display it.
-		. += SPAN_BOLDNOTICE("<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
+		. += SPAN_BOLDNOTICE("<a href='byond://?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
 
 	if(print_flavor_text())
 		. += "\n[print_flavor_text()]\n"
-	. += SPAN_BOLDNOTICE("Character Profile: <a href='?src=\ref[src];character_profile=1'>\[View\]</a>")
+	. += SPAN_BOLDNOTICE("Character Profile: <a href='byond://?src=\ref[src];character_profile=1'>\[View\]</a>")
 
 	if(pose)
 		if(findtext(pose, ".", length(pose)) == 0 && findtext(pose, "!", length(pose)) == 0 && findtext(pose, "?", length(pose)) == 0)

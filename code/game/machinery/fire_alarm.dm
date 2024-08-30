@@ -189,31 +189,31 @@ CREATE_WALL_MOUNTING_TYPES_SHIFTED(/obj/machinery/fire_alarm/alarms_hidden, 21)
 		A = A.loc
 
 		if(A.fire)
-			d1 = "<A href='?src=\ref[src];reset=1'>Reset - Lockdown</A>"
+			d1 = "<A href='byond://?src=\ref[src];reset=1'>Reset - Lockdown</A>"
 		else
-			d1 = "<A href='?src=\ref[src];alarm=1'>Alarm - Lockdown</A>"
+			d1 = "<A href='byond://?src=\ref[src];alarm=1'>Alarm - Lockdown</A>"
 		if(timing)
-			d2 = "<A href='?src=\ref[src];time=0'>Stop Time Lock</A>"
+			d2 = "<A href='byond://?src=\ref[src];time=0'>Stop Time Lock</A>"
 		else
-			d2 = "<A href='?src=\ref[src];time=1'>Initiate Time Lock</A>"
+			d2 = "<A href='byond://?src=\ref[src];time=1'>Initiate Time Lock</A>"
 		var/second = round(time) % 60
 		var/minute = (round(time) - second) / 60
-		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Fire alarm</B> [d1]\n<HR>The current alert level is: <b>[get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
+		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Fire alarm</B> [d1]\n<HR>The current alert level is: <b>[get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=firealarm")
 		onclose(user, "firealarm")
 	else
 		A = A.loc
 		if(A.fire)
-			d1 = "<A href='?src=\ref[src];reset=1'>[stars("Reset - Lockdown")]</A>"
+			d1 = "<A href='byond://?src=\ref[src];reset=1'>[stars("Reset - Lockdown")]</A>"
 		else
-			d1 = "<A href='?src=\ref[src];alarm=1'>[stars("Alarm - Lockdown")]</A>"
+			d1 = "<A href='byond://?src=\ref[src];alarm=1'>[stars("Alarm - Lockdown")]</A>"
 		if(timing)
-			d2 = "<A href='?src=\ref[src];time=0'>[stars("Stop Time Lock")]</A>"
+			d2 = "<A href='byond://?src=\ref[src];time=0'>[stars("Stop Time Lock")]</A>"
 		else
-			d2 = "<A href='?src=\ref[src];time=1'>[stars("Initiate Time Lock")]</A>"
+			d2 = "<A href='byond://?src=\ref[src];time=1'>[stars("Initiate Time Lock")]</A>"
 		var/second = round(time) % 60
 		var/minute = (round(time) - second) / 60
-		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Fire alarm")]</B> [d1]\n<HR><b>The current alert level is: [stars(get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
+		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Fire alarm")]</B> [d1]\n<HR><b>The current alert level is: [stars(get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=firealarm")
 		onclose(user, "firealarm")
 	return

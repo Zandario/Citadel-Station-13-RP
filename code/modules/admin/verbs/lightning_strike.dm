@@ -14,7 +14,7 @@
 
 	lightning_strike(get_turf(usr), fake_lightning)
 	log_and_message_admins("[key_name(src)] has caused [fake_lightning ? "cosmetic":"harmful"] lightning to strike at their position ([src.mob.x], [src.mob.y], [src.mob.z]). \
-	(<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.mob.x];Y=[src.mob.y];Z=[src.mob.z]'>JMP</a>)")
+	(<A HREF='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[src.mob.x];Y=[src.mob.y];Z=[src.mob.z]'>JMP</a>)")
 
 /// How far in tiles certain things draw lightning from.
 #define LIGHTNING_REDIRECT_RANGE 28

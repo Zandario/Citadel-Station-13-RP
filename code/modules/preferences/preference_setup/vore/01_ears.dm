@@ -293,14 +293,14 @@
 		else
 			ear_display = "REQUIRES UPDATE"
 	. += "<b>Ears</b><br>"
-	. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear_display]</a><br>"
+	. += " Style: <a href='byond://?src=\ref[src];ear_style=1'>[ear_display]</a><br>"
 	if(rendering)
 		if(rendering.do_colouration)
-			. += "<a href='?src=\ref[src];ear_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_ears, 2)][num2hex(pref.g_ears, 2)][num2hex(pref.b_ears, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_ears, 2)][num2hex(pref.g_ears, 2)][num2hex(pref.b_ears, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='byond://?src=\ref[src];ear_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_ears, 2)][num2hex(pref.g_ears, 2)][num2hex(pref.b_ears, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_ears, 2)][num2hex(pref.g_ears, 2)][num2hex(pref.b_ears, 2)]'><tr><td>__</td></tr></table> </font><br>"
 		if(rendering.extra_overlay)
-			. += "<a href='?src=\ref[src];ear_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_ears2, 2)][num2hex(pref.g_ears2, 2)][num2hex(pref.b_ears2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_ears2, 2)][num2hex(pref.g_ears2, 2)][num2hex(pref.b_ears2, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='byond://?src=\ref[src];ear_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_ears2, 2)][num2hex(pref.g_ears2, 2)][num2hex(pref.b_ears2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_ears2, 2)][num2hex(pref.g_ears2, 2)][num2hex(pref.b_ears2, 2)]'><tr><td>__</td></tr></table> </font><br>"
 		if(rendering.extra_overlay2)
-			. += "<a href='?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(pref.r_ears3, pref.g_ears3, pref.b_ears3)]<br>"
+			. += "<a href='byond://?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(pref.r_ears3, pref.g_ears3, pref.b_ears3)]<br>"
 	rendering = null
 
 	var/horn_display = "Normal"
@@ -311,14 +311,14 @@
 		else
 			horn_display = "REQUIRES UPDATE"
 	. += "<b>Secondary Ears</b><br>"
-	. += " Style: <a href='?src=\ref[src];horn_style=1'>[horn_display]</a><br>"
+	. += " Style: <a href='byond://?src=\ref[src];horn_style=1'>[horn_display]</a><br>"
 	if(rendering)
 		if(rendering.do_colouration)
-			. += "<a href='?src=\ref[src];horn_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_horn, 2)][num2hex(pref.g_horn, 2)][num2hex(pref.b_horn, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_horn, 2)][num2hex(pref.g_horn, 2)][num2hex(pref.b_horn, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='byond://?src=\ref[src];horn_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_horn, 2)][num2hex(pref.g_horn, 2)][num2hex(pref.b_horn, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_horn, 2)][num2hex(pref.g_horn, 2)][num2hex(pref.b_horn, 2)]'><tr><td>__</td></tr></table> </font><br>"
 		if(rendering.extra_overlay)
-			. += "<a href='?src=\ref[src];horn_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_horn2, 2)][num2hex(pref.g_horn2, 2)][num2hex(pref.b_horn2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_horn2, 2)][num2hex(pref.g_horn2, 2)][num2hex(pref.b_horn, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='byond://?src=\ref[src];horn_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_horn2, 2)][num2hex(pref.g_horn2, 2)][num2hex(pref.b_horn2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_horn2, 2)][num2hex(pref.g_horn2, 2)][num2hex(pref.b_horn, 2)]'><tr><td>__</td></tr></table> </font><br>"
 		if(rendering.extra_overlay2)
-			. += "<a href='?src=\ref[src];horn_color3=1'>Change Tertiary Color</a> [color_square(pref.r_horn3, pref.g_horn3, pref.b_horn3)]<br>"
+			. += "<a href='byond://?src=\ref[src];horn_color3=1'>Change Tertiary Color</a> [color_square(pref.r_horn3, pref.g_horn3, pref.b_horn3)]<br>"
 	rendering = null
 
 	var/tail_display = "Normal"
@@ -329,14 +329,14 @@
 		else
 			tail_display = "REQUIRES UPDATE"
 	. += "<b>Tail</b><br>"
-	. += " Style: <a href='?src=\ref[src];tail_style=1'>[tail_display]</a><br>"
+	. += " Style: <a href='byond://?src=\ref[src];tail_style=1'>[tail_display]</a><br>"
 	if(rendering)
 		if(rendering.do_colouration)
-			. += "<a href='?src=\ref[src];tail_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='byond://?src=\ref[src];tail_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'><tr><td>__</td></tr></table> </font><br>"
 		if(rendering.extra_overlay)
-			. += "<a href='?src=\ref[src];tail_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_tail2, 2)][num2hex(pref.g_tail2, 2)][num2hex(pref.b_tail2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_tail2, 2)][num2hex(pref.g_tail2, 2)][num2hex(pref.b_tail2, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='byond://?src=\ref[src];tail_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_tail2, 2)][num2hex(pref.g_tail2, 2)][num2hex(pref.b_tail2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_tail2, 2)][num2hex(pref.g_tail2, 2)][num2hex(pref.b_tail2, 2)]'><tr><td>__</td></tr></table> </font><br>"
 		if(rendering.extra_overlay2)
-			. += "<a href='?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(pref.r_tail3, pref.g_tail3, pref.b_tail3)]<br>"
+			. += "<a href='byond://?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(pref.r_tail3, pref.g_tail3, pref.b_tail3)]<br>"
 	rendering = null
 
 	var/wing_display = "Normal"
@@ -347,17 +347,17 @@
 		else
 			wing_display = "REQUIRES UPDATE"
 	. += "<b>Wing</b><br>"
-	. += " Style: <a href='?src=\ref[src];wing_style=1'>[wing_display]</a><br>"
+	. += " Style: <a href='byond://?src=\ref[src];wing_style=1'>[wing_display]</a><br>"
 	if(rendering)
 		if(rendering.do_colouration)
-			. += "<a href='?src=\ref[src];wing_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_wing, 2)][num2hex(pref.g_wing, 2)][num2hex(pref.b_wing, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_wing, 2)][num2hex(pref.g_wing, 2)][num2hex(pref.b_wing, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='byond://?src=\ref[src];wing_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_wing, 2)][num2hex(pref.g_wing, 2)][num2hex(pref.b_wing, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_wing, 2)][num2hex(pref.g_wing, 2)][num2hex(pref.b_wing, 2)]'><tr><td>__</td></tr></table> </font><br>"
 			. += "<b>Gradient</b><br>"
-			. += "<a href='?src=\ref[src];grad_wingcolor=1'>Change Color</a> [color_square(pref.r_gradwing, pref.g_gradwing, pref.b_gradwing)] "
-			. += " Style: <a href='?src=\ref[src];grad_wingstyle=1'>[pref.grad_wingstyle]</a><br>"
+			. += "<a href='byond://?src=\ref[src];grad_wingcolor=1'>Change Color</a> [color_square(pref.r_gradwing, pref.g_gradwing, pref.b_gradwing)] "
+			. += " Style: <a href='byond://?src=\ref[src];grad_wingstyle=1'>[pref.grad_wingstyle]</a><br>"
 		if(rendering.extra_overlay)
-			. += "<a href='?src=\ref[src];wing_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_wing2, 2)][num2hex(pref.g_wing2, 2)][num2hex(pref.b_wing2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_wing2, 2)][num2hex(pref.g_wing2, 2)][num2hex(pref.b_wing2, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='byond://?src=\ref[src];wing_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_wing2, 2)][num2hex(pref.g_wing2, 2)][num2hex(pref.b_wing2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_wing2, 2)][num2hex(pref.g_wing2, 2)][num2hex(pref.b_wing2, 2)]'><tr><td>__</td></tr></table> </font><br>"
 		if(rendering.extra_overlay2)
-			. += "<a href='?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(pref.r_wing3, pref.g_wing3, pref.b_wing3)]<br>"
+			. += "<a href='byond://?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(pref.r_wing3, pref.g_wing3, pref.b_wing3)]<br>"
 	rendering = null
 
 

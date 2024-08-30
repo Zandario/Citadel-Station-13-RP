@@ -42,7 +42,7 @@
 	dat += "<b>Your date of birth is not saved, only the fact that you are over/under 18 is.</b><BR>"
 	dat += "</center>"
 
-	dat += "<form action='?src=[REF(src)]'>"
+	dat += "<form action='byond://?src=[REF(src)]'>"
 	dat += "<input type='hidden' name='src' value='[REF(src)]'>"
 	dat += HrefTokenFormField()
 	dat += "<select name = 'month'>"

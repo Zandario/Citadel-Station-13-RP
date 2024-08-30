@@ -46,16 +46,16 @@
 			. += "<hr>"
 		last_order = meta.sort_order
 		if(simple)
-			. += "<a href='?src=[REF(src)];strip=slot;id=[id]'>[capitalize(meta.name)]</a><br>"
+			. += "<a href='byond://?src=[REF(src)];strip=slot;id=[id]'>[capitalize(meta.name)]</a><br>"
 		else
 			var/item_known = !(obfuscations & (INV_VIEW_OBFUSCATE_HIDE_ITEM_EXISTENCE | INV_VIEW_OBFUSCATE_HIDE_ITEM_NAME))
 			var/slot_text
 			if(obfuscations & INV_VIEW_OBFUSCATE_HIDE_ITEM_EXISTENCE)
-				slot_text = "<a href='?src=[REF(src)];strip=slot;id=[id]'>obscured</a><br>"
+				slot_text = "<a href='byond://?src=[REF(src)];strip=slot;id=[id]'>obscured</a><br>"
 			else if(obfuscations & INV_VIEW_OBFUSCATE_HIDE_ITEM_NAME)
-				slot_text = "<a href='?src=[REF(src)];strip=slot;id=[id]'>[I? "something" : "nothing"]</a><br>"
+				slot_text = "<a href='byond://?src=[REF(src)];strip=slot;id=[id]'>[I? "something" : "nothing"]</a><br>"
 			else
-				slot_text = "<a href='?src=[REF(src)];strip=slot;id=[id]'>[(I && I.name) || "nothing"]</a><br>"
+				slot_text = "<a href='byond://?src=[REF(src)];strip=slot;id=[id]'>[(I && I.name) || "nothing"]</a><br>"
 			. += "[capitalize(meta.name)]: "
 			. += slot_text
 			if(I && item_known)
@@ -64,7 +64,7 @@
 					// generate hrefs for the options
 					for(var/key in options)
 						var/name = options[key]
-						. += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='?src=[REF(src)];strip=opti;item=[REF(I)];act=[key]'>[name]</a><br>"
+						. += "&nbsp;&nbsp;&nbsp;&nbsp;<a href='byond://?src=[REF(src)];strip=opti;item=[REF(I)];act=[key]'>[name]</a><br>"
 	. += "<hr>"
 
 	// now for hands
@@ -78,7 +78,7 @@
 				else
 					. += "Hand [i]: "
 			var/obj/item/holding = get_held_item_of_index(i)
-			. += "<a href='?src=[REF(src)];strip=hand;id=[i]'>[holding? holding.name : "nothing"]</a><br>"
+			. += "<a href='byond://?src=[REF(src)];strip=hand;id=[i]'>[holding? holding.name : "nothing"]</a><br>"
 		. += "<hr>"
 
 	// now for options
@@ -87,11 +87,11 @@
 		// generate hrefs for the options
 		for(var/key in options)
 			var/name = options[key]
-			. += "<a href='?src=[REF(src)];strip=optm;act=[key]'>[name]</a><br>"
+			. += "<a href='byond://?src=[REF(src)];strip=optm;act=[key]'>[name]</a><br>"
 		. += "<hr>"
 
 	// now for misc
-	. += "<a href='?src=[REF(src)];strip=refresh'>Refresh</a><br>"
+	. += "<a href='byond://?src=[REF(src)];strip=refresh'>Refresh</a><br>"
 
 /mob/proc/attempt_slot_strip(mob/user, slot_id, delay_mod = 1)
 	if(!strip_interaction_prechecks(user))

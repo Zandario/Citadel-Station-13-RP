@@ -363,11 +363,11 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	if(key)
 		if(C?.is_under_stealthmin() && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[REF(C)]'>"
+				. += "<a href='byond://?priv_msg=[REF(C)]'>"
 			. += "Administrator"
 		else
 			if(include_link)
-				. += "<a href='?priv_msg=[REF(ckey)]'>"
+				. += "<a href='byond://?priv_msg=[REF(ckey)]'>"
 			. += key
 		if(!C)
 			. += "\[DC\]"

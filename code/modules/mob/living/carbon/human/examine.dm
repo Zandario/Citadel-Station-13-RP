@@ -451,8 +451,8 @@
 			if(R.fields["name"] == perpname)
 				criminal = R.fields["criminal"]
 
-		. += SPAN_BOLDNOTICE("Criminal status: <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>")
-		. += SPAN_BOLDNOTICE("Security records: <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
+		. += SPAN_BOLDNOTICE("Criminal status: <a href='byond://?src=\ref[src];criminal=1'>\[[criminal]\]</a>")
+		. += SPAN_BOLDNOTICE("Security records: <a href='byond://?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='byond://?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
 
 	if(hasHUD(user,"medical"))
 		var/perpname = name
@@ -470,11 +470,11 @@
 			if (R.fields["name"] == perpname)
 				medical = R.fields["p_stat"]
 
-		. += SPAN_BOLDNOTICE("Physical status: <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>")
-		. += SPAN_BOLDNOTICE("Medical records: <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
+		. += SPAN_BOLDNOTICE("Physical status: <a href='byond://?src=\ref[src];medical=1'>\[[medical]\]</a>")
+		. += SPAN_BOLDNOTICE("Medical records: <a href='byond://?src=\ref[src];medrecord=`'>\[View\]</a> <a href='byond://?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
 
 	if(hasHUD(user,"best"))
-		. += SPAN_BOLDNOTICE("Employment records: <a href='?src=\ref[src];emprecord=`'>\[View\]</a>")
+		. += SPAN_BOLDNOTICE("Employment records: <a href='byond://?src=\ref[src];emprecord=`'>\[View\]</a>")
 
 	if(print_flavor_text())
 		. += "[print_flavor_text()]"
@@ -497,7 +497,7 @@
 		effect.on_examine(.)
 
 	// send signal last so everything else prioritizes above
-	. += SPAN_BOLDNOTICE("Character Profile: <a href='?src=\ref[src];character_profile=1'>\[View\]</a>")
+	. += SPAN_BOLDNOTICE("Character Profile: <a href='byond://?src=\ref[src];character_profile=1'>\[View\]</a>")
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .) //This also handles flavor texts now
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.

@@ -40,11 +40,11 @@
 	//If we get more species we'll probably have to convert this to a dropdown.
 	switch(pref.autohiss_type)
 		if(AUTOHISS_TYPE_NONE,null)
-			. += "<span class='linkOn'><b>None</b></span> <a href='?src=\ref[src];toggle_type_unathi=1'>Unathi</a> <a href='?src=\ref[src];toggle_type_tajaran=1'>Tajaran</a>"
+			. += "<span class='linkOn'><b>None</b></span> <a href='byond://?src=\ref[src];toggle_type_unathi=1'>Unathi</a> <a href='byond://?src=\ref[src];toggle_type_tajaran=1'>Tajaran</a>"
 		if(AUTOHISS_TYPE_UNATHI)
-			. += "<a href='?src=\ref[src];toggle_type_none=1'>None</a> <span class='linkOn'><b>Unathi</b></span> <a href='?src=\ref[src];toggle_type_tajaran=1'>Tajaran</a>"
+			. += "<a href='byond://?src=\ref[src];toggle_type_none=1'>None</a> <span class='linkOn'><b>Unathi</b></span> <a href='byond://?src=\ref[src];toggle_type_tajaran=1'>Tajaran</a>"
 		if(AUTOHISS_TYPE_TAJARAN)
-			. += "<a href='?src=\ref[src];toggle_type_none=1'>None</a> <a href='?src=\ref[src];toggle_type_unathi=1'>Unathi</a> <span class='linkOn'><b>Tajaran</b></span>"
+			. += "<a href='byond://?src=\ref[src];toggle_type_none=1'>None</a> <a href='byond://?src=\ref[src];toggle_type_unathi=1'>Unathi</a> <span class='linkOn'><b>Tajaran</b></span>"
 		else
 			CRASH("Invalid autohiss type preference! '[pref.autohiss]'")
 
@@ -53,11 +53,11 @@
 
 	switch(pref.autohiss)
 		if(AUTOHISS_OFF,null)
-			. += "<span class='linkOn'><b>Off</b></span> <a href='?src=\ref[src];toggle_basic=1'>Basic</a> <a href='?src=\ref[src];toggle_full=1'>Full</a>"
+			. += "<span class='linkOn'><b>Off</b></span> <a href='byond://?src=\ref[src];toggle_basic=1'>Basic</a> <a href='byond://?src=\ref[src];toggle_full=1'>Full</a>"
 		if(AUTOHISS_BASIC)
-			. += "<a href='?src=\ref[src];toggle_off=1'>Off</a> <span class='linkOn'><b>Basic</b></span> <a href='?src=\ref[src];toggle_full=1'>Full</a>"
+			. += "<a href='byond://?src=\ref[src];toggle_off=1'>Off</a> <span class='linkOn'><b>Basic</b></span> <a href='byond://?src=\ref[src];toggle_full=1'>Full</a>"
 		if(AUTOHISS_FULL)
-			. += "<a href='?src=\ref[src];toggle_off=1'>Off</a> <a href='?src=\ref[src];toggle_basic=1'>Basic</a> <span class='linkOn'><b>Full</b></span>"
+			. += "<a href='byond://?src=\ref[src];toggle_off=1'>Off</a> <a href='byond://?src=\ref[src];toggle_basic=1'>Basic</a> <span class='linkOn'><b>Full</b></span>"
 		else
 			CRASH("Invalid autohiss preference! '[pref.autohiss]'")
 

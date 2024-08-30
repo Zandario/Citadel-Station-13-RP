@@ -421,18 +421,18 @@
 
 	var/dat = "<b>[name]</b><br>"
 	if (active)
-		dat += "Generator: <A href='?src=\ref[src];action=disable'>On</A><br>"
+		dat += "Generator: <A href='byond://?src=\ref[src];action=disable'>On</A><br>"
 	else
-		dat += "Generator: <A href='?src=\ref[src];action=enable'>Off</A><br>"
-	dat += "[capitalize(sheet_name)]: [sheets] - <A href='?src=\ref[src];action=eject'>Eject</A><br>"
+		dat += "Generator: <A href='byond://?src=\ref[src];action=enable'>Off</A><br>"
+	dat += "[capitalize(sheet_name)]: [sheets] - <A href='byond://?src=\ref[src];action=eject'>Eject</A><br>"
 	var/stack_percent = round(sheet_left * 100, 1)
 	dat += "Current stack: [stack_percent]% <br>"
-	dat += "Power output: <A href='?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] Watts<A href='?src=\ref[src];action=higher_power'>+</A><br>"
+	dat += "Power output: <A href='byond://?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] Watts<A href='byond://?src=\ref[src];action=higher_power'>+</A><br>"
 	dat += "Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>"
 
 	var/tempstr = "Temperature: [temperature]&deg;C<br>"
 	dat += (overheating)? "<span class='danger'>[tempstr]</span>" : tempstr
-	dat += "<br><A href='?src=\ref[src];action=close'>Close</A>"
+	dat += "<br><A href='byond://?src=\ref[src];action=close'>Close</A>"
 	user << browse("[dat]", "window=port_gen")
 	onclose(user, "port_gen")
 */

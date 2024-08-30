@@ -96,74 +96,74 @@
 	if (chosen == "supermatter")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=supermatter'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=supermatter'>Choose</A>"
 	dat += "<br><font color='#aaa81d'><b>Bananium inserted: </b>[amt_bananium]</font> "
 	if (chosen == "bananium")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=bananium'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=bananium'>Choose</A>"
 	dat += "<br><font color='#8d3d5f'><b>Metallic Hydrogen inserted: </b>[amt_mhydrogen]</font> "
 	if (chosen == "mhydrogen")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=mhydrogen'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=mhydrogen'>Choose</A>"
 	dat += "<br><font color='#8888FF'><b>Durasteel inserted: </b>[amt_durasteel]</font> "
 	if (chosen == "durasteel")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=durasteel'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=durasteel'>Choose</A>"
 	dat += "<br><font color='#375064'><b>Platinum inserted: </b>[amt_platinum]</font> "
 	if (chosen == "platinum")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=platinum'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=platinum'>Choose</A>"
 	dat += "<br><font color='#509edd'><b>Diamond inserted: </b>[amt_diamond]</font> "
 	if (chosen == "diamond")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=diamond'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=diamond'>Choose</A>"
 	dat += "<br><font color='#008800'><b>Uranium inserted: </b>[amt_uranium]</font> "
 	if (chosen == "uranium")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=uranium'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=uranium'>Choose</A>"
 	dat += "<br><font color='#FF8800'><b>Phoron inserted: </b>[amt_phoron]</font> "
 	if (chosen == "phoron")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=phoron'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=phoron'>Choose</A>"
 	dat += "<br><font color='#ffcc00'><b>Gold inserted: </b>[amt_gold]</font> "
 	if (chosen == "gold")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=gold'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=gold'>Choose</A>"
 	dat += "<br><font color='#888888'><b>Silver inserted: </b>[amt_silver]</font> "
 	if (chosen == "silver")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=silver'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=silver'>Choose</A>"
 	dat += "<br><font color='#a86e02'><b>Copper inserted: </b>[amt_copper]</font> "
 	if (chosen == "copper")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=copper'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=copper'>Choose</A>"
 	dat += "<br><font color='#474747'><b>Iron inserted: </b>[amt_iron]</font> "
 	if (chosen == "iron")
 		dat += "chosen"
 	else
-		dat += "<A href='?src=\ref[src];choose=iron'>Choose</A>"
+		dat += "<A href='byond://?src=\ref[src];choose=iron'>Choose</A>"
 
 	dat += "<br><br>Will produce [coinsToProduce] [chosen] coins if enough materials are available.<br>"
 	//dat += "The dial which controls the number of conins to produce seems to be stuck. A technician has already been dispatched to fix this."
-	dat += "<A href='?src=\ref[src];chooseAmt=-10'>-10</A> "
-	dat += "<A href='?src=\ref[src];chooseAmt=-5'>-5</A> "
-	dat += "<A href='?src=\ref[src];chooseAmt=-1'>-1</A> "
-	dat += "<A href='?src=\ref[src];chooseAmt=1'>+1</A> "
-	dat += "<A href='?src=\ref[src];chooseAmt=5'>+5</A> "
-	dat += "<A href='?src=\ref[src];chooseAmt=10'>+10</A> "
+	dat += "<A href='byond://?src=\ref[src];chooseAmt=-10'>-10</A> "
+	dat += "<A href='byond://?src=\ref[src];chooseAmt=-5'>-5</A> "
+	dat += "<A href='byond://?src=\ref[src];chooseAmt=-1'>-1</A> "
+	dat += "<A href='byond://?src=\ref[src];chooseAmt=1'>+1</A> "
+	dat += "<A href='byond://?src=\ref[src];chooseAmt=5'>+5</A> "
+	dat += "<A href='byond://?src=\ref[src];chooseAmt=10'>+10</A> "
 
 	dat += "<br><br>In total this machine produced <font color='green'><b>[newCoins]</b></font> coins."
-	dat += "<br><A href='?src=\ref[src];makeCoins=[1]'>Make coins</A>"
+	dat += "<br><A href='byond://?src=\ref[src];makeCoins=[1]'>Make coins</A>"
 	user << browse("[dat]", "window=mint")
 
 /obj/machinery/mineral/mint/Topic(href, href_list)

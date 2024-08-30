@@ -79,20 +79,20 @@
 /datum/category_item/player_setup_item/general/basic/content(datum/preferences/prefs, mob/user, data)
 	. = list()
 	. += "<b>Name:</b> "
-	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
-	. += "<a href='?src=\ref[src];random_name=1'>Randomize Name</A><br>"
-	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
+	. += "<a href='byond://?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
+	. += "<a href='byond://?src=\ref[src];random_name=1'>Randomize Name</A><br>"
+	. += "<a href='byond://?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
 	. += "<b>Nickname:</b> "
-	. += "<a href='?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
+	. += "<a href='byond://?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
 	. += "<br>"
-	. += "<b>Biological Sex:</b> <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
-	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
-	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
-	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
-	. += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
-	. += "<b>Profile Headshot:</b> <a href='?src=\ref[src];headshot=1'>[pref.headshot_url ? "Set" : "Not Set"]</a><br>"
-	. += "<b>Profile Full Ref:</b> <a href='?src=\ref[src];fullref=1'>[pref.full_ref_url ? "Set" : "Not Set"]</a><br>"
-	. += "<b>Profile Reference:</b> <a href='?src=\ref[src];fullref_toggle=1'>[pref.full_ref_toggle ? "Full Reference" : "Headshot"]</a><br>"
+	. += "<b>Biological Sex:</b> <a href='byond://?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
+	. += "<b>Pronouns:</b> <a href='byond://?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
+	. += "<b>Age:</b> <a href='byond://?src=\ref[src];age=1'>[pref.age]</a><br>"
+	. += "<b>Spawn Point</b>: <a href='byond://?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	. += "<b>OOC Notes:</b> <a href='byond://?src=\ref[src];metadata=1'> Edit </a><br>"
+	. += "<b>Profile Headshot:</b> <a href='byond://?src=\ref[src];headshot=1'>[pref.headshot_url ? "Set" : "Not Set"]</a><br>"
+	. += "<b>Profile Full Ref:</b> <a href='byond://?src=\ref[src];fullref=1'>[pref.full_ref_url ? "Set" : "Not Set"]</a><br>"
+	. += "<b>Profile Reference:</b> <a href='byond://?src=\ref[src];fullref_toggle=1'>[pref.full_ref_toggle ? "Full Reference" : "Headshot"]</a><br>"
 	. = jointext(., null)
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)

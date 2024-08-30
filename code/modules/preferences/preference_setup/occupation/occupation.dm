@@ -47,7 +47,7 @@
 	// user intro
 	. += "<h3>Choose occupation preferences</h3>Unavailable occupations are crossed out.<br>"
 	// script inject for right click
-	. += "<script type='text/javascript'>function setjob(id,lvl) { window.location.href = '?src=\ref[src];act=job;job=' + encodeURIComponent(id) + ';level=' + lvl; return false; }</script>"
+	. += "<script type='text/javascript'>function setjob(id,lvl) { window.location.href = 'byond://?src=\ref[src];act=job;job=' + encodeURIComponent(id) + ';level=' + lvl; return false; }</script>"
 	// grab job-by-department ui cache
 	var/list/ui_data = SSjob.job_pref_ui_cache
 	for(var/faction in ui_data)
@@ -102,14 +102,14 @@
 	. = list()
 	. += "<tr bgcolor='[J.selection_color]'><td width='60%' align='right'>"
 	// left side
-	. += "<a href='?src=[REF(src)];prefs=[REF(prefs)];act=help;help=[J.id]'>\[?\]</a> "
+	. += "<a href='byond://?src=[REF(src)];prefs=[REF(prefs)];act=help;help=[J.id]'>\[?\]</a> "
 	var/rank
 	if((J.title in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND)) || (J.id == JOB_ID_AI))
 		rank = "<b>[J.title]</b>"
 	else
 		rank = "[J.title]"
 	if(length(J.alt_titles))
-		. += "<a href='?src=[REF(src)];prefs=[REF(prefs)];act=title;title=[J.id]'>[prefs.get_job_alt_title_name(J)]</a> "
+		. += "<a href='byond://?src=[REF(src)];prefs=[REF(prefs)];act=title;title=[J.id]'>[prefs.get_job_alt_title_name(J)]</a> "
 	else
 		. += "[rank] "
 	// right side

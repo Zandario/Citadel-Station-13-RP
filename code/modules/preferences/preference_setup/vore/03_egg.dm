@@ -39,7 +39,7 @@ var/XENOMORPH_EGG 	= SPECIES_XENO
 
 /datum/category_item/player_setup_item/vore/egg/content(datum/preferences/prefs, mob/user, data)
 	. += "<br>"
-	. += " Egg Type: <a href='?src=\ref[src];vore_egg_type=1'>[pref.vore_egg_type]</a><br>"
+	. += " Egg Type: <a href='byond://?src=\ref[src];vore_egg_type=1'>[pref.vore_egg_type]</a><br>"
 
 /datum/category_item/player_setup_item/vore/egg/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
