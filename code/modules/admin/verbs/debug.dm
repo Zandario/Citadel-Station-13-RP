@@ -642,6 +642,20 @@
 
 	GLOB.error_cache.show_to(usr)
 
+/datum/admins/proc/allow_browser_inspect()
+	set category = "Debug"
+	set name = "Allow Browser Inspect"
+	set desc = "Allow browser debugging via inspect"
+	if(!check_rights(R_DEBUG))
+		return
+
+	if(owner.byond_version < 516)
+		to_chat(owner, "<span class='warning'>You can only use this on 516!</span>")
+		return
+
+	to_chat(owner, "<span class='info'>You can now right click to use inspect on browsers.</span>")
+	winset(owner, "", "browser-options=byondstorage,find,devtools")
+
 /datum/admins/proc/change_weather()
 	set category = "Debug"
 	set name = "Change Weather"

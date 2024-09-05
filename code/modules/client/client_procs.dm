@@ -186,7 +186,13 @@
 			tell_user = TRUE,
 			immediate = TRUE,
 		)
+
 		return null
+
+	// TODO: Remove with 516
+	if(byond_version >= 516) // Enable 516 compat browser storage mechanisms
+		winset(src, "", "browser-options=byondstorage")
+
 	// pre-connect greeting
 	to_chat(src, "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>")
 	// register in globals

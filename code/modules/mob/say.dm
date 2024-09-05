@@ -170,8 +170,8 @@
 			switch(alert_result)
 				if("Default Language")
 					if(isliving(src))
-						var/mob/living/caller = src
-						return SScharacters.resolve_language_name(caller.default_language)
+						var/mob/living/living_caller = src
+						return SScharacters.resolve_language_name(living_caller.default_language)
 				if("Gibberish")
 					return SScharacters.resolve_language_name(LANGUAGE_GIBBERISH)
 				if("Whoops I made a typo!")
