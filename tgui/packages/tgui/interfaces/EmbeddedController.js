@@ -18,20 +18,6 @@ const logger = createLogger("fuck");
 let primaryRoutes = {};
 
 /**
- * This is an all-in-one replacement for the following NanoUI Templates:
- *  - advanced_airlock_console.tmpl
- *  - docking_airlock_console.tmpl
- *  - door_access_console.tmpl
- *  - escape_pod_console.tmpl
- *  - escape_pod_berth_console.tmpl
- *  - multi_docking_console.tmpl
- *  - phoron_airlock_console.tmpl
- *  - simple_airlock_console.tmpl
- *  - simple_docking_console.tmpl
- *  - simple_docking_console_pod.tmpl -- Funny enough, wasn't used anywhere.
- */
-
-/**
  * Let's cover all of the attributes of `data` for this UI right here.
  * For those unfamiliar with JSDoc syntax, [param] indicates
  * an optional parameter.
