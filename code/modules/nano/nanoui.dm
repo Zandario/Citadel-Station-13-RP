@@ -363,35 +363,30 @@
 
 	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
 
-	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	return {"<!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-		<script type='text/javascript'>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			function receiveUpdateData(jsonString) {
 				// We need both jQuery and NanoStateManager to be able to recieve data
 				// At the moment any data received before those libraries are loaded will be lost
-				if (typeof NanoStateManager != 'undefined' && typeof jQuery != 'undefined') {
+				if (typeof NanoStateManager != 'undefined') {
 					NanoStateManager.receiveUpdateData(jsonString);
 				}
-				//else
-				//{
-				//	alert('browser.recieveUpdateData failed due to jQuery or NanoStateManager being unavailiable.');
-				//}
 			}
 		</script>
 		[head_content]
 	</head>
 	<body scroll=auto data-template-data='[template_data_json]' data-url-parameters='[url_parameters_json]' data-initial-data='[initial_data_json]'>
-		<div id='uiLayout'>
-		</div>
+		<main id='uiLayout'>
+		</main>
 		<noscript>
-			<div id='uiNoScript'>
+			<main id='uiNoScript'>
 				<h2>JAVASCRIPT REQUIRED</h2>
 				<p>Your Internet Explorer's Javascript is disabled (or broken).<br/>
 				Enable Javascript and then open this UI again.</p>
-			</div>
+			</main>
 		</noscript>
 	</body>
 </html>
