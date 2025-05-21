@@ -1,5 +1,5 @@
-<!-- 
-	Interface for cloning computers machines 
+<!--
+	Interface for cloning computers machines
 	See: code/game/machinery/computer/cloning.dm
 -->
 
@@ -22,7 +22,7 @@
 		<span class='bad'>No cloning vats found.</span>
 	{{/if}}
 	</div>
-	
+
 	<!-- Scanner -->
 	<h3>Scanner Functions</h3>
 	<div class='item'>
@@ -86,12 +86,12 @@
 		<div class='item'>
 			<div class='itemLabel'>Save:</div>
 			{{:helper.link('UI + UE', 'disk', {'save_disk' : 'ue'}, data.disk ? null : 'linkOff')}}
-			{{:helper.link('UI', 'disk', {'save_disk' : 'ui'}, data.disk ? null : 'linkOff')}} 
+			{{:helper.link('UI', 'disk', {'save_disk' : 'ui'}, data.disk ? null : 'linkOff')}}
 			{{:helper.link('SE', 'disk', {'save_disk' : 'se'}, data.disk ? null : 'linkOff')}}
 		</div>
 
 		{{:helper.link('Clone', 'play', {'clone' : data.activeRecord.ckey}, data.podsLen ? null : 'linkOff')}}
-		
+
 	{{else}}
 		<div class='item bad'>ERROR: Record not found.</div>
 	{{/if}}
@@ -101,4 +101,4 @@
 	<h3>Confirm Record Deletion</h3>
 	<div class='item'><b>Scan card to confirm.</b></div>
 	{{:helper.link('Cancel', 'cancel', {'menu' : 3})}}
-{{/if}} 
+{{/if}}

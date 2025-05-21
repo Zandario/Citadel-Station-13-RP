@@ -1,7 +1,7 @@
-<!-- 
-Title: Cryo Cell Status UI 
+<!--
+Title: Cryo Cell Status UI
 Used In File(s): \code\game\machinery\cryo.dm
- -->
+-->
 <h3>Cryo Cell Status</h3>
 
 <div class="statusDisplay">
@@ -18,7 +18,7 @@ Used In File(s): \code\game\machinery\cryo.dm
 				<span class="bad">DEAD</span>
 			{{/if}}
 		</div>
-	
+
 		{{if data.occupant.stat < 2}}
 			<div class="line">
 				<div class="statusLabel">Health:</div>
@@ -29,25 +29,25 @@ Used In File(s): \code\game\machinery\cryo.dm
 				{{/if}}
 				<div class="statusValue">{{:helper.round(data.occupant.health)}}</div>
 			</div>
-		
+
 			<div class="line">
 				<div class="statusLabel">=&gt; Brute Damage:</div>
 				{{:helper.displayBar(data.occupant.bruteLoss, 0, data.occupant.maxHealth, 'bad')}}
 				<div class="statusValue">{{:helper.round(data.occupant.bruteLoss)}}</div>
 			</div>
-		
+
 			<div class="line">
 				<div class="statusLabel">=&gt; Resp. Damage:</div>
 				{{:helper.displayBar(data.occupant.oxyLoss, 0, data.occupant.maxHealth, 'bad')}}
 				<div class="statusValue">{{:helper.round(data.occupant.oxyLoss)}}</div>
 			</div>
-		
+
 			<div class="line">
 				<div class="statusLabel">=&gt; Toxin Damage:</div>
 				{{:helper.displayBar(data.occupant.toxLoss, 0, data.occupant.maxHealth, 'bad')}}
 				<div class="statusValue">{{:helper.round(data.occupant.toxLoss)}}</div>
 			</div>
-		
+
 			<div class="line">
 				<div class="statusLabel">=&gt; Burn Severity:</div>
 				{{:helper.displayBar(data.occupant.fireLoss, 0, data.occupant.maxHealth, 'bad')}}
@@ -81,7 +81,7 @@ Used In File(s): \code\game\machinery\cryo.dm
 		Beaker:
 	</div>
 	<div class="itemContent" style="width: 40%;">
-		{{if data.isBeakerLoaded}}		
+		{{if data.isBeakerLoaded}}
 			{{:data.beakerLabel ? data.beakerLabel : '<span class="average">No label</span>'}}<br>
 			{{if data.beakerVolume}}
 				<span class="highlight">{{:data.beakerVolume}} units remaining</span><br>

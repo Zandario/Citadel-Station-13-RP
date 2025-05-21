@@ -6,18 +6,18 @@ Used In File(s): \code\modules\nano\modules\power_monitor.dm
 {{if data.focus}}<span>Sensor selected: {{:data.focus.name}}</span>{{/if}}
 {{if data.map_levels.length > 1}}
 <div style="float: right;">
-    <span style="float: left;">Z Level:&nbsp;</span>
-    {{for data.map_levels }}
-        {{:helper.link(value, null, {'mapZLevel' : value}, null, config.mapZLevel == value ? 'selected' : null)}}
-    {{/for}}
+	<span style="float: left;">Z Level:&nbsp;</span>
+	{{for data.map_levels }}
+		{{:helper.link(value, null, {'mapZLevel' : value}, null, config.mapZLevel == value ? 'selected' : null)}}
+	{{/for}}
 </div>
 {{/if}}
 <div style="float: right; width: 240px;">
-    <span style="float: left;">Zoom Level:&nbsp;</span>
-    <div unselectable="on" class="link zoomLink" data-zoom-level="4">x1.0</div>
-    <div unselectable="on" class="link zoomLink" data-zoom-level="6">x1.5</div>
-    <div unselectable="on" class="link zoomLink" data-zoom-level="8">x2.0</div>
-    <div unselectable="on" class="link zoomLink" data-zoom-level="12">x2.5</div>
+	<span style="float: left;">Zoom Level:&nbsp;</span>
+	<div unselectable="on" class="link zoomLink" data-zoom-level="4">x1.0</div>
+	<div unselectable="on" class="link zoomLink" data-zoom-level="6">x1.5</div>
+	<div unselectable="on" class="link zoomLink" data-zoom-level="8">x2.0</div>
+	<div unselectable="on" class="link zoomLink" data-zoom-level="12">x2.5</div>
 </div>
 <div class='item'>
 	<div class='itemLabel'>Sensors:</div>

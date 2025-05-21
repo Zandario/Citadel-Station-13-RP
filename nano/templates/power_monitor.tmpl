@@ -1,6 +1,6 @@
 {{if data.focus}}
 	<div class="notice" style="height: 22px">
-		{{:helper.link('Show List', 'cancel', { 'clear' : 1})}}   Sensor selected: {{:data.focus.name}} 
+		{{:helper.link('Show List', 'cancel', { 'clear' : 1})}}   Sensor selected: {{:data.focus.name}}
 	</div>
 	{{if data.map_levels.length}}
 		{{:helper.link('Show APCs On Map', 'pin-s', {'showMap' : 1})}}
@@ -93,4 +93,4 @@
 		<b>WARN: No Sensors Detected!</b>
 	{{/for}}
 	</table>
-{{/if}} 
+{{/if}}
