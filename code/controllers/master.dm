@@ -324,7 +324,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	log_world(msg)
 
 	// Set world options.
-	world.set_fps(config_legacy.fps)
+	world.set_fps(Configuration.get_entry(/datum/toml_config_entry/game/fps))
 
 	// Fire initialization toast
 	if(world.system_type == MS_WINDOWS && CONFIG_GET(flag/toast_notification_on_init) && !length(GLOB.clients))

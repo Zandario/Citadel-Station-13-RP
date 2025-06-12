@@ -715,6 +715,7 @@
 #include "code\controllers\toml_config\entries\backend.dm"
 #include "code\controllers\toml_config\entries\game-movement.dm"
 #include "code\controllers\toml_config\entries\game.dm"
+#include "code\controllers\toml_config\entries\server.dm"
 #include "code\datums\ability.dm"
 #include "code\datums\ability_handler.dm"
 #include "code\datums\access.dm"

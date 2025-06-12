@@ -84,10 +84,6 @@ GLOBAL_LIST(topic_status_cache)
 	// shunt redirected world log from Master's init back into world log proper, now that logging has been set up.
 	shunt_redirected_log()
 
-	if(config && config_legacy.server_name != null && config_legacy.server_suffix && world.port > 0)
-		// dumb and hardcoded but I don't care~
-		config_legacy.server_name += " #[(world.port % 1000) / 100]"
-
 	// TODO - Figure out what this is. Can you assign to world.log?
 	// if(config && Configuration.get_entry(/datum/toml_config_entry/backend/logging/toggles/runtime))
 	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
@@ -382,7 +378,7 @@ GLOBAL_LIST(topic_status_cache)
 		return
 
 	// ---Hub title---
-	var/servername = config_legacy?.server_name
+	var/servername = Configuration.get_entry(/datum/toml_config_entry/server/name)
 	var/stationname = station_name()
 	var/defaultstation = (LEGACY_MAP_DATUM) ? (LEGACY_MAP_DATUM).station_name : stationname
 	if(servername || stationname != defaultstation)
@@ -448,11 +444,16 @@ GLOBAL_LIST(topic_status_cache)
 //* Ticklag / FPS *//
 
 /// Set FPS
-/world/proc/set_fps(fps)
+/world/proc/set_fps(new_value = 20)
+	if(new_value <= 0)
+		CRASH("set_fps() called with [new_value] new_value.")
+	if(fps == new_value)
+		return //No change required.
+
 	// This isn't just here to avoid duplicate code.
 	// Setting world.tick_lag is a lot more accurate than setting world.fps.
 	// Do not ever set FPs directly.
-	set_ticklag(10 / fps)
+	set_ticklag(10 / new_value)
 	return world.fps
 
 /// Set ticklag
@@ -571,6 +572,6 @@ GLOBAL_LIST(topic_status_cache)
 		else
 			CRASH("Unsupported platform: [system_type]")
 
-	var/init_result = call(library, "init")()
+	var/init_result = call_ext(library, "init")()
 	if (init_result != "0")
 		CRASH("Error initializing byond-tracy: [init_result]")

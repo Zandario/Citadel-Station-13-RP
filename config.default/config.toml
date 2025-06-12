@@ -22,7 +22,11 @@ whisper = true
 [backend.repository]
 persistence = true
 
+[server]
+name = "Citadel Station 13 RP"
+
 [game]
+fps = 20
 
 [game.movement]
 # Speed players are slowed down to if they are above this when they are walking.

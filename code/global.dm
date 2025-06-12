@@ -52,8 +52,6 @@ var/list/prisonwarped       = list() // List of players already warped.
 var/list/blobstart          = list()
 var/list/ninjastart         = list()
 
-var/datum/configuration_legacy/config_legacy      = null
-
 var/list/combatlog = list()
 var/list/IClog     = list()
 var/list/OOClog    = list()

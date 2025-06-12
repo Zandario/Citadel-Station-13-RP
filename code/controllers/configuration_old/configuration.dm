@@ -1,11 +1,13 @@
+var/datum/configuration_legacy/config_legacy
+
 /proc/load_configuration()
 	config_legacy = new /datum/configuration_legacy()
 	config_legacy.load("config/legacy/config.txt")
 	config_legacy.load("config/legacy/game_options.txt","game_options")
 
 /datum/configuration_legacy
-	var/server_name = null				// server name (for world name / status)
-	var/server_suffix = 0				// generate numeric suffix based on server port
+	var/serverurl
+	var/server
 
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/ert_admin_call_only = 0
@@ -24,7 +26,6 @@
 	var/objectives_disabled = 0 			//if objectives are disabled or not
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
 	var/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
-	var/fps = 20
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
 	var/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
 	var/list/mode_names = list()
@@ -71,8 +72,6 @@
 	var/debugparanoid = 0
 	var/paranoia_logging = 0
 
-	var/serverurl
-	var/server
 	var/banappeals
 	var/wikiurl
 	var/wikisearchurl
@@ -270,12 +269,6 @@
 				if ("respawn_message")
 					config_legacy.respawn_message = value
 
-				if ("servername")
-					config_legacy.server_name = value
-
-				if ("serversuffix")
-					config_legacy.server_suffix = 1
-
 				if ("hostedby")
 					config_legacy.hostedby = value
 
@@ -394,11 +387,6 @@
 
 				if("allow_holidays")
 					Holiday = 1
-
-				if("ticklag")
-					var/ticklag = text2num(value)
-					if(ticklag > 0)
-						fps = 10 / ticklag
 
 				if("allow_antag_hud")
 					config_legacy.antag_hud_allowed = 1
