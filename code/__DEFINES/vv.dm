@@ -156,3 +156,6 @@
 #define VV_HK_ID_MOD "id_mod"
 
 #define VV_HK_WEAKREF_RESOLVE "weakref_resolve"
+
+/// ALWAYS render a reduced list, useful for fuckoff big datums that need to be condensed for the sake of client load
+#define VV_ALWAYS_CONTRACT_LIST (1<<0)
