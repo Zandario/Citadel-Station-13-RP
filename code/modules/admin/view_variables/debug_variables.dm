@@ -1,5 +1,8 @@
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
-/proc/debug_variable(name, value, level, datum/D, sanitize = TRUE)			//if D is a list, name will be index, and value will be assoc value.
+/**
+ * Generates a debug variable entry for the given name and value.
+ */
+/proc/debug_variable(name, value, level, datum/D, sanitize = TRUE, display_flags = NONE) as text //if D is a list, name will be index, and value will be assoc value.
 	var/header
 	if(D)
 		if(islist(D))
@@ -99,7 +102,11 @@
 		for (var/i in GLOB.bitfields[name])
 			if (value & GLOB.bitfields[name][i])
 				flags += i
+			if(length(flags))
+		if(length(flags))
 			item = "[name_part] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
+		else
+			item = "[name_part] = NONE"
 	else
 		item = "[name_part] = <span class='value'>[VV_HTML_ENCODE(value)]</span>"
 
