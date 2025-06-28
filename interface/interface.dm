@@ -3,15 +3,18 @@
 	set name = "wiki"
 	set desc = "Type what you want to know about.  This will open the wiki on your web browser."
 	set category = VERB_CATEGORY_OOC
-	if(config_legacy.wikiurl)
+
+	var/wiki_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/wiki)
+	if(wiki_url)
 		if(query)
-			if(config_legacy.wikisearchurl)
-				var/output = replacetext(config_legacy.wikisearchurl, "%s", url_encode(query))
+			var/wiki_search_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/wiki_search)
+			if(wiki_search_url)
+				var/output = replacetext(wiki_search_url, "%s", url_encode(query))
 				src << link(output)
 			else
 				to_chat(src, SPAN_WARNING("The wiki search URL is not set in the server configuration."))
 		else
-			src << link(config_legacy.wikiurl)
+			src << link(wiki_url)
 	else
 		to_chat(src, SPAN_WARNING("The wiki URL is not set in the server configuration."))
 		return
@@ -20,10 +23,12 @@
 	set name = "forum"
 	set desc = "Visit the forum."
 	set hidden = 1
-	if( config_legacy.forumurl )
+
+	var/forum_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/forum)
+	if(forum_url)
 		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config_legacy.forumurl)
+		src << link(forum_url)
 	else
 		to_chat(src, SPAN_WARNING("The forum URL is not set in the server configuration."))
 		return
@@ -33,10 +38,11 @@
 	set desc = "Show Server Rules."
 	set hidden = 1
 
-	if(config_legacy.rulesurl)
+	var/rules_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/rules)
+	if(rules_url)
 		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config_legacy.rulesurl)
+		src << link(rules_url)
 	else
 		to_chat(src, SPAN_DANGER("The rules URL is not set in the server configuration."))
 	return
@@ -46,10 +52,11 @@
 	set desc = "See the map."
 	set hidden = 1
 
-	if(config_legacy.mapurl)
+	var/map_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/map)
+	if(map_url)
 		if(alert("This will open the map in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config_legacy.mapurl)
+		src << link(map_url)
 	else
 		to_chat(src, SPAN_DANGER("The map URL is not set in the server configuration."))
 	return
@@ -59,10 +66,10 @@
 	set desc = "Visit the GitHub"
 	set hidden = 1
 
-	if(CONFIG_GET(string/githuburl))
+	if(Configuration.get_entry(/datum/toml_config_entry/server/urls/discord))
 		if(alert("This will open the GitHub in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(CONFIG_GET(string/githuburl))
+		src << link(Configuration.get_entry(/datum/toml_config_entry/server/urls/discord))
 	else
 		to_chat(src, SPAN_DANGER("The GitHub URL is not set in the server configuration."))
 	return
@@ -71,7 +78,7 @@
 	set name = "report-issue"
 	set desc = "Report an issue"
 	set hidden = 1
-	var/githuburl = CONFIG_GET(string/githuburl)
+	var/githuburl = Configuration.get_entry(/datum/toml_config_entry/server/urls/discord)
 	if(githuburl)
 		var/message = "This will open the Github issue reporter in your browser. Are you sure?"
 		if(GLOB.revdata.testmerge.len)

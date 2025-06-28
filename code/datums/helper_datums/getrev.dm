@@ -51,7 +51,7 @@
 		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
 		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.holder))
 			continue
-		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
+		. += "<a href=\"[Configuration.get_entry(/datum/toml_config_entry/server/urls/discord)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
 
 /client/verb/showrevinfo()
 	set category = VERB_CATEGORY_OOC
@@ -72,7 +72,7 @@
 	msg += "<b>Server revision compiled on:</b> [revdata.date]"
 	var/pc = revdata.originmastercommit
 	if(pc)
-		msg += "Master commit: <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+		msg += "Master commit: <a href=\"[Configuration.get_entry(/datum/toml_config_entry/server/urls/discord)]/commit/[pc]\">[pc]</a>"
 	if(revdata.testmerge.len)
 		msg += revdata.GetTestMergeInfo()
 	if(revdata.commit && revdata.commit != revdata.originmastercommit)

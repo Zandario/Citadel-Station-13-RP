@@ -7,14 +7,6 @@
 
 	//? UNSORTED
 
-	///? SERVER STUFF
-	var/banappeals
-	var/wikiurl
-	var/wikisearchurl
-	var/forumurl
-	var/rulesurl
-	var/mapurl
-
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/ert_admin_call_only = 0
 	var/allow_vote_mode = 0				// allow votes to change mode
@@ -281,24 +273,6 @@
 
 				if ("respawn_message")
 					config_legacy.respawn_message = value
-
-				if ("banappeals")
-					config_legacy.banappeals = value
-
-				if ("wikiurl")
-					config_legacy.wikiurl = value
-
-				if ("wikisearchurl")
-					config_legacy.wikisearchurl = value
-
-				if ("forumurl")
-					config_legacy.forumurl = value
-
-				if ("rulesurl")
-					config_legacy.rulesurl = value
-
-				if ("mapurl")
-					config_legacy.mapurl = value
 
 				if ("guest_jobban")
 					config_legacy.guest_jobban = 1

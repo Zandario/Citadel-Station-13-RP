@@ -10,8 +10,9 @@ var/savefile/Banlist
 
 	. = list()
 	var/appeal
-	if(config && config_legacy.banappeals)
-		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[config_legacy.banappeals]'>[config_legacy.banappeals]</a>"
+	var/appeal_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/ban_appeals)
+	if(config && appeal_url)
+		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[appeal_url]'>[appeal_url]</a>"
 	Banlist.cd = "/base"
 	if( "[ckey][id]" in Banlist.dir )
 		Banlist.cd = "[ckey][id]"

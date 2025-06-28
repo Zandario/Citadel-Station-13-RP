@@ -49,7 +49,7 @@
 		//ban their computer_id and ckey for posterity
 		AddBan(ckey, computer_id, "Use of ToR", "Automated Ban", 0, 0)
 		key_cache[key] = 0
-		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [config_legacy.banappeals]")
+		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [Configuration.get_entry(/datum/toml_config_entry/server/urls/ban_appeals)]")
 
 
 	if(config_legacy.ban_legacy_system)

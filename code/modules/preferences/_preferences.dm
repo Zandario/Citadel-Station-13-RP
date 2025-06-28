@@ -331,8 +331,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!istype(user, /mob/new_player))	return
 
 	if(href_list["preference"] == "open_whitelist_forum")
-		if(config_legacy.forumurl)
-			user << link(config_legacy.forumurl)
+		var/forum_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/forum)
+		if(forum_url)
+			user << link(forum_url)
 		else
 			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
 			return

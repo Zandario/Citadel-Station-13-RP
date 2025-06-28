@@ -42,3 +42,13 @@ dsay = true
 name = "Citadel Station 13 RP"
 address = "localhost"
 port = 1337
+
+[server.urls]
+ban_appeals = ""
+wiki = "https://citadel-station.net/wikiRP/index.php"
+wiki_search = "https://citadel-station.net/wikiRP/index.php?title="
+rules = ""
+forum = ""
+discord = ""
+github = ""
+map = ""

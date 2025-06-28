@@ -209,25 +209,6 @@ GUEST_BAN
 ## Uncomment to 1 to jobban, leave commented out to allow these positions for everyone (but see GUEST_JOBBAN above and regular jobbans)
 # USEWHITELIST
 
-## set a server location for world reboot. Don't include the byond://, just give the address and port.
-#SERVER server.net:port
-
-## forum address
-# FORUMURL http://example.com
-
-## Wiki address
-WIKIURL https://citadel-station.net/wiki_rp/index.php?title=Main_Page
-
-## Wiki search path
-## Set this to whatever path your wiki uses to search for articles
-## Use %s to mark where the search query should be inserted
-WIKISEARCHURL https://citadel-station.net/wiki_rp/index.php?search=%s&title=Special%3ASearch&go=Go
-
-## GitHub address
-# GITHUBURL https://github.com/example-user/example-repository
-## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-# BANAPPEALS http://example.com
-
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
 # FEATURE_OBJECT_SPELL_SYSTEM

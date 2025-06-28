@@ -209,7 +209,7 @@
         "dm_version" = DM_VERSION,
         "dm_build" = DM_BUILD,
         "revision" = revdata.commit,
-        "testmerge_base_url" = "[CONFIG_GET(string/githuburl)]/pull/"
+        "testmerge_base_url" = "[Configuration.get_entry(/datum/toml_config_entry/server/urls/discord)]/pull/"
     )
     if (revdata.testmerge.len)
         for (var/datum/tgs_revision_information/test_merge/TM in revdata.testmerge)

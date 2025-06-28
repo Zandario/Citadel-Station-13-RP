@@ -911,8 +911,9 @@
 				feedback_inc("ban_tmp",1)
 				DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 				feedback_inc("ban_tmp_mins",mins)
-				if(config_legacy.banappeals)
-					to_chat(M, "<font color='red'>To try to resolve this matter head to [config_legacy.banappeals]</font>")
+				var/appeal_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/ban_appeals)
+				if(appeal_url)
+					to_chat(M, "<font color='red'>To try to resolve this matter head to [appeal_url]</font>")
 				else
 					to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
 				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
@@ -935,8 +936,9 @@
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
 				to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
 				to_chat(M, "<font color='red'>This is a permanent ban.</font>")
-				if(config_legacy.banappeals)
-					to_chat(M, "<font color='red'>To try to resolve this matter head to [config_legacy.banappeals]</font>")
+				var/appeal_url = Configuration.get_entry(/datum/toml_config_entry/server/urls/ban_appeals)
+				if(appeal_url)
+					to_chat(M, "<font color='red'>To try to resolve this matter head to [appeal_url]</font>")
 				else
 					to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
 				ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
