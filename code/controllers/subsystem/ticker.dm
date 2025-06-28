@@ -125,7 +125,9 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/on_mc_init_finish()
-	send2irc("Server lobby is loaded and open at byond://[config_legacy.serverurl ? config_legacy.serverurl : (config_legacy.server ? config_legacy.server : "[world.address]:[world.port]")]")
+	var/address = Configuration?.get_entry(/datum/toml_config_entry/server/address) || world.address
+	var/port = Configuration?.get_entry(/datum/toml_config_entry/server/port) || world.port
+	send2irc("Server lobby is loaded and open at byond://[address]:[port]")
 	to_chat(world, "<span class='boldnotice'>Welcome to the pregame lobby!</span>")
 	to_chat(world, "Please set up your character and select ready. The round will start in [CONFIG_GET(number/lobby_countdown)] seconds.")
 	SEND_SOUND(world, sound('sound/misc/server-ready.ogg', volume = 100))

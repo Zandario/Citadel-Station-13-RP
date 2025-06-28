@@ -37,3 +37,8 @@ ooc = true
 looc = true
 dooc = true
 dsay = true
+
+[server]
+name = "Citadel Station 13 RP"
+address = "localhost"
+port = 1337

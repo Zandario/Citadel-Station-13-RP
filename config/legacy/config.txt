@@ -199,9 +199,6 @@ ALLOW_AI
 ## disables calling del(src) on newmobs if they logout before spawnin in
 # DONT_DEL_NEWMOB
 
-## set a hosted by name for unix platforms
-HOSTEDBY yournamehere
-
 ## Set to jobban "Guest-" accounts from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
 ## Set to 1 to jobban them from those positions, set to 0 to allow them.
 GUEST_JOBBAN
@@ -214,10 +211,6 @@ GUEST_BAN
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 #SERVER server.net:port
-
-## set a server URL for the IRC bot to use; like SERVER, don't include the byond://
-## Unlike SERVER, this one shouldn't break auto-reconnect
-#SERVERURL server.net:port
 
 ## forum address
 # FORUMURL http://example.com

@@ -84,10 +84,6 @@ GLOBAL_LIST(topic_status_cache)
 	// shunt redirected world log from Master's init back into world log proper, now that logging has been set up.
 	shunt_redirected_log()
 
-	if(config && config_legacy.server_name != null && config_legacy.server_suffix && world.port > 0)
-		// dumb and hardcoded but I don't care~
-		config_legacy.server_name += " #[(world.port % 1000) / 100]"
-
 	// TODO - Figure out what this is. Can you assign to world.log?
 	// if(config && Configuration.get_entry(/datum/toml_config_entry/backend/logging/toggles/runtime))
 	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
@@ -382,7 +378,7 @@ GLOBAL_LIST(topic_status_cache)
 		return
 
 	// ---Hub title---
-	var/servername = config_legacy?.server_name
+	var/servername = Configuration?.get_entry(/datum/toml_config_entry/server/name)
 	var/stationname = station_name()
 	var/defaultstation = (LEGACY_MAP_DATUM) ? (LEGACY_MAP_DATUM).station_name : stationname
 	if(servername || stationname != defaultstation)

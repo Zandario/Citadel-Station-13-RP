@@ -7,8 +7,13 @@
 
 	//? UNSORTED
 
-	var/server_name = null				// server name (for world name / status)
-	var/server_suffix = 0				// generate numeric suffix based on server port
+	///? SERVER STUFF
+	var/banappeals
+	var/wikiurl
+	var/wikisearchurl
+	var/forumurl
+	var/rulesurl
+	var/mapurl
 
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/ert_admin_call_only = 0
@@ -39,7 +44,6 @@
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/enable_game_master = 0			// enables the 'smart' event system.
-	var/hostedby = null
 
 	var/respawn = 1
 	var/static/respawn_time = 3000		// time before a dead player is allowed to respawn (in ds, though the config file asks for minutes, and it's converted below)
@@ -111,15 +115,6 @@
 	var/list/gamemode_cache = list()
 
 
-	///? SERVER STUFF
-	var/serverurl
-	var/server
-	var/banappeals
-	var/wikiurl
-	var/wikisearchurl
-	var/forumurl
-	var/rulesurl
-	var/mapurl
 
 
 	///? LOGGING
@@ -286,21 +281,6 @@
 
 				if ("respawn_message")
 					config_legacy.respawn_message = value
-
-				if ("servername")
-					config_legacy.server_name = value
-
-				if ("serversuffix")
-					config_legacy.server_suffix = 1
-
-				if ("hostedby")
-					config_legacy.hostedby = value
-
-				if ("serverurl")
-					config_legacy.serverurl = value
-
-				if ("server")
-					config_legacy.server = value
 
 				if ("banappeals")
 					config_legacy.banappeals = value

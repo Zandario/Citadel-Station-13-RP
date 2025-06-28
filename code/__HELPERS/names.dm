@@ -91,11 +91,7 @@ var/religion_name = null
 		if(13)
 			new_station_name += pick("13","XIII","Thirteen")
 
-
-	if(config_legacy?.server_name)
-		world.name = "[config_legacy.server_name]: [name]"
-	else
-		world.name = new_station_name
+	world.name = new_station_name = Configuration.get_entry(/datum/toml_config_entry/server/name) || new_station_name
 
 	return new_station_name
 
@@ -104,8 +100,9 @@ var/religion_name = null
 
 	(LEGACY_MAP_DATUM).station_name = name
 
-	if(config_legacy?.server_name)
-		world.name = "[config_legacy.server_name]: [name]"
+	var/server_name = Configuration.get_entry(/datum/toml_config_entry/server/name)
+	if(server_name)
+		world.name = "[server_name]: [name]"
 	else
 		world.name = name
 
