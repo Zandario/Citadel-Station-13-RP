@@ -49,7 +49,7 @@
 		return // Clientless mobs shouldn't be trying to talk in deadchat.
 
 	if(!src.client.holder)
-		if(!Configuration.get_entry(/datum/toml_config_entry/chat/toggles/dsay))
+		if(!Configuration.get_entry(/datum/toml_config_entry/game/chat/toggles/dsay))
 			to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
 			return
 
