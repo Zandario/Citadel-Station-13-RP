@@ -235,7 +235,7 @@
 	.["respawn"] = config_legacy.abandon_allowed
 	.["enter"] = config_legacy.enter_allowed
 	.["vote"] = config_legacy.allow_vote_mode
-	.["ai"] = config_legacy.allow_ai
+	.["ai"] = Configuration.get_entry(/datum/toml_config_entry/roles/ai/enabled)
 	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
