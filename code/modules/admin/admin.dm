@@ -879,11 +879,13 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
-	config_legacy.allow_ai = !( config_legacy.allow_ai )
-	if (!( config_legacy.allow_ai ))
-		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
-	else
+
+	var/new_value = !Configuration.get_entry(/datum/toml_config_entry/roles/ai/enabled)
+	Configuration.set_entry(new_value)
+	if (new_value)
 		to_chat(world, "<B>The AI job is chooseable now.</B>")
+	else
+		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
 	log_admin("[key_name(usr)] toggled AI allowed.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

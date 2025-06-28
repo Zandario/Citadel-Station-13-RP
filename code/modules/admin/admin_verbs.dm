@@ -1001,12 +1001,12 @@ var/list/admin_verbs_event_manager = list(
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		if(config_legacy.allow_drone_spawn)
-			config_legacy.allow_drone_spawn = 0
+		if(Configuration.get_entry(/datum/toml_config_entry/roles/drone/enabled))
+			Configuration.set_entry(/datum/toml_config_entry/roles/drone/enabled, FALSE)
 			to_chat(src, "<b>Disallowed maint drones.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled maint drones.", 1)
 		else
-			config_legacy.allow_drone_spawn = 1
+			Configuration.set_entry(/datum/toml_config_entry/roles/drone/enabled, TRUE)
 			to_chat(src, "<b>Enabled maint drones.</b>")
 			message_admins("Admin [key_name_admin(usr)] has enabled maint drones.", 1)
 

@@ -1,3 +1,18 @@
+[server]
+name = "Citadel Station 13 RP"
+address = "localhost"
+port = 1337
+
+[server.urls]
+ban_appeals = ""
+wiki = "https://citadel-station.net/wikiRP/index.php"
+wiki_search = "https://citadel-station.net/wikiRP/index.php?title="
+rules = ""
+forum = ""
+discord = ""
+github = ""
+map = ""
+
 [backend]
 
 [backend.logging]
@@ -38,17 +53,14 @@ looc = true
 dooc = true
 dsay = true
 
-[server]
-name = "Citadel Station 13 RP"
-address = "localhost"
-port = 1337
+[roles]
 
-[server.urls]
-ban_appeals = ""
-wiki = "https://citadel-station.net/wikiRP/index.php"
-wiki_search = "https://citadel-station.net/wikiRP/index.php?title="
-rules = ""
-forum = ""
-discord = ""
-github = ""
-map = ""
+[roles.ai]
+enabled = true
+shells = false
+free_shell = false
+
+[roles.drones]
+enabled = true
+max = 5
+build_time = 1200

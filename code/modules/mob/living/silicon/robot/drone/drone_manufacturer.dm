@@ -75,7 +75,7 @@
 
 	printing = TRUE
 	var/elapsed = world.time - time_last_drone
-	drone_progress = round((elapsed/config_legacy.drone_build_time)*100)
+	drone_progress = round((elapsed / Configuration.get_entry(/datum/toml_config_entry/roles/drone/build_time))*100)
 
 	if(drone_progress >= 100)
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
@@ -84,7 +84,7 @@
 
 /obj/machinery/drone_fabricator/examine(mob/user, dist)
 	. = ..()
-	if(produce_drones && drone_progress >= 100 && istype(user,/mob/observer/dead) && config_legacy.allow_drone_spawn && count_drones() < config_legacy.max_maint_drones)
+	if(produce_drones && drone_progress >= 100 && istype(user,/mob/observer/dead) && Configuration.get_entry(/datum/toml_config_entry/roles/drone/enabled) && count_drones() < Configuration.get_entry(/datum/toml_config_entry/roles/drone/max))
 		. += "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 	if(!is_spawn_safe)
 		. += "<BR> It seems this fabricator has gone into safety lockdown, maybe you can reset it."
@@ -94,7 +94,7 @@
 	if(machine_stat & NOPOWER)
 		return
 
-	if(!produce_drones || !config_legacy.allow_drone_spawn || count_drones() >= config_legacy.max_maint_drones)
+	if(!produce_drones || !Configuration.get_entry(/datum/toml_config_entry/roles/drone/enabled) || count_drones() >= Configuration.get_entry(/datum/toml_config_entry/roles/drone/max))
 		return
 
 	if((drone_type == /mob/living/silicon/robot/drone/construction/matriarch) && (count_matriarchs() > 0))
@@ -133,7 +133,7 @@
 		log_shadowban("[key_name(src)] SC join blocked.")
 		return
 
-	if(!(config_legacy.allow_drone_spawn))
+	if(!Configuration.get_entry(/datum/toml_config_entry/roles/drone/enabled))
 		to_chat(src, "<span class='danger'>That verb is not currently permitted.</span>")
 		return
 

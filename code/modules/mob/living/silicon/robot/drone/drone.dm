@@ -207,7 +207,7 @@
 		var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 		if(stat == 2)
 
-			if(!config_legacy.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
+			if(!Configuration.get_entry(/datum/toml_config_entry/roles/drone/enabled) || emagged || health < -35) //It's dead, Dave.
 				to_chat(user, "<span class='danger'>The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one.</span>")
 				return
 
@@ -219,7 +219,7 @@
 			var/drones = 0
 			for(var/mob/living/silicon/robot/drone/D in GLOB.player_list)
 				drones++
-			if(drones < config_legacy.max_maint_drones)
+			if(drones < Configuration.get_entry(/datum/toml_config_entry/roles/drone/max))
 				request_player()
 			return
 

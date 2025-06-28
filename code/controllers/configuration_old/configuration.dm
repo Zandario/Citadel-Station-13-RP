@@ -54,10 +54,6 @@
 
 	var/character_slots = 10				// The number of available character slots
 
-	var/max_maint_drones = 5				//This many drones can spawn,
-	var/allow_drone_spawn = 1				//assuming the admin allow them to.
-	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
-
 	var/disable_player_mice = 0
 	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
 
@@ -102,11 +98,8 @@
 	var/comms_key = "default_password"
 
 
-
 	///? GAMEMODE STUFF
 	var/list/gamemode_cache = list()
-
-
 
 
 	///? LOGGING
@@ -127,13 +120,6 @@
 	var/minute_topic_limit = 500
 	var/second_topic_limit = 10
 
-
-	///? AI STUFFFFFF
-
-	var/allow_ai = 1					// allow ai job
-	var/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
-	var/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
-	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
 
 	///? Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
@@ -251,15 +237,6 @@
 
 				if("ert_admin_only")
 					config_legacy.ert_admin_call_only = 1
-
-				if ("allow_ai")
-					config_legacy.allow_ai = 1
-
-				if ("allow_ai_shells")
-					config_legacy.allow_ai_shells = TRUE
-
-				if("give_free_ai_shell")
-					config_legacy.give_free_ai_shell = TRUE
 
 //				if ("authentication")
 //					config_legacy.enable_authentication = 1
@@ -405,15 +382,6 @@
 				if("character_slots")
 					config_legacy.character_slots = text2num(value)
 
-				if("allow_drone_spawn")
-					config_legacy.allow_drone_spawn = text2num(value)
-
-				if("drone_build_time")
-					config_legacy.drone_build_time = text2num(value)
-
-				if("max_maint_drones")
-					config_legacy.max_maint_drones = text2num(value)
-
 				if("expected_round_length")
 					config_legacy.expected_round_length = MinutesToTicks(text2num(value))
 
@@ -446,9 +414,6 @@
 					config_legacy.event_delay_upper[EVENT_LEVEL_MUNDANE] = MinutesToTicks(values[1])
 					config_legacy.event_delay_upper[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
 					config_legacy.event_delay_upper[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
-
-				if("law_zero")
-					law_zero = value
 
 				if("paranoia_logging")
 					config_legacy.paranoia_logging = 1
