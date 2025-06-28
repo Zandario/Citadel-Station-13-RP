@@ -28,3 +28,12 @@ persistence = true
 # Speed players are slowed down to if they are above this when they are walking.
 # - This is in tiles per second.
 walk_speed = 2
+
+[game.chat]
+language_prefixes = [",", "#"]
+
+[game.chat.toggles]
+ooc = true
+looc = true
+dooc = true
+dsay = true

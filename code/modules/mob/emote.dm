@@ -72,7 +72,7 @@
 		return
 
 	if(!src.client.holder)
-		if(!config_legacy.dsay_allowed)
+		if(!Configuration.get_entry(/datum/toml_config_entry/chat/toggles/dsay))
 			to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
 			return
 

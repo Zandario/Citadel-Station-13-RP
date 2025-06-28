@@ -274,10 +274,11 @@
 	return 0
 
 /mob/proc/get_language_prefix()
-	return config_legacy.language_prefixes[1]
+	var/list/values = Configuration.get_entry(/datum/toml_config_entry/game/chat/language_prefixes)
+	return values[1]
 
 /mob/proc/is_language_prefix(prefix)
-	return (prefix in config_legacy.language_prefixes)
+	return (prefix in Configuration.get_entry(/datum/toml_config_entry/game/chat/language_prefixes))
 
 //TBD
 /mob/verb/check_languages()

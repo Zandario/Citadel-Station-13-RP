@@ -368,15 +368,6 @@ EVENT_CUSTOM_START_MAJOR 80;100
 ## Uncomment to prevent anyone from joining the round by default.
 #DISABLE_ENTRY
 
-## Uncomment to disable the OOC channel by default.
-#DISABLE_OOC
-
-## Uncomment to disable the dead OOC channel by default.
-#DISABLE_DEAD_OOC
-
-## Uncomment to disable ghost chat by default.
-#DISABLE_DSAY
-
 ## Uncomment to disable respawning by default.
 #DISABLE_RESPAWN
 
@@ -396,9 +387,6 @@ GENERATE_MAP
 
 ## Uncomment to override default brain health.
 #DEFAULT_BRAIN_HEALTH 400
-
-## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , and #
-# DEFAULT_LANGUAGE_PREFIXES , #
 
 # Control which submaps are loaded for the Dynamic Engine system
 ENGINE_MAP Supermatter Engine,Edison's Bane

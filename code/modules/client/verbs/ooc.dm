@@ -82,10 +82,10 @@
 		return
 
 	if(!holder)
-		if(!config_legacy.ooc_allowed)
+		if(!Configuration.get_entry(/datum/toml_config_entry/game/chat/toggles/ooc))
 			to_chat(src, "<span class='danger'>OOC is globally muted.</span>")
 			return
-		if(!config_legacy.dooc_allowed && (mob.stat == DEAD))
+		if(!Configuration.get_entry(/datum/toml_config_entry/chat/toggles/ooc) && (mob.stat == DEAD))
 			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
@@ -194,10 +194,10 @@
 		return
 
 	if(!holder)
-		if(!config_legacy.looc_allowed)
+		if(!Configuration.get_entry(/datum/toml_config_entry/chat/toggles/looc))
 			to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
 			return
-		if(!config_legacy.dooc_allowed && (mob.stat == DEAD))
+		if(!Configuration.get_entry(/datum/toml_config_entry/chat/toggles/dooc) && (mob.stat == DEAD))
 			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)

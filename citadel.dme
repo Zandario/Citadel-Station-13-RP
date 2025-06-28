@@ -713,6 +713,8 @@
 #include "code\controllers\toml_config\entries\backend-logging.dm"
 #include "code\controllers\toml_config\entries\backend-repository.dm"
 #include "code\controllers\toml_config\entries\backend.dm"
+#include "code\controllers\toml_config\entries\game-chat-toggles.dm"
+#include "code\controllers\toml_config\entries\game-chat.dm"
 #include "code\controllers\toml_config\entries\game-movement.dm"
 #include "code\controllers\toml_config\entries\game.dm"
 #include "code\datums\ability.dm"

@@ -773,8 +773,9 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	if(!check_rights(R_ADMIN))
 		return
 
-	config_legacy.ooc_allowed = !(config_legacy.ooc_allowed)
-	to_chat(world, "<span class='oocplain'><B>The OOC channel has been globally [config_legacy.ooc_allowed ? "enabled" : "disabled"].</B></span>")
+	var/new_value = !Configuration.get_entry(/datum/toml_config_entry/chat/toggles/ooc)
+	Configuration.set_entry(/datum/toml_config_entry/chat/toggles/ooc, new_value)
+	to_chat(world, "<span class='oocplain'><B>The OOC channel has been globally [new_value ? "enabled" : "disabled"].</B></span>")
 	log_and_message_admins("toggled OOC.")
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -786,8 +787,9 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	if(!check_rights(R_ADMIN))
 		return
 
-	config_legacy.looc_allowed = !(config_legacy.looc_allowed)
-	to_chat(world, "<span class='oocplain'><B>The LOOC channel has been globally [config_legacy.looc_allowed ? "enabled" : "disabled"].</B></span>")
+	var/new_value = !Configuration.get_entry(/datum/toml_config_entry/chat/toggles/looc)
+	Configuration.set_entry(/datum/toml_config_entry/chat/toggles/looc, new_value)
+	to_chat(world, "<span class='oocplain'><B>The LOOC channel has been globally [new_value ? "enabled" : "disabled"].</B></span>")
 	log_and_message_admins("toggled LOOC.")
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -800,8 +802,9 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	if(!check_rights(R_ADMIN))
 		return
 
-	config_legacy.dsay_allowed = !(config_legacy.dsay_allowed)
-	to_chat(world, "<span class='oocplain'><B>Deadchat has been globally [config_legacy.dsay_allowed ? "enabled" : "disabled"].</B></span>")
+	var/new_value = !Configuration.get_entry(/datum/toml_config_entry/chat/toggles/dsay)
+	Configuration.set_entry(/datum/toml_config_entry/chat/toggles/dsay, new_value)
+	to_chat(world, "<span class='oocplain'><B>Deadchat has been globally [new_value ? "enabled" : "disabled"].</B></span>")
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
@@ -814,7 +817,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	if(!check_rights(R_ADMIN))
 		return
 
-	config_legacy.dooc_allowed = !( config_legacy.dooc_allowed )
+	Configuration.set_entry(/datum/toml_config_entry/chat/toggles/dooc, !Configuration.get_entry(/datum/toml_config_entry/chat/toggles/dooc))
 	log_admin("[key_name(usr)] toggled Dead OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

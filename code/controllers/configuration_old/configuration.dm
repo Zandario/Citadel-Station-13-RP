@@ -4,6 +4,9 @@
 	config_legacy.load("config/legacy/game_options.txt","game_options")
 
 /datum/configuration_legacy
+
+	//? UNSORTED
+
 	var/server_name = null				// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 
@@ -36,9 +39,6 @@
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/enable_game_master = 0			// enables the 'smart' event system.
-	var/allow_ai = 1					// allow ai job
-	var/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
-	var/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
 	var/hostedby = null
 
 	var/respawn = 1
@@ -68,17 +68,7 @@
 	var/usealienwhitelist = 0
 	var/allow_extra_antags = 0
 	var/guests_allowed = 1
-	var/debugparanoid = 0
-	var/paranoia_logging = 0
 
-	var/serverurl
-	var/server
-	var/banappeals
-	var/wikiurl
-	var/wikisearchurl
-	var/forumurl
-	var/rulesurl
-	var/mapurl
 
 	//game_options.txt configs
 
@@ -108,9 +98,57 @@
 	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
 	var/ghost_interaction = 0
 
-	var/enter_allowed = 1
 
-	// Event settings
+	var/aliens_allowed = 0
+	var/ninjas_allowed = 0
+	var/abandon_allowed = 1
+	var/enter_allowed = 1
+	var/comms_key = "default_password"
+
+
+
+	///? GAMEMODE STUFF
+	var/list/gamemode_cache = list()
+
+
+	///? SERVER STUFF
+	var/serverurl
+	var/server
+	var/banappeals
+	var/wikiurl
+	var/wikisearchurl
+	var/forumurl
+	var/rulesurl
+	var/mapurl
+
+
+	///? LOGGING
+	var/debugparanoid = 0
+	var/paranoia_logging = 0
+
+
+	///? MAP STUFF
+	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
+	var/autostart_solars = FALSE // If true, specifically mapped in solar control computers will set themselves up when the round starts.
+
+
+
+	///? TIME LIMITERS
+
+	var/minute_click_limit = 500 //default: 7+ clicks per second
+	var/second_click_limit = 15
+	var/minute_topic_limit = 500
+	var/second_topic_limit = 10
+
+
+	///? AI STUFFFFFF
+
+	var/allow_ai = 1					// allow ai job
+	var/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
+	var/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
+	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
+
+	///? Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
 	// If the first delay has a custom start time
 	// No custom time, no custom time, between 80 to 100 minutes respectively.
@@ -122,28 +160,7 @@
 	// 15, 45, 70 minutes respectively
 	var/list/event_delay_upper = list(EVENT_LEVEL_MUNDANE = 9000,	EVENT_LEVEL_MODERATE = 27000,	EVENT_LEVEL_MAJOR = 42000)
 
-	var/aliens_allowed = 0
-	var/ninjas_allowed = 0
-	var/abandon_allowed = 1
-	var/ooc_allowed = 1
-	var/looc_allowed = 1
-	var/dooc_allowed = 1
-	var/dsay_allowed = 1
 
-	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
-
-	var/list/language_prefixes = list(",","#")//Default language prefixes
-
-	var/comms_key = "default_password"
-
-	var/minute_click_limit = 500		//default: 7+ clicks per second
-	var/second_click_limit = 15
-	var/minute_topic_limit = 500
-	var/second_topic_limit = 10
-	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
-	var/autostart_solars = FALSE // If true, specifically mapped in solar control computers will set themselves up when the round starts.
-
-	var/list/gamemode_cache = list()
 
 /datum/configuration_legacy/New()
 	var/list/L = subtypesof(/datum/game_mode)
@@ -309,18 +326,8 @@
 				if ("guest_ban")
 					config_legacy.guests_allowed = 0
 
-				if ("disable_ooc")
-					config_legacy.ooc_allowed = 0
-					config_legacy.looc_allowed = 0
-
 				if ("disable_entry")
 					config_legacy.enter_allowed = 0
-
-				if ("disable_dead_ooc")
-					config_legacy.dooc_allowed = 0
-
-				if ("disable_dsay")
-					config_legacy.dsay_allowed = 0
 
 				if ("disable_respawn")
 					config_legacy.abandon_allowed = 0
@@ -488,11 +495,6 @@
 
 				if("law_zero")
 					law_zero = value
-
-				if("default_language_prefixes")
-					var/list/values = splittext(value, " ")
-					if(values.len > 0)
-						language_prefixes = values
 
 				if("paranoia_logging")
 					config_legacy.paranoia_logging = 1
